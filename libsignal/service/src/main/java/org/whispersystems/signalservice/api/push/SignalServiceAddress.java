@@ -55,6 +55,10 @@ public class SignalServiceAddress {
     return uuid;
   }
 
+  public boolean hasValidUuid() {
+    return !uuid.equals(UuidUtil.UNKNOWN_UUID);
+  }
+
   public String getIdentifier() {
     return uuid.toString();
   }

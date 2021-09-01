@@ -792,13 +792,13 @@ public class RecipientDatabase extends Database {
 
     if (id < 0) {
       Log.w(TAG,  "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.");
-      recipientId = getAndPossiblyMerge(insert.getAddress().getUuid(), insert.getAddress().getNumber().get(), true);
+      recipientId = getAndPossiblyMerge(insert.getAddress().hasValidUuid() ? insert.getAddress().getUuid() : null, insert.getAddress().getNumber().get(), true);
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
     } else {
       recipientId = RecipientId.from(id);
     }
 
-    if (insert.getIdentityKey().isPresent()) {
+    if (insert.getIdentityKey().isPresent() && insert.getAddress().hasValidUuid()) {
       try {
         IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
 
@@ -827,7 +827,7 @@ public class RecipientDatabase extends Database {
       RecipientId recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getOld().getId().getRaw())).get();
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Found user " + recipientId + ". Possibly merging.");
 
-      recipientId = getAndPossiblyMerge(update.getNew().getAddress().getUuid(), update.getNew().getAddress().getNumber().orNull(), true);
+      recipientId = getAndPossiblyMerge(update.getNew().getAddress().hasValidUuid() ? update.getNew().getAddress().getUuid() : null, update.getNew().getAddress().getNumber().orNull(), true);
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Merged into " + recipientId);
 
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
@@ -844,7 +844,7 @@ public class RecipientDatabase extends Database {
     try {
       Optional<IdentityRecord> oldIdentityRecord = identityDatabase.getIdentity(recipientId);
 
-      if (update.getNew().getIdentityKey().isPresent()) {
+      if (update.getNew().getIdentityKey().isPresent() && update.getNew().getAddress().hasValidUuid()) {
         IdentityKey identityKey = new IdentityKey(update.getNew().getIdentityKey().get(), 0);
         DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(update.getNew().getAddress().getIdentifier(), identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
       }
@@ -856,7 +856,7 @@ public class RecipientDatabase extends Database {
       {
         IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
       } else if ((newIdentityRecord.isPresent() && newIdentityRecord.get().getVerifiedStatus() != VerifiedStatus.VERIFIED) &&
-          (oldIdentityRecord.isPresent() && oldIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED))
+                 (oldIdentityRecord.isPresent() && oldIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED))
       {
         IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), false, true);
       }
@@ -1022,7 +1022,10 @@ public class RecipientDatabase extends Database {
     ProfileName profileName = ProfileName.fromParts(contact.getGivenName().orNull(), contact.getFamilyName().orNull());
     String      username    = contact.getUsername().orNull();
 
-    values.put(UUID, contact.getAddress().getUuid().toString());
+    if (contact.getAddress().hasValidUuid()) {
+      values.put(UUID, contact.getAddress().getUuid().toString());
+    }
+
     values.put(PHONE, contact.getAddress().getNumber().orNull());
     values.put(PROFILE_GIVEN_NAME, profileName.getGivenName());
     values.put(PROFILE_FAMILY_NAME, profileName.getFamilyName());
@@ -1035,7 +1038,7 @@ public class RecipientDatabase extends Database {
     values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(contact.getId().getRaw()));
 
     if (contact.hasUnknownFields()) {
-      values.put(STORAGE_PROTO, Base64.encodeBytes(contact.serializeUnknownFields()));
+      values.put(STORAGE_PROTO, Base64.encodeBytes(Objects.requireNonNull(contact.serializeUnknownFields())));
     } else {
       values.putNull(STORAGE_PROTO);
     }
