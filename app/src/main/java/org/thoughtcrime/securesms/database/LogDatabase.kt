@@ -44,7 +44,7 @@ class LogDatabase private constructor(
   companion object {
     private val TAG = Log.tag(LogDatabase::class.java)
 
-    private val MAX_FILE_SIZE = ByteUnit.MEGABYTES.toBytes(10)
+    private val MAX_FILE_SIZE = ByteUnit.MEGABYTES.toBytes(15)
     private val DEFAULT_LIFESPAN = TimeUnit.DAYS.toMillis(2)
     private val LONGER_LIFESPAN = TimeUnit.DAYS.toMillis(7)
 
