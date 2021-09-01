@@ -134,9 +134,10 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
                        canLoadMore = !singlePlayback;
                      } else if (Objects.equals(latestUri, uri)) {
                        Log.w(TAG, "Requested playback but no voice notes could be found.");
-                       ThreadUtil.postToMain(() -> Toast
-                           .makeText(context, R.string.VoiceNotePlaybackPreparer__failed_to_play_voice_message, Toast.LENGTH_SHORT)
-                           .show());
+                       ThreadUtil.postToMain(() -> {
+                         Toast.makeText(context, R.string.VoiceNotePlaybackPreparer__failed_to_play_voice_message, Toast.LENGTH_SHORT)
+                              .show();
+                       });
                      }
                    });
   }
@@ -195,7 +196,9 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   private int indexOfPlayerMediaItemByUri(@NonNull Uri uri) {
     for (int i = 0; i < player.getMediaItemCount(); i++) {
       MediaItem.PlaybackProperties playbackProperties = player.getMediaItemAt(i).playbackProperties;
-      if (playbackProperties != null && playbackProperties.uri.equals(uri)) return i;
+      if (playbackProperties != null && playbackProperties.uri.equals(uri)) {
+        return i;
+      }
     }
     return -1;
   }

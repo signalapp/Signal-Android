@@ -12,7 +12,10 @@ import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.util.Util
 
-class VoiceNotePlaybackController(private val player: SimpleExoPlayer) : MediaSessionConnector.CommandReceiver {
+class VoiceNotePlaybackController(
+  private val player: SimpleExoPlayer,
+  private val voiceNotePlaybackParameters: VoiceNotePlaybackParameters
+) : MediaSessionConnector.CommandReceiver {
 
   @Suppress("deprecation")
   override fun onCommand(p: Player, controlDispatcher: ControlDispatcher, command: String, extras: Bundle?, cb: ResultReceiver?): Boolean {
@@ -20,6 +23,7 @@ class VoiceNotePlaybackController(private val player: SimpleExoPlayer) : MediaSe
       val speed = extras?.getFloat(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, 1f) ?: 1f
 
       player.playbackParameters = PlaybackParameters(speed)
+      voiceNotePlaybackParameters.setSpeed(speed)
       return true
     } else if (command == VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM) {
       val newStreamType: Int = extras?.getInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC) ?: AudioManager.STREAM_MUSIC

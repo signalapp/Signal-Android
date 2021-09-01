@@ -82,8 +82,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     voiceNoteNotificationManager = new VoiceNoteNotificationManager(this,
                                                                     mediaSession.getSessionToken(),
                                                                     new VoiceNoteNotificationManagerListener());
-
-    voiceNotePlaybackPreparer = new VoiceNotePlaybackPreparer(this, player, voiceNotePlaybackParameters);
+    voiceNotePlaybackPreparer    = new VoiceNotePlaybackPreparer(this, player, voiceNotePlaybackParameters);
 
     player.addListener(new VoiceNotePlayerEventListener());
 
@@ -92,7 +91,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     mediaSessionConnector.setPlaybackPreparer(voiceNotePlaybackPreparer);
     mediaSessionConnector.setQueueNavigator(new VoiceNoteQueueNavigator(mediaSession));
 
-    VoiceNotePlaybackController voiceNotePlaybackController = new VoiceNotePlaybackController(player.getInternalPlayer());
+    VoiceNotePlaybackController voiceNotePlaybackController = new VoiceNotePlaybackController(player.getInternalPlayer(), voiceNotePlaybackParameters);
     mediaSessionConnector.registerCustomCommandReceiver(voiceNotePlaybackController);
 
     setSessionToken(mediaSession.getSessionToken());

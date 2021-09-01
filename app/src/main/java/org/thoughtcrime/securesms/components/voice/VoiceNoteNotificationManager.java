@@ -37,17 +37,13 @@ class VoiceNoteNotificationManager {
                                @NonNull MediaSessionCompat.Token token,
                                @NonNull PlayerNotificationManager.NotificationListener listener)
   {
-    this.context = context;
-
-    controller = new MediaControllerCompat(context, token);
-
-    notificationManager = new PlayerNotificationManager.Builder(
-        context, NOW_PLAYING_NOTIFICATION_ID,
-        NotificationChannels.VOICE_NOTES
-    ).setChannelNameResourceId(R.string.NotificationChannel_voice_notes)
-     .setMediaDescriptionAdapter(new DescriptionAdapter())
-     .setNotificationListener(listener)
-     .build();
+    this.context        = context;
+    controller          = new MediaControllerCompat(context, token);
+    notificationManager = new PlayerNotificationManager.Builder(context, NOW_PLAYING_NOTIFICATION_ID, NotificationChannels.VOICE_NOTES)
+                                                       .setChannelNameResourceId(R.string.NotificationChannel_voice_notes)
+                                                       .setMediaDescriptionAdapter(new DescriptionAdapter())
+                                                       .setNotificationListener(listener)
+                                                       .build();
 
     notificationManager.setMediaSessionToken(token);
     notificationManager.setSmallIcon(R.drawable.ic_notification);
@@ -81,7 +77,9 @@ class VoiceNoteNotificationManager {
 
     @Override
     public @Nullable PendingIntent createCurrentContentIntent(Player player) {
-      if (!hasMetadata()) return null;
+      if (!hasMetadata()) {
+        return null;
+      }
 
       String serializedRecipientId = controller.getMetadata().getString(VoiceNoteMediaItemFactory.EXTRA_THREAD_RECIPIENT_ID);
       if (serializedRecipientId == null) {
