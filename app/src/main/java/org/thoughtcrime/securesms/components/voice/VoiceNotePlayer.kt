@@ -4,7 +4,6 @@ import android.content.Context
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.ForwardingPlayer
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory
 
@@ -18,10 +17,6 @@ class VoiceNotePlayer @JvmOverloads constructor(
         .build()
     ).build()
 ) : ForwardingPlayer(internalPlayer) {
-
-  override fun getAvailableCommands(): Player.Commands {
-    return super.getAvailableCommands()
-  }
 
   override fun seekTo(windowIndex: Int, positionMs: Long) {
     super.seekTo(windowIndex, positionMs)
