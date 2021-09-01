@@ -14,7 +14,7 @@ import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.sqlcipher.database.SQLiteConstraintException;
+import net.zetetic.database.sqlcipher.SQLiteConstraintException;
 
 import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;

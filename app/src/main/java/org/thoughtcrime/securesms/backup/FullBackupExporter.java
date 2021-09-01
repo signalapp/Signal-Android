@@ -13,7 +13,7 @@ import androidx.documentfile.provider.DocumentFile;
 import com.annimon.stream.function.Predicate;
 import com.google.protobuf.ByteString;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.Conversions;

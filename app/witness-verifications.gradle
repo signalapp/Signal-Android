@@ -495,9 +495,6 @@ dependencyVerification {
         ['mobi.upod:time-duration-picker:1.1.3',
          'db469ce0f48dd96b892eac424ed76870e54bf00fe0a28cdcddfbe5f2a226a0e1'],
 
-        ['net.zetetic:android-database-sqlcipher:4.4.3',
-         '64cf472e3f6c3300fd7307aebb74dfff4eeb3805f138045c83362c7687e4af61'],
-
         ['org.apache.httpcomponents:httpclient-android:4.3.5',
          '6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1'],
 
@@ -554,6 +551,9 @@ dependencyVerification {
 
         ['org.signal:aesgcmprovider:0.0.3',
          '6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1'],
+
+        ['org.signal:android-database-sqlcipher:4.4.3-S2',
+         'f76f42927c967dc7549cb857e953e97993957129e71caf367cb462c59f3b29fd'],
 
         ['org.signal:argon2:13.1',
          '0f686ccff0d4842bfcc74d92e8dc780a5f159b9376e37a1189fabbcdac458bef'],

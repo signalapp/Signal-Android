@@ -4,8 +4,8 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.DatabaseErrorHandler;
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.DatabaseErrorHandler;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.CursorUtil;
