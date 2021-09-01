@@ -4,11 +4,11 @@
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="delete">刪除</string>
-    <string name="ban">Ban</string>
+    <string name="ban">封鎖</string>
     <string name="please_wait">請稍候...</string>
     <string name="save">儲存</string>
     <string name="note_to_self">給自己的筆記</string>
-    <string name="version_s">Version %s</string>
+    <string name="version_s">版本 %s</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">新訊息</string>
     <!-- AlbumThumbnailView -->
@@ -29,7 +29,7 @@
     <string name="DraftDatabase_Draft_audio_snippet">（音訊）</string>
     <string name="DraftDatabase_Draft_video_snippet">（影片）</string>
     <string name="DraftDatabase_Draft_quote_snippet">（回覆）</string>
-    <!-- AttchmentManager -->
+    <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">找不到合適的應用程式來選擇媒體檔案。</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session 需要儲存的權限，以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選擇「權限」及開啟「儲存」。 </string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session 需要聯絡人的權限以存取聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
@@ -52,18 +52,19 @@
     <string name="ConversationItem_click_to_approve_unencrypted">傳送失敗，點擊不安全的訊息退回</string>
     <string name="ConversationItem_unable_to_open_media">找不到合適的應用程式來開啟媒體檔案。</string>
     <string name="ConversationItem_copied_text">已複製 %s</string>
-    <string name="ConversationItem_read_more">Read More</string>
+    <string name="ConversationItem_read_more">閱讀更多</string>
     <string name="ConversationItem_download_more">下載更多</string>
     <string name="ConversationItem_pending">等待中</string>
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">增加附件檔案</string>
     <string name="ConversationActivity_select_contact_info">選擇聯絡人資訊</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，無法成功設定您指定的附件檔案</string>
-    <string name="ConversationActivity_message">Message</string>
-    <string name="ConversationActivity_compose">Compose</string>
-    <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
-    <string name="ConversationActivity_member_count">%1$d members</string>
-    <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
+    <string name="ConversationActivity_message">訊息</string>
+    <string name="ConversationActivity_compose">撰寫訊息</string>
+    <string name="ConversationActivity_muted_until_date">關閉通知直到 %1$s</string>
+    <string name="ConversationActivity_muted_forever">Muted</string>
+    <string name="ConversationActivity_member_count">%1$d 位成員</string>
+    <string name="ConversationActivity_open_group_guidelines">社群規範</string>
     <string name="ConversationActivity_invalid_recipient">無效的聯絡人！</string>
     <string name="ConversationActivity_added_to_home_screen">新增到主畫面</string>
     <string name="ConversationActivity_leave_group">離開群組？</string>
@@ -75,12 +76,13 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附件類型已經超越大小限制。</string>
     <string name="ConversationActivity_unable_to_record_audio">無法錄製音訊！</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的裝置上沒有應用程式可以處理這個連結</string>
-    <string name="ConversationActivity_invite_to_open_group">Add members</string>
-    <string name="ConversationActivity_join_open_group">Join %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_invite_to_open_group">新增成員</string>
+    <string name="ConversationActivity_join_open_group">加入 %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">您確定要加入 <b>%s</b> 公開群組嗎？</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">若要傳送語音訊息，請允許 Session 使用您的麥克風</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需要麥克風的權限來傳送語音訊息，但是現在系統設定為總是拒絕 Signal。請到 Session 的應用程式設定中，點選「權限」，並啟用「麥克風」的權限。</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">請授予 Session 使用相機的權限，才能拍攝照片和影片</string>
+    <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session 需要使用存取存儲空間的權限來發送照片和影片</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相機的權限來拍攝照片或是影片 ，但是現在系統設定為總是拒絕 Signal。請到 Session 的應用程式設定中，點選「權限」，並啟用相機的權限。</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session 需要使用相機的權限來拍攝照片和影片</string>
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
@@ -97,7 +99,7 @@
     <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
         <item quantity="other">這將會永久刪除所有 %1$d 已選訊息</item>
     </plurals>
-    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_ban_selected_user">確認封鎖此用戶？</string>
     <string name="ConversationFragment_save_to_sd_card">儲存？</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="other">保存所有的 %1$d 媒體至存儲將會允許您設備上的其它軟體開啓它們。\n\n繼續嗎？</item>
@@ -117,7 +119,7 @@
     <string name="ConversationFragment_sms">簡訊</string>
     <string name="ConversationFragment_deleting">正在刪除</string>
     <string name="ConversationFragment_deleting_messages">正在刪除訊息...</string>
-    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning">封鎖</string>
     <string name="ConversationFragment_banning_user">Banning user…</string>
     <string name="ConversationFragment_quoted_message_not_found">無法找到原始訊息</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不存在</string>
@@ -198,6 +200,7 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
     <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Notification settings</string>
     <!-- Slide -->
     <string name="Slide_image">圖片</string>
     <string name="Slide_audio">音訊</string>
@@ -223,7 +226,7 @@
     <string name="ThreadRecord_s_is_on_signal">%s 在 Session 了！</string>
     <string name="ThreadRecord_disappearing_messages_disabled">自動銷毀訊息功能已被關閉。</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設定為 %s</string>
-    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s 擷取了螢幕畫面</string>
     <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
     <string name="ThreadRecord_safety_number_changed">安全碼已改變</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變</string>
@@ -389,6 +392,7 @@
     <string name="arrays__mute_for_one_day">靜音 1 天</string>
     <string name="arrays__mute_for_seven_days">靜音 7 天</string>
     <string name="arrays__mute_for_one_year">靜音 1 年</string>
+    <string name="arrays__mute_forever">Mute forever</string>
     <string name="arrays__settings_default">預設設定</string>
     <string name="arrays__enabled">啟用</string>
     <string name="arrays__disabled">停用</string>
@@ -476,6 +480,7 @@
     <string name="conversation_context__menu_copy_text">複製文字</string>
     <string name="conversation_context__menu_delete_message">刪除訊息</string>
     <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_ban_and_delete_all">Ban and delete all</string>
     <string name="conversation_context__menu_resend_message">重送訊息</string>
     <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
     <!-- conversation_context_image -->
@@ -619,7 +624,8 @@
     <string name="activity_settings_notifications_button_title">Notifications</string>
     <string name="activity_settings_chats_button_title">Chats</string>
     <string name="activity_settings_devices_button_title">Devices</string>
-    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_invite_button_title">Invite a Friend</string>
+    <string name="activity_settings_faq_button_title">FAQ</string>
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
     <string name="activity_settings_clear_all_data_and_network_button_title">Clear Data Including Network</string>
@@ -713,4 +719,14 @@
     <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
     <string name="media">Media</string>
     <string name="UntrustedAttachmentView_download_attachment">Tap to download %s</string>
+    <string name="message_details_header__error">Error</string>
+    <string name="dialog_send_seed_title">Warning</string>
+    <string name="dialog_send_seed_explanation">This is your recovery phrase. If you send it to someone they\'ll have full access to your account.</string>
+    <string name="dialog_send_seed_send_button_title">Send</string>
+    <string name="notify_type_all">All</string>
+    <string name="notify_type_mentions">Mentions</string>
+    <string name="deleted_message">This message has been deleted</string>
+    <string name="delete_message_for_me">Delete just for me</string>
+    <string name="delete_message_for_everyone">Delete for everyone</string>
+    <string name="delete_message_for_me_and_recipient">Delete for me and %s</string>
 </resources>
