@@ -208,6 +208,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">జోడింపు మీరు పంపే సందేశం రకం పరిమాణ పరిమితి మించిపోయింది.</string>
   <string name="ConversationActivity_unable_to_record_audio">ఆడియో రికార్డ్ చేయడం సాధ్యపడలేదు!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">మీరు ఇకపై ఈ సమూహం సభ్యులు కానందున మీరు ఈ సమూహంకు సందేశాలను పంపలేరు.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">కేవలం %1$s మాత్రమే సందేశాలను పంపగలరు.</string>
   <string name="ConversationActivity_admins">నిర్వాహకులు</string>
   <string name="ConversationActivity_message_an_admin">నిర్వాహకుడికి సందేశం పంపండి</string>
   <string name="ConversationActivity_cant_start_group_call">ప్రారంభించలేము సమూహం కాల్</string>
@@ -612,7 +613,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">సభ్యుల అభ్యర్థనలు &amp; ఆహ్వానిస్తుంది</string>
-  <string name="ManageGroupActivity_add_members">సభ్యులు జోడించు</string>
+  <string name="ManageGroupActivity_add_members">సభ్యులను జోడించండి</string>
   <string name="ManageGroupActivity_edit_group_info">సమూహ వివరణను సవరించండి</string>
   <string name="ManageGroupActivity_who_can_add_new_members">కొత్త సభ్యులను ఎవరు చేర్చగలరు?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">ఈ గుంపు వివరణను ఎవరు సవరించగలరు?</string>
@@ -752,6 +753,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">పంచుకోండి</string>
   <string name="InviteActivity_share_with_contacts">పరిచయాలతో భాగస్వామ్యం చేయండి</string>
+  <string name="InviteActivity_share_via">ద్వారా పంచుకోండి…</string>
   <string name="InviteActivity_cancel">రద్దు</string>
   <string name="InviteActivity_sending">పంపుతోంది …</string>
   <string name="InviteActivity_invitations_sent">ఆహ్వనం పంపబడింది!</string>
@@ -1188,6 +1190,7 @@
   <string name="WebRtcCallActivity__calling">కాలింగ్…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal కాల్ </string>
+  <string name="WebRtcCallView__signal_video_call">Signal వీడియో కాల్</string>
   <string name="WebRtcCallView__start_call">కాల్ ప్రారంభించు</string>
   <string name="WebRtcCallView__join_call">కాల్‌లో చేరండి</string>
   <string name="WebRtcCallView__call_is_full">కాల్ నిండింది</string>
@@ -2731,16 +2734,28 @@
   <string name="AvatarPickerFragment__photo">ఛాయాచిత్రం</string>
   <string name="AvatarPickerFragment__text">వచనం</string>
   <string name="AvatarPickerFragment__save">భద్రపరుచు</string>
+  <string name="AvatarPickerFragment__select_an_avatar">అవతార్‌ను ఎంచుకోండి</string>
+  <string name="AvatarPickerFragment__clear_avatar">అవతార్ తీసివేయండి</string>
   <string name="AvatarPickerFragment__edit">సరిచేయు</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">పూర్వప్రదర్శన</string>
-  <string name="TextAvatarCreationFragment__done">పూర్తి</string>
+  <string name="TextAvatarCreationFragment__done">పూర్తయింది</string>
   <string name="TextAvatarCreationFragment__text">వచనం</string>
   <string name="TextAvatarCreationFragment__color">రంగు </string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">ఒక రంగును ఎంచుకోండి</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ఎస్సెమ్మెస్</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">సందేశాలు పంపబడ్డాయి</item>
+    <item quantity="other">సందేశాలు పంపబడ్డాయి</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">సందేశము పంపబడలేదు</item>
+    <item quantity="other">సందేశాలు పంపబడలేదు</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">పరిమితి చేరుకుంది</string>
   <!--EOF-->
 </resources>

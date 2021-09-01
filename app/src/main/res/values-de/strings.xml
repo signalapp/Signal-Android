@@ -1215,24 +1215,24 @@
     <item quantity="one">Signal wird bei %1$s, %2$s und %3$d weiteren Person klingeln</item>
     <item quantity="other">Signal wird bei %1$s, %2$s und %3$d weiteren Personen klingeln</item>
   </plurals>
-  <string name="WebRtcCallView__s_will_be_notified">%1$s wird benachrichtigt</string>
-  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s und %2$s werden benachrichtigt</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s wird benachrichtigt werden</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s und %2$s werden benachrichtigt werden</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-    <item quantity="one">%1$s, %2$s und %3$d weitere Person werden benachrichtigt</item>
-    <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person werden benachrichtigt werden</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt werden</item>
   </plurals>
-  <string name="WebRtcCallView__ringing_s">Klingelt bei %1$s</string>
-  <string name="WebRtcCallView__ringing_s_and_s">Klingelt bei %1$s und %2$s</string>
+  <string name="WebRtcCallView__ringing_s">Klingelt gerade bei %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Klingelt gerade bei %1$s und %2$s</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-    <item quantity="one">Klingelt bei %1$s, %2$s und %3$d weiteren Person</item>
-    <item quantity="other">Klingelt bei %1$s, %2$s und %3$d weiteren Personen</item>
+    <item quantity="one">Klingelt gerade bei %1$s, %2$s und %3$d weiteren Person</item>
+    <item quantity="other">Klingelt gerade bei %1$s, %2$s und %3$d weiteren Personen</item>
   </plurals>
-  <string name="WebRtcCallView__s_is_calling_you">%1$s ruft dich an</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ruft dich und %2$s an</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ruft dich, %2$s und %3$s an</string>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ruft dich gerade an</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ruft dich und %2$s gerade an</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ruft dich, %2$s und %3$s gerade an</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-    <item quantity="one">%1$s ruft dich, %2$s, %3$s und %4$d weitere Person an</item>
-    <item quantity="other">%1$s ruft dich, %2$s, %3$s und %4$d weitere Personen an</item>
+    <item quantity="one">%1$s ruft dich, %2$s, %3$s und %4$d weitere Person gerade an</item>
+    <item quantity="other">%1$s ruft dich, %2$s, %3$s und %4$d weitere Personen gerade an</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
@@ -1244,9 +1244,9 @@
     <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen an diesem Anruf teil</item>
   </plurals>
   <string name="WebRtcCallView__flip">Drehen</string>
-  <string name="WebRtcCallView__speaker">Laut­sprecher</string>
+  <string name="WebRtcCallView__speaker">Lautspr.</string>
   <string name="WebRtcCallView__camera">Kamera</string>
-  <string name="WebRtcCallView__mute">Stumm­schalten</string>
+  <string name="WebRtcCallView__mute">Stumm</string>
   <string name="WebRtcCallView__ring">Klingeln</string>
   <string name="WebRtcCallView__end_call">Auflegen</string>
   <!--CallParticipantsListDialog-->

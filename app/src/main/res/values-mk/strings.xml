@@ -1218,6 +1218,7 @@
     <item quantity="one">%1$s, %2$s, и %3$d друг се на овој повик</item>
     <item quantity="other">%1$s, %2$s, и %3$d други се на овој повик</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Сврти</string>
   <string name="WebRtcCallView__speaker">Звучник</string>
   <string name="WebRtcCallView__camera">Камера</string>
   <string name="WebRtcCallView__mute">Исклучи</string>

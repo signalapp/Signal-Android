@@ -1490,7 +1490,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KeyCachingService_passphrase_cached">Signal está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">ti</string>
+  <string name="MediaPreviewActivity_you">Tú</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
   <string name="MediaPreviewActivity_draft">Borrador</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar adjuntos en la tarjeta SD. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
@@ -2170,7 +2170,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsDetailsFragment__network_fee">Tasa de la red</string>
   <string name="PaymentsDetailsFragment__sent_by">Enviado por</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Enviado a %1$s</string>
-  <string name="PaymentsDetailsFragment__you_on_s_at_s">ti el %1$s a las %2$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Tú el %1$s a las %2$s</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s el %2$s a las %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>

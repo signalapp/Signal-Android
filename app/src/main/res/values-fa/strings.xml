@@ -282,7 +282,7 @@
   <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
   <string name="ConversationFragment_delete_for_me">حذف برای من</string>
   <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه حذف خواهد شد اگر آن‌ها از نسخه‌های اخیر سیگنال استفاده کنند، قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه در صورتی که آن‌ها از نسخهٔ اخیر سیگنال استفاده می‌کنند، حذف خواهد شد. آن‌ها قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
   <string name="ConversationFragment_failed_to_open_message">باز کردن پیام ناموفق بود</string>
@@ -1029,8 +1029,8 @@
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">با درخواستی از %1$s برای پیوستن به گروه موافقت شد.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">درخواست شما برای پیوستن به گروه از طرف یک مدیر رد شد.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s درخواست %2$s برای پیوستن به گروه را رد کرد</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">درخواست %1$s برای پیوستن به گروه رد شد.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s درخواستی از %2$s را برای پیوستن به گروه رد کرد.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">درخواستی از %1$s برای پیوستن به گروه رد شد.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">شما درخواست خود را برای پیوستن به گروه لغو کردید.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s درخواست خود را برای پیوستن به گروه لغو کرد.</string>
   <!--End of GV2 specific update messages-->
@@ -1068,7 +1068,7 @@
   <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که او را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمه با این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمهٔ خود این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال کردن قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">این گروه قدیمی دیگر نمی‌تواند استفاده شود چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">آیا به مکالمه با %1$s ادامه می‌دهید و نام و عکس خود را با او به اشتراک می‌گذارید؟</string>
@@ -1191,10 +1191,10 @@
   <string name="RedPhone_recipient_unavailable">گیرنده در دسترس نیست</string>
   <string name="RedPhone_network_failed">خرابی شبکه!</string>
   <string name="RedPhone_number_not_registered">شماره ثبت نشده است!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتید از تماس امن پشتیبانی نمی کند!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتید از تماس امن پشتیبانی نمی‌کند!</string>
   <string name="RedPhone_got_it">فهمیدم</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">برای فعال‌سازی ویدیو اینجا کلیک کنید</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">برای فعال‌سازی ویدئو اینجا ضربه بزنید</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">برای تماس با%1$s، سیگنال به دسترسی دوربین شما نیاز دارد</string>
   <string name="WebRtcCallActivity__signal_s">%1$s سیگنال</string>
   <string name="WebRtcCallActivity__calling">در حال برقراری تماس…</string>
@@ -2699,7 +2699,7 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">گروه‌های قدیمی چیستند؟</string>
   <string name="GroupsLearnMore_paragraph_1">گروه‌های قدیمی گروه‌هایی هستند که با قابلیت‌های گروه‌ جدید مثل مدیران و به‌روزرسانی‌های مشروح گروه سازگار نیستند.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">می‌توانم یک گروه قدیمی را ارتقا دهم؟</string>
-  <string name="GroupsLearnMore_paragraph_2">گروه‌های قدیمی نمی‌توانند به گرو‌ه‌های جدید ارتقا پیدا کنند، اما شما می‌توانید یک گروه جدید با همان اعضا ایجاد کنید در صورتی که همگی از آخرین نسخهٔ سیگنال استفاده کنند.</string>
+  <string name="GroupsLearnMore_paragraph_2">گروه‌های قدیمی نمی‌توانند به گرو‌ه‌های جدید ارتقا پیدا کنند، اما شما می‌توانید یک گروه جدید با همان اعضا ایجاد کنید در صورتی که همگی از آخرین نسخهٔ سیگنال استفاده می‌کنند.</string>
   <string name="GroupsLearnMore_paragraph_3">سیگنال در آینده راهی برای ارتقا گرو‌ه‌های قدیمی ارائه خواهد داد.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">هرکسی با این پیوند می‌تواند نام و عکس گروه را مشاهده کند و درخواست پیوستن بدهد. فقط با کسانی که اعتماد دارید به اشتراک بگذارید.</string>

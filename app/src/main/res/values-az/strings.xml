@@ -693,7 +693,7 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">Bağlantını sıfırla</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Üzv tələbləri</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Yeni üzvləri təsdiqlə</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Qrup bağlantısı vasitəsilə qoşulan yeni üzvləri təsdiqləmək üçün bir admin tələb et.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Qrup bağlantısı vasitəsilə qoşulan yeni üzvlərin admin tərəfindən təsdiqlənməsi tələb olunsun.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Qrup bağlantısını sıfırlamaq istədiyinizə əminsiniz? İnsanlar, artıq hazırkı bağlantını istifadə edərək qrupa qoşula bilməyəcək.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR Kodu</string>
