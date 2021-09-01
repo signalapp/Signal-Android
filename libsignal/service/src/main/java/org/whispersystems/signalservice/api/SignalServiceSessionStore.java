@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.api;
 
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.signalservice.api.messages.InvalidRegistrationIdException;
 
 import java.util.List;
 import java.util.Set;
@@ -13,5 +12,5 @@ import java.util.Set;
  */
 public interface SignalServiceSessionStore extends SessionStore {
   void archiveSession(SignalProtocolAddress address);
-  Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) throws InvalidRegistrationIdException;
+  Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames);
 }

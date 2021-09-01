@@ -15,7 +15,6 @@ import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
-import org.whispersystems.signalservice.api.messages.InvalidRegistrationIdException;
 
 import java.util.List;
 import java.util.Set;
@@ -102,24 +101,14 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   }
 
   @Override
-  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) throws InvalidRegistrationIdException {
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
     synchronized (LOCK) {
-      List<SessionDatabase.SessionRow> activeRows = DatabaseFactory.getSessionDatabase(context)
-                                                                   .getAllFor(addressNames)
-                                                                   .stream()
-                                                                   .filter(row -> isActive(row.getRecord()))
-                                                                   .collect(Collectors.toList());
-
-      boolean hasInvalidRegistrationId = activeRows.stream()
-                                                   .map(SessionDatabase.SessionRow::getRecord)
-                                                   .anyMatch(record -> !isValidRegistrationId(record.getRemoteRegistrationId()));
-      if (hasInvalidRegistrationId) {
-        throw new InvalidRegistrationIdException();
-      }
-
-      return activeRows.stream()
-                       .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
-                       .collect(Collectors.toSet());
+      return DatabaseFactory.getSessionDatabase(context)
+                            .getAllFor(addressNames)
+                            .stream()
+                            .filter(row -> isActive(row.getRecord()))
+                            .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
+                            .collect(Collectors.toSet());
     }
   }
 

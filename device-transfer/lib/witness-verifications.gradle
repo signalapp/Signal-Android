@@ -81,7 +81,7 @@ dependencyVerification {
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
 
-        ['org.whispersystems:signal-client-java:0.8.4',
-         'c65e4cac5a0aa40d1f0487271a72c1526f230ab7b5bb19fe2f1addcd6f0fcacc'],
+        ['org.whispersystems:signal-client-java:0.9.0',
+         '9b40d108f783acaef0692be162f461c15fe49507204d5334770f38f90eff5b09'],
     ]
 }
