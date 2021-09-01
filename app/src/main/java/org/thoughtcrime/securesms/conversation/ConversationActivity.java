@@ -159,7 +159,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.MentionUtil.UpdatedBodyAndMentions;
@@ -1957,8 +1957,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     new AsyncTask<Recipient, Void, Pair<IdentityRecordList, String>>() {
       @Override
       protected @NonNull Pair<IdentityRecordList, String> doInBackground(Recipient... params) {
-        IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(ConversationActivity.this);
-        List<Recipient>                     recipients;
+        List<Recipient> recipients;
 
         if (params[0].isGroup()) {
           recipients = DatabaseFactory.getGroupDatabase(ConversationActivity.this)
@@ -1968,7 +1967,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         }
 
         long               startTime          =  System.currentTimeMillis();
-        IdentityRecordList identityRecordList = identityDatabase.getIdentities(recipients);
+        IdentityRecordList identityRecordList = ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients);
 
         Log.i(TAG, String.format(Locale.US, "Loaded %d identities in %d ms", recipients.size(), System.currentTimeMillis() - startTime));
 
@@ -3954,27 +3953,16 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
     @Override
     public void onDismissed(final List<IdentityRecord> unverifiedIdentities) {
-      final IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(ConversationActivity.this);
-
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-            for (IdentityRecord identityRecord : unverifiedIdentities) {
-              identityDatabase.setVerified(identityRecord.getRecipientId(),
-                                           identityRecord.getIdentityKey(),
-                                           VerifiedStatus.DEFAULT);
-            }
+      SimpleTask.run(() -> {
+        try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
+          for (IdentityRecord identityRecord : unverifiedIdentities) {
+            ApplicationDependencies.getIdentityStore().setVerified(identityRecord.getRecipientId(),
+                                                                   identityRecord.getIdentityKey(),
+                                                                   VerifiedStatus.DEFAULT);
           }
-
-          return null;
         }
-
-        @Override
-        protected void onPostExecute(Void result) {
-          initializeIdentityRecords();
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        return null;
+      }, nothing -> initializeIdentityRecords());
     }
   }
 

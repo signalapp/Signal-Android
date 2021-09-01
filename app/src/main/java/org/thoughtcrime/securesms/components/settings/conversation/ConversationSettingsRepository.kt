@@ -11,8 +11,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.GroupDatabase
-import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -64,13 +64,9 @@ class ConversationSettingsRepository(
     SignalExecutors.BOUNDED.execute { consumer(DatabaseFactory.getGroupDatabase(context).activeGroupCount > 0) }
   }
 
-  fun getIdentity(recipientId: RecipientId, consumer: (IdentityDatabase.IdentityRecord?) -> Unit) {
+  fun getIdentity(recipientId: RecipientId, consumer: (IdentityRecord?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      consumer(
-        DatabaseFactory.getIdentityDatabase(context)
-          .getIdentity(recipientId)
-          .orNull()
-      )
+      consumer(ApplicationDependencies.getIdentityStore().getIdentityRecord(recipientId).orNull())
     }
   }
 

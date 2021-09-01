@@ -55,12 +55,10 @@ import android.widget.Toast;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.OneShotPreDrawListener;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-import androidx.transition.TransitionManager;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -70,9 +68,9 @@ import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -119,7 +117,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
   private final VerifyScanFragment    scanFragment    = new VerifyScanFragment();
 
   public static Intent newIntent(@NonNull Context context,
-                                 @NonNull IdentityDatabase.IdentityRecord identityRecord)
+                                 @NonNull IdentityRecord identityRecord)
   {
     return newIntent(context,
                      identityRecord.getRecipientId(),
@@ -128,7 +126,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
   }
 
   public static Intent newIntent(@NonNull Context context,
-                                 @NonNull IdentityDatabase.IdentityRecord identityRecord,
+                                 @NonNull IdentityRecord identityRecord,
                                  boolean verified)
   {
     return newIntent(context,
@@ -642,16 +640,15 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
           try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
             if (verified) {
               Log.i(TAG, "Saving identity: " + recipientId);
-              DatabaseFactory.getIdentityDatabase(getActivity())
-                             .saveIdentity(recipientId,
-                                           remoteIdentity,
-                                           VerifiedStatus.VERIFIED, false,
-                                           System.currentTimeMillis(), true);
+              ApplicationDependencies.getIdentityStore()
+                                     .saveIdentityWithoutSideEffects(recipientId,
+                                                                     remoteIdentity,
+                                                                     VerifiedStatus.VERIFIED,
+                                                                     false,
+                                                                     System.currentTimeMillis(),
+                                                                     true);
             } else {
-              DatabaseFactory.getIdentityDatabase(getActivity())
-                             .setVerified(recipientId,
-                                          remoteIdentity,
-                                          VerifiedStatus.DEFAULT);
+              ApplicationDependencies.getIdentityStore().setVerified(recipientId, remoteIdentity, VerifiedStatus.DEFAULT);
             }
 
             ApplicationDependencies.getJobManager()

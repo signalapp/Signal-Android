@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.sharing.ShareContact
 
 data class MultiselectForwardState(
@@ -11,7 +11,7 @@ data class MultiselectForwardState(
     object Selection : Stage()
     object FirstConfirmation : Stage()
     object LoadingIdentities : Stage()
-    data class SafetyConfirmation(val identities: List<IdentityDatabase.IdentityRecord>) : Stage()
+    data class SafetyConfirmation(val identities: List<IdentityRecord>) : Stage()
     object SendPending : Stage()
     object SomeFailed : Stage()
     object AllFailed : Stage()

@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -215,7 +215,7 @@ class MultiselectForwardFragment :
       .show()
   }
 
-  private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityDatabase.IdentityRecord>) {
+  private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityRecord>) {
     SafetyNumberChangeDialog.show(childFragmentManager, identityRecords)
   }
 

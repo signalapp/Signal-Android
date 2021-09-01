@@ -4,22 +4,13 @@ import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.libsignal.IdentityKey
 
-data class IdentityStoreRecord(
-  val addressName: String,
+data class IdentityRecord(
+  val recipientId: RecipientId,
   val identityKey: IdentityKey,
   val verifiedStatus: IdentityDatabase.VerifiedStatus,
+  @get:JvmName("isFirstUse")
   val firstUse: Boolean,
   val timestamp: Long,
+  @get:JvmName("isApprovedNonBlocking")
   val nonblockingApproval: Boolean
-) {
-  fun toIdentityRecord(recipientId: RecipientId): IdentityRecord {
-    return IdentityRecord(
-      recipientId = recipientId,
-      identityKey = identityKey,
-      verifiedStatus = verifiedStatus,
-      firstUse = firstUse,
-      timestamp = timestamp,
-      nonblockingApproval = nonblockingApproval
-    )
-  }
-}
+)

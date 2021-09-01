@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -37,13 +38,13 @@ import java.util.Objects;
 
 final class RecipientDialogViewModel extends ViewModel {
 
-  private final Context                                          context;
-  private final RecipientDialogRepository                        recipientDialogRepository;
-  private final LiveData<Recipient>                              recipient;
-  private final MutableLiveData<IdentityDatabase.IdentityRecord> identity;
-  private final LiveData<AdminActionStatus>                      adminActionStatus;
-  private final LiveData<Boolean>                                canAddToAGroup;
-  private final MutableLiveData<Boolean>                         adminActionBusy;
+  private final Context                         context;
+  private final RecipientDialogRepository       recipientDialogRepository;
+  private final LiveData<Recipient>             recipient;
+  private final MutableLiveData<IdentityRecord> identity;
+  private final LiveData<AdminActionStatus>     adminActionStatus;
+  private final LiveData<Boolean>               canAddToAGroup;
+  private final MutableLiveData<Boolean>        adminActionBusy;
 
   private RecipientDialogViewModel(@NonNull Context context,
                                    @NonNull RecipientDialogRepository recipientDialogRepository)
@@ -101,7 +102,7 @@ final class RecipientDialogViewModel extends ViewModel {
     return adminActionStatus;
   }
 
-  LiveData<IdentityDatabase.IdentityRecord> getIdentity() {
+  LiveData<IdentityRecord> getIdentity() {
     return identity;
   }
 
@@ -133,7 +134,7 @@ final class RecipientDialogViewModel extends ViewModel {
     recipientDialogRepository.getRecipient(recipient -> BlockUnblockDialog.showUnblockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.unblock(context, recipient)));
   }
 
-  void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityDatabase.IdentityRecord identityRecord) {
+  void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityRecord identityRecord) {
     activity.startActivity(VerifyIdentityActivity.newIntent(activity, identityRecord));
   }
 

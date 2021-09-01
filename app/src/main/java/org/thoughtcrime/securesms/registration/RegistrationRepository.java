@@ -157,10 +157,13 @@ public final class RegistrationRepository {
     TextSecurePreferences.setFcmDisabled(context, registrationData.isNotFcm());
     TextSecurePreferences.setWebsocketRegistered(context, true);
 
-    DatabaseFactory.getIdentityDatabase(context)
-                   .saveIdentity(selfId,
-                                 identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED,
-                                 true, System.currentTimeMillis(), true);
+    ApplicationDependencies.getIdentityStore()
+                           .saveIdentityWithoutSideEffects(selfId,
+                                                           identityKey.getPublicKey(),
+                                                           IdentityDatabase.VerifiedStatus.VERIFIED,
+                                                           true,
+                                                           System.currentTimeMillis(),
+                                                           true);
 
     TextSecurePreferences.setPushRegistered(context, true);
     TextSecurePreferences.setPushServerPassword(context, registrationData.getPassword());
