@@ -20,6 +20,14 @@ object TextUtilities {
         return layout.height
     }
 
+    fun getIntrinsicLayout(text: CharSequence, paint: TextPaint, width: Int): StaticLayout {
+        val builder = StaticLayout.Builder.obtain(text, 0, text.length, paint, width)
+                .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                .setLineSpacing(0.0f, 1.0f)
+                .setIncludePad(false)
+        return builder.build()
+    }
+
     fun TextView.getIntersectedModalSpans(event: MotionEvent): List<ModalURLSpan> {
         val xInt = event.rawX.toInt()
         val yInt = event.rawY.toInt()
