@@ -833,6 +833,7 @@
   <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Inkommande Signal-gruppsamtal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
+  <string name="NotificationBarManager__decline_call">Avvisa samtal</string>
   <string name="NotificationBarManager__answer_call">Svara på samtal</string>
   <string name="NotificationBarManager__end_call">Avsluta samtal</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtal</string>
@@ -1209,7 +1210,31 @@
   <string name="WebRtcCallView__reconnecting">Återansluter…</string>
   <string name="WebRtcCallView__joining">Ansluter sig…</string>
   <string name="WebRtcCallView__disconnected">Frånkopplad</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal ringer %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ringer %1$s och %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal ringer %1$s, %2$s och %3$d annan</item>
+    <item quantity="other">Signal ringer %1$s, %2$s och %3$d andra</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s kommer att meddelas</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s och %2$s kommer att meddelas</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s och %3$d annan kommer att meddelas</item>
+    <item quantity="other">%1$s, %2$s och %3$d andra kommer att meddelas</item>
+  </plurals>
   <string name="WebRtcCallView__ringing_s">Ringer %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Ringer %1$s och %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Ringer %1$s, %2$s och %3$d annan</item>
+    <item quantity="other">Ringer %1$s, %2$s och %3$d andra</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ringer dig</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ringer dig och %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ringer dig, %2$s och %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s ringer dig, %2$s, %3$s och %4$d annan</item>
+    <item quantity="other">%1$s ringer dig, %2$s, %3$s och %4$d andra</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Ingen annan är här</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s är i detta samtal</string>
   <string name="WebRtcCallView__s_are_in_this_call">%1$s är i detta samtal</string>

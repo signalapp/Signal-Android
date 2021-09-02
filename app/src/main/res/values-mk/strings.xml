@@ -14,7 +14,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сѐ уште не сте поставиле лозинка!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Избриши ја лозинката</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Да ја исклучам лозинката?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ова трајно ќе ги отклучи известувањата за Signal.</string>
   <string name="ApplicationPreferencesActivity_disable">Исклучи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Дерегистрација</string>
@@ -1173,8 +1173,8 @@
   <string name="ReactionsRecipientAdapter_you">Вие</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Потврдете за да продолжите со разговорот</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">За да спречите несакани пораки на Signal, пополнете ја потврдата.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">По проверката, можете да продолжите со испраќање пораки. Сите паузирани пораки автоматски ќе се испратат.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">За да спречите несакани пораки на Signal, Ве молиме завршете ја проверката.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">По проверката, можете да продолжите со испраќање пораки. Сите паузирани пораки ќе бидат испратени автоматски.</string>
   <!--Recipient-->
   <string name="Recipient_you">Вие</string>
   <!--RecipientPreferencesActivity-->
@@ -1223,7 +1223,7 @@
   <string name="WebRtcCallView__camera">Камера</string>
   <string name="WebRtcCallView__mute">Исклучи</string>
   <string name="WebRtcCallView__ring">Ѕвони</string>
-  <string name="WebRtcCallView__end_call">Заврши го повикот</string>
+  <string name="WebRtcCallView__end_call">Спушти</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">На овој повик · %1$d личност</item>
@@ -2784,7 +2784,7 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
-  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да се копира на таблата со исечоци?</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да копирам на таблата со исечоци?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Збор %1$d</string>
@@ -2823,7 +2823,7 @@
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Сметка</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ќе бидете прашувани се поретко</string>
-  <string name="AccountSettingsFragment__require_your_signal_pin">Го бара Вашиот Signal PIN за повторно да го регистрирате вашиот телефонски број со Signal</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Барај го Signal PIN-от за повторна регистрација на Вашиот телефонски број на Signal</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
@@ -2909,7 +2909,7 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Допрете за замена на емоџи</string>
   <string name="EditReactionsFragment__reset">Ресетираj</string>
   <string name="EditReactionsFragment_save">Зачувај</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматски се совпаѓа со бојата на позадината</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматско совпаѓање со бојата на позадината</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Повлечете за да ја смените насоката на градиентот</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Нови бои за разговори</string>

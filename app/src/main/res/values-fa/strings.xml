@@ -479,8 +479,8 @@
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ارتقا ناموفق بود.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">این عضو نیاز خواهند داشت تا دعوتی را برای پیوستن دوباره به گروه بپذیرد و پیام‌های گروه را تا زمانی که نپذیرد دریافت نخواهد کرد:</item>
-    <item quantity="other">این اعضا نیاز خواهند داشت تا دعوتی را برای پیوستن دوباره به گروه بپذیرند و پیام‌های گروه را تا زمانی که نپذیرند دریافت نخواهند کرد:</item>
+    <item quantity="one">این عضو نیاز خواهند داشت تا دعوتی را برای پیوستن دوباره به گروه بپذیرد و پیام‌های گروه را تا زمانی که آن‌ها نپذیرند دریافت نخواهد کرد:</item>
+    <item quantity="other">این اعضا نیاز خواهند داشت تا دعوتی را برای پیوستن دوباره به گروه بپذیرند و پیام‌های گروه را تا زمانی آن‌ها که نپذیرند دریافت نخواهند کرد:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">این عضو قابلیت پیوستن به گروه‌های جدید را ندارد و از گروه حذف خواهد شد:</item>
@@ -489,7 +489,7 @@
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d کاربر نمی‌تواند به گروه جدید اضافه شود. می‌خواهید حالا او را اضافه کنید؟</item>
-    <item quantity="other">%1$d کاربر نمی‌توانند به گروه جدید اضافه شوند. می‌خواهید حالا آنان را اضافه کنید؟</item>
+    <item quantity="other">%1$d عضو نمی‌توانند به گروه جدید اضافه شوند. می‌خواهید حالا آن‌ها را اضافه کنید؟</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">افزودن عضو</item>
@@ -502,8 +502,8 @@
     <item quantity="other">افزودن اعضا؟</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="one">این عضو نمی‌تواند به گروه جدید وقتی که به صورت خودکار ارتقا پیدا کرد اضافه شود:</item>
-    <item quantity="other">این اعضا نمی‌توانند به گروه جدید وقتی که به صورت خودکار ارتقا پیدا کرد اضافه شوند:</item>
+    <item quantity="one">این اعضا نمی‌توانست به گروه جدید هنگامی که به صورت خودکار ارتقا پیدا کرد اضافه شود:</item>
+    <item quantity="other">این اعضا نمی‌توانستند به گروه جدید هنگامی که به صورت خودکار ارتقا پیدا کرد اضافه شوند:</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">افزودن عضو</item>
@@ -908,7 +908,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">دعوت دوستان برای پیوستن به این گروه از طریق پیوند گروه</string>
+  <string name="MessageRecord_invite_friends_to_this_group">دوستان را به این گروه از طریق یک پیوند گروه دعوت کنید</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">شما %1$s را اضافه کردید.</string>
   <string name="MessageRecord_s_added_s">%1$s %2$s را اضافه کرد.</string>
@@ -994,7 +994,7 @@
   <string name="MessageRecord_s_allow_all_members_to_send">%1$s تنظیمات گروه را تغییر داد تا به همهٔ اعضا اجازهٔ ارسال پیام بدهد.</string>
   <string name="MessageRecord_s_allow_only_admins_to_send">%1$s تنظیمات گروه را تغییر داد تا فقط به مدیران اجازهٔ ارسال پیام بدهد.</string>
   <string name="MessageRecord_allow_all_members_to_send">تنظیمات گروه تغییر داده شدند تا به اعضا اجازهٔ ارسال پیام داده شود.</string>
-  <string name="MessageRecord_allow_only_admins_to_send">تنظیمات گروه تغییر داده شدند تا به مدیران اجازهٔ ارسال پیام داده شود.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">تنظیمات گروه تغییر داده شدند تا فقط به مدیران اجازهٔ ارسال پیام داده شود.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">شما پیوند گروه را بدون موافقت مدیر فعال کردید.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">شما پیوند گروه را با موافقت مدیر فعال کردید.</string>
@@ -2453,7 +2453,7 @@
   <string name="ResearchMegaphone_learn_more">بیشتر یاد بگیرید</string>
   <string name="ResearchMegaphone_dismiss">نادیده گرفتن</string>
   <string name="ResearchMegaphoneDialog_signal_research">تحقیقات سیگنال</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ما به حریم خصوصی باور داریم.</b></p><p>سیگنال شما را دنبال و اطلاعات شما را جمع‌آوری نمی‌کند. برای بهبود سیگنال برای همه، ما به بازخورد کاربران متکی هستیم، <b>و دوست داریم بازخورد شما را داشته باشیم.</b></p><p>ما در حال ترتیب یک نظرسنجی برای فهمیدن اینکه شما چگونه از سیگنال استفاده می‌کنید هستیم. نظرسنجی ما هیچ‌گونه اطلاعاتی را که موجب شناسایی شما بشود، جمع‌آوری نمی‌کند. اگر مایل به اشتراک بازخورد بیشتری هستید، گزینهٔ افزودن اطلاعات تماس خود را خواهید داشت.</p><p>اگر چند دقیقه فرصت و بازخوردی برای ارائه دارید، ما دوست داریم که از شما بشنویم.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ما به حریم خصوصی باور داریم.</b></p><p>سیگنال شما را دنبال و اطلاعات شما را جمع‌آوری نمی‌کند. برای بهبود سیگنال برای همه، ما به بازخورد کاربران متکی هستیم، <b>و دوست داریم بازخورد شما را داشته باشیم.</b></p><p>ما در حال انجام یک نظرسنجی برای فهمیدن اینکه شما چگونه از سیگنال استفاده می‌کنید هستیم. نظرسنجی ما هیچ‌گونه اطلاعاتی را که موجب شناسایی شما بشود، جمع‌آوری نمی‌کند. اگر مایل به اشتراک بازخورد بیشتری هستید، گزینهٔ افزودن اطلاعات تماس خود را خواهید داشت.</p><p>اگر چند دقیقه فرصت و بازخوردی برای ارائه دارید، ما دوست داریم که از شما بشنویم.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">شرکت در نظرسنجی</string>
   <string name="ResearchMegaphoneDialog_no_thanks">نه ممنون</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">این نظرسنجی بوسیلهٔ Alchemer در دامنهٔ امن surveys.signalusers.org ‌میزبانی می‌شود.</string>

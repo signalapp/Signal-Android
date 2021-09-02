@@ -180,7 +180,7 @@
   <string name="ConversationItem_read_more"> 더 알아보기</string>
   <string name="ConversationItem_download_more"> 더 다운로드</string>
   <string name="ConversationItem_pending"> 대기 중</string>
-  <string name="ConversationItem_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
+  <string name="ConversationItem_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
   <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string>
@@ -717,6 +717,7 @@
   <string name="InviteActivity_sending">보내는 중…</string>
   <string name="InviteActivity_invitations_sent">초대를 보냈습니다!</string>
   <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
+  <string name="InviteActivity_send_sms">SMS 보내기 (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">SMS 초대 %d개를 보내시겠습니까?</item>
   </plurals>
@@ -788,6 +789,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal 전화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 전화 연결 중</string>
   <string name="NotificationBarManager__incoming_signal_call">수신 Signal 전화</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">수신 Signal 단체 통화</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal 통화 서비스 중지</string>
   <string name="NotificationBarManager__decline_call">전화 거절</string>
   <string name="NotificationBarManager__answer_call">전화 수락</string>
@@ -881,6 +883,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s가 %2$s를 관리자로 지정하였습니다.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s가 당신을 관리자로 지정하였습니다.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s 님의 관리자 권한을 취소했습니다.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 님이 관리자 권한을 취소했습니다.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 님이 %2$s 님의 관리자 권한을 취소했습니다.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s은 지금부터 관리자입니다.</string>
   <string name="MessageRecord_you_are_now_an_admin">관리자가 되었습니다.</string>
@@ -1138,8 +1141,10 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s 님에게 전화하려면 Signal에서 카메라 권한이 필요합니다.</string>
   <string name="WebRtcCallActivity__signal_s">시그널 %1$s</string>
   <string name="WebRtcCallActivity__calling">전화 진행 중…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">단체 참여자가 너무 많아 통화를 진행할 수 없습니다.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 전화</string>
+  <string name="WebRtcCallView__signal_video_call">Signal 영상 통화</string>
   <string name="WebRtcCallView__start_call">전화 시작하기</string>
   <string name="WebRtcCallView__join_call">전화 참여하기</string>
   <string name="WebRtcCallView__call_is_full">통화 참가자 수 최대</string>
@@ -1324,7 +1329,7 @@
   <string name="ThreadRecord_view_once_photo">한 번 볼 수 있는 이미지</string>
   <string name="ThreadRecord_view_once_video">한 번 볼 수 있는 동영상</string>
   <string name="ThreadRecord_view_once_media">한 번 볼 수 있는 미디어</string>
-  <string name="ThreadRecord_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
+  <string name="ThreadRecord_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
   <string name="ThreadRecord_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <string name="ThreadRecord_s_is_on_signal">%s 님이 온라인입니다!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능이 비활성화됨</string>
@@ -1435,7 +1440,7 @@
   <string name="MessageNotifier_reacted_s_to_your_audio">오디오에 대해 %1$s로 리액션했습니다.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">조회 수 1회인 미디어에 %1$s으(로) 리액션했습니다.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">스티커에 대해 %1$s로 리액션했습니다.</string>
-  <string name="MessageNotifier_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
+  <string name="MessageNotifier_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">연락처 인물이 Signal에 가입했다는 알림을 끄시겠습니까? Signal &gt; 설정 &gt; 알림에서 다시 활성화할 수 있습니다.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">메시지</string>
@@ -2399,7 +2404,7 @@
   <string name="BackupDialog_passphrase_was_not_correct">암호가 올바르지 않음</string>
   <string name="LocalBackupJob_creating_backup">백업 생성 중…</string>
   <string name="LocalBackupJobApi29_backup_failed">백업을 실패했습니다.</string>
-  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">백업 디렉터리가 삭제 또는 이동되었습니다.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">백업 경로가 삭제되었거나 이동했습니다.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">백업 파일이 너무 커서 이 볼륨에 저장할 수 없습니다.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">백업을 저장할 공간이 충분하지 않습니다.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">탭하여 백업을 관리하세요.</string>

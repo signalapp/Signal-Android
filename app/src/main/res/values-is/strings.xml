@@ -749,10 +749,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deila</string>
   <string name="InviteActivity_share_with_contacts">Deila með tengiliðum</string>
+  <string name="InviteActivity_share_via">Deila með…</string>
   <string name="InviteActivity_cancel">Hætta við</string>
   <string name="InviteActivity_sending">Sendi…</string>
   <string name="InviteActivity_invitations_sent">Boðskort voru send!</string>
   <string name="InviteActivity_invite_to_signal">Bjóða á Signal</string>
+  <string name="InviteActivity_send_sms">Senda SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Senda %d SMS boð?</item>
     <item quantity="other">Senda %d SMS boð?</item>
@@ -829,7 +831,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Hringing með Signal í gangi</string>
   <string name="NotificationBarManager__establishing_signal_call">Er að tengja hringingu með Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Innhringing með Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Innhringing Signal-hópsímtals</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stöðva hringiþjónustu Signal</string>
+  <string name="NotificationBarManager__decline_call">Hafna símtali</string>
   <string name="NotificationBarManager__answer_call">Svara símtali</string>
   <string name="NotificationBarManager__end_call">Ljúka símtali</string>
   <string name="NotificationBarManager__cancel_call">Hætta við símtal</string>
@@ -1194,6 +1198,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Svo hægt sé að hringja í %1$s, þarf Signal að fá aðgang að myndavélinni þinni.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Hringi…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Hópurinn er of stór til að hægt sé að hringja í þátttakendurna.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-símtal</string>
   <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal</string>
@@ -1206,8 +1211,34 @@
   <string name="WebRtcCallView__reconnecting">Endurtengist….</string>
   <string name="WebRtcCallView__joining">Geng í hóp…</string>
   <string name="WebRtcCallView__disconnected">Aftengt</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal mun hringja í %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal mun hringja í %1$s og %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal mun hringja í %1$s, %2$s og %3$d til viðbótar</item>
+    <item quantity="other">Signal mun hringja í %1$s, %2$s og %3$d til viðbótar</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s verður látinn vita</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s og %2$s verða látnir vita</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s og %3$d til viðbótar verða látnir vita</item>
+    <item quantity="other">%1$s, %2$s og %3$d til viðbótar verða látnir vita</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Hringi í %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Hringi í %1$s og %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Hringi í %1$s, %2$s og %3$d til viðbótar</item>
+    <item quantity="other">Hringi í %1$s, %2$s og %3$d til viðbótar</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s er að hringja í þig</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s er að hringja í þig og %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s er að hringja í þig, %2$s og %3$s til viðbótar</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s er að hringja í þig, %2$s, %3$s og %4$d til viðbótar</item>
+    <item quantity="other">%1$s er að hringja í þig, %2$s, %3$s og %4$d til viðbótar</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Það er enginn annar hérna</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s er í þessu símtali</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s eru í þessu símtali</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s eru í þessu símtali</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s er að kynna</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1218,6 +1249,7 @@
   <string name="WebRtcCallView__speaker">Hátalari</string>
   <string name="WebRtcCallView__camera">Myndavél</string>
   <string name="WebRtcCallView__mute">Hljóð af</string>
+  <string name="WebRtcCallView__ring">Hringja</string>
   <string name="WebRtcCallView__end_call">Ljúka símtali</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -2721,7 +2753,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ReviewCard__recently_changed">Breytti nýlega nafninu á sniðinu sínu úr %1$s yfir í %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s gekk í hópinn</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$stóku þátt</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$s tóku þátt</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$sog %3$s tóku þátt</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s og %3$d til viðbótar tóku þátt</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s hætti</string>

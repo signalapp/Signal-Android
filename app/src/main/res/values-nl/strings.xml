@@ -2730,12 +2730,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ReviewCardDialogFragment__review_members">Groepsleden vergelijken</string>
   <string name="ReviewCardDialogFragment__review_request">Personen vergelijken</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam. Vergelijk deze groepsleden hieronder en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Vergelijk als je niet zeker bent van wie het lidmaatschapsverzoek afkomstig is de personen hieronder  en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Vergelijk, als je niet zeker bent van wie het gespreksverzoek afkomstig is, de personen hieronder en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Geen andere gemeenschappelijke groepen</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-    <item quantity="one">%d gemeenschappelijke groep</item>
-    <item quantity="other">%d gemeenschappelijke groepen</item>
+    <item quantity="one">Nog %d andere gemeenschappelijke groep</item>
+    <item quantity="other">Nog %d andere gemeenschappelijke groepen</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
     <item quantity="one">%d gemeenschappelijke groep</item>
@@ -2745,14 +2745,14 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ReviewCardDialogFragment__remove">Verwijderen</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Het verwijderen van een groepslid is mislukt.</string>
   <!--ReviewCard-->
-  <string name="ReviewCard__member">Lid van deze groep</string>
+  <string name="ReviewCard__member">Lid van deze groep maar niet in je contactenlijst</string>
   <string name="ReviewCard__request">Wil een gesprek met je beginnen</string>
-  <string name="ReviewCard__your_contact">Een van je contactpersonen die niet in deze groep zit</string>
+  <string name="ReviewCard__your_contact">Persoon die in je contactenlijst staat</string>
   <string name="ReviewCard__remove_from_group">Van de groep verwijderen</string>
   <string name="ReviewCard__update_contact">Contactpersoon aanpassen</string>
   <string name="ReviewCard__block">Blokkeren</string>
   <string name="ReviewCard__delete">Contactpersoon wissen</string>
-  <string name="ReviewCard__recently_changed">“%1$s” heeft recentelijk zijn of haar profielnaam naar “%2$s” gewijzigd.</string>
+  <string name="ReviewCard__recently_changed">“%1$s” heeft recentelijk zijn of haar profielnaam naar “%2$s” gewijzigd</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s neemt nu deel aan deze oproep</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s nemen nu deel</string>
