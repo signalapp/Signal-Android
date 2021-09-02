@@ -286,6 +286,16 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
+    fun hasSeenGIFMetaDataWarning(context: Context): Boolean {
+        return getBooleanPreference(context, "has_seen_gif_metadata_warning", false)
+    }
+
+    @JvmStatic
+    fun setHasSeenGIFMetaDataWarning(context: Context) {
+        setBooleanPreference(context, "has_seen_gif_metadata_warning", true)
+    }
+
+    @JvmStatic
     fun isGifSearchInGridLayout(context: Context): Boolean {
         return getBooleanPreference(context, GIF_GRID_LAYOUT, false)
     }
