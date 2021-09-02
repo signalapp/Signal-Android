@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.keyboard.emoji
 
-import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -37,14 +36,9 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
 
   private val categoryUpdateOnScroll = UpdateCategorySelectionOnScroll()
 
-  override fun onAttach(context: Context) {
-    super.onAttach(context)
-
-    callback = context as Callback
-  }
-
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
+    callback = requireNotNull(findListener())
+
     emojiPageView = view.findViewById(R.id.emoji_page_view)
     emojiPageView.initialize(this, this, true)
     emojiPageView.addOnScrollListener(categoryUpdateOnScroll)

@@ -49,7 +49,7 @@ public class MediaRepository {
   /**
    * Retrieves a list of folders that contain media.
    */
-  void getFolders(@NonNull Context context, @NonNull Callback<List<MediaFolder>> callback) {
+  public void getFolders(@NonNull Context context, @NonNull Callback<List<MediaFolder>> callback) {
     if (!StorageUtil.canReadFromMediaStore()) {
       Log.w(TAG, "No storage permissions!", new Throwable());
       callback.onComplete(Collections.emptyList());
@@ -76,7 +76,7 @@ public class MediaRepository {
    * Given an existing list of {@link Media}, this will ensure that the media is populate with as
    * much data as we have, like width/height.
    */
-  void getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull Callback<List<Media>> callback) {
+  public void getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull Callback<List<Media>> callback) {
     if (Stream.of(media).allMatch(this::isPopulated)) {
       callback.onComplete(media);
       return;
@@ -107,7 +107,7 @@ public class MediaRepository {
                              @NonNull Map<Media, MediaTransform> modelsToTransform,
                              @NonNull Callback<LinkedHashMap<Media, Media>> callback)
   {
-    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(transformMedia(context, currentMedia, modelsToTransform)));
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(transformMediaSync(context, currentMedia, modelsToTransform)));
   }
 
   @WorkerThread
@@ -256,7 +256,7 @@ public class MediaRepository {
   }
 
   @WorkerThread
-  private List<Media> getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media) {
+  public List<Media> getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media) {
     return media.stream()
                 .map(m -> {
                   try {
@@ -276,9 +276,9 @@ public class MediaRepository {
   }
 
   @WorkerThread
-  private static LinkedHashMap<Media, Media> transformMedia(@NonNull Context context,
-                                                            @NonNull List<Media> currentMedia,
-                                                            @NonNull Map<Media, MediaTransform> modelsToTransform)
+  public static LinkedHashMap<Media, Media> transformMediaSync(@NonNull Context context,
+                                                               @NonNull List<Media> currentMedia,
+                                                               @NonNull Map<Media, MediaTransform> modelsToTransform)
   {
     LinkedHashMap<Media, Media> updatedMedia = new LinkedHashMap<>(currentMedia.size());
 
@@ -367,7 +367,7 @@ public class MediaRepository {
   }
 
   @VisibleForTesting
-  static @NonNull Media fixMimeType(@NonNull Context context, @NonNull Media media) {
+  public static @NonNull Media fixMimeType(@NonNull Context context, @NonNull Media media) {
     if (MediaUtil.isOctetStream(media.getMimeType())) {
       Log.w(TAG, "Media has mimetype octet stream");
       String newMimeType = MediaUtil.getMimeType(context, media.getUri());

@@ -11,9 +11,9 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 public final class VideoTrimTransform implements MediaTransform {
 
-  private final MediaSendVideoFragment.Data data;
+  private final VideoEditorFragment.Data data;
 
-  VideoTrimTransform(@NonNull MediaSendVideoFragment.Data data) {
+  public VideoTrimTransform(@NonNull VideoEditorFragment.Data data) {
     this.data = data;
   }
 

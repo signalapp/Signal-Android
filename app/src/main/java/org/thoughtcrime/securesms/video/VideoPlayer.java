@@ -27,6 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
@@ -112,6 +114,11 @@ public class VideoPlayer extends FrameLayout {
                 break;
             }
           }
+        }
+
+        @Override
+        public void onPlayerError(PlaybackException error) {
+          playerCallback.onError();
         }
       });
       exoView.setPlayer(exoPlayer);
@@ -321,5 +328,7 @@ public class VideoPlayer extends FrameLayout {
     void onPlaying();
 
     void onStopped();
+
+    void onError();
   }
 }

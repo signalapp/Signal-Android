@@ -106,7 +106,7 @@ import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
-import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController;
 import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
@@ -269,7 +269,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                  .ifNecessary()
                  .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
                  .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
-                 .onAllGranted(() -> startActivity(MediaSendActivity.buildCameraFirstIntent(requireActivity())))
+                 .onAllGranted(() -> startActivity(MediaSelectionActivity.camera(requireContext())))
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
                  .execute();
     });

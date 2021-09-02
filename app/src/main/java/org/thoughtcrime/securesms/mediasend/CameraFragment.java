@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FileDescriptor;
 
@@ -29,6 +32,10 @@ public interface CameraFragment {
     }
   }
 
+  void presentHud(int selectedMediaCount);
+  void fadeOutControls(@NonNull Runnable onEndAction);
+  void fadeInControls();
+
   interface Controller {
     void onCameraError();
     void onImageCaptured(@NonNull byte[] data, int width, int height);
@@ -37,5 +44,7 @@ public interface CameraFragment {
     void onGalleryClicked();
     int getDisplayRotation();
     void onCameraCountButtonClicked();
+    @NonNull LiveData<Optional<Media>> getMostRecentMediaItem();
+    @NonNull MediaConstraints getMediaConstraints();
   }
 }

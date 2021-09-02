@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 /**
  * Invisible {@link android.widget.EditText} that is used during in-image text editing.
  */
-final class HiddenEditText extends androidx.appcompat.widget.AppCompatEditText {
+public final class HiddenEditText extends androidx.appcompat.widget.AppCompatEditText {
 
   @SuppressLint("InlinedApi")
   private static final int INCOGNITO_KEYBOARD_IME = EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING;

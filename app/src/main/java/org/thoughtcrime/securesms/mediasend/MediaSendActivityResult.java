@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -21,6 +22,9 @@ import java.util.List;
  * A class that lets us nicely format data that we'll send back to {@link ConversationActivity}.
  */
 public class MediaSendActivityResult implements Parcelable {
+
+  public static final String EXTRA_RESULT    = "result";
+
   private final RecipientId                 recipientId;
   private final Collection<PreUploadResult> uploadResults;
   private final Collection<Media>           nonUploadedMedia;
@@ -29,23 +33,32 @@ public class MediaSendActivityResult implements Parcelable {
   private final boolean                     viewOnce;
   private final Collection<Mention>         mentions;
 
-  static @NonNull MediaSendActivityResult forPreUpload(@NonNull RecipientId recipientId,
-                                                       @NonNull Collection<PreUploadResult> uploadResults,
-                                                       @NonNull String body,
-                                                       @NonNull TransportOption transport,
-                                                       boolean viewOnce,
-                                                       @NonNull List<Mention> mentions)
+  public static @NonNull MediaSendActivityResult fromData(@NonNull Intent data) {
+    MediaSendActivityResult result = data.getParcelableExtra(MediaSendActivityResult.EXTRA_RESULT);
+    if (result == null) {
+      throw new IllegalArgumentException();
+    }
+
+    return result;
+  }
+
+  public static @NonNull MediaSendActivityResult forPreUpload(@NonNull RecipientId recipientId,
+                                                              @NonNull Collection<PreUploadResult> uploadResults,
+                                                              @NonNull String body,
+                                                              @NonNull TransportOption transport,
+                                                              boolean viewOnce,
+                                                              @NonNull List<Mention> mentions)
   {
     Preconditions.checkArgument(uploadResults.size() > 0, "Must supply uploadResults!");
     return new MediaSendActivityResult(recipientId, uploadResults, Collections.emptyList(), body, transport, viewOnce, mentions);
   }
 
-  static @NonNull MediaSendActivityResult forTraditionalSend(@NonNull RecipientId recipientId,
-                                                             @NonNull List<Media> nonUploadedMedia,
-                                                             @NonNull String body,
-                                                             @NonNull TransportOption transport,
-                                                             boolean viewOnce,
-                                                             @NonNull List<Mention> mentions)
+  public static @NonNull MediaSendActivityResult forTraditionalSend(@NonNull RecipientId recipientId,
+                                                                    @NonNull List<Media> nonUploadedMedia,
+                                                                    @NonNull String body,
+                                                                    @NonNull TransportOption transport,
+                                                                    boolean viewOnce,
+                                                                    @NonNull List<Mention> mentions)
   {
     Preconditions.checkArgument(nonUploadedMedia.size() > 0, "Must supply media!");
     return new MediaSendActivityResult(recipientId, Collections.emptyList(), nonUploadedMedia, body, transport, viewOnce, mentions);

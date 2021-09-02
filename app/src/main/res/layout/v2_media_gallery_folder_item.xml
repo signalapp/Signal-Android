@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.exoplayer2.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_height="190dp"
+        tools:layout_width="190dp">
+
+        <ImageView
+            android:id="@+id/media_gallery_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/media_gallery_play_overlay"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/v2_media_gallery_item_video_overlay" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/media_gallery_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/webrtc_call_screen_footer_gradient"
+            android:drawablePadding="4dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textAppearance="@style/Signal.Text.Body"
+            android:textColor="@color/core_white"
+            app:drawableStartCompat="@drawable/ic_folder_24"
+            app:drawableTint="@color/core_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Lorem ipsum dolor sit amet" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>

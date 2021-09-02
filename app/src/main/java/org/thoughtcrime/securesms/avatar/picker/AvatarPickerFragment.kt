@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
-import java.util.Objects
 
 /**
  * Primary Avatar picker fragment, displays current user avatar and a list of recently used avatars and defaults.
@@ -149,7 +148,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == REQUEST_CODE_SELECT_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
-      val media: Media = Objects.requireNonNull(data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA))
+      val media: Media = requireNotNull(data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA))
       viewModel.onAvatarPhotoSelectionCompleted(media)
     } else {
       super.onActivityResult(requestCode, resultCode, data)
@@ -195,23 +194,23 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     }
   }
 
-  fun openPhotoEditor(photo: Avatar.Photo) {
+  private fun openPhotoEditor(photo: Avatar.Photo) {
     Navigation.findNavController(requireView())
       .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToAvatarPhotoEditorFragment(AvatarBundler.bundlePhoto(photo)))
   }
 
-  fun openVectorEditor(vector: Avatar.Vector) {
+  private fun openVectorEditor(vector: Avatar.Vector) {
     Navigation.findNavController(requireView())
       .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToVectorAvatarCreationFragment(AvatarBundler.bundleVector(vector)))
   }
 
-  fun openTextEditor(text: Avatar.Text?) {
+  private fun openTextEditor(text: Avatar.Text?) {
     val bundle = if (text != null) AvatarBundler.bundleText(text) else null
     Navigation.findNavController(requireView())
       .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToTextAvatarCreationFragment(bundle))
   }
 
-  fun openCameraCapture() {
+  private fun openCameraCapture() {
     Permissions.with(this)
       .request(Manifest.permission.CAMERA)
       .ifNecessary()
@@ -226,7 +225,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       .execute()
   }
 
-  fun openGallery() {
+  private fun openGallery() {
     Permissions.with(this)
       .request(Manifest.permission.READ_EXTERNAL_STORAGE)
       .ifNecessary()

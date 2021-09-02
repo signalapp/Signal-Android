@@ -174,6 +174,11 @@ public final class SignalCameraView extends FrameLayout {
 
   private void init(Context context, @Nullable AttributeSet attrs) {
     addView(mPreviewView = new PreviewView(getContext()), 0 /* view position */);
+
+    // Begin custom signal code block
+    mPreviewView.setImplementationMode(PreviewView.ImplementationMode.COMPATIBLE);
+    // End custom signal code block
+
     mCameraModule = new SignalCameraXModule(this);
 
     if (attrs != null) {

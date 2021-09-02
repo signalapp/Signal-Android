@@ -205,8 +205,8 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult;
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
@@ -741,7 +741,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       initializeSecurity(isSecureText, isDefaultSms);
       break;
     case MEDIA_SENDER:
-      MediaSendActivityResult result = data.getParcelableExtra(MediaSendActivity.EXTRA_RESULT);
+      MediaSendActivityResult result = MediaSendActivityResult.fromData(data);
 
       if (!Objects.equals(result.getRecipientId(), recipient.getId())) {
         Log.w(TAG, "Result's recipientId did not match ours! Result: " + result.getRecipientId() + ", Activity: " + recipient.getId());
@@ -1144,7 +1144,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onAttachmentMediaClicked(@NonNull Media media) {
     linkPreviewViewModel.onUserCancel();
-    startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
+    startActivityForResult(MediaSelectionActivity.editor(ConversationActivity.this, sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
     container.hideCurrentInput(composeText);
   }
 
@@ -1152,7 +1152,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   public void onAttachmentSelectorClicked(@NonNull AttachmentKeyboardButton button) {
     switch (button) {
       case GALLERY:
-        AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
+        AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport(), inputPanel.getQuote().isPresent());
         break;
       case FILE:
         AttachmentManager.selectDocument(this, PICK_DOCUMENT);
@@ -1607,7 +1607,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (!Util.isEmpty(mediaList)) {
       Log.d(TAG, "Handling shared Media.");
-      Intent sendIntent = MediaSendActivity.buildEditorIntent(this, mediaList, recipient.get(), draftText, sendButton.getSelectedTransport());
+      Intent sendIntent = MediaSelectionActivity.editor(this, sendButton.getSelectedTransport(), mediaList, recipient.getId(), draftText);
       startActivityForResult(sendIntent, MEDIA_SENDER);
       return new SettableFuture<>(false);
     }
@@ -2563,7 +2563,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
 
       Media media = new Media(uri, mimeType, 0, width, height, 0, 0, borderless, videoGif, Optional.absent(), Optional.absent(), Optional.absent());
-      startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
+      startActivityForResult(MediaSelectionActivity.editor(ConversationActivity.this, sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
       return attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
@@ -3309,7 +3309,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull String contentType, @NonNull Uri uri, long size, boolean clearCompose) {
     if (sendButton.getSelectedTransport().isSms()) {
       Media  media  = new Media(uri, contentType, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, false, Optional.absent(), Optional.absent(), Optional.absent());
-      Intent intent = MediaSendActivity.buildEditorIntent(this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
+      Intent intent = MediaSelectionActivity.editor(this, sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed());
       startActivityForResult(intent, MEDIA_SENDER);
       return;
     }
@@ -3448,7 +3448,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                  .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                  .onAllGranted(() -> {
                    composeText.clearFocus();
-                   startActivityForResult(MediaSendActivity.buildCameraIntent(ConversationActivity.this, recipient.get(), sendButton.getSelectedTransport()), MEDIA_SENDER);
+                   startActivityForResult(MediaSelectionActivity.camera(ConversationActivity.this, sendButton.getSelectedTransport(), recipient.getId(), inputPanel.getQuote().isPresent()), MEDIA_SENDER);
                    overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary);
                  })
                  .onAnyDenied(() -> Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
