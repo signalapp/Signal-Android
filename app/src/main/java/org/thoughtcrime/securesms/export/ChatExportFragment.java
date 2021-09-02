@@ -44,13 +44,10 @@ import java.util.Map;
 public class ChatExportFragment extends Fragment {
 
     private static final String TAG = ChatExportFragment.class.getSimpleName ();
-
-
-    private static       long        existingThread;
     private static final String      RECIPIENT_ID      = "RECIPIENT_ID";
     private static final String      FROM_CONVERSATION = "FROM_CONVERSATION";
-
-
+    private static       long        existingThread;
+    private static ExportZipUtil zip;
     private View         allMedia;
     private View         htmlViewer;
     private SwitchCompat allMediaSwitch;
@@ -58,11 +55,82 @@ public class ChatExportFragment extends Fragment {
     private View         selectTimePeriod;
     private TextView     selectedTimePeriod;
     private Button       exportButton;
-
     private        boolean       includeHTMLViewer;
     private        boolean       includeAllMedia;
-    private static ExportZipUtil zip;
 
+    private static void performSaveToDisk (@NonNull Context context,
+                                           @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords,
+                                           HashMap<String, Uri> moreFiles,
+                                           boolean hasViewer,
+                                           String resultXML) {
+
+        new ProgressDialogAsyncTask<Void, Void, List<ExportZipUtil.Attachment>> (context,
+                R.string.ChatExport_collecting_attachments,
+                R.string.please_wait)
+        {
+
+            final List<ExportZipUtil.Attachment> attachments = new LinkedList<> ();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute ();
+            }
+
+            @Override
+            protected List<ExportZipUtil.Attachment> doInBackground(Void... params) {
+                if (!Util.isEmpty (mediaRecords))
+                    for (ChatFormatter.MediaRecord mediaRecord : mediaRecords) {
+                        assert mediaRecord.getAttachment () != null;
+                        if (mediaRecord.getAttachment ().getUri () != null) {
+                            attachments.add (new ExportZipUtil.Attachment (mediaRecord.getAttachment ().getUri (),
+                                    mediaRecord.getContentType (),
+                                    mediaRecord.getDate (),
+                                    mediaRecord.getAttachment ().getSize ()));
+                        }
+                        if (isCancelled ()) break;
+                    }
+                if (!Util.isEmpty (moreFiles.entrySet ()))
+                    for (Map.Entry<String, Uri> e : moreFiles.entrySet ())
+                        if (e.getValue () != null) try {
+                            if (Build.VERSION.SDK_INT >= 26) {
+                                attachments.add (new ExportZipUtil.Attachment (e.getValue (),
+                                        Files.probeContentType (Paths.get (e.getValue ().getPath ())),
+                                        new Date ().getTime (),
+                                        (new File (String.valueOf (e.getValue ()))).length ()));
+                            }
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace ();
+                        }
+                return attachments;
+            }
+
+            @Override
+            protected void onPostExecute(List<ExportZipUtil.Attachment> attachments) {
+                super.onPostExecute(attachments);
+                try {
+                    zip = new ExportZipUtil (context, attachments.size(), existingThread, moreFiles);
+                    zip.startToExport (context, hasViewer, resultXML);
+                } catch (IOException | NoExternalStorageException e) {
+                    e.printStackTrace ();
+                    Log.w(TAG, e);
+                }
+                try{
+                    if (!Util.isEmpty(attachments))
+                        zip.executeOnExecutor (THREAD_POOL_EXECUTOR, attachments.toArray (new ExportZipUtil.Attachment[0]));
+                }catch (IllegalStateException e) {
+                    e.printStackTrace ();
+                    Log.w(TAG, e);
+                }
+
+            }
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+            }
+
+
+        }.execute();
+    }
 
     public ChatExportFragment newInstance (@NonNull RecipientId recipientId, boolean fromConversation) {
         ChatExportFragment fragment = new ChatExportFragment ();
@@ -90,7 +158,6 @@ public class ChatExportFragment extends Fragment {
         this.exportButton = view.findViewById (R.id.chat_export_button);
         return view;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -168,7 +235,6 @@ public class ChatExportFragment extends Fragment {
                 .execute();
     }
 
-
     @Override
     public void onPause() {
         super.onPause();
@@ -220,84 +286,5 @@ public class ChatExportFragment extends Fragment {
                         .onAllGranted (() -> performSaveToDisk (context, mediaRecords, moreFiles, currentSelectionViewer, result))
                         .execute (),
                 (mediaRecords.size () + moreFiles.size ()));
-    }
-
-    private static void performSaveToDisk (@NonNull Context context,
-                                           @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords,
-                                           HashMap<String, Uri> moreFiles,
-                                           boolean hasViewer,
-                                           String resultXML) {
-
-        new ProgressDialogAsyncTask<Void, Void, List<ExportZipUtil.Attachment>> (context,
-                R.string.ChatExport_collecting_attachments,
-                R.string.please_wait)
-        {
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute ();
-            }
-
-            final List<ExportZipUtil.Attachment> attachments = new LinkedList<> ();
-
-            @Override
-            protected List<ExportZipUtil.Attachment> doInBackground(Void... params) {
-                if (!Util.isEmpty (mediaRecords)) {
-                    for (ChatFormatter.MediaRecord mediaRecord : mediaRecords) {
-                        assert mediaRecord.getAttachment () != null;
-                        if (mediaRecord.getAttachment ().getUri () != null) {
-                            attachments.add (new ExportZipUtil.Attachment (mediaRecord.getAttachment ().getUri (),
-                                    mediaRecord.getContentType (),
-                                    mediaRecord.getDate (),
-                                    mediaRecord.getAttachment ().getSize ()));
-                        }
-                        if (isCancelled ()) break;
-                    }
-                }
-                if (!Util.isEmpty (moreFiles.entrySet ())){
-                    for(Map.Entry<String, Uri> e: moreFiles.entrySet ()){
-                        if (e.getValue ()!= null) {
-                            try {
-                                if (Build.VERSION.SDK_INT >= 26) {
-                                    attachments.add(new ExportZipUtil.Attachment(e.getValue (),
-                                            Files.probeContentType (Paths.get (e.getValue ().getPath ())),
-                                            new Date().getTime (),
-                                            (new File (String.valueOf (e.getValue ()))).length ()));
-                                }
-                            } catch (IOException ioException) {
-                                ioException.printStackTrace ();
-                            }
-                        }
-                    }
-                }
-                return attachments;
-            }
-
-            @Override
-            protected void onPostExecute(List<ExportZipUtil.Attachment> attachments) {
-                super.onPostExecute(attachments);
-                try {
-                    zip = new ExportZipUtil (context, attachments.size(), existingThread, moreFiles);
-                    zip.startToExport (context, hasViewer, resultXML);
-                } catch (IOException | NoExternalStorageException e) {
-                    e.printStackTrace ();
-                    Log.w(TAG, e);
-                }
-                try{
-                    zip.executeOnExecutor(THREAD_POOL_EXECUTOR,
-                            attachments.toArray(new ExportZipUtil.Attachment[0]));
-                }catch (IllegalStateException e) {
-                    e.printStackTrace ();
-                    Log.w(TAG, e);
-                }
-
-            }
-            @Override
-            protected void onCancelled() {
-                super.onCancelled();
-            }
-
-
-        }.execute();
     }
 }
