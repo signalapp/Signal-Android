@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.export;
 import android.Manifest;
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +39,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * The ChatExportFragment include the management elements
+ * for starting the conversation export process.
+ *
+ * @author  @anlaji
+ * @version 2.2
+ * @since   2021-09-02
+ */
 
 
 public class ChatExportFragment extends Fragment {
@@ -64,9 +73,7 @@ public class ChatExportFragment extends Fragment {
                                            boolean hasViewer,
                                            String resultXML) {
 
-        new ProgressDialogAsyncTask<Void, Void, List<ExportZipUtil.Attachment>> (context,
-                R.string.ChatExport_collecting_attachments,
-                R.string.please_wait)
+        new AsyncTask<Void, Void, List<ExportZipUtil.Attachment>> ()
         {
 
             final List<ExportZipUtil.Attachment> attachments = new LinkedList<> ();
@@ -117,6 +124,8 @@ public class ChatExportFragment extends Fragment {
                 try{
                     if (!Util.isEmpty(attachments))
                         zip.executeOnExecutor (THREAD_POOL_EXECUTOR, attachments.toArray (new ExportZipUtil.Attachment[0]));
+                    else
+                        zip.executeOnExecutor (THREAD_POOL_EXECUTOR, (ExportZipUtil.Attachment[])  null);
                 }catch (IllegalStateException e) {
                     e.printStackTrace ();
                     Log.w(TAG, e);
@@ -209,8 +218,7 @@ public class ChatExportFragment extends Fragment {
     }
 
     private void onCreateClicked (ChatExportViewModel viewModel)  {
-
-        Toast.makeText (getContext (), "Start processing chat data", Toast.LENGTH_SHORT).show ();
+    Toast.makeText (getContext (), "Start processing chat data", Toast.LENGTH_SHORT).show ();
         Date from = null, until = null;
         if(viewModel.getDateFrom().getValue()!=null)
             from = viewModel.getDateFrom ().getValue ().get ();

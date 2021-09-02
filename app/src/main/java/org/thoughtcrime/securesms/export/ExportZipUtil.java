@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.Pair;
 
@@ -47,9 +48,10 @@ import java.util.zip.ZipOutputStream;
  * can include a html-viewer
  *
  * @author  @anlaji
- * @version 1.0
- * @since   2021-07-09
+ * @version 2.2
+ * @since   2021-09-02
  */
+
 public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachment, Void, Pair<Integer, String>> {
 
     private static final String TAG = ExportZipUtil.class.getSimpleName ();
@@ -60,8 +62,6 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private static final int FAILURE              = 1;
     private static final int WRITE_ACCESS_FAILURE = 2;
 
-
-    @SuppressLint("NewApi")
     private static final String STORAGE_DIRECTORY = Environment.DIRECTORY_DOWNLOADS;
 
 
@@ -269,7 +269,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     @Override
     protected Pair<Integer, String> doInBackground(ExportZipUtil.Attachment... attachments) {
         if (attachments == null) {
-            throw new AssertionError("must pass in at least one attachment");
+            return new Pair<>(SUCCESS, null);
         }
 
         try {
@@ -310,7 +310,8 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
 
         switch (result.first()) {
             case FAILURE:
-                Toast.makeText(context,
+                if(attachmentCount > 0)
+                  Toast.makeText(context,
                         context.getResources().getQuantityText(R.plurals.ExportZip_error_while_adding_attachments_to_external_storage,
                                 attachmentCount),
                         Toast.LENGTH_LONG).show();
@@ -334,14 +335,20 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private void createFinishDialog (Context context) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         File f = Environment.getExternalStoragePublicDirectory (STORAGE_DIRECTORY);
-        Uri storageUri = Uri.parse (f.getAbsolutePath ());
+        if(!Util.isEmpty (f.getAbsolutePath ())) {
+            Uri storageUri = Uri.parse (f.getAbsolutePath ());
+            if(attachmentCount > 0)
+                alertDialogBuilder.setMessage ("Chat export file saved to:\n" + storageUri.getPath ()
+                    + "\n\nNumber of media files: " + attachmentCount + "\n");
+            else
+                alertDialogBuilder.setMessage ("Chat export file saved to:\n" + storageUri.getPath ()
+                        + "\n");
+            alertDialogBuilder.setPositiveButton (R.string.open_export_directory,
+                    (dialog, which) -> openDirectory (storageUri));
+        }
         alertDialogBuilder.setTitle ("Export successful!");
         alertDialogBuilder.setIcon(R.drawable.ic_download_32);
-        alertDialogBuilder.setMessage("Chat export file saved to:\n" + storageUri.getPath ()
-                +"\n\nNumber of media files: " + attachmentCount + "\n");
         alertDialogBuilder.setCancelable(true);
-        alertDialogBuilder.setPositiveButton(R.string.open_export_directory,
-                (dialog, which) -> openDirectory (storageUri));
         alertDialogBuilder.setNegativeButton(
                 R.string.export_dialog_close,
                 (dialog, which) -> dialog.cancel());
