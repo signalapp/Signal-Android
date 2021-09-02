@@ -71,8 +71,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 910
-def canonicalVersionName = "5.22.6"
+def canonicalVersionCode = 911
+def canonicalVersionName = "5.22.7"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
