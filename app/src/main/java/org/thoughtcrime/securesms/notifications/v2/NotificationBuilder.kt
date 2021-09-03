@@ -88,7 +88,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       addPersonActual(recipient)
     }
   }
- 
+
   fun setLocusId(locusId: String) {
     if (privacy.isDisplayContact && isNotLocked) {
       setLocusIdActual(locusId)
