@@ -975,6 +975,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             builder.setTitle("Search GIFs?")
             builder.setMessage("You will not have full metadata protection when sending GIFs.")
             builder.setPositiveButton("OK") { dialog: DialogInterface, which: Int ->
+                TextSecurePreferences.setHasSeenGIFMetaDataWarning(this)
                 AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
                 dialog.dismiss()
             }
@@ -982,7 +983,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 "Cancel"
             ) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
             builder.create().show()
-            TextSecurePreferences.setHasSeenGIFMetaDataWarning(this)
         } else {
             AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
         }
