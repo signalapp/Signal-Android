@@ -365,10 +365,7 @@ public class RetrieveProfileJob extends BaseJob {
 
       IdentityKey identityKey = new IdentityKey(Base64.decode(identityKeyValue), 0);
 
-      if (!DatabaseFactory.getIdentityDatabase(context)
-                          .getIdentity(recipient.getId())
-                          .isPresent())
-      {
+      if (!ApplicationDependencies.getIdentityStore().getIdentityRecord(recipient.getId()).isPresent()) {
         Log.w(TAG, "Still first use...");
         return;
       }

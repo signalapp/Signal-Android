@@ -51,12 +51,12 @@ public class SmsMessageRecord extends MessageRecord {
                           int subscriptionId, long expiresIn, long expireStarted,
                           int readReceiptCount, boolean unidentified,
                           @NonNull List<ReactionRecord> reactions, boolean remoteDelete,
-                          long notifiedTimestamp)
+                          long notifiedTimestamp, long receiptTimestamp)
   {
     super(id, body, recipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, dateServer, threadId, status, deliveryReceiptCount, type,
           mismatches, new LinkedList<>(), subscriptionId,
-          expiresIn, expireStarted, readReceiptCount, unidentified, reactions, remoteDelete, notifiedTimestamp, 0);
+          expiresIn, expireStarted, readReceiptCount, unidentified, reactions, remoteDelete, notifiedTimestamp, 0, receiptTimestamp);
   }
 
   public long getType() {

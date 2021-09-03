@@ -50,7 +50,8 @@ public class InMemoryMessageRecord extends MessageRecord {
           Collections.emptyList(),
           false,
           0,
-          0);
+          0,
+          -1);
   }
 
   @Override

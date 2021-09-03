@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
 import java.util.HashMap;
@@ -24,13 +25,15 @@ public final class DatabaseObserver {
   private final Application application;
   private final Executor    executor;
 
-  private final Set<Observer>            conversationListObservers;
-  private final Map<Long, Set<Observer>> conversationObservers;
-  private final Map<Long, Set<Observer>> verboseConversationObservers;
-  private final Map<UUID, Set<Observer>> paymentObservers;
-  private final Set<Observer>            allPaymentsObservers;
-  private final Set<Observer>            chatColorsObservers;
-  private final Set<Observer>            stickerPackObservers;
+  private final Set<Observer>                   conversationListObservers;
+  private final Map<Long, Set<Observer>>        conversationObservers;
+  private final Map<Long, Set<Observer>>        verboseConversationObservers;
+  private final Map<UUID, Set<Observer>>        paymentObservers;
+  private final Set<Observer>                   allPaymentsObservers;
+  private final Set<Observer>                   chatColorsObservers;
+  private final Set<Observer>                   stickerPackObservers;
+  private final Set<MessageObserver>            messageUpdateObservers;
+  private final Map<Long, Set<MessageObserver>> messageInsertObservers;
 
   public DatabaseObserver(Application application) {
     this.application                  = application;
@@ -42,6 +45,8 @@ public final class DatabaseObserver {
     this.allPaymentsObservers         = new HashSet<>();
     this.chatColorsObservers          = new HashSet<>();
     this.stickerPackObservers         = new HashSet<>();
+    this.messageUpdateObservers       = new HashSet<>();
+    this.messageInsertObservers       = new HashMap<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -86,6 +91,18 @@ public final class DatabaseObserver {
     });
   }
 
+  public void registerMessageUpdateObserver(@NonNull MessageObserver listener) {
+    executor.execute(() -> {
+      messageUpdateObservers.add(listener);
+    });
+  }
+
+  public void registerMessageInsertObserver(long threadId, @NonNull MessageObserver listener) {
+    executor.execute(() -> {
+      registerMapped(messageInsertObservers, threadId, listener);
+    });
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
@@ -94,6 +111,12 @@ public final class DatabaseObserver {
       unregisterMapped(paymentObservers, listener);
       chatColorsObservers.remove(listener);
       stickerPackObservers.remove(listener);
+    });
+  }
+
+  public void unregisterObserver(@NonNull MessageObserver listener) {
+    executor.execute(() -> {
+      messageUpdateObservers.remove(listener);
     });
   }
 
@@ -177,8 +200,24 @@ public final class DatabaseObserver {
     });
   }
 
-  private <K> void registerMapped(@NonNull Map<K, Set<Observer>> map, @NonNull K key, @NonNull Observer listener) {
-    Set<Observer> listeners = map.get(key);
+  public void notifyMessageUpdateObservers(@NonNull MessageId messageId) {
+    executor.execute(() -> {
+      messageUpdateObservers.stream().forEach(l -> l.onMessageChanged(messageId));
+    });
+  }
+
+  public void notifyMessageInsertObservers(long threadId, @NonNull MessageId messageId) {
+    executor.execute(() -> {
+      Set<MessageObserver> listeners = messageInsertObservers.get(threadId);
+
+      if (listeners != null) {
+        listeners.stream().forEach(l -> l.onMessageChanged(messageId));
+      }
+    });
+  }
+
+  private <K, V> void registerMapped(@NonNull Map<K, Set<V>> map, @NonNull K key, @NonNull V listener) {
+    Set<V> listeners = map.get(key);
 
     if (listeners == null) {
       listeners = new HashSet<>();
@@ -216,5 +255,9 @@ public final class DatabaseObserver {
      * long-running tasks!
      */
     void onChanged();
+  }
+
+  public interface MessageObserver {
+    void onMessageChanged(@NonNull MessageId messageId);
   }
 }

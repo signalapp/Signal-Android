@@ -45,7 +45,7 @@ class ConversationListViewModel extends ViewModel {
 
   private final MutableLiveData<Megaphone>    megaphone;
   private final MutableLiveData<SearchResult> searchResult;
-  private final PagedData<Conversation>       pagedData;
+  private final PagedData<Long, Conversation> pagedData;
   private final LiveData<Boolean>             hasNoConversations;
   private final SearchRepository              searchRepository;
   private final MegaphoneRepository           megaphoneRepository;
@@ -60,7 +60,6 @@ class ConversationListViewModel extends ViewModel {
   private String       activeQuery;
   private SearchResult activeSearchResult;
   private int          pinnedCount;
-  private boolean      isNewlyCreated;
 
   private ConversationListViewModel(@NonNull Application application, @NonNull SearchRepository searchRepository, boolean isArchived) {
     this.megaphone                = new MutableLiveData<>();
@@ -86,7 +85,6 @@ class ConversationListViewModel extends ViewModel {
         }
         pagedData.getController().onDataInvalidated();
       });
-      this.isNewlyCreated         = true;
     };
 
     this.hasNoConversations = LiveDataUtil.mapAsync(pagedData.getData(), conversations -> {
@@ -98,6 +96,8 @@ class ConversationListViewModel extends ViewModel {
         return DatabaseFactory.getThreadDatabase(application).getArchivedConversationListCount() == 0;
       }
     });
+
+    ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(observer);
   }
 
   public LiveData<Boolean> hasNoConversations() {
@@ -140,20 +140,6 @@ class ConversationListViewModel extends ViewModel {
     }
 
     coldStart = false;
-  }
-
-  void onStart() {
-    if (!isNewlyCreated) {
-      pagedData.getController().onDataInvalidated();
-    }
-
-    isNewlyCreated = false;
-
-    ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(observer);
-  }
-
-  void onStop() {
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   void onMegaphoneCompleted(@NonNull Megaphones.Event event) {

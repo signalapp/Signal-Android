@@ -14,7 +14,6 @@ import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
@@ -127,7 +126,7 @@ public final class ContactUtil {
         values[i] = getPrettyPhoneNumber(choices.get(i).requireE164(), locale);
       }
 
-      new MaterialAlertDialogBuilder(context)
+      new AlertDialog.Builder(context)
                      .setItems(values, ((dialog, which) -> callback.onSelected(choices.get(which))))
                      .create()
                      .show();

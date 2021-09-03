@@ -1,8 +1,10 @@
 package org.signal.pagingtest;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,22 +18,26 @@ import org.signal.paging.PagingController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EventListener {
+
+  private MainViewModel viewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    MyAdapter           adapter       = new MyAdapter();
+    MyAdapter           adapter       = new MyAdapter(this);
     RecyclerView        list          = findViewById(R.id.list);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
     list.setAdapter(adapter);
     list.setLayoutManager(layoutManager);
 
-    MainViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
+    viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
     adapter.setPagingController(viewModel.getPagingController());
     viewModel.getList().observe(this, newList -> {
       adapter.submitList(newList);
@@ -51,9 +57,14 @@ public class MainActivity extends AppCompatActivity {
       layoutManager.scrollToPosition(target);
     });
 
-    findViewById(R.id.append_btn).setOnClickListener(v -> {
-      viewModel.appendItems();
+    findViewById(R.id.prepend_btn).setOnClickListener(v -> {
+      viewModel.prependItems();
     });
+  }
+
+  @Override
+  public void onItemClicked(String key) {
+    viewModel.onItemClicked(key);
   }
 
   static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
@@ -61,11 +72,15 @@ public class MainActivity extends AppCompatActivity {
     private final static int TYPE_NORMAL      = 1;
     private final static int TYPE_PLACEHOLDER = -1;
 
-    private PagingController controller;
+    private final EventListener listener;
+    private final List<Item>    data;
 
-    private final List<String> data = new ArrayList<>();
+    private PagingController<String> controller;
 
-    public MyAdapter() {
+    public MyAdapter(@NonNull EventListener listener) {
+      this.listener = listener;
+      this.data     = new ArrayList<>();
+
       setHasStableIds(true);
     }
 
@@ -81,14 +96,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public long getItemId(int position) {
-      return position;
+      Item item = getItem(position);
+      if (item != null) {
+        return item.key.hashCode();
+      } else {
+        return 0;
+      }
     }
 
     @Override
     public @NonNull MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
       switch (viewType) {
         case TYPE_NORMAL:
-          return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false));
         case TYPE_PLACEHOLDER:
           return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false));
         default:
@@ -98,24 +117,53 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-      holder.bind(getItem(position));
+      holder.bind(getItem(position), position, listener);
     }
 
-    private String getItem(int index) {
+    private Item getItem(int index) {
       if (controller != null) {
         controller.onDataNeededAroundIndex(index);
       }
       return data.get(index);
     }
 
-    void setPagingController(PagingController pagingController) {
+    void setPagingController(PagingController<String> pagingController) {
       this.controller = pagingController;
     }
 
-    void submitList(List<String> list) {
+    void submitList(List<Item> list) {
+      DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+        @Override
+        public int getOldListSize() {
+          return data.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+          return list.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+          String oldKey = Optional.ofNullable(data.get(oldItemPosition)).map(item -> item.key).orElse(null);
+          String newKey = Optional.ofNullable(list.get(newItemPosition)).map(item -> item.key).orElse(null);
+
+          return Objects.equals(oldKey, newKey);
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+          Long oldKey = Optional.ofNullable(data.get(oldItemPosition)).map(item -> item.timestamp).orElse(null);
+          Long newKey = Optional.ofNullable(list.get(newItemPosition)).map(item -> item.timestamp).orElse(null);
+
+          return Objects.equals(oldKey, newKey);
+        }
+      }, false);
+
+      result.dispatchUpdatesTo(this);
+
       data.clear();
       data.addAll(list);
-      notifyDataSetChanged();
     }
   }
 
@@ -128,8 +176,16 @@ public class MainActivity extends AppCompatActivity {
       textView = itemView.findViewById(R.id.text);
     }
 
-    void bind(@NonNull String s) {
-      textView.setText(s == null ? "PLACEHOLDER" : s);
+    void bind(@Nullable Item item, int position, @NonNull EventListener listener) {
+      if (item != null) {
+        textView.setText(position + " | " + item.key.substring(0, 13) + " | " + System.currentTimeMillis());
+        textView.setOnClickListener(v -> {
+          listener.onItemClicked(item.key);
+        });
+      } else {
+        textView.setText(position + " | PLACEHOLDER");
+        textView.setOnClickListener(null);
+      }
     }
   }
 }

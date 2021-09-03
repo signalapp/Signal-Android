@@ -4,13 +4,19 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -22,6 +28,10 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.imageeditor.model.ThumbRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.BezierDrawingRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
+import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * ImageEditorView
@@ -66,6 +76,9 @@ public final class ImageEditorView extends FrameLayout {
 
   @Nullable
   private UndoRedoStackListener undoRedoStackListener;
+
+  @Nullable
+  private DrawListener drawListener;
 
   private final Matrix viewMatrix      = new Matrix();
   private final RectF  viewPort        = Bounds.newFullBounds();
@@ -114,18 +127,13 @@ public final class ImageEditorView extends FrameLayout {
     return editText;
   }
 
-  public void startTextEditing(@NonNull EditorElement editorElement, boolean incognitoKeyboardEnabled, boolean selectAll) {
+  public void startTextEditing(@NonNull EditorElement editorElement) {
     if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
-      editText.setIncognitoKeyboardEnabled(incognitoKeyboardEnabled);
       editText.setCurrentTextEditorElement(editorElement);
-      if (selectAll) {
-        editText.selectAll();
-      }
-      editText.requestFocus();
     }
   }
 
-  private void zoomToFitText(@NonNull EditorElement editorElement, @NonNull MultiLineTextRenderer textRenderer) {
+  public void zoomToFitText(@NonNull EditorElement editorElement, @NonNull MultiLineTextRenderer textRenderer) {
       getModel().zoomToTextElement(editorElement, textRenderer);
   }
 
@@ -138,9 +146,6 @@ public final class ImageEditorView extends FrameLayout {
     if (editText.getCurrentTextEntity() != null) {
       editText.setCurrentTextEditorElement(null);
       editText.hideKeyboard();
-      if (tapListener != null) {
-        tapListener.onEntityDown(null);
-      }
     }
   }
 
@@ -232,6 +237,7 @@ public final class ImageEditorView extends FrameLayout {
         moreThanOnePointerUsedInSession = false;
         model.pushUndoPoint();
         editSession = startEdit(inverse, point, selected);
+        notifyStartIfInDraw();
 
         if (tapListener != null && allowTaps()) {
           if (editSession != null) {
@@ -276,7 +282,7 @@ public final class ImageEditorView extends FrameLayout {
             editSession = null;
           }
           if (editSession == null) {
-            dragDropRelease();
+            dragDropRelease(false);
           }
           return true;
         }
@@ -286,7 +292,7 @@ public final class ImageEditorView extends FrameLayout {
         if (editSession != null && event.getActionIndex() < 2) {
           editSession.commit();
           model.pushUndoPoint();
-          dragDropRelease();
+          dragDropRelease(true);
 
           Matrix newInverse = model.findElementInverseMatrix(editSession.getSelected(), viewMatrix);
           if (newInverse != null) {
@@ -301,7 +307,8 @@ public final class ImageEditorView extends FrameLayout {
       case MotionEvent.ACTION_UP: {
         if (editSession != null) {
           editSession.commit();
-          dragDropRelease();
+          dragDropRelease(false);
+          notifyEndIfInDraw();
 
           editSession = null;
           model.postEdit(moreThanOnePointerUsedInSession);
@@ -315,6 +322,22 @@ public final class ImageEditorView extends FrameLayout {
     }
 
     return super.onTouchEvent(event);
+  }
+
+  private void notifyStartIfInDraw() {
+    if (mode == Mode.Draw || mode == Mode.Blur) {
+      if (drawListener != null) {
+        drawListener.onDrawStarted();
+      }
+    }
+  }
+
+  private void notifyEndIfInDraw() {
+    if (mode == Mode.Draw || mode == Mode.Blur) {
+      if (drawListener != null) {
+        drawListener.onDrawEnded();
+      }
+    }
   }
 
   private @Nullable EditSession startEdit(@NonNull Matrix inverse, @NonNull PointF point, @Nullable EditorElement selected) {
@@ -371,10 +394,10 @@ public final class ImageEditorView extends FrameLayout {
     this.color = color;
   }
 
-  private void dragDropRelease() {
+  private void dragDropRelease(boolean stillTouching) {
     model.dragDropRelease();
     if (drawingChangedListener != null) {
-      drawingChangedListener.onDrawingChanged();
+      drawingChangedListener.onDrawingChanged(stillTouching);
     }
   }
 
@@ -405,6 +428,10 @@ public final class ImageEditorView extends FrameLayout {
 
   public void setUndoRedoStackListener(@Nullable UndoRedoStackListener undoRedoStackListener) {
     this.undoRedoStackListener = undoRedoStackListener;
+  }
+
+  public void setDrawListener(@Nullable DrawListener drawListener) {
+    this.drawListener = drawListener;
   }
 
   public void setTapListener(TapListener tapListener) {
@@ -470,11 +497,16 @@ public final class ImageEditorView extends FrameLayout {
   }
 
   public interface DrawingChangedListener {
-    void onDrawingChanged();
+    void onDrawingChanged(boolean stillTouching);
   }
 
   public interface SizeChangedListener {
     void onSizeChanged(int newWidth, int newHeight);
+  }
+
+  public interface DrawListener {
+    void onDrawStarted();
+    void onDrawEnded();
   }
 
   public interface TapListener {

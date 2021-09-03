@@ -26,11 +26,11 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
   @NonNull  private final EditorModel modelToRender;
   @Nullable private final Point       size;
 
-  ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender) {
+  public ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender) {
     this(modelToRender, null);
   }
 
-  ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender, @Nullable Point size) {
+  public ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender, @Nullable Point size) {
     this.modelToRender = modelToRender;
     this.size          = size;
   }

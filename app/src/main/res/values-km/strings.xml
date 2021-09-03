@@ -1468,10 +1468,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">បន្ថែមទៅក្នុងបញ្ជីទំនាក់ទំនង</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">កុំបន្ថែម, ប៉ុន្តែបង្ហាញប្រវត្តិរូបរបស់ខ្ញុំ</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពកូដនីយកម្មរបស់អ្នកជាមួយ %s ប្រៀបធៀបលេខខាងលើជាមួយលេខនៅលើឧបករណ៍របស់ពួកគេ។ ផ្សេងពីនេះទៀត អ្នកអាចស្កេនកូដលើទូរស័ព្ទរបស់ពួកគេ ឬសុំពួកគេឲ្យស្កេនកូដលើទូរស័ព្ទរបស់អ្នក។ <a href="https://signal.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពកូដនីយកម្មរបស់អ្នកជាមួយ %s ប្រៀបធៀបលេខខាងលើជាមួយលេខនៅលើឧបករណ៍របស់ពួកគេ។ ផ្សេងពីនេះទៀត អ្នកអាចស្កេនកូដលើទូរស័ព្ទរបស់ពួកគេ ឬសុំពួកគេឲ្យស្កេនកូដលើទូរស័ព្ទរបស់អ្នក។ <a href="https://signal.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
   <string name="verify_display_fragment__loading">កំពុងផ្ទុក…</string>
-  <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
   <!--webrtc_answer_decline_button-->
@@ -2047,7 +2047,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ទៅ%2$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ទៅ%2$s</string>
   <!--StorageUtil-->
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__remove">លុបចេញ</string>

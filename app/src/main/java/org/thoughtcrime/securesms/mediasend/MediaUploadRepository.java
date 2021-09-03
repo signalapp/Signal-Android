@@ -45,7 +45,7 @@ import java.util.concurrent.Executor;
  * This also means that unlike most repositories, the class itself is stateful. Keep that in mind
  * when using it.
  */
-class MediaUploadRepository {
+public class MediaUploadRepository {
 
   private static final String TAG = Log.tag(MediaUploadRepository.class);
 
@@ -53,17 +53,17 @@ class MediaUploadRepository {
   private final LinkedHashMap<Media, PreUploadResult> uploadResults;
   private final Executor                              executor;
 
-  MediaUploadRepository(@NonNull Context context) {
+  public MediaUploadRepository(@NonNull Context context) {
     this.context       = context;
     this.uploadResults = new LinkedHashMap<>();
     this.executor      = SignalExecutors.newCachedSingleThreadExecutor("signal-MediaUpload");
   }
 
-  void startUpload(@NonNull Media media, @Nullable Recipient recipient) {
+  public void startUpload(@NonNull Media media, @Nullable Recipient recipient) {
     executor.execute(() -> uploadMediaInternal(media, recipient));
   }
 
-  void startUpload(@NonNull Collection<Media> mediaItems, @Nullable Recipient recipient) {
+  public void startUpload(@NonNull Collection<Media> mediaItems, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Media media : mediaItems) {
         cancelUploadInternal(media);
@@ -76,7 +76,7 @@ class MediaUploadRepository {
    * Given a map of old->new, cancel medias that were changed and upload their replacements. Will
    * also upload any media in the map that wasn't yet uploaded.
    */
-  void applyMediaUpdates(@NonNull Map<Media, Media> oldToNew, @Nullable Recipient recipient) {
+  public void applyMediaUpdates(@NonNull Map<Media, Media> oldToNew, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Map.Entry<Media, Media> entry : oldToNew.entrySet()) {
         Media oldMedia = entry.getKey();
@@ -101,11 +101,11 @@ class MediaUploadRepository {
     return !newProperties.isVideoEdited() && oldProperties.getSentMediaQuality() == newProperties.getSentMediaQuality();
   }
 
-  void cancelUpload(@NonNull Media media) {
+  public void cancelUpload(@NonNull Media media) {
     executor.execute(() -> cancelUploadInternal(media));
   }
 
-  void cancelUpload(@NonNull Collection<Media> mediaItems) {
+  public void cancelUpload(@NonNull Collection<Media> mediaItems) {
     executor.execute(() -> {
       for (Media media : mediaItems) {
         cancelUploadInternal(media);
@@ -113,7 +113,7 @@ class MediaUploadRepository {
     });
   }
 
-  void cancelAllUploads() {
+  public void cancelAllUploads() {
     executor.execute(() -> {
       for (Media media : new HashSet<>(uploadResults.keySet())) {
         cancelUploadInternal(media);
@@ -121,19 +121,19 @@ class MediaUploadRepository {
     });
   }
 
-  void getPreUploadResults(@NonNull Callback<Collection<PreUploadResult>> callback) {
+  public void getPreUploadResults(@NonNull Callback<Collection<PreUploadResult>> callback) {
     executor.execute(() -> callback.onResult(uploadResults.values()));
   }
 
-  void updateCaptions(@NonNull List<Media> updatedMedia) {
+  public void updateCaptions(@NonNull List<Media> updatedMedia) {
     executor.execute(() -> updateCaptionsInternal(updatedMedia));
   }
 
-  void updateDisplayOrder(@NonNull List<Media> mediaInOrder) {
+  public void updateDisplayOrder(@NonNull List<Media> mediaInOrder) {
     executor.execute(() -> updateDisplayOrderInternal(mediaInOrder));
   }
 
-  void deleteAbandonedAttachments() {
+  public void deleteAbandonedAttachments() {
     executor.execute(() -> {
       int deleted = DatabaseFactory.getAttachmentDatabase(context).deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
@@ -216,7 +216,7 @@ class MediaUploadRepository {
     }
   }
 
-  interface Callback<E> {
+  public interface Callback<E> {
     void onResult(@NonNull E result);
   }
 }

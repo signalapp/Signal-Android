@@ -93,7 +93,9 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   public static EditorModel create() {
-    return new EditorModel(EditingPurpose.IMAGE, 0, EditorElementHierarchy.create());
+    EditorModel model = new EditorModel(EditingPurpose.IMAGE, 0, EditorElementHierarchy.create());
+    model.setCropAspectLock(false);
+    return model;
   }
 
   public static EditorModel createForAvatarCapture() {
@@ -191,6 +193,38 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     }
 
     getActiveUndoRedoStacks(cropping).pushState(editorElementHierarchy.getRoot());
+  }
+
+  public void clearUndoStack() {
+    EditorElement  root     = editorElementHierarchy.getRoot();
+    EditorElement  original = root;
+    boolean        cropping = isCropping();
+    UndoRedoStacks stacks   = getActiveUndoRedoStacks(cropping);
+    boolean        didPop   = false;
+
+    while (stacks.canUndo(root)) {
+      final EditorElement oldRootElement = root;
+      final EditorElement popped         = stacks.getUndoStack().pop(oldRootElement);
+
+      if (popped != null) {
+        didPop = true;
+        editorElementHierarchy = EditorElementHierarchy.create(popped);
+        stacks.getRedoStack().tryPush(oldRootElement);
+      } else {
+        break;
+      }
+
+      root = editorElementHierarchy.getRoot();
+    }
+
+    if (didPop) {
+      restoreStateWithAnimations(original, editorElementHierarchy.getRoot(), invalidate, cropping);
+      invalidate.run();
+      editorElementHierarchy.updateViewToCrop(visibleViewPort, invalidate);
+      inBoundsMemory.push(editorElementHierarchy.getMainImage(), editorElementHierarchy.getCropEditorElement());
+    }
+
+    updateUndoRedoAvailableState(stacks);
   }
 
   public void undo() {
@@ -491,7 +525,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   private static int compareRatios(@NonNull Point a, @NonNull Point b) {
     int smallA = Math.min(a.x, a.y);
     int largeA = Math.max(a.x, a.y);
-    
+
     int smallB = Math.min(b.x, b.y);
     int largeB = Math.max(b.x, b.y);
 
@@ -751,7 +785,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
             pushUndoPoint();
             hasPushedUndo = true;
           }
-          
+
           mainImage.deleteChild(mainImage.getChild(i), invalidate);
         }
       }

@@ -76,7 +76,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                               } else {
                                 Log.w(TAG, "Newly discovering a registered user via storage service. Saving a storageId for them.");
                                 recipientDatabase.updateStorageId(settings.getId(), keyGenerator.generate());
-                                return StorageSyncModels.localToRemoteRecord(recipientDatabase.getRecipientSettingsForSync(settings.getId()));
+
+                                RecipientDatabase.RecipientSettings updatedSettings = Objects.requireNonNull(recipientDatabase.getRecipientSettingsForSync(settings.getId()));
+                                return StorageSyncModels.localToRemoteRecord(updatedSettings);
                               }
                             })
                             .transform(r -> r.getContact().get());

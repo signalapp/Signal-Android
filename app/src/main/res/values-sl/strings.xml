@@ -1965,10 +1965,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vnesite ime ali številko</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti zasebnost vaše komunikacije z uporabnikom/co %s, primerjajte gornje število s številom na njegovi/njeni napravi. Lahko tudi skenirate kodo na njegovi/njeni napravi ali ga/jo prosite, naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti zasebnost vaše komunikacije z uporabnikom/co %s, primerjajte gornje število s številom na njegovi/njeni napravi. Lahko tudi skenirate kodo na njegovi/njeni napravi ali ga/jo prosite, naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
   <string name="verify_display_fragment__loading">Nalaganje …</string>
-  <string name="verify_display_fragment__verified">Potrjeno</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Potrjeno</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deli varnostno število</string>
   <!--webrtc_answer_decline_button-->
@@ -2790,8 +2790,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Glasovnega sporočila ni bilo mogoče predvajati</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Glasovno sporočilo · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Glasovno sporočilo · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Uporabnik/ca \"%1$s\" je bil/a blokiran/a.</string>

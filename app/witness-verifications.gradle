@@ -171,8 +171,8 @@ dependencyVerification {
         ['androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
          'e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8'],
 
-        ['androidx.media:media:1.0.0',
-         'b23b527b2bac870c4a7451e6982d7132e413e88d7f27dbeb1fc7640a720cd9ee'],
+        ['androidx.media:media:1.3.1',
+         '24c6ca0c281b27dec054a09ae584028266683274ca8f53b230470ff404a7d3f4'],
 
         ['androidx.multidex:multidex:2.0.1',
          '42dd32ff9f97f85771b82a20003a8d70f68ab7b4ba328964312ce0732693db09'],
@@ -195,8 +195,8 @@ dependencyVerification {
         ['androidx.print:print:1.0.0',
          '1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd'],
 
-        ['androidx.recyclerview:recyclerview:1.1.0',
-         'f0d2b5a67d0a91ee1b1c73ef2b636a81f3563925ddd15a1d4e1c41ec28de7a4f'],
+        ['androidx.recyclerview:recyclerview:1.2.1',
+         'a1ea0329ee6d938305dfd0f8ce5c48dea2aac14e5606d23e7fb60afcfb655d6e'],
 
         ['androidx.savedstate:savedstate-ktx:1.1.0',
          'e44d61347463b0fafeeb649cbcc3d7109b2eb5e11d1522e986105170cdebbf68'],
@@ -297,14 +297,14 @@ dependencyVerification {
         ['com.google.android.datatransport:transport-runtime:3.0.0',
          '691bd6ee2bf93182d29cb8a3a6f735098337e6f35d7fc9c8a79f17fdae604894'],
 
-        ['com.google.android.exoplayer:exoplayer-core:2.9.1',
-         'b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0'],
+        ['com.google.android.exoplayer:exoplayer-core:2.15.0',
+         '8ae0c0027108181739e8a008377c8eb7fb93c4e04e3efdb5846662dd1ca9eba2'],
 
-        ['com.google.android.exoplayer:exoplayer-ui:2.9.1',
-         '7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151'],
+        ['com.google.android.exoplayer:exoplayer-ui:2.15.0',
+         '9e1869798de1ce16d9feb4fd97097f11c7cd54a2018c91d22aafd793f6a8dadf'],
 
-        ['com.google.android.exoplayer:extension-mediasession:2.9.1',
-         'a7dff433b41b714c6584d925f1438ca890eaa16d66a47c3fb9ce88b39dcf3d52'],
+        ['com.google.android.exoplayer:extension-mediasession:2.15.0',
+         'f7e304c4f38d113e164642478f4f96ad952cc0fa2ab27f2be4a0978587f0eeb3'],
 
         ['com.google.android.gms:play-services-auth-api-phone:16.0.0',
          '19365818b9ceb048ef48db12b5ffadd5eb86dbeb2c7c7b823bfdd89c665f42e5'],
@@ -495,9 +495,6 @@ dependencyVerification {
         ['mobi.upod:time-duration-picker:1.1.3',
          'db469ce0f48dd96b892eac424ed76870e54bf00fe0a28cdcddfbe5f2a226a0e1'],
 
-        ['net.zetetic:android-database-sqlcipher:4.4.3',
-         '64cf472e3f6c3300fd7307aebb74dfff4eeb3805f138045c83362c7687e4af61'],
-
         ['org.apache.httpcomponents:httpclient-android:4.3.5',
          '6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1'],
 
@@ -555,6 +552,9 @@ dependencyVerification {
         ['org.signal:aesgcmprovider:0.0.3',
          '6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1'],
 
+        ['org.signal:android-database-sqlcipher:4.4.3-S2',
+         'f76f42927c967dc7549cb857e953e97993957129e71caf367cb462c59f3b29fd'],
+
         ['org.signal:argon2:13.1',
          '0f686ccff0d4842bfcc74d92e8dc780a5f159b9376e37a1189fabbcdac458bef'],
 
@@ -573,11 +573,11 @@ dependencyVerification {
         ['org.threeten:threetenbp:1.3.6',
          'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
 
-        ['org.whispersystems:signal-client-android:0.8.4',
-         'bd64e526a32bb4da025401244a48c6b37fa7f48520446433d395d0a34d6eff5c'],
+        ['org.whispersystems:signal-client-android:0.9.0',
+         'e58359105094103ba1b5960563d0980ce31319e0946558d722636e76ef6eb90c'],
 
-        ['org.whispersystems:signal-client-java:0.8.4',
-         'c65e4cac5a0aa40d1f0487271a72c1526f230ab7b5bb19fe2f1addcd6f0fcacc'],
+        ['org.whispersystems:signal-client-java:0.9.0',
+         '9b40d108f783acaef0692be162f461c15fe49507204d5334770f38f90eff5b09'],
 
         ['pl.tajchert:waitingdots:0.1.0',
          '2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c'],

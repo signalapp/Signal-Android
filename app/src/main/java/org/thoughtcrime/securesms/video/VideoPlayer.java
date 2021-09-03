@@ -26,21 +26,13 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ClippingMediaSource;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
+import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -51,6 +43,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.video.exo.AttachmentDataSourceFactory;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class VideoPlayer extends FrameLayout {
@@ -87,21 +80,30 @@ public class VideoPlayer extends FrameLayout {
     this.exoControls.setShowTimeoutMs(-1);
   }
 
-  private CreateMediaSource createMediaSource;
+  private MediaItem mediaItem;
 
   public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay) {
-    Context                 context                    = getContext();
-    DefaultRenderersFactory renderersFactory           = new DefaultRenderersFactory(context);
-    TrackSelection.Factory  videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory();
-    TrackSelector           trackSelector              = new DefaultTrackSelector(videoTrackSelectionFactory);
-    LoadControl             loadControl                = new DefaultLoadControl();
+    Context context = getContext();
 
     if (exoPlayer == null) {
-      exoPlayer = ExoPlayerFactory.newSimpleInstance(context, renderersFactory, trackSelector, loadControl);
+      DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(context, "GenericUserAgent", null);
+      AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(context, defaultDataSourceFactory, null);
+      MediaSourceFactory          mediaSourceFactory          = new DefaultMediaSourceFactory(attachmentDataSourceFactory);
+
+      exoPlayer = new SimpleExoPlayer.Builder(context).setMediaSourceFactory(mediaSourceFactory).build();
       exoPlayer.addListener(new ExoPlayerListener(this, window, playerStateCallback, playerPositionDiscontinuityCallback));
-      exoPlayer.addListener(new Player.EventListener() {
+      exoPlayer.addListener(new Player.Listener() {
         @Override
-        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+        public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+          onPlaybackStateChanged(playWhenReady, exoPlayer.getPlaybackState());
+        }
+
+        @Override
+        public void onPlaybackStateChanged(int playbackState) {
+          onPlaybackStateChanged(exoPlayer.getPlayWhenReady(), playbackState);
+        }
+
+        private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
           if (playerCallback != null) {
             switch (playbackState) {
               case Player.STATE_READY:
@@ -113,20 +115,19 @@ public class VideoPlayer extends FrameLayout {
             }
           }
         }
+
+        @Override
+        public void onPlayerError(PlaybackException error) {
+          playerCallback.onError();
+        }
       });
       exoView.setPlayer(exoPlayer);
       exoControls.setPlayer(exoPlayer);
     }
 
-    DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(context, "GenericUserAgent", null);
-    AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(context, defaultDataSourceFactory, null);
-    ExtractorsFactory           extractorsFactory           = new DefaultExtractorsFactory();
-
-    createMediaSource = () -> new ExtractorMediaSource.Factory(attachmentDataSourceFactory)
-                                                      .setExtractorsFactory(extractorsFactory)
-                                                      .createMediaSource(videoSource.getUri());
-
-    exoPlayer.prepare(createMediaSource.create());
+    mediaItem = MediaItem.fromUri(Objects.requireNonNull(videoSource.getUri()));
+    exoPlayer.setMediaItem(mediaItem);
+    exoPlayer.prepare();
     exoPlayer.setPlayWhenReady(autoplay);
   }
 
@@ -151,10 +152,7 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public @Nullable View getControlView() {
-    if (this.exoControls != null) {
-      return this.exoControls;
-    }
-    return null;
+    return this.exoControls;
   }
 
   public void cleanup() {
@@ -198,9 +196,13 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public void clip(long fromUs, long toUs, boolean playWhenReady) {
-    if (this.exoPlayer != null && createMediaSource != null) {
-      MediaSource clippedMediaSource = new ClippingMediaSource(createMediaSource.create(), fromUs, toUs);
-      exoPlayer.prepare(clippedMediaSource);
+    if (this.exoPlayer != null && mediaItem != null) {
+      MediaItem clippedMediaItem = mediaItem.buildUpon()
+                                            .setClipStartPositionMs(TimeUnit.MICROSECONDS.toMillis(fromUs))
+                                            .setClipEndPositionMs(TimeUnit.MICROSECONDS.toMillis(toUs))
+                                            .build();
+      exoPlayer.setMediaItem(clippedMediaItem);
+      exoPlayer.prepare();
       exoPlayer.setPlayWhenReady(playWhenReady);
       clipped        = true;
       clippedStartUs = fromUs;
@@ -208,9 +210,10 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public void removeClip(boolean playWhenReady) {
-    if (exoPlayer != null && createMediaSource != null) {
+    if (exoPlayer != null && mediaItem != null) {
       if (clipped) {
-        exoPlayer.prepare(createMediaSource.create());
+        exoPlayer.setMediaItem(mediaItem);
+        exoPlayer.prepare();
         clipped        = false;
         clippedStartUs = 0;
       }
@@ -246,7 +249,7 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
-  private static class ExoPlayerListener implements Player.EventListener {
+  private static class ExoPlayerListener implements Player.Listener {
     private final VideoPlayer                         videoPlayer;
     private final Window                              window;
     private final PlayerStateCallback                 playerStateCallback;
@@ -264,7 +267,16 @@ public class VideoPlayer extends FrameLayout {
     }
 
     @Override
-    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+    public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+      onPlaybackStateChanged(playWhenReady, videoPlayer.exoPlayer.getPlaybackState());
+    }
+
+    @Override
+    public void onPlaybackStateChanged(int playbackState) {
+      onPlaybackStateChanged(videoPlayer.exoPlayer.getPlayWhenReady(), playbackState);
+    }
+
+    private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
       switch (playbackState) {
         case Player.STATE_IDLE:
         case Player.STATE_BUFFERING:
@@ -289,7 +301,10 @@ public class VideoPlayer extends FrameLayout {
     }
 
     @Override
-    public void onPositionDiscontinuity(int reason) {
+    public void onPositionDiscontinuity(@NonNull Player.PositionInfo oldPosition,
+                                        @NonNull Player.PositionInfo newPosition,
+                                        int reason)
+    {
       if (playerPositionDiscontinuityCallback != null) {
         playerPositionDiscontinuityCallback.onPositionDiscontinuity(videoPlayer, reason);
       }
@@ -313,9 +328,7 @@ public class VideoPlayer extends FrameLayout {
     void onPlaying();
 
     void onStopped();
-  }
 
-  private interface CreateMediaSource {
-    MediaSource create();
+    void onError();
   }
 }

@@ -14,7 +14,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сѐ уште не сте поставиле лозинка!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Избриши ја лозинката</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Да ја исклучам лозинката?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ова трајно ќе ги отклучи известувањата за Signal.</string>
   <string name="ApplicationPreferencesActivity_disable">Исклучи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Дерегистрација</string>
@@ -747,10 +747,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Сподели</string>
   <string name="InviteActivity_share_with_contacts">Сподели со контакти</string>
+  <string name="InviteActivity_share_via">Споделете преку…</string>
   <string name="InviteActivity_cancel">Откажи</string>
   <string name="InviteActivity_sending">Испраќа…</string>
   <string name="InviteActivity_invitations_sent">Покани испратени!</string>
   <string name="InviteActivity_invite_to_signal">Поканете на Signal</string>
+  <string name="InviteActivity_send_sms">Испрати SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Испрати %d SMS покана?</item>
     <item quantity="other">Испрати %d SMS пораки?</item>
@@ -827,7 +829,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal повик во тек</string>
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Дојдовен групен Signal повик</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Го стопирам Signal сервисот за повикување</string>
+  <string name="NotificationBarManager__decline_call">Одбиј повик</string>
   <string name="NotificationBarManager__answer_call">Одговори на повикот</string>
   <string name="NotificationBarManager__end_call">Заврши го повикот</string>
   <string name="NotificationBarManager__cancel_call">Откажи повик</string>
@@ -1169,8 +1173,8 @@
   <string name="ReactionsRecipientAdapter_you">Вие</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Потврдете за да продолжите со разговорот</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">За да спречите несакани пораки на Signal, пополнете ја потврдата.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">По проверката, можете да продолжите со испраќање пораки. Сите паузирани пораки автоматски ќе се испратат.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">За да спречите несакани пораки на Signal, Ве молиме завршете ја проверката.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">По проверката, можете да продолжите со испраќање пораки. Сите паузирани пораки ќе бидат испратени автоматски.</string>
   <!--Recipient-->
   <string name="Recipient_you">Вие</string>
   <!--RecipientPreferencesActivity-->
@@ -1193,6 +1197,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">За да го/ја повикате %1$s, на Signal му е потребен пристап до Вашата камера.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Повикувам…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Групата е преголема за да се јавите на учесниците.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal повик</string>
   <string name="WebRtcCallView__signal_video_call">Signal видео повик</string>
@@ -1213,10 +1218,12 @@
     <item quantity="one">%1$s, %2$s, и %3$d друг се на овој повик</item>
     <item quantity="other">%1$s, %2$s, и %3$d други се на овој повик</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Сврти</string>
   <string name="WebRtcCallView__speaker">Звучник</string>
   <string name="WebRtcCallView__camera">Камера</string>
-  <string name="WebRtcCallView__mute">Исклучи известувања</string>
-  <string name="WebRtcCallView__end_call">Заврши го повикот</string>
+  <string name="WebRtcCallView__mute">Исклучи</string>
+  <string name="WebRtcCallView__ring">Ѕвони</string>
+  <string name="WebRtcCallView__end_call">Спушти</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">На овој повик · %1$d личност</item>
@@ -1788,10 +1795,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Внесете име или број</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако сакате да ја проверите безбедноста на Вашата енкрипција со %s, споредете го бројот погоре со бројот на нивниот уред. Како алтернатива, можете да го скенирате кодот на нивниот телефон или пак да ги прашате да го скенираат Вашиот код. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако сакате да ја проверите безбедноста на Вашата енкрипција со %s, споредете го бројот погоре со бројот на нивниот уред. Како алтернатива, можете да го скенирате кодот на нивниот телефон или пак да ги прашате да го скенираат Вашиот код. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Допри да скенираш</string>
   <string name="verify_display_fragment__loading">Вчитувам…</string>
-  <string name="verify_display_fragment__verified">Проверено</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Проверено</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Сподели сигурносен број</string>
   <!--webrtc_answer_decline_button-->
@@ -2634,8 +2641,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не успеа да се пушти гласовната порака</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Гласовна порака · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s до %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Гласовна порака · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s до %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ е блокиран/а.</string>
@@ -2777,7 +2784,7 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
-  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да се копира на таблата со исечоци?</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да копирам на таблата со исечоци?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Збор %1$d</string>
@@ -2816,7 +2823,7 @@
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Сметка</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ќе бидете прашувани се поретко</string>
-  <string name="AccountSettingsFragment__require_your_signal_pin">Го бара Вашиот Signal PIN за повторно да го регистрирате вашиот телефонски број со Signal</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Барај го Signal PIN-от за повторна регистрација на Вашиот телефонски број на Signal</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
@@ -2902,7 +2909,7 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Допрете за замена на емоџи</string>
   <string name="EditReactionsFragment__reset">Ресетираj</string>
   <string name="EditReactionsFragment_save">Зачувај</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматски се совпаѓа со бојата на позадината</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматско совпаѓање со бојата на позадината</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Повлечете за да ја смените насоката на градиентот</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Нови бои за разговори</string>

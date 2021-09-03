@@ -1636,10 +1636,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Nav an jî nimreyekê binivîse</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Eger tu bixwazî ewlehiya şîfreya xwe bi %s bipejirînî, nimreya li jor bi nimreya ser amûra xwe re bide ber hev. Wek alternatîv, tu dikarî koda li ser telefona wan bivenerînî, an jî ji wan bixwazî ku koda te bivenerin. <a href="https://signal.org/redirect/safety-numbers">Zêdetir hîn bibe.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Eger tu bixwazî ewlehiya şîfreya xwe bi %s bipejirînî, nimreya li jor bi nimreya ser amûra xwe re bide ber hev. Wek alternatîv, tu dikarî koda li ser telefona wan bivenerînî, an jî ji wan bixwazî ku koda te bivenerin. <a href="https://signal.org/redirect/safety-numbers">Zêdetir hîn bibe.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Ji bo venêrînê, lê bitikîne</string>
   <string name="verify_display_fragment__loading">Tê barkirin…</string>
-  <string name="verify_display_fragment__verified">Piştrastkirî</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Piştrastkirî</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Nimreya ewlehiyê parve bike</string>
   <!--webrtc_answer_decline_button-->
@@ -2267,8 +2267,8 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Ev girêdan niha ne çalak e</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Peyama dengî · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s --&gt; %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Peyama dengî · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s --&gt; %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" hat astengkirin.</string>

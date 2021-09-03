@@ -108,13 +108,13 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
   }
 
   private void startPlayback(@NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {
-    if (!Objects.equals(holder.getMediaSource(), giphyMp4Playable.getMediaSource())) {
+    if (!Objects.equals(holder.getMediaItem(), giphyMp4Playable.getMediaItem())) {
       holder.setOnPlaybackReady(null);
       giphyMp4Playable.showProjectionArea();
 
       holder.show();
       holder.setOnPlaybackReady(giphyMp4Playable::hideProjectionArea);
-      holder.playContent(giphyMp4Playable.getMediaSource(), giphyMp4Playable.getPlaybackPolicyEnforcer());
+      holder.playContent(giphyMp4Playable.getMediaItem(), giphyMp4Playable.getPlaybackPolicyEnforcer());
     }
   }
 

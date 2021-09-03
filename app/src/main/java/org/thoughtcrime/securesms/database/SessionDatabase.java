@@ -7,7 +7,7 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.sqlcipher.database.SQLiteStatement;
+import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
@@ -20,6 +20,8 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -81,33 +83,36 @@ public class SessionDatabase extends Database {
   }
 
   public @NonNull List<SessionRecord> load(@NonNull List<SignalProtocolAddress> addresses) {
-    SQLiteDatabase      database = databaseHelper.getSignalReadableDatabase();
-    List<SessionRecord> sessions = new ArrayList<>(addresses.size());
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
+    String         query    = ADDRESS + " = ? AND " + DEVICE + " = ?";
+    List<String[]> args     = new ArrayList<>(addresses.size());
 
-    database.beginTransaction();
-    try {
-      String[] projection = new String[] { RECORD };
-      String   query      = ADDRESS + " = ? AND " + DEVICE + " = ?";
+    HashMap<SignalProtocolAddress, SessionRecord> sessions = new LinkedHashMap<>(addresses.size());
 
-      for (SignalProtocolAddress address : addresses) {
-        String[] args = SqlUtil.buildArgs(address.getName(), address.getDeviceId());
+    for (SignalProtocolAddress address : addresses) {
+      args.add(SqlUtil.buildArgs(address.getName(), address.getDeviceId()));
+      sessions.put(address, null);
+    }
 
-        try (Cursor cursor = database.query(TABLE_NAME, projection, query, args, null, null, null)) {
-          if (cursor.moveToFirst()) {
-            try {
-              sessions.add(new SessionRecord(cursor.getBlob(cursor.getColumnIndexOrThrow(RECORD))));
-            } catch (IOException e) {
-              Log.w(TAG, e);
-            }
+    String[] projection = new String[] { ADDRESS, DEVICE, RECORD };
+
+    for (SqlUtil.Query combinedQuery : SqlUtil.buildCustomCollectionQuery(query, args)) {
+      try (Cursor cursor = database.query(TABLE_NAME, projection, combinedQuery.getWhere(), combinedQuery.getWhereArgs(), null, null, null)) {
+        while (cursor.moveToNext()) {
+          String address = CursorUtil.requireString(cursor, ADDRESS);
+          int    device  = CursorUtil.requireInt(cursor, DEVICE);
+
+          try {
+            SessionRecord record = new SessionRecord(cursor.getBlob(cursor.getColumnIndexOrThrow(RECORD)));
+            sessions.put(new SignalProtocolAddress(address, device), record);
+          } catch (IOException e) {
+            Log.w(TAG, e);
           }
         }
       }
-      database.setTransactionSuccessful();
-    } finally {
-      database.endTransaction();
     }
 
-    return sessions;
+    return new ArrayList<>(sessions.values());
   }
 
   public @NonNull List<SessionRow> getAllFor(@NonNull String addressName) {

@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.MediaItem;
 
 import org.thoughtcrime.securesms.util.Projection;
 
@@ -23,9 +23,9 @@ public interface GiphyMp4Playable {
   void hideProjectionArea();
 
   /**
-   * @return The MediaSource to play back in the given VideoPlayer
+   * @return The MediaItem to play back in the given VideoPlayer
    */
-  default @Nullable MediaSource getMediaSource() {
+  default @Nullable MediaItem getMediaItem() {
     return null;
   }
 

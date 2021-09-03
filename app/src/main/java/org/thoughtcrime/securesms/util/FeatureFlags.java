@@ -359,7 +359,7 @@ public final class FeatureFlags {
 
   /** Whether or not sending or responding to retry receipts is enabled. */
   public static boolean retryReceipts() {
-    return getBoolean(RETRY_RECEIPTS, false);
+    return getBoolean(RETRY_RECEIPTS, true);
   }
 
   /** How long to wait before considering a retry to be a failure. */

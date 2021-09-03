@@ -11,7 +11,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.List;
@@ -39,27 +41,16 @@ public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogI
 
   @Override
   public void onClick(DialogInterface dialog, int which) {
-    final IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(getContext());
-
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-          for (IdentityRecord identityRecord : untrustedRecords) {
-            identityDatabase.setVerified(identityRecord.getRecipientId(),
-                                         identityRecord.getIdentityKey(),
-                                         IdentityDatabase.VerifiedStatus.DEFAULT);
-          }
+    SimpleTask.run(() -> {
+      try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
+        for (IdentityRecord identityRecord : untrustedRecords) {
+          ApplicationDependencies.getIdentityStore().setVerified(identityRecord.getRecipientId(),
+                                                                 identityRecord.getIdentityKey(),
+                                                                 IdentityDatabase.VerifiedStatus.DEFAULT);
         }
-
-        return null;
       }
-
-      @Override
-      protected void onPostExecute(Void result) {
-        resendListener.onResendMessage();
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      return null;
+    }, nothing -> resendListener.onResendMessage());
   }
 
   public interface ResendListener {

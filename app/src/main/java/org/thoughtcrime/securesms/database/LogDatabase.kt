@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentValues
 import android.database.Cursor
-import net.sqlcipher.database.SQLiteDatabase
-import net.sqlcipher.database.SQLiteOpenHelper
+import net.zetetic.database.sqlcipher.SQLiteDatabase
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
@@ -32,17 +32,19 @@ class LogDatabase private constructor(
 ) : SQLiteOpenHelper(
     application,
     DATABASE_NAME,
+    databaseSecret.asString(),
     null,
     DATABASE_VERSION,
-    SqlCipherDatabaseHook(),
-    SqlCipherErrorHandler(DATABASE_NAME)
+    0,
+    SqlCipherErrorHandler(DATABASE_NAME),
+    SqlCipherDatabaseHook()
   ),
   SignalDatabase {
 
   companion object {
     private val TAG = Log.tag(LogDatabase::class.java)
 
-    private val MAX_FILE_SIZE = ByteUnit.MEGABYTES.toBytes(10)
+    private val MAX_FILE_SIZE = ByteUnit.MEGABYTES.toBytes(15)
     private val DEFAULT_LIFESPAN = TimeUnit.DAYS.toMillis(2)
     private val LONGER_LIFESPAN = TimeUnit.DAYS.toMillis(7)
 
@@ -226,12 +228,6 @@ class LogDatabase private constructor(
       }
     }
   }
-
-  private val readableDatabase: SQLiteDatabase
-    get() = getReadableDatabase(databaseSecret.asString())
-
-  private val writableDatabase: SQLiteDatabase
-    get() = getWritableDatabase(databaseSecret.asString())
 
   interface Reader : Iterator<String>, Closeable
 

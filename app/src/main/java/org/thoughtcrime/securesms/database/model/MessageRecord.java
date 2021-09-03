@@ -87,6 +87,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      serverTimestamp;
   private final boolean                   remoteDelete;
   private final long                      notifiedTimestamp;
+  private final long                      receiptTimestamp;
 
   MessageRecord(long id, String body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
@@ -97,7 +98,7 @@ public abstract class MessageRecord extends DisplayRecord {
                 int subscriptionId, long expiresIn, long expireStarted,
                 int readReceiptCount, boolean unidentified,
                 @NonNull List<ReactionRecord> reactions, boolean remoteDelete, long notifiedTimestamp,
-                int viewedReceiptCount)
+                int viewedReceiptCount, long receiptTimestamp)
   {
     super(body, conversationRecipient, dateSent, dateReceived,
           threadId, deliveryStatus, deliveryReceiptCount, type,
@@ -115,6 +116,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.serverTimestamp     = dateServer;
     this.remoteDelete        = remoteDelete;
     this.notifiedTimestamp   = notifiedTimestamp;
+    this.receiptTimestamp    = receiptTimestamp;
   }
 
   public abstract boolean isMms();
@@ -578,6 +580,14 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public long getNotifiedTimestamp() {
     return notifiedTimestamp;
+  }
+
+  public long getReceiptTimestamp() {
+    if (!isOutgoing()) {
+      return getDateSent();
+    } else {
+      return receiptTimestamp;
+    }
   }
 
   public static final class InviteAddState {

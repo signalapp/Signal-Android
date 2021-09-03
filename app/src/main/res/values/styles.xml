@@ -45,6 +45,12 @@
         <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
     </style>
 
+    <style name="TextSecure.Animation.AddMessageDialog" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
+    </style>
+
+
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
@@ -311,7 +317,7 @@
     <style name="IdentityKey">
         <item name="android:fontFamily">monospace</item>
         <item name="android:typeface">monospace</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
     </style>
@@ -470,7 +476,7 @@
 
     <style name="Widget.Signal.CardView.PreferenceRow" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">0dp</item>
-        <item name="cardElevation">0.5dp</item>
+        <item name="cardElevation">0dp</item>
         <item name="cardBackgroundColor">?android:attr/windowBackground</item>
     </style>
 

@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
@@ -51,15 +52,16 @@ public final class UriGlideRenderer implements Renderer {
   public static final float WEAK_BLUR   = 3f;
   public static final float STRONG_BLUR = 25f;
 
-  private final Uri     imageUri;
-  private final Paint   paint                 = new Paint();
-  private final Matrix  imageProjectionMatrix = new Matrix();
-  private final Matrix  temp                  = new Matrix();
-  private final Matrix  blurScaleMatrix       = new Matrix();
-  private final boolean decryptable;
-  private final int     maxWidth;
-  private final int     maxHeight;
-  private final float   blurRadius;
+  private final Uri                     imageUri;
+  private final Paint                   paint                 = new Paint();
+  private final Matrix                  imageProjectionMatrix = new Matrix();
+  private final Matrix                  temp                  = new Matrix();
+  private final Matrix                  blurScaleMatrix       = new Matrix();
+  private final boolean                 decryptable;
+  private final int                     maxWidth;
+  private final int                     maxHeight;
+  private final float                   blurRadius;
+  private final RequestListener<Bitmap> bitmapRequestListener;
 
   @Nullable private Bitmap bitmap;
   @Nullable private Bitmap blurredBitmap;
@@ -70,11 +72,16 @@ public final class UriGlideRenderer implements Renderer {
   }
 
   public UriGlideRenderer(@NonNull Uri imageUri, boolean decryptable, int maxWidth, int maxHeight, float blurRadius) {
-    this.imageUri    = imageUri;
-    this.decryptable = decryptable;
-    this.maxWidth    = maxWidth;
-    this.maxHeight   = maxHeight;
-    this.blurRadius  = blurRadius;
+    this(imageUri, decryptable, maxWidth, maxHeight, blurRadius, null);
+  }
+
+  public UriGlideRenderer(@NonNull Uri imageUri, boolean decryptable, int maxWidth, int maxHeight, float blurRadius, @Nullable RequestListener<Bitmap> bitmapRequestListener) {
+    this.imageUri              = imageUri;
+    this.decryptable           = decryptable;
+    this.maxWidth              = maxWidth;
+    this.maxHeight             = maxHeight;
+    this.blurRadius            = blurRadius;
+    this.bitmapRequestListener = bitmapRequestListener;
     paint.setAntiAlias(true);
     paint.setFilterBitmap(true);
     paint.setDither(true);
@@ -186,6 +193,7 @@ public final class UriGlideRenderer implements Renderer {
                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                    .override(width, height)
                    .centerInside()
+                   .addListener(bitmapRequestListener)
                    .load(decryptable ? new DecryptableStreamUriLoader.DecryptableUri(imageUri) : imageUri);
   }
 

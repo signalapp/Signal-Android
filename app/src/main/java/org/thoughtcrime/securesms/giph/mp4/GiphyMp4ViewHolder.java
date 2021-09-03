@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.thoughtcrime.securesms.R;
@@ -36,28 +36,25 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyM
   private final ImageView                  stillImage;
   private final GiphyMp4Adapter.Callback   listener;
   private final Drawable                   placeholder;
-  private final GiphyMp4MediaSourceFactory mediaSourceFactory;
 
-  private float            aspectRatio;
-  private MediaSource      mediaSource;
+  private float     aspectRatio;
+  private MediaItem mediaItem;
 
   GiphyMp4ViewHolder(@NonNull View itemView,
-                     @Nullable GiphyMp4Adapter.Callback listener,
-                     @NonNull GiphyMp4MediaSourceFactory mediaSourceFactory)
+                     @Nullable GiphyMp4Adapter.Callback listener)
   {
     super(itemView);
     this.container          = itemView.findViewById(R.id.container);
     this.listener           = listener;
     this.stillImage         = itemView.findViewById(R.id.still_image);
     this.placeholder        = new ColorDrawable(Util.getRandomElement(ChatColorsPalette.Names.getAll()).getColor(itemView.getContext()));
-    this.mediaSourceFactory = mediaSourceFactory;
 
     container.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH);
   }
 
   void onBind(@NonNull GiphyImage giphyImage) {
     aspectRatio = giphyImage.getGifAspectRatio();
-    mediaSource = mediaSourceFactory.create(Uri.parse(giphyImage.getMp4PreviewUrl()));
+    mediaItem   = MediaItem.fromUri(Uri.parse(giphyImage.getMp4PreviewUrl()));
 
     container.setAspectRatio(aspectRatio);
 
@@ -77,8 +74,8 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyM
   }
 
   @Override
-  public @NonNull MediaSource getMediaSource() {
-    return mediaSource;
+  public @NonNull MediaItem getMediaItem() {
+    return mediaItem;
   }
 
   @Override

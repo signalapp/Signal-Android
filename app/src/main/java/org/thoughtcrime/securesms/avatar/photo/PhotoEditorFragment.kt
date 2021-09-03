@@ -57,6 +57,16 @@ class PhotoEditorFragment : Fragment(R.layout.avatar_photo_editor_fragment), Ima
     }
   }
 
+  override fun onCancelEditing() {
+    Navigation.findNavController(requireView()).popBackStack()
+  }
+
+  override fun onMainImageLoaded() {
+  }
+
+  override fun onMainImageFailedToLoad() {
+  }
+
   companion object {
     const val REQUEST_KEY_EDIT = "org.thoughtcrime.securesms.avatar.photo.EDIT"
 

@@ -231,30 +231,31 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
 
       val payloadId: Long = db.insert(PayloadTable.TABLE_NAME, null, payloadValues)
 
+      val recipientValues: MutableList<ContentValues> = mutableListOf()
       recipients.forEach { recipientDevice ->
         recipientDevice.devices.forEach { device ->
-          val recipientValues = ContentValues().apply {
+          recipientValues += ContentValues().apply {
             put(RecipientTable.PAYLOAD_ID, payloadId)
             put(RecipientTable.RECIPIENT_ID, recipientDevice.recipientId.serialize())
             put(RecipientTable.DEVICE, device)
           }
-
-          db.insert(RecipientTable.TABLE_NAME, null, recipientValues)
         }
       }
+      SqlUtil.buildBulkInsert(RecipientTable.TABLE_NAME, arrayOf(RecipientTable.PAYLOAD_ID, RecipientTable.RECIPIENT_ID, RecipientTable.DEVICE), recipientValues)
+        .forEach { query -> db.execSQL(query.where, query.whereArgs) }
 
+      val messageValues: MutableList<ContentValues> = mutableListOf()
       messageIds.forEach { messageId ->
-        val messageValues = ContentValues().apply {
+        messageValues += ContentValues().apply {
           put(MessageTable.PAYLOAD_ID, payloadId)
           put(MessageTable.MESSAGE_ID, messageId.id)
           put(MessageTable.IS_MMS, if (messageId.mms) 1 else 0)
         }
-
-        db.insert(MessageTable.TABLE_NAME, null, messageValues)
       }
+      SqlUtil.buildBulkInsert(MessageTable.TABLE_NAME, arrayOf(MessageTable.PAYLOAD_ID, MessageTable.MESSAGE_ID, MessageTable.IS_MMS), messageValues)
+        .forEach { query -> db.execSQL(query.where, query.whereArgs) }
 
       db.setTransactionSuccessful()
-
       return payloadId
     } finally {
       db.endTransaction()

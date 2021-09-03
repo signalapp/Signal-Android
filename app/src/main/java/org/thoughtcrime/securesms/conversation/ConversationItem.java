@@ -16,8 +16,6 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
-import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
-
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -62,10 +60,9 @@ import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.annimon.stream.Stream;
-import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.common.collect.Sets;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -128,13 +125,13 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VibrateUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.NullableStub;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
@@ -218,7 +215,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final Context context;
 
-  private MediaSource        mediaSource;
+  private MediaItem          mediaItem;
   private boolean            canPlayContent;
   private Projection.Corners bodyBubbleCorners;
   private Colorizer          colorizer;
@@ -286,7 +283,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                    boolean pulse,
                    boolean hasWallpaper,
                    boolean isMessageRequestAccepted,
-                   @NonNull AttachmentMediaSourceFactory attachmentMediaSourceFactory,
                    boolean allowedToPlayInline,
                    @NonNull Colorizer colorizer)
   {
@@ -307,7 +303,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.groupThread            = conversationRecipient.isGroup();
     this.recipient              = messageRecord.getIndividualRecipient().live();
     this.canPlayContent         = false;
-    this.mediaSource            = null;
+    this.mediaItem              = null;
     this.colorizer              = colorizer;
 
     this.recipient.observeForever(this);
@@ -315,7 +311,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
-    setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted, attachmentMediaSourceFactory, allowedToPlayInline);
+    setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted, allowedToPlayInline);
     setBodyText(messageRecord, searchQuery, isMessageRequestAccepted);
     setBubbleState(messageRecord, messageRecord.getRecipient(), hasWallpaper, colorizer);
     setInteractionState(conversationMessage, pulse);
@@ -612,7 +608,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
-  public ConversationMessage getConversationMessage() {
+  public @NonNull ConversationMessage getConversationMessage() {
     return conversationMessage;
   }
 
@@ -852,7 +848,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (messageRecord.isOutgoing()) {
         bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25));
       } else {
-        bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, isDarkTheme(context) ? R.color.core_grey_60 : R.color.core_grey_20));
+        bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, ThemeUtil.isDarkTheme(context) ? R.color.core_grey_60 : R.color.core_grey_20));
       }
 
       bodyText.setText(StringUtil.trim(styledText));
@@ -866,7 +862,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                                             boolean                      isGroupThread,
                                             boolean                      hasWallpaper,
                                             boolean                      messageRequestAccepted,
-                                  @Nullable AttachmentMediaSourceFactory attachmentMediaSourceFactory,
                                             boolean                      allowedToPlayInline)
   {
     boolean showControls = !messageRecord.isFailed();
@@ -1073,8 +1068,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       footer.setVisibility(VISIBLE);
 
-      if (attachmentMediaSourceFactory != null &&
-          thumbnailSlides.size() == 1          &&
+      if (thumbnailSlides.size() == 1          &&
           thumbnailSlides.get(0).isVideoGif()  &&
           thumbnailSlides.get(0) instanceof VideoSlide)
       {
@@ -1082,9 +1076,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
         Uri uri = thumbnailSlides.get(0).getUri();
         if (uri != null) {
-          mediaSource = attachmentMediaSourceFactory.createMediaSource(uri);
+          mediaItem = MediaItem.fromUri(uri);
         } else {
-          mediaSource = null;
+          mediaItem = null;
         }
       }
 
@@ -1675,8 +1669,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
-  public @Nullable MediaSource getMediaSource() {
-    return mediaSource;
+  public @Nullable MediaItem getMediaItem() {
+    return mediaItem;
   }
 
   @Override
@@ -1882,7 +1876,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     public void onClick(final View v, final Slide slide) {
       if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty()) {
         performClick();
-      } else if (!canPlayContent && mediaSource != null && eventListener != null) {
+      } else if (!canPlayContent && mediaItem != null && eventListener != null) {
         eventListener.onPlayInlineContent(conversationMessage);
       } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
         Intent intent = new Intent(context, MediaPreviewActivity.class);
@@ -1960,7 +1954,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final class TouchDelegateChangedListener implements ConversationItemFooter.OnTouchDelegateChangedListener {
     @Override
-    public void onTouchDelegateChanged(@NonNull @NotNull Rect delegateRect, @NonNull @NotNull View delegateView) {
+    public void onTouchDelegateChanged(@NonNull Rect delegateRect, @NonNull View delegateView) {
       offsetDescendantRectToMyCoords(footer, delegateRect);
       setTouchDelegate(new TouchDelegate(delegateRect, delegateView));
     }

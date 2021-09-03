@@ -209,7 +209,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet mérete meghaladja az adott típushoz tartozó mérethatárt.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nem küldhetsz ebbe a csoportba üzenetet, mivel nem vagy a tagja.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Csak %1$s küldhetnek üzeneteket.</string>
   <string name="ConversationActivity_admins">adminok</string>
+  <string name="ConversationActivity_message_an_admin">Üzenet egy adminnak</string>
+  <string name="ConversationActivity_cant_start_group_call">Nem engedélyezett csoporthívás</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Csak adminok indíthatnak hívást ebben a csoportban.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nem található eszközödön megfelelő alkalmazás a hivatkozás kezeléséhez.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">A csatlakozási kérésed el lett küldve a csoportadmin részére. Értesítést fogsz kapni, amint reagálnak rá.</string>
@@ -915,6 +918,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s admin jogosultságokat adott neki: %2$s </string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s admin jogosultságokat adott neked.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Visszavontad %1$s admin jogosultságait.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s visszavonta admin jogosultságaidat.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s visszavonta %2$s admin jogosultságait.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s admin jogosultságot kapott.</string>
   <string name="MessageRecord_you_are_now_an_admin">Admin jogosultságot kaptál.</string>
@@ -1184,6 +1188,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallActivity__calling">Hívás…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hívás</string>
+  <string name="WebRtcCallView__signal_video_call">Signal videóhívás</string>
   <string name="WebRtcCallView__start_call">Hívás indítása</string>
   <string name="WebRtcCallView__join_call">Belépés a hívásba</string>
   <string name="WebRtcCallView__call_is_full">A hívás betelt</string>
@@ -1777,10 +1782,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy telefonszámot</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosítás sértetlenségét %s nevű partnereddel, hasonlítsd össze a fenti számot az ő készülékén megjelenő számmal. Alternatív megoldásként beszkennelheted a kódot telefonja kijelzőjéről, illetve te is megkérheted őt, hogy ő szkennelje be a te kódodat. <a href="https://signal.org/redirect/safety-numbers">További információ</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosítás sértetlenségét %s nevű partnereddel, hasonlítsd össze a fenti számot az ő készülékén megjelenő számmal. Alternatív megoldásként beszkennelheted a kódot telefonja kijelzőjéről, illetve te is megkérheted őt, hogy ő szkennelje be a te kódodat. <a href="https://signal.org/redirect/safety-numbers">További információ</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Koppints a szkenneléshez</string>
   <string name="verify_display_fragment__loading">Betöltés…</string>
-  <string name="verify_display_fragment__verified">Megerősítve</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Megerősítve</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Biztonsági szám megosztása</string>
   <!--webrtc_answer_decline_button-->
@@ -2664,8 +2669,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Hangüzenet lejátszása sikertelen</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Hangüzenet · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s (címzett: %2$s)</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Hangüzenet · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s (címzett: %2$s)</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" letiltva.</string>
@@ -3062,5 +3067,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--DSLSettingsToolbar-->
   <string name="MultiselectForwardFragment__add_a_message">Szöveg hozzáadása</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">A továbbított üzenetek azonnal elküldésre kerülnek.</string>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Sikertelen a továbbítás, mert az üzenetek már nem elérhetőek.</item>
+    <item quantity="other">Sikertelen a továbbítás, mert az üzenetek már nem elérhetőek.</item>
+  </plurals>
   <!--EOF-->
 </resources>

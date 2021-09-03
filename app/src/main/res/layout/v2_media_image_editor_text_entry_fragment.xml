@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.InputAwareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_editor_hud_color_indicator"
+            android:layout_width="68dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0"
+            android:background="@drawable/ic_color_preview"
+            android:importantForAccessibility="no"
+            android:paddingBottom="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/color_indicator_circle"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintStart_toStartOf="@id/image_editor_hud_draw_color_bar"
+            tools:alpha="1"
+            tools:tint="@color/red" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/image_editor_hud_draw_color_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:splitTrack="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</org.thoughtcrime.securesms.components.InputAwareLayout>

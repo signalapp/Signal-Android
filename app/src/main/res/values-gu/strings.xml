@@ -1786,10 +1786,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>નામ અથવા નંબર દાખલ કરો</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[જો તમે તેની સાથે તમારા એન્ક્રિપ્શનની સુરક્ષાને ચકાસવા માંગો છો %s, ઉપરના નંબરની તુલના તેમના ડિવાઇસ પરની સંખ્યા સાથે કરો. વૈકલ્પિક રીતે, તમે તેમના ફોન પર કોડને સ્કેન કરી શકો છો અથવા તમારો કોડ સ્કેન કરવા માટે કહી શકો છો. <a href="https://signal.org/redirect/safety-numbers">વધુ શીખો</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[જો તમે તેની સાથે તમારા એન્ક્રિપ્શનની સુરક્ષાને ચકાસવા માંગો છો %s, ઉપરના નંબરની તુલના તેમના ડિવાઇસ પરની સંખ્યા સાથે કરો. વૈકલ્પિક રીતે, તમે તેમના ફોન પર કોડને સ્કેન કરી શકો છો અથવા તમારો કોડ સ્કેન કરવા માટે કહી શકો છો. <a href="https://signal.org/redirect/safety-numbers">વધુ શીખો</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">સ્કેન કરવા માટે ટેપ કરો</string>
   <string name="verify_display_fragment__loading">લોડ કરી રહ્યું છે </string>
-  <string name="verify_display_fragment__verified">ચકાસણી</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">ચકાસણી</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">સલામતી નંબર શેર કરો</string>
   <!--webrtc_answer_decline_button-->
@@ -2674,8 +2674,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">વૉઈસ મેસેજ ચલાવવામાં નિષ્ફળ</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">વૉઈસ મેસેજ . %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sતરફ%2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">વૉઈસ મેસેજ . %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sતરફ%2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" બ્લૉક કરવામાં આવ્યો છે</string>

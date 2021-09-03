@@ -10,6 +10,7 @@ import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -127,6 +128,48 @@ public final class SqlUtilTest {
   }
 
   @Test
+  public void buildCustomCollectionQuery_single_singleBatch() {
+    List<String[]> args = new ArrayList<>();
+    args.add(SqlUtil.buildArgs(1, 2));
+
+    List<SqlUtil.Query> queries = SqlUtil.buildCustomCollectionQuery("a = ? AND b = ?", args);
+
+    assertEquals(1, queries.size());
+    assertEquals("(a = ? AND b = ?)", queries.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2" }, queries.get(0).getWhereArgs());
+  }
+
+  @Test
+  public void buildCustomCollectionQuery_multiple_singleBatch() {
+    List<String[]> args = new ArrayList<>();
+    args.add(SqlUtil.buildArgs(1, 2));
+    args.add(SqlUtil.buildArgs(3, 4));
+    args.add(SqlUtil.buildArgs(5, 6));
+
+    List<SqlUtil.Query> queries = SqlUtil.buildCustomCollectionQuery("a = ? AND b = ?", args);
+
+    assertEquals(1, queries.size());
+    assertEquals("(a = ? AND b = ?) OR (a = ? AND b = ?) OR (a = ? AND b = ?)", queries.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3", "4", "5", "6" }, queries.get(0).getWhereArgs());
+  }
+
+  @Test
+  public void buildCustomCollectionQuery_twoBatches() {
+    List<String[]> args = new ArrayList<>();
+    args.add(SqlUtil.buildArgs(1, 2));
+    args.add(SqlUtil.buildArgs(3, 4));
+    args.add(SqlUtil.buildArgs(5, 6));
+
+    List<SqlUtil.Query> queries = SqlUtil.buildCustomCollectionQuery("a = ? AND b = ?", args, 4);
+
+    assertEquals(2, queries.size());
+    assertEquals("(a = ? AND b = ?) OR (a = ? AND b = ?)", queries.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3", "4" }, queries.get(0).getWhereArgs());
+    assertEquals("(a = ? AND b = ?)", queries.get(1).getWhere());
+    assertArrayEquals(new String[] { "5", "6" }, queries.get(1).getWhereArgs());
+  }
+
+  @Test
   public void splitStatements_singleStatement() {
     List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n");
     assertEquals(Arrays.asList("SELECT * FROM foo"), result);
@@ -142,5 +185,75 @@ public final class SqlUtilTest {
   public void splitStatements_twoStatementsSeparatedByNewLines() {
     List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n\nSELECT * FROM bar;\n");
     assertEquals(Arrays.asList("SELECT * FROM foo", "SELECT * FROM bar"), result);
+  }
+
+  @Test
+  public void buildBulkInsert_single_singleBatch() {
+    List<ContentValues> contentValues = new ArrayList<>();
+
+    ContentValues cv1 = new ContentValues();
+    cv1.put("a", 1);
+    cv1.put("b", 2);
+
+    contentValues.add(cv1);
+
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues);
+
+    assertEquals(1, output.size());
+    assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?)", output.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2" }, output.get(0).getWhereArgs());
+  }
+
+  @Test
+  public void buildBulkInsert_multiple_singleBatch() {
+    List<ContentValues> contentValues = new ArrayList<>();
+
+    ContentValues cv1 = new ContentValues();
+    cv1.put("a", 1);
+    cv1.put("b", 2);
+
+    ContentValues cv2 = new ContentValues();
+    cv2.put("a", 3);
+    cv2.put("b", 4);
+
+    contentValues.add(cv1);
+    contentValues.add(cv2);
+
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues);
+
+    assertEquals(1, output.size());
+    assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?), (?, ?)", output.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3", "4" }, output.get(0).getWhereArgs());
+  }
+
+  @Test
+  public void buildBulkInsert_twoBatches() {
+    List<ContentValues> contentValues = new ArrayList<>();
+
+    ContentValues cv1 = new ContentValues();
+    cv1.put("a", 1);
+    cv1.put("b", 2);
+
+    ContentValues cv2 = new ContentValues();
+    cv2.put("a", 3);
+    cv2.put("b", 4);
+
+    ContentValues cv3 = new ContentValues();
+    cv3.put("a", 5);
+    cv3.put("b", 6);
+
+    contentValues.add(cv1);
+    contentValues.add(cv2);
+    contentValues.add(cv3);
+
+    List<SqlUtil.Query> output = SqlUtil.buildBulkInsert("mytable", new String[] { "a", "b"}, contentValues, 4);
+
+    assertEquals(2, output.size());
+
+    assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?), (?, ?)", output.get(0).getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3", "4" }, output.get(0).getWhereArgs());
+
+    assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?)", output.get(1).getWhere());
+    assertArrayEquals(new String[] { "5", "6" }, output.get(1).getWhereArgs());
   }
 }

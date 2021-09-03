@@ -10,14 +10,20 @@ import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
 /**
  * Fragment that displays a Captcha in a WebView.
  */
-public final class CaptchaFragment extends BaseRegistrationFragment {
+public final class CaptchaFragment extends LoggingFragment {
+
+  private RegistrationViewModel viewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,11 +52,12 @@ public final class CaptchaFragment extends BaseRegistrationFragment {
     });
 
     webView.loadUrl(RegistrationConstants.SIGNAL_CAPTCHA_URL);
+
+    viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
   }
 
   private void handleToken(@NonNull String token) {
-    getModel().onCaptchaResponse(token);
-
-    Navigation.findNavController(requireView()).navigate(CaptchaFragmentDirections.actionCaptchaComplete());
+    viewModel.setCaptchaResponse(token);
+    NavHostFragment.findNavController(this).navigateUp();
   }
 }

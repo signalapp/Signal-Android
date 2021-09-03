@@ -1722,10 +1722,10 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Izen edo zenbaki bat idatzi</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s erabiltzailearekin duzun enkriptazioaren segurtasuna egiaztatu nahi baduzu, goian duzun zenbakia bere gailuan agertzen denarekin alderatu. Hona hemen beste aukera bat: bere telefonoan agertzen den kodea eskaneatzea edo zurean agertzen den kodea eskaneatzeko berari eskatzea.  <a href="https://signal.org/redirect/safety-numbers">Gehiago ikasi. </a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s erabiltzailearekin duzun enkriptazioaren segurtasuna egiaztatu nahi baduzu, goian duzun zenbakia bere gailuan agertzen denarekin alderatu. Hona hemen beste aukera bat: bere telefonoan agertzen den kodea eskaneatzea edo zurean agertzen den kodea eskaneatzeko berari eskatzea.  <a href="https://signal.org/redirect/safety-numbers">Gehiago ikasi. </a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Ukitu eskaneatzeko</string>
   <string name="verify_display_fragment__loading">Kargatzen…</string>
-  <string name="verify_display_fragment__verified">Egiaztatua</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Egiaztatua</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Segurtasun zenbakia partekatu</string>
   <!--webrtc_answer_decline_button-->
@@ -2397,8 +2397,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Esteka hau ez dago indarrean</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Ahots-mezua · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s tik %2$s ra</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Ahots-mezua · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s tik %2$s ra</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" blokeatua izan da.</string>

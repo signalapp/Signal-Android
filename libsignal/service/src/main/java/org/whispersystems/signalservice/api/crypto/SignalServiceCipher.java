@@ -28,6 +28,7 @@ import org.whispersystems.libsignal.DuplicateMessageException;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.InvalidRegistrationIdException;
 import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.libsignal.LegacyMessageException;
 import org.whispersystems.libsignal.NoSessionException;
@@ -88,7 +89,7 @@ public class SignalServiceCipher {
                                 byte[] unpaddedMessage,
                                 ContentHint contentHint,
                                 byte[] groupId)
-      throws NoSessionException, UntrustedIdentityException, InvalidKeyException
+      throws NoSessionException, UntrustedIdentityException, InvalidKeyException, InvalidRegistrationIdException
   {
     PushTransportDetails             transport            = new PushTransportDetails();
     SignalProtocolAddress            localProtocolAddress = new SignalProtocolAddress(localAddress.getIdentifier(), SignalServiceAddress.DEFAULT_DEVICE_ID);

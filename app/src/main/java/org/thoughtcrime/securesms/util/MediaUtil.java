@@ -25,6 +25,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
@@ -281,6 +282,10 @@ public class MediaUtil {
 
   public static boolean isTextType(String contentType) {
     return (null != contentType) && contentType.startsWith("text/");
+  }
+
+  public static boolean isNonGifVideo(Media media) {
+    return isVideo(media.getMimeType()) && !media.isVideoGif();
   }
 
   public static boolean isImageType(String contentType) {

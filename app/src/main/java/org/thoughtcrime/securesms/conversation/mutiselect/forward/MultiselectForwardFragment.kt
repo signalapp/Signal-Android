@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -27,7 +29,7 @@ import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -45,6 +47,7 @@ import java.util.function.Consumer
 
 private const val ARG_MULTISHARE_ARGS = "multiselect.forward.fragment.arg.multishare.args"
 private const val ARG_CAN_SEND_TO_NON_PUSH = "multiselect.forward.fragment.arg.can.send.to.non.push"
+private const val ARG_TITLE = "multiselect.forward.fragment.title"
 private val TAG = Log.tag(MultiselectForwardFragment::class.java)
 
 class MultiselectForwardFragment :
@@ -61,7 +64,8 @@ class MultiselectForwardFragment :
   private lateinit var selectionFragment: ContactSelectionListFragment
   private lateinit var contactFilterView: ContactFilterView
   private lateinit var addMessage: EditText
-  private lateinit var callback: Callback
+
+  private var callback: Callback? = null
 
   private var dismissibleDialog: SimpleProgressDialog.DismissibleDialog? = null
 
@@ -96,7 +100,7 @@ class MultiselectForwardFragment :
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    callback = requireNotNull(findListener())
+    callback = findListener()
     disposables.bindTo(viewLifecycleOwner.lifecycle)
 
     selectionFragment = childFragmentManager.findFragmentById(R.id.contact_selection_list_fragment) as ContactSelectionListFragment
@@ -117,11 +121,14 @@ class MultiselectForwardFragment :
       }
     }
 
+    val title: TextView = view.findViewById(R.id.title)
     val container = view.parent.parent.parent as FrameLayout
     val bottomBar = LayoutInflater.from(requireContext()).inflate(R.layout.multiselect_forward_fragment_bottom_bar, container, false)
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
     val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
+
+    title.setText(requireArguments().getInt(ARG_TITLE))
 
     addMessage = bottomBar.findViewById(R.id.add_message)
 
@@ -162,6 +169,7 @@ class MultiselectForwardFragment :
         MultiselectForwardState.Stage.SomeFailed -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_sent)
         MultiselectForwardState.Stage.AllFailed -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_failed_to_send)
         MultiselectForwardState.Stage.Success -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_sent)
+        is MultiselectForwardState.Stage.SelectionConfirmed -> dismissWithResult(it.stage.recipients)
       }
 
       sendButton.isEnabled = it.stage == MultiselectForwardState.Stage.Selection
@@ -170,6 +178,8 @@ class MultiselectForwardFragment :
     bottomBar.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
       selectionFragment.setRecyclerViewPaddingBottom(bottom - top)
     }
+
+    addMessage.visible = getMultiShareArgs().isNotEmpty()
   }
 
   override fun onResume() {
@@ -215,16 +225,28 @@ class MultiselectForwardFragment :
       .show()
   }
 
-  private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityDatabase.IdentityRecord>) {
+  private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityRecord>) {
     SafetyNumberChangeDialog.show(childFragmentManager, identityRecords)
   }
 
   private fun dismissAndShowToast(@PluralsRes toastTextResId: Int) {
     val argCount = getMessageCount()
 
-    callback.onFinishForwardAction()
+    callback?.onFinishForwardAction()
     dismissibleDialog?.dismiss()
     Toast.makeText(requireContext(), requireContext().resources.getQuantityString(toastTextResId, argCount), Toast.LENGTH_SHORT).show()
+    dismissAllowingStateLoss()
+  }
+
+  private fun dismissWithResult(recipientIds: List<RecipientId>) {
+    callback?.onFinishForwardAction()
+    dismissibleDialog?.dismiss()
+    setFragmentResult(
+      RESULT_SELECTION,
+      Bundle().apply {
+        putParcelableArrayList(RESULT_SELECTION_RECIPIENTS, ArrayList(recipientIds))
+      }
+    )
     dismissAllowingStateLoss()
   }
 
@@ -233,7 +255,7 @@ class MultiselectForwardFragment :
   private fun handleMessageExpired() {
     dismissAllowingStateLoss()
 
-    callback.onFinishForwardAction()
+    callback?.onFinishForwardAction()
     dismissibleDialog?.dismiss()
     Toast.makeText(requireContext(), resources.getQuantityString(R.plurals.MultiselectForwardFragment__couldnt_forward_messages, getMultiShareArgs().size), Toast.LENGTH_LONG).show()
   }
@@ -299,6 +321,10 @@ class MultiselectForwardFragment :
   }
 
   companion object {
+
+    const val RESULT_SELECTION = "result_selection"
+    const val RESULT_SELECTION_RECIPIENTS = "result_selection_recipients"
+
     @JvmStatic
     fun show(supportFragmentManager: FragmentManager, multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs) {
       val fragment = MultiselectForwardFragment()
@@ -306,6 +332,7 @@ class MultiselectForwardFragment :
       fragment.arguments = Bundle().apply {
         putParcelableArrayList(ARG_MULTISHARE_ARGS, ArrayList(multiselectForwardFragmentArgs.multiShareArgs))
         putBoolean(ARG_CAN_SEND_TO_NON_PUSH, multiselectForwardFragmentArgs.canSendToNonPush)
+        putInt(ARG_TITLE, multiselectForwardFragmentArgs.title)
       }
 
       fragment.show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)

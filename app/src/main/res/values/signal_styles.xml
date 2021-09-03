@@ -122,6 +122,10 @@
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
     </style>
 
+    <style name="Signal.Media.Dialog.AddMessageDialog" parent="TextSecure.MediaPreview">
+        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.AddMessageDialog</item>
+    </style>
+
     <style name="Signal.ThemeOverlay.Dialog.Rounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
         <item name="android:background">@color/signal_background_dialog</item>

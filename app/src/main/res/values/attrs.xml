@@ -109,6 +109,10 @@
         <attr name="pickerBorderColor" format="color" />
         <attr name="pickerBorderWidth" format="dimension" />
         <attr name="pickerColors" format="reference" />
+        <attr name="pickerOrientation" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="EmojiTextView">

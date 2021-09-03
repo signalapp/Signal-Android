@@ -1831,10 +1831,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Skriv inn namn eller nummer</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Viss du vil stadfesta tryggleiken på krypteringa di med %s, så kan du samanlikna talet vist over med talet på deira eining. Alternativt kan du skanna koden på telefonen deira, eller be dei om å skanna din kode. <a href="https://signal.org/redirect/safety-numbers">Lær meir.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Viss du vil stadfesta tryggleiken på krypteringa di med %s, så kan du samanlikna talet vist over med talet på deira eining. Alternativt kan du skanna koden på telefonen deira, eller be dei om å skanna din kode. <a href="https://signal.org/redirect/safety-numbers">Lær meir.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanna</string>
   <string name="verify_display_fragment__loading">Lastar …</string>
-  <string name="verify_display_fragment__verified">Stadfesta</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Stadfesta</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del tryggleiksnummeret</string>
   <!--webrtc_answer_decline_button-->
@@ -2721,8 +2721,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Klarte ikkje spela av talemelding</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Talemelding · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Talemelding · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» er blokkert.</string>

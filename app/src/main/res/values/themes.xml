@@ -427,6 +427,14 @@
         <item name="cornerSizeBottomRight">12dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.Signal.MediaSelection" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.Circle" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

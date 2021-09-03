@@ -5,9 +5,9 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.support.v4.media.session.MediaSessionCompat
 import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.ControlDispatcher
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
-import org.junit.Assert.assertArrayEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
@@ -25,15 +25,11 @@ class VoiceNotePlaybackControllerTest {
 
   private val mediaSessionCompat = mock(MediaSessionCompat::class.java)
   private val playbackParameters = VoiceNotePlaybackParameters(mediaSessionCompat)
-  private val testSubject = VoiceNotePlaybackController(playbackParameters)
   private val mediaAudioAttributes = AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
   private val callAudioAttributes = AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
+  private val controlDispatcher = mock(ControlDispatcher::class.java)
   private val player: SimpleExoPlayer = mock(SimpleExoPlayer::class.java)
-
-  @Test
-  fun `When I getCommands, then I expect PLAYBACK_SPEED and AUDIO_STREAM`() {
-    assertArrayEquals(arrayOf(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM), testSubject.commands)
-  }
+  private val testSubject = VoiceNotePlaybackController(player, playbackParameters)
 
   @Test
   fun `Given stream is media, When I onCommand for voice, then I expect the stream to switch to voice and continue playback`() {
@@ -45,11 +41,11 @@ class VoiceNotePlaybackControllerTest {
     val expected = callAudioAttributes
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCommand(player, controlDispatcher, command, extras, null)
 
     // THEN
     verify(player).playWhenReady = false
-    verify(player).audioAttributes = expected
+    verify(player).setAudioAttributes(expected, false)
     verify(player).playWhenReady = true
   }
 
@@ -63,11 +59,11 @@ class VoiceNotePlaybackControllerTest {
     val expected = mediaAudioAttributes
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCommand(player, controlDispatcher, command, extras, null)
 
     // THEN
     verify(player).playWhenReady = false
-    verify(player).audioAttributes = expected
+    verify(player).setAudioAttributes(expected, false)
     verify(player, Mockito.never()).playWhenReady = true
   }
 
@@ -80,11 +76,11 @@ class VoiceNotePlaybackControllerTest {
     val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_VOICE_CALL) }
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCommand(player, controlDispatcher, command, extras, null)
 
     // THEN
     verify(player, Mockito.never()).playWhenReady = anyBoolean()
-    verify(player, Mockito.never()).audioAttributes = any()
+    verify(player, Mockito.never()).setAudioAttributes(any(), anyBoolean())
   }
 
   @Test
@@ -96,10 +92,10 @@ class VoiceNotePlaybackControllerTest {
     val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC) }
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCommand(player, controlDispatcher, command, extras, null)
 
     // THEN
     verify(player, Mockito.never()).playWhenReady = anyBoolean()
-    verify(player, Mockito.never()).audioAttributes = any()
+    verify(player, Mockito.never()).setAudioAttributes(any(), anyBoolean())
   }
 }

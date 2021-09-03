@@ -178,12 +178,18 @@ public final class SignalLocalMetrics {
   public static final class GroupMessageSend {
     private static final String NAME = "group-message-send";
 
-    private static final String SPLIT_DB_INSERT        = "db-insert";
-    private static final String SPLIT_JOB_ENQUEUE      = "job-enqueue";
-    private static final String SPLIT_JOB_PRE_NETWORK  = "job-pre-network";
-    private static final String SPLIT_NETWORK          = "network";
-    private static final String SPLIT_JOB_POST_NETWORK = "job-post-network";
-    private static final String SPLIT_UI_UPDATE        = "ui-update";
+    private static final String SPLIT_DB_INSERT               = "db-insert";
+    private static final String SPLIT_JOB_ENQUEUE             = "job-enqueue";
+    private static final String SPLIT_JOB_PRE_NETWORK         = "job-pre-network";
+    private static final String SPLIT_SENDER_KEY_SHARED       = "sk-shared";
+    private static final String SPLIT_ENCRYPTION              = "encryption";
+    private static final String SPLIT_NETWORK_SENDER_KEY      = "network-sk";
+    private static final String SPLIT_NETWORK_SENDER_KEY_SYNC = "network-sk-sync";
+    private static final String SPLIT_MSL_SENDER_KEY          = "msl-sk";
+    private static final String SPLIT_NETWORK_LEGACY          = "network-legacy";
+    private static final String SPLIT_NETWORK_LEGACY_SYNC     = "network-legacy-sync";
+    private static final String SPLIT_JOB_POST_NETWORK        = "job-post-network";
+    private static final String SPLIT_UI_UPDATE               = "ui-update";
 
     private static final Map<Long, String> ID_MAP = new HashMap<>();
 
@@ -205,14 +211,44 @@ public final class SignalLocalMetrics {
       LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_ENQUEUE);
     }
 
-    public static void onNetworkStarted(long messageId) {
+    public static void onSenderKeyStarted(long messageId) {
       if (!ID_MAP.containsKey(messageId)) return;
       LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_PRE_NETWORK);
     }
 
-    public static void onNetworkFinished(long messageId) {
+    public static void onSenderKeyShared(long messageId) {
       if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK);
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_SENDER_KEY_SHARED);
+    }
+
+    public static void onSenderKeyEncrypted(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_ENCRYPTION);
+    }
+
+    public static void onSenderKeyMessageSent(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_SENDER_KEY);
+    }
+
+    public static void onSenderKeySyncSent(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_SENDER_KEY_SYNC);
+    }
+
+    public static void onSenderKeyMslInserted(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_MSL_SENDER_KEY);
+    }
+
+    public static void onLegacyMessageSent(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_LEGACY);
+    }
+
+    public static void onLegacySyncFinished(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_LEGACY_SYNC);
     }
 
     public static void onJobFinished(long messageId) {

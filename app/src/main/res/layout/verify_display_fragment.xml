@@ -1,66 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            xmlns:tools="http://schemas.android.com/tools"
             android:fillViewport="true">
 
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:padding="20dp"
+                  android:padding="36dp"
                   android:gravity="center_horizontal"
-                  android:background="@color/signal_background_secondary"
+                  android:background="@color/signal_background_primary"
                   android:orientation="vertical">
 
-        <FrameLayout android:layout_width="250dp"
-                     android:layout_height="250dp">
-
-            <TextView android:layout_width="wrap_content"
+        <LinearLayout android:id="@+id/qr_code_container"
+                      android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:layout_gravity="center"
-                      android:textSize="20sp"
-                      android:text="@string/verify_display_fragment__loading"/>
+                      android:orientation="vertical"
+                      android:layout_marginStart="30dp"
+                      android:layout_marginEnd="30dp"
+                      android:background="@drawable/qr_code_background">
 
-            <org.thoughtcrime.securesms.components.SquareImageView
+            <FrameLayout android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="36dp"
+                         android:layout_gravity="center">
+
+                <TextView android:id="@+id/loading"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          android:text="@string/verify_display_fragment__loading"
+                          android:textSize="20sp" />
+
+                <org.thoughtcrime.securesms.components.SquareImageView
                     android:id="@+id/qr_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:padding="20dp"
-                    android:background="@drawable/qr_code_background"
+                    android:layout_width="164dp"
+                    android:layout_height="164dp"
+                    android:layout_gravity="center_horizontal"
                     android:visibility="invisible"
-                    tools:src="@drawable/splash_logo"
-                    tools:visibility="invisible"/>
+                    tools:src="@drawable/ic_about_mc_80"
+                    tools:visibility="visible" />
 
-            <TextView android:id="@+id/tap_label"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="bottom|center_horizontal"
-                      android:layout_marginBottom="35dp"
-                      android:textColor="@color/core_grey_50"
-                      android:textSize="11sp"
-                      android:visibility="invisible"
-                      android:text="@string/verify_display_fragment__tap_to_scan"/>
-
-            <org.thoughtcrime.securesms.components.SquareImageView
+                <org.thoughtcrime.securesms.components.SquareImageView
                     android:id="@+id/qr_verified"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:padding="20dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:src="@drawable/ic_check_white_48dp"
-                    android:background="@drawable/qr_code_background"
+                    android:background="@drawable/circle_tintable"
                     android:backgroundTint="@color/green_500"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    tools:visibility="visible"/>
+            </FrameLayout>
 
+            <TextSwitcher android:id="@+id/tap_label"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="20dp"
+                          android:layout_marginBottom="27dp"
+                          android:inAnimation="@android:anim/fade_in"
+                          android:outAnimation="@android:anim/fade_out">
 
-        </FrameLayout>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="bottom|center_horizontal"
+                          android:textColor="@color/core_grey_50"
+                          android:textSize="11sp"
+                          android:text="@string/verify_display_fragment__tap_to_scan"
+                          style="@style/Signal.Text.Preview" />
 
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="bottom|center_horizontal"
+                          android:textColor="@color/core_grey_50"
+                          android:textSize="11sp"
+                          android:text="@string/verify_display_fragment__successful_match"
+                          style="@style/Signal.Text.Preview" />
+
+            </TextSwitcher>
+
+        </LinearLayout>
 
         <TableLayout android:id="@+id/number_table"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:layout_marginTop="5dp"
+                     android:layout_marginTop="36dp"
                      android:clickable="true"
                      android:focusable="true">
 
@@ -155,34 +180,28 @@
             </TableRow>
         </TableLayout>
 
-        <LinearLayout android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="10dp"
-                      android:paddingStart="20dp">
-
-            <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/verified_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:layout_marginStart="5dp"
-                    android:textSize="17dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/verify_display_fragment__verified"/>
-
-        </LinearLayout>
-
         <TextView android:id="@+id/description"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginTop="15dp"
-                  android:textSize="17sp"
+                  android:layout_marginTop="36dp"
+                  android:layout_marginStart="30dp"
+                  android:layout_marginEnd="30dp"
+                  android:gravity="center"
                   android:lineSpacingExtra="3sp"
-                  android:text="@string/verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"/>
+                  android:text="@string/verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"
+                  style="@style/TextAppearance.Signal.Body2" />
 
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/verify_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="43dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="@string/verify_display_fragment__mark_as_verified"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            app:backgroundTint="@color/signal_inverse_transparent_10"
+            android:textColor="@color/signal_accent_primary"/>
     </LinearLayout>
 </ScrollView>

@@ -136,7 +136,7 @@
   <string name="CommunicationActions_start_voice_call">Sesli arama başlat?</string>
   <string name="CommunicationActions_cancel">İptal</string>
   <string name="CommunicationActions_call">Ara</string>
-  <string name="CommunicationActions_insecure_call">Şifresiz arama</string>
+  <string name="CommunicationActions_insecure_call">Güvenilmez arama</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Operatör tarifelendirmesine tabii tutulabilir. Aramaya çalıştığınız numara Signal\'e kayıtlı değil. Bu arama internet üzerinden değil telefon operatörünüz tarafından gerçekleştirilecektir.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s ile olan güvenlik numaranız değişti. Bu, birisinin iletişiminizi kesmeye çalıştığı ya da %2$s Signal\'i yeniden yüklemiş olduğu anlamına gelebilir.</string>
@@ -754,6 +754,7 @@
   <string name="InviteActivity_sending">Gönderiliyor…</string>
   <string name="InviteActivity_invitations_sent">Davetler gönderildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal\'e davet et</string>
+  <string name="InviteActivity_send_sms">SMS gönder (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS daveti gönderilsin mi?</item>
     <item quantity="other">%d SMS daveti gönderilsin mi?</item>
@@ -2712,8 +2713,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Sesli ileti oynatılamadı</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Sesli ileti · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s --&gt; %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Sesli ileti · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s --&gt; %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" engellendi.</string>

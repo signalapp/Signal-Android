@@ -51,7 +51,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity;
@@ -672,12 +672,12 @@ public class ShareActivity extends PassphraseRequiredActivity
                               Optional.absent()));
         }
 
-        startActivityForResult(MediaSendActivity.buildShareIntent(this,
-                                                                  media,
-                                                                  Stream.of(multiShareArgs.getShareContactAndThreads()).map(ShareContactAndThread::getRecipientId).toList(),
-                                                                  multiShareArgs.getDraftText(),
-                                                                  MultiShareSender.getWorstTransportOption(this, multiShareArgs.getShareContactAndThreads())),
-            RESULT_MEDIA_CONFIRMATION);
+        Intent intent = MediaSelectionActivity.share(this,
+                                                     MultiShareSender.getWorstTransportOption(this, multiShareArgs.getShareContactAndThreads()),
+                                                     media,
+                                                     Stream.of(multiShareArgs.getShareContactAndThreads()).map(ShareContactAndThread::getRecipientId).toList(),
+                                                     multiShareArgs.getDraftText());
+        startActivityForResult(intent, RESULT_MEDIA_CONFIRMATION);
         break;
       default:
         //noinspection CodeBlock2Expr

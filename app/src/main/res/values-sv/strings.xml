@@ -749,10 +749,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dela</string>
   <string name="InviteActivity_share_with_contacts">Dela med kontakter</string>
+  <string name="InviteActivity_share_via">Dela via…</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Skickar…</string>
   <string name="InviteActivity_invitations_sent">Inbjudningar skickade!</string>
   <string name="InviteActivity_invite_to_signal">Bjud in till Signal</string>
+  <string name="InviteActivity_send_sms">Skicka SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Skicka %d SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>
@@ -829,7 +831,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Inkommande Signal-gruppsamtal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
+  <string name="NotificationBarManager__decline_call">Avvisa samtal</string>
   <string name="NotificationBarManager__answer_call">Svara på samtal</string>
   <string name="NotificationBarManager__end_call">Avsluta samtal</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtal</string>
@@ -1193,6 +1197,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">För att ringa %1$s behöver Signal åtkomst till din kamera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppen är för stor för att ringa deltagarna.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-samtal</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtal</string>
@@ -1205,8 +1210,34 @@
   <string name="WebRtcCallView__reconnecting">Återansluter…</string>
   <string name="WebRtcCallView__joining">Ansluter sig…</string>
   <string name="WebRtcCallView__disconnected">Frånkopplad</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal ringer %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ringer %1$s och %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal ringer %1$s, %2$s och %3$d annan</item>
+    <item quantity="other">Signal ringer %1$s, %2$s och %3$d andra</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s kommer att meddelas</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s och %2$s kommer att meddelas</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s och %3$d annan kommer att meddelas</item>
+    <item quantity="other">%1$s, %2$s och %3$d andra kommer att meddelas</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Ringer %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Ringer %1$s och %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Ringer %1$s, %2$s och %3$d annan</item>
+    <item quantity="other">Ringer %1$s, %2$s och %3$d andra</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ringer dig</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ringer dig och %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ringer dig, %2$s och %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s ringer dig, %2$s, %3$s och %4$d annan</item>
+    <item quantity="other">%1$s ringer dig, %2$s, %3$s och %4$d andra</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Ingen annan är här</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s är i detta samtal</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s är i detta samtal</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s och %2$s är i detta samtal</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s presenterar</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1789,10 +1820,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten för din kryptering med %s, jämför siffrorna ovan med siffrorna på hens enhet. Alternativt kan du skanna koden på hens telefon eller be hen skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten för din kryptering med %s, jämför siffrorna ovan med siffrorna på hens enhet. Alternativt kan du skanna koden på hens telefon eller be hen skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <string name="verify_display_fragment__loading">Hämtar in…</string>
-  <string name="verify_display_fragment__verified">Verifierat</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verifierat</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
   <!--webrtc_answer_decline_button-->
@@ -2677,8 +2708,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Det gick inte att spela röstmeddelande</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Röstmeddelande · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s till %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Röstmeddelande · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s till %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" har blockerats.</string>

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -19,6 +20,8 @@ import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment;
+
+import java.util.Objects;
 
 public class MediaKeyboard extends FrameLayout implements InputView {
 
@@ -38,6 +41,10 @@ public class MediaKeyboard extends FrameLayout implements InputView {
 
   public MediaKeyboard(Context context, AttributeSet attrs) {
     super(context, attrs);
+  }
+
+  public void setFragmentManager(@NonNull FragmentManager fragmentManager) {
+    this.fragmentManager = fragmentManager;
   }
 
   public void setKeyboardListener(@Nullable MediaKeyboardListener listener) {
@@ -125,13 +132,32 @@ public class MediaKeyboard extends FrameLayout implements InputView {
 
   private void initView() {
     if (!isInitialised) {
+
       LayoutInflater.from(getContext()).inflate(R.layout.media_keyboard, this, true);
+
+      if (fragmentManager == null) {
+        FragmentActivity activity = resolveActivity(getContext());
+        fragmentManager = activity.getSupportFragmentManager();
+      }
+
+      keyboardPagerFragment = new KeyboardPagerFragment();
+      fragmentManager.beginTransaction()
+                     .replace(R.id.media_keyboard_fragment_container, keyboardPagerFragment)
+                     .commitNowAllowingStateLoss();
 
       keyboardState         = State.NORMAL;
       latestKeyboardHeight  = -1;
       isInitialised         = true;
-      fragmentManager       = ((FragmentActivity) getContext()).getSupportFragmentManager();
-      keyboardPagerFragment = (KeyboardPagerFragment) fragmentManager.findFragmentById(R.id.media_keyboard_fragment_container);
+    }
+  }
+
+  private static FragmentActivity resolveActivity(@Nullable Context context) {
+    if (context instanceof FragmentActivity) {
+      return (FragmentActivity) context;
+    } else if (context instanceof ContextThemeWrapper) {
+      return resolveActivity(((ContextThemeWrapper) context).getBaseContext());
+    } else {
+      throw new IllegalStateException("Could not locate FragmentActivity");
     }
   }
 

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.giph.mp4;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -13,7 +12,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 
@@ -56,7 +55,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     super.onDetachedFromWindow();
   }
 
-  @Override protected void dispatchDraw(Canvas canvas) {
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
 
     if (cornerMask != null) {
@@ -69,8 +69,9 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     this.exoPlayer = exoPlayer;
   }
 
-  void setVideoSource(@NonNull MediaSource mediaSource) {
-    exoPlayer.prepare(mediaSource);
+  void setVideoItem(@NonNull MediaItem mediaItem) {
+    exoPlayer.setMediaItem(mediaItem);
+    exoPlayer.prepare();
   }
 
   void setCorners(@Nullable Projection.Corners corners) {
@@ -91,7 +92,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
 
   void stop() {
     if (exoPlayer != null) {
-      exoPlayer.stop(true);
+      exoPlayer.stop();
+      exoPlayer.clearMediaItems();
     }
   }
 
@@ -107,7 +109,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     exoView.setResizeMode(resizeMode);
   }
 
-  @Override public void onDestroy(@NonNull LifecycleOwner owner) {
+  @Override
+  public void onDestroy(@NonNull LifecycleOwner owner) {
     if (exoPlayer != null) {
       exoPlayer.release();
     }

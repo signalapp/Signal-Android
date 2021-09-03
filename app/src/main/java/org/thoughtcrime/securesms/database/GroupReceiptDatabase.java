@@ -12,9 +12,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.Pair;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -49,20 +51,19 @@ public class GroupReceiptDatabase extends Database {
   public void insert(Collection<RecipientId> recipientIds, long mmsId, int status, long timestamp) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
-    db.beginTransaction();
-    try {
-      for (RecipientId recipientId : recipientIds) {
-        ContentValues values = new ContentValues(4);
-        values.put(MMS_ID, mmsId);
-        values.put(RECIPIENT_ID, recipientId.serialize());
-        values.put(STATUS, status);
-        values.put(TIMESTAMP, timestamp);
+    List<ContentValues> contentValues = new ArrayList<>(recipientIds.size());
+    for (RecipientId recipientId : recipientIds) {
+      ContentValues values = new ContentValues(4);
+      values.put(MMS_ID, mmsId);
+      values.put(RECIPIENT_ID, recipientId.serialize());
+      values.put(STATUS, status);
+      values.put(TIMESTAMP, timestamp);
+      contentValues.add(values);
+    }
 
-        db.insert(TABLE_NAME, null, values);
-      }
-      db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
+    List<SqlUtil.Query> statements = SqlUtil.buildBulkInsert(TABLE_NAME, new String[] { MMS_ID, RECIPIENT_ID, STATUS, TIMESTAMP }, contentValues);
+    for (SqlUtil.Query statement : statements) {
+      db.execSQL(statement.getWhere(), statement.getWhereArgs());
     }
   }
 

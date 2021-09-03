@@ -1228,10 +1228,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">IDAGDAG SA MGA KONTAK</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">HUWAG IDAGDAG, NGUNIT HAYAANG MAKITA ANG AKING PROFILE</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kung gusto mong iberipika ang seguridad ng iyong encryption kay %s, ikumpara ang numero sa itaas sa numero sa kanyang device. Isang alternatibo dito, maaari mong i-scan ang code sa kanyang telepono, o hilingin sa kanyang i-scan ang iyong code. <a href="https://signal.org/redirect/safety-numbers">Matuto pa.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kung gusto mong iberipika ang seguridad ng iyong encryption kay %s, ikumpara ang numero sa itaas sa numero sa kanyang device. Isang alternatibo dito, maaari mong i-scan ang code sa kanyang telepono, o hilingin sa kanyang i-scan ang iyong code. <a href="https://signal.org/redirect/safety-numbers">Matuto pa.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Pindutin para mag-scan</string>
   <string name="verify_display_fragment__loading">Naglo-load…</string>
-  <string name="verify_display_fragment__verified">Beripikado</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Beripikado</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Ibahagi ang numerong pangkaligtasan</string>
   <!--webrtc_answer_decline_button-->

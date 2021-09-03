@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 
 public final class AppCapabilities {

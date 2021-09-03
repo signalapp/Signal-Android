@@ -28,7 +28,7 @@ public class ChunkedDataSource implements DataSource {
   private final OkHttpClient     okHttpClient;
   private final TransferListener transferListener;
 
-  private          Uri         uri;
+  private          DataSpec    dataSpec;
   private volatile InputStream inputStream;
   private volatile Exception   exception;
 
@@ -38,12 +38,12 @@ public class ChunkedDataSource implements DataSource {
   }
 
   @Override
-  public void addTransferListener(TransferListener transferListener) {
+  public void addTransferListener(@NonNull TransferListener transferListener) {
   }
 
   @Override
-  public long open(DataSpec dataSpec) throws IOException {
-    this.uri       = dataSpec.uri;
+  public long open(@NonNull DataSpec dataSpec) throws IOException {
+    this.dataSpec  = dataSpec;
     this.exception = null;
 
     if (inputStream != null) {
@@ -55,7 +55,7 @@ public class ChunkedDataSource implements DataSource {
     CountDownLatch     countDownLatch = new CountDownLatch(1);
     ChunkedDataFetcher fetcher        = new ChunkedDataFetcher(okHttpClient);
 
-    fetcher.fetch(this.uri.toString(), dataSpec.length, new ChunkedDataFetcher.Callback() {
+    fetcher.fetch(this.dataSpec.uri.toString(), dataSpec.length, new ChunkedDataFetcher.Callback() {
       @Override
       public void onSuccess(InputStream stream) {
         inputStream = stream;
@@ -87,7 +87,7 @@ public class ChunkedDataSource implements DataSource {
       transferListener.onTransferStart(this, dataSpec, false);
     }
 
-    if ( dataSpec.length != C.LENGTH_UNSET && dataSpec.length - dataSpec.position <= 0) {
+    if (dataSpec.length != C.LENGTH_UNSET && dataSpec.length - dataSpec.position <= 0) {
       throw new EOFException("No more data");
     }
 
@@ -95,11 +95,11 @@ public class ChunkedDataSource implements DataSource {
   }
 
   @Override
-  public int read(byte[] buffer, int offset, int readLength) throws IOException {
+  public int read(@NonNull byte[] buffer, int offset, int readLength) throws IOException {
     int read = inputStream.read(buffer, offset, readLength);
 
     if (read > 0 && transferListener != null) {
-      transferListener.onBytesTransferred(this, null, false, read);
+      transferListener.onBytesTransferred(this, dataSpec, false, read);
     }
 
     return read;
@@ -107,7 +107,7 @@ public class ChunkedDataSource implements DataSource {
 
   @Override
   public @Nullable Uri getUri() {
-    return uri;
+    return dataSpec.uri;
   }
 
   @Override

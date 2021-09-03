@@ -1977,10 +1977,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Įveskite vardą ar numerį</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu šio adresato įrenginyje. Arba kitu atveju, galite nuskenuoti kodą jo telefone arba paprašyti adresato, kad nuskenuotų jūsų kodą. <a href="https://signal.org/redirect/safety-numbers">Sužinokite daugiau.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu šio adresato įrenginyje. Arba kitu atveju, galite nuskenuoti kodą jo telefone arba paprašyti adresato, kad nuskenuotų jūsų kodą. <a href="https://signal.org/redirect/safety-numbers">Sužinokite daugiau.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Bakstelėkite, norėdami nuskenuoti</string>
   <string name="verify_display_fragment__loading">Įkeliama…</string>
-  <string name="verify_display_fragment__verified">Patvirtinta(-s)</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Patvirtinta(-s)</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dalintis saugumo numeriu</string>
   <!--webrtc_answer_decline_button-->
@@ -2881,8 +2881,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nepavyko atkurti balso žinutės</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Balso žinutė · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naudotojui %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Balso žinutė · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naudotojui %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Naudotojas „%1$s“ užblokuotas.</string>

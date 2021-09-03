@@ -16,10 +16,12 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
 import java.util.List;
+import java.util.UUID;
 
 public final class StorageSyncModels {
 
@@ -91,7 +93,9 @@ public final class StorageSyncModels {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
 
-    return new SignalContactRecord.Builder(rawStorageId, new SignalServiceAddress(recipient.getUuid(), recipient.getE164()))
+    UUID uuid = recipient.getUuid() != null ? recipient.getUuid() : UuidUtil.UNKNOWN_UUID;
+
+    return new SignalContactRecord.Builder(rawStorageId, new SignalServiceAddress(uuid, recipient.getE164()))
                                   .setUnknownFields(recipient.getSyncExtras().getStorageProto())
                                   .setProfileKey(recipient.getProfileKey())
                                   .setGivenName(recipient.getProfileName().getGivenName())

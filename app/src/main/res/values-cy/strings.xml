@@ -1979,10 +1979,10 @@ Send neges heb ei ddiogelu?</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Rhowch enw neu rif</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers"> Dysgu mwy. </a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers"> Dysgu mwy. </a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tapio i sganio</string>
   <string name="verify_display_fragment__loading">Llwytho…</string>
-  <string name="verify_display_fragment__verified">Gwiriwyd</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Gwiriwyd</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Rhannu\'r rif diogelwch</string>
   <!--webrtc_answer_decline_button-->
@@ -2883,8 +2883,8 @@ Send neges heb ei ddiogelu?</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Methu chware neges llais</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Neges llais · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s i %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Neges llais · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s i %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Mae \"%1$s\" wedi\'i rwystro.</string>

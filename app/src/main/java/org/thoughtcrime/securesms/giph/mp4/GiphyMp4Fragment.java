@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.net.ContentProxySelector;
 
 import java.util.List;
 
@@ -48,8 +46,7 @@ public class GiphyMp4Fragment extends Fragment {
     ContentLoadingProgressBar                 progressBar        = view.findViewById(R.id.content_loading);
     TextView                                  nothingFound       = view.findViewById(R.id.nothing_found);
     GiphyMp4ViewModel                         viewModel          = ViewModelProviders.of(requireActivity(), new GiphyMp4ViewModel.Factory(isForMms)).get(GiphyMp4ViewModel.class);
-    GiphyMp4MediaSourceFactory                mediaSourceFactory = new GiphyMp4MediaSourceFactory(ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(new ContentProxySelector()).build());
-    GiphyMp4Adapter                           adapter            = new GiphyMp4Adapter(mediaSourceFactory, viewModel::saveToBlob);
+    GiphyMp4Adapter                           adapter            = new GiphyMp4Adapter(viewModel::saveToBlob);
     List<GiphyMp4ProjectionPlayerHolder>      holders            = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(),
                                                                                                                    getViewLifecycleOwner().getLifecycle(),
                                                                                                                    frameLayout,

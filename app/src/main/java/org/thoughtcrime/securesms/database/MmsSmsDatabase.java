@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import net.sqlcipher.database.SQLiteQueryBuilder;
+import net.zetetic.database.sqlcipher.SQLiteQueryBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
@@ -104,7 +104,8 @@ public class MmsSmsDatabase extends Database {
                                               MmsSmsColumns.REMOTE_DELETED,
                                               MmsDatabase.MENTIONS_SELF,
                                               MmsSmsColumns.NOTIFIED_TIMESTAMP,
-                                              MmsSmsColumns.VIEWED_RECEIPT_COUNT};
+                                              MmsSmsColumns.VIEWED_RECEIPT_COUNT,
+                                              MmsSmsColumns.RECEIPT_TIMESTAMP};
 
   private static final String SNIPPET_QUERY = "SELECT " + MmsSmsColumns.ID + ", 0 AS " + TRANSPORT + ", " + SmsDatabase.TYPE +        " AS " + MmsSmsColumns.NORMALIZED_TYPE + ", " + SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " FROM " + SmsDatabase.TABLE_NAME + " " +
                                               "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + SmsDatabase.TYPE + " NOT IN (" + SmsDatabase.Types.PROFILE_CHANGE_TYPE + ", " + SmsDatabase.Types.GV1_MIGRATION_TYPE + ") " +
@@ -679,7 +680,8 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.REMOTE_DELETED,
                               MmsDatabase.MENTIONS_SELF,
                               MmsSmsColumns.NOTIFIED_TIMESTAMP,
-                              MmsSmsColumns.VIEWED_RECEIPT_COUNT};
+                              MmsSmsColumns.VIEWED_RECEIPT_COUNT,
+                              MmsSmsColumns.RECEIPT_TIMESTAMP};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -712,7 +714,8 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.REMOTE_DELETED,
                               MmsDatabase.MENTIONS_SELF,
                               MmsSmsColumns.NOTIFIED_TIMESTAMP,
-                              MmsSmsColumns.VIEWED_RECEIPT_COUNT};
+                              MmsSmsColumns.VIEWED_RECEIPT_COUNT,
+                              MmsSmsColumns.RECEIPT_TIMESTAMP};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -774,6 +777,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.MENTIONS_SELF);
     mmsColumnsPresent.add(MmsSmsColumns.NOTIFIED_TIMESTAMP);
     mmsColumnsPresent.add(MmsSmsColumns.VIEWED_RECEIPT_COUNT);
+    mmsColumnsPresent.add(MmsSmsColumns.RECEIPT_TIMESTAMP);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
@@ -801,6 +805,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.REACTIONS_LAST_SEEN);
     smsColumnsPresent.add(MmsDatabase.REMOTE_DELETED);
     smsColumnsPresent.add(MmsSmsColumns.NOTIFIED_TIMESTAMP);
+    smsColumnsPresent.add(MmsSmsColumns.RECEIPT_TIMESTAMP);
 
     String mmsGroupBy = includeAttachments ? MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID : null;
 

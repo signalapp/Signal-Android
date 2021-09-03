@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
@@ -16,9 +18,17 @@ import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.whispersystems.libsignal.util.guava.Optional
 import java.util.function.Consumer
 
+/**
+ * Arguments for the MultiselectForwardFragment.
+ *
+ * @param canSendToNonPush Whether non-push recipients will be displayed
+ * @param multiShareArgs   The items to forward. If this is an empty list, the fragment owner will be sent back a selected list of contacts.
+ * @param title            The title to display at the top of the sheet
+ */
 class MultiselectForwardFragmentArgs(
   val canSendToNonPush: Boolean,
-  val multiShareArgs: List<MultiShareArgs>
+  val multiShareArgs: List<MultiShareArgs> = listOf(),
+  @StringRes val title: Int = R.string.MultiselectForwardFragment__forward_to
 ) {
 
   companion object {

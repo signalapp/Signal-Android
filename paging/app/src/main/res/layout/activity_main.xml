@@ -53,10 +53,10 @@
           android:layout_height="wrap_content" />
 
       <com.google.android.material.button.MaterialButton
-          android:id="@+id/append_btn"
+          android:id="@+id/prepend_btn"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Append" />
+          android:text="Prepend" />
 
     </LinearLayout>
 

@@ -1925,10 +1925,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введіть ім\'я або номер</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Якщо ви хочете перевірити безпеку вашого шифрування із %s, порівняйте номер вище із номером на його/її пристрої. Інший спосіб: ви можете сканувати код на його/її телефоні, або попросити його/її сканувати ваш код. <a href="https://signal.org/redirect/safety-numbers">Дізнатися більше про перевірку номерів безпеки</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Якщо ви хочете перевірити безпеку вашого шифрування із %s, порівняйте номер вище із номером на його/її пристрої. Інший спосіб: ви можете сканувати код на його/її телефоні, або попросити його/її сканувати ваш код. <a href="https://signal.org/redirect/safety-numbers">Дізнатися більше про перевірку номерів безпеки</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Натисніть, щоб сканувати</string>
   <string name="verify_display_fragment__loading">Завантаження…</string>
-  <string name="verify_display_fragment__verified">Перевірено</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Перевірено</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поділитися номером безпеки</string>
   <!--webrtc_answer_decline_button-->
@@ -2610,7 +2610,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Скопійовано до буфера обміну</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s до %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s до %2$s</string>
   <!--StorageUtil-->
   <string name="BlockedUsersActivity__s_has_been_blocked">Заблоковано \"%1$s\"</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">Розблоковано \"%1$s\"</string>

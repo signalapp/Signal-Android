@@ -40,4 +40,9 @@ public class CompressedList<E> extends AbstractList<E> {
   public E set(int globalIndex, E element) {
     return wrapped.set(globalIndex, element);
   }
+
+  @Override
+  public void add(int index, E element) {
+    wrapped.add(index, element);
+  }
 }
