@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="86dp"
+    android:layout_height="wrap_content"
+    android:minHeight="78dp"
     android:background="@drawable/conversation_list_item_background"
     android:focusable="true"
     android:nextFocusLeft="@+id/container"
@@ -48,6 +49,7 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
       android:layout_marginEnd="12dp"
+      android:layout_marginTop="8dp"
       android:drawablePadding="5dp"
       android:ellipsize="end"
       android:fontFamily="sans-serif"
@@ -55,7 +57,7 @@
       android:textColor="@color/signal_text_primary"
       app:layout_constraintStart_toEndOf="@id/conversation_list_item_avatar"
       app:layout_constraintEnd_toStartOf="@id/conversation_list_item_thumbnail"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar"
+      app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_chainStyle="packed"
       tools:text="Peter Parker" />
 
