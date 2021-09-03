@@ -294,7 +294,7 @@
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Signal app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
   <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
-  <string name="ConversationFragment__review_requests_carefully">Overweeg dit verzoek zorgvuldig:</string>
+  <string name="ConversationFragment__review_requests_carefully">Overweeg dit gespreksverzoek zorgvuldig:</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal heeft een ander contactpersoon gevonden met dezelfde naam.</string>
   <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
   <string name="ConversationFragment_verify">Verifiëren</string>
@@ -1831,10 +1831,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Typ een naam of nummer</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je rechtstreeks met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen, of hem / haar vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je rechtstreeks met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen, of hem / haar vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
   <string name="verify_display_fragment__loading">Aan het laden …</string>
-  <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Veiligheidsnummer doorsturen</string>
   <!--webrtc_answer_decline_button-->
@@ -2719,8 +2719,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Het afspelen van het audiobericht is mislukt</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Audiobericht · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s naar %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Audiobericht · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naar %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">“%1$s” is geblokkeerd.</string>

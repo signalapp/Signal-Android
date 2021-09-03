@@ -1825,10 +1825,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>یک نام یا شماره را وارد کنید</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s وارسی کنید، ارقام بالا را با ارقام روی دستگاه آن‌ها مقایسه کنید. در غیر این صورت، می‌توانید کد روی تلفن آن‌ها را اسکن کرده یا از آن‌ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s وارسی کنید، ارقام بالا را با ارقام روی دستگاه آن‌ها مقایسه کنید. در غیر این صورت، می‌توانید کد روی تلفن آن‌ها را اسکن کرده یا از آن‌ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
   <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
-  <string name="verify_display_fragment__verified">وارسی شده</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">وارسی شده</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">اشتراک‌گذاری شمارهٔ امنیتی</string>
   <!--webrtc_answer_decline_button-->
@@ -2713,8 +2713,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">پخش پیام صوتی ناموفق بود</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">پیام صوتی · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s به %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">پیام صوتی · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s به %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» مسدود شد.</string>

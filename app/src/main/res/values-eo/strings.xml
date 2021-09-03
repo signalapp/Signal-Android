@@ -1794,10 +1794,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Bonvolu enigi nomon aŭ numeron</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se vi volas kontroli la ĉifran sekurecon kun %s, komparu la supran numeron kun la numero en lia aŭ ŝia aparato. Aliokaze, skanu la kodon el lia aŭ ŝia poŝtelefono, aŭ inverse. <a href="https://signal.org/redirect/safety-numbers">Lernu pli.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se vi volas kontroli la ĉifran sekurecon kun %s, komparu la supran numeron kun la numero en lia aŭ ŝia aparato. Aliokaze, skanu la kodon el lia aŭ ŝia poŝtelefono, aŭ inverse. <a href="https://signal.org/redirect/safety-numbers">Lernu pli.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tuŝetu por skani</string>
   <string name="verify_display_fragment__loading">Ŝargado…</string>
-  <string name="verify_display_fragment__verified">Konfirmita</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Konfirmita</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Kunhavigi sekurigan numeron</string>
   <!--webrtc_answer_decline_button-->
@@ -2659,8 +2659,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">La ligilo nun ne estas aktiva</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Voĉa mesaĝo · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s al %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Voĉa mesaĝo · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s al %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ estis blokita.</string>

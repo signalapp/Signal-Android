@@ -1793,10 +1793,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Syötä nimi tai numero</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Voit varmentaa yhteystiedon %s kanssa käytävän keskustelun salauksen vertaamalla ylläolevia numeroita toisessa laitteessa näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan tai pyytää häntä skannaamaan sinun koodisi. <a href="https://signal.org/redirect/safety-numbers">Lisätietoa</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Voit varmentaa yhteystiedon %s kanssa käytävän keskustelun salauksen vertaamalla ylläolevia numeroita toisessa laitteessa näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan tai pyytää häntä skannaamaan sinun koodisi. <a href="https://signal.org/redirect/safety-numbers">Lisätietoa</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Skannaa napauttamalla</string>
   <string name="verify_display_fragment__loading">Ladataan…</string>
-  <string name="verify_display_fragment__verified">Varmennettu</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Varmennettu</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaa turvanumero</string>
   <!--webrtc_answer_decline_button-->
@@ -2681,8 +2681,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Ääniviestin toisto epäonnistui</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Ääniviesti · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s henkilölle %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Ääniviesti · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s henkilölle %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" on nyt estetty.</string>

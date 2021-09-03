@@ -1970,10 +1970,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код.<a href="https://signal.org/redirect/safety-numbers"> Подробнее</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код.<a href="https://signal.org/redirect/safety-numbers"> Подробнее</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <string name="verify_display_fragment__loading">Загружаем…</string>
-  <string name="verify_display_fragment__verified">Подтверждён</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Подтверждён</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
   <!--webrtc_answer_decline_button-->
@@ -2874,8 +2874,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не удалось воспроизвести голосовое сообщение</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Голосовое сообщение · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s в %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Голосовое сообщение · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s в %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» заблокирован(-а).</string>

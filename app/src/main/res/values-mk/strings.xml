@@ -1795,10 +1795,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Внесете име или број</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако сакате да ја проверите безбедноста на Вашата енкрипција со %s, споредете го бројот погоре со бројот на нивниот уред. Како алтернатива, можете да го скенирате кодот на нивниот телефон или пак да ги прашате да го скенираат Вашиот код. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако сакате да ја проверите безбедноста на Вашата енкрипција со %s, споредете го бројот погоре со бројот на нивниот уред. Како алтернатива, можете да го скенирате кодот на нивниот телефон или пак да ги прашате да го скенираат Вашиот код. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Допри да скенираш</string>
   <string name="verify_display_fragment__loading">Вчитувам…</string>
-  <string name="verify_display_fragment__verified">Проверено</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Проверено</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Сподели сигурносен број</string>
   <!--webrtc_answer_decline_button-->
@@ -2641,8 +2641,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не успеа да се пушти гласовната порака</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Гласовна порака · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s до %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Гласовна порака · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s до %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ е блокиран/а.</string>

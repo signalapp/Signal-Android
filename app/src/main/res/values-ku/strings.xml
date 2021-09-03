@@ -1636,10 +1636,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Nav an jî nimreyekê binivîse</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Eger tu bixwazî ewlehiya şîfreya xwe bi %s bipejirînî, nimreya li jor bi nimreya ser amûra xwe re bide ber hev. Wek alternatîv, tu dikarî koda li ser telefona wan bivenerînî, an jî ji wan bixwazî ku koda te bivenerin. <a href="https://signal.org/redirect/safety-numbers">Zêdetir hîn bibe.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Eger tu bixwazî ewlehiya şîfreya xwe bi %s bipejirînî, nimreya li jor bi nimreya ser amûra xwe re bide ber hev. Wek alternatîv, tu dikarî koda li ser telefona wan bivenerînî, an jî ji wan bixwazî ku koda te bivenerin. <a href="https://signal.org/redirect/safety-numbers">Zêdetir hîn bibe.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Ji bo venêrînê, lê bitikîne</string>
   <string name="verify_display_fragment__loading">Tê barkirin…</string>
-  <string name="verify_display_fragment__verified">Piştrastkirî</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Piştrastkirî</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Nimreya ewlehiyê parve bike</string>
   <!--webrtc_answer_decline_button-->

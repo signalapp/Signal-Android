@@ -1789,10 +1789,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ನಿಮ್ಮ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಸುರಕ್ಷತೆಯನ್ನು %s ನೊಂದಿಗೆ ದೃಢೀಕರಿಸಲು ನೀವು ಬಯಸಿದರೆ, ಮೇಲಿನ ಸಂಖ್ಯೆಯನ್ನು ಅವರ ಸಾಧನದಲ್ಲಿನ ಸಂಖ್ಯೆಯೊಂದಿಗೆ ಹೋಲಿಸಿ. ಪರ್ಯಾಯವಾಗಿ, ನೀವು ಅವರ ಫೋನ್‌ನಲ್ಲಿ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಬಹುದು, ಅಥವಾ ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಅವರನ್ನು ಕೇಳಬಹುದು. <a href="https://signal.org/redirect/safety-numbers">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ನಿಮ್ಮ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಸುರಕ್ಷತೆಯನ್ನು %s ನೊಂದಿಗೆ ದೃಢೀಕರಿಸಲು ನೀವು ಬಯಸಿದರೆ, ಮೇಲಿನ ಸಂಖ್ಯೆಯನ್ನು ಅವರ ಸಾಧನದಲ್ಲಿನ ಸಂಖ್ಯೆಯೊಂದಿಗೆ ಹೋಲಿಸಿ. ಪರ್ಯಾಯವಾಗಿ, ನೀವು ಅವರ ಫೋನ್‌ನಲ್ಲಿ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಬಹುದು, ಅಥವಾ ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಅವರನ್ನು ಕೇಳಬಹುದು. <a href="https://signal.org/redirect/safety-numbers">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="verify_display_fragment__loading">ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
-  <string name="verify_display_fragment__verified">ದೃಢೀಕರಿಸಲಾಗಿದೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">ದೃಢೀಕರಿಸಲಾಗಿದೆ</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <!--webrtc_answer_decline_button-->
@@ -2677,8 +2677,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ಪ್ಲೇ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">ಧ್ವನಿ ಸಂದೇಶ . %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s  ಗೆ %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ಧ್ವನಿ ಸಂದೇಶ . %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s  ಗೆ %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s/</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ರನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ.</string>

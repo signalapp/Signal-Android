@@ -1827,10 +1827,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introducir nombre o número</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Puedes verificar la seguridad del cifrado con %s, compara las cifras arriba con las del dispositivo de la otra persona. Como alternativa, puedes escanear el código en el teléfono de tu contacto, o pedirle escanear tu código. <a href="https://signal.org/redirect/safety-numbers">Más detalles.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Puedes verificar la seguridad del cifrado con %s, compara las cifras arriba con las del dispositivo de la otra persona. Como alternativa, puedes escanear el código en el teléfono de tu contacto, o pedirle escanear tu código. <a href="https://signal.org/redirect/safety-numbers">Más detalles.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Toca para escanear</string>
   <string name="verify_display_fragment__loading">Cargando …</string>
-  <string name="verify_display_fragment__verified">Identidad verificada</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Identidad verificada</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartir cifras de seguridad</string>
   <!--webrtc_answer_decline_button-->
@@ -2715,8 +2715,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Fallo al reproducir nota de voz</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Nota de voz · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s de %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Nota de voz · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s de %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Se ha bloqueado a %1$s</string>

@@ -2073,10 +2073,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إذا رغبت بالتحقق من أمان التعمية مع %s، يجب مقارنة الأعداد بالأعلى مع الأعداد الموجودة في جهاز ذلك الشخص. بالمقابل، يكفي المسح الضوئي للرمز الموجود في هاتفه، أو الطلب منه المسح الضوئي لرمزك. <a href="https://signal.org/redirect/safety-numbers">لمعرفة المزيد</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إذا رغبت بالتحقق من أمان التعمية مع %s، يجب مقارنة الأعداد بالأعلى مع الأعداد الموجودة في جهاز ذلك الشخص. بالمقابل، يكفي المسح الضوئي للرمز الموجود في هاتفه، أو الطلب منه المسح الضوئي لرمزك. <a href="https://signal.org/redirect/safety-numbers">لمعرفة المزيد</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
   <string name="verify_display_fragment__loading">قيد التحميل…</string>
-  <string name="verify_display_fragment__verified"> تمّ التحقق </string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified"> تمّ التحقق </string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم اﻷمان</string>
   <!--webrtc_answer_decline_button-->
@@ -2993,8 +2993,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">فشل تشغيل الرسالة الصوتية</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">رسالة صوتية · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s إلى %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">رسالة صوتية · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s إلى %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">تم حظر \"%1$s\".</string>

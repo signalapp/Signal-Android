@@ -1177,10 +1177,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts"> رابطے اچ شامل کرو</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">شامل نہ کرو، پر میری پروفائل نوں ظاہر کرو</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[جے تسیں اپنی خفیہ کاری دے تحفظ دی %s دے نال تصدیق کرانا چاہندے او، تے اتے دتے گئےا نمبر دا اوہناں دے آلے دے نمبر دے نال موازنہ کرو۔ متبادل دے طور تے، تسیں اوہناں دے فون تے کوڈ اسکین کرسکدے او، یاں فیر اوہناں نوں اپناں کوڈ اسکین کرن دا کہہ سکدے او۔ <a href="https://signal.org/redirect/safety-numbers">ہور جانو۔</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[جے تسیں اپنی خفیہ کاری دے تحفظ دی %s دے نال تصدیق کرانا چاہندے او، تے اتے دتے گئےا نمبر دا اوہناں دے آلے دے نمبر دے نال موازنہ کرو۔ متبادل دے طور تے، تسیں اوہناں دے فون تے کوڈ اسکین کرسکدے او، یاں فیر اوہناں نوں اپناں کوڈ اسکین کرن دا کہہ سکدے او۔ <a href="https://signal.org/redirect/safety-numbers">ہور جانو۔</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">اسکین کرن لئی بٹن دبو</string>
   <string name="verify_display_fragment__loading">لوڈ کر رئیا اے…</string>
-  <string name="verify_display_fragment__verified">تصدیق کیتا ہویا</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">تصدیق کیتا ہویا</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">سیفٹی نمبر سانجھا کرو</string>
   <!--webrtc_answer_decline_button-->

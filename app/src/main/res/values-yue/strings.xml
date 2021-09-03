@@ -1752,10 +1752,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>打個名或者冧把</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若然您想驗證下您同 %s 之間嘅加密係咪安全，請將上面嘅數字同佢部機上面嘅數字做比較。又或者，您可以掃一掃佢部機上面嘅二維碼，或者叫佢掃一掃您個碼都得。<a href="https://signal.org/redirect/safety-numbers">想知多啲？</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若然您想驗證下您同 %s 之間嘅加密係咪安全，請將上面嘅數字同佢部機上面嘅數字做比較。又或者，您可以掃一掃佢部機上面嘅二維碼，或者叫佢掃一掃您個碼都得。<a href="https://signal.org/redirect/safety-numbers">想知多啲？</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">撳一下去掃描</string>
   <string name="verify_display_fragment__loading">載入緊…</string>
-  <string name="verify_display_fragment__verified">驗證咗</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">驗證咗</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
   <!--webrtc_answer_decline_button-->
@@ -2632,8 +2632,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">播唔到語音訊息</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">語音訊息 · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s 畀 %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">語音訊息 · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s 畀 %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">已封鎖「%1$s」。</string>

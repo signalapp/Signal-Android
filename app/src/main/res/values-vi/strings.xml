@@ -1704,10 +1704,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Điền vào tên hoặc số</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Nếu bạn muốn xác minh độ bảo mật của mã hoá với %s, so sánh dãy số trên với dãy số trên thiết bị của họ. Hoặc bạn có thể quét mã QR trên thiết bị của họ, hoặc yêu cầu họ quét mã của bạn. <a href="https://signal.org/redirect/safety-numbers">Tìm hiểu thêm.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Nếu bạn muốn xác minh độ bảo mật của mã hoá với %s, so sánh dãy số trên với dãy số trên thiết bị của họ. Hoặc bạn có thể quét mã QR trên thiết bị của họ, hoặc yêu cầu họ quét mã của bạn. <a href="https://signal.org/redirect/safety-numbers">Tìm hiểu thêm.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Nhấn để quét</string>
   <string name="verify_display_fragment__loading">Đang tải…</string>
-  <string name="verify_display_fragment__verified">Đã xác minh</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Đã xác minh</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Chia sẻ mã số an toàn</string>
   <!--webrtc_answer_decline_button-->
@@ -2584,8 +2584,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Không thể phát tin nhắn thoại</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Tin nhắn thoại · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s đến %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Tin nhắn thoại · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s đến %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" đã bị chặn.</string>

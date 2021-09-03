@@ -1759,10 +1759,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>పేరు లేదా సంఖ్యను రాయండి</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[మీరు మీ ఎన్క్రిప్షన్ యొక్క భద్రతను ధృవీకరించాలనుకుంటే %s, వారి పరికరంలో ఉన్న సంఖ్యతో ఉన్న సంఖ్యను సరిపోల్చండి. ప్రత్యామ్నాయంగా, మీరు వారి ఫోన్లో కోడ్ను స్కాన్ చేయవచ్చు లేదా మీ కోడ్ను స్కాన్ చేయమని అడగవచ్చు. <a href="https://signal.org/redirect/safety-numbers">ఇంకా నేర్చుకో.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[మీరు మీ ఎన్క్రిప్షన్ యొక్క భద్రతను ధృవీకరించాలనుకుంటే %s, వారి పరికరంలో ఉన్న సంఖ్యతో ఉన్న సంఖ్యను సరిపోల్చండి. ప్రత్యామ్నాయంగా, మీరు వారి ఫోన్లో కోడ్ను స్కాన్ చేయవచ్చు లేదా మీ కోడ్ను స్కాన్ చేయమని అడగవచ్చు. <a href="https://signal.org/redirect/safety-numbers">ఇంకా నేర్చుకో.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">స్కాన్ నొక్కండి</string>
   <string name="verify_display_fragment__loading">లోడ్…</string>
-  <string name="verify_display_fragment__verified">ధృవీకరించబడింది</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">ధృవీకరించబడింది</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">భద్రతా సంఖ్యను పంచు</string>
   <!--webrtc_answer_decline_button-->
@@ -2449,8 +2449,8 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">లింక్ ప్రస్తుతం సక్రియంగా లేదు</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">వాయిస్ సందేశం · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sకు%2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">వాయిస్ సందేశం · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sకు%2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" బ్లాక్ చేయబడింది.</string>

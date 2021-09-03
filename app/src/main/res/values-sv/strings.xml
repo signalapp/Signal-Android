@@ -1820,10 +1820,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten för din kryptering med %s, jämför siffrorna ovan med siffrorna på hens enhet. Alternativt kan du skanna koden på hens telefon eller be hen skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten för din kryptering med %s, jämför siffrorna ovan med siffrorna på hens enhet. Alternativt kan du skanna koden på hens telefon eller be hen skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <string name="verify_display_fragment__loading">Hämtar in…</string>
-  <string name="verify_display_fragment__verified">Verifierat</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verifierat</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
   <!--webrtc_answer_decline_button-->
@@ -2708,8 +2708,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Det gick inte att spela röstmeddelande</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Röstmeddelande · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s till %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Röstmeddelande · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s till %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" har blockerats.</string>

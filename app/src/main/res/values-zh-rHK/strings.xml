@@ -1751,10 +1751,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>輸入名稱或號碼</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若您欲驗證您與 %s 之間加密的安全性，請比對上方數字與對方裝置上的數字是否一樣。又或者，您可掃描對方裝置上的二維碼，或請對方掃描您的二維碼。<a href="https://signal.org/redirect/safety-numbers">了解更多。</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若您欲驗證您與 %s 之間加密的安全性，請比對上方數字與對方裝置上的數字是否一樣。又或者，您可掃描對方裝置上的二維碼，或請對方掃描您的二維碼。<a href="https://signal.org/redirect/safety-numbers">了解更多。</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">輕觸以掃描</string>
   <string name="verify_display_fragment__loading">正在載入…</string>
-  <string name="verify_display_fragment__verified">已驗證</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">已驗證</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
   <!--webrtc_answer_decline_button-->
@@ -2631,8 +2631,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">無法播放語音訊息</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">語音訊息 · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">由 %1$s 發給 %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">語音訊息 · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">由 %1$s 發給 %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">「%1$s」已封鎖。</string>

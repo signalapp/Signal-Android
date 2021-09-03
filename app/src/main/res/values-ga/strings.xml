@@ -860,7 +860,7 @@ a shonrú</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Cnag le scanadh</string>
   <string name="verify_display_fragment__loading">Ag luchtú…</string>
-  <string name="verify_display_fragment__verified">Fíordheimhnithe</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Fíordheimhnithe</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comhroinn an uimhir shábháilteachta</string>
   <!--webrtc_answer_decline_button-->

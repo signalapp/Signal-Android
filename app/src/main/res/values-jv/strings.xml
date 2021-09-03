@@ -1154,10 +1154,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">MINGGAHAKEN DHATENG KONTAK</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">AMPUN MINGGAHAKEN, NANGING SAGEDAKEN PROFIL KULA DITINGALI</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Menawi sampeyan kersa ngeverifikasi keamanan enkripsi sampeyan kaliyan %s, gathukaken nomer ing inggil kaliyan nomer ingkang enten ing pirantos piyambakipun. Sampeyan ugi saged ngescan kode ing telepon piyambakipun utawi tedhakaken supados piyambakipun ngescan kode sampeyan. <a href="https://signal.org/redirect/safety-numbers">Sapepakipun.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Menawi sampeyan kersa ngeverifikasi keamanan enkripsi sampeyan kaliyan %s, gathukaken nomer ing inggil kaliyan nomer ingkang enten ing pirantos piyambakipun. Sampeyan ugi saged ngescan kode ing telepon piyambakipun utawi tedhakaken supados piyambakipun ngescan kode sampeyan. <a href="https://signal.org/redirect/safety-numbers">Sapepakipun.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tutul kangge ngescan</string>
   <string name="verify_display_fragment__loading">Taksih ngunggahi…</string>
-  <string name="verify_display_fragment__verified">Dipunverifikasi</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Dipunverifikasi</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Unjukaken nomer keamanan</string>
   <!--webrtc_answer_decline_button-->

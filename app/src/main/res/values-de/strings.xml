@@ -1816,10 +1816,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
   <string name="verify_display_fragment__loading">Wird geladen …</string>
-  <string name="verify_display_fragment__verified">Verifiziert</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verifiziert</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
   <!--webrtc_answer_decline_button-->
@@ -2704,8 +2704,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Sprachnachricht konnte nicht wiedergegeben werden</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Sprachnachricht · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s an %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Sprachnachricht · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s an %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">%1$s wurde blockiert.</string>

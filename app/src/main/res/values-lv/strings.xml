@@ -1864,10 +1864,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Ievadiet vārdu vai numuru</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ja vēlaties pārbaudīt šifrēšanas drošību ar %s, salīdziniet iepriekš norādīto numuru ar numuru ierīcē. Variet noskenēt kodu viņu tālrunī vai palūgt, lai noskenē Jūsu kodu.<a href="https://signal.org/redirect/safety-numbers">Lasīt vairāk.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ja vēlaties pārbaudīt šifrēšanas drošību ar %s, salīdziniet iepriekš norādīto numuru ar numuru ierīcē. Variet noskenēt kodu viņu tālrunī vai palūgt, lai noskenē Jūsu kodu.<a href="https://signal.org/redirect/safety-numbers">Lasīt vairāk.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Pieskarieties, lai skenētu</string>
   <string name="verify_display_fragment__loading">Lādē…</string>
-  <string name="verify_display_fragment__verified">Pārbaudīts</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Pārbaudīts</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dalīties ar drošības numuru</string>
   <!--webrtc_answer_decline_button-->
@@ -2760,8 +2760,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Neizdevās atskaņot balss ziņu</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Balss ziņa · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Balss ziņa · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ir bloķēts.</string>

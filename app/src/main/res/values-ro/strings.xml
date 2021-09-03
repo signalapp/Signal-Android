@@ -1898,10 +1898,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introduceți un nume sau un număr</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă doriți să verificați securitatea criptării cu %s, comparați numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, puteți scana codul de pe telefonul lor sau îi puteți ruga să scaneze codul dvs. <a href="https://signal.org/redirect/safety-numbers">Aflați mai multe.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă doriți să verificați securitatea criptării cu %s, comparați numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, puteți scana codul de pe telefonul lor sau îi puteți ruga să scaneze codul dvs. <a href="https://signal.org/redirect/safety-numbers">Aflați mai multe.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Atingeți pentru a scana</string>
   <string name="verify_display_fragment__loading">Se încarcă…</string>
-  <string name="verify_display_fragment__verified">Verificat</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verificat</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Distribuie numărul de siguranță</string>
   <!--webrtc_answer_decline_button-->
@@ -2795,8 +2795,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Mesajul vocal nu a putut fi redat</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Mesaj vocal · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s la %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mesaj vocal · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s la %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" a fost blocat.</string>

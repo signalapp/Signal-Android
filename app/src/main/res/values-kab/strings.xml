@@ -1735,10 +1735,10 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Sekcem isem neɣ uṭṭun</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Ma yella tebɣiḍ ad tesneqdeḍ taɣellist n uwgelhen-ik·im s %s, serwes gar wuṭṭun nnig d wuṭṭun ɣef yibenk-nsen. Γas akken, tzemreḍ ad tesmiḍneḍ tangalt ɣef tiliɣri-nsen neɣ suter-asen ad smiḍnen tangalt-ik·im. <a href="https://signal.org/redirect/safety-numbers">Issin ugar.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Ma yella tebɣiḍ ad tesneqdeḍ taɣellist n uwgelhen-ik·im s %s, serwes gar wuṭṭun nnig d wuṭṭun ɣef yibenk-nsen. Γas akken, tzemreḍ ad tesmiḍneḍ tangalt ɣef tiliɣri-nsen neɣ suter-asen ad smiḍnen tangalt-ik·im. <a href="https://signal.org/redirect/safety-numbers">Issin ugar.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Sit i usmiḍen</string>
   <string name="verify_display_fragment__loading">Asali…</string>
-  <string name="verify_display_fragment__verified">Yettwasefqed</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Yettwasefqed</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bḍu uṭṭun aɣellsan</string>
   <!--webrtc_answer_decline_button-->
@@ -2506,8 +2506,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Asaɣ ur ermid ara akka tura</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">Izen ameslaw. %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ɣer %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Izen ameslaw. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ɣer %2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" yettusewḥel.</string>

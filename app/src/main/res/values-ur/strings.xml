@@ -1780,10 +1780,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>نام یا نمبر داخل کریں</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر آپ اپنی خفیہ کاری کی حفاظت کی تصدیق کرنا چاہتے ہیں تو %s ، مندرجہ بالا نمبر کو ان کے آلے کے نمبر سے موازنہ کریں۔ متبادل کے طور پر ، آپ ان کے فون پر کوڈ اسکین کرسکتے ہیں ، یا ان سے اپنا کوڈ اسکین کرنے کے لئے کہہ سکتے ہیں۔ <a href="https://signal.org/redirect/safety-numbers">مزید معلومات حاصل کریں۔</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر آپ اپنی خفیہ کاری کی حفاظت کی تصدیق کرنا چاہتے ہیں تو %s ، مندرجہ بالا نمبر کو ان کے آلے کے نمبر سے موازنہ کریں۔ متبادل کے طور پر ، آپ ان کے فون پر کوڈ اسکین کرسکتے ہیں ، یا ان سے اپنا کوڈ اسکین کرنے کے لئے کہہ سکتے ہیں۔ <a href="https://signal.org/redirect/safety-numbers">مزید معلومات حاصل کریں۔</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">اسکین کرنے کے لیے کلک کریں</string>
   <string name="verify_display_fragment__loading">لوڈ ہو رہا ہے۔۔۔</string>
-  <string name="verify_display_fragment__verified">تصدیق شدہ</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">تصدیق شدہ</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">حفاظتی نمبر اشتراک کریں</string>
   <!--webrtc_answer_decline_button-->
@@ -2668,8 +2668,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">آڈیو پیغام چلانے میں ناکام</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaItemFactory__voice_message">آڈیو پیغام · %1$s</string>
-  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sسے%2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">آڈیو پیغام · %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sسے%2$s</string> -->
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" کو مسدود کردیا گیا ہے۔</string>
