@@ -146,4 +146,5 @@ message AccountRecord {
            Payments               payments               = 16;
            uint32                 universalExpireTimer   = 17;
            bool                   primarySendsSms        = 18;
+           string                 e164                   = 19;
 }

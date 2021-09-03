@@ -419,12 +419,12 @@ dependencies {
     implementation 'androidx.exifinterface:exifinterface:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.navigation:navigation-fragment:2.1.0'
-    implementation 'androidx.navigation:navigation-ui:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha05'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.3.1'
     implementation "androidx.camera:camera-core:1.0.0-beta11"
     implementation "androidx.camera:camera-camera2:1.0.0-beta11"
     implementation "androidx.camera:camera-lifecycle:1.0.0-beta11"

@@ -19,6 +19,7 @@ import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
@@ -28,6 +29,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -55,8 +57,6 @@ import org.whispersystems.signalservice.internal.contacts.crypto.Unauthenticated
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
-import org.whispersystems.signalservice.api.account.AccountAttributes;
-import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -310,6 +310,15 @@ public class SignalServiceAccountManager {
                                                                                 unrestrictedUnidentifiedAccess,
                                                                                 capabilities,
                                                                                 discoverableByPhoneNumber);
+      return ServiceResponse.forResult(response, 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
+  }
+
+  public ServiceResponse<VerifyAccountResponse> changeNumber(String code, String e164NewNumber, String registrationLock) {
+    try {
+      VerifyAccountResponse response = this.pushServiceSocket.changeNumber(code, e164NewNumber, registrationLock);
       return ServiceResponse.forResult(response, 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);

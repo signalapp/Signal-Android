@@ -15,6 +15,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarBundler
@@ -110,7 +111,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
               putParcelable(SELECT_AVATAR_MEDIA, it)
             }
           )
-          Navigation.findNavController(v).popBackStack()
+          ThreadUtil.runOnMain { Navigation.findNavController(v).popBackStack() }
         },
         {
           setFragmentResult(
@@ -119,7 +120,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
               putBoolean(SELECT_AVATAR_CLEAR, true)
             }
           )
-          Navigation.findNavController(v).popBackStack()
+          ThreadUtil.runOnMain { Navigation.findNavController(v).popBackStack() }
         }
       )
     }

@@ -85,6 +85,10 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="Signal.Widget.Button.Large.Secondary.NoOutline">
+        <item name="strokeWidth">0dp</item>
+    </style>
+
     <style name="Signal.Widget.Button.Medium.Secondary" parent="@style/Signal.Widget.Button.Base.Secondary">
         <item name="android:minHeight">36dp</item>
         <item name="strokeWidth">0dp</item>

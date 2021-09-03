@@ -135,11 +135,6 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/action_wrongNumber"
-            app:popUpTo="@id/enterCodeFragment"
-            app:popUpToInclusive="true" />
-
-        <action
             android:id="@+id/action_requestCaptcha"
             app:destination="@id/captchaFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -193,10 +188,6 @@
         <argument
             android:name="timeRemaining"
             app:argType="long" />
-
-        <argument
-            android:name="isV1RegistrationLock"
-            app:argType="boolean" />
 
     </fragment>
 

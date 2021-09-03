@@ -138,6 +138,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("PrimarySendsSms");
       }
 
+      if (!Objects.equals(this.getE164(), that.getE164())) {
+        diff.add("E164");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -222,6 +226,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public boolean isPrimarySendsSms() {
     return proto.getPrimarySendsSms();
+  }
+
+  public String getE164() {
+    return proto.getE164();
   }
 
   AccountRecord toProto() {
@@ -485,6 +493,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setPrimarySendsSms(boolean primarySendsSms) {
       builder.setPrimarySendsSms(primarySendsSms);
+      return this;
+    }
+
+    public Builder setE164(String e164) {
+      builder.setE164(e164);
       return this;
     }
 

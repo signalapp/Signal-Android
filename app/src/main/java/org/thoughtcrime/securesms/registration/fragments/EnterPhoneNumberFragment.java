@@ -7,20 +7,13 @@ import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpin
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,7 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -41,15 +34,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.i18n.phonenumbers.AsYouTypeFormatter;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
+import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputController;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.Dialogs;
@@ -61,14 +54,12 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public final class EnterPhoneNumberFragment extends LoggingFragment {
+public final class EnterPhoneNumberFragment extends LoggingFragment implements RegistrationNumberInputController.Callbacks {
 
   private static final String TAG = Log.tag(EnterPhoneNumberFragment.class);
 
   private LabeledEditText        countryCode;
   private LabeledEditText        number;
-  private ArrayAdapter<String>   countrySpinnerAdapter;
-  private AsYouTypeFormatter     countryFormatter;
   private CircularProgressButton register;
   private Spinner                countrySpinner;
   private View                   cancel;
@@ -101,14 +92,17 @@ public final class EnterPhoneNumberFragment extends LoggingFragment {
     scrollView     = view.findViewById(R.id.scroll_view);
     register       = view.findViewById(R.id.registerButton);
 
-    initializeSpinner(countrySpinner);
-
-    setUpNumberInput();
+    RegistrationNumberInputController controller = new RegistrationNumberInputController(requireContext(),
+                                                                                         countryCode,
+                                                                                         number,
+                                                                                         countrySpinner,
+                                                                                         false,
+                                                                                         this);
 
     register.setOnClickListener(v -> handleRegister(requireContext()));
 
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
-    viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
 
     if (viewModel.isReregister()) {
       cancel.setVisibility(View.VISIBLE);
@@ -117,17 +111,11 @@ public final class EnterPhoneNumberFragment extends LoggingFragment {
       cancel.setVisibility(View.GONE);
     }
 
-    NumberViewState number = viewModel.getNumber();
-
-    initNumber(number);
-
-    countryCode.getInput().addTextChangedListener(new CountryCodeChangedListener());
+    viewModel.getLiveNumber().observe(getViewLifecycleOwner(), controller::updateNumber);
 
     if (viewModel.hasCaptchaToken()) {
-      handleRegister(requireContext());
+      ThreadUtil.runOnMainDelayed(() -> handleRegister(requireContext()), 250);
     }
-
-    countryCode.getInput().setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
     Toolbar toolbar = view.findViewById(R.id.toolbar);
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
@@ -147,28 +135,6 @@ public final class EnterPhoneNumberFragment extends LoggingFragment {
     } else {
       return false;
     }
-  }
-
-  private void setUpNumberInput() {
-    EditText numberInput = number.getInput();
-
-    numberInput.addTextChangedListener(new NumberChangedListener());
-
-    number.setOnFocusChangeListener((v, hasFocus) -> {
-      if (hasFocus) {
-        scrollView.postDelayed(() -> scrollView.smoothScrollTo(0, register.getBottom()), 250);
-      }
-    });
-
-    numberInput.setImeOptions(EditorInfo.IME_ACTION_DONE);
-    numberInput.setOnEditorActionListener((v, actionId, event) -> {
-      if (actionId == EditorInfo.IME_ACTION_DONE) {
-        ViewUtil.hideKeyboard(requireContext(), v);
-        handleRegister(requireContext());
-        return true;
-      }
-      return false;
-    });
   }
 
   private void handleRegister(@NonNull Context context) {
@@ -276,154 +242,35 @@ public final class EnterPhoneNumberFragment extends LoggingFragment {
     disposables.add(request);
   }
 
-  private void initializeSpinner(Spinner countrySpinner) {
-    countrySpinnerAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item);
-    countrySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-    setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
-
-    countrySpinner.setAdapter(countrySpinnerAdapter);
-    countrySpinner.setOnTouchListener((view, event) -> {
-      if (event.getAction() == MotionEvent.ACTION_UP) {
-        pickCountry(view);
-      }
-      return true;
-    });
-    countrySpinner.setOnKeyListener((view, keyCode, event) -> {
-      if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER && event.getAction() == KeyEvent.ACTION_UP) {
-        pickCountry(view);
-        return true;
-      }
-      return false;
-    });
+  @Override
+  public void onNumberFocused() {
+    scrollView.postDelayed(() -> scrollView.smoothScrollTo(0, register.getBottom()), 250);
   }
 
-  private void pickCountry(@NonNull View view) {
+  @Override
+  public void onNumberInputNext(@NonNull View view) {
+    // Intentionally left blank
+  }
+
+  @Override
+  public void onNumberInputDone(@NonNull View view) {
+    ViewUtil.hideKeyboard(requireContext(), view);
+    handleRegister(requireContext());
+  }
+
+  @Override
+  public void onPickCountry(@NonNull View view) {
     Navigation.findNavController(view).navigate(R.id.action_pickCountry);
   }
 
-  private void initNumber(@NonNull NumberViewState numberViewState) {
-    int    countryCode       = numberViewState.getCountryCode();
-    String number            = numberViewState.getNationalNumber();
-    String regionDisplayName = numberViewState.getCountryDisplayName();
-
-    this.countryCode.setText(String.valueOf(countryCode));
-
-    setCountryDisplay(regionDisplayName);
-
-    String regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
-    setCountryFormatter(regionCode);
-
-    if (!TextUtils.isEmpty(number)) {
-      this.number.setText(String.valueOf(number));
-    }
+  @Override
+  public void setNationalNumber(@NonNull String number) {
+    viewModel.setNationalNumber(number);
   }
 
-  private void setCountryDisplay(String regionDisplayName) {
-    countrySpinnerAdapter.clear();
-    if (regionDisplayName == null) {
-      countrySpinnerAdapter.add(getString(R.string.RegistrationActivity_select_your_country));
-    } else {
-      countrySpinnerAdapter.add(regionDisplayName);
-    }
-  }
-
-  private class CountryCodeChangedListener implements TextWatcher {
-    @Override
-    public void afterTextChanged(Editable s) {
-      if (TextUtils.isEmpty(s) || !TextUtils.isDigitsOnly(s)) {
-        setCountryDisplay(null);
-        countryFormatter = null;
-        return;
-      }
-
-      int    countryCode = Integer.parseInt(s.toString());
-      String regionCode  = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
-
-      setCountryFormatter(regionCode);
-
-      if (!TextUtils.isEmpty(regionCode) && !regionCode.equals("ZZ")) {
-        number.requestFocus();
-
-        int numberLength = number.getText().length();
-        number.getInput().setSelection(numberLength, numberLength);
-      }
-
-      viewModel.onCountrySelected(null, countryCode);
-      setCountryDisplay(viewModel.getNumber().getCountryDisplayName());
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-    }
-  }
-
-  private class NumberChangedListener implements TextWatcher {
-
-    @Override
-    public void afterTextChanged(Editable s) {
-      String number = reformatText(s);
-
-      if (number == null) return;
-
-      viewModel.setNationalNumber(number);
-
-      setCountryDisplay(viewModel.getNumber().getCountryDisplayName());
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-  }
-
-  private String reformatText(Editable s) {
-    if (countryFormatter == null) {
-      return null;
-    }
-
-    if (TextUtils.isEmpty(s)) {
-      return null;
-    }
-
-    countryFormatter.clear();
-
-    String        formattedNumber = null;
-    StringBuilder justDigits      = new StringBuilder();
-
-    for (int i = 0; i < s.length(); i++) {
-      char c = s.charAt(i);
-      if (Character.isDigit(c)) {
-        formattedNumber = countryFormatter.inputDigit(c);
-        justDigits.append(c);
-      }
-    }
-
-    if (formattedNumber != null && !s.toString().equals(formattedNumber)) {
-      s.replace(0, s.length(), formattedNumber);
-    }
-
-    if (justDigits.length() == 0) {
-      return null;
-    }
-
-    return justDigits.toString();
-  }
-
-  private void setCountryFormatter(@Nullable String regionCode) {
-    PhoneNumberUtil util = PhoneNumberUtil.getInstance();
-
-    countryFormatter = regionCode != null ? util.getAsYouTypeFormatter(regionCode) : null;
-
-    reformatText(number.getText());
+  @Override
+  public void setCountry(int countryCode) {
+    viewModel.onCountrySelected(null, countryCode);
   }
 
   private void handlePromptForNoPlayServices(@NonNull Context context) {

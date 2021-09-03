@@ -11,19 +11,23 @@ import android.webkit.WebViewClient;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+
+import java.io.Serializable;
 
 /**
  * Fragment that displays a Captcha in a WebView.
  */
 public final class CaptchaFragment extends LoggingFragment {
 
-  private RegistrationViewModel viewModel;
+  public static final String EXTRA_VIEW_MODEL_PROVIDER = "view_model_provider";
+  
+  private BaseRegistrationViewModel viewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,11 +57,25 @@ public final class CaptchaFragment extends LoggingFragment {
 
     webView.loadUrl(RegistrationConstants.SIGNAL_CAPTCHA_URL);
 
-    viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
+    CaptchaViewModelProvider provider = null;
+    if (getArguments() != null) {
+      provider = (CaptchaViewModelProvider) requireArguments().getSerializable(EXTRA_VIEW_MODEL_PROVIDER);
+    }
+
+    if (provider == null) {
+      viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
+    } else {
+      viewModel = provider.get(this);
+    }
   }
 
   private void handleToken(@NonNull String token) {
     viewModel.setCaptchaResponse(token);
+
     NavHostFragment.findNavController(this).navigateUp();
+  }
+
+  public interface CaptchaViewModelProvider extends Serializable {
+    @NonNull BaseRegistrationViewModel get(@NonNull CaptchaFragment fragment);
   }
 }

@@ -3490,6 +3490,44 @@
     <string name="AccountSettingsFragment__account">Account</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">You\'ll be asked less frequently over time</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN to register your phone number with Signal again</string>
+    <string name="AccountSettingsFragment__change_phone_number">Change phone number</string>
+
+    <!-- ChangeNumberFragment -->
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Use this to change your current phone number to a new phone number. You can’t undo this change.\n\nBefore continuing, make sure your new number can receive SMS or calls.</string>
+    <string name="ChangeNumberFragment__continue">Continue</string>
+    <string name="ChangeNumber__your_phone_number_has_been_changed">Your phone number has been changed.</string>
+
+    <!-- ChangeNumberEnterPhoneNumberFragment -->
+    <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Change Number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Your old number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Your new number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">New phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">The phone number you entered doesn\'t match your account\'s.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">You must specify your old number\'s country code</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">You must specify your old number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">You must specify your new number\'s country code</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">You must specify your new phone number</string>
+
+    <!-- ChangeNumberVerifyFragment -->
+    <string name="ChangeNumberVerifyFragment__change_number">Change Number</string>
+    <string name="ChangeNumberVerifyFragment__verifying_s">Verifying %1$s</string>
+    <string name="ChangeNumberVerifyFragment__captcha_required">Captcha required</string>
+
+    <!-- ChangeNumberConfirmFragment -->
+    <string name="ChangeNumberConfirmFragment__change_number">Change number</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">You are about to change your phone number from %1$s to %2$s.\n\nBefore proceeding, please verify that the below number is correct.</string>
+    <string name="ChangeNumberConfirmFragment__edit_number">Edit number</string>
+
+    <!-- ChangeNumberRegistrationLockFragment -->
+    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Change Number - Need Help with PIN for Android (v2 PIN)</string>
+
+    <!-- ChangeNumberPinDiffersFragment -->
+    <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PINs do not match</string>
+    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">The PIN associated with your new number is different from the PIN associated with your old one. Would you like to keep your old PIN or update it?</string>
+    <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Keep old PIN</string>
+    <string name="ChangeNumberPinDiffersFragment__update_pin">Update PIN</string>
+    <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Keep old pin?</string>
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Keyboard</string>

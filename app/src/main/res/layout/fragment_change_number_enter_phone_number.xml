@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/dsl_settings_toolbar" />
+
+    <ScrollView
+        android:id="@+id/change_number_enter_phone_number_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/change_number_enter_phone_number_continue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp">
+
+            <TextView
+                android:id="@+id/change_number_enter_phone_number_old_number_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/ChangeNumberEnterPhoneNumberFragment__your_old_number"
+                android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+                android:textColor="@color/signal_text_primary_dialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/change_number_enter_phone_number_old_number_spinner_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/labeled_edit_text_background_inactive"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/change_number_enter_phone_number_old_number_label">
+
+                <Spinner
+                    android:id="@+id/change_number_enter_phone_number_old_number_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textAlignment="viewStart" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/change_number_enter_phone_number_old_number_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/change_number_enter_phone_number_old_number_spinner_frame">
+
+                <org.thoughtcrime.securesms.components.LabeledEditText
+                    android:id="@+id/change_number_enter_phone_number_old_number_country_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    app:labeledEditText_background="@color/signal_background_primary"
+                    app:labeledEditText_textLayout="@layout/country_code_text" />
+
+                <org.thoughtcrime.securesms.components.LabeledEditText
+                    android:id="@+id/change_number_enter_phone_number_old_number_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    app:labeledEditText_background="@color/signal_background_primary"
+                    app:labeledEditText_label="@string/ChangeNumberEnterPhoneNumberFragment__old_phone_number"
+                    app:labeledEditText_textLayout="@layout/phone_text" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/change_number_enter_phone_number_new_number_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/ChangeNumberEnterPhoneNumberFragment__your_new_number"
+                android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+                android:textColor="@color/signal_text_primary_dialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/change_number_enter_phone_number_old_number_input_layout" />
+
+            <FrameLayout
+                android:id="@+id/change_number_enter_phone_number_new_number_spinner_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/labeled_edit_text_background_inactive"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/change_number_enter_phone_number_new_number_label">
+
+                <Spinner
+                    android:id="@+id/change_number_enter_phone_number_new_number_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textAlignment="viewStart" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/change_number_enter_phone_number_new_number_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/change_number_enter_phone_number_new_number_spinner_frame">
+
+                <org.thoughtcrime.securesms.components.LabeledEditText
+                    android:id="@+id/change_number_enter_phone_number_new_number_country_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    app:labeledEditText_background="@color/signal_background_primary"
+                    app:labeledEditText_textLayout="@layout/country_code_text" />
+
+                <org.thoughtcrime.securesms.components.LabeledEditText
+                    android:id="@+id/change_number_enter_phone_number_new_number_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    app:labeledEditText_background="@color/signal_background_primary"
+                    app:labeledEditText_label="@string/ChangeNumberEnterPhoneNumberFragment__new_phone_number"
+                    app:labeledEditText_textLayout="@layout/phone_text" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/change_number_enter_phone_number_continue"
+        style="@style/Signal.Widget.Button.Large.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/ChangeNumberFragment__continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_number_enter_phone_number_scroll" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

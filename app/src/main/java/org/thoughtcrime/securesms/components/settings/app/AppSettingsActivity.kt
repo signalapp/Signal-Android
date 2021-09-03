@@ -39,6 +39,7 @@ class AppSettingsActivity : DSLSettingsActivity() {
           .setStartCategoryIndex(intent.getIntExtra(HelpFragment.START_CATEGORY_INDEX, 0))
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
+        StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
       }
     }
 
@@ -98,6 +99,9 @@ class AppSettingsActivity : DSLSettingsActivity() {
     @JvmStatic
     fun notifications(context: Context): Intent = getIntentForStartLocation(context, StartLocation.NOTIFICATIONS)
 
+    @JvmStatic
+    fun changeNumber(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CHANGE_NUMBER)
+
     private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings)
@@ -110,7 +114,8 @@ class AppSettingsActivity : DSLSettingsActivity() {
     BACKUPS(1),
     HELP(2),
     PROXY(3),
-    NOTIFICATIONS(4);
+    NOTIFICATIONS(4),
+    CHANGE_NUMBER(5);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

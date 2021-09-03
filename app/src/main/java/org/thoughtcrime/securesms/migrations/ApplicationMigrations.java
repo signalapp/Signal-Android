@@ -83,6 +83,7 @@ public class ApplicationMigrations {
     static final int ANNOUNCEMENT_GROUP_CAPABILITY = 41;
     static final int STICKER_MY_DAILY_LIFE         = 42;
     static final int SENDER_KEY_3                  = 43;
+    static final int CHANGE_NUMBER_SYNC            = 44;
   }
 
   public static final int CURRENT_VERSION = 43;
@@ -365,6 +366,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SENDER_KEY_3) {
       jobs.put(Version.SENDER_KEY_3, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.CHANGE_NUMBER_SYNC) {
+      jobs.put(Version.CHANGE_NUMBER_SYNC, new AccountRecordMigrationJob());
     }
 
     return jobs;

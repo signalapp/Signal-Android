@@ -34,6 +34,7 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
+import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -133,6 +134,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Future;
@@ -178,6 +180,7 @@ public class PushServiceSocket {
   private static final String SET_USERNAME_PATH         = "/v1/accounts/username/%s";
   private static final String DELETE_USERNAME_PATH      = "/v1/accounts/username";
   private static final String DELETE_ACCOUNT_PATH       = "/v1/accounts/me";
+  private static final String CHANGE_NUMBER_PATH        = "/v1/accounts/number";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
@@ -337,6 +340,16 @@ public class PushServiceSocket {
     String            responseBody       = makeServiceRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode), "PUT", requestBody);
 
     return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
+  }
+
+  public VerifyAccountResponse changeNumber(String code, String e164NewNumber, String registrationLock)
+      throws IOException
+  {
+    ChangePhoneNumberRequest changePhoneNumberRequest = new ChangePhoneNumberRequest(e164NewNumber, code, registrationLock);
+    String                   requestBody              = JsonUtil.toJson(changePhoneNumberRequest);
+    String                   responseBody             = makeServiceRequest(CHANGE_NUMBER_PATH, "PUT", requestBody);
+
+    return new VerifyAccountResponse();
   }
 
   public void setAccountAttributes(String signalingKey, int registrationId, boolean fetchesMessages,

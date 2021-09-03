@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -99,8 +97,9 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean                              preferContactAvatars   = remote.isPreferContactAvatars();
     int                                  universalExpireTimer   = remote.getUniversalExpireTimer();
     boolean                              primarySendsSms        = local.isPrimarySendsSms();
-    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms);
-    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms);
+    String                               e164                   = local.getE164();
+    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164);
+    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164);
 
     if (matchesRemote) {
       return remote;
@@ -127,6 +126,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setPayments(payments.isEnabled(), payments.getEntropy().orNull())
                                     .setUniversalExpireTimer(universalExpireTimer)
                                     .setPrimarySendsSms(primarySendsSms)
+                                    .setE164(e164)
                                     .build();
     }
   }
@@ -164,13 +164,15 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean preferContactAvatars,
                                        SignalAccountRecord.Payments payments,
                                        int universalExpireTimer,
-                                       boolean primarySendsSms)
+                                       boolean primarySendsSms,
+                                       String e164)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)      &&
            Objects.equals(contact.getGivenName().or(""), givenName)            &&
            Objects.equals(contact.getFamilyName().or(""), familyName)          &&
            Objects.equals(contact.getAvatarUrlPath().or(""), avatarUrlPath)    &&
            Objects.equals(contact.getPayments(), payments)                     &&
+           Objects.equals(contact.getE164(), e164)                             &&
            Arrays.equals(contact.getProfileKey().orNull(), profileKey)         &&
            contact.isNoteToSelfArchived() == noteToSelfArchived                &&
            contact.isNoteToSelfForcedUnread() == noteToSelfForcedUnread        &&

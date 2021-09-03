@@ -83,6 +83,7 @@ public final class FeatureFlags {
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
+  private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -124,7 +125,8 @@ public final class FeatureFlags {
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY_VERSION
+      PHONE_NUMBER_PRIVACY_VERSION,
+      CHANGE_NUMBER_ENABLED
   );
 
   /**
@@ -390,6 +392,11 @@ public final class FeatureFlags {
   /** Whether or not to show the group call ring toggle in the UI. */
   public static boolean groupCallRinging() {
     return getBoolean(GROUP_CALL_RINGING, false);
+  }
+
+  /** Weather or not to show change number in the UI. */
+  public static boolean changeNumber() {
+    return getBoolean(CHANGE_NUMBER_ENABLED, false);
   }
 
   /** Only for rendering debug info. */

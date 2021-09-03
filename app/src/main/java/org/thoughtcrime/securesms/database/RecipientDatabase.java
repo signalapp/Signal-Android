@@ -2034,6 +2034,25 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public void updateSelfPhone(@NonNull String e164) {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      RecipientId id    = Recipient.self().getId();
+      RecipientId newId = getAndPossiblyMerge(Recipient.self().requireUuid(), e164, true);
+
+      if (id.equals(newId)) {
+        Log.i(TAG, "[updateSelfPhone] Phone updated for self");
+      } else {
+        throw new AssertionError("[updateSelfPhone] Self recipient id changed when updating phone. old: " + id + " new: " + newId);
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
   public void setUsername(@NonNull RecipientId id, @Nullable String username) {
     if (username != null) {
       Optional<RecipientId> existingUsername = getByUsername(username);
