@@ -58,7 +58,7 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
+import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -282,6 +282,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull SignalSenderKeyStore provideSenderKeyStore() {
     return new SignalSenderKeyStore(context);
+  }
+
+  @Override
+  public @NonNull GiphyMp4Cache provideGiphyMp4Cache() {
+    return new GiphyMp4Cache(ByteUnit.MEGABYTES.toBytes(16));
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {
