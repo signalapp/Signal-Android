@@ -108,7 +108,7 @@ public class IdentityDatabase extends Database {
                                        firstUse,
                                        timestamp,
                                        nonblockingApproval);
-      } else if (addressName.charAt(0) != '+') {
+      } else if (!fastIsE164(addressName)) {
         if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(addressName)) {
           Recipient recipient = Recipient.external(context, addressName);
 
@@ -268,5 +268,9 @@ public class IdentityDatabase extends Database {
     database.replace(TABLE_NAME, null, contentValues);
 
     EventBus.getDefault().post(new IdentityRecord(recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval));
+  }
+
+  private boolean fastIsE164(@NonNull String value) {
+    return value.charAt(0) == '+' || value.length() <= 15;
   }
 }
