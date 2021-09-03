@@ -14,6 +14,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-        android:textStyle="bold"
         tools:text="Section Header" />
 </FrameLayout>

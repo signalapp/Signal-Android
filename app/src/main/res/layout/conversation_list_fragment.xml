@@ -25,6 +25,7 @@
       android:minHeight="?attr/actionBarSize"
       android:theme="?attr/actionBarStyle"
       android:visibility="gone"
+      app:contentInsetStart="0dp"
       app:layout_constraintTop_toTopOf="parent"
       tools:visibility="visible">
 
@@ -34,14 +35,11 @@
 
       <org.thoughtcrime.securesms.components.AvatarImageView
           android:id="@+id/toolbar_icon"
-          android:layout_width="58dp"
-          android:layout_height="48dp"
+          android:layout_width="28dp"
+          android:layout_height="28dp"
           android:layout_alignParentStart="true"
           android:contentDescription="@string/conversation_list_settings_shortcut"
-          android:paddingStart="12dp"
-          android:paddingTop="10dp"
-          android:paddingEnd="18dp"
-          android:paddingBottom="10dp"
+          android:layout_marginStart="@dimen/toolbar_avatar_margin"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
@@ -50,11 +48,11 @@
       <View
           android:id="@+id/unread_payments_indicator"
           android:layout_width="13dp"
-          android:layout_height="13dp"
-          android:layout_marginStart="30dp"
-          android:layout_marginBottom="29dp"
+          android:layout_height="13dp" 
           android:background="@drawable/unread_count_background"
           android:alpha="0"
+          android:layout_marginStart="20dp"
+          android:layout_marginBottom="20dp"
           app:layout_constraintBottom_toBottomOf="@id/toolbar_icon"
           app:layout_constraintStart_toStartOf="@id/toolbar_icon"
           tools:alpha="1" />
@@ -63,7 +61,7 @@
           android:id="@+id/conversation_list_title"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="6dp"
+          android:layout_marginStart="26dp"
           android:text="@string/app_name"
           android:textAlignment="viewStart"
           android:textColor="@color/signal_text_primary"

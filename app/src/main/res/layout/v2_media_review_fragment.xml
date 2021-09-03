@@ -27,7 +27,7 @@
             tools:alpha="1"
             tools:visibility="visible" />
 
-        <org.thoughtcrime.securesms.components.emoji.SingleLineEmojiTextView
+        <org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView
             android:id="@+id/recipient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +43,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/core_white"
             android:visibility="gone"
+            android:maxLines="1"
             app:drawableStartCompat="@drawable/ic_arrow_right_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

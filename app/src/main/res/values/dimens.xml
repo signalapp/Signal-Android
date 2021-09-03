@@ -108,8 +108,9 @@
     <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
-    <dimen name="unread_count_bubble_radius">13sp</dimen>
-    <dimen name="unread_count_bubble_diameter">26sp</dimen>
+    <dimen name="unread_count_bubble_radius">12.5dp</dimen>
+    <dimen name="unread_count_bubble_diameter">25dp</dimen>
+    <dimen name="unread_count_bubble_barrier_margin">4dp</dimen>
 
     <dimen name="insights_modal_title_margin_top">41dp</dimen>
     <dimen name="insights_modal_description_margin_top">12dp</dimen>
@@ -200,4 +201,6 @@
     <dimen name="conversation_settings_button_strip_button_padding">12dp</dimen>
 
     <dimen name="avatar_picker_image_width">100dp</dimen>
+
+    <dimen name="toolbar_avatar_margin">26dp</dimen>
 </resources>

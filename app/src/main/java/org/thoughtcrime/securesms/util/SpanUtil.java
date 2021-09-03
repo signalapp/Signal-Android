@@ -13,12 +13,15 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BulletSpan;
+import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
+import android.text.style.MetricAffectingSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -33,6 +36,9 @@ public final class SpanUtil {
   private SpanUtil() {}
 
   public static final String SPAN_PLACE_HOLDER = "<<<SPAN>>>";
+
+  private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif-medium", Typeface.NORMAL);
+  private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif", Typeface.NORMAL);
 
   public static CharSequence italic(CharSequence sequence) {
     return italic(sequence, sequence.length());
@@ -204,5 +210,21 @@ public final class SpanUtil {
     SpannableStringBuilder builder = new SpannableStringBuilder(string);
     builder.replace(index, index + SpanUtil.SPAN_PLACE_HOLDER.length(), span);
     return builder;
+  }
+
+  public static CharacterStyle getBoldSpan() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+      return new TypefaceSpan(BOLD_TYPEFACE);
+    } else {
+      return new StyleSpan(Typeface.BOLD);
+    }
+  }
+
+  public static CharacterStyle getNormalSpan() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+      return new TypefaceSpan(LIGHT_TYPEFACE);
+    } else {
+      return new StyleSpan(Typeface.NORMAL);
+    }
   }
 }
