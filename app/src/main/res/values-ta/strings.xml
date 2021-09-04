@@ -1794,21 +1794,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[உங்கள் குறியாக்கத்தின் பாதுகாப்பை %s உடன் சரிபார்க்க விரும்பினால், மேலே உள்ள எண்ணை அவர்களின் சாதனத்தில் உள்ள எண்ணுடன் ஒப்பிடுக. மாற்றாக, நீங்கள் அவர்களின் தொலைபேசியில் குறியீட்டை ஸ்கேன் செய்யலாம் அல்லது உங்கள் குறியீட்டை ஸ்கேன் செய்யுமாறு அவர்களிடம் கேட்கலாம்.<a href="https://signal.org/redirect/safety-numbers">மேலும் அறிக .</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
   <string name="verify_display_fragment__loading">ஏற்றுதல் …</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">சரிபார்க்கப்பட்ட</string> -->
+  <string name="verify_display_fragment__mark_as_verified">சரிபார்க்கப்பட்டதாகக் குறிக்கவும்</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">பாதுகாப்பு எண்ணைப் பகிரவும்</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">பதிலளிக்க மேலே ஸ்வைப் செய்யவும்</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">நிராகரிக்க கீழே ஸ்வைப் செய்யவும்</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">சில பிரச்சினைகளுக்கு உங்கள் கவனம் தேவைப்படுகிறது.</string>
-  <string name="message_details_header__sent">அனுப்பபட்டது</string>
-  <string name="message_details_header__received">பெறப்பட்டது</string>
-  <string name="message_details_header__disappears">மறைந்து</string>
-  <string name="message_details_header__via">வழியாக</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">நிலுவையில் உள்ளது</string>
   <string name="message_details_recipient_header__sent_to">அனுப்பப்பட்டது</string>
@@ -2685,8 +2681,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">தோல்வி குரல் செய்தியை இயக்கு</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">குரல் செய்தி:%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s to %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">குரல் செய்தி:%1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s to %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\"தடுக்கப்பட்டார்</string>
@@ -3120,5 +3116,13 @@
     <item quantity="other">செய்திகள் தோல்வி அனுப்பு</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
+  <string name="ImageEditorHud__cancel">ரத்து</string>
+  <string name="ImageEditorHud__blur">தெளிவின்மை</string>
+  <string name="ImageEditorHud__undo">செயல்தவிர்</string>
+  <string name="MediaCountIndicatorButton__send">அனுப்புக</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">தேர்ந்தெடுக்க தட்டவும்</string>
+  <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
   <!--EOF-->
 </resources>

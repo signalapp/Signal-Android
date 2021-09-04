@@ -1818,21 +1818,23 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Saisir un nom ou un numéro</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si vous souhaitez confirmer la sécurité de votre chiffrement avec %s, comparez le numéro ci-dessus avec le numéro sur son appareil. Vous pouvez aussi balayer le code sur son téléphone ou lui demander de balayer votre code. <a href="https://signal.org/redirect/safety-numbers">En savoir plus</a>.]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Touchez pour balayer</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Échec de la confirmation du numéro de sécurité.</string>
   <string name="verify_display_fragment__loading">Chargement…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Confirmé</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Marquer comme confirmé</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partager le numéro de sécurité</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Balayez le code QR sur l’appareil de votre contact.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Balayer vers le haut pour répondre</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Balayer vers le bas pour refuser</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Des problèmes demandent votre attention</string>
-  <string name="message_details_header__sent">Envoyé</string>
-  <string name="message_details_header__received">Reçu</string>
-  <string name="message_details_header__disappears">Disparaît dans </string>
-  <string name="message_details_header__via">Par</string>
+  <string name="message_details_header__sent">Envoyé :</string>
+  <string name="message_details_header__received">Reçu :</string>
+  <string name="message_details_header__disappears">Disparaît :</string>
+  <string name="message_details_header__via">Par :</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">En attente</string>
   <string name="message_details_recipient_header__sent_to">Envoyé à</string>
@@ -2510,6 +2512,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi plutôt\n(Proposé dans %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contacter l’assistance de Signal</string>
   <string name="RegistrationActivity_code_support_subject">Inscription à Signal – Code de confirmation pour Android</string>
+  <string name="RegistrationActivity_incorrect_code">Code incorrect</string>
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="preferences_app_protection__see_my_phone_number">Voir mon numéro de téléphone</string>
@@ -2706,8 +2709,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Échec de lecture du message vocal</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Message vocal – %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s à %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Message vocal – %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s à %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">« %1$s » a été bloqué.</string>
@@ -3150,5 +3153,20 @@
     <item quantity="other">Impossible de transférer les messages car ils ne sont plus disponibles.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite atteinte</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Ajouter un message</string>
+  <string name="MediaReviewFragment__add_a_reply">Ajouter une réponse</string>
+  <string name="MediaReviewFragment__send_to">Envoyer à</string>
+  <string name="ImageEditorHud__cancel">Annuler</string>
+  <string name="ImageEditorHud__draw">Dessiner</string>
+  <string name="ImageEditorHud__write_text">Écrire du texte</string>
+  <string name="ImageEditorHud__add_a_sticker">Ajouter un autocollant</string>
+  <string name="ImageEditorHud__blur">Flouter</string>
+  <string name="ImageEditorHud__undo">Annuler</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Passer du marqueur au surligneur</string>
+  <string name="MediaCountIndicatorButton__send">Envoyer</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Touchez pour sélectionner</string>
+  <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
   <!--EOF-->
 </resources>

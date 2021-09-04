@@ -35,7 +35,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN dibutuhkan untuk kunci pendaftaran. Untuk menonaktifkan PIN, nonaktifkan kunci pendaftaran dahulu.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN sudah dibuat.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN Ternonaktifkan.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN di-non-aktifkan.</string>
   <string name="ApplicationPreferencesActivity_hide">Sembunyikan</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Sembunyikan pengingat?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekam frasa pemulihan pembayaran</string>
@@ -135,7 +135,7 @@
   <string name="CommunicationActions_start_voice_call">Buat panggilan suara?</string>
   <string name="CommunicationActions_cancel">Batal</string>
   <string name="CommunicationActions_call">Panggil</string>
-  <string name="CommunicationActions_insecure_call">Panggilan biasa</string>
+  <string name="CommunicationActions_insecure_call">Panggilan tidak aman</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Panggilan akan menggunakan pulsa seluler. Karena nomor yang Anda hubungi belum menggunakan Signal, panggilan ini akan melalui jaringan seluler, bukan melalui Internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nomor keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan seseorang mencoba mencegat komunikasi Anda, atau disebabkan %2$s telah memasang ulang Signal.</string>
@@ -289,7 +289,7 @@
   <string name="ConversationFragment__review_requests_carefully">Tinjau permintaan dengan hati-hati</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal menemukan kontak lain dengan nama yang sama.</string>
   <string name="ConversationFragment_contact_us">Hubungi kami</string>
-  <string name="ConversationFragment_verify">Memeriksa</string>
+  <string name="ConversationFragment_verify">Verifikasi</string>
   <string name="ConversationFragment_not_now">Nanti saja</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Angka keamanan Anda dengan %s berubah</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Nomor keamanan Anda dengan %s berubah, mungkin karena mereka memasang ulang Signal atau mengganti perangkat. Ketuk Verifikasi untuk mengonfirmasi nomor keamanan barunya. Ini bersifat opsional.</string>
@@ -712,10 +712,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Berbagi</string>
   <string name="InviteActivity_share_with_contacts">Bagikan dengan kontak</string>
+  <string name="InviteActivity_share_via">Bagikan melalui…</string>
   <string name="InviteActivity_cancel">Batal</string>
   <string name="InviteActivity_sending">Mengirimkan…</string>
   <string name="InviteActivity_invitations_sent">Undangan terkirim!</string>
   <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
+  <string name="InviteActivity_send_sms">Kirim SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirim %d undangan SMS?</item>
   </plurals>
@@ -787,7 +789,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Panggilan masuk grup Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Menghentikan layanan panggilan Signal</string>
+  <string name="NotificationBarManager__decline_call">Tolak panggilan</string>
   <string name="NotificationBarManager__answer_call">Terima panggilan</string>
   <string name="NotificationBarManager__end_call">Akhiri panggilan</string>
   <string name="NotificationBarManager__cancel_call">Batalkan panggilan</string>
@@ -1138,6 +1142,7 @@
   <string name="WebRtcCallActivity__calling">Panggilan…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Panggilan Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Panggilan Video Signal</string>
   <string name="WebRtcCallView__start_call">Mulai Panggilan</string>
   <string name="WebRtcCallView__join_call">Bergabung Panggilan</string>
   <string name="WebRtcCallView__call_is_full">Panggilan penuh</string>
@@ -1147,13 +1152,26 @@
   <string name="WebRtcCallView__reconnecting">Menyambungkan ulang…</string>
   <string name="WebRtcCallView__joining">Bergabung…</string>
   <string name="WebRtcCallView__disconnected">Terputus</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s akan diberitahukan</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s dan %2$s akan diberitahukan</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s, %2$s, dan %3$d lainnya akan diberitahukan</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s memanggil Anda</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s memanggil Anda dan %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s memanggil Anda, %2$s, dan %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s memanggil Anda, %2$s, %3$s, dan %4$d lainnya</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Tidak ada orang lain di sini</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s sedang berada dalam panggilan ini</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s berada dalam panggilan ini</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s dan %2$s sedang berada dalam panggilan ini</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s sedang berbagi layar</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, %3$d dan lainnya, sedang berada didalam panggilan ini</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Balik</string>
   <string name="WebRtcCallView__speaker">Pengeras Suara</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Senyap</string>
@@ -1206,6 +1224,7 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan akses ke kontak Anda untuk terhubung dengan teman, pertukaran pesan, dan membuat panggilan yang aman</string>
   <string name="RegistrationActivity_rate_limited_to_service">Anda membuat terlalu banyak percobaan untuk mendaftarkan nomor ini. Mohon coba lagi nanti.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Tidak bisa terhubung ke layanan. Mohon cek koneksi jaringan dan coba lagi.</string>
+  <string name="RegistrationActivity_call_requested">Panggilan dimintakan</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirimkan catatan awakutu.</item>
   </plurals>
@@ -1721,21 +1740,25 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jika Anda ingin verifikasi keamanan enkripsi Anda dengan %s, bandingkan nomor di atas dengan nomor di perangkat mereka. Alternatifnya, Anda bisa memindai kode di telepon mereka, atau minta mereka untuk memindai kode Anda. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string> -->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Untuk memverifikasi keamanan enkripsi end-to-end Anda dengan %s, bandingkan nomor di atas dengan yang ada di perangkat mereka. Anda juga dapat memindai kodenya di ponsel mereka. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Gagal memverifikasi nomor keamanan</string>
   <string name="verify_display_fragment__loading">Memuat…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Terverifikasi</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Tandai terverifikasi</string>
+  <string name="verify_display_fragment__clear_verification">Hapus verifikasi</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Pindai kode QR Code di perangkat rekan Anda</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Geser ke atas untuk menjawab</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Geser ke bawah untuk menolak panggilan</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Beberapa masalah memerlukan perhatian Anda.</string>
-  <string name="message_details_header__sent">Terkirim</string>
-  <string name="message_details_header__received">Diterima</string>
-  <string name="message_details_header__disappears">Hilang</string>
-  <string name="message_details_header__via">Via</string>
+  <string name="message_details_header__sent">Terkirim:</string>
+  <string name="message_details_header__received">Diterima:</string>
+  <string name="message_details_header__disappears">Hilang:</string>
+  <string name="message_details_header__via">Melalui:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Tertunda</string>
   <string name="message_details_recipient_header__sent_to">Kirim ke</string>
@@ -2401,6 +2424,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationActivity_call_me_instead_available_in">Panggil saya \n (Tersedia di %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontak Pusat Bantuan Signal</string>
   <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kode Verifikasi untuk Android</string>
+  <string name="RegistrationActivity_incorrect_code">Kode Salah</string>
   <string name="BackupUtil_never">Tidak pernah</string>
   <string name="BackupUtil_unknown">Tidak dikenal</string>
   <string name="preferences_app_protection__see_my_phone_number">Lihat nomor telepon saya</string>
@@ -2597,8 +2621,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Gagal memutar pesan suara</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Pesan suara. %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s hingga %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Pesan suara. %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s hingga %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" telah diblokir.</string>
@@ -3014,5 +3038,33 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Arahkan ke atas</string>
+  <string name="MultiselectForwardFragment__forward_to">Teruskan ke</string>
+  <string name="MultiselectForwardFragment__add_a_message">Tambah pesan</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Pesan yang diteruskan akan segera dikirimkan sekarang.</string>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">Pesan terkirim</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">Pesan gagal dikirim</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">Tidak dapat meneruskan pesan karena sudah tak tersedia lagi.</item>
+  </plurals>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Tambah pesan</string>
+  <string name="MediaReviewFragment__add_a_reply">Tambah balasan</string>
+  <string name="MediaReviewFragment__send_to">Kirim ke</string>
+  <string name="ImageEditorHud__cancel">Batal</string>
+  <string name="ImageEditorHud__draw">Gambar</string>
+  <string name="ImageEditorHud__write_text">Tulis teks</string>
+  <string name="ImageEditorHud__add_a_sticker">Tambahkan stiker</string>
+  <string name="ImageEditorHud__done_editing">Selesai mengedit</string>
+  <string name="ImageEditorHud__clear_all">Hapus semua</string>
+  <string name="ImageEditorHud__undo">Urungkan</string>
+  <string name="MediaCountIndicatorButton__send">Kirim</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Ketuk untuk menghilangkan</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Ketuk untuk memilih </string>
+  <string name="MediaReviewImagePageFragment__discard">Batalkan</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Anda akan kehilangan perubahan yang telah dibuat terhadap foto ini.</string>
   <!--EOF-->
 </resources>

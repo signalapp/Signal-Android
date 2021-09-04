@@ -1821,21 +1821,17 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Escriviu un nom o un número</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si voleu verificar la seguretat de l\'encriptació amb %s, compareu el número anterior amb el del seu dispositiu. Altrament, podeu escanejar el codi al seu telèfon o demanar-los que escanegin el vostre. <a href="https://signal.org/redirect/safety-numbers">Més informació.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Feu un toc per escanejar</string>
   <string name="verify_display_fragment__loading">Es carrega…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verificat</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Marca com a verificat</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comparteix el número de seguretat</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per respondre</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per rebutjar-la</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Certs problemes necessiten la vostra atenció.</string>
-  <string name="message_details_header__sent">Enviat</string>
-  <string name="message_details_header__received">Rebut</string>
-  <string name="message_details_header__disappears">Desapareix</string>
-  <string name="message_details_header__via">Per</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pendent</string>
   <string name="message_details_recipient_header__sent_to">Enviat a</string>
@@ -2513,6 +2509,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_call_me_instead_available_in">Millor que em truquis.\n (Disponible d\'aquí a %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contacteu amb el suport de Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registre del Signal - Codi de verificació per a Android</string>
+  <string name="RegistrationActivity_incorrect_code">Codi incorrecte</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Desconegut</string>
   <string name="preferences_app_protection__see_my_phone_number">Mostra el meu número de telèfon</string>
@@ -2709,8 +2706,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Ha fallat reproduir el missatge de veu.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Missatge de veu · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s a %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Missatge de veu · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s a %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">S\'ha blocat %1$s.</string>
@@ -3153,5 +3150,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">No s\'han pogut reenviar els missatges perquè ja no estan disponibles.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">S\'ha arribat al límit.</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Afegiu-hi un missatge</string>
+  <string name="ImageEditorHud__cancel">Cancel·la</string>
+  <string name="ImageEditorHud__blur">Difumina</string>
+  <string name="ImageEditorHud__undo">Desfés</string>
+  <string name="MediaCountIndicatorButton__send">Envia</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Feu un toc per seleccionar-ho</string>
+  <string name="MediaReviewImagePageFragment__discard">Descarta</string>
   <!--EOF-->
 </resources>

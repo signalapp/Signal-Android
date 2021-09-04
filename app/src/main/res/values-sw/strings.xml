@@ -1788,21 +1788,17 @@ nambari yako ya simu</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Ingiza jina au nambari</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Iwapo ungependa kuhakiki usalama wa usimbaji wako na %s, linganisha nambari iliyo juu na nambari kwenye kifaa chao. PIa, unaweza kuskani msimbo kwa simu yao, au uwaombe waskani msimbo wako. <a href="https://signal.org/redirect/safety-numbers"> Fahamu zaidi. </a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Gusa kuskani</string>
   <string name="verify_display_fragment__loading">Inapakia</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Iliyothibitishwa</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Weka alama kuwa imehakikishwa</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Shiriki nambari salama</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Sogeza juu kujibu</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sogeza chini kukataa</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Baadhi ya masuala yanahitaji umakini wako</string>
-  <string name="message_details_header__sent">Imetumwa</string>
-  <string name="message_details_header__received">Imepokelewa</string>
-  <string name="message_details_header__disappears">Inatoweka</string>
-  <string name="message_details_header__via">Kupitia</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Inasubiri</string>
   <string name="message_details_recipient_header__sent_to">Umetumwa kwa</string>
@@ -2677,8 +2673,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Imeshindwa kucheza ujumbe wa sauti</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Ujumbe wa sauti · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$shadi %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Ujumbe wa sauti · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$shadi %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" amezuiwa.</string>
@@ -3100,5 +3096,11 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Nenda juu</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">Ghairi</string>
+  <string name="ImageEditorHud__undo">Ondoa</string>
+  <string name="MediaCountIndicatorButton__send">Tuma</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Gusa kuchagua</string>
+  <string name="MediaReviewImagePageFragment__discard">Ghairi</string>
   <!--EOF-->
 </resources>

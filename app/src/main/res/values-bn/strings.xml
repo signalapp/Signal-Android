@@ -1786,21 +1786,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>একটি নাম বা নাম্বার লিখুন</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[যদি আপনি %sএর সাথে আপনার এনক্রিপশনের সুরক্ষা যাচাই করতে চান তবে উপরের নাম্বার তাদের ডিভাইস এ দেখানো নাম্বার এর সাথে তুলনা করুন। বিকল্পভাবে, আপনি তাদের ফোনে কোডটি স্ক্যান করতে পারেন বা তাদের আপনার কোডটি স্ক্যান করতে বলতে পারেন। <a href="https://signal.org/redirect/safety-numbers">আরও জানুন</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">স্ক্যান করতে আলতো চাপুন</string>
   <string name="verify_display_fragment__loading">লোড হচ্ছে…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">যাচাইকৃত</string> -->
+  <string name="verify_display_fragment__mark_as_verified">যাচাইকৃত হিসাবে চিহ্নিত করুন</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">নিরাপত্তা নাম্বার শেয়ার করুন</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">উত্তর দেওয়ার জন্য সোয়াইপ করুন</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">প্রত্যাখ্যান করতে নীচে সোয়াইপ করুন</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">কিছু বিষয়ে আপনার মনোযোগ প্রয়োজন।</string>
-  <string name="message_details_header__sent">পাঠানো  হয়েছে</string>
-  <string name="message_details_header__received">গৃহীত</string>
-  <string name="message_details_header__disappears">অদৃশ্য হয়</string>
-  <string name="message_details_header__via">মাধ্যম</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">পেন্ডিং</string>
   <string name="message_details_recipient_header__sent_to">একে পাঠানো হয়েছে</string>
@@ -2674,8 +2670,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ভয়েস বার্তা চালাতে ব্যর্থ</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ভয়েস বার্তা। %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s থেকে %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">ভয়েস বার্তা। %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s থেকে %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" কে ব্লক করা হয়েছে।</string>
@@ -3097,5 +3093,11 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">উপরে যাও</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">বাতিল করুন</string>
+  <string name="ImageEditorHud__undo">পূর্বাবস্থায় ফিরে যান</string>
+  <string name="MediaCountIndicatorButton__send">পাঠান</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">নির্বাচন করতে চাপুন</string>
+  <string name="MediaReviewImagePageFragment__discard">বাতিল করুন</string>
   <!--EOF-->
 </resources>

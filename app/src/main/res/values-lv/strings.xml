@@ -1864,21 +1864,17 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Ievadiet vārdu vai numuru</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ja vēlaties pārbaudīt šifrēšanas drošību ar %s, salīdziniet iepriekš norādīto numuru ar numuru ierīcē. Variet noskenēt kodu viņu tālrunī vai palūgt, lai noskenē Jūsu kodu.<a href="https://signal.org/redirect/safety-numbers">Lasīt vairāk.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Pieskarieties, lai skenētu</string>
   <string name="verify_display_fragment__loading">Lādē…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Pārbaudīts</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Atzīmēt kā apstiprinātu</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dalīties ar drošības numuru</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Vilkt uz augšu, lai atbildētu</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Vilkt uz leju, lai noraidītu</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Daži jautājumi prasa jūsu uzmanību.</string>
-  <string name="message_details_header__sent">Nosūtīts</string>
-  <string name="message_details_header__received">Saņemts</string>
-  <string name="message_details_header__disappears">Pazūd</string>
-  <string name="message_details_header__via">Ar</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Gaidīšanas statusā</string>
   <string name="message_details_recipient_header__sent_to">Noūtīts</string>
@@ -2564,6 +2560,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RegistrationActivity_call_me_instead_available_in">Tā vietā piezvaniet man \n (Pieejams pēc %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Sazināties ar Signāla atbalstu</string>
   <string name="RegistrationActivity_code_support_subject">Signāla reģistrācija - Android ierīces verifikācijas kods </string>
+  <string name="RegistrationActivity_incorrect_code">Nepareizs kods</string>
   <string name="BackupUtil_never">Nekad</string>
   <string name="BackupUtil_unknown">Nezināms</string>
   <string name="preferences_app_protection__see_my_phone_number">Redzēt manu telefona #</string>
@@ -2760,8 +2757,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Neizdevās atskaņot balss ziņu</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Balss ziņa · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Balss ziņa · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ir bloķēts.</string>
@@ -3191,5 +3188,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MultiselectForwardFragment__add_a_message">Pievienojiet ziņu</string>
   <string name="MultiselectForwardFragment__faster_forwards">Pārsūtīt ātrāk</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Pārsūtītas ziņas tagad tiek nosūtītas nekavējoties</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Pievienojiet ziņu</string>
+  <string name="ImageEditorHud__cancel">Atcelt</string>
+  <string name="ImageEditorHud__undo">Atsaukt</string>
+  <string name="MediaCountIndicatorButton__send">Sūtīt</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Pieskarieties, lai izvēlētos</string>
+  <string name="MediaReviewImagePageFragment__discard">Atmest</string>
   <!--EOF-->
 </resources>

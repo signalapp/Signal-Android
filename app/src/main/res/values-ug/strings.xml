@@ -1794,21 +1794,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ئات ياكى نومۇر كىرگۈزۈڭ</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[سىز %s بىلەن بولغان شىفىر بىخەتەرلىكىنى دەلىللىمەكچى بولسىڭىز، ئۈستىدىكى نومۇر بىلەن ئۇنىڭ ئۈسكۈنىسىدىكى نومۇرنى سېلىشتۇرۇڭ. ئۇنىڭدىن باشقا، ئۇلارنىڭ تېلېفونىدىكى كودنى تارىسىڭىز ياكى ئۇلاردىن سىزنىڭ كودىڭىزنى تاراشنى تەلەپ قىلسىڭىز بولىدۇ.<a href="https://signal.org/redirect/safety-numbers">تېخىمۇ كۆپ بىلدۈرگۈ</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">چېكىلسە تارايدۇ</string>
   <string name="verify_display_fragment__loading">قاچىلىنىۋاتىدۇ…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">دەلىللەندى</string> -->
+  <string name="verify_display_fragment__mark_as_verified">دەلىللەندى بەلگىسى سال</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">بىخەتەرلىك نومۇر ھەمبەھىر</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">ئۈستىگە سۈرۈلسە جاۋاب</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ئاستىغا سۈرۈلسە رەت قىلىدۇ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">كاشىلا كۆرۈلدى دىققەت قىلىڭ.</string>
-  <string name="message_details_header__sent">يوللانغان</string>
-  <string name="message_details_header__received">تاپشۇرۇۋالغان</string>
-  <string name="message_details_header__disappears">غايىب</string>
-  <string name="message_details_header__via">يولى</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">كۈتۈۋاتىدۇ…</string>
   <string name="message_details_recipient_header__sent_to">يوللانغۇچى</string>
@@ -2682,8 +2678,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ئۈن ئۇچۇرنى قويالمىدى</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ئاۋازلىق ئۇچۇر· %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s دىن%2$s غىچە</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">ئاۋازلىق ئۇچۇر· %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s دىن%2$s غىچە</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" چەكلىنىپ قالدى.</string>
@@ -3126,5 +3122,11 @@
     <item quantity="other">ئۇچۇرلار مەۋجۇت بولمىغاچقا ئۇلاپ يوللىنالمىدى.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">چەككە يەتتى</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">بىز ئۇچۇر قوش</string>
+  <string name="ImageEditorHud__cancel">ۋاز كەچ</string>
+  <string name="ImageEditorHud__undo">يېنىۋال</string>
+  <string name="MediaCountIndicatorButton__send">ئەۋەت</string>
+  <string name="MediaReviewImagePageFragment__discard">تاشلىۋەت</string>
   <!--EOF-->
 </resources>

@@ -1794,21 +1794,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ਨਾਮ ਜਾਂ ਨੰਬਰ ਦਰਜ ਕਰੋ</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ਜੇ ਤੁਸੀਂ %s ਨਾਲ ਆਪਣੇ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਸੁਰੱਖਿਆ ਦੀ ਤਸਦੀਕ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਉਪਰੋਕਤ ਨੰਬਰ ਦੀ ਤੁਲਨਾ ਉਨ੍ਹਾਂ ਦੀ ਡਿਵਾਈਸ \'ਤੇ ਕਰੋ. ਵਿਕਲਪਕ ਤੌਰ ਤੇ, ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਦੇ ਫੋਨ ਤੇ ਕੋਡ ਸਕੈਨ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ ਆਪਣੇ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਨ ਲਈ ਕਹਿ ਸਕਦੇ ਹੋ. <a href="https://signal.org/redirect/safety-numbers">ਜਿਆਦਾ ਜਾਣੋ.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">ਸਕੈਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="verify_display_fragment__loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">ਪ੍ਰਮਾਣਿਤ</string> -->
+  <string name="verify_display_fragment__mark_as_verified">ਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਸਾਂਝਾ ਕਰੋ</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">ਜਵਾਬ ਦੇਣ ਲਈ ਉੱਪਰ ਸਵਾਈਪ ਕਰੋ</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ਰੱਦ ਕਰਨ ਲਈ ਹੇਠਾਂ ਸਵਾਈਪ ਕਰੋ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">ਕੁਝ ਮੁੱਦਿਆਂ ਲਈ ਤੁਹਾਡੇ ਧਿਆਨ ਦੀ ਲੋੜ ਹੈ </string>
-  <string name="message_details_header__sent">ਭੇਜੇ ਗਏ</string>
-  <string name="message_details_header__received">ਪ੍ਰਾਪਤ ਕੀਤਾ</string>
-  <string name="message_details_header__disappears">ਗਾਇਬ</string>
-  <string name="message_details_header__via">ਰਾਹੀਂ</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">ਬਕਾਇਆ</string>
   <string name="message_details_recipient_header__sent_to">ਇਸ ਨੂੰ ਭੇਜੇ</string>
@@ -2682,8 +2678,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ਅਵਾਜ਼ ਵਾਲੇ ਸੁਨੇਹਾ ਸੁਣਾਉਣਾ ਅਸਫਲ ਰਿਹਾ</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ਤੋਂ %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ਤੋਂ %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਈ ਹੈ।</string>
@@ -3126,5 +3122,12 @@
     <item quantity="other">ਸੁਨੇਹੇ ਅੱਗੇ ਨਹੀਂ ਭੇਜੇ ਜਾ ਸਕੇ, ਕਿਉਂਕਿ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਰਹੇ ਹਨ।</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">ਹੱਦ ਪੁੱਜੀ</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
+  <string name="ImageEditorHud__cancel">ਰੱਦ ਕਰੋ</string>
+  <string name="ImageEditorHud__undo">ਵਾਪਸ</string>
+  <string name="MediaCountIndicatorButton__send">ਭੇਜੋ</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">ਚੁਣਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="MediaReviewImagePageFragment__discard">ਰੱਦ ਕਰੋ</string>
   <!--EOF-->
 </resources>

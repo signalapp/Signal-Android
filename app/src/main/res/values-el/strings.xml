@@ -1801,21 +1801,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Εισαγωγή ονόματος ή αριθμού</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογράφησης με τον/την %s, σύγκρινε τον παραπάνω αριθμό με τον αριθμό στη συσκευή του/της. Εναλλακτικά, μπορεις να σκανάρεις τον κωδικο στο τηλέφωνό του/της, ή να του/της ζητήσεις να σκανάρει τον κωδικό σου. <a href="https://signal.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
   <string name="verify_display_fragment__loading">Φόρτωση…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Επιβεβαιωμένο</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Σημείωση ως επιβεβαιωμένο</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Μοιράσου τον αριθμό ασφαλείας</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Σύρε προς τα πάνω για απάντηση</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ορισμένα ζητήματα χρειάζονται την προσοχή σου.</string>
-  <string name="message_details_header__sent">Στάλθηκε στις</string>
-  <string name="message_details_header__received">Ελήφθη στις</string>
-  <string name="message_details_header__disappears">Εξαφανίζεται</string>
-  <string name="message_details_header__via">Μέσω</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Εκκρεμεί</string>
   <string name="message_details_recipient_header__sent_to">Στάλθηκε σε</string>
@@ -2618,8 +2614,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Αποτυχία αναπαραγωγής μηνύματος φωνής</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Μήνυμα φωνής · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s προς %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Μήνυμα φωνής · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s προς %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Ο/Η \"%1$s\" έχει φραγεί</string>
@@ -3012,5 +3008,13 @@
     <item quantity="other">Αδυναμία προώθησης μηνυμάτων επειδή δεν είναι πλέον διαθέσιμα.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Το όριο ξεπεράστηκε</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Προσθήκη μηνύματος</string>
+  <string name="ImageEditorHud__cancel">Ακύρωση</string>
+  <string name="ImageEditorHud__blur">Θόλωμα</string>
+  <string name="ImageEditorHud__undo">Αναίρεση</string>
+  <string name="MediaCountIndicatorButton__send">Αποστολή</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Πάτα για επιλογή</string>
+  <string name="MediaReviewImagePageFragment__discard">Απόρριψη</string>
   <!--EOF-->
 </resources>

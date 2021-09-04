@@ -1721,21 +1721,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ใส่ชื่อหรือหมายเลข</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[หากคุณต้องการตรวจยืนยันความปลอดภัยในการเข้ารหัสลับระหว่างคุณกับ %s ให้เปรียบเทียบหมายเลขด้านบนนี้กับหมายเลขบนอุปกรณ์ของเขา หรืออีกทางหนึ่ง คุณสามารถสแกนรหัสบนโทรศัพท์ของเขา หรือขอให้เขาสแกนรหัสของคุณ <a href="https://signal.org/redirect/safety-numbers">เรียนรู้เพิ่มเติม</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
   <string name="verify_display_fragment__loading">กำลังโหลด…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">ตรวจยืนยันแล้ว</string> -->
+  <string name="verify_display_fragment__mark_as_verified">ทำเครื่องหมายว่าตรวจยืนยันแล้ว</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">แบ่งปันหมายเลขความปลอดภัย</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">ปัดขึ้นเพื่อรับสาย</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ปัดลงเพื่อปฏิเสธ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">มีปัญหาบางประการที่คุณควรให้ความสนใจ</string>
-  <string name="message_details_header__sent">ส่งแล้ว</string>
-  <string name="message_details_header__received">ได้รับแล้ว</string>
-  <string name="message_details_header__disappears">ลบตัวเอง</string>
-  <string name="message_details_header__via">ผ่าน</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">รอดำเนินการ</string>
   <string name="message_details_recipient_header__sent_to">ส่งถึง</string>
@@ -2601,8 +2597,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">การเล่นข้อความเสียงล้มเหลว</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ข้อความเสียง %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ถึง %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">ข้อความเสียง %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ถึง %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ถูกปิดกั้นแล้ว</string>
@@ -3019,5 +3015,11 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">เลื่อนขึ้น</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">ยกเลิก</string>
+  <string name="ImageEditorHud__undo">เลิกทำ</string>
+  <string name="MediaCountIndicatorButton__send">ส่ง</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">แตะเพื่อเลือก</string>
+  <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
   <!--EOF-->
 </resources>

@@ -1753,21 +1753,17 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Skriv inn navn eller nummer</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har sikker kryptering mot %s, bør du sammenlikne tallene overfor med tallene på motpartens enhet. Du kan også skanne koden på motpartens enhet, eller be dem om å skanne din <a href="https://signal.org/redirect/safety-numbers">Les mer.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <string name="verify_display_fragment__loading">Laster…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Bekreftet</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Merk som bekreftet</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhetsnummer</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Sveip opp for å svare</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sveip ned for å avvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
-  <string name="message_details_header__sent">Sendt</string>
-  <string name="message_details_header__received">Mottatt</string>
-  <string name="message_details_header__disappears">Forsvinner</string>
-  <string name="message_details_header__via">Via</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Avventer</string>
   <string name="message_details_recipient_header__sent_to">Sendt til</string>
@@ -2405,6 +2401,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i stedet \n (Tilgjengelig om %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontakt Signal brukerstøtte</string>
   <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
+  <string name="RegistrationActivity_incorrect_code">Feil kode</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
   <string name="preferences_app_protection__see_my_phone_number">Se mitt telefonnummer</string>
@@ -2596,8 +2593,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Denne lenken er ikke aktiv</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Lydmelding · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Lydmelding · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s til %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" har blitt blokkert.</string>
@@ -2933,5 +2930,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">Avbryt</string>
+  <string name="ImageEditorHud__undo">Angre</string>
+  <string name="MediaCountIndicatorButton__send">Send</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
+  <string name="MediaReviewImagePageFragment__discard">Kast</string>
   <!--EOF-->
 </resources>

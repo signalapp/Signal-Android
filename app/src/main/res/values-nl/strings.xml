@@ -1304,6 +1304,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal heeft toegang nodig tot de contactenlijst van je telefoon om je contactpersonen te kunnen weergeven als opties om beveiligde gesprekken mee te beginnen en om beveiligd mee te bellen</string>
   <string name="RegistrationActivity_rate_limited_to_service">Je hebt te veel pogingen ondernomen om Signal voor dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signals servers. Ga na dat je apparaat internetverbinding heeft en probeer het opnieuw.</string>
+  <string name="RegistrationActivity_call_requested">Belverzoek ingediend</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Je bent nu %d stap verwijderd van het indienen van een foutopsporingslog.</item>
     <item quantity="other">Je bent nu %d stappen verwijderd van het indienen van een foutopsporingslog.</item>
@@ -1831,21 +1832,26 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Typ een naam of nummer</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je rechtstreeks met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen, of hem / haar vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string> -->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je rechtstreeks met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
+  <string name="verify_display_fragment__successful_match">De nummers komen overeen</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Verifieren niet gelukt</string>
   <string name="verify_display_fragment__loading">Aan het laden …</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Als geverifieerd markeren</string>
+  <string name="verify_display_fragment__clear_verification">Verificatie ongedaan maken</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Veiligheidsnummer doorsturen</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan de QR-code op het apparaat van je gesprekspartner.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Veeg omhoog om te beantwoorden</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Veeg omlaag om te weigeren</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Enkele dingen vergen je aandacht.</string>
-  <string name="message_details_header__sent">Verzonden</string>
-  <string name="message_details_header__received">Ontvangen</string>
-  <string name="message_details_header__disappears">Verloopt over</string>
-  <string name="message_details_header__via">Via</string>
+  <string name="message_details_header__sent">Verzonden:</string>
+  <string name="message_details_header__received">Ontvangen:</string>
+  <string name="message_details_header__disappears">Verloopt over:</string>
+  <string name="message_details_header__via">Via:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">In afwachting</string>
   <string name="message_details_recipient_header__sent_to">Verzonden aan</string>
@@ -2523,6 +2529,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_call_me_instead_available_in">Bel me \n (beschikbaar over %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal-ondersteuning</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
+  <string name="RegistrationActivity_incorrect_code">Onjuiste code</string>
   <string name="BackupUtil_never">Nooit</string>
   <string name="BackupUtil_unknown">Onbekend</string>
   <string name="preferences_app_protection__see_my_phone_number">Mijn telefoonnummer zien</string>
@@ -2719,8 +2726,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Het afspelen van het audiobericht is mislukt</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Audiobericht · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naar %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Audiobericht · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s naar %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">“%1$s” is geblokkeerd.</string>
@@ -3163,5 +3170,25 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="other">Kon sommige berichten niet doorsturen omdat die inmiddels niet langer beschikbaar zijn.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limiet bereikt</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Een bericht bijvoegen</string>
+  <string name="MediaReviewFragment__add_a_reply">Een reactie toevoegen</string>
+  <string name="MediaReviewFragment__send_to">Verzonden aan</string>
+  <string name="ImageEditorHud__cancel">Audio-opname annuleren</string>
+  <string name="ImageEditorHud__draw">Tekenen</string>
+  <string name="ImageEditorHud__write_text">Schrijf tekst</string>
+  <string name="ImageEditorHud__add_a_sticker">Een sticker toevoegen</string>
+  <string name="ImageEditorHud__blur">Vervagen</string>
+  <string name="ImageEditorHud__done_editing">Aanpassingen klaar</string>
+  <string name="ImageEditorHud__clear_all">Alles wissen</string>
+  <string name="ImageEditorHud__undo">Ongedaan maken</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Schakelen tussen stift en markeerstift</string>
+  <string name="MediaCountIndicatorButton__send">Verzenden</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Tik om te verwijderen</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Tik om te selecteren</string>
+  <string name="MediaReviewImagePageFragment__discard">Verwerpen</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Aanpassingen verwerpen?</string>
+  <string name="MediaReviewFragment__view_once_message">Eenmaligeweergave-bericht</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veranderingen die je aan deze afbeelding hebt gemaakt zullen verloren gaan.</string>
   <!--EOF-->
 </resources>

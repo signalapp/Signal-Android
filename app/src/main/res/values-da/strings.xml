@@ -1771,21 +1771,17 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Indtast navn eller nummer</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du ønsker at validere sikkerheden af din kryptering med %s, skal du sammenligne nummeret herover med nummeret på enheden. Alternativt kan du skanne koden på deres enhed, eller bede dem om at skanne din kode <a href="https://signal.org/redirect/safety-numbers">Vis mere</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tap for at skanne</string>
   <string name="verify_display_fragment__loading">Henter…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verificeret</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Markér som verificeret</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhedsnummer</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Swipe op for at svare</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Swipe ned for at afvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Nogle ting kræver din opmærksomhed</string>
-  <string name="message_details_header__sent">Sendt</string>
-  <string name="message_details_header__received">Modtaget</string>
-  <string name="message_details_header__disappears">Udløber</string>
-  <string name="message_details_header__via">Via</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Afventer</string>
   <string name="message_details_recipient_header__sent_to">Sendt til</string>
@@ -2463,6 +2459,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RegistrationActivity_call_me_instead_available_in">Ring til mig i stedet \n (Tilgængelig om %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontakt Signal Support</string>
   <string name="RegistrationActivity_code_support_subject">Signal registration - Verifikationskode for Android</string>
+  <string name="RegistrationActivity_incorrect_code">Forkert kode</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Ukendt</string>
   <string name="preferences_app_protection__see_my_phone_number">Se mit telefonnummer</string>
@@ -2658,8 +2655,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Linket er ikke aktivt i øjeblikket</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Stemme besked · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Stemme besked · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s til %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" er blevet blokeret</string>
@@ -3036,5 +3033,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">Annullér</string>
+  <string name="ImageEditorHud__blur">Slør</string>
+  <string name="ImageEditorHud__undo">Fortryd</string>
+  <string name="MediaCountIndicatorButton__send">Send</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Tap for at vælge</string>
+  <string name="MediaReviewImagePageFragment__discard">Kassér</string>
   <!--EOF-->
 </resources>

@@ -1786,21 +1786,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>एक नाम या संख्या दर्ज करें</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[अगर आप %s के साथ अपने एन्क्रिप्शन की सुरक्षा को सत्यापित करना चाहते हैं, तो उपरोक्त संख्या की तुलना उनके डिवाइस पर संख्या के साथ करें। वैकल्पिक रूप से, आप अपने फोन पर कोड स्कैन कर सकते हैं, या अपने कोड को स्कैन करने के लिए कह सकते हैं। <a href="https://signal.org/redirect/safety-numbers">और अधिक जानें</a>।]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">स्कैन करने के लिए टैप करें</string>
   <string name="verify_display_fragment__loading">लोड हो रहा है</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">सत्यापित</string> -->
+  <string name="verify_display_fragment__mark_as_verified">साटिपिट होने का मार्क कीजीये</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">सुरक्षा संख्या साझा करें</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">उत्तर देने के लिए स्वाइप करें</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">अस्वीकार करने के लिए नीचे स्वाइप करें</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">कुछ मुद्दों पर ध्यान देना होगा</string>
-  <string name="message_details_header__sent"> भेजा गया </string>
-  <string name="message_details_header__received"> मिल गया </string>
-  <string name="message_details_header__disappears">गायब हो जाता है</string>
-  <string name="message_details_header__via">राह </string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">लंबित</string>
   <string name="message_details_recipient_header__sent_to">इनको भेजा गया</string>
@@ -2674,8 +2670,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">वॉइस संदेश चलाने में विफल रहा</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ऑडियो संदेश · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sसे%2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">ऑडियो संदेश · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sसे%2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" को ब्लॉक किया गया है </string>
@@ -3097,5 +3093,11 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">ऊपर जाएँ</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">रद्द करें</string>
+  <string name="ImageEditorHud__undo">पूर्ववत</string>
+  <string name="MediaCountIndicatorButton__send">भेजें</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">चयन के लिए टैप करें</string>
+  <string name="MediaReviewImagePageFragment__discard">रद्द करें</string>
   <!--EOF-->
 </resources>

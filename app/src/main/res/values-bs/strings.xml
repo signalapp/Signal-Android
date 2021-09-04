@@ -1902,21 +1902,16 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ako želite provjeriti sigurnost šifriranja između Vas i %s, uporedite gore navedeni broj sa brojem na uređaju sagovornika. Alternativno, možete skenirati kōd sa njegovog ili njenog telefona ili ih zamoliti da oni skeniraju Vaš kōd. <a href="https://signal.org/redirect/safety-numbers">Saznajte više.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Pritisnite da skenirate</string>
   <string name="verify_display_fragment__loading">Učitavanje…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Potvrđeno</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podijeli sigurnosni broj</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Povucite prstom gore da se javite</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Povucite prstom dolje da odbijete</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Došlo je do problema koji zahtijevaju Vašu pažnju.</string>
-  <string name="message_details_header__sent">Poslano</string>
-  <string name="message_details_header__received">Primljeno</string>
-  <string name="message_details_header__disappears">Nestaje za</string>
-  <string name="message_details_header__via">Preko</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">U obradi</string>
   <string name="message_details_recipient_header__sent_to">Poslano za</string>
@@ -2602,6 +2597,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Radije me pozovite \n (Dostupni u %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
   <string name="RegistrationActivity_code_support_subject">Signal registracija – potvrda kōda za Android</string>
+  <string name="RegistrationActivity_incorrect_code">Pogrešan kôd</string>
   <string name="BackupUtil_never">Nikad</string>
   <string name="BackupUtil_unknown">Nepoznato</string>
   <string name="preferences_app_protection__see_my_phone_number">Vidi moj telefonski broj</string>
@@ -2803,8 +2799,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Neuspjelo puštanje glasovne poruke</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Glasovna poruka · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Glasovna poruka · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s do %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" je blokiran/a.</string>
@@ -3256,5 +3252,12 @@ prenijeli račun na svoj novi Android uređaj.</string>
     <item quantity="other">Nije uspjelo prosljeđivanje poruka jer više nisu dostupne.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosegnut maksimum</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Dopiši poruku</string>
+  <string name="ImageEditorHud__cancel">Prekini</string>
+  <string name="ImageEditorHud__blur">Zamagli</string>
+  <string name="MediaCountIndicatorButton__send">Šalji</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Pritisnite da odaberete</string>
+  <string name="MediaReviewImagePageFragment__discard">Odbaci</string>
   <!--EOF-->
 </resources>

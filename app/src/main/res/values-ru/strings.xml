@@ -1419,6 +1419,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам, чтобы вы могли связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
   <string name="RegistrationActivity_rate_limited_to_service">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз позже.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
+  <string name="RegistrationActivity_call_requested">Звонок запрошен</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Вы в %d шаге от отправки журнала отладки.</item>
     <item quantity="few">Вы в %d шагах от отправки журнала отладки.</item>
@@ -1970,21 +1971,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код.<a href="https://signal.org/redirect/safety-numbers"> Подробнее</a>]]></string> -->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Чтобы убедиться в безопасности сквозного шифрования с %s, сравните числа выше с устройством вашего собеседника. Вы также можете отсканировать код на его устройстве. <a href="https://signal.org/redirect/safety-numbers">Узнать больше.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
+  <string name="verify_display_fragment__successful_match">Успешное совпадение</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Не удалось подтвердить код безопасности</string>
   <string name="verify_display_fragment__loading">Загружаем…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Подтверждён</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Отметить как подтверждённый</string>
+  <string name="verify_display_fragment__clear_verification">Сбросить подтверждение</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Просканируйте QR-код на устройстве собеседника.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Проведите пальцем вверх, чтобы ответить</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Проведите пальцем вниз, чтобы отклонить</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Есть проблемы, требующие вашего внимания.</string>
-  <string name="message_details_header__sent">Отправлено</string>
-  <string name="message_details_header__received">Получено</string>
-  <string name="message_details_header__disappears">Исчезнет</string>
-  <string name="message_details_header__via">Через</string>
+  <string name="message_details_header__sent">Отправлено:</string>
+  <string name="message_details_header__received">Получено:</string>
+  <string name="message_details_header__disappears">Исчезнет:</string>
+  <string name="message_details_header__via">Через:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">В ожидании</string>
   <string name="message_details_recipient_header__sent_to">Отправлено</string>
@@ -2678,6 +2684,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Позвоните мне вместо SMS \n (доступно через %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Связаться с поддержкой Signal</string>
   <string name="RegistrationActivity_code_support_subject">Регистрация в Signal - код подтверждения для Android</string>
+  <string name="RegistrationActivity_incorrect_code">Неверный код</string>
   <string name="BackupUtil_never">Никогда</string>
   <string name="BackupUtil_unknown">Неизвестно</string>
   <string name="preferences_app_protection__see_my_phone_number">Видеть мой номер телефона</string>
@@ -2874,8 +2881,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не удалось воспроизвести голосовое сообщение</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Голосовое сообщение · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s в %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Голосовое сообщение · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s в %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» заблокирован(-а).</string>
@@ -3336,5 +3343,25 @@
     <item quantity="other">Не удалось переслать сообщения, потому что они больше не доступны.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Достигнут предел</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Добавьте сообщение</string>
+  <string name="MediaReviewFragment__add_a_reply">Добавьте ответ</string>
+  <string name="MediaReviewFragment__send_to">Отправить</string>
+  <string name="ImageEditorHud__cancel">Отменить</string>
+  <string name="ImageEditorHud__draw">Нарисовать</string>
+  <string name="ImageEditorHud__write_text">Написать текст</string>
+  <string name="ImageEditorHud__add_a_sticker">Добавить стикер</string>
+  <string name="ImageEditorHud__blur">Размыть</string>
+  <string name="ImageEditorHud__done_editing">Готово</string>
+  <string name="ImageEditorHud__clear_all">Очистить всё</string>
+  <string name="ImageEditorHud__undo">Отменить</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Переключиться между маркером и выделителем</string>
+  <string name="MediaCountIndicatorButton__send">Отправить</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Нажмите, чтобы убрать</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Нажмите, чтобы выбрать</string>
+  <string name="MediaReviewImagePageFragment__discard">Сбросить</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Сбросить изменения?</string>
+  <string name="MediaReviewFragment__view_once_message">Одноразовое сообщение</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Вы потеряете все изменения, которые вы сделали в этой фотографии.</string>
   <!--EOF-->
 </resources>

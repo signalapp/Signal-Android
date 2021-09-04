@@ -1711,21 +1711,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>输入名字或号码</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[如需验证您与 %s 的加密安全性，请对比上方数字与对方设备上数字。另外，可扫描对方手机上的二维码，或让对方扫描你的二维码。<a href="https://signal.org/redirect/safety-numbers">了解更多</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">点击扫描</string>
   <string name="verify_display_fragment__loading">正在加载…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">已验证</string> -->
+  <string name="verify_display_fragment__mark_as_verified">标记为已验证</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全码</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">上滑接听</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">下滑拒接</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">出现故障，请注意。</string>
-  <string name="message_details_header__sent">发送</string>
-  <string name="message_details_header__received">接收</string>
-  <string name="message_details_header__disappears">消失</string>
-  <string name="message_details_header__via">通道</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">处理中</string>
   <string name="message_details_recipient_header__sent_to">发至</string>
@@ -2395,6 +2391,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">电话验证\n（%1$02d:%2$02d 后可用）</string>
   <string name="RegistrationActivity_contact_signal_support">联系 Signal 支持</string>
   <string name="RegistrationActivity_code_support_subject">Signal 注册 - 安卓验证码</string>
+  <string name="RegistrationActivity_incorrect_code">验证码不正确</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__see_my_phone_number">查看我的电话号码</string>
@@ -2591,8 +2588,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">无法播放语音消息</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">语音消息 · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s 至 %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">语音消息 · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s 至 %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">已屏蔽“%1$s”。</string>
@@ -2991,5 +2988,12 @@
   <string name="ContactSelectionListItem__sms">短信</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">取消</string>
+  <string name="ImageEditorHud__blur">模糊</string>
+  <string name="ImageEditorHud__undo">撤消</string>
+  <string name="MediaCountIndicatorButton__send">发送</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">点击选择</string>
+  <string name="MediaReviewImagePageFragment__discard">放弃</string>
   <!--EOF-->
 </resources>

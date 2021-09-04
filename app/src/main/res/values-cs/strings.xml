@@ -1976,21 +1976,17 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Zadejte jméno nebo číslo</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://signal.org/redirect/safety-numbers">Zjistěte více o bezpečnostních číslech.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
   <string name="verify_display_fragment__loading">Načítání…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Ověřeno</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Označit jako ověřené</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sdílet bezpečnostní číslo</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pro odpověď přejeďte prstem nahoru</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pro odmítnutí přejeďte prstem dolů</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
-  <string name="message_details_header__sent">Odesláno</string>
-  <string name="message_details_header__received">Přijato</string>
-  <string name="message_details_header__disappears">Zmizí</string>
-  <string name="message_details_header__via">Přes</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Probíhá</string>
   <string name="message_details_recipient_header__sent_to">Odesláno pro</string>
@@ -2684,6 +2680,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationActivity_call_me_instead_available_in">Raději mi zavolejte \n (V době %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontaktujte podporu Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registrace Signal - ověřovací kód pro Android</string>
+  <string name="RegistrationActivity_incorrect_code">Špatný kód</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="preferences_app_protection__see_my_phone_number">Zobrazit mé telefonní číslo</string>
@@ -2880,8 +2877,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nepodařilo ze přehrát zvukovou zprávu</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Hlasová zpráva · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s pro %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Hlasová zpráva · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s pro %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" byl zablokován.</string>
@@ -3342,5 +3339,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">Zprávy nebylo možné přeposlat, protože již nejsou k dispozici.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosažen limit</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Přidat zprávu</string>
+  <string name="ImageEditorHud__cancel">Zrušit</string>
+  <string name="ImageEditorHud__blur">Rozostřit</string>
+  <string name="ImageEditorHud__undo">Zpět</string>
+  <string name="MediaCountIndicatorButton__send">Odeslat</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Klepněte pro výběr</string>
+  <string name="MediaReviewImagePageFragment__discard">Zahodit</string>
   <!--EOF-->
 </resources>

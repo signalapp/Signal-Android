@@ -1729,21 +1729,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>이름 또는 전화번호 입력</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s 님과의 암호화 보안을 확인하고 싶다면 위에 표시되는 번호를 확인하세요. 또는, QR 코드를 스캔할 수도 있습니다. 더알아보기.]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">탭하여 스캔</string>
   <string name="verify_display_fragment__loading">로드 중…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">인증됨</string> -->
+  <string name="verify_display_fragment__mark_as_verified">검증으로 표시</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">안전 번호 공유</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">쓸어 올려 받기</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">쓸어 내려 거부</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">문제가 발생하여 확인이 필요합니다.</string>
-  <string name="message_details_header__sent">보낸 시간</string>
-  <string name="message_details_header__received">받은 시간</string>
-  <string name="message_details_header__disappears">사라짐</string>
-  <string name="message_details_header__via">형식</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">대기 중</string>
   <string name="message_details_recipient_header__sent_to">보냄</string>
@@ -2609,8 +2605,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">음성 메시지를 재생하지 못했습니다.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">음성 메시지 %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s~%2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">음성 메시지 %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s~%2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\'%1$s\' 님이 차단되었습니다.</string>
@@ -3022,5 +3018,11 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">위로 탐색</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">취소</string>
+  <string name="ImageEditorHud__undo">실행 취소</string>
+  <string name="MediaCountIndicatorButton__send">보내기</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">탭하여 선택</string>
+  <string name="MediaReviewImagePageFragment__discard">파기</string>
   <!--EOF-->
 </resources>

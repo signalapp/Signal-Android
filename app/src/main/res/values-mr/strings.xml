@@ -1789,21 +1789,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>एक नाव किंवा नंबर प्रविष्ट करा</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[जर आपल्याला %s सोबत आपल्या एन्क्रिप्शनची सुरक्षा सत्यापित करायची असेल, तर त्यांचा डिव्हाईस वरील नंबरची तुलना करा. पर्यायीरीत्या, आपण त्यांच्या फोन वरील कोड स्कॅन करू शकता, किंवा त्यांना आपला कोड स्कॅन करण्यास विचारू शकता. <a href="https://signal.org/redirect/safety-numbers">अधिक जाणा</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">स्कॅन करण्यासाठी टॅप करा</string>
   <string name="verify_display_fragment__loading">लोड होत आहे…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">सत्यापित</string> -->
+  <string name="verify_display_fragment__mark_as_verified">सत्यापित म्हणून चिन्हांकित करा</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">सुरक्षितता नंबर सामायिक करा</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">उत्तर देण्यासाठी वर स्वाइप करा</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">नकार देण्यासाठी खाली स्वाइप करा</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">काही समस्यांकडे आपण लक्ष देण्याची गरज आहे.</string>
-  <string name="message_details_header__sent">पाठविले</string>
-  <string name="message_details_header__received">प्राप्त झाले</string>
-  <string name="message_details_header__disappears">हरवते</string>
-  <string name="message_details_header__via">द्वारा</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">प्रलंबित</string>
   <string name="message_details_recipient_header__sent_to">याला पाठवले</string>
@@ -2677,8 +2673,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">व्हॉईस संदेश प्ले करण्यात अयशस्वी</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">व्हॉईस संदेश · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ते %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">व्हॉईस संदेश · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ते %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ब्लॉक केले गेले आहे.</string>
@@ -3095,5 +3091,12 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">वर नॅव्हिगेट करा</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">रद्द करा</string>
+  <string name="ImageEditorHud__blur">अस्पष्ट</string>
+  <string name="ImageEditorHud__undo">अनडू करा</string>
+  <string name="MediaCountIndicatorButton__send">पाठवा</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">निवडण्यासाठी टॅप करा</string>
+  <string name="MediaReviewImagePageFragment__discard">टाकून द्या</string>
   <!--EOF-->
 </resources>

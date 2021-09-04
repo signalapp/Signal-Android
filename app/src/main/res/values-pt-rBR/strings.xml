@@ -1827,21 +1827,23 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Digite um nome ou um número</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se você quiser verificar a segurança da sua criptografia ponta a ponta com %s, compare os números acima com os números no dispositivo dessa pessoa. Outra opção é escanear o código QR no telefone dela, ou pedir que ela escaneie o código no seu dispositivo. <a href="https://signal.org/redirect/safety-numbers">Saiba mais.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Toque para escanear</string>
+  <string name="verify_display_fragment__successful_match">Correspondência bem sucedida</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Falha ao verificar o número de segurança</string>
   <string name="verify_display_fragment__loading">Carregando…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verificado</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Marcar como verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escaneie o código QR no aparelho da outra pessoa.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Deslize para cima para atender</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Deslize para baixo para recusar</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns assuntos precisam de sua atenção.</string>
-  <string name="message_details_header__sent">Enviada</string>
-  <string name="message_details_header__received">Recebida</string>
-  <string name="message_details_header__disappears">Expira</string>
-  <string name="message_details_header__via">Via</string>
+  <string name="message_details_header__sent">Enviada:</string>
+  <string name="message_details_header__received">Recebida:</string>
+  <string name="message_details_header__via">Via:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pendente</string>
   <string name="message_details_recipient_header__sent_to">Enviada para</string>
@@ -2519,6 +2521,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Me ligue \n (Disponível em %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Entre em contato com o Suporte do Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registro Signal - Código de verificação para Android</string>
+  <string name="RegistrationActivity_incorrect_code">Código incorreto</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="preferences_app_protection__see_my_phone_number">Ver meu número de telefone</string>
@@ -2715,8 +2718,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Falha ao reproduzir a mensagem de voz</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mensagem de voz · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s para %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Mensagem de voz · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s para %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" foi bloqueado.</string>
@@ -3159,5 +3162,20 @@
     <item quantity="other">Não foi possível encaminhar as mensagens porque elas não estão mais disponíveis.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite alcançado</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Adicionar uma mensagem</string>
+  <string name="MediaReviewFragment__send_to">Enviar para</string>
+  <string name="ImageEditorHud__cancel">Cancelar</string>
+  <string name="ImageEditorHud__draw">Desenhar</string>
+  <string name="ImageEditorHud__write_text">Escrever texto</string>
+  <string name="ImageEditorHud__add_a_sticker">Adicionar uma figurinha</string>
+  <string name="ImageEditorHud__blur">Desfocar</string>
+  <string name="ImageEditorHud__clear_all">Limpar tudo</string>
+  <string name="ImageEditorHud__undo">Desfazer</string>
+  <string name="MediaCountIndicatorButton__send">Enviar</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Toque para remover</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Toque para selecionar</string>
+  <string name="MediaReviewImagePageFragment__discard">Descartar</string>
+  <string name="MediaReviewFragment__view_once_message">Ver mensagem efêmera</string>
   <!--EOF-->
 </resources>

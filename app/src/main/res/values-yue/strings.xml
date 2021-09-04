@@ -1237,6 +1237,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal 需要存取您嘅聯絡人，先可以同好友聯繫、互傳訊息同埋進行安全通話</string>
   <string name="RegistrationActivity_rate_limited_to_service">呢個冧把試過註冊太多次喇。請您晏啲再試下啦。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連線到服務。請檢查下網絡連線，然後再試下啦。</string>
+  <string name="RegistrationActivity_call_requested">請求咗打畀您</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">仲差 %d 步，就可以提交除錯記錄檔喇。</item>
   </plurals>
@@ -1752,21 +1753,16 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>打個名或者冧把</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若然您想驗證下您同 %s 之間嘅加密係咪安全，請將上面嘅數字同佢部機上面嘅數字做比較。又或者，您可以掃一掃佢部機上面嘅二維碼，或者叫佢掃一掃您個碼都得。<a href="https://signal.org/redirect/safety-numbers">想知多啲？</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">撳一下去掃描</string>
   <string name="verify_display_fragment__loading">載入緊…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">驗證咗</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">向上滑就接聽</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">向下滑就拒聽</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">有事請您注意。</string>
-  <string name="message_details_header__sent">送出</string>
-  <string name="message_details_header__received">收到</string>
-  <string name="message_details_header__disappears">過目化作雲煙</string>
-  <string name="message_details_header__via">透過</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">仲要等等</string>
   <string name="message_details_recipient_header__sent_to">傳咗畀</string>
@@ -2632,8 +2628,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">播唔到語音訊息</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">語音訊息 · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s 畀 %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">語音訊息 · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s 畀 %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">已封鎖「%1$s」。</string>
@@ -3067,5 +3063,13 @@
     <item quantity="other">轉寄唔到，因為個訊息而家已經冇咗。</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">頂晒櫳喇</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">寫番句訊息</string>
+  <string name="ImageEditorHud__cancel">取消</string>
+  <string name="ImageEditorHud__undo">復原</string>
+  <string name="MediaCountIndicatorButton__send">傳送</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">撳一下剷除</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">撳一下揀選</string>
+  <string name="MediaReviewImagePageFragment__discard">掉咗佢</string>
   <!--EOF-->
 </resources>

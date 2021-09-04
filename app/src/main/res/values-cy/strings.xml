@@ -1979,21 +1979,17 @@ Send neges heb ei ddiogelu?</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Rhowch enw neu rif</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers"> Dysgu mwy. </a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tapio i sganio</string>
   <string name="verify_display_fragment__loading">Llwytho…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Gwiriwyd</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Marcio fel y\'i gwiriwyd</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Rhannu\'r rif diogelwch</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llusgo i fyny i ateb</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llusgo i lawr i wrthod</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Mae angen eich sylw ar rai materion.</string>
-  <string name="message_details_header__sent">Anfonwyd</string>
-  <string name="message_details_header__received">Derbyniwyd</string>
-  <string name="message_details_header__disappears">Yn diflannu</string>
-  <string name="message_details_header__via">Drwy</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Dan ystyriaeth</string>
   <string name="message_details_recipient_header__sent_to">Anfonwyd at</string>
@@ -2883,8 +2879,8 @@ Send neges heb ei ddiogelu?</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Methu chware neges llais</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Neges llais · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s i %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Neges llais · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s i %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Mae \"%1$s\" wedi\'i rwystro.</string>
@@ -3345,5 +3341,13 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Methu anfon y negeseuon ymlaen gan nad ydyn nhw ar gael</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Wedi cyrraedd y terfyn</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Ychwanegu neges</string>
+  <string name="ImageEditorHud__cancel">Canslo</string>
+  <string name="ImageEditorHud__blur">Pylu</string>
+  <string name="ImageEditorHud__undo">Dadwneud</string>
+  <string name="MediaCountIndicatorButton__send">Anfon</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Tapio i ddewis</string>
+  <string name="MediaReviewImagePageFragment__discard">Dileu</string>
   <!--EOF-->
 </resources>

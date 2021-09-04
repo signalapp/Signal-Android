@@ -1300,6 +1300,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
   <string name="RegistrationActivity_rate_limited_to_service">Hai fatto troppi tentativi per registrare questo numero. Per favore riprova più tardi.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossibile connettersi al servizio. Per favore controlla la connessione a internet e riprova</string>
+  <string name="RegistrationActivity_call_requested">Chiamata richiesta</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ti manca solo %d passo per inviare un log di debug.</item>
     <item quantity="other">Ti mancano solo %d passi per inviare un log di debug.</item>
@@ -1827,21 +1828,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Inserisci un nome o un numero</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua crittografia con %s, confronta il numero sopra con il numero sul suo dispositivo. Altrimenti, puoi scansionare il codice sul suo telefono o chiedergli di scansionare il tuo codice. <a href="https://signal.org/redirect/safety-numbers">Maggiori informazioni.</a>]]></string> -->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Per verificare la sicurezza della tua crittografia end-to-end con %s, confronta i numeri sopra con il loro dispositivo. Puoi anche scansionare il codice sul loro telefono. <a href="https://signal.org/redirect/safety-numbers">Maggiori informazioni.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
+  <string name="verify_display_fragment__successful_match">Verifica riuscita</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Verifica del numero di sicurezza non riuscita</string>
   <string name="verify_display_fragment__loading">Caricamento…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Verificato</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Segna come verificato</string>
+  <string name="verify_display_fragment__clear_verification">Rimuovi verifica</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Condivi numero sicuro</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scansiona il codice QR sul dispositivo del tuo contatto.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Trascina in alto per rispondere</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Trascina in basso per rifiutare</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alcuni problemi necessitano della tua attenzione.</string>
-  <string name="message_details_header__sent">Inviato</string>
-  <string name="message_details_header__received">Ricevuto</string>
-  <string name="message_details_header__disappears">Scomparso</string>
-  <string name="message_details_header__via">Tramite</string>
+  <string name="message_details_header__sent">Inviato:</string>
+  <string name="message_details_header__received">Ricevuto:</string>
+  <string name="message_details_header__disappears">Scompare:</string>
+  <string name="message_details_header__via">Tramite:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">In attesa</string>
   <string name="message_details_recipient_header__sent_to">Inviato a</string>
@@ -2519,6 +2525,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Chiamami \n (Disponibile tra %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contatta l\'assistenza Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registrazione Signal - Codice di verifica per Android</string>
+  <string name="RegistrationActivity_incorrect_code">Codice errato</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Sconosciuto</string>
   <string name="preferences_app_protection__see_my_phone_number">Vedere il mio numero di telefono</string>
@@ -2715,8 +2722,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Impossibile riprodurre il messaggio vocale</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Messaggio vocale · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s a %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Messaggio vocale · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s a %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" è stato bloccato.</string>
@@ -3159,5 +3166,25 @@
     <item quantity="other">Non è stato possibile inoltrare i messaggi perché non sono più disponibili.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite raggiunto</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Aggiungi un messaggio</string>
+  <string name="MediaReviewFragment__add_a_reply">Aggiungi una risposta</string>
+  <string name="MediaReviewFragment__send_to">Inviato a</string>
+  <string name="ImageEditorHud__cancel">Annulla</string>
+  <string name="ImageEditorHud__draw">Disegna</string>
+  <string name="ImageEditorHud__write_text">Scrivi testo</string>
+  <string name="ImageEditorHud__add_a_sticker">Aggiungi un adesivo</string>
+  <string name="ImageEditorHud__blur">Sfuoca</string>
+  <string name="ImageEditorHud__done_editing">Termina modifiche</string>
+  <string name="ImageEditorHud__clear_all">Cancella tutto</string>
+  <string name="ImageEditorHud__undo">Annulla</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Passa da pennarello a evidenziatore e viceversa</string>
+  <string name="MediaCountIndicatorButton__send">Invia</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Clicca per rimuovere</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Clicca per selezionare</string>
+  <string name="MediaReviewImagePageFragment__discard">Elimina</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Eliminare le modifiche?</string>
+  <string name="MediaReviewFragment__view_once_message">Messaggio visualizzabile una volta</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perderai tutte le modifiche che hai fatto a questa foto.</string>
   <!--EOF-->
 </resources>

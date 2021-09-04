@@ -1759,21 +1759,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>పేరు లేదా సంఖ్యను రాయండి</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[మీరు మీ ఎన్క్రిప్షన్ యొక్క భద్రతను ధృవీకరించాలనుకుంటే %s, వారి పరికరంలో ఉన్న సంఖ్యతో ఉన్న సంఖ్యను సరిపోల్చండి. ప్రత్యామ్నాయంగా, మీరు వారి ఫోన్లో కోడ్ను స్కాన్ చేయవచ్చు లేదా మీ కోడ్ను స్కాన్ చేయమని అడగవచ్చు. <a href="https://signal.org/redirect/safety-numbers">ఇంకా నేర్చుకో.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">స్కాన్ నొక్కండి</string>
   <string name="verify_display_fragment__loading">లోడ్…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">ధృవీకరించబడింది</string> -->
+  <string name="verify_display_fragment__mark_as_verified">ధృవీకరించినట్లు గుర్తించండి</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">భద్రతా సంఖ్యను పంచు</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">సమాధానం ఇవ్వడానికి స్వైప్ అప్ చేయండి</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">తిరస్కరించడానికి క్రిందికి స్వైప్ చేయండి</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">కొన్ని సమస్యలకు మీ శ్రద్ధ అవసరం.</string>
-  <string name="message_details_header__sent">పంపిన</string>
-  <string name="message_details_header__received">అందుకున్న</string>
-  <string name="message_details_header__disappears">అదృశ్యమవుతుంది</string>
-  <string name="message_details_header__via">ద్వారా</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">పెండింగ్‌లో ఉంది</string>
   <string name="message_details_recipient_header__sent_to">పంపాను</string>
@@ -2449,8 +2445,8 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">లింక్ ప్రస్తుతం సక్రియంగా లేదు</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">వాయిస్ సందేశం · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sకు%2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">వాయిస్ సందేశం · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sకు%2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" బ్లాక్ చేయబడింది.</string>
@@ -2757,5 +2753,11 @@
     <item quantity="other">సందేశాలు పంపబడలేదు</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">పరిమితి చేరుకుంది</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">రద్దు</string>
+  <string name="ImageEditorHud__undo">దిద్దుబాటు</string>
+  <string name="MediaCountIndicatorButton__send">పంపు</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">ఎంచుకోవడానికి నొక్కండి</string>
+  <string name="MediaReviewImagePageFragment__discard">తీసివేయు</string>
   <!--EOF-->
 </resources>

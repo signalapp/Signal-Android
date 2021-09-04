@@ -1766,21 +1766,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Sisesta nimi või number</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kui soovid kinnitada oma krüpteeringut kasutajaga %s, võrdle ülalolevat numbrit nende seadmes oleva numbriga. Võid ka skaneerida nende telefonis olevat koodi või paluda tal skaneerida sinu oma. <a href="https://signal.org/redirect/safety-numbers">Lisateave.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Koputa skäneerimiseks</string>
   <string name="verify_display_fragment__loading">Laadimine…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Kinnitatud</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Märgi kinnitatuks</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaga turvanumbrit</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Viipa vastamiseks üles</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Viipa keeldumiseks alla</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Mõned probleemid vajavad su tähelepanu.</string>
-  <string name="message_details_header__sent">Saadetud</string>
-  <string name="message_details_header__received">Vastuvõetud</string>
-  <string name="message_details_header__disappears">Haihtub</string>
-  <string name="message_details_header__via">Saatmisviis:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Ootel</string>
   <string name="message_details_recipient_header__sent_to">Saajale</string>
@@ -2568,8 +2564,8 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">See link ei ole hetkel aktiivne</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Häälsõnum · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s saajale %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Häälsõnum · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s saajale %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" on blokitud</string>
@@ -2904,5 +2900,12 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">Loobu</string>
+  <string name="ImageEditorHud__blur">Hägusta</string>
+  <string name="ImageEditorHud__undo">Võta tagasi</string>
+  <string name="MediaCountIndicatorButton__send">Saada</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Koputa valimiseks</string>
+  <string name="MediaReviewImagePageFragment__discard">Keeldu</string>
   <!--EOF-->
 </resources>

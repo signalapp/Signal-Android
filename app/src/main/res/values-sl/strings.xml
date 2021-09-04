@@ -1965,21 +1965,17 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vnesite ime ali številko</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti zasebnost vaše komunikacije z uporabnikom/co %s, primerjajte gornje število s številom na njegovi/njeni napravi. Lahko tudi skenirate kodo na njegovi/njeni napravi ali ga/jo prosite, naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
   <string name="verify_display_fragment__loading">Nalaganje …</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Potrjeno</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Označi kot potrjeno.</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deli varnostno število</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Za sprejem klica podrsajte navzgor</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Za zavrnitev klica podrsajte navzdol</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Prišlo je do težav, ki zahtevajo vašo pozornost.</string>
-  <string name="message_details_header__sent">Poslano:</string>
-  <string name="message_details_header__received">Prejeto:</string>
-  <string name="message_details_header__disappears">Izgine</string>
-  <string name="message_details_header__via">Način:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">V teku</string>
   <string name="message_details_recipient_header__sent_to">Poslano uporabniku/ci</string>
@@ -2598,6 +2594,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationActivity_call_me_instead_available_in">Raje me pokličite \n (Dostopno čez %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontaktiraj center za podporo Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registracija za storitev Signal - verifikacijska koda za Android</string>
+  <string name="RegistrationActivity_incorrect_code">Napačna koda</string>
   <string name="BackupUtil_never">Nikoli</string>
   <string name="BackupUtil_unknown">Neznano</string>
   <string name="preferences_app_protection__see_my_phone_number">vidijo mojo telefonsko številko</string>
@@ -2790,8 +2787,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Glasovnega sporočila ni bilo mogoče predvajati</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Glasovno sporočilo · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Glasovno sporočilo · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s do %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Uporabnik/ca \"%1$s\" je bil/a blokiran/a.</string>
@@ -3195,5 +3192,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">Sporočil ni bilo mogoče posredovati, ker niso več na voljo.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosežen je bil limit</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Dodaj sporočilo</string>
+  <string name="ImageEditorHud__cancel">Prekliči</string>
+  <string name="ImageEditorHud__blur">Zabriši</string>
+  <string name="ImageEditorHud__undo">Razveljavi</string>
+  <string name="MediaCountIndicatorButton__send">Pošlji</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Tapnite za izbor</string>
+  <string name="MediaReviewImagePageFragment__discard">Zavrzi</string>
   <!--EOF-->
 </resources>

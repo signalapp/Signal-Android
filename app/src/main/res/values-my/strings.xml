@@ -1667,21 +1667,16 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>နာမည် သို့မဟုတ် နံပါတ် ထည့်ပါ</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[အကယ်၍ သင်၏ လုံခြုံရေးကို %sနှင့် တိုက်ဆိုင်စစ်ဆေးလိုပါက အထက်ပါ နံပါတ်ကို သူတို့၏ ဖုန်းပေါ်တွင်ရှိသော နံပါတ်ဖြင့် တိုက်ဆိုင်စစ်ဆေးပါ။ တခြားနည်းအနေဖြင့် သူတို့၏ ဖုန်းပေါ်တွင်ရှိသော ကုတ်နံပါတ်ကို scan ဖတ်နိုင်ပါသည် သို့မဟုတ် သင်၏ ကုတ်နံပါတ်ကို သူတို့ကို scan ဖတ်ခိုင်းပါ။ <a href="https://signal.org/redirect/safety-numbers">ထပ်မံသိရှိလိုပါက </a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">စကင်ဖတ်ရန်နှိပ်ပါ</string>
   <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">အသိအမှတ်ပြုပြီးပြီ</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">လုံခြုံရေးနံပါတ်ကို မျှဝေပါ</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">ဖုန်းကိုင်ရန် အပေါ်ကို ဆွဲတင်ပါ</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ဖုန်းချရန် အောက်ကို ဆွဲချပါ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">တစ်ချို့ကိစ္စများကို သင်ကြည့်ဖို့ လိုနေသည်။</string>
-  <string name="message_details_header__sent">ပို့ပြီးပြီ</string>
-  <string name="message_details_header__received">လက်ခံရရှိသည်</string>
-  <string name="message_details_header__disappears">ပျောက်သွားမည်</string>
-  <string name="message_details_header__via">တဆင့်</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">ဆိုင်းငံ့နေသည်</string>
   <string name="message_details_recipient_header__sent_to">သို့ပို့ပြီး</string>
@@ -2527,8 +2522,8 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">၎င်းအဖွဲ့လင့်ခ်သည် အသက်မဝင်ပါ</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">အသံ မက်ဆေ့ချ် · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sမှ %2$sသို့</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">အသံ မက်ဆေ့ချ် · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s မှ %2$s သို့</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ကို ပိတ်ပယ်ထားပါသည်</string>
@@ -2822,5 +2817,9 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">ပယ်ဖျက်မယ်</string>
+  <string name="MediaCountIndicatorButton__send">ပေးပို့မယ်</string>
+  <string name="MediaReviewImagePageFragment__discard">စွန့်ပစ်သည် </string>
   <!--EOF-->
 </resources>

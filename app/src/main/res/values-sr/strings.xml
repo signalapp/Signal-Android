@@ -1900,21 +1900,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Унесите име или број</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желите да потврдите да је шифровање са %s безбедно, упоредите број изнад са бројем на њиховом уређају. Алтернативно, можете да очитате кôд са њиховог телефона или замолити их да очитају ваш кôд. <a href="https://signal.org/redirect/safety-numbers">Сазнајте више.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
   <string name="verify_display_fragment__loading">Учитавање…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Оверен/на</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Означи као проверено</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Подели безбедносни број</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Превуците ка горе да се јавите</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Превуците ка доле да одбијете</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Неки од проблема захтевају вашу пажњу.</string>
-  <string name="message_details_header__sent">Послата</string>
-  <string name="message_details_header__received">Примљена</string>
-  <string name="message_details_header__disappears">Нестаје</string>
-  <string name="message_details_header__via">Преко</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">На чекању</string>
   <string name="message_details_recipient_header__sent_to">Послато</string>
@@ -2797,8 +2793,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Гласовна порука није успешно учитана</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Гласовна порука · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s за %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Гласовна порука · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s за %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ је блокиран/на.</string>
@@ -3250,5 +3246,12 @@
     <item quantity="other">Није могуће да се проследе поруке јер више нису доступне.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Достигнут лимит</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Додати поруку</string>
+  <string name="ImageEditorHud__cancel">Поништи</string>
+  <string name="ImageEditorHud__undo">Опозови</string>
+  <string name="MediaCountIndicatorButton__send">Пошаљи</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Додирни за избор</string>
+  <string name="MediaReviewImagePageFragment__discard">Одбаци</string>
   <!--EOF-->
 </resources>

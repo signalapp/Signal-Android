@@ -1826,21 +1826,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Settu inn nafn eða símanúmer</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ef þú vilt sannreyna öryggi enda-í-enda dulritunarinnar þinnar með %s, skaltu bera tölurnar hér fyrir ofan saman við tölurnar á viðkomandi tækjum. Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um að skanna kóðann þinn. <a href="https://signal.org/redirect/safety-numbers">Kanna nánar.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Ýttu til að skanna</string>
   <string name="verify_display_fragment__loading">Hleð inn…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Sannreynt</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Merkja sem staðfest</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deila öryggisnúmeri</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Strjúka upp til að svara</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Strjúka niður til að hafna</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Nokkur vandamál krefjast athygli þinnar.</string>
-  <string name="message_details_header__sent">Sent</string>
-  <string name="message_details_header__received">Móttekið</string>
-  <string name="message_details_header__disappears">Hverfur</string>
-  <string name="message_details_header__via">Með</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Í bið</string>
   <string name="message_details_recipient_header__sent_to">Sent til</string>
@@ -2717,8 +2713,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Mistókst að spila talskilaboð</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Talskilaboð - %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Talskilaboð - %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s til %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" hefur verið útilokaður.</string>
@@ -3161,5 +3157,11 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
     <item quantity="other">Tókst ekki að senda skilaboð því þau eru ekki lengur tiltæk.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Takmörkum náð</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Bæta við skilaboðum</string>
+  <string name="ImageEditorHud__cancel">Hætta við</string>
+  <string name="ImageEditorHud__undo">Afturkalla</string>
+  <string name="MediaCountIndicatorButton__send">Senda</string>
+  <string name="MediaReviewImagePageFragment__discard">Henda</string>
   <!--EOF-->
 </resources>

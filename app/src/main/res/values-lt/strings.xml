@@ -1370,7 +1370,7 @@
     <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
   </plurals>
   <string name="WebRtcCallView__flip">Apversti</string>
-  <string name="WebRtcCallView__speaker">Garsiakalbis</string>
+  <string name="WebRtcCallView__speaker">Garsiai</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Be garso</string>
   <string name="WebRtcCallView__ring">Skambinti</string>
@@ -1426,6 +1426,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų adresatų</string>
   <string name="RegistrationActivity_rate_limited_to_service">Atlikote per daug bandymų užregistruoti šį numerį. Vėliau bandykite dar kartą.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
+  <string name="RegistrationActivity_call_requested">Užklausta skambučio</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Dabar jums liko %d žingsnis iki derinimo žurnalo pateikimo.</item>
     <item quantity="few">Dabar jums liko %d žingsniai iki derinimo žurnalo pateikimo.</item>
@@ -1977,21 +1978,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Įveskite vardą ar numerį</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu šio adresato įrenginyje. Arba kitu atveju, galite nuskenuoti kodą jo telefone arba paprašyti adresato, kad nuskenuotų jūsų kodą. <a href="https://signal.org/redirect/safety-numbers">Sužinokite daugiau.</a>]]></string> -->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Norėdami patvirtinti savo ištisinio šifravimo su %s saugumą, palyginkite aukščiau esančius skaičius su skaičiais šio adresato įrenginyje. Taip pat galite nuskenuoti kodą adresato telefone. <a href="https://signal.org/redirect/safety-numbers">Sužinokite daugiau.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Bakstelėkite, norėdami nuskenuoti</string>
+  <string name="verify_display_fragment__successful_match">Sėkminga atitiktis</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Nepavyko patvirtinti saugumo numerio</string>
   <string name="verify_display_fragment__loading">Įkeliama…</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Patvirtinta(-s)</string> -->
+  <string name="verify_display_fragment__mark_as_verified">Žymėti kaip patvirtintą</string>
+  <string name="verify_display_fragment__clear_verification">Išvalyti patvirtinimą</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dalintis saugumo numeriu</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Nuskenuokite QR kodą adresato įrenginyje.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Perbraukite aukštyn, norėdami atsiliepti</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Perbraukite žemyn, norėdami atmesti</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Kai kurios problemos reikalauja jūsų dėmesio.</string>
-  <string name="message_details_header__sent">Išsiųsta</string>
-  <string name="message_details_header__received">Gauta</string>
-  <string name="message_details_header__disappears">Išnyksta</string>
-  <string name="message_details_header__via">Per</string>
+  <string name="message_details_header__sent">Išsiųsta:</string>
+  <string name="message_details_header__received">Gauta:</string>
+  <string name="message_details_header__disappears">Išnyksta:</string>
+  <string name="message_details_header__via">Per:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Laukiama</string>
   <string name="message_details_recipient_header__sent_to">Kam išsiųsta</string>
@@ -2685,6 +2691,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Vietoj to, man paskambinkite \n (Prieinama po %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Susisiekti su Signal palaikymu</string>
   <string name="RegistrationActivity_code_support_subject">Signal registracija - Patvirtinimo kodas, skirtas Android</string>
+  <string name="RegistrationActivity_incorrect_code">Neteisingas kodas</string>
   <string name="BackupUtil_never">Niekada</string>
   <string name="BackupUtil_unknown">Nežinoma</string>
   <string name="preferences_app_protection__see_my_phone_number">Matyti mano telefono numerį</string>
@@ -2881,8 +2888,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nepavyko atkurti balso žinutės</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Balso žinutė · %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naudotojui %2$s</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Balso žinutė · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s naudotojui %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Naudotojas „%1$s“ užblokuotas.</string>
@@ -3343,5 +3350,25 @@
     <item quantity="other">Nepavyko persiųsti žinučių, nes jos daugiau nebeprieinamos.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Pasiekta riba</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Pridėti žinutę</string>
+  <string name="MediaReviewFragment__add_a_reply">Pridėti atsakymą</string>
+  <string name="MediaReviewFragment__send_to">Kam siųsti</string>
+  <string name="ImageEditorHud__cancel">Atsisakyti</string>
+  <string name="ImageEditorHud__draw">Piešti</string>
+  <string name="ImageEditorHud__write_text">Rašyti tekstą</string>
+  <string name="ImageEditorHud__add_a_sticker">Pridėti lipduką</string>
+  <string name="ImageEditorHud__blur">Sulieti</string>
+  <string name="ImageEditorHud__done_editing">Užbaigti taisymą</string>
+  <string name="ImageEditorHud__clear_all">Viską išvalyti</string>
+  <string name="ImageEditorHud__undo">Atšaukti</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Perjungti tarp pieštuko ir markerio</string>
+  <string name="MediaCountIndicatorButton__send">Siųsti</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Bakstelėkite, norėdami pašalinti</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Bakstelėkite, norėdami pasirinkti</string>
+  <string name="MediaReviewImagePageFragment__discard">Atmesti</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Atmesti pakeitimus?</string>
+  <string name="MediaReviewFragment__view_once_message">Vienkartinės peržiūros žinutė</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Prarasite bet kokius šiai nuotraukai atliktus pakeitimus.</string>
   <!--EOF-->
 </resources>

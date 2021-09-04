@@ -1786,21 +1786,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ഒരു പേരോ നമ്പറോ നൽകുക</small></string>
   <!--verify_display_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s-നുമായി നിങ്ങളുടെ എൻ‌ക്രിപ്ഷന്റെ സുരക്ഷ പരിശോധിക്കാൻ‌ നിങ്ങൾ‌ താൽ‌പ്പര്യപ്പെടുന്നെങ്കിൽ‌, മുകളിലുള്ള നമ്പറിനെ അവരുടെ ഉപകരണത്തിലെ നമ്പറുമായി താരതമ്യം ചെയ്യുക. പകരമായി, നിങ്ങൾക്ക് അവരുടെ ഫോണിൽ കോഡ് സ്കാൻ ചെയ്യാം അല്ലെങ്കിൽ നിങ്ങളുടെ കോഡ് സ്കാൻ ചെയ്യാൻ ആവശ്യപ്പെടുക. <a href="https://signal.org/redirect/safety-numbers">കൂടുതൽ അറിയുക.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">സ്കാൻ ചെയ്യാൻ തൊടുക</string>
   <string name="verify_display_fragment__loading">ലഭ്യമാക്കുന്നു</string>
-  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">പരിശോധിച്ചു </string> -->
+  <string name="verify_display_fragment__mark_as_verified">പരിശോധിച്ചതായി അടയാളപ്പെടുത്തുക</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">സുരക്ഷാ നമ്പർ പങ്കിടുക</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">ഉത്തരം നൽകാൻ മുകളിലേക്ക് സ്വൈപ്പുചെയ്യുക</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">നിരസിക്കാൻ താഴേക്ക് സ്വൈപ്പുചെയ്യുക</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">ചില പ്രശ്‌നങ്ങൾക്ക് നിങ്ങളുടെ ശ്രദ്ധ ആവശ്യമാണ്.</string>
-  <string name="message_details_header__sent">അയച്ചു</string>
-  <string name="message_details_header__received">ലഭിച്ചു</string>
-  <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്ന</string>
-  <string name="message_details_header__via">വഴി</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">ശേഷിക്കുന്നു</string>
   <string name="message_details_recipient_header__sent_to">അയച്ചത്</string>
@@ -2675,8 +2671,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ശബ്ദ സന്ദേശം പ്ലേ ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">വോയിസ് മെസേജ് - %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s-നോട്</string> -->
+  <string name="VoiceNoteMediaItemFactory__voice_message">വോയിസ് മെസേജ് - %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s %2$s-നോട്</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" - നെ തടഞ്ഞു</string>
@@ -3111,5 +3107,12 @@
     <item quantity="one">സന്ദേശം അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
     <item quantity="other">സന്ദേശങ്ങള്‍ അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
   </plurals>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
+  <string name="ImageEditorHud__cancel">റദ്ദാക്കൂ</string>
+  <string name="ImageEditorHud__undo">തിരിച്ചാക്കുക</string>
+  <string name="MediaCountIndicatorButton__send">അയയ്‌ക്കുക</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">തിരഞ്ഞെടുക്കാൻ ടാപ്പുചെയ്യുക</string>
+  <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
   <!--EOF-->
 </resources>
