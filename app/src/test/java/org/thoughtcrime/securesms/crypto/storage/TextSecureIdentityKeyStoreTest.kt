@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.crypto.storage
 
 import android.content.Context
 import junit.framework.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
@@ -12,11 +13,17 @@ import org.thoughtcrime.securesms.database.model.IdentityStoreRecord
 import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.libsignal.ecc.ECPublicKey
+import org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS
 
 class TextSecureIdentityKeyStoreTest {
 
   companion object {
     private const val ADDRESS = "address1"
+  }
+
+  @Before
+  fun ensureNativeSupported() {
+    assumeLibSignalSupportedOnOS()
   }
 
   @Test
