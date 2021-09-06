@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Сэсія</string>
-    <string name="yes">Так</string>
-    <string name="no">Не</string>
-    <string name="delete">Выдаліць</string>
-    <string name="ban">Заблакаваць</string>
-    <string name="please_wait">Пачакайце, калі ласка...</string>
-    <string name="save">Захаваць</string>
+    <string name="app_name">Session</string>
+    <string name="yes">ඔව්</string>
+    <string name="no">නැහැ</string>
+    <string name="delete">Delete</string>
+    <string name="ban">Ban</string>
+    <string name="please_wait">කරුණාකර රැඳෙන්න...</string>
+    <string name="save">සුරකින්න</string>
     <string name="note_to_self">Note to Self</string>
-    <string name="version_s">Version %s</string>
+    <string name="version_s">අනුවාදය %s</string>
     <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">Новыя паведамленні</string>
+    <string name="AbstractNotificationBuilder_new_message">නව පණිවිඩය</string>
     <!-- AlbumThumbnailView -->
     <string name="AlbumThumbnailView_plus">\+%d</string>
     <!-- ApplicationPreferencesActivity -->
     <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
         <item quantity="one">%d message per conversation</item>
-        <item quantity="few">%d messages per conversation</item>
-        <item quantity="many">%d messages per conversation</item>
         <item quantity="other">%d messages per conversation</item>
     </plurals>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
     <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">This will immediately trim all conversations to the most recent message.</item>
-        <item quantity="few">This will immediately trim all conversations to the %d most recent messages.</item>
-        <item quantity="many">This will immediately trim all conversations to the %d most recent messages.</item>
         <item quantity="other">This will immediately trim all conversations to the %d most recent messages.</item>
     </plurals>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
-    <string name="ApplicationPreferencesActivity_On">On</string>
-    <string name="ApplicationPreferencesActivity_Off">Off</string>
+    <string name="ApplicationPreferencesActivity_On">සක්‍රීයයි</string>
+    <string name="ApplicationPreferencesActivity_Off">අක්‍රීයයි</string>
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(image)</string>
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -43,47 +39,47 @@
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
     <!-- BucketedThreadMedia -->
-    <string name="BucketedThreadMedia_Today">Today</string>
-    <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
-    <string name="BucketedThreadMedia_This_week">This week</string>
-    <string name="BucketedThreadMedia_This_month">This month</string>
+    <string name="BucketedThreadMedia_Today">අද</string>
+    <string name="BucketedThreadMedia_Yesterday">ඊයේ</string>
+    <string name="BucketedThreadMedia_This_week">මෙම සතිය</string>
+    <string name="BucketedThreadMedia_This_month">මෙම මාසය</string>
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_groups">Groups</string>
+    <string name="ContactsCursorLoader_groups">සමූහ</string>
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Send failed, tap for details</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Received key exchange message, tap to process.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
-    <string name="ConversationItem_copied_text">Copied %s</string>
-    <string name="ConversationItem_read_more">Read More</string>
+    <string name="ConversationItem_copied_text">%s පිටපත් විය</string>
+    <string name="ConversationItem_read_more">තව කියවන්න</string>
     <string name="ConversationItem_download_more">&#160; Download More</string>
     <string name="ConversationItem_pending">&#160; Pending</string>
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Add attachment</string>
     <string name="ConversationActivity_select_contact_info">Select contact info</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sorry, there was an error setting your attachment.</string>
-    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_message">පණිවිඩය</string>
     <string name="ConversationActivity_compose">Compose</string>
     <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
     <string name="ConversationActivity_muted_forever">Muted</string>
-    <string name="ConversationActivity_member_count">%1$d members</string>
+    <string name="ConversationActivity_member_count">සාමාජිකයින් %1$d</string>
     <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     <string name="ConversationActivity_added_to_home_screen">Added to home screen</string>
-    <string name="ConversationActivity_leave_group">Leave group?</string>
+    <string name="ConversationActivity_leave_group">සමූහය හැරයනවාද?</string>
     <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Are you sure you want to leave this group?</string>
-    <string name="ConversationActivity_error_leaving_group">Error leaving group</string>
-    <string name="ConversationActivity_unblock_this_contact_question">Unblock this contact?</string>
+    <string name="ConversationActivity_error_leaving_group">සමූහය හැරයාමේ දෝෂයකි</string>
+    <string name="ConversationActivity_unblock_this_contact_question">සබඳතාවය අනවහිර කරනවාද?</string>
     <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">You will once again be able to receive messages and calls from this contact.</string>
-    <string name="ConversationActivity_unblock">Unblock</string>
+    <string name="ConversationActivity_unblock">අනවහිර</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
-    <string name="ConversationActivity_invite_to_open_group">Add members</string>
-    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_invite_to_open_group">සාමාජිකයින් එකතු කරන්න</string>
+    <string name="ConversationActivity_join_open_group">%s ට එක්වන්න</string>
     <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Session needs microphone access to send audio messages.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session needs microphone access to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
@@ -93,57 +89,43 @@
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session needs camera access to take photos or videos.</string>
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d of %2$d</string>
-    <string name="ConversationActivity_no_results">No results</string>
+    <string name="ConversationActivity_no_results">ප්‍රතිඵල නැත</string>
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d unread message</item>
-        <item quantity="few">%d unread messages</item>
-        <item quantity="many">%d unread messages</item>
-        <item quantity="other">%d unread messages</item>
+        <item quantity="one">නොකියවූ පණිවිඩ %d යි</item>
+        <item quantity="other">නොකියවූ පණිවිඩ %d යි</item>
     </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Delete selected message?</item>
-        <item quantity="few">Delete selected messages?</item>
-        <item quantity="many">Delete selected messages?</item>
         <item quantity="other">Delete selected messages?</item>
     </plurals>
     <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
         <item quantity="one">This will permanently delete the selected message.</item>
-        <item quantity="few">This will permanently delete all %1$d selected messages.</item>
-        <item quantity="many">This will permanently delete all %1$d selected messages.</item>
         <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
     <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="few">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="many">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
         <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Error while saving attachment to storage!</item>
-        <item quantity="few">Error while saving attachments to storage!</item>
-        <item quantity="many">Error while saving attachments to storage!</item>
         <item quantity="other">Error while saving attachments to storage!</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="few">Saving %1$d attachments</item>
-        <item quantity="many">Saving %1$d attachments</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">ඇමුණුම සුරැකෙමින්</item>
+        <item quantity="other">ඇමුණුම් %1$d සුරැකෙමින්</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage...</item>
-        <item quantity="few">Saving %1$d attachments to storage...</item>
-        <item quantity="many">Saving %1$d attachments to storage...</item>
-        <item quantity="other">Saving %1$d attachments to storage...</item>
+        <item quantity="one">ඇමුණුම ආචයනයට සුරැකෙමින්...</item>
+        <item quantity="other">ඇමුණුම් %1$d ක් ආචයනයට සුරැකෙමින්...</item>
     </plurals>
     <string name="ConversationFragment_pending">Pending...</string>
     <string name="ConversationFragment_push">Data (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_mms">මාධ්‍ය පණිවිඩ</string>
+    <string name="ConversationFragment_sms">කෙටි පණිවිඩය</string>
     <string name="ConversationFragment_deleting">Deleting</string>
     <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
     <string name="ConversationFragment_banning">Banning</string>
@@ -151,7 +133,7 @@
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
     <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Key exchange message</string>
+    <string name="ConversationListItem_key_exchange_message">යතුර හුවමාරු පණිවිඩය</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
     <!-- CustomDefaultPreference -->
@@ -159,14 +141,14 @@
     <string name="CustomDefaultPreference_using_default">Using default: %s</string>
     <string name="CustomDefaultPreference_none">None</string>
     <!-- DateUtils -->
-    <string name="DateUtils_just_now">Now</string>
-    <string name="DateUtils_minutes_ago">%d min</string>
-    <string name="DateUtils_today">Today</string>
-    <string name="DateUtils_yesterday">Yesterday</string>
+    <string name="DateUtils_just_now">දැන්</string>
+    <string name="DateUtils_minutes_ago">විනාඩි %d</string>
+    <string name="DateUtils_today">අද</string>
+    <string name="DateUtils_yesterday">ඊයේ</string>
     <!-- DeviceListItem -->
-    <string name="DeviceListItem_today">Today</string>
+    <string name="DeviceListItem_today">අද</string>
     <!-- DocumentView -->
-    <string name="DocumentView_unknown_file">Unknown file</string>
+    <string name="DocumentView_unknown_file">නොදන්නා ගොනුවකි</string>
     <!-- GiphyActivity -->
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error while retrieving full resolution GIF</string>
     <!-- GiphyFragmentPageAdapter -->
@@ -178,69 +160,63 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Unable to find message</string>
-    <string name="LongMessageActivity_message_from_s">Message from %1$s</string>
-    <string name="LongMessageActivity_your_message">Your message</string>
+    <string name="LongMessageActivity_message_from_s">%1$s වෙතින් පණිවිඩය</string>
+    <string name="LongMessageActivity_your_message">ඔබගේ පණීවිඩය</string>
     <!-- MediaOverviewActivity -->
-    <string name="MediaOverviewActivity_Media">Media</string>
+    <string name="MediaOverviewActivity_Media">මාධ්‍යය</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Delete selected message?</item>
-        <item quantity="few">Delete selected messages?</item>
-        <item quantity="many">Delete selected messages?</item>
         <item quantity="other">Delete selected messages?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">This will permanently delete the selected message.</item>
-        <item quantity="few">This will permanently delete all %1$d selected messages.</item>
-        <item quantity="many">This will permanently delete all %1$d selected messages.</item>
         <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages...</string>
-    <string name="MediaOverviewActivity_Documents">Documents</string>
+    <string name="MediaOverviewActivity_Documents">ලේඛන</string>
     <string name="MediaOverviewActivity_Select_all">Select all</string>
     <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments...</string>
     <!-- NotificationMmsMessageRecord -->
-    <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
-    <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloading MMS message</string>
+    <string name="NotificationMmsMessageRecord_multimedia_message">බහුමාධ්‍ය පණිවිඩය</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">මාධ්‍ය පණිවිඩය බාගතවෙමින්</string>
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Error downloading MMS message, tap to retry</string>
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">Send to %s</string>
+    <string name="MediaPickerActivity_send_to">%s ට යවන්න</string>
     <!-- MediaSendActivity -->
     <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
     <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
-    <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <string name="MediaSendActivity_message_to_s">%s වෙත පණිවිඩය</string>
     <plurals name="MediaSendActivity_cant_share_more_than_n_items">
         <item quantity="one">You can\'t share more than %d item.</item>
-        <item quantity="few">You can\'t share more than %d items.</item>
-        <item quantity="many">You can\'t share more than %d items.</item>
         <item quantity="other">You can\'t share more than %d items.</item>
     </plurals>
     <!-- MediaRepository -->
-    <string name="MediaRepository_all_media">All media</string>
+    <string name="MediaRepository_all_media">සියලුම මාධ්‍යය</string>
     <!-- MessageRecord -->
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Session that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
     <string name="MessageRecord_s_updated_group">%s updated the group.</string>
     <!-- ExpirationDialog -->
-    <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
-    <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
+    <string name="ExpirationDialog_disappearing_messages">නොපෙනී යන පණිවිඩ</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">ඔබගේ පණිවිඩ කල් ඉකුත් නොවනු ඇත.</string>
     <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Messages sent and received in this conversation will disappear %s after they have been seen.</string>
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
+    <string name="RecipientPreferenceActivity_block_this_contact_question">මෙම සබඳතාවය අවහිර කරනවාද?</string>
     <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">You will no longer receive messages and calls from this contact.</string>
-    <string name="RecipientPreferenceActivity_block">Block</string>
-    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
+    <string name="RecipientPreferenceActivity_block">අවහිර</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">මෙම සබඳතාවය අනවහිර කරනවාද?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">You will once again be able to receive messages and calls from this contact.</string>
-    <string name="RecipientPreferenceActivity_unblock">Unblock</string>
+    <string name="RecipientPreferenceActivity_unblock">අනවහිර</string>
     <string name="RecipientPreferenceActivity_notification_settings">Notification settings</string>
     <!-- Slide -->
     <string name="Slide_image">Image</string>
-    <string name="Slide_audio">Audio</string>
-    <string name="Slide_video">Video</string>
+    <string name="Slide_audio">ශ්‍රව්‍ය</string>
+    <string name="Slide_video">දෘශ්‍ය</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Received corrupted key
         exchange message!
@@ -259,7 +235,7 @@
     <string name="ThreadRecord_called">You called</string>
     <string name="ThreadRecord_called_you">Called you</string>
     <string name="ThreadRecord_missed_call">Missed call</string>
-    <string name="ThreadRecord_media_message">Media message</string>
+    <string name="ThreadRecord_media_message">මාධ්‍යය පණිවිඩය</string>
     <string name="ThreadRecord_s_is_on_signal">%s is on Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
@@ -283,11 +259,11 @@
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Mute notifications</string>
     <!-- KeyCachingService -->
-    <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
+    <string name="KeyCachingService_signal_passphrase_cached">විවෘතකිරීමට තට්ටුකරන්න.</string>
     <string name="KeyCachingService_passphrase_cached">Session is unlocked</string>
     <string name="KeyCachingService_lock">Lock Session</string>
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">You</string>
+    <string name="MediaPreviewActivity_you">ඔබ</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
     <string name="MediaPreviewActivity_draft">Draft</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs storage access in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
@@ -298,25 +274,25 @@
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
     <string name="MessageNotifier_locked_message">Locked message</string>
-    <string name="MessageNotifier_message_delivery_failed">Message delivery failed.</string>
-    <string name="MessageNotifier_failed_to_deliver_message">Failed to deliver message.</string>
+    <string name="MessageNotifier_message_delivery_failed">පණිවිඩය බාරදීමට අසමත්විය.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">පණිවිඩය බාරදීමට අසමත්විය.</string>
     <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
     <string name="MessageNotifier_mark_read">Mark read</string>
-    <string name="MessageNotifier_reply">Reply</string>
+    <string name="MessageNotifier_reply">පිළිතුරු</string>
     <string name="MessageNotifier_pending_signal_messages">Pending Session messages</string>
     <string name="MessageNotifier_you_have_pending_signal_messages">You have pending Session messages, tap to open and retrieve</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
-    <string name="MessageNotifier_unknown_contact_message">Contact</string>
+    <string name="MessageNotifier_unknown_contact_message">සබඳතාව</string>
     <!-- Notification Channels -->
     <string name="NotificationChannel_messages">Default</string>
-    <string name="NotificationChannel_calls">Calls</string>
+    <string name="NotificationChannel_calls">ඇමතුම්</string>
     <string name="NotificationChannel_failures">Failures</string>
-    <string name="NotificationChannel_backups">Backups</string>
+    <string name="NotificationChannel_backups">උපස්ථ</string>
     <string name="NotificationChannel_locked_status">Lock status</string>
-    <string name="NotificationChannel_app_updates">App updates</string>
-    <string name="NotificationChannel_other">Other</string>
-    <string name="NotificationChannel_group_messages">Messages</string>
+    <string name="NotificationChannel_app_updates">යෙදුම් යාවත්කාල</string>
+    <string name="NotificationChannel_other">වෙනත්</string>
+    <string name="NotificationChannel_group_messages">පණිවිඩ</string>
     <string name="NotificationChannel_missing_display_name">Unknown</string>
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Session is locked!</string>
@@ -325,26 +301,24 @@
     <string name="SaveAttachmentTask_saved_to">Saved to %s</string>
     <string name="SaveAttachmentTask_saved">Saved</string>
     <!-- SearchToolbar -->
-    <string name="SearchToolbar_search">Search</string>
+    <string name="SearchToolbar_search">සොයන්න</string>
     <!-- ShortcutLauncherActivity -->
-    <string name="ShortcutLauncherActivity_invalid_shortcut">Invalid shortcut</string>
+    <string name="ShortcutLauncherActivity_invalid_shortcut">වලංගු නොවන කෙටිමඟකි</string>
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Session</string>
-    <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">නව පණිවිඩය</string>
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
         <item quantity="one">%d Item</item>
-        <item quantity="few">%d Items</item>
-        <item quantity="many">%d Items</item>
         <item quantity="other">%d Items</item>
     </plurals>
     <!-- VideoPlayer -->
-    <string name="VideoPlayer_error_playing_video">Error playing video</string>
+    <string name="VideoPlayer_error_playing_video">දෘශ්‍යකය වාදන දෝෂයකි</string>
     <!-- attachment_type_selector -->
-    <string name="attachment_type_selector__audio">Audio</string>
-    <string name="attachment_type_selector__audio_description">Audio</string>
-    <string name="attachment_type_selector__contact">Contact</string>
-    <string name="attachment_type_selector__contact_description">Contact</string>
+    <string name="attachment_type_selector__audio">ශ්‍රව්‍ය</string>
+    <string name="attachment_type_selector__audio_description">ශ්‍රව්‍ය</string>
+    <string name="attachment_type_selector__contact">සබඳතාව</string>
+    <string name="attachment_type_selector__contact_description">සබඳතාව</string>
     <string name="attachment_type_selector__camera">Camera</string>
     <string name="attachment_type_selector__camera_description">Camera</string>
     <string name="attachment_type_selector__location">Location</string>
@@ -369,23 +343,23 @@
     <string name="conversation_activity__enable_signal_for_sms">Enable Session for SMS</string>
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Slide to cancel</string>
-    <string name="conversation_input_panel__cancel">Cancel</string>
+    <string name="conversation_input_panel__cancel">අවලංගු</string>
     <!-- conversation_item -->
-    <string name="conversation_item__mms_image_description">Media message</string>
-    <string name="conversation_item__secure_message_description">Secure message</string>
+    <string name="conversation_item__mms_image_description">මාධ්‍යය පණිවිඩය</string>
+    <string name="conversation_item__secure_message_description">ආරක්ෂිත පණීවිඩය</string>
     <!-- conversation_item_sent -->
-    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">යැවීමට අසමත්විය</string>
     <string name="conversation_item_sent__pending_approval_description">Pending Approval</string>
-    <string name="conversation_item_sent__delivered_description">Delivered</string>
+    <string name="conversation_item_sent__delivered_description">බාරදුනි</string>
     <string name="conversation_item_sent__message_read">Message read</string>
     <!-- conversation_item_received -->
     <string name="conversation_item_received__contact_photo_description">Contact photo</string>
     <!-- audio_view -->
-    <string name="audio_view__play_accessibility_description">Play</string>
+    <string name="audio_view__play_accessibility_description">වාදනය</string>
     <string name="audio_view__pause_accessibility_description">Pause</string>
-    <string name="audio_view__download_accessibility_description">Download</string>
+    <string name="audio_view__download_accessibility_description">බාගන්න</string>
     <!-- open_group_invitation_view -->
-    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__join_accessibility_description">එක්වන්න</string>
     <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
     <string name="open_group_guidelines_pinned_message">Pinned message</string>
     <string name="open_group_guidelines_community_guidelines">Community guidelines</string>
@@ -394,7 +368,7 @@
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>
     <string name="QuoteView_photo">Photo</string>
-    <string name="QuoteView_you">You</string>
+    <string name="QuoteView_you">ඔබ</string>
     <string name="QuoteView_original_missing">Original message not found</string>
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
@@ -404,13 +378,13 @@
     <string name="giphy_fragment__nothing_found">Nothing found</string>
     <!-- load_more_header -->
     <string name="load_more_header__see_full_conversation">See full conversation</string>
-    <string name="load_more_header__loading">Loading</string>
+    <string name="load_more_header__loading">පූරණය වෙමින්</string>
     <!-- media_overview_activity -->
-    <string name="media_overview_activity__no_media">No media</string>
+    <string name="media_overview_activity__no_media">මාධ්‍යය නැත</string>
     <!-- message_recipients_list_item -->
-    <string name="message_recipients_list_item__resend">RESEND</string>
+    <string name="message_recipients_list_item__resend">නැවත යවන්න</string>
     <!-- recipient_preferences -->
-    <string name="recipient_preferences__block">Block</string>
+    <string name="recipient_preferences__block">අවහිර</string>
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
     <string name="message_details_header__sent">Sent</string>
@@ -453,8 +427,6 @@
     <!-- plurals.xml -->
     <plurals name="hours_ago">
         <item quantity="one">%d hour</item>
-        <item quantity="few">%d hours</item>
-        <item quantity="many">%d hours</item>
         <item quantity="other">%d hours</item>
     </plurals>
     <!-- preferences.xml -->
@@ -478,13 +450,13 @@
     <string name="preferences__five_times">Five times</string>
     <string name="preferences__ten_times">Ten times</string>
     <string name="preferences__vibrate">Vibrate</string>
-    <string name="preferences__green">Green</string>
-    <string name="preferences__red">Red</string>
-    <string name="preferences__blue">Blue</string>
-    <string name="preferences__orange">Orange</string>
+    <string name="preferences__green">කොළ</string>
+    <string name="preferences__red">රතු</string>
+    <string name="preferences__blue">නිල්</string>
+    <string name="preferences__orange">තැඹිලි</string>
     <string name="preferences__cyan">Cyan</string>
     <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__white">White</string>
+    <string name="preferences__white">සුදු</string>
     <string name="preferences__none">None</string>
     <string name="preferences__fast">Fast</string>
     <string name="preferences__normal">Normal</string>
@@ -508,7 +480,7 @@
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Session\'s built-in emoji support</string>
     <string name="preferences_app_protection__app_access">App Access</string>
     <string name="preferences_app_protection__communication">Communication</string>
-    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences_chats__chats">සංවාද</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
     <string name="preferences_notifications__show">Show</string>
@@ -537,74 +509,74 @@
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Mute notifications</string>
     <!-- conversation -->
-    <string name="conversation__menu_edit_group">Edit group</string>
-    <string name="conversation__menu_leave_group">Leave group</string>
-    <string name="conversation__menu_view_all_media">All media</string>
-    <string name="conversation__menu_add_shortcut">Add to home screen</string>
+    <string name="conversation__menu_edit_group">සමූහය සංස්කරණය</string>
+    <string name="conversation__menu_leave_group">සමූහය හැරයන්න</string>
+    <string name="conversation__menu_view_all_media">සියලුම මාධ්‍යය</string>
+    <string name="conversation__menu_add_shortcut">මුල් තිරයට එකතු කරන්න</string>
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>
     <!-- conversation_group_options -->
-    <string name="conversation_group_options__delivery">Delivery</string>
-    <string name="conversation_group_options__conversation">Conversation</string>
+    <string name="conversation_group_options__delivery">බාරදීම</string>
+    <string name="conversation_group_options__conversation">සම්භාෂණය</string>
     <string name="conversation_group_options__broadcast">Broadcast</string>
     <!-- media_preview -->
-    <string name="media_preview__save_title">Save</string>
+    <string name="media_preview__save_title">සුරකින්න</string>
     <string name="media_preview__forward_title">Forward</string>
-    <string name="media_preview__all_media_title">All media</string>
+    <string name="media_preview__all_media_title">සියලුම මාධ්‍යය</string>
     <!-- media_overview -->
-    <string name="media_overview_documents_fragment__no_documents_found">No documents</string>
+    <string name="media_overview_documents_fragment__no_documents_found">ලේඛන නැත</string>
     <!-- media_preview_activity -->
-    <string name="media_preview_activity__media_content_description">Media preview</string>
+    <string name="media_preview_activity__media_content_description">මාධ්‍යය පෙරදසුන</string>
     <!-- Trimmer -->
     <string name="trimmer__deleting">Deleting</string>
     <string name="trimmer__deleting_old_messages">Deleting old messages...</string>
     <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
     <!-- transport_selection_list_item -->
-    <string name="Permissions_permission_required">Permission required</string>
-    <string name="Permissions_continue">Continue</string>
-    <string name="Permissions_not_now">Not now</string>
+    <string name="Permissions_permission_required">අවසරය අවශ්‍යයි</string>
+    <string name="Permissions_continue">ඉදිරියට</string>
+    <string name="Permissions_not_now">දැන් නොවේ</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
-    <string name="registration_activity__skip">Skip</string>
+    <string name="registration_activity__skip">මඟහරින්න</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Session</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
-    <string name="BackupDialog_enable_local_backups">Enable local backups?</string>
-    <string name="BackupDialog_enable_backups">Enable backups</string>
+    <string name="BackupDialog_enable_local_backups">ස්ථානීය උපස්ථ සබලකරන්නද?</string>
+    <string name="BackupDialog_enable_backups">උපස්ථ සබල කරන්න</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
     <string name="BackupDialog_delete_backups">Delete backups?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
-    <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
-    <string name="LocalBackupJob_creating_backup">Creating backup...</string>
+    <string name="BackupDialog_copied_to_clipboard">පසුරුපුවරුවට පිටපත් විය</string>
+    <string name="LocalBackupJob_creating_backup">උපස්ථය සෑදෙමින්...</string>
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
     <string name="BackupUtil_never">Never</string>
-    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+    <string name="preferences_app_protection__screen_lock">තිර අගුල</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Session access with Android screen lock or fingerprint</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
     <string name="AppProtectionPreferenceFragment_none">None</string>
     <!-- Conversation activity -->
     <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
     <!-- Session -->
-    <string name="continue_2">Continue</string>
-    <string name="copy">Copy</string>
-    <string name="invalid_url">Invalid URL</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="continue_2">ඉදිරියට</string>
+    <string name="copy">පිටපත්</string>
+    <string name="invalid_url">වලංගු නොවන ඒ.ස.නි. කි</string>
+    <string name="copied_to_clipboard">පසුරුපුවරුවට පිටපත් විය</string>
     <string name="next">Next</string>
-    <string name="share">Share</string>
+    <string name="share">බෙදාගන්න</string>
     <string name="invalid_session_id">Invalid Session ID</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">අවලංගු</string>
     <string name="your_session_id">Your Session ID</string>
     <string name="activity_landing_title_2">Your Session begins here...</string>
     <string name="activity_landing_register_button_title">Create Session ID</string>
     <string name="activity_landing_restore_button_title">Continue Your Session</string>
-    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
+    <string name="view_fake_chat_bubble_1">සෙෂන් යනු කුමක්ද?</string>
     <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
     <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
     <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
     <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
     <string name="activity_register_title">Say hello to your Session ID</string>
     <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
-    <string name="activity_restore_title">Restore your account</string>
+    <string name="activity_restore_title">ගිණුම ප්‍රත්‍යර්පණය කරන්න</string>
     <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
     <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
     <string name="activity_display_name_title_2">Pick your display name</string>
@@ -612,7 +584,7 @@
     <string name="activity_display_name_edit_text_hint">Enter a display name</string>
     <string name="activity_display_name_display_name_missing_error">Please pick a display name</string>
     <string name="activity_display_name_display_name_too_long_error">Please pick a shorter display name</string>
-    <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
+    <string name="activity_pn_mode_recommended_option_tag">නිර්දේශිත</string>
     <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
     <string name="activity_home_empty_state_message">You don\'t have any contacts yet</string>
     <string name="activity_home_empty_state_button_title">Start a Session</string>
@@ -630,7 +602,7 @@
     <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
     <string name="activity_path_title">Path</string>
     <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the countries your connection is currently being bounced through:</string>
-    <string name="activity_path_device_row_title">You</string>
+    <string name="activity_path_device_row_title">ඔබ</string>
     <string name="activity_path_guard_node_row_title">Entry Node</string>
     <string name="activity_path_service_node_row_title">Service Node</string>
     <string name="activity_path_destination_row_title">Destination</string>
@@ -646,42 +618,42 @@
     <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
     <string name="activity_create_closed_group_title">New Closed Group</string>
-    <string name="activity_create_closed_group_edit_text_hint">Enter a group name</string>
+    <string name="activity_create_closed_group_edit_text_hint">සමූහ නාමයක් ඇතුල් කරන්න</string>
     <string name="activity_create_closed_group_empty_state_message">You don\'t have any contacts yet</string>
     <string name="activity_create_closed_group_empty_state_button_title">Start a Session</string>
-    <string name="activity_create_closed_group_group_name_missing_error">Please enter a group name</string>
-    <string name="activity_create_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_create_closed_group_group_name_missing_error">සමූහ නාමයක් ඇතුල් කරන්න</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">කෙටි සමූහ නාමයක් ඇතුල් කරන්න</string>
     <string name="activity_create_closed_group_not_enough_group_members_error">Please pick at least 1 group member</string>
     <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
-    <string name="activity_join_public_chat_title">Join Open Group</string>
-    <string name="activity_join_public_chat_error">Couldn\'t join group</string>
-    <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>
+    <string name="activity_join_public_chat_title">විවෘත සමූහයට එක්වන්න</string>
+    <string name="activity_join_public_chat_error">සමූහයට එක්වීමට නොහැකි විය</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">සමූහයේ ඒ.ස.නි. විවෘත කරන්න</string>
     <string name="activity_join_public_chat_scan_qr_code_tab_title">Scan QR Code</string>
     <string name="activity_join_public_chat_scan_qr_code_explanation">Scan the QR code of the open group you\'d like to join</string>
-    <string name="fragment_enter_chat_url_edit_text_hint">Enter an open group URL</string>
-    <string name="activity_settings_title">Settings</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">විවෘත සමූහ ඒ.ස.නි. ක් ඇතුල්කරන්න</string>
+    <string name="activity_settings_title">සැකසුම්</string>
     <string name="activity_settings_display_name_edit_text_hint">Enter a display name</string>
     <string name="activity_settings_display_name_missing_error">Please pick a display name</string>
     <string name="activity_settings_display_name_too_long_error">Please pick a shorter display name</string>
-    <string name="activity_settings_privacy_button_title">Privacy</string>
-    <string name="activity_settings_notifications_button_title">Notifications</string>
-    <string name="activity_settings_chats_button_title">Chats</string>
-    <string name="activity_settings_devices_button_title">Devices</string>
+    <string name="activity_settings_privacy_button_title">පෞද්ගලිකත්වය</string>
+    <string name="activity_settings_notifications_button_title">දැනුම්දීම්</string>
+    <string name="activity_settings_chats_button_title">සංවාද</string>
+    <string name="activity_settings_devices_button_title">උපාංග</string>
     <string name="activity_settings_invite_button_title">Invite a Friend</string>
-    <string name="activity_settings_faq_button_title">FAQ</string>
+    <string name="activity_settings_faq_button_title">නිති පැණ</string>
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
     <string name="activity_settings_clear_all_data_and_network_button_title">Clear Data Including Network</string>
-    <string name="activity_settings_help_translate_session">Help us Translate Session</string>
-    <string name="activity_notification_settings_title">Notifications</string>
+    <string name="activity_settings_help_translate_session">සෙෂන් පරිවර්තනයට උදව් කරන්න</string>
+    <string name="activity_notification_settings_title">දැනුම්දීම්</string>
     <string name="activity_notification_settings_style_section_title">Notification Style</string>
-    <string name="activity_notification_settings_content_section_title">Notification Content</string>
-    <string name="activity_privacy_settings_title">Privacy</string>
-    <string name="activity_chat_settings_title">Chats</string>
+    <string name="activity_notification_settings_content_section_title">දැනුම්දීමේ අන්තර්ගතය</string>
+    <string name="activity_privacy_settings_title">පෞද්ගලිකත්වය</string>
+    <string name="activity_chat_settings_title">සංවාද</string>
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Use Fast Mode</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
-    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Change name</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">නම වෙනස් කරන්න</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
     <string name="dialog_seed_title">Your Recovery Phrase</string>
     <string name="dialog_seed_explanation">This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device.</string>
@@ -694,36 +666,36 @@
     <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Scan QR Code</string>
     <string name="activity_qr_code_view_scan_qr_code_explanation">Scan someone\'s QR code to start a conversation with them</string>
-    <string name="fragment_view_my_qr_code_title">Scan Me</string>
+    <string name="fragment_view_my_qr_code_title">මෙය පරිලෝකනය</string>
     <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
     <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
-    <string name="fragment_contact_selection_contacts_title">Contacts</string>
-    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
-    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
-    <string name="fragment_contact_selection_empty_contacts">You don\'t have any contacts yet</string>
+    <string name="fragment_contact_selection_contacts_title">සබඳතා</string>
+    <string name="fragment_contact_selection_closed_groups_title">සංවෘත සමූහ</string>
+    <string name="fragment_contact_selection_open_groups_title">විවෘත සමූහ</string>
+    <string name="fragment_contact_selection_empty_contacts">ඔබට තවම කිසිම සබඳතාවක් නැත</string>
     <!-- Next round of translation -->
-    <string name="menu_apply_button">Apply</string>
+    <string name="menu_apply_button">යොදන්න</string>
     <string name="menu_done_button">Done</string>
-    <string name="activity_edit_closed_group_title">Edit Group</string>
-    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
-    <string name="activity_edit_closed_group_edit_members">Members</string>
-    <string name="activity_edit_closed_group_add_members">Add members</string>
-    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
-    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_title">සමූහය සංස්කරණය</string>
+    <string name="activity_edit_closed_group_edit_text_hint">නව සමූහ නාමයක් ඇතුල් කරන්න</string>
+    <string name="activity_edit_closed_group_edit_members">සාමාජිකයින්</string>
+    <string name="activity_edit_closed_group_add_members">සාමාජිකයින් එකතු කරන්න</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">සමූහයේ නම හිස්විය නොහැකිය</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">කෙටි සමූහ නාමයක් ඇතුල් කරන්න</string>
     <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
-    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">පරිශීලක සමූහයෙන් ඉවත් කරන්න</string>
     <string name="activity_select_contacts_title">Select Contacts</string>
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
-    <string name="dialog_ui_mode_title">Theme</string>
-    <string name="dialog_ui_mode_option_day">Day</string>
-    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_title">තේමාව</string>
+    <string name="dialog_ui_mode_option_day">දවස</string>
+    <string name="dialog_ui_mode_option_night">රාත්‍රී</string>
     <string name="dialog_ui_mode_option_system_default">System default</string>
     <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
     <string name="attachment">Attachment</string>
-    <string name="attachment_type_voice_message">Voice Message</string>
-    <string name="details">Details</string>
+    <string name="attachment_type_voice_message">හඬ පණිවිඩය</string>
+    <string name="details">විස්තර</string>
     <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
-    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_title">උපස්ථය ප්‍රත්‍යර්පණය</string>
     <string name="activity_backup_restore_select_file">Select a file</string>
     <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
@@ -733,7 +705,7 @@
     <string name="activity_link_device_scan_qr_code">Scan QR Code</string>
     <string name="activity_link_device_qr_message">Navigate to Settings → Recovery Phrase on your other device to show your QR code.</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
-    <string name="activity_pn_mode_message_notifications">Message Notifications</string>
+    <string name="activity_pn_mode_message_notifications">පණිවිඩ දැනුම්දීම්</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
     <string name="activity_pn_mode_fast_mode">Fast Mode</string>
     <string name="activity_pn_mode_slow_mode">Slow Mode</string>
@@ -741,7 +713,7 @@
     <string name="activity_pn_mode_slow_mode_explanation">Session will occasionally check for new messages in the background.</string>
     <string name="fragment_recovery_phrase_title">Recovery Phrase</string>
     <string name="activity_prompt_passphrase_session_locked">Session is Locked</string>
-    <string name="activity_prompt_passphrase_tap_to_unlock">Tap to Unlock</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">අනවහිරයට තට්ටු කරන්න</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
     <string name="invalid_public_key">Invalid public key</string>
     <string name="document">Document</string>
@@ -754,18 +726,18 @@
     <string name="open">Open</string>
     <string name="dialog_link_preview_title">Enable Link Previews?</string>
     <string name="dialog_link_preview_explanation">Enabling link previews will show previews for URLs you send and receive. This can be useful, but Session will need to contact linked websites to generate previews. You can always disable link previews in Session\'s settings.</string>
-    <string name="dialog_link_preview_enable_button_title">Enable</string>
-    <string name="dialog_download_title">Trust %s?</string>
+    <string name="dialog_link_preview_enable_button_title">සබල කරන්න</string>
+    <string name="dialog_download_title">%s විශ්වාස ද?</string>
     <string name="dialog_download_explanation">Are you sure you want to download media sent by %s?</string>
-    <string name="dialog_download_button_title">Download</string>
-    <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+    <string name="dialog_download_button_title">බාගන්න</string>
+    <string name="activity_conversation_blocked_banner_text">%s අවහිර කර ඇත. අනවහිර කරනවාද?</string>
     <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
-    <string name="media">Media</string>
-    <string name="UntrustedAttachmentView_download_attachment">Tap to download %s</string>
-    <string name="message_details_header__error">Error</string>
-    <string name="dialog_send_seed_title">Warning</string>
+    <string name="media">මාධ්‍යය</string>
+    <string name="UntrustedAttachmentView_download_attachment">%s බාගැනීමට තට්ටු කරන්න</string>
+    <string name="message_details_header__error">දෝෂය</string>
+    <string name="dialog_send_seed_title">අවවාදයයි</string>
     <string name="dialog_send_seed_explanation">This is your recovery phrase. If you send it to someone they\'ll have full access to your account.</string>
-    <string name="dialog_send_seed_send_button_title">Send</string>
+    <string name="dialog_send_seed_send_button_title">යවන්න</string>
     <string name="notify_type_all">All</string>
     <string name="notify_type_mentions">Mentions</string>
     <string name="deleted_message">This message has been deleted</string>

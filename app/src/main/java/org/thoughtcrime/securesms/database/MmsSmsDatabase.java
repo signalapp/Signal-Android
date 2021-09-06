@@ -129,7 +129,7 @@ public class MmsSmsDatabase extends Database {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    return queryTables(PROJECTION, selection, order, "1");
+    return queryTables(PROJECTION, selection, order, null);
   }
 
   public long getLastMessageID(long threadId) {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.text.Spannable
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.URLSpan
@@ -28,21 +29,21 @@ import okhttp3.HttpUrl
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.util.*
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.SearchUtil.StyleFactory
 import org.thoughtcrime.securesms.util.UiModeUtilities
-import java.net.IDN
+import org.thoughtcrime.securesms.util.getColorWithID
+import org.thoughtcrime.securesms.util.toPx
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -76,7 +77,11 @@ class VisibleMessageContentView : LinearLayout {
         mainContainer.removeAllViews()
         onContentClick = null
         onContentDoubleTap = null
-        if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
+        if (message.isDeleted) {
+            val deletedMessageView = DeletedMessageView(context)
+            deletedMessageView.bind(message, VisibleMessageContentView.getTextColor(context,message))
+            mainContainer.addView(deletedMessageView)
+        } else if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster, searchQuery)
             mainContainer.addView(linkPreviewView)
@@ -106,6 +111,10 @@ class VisibleMessageContentView : LinearLayout {
                 quoteView.getGlobalVisibleRect(r)
                 if (r.contains(event.rawX.roundToInt(), event.rawY.roundToInt())) {
                     delegate?.scrollToMessageIfPossible(quote.id)
+                } else {
+                    bodyTextView.getIntersectedModalSpans(event).forEach { span ->
+                        span.onClick(bodyTextView)
+                    }
                 }
             }
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
@@ -209,7 +218,18 @@ class VisibleMessageContentView : LinearLayout {
             val color = getTextColor(context, message)
             result.setTextColor(color)
             result.setLinkTextColor(color)
+            val body = getBodySpans(context, message, searchQuery)
+            result.text = body
+            return result
+        }
+
+        fun getBodySpans(context: Context, message: MessageRecord, searchQuery: String?): Spannable {
             var body = message.body.toSpannable()
+
+            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context)
+            body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { BackgroundColorSpan(Color.WHITE) }, body, searchQuery)
+            body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { ForegroundColorSpan(Color.BLACK) }, body, searchQuery)
+
             Linkify.addLinks(body, Linkify.WEB_URLS)
 
             // replace URLSpans with ModalURLSpans
@@ -225,13 +245,7 @@ class VisibleMessageContentView : LinearLayout {
                 body.removeSpan(urlSpan)
                 body.setSpan(replacementSpan, start, end, flags)
             }
-            
-            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context)
-            body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { BackgroundColorSpan(Color.WHITE) }, body, searchQuery)
-            body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { ForegroundColorSpan(Color.BLACK) }, body, searchQuery)
-
-            result.text = body
-            return result
+            return body
         }
 
         @ColorInt

@@ -90,11 +90,11 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   private static final String TAG = DefaultMessageNotifier.class.getSimpleName();
 
-  public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
+  public static final  String EXTRA_REMOTE_REPLY        = "extra_remote_reply";
   public static final  String LATEST_MESSAGE_ID_TAG     = "extra_latest_message_id";
 
-  private static final  int   FOREGROUND_ID             = 313399;
-  private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
+  private static final int    FOREGROUND_ID              = 313399;
+  private static final int    SUMMARY_NOTIFICATION_ID    = 1338;
   private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
   private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
@@ -284,8 +284,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
         sendMultipleThreadNotification(context, notificationState, signal);
       } else if (notificationState.getMessageCount() > 0){
         sendSingleThreadNotification(context, notificationState, signal, false);
+      } else {
+        cancelActiveNotifications(context);
       }
-
       cancelOrphanedNotifications(context, notificationState);
       updateBadge(context, notificationState.getMessageCount());
 
@@ -314,12 +315,12 @@ public class DefaultMessageNotifier implements MessageNotifier {
     List<NotificationItem>             notifications  = notificationState.getNotifications();
     Recipient                          recipient      = notifications.get(0).getRecipient();
     int                                notificationId = (int) (SUMMARY_NOTIFICATION_ID + (bundled ? notifications.get(0).getThreadId() : 0));
-    String                             messageIdTag   = String.valueOf(notifications.get(0).getId());
+    String                             messageIdTag   = String.valueOf(notifications.get(0).getTimestamp());
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
     for (StatusBarNotification notification: notificationManager.getActiveNotifications()) {
-
-      if (messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
+      if ( (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && notification.isAppGroup() == bundled)
+              && messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
         return;
       }
     }
@@ -401,6 +402,16 @@ public class DefaultMessageNotifier implements MessageNotifier {
     builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     builder.setAutoCancel(true);
 
+    String messageIdTag = String.valueOf(notifications.get(0).getTimestamp());
+
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    for (StatusBarNotification notification: notificationManager.getActiveNotifications()) {
+      if (notification.getId() == SUMMARY_NOTIFICATION_ID
+              && messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
+        return;
+      }
+    }
+
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
@@ -419,6 +430,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
       builder.setTicker(notifications.get(0).getIndividualRecipient(),
                         MentionUtilities.highlightMentions(notifications.get(0).getText(), notifications.get(0).getThreadId(), context));
     }
+
+    builder.putStringExtra(LATEST_MESSAGE_ID_TAG, messageIdTag);
 
     Notification notification = builder.build();
     NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, builder.build());

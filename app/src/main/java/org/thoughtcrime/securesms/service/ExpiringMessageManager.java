@@ -229,7 +229,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
         }
 
         if (expiredMessage != null) {
-          if (expiredMessage.mms) mmsDatabase.delete(expiredMessage.id);
+          if (expiredMessage.mms) mmsDatabase.deleteMessage(expiredMessage.id);
           else                    smsDatabase.deleteMessage(expiredMessage.id);
         }
       }

@@ -14,6 +14,7 @@ import org.session.libsession.messaging.sending_receiving.link_preview.LinkPrevi
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupRecord
 import org.session.libsession.utilities.recipients.Recipient
@@ -49,6 +50,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message)
         is DataExtractionNotification -> handleDataExtractionNotification(message)
         is ConfigurationMessage -> handleConfigurationMessage(message)
+        is UnsendRequest -> handleUnsendRequest(message)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
     }
 }
@@ -144,6 +146,23 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         }
     }
     storage.addContacts(message.contacts)
+}
+
+fun MessageReceiver.handleUnsendRequest(message: UnsendRequest) {
+    if (message.sender != message.author) { return }
+    val context = MessagingModuleConfiguration.shared.context
+    val storage = MessagingModuleConfiguration.shared.storage
+    val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+    val timestamp = message.timestamp ?: return
+    val author = message.author ?: return
+    val messageIdToDelete = storage.getMessageIdInDatabase(timestamp, author) ?: return
+    messageDataProvider.getServerHashForMessage(messageIdToDelete)?.let { serverHash ->
+        SnodeAPI.deleteMessage(author, listOf(serverHash))
+    }
+    messageDataProvider.updateMessageAsDeleted(timestamp, author)
+    if (!messageDataProvider.isOutgoingMessage(messageIdToDelete)) {
+        SSKEnvironment.shared.notificationManager.updateNotification(context)
+    }
 }
 //endregion
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="@dimen/small_spacing"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/deletedMessageViewIconImageView"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/small_spacing"
+        android:src="?menu_trash_icon"
+        app:tint="@color/text" />
+
+    <TextView
+        android:id="@+id/deleteTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="@dimen/small_spacing"
+        android:textSize="@dimen/very_small_font_size"
+        android:textColor="@color/text"
+        tools:text="This message has been deleted"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+</LinearLayout>

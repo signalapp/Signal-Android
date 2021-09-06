@@ -55,11 +55,15 @@ class HomeActivityTests {
         onView(newConversationButtonWithDrawable(R.drawable.ic_plus)).perform(ViewActions.click())
         onView(newConversationButtonWithDrawable(R.drawable.ic_message)).perform(ViewActions.click())
         // new chat
+        onView(withId(R.id.publicKeyEditText)).perform(ViewActions.closeSoftKeyboard())
         onView(withId(R.id.copyButton)).perform(ViewActions.click())
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val copied = clipboardManager.primaryClip!!.getItemAt(0).text
-        onView(withId(R.id.publicKeyEditText)).perform(ViewActions.typeText(copied.toString()))
+        lateinit var copied: String
+        InstrumentationRegistry.getInstrumentation().runOnMainSync {
+            val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            copied = clipboardManager.primaryClip!!.getItemAt(0).text.toString()
+        }
+        onView(withId(R.id.publicKeyEditText)).perform(ViewActions.typeText(copied))
         onView(withId(R.id.createPrivateChatButton)).perform(ViewActions.click())
     }
 

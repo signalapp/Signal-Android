@@ -111,12 +111,12 @@
 
     <Button
         style="@style/Widget.Session.Button.Common.ProminentOutline"
-        android:id="@+id/copyButton"
+        android:id="@+id/messageButton"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginTop="@dimen/medium_spacing"
         android:paddingLeft="@dimen/large_spacing"
         android:paddingRight="@dimen/large_spacing"
-        android:text="@string/copy" />
+        android:text="@string/ConversationActivity_message" />
 
 </LinearLayout>
