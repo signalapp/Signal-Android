@@ -172,9 +172,9 @@ public final class ConversationListItem extends ConstraintLayout
     if (highlightSubstring != null) {
       String name = recipient.get().isSelf() ? getContext().getString(R.string.note_to_self) : recipient.get().getDisplayName(getContext());
 
-      this.fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getBoldSpan, name, highlightSubstring, SearchUtil.MATCH_ALL));
+      this.fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getMediumBoldSpan, name, highlightSubstring, SearchUtil.MATCH_ALL));
     } else {
-      this.fromView.setText(recipient.get(), thread.isRead());
+      this.fromView.setText(recipient.get(), false);
     }
 
     this.typingThreads = typingThreads;
@@ -218,7 +218,7 @@ public final class ConversationListItem extends ConstraintLayout
     this.locale             = locale;
     this.highlightSubstring = highlightSubstring;
 
-    fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getBoldSpan, new SpannableString(contact.getDisplayName(getContext())), highlightSubstring, SearchUtil.MATCH_ALL));
+    fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getMediumBoldSpan, new SpannableString(contact.getDisplayName(getContext())), highlightSubstring, SearchUtil.MATCH_ALL));
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getBoldSpan, contact.getE164().or(""), highlightSubstring, SearchUtil.MATCH_ALL));
     dateView.setText("");
     archivedView.setVisibility(GONE);
@@ -246,7 +246,7 @@ public final class ConversationListItem extends ConstraintLayout
     this.locale             = locale;
     this.highlightSubstring = highlightSubstring;
 
-    fromView.setText(recipient.get(), true);
+    fromView.setText(recipient.get(), false);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getBoldSpan, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
     dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
     archivedView.setVisibility(GONE);
@@ -403,12 +403,11 @@ public final class ConversationListItem extends ConstraintLayout
   }
 
   private void setUnreadIndicator(ThreadRecord thread) {
-    if ((thread.isOutgoing() && !thread.isForcedUnread()) || thread.isRead() || unreadCount == 0) {
+    if ((thread.isOutgoing() && !thread.isForcedUnread()) || thread.isRead()) {
       unreadIndicator.setVisibility(View.GONE);
       return;
     }
 
-    String count = unreadCount > 100 ? String.valueOf(unreadCount) : "+99";
     unreadIndicator.setText(unreadCount > 0 ? String.valueOf(unreadCount) : " ");
     unreadIndicator.setVisibility(View.VISIBLE);
   }
@@ -422,9 +421,9 @@ public final class ConversationListItem extends ConstraintLayout
 
     if (highlightSubstring != null) {
       String name = recipient.isSelf() ? getContext().getString(R.string.note_to_self) : recipient.getDisplayName(getContext());
-      fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getBoldSpan, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL));
+      fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getMediumBoldSpan, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL));
     } else {
-      fromView.setText(recipient, unreadCount == 0);
+      fromView.setText(recipient, false);
     }
     contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
     setRippleColor(recipient);
