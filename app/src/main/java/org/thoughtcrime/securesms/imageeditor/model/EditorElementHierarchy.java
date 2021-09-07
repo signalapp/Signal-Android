@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.renderers.CropAreaRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.FillRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.InverseFillRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.OvalGuideRenderer;
 
@@ -32,6 +33,7 @@ import org.thoughtcrime.securesms.imageeditor.renderers.OvalGuideRenderer;
  * |     |  |  |- cropEditorElement - user crop, not always square, but upright, the area of the view
  * |     |  |  |  |  All children do not move/scale or rotate.
  * |     |  |  |  |- blackout
+ * |     |  |  |  |- fade
  * |     |  |  |  |- thumbs
  * |     |  |  |  |  |- Center left thumb
  * |     |  |  |  |  |- Center right thumb
@@ -68,6 +70,7 @@ final class EditorElementHierarchy {
   private final EditorElement imageCrop;
   private final EditorElement cropEditorElement;
   private final EditorElement blackout;
+  private final EditorElement fade;
   private final EditorElement thumbs;
 
   private EditorElementHierarchy(@NonNull EditorElement root) {
@@ -80,6 +83,7 @@ final class EditorElementHierarchy {
     this.cropEditorElement = this.imageCrop.getChild(0);
     this.blackout          = this.cropEditorElement.getChild(0);
     this.thumbs            = this.cropEditorElement.getChild(1);
+    this.fade              = this.cropEditorElement.getChild(2);
   }
 
   private enum CropStyle {
@@ -128,6 +132,14 @@ final class EditorElementHierarchy {
                      .persist();
 
     imageCrop.addElement(cropEditorElement);
+
+    EditorElement fade = new EditorElement(new FillRenderer(0x66000000), EditorModel.Z_FADE);
+    fade.getFlags()
+        .setSelectable(false)
+        .setEditable(false)
+        .setVisible(false)
+        .persist();
+    cropEditorElement.addElement(fade);
 
     EditorElement blackout = new EditorElement(new InverseFillRenderer(0xff000000));
 
@@ -221,6 +233,22 @@ final class EditorElementHierarchy {
 
   EditorElement getFlipRotate() {
     return flipRotate;
+  }
+
+  void addFade(@NonNull Runnable invalidate) {
+    fade.getFlags()
+        .setVisible(true)
+        .persist();
+
+    invalidate.run();
+  }
+
+  void removeFade(@NonNull Runnable invalidate) {
+    fade.getFlags()
+        .setVisible(false)
+        .persist();
+
+    invalidate.run();
   }
 
   /**

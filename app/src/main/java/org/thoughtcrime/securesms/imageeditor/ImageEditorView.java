@@ -118,6 +118,7 @@ public final class ImageEditorView extends FrameLayout {
   }
 
   public void startTextEditing(@NonNull EditorElement editorElement) {
+    getModel().addFade();
     if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
       editText.setCurrentTextEditorElement(editorElement);
     }
@@ -133,6 +134,7 @@ public final class ImageEditorView extends FrameLayout {
 
   public void doneTextEditing() {
     getModel().zoomOut();
+    getModel().removeFade();
     if (editText.getCurrentTextEntity() != null) {
       editText.setCurrentTextEditorElement(null);
       editText.hideKeyboard();

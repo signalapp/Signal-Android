@@ -227,7 +227,7 @@ public final class EditorElement implements Parcelable {
     fromElement.animateFadeOut(invalidate);
   }
 
-  private void animateFadeOut(@Nullable Runnable invalidate) {
+  void animateFadeOut(@Nullable Runnable invalidate) {
     alphaAnimation = AlphaAnimation.animate(1, 0, invalidate);
   }
 

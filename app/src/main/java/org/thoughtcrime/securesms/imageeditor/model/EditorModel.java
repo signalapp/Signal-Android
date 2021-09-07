@@ -39,7 +39,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   public static final int Z_MASK     = -1;
   public static final int Z_DRAWING  = 0;
   public static final int Z_STICKERS = 0;
-  public static final int Z_TEXT     = 1;
+  public static final int Z_FADE     = 1;
+  public static final int Z_TEXT     = 2;
 
   private static final Runnable NULL_RUNNABLE = () -> {
   };
@@ -309,6 +310,14 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     final Map<UUID, EditorElement> result = new HashMap<>();
     element.buildMap(result);
     return result;
+  }
+
+  public void addFade() {
+    editorElementHierarchy.addFade(invalidate);
+  }
+
+  public void removeFade() {
+    editorElementHierarchy.removeFade(invalidate);
   }
 
   public void startCrop() {
