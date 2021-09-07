@@ -40,7 +40,7 @@
             android:paddingTop="8dp"
             android:paddingEnd="14dp"
             android:paddingBottom="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
             android:textColor="@color/core_white"
             android:visibility="gone"
             android:maxLines="1"

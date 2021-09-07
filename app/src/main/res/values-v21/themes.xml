@@ -20,6 +20,11 @@
         <item name="android:statusBarColor">@color/core_grey_60</item>
     </style>
 
+    <style name="TextSecure.FullScreenMedia" parent="TextSecure.DarkNoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
 
     <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
         <item name="android:statusBarColor">@color/core_grey_60</item>
