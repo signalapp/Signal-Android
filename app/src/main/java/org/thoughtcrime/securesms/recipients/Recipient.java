@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.recipients;
 
+import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -32,7 +34,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
-import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor;
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -59,11 +60,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
-import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 
 public class Recipient {
 

@@ -15,6 +15,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -181,6 +182,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       }
     }
     selectionRecycler.adapter = selectionAdapter
+    ItemTouchHelper(MediaSelectionItemTouchHelper(sharedViewModel)).attachToRecyclerView(selectionRecycler)
 
     sharedViewModel.state.observe(viewLifecycleOwner) { state ->
       pagerAdapter.submitMedia(state.selectedMedia)

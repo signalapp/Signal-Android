@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
@@ -38,6 +39,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   private lateinit var countButton: MediaCountIndicatorButton
   private lateinit var bottomBarGroup: View
   private lateinit var selectedRecycler: RecyclerView
+
+  private var selectedMediaTouchHelper: ItemTouchHelper? = null
 
   private val galleryAdapter = MappingAdapter()
   private val selectedAdapter = MappingAdapter()
@@ -88,6 +91,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
       callbacks.onSelectedMediaClicked(media)
     }
     selectedRecycler.adapter = selectedAdapter
+    selectedMediaTouchHelper?.attachToRecyclerView(selectedRecycler)
 
     MediaGallerySelectableItem.registerAdapter(
       mappingAdapter = galleryAdapter,
@@ -151,6 +155,10 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
   fun onViewStateUpdated(state: ViewState) {
     viewStateLiveData.value = state
+  }
+
+  fun bindSelectedMediaItemDragHelper(helper: ItemTouchHelper) {
+    selectedMediaTouchHelper = helper
   }
 
   data class ViewState(

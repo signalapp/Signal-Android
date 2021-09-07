@@ -5,11 +5,13 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion.requestPermissionsForCamera
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
+import org.thoughtcrime.securesms.mediasend.v2.review.MediaSelectionItemTouchHelper
 import org.thoughtcrime.securesms.permissions.Permissions
 
 private const val MEDIA_GALLERY_TAG = "MEDIA_GALLERY"
@@ -28,6 +30,8 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     mediaGalleryFragment = ensureMediaGalleryFragment()
+
+    mediaGalleryFragment.bindSelectedMediaItemDragHelper(ItemTouchHelper(MediaSelectionItemTouchHelper(sharedViewModel)))
 
     sharedViewModel.state.observe(viewLifecycleOwner) { state ->
       mediaGalleryFragment.onViewStateUpdated(MediaGalleryFragment.ViewState(state.selectedMedia))
