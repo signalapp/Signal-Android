@@ -44,6 +44,12 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
   private val viewStateLiveData = MutableLiveData(ViewState())
 
+  private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(false) {
+    override fun handleOnBackPressed() {
+      onBack()
+    }
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     callbacks = requireNotNull(findListener())
 
@@ -86,6 +92,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     MediaGallerySelectableItem.registerAdapter(
       mappingAdapter = galleryAdapter,
       onMediaFolderClicked = {
+        onBackPressedCallback.isEnabled = true
         viewModel.setMediaFolder(it)
       },
       onMediaClicked = { media, selected ->
@@ -132,15 +139,12 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
       galleryAdapter.submitList(it)
     }
 
-    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-      override fun handleOnBackPressed() {
-        onBack()
-      }
-    })
+    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
   }
 
   fun onBack() {
     if (viewModel.pop()) {
+      onBackPressedCallback.isEnabled = false
       callbacks.onToolbarNavigationClicked()
     }
   }

@@ -98,6 +98,6 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
   }
 
   override fun onToolbarNavigationClicked() {
-    Navigation.findNavController(requireView()).popBackStack()
+    requireActivity().onBackPressed()
   }
 }
