@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend.v2.gallery
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -61,9 +62,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     toolbar.setNavigationOnClickListener {
-      if (viewModel.pop()) {
-        callbacks.onToolbarNavigationClicked()
-      }
+      onBack()
     }
 
     toolbar.setOnMenuItemClickListener { item ->
@@ -131,6 +130,18 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
     galleryItemsWithSelection.observe(viewLifecycleOwner) {
       galleryAdapter.submitList(it)
+    }
+
+    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+      override fun handleOnBackPressed() {
+        onBack()
+      }
+    })
+  }
+
+  fun onBack() {
+    if (viewModel.pop()) {
+      callbacks.onToolbarNavigationClicked()
     }
   }
 
