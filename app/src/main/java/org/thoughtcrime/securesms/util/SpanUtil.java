@@ -18,7 +18,6 @@ import android.text.style.ClickableSpan;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
-import android.text.style.MetricAffectingSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
@@ -102,13 +101,6 @@ public final class SpanUtil {
     int flag = Build.VERSION.SDK_INT >= 29 ? DynamicDrawableSpan.ALIGN_CENTER : DynamicDrawableSpan.ALIGN_BASELINE;
 
     imageSpan.setSpan(new ImageSpan(drawable, flag), 0, imageSpan.length(), 0);
-
-    return imageSpan;
-  }
-
-  public static CharSequence buildImageSpanBottomAligned(@NonNull Drawable drawable) {
-    SpannableString imageSpan = new SpannableString(" ");
-    imageSpan.setSpan(new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM), 0, imageSpan.length(), 0);
 
     return imageSpan;
   }

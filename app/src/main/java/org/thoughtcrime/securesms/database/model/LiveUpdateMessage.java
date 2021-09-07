@@ -35,9 +35,12 @@ public final class LiveUpdateMessage {
    * recreates the string asynchronously when they change.
    */
   @AnyThread
-  public static LiveData<SpannableString> fromMessageDescription(@NonNull Context context, @NonNull UpdateDescription updateDescription, @ColorInt int defaultTint) {
+  public static LiveData<SpannableString> fromMessageDescription(@NonNull Context context,
+                                                                 @NonNull UpdateDescription updateDescription,
+                                                                 @ColorInt int defaultTint,
+                                                                 boolean adjustPosition) {
     if (updateDescription.isStringStatic()) {
-      return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticString(), defaultTint));
+      return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticString(), defaultTint, adjustPosition));
     }
 
     List<LiveData<Recipient>> allMentionedRecipients = Stream.of(updateDescription.getMentioned())
@@ -47,7 +50,7 @@ public final class LiveUpdateMessage {
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())
                                                                                   : LiveDataUtil.merge(allMentionedRecipients);
 
-    return LiveDataUtil.mapAsync(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getString(), defaultTint));
+    return LiveDataUtil.mapAsync(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getString(), defaultTint, adjustPosition));
   }
 
   /**
@@ -59,7 +62,7 @@ public final class LiveUpdateMessage {
     return LiveDataUtil.mapAsync(Recipient.live(recipientId).getLiveDataResolved(), createStringInBackground);
   }
 
-  private static @NonNull SpannableString toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string, @ColorInt int defaultTint) {
+  private static @NonNull SpannableString toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string, @ColorInt int defaultTint, boolean adjustPosition) {
     boolean  isDarkTheme      = ThemeUtil.isDarkTheme(context);
     int      drawableResource = updateDescription.getIconResource();
     int      tint             = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
@@ -75,13 +78,14 @@ public final class LiveUpdateMessage {
       drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
       drawable.setColorFilter(tint, PorterDuff.Mode.SRC_ATOP);
 
-      InsetDrawable insetDrawable = new InsetDrawable(drawable, 0, 0, 0, ViewUtil.dpToPx(-3));
+      int insetTop = adjustPosition ? ViewUtil.dpToPx(2) : 0;
+      InsetDrawable insetDrawable = new InsetDrawable(drawable, 0, insetTop, 0, 0);
       insetDrawable.setBounds(0, 0, drawable.getIntrinsicWidth(), insetDrawable.getIntrinsicHeight());
 
       Drawable spaceDrawable = new ColorDrawable(Color.TRANSPARENT);
       spaceDrawable.setBounds(0, 0, ViewUtil.dpToPx(8), drawable.getIntrinsicHeight());
 
-      Spannable stringWithImage = new SpannableStringBuilder().append(SpanUtil.buildImageSpanBottomAligned(drawable)).append(SpanUtil.buildImageSpan(spaceDrawable)).append(string);
+      Spannable stringWithImage = new SpannableStringBuilder().append(SpanUtil.buildImageSpan(drawable)).append(SpanUtil.buildImageSpan(spaceDrawable)).append(string);
 
       return new SpannableString(SpanUtil.color(tint, stringWithImage));
     }

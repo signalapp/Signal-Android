@@ -556,7 +556,7 @@ public final class ConversationListItem extends ConstraintLayout
   }
 
   private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull Context context, @NonNull UpdateDescription description, @ColorInt int defaultTint) {
-    return emphasisAdded(LiveUpdateMessage.fromMessageDescription(context, description, defaultTint));
+    return emphasisAdded(LiveUpdateMessage.fromMessageDescription(context, description, defaultTint, false));
   }
 
   private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull LiveData<SpannableString> description) {
