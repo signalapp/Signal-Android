@@ -126,7 +126,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     view.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
       // Let's assume portrait for now, so 9:16
-      float aspectRatio = 9f / 16f;
+      float aspectRatio = CameraFragment.getAspectRatioForOrientation(getResources().getConfiguration().orientation);
       float width       = right - left;
       float height      = Math.min((1f / aspectRatio) * width, bottom - top);
 

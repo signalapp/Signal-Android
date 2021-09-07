@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.FileDescriptor;
 
 public interface CameraFragment {
+
+  float PORTRAIT_ASPECT_RATIO = 9 / 16f;
 
   @SuppressLint("RestrictedApi")
   static Fragment newInstance() {
@@ -29,6 +32,14 @@ public interface CameraFragment {
       return CameraXFragment.newInstanceForAvatarCapture();
     } else {
       return Camera1Fragment.newInstance();
+    }
+  }
+
+  static float getAspectRatioForOrientation(int orientation) {
+    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+      return PORTRAIT_ASPECT_RATIO;
+    } else {
+      return 1f / PORTRAIT_ASPECT_RATIO;
     }
   }
 

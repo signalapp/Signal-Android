@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -73,6 +74,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 {
 
   private static final String TAG = Log.tag(ImageEditorFragment.class);
+
+  private static final float PORTRAIT_ASPECT_RATIO  = 9 / 16f;
 
   private static final String KEY_IMAGE_URI = "image_uri";
   private static final String KEY_MODE      = "mode";
@@ -157,6 +160,12 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
 
     imageEditorHud.setMode(mode);
+  }
+
+  @Override
+  public void onConfigurationChanged(@NonNull Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    updateViewPortScaling(imageEditorHud.getMode(), imageEditorHud.getMode(), newConfig.orientation, true);
   }
 
   @Override
@@ -390,16 +399,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     controller.onTouchEventsNeeded(mode != ImageEditorHudV2.Mode.NONE);
 
-    boolean shouldScaleViewPortForCurrentMode  = shouldScaleViewPort(mode);
-    boolean shouldScaleViewPortForPreviousMode = shouldScaleViewPort(previousMode);
-
-    if (shouldScaleViewPortForCurrentMode != shouldScaleViewPortForPreviousMode) {
-      if (shouldScaleViewPortForCurrentMode) {
-        scaleViewPortForDrawing();
-      } else {
-        restoreViewPortScaling();
-      }
-    }
+    updateViewPortScaling(mode, previousMode, getResources().getConfiguration().orientation, false);
 
     if (mode != ImageEditorHudV2.Mode.CROP) {
       imageEditorView.getModel().doneCrop();
@@ -444,6 +444,24 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
         setCurrentSelection(null);
         hasMadeAnEditThisSession = false;
         break;
+      }
+    }
+  }
+
+  private void updateViewPortScaling(
+      @NonNull ImageEditorHudV2.Mode mode,
+      @NonNull ImageEditorHudV2.Mode previousMode,
+      int orientation,
+      boolean force)
+  {
+    boolean shouldScaleViewPortForCurrentMode  = shouldScaleViewPort(mode);
+    boolean shouldScaleViewPortForPreviousMode = shouldScaleViewPort(previousMode);
+
+    if (shouldScaleViewPortForCurrentMode != shouldScaleViewPortForPreviousMode || force) {
+      if (shouldScaleViewPortForCurrentMode) {
+        scaleViewPortForDrawing(orientation);
+      } else {
+        restoreViewPortScaling(orientation);
       }
     }
   }
@@ -613,40 +631,68 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   private ResizeAnimation resizeAnimation;
 
-  private void scaleViewPortForDrawing() {
+  private void scaleViewPortForDrawing(int orientation) {
     if (resizeAnimation != null) {
       resizeAnimation.cancel();
     }
 
-    float aspectRatio  = 9 / 16f;
-    int   targetWidth  = requireView().getMeasuredWidth() - ViewUtil.dpToPx(32);
+    float aspectRatio  = getAspectRatioForOrientation(orientation);
+    int   targetWidth  = getWidthForOrientation(orientation) - ViewUtil.dpToPx(32);
     int   targetHeight = (int) ((1 / aspectRatio) * targetWidth);
+    int   maxHeight    = getHeightForOrientation(orientation) - HUD_PROTECTION;
 
-    int maxHeight = getResources().getDisplayMetrics().heightPixels - HUD_PROTECTION;
     if (targetHeight > maxHeight) {
       targetHeight = maxHeight;
       targetWidth  = Math.round(targetHeight * aspectRatio);
     }
 
-    if (targetWidth < requireView().getMeasuredWidth()) {
-      resizeAnimation = new ResizeAnimation(imageEditorView, targetWidth, targetHeight);
-      resizeAnimation.setDuration(250);
-      imageEditorView.startAnimation(resizeAnimation);
-    }
+    resizeAnimation = new ResizeAnimation(imageEditorView, targetWidth, targetHeight);
+    resizeAnimation.setDuration(250);
+    imageEditorView.startAnimation(resizeAnimation);
   }
 
-  private void restoreViewPortScaling() {
+  private void restoreViewPortScaling(int orientation) {
     if (resizeAnimation != null) {
       resizeAnimation.cancel();
     }
 
-    float aspectRatio  = 9 / 16f;
-    int   targetWidth  = requireView().getMeasuredWidth();
-    int   targetHeight = (int) ((1 / aspectRatio) * targetWidth);
+    int   maxHeight     = getHeightForOrientation(orientation);
+    float aspectRatio   = getAspectRatioForOrientation(orientation);
+    int   targetWidth   = getWidthForOrientation(orientation);
+    int   targetHeight  = (int) ((1 / aspectRatio) * targetWidth);
+
+    if (targetHeight > maxHeight) {
+      targetHeight = maxHeight;
+      targetWidth  = Math.round(targetHeight * aspectRatio);
+    }
 
     resizeAnimation = new ResizeAnimation(imageEditorView, targetWidth, targetHeight);
     resizeAnimation.setDuration(250);
     imageEditorView.startAnimation(resizeAnimation);
+  }
+
+  private int getHeightForOrientation(int orientation) {
+    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+      return Math.max(getResources().getDisplayMetrics().heightPixels, getResources().getDisplayMetrics().widthPixels);
+    } else {
+      return Math.min(getResources().getDisplayMetrics().heightPixels, getResources().getDisplayMetrics().widthPixels);
+    }
+  }
+
+  private int getWidthForOrientation(int orientation) {
+    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+      return Math.min(getResources().getDisplayMetrics().heightPixels, getResources().getDisplayMetrics().widthPixels);
+    } else {
+      return Math.max(getResources().getDisplayMetrics().heightPixels, getResources().getDisplayMetrics().widthPixels);
+    }
+  }
+
+  private float getAspectRatioForOrientation(int orientation) {
+    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+      return PORTRAIT_ASPECT_RATIO;
+    } else {
+      return 1f / PORTRAIT_ASPECT_RATIO;
+    }
   }
 
   private static boolean shouldScaleViewPort(@NonNull ImageEditorHudV2.Mode mode) {
