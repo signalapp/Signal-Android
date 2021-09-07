@@ -203,4 +203,6 @@
     <dimen name="avatar_picker_image_width">100dp</dimen>
 
     <dimen name="toolbar_avatar_margin">26dp</dimen>
+
+    <dimen name="verify_identity_vertical_margin">16dp</dimen>
 </resources>

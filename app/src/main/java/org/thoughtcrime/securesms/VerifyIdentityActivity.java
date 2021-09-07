@@ -43,11 +43,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +57,8 @@ import android.widget.Toast;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.OneShotPreDrawListener;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -81,6 +85,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -111,7 +116,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
   private static final String IDENTITY_EXTRA  = "recipient_identity";
   private static final String VERIFIED_EXTRA  = "verified_state";
 
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private final VerifyDisplayFragment displayFragment = new VerifyDisplayFragment();
   private final VerifyScanFragment    scanFragment    = new VerifyScanFragment();
@@ -156,9 +161,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
 
   @Override
   protected void onCreate(Bundle state, boolean ready) {
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
-
     Bundle extras = new Bundle();
     extras.putParcelable(VerifyDisplayFragment.RECIPIENT_ID, getIntent().getParcelableExtra(RECIPIENT_EXTRA));
     extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(IDENTITY_EXTRA));
@@ -216,7 +218,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  public static class VerifyDisplayFragment extends Fragment {
+  public static class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.OnScrollChangedListener {
 
     public static final String RECIPIENT_ID    = "recipient_id";
     public static final String REMOTE_NUMBER   = "remote_number";
@@ -230,6 +232,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     private IdentityKey   remoteIdentity;
     private Fingerprint   fingerprint;
 
+    private Toolbar              toolbar;
+    private ScrollView           scrollView;
     private View                 container;
     private View                 numbersContainer;
     private View                 loading;
@@ -240,6 +244,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     private TextView             description;
     private View.OnClickListener clickListener;
     private Button               verifyButton;
+    private View                 toolbarShadow;
+    private View                 bottomShadow;
 
     private TextView[] codes                = new TextView[12];
     private boolean    animateSuccessOnDraw = false;
@@ -249,6 +255,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container        = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
+      this.toolbar          = container.findViewById(R.id.toolbar);
+      this.scrollView       = container.findViewById(R.id.scroll_view);
       this.numbersContainer = container.findViewById(R.id.number_table);
       this.loading          = container.findViewById(R.id.loading);
       this.qrCodeContainer  = container.findViewById(R.id.qr_code_container);
@@ -257,6 +265,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       this.qrVerified       = container.findViewById(R.id.qr_verified);
       this.description      = container.findViewById(R.id.description);
       this.tapLabel         = container.findViewById(R.id.tap_label);
+      this.toolbarShadow    = container.findViewById(R.id.toolbar_shadow);
+      this.bottomShadow     = container.findViewById(R.id.verify_identity_bottom_shadow);
       this.codes[0]         = container.findViewById(R.id.code_first);
       this.codes[1]         = container.findViewById(R.id.code_second);
       this.codes[2]         = container.findViewById(R.id.code_third);
@@ -276,7 +286,17 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       updateVerifyButton(getArguments().getBoolean(VERIFIED_STATE, false), false);
       this.verifyButton.setOnClickListener((button -> updateVerifyButton(!currentVerifiedState, true)));
 
+      this.scrollView.getViewTreeObserver().addOnScrollChangedListener(this);
+
+      ((AppCompatActivity)requireActivity()).setSupportActionBar(toolbar);
+      ((AppCompatActivity)requireActivity()).setTitle(R.string.AndroidManifest__verify_safety_number);
+
       return container;
+    }
+
+    @Override public void onDestroyView() {
+      this.scrollView.getViewTreeObserver().removeOnScrollChangedListener(this);
+      super.onDestroyView();
     }
 
     @Override
@@ -361,6 +381,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
         animateFailureOnDraw = false;
         animateVerifiedFailure();
       }
+
+      ThreadUtil.postToMain(this::onScrollChanged);
     }
 
     @Override
@@ -418,9 +440,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
         } else {
           Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal, Toast.LENGTH_LONG).show();
         }
+        this.animateFailureOnDraw = true;
       } catch (Exception e) {
         Log.w(TAG, e);
         Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number, Toast.LENGTH_LONG).show();
+        this.animateFailureOnDraw = true;
       }
     }
 
@@ -664,6 +688,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       }
     }
 
+
+    @Override public void onScrollChanged() {
+      if (scrollView.canScrollVertically(-1)) {
+        if (toolbarShadow.getVisibility() != View.VISIBLE) {
+          ViewUtil.fadeIn(toolbarShadow, 250);
+        }
+      } else {
+        if (toolbarShadow.getVisibility() != View.GONE) {
+          ViewUtil.fadeOut(toolbarShadow, 250);
+        }
+      }
+
+      if (scrollView.canScrollVertically(1)) {
+        if (bottomShadow.getVisibility() != View.VISIBLE) {
+          ViewUtil.fadeIn(bottomShadow, 250);
+        }
+      } else {
+        ViewUtil.fadeOut(bottomShadow, 250);
+      }
+    }
   }
 
   public static class VerifyScanFragment extends Fragment {
@@ -723,5 +767,4 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     }
 
   }
-
 }
