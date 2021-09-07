@@ -97,31 +97,29 @@ public class PushTextSendJob extends PushSendJob {
 
       boolean unidentified = deliver(record);
 
-      try (DatabaseFactory.Transaction unused = DatabaseFactory.getInstance(context).transaction()) {
-        database.markAsSent(messageId, true);
-        database.markUnidentified(messageId, unidentified);
+      database.markAsSent(messageId, true);
+      database.markUnidentified(messageId, unidentified);
 
-        if (recipient.isSelf()) {
-          SyncMessageId id = new SyncMessageId(recipient.getId(), record.getDateSent());
-          DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-          DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
-        }
+      if (recipient.isSelf()) {
+        SyncMessageId id = new SyncMessageId(recipient.getId(), record.getDateSent());
+        DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+        DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
+      }
 
-        if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
-          log(TAG, String.valueOf(record.getDateSent()), "Marking recipient as UD-unrestricted following a UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
-        } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
-          log(TAG, String.valueOf(record.getDateSent()), "Marking recipient as UD-enabled following a UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.ENABLED);
-        } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
-          log(TAG, String.valueOf(record.getDateSent()), "Marking recipient as UD-disabled following a non-UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
-        }
+      if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
+        log(TAG, String.valueOf(record.getDateSent()), "Marking recipient as UD-unrestricted following a UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
+      } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
+        log(TAG, String.valueOf(record.getDateSent()), "Marking recipient as UD-enabled following a UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.ENABLED);
+      } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
+        log(TAG, String.valueOf(record.getDateSent()), "Marking recipient as UD-disabled following a non-UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
+      }
 
-        if (record.getExpiresIn() > 0) {
-          database.markExpireStarted(messageId);
-          expirationManager.scheduleDeletion(record.getId(), record.isMms(), record.getExpiresIn());
-        }
+      if (record.getExpiresIn() > 0) {
+        database.markExpireStarted(messageId);
+        expirationManager.scheduleDeletion(record.getId(), record.isMms(), record.getExpiresIn());
       }
 
       log(TAG, String.valueOf(record.getDateSent()), "Sent message: " + messageId);
