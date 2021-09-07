@@ -3813,6 +3813,7 @@
     <string name="MediaReviewFragment__view_once_message">View once message</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
     <string name="ImageEditorHud__delete">Delete</string>
+    <string name="CameraFragment__failed_to_open_camera">Failed to open camera</string>
 
     <!-- EOF -->
 

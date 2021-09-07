@@ -18,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -118,7 +119,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     this.controlsContainer = view.findViewById(R.id.camerax_controls_container);
 
     camera.setScaleType(PreviewView.ScaleType.FIT_CENTER);
-    camera.bindToLifecycle(getViewLifecycleOwner());
+    camera.bindToLifecycle(getViewLifecycleOwner(), this::handleCameraInitializationError);
     camera.setCameraLensFacing(CameraXUtil.toLensFacing(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
 
     onOrientationChanged(getResources().getConfiguration().orientation);
@@ -147,7 +148,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   public void onResume() {
     super.onResume();
 
-    camera.bindToLifecycle(getViewLifecycleOwner());
+    camera.bindToLifecycle(getViewLifecycleOwner(),  this::handleCameraInitializationError);
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
   }
@@ -193,6 +194,15 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                          controlsContainer.setEnabled(true);
                        }
                      });
+  }
+
+  private void handleCameraInitializationError(Throwable error) {
+    Log.w(TAG, "An error occurred", error);
+
+    Context context = getActivity();
+    if (context != null) {
+      Toast.makeText(context, R.string.CameraFragment__failed_to_open_camera, Toast.LENGTH_SHORT).show();
+    }
   }
 
   private void onOrientationChanged(int orientation) {
