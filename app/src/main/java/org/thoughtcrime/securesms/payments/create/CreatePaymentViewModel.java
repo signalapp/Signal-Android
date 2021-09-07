@@ -230,7 +230,7 @@ public class CreatePaymentViewModel extends ViewModel {
       if (!oldAmount.isEmpty()) {
         String newAmount = oldAmount.substring(0, oldAmount.length() - 1);
         if (newAmount.isEmpty()) {
-          return context.getString(AmountKeyboardGlyph.ZERO.getGlyphRes());
+          return AmountKeyboardGlyph.ZERO.getGlyph(context);
         } else {
           return newAmount;
         }
@@ -239,12 +239,12 @@ public class CreatePaymentViewModel extends ViewModel {
       return oldAmount;
     }
 
-    boolean oldAmountIsZero = context.getString(AmountKeyboardGlyph.ZERO.getGlyphRes()).equals(oldAmount);
-    int     decimalIndex    = oldAmount.indexOf(context.getString(AmountKeyboardGlyph.DECIMAL.getGlyphRes()));
+    boolean oldAmountIsZero = AmountKeyboardGlyph.ZERO.getGlyph(context).equals(oldAmount);
+    int     decimalIndex    = oldAmount.indexOf(AmountKeyboardGlyph.DECIMAL.getGlyph(context));
 
     if (glyph == AmountKeyboardGlyph.DECIMAL) {
       if (oldAmountIsZero) {
-        return context.getString(AmountKeyboardGlyph.ZERO.getGlyphRes()) + context.getString(glyph.getGlyphRes());
+        return AmountKeyboardGlyph.ZERO.getGlyph(context) + glyph.getGlyph(context);
       } else if (decimalIndex > -1) {
         return oldAmount;
       }
@@ -255,9 +255,9 @@ public class CreatePaymentViewModel extends ViewModel {
     }
 
     if (oldAmountIsZero) {
-      return context.getString(glyph.getGlyphRes());
+      return glyph.getGlyph(context);
     } else {
-      return oldAmount + context.getString(glyph.getGlyphRes());
+      return oldAmount + glyph.getGlyph(context);
     }
   }
 
