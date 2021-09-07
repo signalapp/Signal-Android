@@ -64,14 +64,18 @@
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__cancel"
             android:padding="6dp"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_goneMarginEnd="10dp"
             app:srcCompat="@drawable/ic_cancel_36"
             app:tint="@color/core_white"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -79,8 +83,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__draw"
             android:padding="6dp"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_text_button"
@@ -88,6 +94,8 @@
             app:layout_goneMarginEnd="10dp"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/image_editor_hud_draw"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -95,8 +103,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__write_text"
             android:padding="6dp"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_sticker_button"
@@ -104,6 +114,8 @@
             app:layout_goneMarginEnd="10dp"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/image_editor_hud_text"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -111,8 +123,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__add_a_sticker"
             android:padding="6dp"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_blur_button"
@@ -120,6 +134,8 @@
             app:layout_goneMarginEnd="10dp"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/image_editor_hud_sticker"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -127,8 +143,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__blur"
             android:padding="6dp"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_done_button"
@@ -136,6 +154,8 @@
             app:layout_goneMarginEnd="10dp"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/image_editor_hud_blur"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -144,14 +164,18 @@
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__done_editing"
             android:padding="6dp"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/ic_confirm_36"
             app:tint="@color/core_white"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -221,9 +245,11 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__draw"
             android:padding="6dp"
             android:scaleType="centerInside"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_flip_button"
@@ -231,6 +257,8 @@
             app:layout_goneMarginEnd="10dp"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/ic_rotate_outline_24"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -238,9 +266,11 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__draw"
             android:padding="6dp"
             android:scaleType="centerInside"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_aspect_lock_button"
@@ -248,6 +278,8 @@
             app:layout_goneMarginEnd="10dp"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/ic_flip_outline_24"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <ImageView
@@ -255,8 +287,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
+            android:alpha="0"
             android:contentDescription="@string/ImageEditorHud__draw"
             android:scaleType="centerInside"
+            android:translationY="56dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_done_button"
@@ -265,6 +299,8 @@
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/ic_crop_unlock_24"
             app:tint="@color/core_white"
+            tools:alpha="1"
+            tools:translationY="0dp"
             tools:visibility="visible" />
 
         <!-- endregion -->
@@ -330,7 +366,42 @@
                 android:saveEnabled="false" />
         </LinearLayout>
 
-        <!-- -->
+        <!-- Delete -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/image_editor_bottom_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="72dp" />
+
+        <FrameLayout
+            android:id="@+id/image_editor_hud_delete"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__delete"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_bottom_guide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/image_editor_hud_delete_bg"
+                android:layout_width="41dp"
+                android:layout_height="41dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_editor_hud_delete_background"
+                android:importantForAccessibility="no" />
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/ic_trash_white_24" />
+
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

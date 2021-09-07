@@ -28,8 +28,10 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
+import org.thoughtcrime.securesms.imageeditor.SelectableRenderer;
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
+import org.thoughtcrime.securesms.imageeditor.renderers.SelectedElementGuideRenderer;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
@@ -42,7 +44,7 @@ import java.util.concurrent.ExecutionException;
  *
  * The image can be encrypted.
  */
-public final class UriGlideRenderer implements Renderer {
+public final class UriGlideRenderer implements SelectableRenderer {
 
   private static final String TAG = Log.tag(UriGlideRenderer.class);
 
@@ -62,6 +64,10 @@ public final class UriGlideRenderer implements Renderer {
   private final int                     maxHeight;
   private final float                   blurRadius;
   private final RequestListener<Bitmap> bitmapRequestListener;
+
+  private boolean selected;
+
+  private final SelectedElementGuideRenderer selectedElementGuideRenderer = new SelectedElementGuideRenderer();
 
   @Nullable private Bitmap bitmap;
   @Nullable private Bitmap blurredBitmap;
@@ -135,6 +141,10 @@ public final class UriGlideRenderer implements Renderer {
     } else if (rendererContext.isBlockingLoad()) {
       // If failed to load, we draw a black out, in case image was sticker positioned to cover private info.
       rendererContext.canvas.drawRect(Bounds.FULL_BOUNDS, paint);
+    }
+
+    if (selected && rendererContext.isEditing()) {
+      selectedElementGuideRenderer.render(rendererContext);
     }
   }
 
@@ -323,5 +333,12 @@ public final class UriGlideRenderer implements Renderer {
     dest.writeInt(maxWidth);
     dest.writeInt(maxHeight);
     dest.writeFloat(blurRadius);
+  }
+
+  @Override
+  public void onSelected(boolean selected) {
+    if (this.selected != selected) {
+      this.selected = selected;
+    }
   }
 }

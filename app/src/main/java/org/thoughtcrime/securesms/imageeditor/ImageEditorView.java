@@ -4,19 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PointF;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.inputmethod.EditorInfo;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -28,10 +22,6 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.imageeditor.model.ThumbRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.BezierDrawingRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
-import org.thoughtcrime.securesms.util.ViewUtil;
-
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * ImageEditorView
@@ -78,7 +68,7 @@ public final class ImageEditorView extends FrameLayout {
   private UndoRedoStackListener undoRedoStackListener;
 
   @Nullable
-  private DrawListener drawListener;
+  private DragListener dragListener;
 
   private final Matrix viewMatrix      = new Matrix();
   private final RectF  viewPort        = Bounds.newFullBounds();
@@ -237,7 +227,10 @@ public final class ImageEditorView extends FrameLayout {
         moreThanOnePointerUsedInSession = false;
         model.pushUndoPoint();
         editSession = startEdit(inverse, point, selected);
-        notifyStartIfInDraw();
+
+        if (editSession != null) {
+          notifyDragStart(editSession.getSelected());
+        }
 
         if (tapListener != null && allowTaps()) {
           if (editSession != null) {
@@ -265,6 +258,7 @@ public final class ImageEditorView extends FrameLayout {
           }
           model.moving(editSession.getSelected());
           invalidate();
+          notifyDragMove(editSession.getSelected(), event);
           return true;
         }
         break;
@@ -308,7 +302,7 @@ public final class ImageEditorView extends FrameLayout {
         if (editSession != null) {
           editSession.commit();
           dragDropRelease(false);
-          notifyEndIfInDraw();
+          notifyDragEnd(editSession.getSelected());
 
           editSession = null;
           model.postEdit(moreThanOnePointerUsedInSession);
@@ -324,27 +318,31 @@ public final class ImageEditorView extends FrameLayout {
     return super.onTouchEvent(event);
   }
 
-  private void notifyStartIfInDraw() {
-    if (mode == Mode.Draw || mode == Mode.Blur) {
-      if (drawListener != null) {
-        drawListener.onDrawStarted();
-      }
+  private void notifyDragStart(@Nullable EditorElement editorElement) {
+    if (dragListener != null) {
+      dragListener.onDragStarted(editorElement);
     }
   }
 
-  private void notifyEndIfInDraw() {
-    if (mode == Mode.Draw || mode == Mode.Blur) {
-      if (drawListener != null) {
-        drawListener.onDrawEnded();
-      }
+  private void notifyDragMove(@Nullable EditorElement editorElement, @NonNull MotionEvent event) {
+    if (dragListener != null) {
+      dragListener.onDragMoved(editorElement, event);
+    }
+  }
+
+  private void notifyDragEnd(@Nullable EditorElement editorElement) {
+    if (dragListener != null) {
+      dragListener.onDragEnded(editorElement);
     }
   }
 
   private @Nullable EditSession startEdit(@NonNull Matrix inverse, @NonNull PointF point, @Nullable EditorElement selected) {
-    if (mode == Mode.Draw || mode == Mode.Blur) {
+    EditSession editSession = startAMoveAndResizeSession(inverse, point, selected);
+    if (editSession == null && (mode == Mode.Draw || mode == Mode.Blur)) {
       return startADrawingSession(point);
     } else {
-      return startAMoveAndResizeSession(inverse, point, selected);
+      setMode(Mode.MoveAndResize);
+      return editSession;
     }
   }
 
@@ -378,6 +376,11 @@ public final class ImageEditorView extends FrameLayout {
     }
 
     return ElementDragEditSession.startDrag(selected, inverse, point);
+  }
+
+  @NonNull
+  public Mode getMode() {
+    return mode;
   }
 
   public void setMode(@NonNull Mode mode) {
@@ -430,8 +433,8 @@ public final class ImageEditorView extends FrameLayout {
     this.undoRedoStackListener = undoRedoStackListener;
   }
 
-  public void setDrawListener(@Nullable DrawListener drawListener) {
-    this.drawListener = drawListener;
+  public void setDragListener(@Nullable DragListener dragListener) {
+    this.dragListener = dragListener;
   }
 
   public void setTapListener(TapListener tapListener) {
@@ -504,9 +507,10 @@ public final class ImageEditorView extends FrameLayout {
     void onSizeChanged(int newWidth, int newHeight);
   }
 
-  public interface DrawListener {
-    void onDrawStarted();
-    void onDrawEnded();
+  public interface DragListener {
+    void onDragStarted(@Nullable EditorElement editorElement);
+    void onDragMoved(@Nullable EditorElement editorElement, @NonNull MotionEvent event);
+    void onDragEnded(@Nullable EditorElement editorElement);
   }
 
   public interface TapListener {

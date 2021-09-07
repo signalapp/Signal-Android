@@ -263,7 +263,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     animators.addAll(computeAddMessageAnimators(state))
     animators.addAll(computeViewOnceButtonAnimators(state))
     animators.addAll(computeAddMediaButtonsAnimators(state))
-    animators.addAll(computeSendAndSaveButtonAnimators(state))
+    animators.addAll(computeSendButtonAnimators(state))
+    animators.addAll(computeSaveButtonAnimators(state))
     animators.addAll(computeQualityButtonAnimators(state))
     animators.addAll(computeCropAndRotateButtonAnimators(state))
     animators.addAll(computeDrawToolButtonAnimators(state))
@@ -349,21 +350,35 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
   }
 
-  private fun computeSendAndSaveButtonAnimators(state: MediaSelectionState): List<Animator> {
+  private fun computeSendButtonAnimators(state: MediaSelectionState): List<Animator> {
 
     val slideIn = listOf(
       MediaReviewAnimatorController.getSlideInAnimator(sendButton),
-      MediaReviewAnimatorController.getSlideInAnimator(saveButton)
     )
 
     return slideIn + if (state.isTouchEnabled) {
       listOf(
         MediaReviewAnimatorController.getFadeInAnimator(sendButton),
-        MediaReviewAnimatorController.getFadeInAnimator(saveButton)
       )
     } else {
       listOf(
         MediaReviewAnimatorController.getFadeOutAnimator(sendButton),
+      )
+    }
+  }
+
+  private fun computeSaveButtonAnimators(state: MediaSelectionState): List<Animator> {
+
+    val slideIn = listOf(
+      MediaReviewAnimatorController.getSlideInAnimator(saveButton)
+    )
+
+    return slideIn + if (state.isTouchEnabled && !MediaUtil.isVideo(state.focusedMedia?.mimeType)) {
+      listOf(
+        MediaReviewAnimatorController.getFadeInAnimator(saveButton)
+      )
+    } else {
+      listOf(
         MediaReviewAnimatorController.getFadeOutAnimator(saveButton)
       )
     }

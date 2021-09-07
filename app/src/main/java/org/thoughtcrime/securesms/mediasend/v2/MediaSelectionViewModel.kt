@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.thoughtcrime.securesms.TransportOption
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
@@ -229,7 +230,7 @@ class MediaSelectionViewModel(
       isViewOnceEnabled(),
       destination.getRecipientId(),
       if (selectedRecipientIds.isNotEmpty()) selectedRecipientIds else destination.getRecipientIdList(),
-      emptyList(), // TODO [alex] -- mentions
+      MentionAnnotation.getMentionsFromAnnotations(store.state.message),
       store.state.transportOption
     )
   }

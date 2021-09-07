@@ -235,6 +235,14 @@ public final class EditorElement implements Parcelable {
     alphaAnimation = AlphaAnimation.animate(0, 1, invalidate);
   }
 
+  public void animatePartialFadeOut(@Nullable Runnable invalidate) {
+    alphaAnimation = AlphaAnimation.animate(alphaAnimation.getValue(), 0.5f, invalidate);
+  }
+
+  public void animatePartialFadeIn(@Nullable Runnable invalidate) {
+    alphaAnimation = AlphaAnimation.animate(alphaAnimation.getValue(), 1f, invalidate);
+  }
+
   @Nullable EditorElement parentOf(@NonNull EditorElement element) {
     if (children.contains(element)) {
       return this;

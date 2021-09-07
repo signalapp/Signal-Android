@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor.renderers;
 
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.os.Parcel;
 
 import androidx.annotation.ColorInt;
@@ -20,14 +21,19 @@ public final class InverseFillRenderer implements Renderer {
 
   private final int color;
 
-  private final Path path = new Path();
+  private final RectF dst  = new RectF();
+  private final Path  path = new Path();
 
   @Override
   public void render(@NonNull RendererContext rendererContext) {
     rendererContext.canvas.save();
 
+    rendererContext.mapRect(dst, Bounds.FULL_BOUNDS);
+    rendererContext.canvasMatrix.setToIdentity();
+
     path.reset();
-    path.addRoundRect(Bounds.FULL_BOUNDS, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18), Path.Direction.CW);
+    path.addRoundRect(dst, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18), Path.Direction.CW);
+
     rendererContext.canvas.clipPath(path);
     rendererContext.canvas.drawColor(color);
     rendererContext.canvas.restore();
