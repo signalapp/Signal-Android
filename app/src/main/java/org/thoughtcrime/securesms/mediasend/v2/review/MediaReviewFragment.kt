@@ -2,13 +2,16 @@ package org.thoughtcrime.securesms.mediasend.v2.review
 
 import android.animation.Animator
 import android.animation.AnimatorSet
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.ViewSwitcher
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -31,6 +34,8 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * Allows the user to view and edit selected media.
@@ -58,6 +63,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   private lateinit var controls: ConstraintLayout
   private lateinit var selectionRecycler: RecyclerView
   private lateinit var controlsShade: View
+  private lateinit var progress: ProgressBar
+  private lateinit var progressWrapper: TouchInterceptingFrameLayout
 
   private val navigator = MediaSelectionNavigator(
     toGallery = R.id.action_mediaReviewFragment_to_mediaGalleryFragment,
@@ -86,6 +93,11 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     selectionRecycler = view.findViewById(R.id.selection_recycler)
     controlsShade = view.findViewById(R.id.controls_shade)
     viewOnceMessage = view.findViewById(R.id.view_once_message)
+    progress = view.findViewById(R.id.progress)
+    progressWrapper = view.findViewById(R.id.progress_wrapper)
+
+    DrawableCompat.setTint(progress.indeterminateDrawable, Color.WHITE)
+    progressWrapper.setOnInterceptTouchEventListener { true }
 
     val pagerAdapter = MediaReviewFragmentPagerAdapter(this)
 
@@ -218,6 +230,12 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   }
 
   private fun performSend(selection: List<RecipientId> = listOf()) {
+    progressWrapper.visible = true
+    progressWrapper.animate()
+      .setStartDelay(300)
+      .setInterpolator(MediaAnimations.interpolator)
+      .alpha(1f)
+
     sharedViewModel
       .send(selection)
       .subscribe(

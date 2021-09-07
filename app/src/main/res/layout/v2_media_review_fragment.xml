@@ -36,6 +36,7 @@
             android:alpha="0"
             android:background="@drawable/image_editor_hud_clear_all_background"
             android:drawablePadding="4dp"
+            android:maxLines="1"
             android:paddingStart="14dp"
             android:paddingTop="8dp"
             android:paddingEnd="14dp"
@@ -43,7 +44,6 @@
             android:textAppearance="@style/TextAppearance.Signal.Body2"
             android:textColor="@color/core_white"
             android:visibility="gone"
-            android:maxLines="1"
             app:drawableStartCompat="@drawable/ic_arrow_right_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -281,4 +281,24 @@
             tools:translationY="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
+        android:id="@+id/progress_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/transparent_black_60"
+        android:visibility="gone"
+        tools:alpha="1"
+        tools:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle" />
+    </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
+
 </FrameLayout>
