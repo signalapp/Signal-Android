@@ -179,6 +179,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     }
 
     if (hud.currentInput == emojiDrawerStub.get()) {
+      requestedEmojiDrawer = false
       hud.showSoftkey(input)
     } else {
       requestedEmojiDrawer = true
