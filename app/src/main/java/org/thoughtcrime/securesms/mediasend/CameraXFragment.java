@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXFlashToggleView;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
+import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -169,6 +170,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     controlsContainer.animate()
                      .setDuration(250)
                      .alpha(0f)
+                     .setInterpolator(MediaAnimations.getInterpolator())
                      .setListener(new AnimationCompleteListener() {
                        @Override
                        public void onAnimationEnd(Animator animation) {
@@ -184,6 +186,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     controlsContainer.animate()
                      .setDuration(250)
                      .alpha(1f)
+                     .setInterpolator(MediaAnimations.getInterpolator())
                      .setListener(new AnimationCompleteListener() {
                        @Override
                        public void onAnimationEnd(Animator animation) {

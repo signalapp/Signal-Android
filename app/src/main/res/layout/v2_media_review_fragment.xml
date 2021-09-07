@@ -182,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="crop_and_rotate_tool,draw_tool,quality_selector,save_to_media"
+            app:constraint_referenced_ids="crop_and_rotate_tool,draw_tool,quality_selector,save_to_media,send"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

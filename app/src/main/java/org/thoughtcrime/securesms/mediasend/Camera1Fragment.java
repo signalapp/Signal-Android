@@ -39,6 +39,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -171,6 +172,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   public void fadeOutControls(@NonNull Runnable onEndAction) {
     controlsContainer.setEnabled(false);
     controlsContainer.animate()
+                     .setInterpolator(MediaAnimations.getInterpolator())
                      .setDuration(250)
                      .alpha(0f)
                      .setListener(new AnimationCompleteListener() {
@@ -186,6 +188,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   public void fadeInControls() {
     controlsContainer.setEnabled(false);
     controlsContainer.animate()
+                     .setInterpolator(MediaAnimations.getInterpolator())
                      .setDuration(250)
                      .alpha(1f)
                      .setListener(new AnimationCompleteListener() {

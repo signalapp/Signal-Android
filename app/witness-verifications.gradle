@@ -309,8 +309,14 @@ dependencyVerification {
         ['com.google.android.datatransport:transport-runtime:3.0.0',
          '691bd6ee2bf93182d29cb8a3a6f735098337e6f35d7fc9c8a79f17fdae604894'],
 
+        ['com.google.android.exoplayer:exoplayer-common:2.15.0',
+         'bf8b384deff11676958a29141726df455e23bd7646b10782674fc1b4bb78e00a'],
+
         ['com.google.android.exoplayer:exoplayer-core:2.15.0',
          '8ae0c0027108181739e8a008377c8eb7fb93c4e04e3efdb5846662dd1ca9eba2'],
+
+        ['com.google.android.exoplayer:exoplayer-extractor:2.15.0',
+         '7e185dd1e4bac1d2569c3741bf9d350591ec07a036720a097a38e1099d6b88c3'],
 
         ['com.google.android.exoplayer:exoplayer-ui:2.15.0',
          '9e1869798de1ce16d9feb4fd97097f11c7cd54a2018c91d22aafd793f6a8dadf'],

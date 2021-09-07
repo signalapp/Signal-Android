@@ -11,7 +11,6 @@ import android.util.AttributeSet
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
-import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.SeekBar
@@ -24,6 +23,7 @@ import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.switchmaterial.SwitchMaterial
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TooltipPopup
+import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
@@ -180,21 +180,29 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
     widthSeekBar.setOnTouchListener { v, event ->
       if (event.action == MotionEvent.ACTION_DOWN) {
-        v?.animate()
-          ?.setDuration(ANIMATION_DURATION)
-          ?.setInterpolator(DecelerateInterpolator())
-          ?.translationX(ViewUtil.dpToPx(36).toFloat())
+        animateWidthSeekbarIn()
       } else if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
-        v?.animate()
-          ?.setDuration(ANIMATION_DURATION)
-          ?.setInterpolator(DecelerateInterpolator())
-          ?.translationX(0f)
+        animateWidthSeekbarOut()
       }
 
       v.onTouchEvent(event)
     }
 
     widthSeekBar.progress = 20
+  }
+
+  private fun animateWidthSeekbarIn() {
+    widthSeekBar.animate()
+      ?.setDuration(ANIMATION_DURATION)
+      ?.setInterpolator(MediaAnimations.interpolator)
+      ?.translationX(ViewUtil.dpToPx(36).toFloat())
+  }
+
+  private fun animateWidthSeekbarOut() {
+    widthSeekBar.animate()
+      ?.setDuration(ANIMATION_DURATION)
+      ?.setInterpolator(MediaAnimations.interpolator)
+      ?.translationX(0f)
   }
 
   fun setUpForAvatarEditing() {
@@ -292,6 +300,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
         ObjectAnimator.ofFloat(deleteBackground, "scaleY", deleteBackground.scaleY, 1.365f),
       )
       duration = ANIMATION_DURATION
+      interpolator = MediaAnimations.interpolator
       start()
     }
   }
@@ -304,6 +313,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
         ObjectAnimator.ofFloat(deleteBackground, "scaleY", deleteBackground.scaleY, 1f),
       )
       duration = ANIMATION_DURATION
+      interpolator = MediaAnimations.interpolator
       start()
     }
   }
@@ -440,6 +450,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     modeAnimatorSet = AnimatorSet().apply {
       playTogether(animations)
       duration = ANIMATION_DURATION
+      interpolator = MediaAnimations.interpolator
       start()
     }
   }
@@ -454,6 +465,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     undoAnimatorSet = AnimatorSet().apply {
       playTogether(animations)
       duration = ANIMATION_DURATION
+      interpolator = MediaAnimations.interpolator
       start()
     }
   }

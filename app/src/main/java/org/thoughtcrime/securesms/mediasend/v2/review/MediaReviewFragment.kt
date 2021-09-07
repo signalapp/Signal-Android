@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
+import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion.requestPermissionsForGallery
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
@@ -273,6 +274,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
     val animatorSet = AnimatorSet()
     animatorSet.playTogether(animators)
+    animatorSet.interpolator = MediaAnimations.interpolator
     animatorSet.start()
 
     this.animatorSet = animatorSet

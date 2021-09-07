@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.imageeditor.renderers.FaceBlurRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
+import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
@@ -648,6 +649,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     resizeAnimation = new ResizeAnimation(imageEditorView, targetWidth, targetHeight);
     resizeAnimation.setDuration(250);
+    resizeAnimation.setInterpolator(MediaAnimations.getInterpolator());
     imageEditorView.startAnimation(resizeAnimation);
   }
 
@@ -668,6 +670,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     resizeAnimation = new ResizeAnimation(imageEditorView, targetWidth, targetHeight);
     resizeAnimation.setDuration(250);
+    resizeAnimation.setInterpolator(MediaAnimations.getInterpolator());
     imageEditorView.startAnimation(resizeAnimation);
   }
 
