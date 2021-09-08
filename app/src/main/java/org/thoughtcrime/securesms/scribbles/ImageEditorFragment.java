@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.SelectableRenderer;
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
+import org.thoughtcrime.securesms.imageeditor.renderers.BezierDrawingRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.FaceBlurRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -414,12 +415,12 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
       case DRAW:
       case HIGHLIGHT: {
-        onBrushWidthChange(imageEditorHud.getActiveBrushWidth());
+        onBrushWidthChange();
         break;
       }
 
       case BLUR: {
-        onBrushWidthChange(imageEditorHud.getActiveBrushWidth());
+        onBrushWidthChange();
         imageEditorHud.setBlurFacesToggleEnabled(imageEditorView.getModel().hasFaceRenderer());
         break;
       }
@@ -479,15 +480,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     onColorChange(imageEditorHud.getActiveColor());
   }
 
-  private static final float MINIMUM_DRAW_WIDTH = 0.01f;
-  private static final float MAXIMUM_DRAW_WIDTH = 0.05f;
-
   @Override
-  public void onBrushWidthChange(int widthPercentage) {
+  public void onBrushWidthChange() {
     ImageEditorHudV2.Mode mode = imageEditorHud.getMode();
-
-    float interpolatedWidth = MINIMUM_DRAW_WIDTH + (MAXIMUM_DRAW_WIDTH - MINIMUM_DRAW_WIDTH) * (widthPercentage / 100f);
-    imageEditorView.startDrawing(interpolatedWidth, mode == ImageEditorHudV2.Mode.HIGHLIGHT ? Paint.Cap.SQUARE : Paint.Cap.ROUND, mode == ImageEditorHudV2.Mode.BLUR);
+    imageEditorView.startDrawing(imageEditorHud.getActiveBrushWidth(), mode == ImageEditorHudV2.Mode.HIGHLIGHT ? Paint.Cap.SQUARE : Paint.Cap.ROUND, mode == ImageEditorHudV2.Mode.BLUR);
   }
 
   @Override
@@ -828,7 +824,12 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
         return;
       }
 
-      setCurrentSelection(editorElement);
+      if (editorElement == null || editorElement.getRenderer() instanceof BezierDrawingRenderer) {
+        setCurrentSelection(null);
+      } else {
+        setCurrentSelection(editorElement);
+      }
+
       if (imageEditorView.getMode() == ImageEditorView.Mode.MoveAndResize) {
         imageEditorHud.setMode(ImageEditorHudV2.Mode.DELETE);
       } else {

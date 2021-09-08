@@ -14,7 +14,6 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.SeekBar
-import androidx.annotation.IntRange
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.animation.doOnEnd
@@ -23,6 +22,7 @@ import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.switchmaterial.SwitchMaterial
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TooltipPopup
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setColor
@@ -171,7 +171,14 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     widthSeekBar.thumb = HSVColorSlider.createThumbDrawable(Color.WHITE)
     widthSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        listener?.onBrushWidthChange(progress)
+        listener?.onBrushWidthChange()
+
+        when (currentMode) {
+          Mode.DRAW -> SignalStore.imageEditorValues().setMarkerPercentage(progress)
+          Mode.BLUR -> SignalStore.imageEditorValues().setBlurPercentage(progress)
+          Mode.HIGHLIGHT -> SignalStore.imageEditorValues().setHighlighterPercentage(progress)
+          else -> Unit
+        }
       }
 
       override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
@@ -187,8 +194,6 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
       v.onTouchEvent(event)
     }
-
-    widthSeekBar.progress = 20
   }
 
   private fun animateWidthSeekbarIn() {
@@ -233,8 +238,9 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     updateColorIndicator()
   }
 
-  fun getActiveBrushWidth(): Int {
-    return widthSeekBar.progress
+  fun getActiveBrushWidth(): Float {
+    val (minimum, maximum) = DRAW_WIDTH_BOUNDARIES[currentMode] ?: throw IllegalStateException("Cannot get width in mode $currentMode")
+    return minimum + (maximum - minimum) * (widthSeekBar.progress / 100f)
   }
 
   fun setBlurFacesToggleEnabled(enabled: Boolean) {
@@ -377,6 +383,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private fun presentModeDraw() {
     drawButton.isSelected = true
     brushToggle.setImageResource(R.drawable.ic_draw_white_24)
+    widthSeekBar.progress = SignalStore.imageEditorValues().getMarkerPercentage()
     listener?.onColorChange(getActiveColor())
     updateColorIndicator()
     animateModeChange(
@@ -389,6 +396,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private fun presentModeHighlight() {
     drawButton.isSelected = true
     brushToggle.setImageResource(R.drawable.ic_marker_24)
+    widthSeekBar.progress = SignalStore.imageEditorValues().getHighlighterPercentage()
     listener?.onColorChange(getActiveColor())
     updateColorIndicator()
     animateModeChange(
@@ -400,6 +408,9 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   private fun presentModeBlur() {
     blurButton.isSelected = true
+    widthSeekBar.progress = SignalStore.imageEditorValues().getBlurPercentage()
+    listener?.onColorChange(getActiveColor())
+    updateColorIndicator()
     animateModeChange(
       inSet = drawButtonRow + blurTools,
       outSet = allModeTools
@@ -535,6 +546,12 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
     private const val ANIMATION_DURATION = 250L
 
+    private val DRAW_WIDTH_BOUNDARIES: Map<Mode, Pair<Float, Float>> = mapOf(
+      Mode.DRAW to SignalStore.imageEditorValues().getMarkerWidthRange(),
+      Mode.HIGHLIGHT to SignalStore.imageEditorValues().getHighlighterWidthRange(),
+      Mode.BLUR to SignalStore.imageEditorValues().getBlurWidthRange()
+    )
+
     private fun withHighlighterAlpha(color: Int): Int {
       return color and 0xFF000000.toInt().inv() or 0x60000000
     }
@@ -543,7 +560,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   interface EventListener {
     fun onModeStarted(mode: Mode, previousMode: Mode)
     fun onColorChange(color: Int)
-    fun onBrushWidthChange(@IntRange(from = 0, to = 100) widthPercentage: Int)
+    fun onBrushWidthChange()
     fun onBlurFacesToggled(enabled: Boolean)
     fun onUndo()
     fun onClearAll()
