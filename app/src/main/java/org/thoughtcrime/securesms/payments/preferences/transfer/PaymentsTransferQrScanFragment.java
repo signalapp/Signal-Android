@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -52,14 +53,14 @@ public final class PaymentsTransferQrScanFragment extends LoggingFragment {
   public void onResume() {
     super.onResume();
     scanningThread = new ScanningThread();
-    scanningThread.setScanListener(data -> {
+    scanningThread.setScanListener(data -> ThreadUtil.runOnMain(() -> {
       try {
         viewModel.postQrData(MobileCoinPublicAddress.fromQr(data).getPaymentAddressBase58());
         Navigation.findNavController(requireView()).navigate(R.id.action_paymentsScanQr_pop);
       } catch (MobileCoinPublicAddress.AddressException e) {
         Log.e(TAG, "Not a valid address");
       }
-    });
+    }));
     scannerView.onResume();
     scannerView.setPreviewCallback(scanningThread);
     scanningThread.start();

@@ -76,8 +76,16 @@ public class CreatePaymentViewModel extends ViewModel {
                                                                                                    return Optional.fromNullable(ApplicationDependencies.getPayments()
                                                                                                                                                        .getCurrencyExchange(true)
                                                                                                                                                        .getExchangeRate(currency));
-                                                                                                 } catch (IOException e) {
-                                                                                                   return Optional.absent();
+                                                                                                 } catch (IOException e1) {
+                                                                                                   Log.w(TAG, "Unable to get fresh exchange data, falling back to cached", e1);
+                                                                                                   try {
+                                                                                                     return Optional.fromNullable(ApplicationDependencies.getPayments()
+                                                                                                                                                         .getCurrencyExchange(false)
+                                                                                                                                                         .getExchangeRate(currency));
+                                                                                                   } catch (IOException e2) {
+                                                                                                     Log.w(TAG, "Unable to get any exchange data", e2);
+                                                                                                     return Optional.absent();
+                                                                                                   }
                                                                                                  }
                                                                                                });
 
