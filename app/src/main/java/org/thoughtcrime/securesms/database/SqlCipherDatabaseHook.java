@@ -17,7 +17,6 @@ public class SqlCipherDatabaseHook implements SQLiteDatabaseHook {
   @Override
   public void postKey(SQLiteConnection connection) {
     connection.execute("PRAGMA cipher_compatibility = 3;", null, null);
-    connection.execute("PRAGMA cipher_memory_security = OFF;", null, null);
     connection.execute("PRAGMA kdf_iter = '1';", null, null);
     connection.execute("PRAGMA cipher_page_size = 4096;", null, null);
   }

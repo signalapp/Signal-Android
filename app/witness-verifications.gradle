@@ -570,8 +570,8 @@ dependencyVerification {
         ['org.signal:aesgcmprovider:0.0.3',
          '6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1'],
 
-        ['org.signal:android-database-sqlcipher:4.4.3-S2',
-         'f76f42927c967dc7549cb857e953e97993957129e71caf367cb462c59f3b29fd'],
+        ['org.signal:android-database-sqlcipher:4.4.3-S3',
+         'a9d66fea3ac68c2b7f9889eaaecc655df43072c3d9b4db9f8981bd24868fb009'],
 
         ['org.signal:argon2:13.1',
          '0f686ccff0d4842bfcc74d92e8dc780a5f159b9376e37a1189fabbcdac458bef'],
