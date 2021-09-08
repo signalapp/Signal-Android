@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.scribbles;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -14,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -70,6 +67,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import static android.app.Activity.RESULT_OK;
 
 public final class ImageEditorFragment extends Fragment implements ImageEditorHudV2.EventListener,
                                                                    MediaSendPageFragment,
@@ -352,6 +351,13 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   @Override
+  public void onTextStyleToggle() {
+    if (currentSelection != null && currentSelection.getRenderer() instanceof MultiLineTextRenderer) {
+      ((MultiLineTextRenderer) currentSelection.getRenderer()).nextMode();
+    }
+  }
+
+  @Override
   public void onTextEntryDialogDismissed(boolean hasText) {
     imageEditorView.doneTextEditing();
 
@@ -366,7 +372,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   protected void addText() {
     String                initialText = "";
     int                   color       = imageEditorHud.getActiveColor();
-    MultiLineTextRenderer renderer    = new MultiLineTextRenderer(initialText, color);
+    MultiLineTextRenderer renderer    = new MultiLineTextRenderer(initialText, color, MultiLineTextRenderer.Mode.REGULAR);
     EditorElement         element     = new EditorElement(renderer, EditorModel.Z_TEXT);
 
     imageEditorView.getModel().addElementCentered(element, 1);

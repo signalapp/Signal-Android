@@ -31,11 +31,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:splitTrack="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_text_style_button"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_text_style_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle_tintable_padded"
+            android:contentDescription="@string/ImageEditorHud__toggle_between_text_styles"
+            android:padding="12dp"
+            app:backgroundTint="@color/transparent_black_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_text_tool_24"
+            app:tint="@color/core_white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </org.thoughtcrime.securesms.components.InputAwareLayout>

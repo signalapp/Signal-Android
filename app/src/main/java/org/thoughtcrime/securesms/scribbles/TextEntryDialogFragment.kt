@@ -61,6 +61,7 @@ class TextEntryDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_im
 
     val slider: AppCompatSeekBar = view.findViewById(R.id.image_editor_hud_draw_color_bar)
     val colorIndicator: ImageView = view.findViewById(R.id.image_editor_hud_color_indicator)
+    val styleToggle: ImageView = view.findViewById(R.id.image_editor_hud_text_style_button)
     slider.setUpForColor(
       Color.WHITE,
       {
@@ -83,6 +84,10 @@ class TextEntryDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_im
     )
 
     slider.progress = requireArguments().getInt("color_index")
+
+    styleToggle.setOnClickListener {
+      (element.renderer as MultiLineTextRenderer).nextMode()
+    }
   }
 
   override fun onDismiss(dialog: DialogInterface) {

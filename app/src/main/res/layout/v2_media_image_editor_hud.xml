@@ -203,16 +203,24 @@
             android:splitTrack="false"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/image_editor_hud_top_of_button_bar_spacing"
-            app:layout_constraintEnd_toStartOf="@+id/image_editor_hud_draw_brush"
+            app:layout_constraintEnd_toStartOf="@+id/toggle_button_barrier"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_goneMarginEnd="32dp"
             tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/toggle_button_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="start"
+            app:constraint_referenced_ids="image_editor_hud_draw_brush,image_editor_hud_text_style_button" />
 
         <ImageView
             android:id="@+id/image_editor_hud_draw_brush"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
+            android:alpha="0"
             android:background="@drawable/circle_tintable_padded"
             android:contentDescription="@string/ImageEditorHud__toggle_between_marker_and_highlighter"
             android:padding="12dp"
@@ -222,6 +230,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/image_editor_hud_draw_color_bar"
             app:srcCompat="@drawable/ic_draw_white_24"
+            tools:alpha="1"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_text_style_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0"
+            android:background="@drawable/circle_tintable_padded"
+            android:contentDescription="@string/ImageEditorHud__toggle_between_text_styles"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:backgroundTint="@color/transparent_black_40"
+            app:layout_constraintBottom_toBottomOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image_editor_hud_draw_color_bar"
+            app:srcCompat="@drawable/ic_text_tool_24"
+            app:tint="@color/core_white"
+            tools:alpha="1"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatSeekBar
@@ -380,8 +408,8 @@
         android:id="@+id/image_editor_hud_brush_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:alpha="0"
-        tools:alpha="1" />
+        android:visibility="gone"
+        tools:alpha="1"
+        tools:visibility="visible" />
 </merge>

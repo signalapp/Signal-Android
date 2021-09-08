@@ -64,6 +64,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private val colorIndicator: ImageView = findViewById(R.id.image_editor_hud_color_indicator)
   private val bottomGuideline: Guideline = findViewById(R.id.image_editor_bottom_guide)
   private val brushPreview: BrushWidthPreviewView = findViewById(R.id.image_editor_hud_brush_preview)
+  private val textStyleToggle: ImageView = findViewById(R.id.image_editor_hud_text_style_button)
 
   private val selectableSet: Set<View> = setOf(drawButton, textButton, stickerButton, blurButton)
 
@@ -73,7 +74,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private val drawButtonRow: Set<View> = setOf(cancelButton, doneButton, drawButton, textButton, stickerButton, blurButton)
   private val cropButtonRow: Set<View> = setOf(cancelButton, doneButton, cropRotateButton, cropFlipButton, cropAspectLockButton)
 
-  private val allModeTools: Set<View> = drawTools + blurTools + drawButtonRow + cropButtonRow
+  private val allModeTools: Set<View> = drawTools + blurTools + drawButtonRow + cropButtonRow + textStyleToggle
 
   private val viewsToSlide: Set<View> = drawButtonRow + cropButtonRow
 
@@ -93,6 +94,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     clearAllButton.setOnClickListener { listener?.onClearAll() }
     cancelButton.setOnClickListener { listener?.onCancel() }
 
+    textStyleToggle.setOnClickListener { listener?.onTextStyleToggle() }
     drawButton.setOnClickListener { setMode(Mode.DRAW) }
     blurButton.setOnClickListener { setMode(Mode.BLUR) }
     textButton.setOnClickListener { setMode(Mode.TEXT) }
@@ -370,7 +372,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   private fun presentModeText() {
     animateModeChange(
-      inSet = drawButtonRow + setOf(drawSeekBar),
+      inSet = drawButtonRow + setOf(drawSeekBar, textStyleToggle),
       outSet = allModeTools
     )
     animateInUndoTools()
@@ -520,6 +522,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     fun onFlipHorizontal()
     fun onRotate90AntiClockwise()
     fun onCropAspectLock()
+    fun onTextStyleToggle()
     val isCropAspectLocked: Boolean
 
     fun onRequestFullScreen(fullScreen: Boolean, hideKeyboard: Boolean)
