@@ -209,7 +209,7 @@ object HSVColorSlider {
 
     companion object {
       @Dimension(unit = Dimension.DP)
-      private val THUMB_INNER_SIZE = 4
+      private val THUMB_INNER_SIZE = 8
 
       @Dimension(unit = Dimension.DP)
       private val THUMB_MARGIN = 24
