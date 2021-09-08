@@ -2603,6 +2603,16 @@
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">ఖాతా</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">కొనసాగించు</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">మీరు నమోదు చేసిన ఫోన్ నంబర్ మీ ఖాతాతో సరిపోలలేదు.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">సంఖ్య మార్చు</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">పిన్‌ను నవీకరించండి</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">ఎంటర్ కీ పంపుతుంది </string>
   <!--SmsSettingsFragment-->

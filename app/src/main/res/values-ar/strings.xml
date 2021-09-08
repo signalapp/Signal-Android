@@ -898,6 +898,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">شارك</string>
   <string name="InviteActivity_share_with_contacts">المشاركة مع جهات الاتصال</string>
+  <string name="InviteActivity_share_via">المشاركة عبر…</string>
   <string name="InviteActivity_cancel">إلغاء</string>
   <string name="InviteActivity_sending">إرسال…</string>
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
@@ -999,6 +1000,7 @@
   <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">مكالمة Signal واردة</string>
   <string name="NotificationBarManager__stopping_signal_call_service">يجري توقيف خدمة مكالمات Signal</string>
+  <string name="NotificationBarManager__decline_call">تجاهل المكالمة</string>
   <string name="NotificationBarManager__answer_call">الرد على المكالمة</string>
   <string name="NotificationBarManager__end_call">إنهاء المكالمة</string>
   <string name="NotificationBarManager__cancel_call">إلغاء المكالمة</string>
@@ -1422,6 +1424,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال بـ%1$s، يحتاج Signal صلاحية الوصول إلى الكاميرا</string>
   <string name="WebRtcCallActivity__signal_s">Signal‏ %1$s</string>
   <string name="WebRtcCallActivity__calling">يتصل…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">إن المجموعة كبيرة جدا لكي يرن التطبيق على المشاركين.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">مكالمة Signal</string>
   <string name="WebRtcCallView__start_call">بدء المكالمة</string>
@@ -1445,9 +1448,11 @@
     <item quantity="many">الأعضاء %1$s و%2$s و%3$d آخرون موجودون في هذه مكالمة جماعية</item>
     <item quantity="other">الأعضاء %1$s و %2$s و%3$d  آخرون موجودون في هذه مكالمة جماعية</item>
   </plurals>
+  <string name="WebRtcCallView__flip">ٱقلب</string>
   <string name="WebRtcCallView__speaker">مكبر الصوت</string>
   <string name="WebRtcCallView__camera">الكاميرا</string>
   <string name="WebRtcCallView__mute">كتم</string>
+  <string name="WebRtcCallView__ring">رنين الاتصال</string>
   <string name="WebRtcCallView__end_call">إنهاء المُكالمة</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -2073,17 +2078,24 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[للتحقق من أمان تعميتك من الطرف للطرف مع %s، يُرجى مقارنة الأعداد الظاهرة على كل من جهازيكما أعلاه. يُمكنك التقاط صورة للرمز الذي في هاتف الشخص الآخر. <a href="https://signal.org/redirect/safety-numbers">التعرف على المزيد</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
+  <string name="verify_display_fragment__successful_match">تم التوافُق بنجاح</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">لقد فشل التحقق من رقم الأمان</string>
   <string name="verify_display_fragment__loading">قيد التحميل…</string>
   <string name="verify_display_fragment__mark_as_verified">علِّم كمُتحقَّق منه</string>
+  <string name="verify_display_fragment__clear_verification">محو التحقق</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم اﻷمان</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">يُرجى تصوير الرمز المربع الذي في جهاز جهة اتصالك.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">إسحب للأعلى للإجابة</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">إسحب للأسفل لرفض المكالمة</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلب انتباهك.</string>
+  <string name="message_details_header__sent">مُرسَلة بتاريخ :</string>
+  <string name="message_details_header__via">عبر :</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">مُعلَّق</string>
   <string name="message_details_recipient_header__sent_to">تمَّ الإرسال إلى</string>
@@ -3220,6 +3232,19 @@
   <string name="AccountSettingsFragment__account">الحِساب</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">سيُطلب منك مرات أقل بمرور الوقت</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">إنه يتطلب ‫رقم Signal التعريفي الشخصي‬ لتسجيل رقم هاتفك في Signal مرة أخرى</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">الاِستِمرار</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">تغيير الرقم</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">رقم الهاتف الذي أُدخِل لا يطابق رقم حسابك.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">تغيير الرقم</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">يجري التحقق من %1$s</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">تعديل الرقم</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">تحديث الرقم التعريفي الشخصي</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">لوحة المفاتيح</string>
   <string name="ChatsSettingsFragment__enter_key_sends">مفتاح الدخول يقوم بالإرسال</string>

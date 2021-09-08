@@ -1295,6 +1295,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter för att kunna ansluta till vänner, utbyta meddelanden och ringa säkra samtal</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Vänligen försök igen senare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Vänligen kontrollera nätverksanslutning och försök igen.</string>
+  <string name="RegistrationActivity_call_requested">Samtal begärt</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du är nu %d steg bort från att skicka in en felsökningslogg.</item>
     <item quantity="other">Du är nu %d steg bort från att skicka in en felsökningslogg.</item>
@@ -1820,17 +1821,26 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[För att verifiera säkerheten för din ände-till-ände-kryptering med %s, jämför siffrorna ovan med deras enhet. Du kan också skanna koden på deras telefon. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
+  <string name="verify_display_fragment__successful_match">Lyckad matchning</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Det gick inte att verifiera säkerhetsnumret</string>
   <string name="verify_display_fragment__loading">Hämtar in…</string>
   <string name="verify_display_fragment__mark_as_verified">Markera som verifierat</string>
+  <string name="verify_display_fragment__clear_verification">Rensa verifiering</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skanna QR-koden på din kontakts enhet.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Dra upp för att svara</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Dra ner för att avvisa</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Vissa frågor behöver din uppmärksamhet.</string>
+  <string name="message_details_header__sent">Skickat:</string>
+  <string name="message_details_header__received">Mottaget:</string>
+  <string name="message_details_header__disappears">Försvinner:</string>
+  <string name="message_details_header__via">Via:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Väntar</string>
   <string name="message_details_recipient_header__sent_to">Skickat till</string>
@@ -2508,6 +2518,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring mig istället \n (Tillgänglig om %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontakta Signal-supporten</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registrering - Verifieringskod för Android</string>
+  <string name="RegistrationActivity_incorrect_code">Felaktig kod</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Okänd</string>
   <string name="preferences_app_protection__see_my_phone_number">Se mitt telefonnummer</string>
@@ -2922,6 +2933,38 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du blir ombedd mindre ofta över tiden</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Kräv din PIN-kod för att registrera ditt telefonnummer hos Signal igen</string>
+  <string name="AccountSettingsFragment__change_phone_number">Ändra telefonnummer</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Använd detta för att ändra ditt nuvarande telefonnummer till ett nytt telefonnummer. Du kan inte ångra denna ändring.\n\nInnan du fortsätter, se till att ditt nya nummer kan ta emot SMS eller samtal.</string>
+  <string name="ChangeNumberFragment__continue">Fortsätt</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ditt telefonnummer har ändrats.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ändra nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ditt gamla nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Gammalt telefonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ditt nya nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nytt telefonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Telefonnumret du angav matchar inte ditt kontos.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du måste ange ditt gamla nummers landskod</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du måste ange ditt gamla nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du måste ange ditt nya nummers landskod</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du måste ange ditt nya telefonnummer</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Ändra nummer</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Verifierar %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha krävs</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Ändra nummer</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du håller på att ändra ditt telefonnummer från %1$s till %2$s.\n\nInnan du fortsätter, verifiera att nedanstående nummer är korrekt.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Ändra nummer</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Ändra nummer - Behöver hjälp med PIN-kod för Android (v2 PIN-kod)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-koder matchar inte</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-koden som är associerad med ditt nya nummer skiljer sig från PIN-koden som är associerad med ditt gamla. Vill du behålla din gamla PIN-kod eller uppdatera den?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Behåll gammal PIN-kod</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Uppdatera PIN-kod</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Behåll gammal PIN-kod?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tangentbord</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-tangenten skickar</string>
@@ -3150,11 +3193,23 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MultiselectForwardFragment__limit_reached">Gränsen nådd</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Lägg till ett meddelande</string>
+  <string name="MediaReviewFragment__add_a_reply">Lägg till ett svar</string>
+  <string name="MediaReviewFragment__send_to">Skicka till</string>
   <string name="ImageEditorHud__cancel">Avbryt</string>
+  <string name="ImageEditorHud__draw">Dra</string>
+  <string name="ImageEditorHud__write_text">Skriv text</string>
+  <string name="ImageEditorHud__add_a_sticker">Lägg till ett klistermärke</string>
   <string name="ImageEditorHud__blur">Oskärpa</string>
+  <string name="ImageEditorHud__done_editing">Klar med redigeringen</string>
+  <string name="ImageEditorHud__clear_all">Rensa alla</string>
   <string name="ImageEditorHud__undo">Ångra</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Växla mellan markör och markering</string>
   <string name="MediaCountIndicatorButton__send">Skicka</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Tryck för att ta bort</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tryck för att välja</string>
-  <string name="MediaReviewImagePageFragment__discard">Stäng</string>
+  <string name="MediaReviewImagePageFragment__discard">Kassera</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Kassera ändringar?</string>
+  <string name="MediaReviewFragment__view_once_message">Visa engångsmeddelande</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du förlorar alla ändringar du har gjort på detta foto.</string>
   <!--EOF-->
 </resources>

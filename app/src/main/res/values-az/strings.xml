@@ -1035,7 +1035,7 @@
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s qrupa qoşulma tələbini ləğv etdi.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ilə olan güvənlik nömrəniz dəyişdirildi.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ilə güvənlik nömrənizi təsdiqləndi olaraq işalədiniz</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ilə güvənlik nömrənizi təsdiqləndi olaraq işarələdiniz</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s ilə güvənlik nömrənizi başqa cihazda təsdiqləndi olaraq işarələdiniz</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ilə güvənlik nömrənizi təsdiqlənmədi olaraq işarələdiniz</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ilə güvənlik nömrənizi başqa cihazda təsdiqlənmədi olaraq işarələdiniz</string>
@@ -1828,7 +1828,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Ad və ya nömrə daxil edin</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ilə olan bir ucdan digərinə qədər şifrələmənin güvənliyini təsdiqləmək üçün yuxarıdakı nömrələri onun cihazındakı nömrələrlə müqayisə edin. Həmçinin onun telefonundakı kodu skan edə bilərsiniz.<a href="https://signal.org/redirect/safety-numbers">Daha ətraflı.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ilə olan bir ucdan digərinə qədər şifrələmənin güvənliyini təsdiqləmək üçün yuxarıdakı nömrələri onun cihazındakı nömrələrlə müqayisə edin. Həmçinin onun telefonundakı kodu skan edə bilərsiniz. <a href="https://signal.org/redirect/safety-numbers">Daha ətraflı.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skan etmək üçün toxunun</string>
   <string name="verify_display_fragment__successful_match">Uğurlu</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Güvənlik nömrəsi təsdiqlənmədi</string>
@@ -2940,6 +2940,38 @@
   <string name="AccountSettingsFragment__account">Hesab</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Vaxt keçdikcə daha az soruşulacaq</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Telefon nömrənizi Signal-da qeydiyyata salmaq üçün Signal PIN-inizi tələb edin</string>
+  <string name="AccountSettingsFragment__change_phone_number">Telefon nömrəsini dəyişdir</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Mövcud telefon nömrəsini yenisi ilə dəyişdirmək üçün bunu istifadə edin. Bu dəyişikliyi geri ala bilməzsiniz.\n\nDavam etməzdən əvvəl, yeni nömrə ilə SMS və ya zəng ala bildiyinizə əmin olun.</string>
+  <string name="ChangeNumberFragment__continue">Davam et</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Telefon nömrəniz dəyişdirildi.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Nömrəni dəyişdir</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Köhnə nömrəniz</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Köhnə nömrə</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Yeni nömrəniz</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Yeni nömrə</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Daxil etdiyiniz telefon nömrəsi hesabınızla uyğunlaşmır.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Köhnə nömrənizin ölkə kodunu daxil etməlisiniz</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Köhnə nömrənizi daxil etməlisiniz</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Yeni nömrənizin ölkə kodunu daxil etməlisiniz</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Yeni nömrənizi daxil etməlisiniz</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Nömrəni dəyişdir</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s təsdiqlənir</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha tələb olunur</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Nömrəni dəyişdir</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">%1$s olan nömrənizi %2$s ilə dəyişdirirsiniz.\n\nDavam etməzdən əvvəl, zəhmət olmasa aşağıdakı nömrənin doğru olduğunu təsdiqləyin.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Nömrəyə düzəliş et</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal nömrə dəyişdirmə - Android (v2 PIN) üçün PIN ilə bağlı kömək lazımdır</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN uyğun gəlmir</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Yeni nömrənizə bağlı PIN, köhnə nömrənizə bağlı PIN-dən fərqlidir. Köhnə PIN-i saxlamaq və ya yeniləmək istəyirsiniz?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Köhnə PIN-i saxla</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN-i yenilə</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Köhnə PIN saxlanılsın?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatura</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter düyməsi göndərsin</string>

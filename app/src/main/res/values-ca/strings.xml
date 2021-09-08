@@ -2924,6 +2924,18 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AccountSettingsFragment__account">Compte</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Amb el temps se us demanarà amb menys freqüència</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Sol·licita el PIN del Signal per tornar-hi a registrar el número de telèfon</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Continua</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Canvia el número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">El número de telèfon marcat no coincideix amb el del compte.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Canvia el número</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Edita el número</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Actualitza el PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Teclat</string>
   <string name="ChatsSettingsFragment__enter_key_sends">S\'envia amb la tecla de Retorn</string>

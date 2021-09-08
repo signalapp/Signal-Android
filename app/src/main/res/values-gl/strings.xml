@@ -2658,6 +2658,18 @@
   <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Continuar</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Cambiar número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">O número de teléfono escrito non concorda co da túa conta.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Cambiar número</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizar PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Tecla Intro para enviar</string>
   <!--SmsSettingsFragment-->

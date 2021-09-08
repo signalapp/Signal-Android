@@ -2888,6 +2888,16 @@
   <string name="AccountSettingsFragment__account"> অ্যাকাউন্ট</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">আপনাকে মাঝে মাঝে জিজ্ঞেস করা হবে</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal-এ আপনার ফোন নম্বরটি রেজিস্টার করতে আপনার Signal-এর পিনটি আবশ্যক</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">চালিয়ে যান</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">আপনি যে ফোন নম্বরটি লিখেছেন তা আপনার অ্যাকাউন্টের সাথে মেলে না।</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">নম্বর সম্পাদনা</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">পিন আপডেট করুন</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">কীবোর্ড</string>
   <string name="ChatsSettingsFragment__enter_key_sends">এন্টার কী পাঠাবে</string>

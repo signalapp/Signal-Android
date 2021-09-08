@@ -2783,6 +2783,16 @@
   <string name="AccountSettingsFragment__account">Λογαριασμός</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Θα στο ζητάμε όχι τόσο συχνά όσο περνάει ο καιρός</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Να απαιτείται το PIN Signal σου για να εγγράψεις ξανά τον αριθμό τηλεφώνου σου στο Signal</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Συνέχεια</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Επεξεργασία αριθμού</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Ανανέωση PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Πληκτρολόγιο</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Το Enter στέλνει</string>

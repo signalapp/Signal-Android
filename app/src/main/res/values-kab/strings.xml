@@ -2643,6 +2643,16 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Amiḍan</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Kemmel</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Uṭṭun n tilifun i teskecmeḍ ur yemṣada ara d wuṭṭun n umiḍan-ik·im.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Ẓreg uṭṭun</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Snifel PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Sekcem tasarut yuzen</string>
   <!--SmsSettingsFragment-->

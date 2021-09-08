@@ -1300,6 +1300,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal þarf aðgang að tengiliðunum þinum svo hægt sé að tengjast vinum, skiptast á skilaboðum og hringja örugg símtöl.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Þú hefur gert of margar tilraunir til að skrá þetta númer. Prófaðu aftur síðar.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Mistókst að tengjast þjónustu. Athugaðu netsambandið þitt og prófaðu aftur.</string>
+  <string name="RegistrationActivity_call_requested">Beðið um símtal</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Þú ert núna %d skref frá því að senda inn villumeldingaskrá.</item>
     <item quantity="other">Þú ert núna %d skref frá því að senda inn villumeldingaskrá.</item>
@@ -1826,17 +1827,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Settu inn nafn eða símanúmer</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Til að sannreyna öryggi enda-í-enda dulritunarinnar þinnar með %s, skaltu bera tölurnar hér fyrir ofan saman við tölurnar á viðkomandi tækjum. Eins geturðu skannað kóðann á símanum hins aðilans. <a href="https://signal.org/redirect/safety-numbers">Kanna nánar.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ýttu til að skanna</string>
+  <string name="verify_display_fragment__successful_match">Samsvörun tókst</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Mistókst að sannreyna öryggisnúmer</string>
   <string name="verify_display_fragment__loading">Hleð inn…</string>
   <string name="verify_display_fragment__mark_as_verified">Merkja sem staðfest</string>
+  <string name="verify_display_fragment__clear_verification">Hreinsa sannvottun</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deila öryggisnúmeri</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skannaðu QR-kóðann á tæki tengiliðarins þíns.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Strjúka upp til að svara</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Strjúka niður til að hafna</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Nokkur vandamál krefjast athygli þinnar.</string>
+  <string name="message_details_header__sent">Sent:</string>
+  <string name="message_details_header__received">Móttekið:</string>
+  <string name="message_details_header__disappears">Hverfur:</string>
+  <string name="message_details_header__via">Með:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Í bið</string>
   <string name="message_details_recipient_header__sent_to">Sent til</string>
@@ -2517,6 +2527,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="RegistrationActivity_call_me_instead_available_in">Hringja frekar í mig \n (Tiltæk/ur eftir %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Hafa samband við Signal-aðstoð</string>
   <string name="RegistrationActivity_code_support_subject">Skráning á Signal - Sannvottunarkóði fyrir Android</string>
+  <string name="RegistrationActivity_incorrect_code">Rangur kóði</string>
   <string name="BackupUtil_never">Aldrei</string>
   <string name="BackupUtil_unknown">Óþekkt</string>
   <string name="preferences_app_protection__see_my_phone_number">Sjá símanúmerið mitt</string>
@@ -2931,6 +2942,38 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="AccountSettingsFragment__account">Notandaaðgangur</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Spurt verður sjaldnar eftir því sem tímar líða</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Bættu öryggið með því að krefjast PIN-númers til að geta skráð þetta símanúmer aftur hjá Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Skipta um símanúmer</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Notaðu þetta til að breyta fyrirliggjandi símanúmeri yfir í nýtt símanúmer. Þú getur ekki afturkallað þessa breytingu.\n\nÁður en þú heldur áfram skaltu ganga úr skugga um að nýja símanúmerið geti tekið við SMS-skilaboðum eða hringingum.</string>
+  <string name="ChangeNumberFragment__continue">Áfram</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Símanúmerið þitt hefur breyst.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Skipta um símanúmer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Gamla símanúmerið þitt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Gamla símanúmerið</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Nýja símanúmerið þitt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nýja símanúmerið</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Símanúmerið sem þú settir inn samsvarar ekki því sem er á aðgangnum þínum.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Þú verður að tilgreina landskóða fyrir gamla símanúmerið   </string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Þú verður að tilgreina gamla símanúmerið   </string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Þú verður að tilgreina landskóða fyrir nýja símanúmerið   </string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Þú verður að tilgreina nýja símanúmerið   </string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Skipta um símanúmer</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Sannreyni %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha-mennskupróf er nauðsynlegt</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Skipta um símanúmer</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Þú ert í þann mund að fara að breyta símanúmerinu þínu úr %1$s yfir í %2$s.\n\nÁður en þú heldur áfram skaltu ganga úr skugga um að númerið hér fyrir neðan sé rétt.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Breyta númeri</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Skipt um símanúmer á Signal - Þarf hjálp vegna PIN-númers fyrir Android (útg.2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-númer samsvara ekki</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-númerið sem tengt er nýja símanúmerinu þínu er frábrugðið PIN-númerinu sem tengt er gamla símanúmerinu. Viltu halda gamla PIN-númerinu eða uppfæra það?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Halda gamla PIN-númerinu</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Uppfæra PIN-númer</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Halda gamla PIN-númerinu?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Lyklaborð</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-lykill sendir</string>
@@ -3159,9 +3202,23 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MultiselectForwardFragment__limit_reached">Takmörkum náð</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Bæta við skilaboðum</string>
+  <string name="MediaReviewFragment__add_a_reply">Bæta við svari</string>
+  <string name="MediaReviewFragment__send_to">Senda til</string>
   <string name="ImageEditorHud__cancel">Hætta við</string>
+  <string name="ImageEditorHud__draw">Teikna</string>
+  <string name="ImageEditorHud__write_text">Skrifa texta</string>
+  <string name="ImageEditorHud__add_a_sticker">Bæta við límmerki</string>
+  <string name="ImageEditorHud__blur">Móska</string>
+  <string name="ImageEditorHud__done_editing">Breytingum lokið</string>
+  <string name="ImageEditorHud__clear_all">Hreinsa allt</string>
   <string name="ImageEditorHud__undo">Afturkalla</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Víxla á milli tússpenna og áherslulitunar</string>
   <string name="MediaCountIndicatorButton__send">Senda</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Ýttu til að fjarlægja</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Ýttu til að velja</string>
   <string name="MediaReviewImagePageFragment__discard">Henda</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Henda breytingum?</string>
+  <string name="MediaReviewFragment__view_once_message">Skoða-einu-sinni skilaboð</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Þú munt tapa öllum breytingum sem þú hefur gert á þessari mynd.</string>
   <!--EOF-->
 </resources>

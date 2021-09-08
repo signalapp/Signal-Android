@@ -1363,6 +1363,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signalu je potrebno dopuštenje da pristupi Vašim kontaktima kako biste uspostavili vezu sa prijateljima i razmjenjivali poruke i zaštićene pozive</string>
   <string name="RegistrationActivity_rate_limited_to_service">Pokušali ste previše puta registrovati ovaj broj. Molimo pokušajte ponovo kasnije.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje nije uspjelo. Molimo provjerite internet-konekciju i pokušajte ponovo.</string>
+  <string name="RegistrationActivity_call_requested">Zahtijevan poziv</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Preostao je %d korak da pošaljete izvještaj o greškama.</item>
     <item quantity="few">Preostala su %d koraka da pošaljete izvještaj o greškama.</item>
@@ -1902,16 +1903,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Ako želite provjeriti sigurnost šifriranja s kraja na kraj između Vas i %s, uporedite gore navedene brojeve s onim na uređaju sagovornika. Također možete skenirati broj s njegovog ili njenog telefona. <a href="https://signal.org/redirect/safety-numbers">Saznajte više.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite da skenirate</string>
+  <string name="verify_display_fragment__successful_match">Podudara se</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Provjera sigurnosnog broja nije uspjela</string>
   <string name="verify_display_fragment__loading">Učitavanje…</string>
+  <string name="verify_display_fragment__mark_as_verified">Označi kao provjereno</string>
+  <string name="verify_display_fragment__clear_verification">Ukloni iz provjerenih</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podijeli sigurnosni broj</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skenirajte QR kōd na uređaju Vašeg kontakta.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Povucite prstom gore da se javite</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Povucite prstom dolje da odbijete</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Došlo je do problema koji zahtijevaju Vašu pažnju.</string>
+  <string name="message_details_header__sent">Poslano:</string>
+  <string name="message_details_header__received">Primljeno:</string>
+  <string name="message_details_header__disappears">Nestaje za:</string>
+  <string name="message_details_header__via">Preko:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">U obradi</string>
   <string name="message_details_recipient_header__sent_to">Poslano za</string>
@@ -3020,6 +3031,38 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="AccountSettingsFragment__account">Račun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bit ćete podsjećani sve rjeđe i rjeđe</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Zahtijevajte svoj Signal PIN da bi se Vaš telefonski broj mogao ponovo registrovati na Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Promijeni broj telefona</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Ovdje možete trenutni broj svog telefona zamijeniti novim. Ne možete poništiti ovu izmjenu.\n\nPrije nego što nastavite, provjerite i potvrdite da na svoj novi broj možete primati SMS-poruke ili pozive.</string>
+  <string name="ChangeNumberFragment__continue">Nastavi</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Broj Vašeg telefona promijenjen je.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Promijeni broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vaš stari broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Stari broj telefona</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Vaš novi broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Novi broj telefona</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Broj telefona koji ste unijeli ne podudara se s onim na Vašem računu.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Morate navesti kōd države za svoj stari broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Morate unijeti svoj stari broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Morate navesti kōd države za svoj novi broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Morate unijeti svoj novi telefonski broj</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Promijeni broj</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Provjeravam %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Neophodno je ispuniti zahtjev sa slike</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Promijeni broj</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Promijenit ćete broj svog telefona iz %1$s u %2$s.\n\nPrije nego što nastavite, molimo provjerite i potvrdite da je dolje navedeni broj tačan.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Ispravite broj</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal promjena broja – trebate pomoć u vezi s PIN-om za Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-ovi se ne podudaraju</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN koji je dodijeljen Vašem novom broju razlikuje se od PIN-a dodijeljenog starom. Želite li zadržati svoj stari PIN ili ga želite ažurirati?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Zadrži stari PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Ažurirajte PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Zadržati stari PIN?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatura</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tipka Enter šalje</string>
@@ -3254,10 +3297,23 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MultiselectForwardFragment__limit_reached">Dosegnut maksimum</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Dopiši poruku</string>
+  <string name="MediaReviewFragment__add_a_reply">Odgovor</string>
+  <string name="MediaReviewFragment__send_to">Pošalji za</string>
   <string name="ImageEditorHud__cancel">Prekini</string>
+  <string name="ImageEditorHud__draw">Crtaj</string>
+  <string name="ImageEditorHud__write_text">Piši</string>
+  <string name="ImageEditorHud__add_a_sticker">Dodaj naljepnicu</string>
   <string name="ImageEditorHud__blur">Zamagli</string>
+  <string name="ImageEditorHud__done_editing">Završi s uređivanjem</string>
+  <string name="ImageEditorHud__clear_all">Ukloni sve</string>
+  <string name="ImageEditorHud__undo">Vrati</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Promijeni tip markera</string>
   <string name="MediaCountIndicatorButton__send">Šalji</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Dotaknite da uklonite</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pritisnite da odaberete</string>
   <string name="MediaReviewImagePageFragment__discard">Odbaci</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Poništiti promjene?</string>
+  <string name="MediaReviewFragment__view_once_message">Jednokratna poruka</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Poništit ćete svaku izmjenu koju ste načinili na ovoj slici.</string>
   <!--EOF-->
 </resources>

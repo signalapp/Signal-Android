@@ -205,6 +205,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Manus ületab saadetava sõnumitüübi suuruspiiranguid.</string>
   <string name="ConversationActivity_unable_to_record_audio">Ei saa heli salvestada!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Sa ei saa sellesse gruppi postitada, sest sa pole enam selle liige.</string>
+  <string name="ConversationActivity_admins">administraatorid</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sinu seadmes pole rakendust, mis oleks võimeline seda linki käsitlema.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Sinu taotlus grupiga liitumiseks on grupi administraatoritele saadetud. Sulle antakse teada, kui nad vastavad.</string>
   <string name="ConversationActivity_cancel_request">Tühista taotlus</string>
@@ -2737,6 +2738,16 @@
   <string name="AppSettingsFragment__invite_your_friends">Kutsu enda sõbrad</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Jätka</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Sinu sisestatud telefoninumber ei vasta konto telefoninumbrile.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Muuda numbrit</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Uuenda PIN-koodi</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatuur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Sisestusklahv saadab</string>
@@ -2805,12 +2816,16 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Lähtesta</string>
   <string name="EditReactionsFragment_save">Salvesta</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Kohandab värvi automaatselt taustapildiga</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Lohista gradiendi suuna muutmiseks</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Uued vestluse värvid</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Me uuendasime vestluse värve, et anda sulle rohkem valikuid ja vestluse lihtsamini loetavaks.</string>
   <string name="ChatColorsMegaphone__appearance">Välimus</string>
   <string name="ChatColorsMegaphone__not_now">Mitte praegu</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Lisa profiili foto</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vali välimus ja tunnetus või kohanda enda initsiaale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Mitte praegu</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -2890,17 +2905,21 @@
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kaamera</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Salvesta</string>
   <string name="AvatarPickerFragment__edit">Muuda</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Eelvaade</string>
   <string name="TextAvatarCreationFragment__done">Tehtud</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
   <string name="TextAvatarCreationFragment__color">Värv</string>
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--DSLSettingsToolbar-->
+  <string name="MultiselectForwardFragment__add_a_message">Lisa sõnum</string>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Lisa sõnum</string>
   <string name="ImageEditorHud__cancel">Loobu</string>
   <string name="ImageEditorHud__blur">Hägusta</string>
   <string name="ImageEditorHud__undo">Võta tagasi</string>

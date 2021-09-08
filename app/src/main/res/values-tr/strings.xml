@@ -2927,6 +2927,16 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="AccountSettingsFragment__account">Hesap</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Zaman geçtikçe daha az sorulacaktır</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Telefon numaranız Signal\'e tekrar kaydedilirken Signal PIN\'i istensin.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Devam Et</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Girmiş olduğunuz numara hesabınızla uyuşmuyor.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Numarayı düzenle</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN\'i güncelle</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klavye</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter tuşu ile gönder</string>

@@ -3023,6 +3023,37 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AccountSettingsFragment__account">Cont</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Veți fi întrebat mai rar în timp</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Solicitare PIN Signal pentru a vă înregistra din nou numărul de telefon la Signal.</string>
+  <string name="AccountSettingsFragment__change_phone_number">Schimbare număr de telefon</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilizați acest meniu pentru a vă schimba actualul număr de telefon cu un număr nou. Nu puteți anula această modificare.\n\nÎnainte de a continua asigurați-vă că noul număr de telefon poate primi SMS-uri sau apeluri.</string>
+  <string name="ChangeNumberFragment__continue">Continuare</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Numărul dvs. de telefon a fost schimbat.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Schimbă Numărul</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vechiul dvs. număr</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Vechiul număr de telefon</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Noul dvs. număr</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Noul număr de telefon</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Numărul de telefon pe care l-ați introdus nu se potrivește cu cel al contului dvs.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Trebuie să specificați prefixul de țară al vechiului număr</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Trebuie să specificați vechiul dvs. număr</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Trebuie să specificați prefixul de țară al noului număr</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Trebuie să specificați noul dvs. număr</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Schimbă Numărul</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Se verifică %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha este necesară</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Schimbă Numărul</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Urmează să vă schimbați numărul de telefon din %1$s în %2$s.\n\nÎnainte de a continua, vă rugăm să vă asigurați că numărul de mai jos este corect.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Editează număr</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-urile nu se potrivesc</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-ul asociat noului dvs. număr este diferit de cel asociat vechiului număr. Doriți să păstrați vechiul PIN sau doriți să-l actualizați?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Păstrează vechiul PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizează PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Păstrați vechiul PIN?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatură</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Trimitere cu Enter</string>
@@ -3267,11 +3298,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ImageEditorHud__done_editing">Terminați editarea</string>
   <string name="ImageEditorHud__clear_all">Ștergeți tot</string>
   <string name="ImageEditorHud__undo">Anulează</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Comută între marker și evidențiator</string>
   <string name="MediaCountIndicatorButton__send">Trimiteți</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Atingeți pentru a elimina</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Atingeți pentru a selecta</string>
   <string name="MediaReviewImagePageFragment__discard">Renunță</string>
-  <string name="MediaReviewImagePageFragment__discard_changes">Anulați modificări?</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Renunțați la modificări?</string>
   <string name="MediaReviewFragment__view_once_message">Mesaj vizibil o singură dată</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veți pierde toate modificările făcute acestei fotografii.</string>
   <!--EOF-->

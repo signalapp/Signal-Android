@@ -2853,6 +2853,38 @@
   <string name="AccountSettingsFragment__account">帳戶</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">隨著時間過去，詢問您的次數會減少</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">要求輸入您的 Signal PIN 碼才可再次在 Signal 註冊您的電話號碼</string>
+  <string name="AccountSettingsFragment__change_phone_number">變更電話號碼</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">以此將您目前的電話號碼變更為新的電話號碼。您將無法復原此變更。\n\n在繼續之前，請確定您的新號碼可以接收短訊或來電。</string>
+  <string name="ChangeNumberFragment__continue">繼續</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">您的電話號碼已變更。</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">變更號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">您的舊號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">舊電話號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">您的新號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新電話號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">您所輸入的電話號碼與您的帳戶不符。</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您必須指定您的舊號碼的國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您必須指定您的舊號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您必須指定您的新號碼的國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您必須指定您的新電話號碼</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">變更號碼</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">正在驗證 %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">須要 CAPTCHA</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">變更號碼</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">您即將把您的電話號碼由 %1$s 變更為 %2$s。\n\n在繼續之前，請驗證下方號碼正確。</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">修正電話號碼</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal 變更號碼 — Android 用戶需要 (v2. PIN) PIN 碼的協助</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN 碼不相符</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">與您的新號碼關聯的 PIN 碼與您舊號碼的 PIN 碼不相同。您要保留您的舊 PIN 碼還是更新 PIN 碼？</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">保留舊 PIN 碼</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">要保留舊 PIN 碼嗎？</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
   <string name="ChatsSettingsFragment__enter_key_sends">輸入鍵作發送</string>

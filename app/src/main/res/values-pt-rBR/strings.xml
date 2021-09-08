@@ -1300,6 +1300,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal precisa acessar sua lista de contatos para você se conectar com outras pessoas, trocar mensagens e fazer chamadas seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Você fez muitas tentativas de registrar este número. Por favor, tente novamente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não é possível conectar ao serviço. Favor verificar a conexão à rede e tentar novamente.</string>
+  <string name="RegistrationActivity_call_requested">Ligação solicitada</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Agora você está a %d passo de enviar um registro de depuração.</item>
     <item quantity="other">Agora você está a %d passos de enviar um registro de depuração</item>
@@ -1827,11 +1828,13 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Digite um nome ou um número</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Para verificar a segurança da sua criptografia de ponta a ponta com %s, compare os números acima com os números no aparelho da outra pessoa. Você pode comparar número por número ou escaneando o código no telefone da outra pessoa. <a href="https://signal.org/redirect/safety-numbers">Saiba mais.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para escanear</string>
   <string name="verify_display_fragment__successful_match">Correspondência bem sucedida</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Falha ao verificar o número de segurança</string>
   <string name="verify_display_fragment__loading">Carregando…</string>
   <string name="verify_display_fragment__mark_as_verified">Marcar como verificado</string>
+  <string name="verify_display_fragment__clear_verification">Limpar verificação</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
   <!--verity_scan_fragment-->
@@ -1843,6 +1846,7 @@
   <string name="message_details_header__issues_need_your_attention">Alguns assuntos precisam de sua atenção.</string>
   <string name="message_details_header__sent">Enviada:</string>
   <string name="message_details_header__received">Recebida:</string>
+  <string name="message_details_header__disappears">Expira:</string>
   <string name="message_details_header__via">Via:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pendente</string>
@@ -2936,6 +2940,38 @@
   <string name="AccountSettingsFragment__account">Conta</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Você será questionado com menos frequência ao longo do tempo</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Exigir o seu PIN do Signal ao registrar o seu número de telefone novamente no Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Mudar número de telefone</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Proceda para mudar o seu número de telefone atual para um novo número de telefone. Você não poderá desfazer esta mudança.\n\nAntes de continuar, certifique-se que o seu novo número está recebendo SMS ou ligações.</string>
+  <string name="ChangeNumberFragment__continue">Continuar</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">O seu número de telefone foi alterado.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Mudar número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Seu número antigo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Número de telefone antigo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Seu novo número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Novo número de telefone</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">O número de telefone que você inseriu não corresponde ao da sua conta.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Informe o código do país do seu número antigo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Insira seu número antigo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Informe o código do país do seu novo número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Insira seu novo número de telefone</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Mudar número</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Verificando %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha necessário</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Mudar número</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Você está prestes a alterar o seu número de telefone de %1$s para %2$s.\n\nAntes de continuar, confirme se o número abaixo está correto.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Mudança de número no Signal - Preciso de ajuda com o PIN para Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Os PINs não correspondem</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">O PIN associado ao seu novo número é diferente do PIN associado ao número antigo. Deseja manter o seu PIN antigo ou criar um novo PIN?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Manter o PIN antigo</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Atualizar PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Manter o PIN antigo?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Teclado</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tecla Enter envia</string>
@@ -3164,18 +3200,23 @@
   <string name="MultiselectForwardFragment__limit_reached">Limite alcançado</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Adicionar uma mensagem</string>
+  <string name="MediaReviewFragment__add_a_reply">Responder</string>
   <string name="MediaReviewFragment__send_to">Enviar para</string>
   <string name="ImageEditorHud__cancel">Cancelar</string>
   <string name="ImageEditorHud__draw">Desenhar</string>
   <string name="ImageEditorHud__write_text">Escrever texto</string>
   <string name="ImageEditorHud__add_a_sticker">Adicionar uma figurinha</string>
   <string name="ImageEditorHud__blur">Desfocar</string>
+  <string name="ImageEditorHud__done_editing">Concluir a edição</string>
   <string name="ImageEditorHud__clear_all">Limpar tudo</string>
   <string name="ImageEditorHud__undo">Desfazer</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Alternar entre marcador e marca-texto</string>
   <string name="MediaCountIndicatorButton__send">Enviar</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Toque para remover</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Toque para selecionar</string>
   <string name="MediaReviewImagePageFragment__discard">Descartar</string>
-  <string name="MediaReviewFragment__view_once_message">Ver mensagem efêmera</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Descartar alterações?</string>
+  <string name="MediaReviewFragment__view_once_message">Mensagem efêmera</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Você perderá todas as alterações feitas nessa foto.</string>
   <!--EOF-->
 </resources>

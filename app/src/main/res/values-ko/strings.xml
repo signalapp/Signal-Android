@@ -2820,6 +2820,16 @@
   <string name="AccountSettingsFragment__account">계정</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">시간이 지남에 따라 질문 빈도가 줄어듭니다.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal에 전화번호를 다시 등록하려면 Signal PIN이 필요합니다.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">계속</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">전화번호 수정</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">번호 업데이트</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">키보드</string>
   <string name="ChatsSettingsFragment__enter_key_sends">엔터 키로 메시지 보내기</string>

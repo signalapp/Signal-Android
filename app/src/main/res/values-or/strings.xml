@@ -2581,6 +2581,16 @@
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">ଆପଣଙ୍କ ବନ୍ଧୁଗଣଙ୍କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
   <!--AccountSettingsFragment-->
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">ଆପଣ ପ୍ରବେଶ କରିଥିବା ଫୋନ୍ ନମ୍ବର ଆପଣଙ୍କ ଖାତା ସହିତ ମେଳ ଖାଉ ନାହିଁ</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">ନମ୍ବର ସଂପାଦନ କରନ୍ତୁ</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">ପିନ୍ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">ଏଣ୍ଟର ଦବେଇଲେ ପଠାଯିବ</string>
   <!--SmsSettingsFragment-->

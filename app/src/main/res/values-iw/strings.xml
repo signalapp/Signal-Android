@@ -3112,6 +3112,18 @@
   <string name="AccountSettingsFragment__account">חשבון</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">תישאל לעיתים פחות תכופות עם הזמן</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">דרוש את ה־PIN של Signal שלך כדי להירשם שוב אל Signal עם מספר הטלפון שלך</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">המשך</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">שינוי המספר</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">מספר הטלפון שהכנסת אינו תואם אל מספר הטלפון של החשבון שלך.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">שינוי המספר</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">עריכת המספר</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">עדכן PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">מקלדת</string>
   <string name="ChatsSettingsFragment__enter_key_sends">מקש Enter שולח</string>

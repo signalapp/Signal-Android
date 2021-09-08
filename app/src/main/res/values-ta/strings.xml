@@ -985,13 +985,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s"> குழு உறுப்பினர்களை தங்களுக்கு யார் திருத்தலாம் என்பதை %1$s அவர்கள் \"%2$s\" அவர்களுக்கு மாற்றினர்.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">குழு உறுப்பினர்களை யார் திருத்தலாம் என்பது \"%1$s\" கு மாற்றப்பட்டுள்ளது</string>
   <!--GV2 announcement group change-->
-  <string name="MessageRecord_you_allow_all_members_to_send">நீங்கள் மாற்றினீர்கள் குழு அமைப்புகள் க்கு அனுமதிஅனைத்து உறுப்பினர்கள்அனுப்பு செய்திகள்.</string>
-  <string name="MessageRecord_you_allow_only_admins_to_send">நீங்கள் மாற்றினீர்கள் குழு அமைப்புகள் மட்டும் அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
-  <string name="MessageRecord_s_allow_all_members_to_send">%1$s மாற்றப்பட்டது குழு அமைப்புகள் க்கு அனுமதி அனைத்து உறுப்பினர்களுக்கும் அனுப்பு செய்திகள்.</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s மாற்றப்பட்டது குழு அமைப்புகள் மட்டும் அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
-  <string name="MessageRecord_allow_all_members_to_send">தி குழு அமைப்புகள் என மாற்றப்பட்டது அனுமதி அனைத்து உறுப்பினர்கள் அனுப்பு செய்திகள்.
- </string>
-  <string name="MessageRecord_allow_only_admins_to_send">தி குழு அமைப்புகள் மட்டுமே மாற்றப்பட்டது அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
+  <string name="MessageRecord_you_allow_all_members_to_send">நீங்கள் குழு அமைப்பை அனைத்து உறுப்பினர்களும் செய்திகள் அனுப்ப அனுமதிக்கும்படி மாற்றினீர்கள்.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">நீங்கள் குழு அமைப்பை நிர்வாகிகள் மட்டும் செய்திகள் அனுப்ப அனுமதிக்கும்படி மாற்றினீர்கள்.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s குழு அமைப்பை அனைத்து உறுப்பினர்களும் செய்திகள் அனுப்ப அனுமதிக்கும்படி மாற்றினார்கள்.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s குழு அமைப்பை நிர்வாகிகள் மட்டும் செய்திகள் அனுப்ப அனுமதிக்கும்படி மாற்றினார்கள்.</string>
+  <string name="MessageRecord_allow_all_members_to_send">குழு அமைப்பு அனைத்து உறுப்பினர்களும் செய்திகள் அனுப்ப அனுமதிக்கும்படி மாற்றப்பட்டது.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">குழு அமைப்பு நிர்வாகிகள் மட்டுமே செய்திகள் அனுப்ப அனுமதிக்கும்படி மாற்றப்பட்டது.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">நிர்வாகி ஒப்புதல் இல்லாமல் குழு இணைப்பை இயக்கியுள்ளீர்கள்.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">நிர்வாகி ஒப்புதலுடன் குழு இணைப்பை இயக்கியுள்ளீர்கள்.</string>
@@ -2900,6 +2899,16 @@
   <string name="AccountSettingsFragment__account">பயனர் கணக்கு</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">காலப்போக்கில் உங்களிடம் குறைவாகக் கேட்கப்படும்</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">உங்கள் தேவை Signal பின் பதிவு செய்ய தொலைபேசி உடன் எண் Signal மீண்டும்</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">தொடர்ந்து செல் </string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">எண்ணை தொகுக்க</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">விசைப்பலகை</string>
   <string name="ChatsSettingsFragment__enter_key_sends">பதிவு விசை அனுப்பும்</string>

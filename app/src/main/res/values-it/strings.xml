@@ -2775,7 +2775,7 @@
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminate le informazioni del tuo account e la foto profilo</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Eliminati tutti i tuoi messaggi</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Elimina %1$s nel tuo account pagamenti</string>
-  <string name="DeleteAccountFragment__no_country_code">Nessun prefisso telefonico specificato</string>
+  <string name="DeleteAccountFragment__no_country_code">Nessun prefisso telefonico internazionale specificato</string>
   <string name="DeleteAccountFragment__no_number">Nessun numero specificato</string>
   <string name="DeleteAccountFragment__the_phone_number">Il numero di telefono che hai inserito non corrisponde a quello del tuo account.</string>
   <string name="DeleteAccountFragment__are_you_sure">Sei sicuro di voler eliminare il tuo account?</string>
@@ -2940,6 +2940,38 @@
   <string name="AccountSettingsFragment__account">Account</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ti verrà chiesto meno frequentemente nel corso del tempo</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Richiedi il tuo PIN di Signal per registrare nuovamente il tuo numero di telefono con Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Cambia numero di telefono</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Usa questo per cambiare il tuo numero di telefono attuale con un nuovo numero di telefono. Non puoi annullare questo cambiamento.\n\nPrima di continuare, assicurati che il tuo nuovo numero possa ricevere SMS o chiamate.</string>
+  <string name="ChangeNumberFragment__continue">Continua</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Il tuo numero di telefono è stato cambiato.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Cambia numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Il tuo vecchio numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Vecchio numero di telefono</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Il tuo nuovo numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nuovo numero di telefono</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Il numero di telefono che hai inserito non corrisponde a quello del tuo account.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Devi specificare il prefisso telefonico internazionale del tuo vecchio numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Devi specificare il tuo vecchio numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Devi specificare il prefisso telefonico internazionale del tuo nuovo numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Devi specificare il tuo nuovo numero di telefono</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Cambia numero</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Verifica di %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha richiesto</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Cambia numero</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Stai per cambiare il tuo numero di telefono da %1$s a %2$s.\n\nPrima di procedere, verifica che il numero sottostante sia corretto.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Modifica numero</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Cambio numero di Signal - Ho bisogno di aiuto con il PIN per Android (PIN v2)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">I PIN non corrispondono</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Il PIN associato al tuo nuovo numero è diverso dal PIN associato al tuo vecchio numero. Vuoi mantenere il tuo vecchio PIN o aggiornarlo?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Mantieni il vecchio PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Aggiorna PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Mantenere il vecchio PIN?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastiera</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Spedisci premendo Invio</string>

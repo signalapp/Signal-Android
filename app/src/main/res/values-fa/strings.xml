@@ -291,7 +291,7 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ٔ یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
   <string name="ConversationFragment_you_already_viewed_this_message">شما قبلاً این پیام را مشاهده کردید</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">در این مکالمه می‌توانید برای خودتان یادداشت اضافه کنید. اگر حساب کاربری شما به دستگاه‌‌های دیگری پیوند داده شده باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
-  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d نفر از اعضای گروه نام یکسان دارند.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسانی دارند.</string>
   <string name="ConversationFragment__tap_to_review">برای بازنگری ضربه بزنید</string>
   <string name="ConversationFragment__review_requests_carefully">درخواست‌ها را با دقت بازنگری کنید</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">سیگنال مخاطب دیگری را با نام یکسان پیدا کرد.</string>
@@ -344,7 +344,7 @@
   <string name="ChooseBackupFragment__icon_content_description">بازگردانی از طریق آیکون پشتیبان</string>
   <string name="ChooseBackupFragment__choose_backup">پشتیبان را انتخاب کنید</string>
   <string name="ChooseBackupFragment__learn_more">بیشتر یاد بگیرید</string>
-  <string name="ChooseBackupFragment__no_file_browser_available">انتخاب کنندهٔ فایل در دسترس نیست.</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">هیچ مرورگر فایلی در دسترس نیست</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">بازگردانی کامل شد</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">برای ادامهٔ استفاده از پشتیبان‌ها، لطفاً یک پوشه انتخاب کنید. پشتیبان‌های جدید در این محل ذخیره خواهند شد.</string>
@@ -383,7 +383,7 @@
   <string name="DateUtils_yesterday">دیروز</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">نشست گفتگو تازه‌سازی شد</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">سیگنال از رمزگذاری سرتاسری استفاده می‌کند و شاید گاهی نیاز به تازه‌سازی نشست گفتگوی شما داشته باشد. این کار روی امنیت گفتگوی شما تأثیری نمی‌گذارد، اما ممکن است شما پیامی را از این مخاطب از دست داده باشید، و می‌توانید از آن‌ها بخواهید که آن را دوباره ارسال کنند.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">سیگنال از رمزگذاری سرتاسر استفاده می‌کند و شاید گاهی نیاز به تازه‌سازی نشست گفتگو‌ی شما داشته باشد. این کار روی امنیت گفتگو‌‌ی شما تأثیری نمی‌گذارد، اما ممکن است شما پیامی را از این مخاطب از دست داده باشید، و می‌توانید از آن‌ها بخواهید که آن را دوباره ارسال کنند.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">جدا کردن \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">با جدا کردن این دستگاه، دیگر قادر به ارسال و دریافت پیام نخواهد بود.</string>
@@ -514,8 +514,8 @@
     <item quantity="other">افزودن اعضا ناموفق بود. بعداً دوباره امتحان کنید.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
-    <item quantity="one">قابلیت افزودن عضو وجود ندارد.</item>
-    <item quantity="other">قابلیت افزودن اعضا وجود ندارد.</item>
+    <item quantity="one">امکان افزودن عضو وجود ندارد</item>
+    <item quantity="other">امکان افزودن اعضا وجود ندارد</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ترک گروه؟</string>
@@ -996,7 +996,7 @@
   <string name="MessageRecord_allow_all_members_to_send">تنظیمات گروه تغییر داده شدند تا به اعضا اجازهٔ ارسال پیام داده شود.</string>
   <string name="MessageRecord_allow_only_admins_to_send">تنظیمات گروه تغییر داده شدند تا فقط به مدیران اجازهٔ ارسال پیام داده شود.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">شما پیوند گروه را بدون موافقت مدیر فعال کردید.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">شما پیوند گروه را با موافقت مدیر غیرفعال روشن کردید.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">شما پیوند گروه را با موافقت مدیر فعال کردید.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">شما پیوند گروه را غیرفعال کردید.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s پیوند گروه را بدون موافقت مدیر غیرفعال کرد.</string>
@@ -1010,7 +1010,7 @@
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">موافقت مدیر برای پیوند گروه غیرفعال شد.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">شما موافقت مدیر را برای پیوند گروه فعال کردید.</string>
   <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s موافقت مدیر را برای پیوند گروه فعال کرد.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">موافقت مدیر برای پیوند گروه روشن شد.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">موافقت مدیر برای پیوند گروه فعال شد.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">شما پیوند گروه را بازنشانی کردید.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s پیوند گروه را بازنشانی کرد.</string>
@@ -1020,7 +1020,7 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s از طریق پیوند گروه به گروه پیوست.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">شما یک درخواست برای پیوستن به گروه ارسال کردید</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s درخواستی برای پیوستن به گروه از طریق پیوند ارسال کرد.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s برای پیوستن از طریق پیوند درخواست داد.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s با درخواست شما را برای پیوستن به گروه موافقت کرد.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s با درخواستی از %2$s برای پیوستن به گروه موافقت کرد.</string>
@@ -1071,7 +1071,7 @@
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمهٔ خود این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال کردن قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">این گروه قدیمی دیگر نمی‌تواند استفاده شود چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">آیا به مکالمه با %1$s ادامه می‌دهید و نام و عکس خود را با او به اشتراک می‌گذارید؟</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">آیا به مکالمهٔ خود با %1$s ادامه می‌دهید و نام و عکس خود را با او به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">به این گروه می‌پیوندید؟ تا زمانی که نپذیرید آن‌ها متوجه نخواهند شد که پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">این گروه را رفع مسدودیت می‌کنید و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که آن‌ها را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
@@ -1643,7 +1643,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ضبط و ارسال پیوست صوتی</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">قفل ضبط پیوست صوتی</string>
   <string name="conversation_activity__enable_signal_for_sms">فعال‌سازی سیگنال برای پیامک</string>
-  <string name="conversation_activity__message_could_not_be_sent">پیام ارسال نشد. اتصال خود را بررسی کرده و دوباره امتحان کنید.</string>
+  <string name="conversation_activity__message_could_not_be_sent">پیام ارسال نشد. اتصال خود را بررسی و دوباره امتحان کنید.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">برای لغو به کناره بکشید</string>
   <string name="conversation_input_panel__cancel">لغو</string>
@@ -1831,7 +1831,7 @@
   <string name="verify_display_fragment__successful_match">انطباق موفق</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">وارسی شمارهٔ امنیتی ناموفق بود</string>
   <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
-  <string name="verify_display_fragment__mark_as_verified">علامت گذاری به عنوان تایید شده</string>
+  <string name="verify_display_fragment__mark_as_verified">علامت‌گذاری به عنوان وارسی شده</string>
   <string name="verify_display_fragment__clear_verification">پاک کردن وارسی</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">اشتراک‌گذاری شمارهٔ امنیتی</string>
@@ -2124,7 +2124,7 @@
   <string name="PaymentsHomeFragment__activate_payments">فعال کردن پرداخت‌ها</string>
   <string name="PaymentsHomeFragment__activating_payments">فعال کردن پرداخت‌ها…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">بازگردانی حساب کاربری پرداخت‌ها</string>
-  <string name="PaymentsHomeFragment__no_recent_activity_yet">هنوز فعالیت اخیری وجود ندارد</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">هنوز فعالیت تازه‌ای وجود ندارد</string>
   <string name="PaymentsHomeFragment__pending_requests">درخواست‌های در حال انتظار</string>
   <string name="PaymentsHomeFragment__recent_activity">فعالیت اخیر</string>
   <string name="PaymentsHomeFragment__see_all">مشاهدهٔ همه</string>
@@ -2137,7 +2137,7 @@
   <string name="PaymentsHomeFragment__deactivate_payments">غیرفعال کردن پرداخت‌ها</string>
   <string name="PaymentsHomeFragment__recovery_phrase">عبارت بازیابی</string>
   <string name="PaymentsHomeFragment__help">راهنمایی</string>
-  <string name="PaymentsHomeFragment__coin_cleanup_fee">هزینهٔ تمیزکاری سکه</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">هزینهٔ پاک‌سازی سکه</string>
   <string name="PaymentsHomeFragment__sent_payment">پرداخت ارسال شد</string>
   <string name="PaymentsHomeFragment__received_payment">پرداخت دریافت شد</string>
   <string name="PaymentsHomeFragment__processing_payment">در حال پردازش پرداخت</string>
@@ -2179,7 +2179,7 @@
   <string name="PaymentsDetailsFragment__to">به</string>
   <string name="PaymentsDetailsFragment__from">از</string>
   <string name="PaymentsDetailsFragment__information">جزئیات تراکنش شامل مقدار پرداخت و زمان تراکنش بخشی از دفتر کل MobileCoin هستند.</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">هزینهٔ تمیزکاری سکه</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">هزینهٔ پاک‌سازی سکه</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">«هزینهٔ تمیزکاری سکه» زمانی کم می‌شود که سکه‌های در اختیار شما نمی‌توانند برای کامل کردن یک تراکنش ترکیب شوند. تمیزکاری به شما اجازه خواهد داد تا به ارسال پرداخت‌ها ادامه دهید.</string>
   <string name="PaymentsDetailsFragment__no_details_available">هیچ جزئیات بیشتری برای این تراکنش وجود ندارد</string>
   <string name="PaymentsDetailsFragment__sent_payment">پرداخت ارسال شد</string>
@@ -2205,7 +2205,7 @@
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">درخواست</string>
   <string name="CreatePaymentFragment__pay">پرداخت</string>
-  <string name="CreatePaymentFragment__available_balance_s">موجودی در دسترس: %1$s</string>
+  <string name="CreatePaymentFragment__available_balance_s">موجودی قابل برداشت: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">تعویض</string>
   <string name="CreatePaymentFragment__1">۱</string>
   <string name="CreatePaymentFragment__2">۲</string>
@@ -2230,7 +2230,7 @@
   <string name="ConfirmPayment__error_getting_fee">خطا در دریافت هزینه</string>
   <string name="ConfirmPayment__estimated_s">زمان تخمین زده %1$s</string>
   <string name="ConfirmPayment__to">به</string>
-  <string name="ConfirmPayment__total_amount">کل مقدار</string>
+  <string name="ConfirmPayment__total_amount">کل مبلغ</string>
   <string name="ConfirmPayment__balance_s">موجودی: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">در حال ارسال پرداخت…</string>
   <string name="ConfirmPayment__processing_payment">در حال پردازش پرداخت…</string>
@@ -2244,7 +2244,7 @@
   <string name="CurrencyAmountFormatter_s_at_s">%1$s در %2$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">تعیین ارز</string>
-  <string name="SetCurrencyFragment__all_currencies">همه ارزها</string>
+  <string name="SetCurrencyFragment__all_currencies">همهٔ ارزها</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2298,7 +2298,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">بازنشانی نشست امن</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">باز کردن صدا</string>
+  <string name="conversation_muted__unmute">باز کردن</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">بستن اعلان‌ها</string>
   <!--conversation-->
@@ -2324,7 +2324,7 @@
   <string name="text_secure_normal__mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
   <string name="text_secure_normal__invite_friends">دعوت دوستان</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ بورد</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ‌بورد</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">وارد کردن پیامک‌های سیستم</string>
@@ -2677,7 +2677,7 @@
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">انتقال موجودی MOB؟</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">موجودی شما %1$s است. اگر قبل از حذف کردن حساب خود اعتبار خود را به نشانی کیف پول دیگری انتقال ندهید، اعتبار خود را برای همیشه از دست خواهید داد.</string>
-  <string name="AdvancedPreferenceFragment__dont_transfer">انتقال نده</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">انتقال ندادن</string>
   <string name="AdvancedPreferenceFragment__transfer">انتقال</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
@@ -2704,10 +2704,10 @@
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">گروه‌های قدیمی در مقابل گروه‌های جدید</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">گروه‌های قدیمی چیستند؟</string>
-  <string name="GroupsLearnMore_paragraph_1">گروه‌های قدیمی گروه‌هایی هستند که با قابلیت‌های گروه‌ جدید مثل مدیران و به‌روزرسانی‌های مشروح گروه سازگار نیستند.</string>
+  <string name="GroupsLearnMore_paragraph_1">گروه‌های قدیمی گروه‌هایی هستند که با قابلیت‌ها‌ی گروه‌ جدید مثل مدیران و به‌روزرسانی‌های مشروح گروه سازگار نیستند.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">می‌توانم یک گروه قدیمی را ارتقا دهم؟</string>
   <string name="GroupsLearnMore_paragraph_2">گروه‌های قدیمی نمی‌توانند به گرو‌ه‌های جدید ارتقا پیدا کنند، اما شما می‌توانید یک گروه جدید با همان اعضا ایجاد کنید در صورتی که همگی از آخرین نسخهٔ سیگنال استفاده می‌کنند.</string>
-  <string name="GroupsLearnMore_paragraph_3">سیگنال در آینده راهی برای ارتقا گرو‌ه‌های قدیمی ارائه خواهد داد.</string>
+  <string name="GroupsLearnMore_paragraph_3">سیگنال در آینده راهی برای ارتقا‌ی گرو‌ه‌های قدیمی ارائه خواهد داد.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">هرکسی با این پیوند می‌تواند نام و عکس گروه را مشاهده کند و درخواست پیوستن بدهد. فقط با کسانی که اعتماد دارید به اشتراک بگذارید.</string>
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">هرکسی با این پیوند می‌تواند نام و عکس گروه را مشاهده کند و به گروه بپیوندد. فقط با کسانی که اعتماد دارید به اشتراک بگذارید.</string>
@@ -2848,7 +2848,7 @@
   <string name="payment_info_card_you_can_cash_out_mobilecoin">می‌توانید MobileCoin را هر زمانی در یک صرافی که از MobileCoin پشتیبانی می‌کند، نقدینه کنید. فقط یک انتقال به حساب خود در آن صرافی انجام دهید.</string>
   <string name="payment_info_card_hide_this_card">پنهان کردن این کارت؟</string>
   <string name="payment_info_card_hide">مخفی‌سازی</string>
-  <string name="payment_info_card_record_recovery_phrase">ذخیره عبارت بازیابی</string>
+  <string name="payment_info_card_record_recovery_phrase">ذخیرهٔ عبارت بازیابی</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">عبارت بازیابی راه دیگری برای بازگردانی حساب کاربری پرداخت‌های شما را فراهم می‌کند.</string>
   <string name="payment_info_card_record_your_phrase">عبارت خود را ضبط کنید</string>
   <string name="payment_info_card_update_your_pin">پین خود را به‌روزرسانی کنید</string>
@@ -2884,8 +2884,8 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">ویرایش</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">قبلی</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">عبارت بازیابی شما</string>
-  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">%1$d کلمهٔ زیر را به ترتیب یادداشت کنید. فهرست خود را در یک جای امن ذخیره کنید.</string>
-  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">مطمئن شوید عبارت خود را بدرستی وارد کرده‌اید.</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">%1$d کلمهٔ زیر را به ترتیب یادداشت کنید. فهرست خود را در یک جای امن نگهداری کنید.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">مطمئن شوید عبارت خود را به درستی وارد کرده‌اید.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">عکس از صفحه نگیرید و یا با ایمیل ارسال نکنید.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">حساب پرداخت‌ها بازگردانی شد.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">عبارت بازیابی نامعتبر</string>
@@ -2896,7 +2896,7 @@
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">عبارت بازیابی را تأیید کنید</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">کلمات زیر را از عبارت بازیابی خود وارد کنید.</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">کلمه %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">کلمهٔ %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">دبدن دوبارهٔ عبارت</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">تمام</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">عبارت بازیابی تأیید شد</string>
@@ -2938,6 +2938,38 @@
   <string name="AccountSettingsFragment__account">حساب کاربری</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">به مرور زمان از شما کمتر پرسیده خواهد شد</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال</string>
+  <string name="AccountSettingsFragment__change_phone_number">تغییر شماره‌تلفن</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره‌تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
+  <string name="ChangeNumberFragment__continue">ادامه</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">شماره‌تلفن شما تغییر یافت.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">تغییر شماره</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">شمارهٔ قدیمی شما</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">شماره‌تلفن قدیمی</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">شمارهٔ جدید شما</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">شماره‌تلفن جدید</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">شما باید کد کشور شمارهٔ قدیمی خود را مشخص کنید</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شمارهٔ قدیمی خود را مشخص کنید</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">شما باید کد کشور شمارهٔ جدید خود را مشخص کنید</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">شما باید شماره‌تلفن جدید خود را مشخص کنید</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">تغییر شماره</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">در حال وارسی %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha لازم است</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">تغییر شماره</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">شما در آستانهٔ تغییر دادن شماره‌تلفن خود از %1$s به %2$s هستید.\n\nپیش از ادامه دادن، لطفاً تصدیق کنید که شمارهٔ پایین صحیح است.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">ویرایش شماره</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">تغییر شمارهٔ سیگنال - نیاز به راهنمایی برای پین اندروید (پین v2)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">پین‌ها مطابقت ندارند</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">پین مربوط به شمارهٔ جدید شما با پین مربوط به شمارهٔ قدیمی شما متفاوت است. می‌خواهید پین قدیمی خود را نگه دارید یا آن را به‌روزرسانی کنید؟</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">نگه داشتن پین قدیمی</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">به‌روزرسانی پین</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">نگه داشتن پین قدیمی؟</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">صفحه‌کلید</string>
   <string name="ChatsSettingsFragment__enter_key_sends">ارسال با کلید Enter</string>
@@ -2963,7 +2995,7 @@
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">نمایش یک آیکون در جزئیات پیام وقتی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند.</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">وقتی فعال شد، در گفتگوهایی که شما آغاز می‌کنید پیام‌های ارسال و دریافت شدهٔ جدید پس از دیده شدن ناپدید خواهند شد.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">وقتی فعال شد، در این گفتگو پیام‌های ارسال و دریافت شدهٔ جدید پس از دیده شدن ناپدید خواهند شد.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">وقتی فعال شد، پیام‌های ارسال و دریافت شدهٔ جدید در این گفتگو پس از دیده شدن ناپدید خواهند شد.</string>
   <string name="ExpireTimerSettingsFragment__off">خاموش</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">۴ هفته</string>
   <string name="ExpireTimerSettingsFragment__1_week">۱ هفته</string>
@@ -3036,7 +3068,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">حالا نه</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">افزودن عکس</string>
   <!--KeyboardPagerFragment-->
-  <string name="KeyboardPagerFragment_emoji">شکلک</string>
+  <string name="KeyboardPagerFragment_emoji">ایموجی</string>
   <string name="KeyboardPagerFragment_open_emoji_search">جستجوی ایموجی را باز کنید</string>
   <string name="KeyboardPagerFragment_open_sticker_search">جستجوی استیکر را باز کنید</string>
   <string name="KeyboardPagerFragment_open_gif_search">جستجوی گیف را باز کنید</string>
@@ -3078,7 +3110,7 @@
   <string name="ConversationSettingsFragment__requests_and_invites">درخواست‌ها و دعوت‌ها</string>
   <string name="ConversationSettingsFragment__group_link">پیوند گروه</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">افزودن به صورت یک مخاطب</string>
-  <string name="ConversationSettingsFragment__unmute">باز کردن صدا</string>
+  <string name="ConversationSettingsFragment__unmute">باز کردن</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">مکالمه تا %1$s بسته شد</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">مکالمه برای همیشه بسته شد</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره‌تلفن در کلیپ‌بورد کپی شد.</string>

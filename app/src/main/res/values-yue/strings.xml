@@ -1753,16 +1753,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>打個名或者冧把</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若要驗證您同 %s 之間嘅點對點加密係咪安全，請將上面嘅數字同佢部機做比較。您掃佢部機上面嘅二維碼亦都得。<a href="https://signal.org/redirect/safety-numbers">想知多啲？</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">撳一下去掃描</string>
+  <string name="verify_display_fragment__successful_match">完全啱晒</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">驗證安全碼失敗</string>
   <string name="verify_display_fragment__loading">載入緊…</string>
+  <string name="verify_display_fragment__mark_as_verified">剔低話驗證咗</string>
+  <string name="verify_display_fragment__clear_verification">將個驗證抹走</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">請掃一掃您嘅聯絡人部機上面個二維碼。</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">向上滑就接聽</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">向下滑就拒聽</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">有事請您注意。</string>
+  <string name="message_details_header__sent">送出：</string>
+  <string name="message_details_header__received">收到：</string>
+  <string name="message_details_header__disappears">剩番：</string>
+  <string name="message_details_header__via">透過：</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">仲要等等</string>
   <string name="message_details_recipient_header__sent_to">傳咗畀</string>
@@ -2432,6 +2442,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">都係打畀我喇 \n (撥個輪要等等 %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
   <string name="RegistrationActivity_code_support_subject">Signal 註冊 - Android 版驗證碼</string>
+  <string name="RegistrationActivity_incorrect_code">個碼唔啱</string>
   <string name="BackupUtil_never">唔使喇</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__see_my_phone_number">見到我嘅電話冧把</string>
@@ -2843,6 +2854,38 @@
   <string name="AccountSettingsFragment__account">帳戶</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">慢慢就唔會問得您咁密㗎喇</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">要求講得啱您個 Signal PIN 碼先可以喺 Signal 重新註冊您個電話冧把</string>
+  <string name="AccountSettingsFragment__change_phone_number">轉電話冧把</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">呢度係俾您將您而家用緊個電話冧把轉做一個新嘅電話冧把。一轉咗您就冇得返番轉頭㗎喇。\n\n咁喺繼續之前，請確定您個新冧把而家可以收到短訊或者聽到電話。</string>
+  <string name="ChangeNumberFragment__continue">繼續</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">您嘅電話冧把而家已改咗。</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">轉冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">您個舊冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">舊嘅電話冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">您個新冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新嘅電話冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">您輸入嘅電話冧把，同您嘅帳戶唔脗合。</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您未打您個舊冧把嘅國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您未打您個舊冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您未打您個新冧把嘅國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您未打您個新嘅電話冧把</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">轉冧把</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">驗證緊 %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">要做咗 CAPTCHA 先得</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">轉冧把</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">您即將要將您個電話冧把由 %1$s 轉做 %2$s。\n\n咁喺繼續之前，請驗證下低個冧把的而且確無錯。</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">改過個冧把</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal 轉冧把 - Android 版 PIN 碼需要幫手 (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN 碼有出入</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">您個新冧把關聯嘅 PIN 碼，同您舊冧把個 PIN 碼唔一樣。您想保留您嘅舊 PIN 碼，定係將佢更新？</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">保留舊 PIN 碼</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">係咪要保留舊 PIN 碼？</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter 掣唔換行當係傳送</string>
@@ -3065,11 +3108,23 @@
   <string name="MultiselectForwardFragment__limit_reached">頂晒櫳喇</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">寫番句訊息</string>
+  <string name="MediaReviewFragment__add_a_reply">寫番句回覆</string>
+  <string name="MediaReviewFragment__send_to">傳畀</string>
   <string name="ImageEditorHud__cancel">取消</string>
+  <string name="ImageEditorHud__draw">畫畫</string>
+  <string name="ImageEditorHud__write_text">題字</string>
+  <string name="ImageEditorHud__add_a_sticker">貼圖</string>
+  <string name="ImageEditorHud__blur">模糊</string>
+  <string name="ImageEditorHud__done_editing">執掂晒</string>
+  <string name="ImageEditorHud__clear_all">全部抹走</string>
   <string name="ImageEditorHud__undo">復原</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">換箱頭筆或螢光筆</string>
   <string name="MediaCountIndicatorButton__send">傳送</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">撳一下剷除</string>
   <string name="MediaReviewSelectedItem__tap_to_select">撳一下揀選</string>
   <string name="MediaReviewImagePageFragment__discard">掉咗佢</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
+  <string name="MediaReviewFragment__view_once_message">流聲掠影訊息</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都會冇得留低。</string>
   <!--EOF-->
 </resources>

@@ -2882,6 +2882,16 @@
   <string name="AccountSettingsFragment__account">اکاؤنٹ</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">وقت کے ساتھ آپ سے کم پوچھا جائے گا</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">اپنے فون نمبر کو دوبارہ Signal کے ساتھ رجسٹر کرنے کیلئے اپنے Signal پن کی ضرورت ہے</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">جاری رکھیں</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">آپ نے جو فون نمبر داخل کیا ہے وہ آپ کے اکاؤنٹ کے مماثل نہیں ہے۔</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">نمبر ترتیب کرے</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">پن کو اپ ڈیٹ کریں</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">کی بورڈ</string>
   <string name="ChatsSettingsFragment__enter_key_sends">بھیجے گئے key داخل کریں</string>

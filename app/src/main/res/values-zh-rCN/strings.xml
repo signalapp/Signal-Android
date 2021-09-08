@@ -2803,6 +2803,18 @@
   <string name="AccountSettingsFragment__account">帐户</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">提醒次数将逐渐减少</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">再次用您的手机号码注册 Signal，要求输入 Signal PIN 码。</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">继续</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">更换号码</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">您输入的手机号码和您的帐户不符。</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">更换号码</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">编辑号码</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">键盘</string>
   <string name="ChatsSettingsFragment__enter_key_sends">按回车发送</string>

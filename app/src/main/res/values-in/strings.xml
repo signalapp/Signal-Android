@@ -2836,6 +2836,34 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AccountSettingsFragment__account">Akun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Anda akan ditanya lebih jarang seiring waktu</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Memerlukan PIN Signal untuk mendaftarkan nomor telepon Anda lagi di Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Ganti nomor telepon</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Lanjut</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Nomor telepon Anda telah diganti</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ubah Nomor</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Nomor lama Anda</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Nomor lama</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Nomor baru Anda</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nomor baru</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Nomor telepon yang kamu masukan tidak cocok dengan akun manapun.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Anda harus memasukkan kode negara nomor Anda yang lama</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Anda harus memasukkan nomor Anda yang lama</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Anda harus memasukkan kode negara nomor Anda yang baru</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Anda harus memasukkan nomor telepon Anda yang baru</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Ubah Nomor</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Memverifikasi %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha dibutuhkan</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Ganti nomor</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Sunting nomor</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN tidak cocok</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Simpan PIN lama</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Perbarui PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Simpan PIN lama?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Papan ketik</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter untuk mengirim</string>
@@ -3040,7 +3068,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="DSLSettingsToolbar__navigate_up">Arahkan ke atas</string>
   <string name="MultiselectForwardFragment__forward_to">Teruskan ke</string>
   <string name="MultiselectForwardFragment__add_a_message">Tambah pesan</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Teruskan lebih cepat</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Pesan yang diteruskan akan segera dikirimkan sekarang.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">Mengirimkan %1$d pesan</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="other">Pesan terkirim</item>
   </plurals>
@@ -3058,6 +3090,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ImageEditorHud__draw">Gambar</string>
   <string name="ImageEditorHud__write_text">Tulis teks</string>
   <string name="ImageEditorHud__add_a_sticker">Tambahkan stiker</string>
+  <string name="ImageEditorHud__blur">Kabur</string>
   <string name="ImageEditorHud__done_editing">Selesai mengedit</string>
   <string name="ImageEditorHud__clear_all">Hapus semua</string>
   <string name="ImageEditorHud__undo">Urungkan</string>

@@ -3105,6 +3105,38 @@
   <string name="AccountSettingsFragment__account">Учётная запись</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Напоминания будут появляться реже со временем</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Требовать вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Изменить номер телефона</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Используйте эту функцию, чтобы изменить свой текущий номер телефона на новый. Это изменение нельзя отменить.\n\nПеред тем как продолжить, убедитесь, что ваш новый номер может принимать SMS или звонки.</string>
+  <string name="ChangeNumberFragment__continue">Продолжить</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш номер телефона был изменён.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ваш старый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Старый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ваш новый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Новый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Вы должны указать код страны вашего старого номера</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Вы должны указать свой старый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Вы должны указать код страны вашего нового номера</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Вы должны указать свой новый номер</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Проверка %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Требуется CAPTCHA</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Вы собираетесь изменить свой номер телефона с %1$s на %2$s.\n\nПеред тем как продолжить, пожалуйста, проверьте, что номер ниже правильный.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Редактировать номер</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Изменение номера Signal - Нужна помощь с PIN-кодом для Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-коды не совпадают</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-код, связанный с вашим новым номером, отличается от PIN-кода, связанного со старым номером. Вы хотите оставить свой старый PIN-код или обновить его?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Оставить старый PIN-код</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Обновить PIN-код</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Оставить старый PIN-код?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Клавиатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Отправка клавишей «Ввод»</string>

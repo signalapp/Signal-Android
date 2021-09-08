@@ -2896,6 +2896,16 @@
   <string name="AccountSettingsFragment__account">ਖਾਤਾ</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ਸਮਾਂ ਪੈਣ ’ਤੇ ਤੁਹਾਨੂੰ ਅਕਸਰ ਹੀ ਘੱਟ ਪੁੱਛਿਆ ਜਾਵੇਗਾ</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal ਨਾਲ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਮੁੜ ਰਜਿਸਟਰ ਕਰਨ ਲਈ Signal PIN ਦੀ ਲੋੜ ਹੈ</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">ਤੁਹਾਡੇ ਵਲੋਂ ਦਿੱਤਾ ਫ਼ੋਨ ਨੰਬਰ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਮਿਲਦਾ ਨਹੀਂ ਹੈ।</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">ਨੰਬਰ ਨੂੰ ਸੋਧੋ</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN ਅੱਪਡੇਟ ਕਰੋ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">ਕੀਬੋਰਡ</string>
   <string name="ChatsSettingsFragment__enter_key_sends">ਕੁੰਜੀ ਭੇਜੋ ਦਰਜ ਕਰੋ</string>

@@ -1305,6 +1305,7 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har prøvd for mange gongar å registrera dette nummeret. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
+  <string name="RegistrationActivity_call_requested">Spørsmål om anrop</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
     <item quantity="other">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
@@ -1831,17 +1832,26 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Skriv inn namn eller nummer</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Viss du vil stadfesta tryggleiken på ende-til-ende-krypteringa di med %s, så kan du samanlikna talet vist over med talet på deira eining. Alternativt kan du skanna koden på telefonen deira. <a href="https://signal.org/redirect/safety-numbers">Lær meir.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanna</string>
+  <string name="verify_display_fragment__successful_match">Det blei treff</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Klarte ikkje stadfesta tryggleiksnummeret</string>
   <string name="verify_display_fragment__loading">Lastar …</string>
   <string name="verify_display_fragment__mark_as_verified">Marker som godkjent</string>
+  <string name="verify_display_fragment__clear_verification">Tøm stadfesting</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del tryggleiksnummeret</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skann QR-koden på eininga til kontakten din</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Sveip opp for å svara</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sveip ned for å avslå</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Visse problem treng di merksemd.</string>
+  <string name="message_details_header__sent">Sendt:</string>
+  <string name="message_details_header__received">Motteke:</string>
+  <string name="message_details_header__disappears">Forsvinn:</string>
+  <string name="message_details_header__via">Via:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">På vent</string>
   <string name="message_details_recipient_header__sent_to">Sendt</string>
@@ -2521,6 +2531,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
  (Tilgjengeleg i %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Ta kontakt med Signal brukarstøtte</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registrering – stadfestingskode for Android</string>
+  <string name="RegistrationActivity_incorrect_code">Feil kode</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjend</string>
   <string name="preferences_app_protection__see_my_phone_number">Sjå mitt telefonnummer</string>
@@ -2935,6 +2946,42 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du blir spurd sjeldnare over tid</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Be om Signal PIN-en for å registrera telefonnummeret ditt med Signal igjen</string>
+  <string name="AccountSettingsFragment__change_phone_number">Endra telefonnummer</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Bruk dette til å endra telefonnummeret ditt til eit nytt telefonnummer. Du kan ikkje gå tilbake på denne endringa.
+
+Før du går vidare, må du sørgja for at det nye nummeret kan ta i mot SMS eller samtalar.</string>
+  <string name="ChangeNumberFragment__continue">Hald fram</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Telefonnummeret ditt er endra.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Endra nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Det gamle nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Gammalt telefonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Det nye nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nytt telefonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Telefonnummeret du skreiv inn er ulikt det som høyrer til kontoen din.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du må oppgje landkoden til det gamle nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du må oppgje det gamle nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du må oppgje landet til det nye nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du må oppgje det nye nummeret ditt</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Endra nummer</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Stadfestar %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha krevst</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Endra nummer</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du er i ferd med å endra telefonnummeret ditt frå %1$s til %2$s.
+
+Stadfest at nummeret under er korrekt før du går vidare.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Rediger nummer</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal-nummerendring – treng hjelp med PIN for Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-ane er ulike</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-en assosiert med det nye nummeret ditt er ulik PIN-en til det gamle. Vil du ta vare på den gamle PIN-en eller oppdatera han.</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Ta vare på gammal PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Oppdater PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Ta vare på gammal PIN?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Send med linjeskift</string>
@@ -3163,11 +3210,23 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="MultiselectForwardFragment__limit_reached">Grense nådd</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Legg til melding</string>
+  <string name="MediaReviewFragment__add_a_reply">Legg til svar</string>
+  <string name="MediaReviewFragment__send_to">Send til</string>
   <string name="ImageEditorHud__cancel">Avbryt</string>
+  <string name="ImageEditorHud__draw">Teikn</string>
+  <string name="ImageEditorHud__write_text">Skriv tekst</string>
+  <string name="ImageEditorHud__add_a_sticker">Legg til klistremerke</string>
   <string name="ImageEditorHud__blur">Gjer uklar</string>
+  <string name="ImageEditorHud__done_editing">Ferdig å endra</string>
+  <string name="ImageEditorHud__clear_all">Tøm alt</string>
   <string name="ImageEditorHud__undo">Angra</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Skift mellom tusj og merketusj</string>
   <string name="MediaCountIndicatorButton__send">Send</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Trykk for å fjerna</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velja</string>
   <string name="MediaReviewImagePageFragment__discard">Forkast</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Forkast endringane?</string>
+  <string name="MediaReviewFragment__view_once_message">Éivisningsmelding</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du mister alle endringane du har gjort på dette bildet</string>
   <!--EOF-->
 </resources>

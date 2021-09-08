@@ -2111,7 +2111,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsAllActivityFragment__sent">Gesendet</string>
   <string name="PaymentsAllActivityFragment__received">Empfangen</string>
   <string name="PaymentsHomeFragment__introducing_payments">Neu: Zahlungen (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Nutze Signal für das Senden und Empfangen von MobileCoin, einer neuen und auf Datenschutz ausgerichteten digitalen Währung. Aktivieren, um loszulegen.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Nutze Signal für das Senden und Empfangen von MobileCoin, einer neuen, auf Datenschutz ausgerichteten digitalen Währung.</string>
   <string name="PaymentsHomeFragment__activate_payments">Zahlungen aktivieren</string>
   <string name="PaymentsHomeFragment__activating_payments">Zahlungen werden aktiviert …</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Zahlungskonto wiederherstellen </string>
@@ -2145,7 +2145,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsHomeFragment__payments_deactivated">Zahlungen deaktiviert.</string>
   <string name="PaymentsHomeFragment__payment_failed">Zahlung gescheitert</string>
   <string name="PaymentsHomeFragment__details">Details</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kannst Signal verwenden, um MobileCoin zu senden und zu empfangen. Alle Zahlungen unterliegen den Nutzungsbedingungen für MobileCoins und die MobileCoin-Wallet. Dies ist eine Beta-Funktion, daher können einige Probleme auftreten und eventuell verlorene Zahlungen oder Kontostände nicht wiederhergestellt werden.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kannst Signal verwenden, um MobileCoin zu senden und zu empfangen. Alle Zahlungen unterliegen den Nutzungsbedingungen für MobileCoins und der MobileCoin-Wallet. Dies ist eine Beta-Funktion, daher können einige Probleme auftreten und eventuell verlorene Zahlungen oder Kontostände nicht wiederhergestellt werden.</string>
   <string name="PaymentsHomeFragment__activate">Aktivieren</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-Bedingungen anzeigen</string>
   <string name="PaymentsHomeFragment__payments_not_available">Zahlungen in Signal sind nicht mehr verfügbar. Du kannst weiterhin Guthaben an eine Handelsplattform überweisen, aber keine Zahlungen senden und empfangen oder Guthaben hinzufügen.</string>
@@ -2929,6 +2929,38 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen aktivieren. Diese werden seltener angezeigt, wenn du die PIN regelmäßig korrekt eingibst.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst</string>
+  <string name="AccountSettingsFragment__change_phone_number">Rufnummer ändern</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Verwende dies, um deine aktuelle Rufnummer auf eine neue Rufnummer abzuändern. Du kannst diese Änderung nicht rückgängig machen.\n\nBevor du fortfährst, stelle sicher, dass deine neue Rufnummer SMS oder Anrufe empfangen kann.</string>
+  <string name="ChangeNumberFragment__continue">Fortfahren</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Deine Rufnummer wurde geändert.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Rufnummer ändern</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Deine alte Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Alte Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Deine neue Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Neue Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Die eingegebene Rufnummer entspricht nicht der deines Kontos.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du musst die Ländervorwahl deiner alten Rufnummer angeben</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du musst deine alte Rufnummer angeben</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du musst die Ländervorwahl deiner neuen Rufnummer angeben</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du musst deine neue Rufnummer angeben</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Rufnummern ändern</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s wird verifiziert</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha erforderlich</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Rufnummer ändern</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du bist dabei, deine Rufnummer von %1$s zu %2$s zu ändern.\n\nÜberprüfe vor dem Fortfahren, ob die folgende Nummer korrekt ist.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Rufnummer bearbeiten</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Änderung der Signal-Rufnummer – Hilfe benötigt für PIN für Android (v2-PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PINs stimmen nicht überein.</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Die mit deiner neuen Rufnummer verknüpfte PIN unterscheidet sich von der PIN deiner alten Rufnummer. Möchtest du deine alte PIN beibehalten oder sie aktualisieren?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Alte PIN beibehalten</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN aktualisieren</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Alte PIN beibehalten?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Eingabetaste sendet</string>
@@ -3167,6 +3199,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ImageEditorHud__done_editing">Bearbeiten abgeschlossen</string>
   <string name="ImageEditorHud__clear_all">Alles entfernen</string>
   <string name="ImageEditorHud__undo">Rückgängig</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Umschalten zwischen Stift und Textmarker</string>
   <string name="MediaCountIndicatorButton__send">Senden</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Zum Entfernen antippen</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Zum Auswählen antippen</string>

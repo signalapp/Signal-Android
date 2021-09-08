@@ -2944,6 +2944,38 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AccountSettingsFragment__account">Jouw registratie</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Gebruik je pincode voor twee-factor-authenticatie. Ieder die je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
+  <string name="AccountSettingsFragment__change_phone_number">Telefoonnummer wijzigen</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als je op een ander telefoonnummer door wilt gaan met Signal. Je kunt overatappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen voordat je verder gaat.</string>
+  <string name="ChangeNumberFragment__continue">Doorgaan</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Je telefoonnummer is gewijzigd.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Nummer veranderen</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Je oude telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Je nieuwe telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Je nieuwe nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nieuw telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Je moet je oude landcode aangeven</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Je moet je oude telefoonnummer invullen</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Je moet je nieuwe landcode aangeven</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Je moet je nieuwe telefoonnummer invullen</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Nummer veranderen</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s aan het verifiëren</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha vereist</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Telefoonnummer wijzigen</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Je staat op het punt om het telefoonnummer waarmee je geregistreert staat te veranderen van %1$s naar %2$s.\n\nGa na dat het telefoonnummer hieronder correct is.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Telefoonnummer wijzigen</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Telefoonnummer voor Signal veranderen - Hulp nodig bij met de pincode (pincode versie 2)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">De pincodes komen niet overeen</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">De pincode voor je nieuwe telefoonnummer is anders dan de pincode voor je oude telefoonnummer. Wil je de oude pincode behouden of een nieuwe pincode aanmaken?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Oude pincode behouden</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Nieuwe pincode aanmaken</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Oude pincode behouden?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Toetsenbord</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-toets verzendt</string>
@@ -3078,7 +3110,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__unblock">Deblokkeren</string>
   <string name="ConversationSettingsFragment__unblock_group">Groep deblokkeren</string>
   <string name="ConversationSettingsFragment__add_to_a_group">Aan een groep toevoegen</string>
-  <string name="ConversationSettingsFragment__see_all">Alle leden weergeven</string>
+  <string name="ConversationSettingsFragment__see_all">Alles weergeven</string>
   <string name="ConversationSettingsFragment__add_members">Groepsleden toevoegen</string>
   <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>

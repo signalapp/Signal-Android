@@ -2812,6 +2812,16 @@
   <string name="AccountSettingsFragment__account">บัญชี</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">จะมีการสอบถามคุณน้อยลงเมื่อเวลาผ่านไป</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">ต้องการรหัส SignalPIN ในการลงทะเบียนหมายเลขโทรศัพท์ของคุณกับ Signal อีกครั้ง</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">ทำต่อ</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">หมายเลขโทรศัพท์ที่คุณป้อนไม่ตรงกับหมายเลขในบัญชีคุณ</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">แก้ไขหมายเลข</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">เปลี่ยนรหัส PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
   <string name="ChatsSettingsFragment__enter_key_sends">กด Enter เพื่อส่ง</string>

@@ -3111,6 +3111,38 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="AccountSettingsFragment__account">Účet</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Postupom času sa vás budeme pýtať menej často</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Na opätovné zaregistrovanie telefónneho čísla v aplikácii Signal vyžadujte svojim Signal PIN</string>
+  <string name="AccountSettingsFragment__change_phone_number">Zmeniť telefónne číslo</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Toto použite na zmenu aktuálneho telefónneho čísla na nové telefónne číslo. Túto zmenu nemôžete vrátiť späť. \n\nPred pokračovaním sa uistite, že vaše nové číslo môže prijímať SMS alebo hovory.</string>
+  <string name="ChangeNumberFragment__continue">Pokračovať</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Vaše telefónne číslo bolo zmenené.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Zmeniť číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vaše staré číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Staré telefónne číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Vaše nové číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nové telefónne číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Zadané telefónne číslo sa nezhoduje s telefónnym číslom vášho účtu.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Musíte zadať predvoľbu krajiny svojho starého čísla</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Musíte zadať svoje staré číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Musíte zadať predvoľbu krajiny vášho nového čísla</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Musíte zadať svoje nové telefónne číslo</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Zmeniť číslo</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Overuje sa %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Vyžaduje sa Captcha</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Zmeniť číslo</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Chystáte sa zmeniť svoje telefónne číslo z %1$ss na %2$s. \n\nPred pokračovaním overte, či je nižšie uvedené číslo správne.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Úprav číslo</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Zmena čísla Signal - potrebujete pomoc s PIN pre Android (PIN v2)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN kódy sa nezhodujú</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN priradený k vášmu novému číslu sa líši od kódu PIN priradeného k vášmu starému číslu. Chcete si ponechať starý PIN, alebo ho aktualizovať?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Ponechať si starý PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Aktualizovať PIN kód</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Ponechať si starý PIN?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klávesnica</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Odoslať stlačením klávesy Enter</string>

@@ -2020,7 +2020,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__chat_color_and_wallpaper">Color y fondo de chat</string>
   <string name="preferences__disable_pin">Desactivar PIN</string>
   <string name="preferences__enable_pin">Activar PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Al desactivar el PIN perderás todos los datos de tu cuenta al volver a instalar Signal, a menos que hagas una copia de seguridad manual y la restaures. No puedes activar el bloqueo se registro mientras el PIN esté desactivado.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Al desactivar el PIN perderás todos los datos de tu cuenta al volver a instalar Signal, a menos que hagas una copia de seguridad manual y la restaures. No puedes activar el bloqueo de registro mientras el PIN esté desactivado.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">El PIN permite activar el bloqueo de registro de tu número y almacena tu cuenta cifrada en el servidor de Signal de forma que solo tú puedes acceder a ella. Ni siquiera la gente de Signal tiene acceso. Con el PIN, tu perfil, contactos, grupos y personas bloqueadas se recuperarán al reinstalar Signal. No necesitas el PIN para abrir la aplicación.</string>
   <string name="preferences__system_default">Predeterminado del sistema</string>
   <string name="preferences__language">Idioma</string>
@@ -2122,7 +2122,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsAllActivityFragment__sent">Enviados</string>
   <string name="PaymentsAllActivityFragment__received">Recibidos</string>
   <string name="PaymentsHomeFragment__introducing_payments">¡Los pagos han llegado! (BETA)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Usa Signal para enviar y recibir MobileCoin, una nueva monada digital enfocada en la privacidad. Activa la opción para comenzar.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Usa Signal para enviar y recibir MobileCoin, una nueva moneda digital enfocada en la privacidad. Activa la opción para comenzar.</string>
   <string name="PaymentsHomeFragment__activate_payments">Activar pagos</string>
   <string name="PaymentsHomeFragment__activating_payments">Activando pagos …</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Recuperar una cuenta de pagos</string>
@@ -2940,6 +2940,38 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="AccountSettingsFragment__account">Cuenta</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Te lo solicitaremos menos a menudo con el pasar del tiempo</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Requerir tu PIN de Signal al volver a registrar tu número con Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Cambiar número de teléfono</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Esta opción te permite cambiar tu número de teléfono actual en Signal a un número de teléfono nuevo. Este cambio no se puede deshacer.\n\n Antes de continuar, asegúrate que tu número nuevo puede recibir SMS o llamadas.</string>
+  <string name="ChangeNumberFragment__continue">Adelante</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Has cambiado tu número de teléfono en Signal.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Cambiar número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Tu número antiguo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Número de teléfono antiguo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Tu número nuevo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Número de teléfono nuevo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">El número introducido no coincide con el de tu cuenta de Signal.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Debes especificar el código de país de tu número antiguo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Debes especificar tu número antiguo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Debes especificar el código de país de tu número nuevo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Debes especificar tu número nuevo</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Corregir número</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Verificando %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captha requerido</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Corregir número</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Estás a punto de cambiar tu número de teléfono de %1$s a %2$s.\n\nAntes de continuar, verifica que el número a continuación es correcto.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Cambio de número en Signal - Ayuda necesaria con el PIN para Android (PIN v2)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Los PINs no coinciden</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">El PIN asociado con tu número nuevo es diferente del PIN asociado con el número antiguo. ¿Deseas conservar tu PIN antiguo o actualizarlo?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Conservar PIN antiguo</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizar PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">¿Conservar PIN antiguo?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Teclado</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enviar al tocar «Intro»</string>
@@ -3174,7 +3206,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ImageEditorHud__draw">Dibujar</string>
   <string name="ImageEditorHud__write_text">Texto</string>
   <string name="ImageEditorHud__add_a_sticker">Añadir sticker</string>
-  <string name="ImageEditorHud__blur">Borroso</string>
+  <string name="ImageEditorHud__blur">Desenfocar</string>
   <string name="ImageEditorHud__done_editing">Hecho</string>
   <string name="ImageEditorHud__clear_all">Eliminar todo</string>
   <string name="ImageEditorHud__undo">Deshacer</string>

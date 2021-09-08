@@ -3112,6 +3112,38 @@
   <string name="AccountSettingsFragment__account">Paskyra</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bėgant laikui, jūsų bus klausiama vis rečiau</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Norint vėl registruoti jūsų telefono numerį su Signal, reikalauti jūsų Signal PIN kodo</string>
+  <string name="AccountSettingsFragment__change_phone_number">Keisti telefono numerį</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Naudokite tai, norėdami pasikeisti dabartinį telefono numerį į naują numerį. Šio pakeitimo nebegalėsite atšaukti.\n\nPrieš tęsdami, įsitikinkite, kad į naują numerį galite gauti SMS žinutes bei priimti skambučius.</string>
+  <string name="ChangeNumberFragment__continue">Tęsti</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Jūsų telefono numeris pakeistas.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Jūsų senas numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Senas telefono numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Jūsų naujas numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Naujas telefono numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Jūsų įvestas telefono numeris nesutampa su jūsų paskyros telefono numeriu.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Privalote nurodyti savo seno numerio šalies kodą</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Privalote nurodyti savo seną telefono numerį</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Privalote nurodyti savo naujo numerio šalies kodą</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Privalote nurodyti savo naują telefono numerį</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Patvirtinamas %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Reikia saugos kodo</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Keisti numerį</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Jūs ketinate pasikeisti telefono numerį iš %1$s į %2$s.\n\nPrieš tęsdami, patikrinkite, ar žemiau esantis numeris yra teisingas.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Taisyti numerį</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal numerio keitimas - Reikia pagalbos su „Android“ PIN kodu (v2 PIN kodas)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN kodai nesutampa</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Su jūsų nauju numeriu susietas PIN kodas yra kitoks nei su jūsų senu numeriu susietas PIN kodas. Norėtumėte palikti seną PIN kodą ar jį atnaujinti?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Palikti seną PIN kodą</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Atnaujinti PIN kodą</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Palikti seną PIN kodą?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatūra</string>
   <string name="ChatsSettingsFragment__enter_key_sends">„Enter“ (Įvedimo) klavišas išsiunčia</string>

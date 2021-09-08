@@ -2805,6 +2805,16 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="AccountSettingsFragment__account">Akaun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Anda akan diminta dengan kurang kerap dari masa ke masa</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Memerlukan PIN Signal anda untuk mendaftarkan nombor telefon anda dengan Signal sekali lagi</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Teruskan</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Nombor telefon yang anda masukkan tidak sepadan dengan akaun anda.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Edit nombor</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Kemas kini PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Papan Kekunci</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Kekunci enter menghantar</string>

@@ -38,6 +38,8 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-от е исклучен.</string>
   <string name="ApplicationPreferencesActivity_hide">Сокриј</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Да го сокријам потсетникот?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Сними фраза за враќање на плаќањата</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Сними фраза</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Пред да го исклучите PIN-от, морате да ја снимите  фразата за повраток на Вашите плаќања за да се осигурате дека можете да ја повратите Вашата сметка.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -1211,6 +1213,7 @@
   <string name="WebRtcCallView__joining">Се приклучувам…</string>
   <string name="WebRtcCallView__disconnected">Неповрзан</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal ќе ѕвони %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ќе ѕвони на %1$s и %2$s</string>
   <string name="WebRtcCallView__no_one_else_is_here">Нема никој</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s е на овој повик</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s се на овој повик</string>
@@ -2832,6 +2835,18 @@
   <string name="AccountSettingsFragment__account">Сметка</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ќе бидете прашувани се поретко</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Барај го Signal PIN-от за повторна регистрација на Вашиот телефонски број на Signal</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Продолжи</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Смени го бројот</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Смени го бројот</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Уреди број</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирај PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
@@ -2954,7 +2969,7 @@
   <string name="ConversationSettingsFragment__video">Видео</string>
   <string name="ConversationSettingsFragment__audio">Аудио</string>
   <string name="ConversationSettingsFragment__call">Повикај</string>
-  <string name="ConversationSettingsFragment__mute">Исклучи известувања</string>
+  <string name="ConversationSettingsFragment__mute">Исклучи</string>
   <string name="ConversationSettingsFragment__muted">Исклучен звук</string>
   <string name="ConversationSettingsFragment__search">Барај</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Пораки што исчезнуваат</string>

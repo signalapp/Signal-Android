@@ -3104,6 +3104,38 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Z czasem pytanie będzie pojawiać się coraz rzadziej</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Wymagaj Twojego PIN-u Signal, aby ponownie zarejestrować Twór numer telefonu w Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Zmień numer telefonu</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Użyj tej opcji do zmiany Twojego, aktualnego numeru telefonu na nowy.  Tej zmiany nie można cofnąć.\n\nZanim zaczniesz, upewnij się, że Twój nowy numer może otrzymywać SMS-y lub połączenia.</string>
+  <string name="ChangeNumberFragment__continue">Kontynuuj</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Twój numer telefonu został zmieniony</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Zmień numer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Twór stary numer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Stary numer telefonu</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Twór nowy numer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nowy numer telefonu</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Podany numer telefonu nie należy do Twojego konta.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Musisz podać kod telefoniczny kraju dla Twojego, starego numeru</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Musisz podać swój stary numer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Musisz podać kod telefoniczny kraju dla Twojego, nowego numeru</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Musisz podać swój nowy numer</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Zmień numer</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Weryfikowanie %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Wymagane wypełnienie captcha</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Zmień numer</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Zamierzasz zmienić swój numer telefonu z %1$s na %2$s.\n\nUpewnij się, że poniższy numer jest poprawny.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Edytuj numer</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Zmiana numeru Signal - Potrzebna pomoc z kodem PIN Signal dla systemu Android (PIN v2)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN nie jest zgodny</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Kod PIN, powiązany z Twoim, nowym numerem różni się od PIN-u, powiązanego ze starym numerem. Czy chcesz zachować stary PIN, czy go uaktualnić?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Zachowaj stary PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Uaktualnij PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Zachować stary PIN?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klawiatura</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter wysyła wiadomość</string>

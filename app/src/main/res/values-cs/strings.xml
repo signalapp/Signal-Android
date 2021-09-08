@@ -3101,6 +3101,18 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="AccountSettingsFragment__account">Účet</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Časem se vás budeme ptál méně často.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Vyžadovat Signal PIN pro opětovnou registraci vašeho telefonního čísla v aplikaci Signal.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Pokračovat</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Změnit číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Zadané telefonní číslo neodpovídá vašemu účtu.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Změnit číslo</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Upravit číslo</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Aktualizovat PIN</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klávesnice</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Klávesa Enter odesílá</string>
