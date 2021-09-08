@@ -252,12 +252,14 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
       hud.hidePlayButton();
     }
 
+    final long clampedStartTime = Math.max(startTimeUs, 0);
+
     boolean wasEdited      = data.durationEdited;
-    boolean durationEdited = startTimeUs > 0 || endTimeUs < totalDurationUs;
+    boolean durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs;
 
     data.durationEdited  = durationEdited;
     data.totalDurationUs = totalDurationUs;
-    data.startTimeUs     = startTimeUs;
+    data.startTimeUs     = clampedStartTime;
     data.endTimeUs       = endTimeUs;
 
     if (editingComplete) {
@@ -269,10 +271,10 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
       if (!editingComplete) {
         player.removeClip(false);
       }
-      player.setPlaybackPosition(fromEdited || editingComplete ? startTimeUs / 1000 : endTimeUs / 1000);
+      player.setPlaybackPosition(fromEdited || editingComplete ? clampedStartTime / 1000 : endTimeUs / 1000);
       if (editingComplete) {
         if (durationEdited) {
-          player.clip(startTimeUs, endTimeUs, true);
+          player.clip(clampedStartTime, endTimeUs, true);
         } else {
           player.removeClip(true);
         }
