@@ -32,6 +32,8 @@ import static java.util.Collections.emptyList;
  */
 public final class MultiLineTextRenderer extends InvalidateableRenderer implements ColorableRenderer, SelectableRenderer {
 
+  private static final float HIT_PADDING = ViewUtil.dpToPx(30);
+
   @NonNull
   private String text = "";
 
@@ -155,6 +157,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
     private final Matrix inverseProjectionMatrix = new Matrix();
     private final RectF  selectionBounds         = new RectF();
     private final RectF  textBounds              = new RectF();
+    private final RectF  hitBounds               = new RectF();
 
     private String text;
     private int    selStart;
@@ -175,6 +178,12 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
       getTextBoundsWithoutTrim(text, 0, text.length(), temp);
       textBounds.set(temp);
+      hitBounds.set(textBounds);
+
+      hitBounds.left   -= HIT_PADDING;
+      hitBounds.right  += HIT_PADDING;
+      hitBounds.top    -= HIT_PADDING;
+      hitBounds.bottom += HIT_PADDING;
 
       maxTextBounds.set(textBounds);
       float widthLimit = 150 * textScale;
@@ -266,7 +275,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
       inverseProjectionMatrix.mapPoints(dst, new float[]{ x, y });
 
-      return textBounds.contains(dst[0], dst[1]);
+      return hitBounds.contains(dst[0], dst[1]);
     }
 
     void setText(String text) {
