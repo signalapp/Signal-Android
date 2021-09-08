@@ -4,6 +4,7 @@ import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
 import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
@@ -16,7 +17,7 @@ import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 class VerifyCodeWithRegistrationLockResponseProcessor(
   response: ServiceResponse<VerifyAccountWithRegistrationLockResponse>,
   val token: TokenData
-) : ServiceResponseProcessor<VerifyAccountWithRegistrationLockResponse>(response) {
+) : ServiceResponseProcessor<VerifyAccountWithRegistrationLockResponse>(response), VerifyProcessor {
 
   public override fun rateLimit(): Boolean {
     return super.rateLimit()
@@ -44,5 +45,11 @@ class VerifyCodeWithRegistrationLockResponseProcessor(
     }
 
     return VerifyCodeWithRegistrationLockResponseProcessor(ServiceResponse.coerceError(response), token)
+  }
+
+  override fun isServerSentError(): Boolean {
+    return error is NonSuccessfulResponseCodeException ||
+      error is KeyBackupSystemWrongPinException ||
+      error is KeyBackupSystemNoDataException
   }
 }

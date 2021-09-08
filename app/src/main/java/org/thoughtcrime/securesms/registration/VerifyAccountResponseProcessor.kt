@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.registration
 
 import org.thoughtcrime.securesms.pin.TokenData
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
 import org.whispersystems.signalservice.internal.push.LockedException
@@ -9,7 +10,9 @@ import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 /**
  * Process responses from attempting to verify an account for use in account registration.
  */
-sealed class VerifyAccountResponseProcessor(response: ServiceResponse<VerifyAccountResponse>) : ServiceResponseProcessor<VerifyAccountResponse>(response) {
+sealed class VerifyAccountResponseProcessor(
+  response: ServiceResponse<VerifyAccountResponse>
+) : ServiceResponseProcessor<VerifyAccountResponse>(response), VerifyProcessor {
 
   open val tokenData: TokenData? = null
 
@@ -31,6 +34,10 @@ sealed class VerifyAccountResponseProcessor(response: ServiceResponse<VerifyAcco
 
   fun getLockedException(): LockedException {
     return error as LockedException
+  }
+
+  override fun isServerSentError(): Boolean {
+    return error is NonSuccessfulResponseCodeException
   }
 
   abstract fun isKbsLocked(): Boolean

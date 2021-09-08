@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.changenumber
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
@@ -20,7 +21,16 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
     super.onViewCreated(view, savedInstanceState)
 
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-    toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+    toolbar.setNavigationOnClickListener { navigateUp() }
+
+    requireActivity().onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          navigateUp()
+        }
+      }
+    )
   }
 
   override fun getViewModel(): BaseRegistrationViewModel {
@@ -59,5 +69,13 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
       getString(subject),
       body
     )
+  }
+
+  private fun navigateUp() {
+    if (SignalStore.misc().isChangeNumberLocked) {
+      startActivity(ChangeNumberLockActivity.createIntent(requireContext()))
+    } else {
+      findNavController().navigateUp()
+    }
   }
 }

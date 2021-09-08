@@ -328,6 +328,10 @@ public class PushServiceSocket {
     }
   }
 
+  public WhoAmIResponse getWhoAmI() throws IOException {
+    return JsonUtil.fromJson(makeServiceRequest(WHO_AM_I, "GET", null), WhoAmIResponse.class);
+  }
+
   public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,
                                                  String pin, String registrationLock,
                                                  byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,

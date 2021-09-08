@@ -12,18 +12,21 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.registration.VerifyAccountResponseProcessor
 import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithoutKbs
 import org.thoughtcrime.securesms.registration.VerifyCodeWithRegistrationLockResponseProcessor
+import org.thoughtcrime.securesms.registration.VerifyProcessor
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
+import java.util.Objects
 
 private val TAG: String = Log.tag(ChangeNumberViewModel::class.java)
 
@@ -101,6 +104,35 @@ class ChangeNumberViewModel(
       }
     } else {
       ContinueStatus.OLD_NUMBER_DOESNT_MATCH
+    }
+  }
+
+  override fun verifyCodeWithoutRegistrationLock(code: String): Single<VerifyAccountResponseProcessor> {
+    return super.verifyCodeWithoutRegistrationLock(code)
+      .doOnSubscribe { SignalStore.misc().lockChangeNumber() }
+      .flatMap(this::attemptToUnlockChangeNumber)
+  }
+
+  override fun verifyCodeAndRegisterAccountWithRegistrationLock(pin: String): Single<VerifyCodeWithRegistrationLockResponseProcessor> {
+    return super.verifyCodeAndRegisterAccountWithRegistrationLock(pin)
+      .doOnSubscribe { SignalStore.misc().lockChangeNumber() }
+      .flatMap(this::attemptToUnlockChangeNumber)
+  }
+
+  private fun <T : VerifyProcessor> attemptToUnlockChangeNumber(processor: T): Single<T> {
+    return if (processor.hasResult() || processor.isServerSentError()) {
+      SignalStore.misc().unlockChangeNumber()
+      Single.just(processor)
+    } else {
+      changeNumberRepository.whoAmI()
+        .map { whoAmI ->
+          if (Objects.equals(whoAmI.number, localNumber)) {
+            Log.i(TAG, "Local and remote numbers match, we can unlock.")
+            SignalStore.misc().unlockChangeNumber()
+          }
+          processor
+        }
+        .onErrorReturn { processor }
     }
   }
 

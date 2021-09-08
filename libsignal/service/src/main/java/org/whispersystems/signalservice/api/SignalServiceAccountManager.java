@@ -65,6 +65,7 @@ import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
 import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
+import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation;
@@ -167,6 +168,10 @@ public class SignalServiceAccountManager {
 
   public UUID getOwnUuid() throws IOException {
     return this.pushServiceSocket.getOwnUuid();
+  }
+
+  public WhoAmIResponse getWhoAmI() throws IOException {
+    return this.pushServiceSocket.getWhoAmI();
   }
 
   public KeyBackupService getKeyBackupService(KeyStore iasKeyStore,

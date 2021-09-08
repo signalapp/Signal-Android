@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.devicetransfer.TransferStatus;
+import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberLockActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity;
@@ -50,6 +51,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   private static final int STATE_CREATE_SIGNAL_PIN   = 7;
   private static final int STATE_TRANSFER_ONGOING    = 8;
   private static final int STATE_TRANSFER_LOCKED     = 9;
+  private static final int STATE_CHANGE_NUMBER_LOCK  = 10;
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
@@ -153,6 +155,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       case STATE_CREATE_PROFILE_NAME: return getCreateProfileNameIntent();
       case STATE_TRANSFER_ONGOING:    return getOldDeviceTransferIntent();
       case STATE_TRANSFER_LOCKED:     return getOldDeviceTransferLockedIntent();
+      case STATE_CHANGE_NUMBER_LOCK:  return getChangeNumberLockIntent();
       default:                        return null;
     }
   }
@@ -176,6 +179,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_TRANSFER_ONGOING;
     } else if (SignalStore.misc().isOldDeviceTransferLocked()) {
       return STATE_TRANSFER_LOCKED;
+    } else if (SignalStore.misc().isChangeNumberLocked() && getClass() != ChangeNumberLockActivity.class) {
+      return STATE_CHANGE_NUMBER_LOCK;
     } else {
       return STATE_NORMAL;
     }
@@ -241,6 +246,10 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return null;
     }
     return MainActivity.clearTop(this);
+  }
+
+  private Intent getChangeNumberLockIntent() {
+    return ChangeNumberLockActivity.createIntent(this);
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {

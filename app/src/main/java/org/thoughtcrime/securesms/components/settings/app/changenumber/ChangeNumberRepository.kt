@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.api.KbsPinData
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
+import org.whispersystems.signalservice.internal.push.WhoAmIResponse
 
 private val TAG: String = Log.tag(ChangeNumberRepository::class.java)
 
@@ -51,11 +52,17 @@ class ChangeNumberRepository(private val context: Context) {
     }.subscribeOn(Schedulers.io())
   }
 
+  @Suppress("UsePropertyAccessSyntax")
+  fun whoAmI(): Single<WhoAmIResponse> {
+    return Single.fromCallable { ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI() }
+      .subscribeOn(Schedulers.io())
+  }
+
   @WorkerThread
   fun changeLocalNumber(e164: String): Single<Unit> {
-    TextSecurePreferences.setLocalNumber(context, e164)
-
     DatabaseFactory.getRecipientDatabase(context).updateSelfPhone(e164)
+
+    TextSecurePreferences.setLocalNumber(context, e164)
 
     ApplicationDependencies.closeConnections()
     ApplicationDependencies.getIncomingMessageObserver()
