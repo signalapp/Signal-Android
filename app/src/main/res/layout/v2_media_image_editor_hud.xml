@@ -405,4 +405,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <org.thoughtcrime.securesms.scribbles.BrushWidthPreviewView
+        android:id="@+id/image_editor_hud_brush_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:alpha="0"
+        tools:alpha="1" />
 </merge>

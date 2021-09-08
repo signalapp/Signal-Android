@@ -68,6 +68,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private val delete: FrameLayout = findViewById(R.id.image_editor_hud_delete)
   private val deleteBackground: View = findViewById(R.id.image_editor_hud_delete_bg)
   private val bottomGuideline: Guideline = findViewById(R.id.image_editor_bottom_guide)
+  private val brushPreview: BrushWidthPreviewView = findViewById(R.id.image_editor_hud_brush_preview)
 
   private val selectableSet: Set<View> = setOf(drawButton, textButton, stickerButton, blurButton)
 
@@ -172,6 +173,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     widthSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         listener?.onBrushWidthChange()
+        brushPreview.setThickness(getActiveBrushWidth())
 
         when (currentMode) {
           Mode.DRAW -> SignalStore.imageEditorValues().setMarkerPercentage(progress)
@@ -188,8 +190,10 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     widthSeekBar.setOnTouchListener { v, event ->
       if (event.action == MotionEvent.ACTION_DOWN) {
         animateWidthSeekbarIn()
+        brushPreview.show()
       } else if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
         animateWidthSeekbarOut()
+        brushPreview.hide()
       }
 
       v.onTouchEvent(event)
@@ -449,6 +453,8 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private fun updateColorIndicator() {
     colorIndicator.drawable.colorFilter = SimpleColorFilter(drawSeekBar.getColor())
     colorIndicator.translationX = (drawSeekBar.thumb.bounds.left.toFloat() + ViewUtil.dpToPx(16))
+    brushPreview.setColor(drawSeekBar.getColor())
+    brushPreview.setBlur(currentMode == Mode.BLUR)
   }
 
   private fun animateModeChange(
