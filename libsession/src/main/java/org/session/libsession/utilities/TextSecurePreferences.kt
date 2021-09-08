@@ -80,6 +80,7 @@ object TextSecurePreferences {
     const val UNIVERSAL_UNIDENTIFIED_ACCESS = "pref_universal_unidentified_access"
     const val TYPING_INDICATORS = "pref_typing_indicators"
     const val LINK_PREVIEWS = "pref_link_previews"
+    private const val GIF_METADATA_WARNING = "has_seen_gif_metadata_warning"
     private const val GIF_GRID_LAYOUT = "pref_gif_grid_layout"
     const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
@@ -283,6 +284,16 @@ object TextSecurePreferences {
     @JvmStatic
     fun setLinkPreviewsEnabled(context: Context, enabled: Boolean) {
         setBooleanPreference(context, LINK_PREVIEWS, enabled)
+    }
+
+    @JvmStatic
+    fun hasSeenGIFMetaDataWarning(context: Context): Boolean {
+        return getBooleanPreference(context, GIF_METADATA_WARNING, false)
+    }
+
+    @JvmStatic
+    fun setHasSeenGIFMetaDataWarning(context: Context) {
+        setBooleanPreference(context, GIF_METADATA_WARNING, true)
     }
 
     @JvmStatic
