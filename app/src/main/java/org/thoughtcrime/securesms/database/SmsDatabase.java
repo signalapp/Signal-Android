@@ -73,6 +73,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -270,8 +271,8 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   private @NonNull SqlUtil.Query buildMeaningfulMessagesQuery(long threadId) {
-    String query = THREAD_ID + " = ? AND (NOT " + TYPE + " & ? AND TYPE != ?)";
-    return SqlUtil.buildQuery(query, threadId, IGNORABLE_TYPESMASK_WHEN_COUNTING, Types.PROFILE_CHANGE_TYPE);
+    String query = THREAD_ID + " = ? AND (NOT " + TYPE + " & ? AND TYPE != ? AND TYPE != ?)";
+    return SqlUtil.buildQuery(query, threadId, IGNORABLE_TYPESMASK_WHEN_COUNTING, Types.PROFILE_CHANGE_TYPE, Types.CHANGE_NUMBER_TYPE);
   }
 
   @Override
@@ -1025,6 +1026,53 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, values);
+  }
+
+  @Override
+  public void insertNumberChangeMessages(@NonNull Recipient recipient) {
+    ThreadDatabase                  threadDatabase    = DatabaseFactory.getThreadDatabase(context);
+    List<GroupDatabase.GroupRecord> groupRecords      = DatabaseFactory.getGroupDatabase(context).getGroupsContainingMember(recipient.getId(), false);
+    List<Long>                      threadIdsToUpdate = new LinkedList<>();
+
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      threadIdsToUpdate.add(threadDatabase.getThreadIdFor(recipient.getId()));
+      for (GroupDatabase.GroupRecord groupRecord : groupRecords) {
+        if (groupRecord.isActive()) {
+          threadIdsToUpdate.add(threadDatabase.getThreadIdFor(groupRecord.getRecipientId()));
+        }
+      }
+
+      threadIdsToUpdate.stream()
+                       .filter(Objects::nonNull)
+                       .forEach(threadId -> {
+                         ContentValues values = new ContentValues();
+                         values.put(RECIPIENT_ID, recipient.getId().serialize());
+                         values.put(ADDRESS_DEVICE_ID, 1);
+                         values.put(DATE_RECEIVED, System.currentTimeMillis());
+                         values.put(DATE_SENT, System.currentTimeMillis());
+                         values.put(READ, 1);
+                         values.put(TYPE, Types.CHANGE_NUMBER_TYPE);
+                         values.put(THREAD_ID, threadId);
+                         values.putNull(BODY);
+
+                         db.insert(TABLE_NAME, null, values);
+                       });
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    threadIdsToUpdate.stream()
+                     .filter(Objects::nonNull)
+                     .forEach(threadId -> {
+                       TrimThreadJob.enqueueAsync(threadId);
+                       DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+                       notifyConversationListeners(threadId);
+                     });
   }
 
   @Override

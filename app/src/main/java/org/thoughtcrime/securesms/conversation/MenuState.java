@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -188,7 +187,8 @@ final class MenuState {
            messageRecord.isProfileChange() ||
            messageRecord.isGroupV1MigrationEvent() ||
            messageRecord.isChatSessionRefresh() ||
-           messageRecord.isInMemoryMessageRecord();
+           messageRecord.isInMemoryMessageRecord() ||
+           messageRecord.isChangeNumber();
   }
 
   private final static class Builder {

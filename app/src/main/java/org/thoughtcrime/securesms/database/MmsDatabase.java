@@ -504,6 +504,11 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void insertNumberChangeMessages(@NonNull Recipient recipient) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public void endTransaction(SQLiteDatabase database) {
     database.endTransaction();
   }

@@ -408,6 +408,14 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onBadDecryptLearnMoreClicked(conversationMessage.getMessageRecord().getRecipient().getId());
         }
       });
+    } else if (conversationMessage.getMessageRecord().isChangeNumber() && conversationMessage.getMessageRecord().getIndividualRecipient().isSystemContact()) {
+      actionButton.setText(R.string.ConversationUpdateItem_update_contact);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onChangeNumberUpdateContact(conversationMessage.getMessageRecord().getIndividualRecipient());
+        }
+      });
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);
@@ -480,10 +488,11 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   private static boolean isSameType(@NonNull MessageRecord current, @NonNull MessageRecord candidate) {
-    return (current.isGroupUpdate()           && candidate.isGroupUpdate())   ||
-           (current.isProfileChange()         && candidate.isProfileChange()) ||
-           (current.isGroupCall()             && candidate.isGroupCall())     ||
-           (current.isExpirationTimerUpdate() && candidate.isExpirationTimerUpdate());
+    return (current.isGroupUpdate()           && candidate.isGroupUpdate())           ||
+           (current.isProfileChange()         && candidate.isProfileChange())         ||
+           (current.isGroupCall()             && candidate.isGroupCall())             ||
+           (current.isExpirationTimerUpdate() && candidate.isExpirationTimerUpdate()) ||
+           (current.isChangeNumber()          && candidate.isChangeNumber());
   }
 
   @Override

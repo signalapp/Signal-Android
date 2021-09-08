@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.recipients;
 
-import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -63,6 +61,8 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
+
 public class Recipient {
 
   private static final String TAG = Log.tag(Recipient.class);
@@ -110,6 +110,7 @@ public class Recipient {
   private final Capability             groupsV1MigrationCapability;
   private final Capability             senderKeyCapability;
   private final Capability             announcementGroupCapability;
+  private final Capability             changeNumberCapability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
@@ -362,6 +363,7 @@ public class Recipient {
     this.groupsV1MigrationCapability = Capability.UNKNOWN;
     this.senderKeyCapability         = Capability.UNKNOWN;
     this.announcementGroupCapability = Capability.UNKNOWN;
+    this.changeNumberCapability      = Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
@@ -414,6 +416,7 @@ public class Recipient {
     this.groupsV1MigrationCapability = details.groupsV1MigrationCapability;
     this.senderKeyCapability         = details.senderKeyCapability;
     this.announcementGroupCapability = details.announcementGroupCapability;
+    this.changeNumberCapability      = details.changeNumberCapability;
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
@@ -916,6 +919,10 @@ public class Recipient {
 
   public @NonNull Capability getAnnouncementGroupCapability() {
     return announcementGroupCapability;
+  }
+
+  public @NonNull Capability getChangeNumberCapability() {
+    return changeNumberCapability;
   }
 
   /**

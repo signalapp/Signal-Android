@@ -77,6 +77,7 @@ public interface MmsSmsColumns {
     protected static final long OUTGOING_VIDEO_CALL_TYPE           = 11;
     protected static final long GROUP_CALL_TYPE                    = 12;
     protected static final long BAD_DECRYPT_TYPE                   = 13;
+    protected static final long CHANGE_NUMBER_TYPE                 = 14;
 
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;
@@ -332,6 +333,10 @@ public interface MmsSmsColumns {
 
     public static boolean isGroupV1MigrationEvent(long type) {
       return type == GV1_MIGRATION_TYPE;
+    }
+
+    public static boolean isChangeNumber(long type) {
+      return type == CHANGE_NUMBER_TYPE;
     }
 
     public static long translateFromSystemBaseType(long theirType) {

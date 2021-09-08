@@ -1514,7 +1514,8 @@ public class ThreadDatabase extends Database {
 
   private boolean isSilentType(long type) {
     return MmsSmsColumns.Types.isProfileChange(type) ||
-           MmsSmsColumns.Types.isGroupV1MigrationEvent(type);
+           MmsSmsColumns.Types.isGroupV1MigrationEvent(type) ||
+           MmsSmsColumns.Types.isChangeNumber(type);
   }
 
   public Reader readerFor(Cursor cursor) {
