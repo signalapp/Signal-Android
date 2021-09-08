@@ -24,15 +24,35 @@ import org.thoughtcrime.securesms.util.customizeOnDraw
  */
 object HSVColorSlider {
 
-  private const val MAX_SEEK_DIVISIONS = 1023
   private const val MAX_HUE = 360
+  private const val COLOR_DIVISIONS = 1023
+  private const val BLACK_DIVISIONS = 175
+  private const val WHITE_DIVISIONS = 125
+  private const val MAX_SEEK_DIVISIONS = COLOR_DIVISIONS + BLACK_DIVISIONS + WHITE_DIVISIONS
+  private const val STANDARD_LIGHTNESS = 0.4f
 
-  private val colors: IntArray = (0..MAX_SEEK_DIVISIONS).map { hue ->
+  private val colors: IntArray = (0..COLOR_DIVISIONS).map { hue ->
     ColorUtils.HSLToColor(
       floatArrayOf(
-        hue.toHue(MAX_SEEK_DIVISIONS),
+        hue.toHue(COLOR_DIVISIONS),
         1f,
-        calculateLightness(hue.toFloat(), 0.4f)
+        calculateLightness(hue.toFloat(), STANDARD_LIGHTNESS)
+      )
+    )
+  }.toIntArray() + (BLACK_DIVISIONS downTo 0).map { value ->
+    ColorUtils.HSLToColor(
+      floatArrayOf(
+        MAX_HUE.toFloat(),
+        1f,
+        value / BLACK_DIVISIONS.toFloat() * STANDARD_LIGHTNESS
+      )
+    )
+  }.toIntArray() + (0..WHITE_DIVISIONS).map { value ->
+    ColorUtils.HSLToColor(
+      floatArrayOf(
+        MAX_HUE.toFloat(),
+        0f,
+        value / WHITE_DIVISIONS.toFloat()
       )
     )
   }.toIntArray()
@@ -90,7 +110,6 @@ object HSVColorSlider {
   }
 
   private fun calculateLightness(hue: Float, valueFor60To80: Float = 0.3f): Float {
-
     val point1 = PointF()
     val point2 = PointF()
 
