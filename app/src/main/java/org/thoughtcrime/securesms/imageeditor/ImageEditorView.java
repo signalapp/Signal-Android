@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.imageeditor.model.ThumbRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.BezierDrawingRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.TrashRenderer;
 
 /**
  * ImageEditorView
@@ -231,6 +232,7 @@ public final class ImageEditorView extends FrameLayout {
         editSession = startEdit(inverse, point, selected);
 
         if (editSession != null) {
+          checkTrashIntersect(point);
           notifyDragStart(editSession.getSelected());
         }
 
@@ -260,7 +262,7 @@ public final class ImageEditorView extends FrameLayout {
           }
           model.moving(editSession.getSelected());
           invalidate();
-          notifyDragMove(editSession.getSelected(), event);
+          notifyDragMove(editSession.getSelected(), checkTrashIntersect(getPoint(event)));
           return true;
         }
         break;
@@ -304,7 +306,7 @@ public final class ImageEditorView extends FrameLayout {
         if (editSession != null) {
           editSession.commit();
           dragDropRelease(false);
-          notifyDragEnd(editSession.getSelected());
+          notifyDragEnd(editSession.getSelected(), checkTrashIntersect(getPoint(event)));
 
           editSession = null;
           model.postEdit(moreThanOnePointerUsedInSession);
@@ -320,21 +322,35 @@ public final class ImageEditorView extends FrameLayout {
     return super.onTouchEvent(event);
   }
 
+  private boolean checkTrashIntersect(@NonNull PointF point) {
+    if (mode == Mode.Draw || mode == Mode.Blur) {
+      return false;
+    }
+
+    if (model.checkTrashIntersectsPoint(point, viewMatrix)) {
+      ((TrashRenderer) model.getTrash().getRenderer()).expand();
+      return true;
+    } else {
+      ((TrashRenderer) model.getTrash().getRenderer()).shrink();
+      return false;
+    }
+  }
+
   private void notifyDragStart(@Nullable EditorElement editorElement) {
     if (dragListener != null) {
       dragListener.onDragStarted(editorElement);
     }
   }
 
-  private void notifyDragMove(@Nullable EditorElement editorElement, @NonNull MotionEvent event) {
+  private void notifyDragMove(@Nullable EditorElement editorElement, boolean isInTrashHitZone) {
     if (dragListener != null) {
-      dragListener.onDragMoved(editorElement, event);
+      dragListener.onDragMoved(editorElement, isInTrashHitZone);
     }
   }
 
-  private void notifyDragEnd(@Nullable EditorElement editorElement) {
+  private void notifyDragEnd(@Nullable EditorElement editorElement, boolean isInTrashHitZone) {
     if (dragListener != null) {
-      dragListener.onDragEnded(editorElement);
+      dragListener.onDragEnded(editorElement, isInTrashHitZone);
     }
   }
 
@@ -511,8 +527,8 @@ public final class ImageEditorView extends FrameLayout {
 
   public interface DragListener {
     void onDragStarted(@Nullable EditorElement editorElement);
-    void onDragMoved(@Nullable EditorElement editorElement, @NonNull MotionEvent event);
-    void onDragEnded(@Nullable EditorElement editorElement);
+    void onDragMoved(@Nullable EditorElement editorElement, boolean isInTrashHitZone);
+    void onDragEnded(@Nullable EditorElement editorElement, boolean isInTrashHitZone);
   }
 
   public interface TapListener {

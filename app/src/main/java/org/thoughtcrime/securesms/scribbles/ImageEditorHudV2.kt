@@ -6,9 +6,7 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Rect
 import android.util.AttributeSet
-import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
@@ -28,7 +26,6 @@ import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
 import org.thoughtcrime.securesms.util.Debouncer
-import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 
@@ -65,8 +62,6 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private val blurToast: View = findViewById(R.id.image_editor_hud_blur_toast)
   private val blurHelpText: View = findViewById(R.id.image_editor_hud_blur_help_text)
   private val colorIndicator: ImageView = findViewById(R.id.image_editor_hud_color_indicator)
-  private val delete: FrameLayout = findViewById(R.id.image_editor_hud_delete)
-  private val deleteBackground: View = findViewById(R.id.image_editor_hud_delete_bg)
   private val bottomGuideline: Guideline = findViewById(R.id.image_editor_bottom_guide)
   private val brushPreview: BrushWidthPreviewView = findViewById(R.id.image_editor_hud_brush_preview)
 
@@ -78,23 +73,15 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   private val drawButtonRow: Set<View> = setOf(cancelButton, doneButton, drawButton, textButton, stickerButton, blurButton)
   private val cropButtonRow: Set<View> = setOf(cancelButton, doneButton, cropRotateButton, cropFlipButton, cropAspectLockButton)
 
-  private val allModeTools: Set<View> = drawTools + blurTools + drawButtonRow + cropButtonRow + delete
+  private val allModeTools: Set<View> = drawTools + blurTools + drawButtonRow + cropButtonRow
 
   private val viewsToSlide: Set<View> = drawButtonRow + cropButtonRow
 
   private val toastDebouncer = Debouncer(3000)
   private var colorIndicatorAlphaAnimator: Animator? = null
 
-  private val deleteDebouncer = ThrottledDebouncer(500)
-
-  private val rect = Rect()
-
   private var modeAnimatorSet: AnimatorSet? = null
   private var undoAnimatorSet: AnimatorSet? = null
-  private var deleteSizeAnimatorSet: AnimatorSet? = null
-
-  var isInDeleteRect: Boolean = false
-    private set
 
   init {
     initializeViews()
@@ -287,47 +274,6 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   fun getMode(): Mode = currentMode
 
-  fun onMoved(motionEvent: MotionEvent) {
-    delete.getHitRect(rect)
-    if (rect.contains(motionEvent.x.toInt(), motionEvent.y.toInt())) {
-      isInDeleteRect = true
-      deleteDebouncer.publish { scaleDeleteUp() }
-    } else {
-      isInDeleteRect = false
-      deleteDebouncer.publish { scaleDeleteDown() }
-    }
-  }
-
-  private fun scaleDeleteUp() {
-    if (delete.isHapticFeedbackEnabled && deleteBackground.scaleX < 1.365f) {
-      delete.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-    }
-
-    deleteSizeAnimatorSet?.cancel()
-    deleteSizeAnimatorSet = AnimatorSet().apply {
-      playTogether(
-        ObjectAnimator.ofFloat(deleteBackground, "scaleX", deleteBackground.scaleX, 1.365f),
-        ObjectAnimator.ofFloat(deleteBackground, "scaleY", deleteBackground.scaleY, 1.365f),
-      )
-      duration = ANIMATION_DURATION
-      interpolator = MediaAnimations.interpolator
-      start()
-    }
-  }
-
-  private fun scaleDeleteDown() {
-    deleteSizeAnimatorSet?.cancel()
-    deleteSizeAnimatorSet = AnimatorSet().apply {
-      playTogether(
-        ObjectAnimator.ofFloat(deleteBackground, "scaleX", deleteBackground.scaleX, 1f),
-        ObjectAnimator.ofFloat(deleteBackground, "scaleY", deleteBackground.scaleY, 1f),
-      )
-      duration = ANIMATION_DURATION
-      interpolator = MediaAnimations.interpolator
-      start()
-    }
-  }
-
   fun setUndoAvailability(undoAvailability: Boolean) {
     this.undoAvailability = undoAvailability
 
@@ -440,7 +386,6 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   private fun presentModeDelete() {
     animateModeChange(
-      inSet = setOf(delete),
       outSet = allModeTools
     )
     animateOutUndoTools()

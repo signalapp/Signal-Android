@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.imageeditor.renderers.CropAreaRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.FillRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.InverseFillRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.OvalGuideRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.TrashRenderer;
 
 /**
  * Creates and handles a strict EditorElement Hierarchy.
@@ -71,6 +72,7 @@ final class EditorElementHierarchy {
   private final EditorElement cropEditorElement;
   private final EditorElement blackout;
   private final EditorElement fade;
+  private final EditorElement trash;
   private final EditorElement thumbs;
 
   private EditorElementHierarchy(@NonNull EditorElement root) {
@@ -84,6 +86,7 @@ final class EditorElementHierarchy {
     this.blackout          = this.cropEditorElement.getChild(0);
     this.thumbs            = this.cropEditorElement.getChild(1);
     this.fade              = this.cropEditorElement.getChild(2);
+    this.trash             = this.cropEditorElement.getChild(3);
   }
 
   private enum CropStyle {
@@ -140,6 +143,14 @@ final class EditorElementHierarchy {
         .setVisible(false)
         .persist();
     cropEditorElement.addElement(fade);
+
+    EditorElement trash = new EditorElement(new TrashRenderer(), EditorModel.Z_TRASH);
+    trash.getFlags()
+         .setSelectable(false)
+         .setEditable(false)
+         .setVisible(false)
+         .persist();
+    cropEditorElement.addElement(trash);
 
     EditorElement blackout = new EditorElement(new InverseFillRenderer(0xff000000));
 
@@ -210,6 +221,10 @@ final class EditorElementHierarchy {
 
   EditorElement getImageRoot() {
     return imageRoot;
+  }
+
+  EditorElement getTrash() {
+    return trash;
   }
 
   /**

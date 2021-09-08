@@ -41,6 +41,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   public static final int Z_STICKERS = 0;
   public static final int Z_FADE     = 1;
   public static final int Z_TEXT     = 2;
+  public static final int Z_TRASH    = 3;
 
   private static final Runnable NULL_RUNNABLE = () -> {
   };
@@ -181,6 +182,25 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   public EditorElement findElementAtPoint(@NonNull PointF point, @NonNull Matrix viewMatrix, @NonNull Matrix outInverseModelMatrix) {
     return editorElementHierarchy.getRoot().findElementAt(point.x, point.y, viewMatrix, outInverseModelMatrix);
+  }
+
+  public boolean checkTrashIntersectsPoint(@NonNull PointF point, @NonNull Matrix viewMatrix) {
+    EditorElement trash = editorElementHierarchy.getTrash();
+    if (trash.getFlags().isVisible()) {
+      trash.getFlags()
+           .setSelectable(true)
+           .persist();
+
+      boolean isIntersecting = trash.findElementAt(point.x, point.y, viewMatrix, new Matrix()) != null;
+
+      trash.getFlags()
+           .setSelectable(false)
+           .persist();
+
+      return isIntersecting;
+    } else {
+      return false;
+    }
   }
 
   private boolean findElement(@NonNull EditorElement element, @NonNull Matrix viewMatrix, @NonNull Matrix outInverseModelMatrix) {
@@ -878,6 +898,10 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   public EditorElement getRoot() {
     return editorElementHierarchy.getRoot();
+  }
+
+  public EditorElement getTrash() {
+    return editorElementHierarchy.getTrash();
   }
 
   public @Nullable EditorElement getMainImage() {

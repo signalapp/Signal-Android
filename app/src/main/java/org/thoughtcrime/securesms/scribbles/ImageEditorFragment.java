@@ -12,6 +12,7 @@ import android.graphics.Point;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -131,6 +132,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private ImageEditorHudV2 imageEditorHud;
   private ImageEditorView  imageEditorView;
   private boolean          hasMadeAnEditThisSession;
+  private boolean          wasInTrashHitZone;
+
 
   public static ImageEditorFragment newInstanceForAvatarCapture(@NonNull Uri imageUri) {
     ImageEditorFragment fragment = newInstance(imageUri);
@@ -406,6 +409,12 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     if (mode != ImageEditorHudV2.Mode.CROP) {
       imageEditorView.getModel().doneCrop();
     }
+
+    imageEditorView.getModel()
+                   .getTrash()
+                   .getFlags()
+                   .setVisible(mode == ImageEditorHudV2.Mode.DELETE)
+                   .persist();
 
     switch (mode) {
       case CROP: {
@@ -838,27 +847,39 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
 
     @Override
-    public void onDragMoved(@Nullable EditorElement editorElement, @NonNull MotionEvent event) {
+    public void onDragMoved(@Nullable EditorElement editorElement, boolean isInTrashHitZone) {
       if (imageEditorHud.getMode() == ImageEditorHudV2.Mode.CROP || editorElement == null) {
         return;
       }
 
-      imageEditorHud.onMoved(event);
-      if (imageEditorHud.isInDeleteRect()) {
-        deleteFadeDebouncer.publish(() -> editorElement.animatePartialFadeOut(imageEditorView::invalidate));
+      if (isInTrashHitZone) {
+        deleteFadeDebouncer.publish(() -> {
+          if (!wasInTrashHitZone) {
+            wasInTrashHitZone = true;
+            if (imageEditorHud.isHapticFeedbackEnabled()) {
+              imageEditorHud.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            }
+          }
+          
+          editorElement.animatePartialFadeOut(imageEditorView::invalidate);
+        });
       } else {
-        deleteFadeDebouncer.publish(() -> editorElement.animatePartialFadeIn(imageEditorView::invalidate));
+        deleteFadeDebouncer.publish(() -> {
+          wasInTrashHitZone = false;
+          editorElement.animatePartialFadeIn(imageEditorView::invalidate);
+        });
       }
     }
 
     @Override
-    public void onDragEnded(@Nullable EditorElement editorElement) {
+    public void onDragEnded(@Nullable EditorElement editorElement, boolean isInTrashHitZone) {
+      wasInTrashHitZone = false;
       imageEditorHud.animate().alpha(1f);
       if (imageEditorHud.getMode() == ImageEditorHudV2.Mode.CROP) {
         return;
       }
 
-      if (imageEditorHud.isInDeleteRect()) {
+      if (isInTrashHitZone) {
         deleteFadeDebouncer.clear();
         onDelete();
         setCurrentSelection(null);

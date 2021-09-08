@@ -374,35 +374,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_end="72dp" />
 
-        <FrameLayout
-            android:id="@+id/image_editor_hud_delete"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:alpha="0"
-            android:contentDescription="@string/ImageEditorHud__delete"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/image_editor_bottom_guide"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageView
-                android:id="@+id/image_editor_hud_delete_bg"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_gravity="center"
-                android:background="@drawable/image_editor_hud_delete_background"
-                android:importantForAccessibility="no" />
-
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:importantForAccessibility="no"
-                android:scaleType="centerInside"
-                app:srcCompat="@drawable/ic_trash_white_24" />
-
-        </FrameLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <org.thoughtcrime.securesms.scribbles.BrushWidthPreviewView
