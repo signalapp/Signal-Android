@@ -117,8 +117,11 @@ public class VideoPlayer extends FrameLayout {
         }
 
         @Override
-        public void onPlayerError(PlaybackException error) {
-          playerCallback.onError();
+        public void onPlayerError(@NonNull PlaybackException error) {
+          Log.w(TAG, "A player error occurred", error);
+          if (playerCallback != null) {
+            playerCallback.onError();
+          }
         }
       });
       exoView.setPlayer(exoPlayer);
