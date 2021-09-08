@@ -485,8 +485,8 @@ public class ChatFormatter {
     }
 
     private String getContentPath (String content_type, long timestamp,@NonNull Uri uri) {
-        return ExportZipUtil.getMediaStoreContentPathForType (content_type) +
-                ExportZipUtil.generateOutputFileName (content_type, timestamp, uri.getPathSegments ().get (uri.getPathSegments ().size ()-1));
+        return ChatExportZipUtil.getMediaStoreContentPathForType (content_type) +
+                ChatExportZipUtil.generateOutputFileName (content_type, timestamp, uri.getPathSegments ().get (uri.getPathSegments ().size ()-1));
     }
 
     private void createAttachmentElem (Element attachment, Slide s) {

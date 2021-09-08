@@ -55,9 +55,9 @@ public class ChatExportFragment extends Fragment {
     private static final String TAG = ChatExportFragment.class.getSimpleName ();
     private static final String      RECIPIENT_ID      = "RECIPIENT_ID";
     private static final String      FROM_CONVERSATION = "FROM_CONVERSATION";
-    private static       long        existingThread;
-    private static ExportZipUtil zip;
-    private View         allMedia;
+    private static long              existingThread;
+    private static ChatExportZipUtil zip;
+    private        View              allMedia;
     private View         htmlViewer;
     private SwitchCompat allMediaSwitch;
     private SwitchCompat htmlViewerSwitch;
@@ -73,10 +73,10 @@ public class ChatExportFragment extends Fragment {
                                            boolean hasViewer,
                                            String resultXML) {
 
-        new AsyncTask<Void, Void, List<ExportZipUtil.Attachment>> ()
+        new AsyncTask<Void, Void, List<ChatExportZipUtil.Attachment>> ()
         {
 
-            final List<ExportZipUtil.Attachment> attachments = new LinkedList<> ();
+            final List<ChatExportZipUtil.Attachment> attachments = new LinkedList<> ();
 
             @Override
             protected void onPreExecute() {
@@ -84,12 +84,12 @@ public class ChatExportFragment extends Fragment {
             }
 
             @Override
-            protected List<ExportZipUtil.Attachment> doInBackground(Void... params) {
+            protected List<ChatExportZipUtil.Attachment> doInBackground(Void... params) {
                 if (!Util.isEmpty (mediaRecords))
                     for (ChatFormatter.MediaRecord mediaRecord : mediaRecords) {
                         assert mediaRecord.getAttachment () != null;
                         if (mediaRecord.getAttachment ().getUri () != null) {
-                            attachments.add (new ExportZipUtil.Attachment (mediaRecord.getAttachment ().getUri (),
+                            attachments.add (new ChatExportZipUtil.Attachment (mediaRecord.getAttachment ().getUri (),
                                     mediaRecord.getContentType (),
                                     mediaRecord.getDate (),
                                     mediaRecord.getAttachment ().getSize ()));
@@ -100,7 +100,7 @@ public class ChatExportFragment extends Fragment {
                     for (Map.Entry<String, Uri> e : moreFiles.entrySet ())
                         if (e.getValue () != null) try {
                             if (Build.VERSION.SDK_INT >= 26) {
-                                attachments.add (new ExportZipUtil.Attachment (e.getValue (),
+                                attachments.add (new ChatExportZipUtil.Attachment (e.getValue (),
                                         Files.probeContentType (Paths.get (e.getValue ().getPath ())),
                                         new Date ().getTime (),
                                         (new File (String.valueOf (e.getValue ()))).length ()));
@@ -112,10 +112,10 @@ public class ChatExportFragment extends Fragment {
             }
 
             @Override
-            protected void onPostExecute(List<ExportZipUtil.Attachment> attachments) {
+            protected void onPostExecute(List<ChatExportZipUtil.Attachment> attachments) {
                 super.onPostExecute(attachments);
                 try {
-                    zip = new ExportZipUtil (context, attachments.size(), existingThread, moreFiles);
+                    zip = new ChatExportZipUtil (context, attachments.size(), existingThread, moreFiles);
                     zip.startToExport (context, hasViewer, resultXML);
                 } catch (IOException | NoExternalStorageException e) {
                     e.printStackTrace ();
@@ -123,9 +123,9 @@ public class ChatExportFragment extends Fragment {
                 }
                 try{
                     if (!Util.isEmpty(attachments))
-                        zip.executeOnExecutor (THREAD_POOL_EXECUTOR, attachments.toArray (new ExportZipUtil.Attachment[0]));
+                        zip.executeOnExecutor (THREAD_POOL_EXECUTOR, attachments.toArray (new ChatExportZipUtil.Attachment[0]));
                     else
-                        zip.executeOnExecutor (THREAD_POOL_EXECUTOR, (ExportZipUtil.Attachment[])  null);
+                        zip.executeOnExecutor (THREAD_POOL_EXECUTOR, (ChatExportZipUtil.Attachment[])  null);
                 }catch (IllegalStateException e) {
                     e.printStackTrace ();
                     Log.w(TAG, e);
@@ -286,7 +286,7 @@ public class ChatExportFragment extends Fragment {
             return;
         }
 
-        ExportZipUtil.showWarningDialog (context, (dialogInterface, which) -> Permissions.with (this)
+        ChatExportZipUtil.showWarningDialog (context, (dialogInterface, which) -> Permissions.with (this)
                         .request (Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         .ifNecessary ()
                         .withPermanentDenialDialog (context.getString (R.string.ChatExport_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))

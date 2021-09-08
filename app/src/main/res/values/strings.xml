@@ -3081,7 +3081,7 @@
     <string name="ChatExport_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
 
 
-    <!-- ExportZipUtil -->
+    <!-- ChatExportZipUtil -->
     <string name="ExportZip_save_to_external_storage">Save to storage?</string>
     <plurals name="ExportZip_adding_n_media_to_storage_warning">
         <item quantity="one">Adding this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>

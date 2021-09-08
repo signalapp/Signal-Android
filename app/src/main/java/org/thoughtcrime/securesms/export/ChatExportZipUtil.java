@@ -43,18 +43,18 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
- * The ExportZipUtil Class allows to create a zip file and
+ * The ChatExportZipUtil Class allows to create a zip file and
  * attach to it all content and a chatToExport xml file, also
  * can include a html-viewer
  *
  * @author  @anlaji
  * @version 2.2
- * @since   2021-09-02
+ * @since   2021-09-08
  */
 
-public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachment, Void, Pair<Integer, String>> {
+public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil.Attachment, Void, Pair<Integer, String>> {
 
-    private static final String TAG = ExportZipUtil.class.getSimpleName ();
+    private static final String TAG = ChatExportZipUtil.class.getSimpleName ();
 
     private static final int BUFFER               = 1024;
 
@@ -84,11 +84,11 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private final ZipOutputStream out;
 
 
-    public ExportZipUtil (Context context, long threadId) throws IOException, NoExternalStorageException {
+    public ChatExportZipUtil (Context context, long threadId) throws IOException, NoExternalStorageException {
         this(context, 0, threadId, null);
     }
 
-    public ExportZipUtil (Context context, int count, long threadId, HashMap<String, Uri> otherFiles) throws IOException, NoExternalStorageException {
+    public ChatExportZipUtil (Context context, int count, long threadId, HashMap<String, Uri> otherFiles) throws IOException, NoExternalStorageException {
         super (context,
                 context.getResources ().getString (R.string.ExportZip_start_to_export),
                 context.getResources ().getQuantityString (R.plurals.ExportZip_adding_n_attachments_to_media_folder, count, count));
@@ -98,7 +98,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         this.out = getZipOutputStream (threadId);
     }
 
-    public ZipOutputStream getZipOutputStream(long threadId) throws IOException, NoExternalStorageException {
+    public ZipOutputStream getZipOutputStream(long threadId) throws IOException {
        String zipPath = "";
        File zipFile = instantiateZipFile(threadId);
        if (zipFile.exists()) {
@@ -115,17 +115,14 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         }
     }
 
-    private File instantiateZipFile (long threadId) throws NoExternalStorageException {
+    private File instantiateZipFile (long threadId) {
         File root = new File(getExternalPathToSaveZip ());
         String fileName = createFileName(threadId);
         return new File(root.getAbsolutePath () + "/" + fileName + ".zip");
     }
 
-    private String getExternalPathToSaveZip () throws NoExternalStorageException {
+    private String getExternalPathToSaveZip ()  {
         File storage = Environment.getExternalStoragePublicDirectory(STORAGE_DIRECTORY);
-        if (!storage.canWrite()) {
-            throw new NoExternalStorageException();
-        }
         return storage.getAbsolutePath ();
     }
 
@@ -267,7 +264,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     }
 
     @Override
-    protected Pair<Integer, String> doInBackground(ExportZipUtil.Attachment... attachments) {
+    protected Pair<Integer, String> doInBackground(ChatExportZipUtil.Attachment... attachments) {
         if (attachments == null) {
             return new Pair<>(SUCCESS, null);
         }
@@ -283,7 +280,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
             if (context == null) {
                 return new Pair<>(FAILURE, null);
             }
-            for (ExportZipUtil.Attachment attachment : attachments) {
+            for (ChatExportZipUtil.Attachment attachment : attachments) {
                 if (attachment != null) {
                     directory = saveAttachment(context, attachment);
                 }

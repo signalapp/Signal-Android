@@ -93,6 +93,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
+
     <application
         android:name=".ApplicationContext"
         android:allowBackup="false"
@@ -101,7 +102,8 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/TextSecure.LightTheme"
-        tools:replace="android:allowBackup">
+        tools:replace="android:allowBackup"
+        android:requestLegacyExternalStorage="true">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
