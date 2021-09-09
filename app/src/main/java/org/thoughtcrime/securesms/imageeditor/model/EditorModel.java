@@ -184,14 +184,14 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return editorElementHierarchy.getRoot().findElementAt(point.x, point.y, viewMatrix, outInverseModelMatrix);
   }
 
-  public boolean checkTrashIntersectsPoint(@NonNull PointF point, @NonNull Matrix viewMatrix) {
+  public boolean checkTrashIntersectsPoint(@NonNull PointF point) {
     EditorElement trash = editorElementHierarchy.getTrash();
     if (trash.getFlags().isVisible()) {
       trash.getFlags()
            .setSelectable(true)
            .persist();
 
-      boolean isIntersecting = trash.findElementAt(point.x, point.y, viewMatrix, new Matrix()) != null;
+      boolean isIntersecting = trash.findElementAt(point.x, point.y, new Matrix(), new Matrix()) != null;
 
       trash.getFlags()
            .setSelectable(false)

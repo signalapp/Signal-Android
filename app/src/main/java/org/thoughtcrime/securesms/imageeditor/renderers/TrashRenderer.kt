@@ -13,8 +13,6 @@ import org.thoughtcrime.securesms.imageeditor.Renderer
 import org.thoughtcrime.securesms.imageeditor.RendererContext
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.util.ViewUtil
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
 
@@ -25,7 +23,7 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
     strokeWidth = ViewUtil.dpToPx(15) / 10f
   }
 
-  private val dst = RectF()
+  private val bounds = RectF()
 
   private val diameterSmall = ViewUtil.dpToPx(41)
   private val diameterLarge = ViewUtil.dpToPx(54)
@@ -36,12 +34,9 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
 
   private var isExpanding = false
 
-  private val origin = FloatArray(2)
-  private val x = FloatArray(2)
-  private val a = FloatArray(2)
-  private val b = FloatArray(2)
+  private val buttonCenter = FloatArray(2)
 
-  constructor() {}
+  constructor()
 
   override fun render(rendererContext: RendererContext) {
     super.render(rendererContext)
@@ -54,17 +49,15 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
     val diameter = getInterpolatedDiameter(frameRenderTime - startTime)
 
     rendererContext.canvas.save()
-    rendererContext.mapRect(dst, Bounds.FULL_BOUNDS)
+    rendererContext.mapRect(bounds, Bounds.FULL_BOUNDS)
+
+    buttonCenter[0] = bounds.centerX()
+    buttonCenter[1] = bounds.bottom - diameterLarge / 2f - padBottom
 
     rendererContext.canvasMatrix.setToIdentity()
 
-    rendererContext.canvasMatrix.mapPoints(origin, floatArrayOf(0f, 0f))
-    rendererContext.canvasMatrix.mapPoints(x, floatArrayOf(diameterLarge.toFloat(), 0f))
-    rendererContext.canvasMatrix.mapPoints(a, floatArrayOf(0f, diameterLarge.toFloat() / 2f))
-    rendererContext.canvasMatrix.mapPoints(b, floatArrayOf(0f, padBottom.toFloat()))
-
-    rendererContext.canvas.drawCircle(dst.centerX(), dst.bottom - diameterLarge / 2f - padBottom, diameter / 2f, outlinePaint)
-    rendererContext.canvas.translate(dst.centerX(), dst.bottom - diameterLarge / 2f - padBottom)
+    rendererContext.canvas.drawCircle(buttonCenter[0], buttonCenter[1], diameter / 2f, outlinePaint)
+    rendererContext.canvas.translate(bounds.centerX(), bounds.bottom - diameterLarge / 2f - padBottom)
     rendererContext.canvas.translate(- (trashSize / 2f), - (trashSize / 2f))
     trash.draw(rendererContext.canvas)
     rendererContext.canvas.restore()
@@ -72,10 +65,6 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
     if (frameRenderTime - DURATION < startTime) {
       invalidate()
     }
-  }
-
-  private fun distance(a: FloatArray, b: FloatArray): Float {
-    return sqrt((b[1] - a[1]).toDouble().pow(2.0) + (b[0] - a[0]).toDouble().pow(2.0)).toFloat()
   }
 
   private fun getInterpolatedDiameter(timeElapsed: Long): Float {
@@ -122,16 +111,11 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
   private constructor(inParcel: Parcel?)
 
   override fun hitTest(x: Float, y: Float): Boolean {
-    val xDistance = distance(origin, this.x)
-    val isXInRange = -xDistance <= x && x <= xDistance
+    val dx = x - buttonCenter[0]
+    val dy = y - buttonCenter[1]
+    val radius = diameterLarge / 2
 
-    if (!isXInRange) {
-      return false
-    }
-
-    val yDistanceStart = dst.bottom - dst.centerY() - distance(origin, a) - distance(origin, b)
-
-    return y >= yDistanceStart
+    return dx * dx + dy * dy < radius * radius
   }
 
   override fun describeContents(): Int {

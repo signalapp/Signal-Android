@@ -327,7 +327,7 @@ public final class ImageEditorView extends FrameLayout {
       return false;
     }
 
-    if (model.checkTrashIntersectsPoint(point, viewMatrix)) {
+    if (model.checkTrashIntersectsPoint(point)) {
       ((TrashRenderer) model.getTrash().getRenderer()).expand();
       return true;
     } else {
