@@ -56,10 +56,10 @@
       android:maxLines="1"
       android:textColor="@color/signal_text_primary"
       app:layout_constraintStart_toEndOf="@id/conversation_list_item_avatar"
-      app:layout_constraintEnd_toStartOf="@id/conversation_list_item_summary_barrier"
+      app:layout_constraintEnd_toStartOf="@id/conversation_list_item_name_barrier"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_chainStyle="packed"
-      tools:text="Peter Parker" />
+      tools:text="Long Chat name for testing purposes" />
 
   <org.thoughtcrime.securesms.components.AlertView
       android:id="@+id/conversation_list_item_alert"
@@ -109,7 +109,7 @@
       android:layout_toStartOf="@+id/conversation_list_item_date"
       android:contentDescription="@string/conversation_activity__attachment_thumbnail"
       android:visibility="gone"
-      tools:visibility="visible"
+      tools:visibility="gone"
       app:thumbnail_radius="8dp"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintEnd_toStartOf="@id/conversation_list_item_thumbnail_barrier"/>
@@ -174,6 +174,14 @@
       app:barrierDirection="start"
       app:barrierAllowsGoneWidgets="false"
       app:constraint_referenced_ids="conversation_list_item_thumbnail,conversation_list_item_status_container" />
+
+  <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/conversation_list_item_name_barrier"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      app:barrierDirection="start"
+      app:barrierAllowsGoneWidgets="false"
+      app:constraint_referenced_ids="conversation_list_item_thumbnail,conversation_list_item_date" />
 
   <androidx.constraintlayout.widget.Barrier
       android:id="@+id/conversation_list_item_thumbnail_barrier"
