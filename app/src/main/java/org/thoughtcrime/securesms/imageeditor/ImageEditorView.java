@@ -334,10 +334,14 @@ public final class ImageEditorView extends FrameLayout {
     }
 
     if (model.checkTrashIntersectsPoint(point)) {
-      ((TrashRenderer) model.getTrash().getRenderer()).expand();
+      if (model.getTrash().getRenderer() instanceof TrashRenderer) {
+        ((TrashRenderer) model.getTrash().getRenderer()).expand();
+      }
       return true;
     } else {
-      ((TrashRenderer) model.getTrash().getRenderer()).shrink();
+      if (model.getTrash().getRenderer() instanceof TrashRenderer) {
+        ((TrashRenderer) model.getTrash().getRenderer()).shrink();
+      }
       return false;
     }
   }
