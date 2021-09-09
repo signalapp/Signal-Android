@@ -467,7 +467,6 @@ public final class ImageEditorView extends FrameLayout {
 
   public void deleteElement(@Nullable EditorElement editorElement) {
     if (editorElement != null) {
-      model.pushUndoPoint();
       model.delete(editorElement);
       invalidate();
     }
