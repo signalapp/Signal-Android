@@ -32,6 +32,7 @@ class MediaCaptureRepository(context: Context) {
     if (!StorageUtil.canReadFromMediaStore()) {
       Log.w(TAG, "Cannot read from storage.")
       callback(null)
+      return
     }
 
     SignalExecutors.BOUNDED.execute {
