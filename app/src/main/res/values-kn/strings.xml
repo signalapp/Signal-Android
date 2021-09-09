@@ -1628,6 +1628,7 @@
   <string name="ConversationUpdateItem_call_is_full">ಕರೆ ಭರ್ತಿಯಾಗಿದೆ</string>
   <string name="ConversationUpdateItem_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="ConversationUpdateItem_update_contact">ಸಂಪರ್ಕ ನವೀಕರಿಸಿ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ಯಾವುದೇ ಗ್ರೂಪ್‌ನಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇಲ್ಲ. ವಿನಂತಿಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ಈ ಗ್ರೂಪ್‌ನಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ. ವಿನಂತಿಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
   <string name="ConversationUpdateItem_view">ತೋರಿಸು</string>
@@ -2901,6 +2902,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+  <string name="ChangeNumberLockActivity__leave">ತೊರೆಯಿರಿ </string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಿ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">ಕೀಬೋರ್ಡ್‌</string>
   <string name="ChatsSettingsFragment__enter_key_sends">ಎಂಟರ್ ಕೀ ಕಳುಹಿಸುತ್ತದೆ </string>

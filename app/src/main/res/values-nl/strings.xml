@@ -1042,6 +1042,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Je hebt je veiligheidsnummer met %s vanaf een ander apparaat gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Een bericht van %s kan niet worden afgeleverd</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s heeft zijn of haar telefoonnummer gewijzigd.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in deze groepsoproep aanwezig · %2$s</string>
@@ -1671,6 +1672,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
   <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
+  <string name="ConversationUpdateItem_update_contact">Contactpersoon aanpassen</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Je hebt met deze persoon geen gemeenschappelijke groep: overweeg dit gespreksverzoek zorgvuldig.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Er is in deze groep geen lid met wie je al een gesprek voert: overweeg deze uitnodiging zorgvuldig.</string>
   <string name="ConversationUpdateItem_view">Weergeven</string>
@@ -2976,6 +2978,15 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Oude pincode behouden</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Nieuwe pincode aanmaken</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Oude pincode behouden?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Het lijkt er op dat je hebt geprobeerd om je telefoonnummer te wijzigen, maar Signal kan niet vaststellen of dat is geslaagd.\n\nSignal gaat nu opnieuw na of je telefoonnummer is gewijzigd …</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Telefoonnummer is succesvol gewijzigd</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Je nieuwe telefoonnummer %1$s is nu bevestigd. Herstart het ‘telefoonnummer wijzigen’-proces als dit niet je nieuwe telefoonnummer is.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Onbekend of telefoonnummer is gewijzigd</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Signal kan niet vaststellen of je telefoonnummer is gewijzigd.\n\n(Fout: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Opnieuw proberen</string>
+  <string name="ChangeNumberLockActivity__leave">Verlaten</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Foutopsporingslog indienen</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Toetsenbord</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-toets verzendt</string>

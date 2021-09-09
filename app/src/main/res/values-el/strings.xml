@@ -1037,6 +1037,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο από άλλη συσκευή</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -1641,6 +1642,7 @@
   <string name="ConversationUpdateItem_call_is_full">Η κλήση είναι γεμάτη</string>
   <string name="ConversationUpdateItem_invite_friends">Πρόσκληση φίλων</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Ενεργοποίηση ειδοποιήσεων κλήσεων</string>
+  <string name="ConversationUpdateItem_update_contact">Ανανέωση επαφής</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Χωρίς κοινές ομάδες. Εξέτασε τα αιτήματα προσεκτικά.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ομάδα με καμία γνωστή επαφή. Εξέτασε τα αιτήματα προσεκτικά.</string>
   <string name="ConversationUpdateItem_view">Εμφάνιση</string>
@@ -2512,7 +2514,7 @@
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Αδυναμία ανοίγματος ρυθμίσεων τοποθεσίας.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Ενεργοποίηση Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Σφάλμα σύνδεσης</string>
-  <string name="DeviceTransferSetup__retry">Ξαναδοκίμασε</string>
+  <string name="DeviceTransferSetup__retry">Επανάληψη</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Αποστολή αρχείων συμβάντων αποσφαλμάτωσης</string>
   <string name="DeviceTransferSetup__verify_code">Επιβεβαίωση κωδικού</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Επιβεβαίωσε πως ο παρακάτω κωδικός είναι ίδιος και στις δύο συσκευές. Μετά πάτα συνέχεια.</string>
@@ -2826,6 +2828,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Διατήρηση παλιού PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ανανέωση PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Διατήρηση παλιού PIN;</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Φαίνεται πως προσπάθησες να αλλάξεις τον αριθμό σου αλλά δεν μπορέσαμε να επαληθεύσουμε ότι η αλλαγή ήταν επιτυχημένη.\n\nΕλέγχουμε ξανά…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Αλλαγή κατάστασης επαληθευμένη</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ο αριθμός σου επαληθεύτηκε ως %1$s. Αν αυτός δεν είναι ο νέος σου αριθμός, παρακαλώ ακολούθησε ξανά τη διαδικασία της αλλαγής αριθμού.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Αλλαγή κατάστασης μη επαληθευμένη</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Δεν μπορέσαμε να προσδιορίσουμε την κατάσταση του αιτήματός σου για αλλαγή αριθμού.n\n(Σφάλμα: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Επανάληψη</string>
+  <string name="ChangeNumberLockActivity__leave">Αποχώρηση</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Πληκτρολόγιο</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Το Enter στέλνει</string>

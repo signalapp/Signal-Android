@@ -1589,6 +1589,7 @@
   <string name="ConversationUpdateItem_call_is_full">満席です</string>
   <string name="ConversationUpdateItem_invite_friends">友達を招待する</string>
   <string name="ConversationUpdateItem_enable_call_notifications">着信通知を有効にする</string>
+  <string name="ConversationUpdateItem_update_contact">連絡先を更新する</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">共通のグループはありません。慎重に申請を確認してください。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">このグループに連絡先の人はいません。慎重に申請を確認してください。</string>
   <string name="ConversationUpdateItem_view">表示する</string>
@@ -2857,7 +2858,6 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新しい電話番号</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">入力された電話番号は、あなたのアカウントのものと一致しません。</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">変更前の電話番号の国番号を入力してください</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">変更前の電話番号を入力してください</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">新しい電話番号の国番号を入力してください</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">新しい電話番号を入力してください</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2876,6 +2876,10 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">古いPINを保持</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PINをアップデート</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">古いPINを保持しますか？</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">再試行</string>
+  <string name="ChangeNumberLockActivity__leave">抜ける</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">デバッグログの提出</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">キーボード</string>
   <string name="ChatsSettingsFragment__enter_key_sends">エンターキーで送信する</string>
@@ -3117,5 +3121,6 @@
   <string name="MediaReviewFragment__view_once_message">使い捨てメッセージ</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">この写真に加えた変更はすべて失われます。</string>
   <string name="ImageEditorHud__delete">削除</string>
+  <string name="CameraFragment__failed_to_open_camera">カメラの起動に失敗しました</string>
   <!--EOF-->
 </resources>

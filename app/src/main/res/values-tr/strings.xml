@@ -1664,6 +1664,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_call_is_full">Arama dolu</string>
   <string name="ConversationUpdateItem_invite_friends">Arkadaşlarını davet et</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Arama Bildirimlerini Etkinleştir</string>
+  <string name="ConversationUpdateItem_update_contact">Kişiyi güncelle</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ortak bir grup yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu grupta kişilerinizden kimse yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_view">Görüntüle</string>
@@ -2937,6 +2938,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN\'i güncelle</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Tekrar dene</string>
+  <string name="ChangeNumberLockActivity__leave">Ayrıl</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Hata ayıklama günlüğünü gönder</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klavye</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter tuşu ile gönder</string>

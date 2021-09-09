@@ -1044,6 +1044,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">S’u dërgua dot një mesazh prej %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s e ndryshoi numrin e vet me një numër të ri.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
@@ -1667,6 +1668,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_call_is_full">Thirrja është plot</string>
   <string name="ConversationUpdateItem_invite_friends">Ftoni shokë</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktivizo Njoftime Thirrjesh</string>
+  <string name="ConversationUpdateItem_update_contact">Përditësoni kontaktin</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Pa grupe të përbashkët. Shqyrtojini me kujdes kërkesat.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Pa kontakte në këtë grup. Shqyrtojini me kujdes kërkesat.</string>
   <string name="ConversationUpdateItem_view">Shihni</string>
@@ -2957,7 +2959,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Numër telefoni i ri</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Duhet të jepni kod vendi të numrit tuaj të vjetër</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Duhet të jepni numrin tuaj të vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Duhet të jepni numrin tuaj të vjetër të telefonit</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Duhet të jepni kod vendi të numrit tuaj të ri</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Duhet të jepni numrin tuaj të ri të telefonit</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2976,6 +2978,15 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Mbaj PIN-in e vjetër</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Përditësoni PIN-in</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Të mbahet PIN-i i vjetër?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Duket sikur provuat të ndryshonit numrin tuaj, por s’qemë në gjendje të përcaktojmë nëse kjo qe e suksesshme.\n\nPo rikontrollohet tani…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Ndryshim gjendjeje i verifikuar</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numri juaj është verifikuar si %1$s. Nëse ky s’është numri juaj i ri, ju lutemi, rinisni procesin e ndryshimit të numrit.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Ndryshim gjendjeje i paverifikuar</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">S’përcaktuam dot gjendjen e kërkesës tuaj për ndryshim numri.\n\n(Gabim: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Riprovo</string>
+  <string name="ChangeNumberLockActivity__leave">Braktise</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Parashtro regjistër diagnostikimi</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastierë</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tasti Enter dërgon</string>

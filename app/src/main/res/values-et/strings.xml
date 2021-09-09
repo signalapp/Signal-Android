@@ -1610,6 +1610,7 @@
   <string name="ConversationUpdateItem_call_is_full">Kõne on täis</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu sõpru</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Luba helistamise teavitused</string>
+  <string name="ConversationUpdateItem_update_contact">Uuendatud kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ühiseid gruppe pole. Vaata taotlused hoolikalt üle.</string>
   <string name="ConversationUpdateItem_view">Näita</string>
   <!--audio_view-->
@@ -2748,6 +2749,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Uuenda PIN-koodi</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Proovi uuesti</string>
+  <string name="ChangeNumberLockActivity__leave">Lahku</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Postita silumisinfo</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatuur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Sisestusklahv saadab</string>

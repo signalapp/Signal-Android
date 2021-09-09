@@ -1627,6 +1627,7 @@ nambari yako ya simu</string>
   <string name="ConversationUpdateItem_call_is_full">Mazungumzo ya simu yamejaa</string>
   <string name="ConversationUpdateItem_invite_friends">Alika marafiki</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Washa Arifa za Simu</string>
+  <string name="ConversationUpdateItem_update_contact">Sasisha mwasiliani</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Hakuna vikundi mnavyoshiriki pamoja. Kagua maombi kwa uangalifu.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Hakuna waasiliani katika kikundi hiki. Kagua maombi kwa uangalifu.</string>
   <string name="ConversationUpdateItem_view">Tazama</string>
@@ -2901,6 +2902,10 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Sasisha Nenosiri</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Jaribu Upya</string>
+  <string name="ChangeNumberLockActivity__leave">Ondoka</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Wasilisha tunzakumbukumbu ya ueuaji</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Kibodi</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Ingiza za kutuma zilizo muhimu</string>

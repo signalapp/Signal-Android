@@ -1666,6 +1666,7 @@
   <string name="ConversationUpdateItem_call_is_full">A chamada encontra-se completa</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amigos</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activar notificações de chamadas</string>
+  <string name="ConversationUpdateItem_update_contact">Atualizar contacto</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sem grupos em comum. Reveja os pedidos com cuidado.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sem contactos neste grupo. Reveja os pedidos com cuidado.</string>
   <string name="ConversationUpdateItem_view">Ver</string>
@@ -2952,7 +2953,6 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Número de telemóvel novo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">O número de telemóvel que introduziu não coincide com as suas contas.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Deverá especificar o código do país do seu número antigo</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Deverá especificar o seu número antigo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Deverá especificar o código do país do seu número novo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Deverá especificar o seu número de telemóvel novo</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2971,6 +2971,10 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Manter o PIN antigo</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Atualizar PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Manter o PIN antigo?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Tentar novamente</string>
+  <string name="ChangeNumberLockActivity__leave">Abandonar</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Enviar relatório de erros</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Teclado</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tecla de Enter envia</string>

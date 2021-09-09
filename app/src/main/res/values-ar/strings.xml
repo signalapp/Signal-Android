@@ -1241,6 +1241,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه عن طريق جهاز آخر</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">تعذر توصيل رسالة من %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">لقد استُبدِل رقم %1$s برقم جديد.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
@@ -1935,6 +1936,7 @@
   <string name="ConversationUpdateItem_call_is_full">المكالمة ممتلئة</string>
   <string name="ConversationUpdateItem_invite_friends">دعوة الأصدقاء</string>
   <string name="ConversationUpdateItem_enable_call_notifications">تفعيل إشعارات المكالمات</string>
+  <string name="ConversationUpdateItem_update_contact">تحديث جهة الاتصال</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">لا وجود لمجموعات مشتركة. يُرجى مراجعة الطلبات بعناية.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">لا وجود لجهات الاتصال في هذه المجموعة. يُرجى مراجعة الطلبات بعناية.</string>
   <string name="ConversationUpdateItem_view">إظهار</string>
@@ -3310,6 +3312,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">حافظْ على الرقم التعريفي الشخصي القديم</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">تحديث الرقم التعريفي الشخصي</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">أأحافظْ على الرقم التعريفي الشخصي القديم ؟</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">يبدو أنك حاولت تغيير رقم هاتفك، لكنه تعذر علينا تحديد نجاح ذلك\n\nتجري إعادة التحقق اﻵن…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">تغيير الحالة مؤكد</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">لقد تم التأكد من أن رقم هاتفك هو %1$s. إن لم يكن هو رقم هاتفك الجديد، يُرجى إعادة البدء بعملية تغيير رقم الهاتف.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">تغيير الحالة غير مؤكد</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">تعذر علينا تحديد حالة طلب تغير رقم هاتفك.\n\n(الخطأ : %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">إعادة المُحاولة</string>
+  <string name="ChangeNumberLockActivity__leave">غادِر</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">إرسال سِجل التصحيح</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">لوحة المفاتيح</string>
   <string name="ChatsSettingsFragment__enter_key_sends">مفتاح الدخول يقوم بالإرسال</string>
@@ -3525,7 +3536,7 @@
   <string name="DSLSettingsToolbar__navigate_up">التصفح نحو اﻷعلى</string>
   <string name="MultiselectForwardFragment__forward_to">إعادة التوجيه نحو</string>
   <string name="MultiselectForwardFragment__add_a_message">إضافة نص</string>
-  <string name="MultiselectForwardFragment__faster_forwards">توجيه أسرع</string>
+  <string name="MultiselectForwardFragment__faster_forwards">إعادة توجيه أسرع</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">لقد أُرسِلت اﻵن الرسائل الموجَّهة فورا.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="zero">لم تُرسَل أي رسالة. (%1$d)</item>

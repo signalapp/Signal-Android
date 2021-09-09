@@ -1619,6 +1619,7 @@
   <string name="ConversationUpdateItem_call_is_full">کال پوری ہے</string>
   <string name="ConversationUpdateItem_invite_friends">دوستوں کو مدعو کریں</string>
   <string name="ConversationUpdateItem_enable_call_notifications">کال اطلاعات کو فعال کریں</string>
+  <string name="ConversationUpdateItem_update_contact">رابطہ اپ ڈیٹ کریں</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">مشترکہ طور پر کوئی گروپ نہیں۔ درخواستوں کا بغور جائزہ لیں۔</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">اس گروپ میں کوئی رابطہ نہیں ہے۔ درخواستوں کا بغور جائزہ لیں۔</string>
   <string name="ConversationUpdateItem_view">دیکھیں</string>
@@ -2892,6 +2893,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">پن کو اپ ڈیٹ کریں</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">دوبارہ کوشش کریں</string>
+  <string name="ChangeNumberLockActivity__leave">چھوڑ دیں</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ڈی بَگ لاگ پیش کریں</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">کی بورڈ</string>
   <string name="ChatsSettingsFragment__enter_key_sends">بھیجے گئے key داخل کریں</string>

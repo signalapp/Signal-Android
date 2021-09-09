@@ -810,10 +810,10 @@
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Təsvir</string>
   <string name="MediaOverviewActivity_voice_message">Səsyazmalı mesaj</string>
-  <string name="MediaOverviewActivity_sent_by_s">%1$s tərəfindən göndərilən</string>
-  <string name="MediaOverviewActivity_sent_by_you">Göndərdikləriniz</string>
+  <string name="MediaOverviewActivity_sent_by_s">%1$s göndərdi</string>
+  <string name="MediaOverviewActivity_sent_by_you">Siz göndərdiniz</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s, %2$s əlaqəsinə göndərdi</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s əlaqəsinə göndərdikləriniz</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s əlaqəsinə göndərdiniz</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Budur, Reaksiyalar</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Necə hiss etdiyinizi cəld paylaşmaq üçün bir mesaja basıb saxlayın.</string>
@@ -1040,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ilə güvənlik nömrənizi təsdiqlənmədi olaraq işarələdiniz</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ilə güvənlik nömrənizi başqa cihazda təsdiqlənmədi olaraq işarələdiniz</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tərəfindən göndərilən bir mesaj çatdırıla bilmədi</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s nömrəsini yenisi ilə dəyişdirdi.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s bir qrup zəngi başlatdı · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s qrup zəngindədir · %2$s</string>
@@ -1667,6 +1668,7 @@
   <string name="ConversationUpdateItem_call_is_full">Zəng dolub</string>
   <string name="ConversationUpdateItem_invite_friends">Dostlarını dəvət et</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Zəng bildirişlərini fəallaşdır</string>
+  <string name="ConversationUpdateItem_update_contact">Əlaqəni yenilə</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Heç bir ortaq qrup yoxdur. Tələbləri diqqətlə nəzərdən keçirin.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu qrupda heç bir əlaqə yoxdur. Tələbləri diqqətlə nəzərdən keçirin.</string>
   <string name="ConversationUpdateItem_view">Bax</string>
@@ -2953,7 +2955,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Yeni nömrə</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Daxil etdiyiniz telefon nömrəsi hesabınızla uyğunlaşmır.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Köhnə nömrənizin ölkə kodunu daxil etməlisiniz</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Köhnə nömrənizi daxil etməlisiniz</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Köhnə nömrənizi qeyd etməlisiniz</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Yeni nömrənizin ölkə kodunu daxil etməlisiniz</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Yeni nömrənizi daxil etməlisiniz</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2972,6 +2974,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Köhnə PIN-i saxla</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN-i yenilə</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Köhnə PIN saxlanılsın?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Nömrənizi dəyişdirməyə çalışırsınız kimi görünür, ancaq uğurlu olub-olmadığını müəyyənləşdirə bilmədik.\n\nİndi yenidən yoxlanılır…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Dəyişiklik statusu təsdiqləndi</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Nömrəniz %1$s olaraq təsdiqləndi. Əgər bu yeni nömrəniz deyilsə, zəhmət olmasa nömrə dəyişdirmə prosesini yenidən başladın.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Dəyişiklik statusu təsdiqlənmədi</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nömrə dəyişdirmə tələbinizin statusunu müəyyənləşdirə bilmədik.\n\n(Xəta: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Yenidən sına</string>
+  <string name="ChangeNumberLockActivity__leave">Tərk et</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Sazlama jurnalını göndər</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatura</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter düyməsi göndərsin</string>

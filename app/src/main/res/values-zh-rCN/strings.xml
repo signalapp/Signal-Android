@@ -1557,6 +1557,7 @@
   <string name="ConversationUpdateItem_call_is_full">通话人数已满</string>
   <string name="ConversationUpdateItem_invite_friends">邀请好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">启用通话通知</string>
+  <string name="ConversationUpdateItem_update_contact">更新联系人</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">无共同群组。请仔细审查请求。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">该群组无联系人。请仔细审查请求。</string>
   <string name="ConversationUpdateItem_view">查看</string>
@@ -2815,6 +2816,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">重试</string>
+  <string name="ChangeNumberLockActivity__leave">离开群组</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">提交调试日志</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">键盘</string>
   <string name="ChatsSettingsFragment__enter_key_sends">按回车发送</string>

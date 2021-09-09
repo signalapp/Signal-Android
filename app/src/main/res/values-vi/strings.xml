@@ -1550,6 +1550,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConversationUpdateItem_call_is_full">Cuộc gọi đã đầy</string>
   <string name="ConversationUpdateItem_invite_friends">Mời bạn bè</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Bật thông báo cuộc gọi</string>
+  <string name="ConversationUpdateItem_update_contact">Cập nhật liên hệ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Không có nhóm chung. Hãy xem xét yêu cầu thật kĩ lưỡng.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Không có liên hệ trong nhóm này. Hãy xem xét yêu cầu thật kĩ lưỡng.</string>
   <string name="ConversationUpdateItem_view">Xem</string>
@@ -2805,6 +2806,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Cập nhật mã PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Thử lại</string>
+  <string name="ChangeNumberLockActivity__leave">Rời</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Gửi nhật ký gỡ lỗi</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Bàn phím</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Phím Enter gửi đi</string>

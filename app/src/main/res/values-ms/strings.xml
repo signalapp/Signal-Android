@@ -1560,6 +1560,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
   <string name="ConversationUpdateItem_invite_friends">Jemput rakan</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Dayakan Pemberitahuan Panggilan</string>
+  <string name="ConversationUpdateItem_update_contact">Kemas kini kenalan</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Tidak ada kumpulan yang sama. Semak permintaan dengan teliti.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Tidak ada kenalan dalam kumpulan ini. Semak permintaan dengan teliti.</string>
   <string name="ConversationUpdateItem_view">Lihat</string>
@@ -2815,6 +2816,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Kemas kini PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Cuba Semula</string>
+  <string name="ChangeNumberLockActivity__leave">Tinggalkan</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Menghantar log nyahpepijat</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Papan Kekunci</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Kekunci enter menghantar</string>

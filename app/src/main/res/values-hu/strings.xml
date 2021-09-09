@@ -1623,6 +1623,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationUpdateItem_call_is_full">A hívás betelt</string>
   <string name="ConversationUpdateItem_invite_friends">Barátok meghívása</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Hívás-értesítések engedélyezése</string>
+  <string name="ConversationUpdateItem_update_contact">Profil frissítése</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nincs közös csoportotok. A kérelmek áttekintése során légy óvatos.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nincs ismerősöd ebben a csoportban. A kérelmek áttekintése során légy óvatos.</string>
   <string name="ConversationUpdateItem_view">Megtekintés</string>
@@ -2896,6 +2897,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN módosítása</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Újra</string>
+  <string name="ChangeNumberLockActivity__leave">Csoport elhagyása</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Fejlesztői naplófájl elküldése</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Billentyűzet</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Küldés az Enter lenyomásával</string>

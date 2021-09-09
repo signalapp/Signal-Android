@@ -1667,6 +1667,7 @@
   <string name="ConversationUpdateItem_call_is_full">La chiamata è piena</string>
   <string name="ConversationUpdateItem_invite_friends">Invita amici</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Attiva notifiche chiamate</string>
+  <string name="ConversationUpdateItem_update_contact">Aggiorna contatto</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nessun gruppo in comune. Controlla attentamente le richieste.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nessun contatto in questo gruppo. Controlla attentamente le richieste.</string>
   <string name="ConversationUpdateItem_view">Mostra</string>
@@ -2953,7 +2954,6 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nuovo numero di telefono</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Il numero di telefono che hai inserito non corrisponde a quello del tuo account.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Devi specificare il prefisso telefonico internazionale del tuo vecchio numero</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Devi specificare il tuo vecchio numero</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Devi specificare il prefisso telefonico internazionale del tuo nuovo numero</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Devi specificare il tuo nuovo numero di telefono</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2972,6 +2972,10 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Mantieni il vecchio PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Aggiorna PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Mantenere il vecchio PIN?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Riprova</string>
+  <string name="ChangeNumberLockActivity__leave">Abbandona</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Invia log di debug</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastiera</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Spedisci premendo Invio</string>

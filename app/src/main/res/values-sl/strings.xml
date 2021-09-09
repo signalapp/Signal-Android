@@ -1791,6 +1791,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationUpdateItem_call_is_full">Klic je polno zaseden</string>
   <string name="ConversationUpdateItem_invite_friends">Vabilo prijateljem/icam</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Vklopi obvestila o klicih</string>
+  <string name="ConversationUpdateItem_update_contact">Posodobite stik</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nimate skupnih skupin. Dobro preverite prošnje.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tej skupini ni nikogar iz vašega imenika. Dobro preverite prošnje.</string>
   <string name="ConversationUpdateItem_view">Preglej</string>
@@ -2977,7 +2978,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nova telefonska številka</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Vnesena številka se ne ujema s telefonsko številko vašega računa.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Za vašo staro številko morate navesti mednarodno kodo vaše države</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Navesti morate svojo staro številko</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Za vašo novo številko morate navesti mednarodno kodo vaše države</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Navesti morate svojo novo številko</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2996,6 +2996,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Obdrži stari PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Posodobite PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Želite obdržati stari PIN?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Ponovno</string>
+  <string name="ChangeNumberLockActivity__leave">Zapusti</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Pošlji sistemsko zabeležbo</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tipkovnica</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tipka \'Naprej\' pošlje</string>

@@ -1140,6 +1140,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Untuk menelepon %1$s, Signal memerlukan akses kamera Anda</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Panggilan…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grup terlalu besar untuk menghubungi peserta</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Panggilan Signal</string>
   <string name="WebRtcCallView__signal_video_call">Panggilan Video Signal</string>
@@ -1175,6 +1176,7 @@
   <string name="WebRtcCallView__speaker">Pengeras Suara</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Senyap</string>
+  <string name="WebRtcCallView__ring">Dering</string>
   <string name="WebRtcCallView__end_call">Akhiri panggilan</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1586,6 +1588,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
   <string name="ConversationUpdateItem_invite_friends">Undang teman</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktifkan Notifikasi Panggilan</string>
+  <string name="ConversationUpdateItem_update_contact">Perbarui kontak</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Tidak ada grup yang sama. Periksa permintaan secara hati-hati.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Tidak ada kontak di grup ini. Periksa permintaan secara hati-hati.</string>
   <string name="ConversationUpdateItem_view">Lihat</string>
@@ -2848,7 +2851,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nomor baru</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Nomor telepon yang kamu masukan tidak cocok dengan akun manapun.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Anda harus memasukkan kode negara nomor Anda yang lama</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Anda harus memasukkan nomor Anda yang lama</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Anda harus memasukkan kode negara nomor Anda yang baru</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Anda harus memasukkan nomor telepon Anda yang baru</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2864,6 +2866,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Simpan PIN lama</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Perbarui PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Simpan PIN lama?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Coba lagi</string>
+  <string name="ChangeNumberLockActivity__leave">Tinggalkan</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Kirim catatan awakutu</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Papan ketik</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter untuk mengirim</string>

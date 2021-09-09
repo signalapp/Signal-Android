@@ -1660,6 +1660,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalet är fullt</string>
   <string name="ConversationUpdateItem_invite_friends">Bjud in vänner</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktivera samtalsaviseringar</string>
+  <string name="ConversationUpdateItem_update_contact">Uppdatera kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Inga grupper gemensamt. Granska förfrågningar noggrant.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Inga kontakter i denna grupp. Granska förfrågningar noggrant.</string>
   <string name="ConversationUpdateItem_view">Visa</string>
@@ -2946,7 +2947,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nytt telefonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Telefonnumret du angav matchar inte ditt kontos.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du måste ange ditt gamla nummers landskod</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du måste ange ditt gamla nummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du måste ange ditt nya nummers landskod</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du måste ange ditt nya telefonnummer</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2965,6 +2965,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Behåll gammal PIN-kod</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Uppdatera PIN-kod</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Behåll gammal PIN-kod?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Försök igen</string>
+  <string name="ChangeNumberLockActivity__leave">Lämna</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Skicka felsökningslogg</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tangentbord</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-tangenten skickar</string>

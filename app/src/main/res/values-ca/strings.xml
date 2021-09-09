@@ -1660,6 +1660,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_call_is_full">La trucada és plena</string>
   <string name="ConversationUpdateItem_invite_friends">Convideu-hi amistats</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activa les notificacions de trucada</string>
+  <string name="ConversationUpdateItem_update_contact">Actualitza el contacte</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Cap grup en comú. Reviseu les sol·licituds amb atenció.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Cap contacte en aquest grup. Reviseu les sol·licituds amb atenció.</string>
   <string name="ConversationUpdateItem_view">Vista</string>
@@ -2936,6 +2937,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Actualitza el PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Torneu a provar-ho</string>
+  <string name="ChangeNumberLockActivity__leave">Surt</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Envia un registre de depuració</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Teclat</string>
   <string name="ChatsSettingsFragment__enter_key_sends">S\'envia amb la tecla de Retorn</string>

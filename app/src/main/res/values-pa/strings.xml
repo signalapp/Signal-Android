@@ -1218,6 +1218,7 @@
   <string name="WebRtcCallView__speaker">ਸਪੀਕਰ</string>
   <string name="WebRtcCallView__camera">ਕੈਮਰਾ </string>
   <string name="WebRtcCallView__mute">ਚੁੱਪ</string>
+  <string name="WebRtcCallView__ring">ਰਿੰਗ</string>
   <string name="WebRtcCallView__end_call">ਕਾਲ ਖਤਮ ਕਰੋ</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1633,6 +1634,7 @@
   <string name="ConversationUpdateItem_call_is_full">ਕਾਲ ਭਰੀ ਹੋਈ ਹੈ</string>
   <string name="ConversationUpdateItem_invite_friends">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ਕਾਲ ਸੂਚਨਾਵਾਂ ਸਮਰੱਥ ਕਰੋ</string>
+  <string name="ConversationUpdateItem_update_contact">ਸੰਪਰਕ ਅੱਪਡੇਟ ਕਰੋ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ਕੋਈ ਸਾਂਝੇ ਗਰੁੱਪ ਨਹੀਂ। ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ।</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ। ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ।</string>
   <string name="ConversationUpdateItem_view">ਵੇਖੋ</string>
@@ -2906,6 +2908,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN ਅੱਪਡੇਟ ਕਰੋ</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+  <string name="ChangeNumberLockActivity__leave">ਛੱਡੋ</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ਡੀਬੱਗ ਲਾਗ ਦਰਜ ਕਰੋ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">ਕੀਬੋਰਡ</string>
   <string name="ChatsSettingsFragment__enter_key_sends">ਕੁੰਜੀ ਭੇਜੋ ਦਰਜ ਕਰੋ</string>

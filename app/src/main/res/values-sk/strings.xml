@@ -1140,6 +1140,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bezpečnostné číslo s %s ste označili ako neoverené</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bezpečnostné číslo s %s ste označili ako neoverené z iného zariadenia</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Správu od %s sa nepodarilo doručiť</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s zmenil ich počet na nové číslo.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil(a) skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je v skupinovom hovore · %2$s</string>
@@ -1802,6 +1803,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationUpdateItem_call_is_full">Hovor je plne obsadený</string>
   <string name="ConversationUpdateItem_invite_friends">Pozvať priateľov</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Povoliť upozornenia na hovory</string>
+  <string name="ConversationUpdateItem_update_contact">Aktualizovať kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žiadne spoločné skupiny. Žiadosti starostlivo skontrolujte.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tejto skupine nie sú žiadne kontakty. Žiadosti starostlivo skontrolujte.</string>
   <string name="ConversationUpdateItem_view">Zobraziť</string>
@@ -3124,7 +3126,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nové telefónne číslo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Zadané telefónne číslo sa nezhoduje s telefónnym číslom vášho účtu.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Musíte zadať predvoľbu krajiny svojho starého čísla</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Musíte zadať svoje staré číslo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Musíte zadať svoje staré telefónne číslo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Musíte zadať predvoľbu krajiny vášho nového čísla</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Musíte zadať svoje nové telefónne číslo</string>
   <!--ChangeNumberVerifyFragment-->
@@ -3143,6 +3145,15 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Ponechať si starý PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Aktualizovať PIN kód</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Ponechať si starý PIN?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Zdá sa, že ste sa pokúsili zmeniť svoje číslo, ale nepodarilo sa nám určiť, či bolo úspešné.\n\nPrebieha opätovná kontrola…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Stav zmeny potvrdený</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Vaše číslo bolo potvrdené ako %1$s. Ak to nie je vaše nové číslo, reštartujte proces zmeny čísla.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Zmeniť stav nepotvrdený</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nepodarilo sa nám určiť stav vašej žiadosti o zmenu čísla. \n\n (Chyba:%1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Skúsiť znovu</string>
+  <string name="ChangeNumberLockActivity__leave">Opustiť</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Odoslať ladiaci záznam</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klávesnica</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Odoslať stlačením klávesy Enter</string>

@@ -1599,6 +1599,7 @@
   <string name="ConversationUpdateItem_call_is_full">通話已滿座</string>
   <string name="ConversationUpdateItem_invite_friends">誠邀好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
+  <string name="ConversationUpdateItem_update_contact">更新聯絡人</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">無有緣相遇嘅谷。請您金睛火眼睇清楚啲請求。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">呢個谷入面無您識得嘅聯絡人。請您金睛火眼睇清楚啲請求。</string>
   <string name="ConversationUpdateItem_view">睇下</string>
@@ -2867,7 +2868,6 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新嘅電話冧把</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">您輸入嘅電話冧把，同您嘅帳戶唔脗合。</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您未打您個舊冧把嘅國碼</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您未打您個舊冧把</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您未打您個新冧把嘅國碼</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您未打您個新嘅電話冧把</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2886,6 +2886,10 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">保留舊 PIN 碼</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">係咪要保留舊 PIN 碼？</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">再試一次</string>
+  <string name="ChangeNumberLockActivity__leave">退谷</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">提交除錯記錄檔</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter 掣唔換行當係傳送</string>

@@ -1658,6 +1658,7 @@
   <string name="ConversationUpdateItem_call_is_full">Обаждането е пълно</string>
   <string name="ConversationUpdateItem_invite_friends">Покани приятели</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Включете известия при обаждания</string>
+  <string name="ConversationUpdateItem_update_contact">Поднови контакт</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нямате общи групи. Преглеждайте заявките внимателно.</string>
   <string name="ConversationUpdateItem_view">Преглед</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Съобщенията ще изчезват след %1$s когато им пишете.</string>
@@ -2795,6 +2796,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Актуализирайте ПИН</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Опитай Отново</string>
+  <string name="ChangeNumberLockActivity__leave">Напусни</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Изпращане на доклад</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Клавиатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Клавишът Enter се използва за изпращане</string>

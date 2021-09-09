@@ -1140,6 +1140,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nepavyko pristatyti žinutės nuo %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s pasikeitė numerį į naują.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
@@ -1803,6 +1804,7 @@
   <string name="ConversationUpdateItem_call_is_full">Skambutis yra pilnas</string>
   <string name="ConversationUpdateItem_invite_friends">Pakviesti draugus</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Įjungti pranešimus apie skambučius</string>
+  <string name="ConversationUpdateItem_update_contact">Atnaujinti adresatą</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nėra jokių bendrų grupių. Atidžiai peržiūrėkite prašymus.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Šioje grupėje nėra jokių adresatų. Atidžiai peržiūrėkite prašymus.</string>
   <string name="ConversationUpdateItem_view">Rodyti</string>
@@ -3144,6 +3146,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Palikti seną PIN kodą</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Atnaujinti PIN kodą</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Palikti seną PIN kodą?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Atrodo, kad bandėte pasikeisti numerį, bet mums nepavyko nustatyti, ar tai buvo sėkmingai atlikta.\n\nDabar tikrinama iš naujo…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Pakeitimo būsena patvirtinta</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Jūsų numeris patvirtintas kaip %1$s. Jeigu tai nėra jūsų naujas numeris, pradėkite numerio keitimo procesą iš naujo.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Pakeitimo būsena nepatvirtinta</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Mums nepavyko nustatyti, kokia yra jūsų numerio keitimo užklausos būsena.\n\n(Error: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Bandyti dar kartą</string>
+  <string name="ChangeNumberLockActivity__leave">Išeiti</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Pateikti derinimo žurnalą</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatūra</string>
   <string name="ChatsSettingsFragment__enter_key_sends">„Enter“ (Įvedimo) klavišas išsiunčia</string>

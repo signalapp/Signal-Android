@@ -1657,6 +1657,7 @@
   <string name="ConversationUpdateItem_call_is_full">L’appel est complet</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter des amis</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activer les notifications d’appels</string>
+  <string name="ConversationUpdateItem_update_contact">Mettre le contact à jour</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Aucun groupe en commun. Examinez les demandes avec attention.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Aucun contact dans ce groupe. Examinez les demandes avec attention.</string>
   <string name="ConversationUpdateItem_view">Afficher</string>
@@ -2940,7 +2941,6 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nouveau numéro de téléphone</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Le numéro de téléphone que vous avez saisi ne correspond pas à celui de votre compte.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Vous devez renseigner l’indicatif de pays de votre ancien numéro</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Vous devez renseigner votre ancien numéro</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Vous devez renseigner l’indicatif de pays de votre nouveau numéro</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Vous devez renseigner votre nouveau numéro de téléphone</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2957,6 +2957,10 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Conserver l’ancien NIP</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Mettre le NIP à jour</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Conserver l’ancien NIP ?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Réessayer</string>
+  <string name="ChangeNumberLockActivity__leave">Quitter</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Envoyer le journal de débogage</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Clavier</string>
   <string name="ChatsSettingsFragment__enter_key_sends">La touche Entrée envoie</string>

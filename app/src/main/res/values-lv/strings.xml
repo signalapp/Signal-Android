@@ -1696,6 +1696,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConversationUpdateItem_call_is_full">Zvana/sarunas dalībnieku limits izsmelts</string>
   <string name="ConversationUpdateItem_invite_friends">Uzaicināt draugus</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Iespējot zvana paziņojumus</string>
+  <string name="ConversationUpdateItem_update_contact">Atjaunināt kontaktpersonu</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nav kopīgu grupu. Pārskatiet pieprasījumus rūpīgi.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Šajā grupā nav kontaktpersonu. Pārskatiet pieprasījumus rūpīgi.</string>
   <string name="ConversationUpdateItem_view">Skatīt</string>
@@ -2990,6 +2991,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Aktualizēt PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Mēģināt vēlreiz</string>
+  <string name="ChangeNumberLockActivity__leave">Pamest</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Iesniegt atkļūdošanas žurnālu</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatūra</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Pogas Enter funkcija</string>

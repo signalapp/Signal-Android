@@ -1802,6 +1802,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationUpdateItem_call_is_full">Hovor je plný</string>
   <string name="ConversationUpdateItem_invite_friends">Pozvat přátele</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Povolit oznámení hovorů</string>
+  <string name="ConversationUpdateItem_update_contact">Aktualizovat kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žádné společné skupiny. Požadavky pečlivě prověřte.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Žádné kontakty v této skupině. Požadavky pečlivě prověřte.</string>
   <string name="ConversationUpdateItem_view">Zobrazit</string>
@@ -3124,7 +3125,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nové telefonní číslo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Zadané telefonní číslo neodpovídá vašemu účtu.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Musíte zadat kód země svého starého čísla.</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Musíte zadat své staré číslo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Musíte zadat kód země svého nového čísla.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Musíte zadat své nové telefonní číslo</string>
   <!--ChangeNumberVerifyFragment-->
@@ -3143,6 +3143,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Zachovat starý PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Aktualizovat PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Zachovat starý PIN?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Zkusit znovu</string>
+  <string name="ChangeNumberLockActivity__leave">Opustit</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Odeslat ladicí log</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klávesnice</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Klávesa Enter odesílá</string>

@@ -1804,6 +1804,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationUpdateItem_call_is_full">Mae\'r alwad yn llawn</string>
   <string name="ConversationUpdateItem_invite_friends">Gwahodd ffrindiau</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Galluogi Hysbysiadau Galwadau</string>
+  <string name="ConversationUpdateItem_update_contact">Diweddaru\'r cyswllt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Dim grwpiau\'n gyffredin. Ystyriwch y ceisiadau\'n ofalus</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Dim cysylltiadau\'n y grŵp hwn. Ystyriwch y ceisiadau\'n ofalus</string>
   <string name="ConversationUpdateItem_view">Golwg</string>
@@ -3113,6 +3114,10 @@ Send neges heb ei ddiogelu?</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Diweddaru PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Ailgynnig</string>
+  <string name="ChangeNumberLockActivity__leave">Gadael</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Anfon log dadfygio</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Bysellfwrdd</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Pwyso Enter i anfon</string>

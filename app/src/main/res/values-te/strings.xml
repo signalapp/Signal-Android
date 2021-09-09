@@ -1613,6 +1613,7 @@
   <string name="ConversationUpdateItem_return_to_call">కాల్‌కు తిరిగి వెళ్ళు</string>
   <string name="ConversationUpdateItem_call_is_full">కాల్ నిండింది</string>
   <string name="ConversationUpdateItem_invite_friends">స్నేహితులను ఆహ్వానించండి</string>
+  <string name="ConversationUpdateItem_update_contact">పరిచయాన్ని నవీకరించండి</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">సాధారణంగా సమూహాలు లేవు. అభ్యర్థనలను జాగ్రత్తగా సమీక్షించండి.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">సాధారణంగా సమూహాలు లేవు. అభ్యర్థనలను జాగ్రత్తగా సమీక్షించండి.</string>
   <string name="ConversationUpdateItem_view">వీక్షణ</string>
@@ -2613,6 +2614,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">పిన్‌ను నవీకరించండి</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">మళ్ళీ ప్రయత్నించు</string>
+  <string name="ChangeNumberLockActivity__leave">వదిలి</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">డీబగ్ సంఘటన లేకరి సమర్పించండి</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">ఎంటర్ కీ పంపుతుంది </string>
   <!--SmsSettingsFragment-->

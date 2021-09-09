@@ -1666,6 +1666,7 @@
   <string name="ConversationUpdateItem_call_is_full">Símtal er fullskipað</string>
   <string name="ConversationUpdateItem_invite_friends">Bjóða vinum aðgang</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Virkja tilkynningar um hringingar</string>
+  <string name="ConversationUpdateItem_update_contact">Uppfæra tengilið</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Engir sameiginlegir hópar. Yfirfarðu beiðnir vandlega.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Engir tengiliðir í þessum hópi. Yfirfarðu beiðnir vandlega.</string>
   <string name="ConversationUpdateItem_view">Skoða</string>
@@ -2955,7 +2956,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nýja símanúmerið</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Símanúmerið sem þú settir inn samsvarar ekki því sem er á aðgangnum þínum.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Þú verður að tilgreina landskóða fyrir gamla símanúmerið   </string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Þú verður að tilgreina gamla símanúmerið   </string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Þú verður að tilgreina landskóða fyrir nýja símanúmerið   </string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Þú verður að tilgreina nýja símanúmerið   </string>
   <!--ChangeNumberVerifyFragment-->
@@ -2974,6 +2974,10 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Halda gamla PIN-númerinu</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Uppfæra PIN-númer</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Halda gamla PIN-númerinu?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Reyna aftur</string>
+  <string name="ChangeNumberLockActivity__leave">Fara</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Senda inn villumeldingaskrá</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Lyklaborð</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-lykill sendir</string>

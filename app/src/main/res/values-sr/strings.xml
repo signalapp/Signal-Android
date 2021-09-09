@@ -1090,6 +1090,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Означили сте ваш сигурносни број са %s као непроверен.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Означили сте ваш сигурносни број са %s као непроверен на другом уређају.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порука од %s није могла да се испоручи</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s променио свој број на нови број</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s покренуо/ла групни позив · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s је у групном позиву · %2$s</string>
@@ -1734,6 +1735,7 @@
   <string name="ConversationUpdateItem_call_is_full">Позив је пун</string>
   <string name="ConversationUpdateItem_invite_friends">Позивница пријатељима</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Обавештења о позиву</string>
+  <string name="ConversationUpdateItem_update_contact">Ажурирај контакт</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нема заједничких група. Пажљиво прегледајте захтеве.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контаката у овој групи. Пажљиво прегледајте захтеве.</string>
   <string name="ConversationUpdateItem_view">Приказ</string>
@@ -3039,7 +3041,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нови број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Унет телефонски број се не подудара са вашим налогом.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Морате навести код државе свог старог броја</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Морате навести Ваш старији број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Морате навести Ваш стари број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Морате навести код државе свог новог броја</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Морате навести Ваш нови број</string>
   <!--ChangeNumberVerifyFragment-->
@@ -3058,6 +3060,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Задржи стари ПИН</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирати PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Задржати стари ПИН?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Изгледа да сте покушали да промените свој број, али нисмо успели да утврдимо да ли је успео.\n\nПоново проверавам…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Промена статуса промењена</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ваш број је потврђен као %1$s. Ако то нијен Ваш нови број, поново покрените процес промена броја.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Промена статуса непотврђена</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Нисмо могли да утврдимо статус вашег захтева за промену броја.\n\n(Грешка: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Покушај поново</string>
+  <string name="ChangeNumberLockActivity__leave">Напусти</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Објави програмерски извештај</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Ентер тастер шаље</string>
@@ -3311,5 +3322,6 @@
   <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Изгубићете све промене које сте направили на овој фотографији.</string>
   <string name="ImageEditorHud__delete">Избриши</string>
+  <string name="CameraFragment__failed_to_open_camera">Неуспешно отварање камере</string>
   <!--EOF-->
 </resources>

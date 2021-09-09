@@ -643,7 +643,7 @@
   <string name="GroupMentionSettingDialog_dont_notify_me">ମୋତେ ଜଣାନ୍ତୁ ନାହିଁ</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">ପ୍ରୋଫାଇଲ୍ ନାମ</string>
-  <string name="ManageProfileFragment_username">ବ୍ୟବହାରିକ ନାମ</string>
+  <string name="ManageProfileFragment_username">ଉପଭୋକ୍ତା ନାମ</string>
   <string name="ManageProfileFragment_about">ବିଷୟରେ</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">ନିଜ ବିଷୟରେ କିଛି ଲେଖନ୍ତୁ</string>
   <string name="ManageProfileFragment_your_name">ଆପଣଙ୍କ ନାମ</string>
@@ -1367,7 +1367,7 @@
   <string name="UnverifiedSendDialog_send_message">ବାର୍ତ୍ତା ପଠାନ୍ତୁ?</string>
   <string name="UnverifiedSendDialog_send">ପଠାନ୍ତୁ</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_username">ବ୍ୟବହାରିକ ନାମ</string>
+  <string name="UsernameEditFragment_username">ଉପଭୋକ୍ତା ନାମ</string>
   <string name="UsernameEditFragment_delete">ବିଲୋପ କରନ୍ତୁ</string>
   <string name="UsernameEditFragment_successfully_set_username"> ବ୍ୟବହାରିକ ନାମ ସଫଳତାର ସହିତ ସେଟ୍ ହେଲା</string>
   <string name="UsernameEditFragment_successfully_removed_username"> ବ୍ୟବହାରିକ ନାମ ସଫଳତାର ସହିତ ହଟାଗଲା</string>
@@ -1585,6 +1585,7 @@
   <string name="ConversationUpdateItem_call_is_full">କଲ୍ ଭର୍ତ୍ତି ଅଛି</string>
   <string name="ConversationUpdateItem_invite_friends">ବନ୍ଧୁମାନଙ୍କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">କଲ ବିଜ୍ଞପ୍ତି ଚାଲୁ କରନ୍ତୁ</string>
+  <string name="ConversationUpdateItem_update_contact">ସମ୍ପର୍କ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
   <string name="ConversationUpdateItem_view">ଦେଖନ୍ତୁ</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">ଚଲାନ୍ତୁ … ବିରାମ</string>
@@ -1703,7 +1704,7 @@
   <string name="CreateProfileActivity_first_name_required">ପ୍ରଥମ ନାମ (ଆବଶ୍ୟକ)</string>
   <string name="CreateProfileActivity_last_name_optional">ଶେଷ ନାମ (ବୈକଳ୍ପିକ)</string>
   <string name="CreateProfileActivity_next">ପରବର୍ତ୍ତୀ</string>
-  <string name="CreateProfileActivity__username">ବ୍ୟବହାରିକ ନାମ</string>
+  <string name="CreateProfileActivity__username">ଉପଭୋକ୍ତା ନାମ</string>
   <string name="CreateProfileActivity__create_a_username">ବ୍ୟବହାରିକ-ନାମ ସୃଷ୍ଟି କରନ୍ତୁ</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">କଷ୍ଟମ୍ MMS ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି କେବଳ ଆପଣଙ୍କୁ ଦୃଶ୍ୟମାନ ହେବ</string>
   <!--EditAboutFragment-->
@@ -2373,6 +2374,12 @@
   <!--TransferOrRestoreFragment-->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">୧.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ସେଟିଂସମୂହ ଖୋଲିବାକୁ ଉପର ବାମ ପାର୍ଶ୍ୱରେ ଥିବା ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ୍ ଫଟୋ ଉପରେ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">୨.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">\"ଆକାଉଣ୍ଟ୍\" ଉପରେ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">୩.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">\"ଆକାଉଣ୍ଟ୍ ସ୍ଥାନାନ୍ତର\" ଟ୍ୟାପ୍ କରନ୍ତୁ ଏବଂ ତାପରେ ଉଭୟ ଡିଭାଇସରେ \"ଜାରି ରଖନ୍ତୁ\"</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__restore_a_backup">ଏକ ବ୍ୟାକଅପ୍ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ</string>
   <!--OldDeviceTransferSetupFragment-->
@@ -2389,6 +2396,9 @@
   <string name="DeviceTransfer__cancel">ବାତିଲ କରନ୍ତୁ</string>
   <string name="DeviceTransfer__try_again">ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ</string>
   <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__first_bullet">୧.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">୨.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">୩.</string>
   <string name="OldDeviceTransferInstructions__continue">ଜାରି ରଖନ୍ତୁ</string>
   <!--OldDeviceTransferComplete-->
   <!--NewDeviceTransferComplete-->
@@ -2584,16 +2594,32 @@
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">ଆପଣଙ୍କ ବନ୍ଧୁଗଣଙ୍କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">ଆକାଉଣ୍ଟ୍</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">ଜାରି ରଖନ୍ତୁ</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">ନମ୍ଵର୍ ପରିବର୍ତ୍ତନ କରନ୍ତୁ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">ଆପଣଙ୍କ ପୁରୁଣା ନମ୍ଵର୍</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">ପୁରୁଣା ଫୋନ୍ ନମ୍ଵର୍</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">ଆପଣଙ୍କ ନୂଆ ନମ୍ଵର୍</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">ନୂଆ ଫୋନ୍ ନମ୍ଵର୍</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">ଆପଣ ପ୍ରବେଶ କରିଥିବା ଫୋନ୍ ନମ୍ବର ଆପଣଙ୍କ ଖାତା ସହିତ ମେଳ ଖାଉ ନାହିଁ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">ଆପଣଙ୍କ ପୁରୁଣା ନମ୍ବରର ଦେଶ କୋଡ୍ ଉଲ୍ଲେଖ କରିବା ଜରୁରୀ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">ଆପଣଙ୍କ ନୂଆ ନମ୍ବରର ଦେଶ କୋଡ୍ ଉଲ୍ଲେଖ କରିବା ଜରୁରୀ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">ଆପଣଙ୍କ ନୂଆ ନମ୍ବର ଉଲ୍ଲେଖ କରିବା ଜରୁରୀ</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">ନମ୍ଵର୍ ପରିବର୍ତ୍ତନ କରନ୍ତୁ</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__edit_number">ନମ୍ବର ସଂପାଦନ କରନ୍ତୁ</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">ପୁରୁଣା PIN ରଖନ୍ତୁ</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">ପିନ୍ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">ପୁରୁଣା PIN ରଖିବେ କି?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ପୁନଃଚେଷ୍ଟା କର</string>
+  <string name="ChangeNumberLockActivity__leave">ଛାଡ଼ନ୍ତୁ</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ଡିବଗ୍ ଲଗ୍ ଦାଖଲ କରନ୍ତୁ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">ଏଣ୍ଟର ଦବେଇଲେ ପଠାଯିବ</string>
   <!--SmsSettingsFragment-->
@@ -2721,6 +2747,7 @@
   <string name="DSLSettingsToolbar__navigate_up">ଉପରକୁ ନେଭିଗେଟ୍ କରନ୍ତୁ</string>
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">ବାତିଲ କରନ୍ତୁ</string>
+  <string name="ImageEditorHud__write_text">ପାଠ୍ୟ ଲେଖନ୍ତୁ</string>
   <string name="MediaCountIndicatorButton__send">ପଠାନ୍ତୁ</string>
   <string name="MediaReviewSelectedItem__tap_to_select">ମନୋନୟନ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
   <string name="ImageEditorHud__delete">ବିଲୋପ କରନ୍ତୁ</string>

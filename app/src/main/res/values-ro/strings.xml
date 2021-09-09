@@ -1731,6 +1731,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationUpdateItem_call_is_full">Numărul maxim de participanți a fost atins</string>
   <string name="ConversationUpdateItem_invite_friends">Invită prieteni</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activare notificări pentru apeluri</string>
+  <string name="ConversationUpdateItem_update_contact">Actualizați contactul</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Niciun grup în comun. Examinați solicitările cu atenție.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nu există contacte în acest grup. Examinați solicitările cu atenție.</string>
   <string name="ConversationUpdateItem_view">Vizualizare</string>
@@ -3036,7 +3037,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Noul număr de telefon</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Numărul de telefon pe care l-ați introdus nu se potrivește cu cel al contului dvs.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Trebuie să specificați prefixul de țară al vechiului număr</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Trebuie să specificați vechiul dvs. număr</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Trebuie să specificați prefixul de țară al noului număr</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Trebuie să specificați noul dvs. număr</string>
   <!--ChangeNumberVerifyFragment-->
@@ -3054,6 +3054,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Păstrează vechiul PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizează PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Păstrați vechiul PIN?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Încearcă din nou</string>
+  <string name="ChangeNumberLockActivity__leave">Părăsește</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Trimiteți jurnalul de depanare</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatură</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Trimitere cu Enter</string>

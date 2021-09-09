@@ -1803,6 +1803,7 @@
   <string name="ConversationUpdateItem_call_is_full">השיחה מלאה</string>
   <string name="ConversationUpdateItem_invite_friends">הזמן חברים</string>
   <string name="ConversationUpdateItem_enable_call_notifications">אפשר התראות שיחה</string>
+  <string name="ConversationUpdateItem_update_contact">עדכן איש קשר</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">אין קבוצות במשותף. סקור בקשות בזהירות.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">אין אנשי קשר בקבוצה הזאת. סקור בקשות בזהירות.</string>
   <string name="ConversationUpdateItem_view">הצג</string>
@@ -3124,6 +3125,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">עדכן PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">נסה שוב</string>
+  <string name="ChangeNumberLockActivity__leave">עזוב</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">הגש יומן ניפוי תקלים</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">מקלדת</string>
   <string name="ChatsSettingsFragment__enter_key_sends">מקש Enter שולח</string>

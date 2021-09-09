@@ -1625,6 +1625,7 @@
   <string name="ConversationUpdateItem_call_is_full">কলটিতে জায়গা নেই</string>
   <string name="ConversationUpdateItem_invite_friends">বন্ধুদের আমন্ত্রণ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">কল নোটিফিকেশন চালু করুন</string>
+  <string name="ConversationUpdateItem_update_contact"> কন্ট্যাক্ট আপডেট করুন</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">একইরকম কোনও গ্রুপ নেই। সতর্কতার সাথে অনুরোধগুলি পর্যালোচনা করুন।</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">এই গ্রুপে কোনও কন্ট্যাক্ট নেই। অনুরোধগুলি সতর্কতার সাথে পর্যালোচনা করুন।</string>
   <string name="ConversationUpdateItem_view">দেখান</string>
@@ -2898,6 +2899,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">পিন আপডেট করুন</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">পুনরায় চেষ্টা করুন</string>
+  <string name="ChangeNumberLockActivity__leave">ছেড়ে চলে যান</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ডিবাগ লগ সাবমিট করুন</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">কীবোর্ড</string>
   <string name="ChatsSettingsFragment__enter_key_sends">এন্টার কী পাঠাবে</string>

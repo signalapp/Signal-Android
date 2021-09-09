@@ -1598,6 +1598,7 @@
   <string name="ConversationUpdateItem_call_is_full">通話已滿座</string>
   <string name="ConversationUpdateItem_invite_friends">邀請好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
+  <string name="ConversationUpdateItem_update_contact">更新聯絡人</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">無共同群組。請仔細檢閱請求。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">無聯絡人在此群組中。請仔細檢閱請求。</string>
   <string name="ConversationUpdateItem_view">檢視</string>
@@ -2866,7 +2867,6 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新電話號碼</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">您所輸入的電話號碼與您的帳戶不符。</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您必須指定您的舊號碼的國碼</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您必須指定您的舊號碼</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您必須指定您的新號碼的國碼</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您必須指定您的新電話號碼</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2885,6 +2885,10 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">保留舊 PIN 碼</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">要保留舊 PIN 碼嗎？</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">重試</string>
+  <string name="ChangeNumberLockActivity__leave">退出</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">提交除錯記錄檔</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
   <string name="ChatsSettingsFragment__enter_key_sends">輸入鍵作發送</string>

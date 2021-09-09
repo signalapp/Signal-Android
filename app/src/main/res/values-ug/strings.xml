@@ -1633,6 +1633,7 @@
   <string name="ConversationUpdateItem_call_is_full">چاقىرىق توشتى</string>
   <string name="ConversationUpdateItem_invite_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">چاقىرىش ئۇقتۇرۇشلىرىنى قوزغات</string>
+  <string name="ConversationUpdateItem_update_contact">ئالاقەداش يېڭىلا</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ھېچقانداق ئورتاق گۇرۇپپا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">بۇ گۇرۇپپىدا ھېچقانداق ئەزا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="ConversationUpdateItem_view">كۆرسەت</string>
@@ -2906,6 +2907,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN يېڭىلا</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">قايتا سىنا</string>
+  <string name="ChangeNumberLockActivity__leave">ئايرىلىڭ</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">سازلاش خاتىرە يوللا</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">ھەرپتاختا</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter نى باسسا يوللايدۇ</string>

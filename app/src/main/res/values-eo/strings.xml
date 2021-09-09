@@ -1633,6 +1633,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationUpdateItem_call_is_full">La alvoko plenas</string>
   <string name="ConversationUpdateItem_invite_friends">Inviti amikojn</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
+  <string name="ConversationUpdateItem_update_contact">Ĝisdatigi kontakton</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Neniu komuna grupo. Kontroli la petojn zorgeme.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Neniu kontakto en tiu grupo. Kontroli la petojn zorgeme.</string>
   <string name="ConversationUpdateItem_view">Montri pli</string>
@@ -2824,6 +2825,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ĝisdatigi PIN-on</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Reprovi</string>
+  <string name="ChangeNumberLockActivity__leave">Forlasi</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Sendi sencimigan protokolon</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klavaro</string>
   <string name="ChatsSettingsFragment__enter_key_sends">La Eniga klavo kaŭzas sendon</string>

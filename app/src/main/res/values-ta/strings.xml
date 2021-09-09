@@ -1632,6 +1632,7 @@
   <string name="ConversationUpdateItem_call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
   <string name="ConversationUpdateItem_invite_friends">நண்பர்களை அழை</string>
   <string name="ConversationUpdateItem_enable_call_notifications">அழைப்பு அறிவிப்புகளை இயக்கு</string>
+  <string name="ConversationUpdateItem_update_contact">தொடர்பைப் புதுப்பிக்கவும்</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">இல்லை குழுக்கள்பொதுவாக. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">இல்லை இதில் தொடர்புகள் குழு. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="ConversationUpdateItem_view">காண்க</string>
@@ -2909,6 +2910,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">மீண்டும் முயற்சி செய்</string>
+  <string name="ChangeNumberLockActivity__leave">விலகு</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">பிழைத்திருத்த பதிவைச் சமர்ப்பிக்கவும்</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">விசைப்பலகை</string>
   <string name="ChatsSettingsFragment__enter_key_sends">பதிவு விசை அனுப்பும்</string>

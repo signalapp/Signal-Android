@@ -1595,6 +1595,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er full</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter venner</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Slå på samtalevarsler</string>
+  <string name="ConversationUpdateItem_update_contact">Oppdater kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen felles grupper. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i denne gruppen. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_view">Vis</string>
@@ -2792,6 +2793,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Oppdater PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Prøv på nytt</string>
+  <string name="ChangeNumberLockActivity__leave">Forlat</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Send feilsøkingslogg</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Send med enter-tast</string>

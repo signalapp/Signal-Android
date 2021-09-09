@@ -1040,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Você marcou o seu número de segurança com %scomo não verificado</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Você marcou o seu número de segurança com %s como não verificado através de outro dispositivo</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Uma mensagem de %s não pôde ser entregue</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s alterou o número de telefone para um novo número.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s começou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada em grupo · %2$s</string>
@@ -1667,6 +1668,7 @@
   <string name="ConversationUpdateItem_call_is_full">A chamada está lotada</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amigos(as)</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Exibir notificações de chamadas</string>
+  <string name="ConversationUpdateItem_update_contact">Atualizar contato</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nenhum grupo em comum. Analise o pedido com atenção.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nenhum contato neste grupo. Analise solicitações com atenção.</string>
   <string name="ConversationUpdateItem_view">Exibir</string>
@@ -2953,7 +2955,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Novo número de telefone</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">O número de telefone que você inseriu não corresponde ao da sua conta.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Informe o código do país do seu número antigo</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Insira seu número antigo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Insira seu número de telefone antigo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Informe o código do país do seu novo número</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Insira seu novo número de telefone</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2972,6 +2974,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Manter o PIN antigo</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Atualizar PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Manter o PIN antigo?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Parece que você tentou mudar o seu número. Aguardamos a confirmação de que a mudança foi bem-sucedida. \n\nVerificando agora…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Mudança de número confirmada</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Seu número foi confirmado como %1$s. Se esse não for o seu novo número, refaça o processo de mudança de número, por favor.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Mudança de número não confirmada</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Não foi possível determinar o progresso da sua solicitação de mudança de número.\n\n(Erro: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Tente novamente</string>
+  <string name="ChangeNumberLockActivity__leave">Sair</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Enviar registro de depuração</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Teclado</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tecla Enter envia</string>

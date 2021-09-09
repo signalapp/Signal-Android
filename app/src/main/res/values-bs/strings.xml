@@ -2,7 +2,7 @@
 <resources>
   <string name="yes">Da</string>
   <string name="no">Ne</string>
-  <string name="delete">Obriši</string>
+  <string name="delete">Izbriši</string>
   <string name="please_wait">Molimo pričekajte…</string>
   <string name="save">Pohrani</string>
   <string name="note_to_self">Podsjetnik</string>
@@ -1090,6 +1090,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen sa drugog uređaja</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Poruku od %s nije bilo moguće dostaviti</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s je promijenio/la broj.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s učestvuje u grupnom pozivu · %2$s</string>
@@ -1735,6 +1736,7 @@
   <string name="ConversationUpdateItem_call_is_full">Poziv je popunjen</string>
   <string name="ConversationUpdateItem_invite_friends">Pozovi prijatelje</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Uključi obavještenja o pozivima</string>
+  <string name="ConversationUpdateItem_update_contact">Ažuriraj kontakta</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nema zajedničkih grupa. Pažljivo pregledajte zahtjeve.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nema kontakata u grupi. Pažljivo pregledajte zahtjeve.</string>
   <string name="ConversationUpdateItem_view">Pregled</string>
@@ -2586,9 +2588,9 @@
   <string name="BackupDialog_enable_local_backups">Aktivirati lokalne rezervne kopije?</string>
   <string name="BackupDialog_enable_backups">Aktiviraj</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Molimo potvrdite da ste razumjeli označivši kućicu za potvrdu.</string>
-  <string name="BackupDialog_delete_backups">Obrisati rezervne kopije?</string>
+  <string name="BackupDialog_delete_backups">Izbrisati rezervne kopije?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivirati i izbrisati sve lokalne rezervne kopije?</string>
-  <string name="BackupDialog_delete_backups_statement">Obriši rezervne kopije</string>
+  <string name="BackupDialog_delete_backups_statement">Izbriši rezervne kopije</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Da biste aktivirali kreiranje rezervnih kopija, izaberite direktorij. Rezervne kopije bit će pohranjene na toj lokaciji.</string>
   <string name="BackupDialog_choose_folder">Odaberi direktorij</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
@@ -2599,7 +2601,7 @@
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije tačna</string>
   <string name="LocalBackupJob_creating_backup">Kreiram rezervnu kopiju…</string>
   <string name="LocalBackupJobApi29_backup_failed">Neuspjelo kreiranje rezervne kopije</string>
-  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa rezervnim kopijama obrisan je ili premješten.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa rezervnim kopijama izbrisan je ili premješten.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša rezervna kopija prevelika je za pohranjivanje na ovoj lokaciji.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nema dovoljno prostora za pohranjivanje rezervne kopije.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Pritisnite da rasporedite rezervne kopije.</string>
@@ -3044,7 +3046,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Novi broj telefona</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Broj telefona koji ste unijeli ne podudara se s onim na Vašem računu.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Morate navesti kōd države za svoj stari broj</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Morate unijeti svoj stari broj</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Morate unijeti svoj stari telefonski broj</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Morate navesti kōd države za svoj novi broj</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Morate unijeti svoj novi telefonski broj</string>
   <!--ChangeNumberVerifyFragment-->
@@ -3063,6 +3065,15 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Zadrži stari PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ažurirajte PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Zadržati stari PIN?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Izgleda da ste pokušali promijeniti svoj broj, ali nismo mogli utvrditi je li proces okončan uspješno.\n\nProvjeravamo sada…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Promjena je potvrđena</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Vaš je broj potvrđen kao %1$s. Ako ovo nije Vaš novi broj, molimo iznova započnite proces promjene broja.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Promjena nije potvrđena</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nismo mogli utvrditi status Vašeg zahtjeva za promjenu broja.\n\n(Greška: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Pokušaj</string>
+  <string name="ChangeNumberLockActivity__leave">Napusti</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Pošaljite zapis za ispravljanje grešaka</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatura</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tipka Enter šalje</string>

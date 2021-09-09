@@ -1626,6 +1626,7 @@
   <string name="ConversationUpdateItem_call_is_full">കോൾ നിറഞ്ഞു</string>
   <string name="ConversationUpdateItem_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <string name="ConversationUpdateItem_enable_call_notifications">കോൾ അറിയിപ്പുകൾ പ്രാപ്തമാക്കുക</string>
+  <string name="ConversationUpdateItem_update_contact">കോൺ‌ടാക്റ്റ് പുതുക്കുക</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ഈ ഗ്രൂപ്പിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_view">കാണുക</string>
@@ -2911,6 +2912,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN പുതുക്കുക </string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="ChangeNumberLockActivity__leave">വിട്ട് പോകുക</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">കീബോർഡ്</string>
   <string name="ChatsSettingsFragment__enter_key_sends">എന്റർ കീ അയയ്ക്കും</string>

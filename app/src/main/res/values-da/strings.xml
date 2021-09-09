@@ -1610,6 +1610,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConversationUpdateItem_call_is_full">Samtalen er fuld</string>
   <string name="ConversationUpdateItem_invite_friends">Invitér venner</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktiver opkaldsmeddelelser</string>
+  <string name="ConversationUpdateItem_update_contact">Opdatér kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen grupper til fælles. Gennemgå anmodninger omhyggeligt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i gruppen. Gennemgå anmodninger omhyggeligt. </string>
   <string name="ConversationUpdateItem_view">Vis</string>
@@ -2881,6 +2882,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Opdatér PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Prøv igen</string>
+  <string name="ChangeNumberLockActivity__leave">Forlad</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Indsend fejlsøgningslog</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">[Enter] sender besked</string>

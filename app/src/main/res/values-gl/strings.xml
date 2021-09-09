@@ -1610,6 +1610,7 @@
   <string name="ConversationUpdateItem_call_is_full">A chamada está completa</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amizades</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activar notificacións de chamadas</string>
+  <string name="ConversationUpdateItem_update_contact">Actualizar contacto</string>
   <string name="ConversationUpdateItem_view">Ver</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reproducir … Deter</string>
@@ -2670,6 +2671,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizar PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Tentar de novo</string>
+  <string name="ChangeNumberLockActivity__leave">Abandonar</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Enviar rexistro de depuración</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Tecla Intro para enviar</string>
   <!--SmsSettingsFragment-->

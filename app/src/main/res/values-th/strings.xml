@@ -1567,6 +1567,7 @@
   <string name="ConversationUpdateItem_call_is_full">ห้องเต็ม</string>
   <string name="ConversationUpdateItem_invite_friends">เชิญเพื่อน</string>
   <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
+  <string name="ConversationUpdateItem_update_contact">ปรับปรุงผู้ติดต่อ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ไม่มีกลุ่มที่เหมือนกันเลย โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ไม่มีผู้ติดต่อในกลุ่มนี้ โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_view">ดู</string>
@@ -2822,6 +2823,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">เปลี่ยนรหัส PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ลองใหม่</string>
+  <string name="ChangeNumberLockActivity__leave">ออก</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ส่งปูมดีบัก</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
   <string name="ChatsSettingsFragment__enter_key_sends">กด Enter เพื่อส่ง</string>

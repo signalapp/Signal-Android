@@ -1040,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ امنیتی خود را با %s وارسی نشده علامت زدید</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ امنیتی خود را با %s از طریق دستگاه یک دستگاه دیگر وارسی نشده علامت زدید</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %s نتوانست تحویل داده شود</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s شمارهٔ خود را به یک شمارهٔ جدید تغییر دادند.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی است · %2$s</string>
@@ -1665,6 +1666,7 @@
   <string name="ConversationUpdateItem_call_is_full">ظرفیت تماس تکمیل است</string>
   <string name="ConversationUpdateItem_invite_friends">دعوت دوستان</string>
   <string name="ConversationUpdateItem_enable_call_notifications">فعال‌سازی اعلان‌ها‌ی تماس</string>
+  <string name="ConversationUpdateItem_update_contact">به‌روزرسانی مخاطب</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">هیچ گروه مشترکی وجود ندارد. درخواست‌ها را با دقت بازبینی کنید.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">هیچ مخاطبی در این گروه وجود ندارد. درخواست‌ها را با دقت بازبینی کنید.</string>
   <string name="ConversationUpdateItem_view">مشاهده</string>
@@ -2951,7 +2953,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">شماره‌تلفن جدید</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">شما باید کد کشور شمارهٔ قدیمی خود را مشخص کنید</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شمارهٔ قدیمی خود را مشخص کنید</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شماره‌تلفن جدید خود را مشخص کنید</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">شما باید کد کشور شمارهٔ جدید خود را مشخص کنید</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">شما باید شماره‌تلفن جدید خود را مشخص کنید</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2970,6 +2972,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">نگه داشتن پین قدیمی</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">به‌روزرسانی پین</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">نگه داشتن پین قدیمی؟</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">به نظر می‌رسد شما سعی کردید شمارهٔ خود را تغییر دهید ولی ما قادر به تشخیص موفق بودن این فرایند نبودیم.\n\nدر حال بررسی دوباره…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">تغییر وضعیت تأیید شد</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">شمارهٔ شما به صورت %1$s تأیید شده است. اگر این شمارهٔ جدید شما نیست، لطفاً فرایند تغییر شماره را از نو شروع کنید.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">تغییر وضعیت تأیید نشد</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">ما نتوانستیم وضعیت درخواست تغییر شمارهٔ شما را مشخص کنیم.\n\n(خطا: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">تلاش مجدد</string>
+  <string name="ChangeNumberLockActivity__leave">ترک</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ارسال گزارش عیب‌یابی</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">صفحه‌کلید</string>
   <string name="ChatsSettingsFragment__enter_key_sends">ارسال با کلید Enter</string>
@@ -3135,9 +3146,9 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">به‌تازگی استفاده شده</string>
   <!--PlaybackSpeedToggleTextView-->
-  <string name="PlaybackSpeedToggleTextView__p5x">۵x.</string>
-  <string name="PlaybackSpeedToggleTextView__1x">۱x</string>
-  <string name="PlaybackSpeedToggleTextView__2x">۲x</string>
+  <string name="PlaybackSpeedToggleTextView__p5x">۵. برابر</string>
+  <string name="PlaybackSpeedToggleTextView__1x">۱ برابر</string>
+  <string name="PlaybackSpeedToggleTextView__2x">۲ برابر</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">پرداخت جدید</string>
   <!--NewConversationActivity-->
@@ -3217,5 +3228,6 @@
   <string name="MediaReviewFragment__view_once_message">پیام یکبار مصرف</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
   <string name="ImageEditorHud__delete">حذف</string>
+  <string name="CameraFragment__failed_to_open_camera">باز کردن دوربین ناموفق بود</string>
   <!--EOF-->
 </resources>

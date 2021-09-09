@@ -1575,6 +1575,7 @@
   <string name="ConversationUpdateItem_call_is_full">통화 참가자 수 최대</string>
   <string name="ConversationUpdateItem_invite_friends">친구 초대</string>
   <string name="ConversationUpdateItem_enable_call_notifications">통화 알림 활성화</string>
+  <string name="ConversationUpdateItem_update_contact">연락처 업데이트</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">공통된 그룹이 없습니다. 요청을 주의 깊게 검토하세요.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">이 그룹에 연락처가 없습니다. 요청을 주의 깊게 검토하세요.</string>
   <string name="ConversationUpdateItem_view">보기</string>
@@ -2830,6 +2831,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">번호 업데이트</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">재시도</string>
+  <string name="ChangeNumberLockActivity__leave">나가기</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">디버그 로그 제출</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">키보드</string>
   <string name="ChatsSettingsFragment__enter_key_sends">엔터 키로 메시지 보내기</string>

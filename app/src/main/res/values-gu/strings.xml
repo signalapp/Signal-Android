@@ -1625,6 +1625,7 @@
   <string name="ConversationUpdateItem_call_is_full">કૉલ પૂર્ણ છે</string>
   <string name="ConversationUpdateItem_invite_friends">મિત્રોને આમંત્રિત કરો</string>
   <string name="ConversationUpdateItem_enable_call_notifications">કૉલ સૂચનાઓ સક્ષમ કરો</string>
+  <string name="ConversationUpdateItem_update_contact">સંપર્કને અપડેટ કરો</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">કોઈ ગ્રુપ સામાન્ય નથી. વિનંતીઓની કાળજીપૂર્વક રિવ્યુ કરો.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">આ ગ્રુપમાં કોઈ સંપર્કો નથી. વિનંતીઓની કાળજીપૂર્વક સમીક્ષા કરો.</string>
   <string name="ConversationUpdateItem_view">વ્યૂ</string>
@@ -2898,6 +2899,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN અપડેટ કરો</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ફરી પ્રયાસ કરો</string>
+  <string name="ChangeNumberLockActivity__leave">છોડો</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ડિબગ લૉગ સબમિટ કરો</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">કીબોર્ડ</string>
   <string name="ChatsSettingsFragment__enter_key_sends">કી મોકલો દાખલ કરો</string>

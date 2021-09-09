@@ -1587,6 +1587,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="ConversationUpdateItem_call_is_full">Asiwel yeččur</string>
   <string name="ConversationUpdateItem_invite_friends">Snubget-d imdukkal</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Rmed tilɣa n usiwel</string>
+  <string name="ConversationUpdateItem_update_contact">Leqqem Anermis</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ulac igrawen i ken-icerken, Senqed isutar s leɛqel kan.</string>
   <string name="ConversationUpdateItem_view">Askan</string>
   <!--audio_view-->
@@ -2653,6 +2654,10 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Snifel PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Ɛreḍ tikelt nniḍen</string>
+  <string name="ChangeNumberLockActivity__leave">Eǧǧ</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Azen aɣmis n temseɣtayt</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Sekcem tasarut yuzen</string>
   <!--SmsSettingsFragment-->

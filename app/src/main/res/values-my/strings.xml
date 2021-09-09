@@ -1519,6 +1519,7 @@
   <string name="ConversationUpdateItem_call_is_full">ခေါ်ဆိုမှုထဲ လူပြည့်နေပါပြီ</string>
   <string name="ConversationUpdateItem_invite_friends">သူငယ်ချင်းများကို ဖိတ်ခေါ်ပါ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်မယ်</string>
+  <string name="ConversationUpdateItem_update_contact">အဆက်အသွယ် အပ်ဒိတ်မယ်</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">တူညီသော အဖွဲ့များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">၎င်းအဖွဲ့ထဲတွင် အဆက်အသွယ်များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="ConversationUpdateItem_view">ကြည့်မယ်</string>
@@ -2722,6 +2723,10 @@
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">ပင်နံပါတ်ကို အပ်ဒိတ်ပြုလုပ်မယ်</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ထပ်ကြိုးစားပါ</string>
+  <string name="ChangeNumberLockActivity__leave">ထွက်မည်။</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Debug log ကို တင်ပြပါ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">ထည့်ထားတဲ့ ကီးပို့ပါ</string>
   <!--SmsSettingsFragment-->

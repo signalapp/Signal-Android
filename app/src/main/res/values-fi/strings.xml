@@ -749,10 +749,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Jaa</string>
   <string name="InviteActivity_share_with_contacts">Jaa kontaktien kanssa</string>
+  <string name="InviteActivity_share_via">Jaa…</string>
   <string name="InviteActivity_cancel">Peruuta</string>
   <string name="InviteActivity_sending">Lähetetään…</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signaliin</string>
+  <string name="InviteActivity_send_sms">Lähetä SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Lähetetäänkö %d tekstiviestikutsu?</item>
     <item quantity="other">Lähetetäänkö %d tekstiviestikutsua?</item>
@@ -829,6 +831,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
   <string name="NotificationBarManager__incoming_signal_call">Saapuva Signal-puhelu</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Saapuva Signal-ryhmäpuhelu</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Pysäytetään Signalin puhelupalvelua</string>
   <string name="NotificationBarManager__decline_call">Hylkää puhelu</string>
   <string name="NotificationBarManager__answer_call">Vastaa puheluun</string>
@@ -1037,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi toisesta laitteesta.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Viestiä kontaktilta %s ei pystytty toimittamaan</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s vaihtoi numeronsa uuteen.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s on ryhmäpuhelussa · %2$s</string>
@@ -1632,6 +1636,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_call_is_full">Puhelu on täynnä</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu ystäviä</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Näytä ilmoitukset puheluista</string>
+  <string name="ConversationUpdateItem_update_contact">Päivitä yhteystieto</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ei yhteisiä ryhmiä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ei kontakteja tässä ryhmässä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_view">Näytä</string>
@@ -1804,6 +1809,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Hylkää pyyhkäisemällä alas</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Jotkin asiat kaipaavat huomiotasi.</string>
+  <string name="message_details_header__sent">Lähetetty:</string>
+  <string name="message_details_header__received">Vastaanotettu:</string>
+  <string name="message_details_header__disappears">Katoaa:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Käsiteltävänä</string>
   <string name="message_details_recipient_header__sent_to">Lähetetty käyttäjälle</string>
@@ -2896,18 +2904,41 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AccountSettingsFragment__account">Tili</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Kysymme harvemmin ajan kuluessa</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Vaadi Signal-tunnuslukua aina kun tällä puhelinnumerolla rekisteröidytään Signaliin uudestaan.</string>
+  <string name="AccountSettingsFragment__change_phone_number">Vaihda puhelinnumero</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Voit vaihtaa nykyisen puhelinnumerosi uuteen numeroon. Et voi perua tätä muutosta.\n\nEnnen kuin jatkat, varmista että uusi numero voi vastaanottaa tekstiviestejä tai puheluja.</string>
   <string name="ChangeNumberFragment__continue">Jatka</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Puhelinnumerosi on vaihdettu.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Muokkaa numeroa</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vanha numerosi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Vanha puhelinnumero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Uusi puhelinnumerosi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Uusi puhelinnumero</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Syöttämäsi puhelinnumero ei vastaa tilisi puhelinnumeroa.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Sinun tulee määrittää vanhan numeron maakoodi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Sinun tulee määrittää vanha puhelinnumero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Sinun tulee määrittää uuden puhelinnumeron maakoodi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Sinun tulee vahvistaa uusi puhelinnumerosi</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Muokkaa numeroa</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Varmennetaan %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha vaaditaan</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Vaihda numero</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Olet aikeissa vaihtaa puhelinnumerosi numerosta %1$s numeroon %2$s.\n\nEnnen kuin jatkat, varmista että alla oleva numero on oikein.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Muokkaa numeroa</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-koodit eivät täsmää</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Säilytä vanha PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Päivitä tunnusluku</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Säilytetäänkö vanha PIN-koodi?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Puhelinnumeron vaihtopyynnön tilaa ei voitu määrittää.\n\n(Virhe: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Yritä uudelleen</string>
+  <string name="ChangeNumberLockActivity__leave">Poistu</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Lähetä virheenkorjausloki</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Näppäimistö</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Rivinvaihto lähettää</string>
@@ -3117,14 +3148,33 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MultiselectForwardFragment__add_a_message">Lisää viesti</string>
   <string name="MultiselectForwardFragment__faster_forwards">Nopeammat etenemiset</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Edelleenlähetetyt viestit lähetetään nyt heti.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Lähetä %1$d viesti</item>
+    <item quantity="other">Lähetä %1$d viestiä</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Viesti lähetetty</item>
+    <item quantity="other">Viestit lähetetty</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Viestin lähetys epäonnistui</item>
+    <item quantity="other">Viestien lähetys epäonnistui</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Yläraja saavutettu</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Lisää viesti</string>
+  <string name="MediaReviewFragment__add_a_reply">Lisää vastaus</string>
   <string name="ImageEditorHud__cancel">Peruuta</string>
+  <string name="ImageEditorHud__write_text">Kirjoita teksti</string>
+  <string name="ImageEditorHud__add_a_sticker">Lisää tarra</string>
   <string name="ImageEditorHud__undo">Kumoa</string>
   <string name="MediaCountIndicatorButton__send">Lähetä</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Napauta poistaaksesi</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Valitse napauttamalla</string>
   <string name="MediaReviewImagePageFragment__discard">Hylkää</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Hylätäänkö muutokset?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
   <string name="ImageEditorHud__delete">Poista</string>
+  <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
   <!--EOF-->
 </resources>

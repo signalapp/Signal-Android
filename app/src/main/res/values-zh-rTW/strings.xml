@@ -990,6 +990,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 將他們變更了新的電話號碼。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
@@ -1595,6 +1596,7 @@
   <string name="ConversationUpdateItem_call_is_full">通話人數已滿</string>
   <string name="ConversationUpdateItem_invite_friends">邀請好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
+  <string name="ConversationUpdateItem_update_contact">更新聯絡人</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">沒有共同的群組。 請仔細檢查請求。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">這個群組中沒有聯絡人。請仔細檢查請求。</string>
   <string name="ConversationUpdateItem_view">檢視</string>
@@ -2882,6 +2884,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">保留舊PIN碼</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">要保留舊PIN碼嗎？</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">你似乎試著變更你的電話號碼，但我們無法確定是否成功。\n\n正在重新檢查…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">更改狀態已確認</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">你的電話號碼已確認為 %1$s。 如果這不是你的新電話號碼，請重新開始變更電話號碼的流程。</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">更改狀態未確認</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">我們無法確定你的變更電話號碼要求的狀態。\n\n（錯誤：%1$s）</string>
+  <string name="ChangeNumberLockActivity__retry">重試</string>
+  <string name="ChangeNumberLockActivity__leave">離開</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">送出偵錯日誌</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
   <string name="ChatsSettingsFragment__enter_key_sends">按下輸入鍵發送</string>

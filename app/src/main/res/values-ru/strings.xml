@@ -1140,6 +1140,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили код безопасности с %s как неподтверждённый</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтверждённый с другого устройства</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Не удалось доставить сообщение от %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s изменил(-а) свой номер телефона.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
@@ -1796,6 +1797,7 @@
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
   <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Включить уведомления о звонках</string>
+  <string name="ConversationUpdateItem_update_contact">Обновить контакт</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нет общих групп. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">В этой группе нет ваших контактов. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_view">Просмотреть</string>
@@ -3118,9 +3120,9 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Новый номер телефона</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Вы должны указать код страны вашего старого номера</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Вы должны указать свой старый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Вы должны указать свой старый номер телефона</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Вы должны указать код страны вашего нового номера</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Вы должны указать свой новый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Вы должны указать свой новый номер телефона</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Изменить номер</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Проверка %1$s</string>
@@ -3137,6 +3139,15 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Оставить старый PIN-код</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Обновить PIN-код</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Оставить старый PIN-код?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Похоже, что вы пытались изменить свой номер, но нам не удалось проверить, было ли успешным это изменение.\n\nПроверяем заново сейчас…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Статус изменения подтверждён</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ваш номер был подтверждён: %1$s. Если это не ваш новый номер, пожалуйста, заново пройдите процесс изменения номера.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Статус изменения неподтверждён</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Нам не удалось проверить статус вашего запроса на изменение номера.\n\n(Ошибка: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Повторить попытку</string>
+  <string name="ChangeNumberLockActivity__leave">Покинуть</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Отправить журнал отладки</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Клавиатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Отправка клавишей «Ввод»</string>
