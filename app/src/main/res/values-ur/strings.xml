@@ -3095,5 +3095,6 @@
   <string name="MediaCountIndicatorButton__send">بھیجیں</string>
   <string name="MediaReviewSelectedItem__tap_to_select">منتخب کرنے کے لیے ٹیپ کریں</string>
   <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
+  <string name="ImageEditorHud__delete">حذف کریں</string>
   <!--EOF-->
 </resources>

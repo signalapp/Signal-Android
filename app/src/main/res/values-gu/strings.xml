@@ -3104,5 +3104,6 @@
   <string name="MediaCountIndicatorButton__send">મોકલો</string>
   <string name="MediaReviewSelectedItem__tap_to_select">પસંદ કરવા માટે ટેપ કરો</string>
   <string name="MediaReviewImagePageFragment__discard">કાઢી નાખો</string>
+  <string name="ImageEditorHud__delete">કાઢી નાખો </string>
   <!--EOF-->
 </resources>

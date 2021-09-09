@@ -3109,5 +3109,6 @@
   <string name="MediaCountIndicatorButton__send">भेजें</string>
   <string name="MediaReviewSelectedItem__tap_to_select">चयन के लिए टैप करें</string>
   <string name="MediaReviewImagePageFragment__discard">रद्द करें</string>
+  <string name="ImageEditorHud__delete">हटाए </string>
   <!--EOF-->
 </resources>

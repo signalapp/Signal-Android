@@ -2996,5 +2996,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MediaCountIndicatorButton__send">Gửi</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Nhấn để chọn</string>
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
+  <string name="ImageEditorHud__delete">Xóa</string>
   <!--EOF-->
 </resources>

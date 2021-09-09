@@ -3201,5 +3201,6 @@ broj telefona</string>
   <string name="MediaCountIndicatorButton__send">Pošalji</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pritisni za odabir slike profila</string>
   <string name="MediaReviewImagePageFragment__discard">Poništi</string>
+  <string name="ImageEditorHud__delete">Izbriši</string>
   <!--EOF-->
 </resources>

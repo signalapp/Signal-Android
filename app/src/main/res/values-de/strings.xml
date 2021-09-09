@@ -1244,7 +1244,7 @@
     <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen an diesem Anruf teil</item>
   </plurals>
   <string name="WebRtcCallView__flip">Drehen</string>
-  <string name="WebRtcCallView__speaker">Lautspr.</string>
+  <string name="WebRtcCallView__speaker">Ltspr.</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Stumm</string>
   <string name="WebRtcCallView__ring">Klingeln</string>
@@ -3165,7 +3165,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
-  <string name="DSLSettingsToolbar__navigate_up">Nach oben navigieren</string>
+  <string name="DSLSettingsToolbar__navigate_up">Aufwärts navigieren</string>
   <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
   <string name="MultiselectForwardFragment__add_a_message">Füge eine Nachricht hinzu</string>
   <string name="MultiselectForwardFragment__faster_forwards">Schnellere Weiterleitungen</string>
@@ -3207,5 +3207,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaReviewImagePageFragment__discard_changes">Änderungen verwerfen?</string>
   <string name="MediaReviewFragment__view_once_message">Einmalig anzeigbare Nachricht</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du wirst alle an diesem Foto vorgenommenen Änderungen verlieren.</string>
+  <string name="ImageEditorHud__delete">Löschen</string>
+  <string name="CameraFragment__failed_to_open_camera">Kamera konnte nicht geöffnet werden</string>
   <!--EOF-->
 </resources>

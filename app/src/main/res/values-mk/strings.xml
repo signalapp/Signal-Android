@@ -2835,18 +2835,36 @@
   <string name="AccountSettingsFragment__account">Сметка</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ќе бидете прашувани се поретко</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Барај го Signal PIN-от за повторна регистрација на Вашиот телефонски број на Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Променете го телефонскиот број</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користете го ова за да го промените сегашниот телефонски број во нов телефонски број. Не можете да ја поништите оваа промена.\n\nПред да продолжите, проверете дали Вашиот нов број може да прима SMS или повици. </string>
   <string name="ChangeNumberFragment__continue">Продолжи</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Вашиот телефонски број е променет.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Смени го бројот</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Вашиот стар број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Стар телефонски број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Вашиот нов број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нов телефонски број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Мора да наведете повикувачки број на државата за Вашиот стар број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Мора да го наведете Вашиот стар број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Мора да наведете повикувачки број на државата за Вашиот нов број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Мора да го наведете Вашиот нов број</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Смени го бројот</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Променете го бројот</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Наскоро ќе го смените вашиот телефонски број од %1$s на %2$s.\n\nПред да продолжите, Ве молиме проверете дали бројот подолу е точен.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Уреди број</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal промена на број - Потребна Ви е помош со PIN за Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-кодовите не се совпаѓаат</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-от поврзан со Вашиот нов број е различен од PIN-от поврзан со Вашиот стар. Дали сакате да го задржите стариот PIN или да го ажурирате? </string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Задржи го стариот PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирај PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Да се задржи стариот PIN?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
@@ -3082,10 +3100,16 @@
   <string name="ImageEditorHud__write_text">Внеси текст</string>
   <string name="ImageEditorHud__add_a_sticker">Додај стикер</string>
   <string name="ImageEditorHud__blur">Замати</string>
+  <string name="ImageEditorHud__done_editing">Заврши со уредување</string>
   <string name="ImageEditorHud__clear_all">Исчисте сѐ</string>
   <string name="ImageEditorHud__undo">Врати</string>
   <string name="MediaCountIndicatorButton__send">Испрати</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Допрете за да отстраните</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Допри за да одбереш</string>
   <string name="MediaReviewImagePageFragment__discard">Откажи</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Да се ​​откажат промените?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Ќе ги изгубите сите промени што сте ги направиле на оваа фотографија.</string>
+  <string name="ImageEditorHud__delete">Избриши</string>
+  <string name="CameraFragment__failed_to_open_camera">Не успеа да се отвори камерата</string>
   <!--EOF-->
 </resources>

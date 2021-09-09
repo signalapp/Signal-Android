@@ -3007,5 +3007,6 @@
   <string name="MediaCountIndicatorButton__send">发送</string>
   <string name="MediaReviewSelectedItem__tap_to_select">点击选择</string>
   <string name="MediaReviewImagePageFragment__discard">放弃</string>
+  <string name="ImageEditorHud__delete">删除</string>
   <!--EOF-->
 </resources>

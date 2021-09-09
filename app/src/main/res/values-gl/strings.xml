@@ -2807,5 +2807,6 @@
   <string name="MediaCountIndicatorButton__send">Enviar</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Toca para seleccionar</string>
   <string name="MediaReviewImagePageFragment__discard">Descartar</string>
+  <string name="ImageEditorHud__delete">Eliminar</string>
   <!--EOF-->
 </resources>

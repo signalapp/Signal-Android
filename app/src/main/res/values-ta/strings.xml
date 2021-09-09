@@ -3133,5 +3133,6 @@
   <string name="MediaCountIndicatorButton__send">அனுப்புக</string>
   <string name="MediaReviewSelectedItem__tap_to_select">தேர்ந்தெடுக்க தட்டவும்</string>
   <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
+  <string name="ImageEditorHud__delete">நீக்கு</string>
   <!--EOF-->
 </resources>

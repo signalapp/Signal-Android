@@ -3138,5 +3138,6 @@
   <string name="ImageEditorHud__undo">يېنىۋال</string>
   <string name="MediaCountIndicatorButton__send">ئەۋەت</string>
   <string name="MediaReviewImagePageFragment__discard">تاشلىۋەت</string>
+  <string name="ImageEditorHud__delete">ئۆچۈر</string>
   <!--EOF-->
 </resources>

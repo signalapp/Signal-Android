@@ -3052,5 +3052,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MediaCountIndicatorButton__send">Send</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tap for at vælge</string>
   <string name="MediaReviewImagePageFragment__discard">Kassér</string>
+  <string name="ImageEditorHud__delete">Slet</string>
   <!--EOF-->
 </resources>

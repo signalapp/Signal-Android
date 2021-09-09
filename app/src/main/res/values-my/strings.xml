@@ -2831,5 +2831,6 @@
   <string name="ImageEditorHud__cancel">ပယ်ဖျက်မယ်</string>
   <string name="MediaCountIndicatorButton__send">ပေးပို့မယ်</string>
   <string name="MediaReviewImagePageFragment__discard">စွန့်ပစ်သည် </string>
+  <string name="ImageEditorHud__delete">ဖျက်မယ်</string>
   <!--EOF-->
 </resources>

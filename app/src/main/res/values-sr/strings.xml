@@ -3310,5 +3310,6 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Одбацити промене?</string>
   <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Изгубићете све промене које сте направили на овој фотографији.</string>
+  <string name="ImageEditorHud__delete">Избриши</string>
   <!--EOF-->
 </resources>

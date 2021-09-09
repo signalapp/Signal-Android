@@ -2374,11 +2374,14 @@
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">ଜାରି ରଖନ୍ତୁ</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__restore_a_backup">ଏକ ବ୍ୟାକଅପ୍ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__create_a_backup">ଏକ ବ୍ୟାକଅପ୍ ସୃଷ୍ଟି କରନ୍ତୁ</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__error_connecting">ସଂଯୋଗ କରିବାରେ ତ୍ରୁଟି</string>
   <string name="DeviceTransferSetup__retry">ପୁନଃଚେଷ୍ଟା କର</string>
   <string name="DeviceTransferSetup__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__go_to_support_page">ସମର୍ଥନ ପୃଷ୍ଠାକୁ ଯାଆନ୍ତୁ</string>
   <string name="DeviceTransferSetup__try_again">ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ</string>
   <!--NewDeviceTransferFragment-->
@@ -2720,5 +2723,6 @@
   <string name="ImageEditorHud__cancel">ବାତିଲ କରନ୍ତୁ</string>
   <string name="MediaCountIndicatorButton__send">ପଠାନ୍ତୁ</string>
   <string name="MediaReviewSelectedItem__tap_to_select">ମନୋନୟନ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
+  <string name="ImageEditorHud__delete">ବିଲୋପ କରନ୍ତୁ</string>
   <!--EOF-->
 </resources>

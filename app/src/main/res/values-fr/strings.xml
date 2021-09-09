@@ -3198,5 +3198,7 @@
   <string name="MediaReviewSelectedItem__tap_to_select">Touchez pour sélectionner</string>
   <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
+  <string name="ImageEditorHud__delete">Supprimer</string>
+  <string name="CameraFragment__failed_to_open_camera">Échec d’ouverture de l’appareil photo</string>
   <!--EOF-->
 </resources>

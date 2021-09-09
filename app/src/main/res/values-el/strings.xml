@@ -1278,6 +1278,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να ανταλλάξεις μηνύματα και να κάνεις ασφαλείς κλήσεις</string>
   <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
+  <string name="RegistrationActivity_call_requested">Ζητήθηκε κλήση</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Είσαι %d βήμα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
     <item quantity="other">Είσαι %d βήματα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
@@ -1801,17 +1802,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Εισαγωγή ονόματος ή αριθμού</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Για να επιβεβαιώσεις την ασφάλεια της κρυπτογράφησης από άκρο σε άκρο με τον/την %s, σύγκρινε τον παραπάνω αριθμό με αυτόν στη συσκευή του/της. Μπορείς επίσης να σκανάρεις τον κωδικό στο τηλέφωνό του/της. <a href="https://signal.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
+  <string name="verify_display_fragment__successful_match">Επιτυχής σύγκριση</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Αποτυχία επιβεβαίωσης αριθμού ασφαλείας</string>
   <string name="verify_display_fragment__loading">Φόρτωση…</string>
   <string name="verify_display_fragment__mark_as_verified">Σημείωση ως επιβεβαιωμένο</string>
+  <string name="verify_display_fragment__clear_verification">Αφαίρεση επιβεβαίωσης</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Μοιράσου τον αριθμό ασφαλείας</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Σκάναρε τον κωδικό QR στη συσκευή της επαφής σου.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Σύρε προς τα πάνω για απάντηση</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ορισμένα ζητήματα χρειάζονται την προσοχή σου.</string>
+  <string name="message_details_header__sent">Στάλθηκε:</string>
+  <string name="message_details_header__received">Ελήφθη:</string>
+  <string name="message_details_header__disappears">Εξαφανίζεται:</string>
+  <string name="message_details_header__via">Μέσω:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Εκκρεμεί</string>
   <string name="message_details_recipient_header__sent_to">Στάλθηκε σε</string>
@@ -2422,6 +2432,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
   <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επαλήθευσης για Android</string>
+  <string name="RegistrationActivity_incorrect_code">Λάθος κωδικός</string>
   <string name="BackupUtil_never">Ποτέ</string>
   <string name="BackupUtil_unknown">Άγνωστο</string>
   <string name="preferences_app_protection__see_my_phone_number">Να δουν τον αριθμό τηλεφώνου μου</string>
@@ -2783,16 +2794,38 @@
   <string name="AccountSettingsFragment__account">Λογαριασμός</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Θα στο ζητάμε όχι τόσο συχνά όσο περνάει ο καιρός</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Να απαιτείται το PIN Signal σου για να εγγράψεις ξανά τον αριθμό τηλεφώνου σου στο Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Αλλαγή αριθμού τηλεφώνου</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Με αυτό μπορείς να αλλάξεις τον τωρινό αριθμό τηλεφώνου σου σε κάποιον καινούργιο. Δεν μπορείς να αναιρέσεις αυτή την αλλαγή.\n\nΠριν συνεχίσεις, επιβεβαίωσε πως μπορείς να λάβεις SMS ή κλήσεις στο νέο αριθμό.</string>
   <string name="ChangeNumberFragment__continue">Συνέχεια</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ο αριθμός τηλεφώνου σου άλλαξε.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Αλλαγή αριθμού</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ο παλιός σου αριθμός</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Παλιός αριθμός τηλεφώνου</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ο νέος σου αριθμός</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Νέος αριθμός τηλεφώνου</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Πρέπει να προσδιορίσεις τον κωδικό χώρας του παλιού σου αριθμού</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Πρέπει να προσδιορίσεις τον παλιό σου αριθμό</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Πρέπει να προσδιορίσεις τον κωδικό χώρας του νέου σου αριθμού</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Πρέπει να προσδιορίσεις το νέο σου αριθμό</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Αλλαγή αριθμού</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Επιβεβαίωση του %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Απαιτείται Captcha</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Αλλαγή αριθμού</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Πρόκειται να αλλάξεις τον αριθμό σου από τον %1$s στον %2$s.\n\nΠριν συνεχίσεις, παρακαλώ επιβεβαίωσε πως ο παρακάτω αριθμός είναι σωστός.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Επεξεργασία αριθμού</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Αλλαγή Αριθμού - Βοήθεια με το PIN για Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Τα PIN δεν ταιριάζουν</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Το PIN που χρησιμοποιείται με το νέο σου αριθμό είναι διαφορετικό από το PIN που χρησιμοποιείται με τον παλιό σου αριθμό. Θέλεις να κρατήσεις το παλιό PIN ή να το ανανεώσεις;</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Διατήρηση παλιού PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ανανέωση PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Διατήρηση παλιού PIN;</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Πληκτρολόγιο</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Το Enter στέλνει</string>
@@ -3020,11 +3053,25 @@
   <string name="MultiselectForwardFragment__limit_reached">Το όριο ξεπεράστηκε</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Προσθήκη μηνύματος</string>
+  <string name="MediaReviewFragment__add_a_reply">Προσθήκη απάντησης</string>
+  <string name="MediaReviewFragment__send_to">Αποστολή σε</string>
   <string name="ImageEditorHud__cancel">Ακύρωση</string>
+  <string name="ImageEditorHud__draw">Σχεδίαση</string>
+  <string name="ImageEditorHud__write_text">Σύνταξη κειμένου</string>
+  <string name="ImageEditorHud__add_a_sticker">Προσθήκη αυτοκολλήτου</string>
   <string name="ImageEditorHud__blur">Θόλωμα</string>
+  <string name="ImageEditorHud__done_editing">Τέλος επεξεργασίας</string>
+  <string name="ImageEditorHud__clear_all">Εκκαθάριση όλων</string>
   <string name="ImageEditorHud__undo">Αναίρεση</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Εναλλαγή μεταξύ μαρκαδόρου και υπογραμμιστικού</string>
   <string name="MediaCountIndicatorButton__send">Αποστολή</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Πάτα για αφαίρεση</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Πάτα για επιλογή</string>
   <string name="MediaReviewImagePageFragment__discard">Απόρριψη</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Απόρριψη αλλαγών;</string>
+  <string name="MediaReviewFragment__view_once_message">Μήνυμα μιας μόνο προβολής</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Θα χάσεις όλες τις αλλαγές που έχεις κάνει σε αυτή τη φωτογραφία.</string>
+  <string name="ImageEditorHud__delete">Διαγραφή</string>
+  <string name="CameraFragment__failed_to_open_camera">Αποτυχία ενεργοποίησης κάμερας</string>
   <!--EOF-->
 </resources>

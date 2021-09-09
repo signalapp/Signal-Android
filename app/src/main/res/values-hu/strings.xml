@@ -3087,5 +3087,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MediaCountIndicatorButton__send">Küldés</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Koppints a kiválasztáshoz</string>
   <string name="MediaReviewImagePageFragment__discard">Elvetés</string>
+  <string name="ImageEditorHud__delete">Törlés</string>
   <!--EOF-->
 </resources>

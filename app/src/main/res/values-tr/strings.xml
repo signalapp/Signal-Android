@@ -3171,5 +3171,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaCountIndicatorButton__send">Gönder</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Seçmek için dokunun</string>
   <string name="MediaReviewImagePageFragment__discard">Vazgeç</string>
+  <string name="ImageEditorHud__delete">Sil</string>
   <!--EOF-->
 </resources>

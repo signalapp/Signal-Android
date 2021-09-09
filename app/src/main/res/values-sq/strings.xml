@@ -2944,18 +2944,38 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="AccountSettingsFragment__account">Llogari</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Me kalimin e kohës, do të pyeteni më rrallë</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Kërko që PIN-i i Signal-it tuaj të riregjistrojë numrin e telefonit tuaj me Signal-in</string>
+  <string name="AccountSettingsFragment__change_phone_number">Ndryshoni numër telefoni</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Përdoreni këtë që të ndryshoni numrin tuaj të tanishëm të telefonit me një numër të ri. Këtë ndryshim s’mund ta zhbëni.\n\nPara se të vazhdoni, sigurohuni se numri juaj i ri mund të marrë SMS ose thirrje.</string>
   <string name="ChangeNumberFragment__continue">Vazhdo</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Numri juaj i telefonit është ndryshuar.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ndrysho Numrin</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Numri juaj i vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Numër telefoni i vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Numri juaj i ri</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Numër telefoni i ri</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Duhet të jepni kod vendi të numrit tuaj të vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Duhet të jepni numrin tuaj të vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Duhet të jepni kod vendi të numrit tuaj të ri</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Duhet të jepni numrin tuaj të ri të telefonit</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Ndrysho Numrin</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Po verifikohet %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Zgjidhja e captcha-s është e domosdoshme</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Ndryshoje numrin</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Ju ndan një hap nga ndryshimi i numrit tuaj të telefonit nga %1$s në %2$s.\n\nPara se të ecet më tej, ju lutemi, verifikoni se numri më poshtë është i saktë.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Modifiko numrin</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Ndryshim Numri Signal-i - Duhet Ndihmë me PIN për Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-et s’përputhen</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-i i përshoqëruar numrit tuaj të ri është i ndryshëm nga PIN-i përshoqëruar me numrin tuaj të vjetër. Doni të mbani PIN-i tuaj të vjetër, apo ta përditësoni?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Mbaj PIN-in e vjetër</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Përditësoni PIN-in</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Të mbahet PIN-i i vjetër?</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastierë</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tasti Enter dërgon</string>
@@ -3201,5 +3221,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MediaReviewImagePageFragment__discard_changes">Të hidhen tej ndryshimet?</string>
   <string name="MediaReviewFragment__view_once_message">Mesazh për parje vetëm një herë</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Do të humbni çfarëdo ndryshimi që bëtë te kjo foto.</string>
+  <string name="ImageEditorHud__delete">Fshije</string>
+  <string name="CameraFragment__failed_to_open_camera">S’u arrit të hapet kamera</string>
   <!--EOF-->
 </resources>

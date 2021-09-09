@@ -3024,5 +3024,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MediaCountIndicatorButton__send">Hantar</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Ketik untuk dipilih</string>
   <string name="MediaReviewImagePageFragment__discard">Buang</string>
+  <string name="ImageEditorHud__delete">Padam</string>
   <!--EOF-->
 </resources>

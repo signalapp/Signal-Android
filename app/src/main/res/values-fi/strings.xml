@@ -3125,5 +3125,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaCountIndicatorButton__send">Lähetä</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Valitse napauttamalla</string>
   <string name="MediaReviewImagePageFragment__discard">Hylkää</string>
+  <string name="ImageEditorHud__delete">Poista</string>
   <!--EOF-->
 </resources>

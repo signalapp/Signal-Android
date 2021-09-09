@@ -3112,5 +3112,6 @@
   <string name="MediaCountIndicatorButton__send">ಕಳುಹಿಸು</string>
   <string name="MediaReviewSelectedItem__tap_to_select">ಆಯ್ಕೆ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="MediaReviewImagePageFragment__discard">ತ್ಯಜಿಸಿ</string>
+  <string name="ImageEditorHud__delete">ಅಳಿಸು</string>
   <!--EOF-->
 </resources>

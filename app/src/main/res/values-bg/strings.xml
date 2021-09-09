@@ -2983,5 +2983,6 @@
   <string name="MediaCountIndicatorButton__send">Изпращане</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Натиснете, за да изберете</string>
   <string name="MediaReviewImagePageFragment__discard">Откажи</string>
+  <string name="ImageEditorHud__delete">Изтрий</string>
   <!--EOF-->
 </resources>

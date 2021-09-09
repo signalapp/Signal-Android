@@ -2926,5 +2926,6 @@
   <string name="MediaCountIndicatorButton__send">Saada</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Koputa valimiseks</string>
   <string name="MediaReviewImagePageFragment__discard">Keeldu</string>
+  <string name="ImageEditorHud__delete">Kustuta</string>
   <!--EOF-->
 </resources>

@@ -2751,5 +2751,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="MediaCountIndicatorButton__send">Azen</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Sit i wakken ad tferneḍ</string>
   <string name="MediaReviewImagePageFragment__discard">Agi</string>
+  <string name="ImageEditorHud__delete">Kkes</string>
   <!--EOF-->
 </resources>

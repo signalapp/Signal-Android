@@ -3139,5 +3139,6 @@
   <string name="MediaCountIndicatorButton__send">ਭੇਜੋ</string>
   <string name="MediaReviewSelectedItem__tap_to_select">ਚੁਣਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="MediaReviewImagePageFragment__discard">ਰੱਦ ਕਰੋ</string>
+  <string name="ImageEditorHud__delete">ਹਟਾਓ</string>
   <!--EOF-->
 </resources>

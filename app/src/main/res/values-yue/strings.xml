@@ -3126,5 +3126,7 @@
   <string name="MediaReviewImagePageFragment__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
   <string name="MediaReviewFragment__view_once_message">流聲掠影訊息</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都會冇得留低。</string>
+  <string name="ImageEditorHud__delete">刪除</string>
+  <string name="CameraFragment__failed_to_open_camera">開唔到相機</string>
   <!--EOF-->
 </resources>

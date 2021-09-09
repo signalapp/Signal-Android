@@ -2946,5 +2946,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaCountIndicatorButton__send">Send</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
   <string name="MediaReviewImagePageFragment__discard">Kast</string>
+  <string name="ImageEditorHud__delete">Slett</string>
   <!--EOF-->
 </resources>

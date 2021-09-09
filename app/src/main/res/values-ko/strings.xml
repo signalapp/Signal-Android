@@ -3034,5 +3034,6 @@
   <string name="MediaCountIndicatorButton__send">보내기</string>
   <string name="MediaReviewSelectedItem__tap_to_select">탭하여 선택</string>
   <string name="MediaReviewImagePageFragment__discard">파기</string>
+  <string name="ImageEditorHud__delete">삭제</string>
   <!--EOF-->
 </resources>

@@ -3228,5 +3228,7 @@ Stadfest at nummeret under er korrekt før du går vidare.</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Forkast endringane?</string>
   <string name="MediaReviewFragment__view_once_message">Éivisningsmelding</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du mister alle endringane du har gjort på dette bildet</string>
+  <string name="ImageEditorHud__delete">Slett</string>
+  <string name="CameraFragment__failed_to_open_camera">Klarte ikkje opna kameraet</string>
   <!--EOF-->
 </resources>

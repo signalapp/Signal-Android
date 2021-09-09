@@ -3315,5 +3315,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Poništiti promjene?</string>
   <string name="MediaReviewFragment__view_once_message">Jednokratna poruka</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Poništit ćete svaku izmjenu koju ste načinili na ovoj slici.</string>
+  <string name="ImageEditorHud__delete">Izbriši</string>
+  <string name="CameraFragment__failed_to_open_camera">Neuspjelo pokretanje kamere</string>
   <!--EOF-->
 </resources>

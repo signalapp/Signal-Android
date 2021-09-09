@@ -3401,5 +3401,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MediaReviewImagePageFragment__discard_changes">Zrušiť zmeny?</string>
   <string name="MediaReviewFragment__view_once_message">Zobraziť správu raz</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Prídete o všetky zmeny, ktoré ste urobili na tejto fotografii.</string>
+  <string name="ImageEditorHud__delete">Vymazať</string>
+  <string name="CameraFragment__failed_to_open_camera">Nepodarilo sa otvoriť kameru</string>
   <!--EOF-->
 </resources>

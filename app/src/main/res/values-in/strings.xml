@@ -3099,5 +3099,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MediaReviewSelectedItem__tap_to_select">Ketuk untuk memilih </string>
   <string name="MediaReviewImagePageFragment__discard">Batalkan</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Anda akan kehilangan perubahan yang telah dibuat terhadap foto ini.</string>
+  <string name="ImageEditorHud__delete">Hapus</string>
   <!--EOF-->
 </resources>

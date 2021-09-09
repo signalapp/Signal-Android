@@ -3211,5 +3211,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Kassera ändringar?</string>
   <string name="MediaReviewFragment__view_once_message">Visa engångsmeddelande</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du förlorar alla ändringar du har gjort på detta foto.</string>
+  <string name="ImageEditorHud__delete">Ta bort</string>
+  <string name="CameraFragment__failed_to_open_camera">Det gick inte att öppna kameran</string>
   <!--EOF-->
 </resources>

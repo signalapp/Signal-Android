@@ -3394,5 +3394,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Odrzucić zmiany?</string>
   <string name="MediaReviewFragment__view_once_message">Wiadomość jednorazowa</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Utracisz wszystkie zmiany dokonane w tym zdjęciu.</string>
+  <string name="ImageEditorHud__delete">Usuń</string>
+  <string name="CameraFragment__failed_to_open_camera">Nie udało się uruchomić kamery</string>
   <!--EOF-->
 </resources>

@@ -3170,5 +3170,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MediaCountIndicatorButton__send">Envia</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Feu un toc per seleccionar-ho</string>
   <string name="MediaReviewImagePageFragment__discard">Descarta</string>
+  <string name="ImageEditorHud__delete">Suprimeix</string>
   <!--EOF-->
 </resources>

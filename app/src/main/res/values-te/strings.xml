@@ -2769,5 +2769,6 @@
   <string name="MediaCountIndicatorButton__send">పంపు</string>
   <string name="MediaReviewSelectedItem__tap_to_select">ఎంచుకోవడానికి నొక్కండి</string>
   <string name="MediaReviewImagePageFragment__discard">తీసివేయు</string>
+  <string name="ImageEditorHud__delete">తొలగించండి</string>
   <!--EOF-->
 </resources>

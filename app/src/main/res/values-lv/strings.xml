@@ -3207,5 +3207,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MediaCountIndicatorButton__send">Sūtīt</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pieskarieties, lai izvēlētos</string>
   <string name="MediaReviewImagePageFragment__discard">Atmest</string>
+  <string name="ImageEditorHud__delete">Dzēst</string>
   <!--EOF-->
 </resources>

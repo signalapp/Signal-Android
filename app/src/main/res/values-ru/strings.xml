@@ -3395,5 +3395,7 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Сбросить изменения?</string>
   <string name="MediaReviewFragment__view_once_message">Одноразовое сообщение</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Вы потеряете все изменения, которые вы сделали в этой фотографии.</string>
+  <string name="ImageEditorHud__delete">Удалить</string>
+  <string name="CameraFragment__failed_to_open_camera">Не удалось открыть камеру</string>
   <!--EOF-->
 </resources>

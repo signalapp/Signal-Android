@@ -3031,5 +3031,6 @@
   <string name="MediaCountIndicatorButton__send">ส่ง</string>
   <string name="MediaReviewSelectedItem__tap_to_select">แตะเพื่อเลือก</string>
   <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
+  <string name="ImageEditorHud__delete">ลบ</string>
   <!--EOF-->
 </resources>
