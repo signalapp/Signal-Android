@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor.renderers
 
 import android.graphics.Color
+import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
@@ -29,6 +30,7 @@ class SelectedElementGuideRenderer {
     strokeWidth = ViewUtil.dpToPx(15).toFloat() / 10f
     color = Color.WHITE
     style = Paint.Style.STROKE
+    pathEffect = DashPathEffect(floatArrayOf(15f, 15f), 0f)
   }
 
   private val circlePaint = Paint().apply {
