@@ -1076,11 +1076,17 @@ public class AttachmentDatabase extends Database {
       throws MmsException
   {
     try {
+      File                       tempFile          = newFile();
       MessageDigest              messageDigest     = MessageDigest.getInstance("SHA-256");
       DigestInputStream          digestInputStream = new DigestInputStream(in, messageDigest);
-      Pair<byte[], OutputStream> out               = ModernEncryptingPartOutputStream.createFor(attachmentSecret, destination, false);
+      Pair<byte[], OutputStream> out               = ModernEncryptingPartOutputStream.createFor(attachmentSecret, tempFile, false);
       long                       length            = StreamUtil.copy(digestInputStream, out.second);
       String                     hash              = Base64.encodeBytes(digestInputStream.getMessageDigest().digest());
+
+      if (!tempFile.renameTo(destination)) {
+        Log.w(TAG, "Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());
+        throw new IllegalStateException("Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());
+      }
 
       SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
       Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(database, hash, attachmentId);
