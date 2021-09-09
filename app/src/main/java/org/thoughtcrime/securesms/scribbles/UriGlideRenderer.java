@@ -19,7 +19,6 @@ import android.renderscript.ScriptIntrinsicBlur;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -200,7 +199,6 @@ public final class UriGlideRenderer implements SelectableRenderer {
 
     return GlideApp.with(context)
                    .asBitmap()
-                   .diskCacheStrategy(DiskCacheStrategy.NONE)
                    .override(width, height)
                    .centerInside()
                    .addListener(bitmapRequestListener)
