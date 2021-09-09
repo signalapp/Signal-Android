@@ -142,7 +142,7 @@ class MediaSelectionRepository(context: Context) {
   }
 
   fun isLocalSelfSend(recipient: Recipient?, isSms: Boolean): Boolean {
-    return !MessageSender.isLocalSelfSend(context, recipient, isSms)
+    return MessageSender.isLocalSelfSend(context, recipient, isSms)
   }
 
   @WorkerThread

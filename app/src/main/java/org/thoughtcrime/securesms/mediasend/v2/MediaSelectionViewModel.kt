@@ -68,7 +68,12 @@ class MediaSelectionViewModel(
   init {
     val recipientId = destination.getRecipientId()
     if (recipientId != null) {
-      store.update(Recipient.live(recipientId).liveData) { r, s -> s.copy(recipient = r) }
+      store.update(Recipient.live(recipientId).liveData) { r, s ->
+        s.copy(
+          recipient = r,
+          isPreUploadEnabled = shouldPreUpload(s.isMeteredConnection, s.transportOption.isSms, r)
+        )
+      }
     }
 
     if (initialMedia.isNotEmpty()) {
