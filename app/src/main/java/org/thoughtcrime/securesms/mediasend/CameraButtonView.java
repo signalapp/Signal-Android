@@ -25,11 +25,10 @@ public class CameraButtonView extends View {
 
   private enum CameraButtonMode { IMAGE, MIXED }
 
-  private static final float        CAPTURE_ARC_STROKE_WIDTH       = 6f;
-  private static final float        HALF_CAPTURE_ARC_STROKE_WIDTH  = CAPTURE_ARC_STROKE_WIDTH / 2;
-  private static final float        PROGRESS_ARC_STROKE_WIDTH      = 12f;
-  private static final float        HALF_PROGRESS_ARC_STROKE_WIDTH = PROGRESS_ARC_STROKE_WIDTH / 2;
-  private static final float        MINIMUM_ALLOWED_ZOOM_STEP      = 0.005f;
+  private static final int          CAPTURE_ARC_STROKE_WIDTH       = 4;
+  private static final int          HALF_CAPTURE_ARC_STROKE_WIDTH  = CAPTURE_ARC_STROKE_WIDTH / 2;
+  private static final int          PROGRESS_ARC_STROKE_WIDTH      = 4;
+  private static final int          HALF_PROGRESS_ARC_STROKE_WIDTH = PROGRESS_ARC_STROKE_WIDTH / 2;
   private static final float        DEADZONE_REDUCTION_PERCENT     = 0.35f;
   private static final int          DRAG_DISTANCE_MULTIPLIER       = 3;
   private static final Interpolator ZOOM_INTERPOLATOR              = new DecelerateInterpolator();
@@ -113,7 +112,7 @@ public class CameraButtonView extends View {
     arcPaint.setColor(0xFFFFFFFF);
     arcPaint.setAntiAlias(true);
     arcPaint.setStyle(Paint.Style.STROKE);
-    arcPaint.setStrokeWidth(CAPTURE_ARC_STROKE_WIDTH);
+    arcPaint.setStrokeWidth(ViewUtil.dpToPx(CAPTURE_ARC_STROKE_WIDTH));
     return arcPaint;
   }
 
@@ -122,7 +121,7 @@ public class CameraButtonView extends View {
     progressPaint.setColor(0xFFFFFFFF);
     progressPaint.setAntiAlias(true);
     progressPaint.setStyle(Paint.Style.STROKE);
-    progressPaint.setStrokeWidth(PROGRESS_ARC_STROKE_WIDTH);
+    progressPaint.setStrokeWidth(ViewUtil.dpToPx(PROGRESS_ARC_STROKE_WIDTH));
     progressPaint.setShadowLayer(4, 0, 2, 0x40000000);
     return progressPaint;
   }
@@ -155,7 +154,7 @@ public class CameraButtonView extends View {
     float radius = imageCaptureSize / 2f;
     canvas.drawCircle(centerX, centerY, radius, backgroundPaint);
     canvas.drawCircle(centerX, centerY, radius, outlinePaint);
-    canvas.drawCircle(centerX, centerY, radius - HALF_CAPTURE_ARC_STROKE_WIDTH, arcPaint);
+    canvas.drawCircle(centerX, centerY, radius - ViewUtil.dpToPx(HALF_CAPTURE_ARC_STROKE_WIDTH), arcPaint);
   }
 
   private void drawForVideoCapture(Canvas canvas) {
@@ -167,10 +166,10 @@ public class CameraButtonView extends View {
 
     canvas.drawCircle(centerX, centerY, recordSize / 2f, recordPaint);
 
-    progressRect.top    = HALF_PROGRESS_ARC_STROKE_WIDTH;
-    progressRect.left   = HALF_PROGRESS_ARC_STROKE_WIDTH;
-    progressRect.right  = getWidth() - HALF_PROGRESS_ARC_STROKE_WIDTH;
-    progressRect.bottom = getHeight() - HALF_PROGRESS_ARC_STROKE_WIDTH;
+    progressRect.top    = ViewUtil.dpToPx(HALF_PROGRESS_ARC_STROKE_WIDTH);
+    progressRect.left   = ViewUtil.dpToPx(HALF_PROGRESS_ARC_STROKE_WIDTH);
+    progressRect.right  = getWidth() - ViewUtil.dpToPx(HALF_PROGRESS_ARC_STROKE_WIDTH);
+    progressRect.bottom = getHeight() - ViewUtil.dpToPx(HALF_PROGRESS_ARC_STROKE_WIDTH);
 
     canvas.drawArc(progressRect, 270f, 360f * progressPercent, false, progressPaint);
   }
