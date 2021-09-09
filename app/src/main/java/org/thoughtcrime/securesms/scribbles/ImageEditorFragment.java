@@ -884,9 +884,12 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
         onDelete();
         setCurrentSelection(null);
         onPopEditorMode();
-      } else if (editorElement != null && editorElement.getRenderer() instanceof MultiLineTextRenderer){
+      } else if (editorElement != null && editorElement.getRenderer() instanceof MultiLineTextRenderer) {
         editorElement.animatePartialFadeIn(imageEditorView::invalidate);
-        imageEditorHud.setMode(ImageEditorHudV2.Mode.MOVE_TEXT);
+
+        if (imageEditorHud.getMode() != ImageEditorHudV2.Mode.TEXT) {
+          imageEditorHud.setMode(ImageEditorHudV2.Mode.MOVE_TEXT);
+        }
       } else if (editorElement != null && editorElement.getRenderer() instanceof UriGlideRenderer){
         editorElement.animatePartialFadeIn(imageEditorView::invalidate);
         imageEditorHud.setMode(ImageEditorHudV2.Mode.MOVE_STICKER);
