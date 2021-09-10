@@ -37,7 +37,7 @@ public class GifSlide extends ImageSlide {
                                               null,
                                               false,
                                               borderless,
-                                              FeatureFlags.mp4GifSendSupport(),
+                                              true,
                                               false));
 
     this.borderless = borderless;
