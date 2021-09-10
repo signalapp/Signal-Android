@@ -438,7 +438,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
   private fun computeRecipientDisplayAnimators(state: MediaSelectionState): List<Animator> {
     return if (state.isTouchEnabled && state.recipient != null) {
-      recipientDisplay.text = state.recipient.getDisplayName(requireContext())
+      recipientDisplay.text = if (state.recipient.isSelf) requireContext().getString(R.string.note_to_self) else state.recipient.getDisplayName(requireContext())
       listOf(MediaReviewAnimatorController.getFadeInAnimator(recipientDisplay))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(recipientDisplay))
