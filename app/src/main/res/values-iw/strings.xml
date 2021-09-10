@@ -1140,6 +1140,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא ממכשיר אחר</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">הודעה מאת %s לא יכלה להימסר</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s שינה/שינתה את המספר שלו/שלה אל מספר חדש.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s בשיחה הקבוצתית · %2$s</string>
@@ -3113,19 +3114,44 @@
   <string name="AccountSettingsFragment__account">חשבון</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">תישאל לעיתים פחות תכופות עם הזמן</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">דרוש את ה־PIN של Signal שלך כדי להירשם שוב אל Signal עם מספר הטלפון שלך</string>
+  <string name="AccountSettingsFragment__change_phone_number">שנה מספר טלפון</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">השתמש בזה כדי לשנות את מספר הטלפון הנוכחי שלך אל מספר טלפון חדש. אתה לא יכול לבטל את השינוי הזה.\n\nלפני המשכה, וודא שהמספר החדש שלך יכול לקבל מסרונים או שיחות.</string>
   <string name="ChangeNumberFragment__continue">המשך</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">מספר הטלפון שלך השתנה.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">שינוי המספר</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">המספר הישן שלך</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">מספר טלפון ישן</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">המספר החדש שלך</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">מספר טלפון חדש</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">מספר הטלפון שהכנסת אינו תואם אל מספר הטלפון של החשבון שלך.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">אתה חייב לציין את קוד המדינה של המספר הישן שלך</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">אתה חייב לציין את מספר הטלפון הישן שלך</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">אתה חייב לציין את קוד המדינה של המספר החדש שלך</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">אתה חייב לציין את מספר הטלפון החדש שלך</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">שינוי המספר</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">מוודא את %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">אתגר מענה דרוש</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">שנה מספר</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">אתה עומד לשנות את מספר הטלפון שלך מן %1$s אל %2$s.\n\nלפני המשכה, אנא וודא שהמספר למטה נכון.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">עריכת המספר</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">שינוי מספר של Signal - צריך עזרה עם PIN עבור Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">קודי PIN לא תואמים</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">ה־PIN שמשוייך עם המספר החדש שלך שונה מה־PIN שמשוייך עם המספר הישן שלך. האם אתה רוצה לשמור את ה‏־PIN הישן שלך או לעדכן אותו?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">שמור PIN ישן</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">עדכן PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">לשמור PIN ישן?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">נראה שניסית לשנות את המספר שלך אבל לא יכולנו לקבוע אם השינוי היה מוצלח.\n\nבודק מחדש עכשיו…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">מעמד שינוי מאושר</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">המספר שלך מאושר בתור %1$s. אם זה לא המספר החדש שלך, אנא הפעל מחדש את תהליך שינוי המספר.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">מעמד שינוי בלתי מאושר</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">לא יכולנו לקבוע את המעמד של בקשת שינוי המספר שלך.\n\n(שגיאה: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">נסה שוב</string>
   <string name="ChangeNumberLockActivity__leave">עזוב</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">הגש יומן ניפוי תקלים</string>
@@ -3388,5 +3414,7 @@
   <string name="MediaReviewFragment__view_once_message">הודעה לצפייה חד־פעמית</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">תאבד שינויים כלשהם שעשית אל התמונה הזאת.</string>
   <string name="ImageEditorHud__delete">מחק</string>
+  <string name="CameraFragment__failed_to_open_camera">נכשל בפתיחת מצלמה</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">עורר בין סגנונות מלל</string>
   <!--EOF-->
 </resources>

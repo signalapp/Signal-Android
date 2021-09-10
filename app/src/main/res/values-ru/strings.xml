@@ -3408,5 +3408,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Вы потеряете все изменения, которые вы сделали в этой фотографии.</string>
   <string name="ImageEditorHud__delete">Удалить</string>
   <string name="CameraFragment__failed_to_open_camera">Не удалось открыть камеру</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Переключиться между стилями текста</string>
   <!--EOF-->
 </resources>

@@ -1142,6 +1142,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Rydych wedi marcio eich rhif diogelwch gyda %s heb eu gwirio</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Rydych wedi marcio eich rhif diogelwch gyda %s heb eu gwirio o ddyfais arall</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nid oedd modd anfon neges gan %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Newidiodd %1$s eu rhif i rif newydd.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
@@ -1428,6 +1429,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Mae Signal angen mynediad i\'ch cysylltiadau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
   <string name="RegistrationActivity_rate_limited_to_service">Rydych wedi ceisio cofrestri\'r rhif hwn gormod o weithiau. Ceisiwch eto\'n hwyrach.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Methu cysylltu â\'r gwasanaeth. Gwiriwch y cysylltiad rhwydwaith a cheisio eto.</string>
+  <string name="RegistrationActivity_call_requested">Gofynnwyd am alwad</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Rydych chi nawr %d cam cyn cyflwyno cofnod dadfygio.</item>
     <item quantity="two">Rydych chi nawr %d gam cyn cyflwyno cofnod dadfygio.</item>
@@ -1980,17 +1982,26 @@ Send neges heb ei ddiogelu?</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Rhowch enw neu rif</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[I wirio diogelwch eich amgryptiad o\'r dechrau i\'r diwedd gyda %s, cymharwch y rhifau uchod gyda\'u dyfais. Gallwch hefyd sganio\'r cod ar eu ffôn. <a href="https://signal.org/redirect/safety-numbers">Dysgu rhagor. ]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapio i sganio</string>
+  <string name="verify_display_fragment__successful_match">Cydweddiad llwyddiannus</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Wedi methu gwirio rhif diogelwch</string>
   <string name="verify_display_fragment__loading">Llwytho…</string>
   <string name="verify_display_fragment__mark_as_verified">Marcio fel y\'i gwiriwyd</string>
+  <string name="verify_display_fragment__clear_verification">Clirio\'r gwiriad</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Rhannu\'r rif diogelwch</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Sganiwch y Cod QR ar ddyfais eich cyswllt.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llusgo i fyny i ateb</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llusgo i lawr i wrthod</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Mae angen eich sylw ar rai materion.</string>
+  <string name="message_details_header__sent">Anfonwyd:</string>
+  <string name="message_details_header__received">Derbyniwyd:</string>
+  <string name="message_details_header__disappears">Yn diflannu:</string>
+  <string name="message_details_header__via">Trwy:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Dan ystyriaeth</string>
   <string name="message_details_recipient_header__sent_to">Anfonwyd at</string>
@@ -2684,6 +2695,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Galw fi yn lle hynny\n (Ar gael ymhen %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Cysylltu â Chymorth Signal</string>
   <string name="RegistrationActivity_code_support_subject">Cofrestru Signal - Cod Dilysu Android</string>
+  <string name="RegistrationActivity_incorrect_code">Cod anghywir</string>
   <string name="BackupUtil_never">Byth</string>
   <string name="BackupUtil_unknown">Anhysbys</string>
   <string name="preferences_app_protection__see_my_phone_number">Gweld fy rhif ffôn</string>
@@ -3104,17 +3116,44 @@ Send neges heb ei ddiogelu?</string>
   <string name="AccountSettingsFragment__account">Cyfrif</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bydd yn gofyn i chi yn llai aml dros amser</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Angen eich PIN Signal i gofrestru eich rhif ffôn gyda Signal eto</string>
+  <string name="AccountSettingsFragment__change_phone_number">Newid rhif ffôn</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Defnyddiwch hwn i newid eich rhif ffôn cyfredol i rif ffôn newydd. Nid oes modd dadwneud y newid hwn.\n\nCyn parhau, gwnewch yn siŵr bod eich rhif newydd yn gallu derbyn SMS neu alwadau.</string>
   <string name="ChangeNumberFragment__continue">Parhau</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Mae eich rhif ffôn wedi\'i newid.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Newid Rhif</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Eich hen rif</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Hen rif ffôn</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Eich rhif newydd</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Rhif ffôn newydd</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Nid yw\'r rhif ffôn a nodoch yn cyfateb i\'ch rhif cyfrif.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Rhaid i chi nodi cod gwlad eich hen rif</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Rhaid i chi nodi\'ch hen rif ffôn</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Rhaid i chi nodi cod gwlad eich rhif newydd</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Rhaid i chi nodi\'ch rhif ffôn newydd</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Newid Rhif</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Gwirio %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Angen Captcha</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Newid rhif</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Rydych chi ar fin newid eich rhif ffôn o %1$s i %2$s.\n\nCyn parhau, gwiriwch fod y rhif isod yn gywir.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Golygu\'r rhif</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Rhif Newid Signal - Angen Cymorth gyda PIN ar gyfer Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Nid yw PINau\'n cydweddu</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Mae\'r PIN sy\'n gysylltiedig â\'ch rhif newydd yn wahanol i\'r PIN sy\'n gysylltiedig â\'ch hen un. Hoffech chi gadw\'ch hen PIN neu ei ddiweddaru?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Cadw\'r hen PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Diweddaru PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Cadw\'r hen pin?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Mae\'n edrych fel eich bod wedi ceisio newid eich rhif ond nid oeddem yn gallu penderfynu a fuoch yn llwyddiannus.\n\nGwirio nawr…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Cadarnhau\'r statws newid</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Cadarnhawyd taw eich rhif yw %1$s. Os nad hwn yw\'ch rhif newydd, ailgychwynnwch y broses rhif newid.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Newid statws heb ei gadarnhau</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nid oeddem yn gallu canfod statws eich cais am newid rhif\n\n(Gwall: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Ailgynnig</string>
   <string name="ChangeNumberLockActivity__leave">Gadael</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Anfon log dadfygio</string>
@@ -3358,12 +3397,26 @@ Send neges heb ei ddiogelu?</string>
   <string name="MultiselectForwardFragment__limit_reached">Wedi cyrraedd y terfyn</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Ychwanegu neges</string>
+  <string name="MediaReviewFragment__add_a_reply">Ychwanegu ymateb:</string>
+  <string name="MediaReviewFragment__send_to">Anfon at</string>
   <string name="ImageEditorHud__cancel">Canslo</string>
+  <string name="ImageEditorHud__draw">Lluniadu</string>
+  <string name="ImageEditorHud__write_text">Ysgrifennu testun</string>
+  <string name="ImageEditorHud__add_a_sticker">Ychwanegwch sticer</string>
   <string name="ImageEditorHud__blur">Pylu</string>
+  <string name="ImageEditorHud__done_editing">Wedi gorffen golygu</string>
+  <string name="ImageEditorHud__clear_all">Clirio\'r cyfan</string>
   <string name="ImageEditorHud__undo">Dadwneud</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Toglo rhwng y marciwr a\'r amlygwr</string>
   <string name="MediaCountIndicatorButton__send">Anfon</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Tapio i dynnu</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tapio i ddewis</string>
   <string name="MediaReviewImagePageFragment__discard">Dileu</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Dileu\'r newidiadau?</string>
+  <string name="MediaReviewFragment__view_once_message">Gweld neges unwaith</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Byddwch chi\'n colli unrhyw newidiadau rydych wedi\'u gwneud i\'r llun hwn.</string>
   <string name="ImageEditorHud__delete">Dileu</string>
+  <string name="CameraFragment__failed_to_open_camera">Wedi methu agor camera</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Toglo rhwng arddulliau testun</string>
   <!--EOF-->
 </resources>

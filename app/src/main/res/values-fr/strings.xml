@@ -1040,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vous avez marqué votre numéro de sécurité avec %s comme non confirmé</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme non confirmé à partir d’un autre appareil</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un message de %s n’a pas pu être remis</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s a changé leur numéro pour un nouveau.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s fait partie de l’appel de groupe · %2$s</string>
@@ -1294,6 +1295,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts pour se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
+  <string name="RegistrationActivity_call_requested">Appel demandé</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Vous êtes maintenant à %d étape d’envoyer un journal de débogage.</item>
     <item quantity="other">Vous êtes maintenant à %d étapes d’envoyer un journal de débogage.</item>
@@ -1819,7 +1821,9 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Saisir un nom ou un numéro</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pour confirmer la sécurité de votre chiffrement de bout en bout avec %s, comparez les chiffres ci-dessous avec ceux de son appareil. Vous pouvez aussi balayer le code sur son téléphone. <a href="https://signal.org/redirect/safety-numbers">En apprendre davantage.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Touchez pour balayer</string>
+  <string name="verify_display_fragment__successful_match">Correspondance effective</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Échec de la confirmation du numéro de sécurité.</string>
   <string name="verify_display_fragment__loading">Chargement…</string>
   <string name="verify_display_fragment__mark_as_verified">Marquer comme confirmé</string>
@@ -2941,11 +2945,13 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nouveau numéro de téléphone</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Le numéro de téléphone que vous avez saisi ne correspond pas à celui de votre compte.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Vous devez renseigner l’indicatif de pays de votre ancien numéro</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Vous devez renseigner votre ancien numéro de téléphone</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Vous devez renseigner l’indicatif de pays de votre nouveau numéro</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Vous devez renseigner votre nouveau numéro de téléphone</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Changer le numéro</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Vérification de %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha requis</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Changer de numéro</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vous êtes sur le point de changer votre numéro de téléphone de %1$s en %2$s.\n\nAvant de continuer, assurez-vous que le numéro ci-dessus soit le bon.</string>
@@ -3199,10 +3205,14 @@
   <string name="ImageEditorHud__undo">Annuler</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Passer du marqueur au surligneur</string>
   <string name="MediaCountIndicatorButton__send">Envoyer</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Touchez pour retirer</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Touchez pour sélectionner</string>
   <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Annuler les changements ?</string>
+  <string name="MediaReviewFragment__view_once_message">Message éphémère</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
   <string name="ImageEditorHud__delete">Supprimer</string>
   <string name="CameraFragment__failed_to_open_camera">Échec d’ouverture de l’appareil photo</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Basculer entre les styles de texte</string>
   <!--EOF-->
 </resources>

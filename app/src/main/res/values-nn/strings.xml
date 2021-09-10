@@ -3245,5 +3245,6 @@ Sjekkar igjen no …</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du mister alle endringane du har gjort på dette bildet</string>
   <string name="ImageEditorHud__delete">Slett</string>
   <string name="CameraFragment__failed_to_open_camera">Klarte ikkje opna kameraet</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Byt mellom tekststilar</string>
   <!--EOF-->
 </resources>

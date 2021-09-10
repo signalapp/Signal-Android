@@ -3328,5 +3328,6 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Poništit ćete svaku izmjenu koju ste načinili na ovoj slici.</string>
   <string name="ImageEditorHud__delete">Izbriši</string>
   <string name="CameraFragment__failed_to_open_camera">Neuspjelo pokretanje kamere</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Promijeni stil teksta</string>
   <!--EOF-->
 </resources>

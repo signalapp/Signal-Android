@@ -1040,7 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Has retirado la marca de verificación de tus cifras de seguridad con %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Has retirado la marca de verificación de tus cifras de seguridad con %s desde otro dispositivo</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No se pudo entregar un mensaje de %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ha cambiado su número de teléfono.</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ha cambiado su número de teléfono en Signal.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciado una llamada en grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s participa en la llamada · %2$s</string>
@@ -2942,7 +2942,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="AccountSettingsFragment__account">Cuenta</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Te lo solicitaremos menos a menudo con el pasar del tiempo</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Requerir tu PIN de Signal al volver a registrar tu número con Signal</string>
-  <string name="AccountSettingsFragment__change_phone_number">Cambiar número de teléfono</string>
+  <string name="AccountSettingsFragment__change_phone_number">Cambiar número de teléfono en Signal</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Esta opción te permite cambiar tu número de teléfono actual en Signal a un número de teléfono nuevo. Este cambio no se puede deshacer.\n\n Antes de continuar, asegúrate que tu número nuevo puede recibir SMS o llamadas.</string>
   <string name="ChangeNumberFragment__continue">Adelante</string>
@@ -2964,7 +2964,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChangeNumberVerifyFragment__captcha_required">Captha requerido</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Corregir número</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Estás a punto de cambiar tu número de teléfono de %1$s a %2$s.\n\nAntes de continuar, verifica que el número a continuación es correcto.</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Estás a punto de cambiar tu número de teléfono en Signal de %1$s a %2$s.\n\nAntes de continuar, verifica que el número a continuación es correcto.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Cambio de número en Signal - Ayuda necesaria con el PIN para Android (PIN v2)</string>
@@ -2977,7 +2977,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Parece que has intentado cambiar tu número de teléfono pero Signal no puede determinar si el cambio se ha completado con éxito.\n\nVolviendo a comprobar ahora …</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Cambio de número confirmado</string>
-  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Hemos confirmado tu nuevo número: %1$s. Si este no es tu nuevo número, por favor inicia el proceso de cambio de número de nuevo.</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Hemos confirmado tu nuevo número en Signal: %1$s. Si este no es tu nuevo número, por favor anótalo e inicia el proceso de cambio de número de nuevo.</string>
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Cambio de número no confirmado</string>
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Fallo al determinar el estado de tu cambio de número.\n\n(Error: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Reintentar</string>
@@ -3219,7 +3219,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ImageEditorHud__add_a_sticker">Añadir sticker</string>
   <string name="ImageEditorHud__blur">Desenfocar</string>
   <string name="ImageEditorHud__done_editing">Hecho</string>
-  <string name="ImageEditorHud__clear_all">Eliminar todo</string>
+  <string name="ImageEditorHud__clear_all">Deshacer todo</string>
   <string name="ImageEditorHud__undo">Deshacer</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Alternar tipo de marcadores </string>
   <string name="MediaCountIndicatorButton__send">Enviar</string>
@@ -3231,5 +3231,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perderás todos los cambios que has hecho a esta imagen.</string>
   <string name="ImageEditorHud__delete">Eliminar</string>
   <string name="CameraFragment__failed_to_open_camera">Fallo al acceder a la cámara</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Alternar entre estilos de texto</string>
   <!--EOF-->
 </resources>

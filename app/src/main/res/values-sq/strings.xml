@@ -3234,5 +3234,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Do të humbni çfarëdo ndryshimi që bëtë te kjo foto.</string>
   <string name="ImageEditorHud__delete">Fshije</string>
   <string name="CameraFragment__failed_to_open_camera">S’u arrit të hapet kamera</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Kaloni nga një stil teksti në tjetër</string>
   <!--EOF-->
 </resources>

@@ -3235,5 +3235,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veranderingen die je aan deze afbeelding hebt gemaakt zullen verloren gaan.</string>
   <string name="ImageEditorHud__delete">Gesprek wissen</string>
   <string name="CameraFragment__failed_to_open_camera">Camera openen is mislukt</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Wisselen tussen tekststijlen</string>
   <!--EOF-->
 </resources>

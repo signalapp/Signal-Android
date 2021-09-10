@@ -1137,6 +1137,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Varnostno število z uporabnikom/co %s ste označili kot nepotrjeno</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Varnostno število z uporabnikom/co %s ste na drugi napravi označili kot nepotrjeno</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sporočilo uporabnika/ce %s ni moglo biti dostavljeno</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Uporabnik/ca %1$s ima novo telefonsko številko.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Uporabnik/ca %1$s je začel/a skupinski klic. · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Uporabnik/ca %1$s je v skupinskem klicu. · %2$s</string>
@@ -2978,6 +2979,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nova telefonska številka</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Vnesena številka se ne ujema s telefonsko številko vašega računa.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Za vašo staro številko morate navesti mednarodno kodo vaše države</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Navesti morate svojo staro telefonsko številko</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Za vašo novo številko morate navesti mednarodno kodo vaše države</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Navesti morate svojo novo številko</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2997,6 +2999,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChangeNumberPinDiffersFragment__update_pin">Posodobite PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Želite obdržati stari PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Izgleda, da ste poskusili zamenjati svojo telefonsko številko, a nam ni uspelo preveriti, če je bila zamenjava uspešna.\n\nPoskušamo ponovno …</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Zamenjave številke potrjena</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Vaša nova telefonska številka je %1$s. Če to ne drži, prosimo ponovite proces zamenjave številke.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Zamenjava številke ni potrjena</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Ni nam uspelo preveriti statusa vaše zahteve za menjavo stare telefonske številke z novo.\n\n(Napaka: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Ponovno</string>
   <string name="ChangeNumberLockActivity__leave">Zapusti</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Pošlji sistemsko zabeležbo</string>
@@ -3260,5 +3267,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vse spremembe, narejene na tej fotografiji, bodo izgubljene.</string>
   <string name="ImageEditorHud__delete">Izbriši</string>
   <string name="CameraFragment__failed_to_open_camera">Odpiranje kamere ni uspelo</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Zamenjava stilov pisave</string>
   <!--EOF-->
 </resources>

@@ -3146,7 +3146,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nie udało nam się określić statusu zmiany Twojego numeru.\n\n(Błąd: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Ponów</string>
   <string name="ChangeNumberLockActivity__leave">Opuść</string>
-  <string name="ChangeNumberLockActivity__submit_debug_log">Wyślij log debugowania</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Wyślij logi debugowania</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klawiatura</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter wysyła wiadomość</string>
@@ -3407,5 +3407,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Utracisz wszystkie zmiany dokonane w tym zdjęciu.</string>
   <string name="ImageEditorHud__delete">Usuń</string>
   <string name="CameraFragment__failed_to_open_camera">Nie udało się uruchomić kamery</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Przełącz styl tekstu</string>
   <!--EOF-->
 </resources>

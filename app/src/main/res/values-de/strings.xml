@@ -1819,7 +1819,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Vergleiche die oben dargestellte Nummer mit der auf dem Gerät deines Kontakts, um die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s zu verifizieren. Alternativ kannst du den Code auch auf dem Telefon deines Kontakts einscannen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Vergleiche die oben dargestellten Zahlen mit denen auf dem Gerät deines Kontakts, um die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s zu verifizieren. Alternativ kannst du auch den auf dem Telefon deines Kontakts dargestellten Code einscannen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
   <string name="verify_display_fragment__successful_match">Vergleich erfolgreich</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Sicherheitsnummer konnte nicht verifiziert werden</string>
@@ -1829,7 +1829,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scanne den auf dem Gerät deines Kontakts angezeigten QR-Code ein.</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scanne den QR-Code deines Kontakts ein.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Zum Annehmen nach oben wischen</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Zum Ablehnen nach unten wischen</string>
@@ -2933,7 +2933,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst</string>
   <string name="AccountSettingsFragment__change_phone_number">Rufnummer ändern</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Verwende dies, um deine aktuelle Rufnummer auf eine neue Rufnummer abzuändern. Du kannst diese Änderung nicht rückgängig machen.\n\nBevor du fortfährst, stelle sicher, dass deine neue Rufnummer SMS oder Anrufe empfangen kann.</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Verwende diese Funktion, um deine aktuelle Rufnummer auf eine neue Rufnummer zu ändern. Du kannst diese Änderung nicht rückgängig machen.\n\nBevor du fortfährst, vergewissere dich, dass deine neue Rufnummer SMS oder Anrufe empfangen kann.</string>
   <string name="ChangeNumberFragment__continue">Fortfahren</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">Deine Rufnummer wurde geändert.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2964,11 +2964,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN aktualisieren</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Alte PIN beibehalten?</string>
   <!--ChangeNumberLockActivity-->
-  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Es sieht so aus, als hättest du versucht, deine Rufnummer zu ändern, aber wir konnten nicht feststellen, ob dies erfolgreich war.</string>
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Offenbar hast du versucht, deine Rufnummer zu ändern, und wir konnten nicht feststellen, ob dies erfolgreich war.\n\nWird erneut überprüft …</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Änderungsstatus bestätigt</string>
-  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Deine Rufnummer wurde als %1$s bestätigt. Wenn dies nicht deine neue Rufnummer ist, bitte beginne den Prozess der Nummernänderung erneut.</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Deine Rufnummer wurde als %1$s bestätigt. Wenn dies nicht deine neue Rufnummer ist, beginne bitte den Prozess der Rufnummernänderung erneut.</string>
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Änderungsstatus unbestätigt</string>
-  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Wir konnten den Status deiner Anfrage auf Nummernänderung nicht feststellen.\n\n(Fehler: %1$s)</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Wir konnten den Status deiner Anfrage auf Rufnummernänderung nicht feststellen.\n\n(Fehler: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Erneut versuchen</string>
   <string name="ChangeNumberLockActivity__leave">Verlassen</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Diagnoseprotokoll übermitteln</string>
@@ -3210,7 +3210,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ImageEditorHud__done_editing">Bearbeiten abgeschlossen</string>
   <string name="ImageEditorHud__clear_all">Alles entfernen</string>
   <string name="ImageEditorHud__undo">Rückgängig</string>
-  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Umschalten zwischen Stift und Textmarker</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Zwischen Stift und Textmarker umschalten</string>
   <string name="MediaCountIndicatorButton__send">Senden</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Zum Entfernen antippen</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Zum Auswählen antippen</string>
@@ -3220,5 +3220,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du wirst alle an diesem Foto vorgenommenen Änderungen verlieren.</string>
   <string name="ImageEditorHud__delete">Löschen</string>
   <string name="CameraFragment__failed_to_open_camera">Kamera konnte nicht geöffnet werden</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Textstil umschalten</string>
   <!--EOF-->
 </resources>

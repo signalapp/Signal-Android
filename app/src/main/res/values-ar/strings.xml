@@ -3301,6 +3301,7 @@
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">تغيير الرقم</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">يجري التحقق من %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">كلمة التحقق ضرورية</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">تغيير الرقم</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">إنك على وشك تغيير رقم هاتفك من %1$s إلى %2$s.\n\nيٌرجى التحقق من أن رقم الهاتف أسفله صحيح قبل الاستمرار.</string>
@@ -3583,6 +3584,7 @@
   <string name="ImageEditorHud__done_editing">انتهى التحرير</string>
   <string name="ImageEditorHud__clear_all">محو الكل</string>
   <string name="ImageEditorHud__undo">تراجع</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">التبديل بين قلم الوسم وبين قلم التمييز</string>
   <string name="MediaCountIndicatorButton__send">أرسلْ</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">يُرجى اللمس للإزالة</string>
   <string name="MediaReviewSelectedItem__tap_to_select">أنقر للاختيار</string>
@@ -3592,5 +3594,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تضيع كل تغييرات قمت بها على هذه الصورة.</string>
   <string name="ImageEditorHud__delete">حذف  </string>
   <string name="CameraFragment__failed_to_open_camera">فشل تشغيل الكاميرا</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">التبديل بين أنماط النصوص</string>
   <!--EOF-->
 </resources>

@@ -3231,5 +3231,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bu foto üzərində etdiyiniz bütün dəyişiklikləri itirəcəksiniz.</string>
   <string name="ImageEditorHud__delete">Sil</string>
   <string name="CameraFragment__failed_to_open_camera">Kamera açılmadı</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Mətn stilləri arasında keçid</string>
   <!--EOF-->
 </resources>
