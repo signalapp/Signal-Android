@@ -498,9 +498,15 @@ public class RecipientDatabase extends Database {
               finalId = byUuid.get();
             } else {
               Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). High-trust, so updating.", e164, byUuid.get()), true);
+
+              RecipientSettings byUuidSettings = getRecipientSettings(byUuid.get());
+
               setPhoneNumberOrThrow(byUuid.get(), e164);
               finalId = byUuid.get();
-              recipientChangedNumber = finalId;
+
+              if (!Util.isEmpty(byUuidSettings.e164) && !byUuidSettings.e164.equals(e164)) {
+                recipientChangedNumber = finalId;
+              }
             }
           } else {
             Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). Low-trust, so doing nothing.", e164, byUuid.get()), true);
@@ -524,9 +530,14 @@ public class RecipientDatabase extends Database {
               removePhoneNumber(byE164.get(), db);
               recipientNeedingRefresh = byE164.get();
 
-              setPhoneNumberOrThrow(byUuid.get(), Objects.requireNonNull(e164));
+              RecipientSettings byUuidSettings = getRecipientSettings(byUuid.get());
 
+              setPhoneNumberOrThrow(byUuid.get(), Objects.requireNonNull(e164));
               finalId = byUuid.get();
+
+              if (!Util.isEmpty(byUuidSettings.e164) && !byUuidSettings.e164.equals(e164)) {
+                recipientChangedNumber = finalId;
+              }
             } else {
               Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. Low-trust, so doing nothing.", true);
               finalId = byUuid.get();
