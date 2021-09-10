@@ -39,13 +39,13 @@
             android:layout_height="@dimen/conversation_compose_height"
             android:layout_gravity="bottom"
             android:layout_marginStart="16dp"
+            android:layout_marginBottom="6dp"
             android:background="?selectableItemBackgroundBorderless"
             android:contentDescription="@string/conversation_activity__emoji_toggle_description"
-            android:paddingStart="4dp"
+            android:paddingStart="8dp"
             android:paddingEnd="6dp"
-            app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_a_message_input" />
+            app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <org.thoughtcrime.securesms.components.ComposeText
             android:id="@+id/add_a_message_input"
@@ -56,10 +56,13 @@
             android:layout_marginBottom="8dp"
             android:background="@null"
             android:hint="@string/MediaReviewFragment__add_a_message"
-            android:inputType="textCapSentences"
+            android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
             android:minHeight="36dp"
             android:paddingEnd="10dp"
-            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:maxLines="3"
+            android:maxLength="65536"
+            android:imeOptions="flagNoEnterAction"
+            android:textAppearance="@style/Signal.Text.Body"
             app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
             app:layout_constraintEnd_toStartOf="@id/confirm_button"
             app:layout_constraintStart_toEndOf="@id/emoji_toggle"
@@ -71,9 +74,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
             android:padding="6dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/input_barrier"
+            app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
             app:srcCompat="@drawable/v2_media_add_a_message_check" />
 
         <ViewStub

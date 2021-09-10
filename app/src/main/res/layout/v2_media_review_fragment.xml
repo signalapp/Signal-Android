@@ -151,7 +151,7 @@
             app:layout_constraintBottom_toTopOf="@id/button_barrier"
             tools:alpha="1" />
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
             android:id="@+id/add_a_message_entry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,9 +164,16 @@
             android:minHeight="36dp"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/core_white"
             android:visibility="gone"
+            android:inputType="none"
+            android:enabled="false"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:maxLines="3"
             app:layout_constraintBottom_toTopOf="@id/button_barrier"
             app:layout_constraintTop_toTopOf="@id/add_a_message_barrier"
             tools:visibility="visible" />
