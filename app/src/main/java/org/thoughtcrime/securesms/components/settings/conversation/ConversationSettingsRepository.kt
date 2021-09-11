@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.libsignal.util.guava.Optional
-import org.whispersystems.libsignal.util.guava.Preconditions
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
@@ -201,29 +200,6 @@ class ConversationSettingsRepository(
     SignalExecutors.BOUNDED.execute {
       val recipient = Recipient.externalGroupExact(context, groupId)
       RecipientUtil.unblock(context, recipient)
-    }
-  }
-
-  fun disableProfileSharingForInternalUser(recipientId: RecipientId) {
-    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!")
-
-    SignalExecutors.BOUNDED.execute {
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipientId, false)
-    }
-  }
-
-  fun deleteSessionForInternalUser(recipientId: RecipientId) {
-    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!")
-
-    SignalExecutors.BOUNDED.execute {
-      val recipient = Recipient.resolved(recipientId)
-
-      if (recipient.hasUuid()) {
-        DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireUuid().toString())
-      }
-      if (recipient.hasE164()) {
-        DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireE164())
-      }
     }
   }
 

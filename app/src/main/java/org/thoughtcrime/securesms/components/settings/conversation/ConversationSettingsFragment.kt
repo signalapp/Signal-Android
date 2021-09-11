@@ -302,11 +302,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           customPref(
             InternalPreference.Model(
               recipient = state.recipient,
-              onDisableProfileSharingClick = {
-                viewModel.disableProfileSharing()
-              },
-              onDeleteSessionClick = {
-                viewModel.deleteSession()
+              onInternalDetailsClicked = {
+                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
+                navController.navigate(action)
               }
             )
           )

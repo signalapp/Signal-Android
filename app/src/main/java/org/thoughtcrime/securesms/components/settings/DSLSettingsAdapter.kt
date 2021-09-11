@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.util.visible
 class DSLSettingsAdapter : MappingAdapter() {
   init {
     registerFactory(ClickPreference::class.java, LayoutFactory(::ClickPreferenceViewHolder, R.layout.dsl_preference_item))
+    registerFactory(LongClickPreference::class.java, LayoutFactory(::LongClickPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(TextPreference::class.java, LayoutFactory(::TextPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(RadioListPreference::class.java, LayoutFactory(::RadioListPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(MultiSelectListPreference::class.java, LayoutFactory(::MultiSelectListPreferenceViewHolder, R.layout.dsl_preference_item))
@@ -79,6 +80,16 @@ class ClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<ClickPref
   override fun bind(model: ClickPreference) {
     super.bind(model)
     itemView.setOnClickListener { model.onClick() }
+  }
+}
+
+class LongClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<LongClickPreference>(itemView) {
+  override fun bind(model: LongClickPreference) {
+    super.bind(model)
+    itemView.setOnLongClickListener() {
+      model.onLongClick()
+      true
+    }
   }
 }
 

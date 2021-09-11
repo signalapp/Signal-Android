@@ -86,6 +86,17 @@ class DSLConfiguration {
     children.add(preference)
   }
 
+  fun longClickPref(
+    title: DSLSettingsText,
+    summary: DSLSettingsText? = null,
+    icon: DSLSettingsIcon? = null,
+    isEnabled: Boolean = true,
+    onLongClick: () -> Unit
+  ) {
+    val preference = LongClickPreference(title, summary, icon, isEnabled, onLongClick)
+    children.add(preference)
+  }
+
   fun externalLinkPref(
     title: DSLSettingsText,
     icon: DSLSettingsIcon? = null,
@@ -215,6 +226,14 @@ class ClickPreference(
   override val isEnabled: Boolean = true,
   val onClick: () -> Unit
 ) : PreferenceModel<ClickPreference>()
+
+class LongClickPreference(
+  override val title: DSLSettingsText,
+  override val summary: DSLSettingsText? = null,
+  override val icon: DSLSettingsIcon? = null,
+  override val isEnabled: Boolean = true,
+  val onLongClick: () -> Unit
+) : PreferenceModel<LongClickPreference>()
 
 class ExternalLinkPreference(
   override val title: DSLSettingsText,

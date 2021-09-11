@@ -114,10 +114,6 @@ sealed class ConversationSettingsViewModel(
     }
   }
 
-  open fun disableProfileSharing(): Unit = error("This ViewModel does not support this interaction")
-
-  open fun deleteSession(): Unit = error("This ViewModel does not support this interaction")
-
   open fun initiateGroupUpgrade(): Unit = error("This ViewModel does not support this interaction")
 
   private class RecipientSettingsViewModel(
@@ -236,14 +232,6 @@ sealed class ConversationSettingsViewModel(
 
     override fun unblock() {
       repository.unblock(recipientId)
-    }
-
-    override fun disableProfileSharing() {
-      repository.disableProfileSharingForInternalUser(recipientId)
-    }
-
-    override fun deleteSession() {
-      repository.deleteSessionForInternalUser(recipientId)
     }
   }
 

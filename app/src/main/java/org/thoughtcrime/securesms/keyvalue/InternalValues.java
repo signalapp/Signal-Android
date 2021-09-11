@@ -74,10 +74,10 @@ public final class InternalValues extends SignalStoreValues {
   }
 
   /**
-   * Show detailed recipient info in the {@link org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientFragment}.
+   * Show detailed recipient info in the {@link org.thoughtcrime.securesms.components.settings.conversation.InternalConversationSettingsFragment}.
    */
   public synchronized boolean recipientDetails() {
-    return FeatureFlags.internalUser() && getBoolean(RECIPIENT_DETAILS, false);
+    return FeatureFlags.internalUser() && getBoolean(RECIPIENT_DETAILS, true);
   }
 
   /**

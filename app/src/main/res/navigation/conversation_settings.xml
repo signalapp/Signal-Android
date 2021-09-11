@@ -75,6 +75,20 @@
                 app:nullable="true" />
         </action>
 
+        <action
+            android:id="@+id/action_conversationSettingsFragment_to_internalDetailsSettingsFragment"
+            app:destination="@id/internalDetailsSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="recipient_id"
+                app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+
+        </action>
+
     </fragment>
 
     <fragment
@@ -92,6 +106,16 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/internalDetailsSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.conversation.InternalConversationSettingsFragment">
+
+        <argument
+            android:name="recipient_id"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
 
     </fragment>
 
