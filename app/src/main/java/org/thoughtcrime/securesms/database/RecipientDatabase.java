@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileKeyCreden
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
@@ -2658,7 +2659,15 @@ public class RecipientDatabase extends Database {
         db.update(TABLE_NAME, setBlocked, UUID + " = ?", new String[] { uuid });
       }
 
-      List<GroupId.V1> groupIdStrings = Stream.of(groupIds).map(GroupId::v1orThrow).toList();
+      List<GroupId.V1> groupIdStrings = new ArrayList<>(groupIds.size());
+
+      for (byte[] raw : groupIds) {
+        try {
+          groupIdStrings.add(GroupId.v1(raw));
+        } catch (BadGroupIdException e) {
+          Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!");
+        }
+      }
 
       for (GroupId.V1 groupId : groupIdStrings) {
         db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId.toString() });
