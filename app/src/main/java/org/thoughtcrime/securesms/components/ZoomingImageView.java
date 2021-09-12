@@ -67,6 +67,7 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView = findViewById(R.id.subsampling_image_view);
 
     this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
+    this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
 
     this.photoView.setZoomTransitionDuration(ZOOM_TRANSITION_DURATION);
     this.photoView.setScaleLevels(ZOOM_LEVEL_MIN, SMALL_IMAGES_ZOOM_LEVEL_MID, SMALL_IMAGES_ZOOM_LEVEL_MAX);
