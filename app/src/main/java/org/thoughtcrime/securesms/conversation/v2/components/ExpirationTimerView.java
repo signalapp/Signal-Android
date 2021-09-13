@@ -1,15 +1,17 @@
 package org.thoughtcrime.securesms.conversation.v2.components;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.session.libsession.utilities.Util;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
+
+import network.loki.messenger.R;
 
 public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImageView {
 
@@ -86,10 +88,12 @@ public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImag
     long progressed = System.currentTimeMillis() - startedAt;
     long remaining  = expiresIn - progressed;
 
-    if (remaining < TimeUnit.SECONDS.toMillis(30)) {
-      return 50;
-    } else {
+    if (remaining <= 0) {
+      return 0;
+    } else if (remaining < TimeUnit.SECONDS.toMillis(30)) {
       return 1000;
+    } else {
+      return 5000;
     }
   }
 
@@ -106,16 +110,20 @@ public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImag
       ExpirationTimerView timerView = expirationTimerViewReference.get();
       if (timerView == null) return;
 
-      timerView.setExpirationTime(timerView.startedAt, timerView.expiresIn);
-
+      long nextUpdate = timerView.calculateAnimationDelay(timerView.startedAt, timerView.expiresIn);
       synchronized (timerView) {
-        if (!timerView.visible) {
+        if (timerView.visible) {
+          timerView.setExpirationTime(timerView.startedAt, timerView.expiresIn);
+        } else {
+          timerView.stopped = true;
+          return;
+        }
+        if (nextUpdate <= 0) {
           timerView.stopped = true;
           return;
         }
       }
-
-      Util.runOnMainDelayed(this, timerView.calculateAnimationDelay(timerView.startedAt, timerView.expiresIn));
+      Util.runOnMainDelayed(this, nextUpdate);
     }
   }
 }
