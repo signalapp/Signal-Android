@@ -88,6 +88,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
     private final ImageView icon;
     private final ImageView avatar;
     private final CheckBox  checkBox;
+    private View parent;
 
     ContactFieldViewHolder(View itemView) {
       super(itemView);
@@ -97,6 +98,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
       icon     = itemView.findViewById(R.id.contact_field_icon);
       avatar   = itemView.findViewById(R.id.contact_field_avatar);
       checkBox = itemView.findViewById(R.id.contact_field_checkbox);
+      parent = itemView;
     }
 
     void bind(@NonNull Field field, @NonNull GlideRequests glideRequests, boolean selectable) {
@@ -121,6 +123,11 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
         checkBox.setOnCheckedChangeListener(null);
         checkBox.setChecked(field.isSelected());
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> field.setSelected(isChecked));
+        parent.setOnClickListener(new android.view.View.OnClickListener() {
+          @Override public void onClick(android.view.View v) {
+            checkBox.toggle();
+          }
+        });
       } else {
         checkBox.setVisibility(View.GONE);
         checkBox.setOnCheckedChangeListener(null);
