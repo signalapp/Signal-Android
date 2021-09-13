@@ -121,6 +121,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
         checkBox.setOnCheckedChangeListener(null);
         checkBox.setChecked(field.isSelected());
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> field.setSelected(isChecked));
+        super.itemView.setOnClickListener(v -> checkBox.toggle());
       } else {
         checkBox.setVisibility(View.GONE);
         checkBox.setOnCheckedChangeListener(null);
