@@ -26,6 +26,7 @@ import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.HttpHeader;
+import org.signal.ringrtc.NetworkRoute;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.zkgroup.InvalidInputException;
@@ -487,6 +488,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     });
   }
 
+  @Override public void onNetworkRouteChanged(Remote remote, NetworkRoute networkRoute) {
+    Log.i(TAG, "onNetworkRouteChanged: localAdapterType: " + networkRoute.getLocalAdapterType());
+  }
+
   @Override
   public void onCallConcluded(@Nullable Remote remote) {
     if (!(remote instanceof RemotePeer)) {
@@ -741,6 +746,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onLocalDeviceStateChanged(@NonNull GroupCall groupCall) {
+    Log.i(TAG, "onLocalDeviceStateChanged: localAdapterType: " + groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType());
     process((s, p) -> p.handleGroupLocalDeviceStateChanged(s));
   }
 
