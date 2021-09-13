@@ -3,10 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.Manifest
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
@@ -972,7 +969,23 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun showGIFPicker() {
-        AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
+        val hasSeenGIFMetaDataWarning: Boolean = TextSecurePreferences.hasSeenGIFMetaDataWarning(this)
+        if (!hasSeenGIFMetaDataWarning) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Search GIFs?")
+            builder.setMessage("You will not have full metadata protection when sending GIFs.")
+            builder.setPositiveButton("OK") { dialog: DialogInterface, which: Int ->
+                TextSecurePreferences.setHasSeenGIFMetaDataWarning(this)
+                AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
+                dialog.dismiss()
+            }
+            builder.setNegativeButton(
+                "Cancel"
+            ) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
+            builder.create().show()
+        } else {
+            AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
+        }
     }
 
     private fun showDocumentPicker() {
