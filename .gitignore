@@ -7,7 +7,7 @@ keystore.staging.properties
 .settings
 bin/
 gen/
-.idea/
+.idea/*
 *.iml
 out
 tests
@@ -27,4 +27,3 @@ obj/
 jni/libspeex/.deps/
 pkcs11.password
 dev.keystore
-.idea/
