@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.thoughtcrime.securesms.imageeditor.ImageEditorView
+    <org.signal.imageeditor.core.ImageEditorView
         android:id="@+id/image_editor_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

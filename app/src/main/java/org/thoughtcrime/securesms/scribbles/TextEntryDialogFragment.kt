@@ -11,11 +11,11 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.SimpleColorFilter
+import org.signal.imageeditor.core.HiddenEditText
+import org.signal.imageeditor.core.model.EditorElement
+import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
-import org.thoughtcrime.securesms.imageeditor.HiddenEditText
-import org.thoughtcrime.securesms.imageeditor.model.EditorElement
-import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor

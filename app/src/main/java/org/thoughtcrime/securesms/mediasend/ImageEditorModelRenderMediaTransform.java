@@ -11,7 +11,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
+import org.signal.imageeditor.core.model.EditorModel;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;

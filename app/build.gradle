@@ -453,6 +453,7 @@ dependencies {
     implementation project(':core-util')
     implementation project(':video')
     implementation project(':device-transfer')
+    implementation project(':image-editor')
 
     implementation 'org.signal:zkgroup-android:0.7.0'
     implementation "org.whispersystems:signal-client-android:${LIBSIGNAL_CLIENT_VERSION}"
