@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'java-test-fixtures'
 apply plugin: 'com.google.protobuf'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 apply plugin: 'witness'
 apply plugin: 'idea'
@@ -11,6 +11,16 @@ sourceCompatibility = 1.8
 archivesBaseName    = "signal-service-java"
 version             = lib_signal_service_version_number
 group               = lib_signal_service_group_info
+
+java {
+    targetCompatibility = 1.8
+    withJavadocJar()
+    withSourcesJar()
+}
+
+compileJava {
+    options.release = 8
+}
 
 repositories {
     mavenCentral()
@@ -91,70 +101,62 @@ def getRepositoryPassword() {
     return hasProperty('whisperSonatypePassword') ? whisperSonatypePassword : ""
 }
 
-signing {
-    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
-}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'signal-service-java'
+            from components.java
 
-uploadArchives {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            pom {
+                name = 'signal-service-java'
+                packaging = 'jar'
+                description = 'Signal Service communication library for Java'
+                url = 'https://github.com/WhisperSystems/libsignal-service-java'
 
-        repository(url: getReleaseRepositoryUrl()) {
-            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                scm {
+                    url = 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
+                    connection = 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
+                    developerConnection = 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'GPLv3'
+                        url = 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        name = 'Moxie Marlinspike'
+                    }
+                }
+            }
+
         }
+    }
 
-        pom.project {
-            name 'signal-service-java'
-            packaging 'jar'
-            description 'Signal Service communication library for Java'
-            url 'https://github.com/WhisperSystems/libsignal-service-java'
-
-            scm {
-                url 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
-                connection 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
-                developerConnection 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
-            }
-
-            licenses {
-                license {
-                    name 'GPLv3'
-                    url 'https://www.gnu.org/licenses/gpl-3.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            developers {
-                developer {
-                    name 'Moxie Marlinspike'
-                }
+    repositories {
+        maven {
+            url = getReleaseRepositoryUrl()
+            credentials {
+                username getRepositoryUsername()
+                password getRepositoryPassword()
             }
         }
     }
+}
+
+signing {
+    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+    sign publishing.publications.mavenJava
 }
 
 task installArchives(type: Upload) {
     description "Installs the artifacts to the local Maven repository."
     configuration = configurations['archives']
     repositories {
-        mavenDeployer {
-            repository url: "file://${System.properties['user.home']}/.m2/repository"
-        }
+        mavenLocal()
     }
-}
-
-task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
-    from javadoc.destinationDir
-    classifier = 'javadoc'
-}
-
-task packageSources(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = 'sources'
-}
-
-artifacts {
-    archives packageJavadoc
-    archives packageSources
 }

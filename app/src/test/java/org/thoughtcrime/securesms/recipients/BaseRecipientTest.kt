@@ -17,11 +17,10 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.ChatColorsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.WallpaperValues
-import java.io.IOException
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
-@PowerMockIgnore("org.mockito.*", "org.robolectric.*", "android.*", "androidx.*")
+@PowerMockIgnore("org.mockito.*", "org.robolectric.*", "android.*", "androidx.*", "org.powermock.*")
 @PrepareForTest(ApplicationDependencies::class, AttachmentSecretProvider::class, SignalStore::class, WallpaperValues::class, ChatColorsValues::class)
 abstract class BaseRecipientTest {
   @Rule
@@ -35,7 +34,7 @@ abstract class BaseRecipientTest {
     PowerMockito.mockStatic(ApplicationDependencies::class.java)
     PowerMockito.`when`(ApplicationDependencies.getApplication()).thenReturn(application)
     PowerMockito.mockStatic(AttachmentSecretProvider::class.java)
-    PowerMockito.`when`(AttachmentSecretProvider.getInstance(ArgumentMatchers.any())).thenThrow(IOException::class.java)
+    PowerMockito.`when`(AttachmentSecretProvider.getInstance(ArgumentMatchers.any())).thenThrow(RuntimeException::class.java)
     PowerMockito.whenNew(SignalStore::class.java).withAnyArguments().thenReturn(null)
     PowerMockito.mockStatic(SignalStore::class.java)
   }

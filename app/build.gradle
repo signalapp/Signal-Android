@@ -404,7 +404,9 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     implementation ('androidx.appcompat:appcompat:1.2.0') {
-        force = true
+        version {
+            strictly '1.2.0'
+        }
     }
     implementation "androidx.window:window:1.0.0-alpha09"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
@@ -522,11 +524,11 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.11.1'
-    testImplementation 'org.mockito:mockito-core:2.8.9'
-    testImplementation 'org.powermock:powermock-api-mockito2:1.7.4'
-    testImplementation 'org.powermock:powermock-module-junit4:1.7.4'
-    testImplementation 'org.powermock:powermock-module-junit4-rule:1.7.4'
-    testImplementation 'org.powermock:powermock-classloading-xstream:1.7.4'
+    testImplementation 'org.mockito:mockito-core:2.23.4'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+    testImplementation 'org.powermock:powermock-module-junit4-rule:2.0.9'
+    testImplementation 'org.powermock:powermock-classloading-xstream:2.0.9'
 
     testImplementation 'androidx.test:core:1.2.0'
     testImplementation ('org.robolectric:robolectric:4.4') {
