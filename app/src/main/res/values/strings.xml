@@ -3118,6 +3118,12 @@
         <item quantity="other">Adding %1$d attachments…</item>
     </plurals>
     <string name="ExportZip_start_to_export">Collecting data:</string>
+    <string name="ChatExportDialog_to_enable_export_choose_a_folder">To enable the chat export, choose a folder. The resulting ZIP file will be saved to this location.</string>
+    <string name="ChatExportDialog_choose_folder">Choose save file location</string>
+    <string name="ChatExportDialog_signal_requires_external_storage_permission_in_order_to_create_chat_file">Signal requires external storage permission in order to create the chat files, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
+    <string name="ChatExport_no_file_picker_available">No file picker available</string>
+    <string name="chatexport_choose_location">Choose location to save the chat content</string>
+
     <!-- EOF -->
 
 </resources>

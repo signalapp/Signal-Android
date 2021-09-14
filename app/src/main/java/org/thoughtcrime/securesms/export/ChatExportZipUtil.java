@@ -8,11 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
-import android.os.Environment;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.documentfile.provider.DocumentFile;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -37,7 +37,6 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -48,8 +47,8 @@ import java.util.zip.ZipOutputStream;
  * can include a html-viewer
  *
  * @author  @anlaji
- * @version 2.2
- * @since   2021-09-08
+ * @version 2.5 add_export_chats_feature
+ * @since   2021-09-14
  */
 
 public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil.Attachment, Void, Pair<Integer, String>> {
@@ -62,8 +61,6 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
     private static final int FAILURE              = 1;
     private static final int WRITE_ACCESS_FAILURE = 2;
 
-    private static final String STORAGE_DIRECTORY = Environment.DIRECTORY_DOWNLOADS;
-
 
     private static final String HTML_VIEWER_PATH        = "chatexport.htmlviewer/viewer.html";
     private static final String HTML_VIEWER_NAME        = "viewer.html";
@@ -75,56 +72,48 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
     private static final String FILENAME_FORMAT         = "/%s-%s_signalChatExport";
 
     @SuppressLint("SimpleDateFormat")
-    static SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd-HH-mm-ss-SSS");
+    private static final SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd-HH-mm-ss-SSS");
+
 
 
     private final WeakReference<Context> contextReference;
-    private final int attachmentCount;
-    HashMap<String, Uri> otherFiles;
-    private final ZipOutputStream out;
+    private final int                    attachmentCount;
+    private final Uri                    storageTreeUri;
+    private Uri                          storageUri;
+    private ZipOutputStream              out;
 
 
     public ChatExportZipUtil (Context context, long threadId) throws IOException, NoExternalStorageException {
-        this(context, 0, threadId, null);
+        this(context, null, 0, threadId);
     }
 
-    public ChatExportZipUtil (Context context, int count, long threadId, HashMap<String, Uri> otherFiles) throws IOException, NoExternalStorageException {
+    public ChatExportZipUtil (Context context, Uri storagePath, int count, long threadId) throws IOException, NoExternalStorageException {
         super (context,
                 context.getResources ().getString (R.string.ExportZip_start_to_export),
                 context.getResources ().getQuantityString (R.plurals.ExportZip_adding_n_attachments_to_media_folder, count, count));
+        this.storageTreeUri = storagePath;
+        this.setStorageUri(threadId);
         this.contextReference = new WeakReference<> (context);
         this.attachmentCount = count;
-        this.otherFiles = otherFiles;
-        this.out = getZipOutputStream (threadId);
+        this.setZipOutputStream(threadId);
     }
 
     public ZipOutputStream getZipOutputStream(long threadId) throws IOException {
-       String zipPath = "";
-       File zipFile = instantiateZipFile(threadId);
-       if (zipFile.exists()) {
-           throw new IOException("Export zip file already exists?");
-       }
         try {
-            zipPath = zipFile.getAbsolutePath();
-            FileOutputStream dest = new FileOutputStream(zipPath+"/");
+            FileOutputStream dest = (FileOutputStream) getContext ().getContentResolver().openOutputStream (getStorageUri ());
             return new ZipOutputStream(new BufferedOutputStream(dest));
         } catch (IOException e) {
             e.printStackTrace ();
-            Log.w(TAG, "Path: " + zipPath);
             throw new IOException("Chat export file had an error.\"");
         }
     }
 
-    private File instantiateZipFile (long threadId) {
-        File root = new File(getExternalPathToSaveZip ());
+    private DocumentFile instantiateZipFile (long threadId) {
+        DocumentFile pickedDir = DocumentFile.fromTreeUri(getContext (), getStorageTreeUri ());
         String fileName = createFileName(threadId);
-        return new File(root.getAbsolutePath () + "/" + fileName + ".zip");
+        return pickedDir.createFile("application/zip", fileName);
     }
 
-    private String getExternalPathToSaveZip ()  {
-        File storage = Environment.getExternalStoragePublicDirectory(STORAGE_DIRECTORY);
-        return storage.getAbsolutePath ();
-    }
 
     private String createFileName (long threadId) {
         ThreadDatabase db = DatabaseFactory.getThreadDatabase (getContext ());
@@ -137,9 +126,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
                 groupName);
     }
 
-
-
-    void startToExport(Context context, boolean hasViewer, String data) {
+    protected void startToExport(Context context, boolean hasViewer, String data) {
         addXMLFile (XML_FILENAME, data);
         if(hasViewer) includeHTMLViewerToZip (context);
     }
@@ -150,7 +137,6 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
             addFile (HTML_VIEWER_NAME, assetManager.open (HTML_VIEWER_PATH));
             addFile (HTML_VIEWER_JQUERY_NAME, assetManager.open (HTML_VIEWER_JQUERY_PATH));
             addFile (HTML_VIEWER_ICON_NAME, assetManager.open (HTML_VIEWER_ICON_PATH));
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -195,7 +181,8 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
     }
 
 
-    public static String generateOutputFileName (@NonNull String contentType, long timestamp ,@NonNull String uriPathSegment) {
+    @NonNull
+    public static String generateOutputFileName (@NonNull String contentType, long timestamp , @NonNull String uriPathSegment) {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton ();
         String extension = mimeTypeMap.getExtensionFromMimeType (contentType);
         String base = "signal-" + dateFormatter.format (timestamp) + "-" + uriPathSegment;
@@ -209,49 +196,57 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
         try {
             byte[] buffer = new byte[1024];
             ZipEntry zipEntry = new ZipEntry(name);
-            out.putNextEntry(zipEntry);
+            getOut ().putNextEntry(zipEntry);
 
             BufferedInputStream origin = new BufferedInputStream (data, BUFFER);
             try {
                 int len;
                 while ((len = origin.read (buffer)) > 0) {
-                    out.write (buffer, 0, len);
+                    getOut ().write (buffer, 0, len);
                 }
                 origin.close ();
             } finally {
                 data.close ();
             }
-            out.closeEntry ();
+            getOut ().closeEntry ();
 
         } catch (IOException ex) {
             ex.printStackTrace ();
         }
     }
 
+    @NonNull
     private String saveAttachment (Context context, Attachment attachment) throws IOException{
-        String      contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
-        String      fileName ;
-        fileName = generateOutputFileName(contentType, attachment.date, attachment.uri.getPathSegments ().get (attachment.uri.getPathSegments ().size ()-1));
+        String contentType, fileName, outputUri, attachmentName;
 
-        String           outputUri    = getMediaStoreContentPathForType(contentType);
-        String           attachmentName     = createOutputPath( outputUri, fileName);
+        contentType = getContentType (attachment);
+        fileName = generateOutputFileName (contentType, attachment.date, attachment.uri.getPathSegments ().get (attachment.uri.getPathSegments ().size () - 1));
+        outputUri = getMediaStoreContentPathForType (contentType);
 
-        InputStream inputStream = PartAuthority.getAttachmentStream(context, attachment.uri) ;
+        attachmentName = createOutputPath (outputUri, fileName);
+        InputStream inputStream = PartAuthority.getAttachmentStream (context, attachment.uri);
+
         addFile (attachmentName, inputStream);
         return outputUri;
     }
 
-    public void addXMLFile (String name, String data) {
+    @NonNull
+    private String getContentType (@NonNull Attachment attachment) {
+        return Objects.requireNonNull (MediaUtil.getCorrectedMimeType (attachment.contentType));
+    }
+
+    public void addXMLFile (String name, @NonNull String data) {
         ByteArrayInputStream bais = new ByteArrayInputStream(data.getBytes());
         addFile (name, bais);
     }
 
     public void closeZip () throws IOException {
-        out.close();
+        getOut ().close();
     }
 
 
-    private String[] getFileNameParts(String fileName) {
+    @NonNull
+    private String[] getFileNameParts(@NonNull String fileName) {
         String[] result = new String[2];
         String[] tokens = fileName.split("\\.(?=[^.]+$)");
 
@@ -270,7 +265,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
         }
 
         try {
-            Context      context      = contextReference.get();
+            Context      context      = getContextReference ().get();
             String       directory    = null;
 
             if (!StorageUtil.canWriteToMediaStore()) {
@@ -293,7 +288,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
             return new Pair<>(FAILURE, null);
         } finally{
             try {
-                out.close ();
+                getOut ().close ();
             } catch (IOException e) {
                 e.printStackTrace ();
             }
@@ -302,15 +297,15 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
     @Override
     protected void onPostExecute(final Pair<Integer, String> result) {
         super.onPostExecute(result);
-        final Context context = contextReference.get();
+        final Context context = getContextReference ().get();
         if (context == null) return;
 
         switch (result.first()) {
             case FAILURE:
-                if(attachmentCount > 0)
+                if(getAttachmentCount () > 0)
                   Toast.makeText(context,
                         context.getResources().getQuantityText(R.plurals.ExportZip_error_while_adding_attachments_to_external_storage,
-                                attachmentCount),
+                                getAttachmentCount ()),
                         Toast.LENGTH_LONG).show();
                 break;
             case SUCCESS:
@@ -331,17 +326,16 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
 
     private void createFinishDialog (Context context) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-        File f = Environment.getExternalStoragePublicDirectory (STORAGE_DIRECTORY);
-        if(!Util.isEmpty (f.getAbsolutePath ())) {
-            Uri storageUri = Uri.parse (f.getAbsolutePath ());
-            if(attachmentCount > 0)
-                alertDialogBuilder.setMessage ("Chat export file saved to:\n" + storageUri.getPath ()
-                    + "\n\nNumber of media files: " + attachmentCount + "\n");
+
+        if(!Util.isEmpty (getStorageUri ().getPath ())) {
+            if(getAttachmentCount () > 0)
+                alertDialogBuilder.setMessage ("Chat export file saved to:\n" + getStorageTreeUri ().getEncodedPath ()
+                    + "\n\nNumber of media files: " + getAttachmentCount () + "\n");
             else
-                alertDialogBuilder.setMessage ("Chat export file saved to:\n" + storageUri.getPath ()
+                alertDialogBuilder.setMessage ("Chat export file saved to:\n" + getStorageTreeUri ().getEncodedPath ()
                         + "\n");
             alertDialogBuilder.setPositiveButton (R.string.open_export_directory,
-                    (dialog, which) -> openDirectory (storageUri));
+                    (dialog, which) -> openDirectory (getStorageUri ()));
         }
         alertDialogBuilder.setTitle ("Export successful!");
         alertDialogBuilder.setIcon(R.drawable.ic_download_32);
@@ -363,6 +357,44 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
         catch ( ActivityNotFoundException e) {
             e.printStackTrace ();
         }
+    }
+
+    public WeakReference<Context> getContextReference () {
+        return contextReference;
+    }
+
+    public int getAttachmentCount () {
+        return attachmentCount;
+    }
+
+
+    private Uri getStorageTreeUri () {
+        return storageTreeUri;
+    }
+
+    public Uri getStorageUri () {
+        return storageUri;
+    }
+
+    private void setStorageUri (Uri storageUri) {
+        this.storageUri = storageUri;
+    }
+
+    private ZipOutputStream getOut () {
+        return out;
+    }
+
+    private void setOut (ZipOutputStream out) {
+        this.out = out;
+    }
+
+    private void setStorageUri (long threadId) {
+        DocumentFile zipFile = instantiateZipFile(threadId);
+        setStorageUri (zipFile.getUri ());
+    }
+
+    private void setZipOutputStream (long threadId) throws IOException {
+        setOut (getZipOutputStream (threadId));
     }
 
     public static class Attachment {
