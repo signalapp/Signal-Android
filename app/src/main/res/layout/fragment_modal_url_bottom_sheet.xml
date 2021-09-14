@@ -7,7 +7,7 @@
     app:behavior_hideable="true"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     android:gravity="center_horizontal"
-    android:paddingVertical="@dimen/large_spacing">
+    android:paddingTop="@dimen/large_spacing">
 
     <TextView
         android:id="@+id/openURLTitleTextView"
