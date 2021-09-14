@@ -1,3 +1,5 @@
+enableFeaturePreview('VERSION_CATALOGS')
+
 include ':app'
 include ':libsignal-service'
 include ':lintchecks'
@@ -21,3 +23,5 @@ project(':libsignal-service').projectDir = file('libsignal/service')
 project(':image-editor').projectDir = file('image-editor/lib')
 
 rootProject.name='Signal'
+
+apply from: 'dependencies.gradle'

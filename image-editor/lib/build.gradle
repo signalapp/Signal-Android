@@ -37,11 +37,11 @@ dependencies {
 
     implementation project(':core-util')
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring libs.android.tools.desugar
 
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.annotation
+    implementation libs.androidx.appcompat
 
-    kapt 'androidx.annotation:annotation:1.2.0'
+    kapt libs.androidx.annotation
 }

@@ -22,13 +22,13 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring libs.android.tools.desugar
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation libs.androidx.appcompat
+    implementation libs.material.material
+    implementation libs.androidx.constraintlayout
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation testLibs.junit.junit
 
     implementation project(':paging')
 }
