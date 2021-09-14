@@ -7,7 +7,7 @@ keystore.staging.properties
 .settings
 bin/
 gen/
-.idea/*
+.idea/
 *.iml
 out
 tests
