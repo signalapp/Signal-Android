@@ -7,8 +7,7 @@
     app:behavior_hideable="true"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     android:gravity="center_horizontal"
-    android:paddingVertical="@dimen/large_spacing"
-    >
+    android:paddingVertical="@dimen/large_spacing">
 
     <TextView
         android:id="@+id/openURLTitleTextView"
@@ -43,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/BottomSheetActionItem"
-        android:text="@string/copy"
+        android:text="@string/copy_url"
         />
 
     <TextView
