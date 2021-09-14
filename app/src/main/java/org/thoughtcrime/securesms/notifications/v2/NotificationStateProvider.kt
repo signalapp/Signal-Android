@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.notifications.v2
 
 import android.content.Context
 import androidx.annotation.WorkerThread
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.MmsSmsDatabase
@@ -10,11 +11,14 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CursorUtil
+import java.lang.IllegalStateException
 
 /**
  * Queries the message databases to determine messages that should be in notifications.
  */
 object NotificationStateProvider {
+
+  private val TAG = Log.tag(NotificationStateProvider::class.java)
 
   @WorkerThread
   fun constructNotificationState(context: Context, stickyThreads: Map<Long, MessageNotifierV2.StickyThread>): NotificationStateV2 {
@@ -40,7 +44,13 @@ object NotificationStateProvider {
               lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN)
             )
           }
-          record = reader.next
+          try {
+            record = reader.next
+          } catch (e: IllegalStateException) {
+            // XXX Weird SQLCipher bug that's being investigated
+            record = null
+            Log.w(TAG, "Failed to read next record!", e)
+          }
         }
       }
     }
