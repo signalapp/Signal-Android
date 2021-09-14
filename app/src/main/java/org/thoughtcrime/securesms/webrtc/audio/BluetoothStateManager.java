@@ -26,7 +26,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @SuppressLint("MissingPermission")
 public class BluetoothStateManager {
 
-  private static final String TAG = Log.tag(BluetoothStateManager.class);
+  private static final String TAG                         = Log.tag(BluetoothStateManager.class);
+  private static final int    MAX_SCO_CONNECTION_ATTEMPTS = 2;
 
   private enum ScoConnection {
     DISCONNECTED,
@@ -43,7 +44,8 @@ public class BluetoothStateManager {
   private final BluetoothStateListener      listener;
   private final AtomicBoolean               destroyed;
 
-  private volatile ScoConnection scoConnection = ScoConnection.DISCONNECTED;
+  private volatile ScoConnection scoConnection         = ScoConnection.DISCONNECTED;
+  private          int           scoConnectionAttempts = 0;
 
   private BluetoothHeadset bluetoothHeadset = null;
   private boolean          wantsConnection  = false;
@@ -105,8 +107,13 @@ public class BluetoothStateManager {
       this.wantsConnection = enabled;
 
       if (wantsConnection && isBluetoothAvailable() && scoConnection == ScoConnection.DISCONNECTED) {
-        audioManager.startBluetoothSco();
-        scoConnection = ScoConnection.IN_PROGRESS;
+        if (scoConnectionAttempts > MAX_SCO_CONNECTION_ATTEMPTS) {
+          Log.w(TAG, "We've already attempted to start SCO too many times.  Won't try again.");
+        } else {
+          scoConnectionAttempts++;
+          audioManager.startBluetoothSco();
+          scoConnection = ScoConnection.IN_PROGRESS;  
+        }
       } else if (!wantsConnection && scoConnection == ScoConnection.CONNECTED) {
         audioManager.stopBluetoothSco();
         audioManager.setBluetoothScoOn(false);
@@ -210,6 +217,7 @@ public class BluetoothStateManager {
               for (BluetoothDevice device : devices) {
                 if (bluetoothHeadset.isAudioConnected(device)) {
                   scoConnection = ScoConnection.CONNECTED;
+                  scoConnectionAttempts = 0;
 
                   if (wantsConnection) {
                     AudioManager audioManager = ServiceUtil.getAudioManager(context);
@@ -232,6 +240,12 @@ public class BluetoothStateManager {
     @Override
     public void onReceive(Context context, Intent intent) {
       Log.i(TAG, "onReceive");
+      if (intent.getAction().equals(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED)) {
+        int state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, BluetoothHeadset.STATE_DISCONNECTED);
+        if (state == BluetoothHeadset.STATE_CONNECTED) {
+          scoConnectionAttempts = 0;
+        }
+      }
       handleBluetoothStateChange();
     }
   }
