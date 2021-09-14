@@ -285,7 +285,7 @@
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Оваа порака ќе биде избришана за сите во разговорот ако тие не се на понова верзија на Signal. Тие ќе можат да видат дека сте ја избришале пораката.</string>
   <string name="ConversationFragment_quoted_message_not_found">Оригиналната порака не е пронајдена</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Оригиналната порака не е повеќе достапна</string>
-  <string name="ConversationFragment_failed_to_open_message">Не успеав да ја отворам пораката</string>
+  <string name="ConversationFragment_failed_to_open_message">Не успеа да се отвори пораката</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Можете да повлечете на десно на било која порака за брз одговор</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Можете да повлечете на лево на било која порака за брз одговор</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Испратени медија датотеки за еден преглед се автоматски отстранети откога ќе се испратат.</string>
@@ -1040,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %s како непроверен</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте Вашиот сигурносен број со %s како непроверен од друг уред.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порака од %s не може да биде испорачана</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s го смени бројот во нов број.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групен повик · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е во групниот повик · %2$s</string>
@@ -1214,11 +1215,32 @@
   <string name="WebRtcCallView__disconnected">Неповрзан</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal ќе ѕвони %1$s</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ќе ѕвони на %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal ќе ѕвони на %1$s, %2$s и %3$d друг</item>
+    <item quantity="other">Signal ќе ѕвони на %1$s, %2$s и %3$d други</item>
+  </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s ќе биде исвестен/а</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s ќе бидат известени</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s и %3$d друг ќе бидат известени</item>
+    <item quantity="other">%1$s, %2$s и %3$d други ќе бидат известени</item>
+  </plurals>
   <string name="WebRtcCallView__ringing_s">Ѕвонам на %1$s</string>
   <string name="WebRtcCallView__ringing_s_and_s">Ѕвонам на %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Ѕвонам на %1$s, %2$s и %3$d друг</item>
+    <item quantity="other">Ѕвонам на %1$s, %2$s и %3$d други</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s те повикува</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s те повикува и %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s те повикува, %2$s и %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s те повикува, %2$s, %3$s, и %4$d друг</item>
+    <item quantity="other">%1$s те повикува, %2$s, %3$s и %4$d други</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Нема никој</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s е на овој повик</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s е на овој повик</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s се на овој повик</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s презентира</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1695,7 +1717,7 @@
   <string name="device_list_fragment__no_devices_linked">Нема поврзани уреди</string>
   <string name="device_list_fragment__link_new_device">Поврзи нов уред</string>
   <!--expiration-->
-  <string name="expiration_off">Исклучи</string>
+  <string name="expiration_off">Исклучено</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d секунда</item>
     <item quantity="other">%d секунди</item>
@@ -1804,14 +1826,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Внесете име или број</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да ја потврдите безбедноста на Вашето шифрирање од-крај-до-крај со %s, споредете ги горенаведените броеви со нивниот уред. Можете исто така да го скенирате кодот на нивниот телефон. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Допри да скенираш</string>
   <string name="verify_display_fragment__successful_match">Успешно совпаѓање</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Не успеа да се провери сигурносниот број</string>
   <string name="verify_display_fragment__loading">Вчитувам…</string>
   <string name="verify_display_fragment__mark_as_verified">Означи како проверено</string>
   <string name="verify_display_fragment__clear_verification">Исчисти проверка</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Сподели сигурносен број</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Скенирајте го QR-кодот на уредот на Вашиот контакт.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Повлечете нагоре за одговор</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Повлечете надолу за одбивање</string>
@@ -2064,7 +2089,7 @@
   <string name="preferences_setup_a_username">Поставете корисничко име</string>
   <string name="preferences_proxy">Proxy</string>
   <string name="preferences_use_proxy">Користи proxy</string>
-  <string name="preferences_off">Исклучи</string>
+  <string name="preferences_off">Исклучено</string>
   <string name="preferences_on">Вклучено</string>
   <string name="preferences_proxy_address">Proxy адреса</string>
   <string name="preferences_only_use_a_proxy_if">Користете proxy ако не можете да се поврзете на Signal преку мобилни податоци или Wi-Fi.</string>
@@ -2312,7 +2337,7 @@
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="one">PIN-от мора да е најмалку %1$d знак</item>
-    <item quantity="other">PIN-от мора да е најмалку %1$d знаци</item>
+    <item quantity="other">PIN-от мора да се состои од најмалку %1$d знаци</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="one">PIN-от мора да се состои од најмалку %1$d бројка</item>
@@ -2852,10 +2877,13 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нов телефонски број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Мора да наведете повикувачки број на државата за Вашиот стар број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Мора да го наведете вашиот стар телефонски број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Мора да наведете повикувачки број на државата за Вашиот нов број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Мора да го наведете Вашиот нов број</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Смени го бројот</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Потврдување %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Потребна е проверка</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Променете го бројот</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Наскоро ќе го смените Вашиот телефонски број од %1$s на %2$s.\n\nПред да продолжите, Ве молиме проверете дали бројот подолу е точен.</string>
@@ -2869,6 +2897,11 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирај PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Да го задржам стариот PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Изгледа дека сте се обиделе да го промените Вашиот број, но не успеавме да утврдиме дали е успешно.\n\nПовторно се проверува…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Промената е потврдена</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Вашиот број е потврден како %1$s. Ако ова не е Вашиот нов број, повторно започнете го процесот на промена на бројот.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Промената не е потврдена</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Не можевме да го одредиме статусот на Вашето барање за промена на бројот.\n\n(Грешка: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Пробај пак</string>
   <string name="ChangeNumberLockActivity__leave">Напушти</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Испрати запис за дебагирање</string>
@@ -2898,7 +2931,7 @@
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во нови разговори започнати од Вас ќе исчезнат откако ќе бидат видени.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во овој разговор ќе исчезнат откако ќе бидат видени.</string>
-  <string name="ExpireTimerSettingsFragment__off">Исклучи</string>
+  <string name="ExpireTimerSettingsFragment__off">Исклучено</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 недели</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 недела</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 ден</string>

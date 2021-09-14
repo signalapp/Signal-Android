@@ -990,6 +990,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">您已剔低話您同 %s 之間嘅安全碼未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">您喺另一部機度已剔低話您同 %s 之間嘅安全碼未驗證</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">有一則 %s 發出嘅訊息送達唔到</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 已轉咗新冧把。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已發起成谷通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 嚟到成谷通話 · %2$s</string>
@@ -1754,13 +1755,13 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>打個名或者冧把</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若要驗證您同 %s 之間嘅點對點加密係咪安全，請將上面嘅數字同佢部機做比較。您掃佢部機上面嘅二維碼亦都得。<a href="https://signal.org/redirect/safety-numbers">想知多啲？</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若要驗證您同 %s 之間嘅點對點加密係咪安全，請將上面嘅數字同佢部機做比較。或者掃佢部機上面嘅二維碼亦都得。<a href="https://signal.org/redirect/safety-numbers">想知多啲？</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">撳一下去掃描</string>
   <string name="verify_display_fragment__successful_match">完全啱晒</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">驗證安全碼失敗</string>
   <string name="verify_display_fragment__loading">載入緊…</string>
   <string name="verify_display_fragment__mark_as_verified">剔低話驗證咗</string>
-  <string name="verify_display_fragment__clear_verification">將個驗證抹走</string>
+  <string name="verify_display_fragment__clear_verification">抹走先前個驗證</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
   <!--verity_scan_fragment-->
@@ -2867,9 +2868,10 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">您個新冧把</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新嘅電話冧把</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">您輸入嘅電話冧把，同您嘅帳戶唔脗合。</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您未打您個舊冧把嘅國碼</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您未打您個新冧把嘅國碼</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您未打您個新嘅電話冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您要打番您個舊冧把嘅國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您要打番您個舊嘅電話冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您要打番您個新冧把嘅國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您要打番您個新嘅電話冧把</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">轉冧把</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">驗證緊 %1$s</string>
@@ -2887,8 +2889,13 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">係咪要保留舊 PIN 碼？</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">您好似試過轉冧把，但我哋未知成唔成功。\n\n而家幫您重新檢查…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">轉換狀態已確認</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">您個電話冧把已確認為 %1$s。若然唔係您個新冧把，請您重新開始轉冧把嘅過程。</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">轉換狀態未確認</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">我哋未能斷定您請求轉冧把嘅狀態。\n\n(錯誤：%1$s)</string>
   <string name="ChangeNumberLockActivity__retry">再試一次</string>
-  <string name="ChangeNumberLockActivity__leave">退谷</string>
+  <string name="ChangeNumberLockActivity__leave">離開</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">提交除錯記錄檔</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
@@ -3129,8 +3136,9 @@
   <string name="MediaReviewImagePageFragment__discard">掉咗佢</string>
   <string name="MediaReviewImagePageFragment__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
   <string name="MediaReviewFragment__view_once_message">流聲掠影訊息</string>
-  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都會冇得留低。</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都冇得留低個囉噃。</string>
   <string name="ImageEditorHud__delete">刪除</string>
   <string name="CameraFragment__failed_to_open_camera">開唔到相機</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">換另一種字樣</string>
   <!--EOF-->
 </resources>

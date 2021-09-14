@@ -205,7 +205,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Manus ületab saadetava sõnumitüübi suuruspiiranguid.</string>
   <string name="ConversationActivity_unable_to_record_audio">Ei saa heli salvestada!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Sa ei saa sellesse gruppi postitada, sest sa pole enam selle liige.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Ainult %1$s saavad sõnumeid saata.</string>
   <string name="ConversationActivity_admins">administraatorid</string>
+  <string name="ConversationActivity_message_an_admin">Sõnum administraatorile</string>
+  <string name="ConversationActivity_cant_start_group_call">Ei saa grupikõnet alustada</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Ainult selle grupi administraatorid saavad kõnet alustada.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sinu seadmes pole rakendust, mis oleks võimeline seda linki käsitlema.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Sinu taotlus grupiga liitumiseks on grupi administraatoritele saadetud. Sulle antakse teada, kui nad vastavad.</string>
   <string name="ConversationActivity_cancel_request">Tühista taotlus</string>
@@ -323,6 +327,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Mõned kontod ei saa vanades gruppides olla.</string>
+  <string name="CreateGroupActivity__select_members">Vali liikmed</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>
@@ -336,6 +341,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Varundusest taastamise ikoon</string>
   <string name="ChooseBackupFragment__choose_backup">Vali varundus</string>
   <string name="ChooseBackupFragment__learn_more">Rohkem infot</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Failibrauser pole saadaval</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Taastamine õnnestus</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Varunduste kasutamise jätkamiseks palun vali kaust. Uued varundused salvestatakse sinna.</string>
@@ -741,6 +747,7 @@
   <string name="InviteActivity_sending">Saatmine…</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
+  <string name="InviteActivity_send_sms">Saada SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Saadad %d SMS-kutse?</item>
     <item quantity="other">Saadad %d SMS-kutset?</item>
@@ -812,11 +819,14 @@
   <string name="Megaphones_invite_friends">Kutsu sõpru</string>
   <string name="Megaphones_use_sms">Kasuta SMSi</string>
   <string name="Megaphones_appearance">Välimus</string>
+  <string name="Megaphones_add_photo">Lisa foto</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
   <string name="NotificationBarManager__incoming_signal_call">Sissetulev Signali kõne</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Sissetulev Signali grupikõne</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signali kõneteenuse peatamine</string>
+  <string name="NotificationBarManager__decline_call">Keeldu kõnest</string>
   <string name="NotificationBarManager__answer_call">Vasta kõnele</string>
   <string name="NotificationBarManager__end_call">Lõpeta kõne</string>
   <string name="NotificationBarManager__cancel_call">Tühista kõne</string>
@@ -971,6 +981,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s muutis grupi liikmete muutmise tasemeks “%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Grupi liikmete muutjateks on nüüd \"%1$s\".</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Sa muutsid grupi sätteid nii, et lubad kõigil liikmetel sõnumeid saata.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Sa muutsid grupi sätteid nii, et lubad ainult administraatoritel sõnumeid saata.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Grupi sätteid muudeti nii, et kõigil on lubatud sõnumeid saata.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Grupi sätteid muudeti nii, et ainult administraatoritel on lubatud sõnumeid saata.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Sa lülitasid administraatori kinnituseta grupilingi sisse.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Sa lülitasid administraatori kinnitusega grupilingi sisse.</string>
@@ -1174,8 +1188,10 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal vajab kasutajale %1$s helistamiseks juurdepääsu seadme kaamerale</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Helistamine…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupp on liikmetele helistamiseks liiga suur.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signali kõne</string>
+  <string name="WebRtcCallView__signal_video_call">Signali videokõne</string>
   <string name="WebRtcCallView__start_call">Alusta kõnet</string>
   <string name="WebRtcCallView__join_call">Liitu kõnega</string>
   <string name="WebRtcCallView__call_is_full">Kõne on täis</string>
@@ -1185,6 +1201,7 @@
   <string name="WebRtcCallView__reconnecting">Ühenduse taastamine…</string>
   <string name="WebRtcCallView__joining">Liitumine…</string>
   <string name="WebRtcCallView__disconnected">Ühendus katkestatud</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal helistab isikule %1$s</string>
   <string name="WebRtcCallView__no_one_else_is_here">Kedagi teist pole siin</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s on selles kõnes</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ja %2$s on selles kõnes</string>
@@ -1193,9 +1210,11 @@
     <item quantity="one">%1$s, %2$s ja %3$d teine on selles kõnes</item>
     <item quantity="other">%1$s, %2$s ja %3$d teist on selles kõnes</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Pööra</string>
   <string name="WebRtcCallView__speaker">Valjuhääldi</string>
   <string name="WebRtcCallView__camera">Kaamera</string>
   <string name="WebRtcCallView__mute">Vaigista</string>
+  <string name="WebRtcCallView__ring">Helista</string>
   <string name="WebRtcCallView__end_call">Lõpeta kõne</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1612,6 +1631,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Luba helistamise teavitused</string>
   <string name="ConversationUpdateItem_update_contact">Uuendatud kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ühiseid gruppe pole. Vaata taotlused hoolikalt üle.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Selles grupis pole kontakte. Kontrolli taotlusti tähelepanelikult.</string>
   <string name="ConversationUpdateItem_view">Näita</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
@@ -1779,6 +1799,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Viipa keeldumiseks alla</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Mõned probleemid vajavad su tähelepanu.</string>
+  <string name="message_details_header__sent">Saadetud:</string>
+  <string name="message_details_header__received">Saadud:</string>
+  <string name="message_details_header__disappears">Kaob:</string>
+  <string name="message_details_header__via">Saatmisviis:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Ootel</string>
   <string name="message_details_recipient_header__sent_to">Saajale</string>
@@ -2057,6 +2081,8 @@
   <string name="PaymentsHomeFragment__currency_conversion">Valuuta konverteerimine</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Deaktiveeri maksed</string>
   <string name="PaymentsHomeFragment__help">Abi</string>
+  <string name="PaymentsHomeFragment__sent_payment">Makse saadetud</string>
+  <string name="PaymentsHomeFragment__received_payment">Makse saadud</string>
   <string name="PaymentsHomeFragment__processing_payment">Makse töötlemine</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksed pole sinu regioonis veel saadaval.</string>
@@ -2088,7 +2114,10 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s vestluses %2$s ajal %3$s</string>
   <string name="PaymentsDetailsFragment__to">Saaja</string>
   <string name="PaymentsDetailsFragment__from">Saatja</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Makse saadetud</string>
+  <string name="PaymentsDetailsFragment__received_payment">Makse saadud</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Kanna üle</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skanni QR-kood</string>
   <string name="PaymentsTransferFragment__next">Edasi</string>
   <string name="PaymentsTransferFragment__invalid_address">Vigane aadress</string>
@@ -2403,6 +2432,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Helista mulle selle asemel \n (Saadaval vahemikus %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Võta ühendust Signali kasutajatoega</string>
   <string name="RegistrationActivity_code_support_subject">Signali registreerimine - kinnituskood Androidile</string>
+  <string name="RegistrationActivity_incorrect_code">Sobimatu kood</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="preferences_app_protection__see_my_phone_number">Vaata mu telefoninumbrit</string>
@@ -2492,6 +2522,7 @@
   <string name="DeviceTransferSetup__location_services">Asukohateenused</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct ekraan</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Proovi mõlemas seadmes Wi-Fi välja ja uuesti sisse lülitada.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Mine kasutajatoelehele</string>
   <string name="DeviceTransferSetup__try_again">Proovi uuesti</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Teise seadme ootamine…</string>
@@ -2526,6 +2557,8 @@
   <string name="OldDeviceTransferLockedDialog__done">Tehtud</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Loobu ja aktiveeri see seade</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__dont_transfer">Ära kanna üle</string>
+  <string name="AdvancedPreferenceFragment__transfer">Kanna üle</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokeeri</string>
   <string name="RecipientBottomSheet_unblock">Eemalda blokeering</string>
@@ -2565,6 +2598,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Lõikelauale kopeeritud</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">See link ei ole hetkel aktiivne</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Hääsõnumi esitamine ei õnnestunud</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaItemFactory__voice_message">Häälsõnum · %1$s</string>
   <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s saajale %2$s</string>
@@ -2630,6 +2664,10 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Otsi riikidest</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Jäta vahele</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d liige</item>
+    <item quantity="other">%1$d liiget</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Jaga</string>
   <string name="ShareActivity__send">Saada</string>
@@ -2690,7 +2728,13 @@
   <string name="payment_info_card_update_your_pin">Uuenda enda PIN-koodi</string>
   <string name="payment_info_card_update_pin">Uuenda PIN-koodi</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Deaktiveeri rahakott</string>
+  <string name="DeactivateWalletFragment__your_balance">Sinu kontojääk</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Kanna kontojääk üle</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiveeri ilma ülekandeta</string>
   <string name="DeactivateWalletFragment__deactivate">Deaktiveeri</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Kas deaktiveerida ilma ülekandeta?</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Rahakoti deaktiveerimisel tekkis tõrge.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__start">Alusta</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Sisesta käsitsi</string>
@@ -2701,6 +2745,8 @@
   <string name="PaymentsRecoveryPhraseFragment__next">Edasi</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Muuda</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Eelmine</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ära tee ekraanipilti ega saada e-postiga.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Maksekonto taastatud.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kas kopeerida lõikepuhvrisse?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopeeri</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
@@ -2719,6 +2765,7 @@
   <string name="UnreadPayments__s_sent_you_s">%1$s saatis sulle %2$s</string>
   <string name="UnreadPayments__d_new_payment_notifications">%1$d uut makseteavitust</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Ei saa makset saata</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Sellele kasutajale makse saatmiseks peab ta kinnitama sinult saadud sõnumitaotlust. Sõnumitaotluse loomiseks saatke talle sõnum.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Saada sõnum</string>
   <!--GroupsInCommonMessageRequest-->
@@ -2739,16 +2786,32 @@
   <string name="AppSettingsFragment__invite_your_friends">Kutsu enda sõbrad</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
+  <string name="AccountSettingsFragment__change_phone_number">Muuda telefoninumbrit</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">Jätka</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Sinu telefoninumber on muudetud.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Numbri muutmine</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Sinu vana number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Vana telefoninumber</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Sinu uus number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Uus telefoninumber</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Sinu sisestatud telefoninumber ei vasta konto telefoninumbrile.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Sa pead sisestama vana numbri maakoodi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Sa pead sisestama enda vana telefoninumbri</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Sa pead sisestama uue numbri maakoodi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Sa pead sisestama enda uue telefoninumbri</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Muuda numbrit</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Kinnitamine: %1$s</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__edit_number">Muuda numbrit</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-koodid pole samad</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Jäta vana PIN-kood alles</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Uuenda PIN-koodi</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Kas jätta vana PIN-kood alles?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__retry">Proovi uuesti</string>
   <string name="ChangeNumberLockActivity__leave">Lahku</string>
@@ -2770,9 +2833,12 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Kaduvad sõnumid</string>
   <string name="PrivacySettingsFragment__app_security">Rakenduse turvalisus</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Uute gruppide sõnumite vaikimisi kestus</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Määra kaduvate sõnumite vaikimisi kestus kõigile sinu poolt loodud uutele gruppidele.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näita olekuikooni</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kui lubatud, siis kaovad selle vestluse saadetud ja saadud sõnumid pärast nende nägemist.</string>
   <string name="ExpireTimerSettingsFragment__off">Väljas</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 nädalat</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 nädal</string>
@@ -2807,6 +2873,11 @@
   <string name="ChatColorSelectionFragment__duplicate">Duplikaat</string>
   <string name="ChatColorSelectionFragment__delete">Kustuta</string>
   <string name="ChatColorSelectionFragment__delete_color">Kustuta värv</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">See kohandatud värv on kasutusel %1$d vestluses. Kas sa soovid seda kõigist vestlustest eemaldada?</item>
+    <item quantity="other">See kohandatud värv on kasutusel %1$d vestluses. Kas sa soovid seda kõigist vestlustest eemaldada?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Kas eemaldada vestluse värv?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Ühtlane</string>
   <string name="CustomChatColorCreatorFragment__gradient">Üleminek</string>
@@ -2815,10 +2886,16 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Salvesta</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Muuda värvi</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">See värv on kasutusel %1$d vestluses. Kas sa soovid salvestada muudatusi kõikide vestluste jaoks?</item>
+    <item quantity="other">See värv on kasutusel %1$d vestluses. Kas sa soovid salvestada muudatusi kõikide vestluste jaoks?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Ülemise ääre valija</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Alumise ääre valija</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Kohanda reaktsioone</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Klõpsa emoji asendamiseks</string>
   <string name="EditReactionsFragment__reset">Lähtesta</string>
   <string name="EditReactionsFragment_save">Salvesta</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Kohandab värvi automaatselt taustapildiga</string>
@@ -2832,6 +2909,7 @@
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Lisa profiili foto</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vali välimus ja tunnetus või kohanda enda initsiaale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Mitte praegu</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Lisa foto</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Ava emotikonide otsing</string>
@@ -2883,10 +2961,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Lisa liikmed</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Muuda grupi infot</string>
+  <string name="PermissionsSettingsFragment__send_messages">Saada sõnumid</string>
   <string name="PermissionsSettingsFragment__all_members">Kõik liikmed</string>
   <string name="PermissionsSettingsFragment__only_admins">Ainult administraatorid</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Kes saavad uusi liikmeid lisada?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kes saab selle grupi infot muuta?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kes saab saata sõnumeid?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Vaigista teavitused</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Pole vaigistatud</string>
@@ -2902,35 +2982,85 @@
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Uus makse</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Uus sõnum</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Otsi nime või numbri järgi</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Lõpeta häälsõnum</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Muuda häälsõnumi kiirust</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pane häälsõnum pausile</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Mängi häälsõnum</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Liigu häälsõnumi juurde</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Profiilipildi eelvaade</string>
   <string name="AvatarPickerFragment__camera">Kaamera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Tee foto</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Vali foto</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Salvesta</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Vali profiilipilt</string>
+  <string name="AvatarPickerFragment__clear_avatar">Eemalda profiilipilt</string>
   <string name="AvatarPickerFragment__edit">Muuda</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Profiilipildi salvestamine ei õnnestunud</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Eelvaade</string>
   <string name="TextAvatarCreationFragment__done">Tehtud</string>
   <string name="TextAvatarCreationFragment__text">Tekst</string>
   <string name="TextAvatarCreationFragment__color">Värv</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Vali värv</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Liigu üles</string>
+  <string name="MultiselectForwardFragment__forward_to">Edasta</string>
   <string name="MultiselectForwardFragment__add_a_message">Lisa sõnum</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Kiiremad edastused</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Edastatud sõnumid saadetakse nüüd koheselt.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Saada %1$d sõnum</item>
+    <item quantity="other">Saada %1$d sõnumit</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Sõnum saadetud</item>
+    <item quantity="other">Sõnumid saadetud</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Sõnumi saatmine ei õnnestunud</item>
+    <item quantity="other">Sõnumite saatmine ei õnnestunud</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Sõnumi edastamine ei õnnestunud, sest see pole enam saadaval.</item>
+    <item quantity="other">Sõnumite edastamine ei õnnestunud, sest need pole enam saadaval.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Limiit ületatud</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Lisa sõnum</string>
+  <string name="MediaReviewFragment__add_a_reply">Lisa vastus</string>
+  <string name="MediaReviewFragment__send_to">Saaja</string>
   <string name="ImageEditorHud__cancel">Loobu</string>
+  <string name="ImageEditorHud__draw">Joonista</string>
+  <string name="ImageEditorHud__write_text">Kirjuta tekst</string>
+  <string name="ImageEditorHud__add_a_sticker">Lisa kleebis</string>
   <string name="ImageEditorHud__blur">Hägusta</string>
+  <string name="ImageEditorHud__done_editing">Muutmine lõpetatud</string>
+  <string name="ImageEditorHud__clear_all">Eemalda kõik</string>
   <string name="ImageEditorHud__undo">Võta tagasi</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Lülita markeri ja esiletõstja vahel</string>
   <string name="MediaCountIndicatorButton__send">Saada</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Klõpsa eemaldamiseks</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Koputa valimiseks</string>
   <string name="MediaReviewImagePageFragment__discard">Keeldu</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Kas loobuda muudatustest?</string>
+  <string name="MediaReviewFragment__view_once_message">Ühekordne sõnum</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Sa kaotad kõik sellele fotole tehtud muudatused</string>
   <string name="ImageEditorHud__delete">Kustuta</string>
+  <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Lülita tekstistiilide vahel</string>
   <!--EOF-->
 </resources>

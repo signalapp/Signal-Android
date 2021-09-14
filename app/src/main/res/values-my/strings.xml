@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(ဗွီဒီယို) </string>
   <string name="DraftDatabase_Draft_location_snippet">(တည်နေရာ) </string>
   <string name="DraftDatabase_Draft_quote_snippet">(ပြန်လည်ပေးပို့လာသောစာတို)</string>
+  <string name="DraftDatabase_Draft_voice_note">စက္ကန့်</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ဓါတ်ပုံပြခန်း</string>
   <string name="AttachmentKeyboard_file">ဖိုင်</string>

@@ -234,7 +234,7 @@
   <string name="ConversationActivity_no_results">Geen resultaten</string>
   <string name="ConversationActivity_sticker_pack_installed">Stickerpakket geïnstalleerd</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nieuw: zeg het met stickers</string>
-  <string name="ConversationActivity_cancel">Audio-opname annuleren</string>
+  <string name="ConversationActivity_cancel">Annuleren</string>
   <string name="ConversationActivity_delete_conversation">Gesprek verwijderen?</string>
   <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal worden gewist van al je apparaten.</string>
@@ -1146,7 +1146,7 @@
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam, -foto en -omschrijving zullen dan niet bewaard blijven.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
-  <string name="PinRestoreEntryFragment_cancel">Audio-opname annuleren</string>
+  <string name="PinRestoreEntryFragment_cancel">Annuleren</string>
   <string name="PinRestoreEntryFragment_skip">Overslaan</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
@@ -2642,7 +2642,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="DeviceTransfer__transferring_data">Gegevens aan het overzetten</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en laat houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurd altijd over een eind-tot-eind-versleutelde verbinding.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d berichten tot nu toe …</string>
-  <string name="DeviceTransfer__cancel">Audio-opname annuleren</string>
+  <string name="DeviceTransfer__cancel">Annuleren</string>
   <string name="DeviceTransfer__try_again">Opnieuw proberen</string>
   <string name="DeviceTransfer__stop_transfer_question">Overzetten annuleren?</string>
   <string name="DeviceTransfer__stop_transfer">Overzetten annuleren</string>
@@ -3217,7 +3217,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MediaReviewFragment__add_a_message">Een bericht bijvoegen</string>
   <string name="MediaReviewFragment__add_a_reply">Een reactie toevoegen</string>
   <string name="MediaReviewFragment__send_to">Verzonden aan</string>
-  <string name="ImageEditorHud__cancel">Audio-opname annuleren</string>
+  <string name="ImageEditorHud__cancel">Annuleren</string>
   <string name="ImageEditorHud__draw">Tekenen</string>
   <string name="ImageEditorHud__write_text">Schrijf tekst</string>
   <string name="ImageEditorHud__add_a_sticker">Een sticker toevoegen</string>

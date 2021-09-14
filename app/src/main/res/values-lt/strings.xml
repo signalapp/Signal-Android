@@ -3415,5 +3415,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Prarasite bet kokius šiai nuotraukai atliktus pakeitimus.</string>
   <string name="ImageEditorHud__delete">Ištrinti</string>
   <string name="CameraFragment__failed_to_open_camera">Nepavyko atverti kameros</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Perjungti tarp teksto stilių</string>
   <!--EOF-->
 </resources>

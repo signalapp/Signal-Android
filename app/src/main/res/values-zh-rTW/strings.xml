@@ -3135,5 +3135,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">你將遺失對此照片所做的任何更改。</string>
   <string name="ImageEditorHud__delete">刪除</string>
   <string name="CameraFragment__failed_to_open_camera">無法開啟相機</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">在文字樣式之間切換</string>
   <!--EOF-->
 </resources>

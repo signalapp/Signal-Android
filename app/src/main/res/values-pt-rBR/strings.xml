@@ -2980,7 +2980,7 @@
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Seu número foi confirmado como %1$s. Se esse não for o seu novo número, refaça o processo de mudança de número, por favor.</string>
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Mudança de número não confirmada</string>
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Não foi possível determinar o progresso da sua solicitação de mudança de número.\n\n(Erro: %1$s)</string>
-  <string name="ChangeNumberLockActivity__retry">Tente novamente</string>
+  <string name="ChangeNumberLockActivity__retry">Tentar novamente</string>
   <string name="ChangeNumberLockActivity__leave">Sair</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Enviar registro de depuração</string>
   <!--ChatsSettingsFragment-->
@@ -3231,5 +3231,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Você perderá todas as alterações feitas nessa foto.</string>
   <string name="ImageEditorHud__delete">Remover</string>
   <string name="CameraFragment__failed_to_open_camera">Falha ao abrir a câmera</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Alternar entre estilos de texto</string>
   <!--EOF-->
 </resources>

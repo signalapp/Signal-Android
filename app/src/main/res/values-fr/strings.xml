@@ -1248,7 +1248,7 @@
   </plurals>
   <string name="WebRtcCallView__flip">Basculer</string>
   <string name="WebRtcCallView__speaker">Haut-parleur</string>
-  <string name="WebRtcCallView__camera">Appareil photo</string>
+  <string name="WebRtcCallView__camera">Caméra</string>
   <string name="WebRtcCallView__mute">Sourdine</string>
   <string name="WebRtcCallView__ring">Sonnerie</string>
   <string name="WebRtcCallView__end_call">Raccrocher</string>
@@ -2150,7 +2150,7 @@
   <string name="PaymentsHomeFragment__details">Détails</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Vous pouvez utiliser Signal pour envoyer et recevoir des MobileCoins. Tous les paiements sont soumis aux conditions générales d’utilisation de MobileCoin et du porte-monnaie MobileCoin. Il s’agit d’une fonction bêta et des problèmes pourraient donc survenir. Les paiements et les soldes que vous pourriez perdre ne peuvent pas être récupérés.</string>
   <string name="PaymentsHomeFragment__activate">Activer</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Voir les conditions générales d’utilisation de MobileCoin</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Afficher les CGU de MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Les paiements ne sont plus proposés dans Signal. Vous pouvez encore transférer des fonds vers une plateforme de change, mais vous ne pouvez plus ni envoyer, ni recevoir de paiements, ni ajouter de fonds.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Ajouter des fonds</string>
@@ -2279,7 +2279,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
   <string name="conversation_list_search_description">Chercher</string>
-  <string name="conversation_list__pinned">Épinglée</string>
+  <string name="conversation_list__pinned">Épinglées</string>
   <string name="conversation_list__chats">Conversations</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Vous ne pouvez épingler plus de %1$d conversations</string>
   <!--conversation_list_item_view-->
