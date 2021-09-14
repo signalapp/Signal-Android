@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ProfileUtil;
@@ -71,6 +72,16 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
+    if (SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().hasOptedOut() && SignalStore.storageService().getLastSyncTime() == 0) {
+      Log.i(TAG, "Registered with PIN but haven't completed storage sync yet.");
+      return;
+    }
+
+    if (!SignalStore.registrationValues().hasUploadedProfile()) {
+      Log.i(TAG, "Registered but haven't uploaded profile yet.");
+      return;
+    }
+
     Recipient            self                 = Recipient.self();
     ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self));
     SignalServiceProfile profile              = profileAndCredential.getProfile();
@@ -113,6 +124,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       String      plaintextName = ProfileUtil.decryptString(profileKey, encryptedName);
       ProfileName profileName   = ProfileName.fromSerialized(plaintextName);
 
+      Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextName) ? "non-" : "") + "empty name.");
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
@@ -135,6 +147,7 @@ public class RefreshOwnProfileJob extends BaseJob {
   }
 
   private static void setProfileAvatar(@Nullable String avatar) {
+    Log.d(TAG, "Saving " + (!Util.isEmpty(avatar) ? "non-" : "") + "empty avatar.");
     ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), avatar));
   }
 

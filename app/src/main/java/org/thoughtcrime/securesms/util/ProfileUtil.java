@@ -229,6 +229,7 @@ public final class ProfileUtil {
     Log.d(TAG, "Uploading " + (!Util.isEmpty(about) ? "non-" : "") + "empty about.");
     Log.d(TAG, "Uploading " + (!Util.isEmpty(aboutEmoji) ? "non-" : "") + "empty emoji.");
     Log.d(TAG, "Uploading " + (paymentsAddress != null ? "non-" : "") + "empty payments address.");
+    Log.d(TAG, "Uploading " + (avatar != null && avatar.getLength() != 0 ? "non-" : "") + "empty avatar.");
 
     ProfileKey                  profileKey     = ProfileKeyUtil.getSelfProfileKey();
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();

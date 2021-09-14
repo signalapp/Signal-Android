@@ -165,8 +165,8 @@ public final class RegistrationRepository {
                                                            System.currentTimeMillis(),
                                                            true);
 
-    TextSecurePreferences.setPushRegistered(context, true);
     TextSecurePreferences.setPushServerPassword(context, registrationData.getPassword());
+    TextSecurePreferences.setPushRegistered(context, true);
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setUnauthorizedReceived(context, false);
