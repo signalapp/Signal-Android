@@ -221,7 +221,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from(emojiSummary),
         isChecked = state.useBuiltInEmojiSet,
         onClick = {
-          viewModel.setDisableAutoMigrationNotification(!state.useBuiltInEmojiSet)
+          viewModel.setUseBuiltInEmoji(!state.useBuiltInEmojiSet)
         }
       )
 
