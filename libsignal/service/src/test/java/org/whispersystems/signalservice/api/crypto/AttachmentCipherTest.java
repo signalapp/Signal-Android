@@ -4,8 +4,11 @@ import org.conscrypt.Conscrypt;
 import org.junit.Test;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.kdf.HKDFv3;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
+import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.util.Util;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -101,6 +104,43 @@ public final class AttachmentCipherTest {
     }
 
     assertTrue(hitCorrectException);
+  }
+
+  @Test
+  public void attachment_encryptDecryptPaddedContent() throws IOException, InvalidMessageException {
+    int[]    lengths         = { 531, 600, 724, 1019, 1024 };
+
+    for (int length : lengths) {
+      byte[] plaintextInput = new byte[length];
+
+      for (int i = 0; i < length; i++) {
+        plaintextInput[i] = (byte) 0x97;
+      }
+
+      byte[]                key             = Util.getSecretBytes(64);
+      ByteArrayInputStream  inputStream     = new ByteArrayInputStream(plaintextInput);
+      InputStream           dataStream      = new PaddingInputStream(inputStream, length);
+      ByteArrayOutputStream encryptedStream = new ByteArrayOutputStream();
+      DigestingOutputStream digestStream    = new AttachmentCipherOutputStreamFactory(key, null).createFor(encryptedStream);
+
+      Util.copy(dataStream, digestStream);
+      digestStream.flush();
+
+      byte[] digest        = digestStream.getTransmittedDigest();
+      byte[] encryptedData = encryptedStream.toByteArray();
+
+      encryptedStream.close();
+      inputStream.close();
+
+      File cipherFile = writeToFile(encryptedData);
+
+      InputStream decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, length, key, digest);
+      byte[]      plaintextOutput = readInputStreamFully(decryptedStream);
+
+      assertArrayEquals(plaintextInput, plaintextOutput);
+
+      cipherFile.delete();
+    }
   }
 
   @Test
