@@ -46,14 +46,20 @@ class ConversationView : LinearLayout {
             accentView.visibility = View.VISIBLE
         } else {
             accentView.setBackgroundResource(R.color.accent)
-            accentView.visibility = if (unreadCount > 0) View.VISIBLE else View.INVISIBLE
+            // Using thread.isRead we can determine if the last message was our own, and display it as 'read' even though previous messages may not be
+            // This would also not trigger the disappearing message timer which may or may not be desirable
+            accentView.visibility = if (unreadCount > 0 && !thread.isRead) View.VISIBLE else View.INVISIBLE
         }
-        val formattedUnreadCount = if (unreadCount < 100) unreadCount.toString() else "99+"
+        val formattedUnreadCount = if (thread.isRead) {
+            null
+        } else {
+            if (unreadCount < 100) unreadCount.toString() else "99+"
+        }
         unreadCountTextView.text = formattedUnreadCount
         val textSize = if (unreadCount < 100) 12.0f else 9.0f
         unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
         unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
-        unreadCountIndicator.isVisible = (unreadCount != 0)
+        unreadCountIndicator.isVisible = (unreadCount != 0 && !thread.isRead)
         val senderDisplayName = getUserDisplayName(thread.recipient)
                 ?: thread.recipient.address.toString()
         conversationViewDisplayNameTextView.text = senderDisplayName
@@ -69,7 +75,7 @@ class ConversationView : LinearLayout {
         val rawSnippet = thread.getDisplayBody(context)
         val snippet = highlightMentions(rawSnippet, thread.threadId, context)
         snippetTextView.text = snippet
-        snippetTextView.typeface = if (unreadCount > 0) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+        snippetTextView.typeface = if (unreadCount > 0 && !thread.isRead) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         snippetTextView.visibility = if (isTyping) View.GONE else View.VISIBLE
         if (isTyping) {
             typingIndicatorView.startAnimation()
