@@ -238,7 +238,7 @@ public final class MessageContentProcessor {
       PendingRetryReceiptModel pending      = ApplicationDependencies.getPendingRetryReceiptCache().get(senderRecipient.getId(), content.getTimestamp());
       long                     receivedTime = handlePendingRetry(pending, content, threadRecipient);
 
-      log(String.valueOf(content.getTimestamp()), "Beginning message processing.");
+      log(String.valueOf(content.getTimestamp()), "Beginning message processing. Sender: " + senderRecipient.getId() + " | " + senderRecipient.requireServiceId());
 
       if (content.getDataMessage().isPresent()) {
         GroupDatabase            groupDatabase  = DatabaseFactory.getGroupDatabase(context);
@@ -439,7 +439,7 @@ public final class MessageContentProcessor {
     Optional<GroupRecord> groupRecord = groupDatabase.getGroup(groupId);
 
     if (groupRecord.isPresent() && !groupRecord.get().getMembers().contains(senderRecipient.getId())) {
-      log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupId);
+      log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupId + ". Sender: " + senderRecipient.getId() + " | " + senderRecipient.requireServiceId());
       return true;
     }
 
@@ -1769,7 +1769,7 @@ public final class MessageContentProcessor {
       GroupId.Push groupId = GroupId.push(typingMessage.getGroupId().get());
 
       if (!DatabaseFactory.getGroupDatabase(context).isCurrentMember(groupId, senderRecipient.getId())) {
-        warn(String.valueOf(content.getTimestamp()), "Seen typing indicator for non-member");
+        warn(String.valueOf(content.getTimestamp()), "Seen typing indicator for non-member " + senderRecipient.getId());
         return;
       }
 
