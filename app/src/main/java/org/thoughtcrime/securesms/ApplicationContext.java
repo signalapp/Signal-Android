@@ -28,6 +28,7 @@ import androidx.multidex.MultiDexApplication;
 import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
+import org.greenrobot.eventbus.EventBus;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
@@ -134,6 +135,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED_IO, true, false));
                               RxJavaPlugins.setInitComputationSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED, true, false));
                             })
+                            .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("notification-channels", () -> NotificationChannels.create(this))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
