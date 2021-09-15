@@ -67,6 +67,23 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   private final EditingPurpose editingPurpose;
   private       float          fixedRatio;
 
+  public void setSelected(@Nullable EditorElement editorElement) {
+    if (editorElement == null) {
+      editorElementHierarchy.removeAllSelectionArtifacts();
+    } else {
+      Matrix overlayMappingMatrix = findRelativeMatrix(editorElement, editorElementHierarchy.getOverlay());
+      editorElementHierarchy.setOrUpdateSelectionThumbsForElement(editorElement, overlayMappingMatrix);
+    }
+  }
+
+  public void setSelectionVisible(boolean visible) {
+    editorElementHierarchy.getSelection()
+                          .getFlags()
+                          .setVisible(visible)
+                          .setChildrenVisible(visible)
+                          .persist();
+  }
+
   private enum EditingPurpose {
     IMAGE,
     AVATAR_CAPTURE,
@@ -271,7 +288,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     final EditorElement popped         = fromStack.pop(oldRootElement);
 
     if (popped != null) {
-      editorElementHierarchy = EditorElementHierarchy.create(popped);
+      setEditorElementHierarchy(EditorElementHierarchy.create(popped));
+
       toStack.tryPush(oldRootElement);
 
       restoreStateWithAnimations(oldRootElement, editorElementHierarchy.getRoot(), invalidate, keepEditorState);
@@ -282,6 +300,13 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
       inBoundsMemory.push(editorElementHierarchy.getMainImage(), editorElementHierarchy.getCropEditorElement());
     }
+  }
+
+  /** Replaces the hierarchy, maintaining any selection if possible */
+  private void setEditorElementHierarchy(@NonNull EditorElementHierarchy hierarchy) {
+    EditorElement selectedElement = editorElementHierarchy.getSelectedElement();
+    editorElementHierarchy = hierarchy;
+    setSelected(selectedElement != null ? findById(selectedElement.getId()) : null);
   }
 
   private static void restoreStateWithAnimations(@NonNull EditorElement fromRootElement, @NonNull EditorElement toRootElement, @NonNull Runnable onInvalidate, boolean keepEditorState) {
@@ -572,7 +597,10 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
    * Called as edits are underway.
    */
   public void moving(@NonNull EditorElement editorElement) {
-    if (!isCropping()) return;
+    if (!isCropping()) {
+      setSelected(editorElement);
+      return;
+    }
 
     EditorElement mainImage = editorElementHierarchy.getMainImage();
     EditorElement cropEditorElement = editorElementHierarchy.getCropEditorElement();
@@ -863,7 +891,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
    * @param to
    * @return
    */
-  @Nullable Matrix findRelativeMatrix(@NonNull EditorElement from, @NonNull EditorElement to) {
+  public @Nullable Matrix findRelativeMatrix(@NonNull EditorElement from, @NonNull EditorElement to) {
     Matrix matrix = findElementInverseMatrix(to, new Matrix());
     Matrix outOf  = findElementMatrix(from, new Matrix());
 
@@ -910,10 +938,11 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   public void delete(@NonNull EditorElement editorElement) {
     editorElementHierarchy.getImageRoot().forAllInTree(element -> element.deleteChild(editorElement, invalidate));
+    setSelected(null);
   }
 
   public @Nullable EditorElement findById(@NonNull UUID uuid) {
-    return getElementMap(getRoot()).get(uuid);
+    return getRoot().findElementWithId(uuid);
   }
 
   /**

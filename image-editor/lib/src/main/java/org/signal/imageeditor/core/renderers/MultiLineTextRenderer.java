@@ -42,6 +42,8 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   @NonNull
   private String text = "";
 
+  private static final int PADDING = 10;
+
   @ColorInt
   private int color;
 
@@ -54,7 +56,6 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   private int     selStart;
   private int     selEnd;
   private boolean hasFocus;
-  private boolean selected;
   private Mode    mode;
 
   private List<Line> lines = emptyList();
@@ -64,8 +65,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
   private final Matrix recommendedEditorMatrix = new Matrix();
 
-  private final SelectedElementGuideRenderer selectedElementGuideRenderer = new SelectedElementGuideRenderer();
-  private final RectF                        textBounds                   = new RectF();
+  private final RectF textBounds = new RectF();
 
   public MultiLineTextRenderer(@Nullable String text, @ColorInt int color, @NonNull Mode mode) {
     this.mode = mode;
@@ -104,10 +104,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
       width = Math.max(line.textBounds.width(), width);
     }
 
-    if (selected && rendererContext.isEditing()) {
-      textBounds.set(-width, -height / 2f, width, 0f);
-      selectedElementGuideRenderer.render(rendererContext, textBounds);
-    }
+    textBounds.set(-width - PADDING, -PADDING, width + PADDING, height / 2f + PADDING);
   }
 
   @NonNull
@@ -399,19 +396,16 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
   @Override
   public void onSelected(boolean selected) {
-    if (this.selected != selected) {
-      this.selected = selected;
-    }
+  }
+
+  @Override
+  public void getSelectionBounds(@NonNull RectF bounds) {
+    bounds.set(textBounds);
   }
 
   @Override
   public boolean hitTest(float x, float y) {
-    for (Line line : lines) {
-      y += line.ascentInBounds;
-      if (line.contains(x, y)) return true;
-      y -= line.descentInBounds;
-    }
-    return false;
+    return textBounds.contains(x, y);
   }
 
   public void setSelection(int selStart, int selEnd) {

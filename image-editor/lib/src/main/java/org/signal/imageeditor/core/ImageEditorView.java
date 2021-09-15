@@ -121,6 +121,7 @@ public final class ImageEditorView extends FrameLayout {
   public void startTextEditing(@NonNull EditorElement editorElement) {
     getModel().addFade();
     if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
+      getModel().setSelectionVisible(false);
       editText.setCurrentTextEditorElement(editorElement);
     }
   }
@@ -136,7 +137,9 @@ public final class ImageEditorView extends FrameLayout {
   public void doneTextEditing() {
     getModel().zoomOut();
     getModel().removeFade();
+    getModel().setSelectionVisible(true);
     if (editText.getCurrentTextEntity() != null) {
+      getModel().setSelected(null);
       editText.setCurrentTextEditorElement(null);
       editText.hideKeyboard();
     }
@@ -391,13 +394,22 @@ public final class ImageEditorView extends FrameLayout {
     if (selected.getRenderer() instanceof ThumbRenderer) {
       ThumbRenderer thumb = (ThumbRenderer) selected.getRenderer();
 
-      selected = getModel().findById(thumb.getElementToControl());
+      EditorElement thumbControlledElement = getModel().findById(thumb.getElementToControl());
+      if (thumbControlledElement == null) return null;
 
-      if (selected == null) return null;
+      EditorElement thumbsParent = getModel().getRoot().findParent(selected);
+
+      if (thumbsParent == null) return null;
+
+      Matrix thumbContainerRelativeMatrix = model.findRelativeMatrix(thumbsParent, thumbControlledElement);
+
+      if (thumbContainerRelativeMatrix == null) return null;
+
+      selected = thumbControlledElement;
 
       elementInverseMatrix = model.findElementInverseMatrix(selected, viewMatrix);
       if (elementInverseMatrix != null) {
-        return ThumbDragEditSession.startDrag(selected, elementInverseMatrix, thumb.getControlPoint(), point);
+        return ThumbDragEditSession.startDrag(selected, elementInverseMatrix, thumbContainerRelativeMatrix, thumb.getControlPoint(), point);
       } else {
         return null;
       }
@@ -501,9 +513,11 @@ public final class ImageEditorView extends FrameLayout {
         if (editSession != null) {
           EditorElement selected = editSession.getSelected();
           model.indicateSelected(selected);
+          model.setSelected(selected);
           tapListener.onEntitySingleTap(selected);
         } else {
           tapListener.onEntitySingleTap(null);
+          model.setSelected(null);
         }
         return true;
       }

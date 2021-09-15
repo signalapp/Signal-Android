@@ -10,15 +10,18 @@ import androidx.annotation.Nullable;
 
 import org.signal.imageeditor.core.Bounds;
 import org.signal.imageeditor.R;
+import org.signal.imageeditor.core.SelectableRenderer;
 import org.signal.imageeditor.core.renderers.CropAreaRenderer;
 import org.signal.imageeditor.core.renderers.FillRenderer;
 import org.signal.imageeditor.core.renderers.InverseFillRenderer;
 import org.signal.imageeditor.core.renderers.OvalGuideRenderer;
+import org.signal.imageeditor.core.renderers.SelectedElementGuideRenderer;
 import org.signal.imageeditor.core.renderers.TrashRenderer;
 
 /**
  * Creates and handles a strict EditorElement Hierarchy.
  * <p>
+ * <pre>
  * root - always square, contains only temporary zooms for editing. e.g. when the whole editor zooms out for cropping
  * |
  * |- view - contains persisted adjustments for crops
@@ -44,6 +47,9 @@ import org.signal.imageeditor.core.renderers.TrashRenderer;
  * |     |  |  |  |  |- Top right thumb
  * |     |  |  |  |  |- Bottom left thumb
  * |     |  |  |  |  |- Bottom right thumb
+ * |     |  |- selection - matches the aspect and overall matrix of the selected item's selectedBounds
+ * |     |  |  |- Selection thumbs
+ * </pre>
  */
 final class EditorElementHierarchy {
 
@@ -74,6 +80,9 @@ final class EditorElementHierarchy {
   private final EditorElement fade;
   private final EditorElement trash;
   private final EditorElement thumbs;
+  private final EditorElement selection;
+
+  private EditorElement selectedElement;
 
   private EditorElementHierarchy(@NonNull EditorElement root) {
     this.root              = root;
@@ -82,6 +91,7 @@ final class EditorElementHierarchy {
     this.imageRoot         = this.flipRotate.getChild(0);
     this.overlay           = this.flipRotate.getChild(1);
     this.imageCrop         = this.overlay.getChild(0);
+    this.selection         = this.overlay.getChild(1);
     this.cropEditorElement = this.imageCrop.getChild(0);
     this.blackout          = this.cropEditorElement.getChild(0);
     this.thumbs            = this.cropEditorElement.getChild(1);
@@ -123,6 +133,9 @@ final class EditorElementHierarchy {
 
     EditorElement imageCrop = new EditorElement(null);
     overlay.addElement(imageCrop);
+
+    EditorElement selection = new EditorElement(null);
+    overlay.addElement(selection);
 
     boolean       renderCenterThumbs = cropStyle == CropStyle.RECTANGLE;
     EditorElement cropEditorElement  = new EditorElement(new CropAreaRenderer(R.color.crop_area_renderer_outer_color, renderCenterThumbs));
@@ -203,6 +216,60 @@ final class EditorElementHierarchy {
     return thumbs;
   }
 
+  void removeAllSelectionArtifacts() {
+    selection.deleteAllChildren();
+    selectedElement = null;
+  }
+
+  void setOrUpdateSelectionThumbsForElement(@NonNull EditorElement element, @Nullable Matrix overlayMappingMatrix) {
+    if (selectedElement != element) {
+      removeAllSelectionArtifacts();
+
+      if (element.getRenderer() instanceof SelectableRenderer) {
+        selectedElement = element;
+      } else {
+        selectedElement = null;
+      }
+
+      if (selectedElement == null) return;
+
+      selection.addElement(createSelectionBox());
+      selection.addElement(createScaleControlThumb(element));
+      selection.addElement(createRotateControlThumb(element));
+    }
+
+    if (overlayMappingMatrix != null) {
+      Matrix selectionMatrix = selection.getLocalMatrix();
+
+      if (selectedElement.getRenderer() instanceof SelectableRenderer) {
+        SelectableRenderer renderer = (SelectableRenderer) selectedElement.getRenderer();
+        RectF              bounds   = new RectF();
+        renderer.getSelectionBounds(bounds);
+        selectionMatrix.setRectToRect(Bounds.FULL_BOUNDS, bounds, Matrix.ScaleToFit.FILL);
+      }
+
+      selectionMatrix.postConcat(overlayMappingMatrix);
+    }
+  }
+
+  private static @NonNull EditorElement createSelectionBox() {
+    return new EditorElement(new SelectedElementGuideRenderer());
+  }
+
+  private static @NonNull EditorElement createScaleControlThumb(@NonNull EditorElement element) {
+    ThumbRenderer.ControlPoint controlPoint = ThumbRenderer.ControlPoint.SCALE_ROT_RIGHT;
+    EditorElement              thumbElement = new EditorElement(new CropThumbRenderer(controlPoint, element.getId()));
+    thumbElement.getLocalMatrix().preTranslate(controlPoint.getX(), controlPoint.getY());
+    return thumbElement;
+  }
+
+  private static @NonNull EditorElement createRotateControlThumb(@NonNull EditorElement element) {
+    ThumbRenderer.ControlPoint controlPoint       = ThumbRenderer.ControlPoint.SCALE_ROT_LEFT;
+    EditorElement              rotateThumbElement = new EditorElement(new CropThumbRenderer(controlPoint, element.getId()));
+    rotateThumbElement.getLocalMatrix().preTranslate(controlPoint.getX(), controlPoint.getY());
+    return rotateThumbElement;
+  }
+
   private static @NonNull EditorElement newThumb(@NonNull EditorElement toControl, @NonNull ThumbRenderer.ControlPoint controlPoint) {
     EditorElement element = new EditorElement(new CropThumbRenderer(controlPoint, toControl.getId()));
 
@@ -221,6 +288,14 @@ final class EditorElementHierarchy {
 
   EditorElement getImageRoot() {
     return imageRoot;
+  }
+
+  EditorElement getSelection() {
+    return selection;
+  }
+
+  public @Nullable EditorElement getSelectedElement() {
+    return selectedElement;
   }
 
   EditorElement getTrash() {

@@ -212,6 +212,34 @@ public final class EditorElement implements Parcelable {
     }
   }
 
+  public @Nullable EditorElement findParent(@NonNull EditorElement editorElement) {
+    for (EditorElement child : children) {
+      if (child == editorElement) {
+        return this;
+      } else {
+        EditorElement element = child.findParent(editorElement);
+        if (element != null) {
+          return element;
+        }
+      }
+    }
+    return null;
+  }
+
+  public @Nullable EditorElement findElementWithId(@NonNull UUID id) {
+    for (EditorElement child : children) {
+      if (id.equals(child.id)) {
+        return child;
+      } else {
+        EditorElement element = child.findElementWithId(id);
+        if (element != null) {
+          return element;
+        }
+      }
+    }
+    return null;
+  }
+
   void deleteChild(@NonNull EditorElement editorElement, @Nullable Runnable invalidate) {
     Iterator<EditorElement> iterator = children.iterator();
     while (iterator.hasNext()) {
@@ -265,6 +293,10 @@ public final class EditorElement implements Parcelable {
 
   public int getZOrder() {
     return zOrder;
+  }
+
+  public void deleteAllChildren() {
+    children.clear();
   }
 
   public interface PerElementFunction {

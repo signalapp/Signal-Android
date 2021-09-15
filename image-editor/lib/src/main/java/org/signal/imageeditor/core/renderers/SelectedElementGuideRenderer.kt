@@ -4,16 +4,14 @@ import android.graphics.Color
 import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.graphics.Path
-import android.graphics.RectF
 import org.signal.core.util.DimensionUnit
+import android.os.Parcel
+import android.os.Parcelable
 import org.signal.imageeditor.core.Bounds
+import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.RendererContext
 
-class SelectedElementGuideRenderer {
-
-  companion object {
-    private const val PADDING: Int = 10
-  }
+class SelectedElementGuideRenderer : Renderer {
 
   private val allPointsOnScreen = FloatArray(8)
   private val allPointsInLocalCords = floatArrayOf(
@@ -46,28 +44,12 @@ class SelectedElementGuideRenderer {
    *
    * @param rendererContext The context to draw to.
    */
-  fun render(rendererContext: RendererContext) {
+  override fun render(rendererContext: RendererContext) {
     rendererContext.canvasMatrix.mapPoints(allPointsOnScreen, allPointsInLocalCords)
     performRender(rendererContext)
   }
 
-  fun render(rendererContext: RendererContext, contentBounds: RectF) {
-    rendererContext.canvasMatrix.mapPoints(
-      allPointsOnScreen,
-      floatArrayOf(
-        contentBounds.left - PADDING,
-        contentBounds.top - PADDING,
-        contentBounds.right + PADDING,
-        contentBounds.top - PADDING,
-        contentBounds.right + PADDING,
-        contentBounds.bottom + PADDING,
-        contentBounds.left - PADDING,
-        contentBounds.bottom + PADDING
-      )
-    )
-
-    performRender(rendererContext)
-  }
+  override fun hitTest(x: Float, y: Float): Boolean = false
 
   private fun performRender(rendererContext: RendererContext) {
     rendererContext.save()
@@ -82,20 +64,36 @@ class SelectedElementGuideRenderer {
     path.close()
 
     rendererContext.canvas.drawPath(path, guidePaint)
-    // TODO: Implement scaling
-//    rendererContext.canvas.drawCircle(
-//      (allPointsOnScreen[6] + allPointsOnScreen[0]) / 2f,
-//      (allPointsOnScreen[7] + allPointsOnScreen[1]) / 2f,
-//      circleRadius,
-//      circlePaint
-//    )
-//    rendererContext.canvas.drawCircle(
-//      (allPointsOnScreen[4] + allPointsOnScreen[2]) / 2f,
-//      (allPointsOnScreen[5] + allPointsOnScreen[3]) / 2f,
-//      circleRadius,
-//      circlePaint
-//    )
+    rendererContext.canvas.drawCircle(
+      (allPointsOnScreen[6] + allPointsOnScreen[0]) / 2f,
+      (allPointsOnScreen[7] + allPointsOnScreen[1]) / 2f,
+      circleRadius,
+      circlePaint
+    )
+    rendererContext.canvas.drawCircle(
+      (allPointsOnScreen[4] + allPointsOnScreen[2]) / 2f,
+      (allPointsOnScreen[5] + allPointsOnScreen[3]) / 2f,
+      circleRadius,
+      circlePaint
+    )
 
     rendererContext.restore()
+  }
+
+  override fun writeToParcel(parcel: Parcel, flags: Int) {
+  }
+
+  override fun describeContents(): Int {
+    return 0
+  }
+
+  companion object CREATOR : Parcelable.Creator<SelectedElementGuideRenderer> {
+    override fun createFromParcel(parcel: Parcel): SelectedElementGuideRenderer {
+      return SelectedElementGuideRenderer()
+    }
+
+    override fun newArray(size: Int): Array<SelectedElementGuideRenderer?> {
+      return arrayOfNulls(size)
+    }
   }
 }
