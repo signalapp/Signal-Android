@@ -173,7 +173,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Испраќањето не успеа, допрете за необезбеден одговор</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Враќање на неенкриптирани SMS пораки?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Враќање на неенкриптирани MMS пораки?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Оваа порака <b>нема</b> да биде енкриптирана бидејќи примачот повеќе не е корисник на Signal.\n\nДа испратам небезбедна порака?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Оваа порака <b>нема</b> да биде шифрирана бидејќи примачот повеќе не е корисник на Signal.\n\nДа испратам небезбедна порака?</string>
   <string name="ConversationItem_unable_to_open_media">Не можам да пронајдам апликација за отворање на овој тип на медија.</string>
   <string name="ConversationItem_copied_text">Ископирано %s</string>
   <string name="ConversationItem_from_s">од %s</string>
@@ -185,7 +185,7 @@
   <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Да ја ресетирам безбедносната сесија?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ова може да помогне ако имате проблеми со енкриптирање во овој разговор. Вашите пораки ќе бидат зачувани.</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ова може да помогне ако имате проблеми со шифрирање во овој разговор. Вашите пораки ќе бидат зачувани.</string>
   <string name="ConversationActivity_reset">Ресетираj</string>
   <string name="ConversationActivity_add_attachment">Прикачи датотека</string>
   <string name="ConversationActivity_select_contact_info">Изберете контакт инфо</string>
@@ -336,7 +336,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Грешка при поставување на профилната слика</string>
   <string name="CreateProfileActivity_problem_setting_profile">Проблем со поставување на профилот</string>
   <string name="CreateProfileActivity_set_up_your_profile">Поставете го Вашиот профил</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Вашиот профил е енкриптиран од-крај-до-крај. Вашиот профил и сите промени направени на него ќе им бидат видливи на Вашите контакти кога иницирате или прифаќате нови разговори и кога се приклучувате на нови групи.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Вашиот профил е шифриран од-крај-до-крај.  Вашиот профил и промените во него ќе бидат видливи на Вашите контакти, кога ќе започнете или прифаќате нови разговори и кога ќе се приклучите на нови групи. </string>
   <string name="CreateProfileActivity_set_avatar_description">Постави аватар</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Врати од резервна копија?</string>
@@ -1213,7 +1213,7 @@
   <string name="WebRtcCallView__reconnecting">Повторно поврзување…</string>
   <string name="WebRtcCallView__joining">Се приклучувам…</string>
   <string name="WebRtcCallView__disconnected">Неповрзан</string>
-  <string name="WebRtcCallView__signal_will_ring_s">Signal ќе ѕвони %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal ќе ѕвони на %1$s</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ќе ѕвони на %1$s и %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
     <item quantity="one">Signal ќе ѕвони на %1$s, %2$s и %3$d друг</item>
@@ -1231,12 +1231,12 @@
     <item quantity="one">Ѕвонам на %1$s, %2$s и %3$d друг</item>
     <item quantity="other">Ѕвонам на %1$s, %2$s и %3$d други</item>
   </plurals>
-  <string name="WebRtcCallView__s_is_calling_you">%1$s те повикува</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s те повикува и %2$s</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s те повикува, %2$s и %3$s</string>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s Ве повикува</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s Ве повикува и %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s Ве повикува, %2$s и %3$s</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s те повикува, %2$s, %3$s, и %4$d друг</item>
-    <item quantity="other">%1$s те повикува, %2$s, %3$s и %4$d други</item>
+    <item quantity="other">%1$s Ве повикува, %2$s, %3$s и %4$d други</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Нема никој</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s е на овој повик</string>
@@ -1829,7 +1829,7 @@
   <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да ја потврдите безбедноста на Вашето шифрирање од-крај-до-крај со %s, споредете ги горенаведените броеви со нивниот уред. Можете исто така да го скенирате кодот на нивниот телефон. <a href="https://signal.org/redirect/safety-numbers">Дознајте повеќе.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Допри да скенираш</string>
   <string name="verify_display_fragment__successful_match">Успешно совпаѓање</string>
-  <string name="verify_display_fragment__failed_to_verify_safety_number">Не успеа да се провери сигурносниот број</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на сигурносниот број</string>
   <string name="verify_display_fragment__loading">Вчитувам…</string>
   <string name="verify_display_fragment__mark_as_verified">Означи како проверено</string>
   <string name="verify_display_fragment__clear_verification">Исчисти проверка</string>
@@ -2877,12 +2877,12 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нов телефонски број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Мора да наведете повикувачки број на државата за Вашиот стар број</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Мора да го наведете вашиот стар телефонски број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Мора да го наведете Вашиот стар телефонски број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Мора да наведете повикувачки број на државата за Вашиот нов број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Мора да го наведете Вашиот нов број</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Смени го бројот</string>
-  <string name="ChangeNumberVerifyFragment__verifying_s">Потврдување %1$s</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Проверувам %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Потребна е проверка</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Променете го бројот</string>
@@ -2897,7 +2897,7 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирај PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Да го задржам стариот PIN?</string>
   <!--ChangeNumberLockActivity-->
-  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Изгледа дека сте се обиделе да го промените Вашиот број, но не успеавме да утврдиме дали е успешно.\n\nПовторно се проверува…</string>
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Изгледа сте се обиделе да го промените Вашиот број, но не успеавме да утврдиме дали е успешно.\n\nПовторно се проверува…</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Промената е потврдена</string>
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Вашиот број е потврден како %1$s. Ако ова не е Вашиот нов број, повторно започнете го процесот на промена на бројот.</string>
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Промената не е потврдена</string>

@@ -2975,8 +2975,10 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Manter o PIN antigo?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Parece que você tentou mudar o seu número de telemóvel. Aguardamos a confirmação de que a mudança foi bem-sucedida.\n\nA verificar agora…</string>
-  <string name="ChangeNumberLockActivity__change_status_confirmed">Alteração de estado confirmada</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Estado da alteração confirmado</string>
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Seu número foi confirmado como %1$s. Se esse não for o seu novo número, refaça o processo de alteração de número.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Estado da alteração não confirmado</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Não foi possível determinar o estado do seu pedido de alteração de número.\n\n(Erro: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Tentar novamente</string>
   <string name="ChangeNumberLockActivity__leave">Abandonar</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Enviar relatório de erros</string>
@@ -3228,5 +3230,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Irá perder quaisquer alterações que fez nesta fotografia.</string>
   <string name="ImageEditorHud__delete">Eliminar</string>
   <string name="CameraFragment__failed_to_open_camera">Ocorreu um erro a tentar abrir a câmara</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Alternar entre estilos de texto</string>
   <!--EOF-->
 </resources>
