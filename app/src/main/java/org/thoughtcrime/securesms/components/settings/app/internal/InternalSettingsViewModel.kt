@@ -30,6 +30,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setDisableStorageService(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.DISABLE_STORAGE_SERVICE, enabled)
+    refresh()
+  }
+
   fun setGv2DoNotCreateGv2Groups(enabled: Boolean) {
     preferenceDataStore.putBoolean(InternalValues.GV2_DO_NOT_CREATE_GV2, enabled)
     refresh()
@@ -103,7 +108,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
-    delayResends = SignalStore.internalValues().delayResends()
+    delayResends = SignalStore.internalValues().delayResends(),
+    disableStorageService = SignalStore.internalValues().storageServiceDisabled()
   )
 
   class Factory(private val repository: InternalSettingsRepository) : ViewModelProvider.Factory {

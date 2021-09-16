@@ -2505,6 +2505,8 @@
     <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
     <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
     <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
+    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
+    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
     <string name="preferences__internal_network" translatable="false">Network</string>

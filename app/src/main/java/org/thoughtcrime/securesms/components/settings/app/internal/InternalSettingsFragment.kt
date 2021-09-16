@@ -107,6 +107,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       sectionHeaderPref(R.string.preferences__internal_storage_service)
 
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_disable_storage_service),
+        summary = DSLSettingsText.from(R.string.preferences__internal_disable_storage_service_description),
+        isChecked = state.disableStorageService,
+        onClick = {
+          viewModel.setDisableStorageService(!state.disableStorageService)
+        }
+      )
+
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__internal_force_storage_service_sync),
         summary = DSLSettingsText.from(R.string.preferences__internal_force_storage_service_sync_description),
