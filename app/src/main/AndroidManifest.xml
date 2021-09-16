@@ -176,7 +176,6 @@
     <activity android:name=".sharing.ShareActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:excludeFromRecents="true"
-              android:launchMode="singleTask"
               android:taskAffinity=""
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
