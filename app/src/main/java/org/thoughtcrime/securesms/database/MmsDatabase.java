@@ -528,9 +528,9 @@ public class MmsDatabase extends MessageDatabase {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
     String[] columns = new String[]{ID};
-    String   query   = ID + " = ? AND " + MESSAGE_BOX + " & ?";
-    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_QUIT_BIT;
-    String[] args    = new String[]{String.valueOf(messageId), String.valueOf(type)};
+    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_LEAVE_BIT;
+    String   query   = ID + " = ? AND " + MESSAGE_BOX + " & " + type + " = " + type + " AND " + MESSAGE_BOX + " & " + Types.GROUP_V2_BIT + " = 0";
+    String[] args    = SqlUtil.buildArgs(messageId);
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null, null)) {
       if (cursor.getCount() == 1) {
@@ -546,9 +546,9 @@ public class MmsDatabase extends MessageDatabase {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
     String[] columns = new String[]{DATE_SENT};
-    String   query   = THREAD_ID + " = ? AND " + MESSAGE_BOX + " & ? AND " + DATE_SENT + " < ?";
-    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_QUIT_BIT;
-    String[] args    = new String[]{String.valueOf(threadId), String.valueOf(type), String.valueOf(quitTimeBarrier)};
+    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_LEAVE_BIT;
+    String   query   = THREAD_ID + " = ? AND " + MESSAGE_BOX + " & " + type + " = " + type + " AND " + MESSAGE_BOX + " & " + Types.GROUP_V2_BIT + " = 0 AND " + DATE_SENT + " < ?";
+    String[] args    = new String[]{String.valueOf(threadId), String.valueOf(quitTimeBarrier)};
     String   orderBy = DATE_SENT + " DESC";
     String   limit   = "1";
 
@@ -1490,10 +1490,13 @@ public class MmsDatabase extends MessageDatabase {
       OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (OutgoingGroupUpdateMessage) message;
       if (outgoingGroupUpdateMessage.isV2Group()) {
         type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
+        if (outgoingGroupUpdateMessage.isJustAGroupLeave()) {
+          type |= Types.GROUP_LEAVE_BIT;
+        }
       } else {
         MessageGroupContext.GroupV1Properties properties = outgoingGroupUpdateMessage.requireGroupV1Properties();
         if      (properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
-        else if (properties.isQuit())   type |= Types.GROUP_QUIT_BIT;
+        else if (properties.isQuit())   type |= Types.GROUP_LEAVE_BIT;
       }
     }
 

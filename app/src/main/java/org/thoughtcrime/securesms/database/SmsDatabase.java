@@ -24,6 +24,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
@@ -76,6 +77,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
+import static org.thoughtcrime.securesms.database.MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS;
 
 /**
  * Database for storage of SMS messages.
@@ -150,7 +153,8 @@ public class SmsDatabase extends MessageDatabase {
       REMOTE_DELETED, NOTIFIED_TIMESTAMP, RECEIPT_TIMESTAMP
   };
 
-  private static final long IGNORABLE_TYPESMASK_WHEN_COUNTING = Types.END_SESSION_BIT | Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT | Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+  @VisibleForTesting
+  static final long IGNORABLE_TYPESMASK_WHEN_COUNTING = Types.END_SESSION_BIT | Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT | Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
 
   private static final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache("SmsDelivery");
 
@@ -271,8 +275,8 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   private @NonNull SqlUtil.Query buildMeaningfulMessagesQuery(long threadId) {
-    String query = THREAD_ID + " = ? AND (NOT " + TYPE + " & ? AND TYPE != ? AND TYPE != ?)";
-    return SqlUtil.buildQuery(query, threadId, IGNORABLE_TYPESMASK_WHEN_COUNTING, Types.PROFILE_CHANGE_TYPE, Types.CHANGE_NUMBER_TYPE);
+    String query = THREAD_ID + " = ? AND (NOT " + TYPE + " & ? AND " + TYPE + " != ? AND " + TYPE + "!= ? AND NOT " + TYPE + " & ?)";
+    return SqlUtil.buildQuery(query, threadId, IGNORABLE_TYPESMASK_WHEN_COUNTING, Types.PROFILE_CHANGE_TYPE, Types.CHANGE_NUMBER_TYPE, GROUP_V2_LEAVE_BITS);
   }
 
   @Override
@@ -1088,9 +1092,16 @@ public class SmsDatabase extends MessageDatabase {
 
       type |= Types.SECURE_MESSAGE_BIT;
 
-      if      (incomingGroupUpdateMessage.isGroupV2()) type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
-      else if (incomingGroupUpdateMessage.isUpdate())  type |= Types.GROUP_UPDATE_BIT;
-      else if (incomingGroupUpdateMessage.isQuit())    type |= Types.GROUP_QUIT_BIT;
+      if (incomingGroupUpdateMessage.isGroupV2()) {
+        type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
+        if (incomingGroupUpdateMessage.isJustAGroupLeave()) {
+          type |= Types.GROUP_LEAVE_BIT;
+        }
+      } else if (incomingGroupUpdateMessage.isUpdate()) {
+        type |= Types.GROUP_UPDATE_BIT;
+      } else if (incomingGroupUpdateMessage.isQuit()) {
+        type |= Types.GROUP_LEAVE_BIT;
+      }
 
     } else if (message.isEndSession()) {
       type |= Types.SECURE_MESSAGE_BIT;

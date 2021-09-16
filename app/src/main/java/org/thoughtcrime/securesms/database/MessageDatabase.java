@@ -236,7 +236,9 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   final int getOutgoingSecureMessageCount(long threadId) {
     SQLiteDatabase db           = databaseHelper.getSignalReadableDatabase();
     String[]       projection   = new String[] {"COUNT(*)"};
-    String         query        = getOutgoingSecureMessageClause() + "AND " + MmsSmsColumns.THREAD_ID + " = ? AND" + "(" + getTypeField() + " & " + Types.GROUP_QUIT_BIT + " = 0)";
+    String         query        = getOutgoingSecureMessageClause() +
+                                  "AND " + MmsSmsColumns.THREAD_ID + " = ? " +
+                                  "AND (" + getTypeField() + " & " + Types.GROUP_LEAVE_BIT + " = 0 OR " + getTypeField() + " & " + Types.GROUP_V2_BIT + " = " + Types.GROUP_V2_BIT + ")";
     String[]       args         = new String[]{String.valueOf(threadId)};
 
     try (Cursor cursor = db.query(getTableName(), projection, query, args, null, null, null, null)) {
