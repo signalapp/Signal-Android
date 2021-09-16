@@ -412,7 +412,7 @@
     </integer-array>
     <string-array name="PlaybackSpeedToggleTextView__speed_labels">
         <item>@string/PlaybackSpeedToggleTextView__1x</item>
-        <item>@string/PlaybackSpeedToggleTextView__1p5x<item>
+        <item>@string/PlaybackSpeedToggleTextView__1p5x</item>
         <item>@string/PlaybackSpeedToggleTextView__2x</item>
         <item>@string/PlaybackSpeedToggleTextView__p5x</item>
     </string-array>
