@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.emoji.EmojiData;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.emoji.EmojiImageRequest;
 import org.thoughtcrime.securesms.emoji.EmojiJsonRequest;
+import org.thoughtcrime.securesms.emoji.EmojiPageCache;
 import org.thoughtcrime.securesms.emoji.EmojiRemote;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -432,6 +433,8 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
           .filterNot(file -> file.getName().equals(currentDirectoryName))
           .filterNot(file -> file.getName().equals(newVersionDirectoryName))
           .forEach(FileUtils::deleteDirectory);
+
+    EmojiPageCache.INSTANCE.clear();
   }
 
   public static final class Factory implements Job.Factory<DownloadLatestEmojiDataJob> {
