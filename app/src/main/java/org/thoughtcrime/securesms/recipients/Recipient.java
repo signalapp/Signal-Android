@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -791,19 +792,23 @@ public class Recipient {
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
+    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER, AvatarUtil.UNDEFINED_SIZE);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted) {
     return getSmallFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
   }
 
-  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, avatarColor, inverted);
+  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER), targetSize).asDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, avatarColor, inverted);
+    return getSmallFallbackContactPhotoDrawable(context, inverted, fallbackPhotoProvider, AvatarUtil.UNDEFINED_SIZE);
+  }
+
+  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER), targetSize).asSmallDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto() {
@@ -811,13 +816,17 @@ public class Recipient {
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
+    return getFallbackContactPhoto(fallbackPhotoProvider, AvatarUtil.UNDEFINED_SIZE);
+  }
+
+  public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
     if      (isSelf)                                return fallbackPhotoProvider.getPhotoForLocalNumber();
     else if (isResolving())                         return fallbackPhotoProvider.getPhotoForResolvingRecipient();
     else if (isGroupInternal())                     return fallbackPhotoProvider.getPhotoForGroup();
     else if (isGroup())                             return fallbackPhotoProvider.getPhotoForGroup();
-    else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName);
-    else if (!TextUtils.isEmpty(systemContactName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(systemContactName);
-    else if (!signalProfileName.isEmpty())          return fallbackPhotoProvider.getPhotoForRecipientWithName(signalProfileName.toString());
+    else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName, targetSize);
+    else if (!TextUtils.isEmpty(systemContactName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(systemContactName, targetSize);
+    else if (!signalProfileName.isEmpty())          return fallbackPhotoProvider.getPhotoForRecipientWithName(signalProfileName.toString(), targetSize);
     else                                            return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
   }
 
@@ -1224,8 +1233,8 @@ public class Recipient {
       return new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20, R.drawable.ic_group_outline_48);
     }
 
-    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name) {
-      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40);
+    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name, int targetSize) {
+      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize);
     }
 
     public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {

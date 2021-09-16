@@ -35,8 +35,8 @@
 
       <org.thoughtcrime.securesms.components.AvatarImageView
           android:id="@+id/toolbar_icon"
-          android:layout_width="28dp"
-          android:layout_height="28dp"
+          android:layout_width="@dimen/toolbar_avatar_size"
+          android:layout_height="@dimen/toolbar_avatar_size"
           android:layout_alignParentStart="true"
           android:contentDescription="@string/conversation_list_settings_shortcut"
           android:layout_marginStart="@dimen/toolbar_avatar_margin"

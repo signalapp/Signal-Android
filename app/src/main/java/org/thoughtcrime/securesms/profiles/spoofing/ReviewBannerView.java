@@ -106,7 +106,7 @@ public class ReviewBannerView extends LinearLayout {
 
     @NonNull
     @Override
-    public FallbackContactPhoto getPhotoForRecipientWithName(String name) {
+    public FallbackContactPhoto getPhotoForRecipientWithName(String name, int targetSize) {
       return new FixedSizeGeneratedContactPhoto(name, R.drawable.ic_profile_outline_20);
     }
 

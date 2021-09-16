@@ -26,13 +26,15 @@ import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
-class EmojiProvider {
+public class EmojiProvider {
 
   private static final    String TAG   = Log.tag(EmojiProvider.class);
   private static final    Paint  PAINT = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
 
-  static @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
+  public static @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
     if (text == null) return null;
     return new EmojiParser(EmojiSource.getLatest().getEmojiTree()).findCandidates(text);
   }
@@ -57,6 +59,32 @@ class EmojiProvider {
 
       if (drawable != null) {
         builder.setSpan(new EmojiSpan(drawable, tv), candidate.getStartIndex(), candidate.getEndIndex(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+      }
+    }
+
+    return builder;
+  }
+
+  public static @Nullable Spannable emojify(@NonNull Context context,
+                                            @Nullable EmojiParser.CandidateList matches,
+                                            @Nullable CharSequence text,
+                                            @NonNull Paint paint,
+                                            boolean synchronous)
+  {
+    if (matches == null || text == null) return null;
+    SpannableStringBuilder builder = new SpannableStringBuilder(text);
+
+    for (EmojiParser.Candidate candidate : matches) {
+      Drawable drawable;
+      if (synchronous) {
+        drawable = getEmojiDrawableSync(context, candidate.getDrawInfo());
+      } else {
+        drawable = getEmojiDrawable(context, candidate.getDrawInfo(), null);
+      }
+
+      if (drawable != null) {
+        builder.setSpan(new EmojiSpan(context, drawable, paint), candidate.getStartIndex(), candidate.getEndIndex(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
@@ -113,6 +141,43 @@ class EmojiProvider {
     return drawable;
   }
 
+  /**
+   * Gets an EmojiDrawable from the Page Cache synchronously
+   *
+   * @param context         Context object used in reading and writing from disk
+   * @param drawInfo        Information about the emoji being displayed
+   */
+  private static @Nullable Drawable getEmojiDrawableSync(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo) {
+    ThreadUtil.assertNotMainThread();
+    if (drawInfo == null) {
+      return null;
+    }
+
+    final int           lowMemoryDecodeScale = DeviceProperties.isLowMemoryDevice(context) ? 2 : 1;
+    final EmojiSource   source               = EmojiSource.getLatest();
+    final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
+
+    EmojiPageCache.LoadResult loadResult = EmojiPageCache.INSTANCE.load(context, drawInfo.getPage(), lowMemoryDecodeScale);
+    Bitmap                    bitmap     = null;
+
+    if (loadResult instanceof EmojiPageCache.LoadResult.Immediate) {
+      Log.d(TAG, "Cached emoji page: " + drawInfo.getPage().getUri().toString());
+      bitmap = ((EmojiPageCache.LoadResult.Immediate) loadResult).getBitmap();
+    } else if (loadResult instanceof EmojiPageCache.LoadResult.Async) {
+      Log.d(TAG, "Loading emoji page: " + drawInfo.getPage().getUri().toString());
+      try {
+        bitmap = ((EmojiPageCache.LoadResult.Async) loadResult).getTask().get(2, TimeUnit.SECONDS);
+      } catch (InterruptedException | ExecutionException | TimeoutException exception) {
+        Log.d(TAG, "Failed to load emoji bitmap resource", exception);
+      }
+    } else {
+      throw new IllegalStateException("Unexpected subclass " + loadResult.getClass());
+    }
+
+    drawable.setBitmap(bitmap);
+    return drawable;
+  }
+
   static final class EmojiDrawable extends Drawable {
     private final float intrinsicWidth;
     private final float intrinsicHeight;
@@ -160,7 +225,6 @@ class EmojiProvider {
     }
 
     public void setBitmap(Bitmap bitmap) {
-      ThreadUtil.assertMainThread();
       if (bmp == null || !bmp.sameAs(bitmap)) {
         bmp = bitmap;
         invalidateSelf();

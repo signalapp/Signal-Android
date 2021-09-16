@@ -280,6 +280,10 @@ public final class ViewUtil {
     view.requestLayout();
   }
 
+  public static int getWidth(@NonNull View view) {
+    return view.getLayoutParams().width;
+  }
+
   public static void setPaddingTop(@NonNull View view, int padding) {
     view.setPadding(view.getPaddingLeft(), padding, view.getPaddingRight(), view.getPaddingBottom());
   }

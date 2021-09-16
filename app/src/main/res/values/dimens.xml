@@ -202,7 +202,9 @@
 
     <dimen name="avatar_picker_image_width">100dp</dimen>
 
+    <dimen name="toolbar_avatar_size">28dp</dimen>
     <dimen name="toolbar_avatar_margin">26dp</dimen>
+    <dimen name="conversation_list_avatar_size">48dp</dimen>
 
     <dimen name="verify_identity_vertical_margin">16dp</dimen>
 </resources>

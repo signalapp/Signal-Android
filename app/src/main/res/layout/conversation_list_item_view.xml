@@ -15,8 +15,8 @@
 
   <org.thoughtcrime.securesms.components.AvatarImageView
       android:id="@+id/conversation_list_item_avatar"
-      android:layout_width="48dp"
-      android:layout_height="48dp"
+      android:layout_width="@dimen/conversation_list_avatar_size"
+      android:layout_height="@dimen/conversation_list_avatar_size"
       android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
       android:foreground="@drawable/contact_photo_background"
       android:layout_marginTop="12dp"

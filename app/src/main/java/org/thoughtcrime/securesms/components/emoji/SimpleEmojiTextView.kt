@@ -33,6 +33,7 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
       } else {
         EmojiProvider.emojify(newCandidates, newContent, this)
       }
+      bufferType = BufferType.SPANNABLE
       super.setText(newText, type)
     }
   }

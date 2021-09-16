@@ -490,7 +490,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void initializeProfileIcon(@NonNull Recipient recipient) {
     ImageView icon = requireView().findViewById(R.id.toolbar_icon);
 
-    AvatarUtil.loadIconIntoImageView(recipient, icon);
+    AvatarUtil.loadIconIntoImageView(recipient, icon, getResources().getDimensionPixelSize(R.dimen.toolbar_avatar_size));
     icon.setOnClickListener(v -> getNavigator().goToAppSettings());
   }
 

@@ -3,52 +3,59 @@ package org.thoughtcrime.securesms.avatar
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.ColorFilter
+import android.graphics.Paint
 import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
-import android.util.TypedValue
-import android.view.Gravity
-import android.widget.FrameLayout
-import androidx.core.view.updateLayoutParams
-import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import android.text.Layout
+import android.text.SpannableString
+import android.text.StaticLayout
+import android.text.TextPaint
+import androidx.core.graphics.withTranslation
+import org.thoughtcrime.securesms.components.emoji.EmojiProvider
 
-/**
- * Uses EmojiTextView to properly render a Text Avatar with emoji in it.
- */
 class TextAvatarDrawable(
-  context: Context,
-  avatar: Avatar.Text,
+  private val context: Context,
+  private val avatar: Avatar.Text,
   inverted: Boolean = false,
   private val size: Int = AvatarRenderer.DIMENSIONS,
+  private val synchronous: Boolean = false
 ) : Drawable() {
 
-  private val layout: FrameLayout = FrameLayout(context)
-  private val textView: EmojiTextView = EmojiTextView(context)
-
+  private val textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
   init {
-    textView.typeface = AvatarRenderer.getTypeface(context)
-    textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, Avatars.getTextSizeForLength(context, avatar.text, size * 0.8f, size * 0.45f))
-    textView.text = avatar.text
-    textView.gravity = Gravity.CENTER
-    textView.setTextColor(if (inverted) avatar.color.backgroundColor else avatar.color.foregroundColor)
-    textView.setForceCustomEmoji(true)
+    textPaint.typeface = AvatarRenderer.getTypeface(context)
+    textPaint.color = if (inverted) avatar.color.backgroundColor else avatar.color.foregroundColor
+    textPaint.density = context.resources.displayMetrics.density
 
-    layout.addView(textView)
-
-    textView.updateLayoutParams {
-      width = size
-      height = size
-    }
-
-    layout.measure(size, size)
-    layout.layout(0, 0, size, size)
+    setBounds(0, 0, size, size)
   }
 
-  override fun getIntrinsicHeight(): Int = size
-
-  override fun getIntrinsicWidth(): Int = size
-
   override fun draw(canvas: Canvas) {
-    layout.draw(canvas)
+    val textSize = Avatars.getTextSizeForLength(context, avatar.text, size * 0.8f, size * 0.45f)
+    val width = bounds.width()
+    val candidates = EmojiProvider.getCandidates(avatar.text)
+    var hasEmoji = false
+
+    textPaint.textSize = textSize
+
+    val newText = if (candidates == null || candidates.size() == 0) {
+      SpannableString(avatar.text)
+    } else {
+      EmojiProvider.emojify(context, candidates, avatar.text, textPaint, synchronous)
+    }
+
+    if (newText == null) return
+
+    val layout = StaticLayout(SpannableString(newText), textPaint, width, Layout.Alignment.ALIGN_NORMAL, 0f, 0f, true)
+    layout.draw(canvas, getStartX(layout), ((bounds.height() / 2) - ((layout.height / 2))).toFloat())
+  }
+
+  private fun getStartX(layout: StaticLayout): Float {
+    val direction = layout.getParagraphDirection(0)
+    val lineWidth = layout.getLineWidth(0)
+    val width = bounds.width()
+    val xPos = (width - lineWidth) / 2
+    return if (direction == Layout.DIR_LEFT_TO_RIGHT) xPos else -xPos
   }
 
   override fun setAlpha(alpha: Int) = Unit
@@ -56,4 +63,10 @@ class TextAvatarDrawable(
   override fun setColorFilter(colorFilter: ColorFilter?) = Unit
 
   override fun getOpacity(): Int = PixelFormat.OPAQUE
+
+  private fun Layout.draw(canvas: Canvas, x: Float, y: Float) {
+    canvas.withTranslation(x, y) {
+      draw(canvas)
+    }
+  }
 }
