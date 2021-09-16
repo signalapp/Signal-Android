@@ -10,6 +10,7 @@ include ':video'
 include ':device-transfer'
 include ':device-transfer-app'
 include ':image-editor'
+include ':image-editor-app'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')
@@ -21,6 +22,7 @@ project(':device-transfer-app').projectDir = file('device-transfer/app')
 project(':libsignal-service').projectDir = file('libsignal/service')
 
 project(':image-editor').projectDir = file('image-editor/lib')
+project(':image-editor-app').projectDir = file('image-editor/app')
 
 rootProject.name='Signal'
 
