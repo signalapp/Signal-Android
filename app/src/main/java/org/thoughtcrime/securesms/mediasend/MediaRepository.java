@@ -24,6 +24,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -201,14 +202,20 @@ public class MediaRepository {
 
   @WorkerThread
   private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId) {
+    Stopwatch stopwatch = new Stopwatch("getMediaInBucket");
+
     List<Media> images = getMediaInBucket(context, bucketId, Images.Media.EXTERNAL_CONTENT_URI, true);
     List<Media> videos = getMediaInBucket(context, bucketId, Video.Media.EXTERNAL_CONTENT_URI, false);
     List<Media> media  = new ArrayList<>(images.size() + videos.size());
 
+    stopwatch.split("post fetch");
+
     media.addAll(images);
     media.addAll(videos);
     Collections.sort(media, (o1, o2) -> Long.compare(o2.getDate(), o1.getDate()));
+    stopwatch.split("post sort");
 
+    stopwatch.stop(TAG);
     return media;
   }
 
