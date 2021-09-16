@@ -5,7 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.BuildConfig
@@ -34,7 +34,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     val repository = InternalSettingsRepository(requireContext())
     val factory = InternalSettingsViewModel.Factory(repository)
-    viewModel = ViewModelProviders.of(this, factory)[InternalSettingsViewModel::class.java]
+    viewModel = ViewModelProvider(this, factory)[InternalSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())

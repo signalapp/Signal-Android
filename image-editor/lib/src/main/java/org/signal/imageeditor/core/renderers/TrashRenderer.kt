@@ -117,8 +117,6 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
     invalidate()
   }
 
-  private constructor(inParcel: Parcel?)
-
   override fun hitTest(x: Float, y: Float): Boolean {
     val dx = x - buttonCenter[0]
     val dy = y - buttonCenter[1]
@@ -140,7 +138,7 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
     @JvmField
     val CREATOR: Parcelable.Creator<TrashRenderer> = object : Parcelable.Creator<TrashRenderer> {
       override fun createFromParcel(`in`: Parcel): TrashRenderer {
-        return TrashRenderer(`in`)
+        return TrashRenderer()
       }
 
       override fun newArray(size: Int): Array<TrashRenderer?> {

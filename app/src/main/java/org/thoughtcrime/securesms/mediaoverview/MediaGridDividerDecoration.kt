@@ -14,7 +14,7 @@ internal class MediaGridDividerDecoration(
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
     val holder = parent.getChildViewHolder(view)
 
-    val adapterPosition = holder.adapterPosition
+    val adapterPosition = holder.bindingAdapterPosition
     val section = adapter.getAdapterPositionSection(adapterPosition)
     val itemSectionOffset = adapter.getItemSectionOffset(section, adapterPosition)
 

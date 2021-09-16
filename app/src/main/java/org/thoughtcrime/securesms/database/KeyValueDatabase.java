@@ -53,7 +53,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     if (instance == null) {
       synchronized (KeyValueDatabase.class) {
         if (instance == null) {
-          SqlCipherLibraryLoader.load(context);
+          SqlCipherLibraryLoader.load();
           instance = new KeyValueDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context));
         }
       }

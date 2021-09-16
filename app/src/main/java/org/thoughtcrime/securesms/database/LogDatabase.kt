@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
  */
 class LogDatabase private constructor(
   application: Application,
-  private val databaseSecret: DatabaseSecret
+  databaseSecret: DatabaseSecret
 ) : SQLiteOpenHelper(
     application,
     DATABASE_NAME,
@@ -81,7 +81,7 @@ class LogDatabase private constructor(
       if (instance == null) {
         synchronized(LogDatabase::class.java) {
           if (instance == null) {
-            SqlCipherLibraryLoader.load(context)
+            SqlCipherLibraryLoader.load()
             instance = LogDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
           }
         }

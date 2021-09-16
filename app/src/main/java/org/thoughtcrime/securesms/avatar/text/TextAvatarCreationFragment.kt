@@ -106,7 +106,7 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
       Navigation.findNavController(v).popBackStack()
     }
 
-    textInput.setOnEditorActionListener { v, actionId, event ->
+    textInput.setOnEditorActionListener { _, actionId, _ ->
       if (actionId == EditorInfo.IME_ACTION_NEXT) {
         tabLayout.getTabAt(1)?.select()
         true

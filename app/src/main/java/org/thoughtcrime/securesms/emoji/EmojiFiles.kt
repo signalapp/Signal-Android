@@ -18,7 +18,6 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.lang.Exception
 import java.util.UUID
 
 /**
@@ -52,6 +51,7 @@ private fun Context.getEmojiDirectory(): File = getDir(EMOJI_DIRECTORY, Context.
 private fun Context.getVersionFile(): File = File(getEmojiDirectory(), VERSION_FILE)
 private fun Context.getNameFile(versionUuid: UUID): File = File(File(getEmojiDirectory(), versionUuid.toString()).apply { mkdir() }, NAME_FILE)
 
+@Suppress("UNUSED_PARAMETER")
 private fun getFilesUri(name: String, format: String): Uri = PartAuthority.getEmojiUri(name)
 
 private fun getOutputStream(context: Context, outputFile: File): OutputStream {

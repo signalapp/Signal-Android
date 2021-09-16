@@ -100,7 +100,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     return timestamp.compareTo(other.timestamp)
   }
 
-  fun getPersonUri(context: Context): String? {
+  fun getPersonUri(): String? {
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && individualRecipient.isSystemContact) {
       individualRecipient.contactUri.toString()
     } else {

@@ -9,6 +9,7 @@ import androidx.core.net.ConnectivityManagerCompat
 import io.reactivex.rxjava3.core.Observable
 import org.thoughtcrime.securesms.util.ServiceUtil
 
+@Suppress("DEPRECATION")
 object MeteredConnectivity {
   fun isMetered(context: Context): Observable<Boolean> = Observable.create { emitter ->
     val connectivityManager = ServiceUtil.getConnectivityManager(context)

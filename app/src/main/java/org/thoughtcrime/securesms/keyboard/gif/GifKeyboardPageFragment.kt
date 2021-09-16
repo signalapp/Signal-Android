@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
@@ -49,13 +49,14 @@ class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragm
     quickSearchAdapter = GifQuickSearchAdapter(this::onQuickSearchSelected)
     quickSearchList.adapter = quickSearchAdapter
 
-    giphyMp4ViewModel = ViewModelProviders.of(requireActivity(), GiphyMp4ViewModel.Factory(host.isMms())).get(GiphyMp4ViewModel::class.java)
+    giphyMp4ViewModel = ViewModelProvider(requireActivity(), GiphyMp4ViewModel.Factory(host.isMms())).get(GiphyMp4ViewModel::class.java)
     giphyMp4ViewModel.saveResultEvents.observe(viewLifecycleOwner, this::handleGiphyMp4SaveResult)
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    viewModel = ViewModelProviders.of(requireActivity()).get(GifKeyboardPageViewModel::class.java)
+    viewModel = ViewModelProvider(requireActivity()).get(GifKeyboardPageViewModel::class.java)
     updateQuickSearchTabs()
   }
 

@@ -56,14 +56,6 @@ data class NotificationConversation(
     }
   }
 
-  fun getContactUri(context: Context): String? {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
-      recipient.contactUri?.toString()
-    } else {
-      null
-    }
-  }
-
   fun getSlideBigPictureUri(context: Context): Uri? {
     return if (notificationItems.size == 1 && SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
       mostRecentNotification.getBigPictureUri()

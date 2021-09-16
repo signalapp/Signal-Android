@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
@@ -50,10 +50,11 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
     appBarLayout = view.findViewById(R.id.emoji_keyboard_search_appbar)
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    viewModel = ViewModelProviders.of(requireActivity(), EmojiKeyboardPageViewModel.Factory(requireContext()))
+    viewModel = ViewModelProvider(requireActivity(), EmojiKeyboardPageViewModel.Factory(requireContext()))
       .get(EmojiKeyboardPageViewModel::class.java)
 
     categoriesAdapter = EmojiKeyboardPageCategoriesAdapter { key ->

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import org.signal.core.util.logging.Log
@@ -46,7 +46,7 @@ class MediaSelectionActivity :
     val isReply: Boolean = intent.getBooleanExtra(IS_REPLY, false)
 
     val factory = MediaSelectionViewModel.Factory(destination, transportOption, initialMedia, message, isReply, MediaSelectionRepository(this))
-    viewModel = ViewModelProviders.of(this, factory)[MediaSelectionViewModel::class.java]
+    viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
 
     if (savedInstanceState == null) {
       val navHostFragment = NavHostFragment.create(R.navigation.media)

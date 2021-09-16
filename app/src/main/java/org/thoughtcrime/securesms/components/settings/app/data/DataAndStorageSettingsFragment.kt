@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.preference.PreferenceManager
 import org.thoughtcrime.securesms.R
@@ -31,7 +31,7 @@ class DataAndStorageSettingsFragment : DSLSettingsFragment(R.string.preferences_
     val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val repository = DataAndStorageSettingsRepository()
     val factory = DataAndStorageSettingsViewModel.Factory(preferences, repository)
-    viewModel = ViewModelProviders.of(this, factory)[DataAndStorageSettingsViewModel::class.java]
+    viewModel = ViewModelProvider(this, factory)[DataAndStorageSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())

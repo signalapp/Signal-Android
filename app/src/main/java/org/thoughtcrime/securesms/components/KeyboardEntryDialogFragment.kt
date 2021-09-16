@@ -25,6 +25,7 @@ abstract class KeyboardEntryDialogFragment(@LayoutRes contentLayoutId: Int) :
     super.onCreate(savedInstanceState)
   }
 
+  @Suppress("DEPRECATION")
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState)
 

@@ -7,12 +7,14 @@ dependencyResolutionManagement {
             version('androidx-camera', '1.0.0-beta11')
             version('androidx-lifecycle', '2.3.1')
             version('mp4parser', '1.9.39')
+            version('kotlin', '1.5.10')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')
 
             // Kotlin
-            alias('kotlin-stdlib-jdk7').to('org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32')
+            alias('kotlin-stdlib-jdk8').to('org.jetbrains.kotlin', 'kotlin-stdlib-jdk8').versionRef('kotlin')
+            alias('kotlin-reflect').to('org.jetbrains.kotlin', 'kotlin-reflect').versionRef('kotlin')
 
             // Android X
             alias('androidx-core-ktx').to('androidx.core:core-ktx:1.5.0')

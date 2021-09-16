@@ -27,8 +27,8 @@ object MediaValidator {
 
     val truncatedMedia = filteredMedia.take(maxSelection)
     val bucketId = if (truncatedMedia.isNotEmpty()) {
-      truncatedMedia.drop(1).fold(truncatedMedia.first().bucketId.or(Media.ALL_MEDIA_BUCKET_ID)) { acc, media ->
-        if (Util.equals(acc, media.bucketId.or(Media.ALL_MEDIA_BUCKET_ID))) {
+      truncatedMedia.drop(1).fold(truncatedMedia.first().bucketId.or(Media.ALL_MEDIA_BUCKET_ID)) { acc, m ->
+        if (Util.equals(acc, m.bucketId.or(Media.ALL_MEDIA_BUCKET_ID))) {
           acc
         } else {
           Media.ALL_MEDIA_BUCKET_ID

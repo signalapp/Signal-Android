@@ -12,7 +12,7 @@ import android.text.TextUtils
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -71,7 +71,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val factory = NotificationsSettingsViewModel.Factory(sharedPreferences)
 
-    viewModel = ViewModelProviders.of(this, factory)[NotificationsSettingsViewModel::class.java]
+    viewModel = ViewModelProvider(this, factory)[NotificationsSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())
@@ -241,6 +241,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     }
   }
 
+  @Suppress("DEPRECATION")
   private fun launchMessageSoundSelectionIntent() {
     val current = SignalStore.settings().messageNotificationSound
 
@@ -268,6 +269,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     startActivity(intent)
   }
 
+  @Suppress("DEPRECATION")
   private fun launchCallRingtoneSelectionIntent() {
     val current = SignalStore.settings().callRingtone
 

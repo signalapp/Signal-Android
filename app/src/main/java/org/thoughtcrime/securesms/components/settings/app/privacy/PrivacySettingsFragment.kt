@@ -12,7 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.PreferenceManager
@@ -46,8 +46,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.lang.Integer.max
 import java.util.Locale
 import java.util.concurrent.TimeUnit
-import kotlin.collections.ArrayList
-import kotlin.collections.LinkedHashMap
 
 private val TAG = Log.tag(PrivacySettingsFragment::class.java)
 
@@ -76,7 +74,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val repository = PrivacySettingsRepository()
     val factory = PrivacySettingsViewModel.Factory(sharedPreferences, repository)
-    viewModel = ViewModelProviders.of(this, factory)[PrivacySettingsViewModel::class.java]
+    viewModel = ViewModelProvider(this, factory)[PrivacySettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())

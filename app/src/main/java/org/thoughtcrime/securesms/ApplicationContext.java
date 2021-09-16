@@ -125,7 +125,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     super.onCreate();
 
     AppStartup.getInstance().addBlocking("security-provider", this::initializeSecurityProvider)
-                            .addBlocking("sqlcipher-init", () -> SqlCipherLibraryLoader.load(this))
+                            .addBlocking("sqlcipher-init", () -> SqlCipherLibraryLoader.load())
                             .addBlocking("logging", () -> {
                               initializeLogging();
                               Log.i(TAG, "onCreate()");

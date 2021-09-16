@@ -263,7 +263,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         val personBuilder: PersonCompat.Builder = PersonCompat.Builder()
           .setBot(false)
           .setName(notificationItem.getPersonName(context))
-          .setUri(notificationItem.getPersonUri(context))
+          .setUri(notificationItem.getPersonUri())
           .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
 
         if (includeShortcut) {
@@ -330,9 +330,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         0
       )
 
-      val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder()
-        .setIntent(intent)
-        .setIcon(AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
+      val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
         .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
         .setDesiredHeight(600)
         .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)
