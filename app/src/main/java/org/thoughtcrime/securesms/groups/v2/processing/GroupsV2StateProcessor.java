@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupDoesNotExistException;
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
@@ -310,10 +310,12 @@ public final class GroupsV2StateProcessor {
                                                                                           Collections.emptyList());
 
       try {
-        MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-        long            threadId    = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
-        long            id          = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
+        MessageDatabase mmsDatabase    = DatabaseFactory.getMmsDatabase(context);
+        ThreadDatabase  threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        long            threadId       = threadDatabase.getOrCreateThreadIdFor(groupRecipient);
+        long            id             = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
         mmsDatabase.markAsSent(id, true);
+        threadDatabase.update(threadId, false, false);
       } catch (MmsException e) {
         Log.w(TAG, "Failed to insert leave message.", e);
       }
@@ -501,23 +503,28 @@ public final class GroupsV2StateProcessor {
       if (outgoing) {
         try {
           MessageDatabase            mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
+          ThreadDatabase             threadDatabase  = DatabaseFactory.getThreadDatabase(context);
           RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
           Recipient                  recipient       = Recipient.resolved(recipientId);
           OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-          long                       threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+          long                       threadId        = threadDatabase.getOrCreateThreadIdFor(recipient);
           long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
           mmsDatabase.markAsSent(messageId, true);
+          threadDatabase.update(threadId, false, false);
         } catch (MmsException e) {
           Log.w(TAG, e);
         }
       } else {
-        MessageDatabase            smsDatabase  = DatabaseFactory.getSmsDatabase(context);
-        RecipientId                sender       = RecipientId.from(editor.get(), null);
-        IncomingTextMessage        incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
-        IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
+        MessageDatabase                        smsDatabase  = DatabaseFactory.getSmsDatabase(context);
+        RecipientId                            sender       = RecipientId.from(editor.get(), null);
+        IncomingTextMessage                    incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
+        IncomingGroupUpdateMessage             groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
+        Optional<MessageDatabase.InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
-        if (!smsDatabase.insertMessageInbox(groupMessage).isPresent()) {
+        if (insertResult.isPresent()) {
+          DatabaseFactory.getThreadDatabase(context).update(insertResult.get().getThreadId(), false, false);
+        } else {
           Log.w(TAG, "Could not insert update message");
         }
       }
