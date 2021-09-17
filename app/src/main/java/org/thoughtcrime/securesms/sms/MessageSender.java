@@ -122,7 +122,7 @@ public class MessageSender {
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     onMessageSent();
-    ThreadUpdateJob.enqueue(threadId);
+    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
     return allocatedThreadId;
   }
