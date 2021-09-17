@@ -1040,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt á öðru tæki</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Skilaboð frá %s var ekki hægt að afhenda</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s skipti yfir í nýtt símanúmer.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hóf hópsímtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er í hópsímtalinu · %2$s</string>
@@ -2956,6 +2957,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nýja símanúmerið</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Símanúmerið sem þú settir inn samsvarar ekki því sem er á aðgangnum þínum.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Þú verður að tilgreina landskóða fyrir gamla símanúmerið   </string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Þú verður að tilgreina gamla símanúmerið</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Þú verður að tilgreina landskóða fyrir nýja símanúmerið   </string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Þú verður að tilgreina nýja símanúmerið   </string>
   <!--ChangeNumberVerifyFragment-->
@@ -2975,6 +2977,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChangeNumberPinDiffersFragment__update_pin">Uppfæra PIN-númer</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Halda gamla PIN-númerinu?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Breytt staða staðfest</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Breytt staða ekki staðfest</string>
   <string name="ChangeNumberLockActivity__retry">Reyna aftur</string>
   <string name="ChangeNumberLockActivity__leave">Fara</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Senda inn villumeldingaskrá</string>
@@ -3145,6 +3149,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Ný greiðsla</string>
@@ -3225,5 +3230,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MediaReviewFragment__view_once_message">Skoða-einu-sinni skilaboð</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Þú munt tapa öllum breytingum sem þú hefur gert á þessari mynd.</string>
   <string name="ImageEditorHud__delete">Eyða</string>
+  <string name="CameraFragment__failed_to_open_camera">Mistókst að opna myndavél</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Víxla á milli textastíla</string>
   <!--EOF-->
 </resources>

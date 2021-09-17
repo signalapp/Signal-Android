@@ -1736,6 +1736,7 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">안전 번호 공유</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">연락처의 기기에서 QR 코드를 스캔하세요.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">쓸어 올려 받기</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">쓸어 내려 거부</string>

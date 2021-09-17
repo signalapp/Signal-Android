@@ -1840,7 +1840,7 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escaneie o código QR no aparelho da outra pessoa.</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanear o Código QR no aparelho da outra pessoa.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Deslize para cima para atender</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Deslize para baixo para recusar</string>
@@ -3150,6 +3150,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1,5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Novo pagamento</string>

@@ -1795,6 +1795,7 @@ nambari yako ya simu</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Shiriki nambari salama</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skani msimbo wa QR uliopo kwenye kifaa cha wawasiliani.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Sogeza juu kujibu</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sogeza chini kukataa</string>

@@ -139,8 +139,8 @@
   <string name="CommunicationActions_insecure_call">تماس ناامن</string>
   <string name="CommunicationActions_carrier_charges_may_apply">هزینه‌های اپراتور ممکن است اعمال شود. شماره‌ای که می‌خواهید با آن تماس بگیرید در سیگنال ثبت‌نام نشده است. این تماس از طریق اپراتور تلفن همراه شما گرفته خواهد شد، نه از طریق اینترنت.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %1$s تغییر یافته است. این می‌تواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند یا %2$s فقط سیگنال را دوباره نصب کرده است.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ممکن است بخواهید که شمارهٔ امنیتی خود را با این مخاطب وارسی کنید.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">شمارهٔ ایمنی شما با %1$s تغییر یافته است. این می‌تواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند یا %2$s فقط سیگنال را دوباره نصب کرده است.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ممکن است بخواهید که شمارهٔ ایمنی خود را با این مخاطب وارسی کنید.</string>
   <string name="ConfirmIdentityDialog_accept">پذیرفتن</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">آخرین گفتگوها</string>
@@ -298,8 +298,8 @@
   <string name="ConversationFragment_contact_us">تماس با ما</string>
   <string name="ConversationFragment_verify">وارسی</string>
   <string name="ConversationFragment_not_now">حالا نه</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed">شمارهٔ امنیتی شما با %s تغییر یافت</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">شمارهٔ امنیتی شما با %s تغییر یافت، احتمالاً به این خاطر که آن‌ها سیگنال را دوباره نصب کردند یا دستگاه‌شان را تغییر دادند. برای وارسی شمارهٔ امنیتی ضربه بزنید. انجام این کار انتخابی است.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">شمارهٔ ایمنی شما با %s تغییر یافت</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">شمارهٔ ایمنی شما با %s تغییر یافت، احتمالاً به این خاطر که آن‌ها سیگنال را دوباره نصب کردند یا دستگاه‌شان را تغییر دادند. برای وارسی شمارهٔ ایمنی ضربه بزنید. انجام این کار انتخابی است.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">حذف مکالمهٔ انتخاب شده؟</item>
     <item quantity="other">حذف مکالمه‌ها‌ی انتخاب شده؟</item>
@@ -1034,11 +1034,11 @@
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">شما درخواست خود را برای پیوستن به گروه لغو کردید.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s درخواست خود را برای پیوستن به گروه لغو کرد.</string>
   <!--End of GV2 specific update messages-->
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">شما شمارهٔ امنیتی خود را با %s  به صورت وارسی شده علامت زدید</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">شما شمارهٔ امنیتی خود را با %s از طریق یک دستگاه دیگر وارسی شده علامت زدید</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ امنیتی خود را با %s وارسی نشده علامت زدید</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ امنیتی خود را با %s از طریق دستگاه یک دستگاه دیگر وارسی نشده علامت زدید</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">شمارهٔ ایمنی شما با %s تغییر یافت.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">شما شمارهٔ ایمنی خود را با %s  به صورت وارسی شده علامت زدید</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">شما شمارهٔ ایمنی خود را با %s از طریق یک دستگاه دیگر وارسی شده علامت زدید</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ ایمنی خود را با %s وارسی نشده علامت زدید</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ ایمنی خود را با %s از طریق دستگاه یک دستگاه دیگر وارسی نشده علامت زدید</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %s نتوانست تحویل داده شود</string>
   <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s شمارهٔ خود را به یک شمارهٔ جدید تغییر دادند.</string>
   <!--Group Calling update messages-->
@@ -1263,7 +1263,7 @@
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">شما صدا و تصویر آ‌ن‌ها را دریافت نمی‌کنید و آن‌ها هم صدا و تصویر شما را دریافت نخواهند کرد.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">این می‌تواند به این خاطر باشد که آن‌ها تغییر شمارهٔ امنیتی شما را وارسی نکرده‌اند، مشکلی برای دستگاه‌شان پیش آمده یا شما را مسدود کرده‌اند.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">این می‌تواند به این خاطر باشد که آن‌ها تغییر شمارهٔ ایمنی شما را وارسی نکرده‌اند، مشکلی برای دستگاه‌شان پیش آمده یا شما را مسدود کرده‌اند.</string>
   <!--CallToastPopupWindow-->
   <string name="CallToastPopupWindow__swipe_to_view_screen_share">برای مشاهدهٔ اشتراک صفحه به انگشت‌تان را به کناره‌ها بکشید</string>
   <!--ProxyBottomSheetFragment-->
@@ -1361,7 +1361,7 @@
 </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 پیام تبادل کلید به علت نامعتبر بودن نسخهٔ پروتکل دریافت شد.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">پيامی با شمارهٔ امنیتی جدید دريافت شد. برای پردازش و نمایش آن ضربه بزنید.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">پيامی با شمارهٔ ایمنی جدید دريافت شد. برای پردازش و نمایش آن ضربه بزنید.</string>
   <string name="SmsMessageRecord_secure_session_reset">شما نشست امن را بازنشانی کردید.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s نشست امن را بازنشانی کرد.</string>
   <string name="SmsMessageRecord_duplicate_message">پیام تکراری.</string>
@@ -1421,8 +1421,8 @@
   <string name="ThreadRecord_s_is_on_signal">%s به سیگنال پیوست!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام‌های ناپدید شونده غیرفعال شدند</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پیام ناپدید شونده روی %s تنظیم شد</string>
-  <string name="ThreadRecord_safety_number_changed">شمارهٔ امنیتی تغییر یافت</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
+  <string name="ThreadRecord_safety_number_changed">شمارهٔ ایمنی تغییر یافت</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">شمارهٔ ایمنی شما با %s تغییر یافت.</string>
   <string name="ThreadRecord_you_marked_verified">شما وارسی شده علامت زدید</string>
   <string name="ThreadRecord_you_marked_unverified">شما وارسی نشده علامت زدید</string>
   <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نیست</string>
@@ -1461,16 +1461,16 @@
     <item quantity="other">%d مخاطب در سیگنال هستند!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی سیگنال است. لطفاً پیش از اینکه شمارهٔ امنیتی شما را وارسی کند از او بخواهید به‌روزرسانی کند.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی سیگنال است. لطفاً پیش از اینکه شمارهٔ ایمنی شما را وارسی کند از او بخواهید به‌روزرسانی کند.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای نسخهٔ جدیدتر سیگنال با یک کد QR ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد QR اسکن شده، یک کد وارسی شمارهٔ امنیتی است که بدرستی قالب‌بندی نشده است. لطفاً دوباره اسکن کنید.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">اشتراک‌گذاری شمارهٔ امنیتی از طریق…</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">شمارهٔ امنیتی سیگنال ما:</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد QR اسکن شده، یک کد وارسی شمارهٔ ایمنی است که بدرستی قالب‌بندی نشده است. لطفاً دوباره اسکن کنید.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">اشتراک‌گذاری شمارهٔ ایمنی از طریق…</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">شمارهٔ ایمنی سیگنال ما:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می‌رسد که شما هیچ برنامه‌ای برای اشتراک‌گذاری ندارید.</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شمارهٔ امنیتی برای مقایسه در کلیپ‌بورد پیدا نشد</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شمارهٔ ایمنی‌ای برای مقایسه در کلیپ‌بورد پیدا نشد</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">سیگنال جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید. </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">اسکن کردن کد QR بدون مجوز دوربین ممکن نیست</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">شما باید ابتدا چند پیام مبادله کنید تا شمارهٔ امنیتی %1$s را مشاهده کنید.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">شما باید ابتدا چند پیام مبادله کنید تا شمارهٔ ایمنی %1$s را مشاهده کنید.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1577,7 +1577,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">برروی دستگاه پیوند داده شده پاسخ داده شد.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">بر روی دستگاه پیوند داده شده رد شد.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">بر روی دستگاه پیوند داده شده مشغول است.</string>
-  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">شخصی با شمارهٔ امنیتی تغییر یافته به این تماس پیوسته است.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">شخصی با یک شمارهٔ ایمنی تغییر یافته به این تماس پیوسته است.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_swipe_up_to_change_views">برای تغییر دادن نماها به بالا بکشید.</string>
   <!--WebRtcCallScreen V2-->
@@ -1685,14 +1685,14 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
   <!--safety_number_change_dialog-->
-  <string name="safety_number_change_dialog__safety_number_changes">تغییرات شمارهٔ امنیتی</string>
+  <string name="safety_number_change_dialog__safety_number_changes">تغییرات شمارهٔ ایمنی</string>
   <string name="safety_number_change_dialog__accept">پذیرفتن</string>
   <string name="safety_number_change_dialog__send_anyway">در هر صورت ارسال کن</string>
   <string name="safety_number_change_dialog__call_anyway">در هر صورت تماس بگیر</string>
   <string name="safety_number_change_dialog__join_call">پیوستن به تماس</string>
   <string name="safety_number_change_dialog__continue_call">ادامهٔ تماس</string>
   <string name="safety_number_change_dialog__leave_call">ترک کردن تماس</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">افراد زیر ممکن است دستگاه خود را تغییر داده یا دوباره نصب کرده باشند. برای اطمینان از حفظ حریم خصوصی شمارهٔ امنیتی خود را با آن‌ها وارسی کنید.</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">افراد زیر ممکن است دستگاه خود را تغییر داده یا دوباره نصب کرده باشند. برای اطمینان از حفظ حریم خصوصی شمارهٔ ایمنی خود را با آن‌ها وارسی کنید.</string>
   <string name="safety_number_change_dialog__view">مشاهده</string>
   <string name="safety_number_change_dialog__previous_verified">قبلاً وارسی شده است</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
@@ -1747,13 +1747,13 @@
   <string name="expiration_weeks_abbreviated">%d هفته</string>
   <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">شمارهٔ امنیتی شما با %s تغییر کرده است و دیگر وارسی شده نیست</string>
+  <string name="IdentityUtil_unverified_banner_one">شمارهٔ ایمنی شما با %s تغییر کرده است و دیگر وارسی شده نیست</string>
   <string name="IdentityUtil_unverified_banner_two">شماره‌های امنیتی شما با %1$s و %2$s دیگر وارسی شده نیستند</string>
   <string name="IdentityUtil_unverified_banner_many">شماره‌های امنیتی شما با %1$s، %2$s و %3$s دیگر وارسی شده نیستند </string>
-  <string name="IdentityUtil_unverified_dialog_one">شمارهٔ امنیتی شما با %1$s تغییر کرده و دیگر وارسی شده نیست. این می‌تواند به این معنی باشد که شخصی سعی دارد ارتباط شما را شنود کند یا %1$s سیگنال را دوباره نصب کرده است.</string>
+  <string name="IdentityUtil_unverified_dialog_one">شمارهٔ ایمنی شما با %1$s تغییر کرده و دیگر وارسی شده نیست. این می‌تواند به این معنی باشد که شخصی سعی دارد ارتباط شما را شنود کند یا %1$s سیگنال را دوباره نصب کرده است.</string>
   <string name="IdentityUtil_unverified_dialog_two">شماره‌های امنیتی شما با %1$s و %2$s دیگر وارسی شده نیستند. این می‌تواند به این معنی باشد که شخصی سعی دارد ارتباطات شما را شنود کند، یا اینکه آن‌ها برنامهٔ سیگنال را دوباره نصب کرده‌اند.</string>
   <string name="IdentityUtil_unverified_dialog_many">شماره‌های امنیتی شما با %1$s، %2$s و %3$s دیگر وارسی شده نیستند. این می‌تواند به این معنی باشد که شخصی سعی دارد ارتباطات شما را شنود کند یا اینکه آن‌ها برنامهٔ سیگنال را دوباره نصب کرده‌اند.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">شمارهٔ ایمنی شما با %s تغییر یافت.</string>
   <string name="IdentityUtil_untrusted_dialog_two">شماره‌های امنیتی شما با %1$s و %2$s تغییر کرد.</string>
   <string name="IdentityUtil_untrusted_dialog_many">شماره‌های امنیتی شما با %1$s، %2$s و %3$s تغییر کرد.</string>
   <plurals name="identity_others">
@@ -1831,14 +1831,14 @@
   <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ برای وارسی امنیت رمزگذاری سرتاسر خود با %s، ارقام بالا را با ارقام روی دستگاه آن‌ها مقایسه کنید. همچنین می‌توانید کد روی تلفن آن‌ها را اسکن کنید. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
   <string name="verify_display_fragment__successful_match">انطباق موفق</string>
-  <string name="verify_display_fragment__failed_to_verify_safety_number">وارسی شمارهٔ امنیتی ناموفق بود</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">وارسی شمارهٔ ایمنی ناموفق بود</string>
   <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
   <string name="verify_display_fragment__mark_as_verified">علامت‌گذاری به عنوان وارسی شده</string>
   <string name="verify_display_fragment__clear_verification">پاک کردن وارسی</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_number">اشتراک‌گذاری شمارهٔ امنیتی</string>
+  <string name="verify_identity__share_safety_number">اشتراک‌گذاری شمارهٔ ایمنی</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">کد QR روی دستگاه مخاطب خود را اسکن کنید</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">کد QR را از دستگاه مخاطب خود اسکن کنید.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">جهت پاسخ دادن به بالا بکشید</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">جهت رد کردن به پایین بکشید</string>
@@ -1858,12 +1858,12 @@
   <string name="message_details_recipient_header__viewed">مشاهده شده توسط</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">ارسال ناموفق بود</string>
-  <string name="message_details_recipient__new_safety_number">شمارهٔ امنیتی جدید</string>
+  <string name="message_details_recipient__new_safety_number">شمارهٔ ایمنی جدید</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">ایجاد گذرواژه</string>
   <string name="AndroidManifest__select_contacts">انتخاب مخاطبین</string>
   <string name="AndroidManifest__change_passphrase">تغییر گذرواژه</string>
-  <string name="AndroidManifest__verify_safety_number">وارسی شمارهٔ امنیتی</string>
+  <string name="AndroidManifest__verify_safety_number">وارسی شمارهٔ ایمنی</string>
   <string name="AndroidManifest__log_submit">ارسال گزارش عیب‌یابی</string>
   <string name="AndroidManifest__media_preview">پیش‌نمایش رسانه‌</string>
   <string name="AndroidManifest__message_details">جزئیات پیام</string>
@@ -2687,7 +2687,7 @@
   <string name="RecipientBottomSheet_add_to_contacts">افزودن به مخاطبین</string>
   <string name="RecipientBottomSheet_add_to_a_group">افزودن به گروه</string>
   <string name="RecipientBottomSheet_add_to_another_group">افزودن به گروهی دیگر</string>
-  <string name="RecipientBottomSheet_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
+  <string name="RecipientBottomSheet_view_safety_number">مشاهدهٔ شمارهٔ ایمنی</string>
   <string name="RecipientBottomSheet_make_admin">ارتقا به مدیر</string>
   <string name="RecipientBottomSheet_remove_as_admin">حذف بعنوان مدیر</string>
   <string name="RecipientBottomSheet_remove_from_group">حذف از گروه</string>
@@ -3109,7 +3109,7 @@
   <string name="ConversationSettingsFragment__disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">صداها و اعلان‌ها</string>
   <string name="ConversationSettingsFragment__contact_details">جزئیات مخاطب</string>
-  <string name="ConversationSettingsFragment__view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
+  <string name="ConversationSettingsFragment__view_safety_number">مشاهدهٔ شمارهٔ ایمنی</string>
   <string name="ConversationSettingsFragment__block">مسدود کردن</string>
   <string name="ConversationSettingsFragment__block_group">مسدود کردن گروه</string>
   <string name="ConversationSettingsFragment__unblock">رفع مسدودیت</string>
@@ -3229,5 +3229,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
   <string name="ImageEditorHud__delete">حذف</string>
   <string name="CameraFragment__failed_to_open_camera">باز کردن دوربین ناموفق بود</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">تعویض میان سبک‌های متن</string>
   <!--EOF-->
 </resources>

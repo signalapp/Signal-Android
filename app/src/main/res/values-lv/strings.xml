@@ -1871,6 +1871,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dalīties ar drošības numuru</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skenējiet QR kodu savas kontaktpersonas ierīcē.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Vilkt uz augšu, lai atbildētu</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Vilkt uz leju, lai noraidītu</string>

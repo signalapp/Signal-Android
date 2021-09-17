@@ -1830,7 +1830,7 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partager le numéro de sécurité</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Balayez le code QR sur l’appareil de votre contact.</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Balayez le code QR sur l’appareil de votre contact.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Balayer vers le haut pour répondre</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Balayer vers le bas pour refuser</string>
@@ -2964,6 +2964,7 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">Mettre le NIP à jour</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Conserver l’ancien NIP ?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Changement d’état confirmé</string>
   <string name="ChangeNumberLockActivity__retry">Réessayer</string>
   <string name="ChangeNumberLockActivity__leave">Quitter</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Envoyer le journal de débogage</string>
@@ -3134,6 +3135,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">x 0,5</string>
   <string name="PlaybackSpeedToggleTextView__1x">x 1</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">x 1,5</string>
   <string name="PlaybackSpeedToggleTextView__2x">x 2</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Nouveau paiement</string>
@@ -3208,7 +3210,7 @@
   <string name="MediaReviewSelectedItem__tap_to_remove">Touchez pour retirer</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Touchez pour sélectionner</string>
   <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
-  <string name="MediaReviewImagePageFragment__discard_changes">Annuler les changements ?</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Abandonner les changements ?</string>
   <string name="MediaReviewFragment__view_once_message">Message éphémère</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
   <string name="ImageEditorHud__delete">Supprimer</string>

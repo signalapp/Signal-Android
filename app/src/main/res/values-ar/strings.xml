@@ -2136,7 +2136,7 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم اﻷمان</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">يُرجى تصوير الرمز المربع الذي في جهاز جهة اتصالك.</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">امسح رمز الاستجابة السريعة المعروض على جهاز جهة اتصالك.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">إسحب للأعلى للإجابة</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">إسحب للأسفل لرفض المكالمة</string>
