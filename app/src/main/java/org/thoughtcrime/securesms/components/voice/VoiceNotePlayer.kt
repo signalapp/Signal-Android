@@ -5,12 +5,12 @@ import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.ForwardingPlayer
 import com.google.android.exoplayer2.SimpleExoPlayer
-import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory
+import org.thoughtcrime.securesms.video.exo.SignalMediaSourceFactory
 
 class VoiceNotePlayer @JvmOverloads constructor(
   context: Context,
   val internalPlayer: SimpleExoPlayer = SimpleExoPlayer.Builder(context)
-    .setMediaSourceFactory(AttachmentMediaSourceFactory(context))
+    .setMediaSourceFactory(SignalMediaSourceFactory(context))
     .setLoadControl(
       DefaultLoadControl.Builder()
         .setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE)

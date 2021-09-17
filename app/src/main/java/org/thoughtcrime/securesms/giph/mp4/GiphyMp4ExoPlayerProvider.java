@@ -15,7 +15,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
-import org.thoughtcrime.securesms.video.exo.ChunkedDataSourceFactory;
+import org.thoughtcrime.securesms.video.exo.SignalDataSource;
 
 import okhttp3.OkHttpClient;
 
@@ -26,7 +26,7 @@ final class GiphyMp4ExoPlayerProvider implements DefaultLifecycleObserver {
 
   private final Context            context;
   private final OkHttpClient       okHttpClient       = ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(new ContentProxySelector()).build();
-  private final DataSource.Factory dataSourceFactory  = new ChunkedDataSourceFactory(okHttpClient, null);
+  private final DataSource.Factory dataSourceFactory  = new SignalDataSource.Factory(ApplicationDependencies.getApplication(), okHttpClient, null);
   private final MediaSourceFactory mediaSourceFactory = new ProgressiveMediaSource.Factory(dataSourceFactory);
 
   GiphyMp4ExoPlayerProvider(@NonNull Context context) {

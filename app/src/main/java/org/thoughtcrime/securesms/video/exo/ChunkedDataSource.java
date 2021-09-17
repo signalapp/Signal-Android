@@ -27,7 +27,7 @@ import okhttp3.OkHttpClient;
 /**
  * DataSource which utilizes ChunkedDataFetcher to download video content via Signal content proxy.
  */
-public class ChunkedDataSource implements DataSource {
+class ChunkedDataSource implements DataSource {
 
   private final OkHttpClient     okHttpClient;
   private final TransferListener transferListener;
@@ -138,5 +138,4 @@ public class ChunkedDataSource implements DataSource {
     }
     cacheEntry = null;
   }
-
 }

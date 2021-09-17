@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class PartDataSource implements DataSource {
+class PartDataSource implements DataSource {
 
   private final @NonNull  Context          context;
   private final @Nullable TransferListener listener;

@@ -389,6 +389,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int defaultTopMargin      = readDimen(R.dimen.message_bubble_default_footer_bottom_margin);
     int defaultBottomMargin   = readDimen(R.dimen.message_bubble_bottom_padding);
     int collapsedBottomMargin = readDimen(R.dimen.message_bubble_collapsed_bottom_padding);
+
     if (!updatingFooter                                                &&
         getActiveFooter(messageRecord) == footer                       &&
         !hasAudio(messageRecord)                                       &&
@@ -400,11 +401,13 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       int      footerWidth        = footer.getMeasuredWidth();
       int      availableWidth     = getAvailableMessageBubbleWidth(bodyText);
       int      collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
+
       if (bodyText.isSingleLine()) {
         int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
         int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
         int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
         int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
+
         if (hasQuote(messageRecord) && sizeWithMargins < availableWidth) {
           ViewUtil.setTopMargin(footer, collapsedTopMargin);
           ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
@@ -418,6 +421,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           updatingFooter = true;
         }
       }
+
       if (!updatingFooter && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
         ViewUtil.setTopMargin(footer, collapsedTopMargin);
         ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
@@ -1044,9 +1048,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       mediaThumbnailStub.require().setMinimumThumbnailWidth(readDimen(isCaptionlessMms(messageRecord) ? R.dimen.media_bubble_min_width_solo
                                                                                                   : R.dimen.media_bubble_min_width_with_content));
       mediaThumbnailStub.require().setImageResource(glideRequests,
-                                                thumbnailSlides,
-                                                showControls,
-                                                false);
+                                                    thumbnailSlides,
+                                                    showControls,
+                                                    false);
       mediaThumbnailStub.require().setThumbnailClickListener(new ThumbnailClickListener());
       mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);

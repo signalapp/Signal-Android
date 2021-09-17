@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.offline.StreamKey;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy;
@@ -24,17 +25,16 @@ import com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy;
 import java.util.List;
 
 /**
- * This class is responsible for creating a MediaSource object for a given Uri, using AttachmentDataSourceFactory
+ * This class is responsible for creating a MediaSource object for a given Uri, using {@link SignalDataSource.Factory}.
  */
 @SuppressWarnings("deprecation")
-public final class AttachmentMediaSourceFactory implements MediaSourceFactory {
+public final class SignalMediaSourceFactory implements MediaSourceFactory {
 
   private final ProgressiveMediaSource.Factory progressiveMediaSourceFactory;
 
-  public AttachmentMediaSourceFactory(@NonNull Context context) {
-    DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(context, "GenericUserAgent", null);
-    AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(context, defaultDataSourceFactory, null);
-    ExtractorsFactory           extractorsFactory           = new DefaultExtractorsFactory().setConstantBitrateSeekingEnabled(true);
+  public SignalMediaSourceFactory(@NonNull Context context) {
+    DataSource.Factory attachmentDataSourceFactory = new SignalDataSource.Factory(context, null, null);
+    ExtractorsFactory  extractorsFactory           = new DefaultExtractorsFactory().setConstantBitrateSeekingEnabled(true);
 
     progressiveMediaSourceFactory = new ProgressiveMediaSource.Factory(attachmentDataSourceFactory, extractorsFactory);
   }

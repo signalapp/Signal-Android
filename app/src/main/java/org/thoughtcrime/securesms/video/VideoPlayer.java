@@ -27,7 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -36,12 +35,13 @@ import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.video.exo.AttachmentDataSourceFactory;
+import org.thoughtcrime.securesms.video.exo.SignalDataSource;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -86,9 +86,8 @@ public class VideoPlayer extends FrameLayout {
     Context context = getContext();
 
     if (exoPlayer == null) {
-      DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(context, "GenericUserAgent", null);
-      AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(context, defaultDataSourceFactory, null);
-      MediaSourceFactory          mediaSourceFactory          = new DefaultMediaSourceFactory(attachmentDataSourceFactory);
+      DataSource.Factory attachmentDataSourceFactory = new SignalDataSource.Factory(context, null, null);
+      MediaSourceFactory mediaSourceFactory          = new DefaultMediaSourceFactory(attachmentDataSourceFactory);
 
       exoPlayer = new SimpleExoPlayer.Builder(context).setMediaSourceFactory(mediaSourceFactory).build();
       exoPlayer.addListener(new ExoPlayerListener(this, window, playerStateCallback, playerPositionDiscontinuityCallback));

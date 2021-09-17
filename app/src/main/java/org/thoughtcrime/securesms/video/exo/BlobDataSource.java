@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class BlobDataSource implements DataSource {
+class BlobDataSource implements DataSource {
 
   private final @NonNull  Context          context;
   private final @Nullable TransferListener listener;
