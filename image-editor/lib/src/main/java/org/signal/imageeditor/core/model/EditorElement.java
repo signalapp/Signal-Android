@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.imageeditor.core.MatrixUtils;
 import org.signal.imageeditor.core.Renderer;
 import org.signal.imageeditor.core.RendererContext;
 
@@ -297,6 +298,14 @@ public final class EditorElement implements Parcelable {
 
   public void deleteAllChildren() {
     children.clear();
+  }
+
+  public float getLocalRotationAngle() {
+    return MatrixUtils.getRotationAngle(localMatrix);
+  }
+
+  public float getLocalScaleX() {
+    return MatrixUtils.getScaleX(localMatrix);
   }
 
   public interface PerElementFunction {

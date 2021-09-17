@@ -427,6 +427,11 @@ public final class ImageEditorView extends FrameLayout {
     this.mode = mode;
   }
 
+  public void setMainImageEditorMatrixRotation(float angle, float minScaleDown) {
+    model.setMainImageEditorMatrixRotation(angle, minScaleDown);
+    invalidate();
+  }
+
   public void startDrawing(float thickness, @NonNull Paint.Cap cap, boolean blur) {
     this.thickness = thickness;
     this.cap       = cap;

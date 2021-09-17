@@ -95,6 +95,9 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private           int           imageMaxWidth;
 
   private final ThrottledDebouncer deleteFadeDebouncer = new ThrottledDebouncer(500);
+  private       float              initialDialImageDegrees;
+  private       float              initialDialScale;
+  private       float              minDialScaleDown;
 
   public static class Data {
     private final Bundle bundle;
@@ -132,7 +135,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private ImageEditorView  imageEditorView;
   private boolean          hasMadeAnEditThisSession;
   private boolean          wasInTrashHitZone;
-
 
   public static ImageEditorFragment newInstanceForAvatarCapture(@NonNull Uri imageUri) {
     ImageEditorFragment fragment = newInstance(imageUri);
@@ -422,6 +424,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
                    .setVisible(mode == ImageEditorHudV2.Mode.DELETE)
                    .persist();
 
+    updateHudDialRotation();
+
     switch (mode) {
       case CROP: {
         imageEditorView.getModel().startCrop();
@@ -561,6 +565,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onClearAll() {
     imageEditorView.getModel().clearUndoStack();
+    updateHudDialRotation();
   }
 
   @Override
@@ -586,6 +591,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public void onUndo() {
     imageEditorView.getModel().undo();
     imageEditorHud.setBlurFacesToggleEnabled(imageEditorView.getModel().hasFaceRenderer());
+    updateHudDialRotation();
   }
 
   @Override
@@ -639,6 +645,32 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onDone() {
     controller.onDoneEditing();
+  }
+
+  @Override
+  public void onDialRotationGestureStarted() {
+    float localScaleX = imageEditorView.getModel().getMainImage().getLocalScaleX();
+    minDialScaleDown = initialDialScale / localScaleX;
+    imageEditorView.getModel().pushUndoPoint();
+    imageEditorView.getModel().updateUndoRedoAvailabilityState();
+    initialDialImageDegrees = (float) Math.toDegrees(imageEditorView.getModel().getMainImage().getLocalRotationAngle());
+  }
+
+  @Override
+  public void onDialRotationGestureFinished() {
+    imageEditorView.getModel().getMainImage().commitEditorMatrix();
+    imageEditorView.getModel().postEdit(true);
+    imageEditorView.invalidate();
+  }
+
+  @Override
+  public void onDialRotationChanged(float degrees) {
+    imageEditorView.setMainImageEditorMatrixRotation(degrees - initialDialImageDegrees, minDialScaleDown);
+  }
+
+  private void updateHudDialRotation() {
+    imageEditorHud.setDialRotation(getRotationDegreesRounded(imageEditorView.getModel().getMainImage()));
+    initialDialScale = imageEditorView.getModel().getMainImage().getLocalScaleX();
   }
 
   private ResizeAnimation resizeAnimation;
@@ -738,6 +770,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private void onDrawingChanged(boolean stillTouching, boolean isUserEdit) {
     if (isUserEdit) {
       hasMadeAnEditThisSession = true;
+
     }
   }
 
@@ -832,10 +865,18 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
   };
 
+  public float getRotationDegreesRounded(@Nullable EditorElement editorElement) {
+    if (editorElement == null) {
+      return 0f;
+    }
+    return Math.round(Math.toDegrees(editorElement.getLocalRotationAngle()));
+  }
+
   private final ImageEditorView.DragListener dragListener = new ImageEditorView.DragListener() {
     @Override
     public void onDragStarted(@Nullable EditorElement editorElement) {
       if (imageEditorHud.getMode() == ImageEditorHudV2.Mode.CROP) {
+        updateHudDialRotation();
         return;
       }
 
@@ -855,6 +896,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     @Override
     public void onDragMoved(@Nullable EditorElement editorElement, boolean isInTrashHitZone) {
       if (imageEditorHud.getMode() == ImageEditorHudV2.Mode.CROP || editorElement == null) {
+        updateHudDialRotation();
         return;
       }
 
@@ -882,6 +924,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       wasInTrashHitZone = false;
       imageEditorHud.animate().alpha(1f);
       if (imageEditorHud.getMode() == ImageEditorHudV2.Mode.CROP) {
+        updateHudDialRotation();
         return;
       }
 
@@ -961,6 +1004,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     if (editorElement != null && editorElement.getRenderer() instanceof SelectableRenderer) {
       ((SelectableRenderer) editorElement.getRenderer()).onSelected(selected);
     }
+    imageEditorView.getModel().setSelected(selected ? editorElement : null);
   }
 
   private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(false) {

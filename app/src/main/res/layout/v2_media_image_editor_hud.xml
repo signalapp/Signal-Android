@@ -331,6 +331,16 @@
             tools:translationY="0dp"
             tools:visibility="visible" />
 
+        <org.thoughtcrime.securesms.scribbles.RotationDialView
+            android:id="@+id/image_editor_hud_crop_rotation_dial"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:alpha="0"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_top_of_button_bar_spacing"
+            tools:alpha="1"
+            tools:visibility="visible" />
+
         <!-- endregion -->
 
         <!-- region blur stuff -->

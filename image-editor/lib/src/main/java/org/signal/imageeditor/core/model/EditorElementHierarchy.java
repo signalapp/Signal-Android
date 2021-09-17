@@ -221,6 +221,12 @@ final class EditorElementHierarchy {
     selectedElement = null;
   }
 
+  void updateSelectionThumbsForElement(@NonNull EditorElement element, @Nullable Matrix overlayMappingMatrix) {
+    if (element == selectedElement) {
+      setOrUpdateSelectionThumbsForElement(element, overlayMappingMatrix);
+    }
+  }
+
   void setOrUpdateSelectionThumbsForElement(@NonNull EditorElement element, @Nullable Matrix overlayMappingMatrix) {
     if (selectedElement != element) {
       removeAllSelectionArtifacts();
@@ -433,7 +439,7 @@ final class EditorElementHierarchy {
     return dst;
   }
 
-  void flipRotate(int degrees, int scaleX, int scaleY, @NonNull RectF visibleViewPort, @Nullable Runnable invalidate) {
+  void flipRotate(float degrees, int scaleX, int scaleY, @NonNull RectF visibleViewPort, @Nullable Runnable invalidate) {
     Matrix newLocal = new Matrix(flipRotate.getLocalMatrix());
     if (degrees != 0) {
       newLocal.postRotate(degrees);

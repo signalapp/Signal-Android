@@ -76,6 +76,11 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     }
   }
 
+  public void updateSelectionThumbsIfSelected(@NonNull EditorElement editorElement) {
+    Matrix overlayMappingMatrix = findRelativeMatrix(editorElement, editorElementHierarchy.getOverlay());
+    editorElementHierarchy.updateSelectionThumbsForElement(editorElement, overlayMappingMatrix);
+  }
+
   public void setSelectionVisible(boolean visible) {
     editorElementHierarchy.getSelection()
                           .getFlags()
@@ -143,6 +148,51 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     this.undoRedoStackListener = undoRedoStackListener;
 
     updateUndoRedoAvailableState(getActiveUndoRedoStacks(isCropping()));
+  }
+
+  /** Keeps the image within the crop bounds as it rotates */
+  public void setMainImageEditorMatrixRotation(float angle, float minScaleDown) {
+    setEditorMatrixToRotationMatrixAboutParentsOrigin(editorElementHierarchy.getMainImage(), angle);
+    scaleMainImageEditorMatrixToFitInsideCropBounds(minScaleDown, 2f);
+  }
+
+  private void scaleMainImageEditorMatrixToFitInsideCropBounds(float minScaleDown, float maxScaleUp) {
+    EditorElement mainImage             = editorElementHierarchy.getMainImage();
+    Matrix        mainImageLocalBackup  = new Matrix(mainImage.getLocalMatrix());
+    Matrix        mainImageEditorBackup = new Matrix(mainImage.getEditorMatrix());
+
+    mainImage.commitEditorMatrix();
+    Matrix combinedLocal = new Matrix(mainImage.getLocalMatrix());
+    Matrix newLocal = Bisect.bisectToTest(mainImage,
+                                          minScaleDown,
+                                          maxScaleUp,
+                                          this::cropIsWithinMainImageBounds,
+                                          (matrix, scale) -> matrix.preScale(scale, scale));
+
+    Matrix invertLocal = new Matrix();
+    if (newLocal != null && combinedLocal.invert(invertLocal)) {
+      invertLocal.preConcat(newLocal); // L^-1 (L * Scale) -> Scale
+      mainImageEditorBackup.preConcat(invertLocal); // add the scale to editor matrix to keep this image within crop
+    }
+    mainImage.getLocalMatrix().set(mainImageLocalBackup);
+    mainImage.getEditorMatrix().set(mainImageEditorBackup);
+  }
+
+  /**
+   * Sets the editor matrix for the element to a rotation of the degrees but does so that we are rotating around the
+   * parents elements origin.
+   */
+  private void setEditorMatrixToRotationMatrixAboutParentsOrigin(@NonNull EditorElement element, float degrees) {
+    Matrix localMatrix  = element.getLocalMatrix();
+    Matrix editorMatrix = element.getEditorMatrix();
+    localMatrix.invert(editorMatrix);
+    editorMatrix.preRotate(degrees);
+    editorMatrix.preConcat(localMatrix);
+    // Editor Matrix is then: Local^-1 * Rotate(degrees) * Local
+    // So you end up with this overall for the element: Local * Local^-1 * Rotate(degrees) * Local
+    // Meaning the rotate applies after existing effects of the local matrix
+    // Where as simply setting the editor matrix rotate gives this: Local * Rotate(degrees)
+    // which rotates around local origin first
   }
 
   /**
@@ -231,6 +281,10 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     }
 
     getActiveUndoRedoStacks(cropping).pushState(editorElementHierarchy.getRoot());
+  }
+
+  public void updateUndoRedoAvailabilityState() {
+    updateUndoRedoAvailableState(getActiveUndoRedoStacks(isCropping()));
   }
 
   public void clearUndoStack() {
@@ -598,7 +652,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
    */
   public void moving(@NonNull EditorElement editorElement) {
     if (!isCropping()) {
-      setSelected(editorElement);
+      updateSelectionThumbsIfSelected(editorElement);
       return;
     }
 
@@ -902,10 +956,6 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return null;
   }
 
-  public void rotate90clockwise() {
-    flipRotate(90, 1, 1);
-  }
-
   public void rotate90anticlockwise() {
     flipRotate(-90, 1, 1);
   }
@@ -914,11 +964,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     flipRotate(0, -1, 1);
   }
 
-  public void flipVertical() {
-    flipRotate(0, 1, -1);
-  }
-
-  private void flipRotate(int degrees, int scaleX, int scaleY) {
+  private void flipRotate(float degrees, int scaleX, int scaleY) {
     pushUndoPoint();
     editorElementHierarchy.flipRotate(degrees, scaleX, scaleY, visibleViewPort, invalidate);
     updateUndoRedoAvailableState(getActiveUndoRedoStacks(isCropping()));
