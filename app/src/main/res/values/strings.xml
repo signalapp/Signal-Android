@@ -897,5 +897,6 @@
     <string name="delete_message_for_me">Delete just for me</string>
     <string name="delete_message_for_everyone">Delete for everyone</string>
     <string name="delete_message_for_me_and_recipient">Delete for me and %s</string>
+    <string name="activity_settings_survey_feedback">Feedback/Survey</string>
 
 </resources>
