@@ -89,7 +89,7 @@ public final class IdentityUtil {
             else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
 
             DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);
-            ThreadUpdateJob.enqueue(threadId);
+            DatabaseFactory.getThreadDatabase(context).update(threadId, true);
           }
         }
       }
@@ -112,7 +112,7 @@ public final class IdentityUtil {
 
       Log.i(TAG, "Inserting verified outbox...");
       DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);
-      ThreadUpdateJob.enqueue(threadId);
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     }
   }
 

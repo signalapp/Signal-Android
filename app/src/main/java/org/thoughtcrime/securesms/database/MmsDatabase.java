@@ -1360,7 +1360,7 @@ public class MmsDatabase extends MessageDatabase {
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-      ThreadUpdateJob.enqueue(threadId);
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     }
 
     notifyConversationListeners(threadId);
@@ -1458,7 +1458,7 @@ public class MmsDatabase extends MessageDatabase {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
-    ThreadUpdateJob.enqueue(threadId);
+    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
     TrimThreadJob.enqueueAsync(threadId);
   }
@@ -1668,7 +1668,7 @@ public class MmsDatabase extends MessageDatabase {
 
       if (updateThread) {
         DatabaseFactory.getThreadDatabase(context).setLastScrolled(contentValuesThreadId, 0);
-        ThreadUpdateJob.enqueue(contentValuesThreadId);
+        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
       }
     }
   }

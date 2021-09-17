@@ -726,7 +726,7 @@ public final class MessageContentProcessor {
                                                     message.getTimestamp(),
                                                     null);
       database.markAsSent(messageId, true);
-      ThreadUpdateJob.enqueue(threadId);
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     }
 
     return threadId;
@@ -1557,7 +1557,7 @@ public final class MessageContentProcessor {
       messageId = DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
       database  = DatabaseFactory.getSmsDatabase(context);
       database.markUnidentified(messageId, isUnidentified(message, recipient));
-      ThreadUpdateJob.enqueue(threadId);
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     }
 
     database.markAsSent(messageId, true);
