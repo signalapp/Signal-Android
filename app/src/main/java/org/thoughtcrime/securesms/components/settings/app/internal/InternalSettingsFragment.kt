@@ -323,12 +323,12 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setPositiveButton(
         "Copy"
       ) { _: DialogInterface?, _: Int ->
+        val context: Context = ApplicationDependencies.getApplication()
+        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
         SimpleTask.run<Any?>(
           SignalExecutors.UNBOUNDED,
           {
-            val context: Context = ApplicationDependencies.getApplication()
-            val clipboard =
-              context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val tsv = DataExportUtil.createTsv()
             val clip = ClipData.newPlainText(context.getString(R.string.app_name), tsv)
             clipboard.setPrimaryClip(clip)
