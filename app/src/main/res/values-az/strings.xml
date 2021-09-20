@@ -3103,7 +3103,7 @@
   <string name="ConversationSettingsFragment__start_audio_call">Səsli zəng başlat</string>
   <string name="ConversationSettingsFragment__message">Mesaj</string>
   <string name="ConversationSettingsFragment__video">Görüntülü</string>
-  <string name="ConversationSettingsFragment__audio">Səs</string>
+  <string name="ConversationSettingsFragment__audio">Səsli</string>
   <string name="ConversationSettingsFragment__call">Zəng et</string>
   <string name="ConversationSettingsFragment__mute">Səssizə al</string>
   <string name="ConversationSettingsFragment__muted">Səssizdə</string>

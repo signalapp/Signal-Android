@@ -1979,7 +1979,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Zadejte jméno nebo číslo</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Chcete-li ověřit bezpečnost koncového šifrování s %s, porovnejte výše uvedená čísla s jejich zařízením. Můžete také naskenovat kód z jejich telefonu. <a href="https://signal.org/redirect/safety-numbers">Dozvědět se více.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Chcete-li ověřit bezpečnost koncového šifrování s %s, porovnejte výše uvedená čísla se zařízením tohoto kontaktu. Porovnání můžete také provést naskenováním kódu z jeho telefonu. <a href="https://signal.org/redirect/safety-numbers">Dozvědět se více.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
   <string name="verify_display_fragment__successful_match">Shoduje se</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Nepodařilo se ověřit bezpečnostní číslo</string>
@@ -3325,6 +3325,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Nová platba</string>

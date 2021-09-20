@@ -1887,6 +1887,15 @@
   <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- Изберете опција --</item>
+    <item>Нешто не функционира</item>
+    <item>Барање за функција</item>
+    <item>Прашање</item>
+    <item>Повратни информации</item>
+    <item>Друго</item>
+    <item>Плаќања</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Оваа порака</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Скорешни</string>
