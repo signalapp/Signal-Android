@@ -55,4 +55,8 @@ public final class RegistrationValues extends SignalStoreValues {
   public void markHasUploadedProfile() {
     putBoolean(HAS_UPLOADED_PROFILE, true);
   }
+
+  public void clearHasUploadedProfile() {
+    putBoolean(HAS_UPLOADED_PROFILE, false);
+  }
 }
