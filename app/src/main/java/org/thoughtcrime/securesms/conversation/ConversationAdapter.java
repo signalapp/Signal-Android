@@ -102,9 +102,6 @@ public class ConversationAdapter
 
   private static final int PAYLOAD_TIMESTAMP = 0;
 
-  private static final long HEADER_ID = Long.MIN_VALUE;
-  private static final long FOOTER_ID = Long.MIN_VALUE + 1;
-
   private final ItemClickListener clickListener;
   private final Context           context;
   private final LifecycleOwner    lifecycleOwner;
@@ -163,8 +160,6 @@ public class ConversationAdapter
     this.hasWallpaper                 = recipient.hasWallpaper();
     this.isMessageRequestAccepted     = true;
     this.colorizer                    = colorizer;
-
-    setHasStableIds(true);
   }
 
   @Override
@@ -189,25 +184,6 @@ public class ConversationAdapter
     } else {
       return MessageRecordUtil.isTextOnly(messageRecord, context) ? MESSAGE_TYPE_INCOMING_TEXT : MESSAGE_TYPE_INCOMING_MULTIMEDIA;
     }
-  }
-
-  @Override
-  public long getItemId(int position) {
-    if (hasHeader() && position == 0) {
-      return HEADER_ID;
-    }
-
-    if (hasFooter() && position == getItemCount() - 1) {
-      return FOOTER_ID;
-    }
-
-    ConversationMessage message = getItem(position);
-
-    if (message == null) {
-      return -1;
-    }
-
-    return message.getUniqueId(digest);
   }
 
   @SuppressLint("ClickableViewAccessibility")
