@@ -40,11 +40,14 @@
 
     <FrameLayout
         android:id="@+id/voice_note_player_speed_touch_target"
-        android:layout_width="36dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
         android:background="?selectableItemBackground"
         android:contentDescription="@string/VoiceNotePlayerView__change_voice_message_speed"
+        android:minWidth="36dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/voice_note_player_close"
         app:layout_constraintTop_toTopOf="parent">
@@ -60,6 +63,8 @@
             android:lineSpacingExtra="1sp"
             android:minWidth="30dp"
             android:minHeight="20dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle"
             android:textColor="@color/signal_text_secondary"
             app:backgroundTint="@color/voice_note_player_speed_background_tint"

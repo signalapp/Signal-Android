@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:layout_width="wrap_content"
     tools:background="@color/green"
+    tools:layout_width="wrap_content"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -85,8 +85,8 @@
         android:maxWidth="140dp"
         android:maxLines="1"
         android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@id/date_and_expiry_wrapper"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/date_and_expiry_wrapper"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Sim Op"
         tools:visibility="visible" />
@@ -127,12 +127,14 @@
         android:background="@drawable/round_background"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:lineSpacingExtra="1sp"
         android:minWidth="30dp"
         android:minHeight="20dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle"
         android:textColor="@color/signal_text_secondary"
         android:visibility="gone"
-        android:lineSpacingExtra="1sp"
         app:backgroundTint="@color/transparent_black_08"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
