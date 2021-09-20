@@ -69,6 +69,10 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     this.exoPlayer = exoPlayer;
   }
 
+  int getPlaybackState() {
+    return exoPlayer.getPlaybackState();
+  }
+
   void setVideoItem(@NonNull MediaItem mediaItem) {
     exoPlayer.setMediaItem(mediaItem);
     exoPlayer.prepare();

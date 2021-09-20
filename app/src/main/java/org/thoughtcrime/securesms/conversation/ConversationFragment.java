@@ -302,8 +302,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     typingView = (ConversationTypingView) inflater.inflate(R.layout.conversation_typing_view, container, false);
 
-    giphyMp4ProjectionRecycler = initializeGiphyMp4();
-
     new ConversationItemSwipeCallback(
             conversationMessage -> actionMode == null &&
                                    MenuState.canReplyToMessage(recipient.get(),
@@ -316,6 +314,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     ).attachToRecyclerView(list);
 
     setupListLayoutListeners();
+    giphyMp4ProjectionRecycler = initializeGiphyMp4();
 
     this.groupViewModel         = ViewModelProviders.of(requireActivity(), new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
     this.messageCountsViewModel = ViewModelProviders.of(requireActivity()).get(MessageCountsViewModel.class);

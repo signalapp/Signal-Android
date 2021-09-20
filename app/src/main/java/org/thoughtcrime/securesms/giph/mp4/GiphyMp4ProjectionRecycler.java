@@ -95,7 +95,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     Projection projection = giphyMp4Playable.getGiphyMp4PlayableProjection(recyclerView);
 
     holder.getContainer().setX(projection.getX());
-    holder.getContainer().setY(projection.getY());
+    holder.getContainer().setY(projection.getY() + recyclerView.getTranslationY());
 
     ViewGroup.LayoutParams params = holder.getContainer().getLayoutParams();
     if (params.width != projection.getWidth() || params.height != projection.getHeight()) {
@@ -115,6 +115,8 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
       holder.show();
       holder.setOnPlaybackReady(giphyMp4Playable::hideProjectionArea);
       holder.playContent(giphyMp4Playable.getMediaItem(), giphyMp4Playable.getPlaybackPolicyEnforcer());
+    } else {
+      holder.setOnPlaybackReady(giphyMp4Playable::hideProjectionArea);
     }
   }
 

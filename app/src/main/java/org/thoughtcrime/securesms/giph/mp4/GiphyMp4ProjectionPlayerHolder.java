@@ -61,6 +61,9 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
 
   public void setOnPlaybackReady(@Nullable Runnable onPlaybackReady) {
     this.onPlaybackReady = onPlaybackReady;
+    if (onPlaybackReady != null && player.getPlaybackState() == Player.STATE_READY) {
+      onPlaybackReady.run();
+    }
   }
 
   public void hide() {
