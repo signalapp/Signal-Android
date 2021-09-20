@@ -23,6 +23,20 @@ message ReactionList {
     repeated Reaction reactions = 1;
 }
 
+message BadgeList {
+    message Badge {
+        string id          = 1;
+        string category    = 2;
+        string name        = 3;
+        string description = 4;
+        string imageUrl    = 5;
+        uint64 expiration  = 6;
+        bool   visible     = 7;
+    }
+
+    repeated Badge badges = 1;
+}
+
 
 import "SignalService.proto";
 import "DecryptedGroups.proto";

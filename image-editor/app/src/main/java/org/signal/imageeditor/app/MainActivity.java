@@ -183,20 +183,12 @@ public final class MainActivity extends AppCompatActivity {
         imageEditorView.startDrawing(0.02f, Paint.Cap.ROUND, false);
         return true;
 
-      case R.id.action_rotate_right_90:
-        imageEditorView.getModel().rotate90clockwise();
-        return true;
-
       case R.id.action_rotate_left_90:
         imageEditorView.getModel().rotate90anticlockwise();
         return true;
 
       case R.id.action_flip_horizontal:
         imageEditorView.getModel().flipHorizontal();
-        return true;
-
-      case R.id.action_flip_vertical:
-        imageEditorView.getModel().flipVertical();
         return true;
 
       case R.id.action_edit_text:

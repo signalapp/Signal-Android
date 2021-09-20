@@ -722,7 +722,8 @@ public class SignalServiceAccountManager {
                                               String about,
                                               String aboutEmoji,
                                               Optional<SignalServiceProtos.PaymentAddress> paymentsAddress,
-                                              StreamDetails avatar)
+                                              StreamDetails avatar,
+                                              List<String> visibleBadgeIds)
       throws IOException
   {
     if (name == null) name = "";
@@ -748,7 +749,8 @@ public class SignalServiceAccountManager {
                                                                              ciphertextEmoji,
                                                                              ciphertextMobileCoinAddress,
                                                                              hasAvatar,
-                                                                             profileKey.getCommitment(uuid).serialize()),
+                                                                             profileKey.getCommitment(uuid).serialize(),
+                                                                             visibleBadgeIds),
                                                                              profileAvatarData);
   }
 

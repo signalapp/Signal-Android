@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -77,6 +79,7 @@ public class RecipientDetails {
   final ProfileName                systemProfileName;
   final Optional<Recipient.Extras> extras;
   final boolean                    hasGroupsInCommon;
+  final List<Badge>                badges;
 
   public RecipientDetails(@Nullable String groupName,
                           @Nullable String systemContactName,
@@ -136,6 +139,7 @@ public class RecipientDetails {
     this.systemContactName           = systemContactName;
     this.extras                      = Optional.fromNullable(settings.getExtras());
     this.hasGroupsInCommon           = settings.hasGroupsInCommon();
+    this.badges                      = settings.getBadges();
   }
 
   /**
@@ -191,6 +195,7 @@ public class RecipientDetails {
     this.systemContactName           = null;
     this.extras                      = Optional.absent();
     this.hasGroupsInCommon           = false;
+    this.badges                      = Collections.emptyList();
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {

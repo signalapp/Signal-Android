@@ -17,9 +17,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.cash.exhaustive.Exhaustive
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.thoughtcrime.securesms.AvatarPreviewActivity
@@ -30,6 +30,10 @@ import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.PushContactSelectionActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.VerifyIdentityActivity
+import org.thoughtcrime.securesms.badges.Badges
+import org.thoughtcrime.securesms.badges.Badges.displayBadges
+import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
 import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper
@@ -85,7 +89,8 @@ private const val REQUEST_CODE_RETURN_FROM_MEDIA = 4
 
 class ConversationSettingsFragment : DSLSettingsFragment(
   layoutId = R.layout.conversation_settings_fragment,
-  menuId = R.menu.conversation_settings
+  menuId = R.menu.conversation_settings,
+  layoutManagerProducer = Badges::createLayoutManagerForGridWithBadges
 ) {
 
   private val alertTint by lazy { ContextCompat.getColor(requireContext(), R.color.signal_alert_primary) }
@@ -175,6 +180,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
+    val args = ConversationSettingsFragmentArgs.fromBundle(requireArguments())
+
     BioTextPreference.register(adapter)
     AvatarPreference.register(adapter)
     ButtonStripPreference.register(adapter)
@@ -184,6 +191,13 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     InternalPreference.register(adapter)
     GroupDescriptionPreference.register(adapter)
     LegacyGroupPreference.register(adapter)
+
+    val recipientId = args.recipientId
+    if (recipientId != null) {
+      Badge.register(adapter) { badge, _ ->
+        ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, recipientId, badge)
+      }
+    }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
 
@@ -466,12 +480,20 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         )
       }
 
-      state.withRecipientSettingsState { groupState ->
-        if (groupState.selfHasGroups) {
+      state.withRecipientSettingsState { recipientSettingsState ->
+        if (state.recipient.badges.isNotEmpty()) {
+          dividerPref()
+
+          sectionHeaderPref(R.string.ManageProfileFragment_badges)
+
+          displayBadges(state.recipient.badges)
+        }
+
+        if (recipientSettingsState.selfHasGroups) {
 
           dividerPref()
 
-          val groupsInCommonCount = groupState.allGroupsInCommon.size
+          val groupsInCommonCount = recipientSettingsState.allGroupsInCommon.size
           sectionHeaderPref(
             DSLSettingsText.from(
               if (groupsInCommonCount == 0) {
@@ -496,7 +518,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             )
           )
 
-          for (group in groupState.groupsInCommon) {
+          for (group in recipientSettingsState.groupsInCommon) {
             customPref(
               RecipientPreference.Model(
                 recipient = group,
@@ -508,7 +530,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             )
           }
 
-          if (groupState.canShowMoreGroupsInCommon) {
+          if (recipientSettingsState.canShowMoreGroupsInCommon) {
             customPref(
               LargeIconClickPreference.Model(
                 title = DSLSettingsText.from(R.string.ConversationSettingsFragment__see_all),
@@ -718,7 +740,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     private val rect = Rect()
 
     override fun getAnimationState(recyclerView: RecyclerView): AnimationState {
-      val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+      val layoutManager = recyclerView.layoutManager as FlexboxLayoutManager
 
       return if (layoutManager.findFirstVisibleItemPosition() == 0) {
         val firstChild = requireNotNull(layoutManager.getChildAt(0))
