@@ -15,7 +15,6 @@
             android:layout_height="80dp"
             android:layout_marginBottom="8dp"
             android:alpha="0"
-            android:background="@drawable/ic_color_preview"
             android:importantForAccessibility="no"
             android:paddingBottom="12dp"
             android:scaleType="centerInside"

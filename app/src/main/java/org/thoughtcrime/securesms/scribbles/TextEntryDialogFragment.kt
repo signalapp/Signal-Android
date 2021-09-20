@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.SimpleColorFilter
@@ -62,6 +63,9 @@ class TextEntryDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_im
     val slider: AppCompatSeekBar = view.findViewById(R.id.image_editor_hud_draw_color_bar)
     val colorIndicator: ImageView = view.findViewById(R.id.image_editor_hud_color_indicator)
     val styleToggle: ImageView = view.findViewById(R.id.image_editor_hud_text_style_button)
+
+    colorIndicator.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_color_preview)
+
     slider.setUpForColor(
       Color.WHITE,
       {
