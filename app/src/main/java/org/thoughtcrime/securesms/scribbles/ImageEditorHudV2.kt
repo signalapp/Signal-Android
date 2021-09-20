@@ -17,7 +17,6 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.switchmaterial.SwitchMaterial
 import org.thoughtcrime.securesms.R

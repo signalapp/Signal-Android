@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.thoughtcrime.securesms.mediasend.Media
-import org.thoughtcrime.securesms.mediasend.MediaSendGifFragment
 import org.thoughtcrime.securesms.mediasend.v2.gif.MediaReviewGifPageFragment
 import org.thoughtcrime.securesms.mediasend.v2.images.MediaReviewImagePageFragment
 import org.thoughtcrime.securesms.mediasend.v2.videos.MediaReviewVideoPageFragment
