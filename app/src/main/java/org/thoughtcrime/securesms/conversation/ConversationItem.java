@@ -1076,14 +1076,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           thumbnailSlides.get(0).isVideoGif()  &&
           thumbnailSlides.get(0) instanceof VideoSlide)
       {
-        canPlayContent = GiphyMp4PlaybackPolicy.autoplay() || allowedToPlayInline;
-
         Uri uri = thumbnailSlides.get(0).getUri();
         if (uri != null) {
           mediaItem = MediaItem.fromUri(uri);
         } else {
           mediaItem = null;
         }
+
+        canPlayContent = (GiphyMp4PlaybackPolicy.autoplay() || allowedToPlayInline) && mediaItem != null;
       }
 
     } else {
