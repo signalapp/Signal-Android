@@ -92,6 +92,12 @@ public final class WallpaperImageSelectionActivity extends AppCompatActivity
 
   @Override
   public void onToolbarNavigationClicked() {
-    // TODO [alex]
+    setResult(RESULT_CANCELED);
+    finish();
+  }
+
+  @Override
+  public boolean isCameraEnabled() {
+    return false;
   }
 }

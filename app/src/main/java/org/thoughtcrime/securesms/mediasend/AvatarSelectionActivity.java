@@ -271,4 +271,9 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
   public void onToolbarNavigationClicked() {
     finish();
   }
+
+  @Override
+  public boolean isCameraEnabled() {
+    return true;
+  }
 }

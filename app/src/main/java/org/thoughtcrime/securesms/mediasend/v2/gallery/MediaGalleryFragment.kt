@@ -75,13 +75,17 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
       onBack()
     }
 
-    toolbar.setOnMenuItemClickListener { item ->
-      if (item.itemId == R.id.action_camera) {
-        callbacks.onNavigateToCamera()
-        true
-      } else {
-        false
+    if (callbacks.isCameraEnabled()) {
+      toolbar.setOnMenuItemClickListener { item ->
+        if (item.itemId == R.id.action_camera) {
+          callbacks.onNavigateToCamera()
+          true
+        } else {
+          false
+        }
       }
+    } else {
+      toolbar.menu.findItem(R.id.action_camera).isVisible = false
     }
 
     countButton.setOnClickListener {
@@ -171,6 +175,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   )
 
   interface Callbacks {
+    fun isCameraEnabled(): Boolean = true
     fun isMultiselectEnabled(): Boolean = false
     fun onMediaSelected(media: Media)
     fun onMediaUnselected(media: Media): Unit = throw UnsupportedOperationException()
