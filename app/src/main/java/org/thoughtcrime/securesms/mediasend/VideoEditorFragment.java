@@ -93,6 +93,22 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
     player.setVideoSource(slide, true);
 
     if (slide.isVideoGif()) {
+      player.setPlayerCallback(new VideoPlayer.PlayerCallback() {
+        @Override
+        public void onPlaying() {
+          controller.onPlayerReady();
+        }
+
+        @Override
+        public void onStopped() {
+          // Do nothing.
+        }
+
+        @Override
+        public void onError() {
+          controller.onPlayerError();
+        }
+      });
       player.hideControls();
       player.loopForever();
     } else if (MediaConstraints.isVideoTranscodeAvailable()) {
