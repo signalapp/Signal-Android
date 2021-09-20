@@ -15,12 +15,15 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.TransportOptions
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class MediaSelectionActivity :
   PassphraseRequiredActivity(),
@@ -134,6 +137,7 @@ class MediaSelectionActivity :
   }
 
   override fun onEmojiSelected(emoji: String?) {
+    RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY).onCodePointSelected(emoji)
     viewModel.sendCommand(HudCommand.EmojiInsert(emoji))
   }
 
