@@ -234,7 +234,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpLinkPreviewObserver()
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
-        scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
+        scrollToBottomButton.setOnClickListener {
+            val layoutManager = conversationRecyclerView.layoutManager ?: return@setOnClickListener
+            if (layoutManager.isSmoothScrolling) {
+                conversationRecyclerView.scrollToPosition(0)
+            } else {
+                conversationRecyclerView.smoothScrollToPosition(0)
+            }
+        }
         unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
         updateUnreadCountIndicator()
         setUpTypingObserver()
