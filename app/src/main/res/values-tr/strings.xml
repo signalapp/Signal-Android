@@ -1828,6 +1828,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Bir ad veya numara girin</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s ile uçtan uca şifrelemenizin güvenliğini doğrulamak için, yukarıdaki numaraları onların aygıtındakilerle karşılaştırın. Kodu onların telefonunda da tarayabilirsiniz. <a href="https://signal.org/redirect/safety-numbers">Daha fazlasını öğrenin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
   <string name="verify_display_fragment__successful_match">Doğru eşleşme</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Güvenlik numarası doğrulanamadı</string>
@@ -2964,12 +2965,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefon numaranızı (%1$s --&gt; %2$s) değiştirmek üzeresiniz.\n\nDevam etmeden önce lütfen aşağıdaki numaranın doğru olduğundan emin olun.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Numarayı düzenle</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Numara Değiştir - Android için PIN (v2 PIN) ile ilgili Yardıma mı İhtiyacınız Var</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN\'ler eşleşmiyor</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Yeni numaranızla ilişkili PIN, eski numaranızla ilişkili PIN \'den farklıdır. Eski PIN\'ı saklamak mı yoksa güncellemek mi istersiniz?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Eski PIN dursun</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN\'i güncelle</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Eski PIN dursun mu?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Numaranızı değiştirmeye çalıştınız gibi gözüküyor ama başarıyla değişip değişmediğini bilemedik.\n\nTekrar bakıyoruz…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Değişiklik durumu doğrulandı</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numaranız %1$s olarak doğrulandı. Eğer bu yeni numaranız değilse lütfen numara değiştirme sürecini yeniden başlatın.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Değişiklik durumunu doğrulanamadı</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Numara değişikliği talebinizin durumunu belirleyemedik.\n\n(Hata: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Tekrar dene</string>
   <string name="ChangeNumberLockActivity__leave">Ayrıl</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Hata ayıklama günlüğünü gönder</string>
@@ -3140,6 +3148,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Yeni ödeme</string>

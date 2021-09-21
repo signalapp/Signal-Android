@@ -215,7 +215,7 @@
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Bu qrupda yalnız adminlər bir zəng başlada bilər.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu bağlantını emal edəcək heç bir tətbiq yoxdur.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Qoşulma tələbiniz qrup admininə göndərildi. Tələbiniz cavablandırılanda bildiriş alacaqsınız.</string>
-  <string name="ConversationActivity_cancel_request">Tələbi ləğv et</string>
+  <string name="ConversationActivity_cancel_request">Tələbdən imtina</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Səsli mesaj göndərmək üçün, Signal-ın mikrofonunuza müraciətinə icazə verin.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal, səsli mesaj göndərmək üçün Mikrofon icazəsini tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\"u fəallaşdırın.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal-ın, %s əlaqəsinə zəng etmək üçün Mikrofon və Kamera icazələrinə ehtiyacı var, ancaq bu icazələr birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
@@ -258,12 +258,12 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Anbarda saxlanılsın?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Yaddaşa yazılacaq bu media fayla cihazındakı digər aplikasiyaların da giriş icazəsi olacaq.\n\nDavam edək?</item>
+    <item quantity="one">Bu medianı anbarda saxlamaq, telefonunuzdakı digər tətbiqlərin bu mediaya müraciətinə şərait yaradacaq.\n\nDavam edilsin?</item>
     <item quantity="other">%1$d medianın hamısını anbarda saxlamaq, telefonunuzdakı digər tətbiqlərin həmin medialarına müraciətinə şərait yaradacaq.\n\nDavam edilsin?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Faylı yaddaşa yazarkən xəta baş verdi!</item>
-    <item quantity="other">Qoşmaların anbarda saxlanma xətası!</item>
+    <item quantity="other">Qoşmaları anbarda saxlama xətası!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Anbara yazıla bilmir!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -2677,7 +2677,7 @@
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Yeni cihazınızda qeydiyyatı tamamlayın</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal hesabınız, yeni cihazınıza köçürüldü, ancaq davam etmək üçün qeydiyyatı tamamlamalısınız. Signal, bu cihazda aktiv olmayacaq.</string>
   <string name="OldDeviceTransferLockedDialog__done">Bitdi</string>
-  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Ləğv et və bu cihazı aktivləşdir</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">İmtina et və bu cihazı aktivləşdir</string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB balansı köçürülsün?</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">%1$s balansınız var. Hesabınızı silməzdən əvvəl pulunuzu başqa pulqabı ünvanına köçürməsəniz, onu həmişəlik itirəcəksiniz.</string>
