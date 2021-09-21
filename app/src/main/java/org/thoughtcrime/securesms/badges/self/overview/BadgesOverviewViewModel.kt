@@ -20,7 +20,7 @@ class BadgesOverviewViewModel(private val badgeRepository: BadgeRepository) : Vi
   private val eventSubject = PublishSubject.create<BadgesOverviewEvent>()
 
   val state: LiveData<BadgesOverviewState> = store.stateLiveData
-  val events: Observable<BadgesOverviewEvent> = eventSubject
+  val events: Observable<BadgesOverviewEvent> = eventSubject.observeOn(AndroidSchedulers.mainThread())
 
   val disposables = CompositeDisposable()
 
@@ -36,7 +36,6 @@ class BadgesOverviewViewModel(private val badgeRepository: BadgeRepository) : Vi
 
   fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
     disposables += badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile)
-      .observeOn(AndroidSchedulers.mainThread())
       .subscribe(
         {
           store.update { it.copy(stage = BadgesOverviewState.Stage.READY) }

@@ -32,6 +32,8 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    postponeEnterTransition()
+
     val pager: ViewPager2 = view.findViewById(R.id.pager)
     val tabs: TabLayout = view.findViewById(R.id.tab_layout)
     val action: MaterialButton = view.findViewById(R.id.action)
@@ -44,13 +46,16 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
     LargeBadge.register(adapter)
     pager.adapter = adapter
+    adapter.submitList(listOf(LargeBadge.EmptyModel()))
 
     TabLayoutMediator(tabs, pager) { _, _ ->
     }.attach()
 
     pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
       override fun onPageSelected(position: Int) {
-        viewModel.onPageSelected(position)
+        if (adapter.getModel(position).map { it is LargeBadge.Model }.orElse(false)) {
+          viewModel.onPageSelected(position)
+        }
       }
     })
 
