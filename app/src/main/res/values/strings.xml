@@ -799,6 +799,7 @@
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
     <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
     <string name="CustomNotificationsDialogFragment__default">Default</string>
+    <string name="CustomNotificationsDialogFragment__unknown">Unknown</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable group link</string>
