@@ -747,12 +747,19 @@ public class ConversationAdapter
       unbind();
 
       if (view != null) {
+        removeViewFromParent(view);
         container.addView(view);
       }
     }
 
     void unbind() {
       container.removeAllViews();
+    }
+
+    private void removeViewFromParent(@NonNull View view) {
+      if (view.getParent() != null) {
+        ((ViewGroup) view.getParent()).removeView(view);
+      }
     }
   }
 
