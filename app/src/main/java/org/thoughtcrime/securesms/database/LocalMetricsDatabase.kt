@@ -33,7 +33,7 @@ class LocalMetricsDatabase private constructor(
     null,
     DATABASE_VERSION,
     0,
-    SqlCipherErrorHandler(DATABASE_NAME),
+    SqlCipherDeletingErrorHandler(DATABASE_NAME),
     SqlCipherDatabaseHook()
   ),
   SignalDatabase {

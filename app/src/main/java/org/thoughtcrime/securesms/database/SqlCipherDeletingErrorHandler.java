@@ -8,18 +8,21 @@ import net.zetetic.database.DatabaseErrorHandler;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.CursorUtil;
 
 /**
- * The default error handler wipes the file. This one instead prints some diagnostics and then crashes so the original corrupt file isn't lost.
+ * Prints some diagnostics and then deletes the original so the database can be recreated.
+ * This should only be used for database that contain "unimportant" data, like logs.
+ * Otherwise, you should use {@link SqlCipherErrorHandler}.
  */
-public final class SqlCipherErrorHandler implements DatabaseErrorHandler {
+public final class SqlCipherDeletingErrorHandler implements DatabaseErrorHandler {
 
-  private static final String TAG = Log.tag(SqlCipherErrorHandler.class);
+  private static final String TAG = Log.tag(SqlCipherDeletingErrorHandler.class);
 
   private final String databaseName;
 
-  public SqlCipherErrorHandler(@NonNull String databaseName) {
+  public SqlCipherDeletingErrorHandler(@NonNull String databaseName) {
     this.databaseName = databaseName;
   }
 
@@ -45,9 +48,6 @@ public final class SqlCipherErrorHandler implements DatabaseErrorHandler {
       Log.e(TAG, "Failed to do cipher_integrity_check!", t);
     }
 
-    throw new DatabaseCorruptedError();
-  }
-
-  public static final class DatabaseCorruptedError extends Error {
+    ApplicationDependencies.getApplication().deleteDatabase(databaseName);
   }
 }
