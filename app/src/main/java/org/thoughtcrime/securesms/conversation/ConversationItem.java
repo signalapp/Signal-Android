@@ -1055,7 +1055,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.require().setOnClickListener(passthroughClickListener);
-      mediaThumbnailStub.require().showShade(TextUtils.isEmpty(messageRecord.getDisplayBody(getContext())) && !hasExtraText(messageRecord));
+      mediaThumbnailStub.require().showShade(messageRecord.isDisplayBodyEmpty(getContext()) && !hasExtraText(messageRecord));
 
       if (!messageRecord.isOutgoing()) {
         mediaThumbnailStub.require().setConversationColor(getDefaultBubbleColor(hasWallpaper));
@@ -1166,7 +1166,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
-    if (!TextUtils.isEmpty(current.getDisplayBody(getContext()))) {
+    if (!current.isDisplayBodyEmpty(getContext())) {
       bottomStart = 0;
       bottomEnd   = 0;
     }
@@ -1194,7 +1194,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))){
+    if (messageRecord.isDisplayBodyEmpty(getContext())){
       if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
           sharedContactStub.get().setSingularStyle();
       } else if (current.isOutgoing()) {
@@ -1414,9 +1414,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
     if (hasNoBubble(messageRecord) && stickerFooter != null) {
       return stickerFooter;
-    } else if (hasSharedContact(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
+    } else if (hasSharedContact(messageRecord) && messageRecord.isDisplayBodyEmpty(getContext())) {
       return sharedContactStub.get().getFooter();
-    } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
+    } else if (hasOnlyThumbnail(messageRecord) && messageRecord.isDisplayBodyEmpty(getContext())) {
       return mediaThumbnailStub.require().getFooter();
     } else {
       return footer;

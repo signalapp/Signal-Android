@@ -21,6 +21,7 @@ import android.content.Context;
 import android.text.SpannableString;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -64,6 +65,7 @@ public class SmsMessageRecord extends MessageRecord {
   }
 
   @Override
+  @WorkerThread
   public SpannableString getDisplayBody(@NonNull Context context) {
     if (SmsDatabase.Types.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MessageRecord_chat_session_refreshed));
