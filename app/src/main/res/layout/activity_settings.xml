@@ -193,6 +193,7 @@
                 android:background="?android:dividerHorizontal" />
 
             <TextView
+                android:padding="@dimen/small_spacing"
                 android:id="@+id/sendInvitationButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -203,6 +204,7 @@
                 android:text="@string/activity_settings_invite_button_title" />
 
             <TextView
+                android:padding="@dimen/small_spacing"
                 android:id="@+id/faqButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -214,6 +216,19 @@
                 android:text="@string/activity_settings_faq_button_title" />
 
             <TextView
+                android:padding="@dimen/small_spacing"
+                android:id="@+id/surveyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_spacing"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/activity_settings_survey_feedback" />
+
+            <TextView
+                android:padding="@dimen/small_spacing"
                 android:id="@+id/helpTranslateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
