@@ -31,8 +31,8 @@ import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.conversation.v2.ModalUrlBottomSheet
 import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
-import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
@@ -237,7 +237,7 @@ class VisibleMessageContentView : LinearLayout {
                 val updatedUrl = urlSpan.url.let { HttpUrl.parse(it).toString() }
                 val replacementSpan = ModalURLSpan(updatedUrl) { url ->
                     val activity = context as AppCompatActivity
-                    OpenURLDialog(url).show(activity.supportFragmentManager, "Open URL Dialog")
+                    ModalUrlBottomSheet(url).show(activity.supportFragmentManager, "Open URL Dialog")
                 }
                 val start = body.getSpanStart(urlSpan)
                 val end = body.getSpanEnd(urlSpan)

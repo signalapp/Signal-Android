@@ -1338,12 +1338,21 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun copyMessages(messages: Set<MessageRecord>) {
         val sortedMessages = messages.sortedBy { it.dateSent }
+        val messageSize = sortedMessages.size
         val builder = StringBuilder()
-        for (message in sortedMessages) {
+        val messageIterator = sortedMessages.iterator()
+        while (messageIterator.hasNext()) {
+            val message = messageIterator.next()
             val body = MentionUtilities.highlightMentions(message.body, threadID, this)
             if (TextUtils.isEmpty(body)) { continue }
-            val formattedTimestamp = DateUtils.getDisplayFormattedTimeSpanString(this, Locale.getDefault(), message.timestamp)
-            builder.append("$formattedTimestamp: $body").append('\n')
+            if (messageSize > 1) {
+                val formattedTimestamp = DateUtils.getDisplayFormattedTimeSpanString(this, Locale.getDefault(), message.timestamp)
+                builder.append("$formattedTimestamp: ")
+            }
+            builder.append(body)
+            if (messageIterator.hasNext()) {
+                builder.append('\n')
+            }
         }
         if (builder.isNotEmpty() && builder[builder.length - 1] == '\n') {
             builder.deleteCharAt(builder.length - 1)
