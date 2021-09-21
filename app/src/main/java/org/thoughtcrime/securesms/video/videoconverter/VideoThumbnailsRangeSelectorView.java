@@ -181,11 +181,6 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
 
   @Override
   protected void onDraw(final Canvas canvas) {
-    if (thumbHintTextSize > 0) {
-      thumbTimeTextPaint.getTextBounds("0", 0, "0".length(), tempDrawRect);
-      canvas.translate(0, tempDrawRect.height());
-    }
-
     super.onDraw(canvas);
 
     canvas.translate(getPaddingLeft(), getPaddingTop());
@@ -252,7 +247,10 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
         drawTimeHint(canvas, drawableWidth, drawableHeight, lastDragThumb, true);
       }
 
+      canvas.save();
+      canvas.translate(0, drawableHeight * 2);
       drawDurationAndSizeHint(canvas, drawableWidth);
+      canvas.restore();
     }
 
     // draw current position marker
@@ -292,7 +290,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     }
     canvas.translate(0, drawableHeight + halfPillHeight);
     canvas.scale(scaleIn, scaleIn);
-    thumbTimeBackgroundPaint.setAlpha(alpha);
+    thumbTimeBackgroundPaint.setAlpha(Math.round(alpha * 0.6f));
     thumbTimeTextPaint.setAlpha(alpha);
     canvas.translate(leftRightPadding - halfPillWidth, halfPillHeight);
     canvas.drawRoundRect(timePillRect, halfPillHeight, halfPillHeight, thumbTimeBackgroundPaint);
@@ -332,7 +330,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
 
     canvas.translate(Math.max(halfPillWidth, Math.min((right + left) / 2f, drawableWidth - halfPillWidth)), - 2 * halfPillHeight);
     canvas.scale(scaleIn, scaleIn);
-    thumbTimeBackgroundPaint.setAlpha(alpha);
+    thumbTimeBackgroundPaint.setAlpha(Math.round(alpha * 0.6f));
     thumbTimeTextPaint.setAlpha(alpha);
     canvas.translate(leftRightPadding - halfPillWidth, halfPillHeight);
     canvas.drawRoundRect(timePillRect, halfPillHeight, halfPillHeight, thumbTimeBackgroundPaint);

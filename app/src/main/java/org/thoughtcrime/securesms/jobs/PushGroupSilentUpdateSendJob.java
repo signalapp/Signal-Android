@@ -11,28 +11,25 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
@@ -128,8 +125,13 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
-    List<Recipient> completions  = deliver(destinations);
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
+    GroupId.V2      groupId        = GroupId.v2(GroupUtil.requireMasterKey(groupContextV2.getMasterKey().toByteArray()));
+    List<Recipient> destinations   = Stream.of(recipients).map(Recipient::resolved).toList();
+    List<Recipient> completions    = deliver(destinations, groupId);
 
     for (Recipient completion : completions) {
       recipients.remove(completion.getId());
@@ -146,6 +148,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
     if (e instanceof ServerRejectedException) return false;
+    if (e instanceof NotPushRegisteredException) return false;
     return e instanceof IOException ||
            e instanceof RetryLaterException;
   }
@@ -155,22 +158,18 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     Log.w(TAG, "Failed to send remote delete to all recipients! (" + (initialRecipientCount - recipients.size() + "/" + initialRecipientCount + ")") );
   }
 
-  private @NonNull List<Recipient> deliver(@NonNull List<Recipient> destinations)
+  private @NonNull List<Recipient> deliver(@NonNull List<Recipient> destinations, @NonNull GroupId.V2 groupId)
       throws IOException, UntrustedIdentityException
   {
-    SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);;
-
     SignalServiceGroupV2     group            = SignalServiceGroupV2.fromProtobuf(groupContextV2);
     SignalServiceDataMessage groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                         .withTimestamp(timestamp)
                                                                         .asGroupMessage(group)
                                                                         .build();
 
-    List<SendMessageResult> results = messageSender.sendMessage(addresses, unidentifiedAccess, false, groupDataMessage);
+    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, groupId, destinations, false, ContentHint.IMPLICIT, groupDataMessage);
 
-    return GroupSendJobHelper.getCompletedSends(context, results);
+    return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
 
   public static class Factory implements Job.Factory<PushGroupSilentUpdateSendJob> {

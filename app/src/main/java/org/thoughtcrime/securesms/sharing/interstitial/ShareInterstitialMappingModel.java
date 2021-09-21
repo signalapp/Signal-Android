@@ -11,11 +11,11 @@ import org.thoughtcrime.securesms.util.viewholders.RecipientMappingModel;
 class ShareInterstitialMappingModel extends RecipientMappingModel<ShareInterstitialMappingModel> {
 
   private final Recipient recipient;
-  private final boolean   isLast;
+  private final boolean   isFirst;
 
-  ShareInterstitialMappingModel(@NonNull Recipient recipient, boolean isLast) {
+  ShareInterstitialMappingModel(@NonNull Recipient recipient, boolean isFirst) {
     this.recipient = recipient;
-    this.isLast    = isLast;
+    this.isFirst   = isFirst;
   }
 
   @Override
@@ -23,7 +23,7 @@ class ShareInterstitialMappingModel extends RecipientMappingModel<ShareInterstit
     String name = recipient.isSelf() ? context.getString(R.string.note_to_self)
                                      : recipient.getShortDisplayNameIncludingUsername(context);
 
-    return isLast ? name : context.getString(R.string.ShareActivity__s_comma, name);
+    return isFirst ? name : context.getString(R.string.ShareActivity__comma_s, name);
   }
 
   @Override
@@ -33,6 +33,6 @@ class ShareInterstitialMappingModel extends RecipientMappingModel<ShareInterstit
 
   @Override
   public boolean areContentsTheSame(@NonNull ShareInterstitialMappingModel newItem) {
-    return super.areContentsTheSame(newItem) && isLast == newItem.isLast;
+    return super.areContentsTheSame(newItem) && isFirst == newItem.isFirst;
   }
 }

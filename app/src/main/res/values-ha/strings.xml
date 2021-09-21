@@ -57,7 +57,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(Amsa)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Gidan hotuna</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fayil</string>
   <string name="AttachmentKeyboard_contact">Lambar sadarwa</string>
   <string name="AttachmentKeyboard_location">Wuri</string>
@@ -78,7 +78,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membobin rukuni suna da damar dawowa da kai/ke rukunin. </string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Bude</string> -->
   <string name="BlockUnblockDialog_block">Toshe</string>
-  <string name="BlockUnblockDialog_block_and_delete">Toshe ka/ki goge</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Toshe ka/ki goge</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Yau</string>
   <string name="BucketedThreadMedia_Yesterday">Jiya</string>
@@ -368,15 +368,15 @@
   <string name="ManageGroupActivity_view_all_members">Kalli dukkan membobi</string>
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Babu.</string> -->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">Sakwanni masu bacewa</string>
-  <string name="ManageRecipientActivity_block">Toshe</string>
-  <string name="ManageRecipientActivity_unblock">Bude</string>
-  <string name="ManageRecipientActivity_view_safety_number">Kalli lambar tsari</string>
-  <string name="ManageRecipientActivity_mute_notifications">Yi tsit da sanarwa</string>
-  <string name="ManageRecipientActivity_custom_notifications">Tanadadden sanarwa</string>
-  <string name="ManageRecipientActivity_off">Kashe</string>
-  <string name="ManageRecipientActivity_on">Kunna</string>
-  <string name="ManageRecipientActivity_message_description">Sako</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Sakwanni masu bacewa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Toshe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Bude</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Kalli lambar tsari</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Yi tsit da sanarwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Tanadadden sanarwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Kashe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Kunna</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Sako</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Tanadadden sanarwa</string>
   <string name="CustomNotificationsDialogFragment__messages">Sakwanni</string>
@@ -398,23 +398,23 @@
   <string name="InviteActivity_share">Tura</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Zabi lambobi</string> -->
   <string name="InviteActivity_share_with_contacts">Ka/ki turawa lambobin sadarwarka/ki.</string>
-  <string name="InviteActivity_choose_how_to_share">Zabi yadda zaka/ki tura.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Zabi yadda zaka/ki tura.</string> -->
   <string name="InviteActivity_cancel">Katse</string>
   <string name="InviteActivity_sending">Ana turawa……</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Zuciya</string> -->
   <string name="InviteActivity_invitations_sent">An tura gayyata!</string>
   <string name="InviteActivity_invite_to_signal">Gayyace shi/ta Signal.</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">TURA SMS ZUWA %d ABOKI/KAWA</item>
     <item quantity="other">SEND SMS TO %d FRIENDS</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Tura %d gayyatar SMS</item>
     <item quantity="other">Tura gayyata ta hanyar %d SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mu koma Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kamar babu manhajar da zaka/ki tura zuwa</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Abokai basu barin abokai suyi hira ba tsaro.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Abokai basu barin abokai suyi hira ba tsaro.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Ana karasa aiki a bango…</string> -->
   <!--LearnMoreTextView-->
@@ -478,7 +478,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Ana cikin kira na Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Farawar kiran Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Shigowar kiran Signal</string>
-  <string name="NotificationBarManager__deny_call">Hana kira</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Hana kira</string> -->
   <string name="NotificationBarManager__answer_call">Amsa kira.</string>
   <string name="NotificationBarManager__end_call">Kashe kira</string>
   <string name="NotificationBarManager__cancel_call">Katse kira</string>
@@ -587,9 +587,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal na bukatar izinin Kyamara domin yin sikanin QR code, amma an hana wannan damar dindindin. Ci gaba da shigar saitin Signal, Zabi \"Permissions\" sannan ka/ki kunna \"Kyamara\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Baza\'a iya sikanin din QR code ba idan ba izinin Kyamara</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Sakwanni masu bacewa</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Sakonka/ki ba zai kare ba.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Sakwanni da aka tura ko karba zasu bace  %s bayan an gansu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Sakwanni masu bacewa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Sakonka/ki ba zai kare ba.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Sakwanni da aka tura ko karba zasu bace  %s bayan an gansu.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Shigar da kalaman sirri</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Alamar Signal</string>
@@ -885,14 +885,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ya/ta yi martanin%1$s akan sitikarka/ki.</string>
   <string name="MessageNotifier_this_message_was_deleted">An goge sakon</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Tanadadde</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Tanadadde</string> -->
   <string name="NotificationChannel_calls">Kira</string>
   <string name="NotificationChannel_failures">Gazawar aiki</string>
   <string name="NotificationChannel_backups">Tsimi</string>
   <string name="NotificationChannel_locked_status">Kulle status</string>
   <string name="NotificationChannel_app_updates">Sabuntuwar manhaja</string>
   <string name="NotificationChannel_other">Wani</string>
-  <string name="NotificationChannel_group_messages">Sakwanni</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Sakwanni</string> -->
   <string name="NotificationChannel_missing_display_name">Ba suna</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">An ci nasarar saita sunan furofayil</string> -->
@@ -1093,7 +1093,7 @@
     <item quantity="other">%d wasu</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Nemi GIF da Sitika</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Nemi GIF da Sitika</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ba a ga komai ba</string>
   <!--log_submit_activity-->
@@ -1105,7 +1105,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Aika</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Yayi!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Hada imel</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Za\'a sa wannan logun a duniyar gizo domun masu bada gudummuwa su gani, kara bincika shi kuma ka/kiyi gyara kafin aikawa. </string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Za\'a sa wannan logun a duniyar gizo domun masu bada gudummuwa su gani, kara bincika shi kuma ka/kiyi gyara kafin aikawa. </string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Logu yana lodi…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Ana dora logogi…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Zabi manhajar imel</string> -->
@@ -1170,10 +1170,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">KARA WANNAN CIKIN LAMBOBIN SADARWAK KI/KA</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">KADDA A SAKA, AMMA BARI A GA FUROFAYIL DINA</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Idan ka/kina son tabbatar da tsarinka/ki da %s hada lambar samada lambar da yake na\'urarsu. Ko kuma, zaka/ki iya yin sikanin din lambar sirrin da yake wayarsu , ko kuma ce musu suyi sikanin lambar sirrinka/ki. 1Learn<a href="https://signal.org/redirect/safety-numbers">Domin karin bayani.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Idan ka/kina son tabbatar da tsarinka/ki da %s hada lambar samada lambar da yake na\'urarsu. Ko kuma, zaka/ki iya yin sikanin din lambar sirrin da yake wayarsu , ko kuma ce musu suyi sikanin lambar sirrinka/ki. 1Learn<a href="https://signal.org/redirect/safety-numbers">Domin karin bayani.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Taba domin yin sikani</string>
   <string name="verify_display_fragment__loading">Yana lodi</string>
-  <string name="verify_display_fragment__verified">Tabbatacce</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Tabbatacce</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Tura lambar tsari</string>
   <!--webrtc_answer_decline_button-->
@@ -1211,10 +1211,10 @@
   <string name="arrays__use_default">Amfani da tanadadde</string>
   <string name="arrays__use_custom">Amfani da tanadadde</string>
   <string name="arrays__mute_for_one_hour">Saita lokacin yin tsit dashi zuwa awa 1</string>
-  <string name="arrays__mute_for_two_hours">Saita lokacin yin tsit dashi zuwa awa 2</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Saita lokacin yin tsit dashi zuwa awa 2</string> -->
   <string name="arrays__mute_for_one_day">Saita lokacin yin tsit dashi zuwa kwana 1</string>
   <string name="arrays__mute_for_seven_days">Saita lokacin yin tsit dashi zuwa kwana 7</string>
-  <string name="arrays__mute_for_one_year">Saita lokacin yin tsit dashi zuwa shekara 1</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Saita lokacin yin tsit dashi zuwa shekara 1</string> -->
   <string name="arrays__settings_default">Tanadadden saiti</string>
   <string name="arrays__enabled">A karfafe</string>
   <string name="arrays__disabled">Hana dama</string>
@@ -1320,7 +1320,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Idan aka kashe shaidar karatun sakonni, bazaka/ki samu damar ganin shaidar karatun wasu ba idan suma sun karanta sakon da aka aika.</string>
   <string name="preferences__typing_indicators">Manunin rubutu</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idan aka kashe manunin rubutu, bazaka/ki samu damar ganin manunin rubutu daga wasu ba.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Sa allon harrufa nakashewar koyo da kai</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Sa allon harrufa nakashewar koyo da kai</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Tosheshen lambobin sadarwa</string> -->
   <string name="preferences_chats__when_using_mobile_data">Sanda ake amfani da datar waya</string>
   <string name="preferences_chats__when_using_wifi">Sanda ake amfani da WiFi</string>

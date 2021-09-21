@@ -7,6 +7,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/signal_button_primary_text_selector</item>
         <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.035</item>
         <item name="iconGravity">textEnd</item>
         <item name="backgroundTint">@color/signal_button_primary</item>
         <item name="iconTint">@color/signal_button_primary_text_selector</item>
@@ -15,6 +16,12 @@
 
     <style name="Signal.Widget.Button.Large.Primary" parent="@style/Signal.Widget.Button.Base.Primary">
         <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="Signal.Widget.Button.Large.Primary.Inverse" parent="@style/Signal.Widget.Button.Large.Primary">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@color/signal_button_primary_inverse_text_selector</item>
+        <item name="background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="Signal.Widget.Button.Large.Danger" parent="@style/Signal.Widget.Button.Large.Primary">
@@ -66,6 +73,7 @@
         <item name="android:insetBottom">0dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.035</item>
         <item name="iconGravity">textEnd</item>
         <item name="iconTint">@color/signal_button_secondary_text_selector</item>
         <item name="strokeColor">@color/signal_button_secondary_stroke</item>
@@ -77,6 +85,10 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="Signal.Widget.Button.Large.Secondary.NoOutline">
+        <item name="strokeWidth">0dp</item>
+    </style>
+
     <style name="Signal.Widget.Button.Medium.Secondary" parent="@style/Signal.Widget.Button.Base.Secondary">
         <item name="android:minHeight">36dp</item>
         <item name="strokeWidth">0dp</item>
@@ -84,6 +96,24 @@
 
     <style name="Signal.Widget.CompoundButton.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="colorControlNormal">@color/core_grey_50</item>
+    </style>
+
+    <style name="Signal.Widget.Button.Dialog" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textAppearance">@style/Signal.TextAppearance.Button.Dialog</item>
+        <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
+    </style>
+
+    <style name="Signal.TextAppearance.Button.Dialog" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Signal.ShapeOverlay.Rounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="Signal.MaterialAlertDialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
     </style>
 
     <style name="Signal.DayNight.Popup" parent="@style/ThemeOverlay.AppCompat.Light" />
@@ -94,5 +124,20 @@
 
     <style name="Signal.DayNight.Dialog.FullScreen" parent="Signal.DayNight">
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
+    </style>
+
+    <style name="Signal.Media.Dialog.AddMessageDialog" parent="TextSecure.MediaPreview">
+        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.AddMessageDialog</item>
+    </style>
+
+    <style name="Signal.ThemeOverlay.Dialog.Rounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
+        <item name="android:background">@color/signal_background_dialog</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TextAppearance.Signal.Title2.MaterialDialog</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/TextAppearance.Signal.Body1</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="textColorAlertDialogListItem">@color/signal_text_secondary</item>
     </style>
 </resources>

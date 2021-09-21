@@ -86,6 +86,12 @@
 
                 <include layout="@layout/conversation_input_panel" />
 
+                <ViewStub
+                    android:id="@+id/conversation_cannot_send_announcement_stub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout="@layout/conversation_cannot_send_announcement_group" />
+
                 <include layout="@layout/conversation_search_nav" />
 
                 <org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
@@ -204,6 +210,13 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline">
+
+        <ViewStub
+            android:id="@+id/voice_note_player_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inflatedId="@+id/voice_note_player"
+            android:layout="@layout/voice_note_player_stub" />
 
         <ViewStub
             android:id="@+id/unverified_banner_stub"

@@ -38,7 +38,7 @@ import java.util.Locale;
 
 public final class ContactUtil {
 
-  private static final String TAG = ContactUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(ContactUtil.class);
 
   public static long getContactIdFromUri(@NonNull Uri uri) {
     try {

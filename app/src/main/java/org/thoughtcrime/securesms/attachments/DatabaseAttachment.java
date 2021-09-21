@@ -36,6 +36,7 @@ public class DatabaseAttachment extends Attachment {
                             String fastPreflightId,
                             boolean voiceNote,
                             boolean borderless,
+                            boolean videoGif,
                             int width,
                             int height,
                             boolean quote,
@@ -47,7 +48,7 @@ public class DatabaseAttachment extends Attachment {
                             int displayOrder,
                             long uploadTimestamp)
   {
-    super(contentType, transferProgress, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, borderless, width, height, quote, uploadTimestamp, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    super(contentType, transferProgress, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, borderless, videoGif, width, height, quote, uploadTimestamp, caption, stickerLocator, blurHash, audioHash, transformProperties);
     this.attachmentId = attachmentId;
     this.hasData      = hasData;
     this.hasThumbnail = hasThumbnail;
@@ -60,6 +61,15 @@ public class DatabaseAttachment extends Attachment {
   public Uri getUri() {
     if (hasData) {
       return PartAuthority.getAttachmentDataUri(attachmentId);
+    } else {
+      return null;
+    }
+  }
+
+  @Override
+  public @Nullable Uri getPublicUri() {
+    if (hasData) {
+      return PartAuthority.getAttachmentPublicUri(getUri());
     } else {
       return null;
     }

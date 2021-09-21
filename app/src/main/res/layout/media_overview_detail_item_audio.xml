@@ -2,30 +2,47 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/media_overview_detail_item_height">
 
     <FrameLayout
         android:id="@+id/image_container"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <org.thoughtcrime.securesms.components.AudioView
-            android:id="@+id/audio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:autoRewind="true"
-            app:progressAndPlayTint="@android:color/transparent"
-            app:foregroundTintColor="@color/core_ultramarine"
-            app:small="true" />
-
-        <include layout="@layout/media_overview_selected_overlay" />
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="38dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_document_large"
+            android:importantForAccessibility="no"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_audio_24" />
 
     </FrameLayout>
 
+    <include layout="@layout/media_overview_selected_overlay" />
+
     <include layout="@layout/media_overview_detail_text" />
+
+    <org.thoughtcrime.securesms.components.AudioView
+        android:id="@+id/audio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:autoRewind="true"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        app:foregroundTintColor="@color/signal_inverse_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/media_overview_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:progressAndPlayTint="@color/signal_background_secondary"
+        app:audioView_mode="small" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

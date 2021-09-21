@@ -13,7 +13,38 @@
         android:layout_height="112dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:id="@+id/message_request_avatar_tap_to_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/circle_tint_darker"
+        android:visibility="gone"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/message_request_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/message_request_avatar"
+        app:layout_constraintStart_toStartOf="@+id/message_request_avatar"
+        app:layout_constraintTop_toTopOf="@+id/message_request_avatar">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            app:tint="@color/core_white"
+            app:srcCompat="@drawable/ic_tap_outline_24" />
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/core_white"
+            android:text="@string/MessageRequestProfileView_view" />
+
+    </LinearLayout>
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/message_request_title"

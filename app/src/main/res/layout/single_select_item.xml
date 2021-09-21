@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/single_select_item_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
-    android:drawableStart="?android:attr/listChoiceIndicatorSingle"
-    android:drawablePadding="20dp"
-    android:gravity="center_vertical"
     android:minHeight="?attr/listPreferredItemHeightSmall"
+    android:orientation="horizontal"
     android:paddingStart="20dp"
+    android:paddingTop="8dp"
     android:paddingEnd="?attr/dialogPreferredPadding"
-    android:textAppearance="?android:attr/textAppearanceListItem"
-    android:textColor="?attr/textColorAlertDialogListItem"
-    android:theme="@style/Signal.Widget.CompoundButton.RadioButton"
-    tools:text="Pick me!" />
+    android:paddingBottom="8dp">
+
+    <RadioButton
+        android:id="@+id/single_select_item_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:paddingEnd="20dp"
+        android:theme="@style/Signal.Widget.CompoundButton.RadioButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
+
+    <CheckedTextView
+        android:id="@+id/single_select_item_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintBottom_toTopOf="@id/single_select_item_summary"
+        app:layout_constraintStart_toEndOf="@id/single_select_item_radio"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Pick me!" />
+
+    <TextView
+        android:id="@+id/single_select_item_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/single_select_item_text"
+        app:layout_constraintTop_toBottomOf="@id/single_select_item_text"
+        tools:text="Test" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

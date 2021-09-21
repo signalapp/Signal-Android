@@ -10,14 +10,16 @@ import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder;
 
 public class CallParticipantViewHolder extends RecipientViewHolder<CallParticipantViewState> {
 
-  private final ImageView videoMuted;
-  private final ImageView audioMuted;
+  private final View videoMuted;
+  private final View audioMuted;
+  private final View screenSharing;
 
   public CallParticipantViewHolder(@NonNull View itemView) {
     super(itemView, null);
 
-    videoMuted = itemView.findViewById(R.id.call_participant_video_muted);
-    audioMuted = itemView.findViewById(R.id.call_participant_audio_muted);
+    videoMuted    = findViewById(R.id.call_participant_video_muted);
+    audioMuted    = findViewById(R.id.call_participant_audio_muted);
+    screenSharing = findViewById(R.id.call_participant_screen_sharing);
   }
 
   @Override
@@ -26,5 +28,6 @@ public class CallParticipantViewHolder extends RecipientViewHolder<CallParticipa
 
     videoMuted.setVisibility(model.getVideoMutedVisibility());
     audioMuted.setVisibility(model.getAudioMutedVisibility());
+    screenSharing.setVisibility(model.getScreenSharingVisibility());
   }
 }

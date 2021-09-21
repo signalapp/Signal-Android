@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Stream;
-
+import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ListenableHorizontalScrollView;
 
@@ -21,26 +20,52 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SubmitDebugLogAdapter extends RecyclerView.Adapter<SubmitDebugLogAdapter.LineViewHolder> {
 
-  private static final int MAX_LINE_LENGTH = 1000;
+  private static final int LINE_LENGTH = 500;
 
-  private final List<LogLine> lines;
-  private final ScrollManager scrollManager;
-  private final Listener      listener;
+  private static final int TYPE_LOG         = 1;
+  private static final int TYPE_PLACEHOLDER = 2;
+
+  private final ScrollManager    scrollManager;
+  private final Listener         listener;
+  private final PagingController pagingController;
+  private final List<LogLine>    lines;
 
   private boolean editing;
-  private int     longestLine;
 
-  public SubmitDebugLogAdapter(@NonNull Listener listener) {
-    this.listener      = listener;
-    this.lines         = new ArrayList<>();
-    this.scrollManager = new ScrollManager();
+  public SubmitDebugLogAdapter(@NonNull Listener listener, @NonNull PagingController pagingController) {
+    this.listener         = listener;
+    this.pagingController = pagingController;
+    this.scrollManager    = new ScrollManager();
+    this.lines            = new ArrayList<>();
 
     setHasStableIds(true);
   }
 
   @Override
   public long getItemId(int position) {
-    return lines.get(position).getId();
+    LogLine item = getItem(position);
+    return item != null ? getItem(position).getId() : -1;
+  }
+
+  @Override
+  public int getItemViewType(int position) {
+    return getItem(position) == null ? TYPE_PLACEHOLDER : TYPE_LOG;
+  }
+
+  protected LogLine getItem(int position) {
+    pagingController.onDataNeededAroundIndex(position);
+    return lines.get(position);
+  }
+
+  public void submitList(@NonNull List<LogLine> list) {
+    this.lines.clear();
+    this.lines.addAll(list);
+    notifyDataSetChanged();
+  }
+
+  @Override
+  public int getItemCount() {
+    return lines.size();
   }
 
   @Override
@@ -50,27 +75,18 @@ public class SubmitDebugLogAdapter extends RecyclerView.Adapter<SubmitDebugLogAd
 
   @Override
   public void onBindViewHolder(@NonNull LineViewHolder holder, int position) {
-    holder.bind(lines.get(position), longestLine, editing, scrollManager, listener);
+    LogLine item = getItem(position);
+
+    if (item == null) {
+      item = SimpleLogLine.EMPTY;
+    }
+
+    holder.bind(item, LINE_LENGTH, editing, scrollManager, listener);
   }
 
   @Override
   public void onViewRecycled(@NonNull LineViewHolder holder) {
     holder.unbind(scrollManager);
-  }
-
-  @Override
-  public int getItemCount() {
-    return lines.size();
-  }
-
-  public void setLines(@NonNull List<LogLine> lines) {
-    this.lines.clear();
-    this.lines.addAll(lines);
-
-    this.longestLine = Stream.of(lines).reduce(0, (currentMax, line) -> Math.max(currentMax, line.getText().length()));
-    this.longestLine = Math.min(longestLine, MAX_LINE_LENGTH);
-
-    notifyDataSetChanged();
   }
 
   public void setEditing(boolean editing) {

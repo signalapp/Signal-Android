@@ -25,6 +25,7 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   public static final String START_AT_USERNAME = "start_at_username";
+  public static final String START_AT_AVATAR   = "start_at_avatar";
 
   public static @NonNull Intent getIntent(@NonNull Context context) {
     return new Intent(context, ManageProfileActivity.class);
@@ -33,6 +34,12 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
   public static @NonNull Intent getIntentForUsernameEdit(@NonNull Context context) {
     Intent intent = new Intent(context, ManageProfileActivity.class);
     intent.putExtra(START_AT_USERNAME, true);
+    return intent;
+  }
+
+  public static @NonNull Intent getIntentForAvatarEdit(@NonNull Context context) {
+    Intent intent = new Intent(context, ManageProfileActivity.class);
+    intent.putExtra(START_AT_AVATAR, true);
     return intent;
   }
 
@@ -52,6 +59,11 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
         NavDirections action = ManageProfileFragmentDirections.actionManageUsername();
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(action);
       }
+
+      if (extras != null && extras.getBoolean(START_AT_AVATAR, false)) {
+        NavDirections action = ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null);
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(action);
+      }
     }
   }
 
@@ -63,10 +75,6 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
 
   @Override
   public void onReactWithAnyEmojiDialogDismissed() {
-  }
-
-  @Override
-  public void onReactWithAnyEmojiPageChanged(int page) {
   }
 
   @Override

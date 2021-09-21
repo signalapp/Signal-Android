@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payments_transfer"
+    app:startDestination="@id/paymentsTransfer">
+
+    <fragment
+        android:id="@+id/paymentsTransfer"
+        android:name="org.thoughtcrime.securesms.payments.preferences.transfer.PaymentsTransferFragment"
+        tools:layout="@layout/payments_transfer_fragment">
+
+        <action
+            android:id="@+id/action_paymentsTransfer_to_paymentsScanQr"
+            app:destination="@id/paymentsScanQr"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsTransfer_to_createPayment"
+            app:destination="@id/payments_create"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="payee"
+                app:argType="org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable"
+                app:nullable="false" />
+
+            <argument
+                android:name="finish_on_confirm"
+                android:defaultValue="false"
+                app:argType="boolean"
+                app:nullable="false" />
+
+        </action>
+
+        <argument
+            android:name="finish_on_confirm"
+            android:defaultValue="false"
+            app:argType="boolean"
+            app:nullable="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsScanQr"
+        android:name="org.thoughtcrime.securesms.payments.preferences.transfer.PaymentsTransferQrScanFragment"
+        tools:layout="@layout/payments_transfer_qr_scan_fragment">
+
+        <action
+            android:id="@+id/action_paymentsScanQr_pop"
+            app:popUpTo="@id/paymentsScanQr"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <include app:graph="@navigation/payments_create" />
+
+</navigation>

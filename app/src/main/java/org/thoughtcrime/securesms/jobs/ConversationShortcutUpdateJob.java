@@ -35,9 +35,7 @@ public class ConversationShortcutUpdateJob extends BaseJob {
   public static final String KEY = "ConversationShortcutUpdateJob";
 
   public static void enqueue() {
-    if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
-      ApplicationDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
-    }
+    ApplicationDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
   }
 
   private ConversationShortcutUpdateJob() {
@@ -63,7 +61,6 @@ public class ConversationShortcutUpdateJob extends BaseJob {
   }
 
   @Override
-  @RequiresApi(CONVERSATION_SUPPORT_VERSION)
   protected void onRun() throws Exception {
     if (TextSecurePreferences.isScreenLockEnabled(context)) {
       Log.i(TAG, "Screen lock enabled. Clearing shortcuts.");

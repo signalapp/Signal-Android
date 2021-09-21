@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/preview_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <org.thoughtcrime.securesms.conversation.colors.ui.ChatColorPreviewView
+                android:id="@+id/chat_color_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ccpv_chat_bubble_count="4" />
+        </androidx.cardview.widget.CardView>
+
+        <org.thoughtcrime.securesms.conversation.colors.ui.custom.CustomChatColorGradientToolView
+            android:id="@+id/gradient_tool"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@id/hue_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/hue_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/CustomChatColorCreatorFragment__hue"
+            android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+            android:textColor="@color/signal_text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/preview_card" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/hue_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:splitTrack="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hue_label" />
+
+        <TextView
+            android:id="@+id/saturation_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/CustomChatColorCreatorFragment__saturation"
+            android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+            android:textColor="@color/signal_text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hue_slider" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/saturation_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:splitTrack="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saturation_label" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="8dp"
+            android:text="@string/CustomChatColorCreatorFragmentPage__save"
+            app:cornerRadius="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saturation_slider"
+            app:layout_constraintVertical_bias="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

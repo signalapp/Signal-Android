@@ -70,6 +70,8 @@ message Group {
   repeated PendingMember    pendingMembers            = 8;
   repeated RequestingMember requestingMembers         = 9;
            bytes            inviteLinkPassword        = 10;
+           bytes            description               = 11;
+           bool             announcementsOnly         = 12;
 }
 
 message GroupChange {
@@ -123,6 +125,10 @@ message GroupChange {
       bytes title = 1;
     }
 
+    message ModifyDescriptionAction {
+      bytes description = 1;
+    }
+
     message ModifyAvatarAction {
       string avatar = 1;
     }
@@ -140,11 +146,15 @@ message GroupChange {
     }
 
     message ModifyAddFromInviteLinkAccessControlAction {
-        AccessControl.AccessRequired addFromInviteLinkAccess = 1;
+      AccessControl.AccessRequired addFromInviteLinkAccess = 1;
     }
 
     message ModifyInviteLinkPasswordAction {
-        bytes inviteLinkPassword = 1;
+      bytes inviteLinkPassword = 1;
+    }
+
+    message ModifyAnnouncementsOnlyAction {
+      bool announcementsOnly = 1;
     }
 
              bytes                                      sourceUuid                      = 1;
@@ -166,6 +176,8 @@ message GroupChange {
     repeated DeleteRequestingMemberAction               deleteRequestingMembers         = 17;
     repeated PromoteRequestingMemberAction              promoteRequestingMembers        = 18;
              ModifyInviteLinkPasswordAction             modifyInviteLinkPassword        = 19;
+             ModifyDescriptionAction                    modifyDescription               = 20;
+             ModifyAnnouncementsOnlyAction              modifyAnnouncementsOnly         = 21;
   }
 
   bytes  actions         = 1;
@@ -187,6 +199,7 @@ message GroupAttributeBlob {
     string title                        = 1;
     bytes  avatar                       = 2;
     uint32 disappearingMessagesDuration = 3;
+    string description                  = 4;
   }
 }
 
@@ -209,6 +222,7 @@ message GroupJoinInfo {
   AccessControl.AccessRequired addFromInviteLink    = 5;
   uint32                       revision             = 6;
   bool                         pendingAdminApproval = 7;
+  bytes                        description          = 8;
 }
 
 message GroupExternalCredential {

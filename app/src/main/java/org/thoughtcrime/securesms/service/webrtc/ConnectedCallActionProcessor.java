@@ -7,12 +7,12 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
-import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
+import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Handles action for a connected/ongoing call. At this point it's mostly responding
@@ -40,7 +40,7 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
 
     try {
       webRtcInteractor.getCallManager().setVideoEnable(enable);
-    } catch  (CallException e) {
+    } catch (CallException e) {
       return callFailure(currentState, "setVideoEnable() failed: ", e);
     }
 
@@ -77,15 +77,20 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull  WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+  protected @NonNull WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     return activeCallDelegate.handleRemoteVideoEnable(currentState, enable);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleScreenSharingEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    return activeCallDelegate.handleScreenSharingEnable(currentState, enable);
   }
 
   @Override
   protected @NonNull WebRtcServiceState handleSendIceCandidates(@NonNull WebRtcServiceState currentState,
                                                                 @NonNull WebRtcData.CallMetadata callMetadata,
                                                                 boolean broadcast,
-                                                                @NonNull ArrayList<IceCandidateParcel> iceCandidates)
+                                                                @NonNull List<byte[]> iceCandidates)
   {
     return activeCallDelegate.handleSendIceCandidates(currentState, callMetadata, broadcast, iceCandidates);
   }
@@ -96,13 +101,13 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull String action, @NonNull RemotePeer remotePeer) {
-    return activeCallDelegate.handleEndedRemote(currentState, action, remotePeer);
+  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedRemoteEvent, @NonNull RemotePeer remotePeer) {
+    return activeCallDelegate.handleEndedRemote(currentState, endedRemoteEvent, remotePeer);
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull String action, @NonNull RemotePeer remotePeer) {
-    return activeCallDelegate.handleEnded(currentState, action, remotePeer);
+  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedEvent, @NonNull RemotePeer remotePeer) {
+    return activeCallDelegate.handleEnded(currentState, endedEvent, remotePeer);
   }
 
   @Override

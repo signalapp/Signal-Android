@@ -1,30 +1,44 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BulletSpan;
+import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 
-public class SpanUtil {
+public final class SpanUtil {
+
+  private SpanUtil() {}
+
+  public static final String SPAN_PLACE_HOLDER = "<<<SPAN>>>";
+
+  private final static Typeface MEDIUM_BOLD_TYPEFACE = Typeface.create("sans-serif-medium", Typeface.BOLD);
+  private final static Typeface BOLD_TYPEFACE        = Typeface.create("sans-serif-medium", Typeface.NORMAL);
+  private final static Typeface LIGHT_TYPEFACE       = Typeface.create("sans-serif", Typeface.NORMAL);
 
   public static CharSequence italic(CharSequence sequence) {
     return italic(sequence, sequence.length());
@@ -91,13 +105,73 @@ public class SpanUtil {
     return imageSpan;
   }
 
-  public static CharSequence clickSubstring(@NonNull Context context, @NonNull CharSequence fullString, @NonNull CharSequence substring, @NonNull View.OnClickListener clickListener) {
+  public static CharSequence learnMore(@NonNull Context context,
+                                       @ColorInt int color,
+                                       @NonNull View.OnClickListener onLearnMoreClicked)
+  {
+    String learnMore = context.getString(R.string.LearnMoreTextView_learn_more);
+    return clickSubstring(learnMore, learnMore, onLearnMoreClicked, color);
+  }
+
+  /**
+   * Takes two resources:
+   * - one resource that has a single string placeholder
+   * - and another resource for a string you want to put in that placeholder with a click listener.
+   *
+   * Example:
+   *
+   * <string name="main_string">This is a %1$s string.</string>
+   * <string name="clickable_string">clickable</string>
+   *
+   * -> This is a clickable string.
+   * (where "clickable" is blue and will trigger the provided click listener when clicked)
+   */
+  public static Spannable clickSubstring(@NonNull Context context, @StringRes int mainString, @StringRes int clickableString, @NonNull View.OnClickListener clickListener) {
+    String main      = context.getString(mainString, SPAN_PLACE_HOLDER);
+    String clickable = context.getString(clickableString);
+
+    int start = main.indexOf(SPAN_PLACE_HOLDER);
+    int end   = start + SPAN_PLACE_HOLDER.length();
+
+    Spannable spannable = new SpannableString(main.substring(0, start) + clickable + main.substring(end));
+
+    spannable.setSpan(new ClickableSpan() {
+      @Override
+      public void onClick(@NonNull View widget) {
+        clickListener.onClick(widget);
+      }
+
+      @Override
+      public void updateDrawState(@NonNull TextPaint ds) {
+        super.updateDrawState(ds);
+        ds.setUnderlineText(false);
+      }
+    }, start, start + clickable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+    return spannable;
+  }
+
+  public static CharSequence clickSubstring(@NonNull Context context,
+                                            @NonNull CharSequence fullString,
+                                            @NonNull CharSequence substring,
+                                            @NonNull View.OnClickListener clickListener) {
+    return clickSubstring(fullString,
+                          substring,
+                          clickListener,
+                          ContextCompat.getColor(context, R.color.signal_accent_primary));
+  }
+
+  public static CharSequence clickSubstring(@NonNull CharSequence fullString,
+                                            @NonNull CharSequence substring,
+                                            @NonNull View.OnClickListener clickListener,
+                                            @ColorInt int linkColor)
+  {
     ClickableSpan clickable = new ClickableSpan() {
       @Override
       public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(false);
-        ds.setColor(ContextCompat.getColor(context, R.color.signal_accent_primary));
+        ds.setColor(linkColor);
       }
 
       @Override
@@ -115,5 +189,43 @@ public class SpanUtil {
     }
 
     return spannable;
+  }
+
+  public static @NonNull CharSequence insertSingleSpan(@NonNull Resources resources, @StringRes int res, @NonNull CharSequence span) {
+    return replacePlaceHolder(resources.getString(res, SPAN_PLACE_HOLDER), span);
+  }
+
+  public static CharSequence replacePlaceHolder(@NonNull String string, @NonNull CharSequence span) {
+    int index = string.indexOf(SpanUtil.SPAN_PLACE_HOLDER);
+    if (index == -1) {
+      return string;
+    }
+    SpannableStringBuilder builder = new SpannableStringBuilder(string);
+    builder.replace(index, index + SpanUtil.SPAN_PLACE_HOLDER.length(), span);
+    return builder;
+  }
+
+  public static CharacterStyle getMediumBoldSpan() {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return new TypefaceSpan(MEDIUM_BOLD_TYPEFACE);
+    } else {
+      return new StyleSpan(Typeface.BOLD);
+    }
+  }
+
+  public static CharacterStyle getBoldSpan() {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return new TypefaceSpan(BOLD_TYPEFACE);
+    } else {
+      return new StyleSpan(Typeface.BOLD);
+    }
+  }
+
+  public static CharacterStyle getNormalSpan() {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return new TypefaceSpan(LIGHT_TYPEFACE);
+    } else {
+      return new StyleSpan(Typeface.NORMAL);
+    }
   }
 }

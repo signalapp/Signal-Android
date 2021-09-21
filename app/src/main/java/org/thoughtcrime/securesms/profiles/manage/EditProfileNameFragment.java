@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -56,6 +57,8 @@ public class EditProfileNameFragment extends Fragment {
     this.givenName.setText(Recipient.self().getProfileName().getGivenName());
     this.familyName.setText(Recipient.self().getProfileName().getFamilyName());
 
+    viewModel.onGivenNameLengthChanged(this.givenName.getText().length());
+
     view.<Toolbar>findViewById(R.id.toolbar)
         .setNavigationOnClickListener(v -> Navigation.findNavController(view)
                                                      .popBackStack());
@@ -63,7 +66,10 @@ public class EditProfileNameFragment extends Fragment {
     EditTextUtil.addGraphemeClusterLimitFilter(givenName, NAME_MAX_GLYPHS);
     EditTextUtil.addGraphemeClusterLimitFilter(familyName, NAME_MAX_GLYPHS);
 
-    this.givenName.addTextChangedListener(new AfterTextChanged(EditProfileNameFragment::trimFieldToMaxByteLength));
+    this.givenName.addTextChangedListener(new AfterTextChanged(s -> {
+      trimFieldToMaxByteLength(s);
+      viewModel.onGivenNameLengthChanged(s.length());
+    }));
     this.familyName.addTextChangedListener(new AfterTextChanged(EditProfileNameFragment::trimFieldToMaxByteLength));
 
     saveButton.setOnClickListener(v -> viewModel.onSaveClicked(requireContext(),
@@ -80,19 +86,34 @@ public class EditProfileNameFragment extends Fragment {
 
   private void presentSaveState(@NonNull EditProfileNameViewModel.SaveState state) {
     switch (state) {
+      case DISABLED:
+        saveButton.setClickable(false);
+        saveButton.setAlpha(0.5f);
+        setEditTextEnabled(givenName, true);
+        setEditTextEnabled(familyName, true);
+        break;
       case IDLE:
         saveButton.setClickable(true);
         saveButton.setIndeterminateProgressMode(false);
         saveButton.setProgress(0);
+        saveButton.setAlpha(1);
+        setEditTextEnabled(givenName, true);
+        setEditTextEnabled(familyName, true);
         break;
       case IN_PROGRESS:
         saveButton.setClickable(false);
         saveButton.setIndeterminateProgressMode(true);
         saveButton.setProgress(50);
+        saveButton.setAlpha(1);
+        setEditTextEnabled(givenName, false);
+        setEditTextEnabled(familyName, false);
         break;
       case DONE:
         saveButton.setClickable(false);
         Navigation.findNavController(requireView()).popBackStack();
+        saveButton.setAlpha(1);
+        setEditTextEnabled(givenName, false);
+        setEditTextEnabled(familyName, false);
         break;
     }
   }
@@ -104,10 +125,25 @@ public class EditProfileNameFragment extends Fragment {
   }
 
   public static void trimFieldToMaxByteLength(Editable s) {
-    int trimmedLength = StringUtil.trimToFit(s.toString(), ProfileName.MAX_PART_LENGTH).length();
+    trimFieldToMaxByteLength(s, ProfileName.MAX_PART_LENGTH);
+  }
+
+  public static void trimFieldToMaxByteLength(Editable s, int length) {
+    int trimmedLength = StringUtil.trimToFit(s.toString(), length).length();
 
     if (s.length() > trimmedLength) {
       s.delete(trimmedLength, s.length());
+    }
+  }
+
+  private static void setEditTextEnabled(@NonNull EditText text, boolean enabled) {
+    text.setEnabled(enabled);
+    text.setFocusable(enabled);
+    if (enabled) {
+      text.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME);
+    } else {
+      text.clearFocus();
+      text.setInputType(EditorInfo.TYPE_NULL);
     }
   }
 }

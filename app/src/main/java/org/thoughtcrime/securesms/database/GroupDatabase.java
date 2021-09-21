@@ -15,14 +15,18 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
+import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
+import org.whispersystems.signalservice.api.push.DistributionId;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
@@ -49,8 +53,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public final class GroupDatabase extends Database {
 
@@ -72,6 +78,7 @@ public final class GroupDatabase extends Database {
           static final String MMS                   = "mms";
   private static final String EXPECTED_V2_ID        = "expected_v2_id";
   private static final String UNMIGRATED_V1_MEMBERS = "former_v1_members";
+  private static final String DISTRIBUTION_ID       = "distribution_id";
 
 
   /* V2 Group columns */
@@ -99,15 +106,17 @@ public final class GroupDatabase extends Database {
                                                                                   V2_REVISION           + " BLOB, " +
                                                                                   V2_DECRYPTED_GROUP    + " BLOB, " +
                                                                                   EXPECTED_V2_ID        + " TEXT DEFAULT NULL, " +
-                                                                                  UNMIGRATED_V1_MEMBERS + " TEXT DEFAULT NULL);";
+                                                                                  UNMIGRATED_V1_MEMBERS + " TEXT DEFAULT NULL, " +
+                                                                                  DISTRIBUTION_ID       + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
       "CREATE UNIQUE INDEX IF NOT EXISTS group_recipient_id_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
-      "CREATE UNIQUE INDEX IF NOT EXISTS expected_v2_id_index ON " + TABLE_NAME + " (" + EXPECTED_V2_ID + ");"
-  };
+      "CREATE UNIQUE INDEX IF NOT EXISTS expected_v2_id_index ON " + TABLE_NAME + " (" + EXPECTED_V2_ID + ");",
+      "CREATE UNIQUE INDEX IF NOT EXISTS group_distribution_id_index ON " + TABLE_NAME + "(" + DISTRIBUTION_ID + ")"
+};
 
-  private static final String[] GROUP_PROJECTION = {
+private static final String[] GROUP_PROJECTION = {
       GROUP_ID, RECIPIENT_ID, TITLE, MEMBERS, UNMIGRATED_V1_MEMBERS, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
       TIMESTAMP, ACTIVE, MMS, V2_MASTER_KEY, V2_REVISION, V2_DECRYPTED_GROUP
   };
@@ -119,7 +128,7 @@ public final class GroupDatabase extends Database {
   }
 
   public Optional<GroupRecord> getGroup(RecipientId recipientId) {
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, RECIPIENT_ID + " = ?", new String[] {recipientId.serialize()}, null, null, null)) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, RECIPIENT_ID + " = ?", new String[] { recipientId.serialize()}, null, null, null)) {
       if (cursor != null && cursor.moveToNext()) {
         return getGroup(cursor);
       }
@@ -129,9 +138,9 @@ public final class GroupDatabase extends Database {
   }
 
   public Optional<GroupRecord> getGroup(@NonNull GroupId groupId) {
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
-                                                                    new String[] {groupId.toString()},
-                                                                    null, null, null))
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
+                                                                          new String[] {groupId.toString()},
+                                                                          null, null, null))
     {
       if (cursor != null && cursor.moveToNext()) {
         return getGroup(cursor);
@@ -142,9 +151,9 @@ public final class GroupDatabase extends Database {
   }
 
   public boolean groupExists(@NonNull GroupId groupId) {
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
-                                                                    new String[] {groupId.toString()},
-                                                                    null, null, null))
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
+                                                                          new String[] {groupId.toString()},
+                                                                          null, null, null))
     {
       return cursor.moveToNext();
     }
@@ -154,8 +163,22 @@ public final class GroupDatabase extends Database {
    * @return A gv1 group whose expected v2 ID matches the one provided.
    */
   public Optional<GroupRecord> getGroupV1ByExpectedV2(@NonNull GroupId.V2 gv2Id) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
     try (Cursor cursor = db.query(TABLE_NAME, GROUP_PROJECTION, EXPECTED_V2_ID + " = ?", SqlUtil.buildArgs(gv2Id), null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return getGroup(cursor);
+      } else {
+        return Optional.absent();
+      }
+    }
+  }
+
+  public Optional<GroupRecord> getGroupByDistributionId(@NonNull DistributionId distributionId) {
+    SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
+    String         query = DISTRIBUTION_ID + " = ?";
+    String[]       args  = SqlUtil.buildArgs(distributionId);
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, query, args, null, null, null)) {
       if (cursor.moveToFirst()) {
         return getGroup(cursor);
       } else {
@@ -182,7 +205,7 @@ public final class GroupDatabase extends Database {
     ContentValues values = new ContentValues();
     values.put(UNMIGRATED_V1_MEMBERS, newUnmigrated.isEmpty() ? null : RecipientId.toSerializedList(newUnmigrated));
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, values, GROUP_ID + " = ?", SqlUtil.buildArgs(id));
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, values, GROUP_ID + " = ?", SqlUtil.buildArgs(id));
 
     Recipient.live(Recipient.externalGroupExact(context, id).getId()).refresh();
   }
@@ -196,9 +219,9 @@ public final class GroupDatabase extends Database {
    * @return local db group revision or -1 if not present.
    */
   public int getGroupV2Revision(@NonNull GroupId.V2 groupId) {
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
-                                                                    new String[] {groupId.toString()},
-                                                                    null, null, null))
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
+                                                                          new String[] {groupId.toString()},
+                                                                          null, null, null))
     {
       if (cursor != null && cursor.moveToNext()) {
         return cursor.getInt(cursor.getColumnIndexOrThrow(V2_REVISION));
@@ -236,7 +259,7 @@ public final class GroupDatabase extends Database {
     return noMetadata && noMembers;
   }
 
-  public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive, boolean excludeV1) {
+  public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
     String   query;
     String[] queryArgs;
 
@@ -252,18 +275,54 @@ public final class GroupDatabase extends Database {
       query += " AND " + EXPECTED_V2_ID + " IS NULL";
     }
 
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, TITLE + " COLLATE NOCASE ASC");
+    if (excludeMms) {
+      query += " AND " + MMS + " = 0";
+    }
+
+    Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, TITLE + " COLLATE NOCASE ASC");
 
     return new Reader(cursor);
+  }
+
+  public @NonNull DistributionId getOrCreateDistributionId(@NonNull GroupId.V2 groupId) {
+    SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
+    String         query = GROUP_ID + " = ?";
+    String[]       args  = SqlUtil.buildArgs(groupId);
+
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, new String[] { DISTRIBUTION_ID }, query, args, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        Optional<String> serialized = CursorUtil.getString(cursor, DISTRIBUTION_ID);
+
+        if (serialized.isPresent()) {
+          return DistributionId.from(serialized.get());
+        } else {
+          Log.w(TAG, "Missing distributionId! Creating one.");
+
+          DistributionId distributionId = DistributionId.create();
+
+          ContentValues values = new ContentValues(1);
+          values.put(DISTRIBUTION_ID, distributionId.toString());
+
+          int count = db.update(TABLE_NAME, values, query, args);
+          if (count < 1) {
+            throw new IllegalStateException("Tried to create a distributionId for " + groupId + ", but it doesn't exist!");
+          }
+
+          return distributionId;
+        }
+      } else {
+        throw new IllegalStateException("Group " + groupId + " doesn't exist!");
+      }
+    }
   }
 
   public GroupId.Mms getOrCreateMmsGroupForMembers(List<RecipientId> members) {
     Collections.sort(members);
 
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {GROUP_ID},
+    Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, new String[] { GROUP_ID},
                                                                MEMBERS + " = ? AND " + MMS + " = ?",
-                                                               new String[] {RecipientId.toSerializedList(members), "1"},
-                                                               null, null, null);
+                                                                     new String[] {RecipientId.toSerializedList(members), "1"},
+                                                                     null, null, null);
     try {
       if (cursor != null && cursor.moveToNext()) {
         return GroupId.parseOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)))
@@ -296,7 +355,7 @@ public final class GroupDatabase extends Database {
 
   @WorkerThread
   public @NonNull List<GroupRecord> getGroupsContainingMember(@NonNull RecipientId recipientId, boolean pushOnly, boolean includeInactive) {
-    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database   = databaseHelper.getSignalReadableDatabase();
     String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
     String         query      = MEMBERS + " LIKE ?";
     String[]       args       = SqlUtil.buildArgs("%" + recipientId.serialize() + "%");
@@ -329,12 +388,12 @@ public final class GroupDatabase extends Database {
 
   public Reader getGroups() {
     @SuppressLint("Recycle")
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
+    Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
     return new Reader(cursor);
   }
 
   public int getActiveGroupCount() {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
     String[]       cols  = { "COUNT(*)" };
     String         query = ACTIVE + " = 1";
 
@@ -389,15 +448,67 @@ public final class GroupDatabase extends Database {
   public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
                            @NonNull DecryptedGroup groupState)
   {
+    return create(groupMasterKey, groupState, false);
+  }
+
+  public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
+                           @NonNull DecryptedGroup groupState,
+                           boolean force)
+  {
     GroupId.V2 groupId = GroupId.v2(groupMasterKey);
 
-    if (getGroupV1ByExpectedV2(groupId).isPresent()) {
+    if (!force && getGroupV1ByExpectedV2(groupId).isPresent()) {
       throw new MissedGroupMigrationInsertException(groupId);
+    } else if (force) {
+      Log.w(TAG, "Forcing the creation of a group even though we already have a V1 ID!");
     }
 
     create(groupId, groupState.getTitle(), Collections.emptyList(), null, null, groupMasterKey, groupState);
 
     return groupId;
+  }
+
+  /**
+   * There was a point in time where we weren't properly responding to group creates on linked devices. This would result in us having a Recipient entry for the
+   * group, but we'd either be missing the group entry, or that entry would be missing a master key. This method fixes this scenario.
+   */
+  public void fixMissingMasterKey(@NonNull GroupMasterKey groupMasterKey) {
+    GroupId.V2 groupId = GroupId.v2(groupMasterKey);
+
+    if (getGroupV1ByExpectedV2(groupId).isPresent()) {
+      Log.w(TAG, "There already exists a V1 group that should be migrated into this group. But if the recipient already exists, there's not much we can do here.");
+    }
+
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      String        query  = GROUP_ID + " = ?";
+      String[]      args   = SqlUtil.buildArgs(groupId);
+      ContentValues values = new ContentValues();
+
+      values.put(V2_MASTER_KEY, groupMasterKey.serialize());
+
+      int updated = db.update(TABLE_NAME, values, query, args);
+
+      if (updated < 1) {
+        Log.w(TAG, "No group entry. Creating restore placeholder for " + groupId);
+        create(groupMasterKey,
+               DecryptedGroup.newBuilder()
+                             .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
+                             .build(),
+               true);
+      } else {
+        Log.w(TAG, "Had a group entry, but it was missing a master key. Updated.");
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    Log.w(TAG, "Scheduling request for latest group info for " + groupId);
+    ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(groupId));
   }
 
   /**
@@ -437,6 +548,7 @@ public final class GroupDatabase extends Database {
 
     if (groupId.isV2()) {
       contentValues.put(ACTIVE, groupState != null && gv2GroupActive(groupState) ? 1 : 0);
+      contentValues.put(DISTRIBUTION_ID, DistributionId.create().toString());
     } else if (groupId.isV1()) {
       contentValues.put(ACTIVE, 1);
       contentValues.put(EXPECTED_V2_ID, groupId.requireV1().deriveV2MigrationGroupId().toString());
@@ -446,25 +558,31 @@ public final class GroupDatabase extends Database {
 
     contentValues.put(MMS, groupId.isMms());
 
+    List<RecipientId> groupMembers = members;
     if (groupMasterKey != null) {
       if (groupState == null) {
         throw new AssertionError("V2 master key but no group state");
       }
       groupId.requireV2();
+      groupMembers = getV2GroupMembers(groupState);
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
       contentValues.put(V2_REVISION, groupState.getRevision());
       contentValues.put(V2_DECRYPTED_GROUP, groupState.toByteArray());
-      contentValues.put(MEMBERS, serializeV2GroupMembers(groupState));
+      contentValues.put(MEMBERS, RecipientId.toSerializedList(groupMembers));
     } else {
       if (groupId.isV2()) {
         throw new AssertionError("V2 group id but no master key");
       }
     }
 
-    databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
+    databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, contentValues);
 
     if (groupState != null && groupState.hasDisappearingMessagesTimer()) {
       recipientDatabase.setExpireMessages(groupRecipientId, groupState.getDisappearingMessagesTimer().getDuration());
+    }
+
+    if (groupMembers != null && (groupId.isMms() || Recipient.resolved(groupRecipientId).isProfileSharing())) {
+      recipientDatabase.setHasGroupsInCommon(groupMembers);
     }
 
     Recipient.live(groupRecipientId).refresh();
@@ -488,7 +606,7 @@ public final class GroupDatabase extends Database {
       contentValues.put(AVATAR_ID, 0);
     }
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId.toString()});
 
@@ -508,7 +626,7 @@ public final class GroupDatabase extends Database {
                                          @NonNull GroupId.V1 groupIdV1,
                                          @NonNull DecryptedGroup decryptedGroup)
   {
-    SQLiteDatabase db             = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db             = databaseHelper.getSignalWritableDatabase();
     GroupId.V2     groupIdV2      = groupIdV1.deriveV2MigrationGroupId();
     GroupMasterKey groupMasterKey = groupIdV1.deriveV2MigrationMasterKey();
 
@@ -519,6 +637,7 @@ public final class GroupDatabase extends Database {
       ContentValues contentValues = new ContentValues();
       contentValues.put(GROUP_ID, groupIdV2.toString());
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
+      contentValues.put(DISTRIBUTION_ID, DistributionId.create().toString());
       contentValues.putNull(EXPECTED_V2_ID);
 
       List<RecipientId> newMembers     = uuidsToRecipientIds(DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList()));
@@ -584,18 +703,35 @@ public final class GroupDatabase extends Database {
       contentValues.put(UNMIGRATED_V1_MEMBERS, unmigratedV1Members.isEmpty() ? null : RecipientId.toSerializedList(unmigratedV1Members));
     }
 
+    List<RecipientId> groupMembers = getV2GroupMembers(decryptedGroup);
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getRevision());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
-    contentValues.put(MEMBERS, serializeV2GroupMembers(decryptedGroup));
+    contentValues.put(MEMBERS, RecipientId.toSerializedList(groupMembers));
     contentValues.put(ACTIVE, gv2GroupActive(decryptedGroup) ? 1 : 0);
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
+    DistributionId distributionId = Objects.requireNonNull(existingGroup.get().getDistributionId());
+
+    if (existingGroup.isPresent() && existingGroup.get().isV2Group()) {
+      DecryptedGroupChange change  = GroupChangeReconstruct.reconstructGroupChange(existingGroup.get().requireV2GroupProperties().getDecryptedGroup(), decryptedGroup);
+      List<UUID>           removed = DecryptedGroupUtil.removedMembersUuidList(change);
+
+      if (removed.size() > 0) {
+        Log.i(TAG, removed.size() + " members were removed from group " + groupId + ". Rotating the sender key.");
+        SenderKeyUtil.rotateOurKey(context, distributionId);
+      }
+    }
+
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
                                                 new String[]{ groupId.toString() });
 
     if (decryptedGroup.hasDisappearingMessagesTimer()) {
       recipientDatabase.setExpireMessages(groupRecipientId, decryptedGroup.getDisappearingMessagesTimer().getDuration());
+    }
+
+    if (groupId.isMms() || Recipient.resolved(groupRecipientId).isProfileSharing()) {
+      recipientDatabase.setHasGroupsInCommon(groupMembers);
     }
 
     Recipient.live(groupRecipientId).refresh();
@@ -618,7 +754,7 @@ public final class GroupDatabase extends Database {
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(TITLE, title);
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId.toString()});
 
     RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
@@ -632,7 +768,7 @@ public final class GroupDatabase extends Database {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(AVATAR_ID, hasAvatar ? Math.abs(new SecureRandom().nextLong()) : 0);
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId.toString()});
 
     RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
@@ -646,7 +782,7 @@ public final class GroupDatabase extends Database {
     contents.put(MEMBERS, RecipientId.toSerializedList(members));
     contents.put(ACTIVE, 1);
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId.toString()});
 
     RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
@@ -660,7 +796,7 @@ public final class GroupDatabase extends Database {
     ContentValues contents = new ContentValues();
     contents.put(MEMBERS, RecipientId.toSerializedList(currentMembers));
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId.toString()});
 
     RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
@@ -678,10 +814,10 @@ public final class GroupDatabase extends Database {
     Cursor cursor = null;
 
     try {
-      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {MEMBERS},
+      cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, new String[] { MEMBERS},
                                                           GROUP_ID + " = ?",
-                                                          new String[] {groupId.toString()},
-                                                          null, null, null);
+                                                                new String[] {groupId.toString()},
+                                                                null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS));
@@ -701,7 +837,7 @@ public final class GroupDatabase extends Database {
   }
 
   public void setActive(@NonNull GroupId groupId, boolean active) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     ContentValues  values   = new ContentValues();
     values.put(ACTIVE, active ? 1 : 0);
     database.update(TABLE_NAME, values, GROUP_ID + " = ?", new String[] {groupId.toString()});
@@ -709,7 +845,7 @@ public final class GroupDatabase extends Database {
 
   @WorkerThread
   public boolean isCurrentMember(@NonNull GroupId.Push groupId, @NonNull RecipientId recipientId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {MEMBERS},
                                         GROUP_ID + " = ?", new String[] {groupId.toString()},
@@ -725,7 +861,7 @@ public final class GroupDatabase extends Database {
   }
 
 
-  private static List<RecipientId> uuidsToRecipientIds(@NonNull List<UUID> uuids) {
+  private static @NonNull List<RecipientId> uuidsToRecipientIds(@NonNull List<UUID> uuids) {
     List<RecipientId> groupMembers  = new ArrayList<>(uuids.size());
 
     for (UUID uuid : uuids) {
@@ -741,17 +877,15 @@ public final class GroupDatabase extends Database {
     return groupMembers;
   }
 
-  private static String serializeV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
-    List<UUID>        uuids        = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
-    List<RecipientId> recipientIds = uuidsToRecipientIds(uuids);
-
-    return RecipientId.toSerializedList(recipientIds);
+  private static @NonNull List<RecipientId> getV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
+    List<UUID> uuids = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
+    return uuidsToRecipientIds(uuids);
   }
 
   public @NonNull List<GroupId.V2> getAllGroupV2Ids() {
     List<GroupId.V2> result = new LinkedList<>();
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[]{ GROUP_ID }, null, null, null, null, null)) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, new String[]{ GROUP_ID }, null, null, null, null, null)) {
       while (cursor.moveToNext()) {
         GroupId groupId = GroupId.parseOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)));
         if (groupId.isV2()) {
@@ -773,7 +907,7 @@ public final class GroupDatabase extends Database {
     String[] projection = new String[]{ GROUP_ID, EXPECTED_V2_ID };
     String   query      = EXPECTED_V2_ID + " NOT NULL";
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, projection, query, null, null, null, null)) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, projection, query, null, null, null, null)) {
       while (cursor.moveToNext()) {
         GroupId.V1 groupId    = GroupId.parseOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID))).requireV1();
         GroupId.V2 expectedId = GroupId.parseOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(EXPECTED_V2_ID))).requireV2();
@@ -820,7 +954,8 @@ public final class GroupDatabase extends Database {
                              CursorUtil.requireBoolean(cursor, MMS),
                              CursorUtil.requireBlob(cursor, V2_MASTER_KEY),
                              CursorUtil.requireInt(cursor, V2_REVISION),
-                             CursorUtil.requireBlob(cursor, V2_DECRYPTED_GROUP));
+                             CursorUtil.requireBlob(cursor, V2_DECRYPTED_GROUP),
+                             CursorUtil.getString(cursor, DISTRIBUTION_ID).transform(DistributionId::from).orNull());
     }
 
     @Override
@@ -845,6 +980,7 @@ public final class GroupDatabase extends Database {
               private final boolean           active;
               private final boolean           mms;
     @Nullable private final V2GroupProperties v2GroupProperties;
+              private final DistributionId    distributionId;
 
     public GroupRecord(@NonNull GroupId id,
                        @NonNull RecipientId recipientId,
@@ -860,7 +996,8 @@ public final class GroupDatabase extends Database {
                        boolean mms,
                        @Nullable byte[] groupMasterKeyBytes,
                        int groupRevision,
-                       @Nullable byte[] decryptedGroupBytes)
+                       @Nullable byte[] decryptedGroupBytes,
+                       @Nullable DistributionId distributionId)
     {
       this.id                = id;
       this.recipientId       = recipientId;
@@ -872,6 +1009,7 @@ public final class GroupDatabase extends Database {
       this.relay             = relay;
       this.active            = active;
       this.mms               = mms;
+      this.distributionId    = distributionId;
 
       V2GroupProperties v2GroupProperties = null;
       if (groupMasterKeyBytes != null && decryptedGroupBytes != null) {
@@ -910,8 +1048,33 @@ public final class GroupDatabase extends Database {
       return title;
     }
 
+    public @NonNull String getDescription() {
+      if (v2GroupProperties != null) {
+        return v2GroupProperties.getDecryptedGroup().getDescription();
+      } else {
+        return "";
+      }
+    }
+
+    public boolean isAnnouncementGroup() {
+      if (v2GroupProperties != null) {
+        return v2GroupProperties.getDecryptedGroup().getIsAnnouncementGroup() == EnabledState.ENABLED;
+      } else {
+        return false;
+      }
+    }
+
     public @NonNull List<RecipientId> getMembers() {
       return members;
+    }
+
+    @WorkerThread
+    public @NonNull List<Recipient> getAdmins() {
+      if (v2GroupProperties != null) {
+        return v2GroupProperties.getAdmins(members.stream().map(Recipient::resolved).collect(Collectors.toList()));
+      } else {
+        return Collections.emptyList();
+      }
     }
 
     /** V1 members that were lost during the V1->V2 migration */
@@ -949,6 +1112,10 @@ public final class GroupDatabase extends Database {
 
     public boolean isMms() {
       return mms;
+    }
+
+    public @Nullable DistributionId getDistributionId() {
+      return distributionId;
     }
 
     public boolean isV1Group() {
@@ -991,6 +1158,8 @@ public final class GroupDatabase extends Database {
           return GroupAccessControl.ALL_MEMBERS;
         }
         return GroupAccessControl.ONLY_ADMINS;
+      } else if (isV1Group()) {
+        return GroupAccessControl.NO_ONE;
       } else {
         return id.isV1() ? GroupAccessControl.ALL_MEMBERS : GroupAccessControl.ONLY_ADMINS;
       }
@@ -1005,6 +1174,8 @@ public final class GroupDatabase extends Database {
           return GroupAccessControl.ALL_MEMBERS;
         }
         return GroupAccessControl.ONLY_ADMINS;
+      } else if (isV1Group()) {
+        return GroupAccessControl.NO_ONE;
       } else {
         return GroupAccessControl.ALL_MEMBERS;
       }
@@ -1067,6 +1238,10 @@ public final class GroupDatabase extends Database {
       return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), uuid.get())
                                .transform(t -> t.getRole() == Member.Role.ADMINISTRATOR)
                                .or(false);
+    }
+
+    public @NonNull List<Recipient> getAdmins(@NonNull List<Recipient> members) {
+      return members.stream().filter(this::isAdmin).collect(Collectors.toList());
     }
 
     public MemberLevel memberLevel(@NonNull Recipient recipient) {

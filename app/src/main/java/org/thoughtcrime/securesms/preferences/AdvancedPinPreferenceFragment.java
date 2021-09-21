@@ -10,10 +10,11 @@ import androidx.preference.Preference;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.payments.backup.PaymentsRecoveryStartFragmentArgs;
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.pin.PinOptOutDialog;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -66,8 +67,6 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
         return true;
       });
     }
-
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__advanced_pin_settings);
   }
 
   private void onPreferenceChanged(boolean enabled) {
@@ -79,6 +78,22 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
                      .setMessage(R.string.ApplicationPreferencesActivity_pins_are_required_for_registration_lock)
                      .setCancelable(true)
                      .setPositiveButton(android.R.string.ok, (d, which) -> d.dismiss())
+                     .show();
+    } else if (!enabled && SignalStore.paymentsValues().mobileCoinPaymentsEnabled() && !SignalStore.paymentsValues().userConfirmedMnemonic()) {
+      new AlertDialog.Builder(requireContext())
+                     .setTitle(R.string.ApplicationPreferencesActivity_record_payments_recovery_phrase)
+                     .setMessage(R.string.ApplicationPreferencesActivity_before_you_can_disable_your_pin)
+                     .setPositiveButton(R.string.ApplicationPreferencesActivity_record_phrase, (dialog, which) -> {
+                       Intent intent = new Intent(requireContext(), PaymentsActivity.class);
+                       intent.putExtra(PaymentsActivity.EXTRA_PAYMENTS_STARTING_ACTION, R.id.action_directly_to_paymentsBackup);
+                       intent.putExtra(PaymentsActivity.EXTRA_STARTING_ARGUMENTS, new PaymentsRecoveryStartFragmentArgs.Builder().setFinishOnConfirm(true).build().toBundle());
+
+                       startActivity(intent);
+
+                       dialog.dismiss();
+                     })
+                     .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+                     .setCancelable(true)
                      .show();
     } else if (!enabled) {
       PinOptOutDialog.show(requireContext(),

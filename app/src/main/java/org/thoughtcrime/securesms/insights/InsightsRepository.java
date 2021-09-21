@@ -9,10 +9,10 @@ import androidx.core.util.Consumer;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -65,16 +65,11 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getUserAvatar(@NonNull Consumer<InsightsUserAvatar> avatarConsumer) {
     SimpleTask.run(() -> {
-      Recipient     self          = Recipient.self().resolve();
-      String        name          = Optional.fromNullable(self.getDisplayName(context)).or("");
-      MaterialColor fallbackColor = self.getColor();
-
-      if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
-        fallbackColor = ContactColors.generateFor(name);
-      }
+      Recipient self = Recipient.self().resolve();
+      String    name = Optional.fromNullable(self.getDisplayName(context)).or("");
 
       return new InsightsUserAvatar(new ProfileContactPhoto(self, self.getProfileAvatar()),
-                                    fallbackColor,
+                                    self.getAvatarColor(),
                                     new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40));
     }, avatarConsumer::accept);
   }
@@ -86,7 +81,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
       int       subscriptionId = resolved.getDefaultSubscriptionId().or(-1);
       String    message        = context.getString(R.string.InviteActivity_lets_switch_to_signal, context.getString(R.string.install_url));
 
-      MessageSender.send(context, new OutgoingTextMessage(resolved, message, subscriptionId), -1L, true, null);
+      MessageSender.send(context, new OutgoingTextMessage(resolved, message, subscriptionId), -1L, true, null, null);
 
       RecipientDatabase database = DatabaseFactory.getRecipientDatabase(context);
       database.setHasSentInvite(recipient.getId());

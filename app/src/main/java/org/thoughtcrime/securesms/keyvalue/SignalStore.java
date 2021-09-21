@@ -7,6 +7,9 @@ import androidx.preference.PreferenceDataStore;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Simple, encrypted key-value store.
  */
@@ -30,7 +33,11 @@ public final class SignalStore {
   private final PhoneNumberPrivacyValues phoneNumberPrivacyValues;
   private final OnboardingValues         onboardingValues;
   private final WallpaperValues          wallpaperValues;
+  private final PaymentsValues           paymentsValues;
   private final ProxyValues              proxyValues;
+  private final RateLimitValues          rateLimitValues;
+  private final ChatColorsValues         chatColorsValues;
+  private final ImageEditorValues        imageEditorValues;
 
   private SignalStore() {
     this.store                    = new KeyValueStore(ApplicationDependencies.getApplication());
@@ -49,7 +56,11 @@ public final class SignalStore {
     this.phoneNumberPrivacyValues = new PhoneNumberPrivacyValues(store);
     this.onboardingValues         = new OnboardingValues(store);
     this.wallpaperValues          = new WallpaperValues(store);
+    this.paymentsValues           = new PaymentsValues(store);
     this.proxyValues              = new ProxyValues(store);
+    this.rateLimitValues          = new RateLimitValues(store);
+    this.chatColorsValues         = new ChatColorsValues(store);
+    this.imageEditorValues        = new ImageEditorValues(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -57,17 +68,47 @@ public final class SignalStore {
     registrationValues().onFirstEverAppLaunch();
     pinValues().onFirstEverAppLaunch();
     remoteConfigValues().onFirstEverAppLaunch();
-    storageServiceValues().onFirstEverAppLaunch();
+    storageService().onFirstEverAppLaunch();
     uiHints().onFirstEverAppLaunch();
     tooltips().onFirstEverAppLaunch();
     misc().onFirstEverAppLaunch();
     internalValues().onFirstEverAppLaunch();
+    emojiValues().onFirstEverAppLaunch();
     settings().onFirstEverAppLaunch();
     certificateValues().onFirstEverAppLaunch();
     phoneNumberPrivacy().onFirstEverAppLaunch();
     onboarding().onFirstEverAppLaunch();
     wallpaper().onFirstEverAppLaunch();
+    paymentsValues().onFirstEverAppLaunch();
     proxy().onFirstEverAppLaunch();
+    rateLimit().onFirstEverAppLaunch();
+    chatColorsValues().onFirstEverAppLaunch();
+    imageEditorValues().onFirstEverAppLaunch();
+  }
+
+  public static List<String> getKeysToIncludeInBackup() {
+    List<String> keys = new ArrayList<>();
+    keys.addAll(kbsValues().getKeysToIncludeInBackup());
+    keys.addAll(registrationValues().getKeysToIncludeInBackup());
+    keys.addAll(pinValues().getKeysToIncludeInBackup());
+    keys.addAll(remoteConfigValues().getKeysToIncludeInBackup());
+    keys.addAll(storageService().getKeysToIncludeInBackup());
+    keys.addAll(uiHints().getKeysToIncludeInBackup());
+    keys.addAll(tooltips().getKeysToIncludeInBackup());
+    keys.addAll(misc().getKeysToIncludeInBackup());
+    keys.addAll(internalValues().getKeysToIncludeInBackup());
+    keys.addAll(emojiValues().getKeysToIncludeInBackup());
+    keys.addAll(settings().getKeysToIncludeInBackup());
+    keys.addAll(certificateValues().getKeysToIncludeInBackup());
+    keys.addAll(phoneNumberPrivacy().getKeysToIncludeInBackup());
+    keys.addAll(onboarding().getKeysToIncludeInBackup());
+    keys.addAll(wallpaper().getKeysToIncludeInBackup());
+    keys.addAll(paymentsValues().getKeysToIncludeInBackup());
+    keys.addAll(proxy().getKeysToIncludeInBackup());
+    keys.addAll(rateLimit().getKeysToIncludeInBackup());
+    keys.addAll(chatColorsValues().getKeysToIncludeInBackup());
+    keys.addAll(imageEditorValues().getKeysToIncludeInBackup());
+    return keys;
   }
 
   /**
@@ -95,7 +136,7 @@ public final class SignalStore {
     return INSTANCE.remoteConfigValues;
   }
 
-  public static @NonNull StorageServiceValues storageServiceValues() {
+  public static @NonNull StorageServiceValues storageService() {
     return INSTANCE.storageServiceValues;
   }
 
@@ -139,8 +180,24 @@ public final class SignalStore {
     return INSTANCE.wallpaperValues;
   }
 
+  public static @NonNull PaymentsValues paymentsValues() {
+    return INSTANCE.paymentsValues;
+  }
+
   public static @NonNull ProxyValues proxy() {
     return INSTANCE.proxyValues;
+  }
+
+  public static @NonNull RateLimitValues rateLimit() {
+    return INSTANCE.rateLimitValues;
+  }
+
+  public static @NonNull ChatColorsValues chatColorsValues() {
+    return INSTANCE.chatColorsValues;
+  }
+
+  public static @NonNull ImageEditorValues imageEditorValues() {
+    return INSTANCE.imageEditorValues;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {

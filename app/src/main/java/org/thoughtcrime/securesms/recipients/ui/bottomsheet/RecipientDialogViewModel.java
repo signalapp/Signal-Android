@@ -19,8 +19,10 @@ import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -29,7 +31,6 @@ import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -37,13 +38,13 @@ import java.util.Objects;
 
 final class RecipientDialogViewModel extends ViewModel {
 
-  private final Context                                          context;
-  private final RecipientDialogRepository                        recipientDialogRepository;
-  private final LiveData<Recipient>                              recipient;
-  private final MutableLiveData<IdentityDatabase.IdentityRecord> identity;
-  private final LiveData<AdminActionStatus>                      adminActionStatus;
-  private final LiveData<Boolean>                                canAddToAGroup;
-  private final MutableLiveData<Boolean>                         adminActionBusy;
+  private final Context                         context;
+  private final RecipientDialogRepository       recipientDialogRepository;
+  private final LiveData<Recipient>             recipient;
+  private final MutableLiveData<IdentityRecord> identity;
+  private final LiveData<AdminActionStatus>     adminActionStatus;
+  private final LiveData<Boolean>               canAddToAGroup;
+  private final MutableLiveData<Boolean>        adminActionBusy;
 
   private RecipientDialogViewModel(@NonNull Context context,
                                    @NonNull RecipientDialogRepository recipientDialogRepository)
@@ -101,7 +102,7 @@ final class RecipientDialogViewModel extends ViewModel {
     return adminActionStatus;
   }
 
-  LiveData<IdentityDatabase.IdentityRecord> getIdentity() {
+  LiveData<IdentityRecord> getIdentity() {
     return identity;
   }
 
@@ -133,18 +134,18 @@ final class RecipientDialogViewModel extends ViewModel {
     recipientDialogRepository.getRecipient(recipient -> BlockUnblockDialog.showUnblockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.unblock(context, recipient)));
   }
 
-  void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityDatabase.IdentityRecord identityRecord) {
+  void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityRecord identityRecord) {
     activity.startActivity(VerifyIdentityActivity.newIntent(activity, identityRecord));
   }
 
   void onAvatarClicked(@NonNull Activity activity) {
-    activity.startActivity(ManageRecipientActivity.newIntent(activity, recipientDialogRepository.getRecipientId()));
+    activity.startActivity(ConversationSettingsActivity.forRecipient(activity, recipientDialogRepository.getRecipientId()));
   }
 
   void onMakeGroupAdminClicked(@NonNull Activity activity) {
     new AlertDialog.Builder(activity)
                    .setMessage(context.getString(R.string.RecipientBottomSheet_s_will_be_able_to_edit_group, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
-                   .setPositiveButton(R.string.RecipientBottomSheet_make_group_admin,
+                   .setPositiveButton(R.string.RecipientBottomSheet_make_admin,
                                       (dialog, which) -> {
                                         adminActionBusy.setValue(true);
                                         recipientDialogRepository.setMemberAdmin(true, result -> {
@@ -195,7 +196,7 @@ final class RecipientDialogViewModel extends ViewModel {
                    .show();
   }
 
-  void onAddedToContacts() {
+  void refreshRecipient() {
     recipientDialogRepository.refreshRecipient();
   }
 

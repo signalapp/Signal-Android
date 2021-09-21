@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 import java.io.IOException;
 
@@ -21,10 +22,14 @@ public final class DeviceTransferBlockingInterceptor implements Interceptor {
 
   private static final DeviceTransferBlockingInterceptor INSTANCE = new DeviceTransferBlockingInterceptor();
 
-  private volatile boolean blockNetworking = false;
+  private volatile boolean blockNetworking;
 
   public static DeviceTransferBlockingInterceptor getInstance() {
     return INSTANCE;
+  }
+
+  public DeviceTransferBlockingInterceptor() {
+    this.blockNetworking = SignalStore.misc().isOldDeviceTransferLocked();
   }
 
   @Override

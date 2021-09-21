@@ -10,15 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import org.thoughtcrime.securesms.R;
 
 public class BasicMegaphoneView extends FrameLayout {
 
-  private ImageView image;
-  private TextView  titleText;
-  private TextView  bodyText;
-  private Button    actionButton;
-  private Button    secondaryButton;
+  private LottieAnimationView image;
+  private TextView            titleText;
+  private TextView            bodyText;
+  private Button              actionButton;
+  private Button              secondaryButton;
 
   private Megaphone                 megaphone;
   private MegaphoneActionController megaphoneListener;
@@ -62,6 +64,10 @@ public class BasicMegaphoneView extends FrameLayout {
     } else if (megaphone.getImageRequest() != null) {
       image.setVisibility(VISIBLE);
       megaphone.getImageRequest().into(image);
+    } else if (megaphone.getLottieRes() != 0) {
+      image.setVisibility(VISIBLE);
+      image.setAnimation(megaphone.getLottieRes());
+      image.playAnimation();
     } else {
       image.setVisibility(GONE);
     }

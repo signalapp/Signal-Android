@@ -58,7 +58,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(tugon)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Gallery</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">File</string>
   <string name="AttachmentKeyboard_contact">Kontak</string>
   <string name="AttachmentKeyboard_location">Lokasyon</string>
@@ -84,7 +84,7 @@
   <string name="BlockUnblockDialog_unblock_s">I-unblock ang %1$s?</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">I-unblock</string> -->
   <string name="BlockUnblockDialog_block">I-block</string>
-  <string name="BlockUnblockDialog_block_and_delete">I-block at Burahin</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">I-block at Burahin</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Ngayong araw</string>
   <string name="BucketedThreadMedia_Yesterday">Kahapon</string>
@@ -397,15 +397,15 @@
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Wala</string> -->
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">Mga naglalahong mensahe</string>
-  <string name="ManageRecipientActivity_block">I-block</string>
-  <string name="ManageRecipientActivity_unblock">I-unblock</string>
-  <string name="ManageRecipientActivity_view_safety_number">Tingnan ang numerong pangkaligtasan</string>
-  <string name="ManageRecipientActivity_mute_notifications">Patahimikin ang mga notipikasyon</string>
-  <string name="ManageRecipientActivity_custom_notifications">Custom na mga notipikasyon</string>
-  <string name="ManageRecipientActivity_off">Off</string>
-  <string name="ManageRecipientActivity_on">On</string>
-  <string name="ManageRecipientActivity_message_description">Mensahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Mga naglalahong mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">I-block</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">I-unblock</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Tingnan ang numerong pangkaligtasan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Patahimikin ang mga notipikasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Custom na mga notipikasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Off</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">On</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mensahe</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Custom na mga notipikasyon</string>
   <string name="CustomNotificationsDialogFragment__messages">Mga Mensahe</string>
@@ -429,23 +429,23 @@
   <string name="InviteActivity_share">Ibahagi</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Pumili ng mga kontak</string> -->
   <string name="InviteActivity_share_with_contacts">Ibahagi sa mga kontak</string>
-  <string name="InviteActivity_choose_how_to_share">Piliin kung paano ibabahagi</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Piliin kung paano ibabahagi</string> -->
   <string name="InviteActivity_cancel">Kanselahin</string>
   <string name="InviteActivity_sending">Ipinapadala…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Puso</string> -->
   <string name="InviteActivity_invitations_sent">Naipadala na ang mga imbitasyon!</string>
   <string name="InviteActivity_invite_to_signal">Imbitahan sa Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">MAGPADALA NG SMS SA %d KAIBIGAN</item>
     <item quantity="other">MAGPADALA NG SMS SA %d KAIBIGAN</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Mapadala ng %d SMS na imbitasyon?</item>
     <item quantity="other">Mapadala ng %d SMS na imbitasyon?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lumipat tayo sa Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Mukhang wala kang anumang app na maaaring bahaginan.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Hindi hinahayaan ng magkakaibigan na mag-chat ang mga kaibigan nang unencrypted.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Hindi hinahayaan ng magkakaibigan na mag-chat ang mga kaibigan nang unencrypted.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Gumagana sa background…</string> -->
   <!--LearnMoreTextView-->
@@ -511,7 +511,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Kasalukung may tawag sa Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Nagsisimula ng tawag sa Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Papasok na tawag sa Signal</string>
-  <string name="NotificationBarManager__deny_call">Tanggihan ang tawag</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tanggihan ang tawag</string> -->
   <string name="NotificationBarManager__answer_call">Sagutin ang tawag</string>
   <string name="NotificationBarManager__end_call">Tapusin ang Tawag</string>
   <string name="NotificationBarManager__cancel_call">Kanselahin ang tawag</string>
@@ -629,9 +629,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Kailangan ng Signal ang pahintulot sa Camera upang makapag-scan ng QR code, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Camera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Hindi makapag-scan ng QR code nang walang pahintulot sa Camera.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Mga naglalahong mensahe</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Hindi mag-e-expire ang iyong mga mensahe.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ang mga mensaheng ipinadala at natanggap sa pag-uusap na ito ay maglalaho %s kapag nakita na ang mga ito. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Mga naglalahong mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Hindi mag-e-expire ang iyong mga mensahe.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ang mga mensaheng ipinadala at natanggap sa pag-uusap na ito ay maglalaho %s kapag nakita na ang mga ito. </string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ilagay ang passphrase</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon ng Signal</string>
@@ -942,14 +942,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">Nag-react ng %1$s sa iyong sticker.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Default</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Default</string> -->
   <string name="NotificationChannel_calls">Mga Tawag</string>
   <string name="NotificationChannel_failures">Mga kabiguan</string>
   <string name="NotificationChannel_backups">Mga backup</string>
   <string name="NotificationChannel_locked_status">Lock na status</string>
   <string name="NotificationChannel_app_updates">Mga update sa app</string>
   <string name="NotificationChannel_other">Iba pa</string>
-  <string name="NotificationChannel_group_messages">Mga mensahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mga mensahe</string> -->
   <string name="NotificationChannel_missing_display_name">Hindi alam</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Matagumpay na naitakda ang pangalan ng profile.</string> -->
@@ -1151,7 +1151,7 @@
     <item quantity="other">%d pang iba</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Maghanap ng mga GIF at sticker </string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Maghanap ng mga GIF at sticker </string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Walang nahanap</string>
   <!--log_submit_activity-->
@@ -1163,7 +1163,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Isumite</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">OK</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Magsulat ng email</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Pampublikong ipapaskil online ang log na ito para makita ng mga contributor, puwede mo itong suriin at i-edit bago isumite.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Pampublikong ipapaskil online ang log na ito para makita ng mga contributor, puwede mo itong suriin at i-edit bago isumite.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Inilo-load ang mga log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Ina-upload ang mga log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Pumili ng app na pang-email</string> -->
@@ -1228,10 +1228,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">IDAGDAG SA MGA KONTAK</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">HUWAG IDAGDAG, NGUNIT HAYAANG MAKITA ANG AKING PROFILE</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kung gusto mong iberipika ang seguridad ng iyong encryption kay %s, ikumpara ang numero sa itaas sa numero sa kanyang device. Isang alternatibo dito, maaari mong i-scan ang code sa kanyang telepono, o hilingin sa kanyang i-scan ang iyong code. <a href="https://signal.org/redirect/safety-numbers">Matuto pa.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kung gusto mong iberipika ang seguridad ng iyong encryption kay %s, ikumpara ang numero sa itaas sa numero sa kanyang device. Isang alternatibo dito, maaari mong i-scan ang code sa kanyang telepono, o hilingin sa kanyang i-scan ang iyong code. <a href="https://signal.org/redirect/safety-numbers">Matuto pa.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Pindutin para mag-scan</string>
   <string name="verify_display_fragment__loading">Naglo-load…</string>
-  <string name="verify_display_fragment__verified">Beripikado</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Beripikado</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Ibahagi ang numerong pangkaligtasan</string>
   <!--webrtc_answer_decline_button-->
@@ -1293,10 +1293,10 @@
   <string name="arrays__use_default">Gamitin ang default</string>
   <string name="arrays__use_custom">Gumamit ng custom</string>
   <string name="arrays__mute_for_one_hour">Patahimikin nang 1 oras</string>
-  <string name="arrays__mute_for_two_hours">Patahimikin nang 2 oras</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Patahimikin nang 2 oras</string> -->
   <string name="arrays__mute_for_one_day">Patahimikin nang 1 araw</string>
   <string name="arrays__mute_for_seven_days">Patahimikin nang 7 araw</string>
-  <string name="arrays__mute_for_one_year">Patahimikin nang 1 taon</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Patahimikin nang 1 taon</string> -->
   <string name="arrays__settings_default">Default ng settings</string>
   <string name="arrays__enabled">Naka-enable</string>
   <string name="arrays__disabled">Naka-disable</string>
@@ -1401,7 +1401,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Kung naka-disable ang read receipts, hindi ka makakakita ng mga read receipt mula sa iba.</string>
   <string name="preferences__typing_indicators">Typing indicators</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kung naka-disable ang typing indicators, hindi ka makakakita ng typing indicators mula sa iba.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Hilingin sa keyboard na i-disable ang personalisadong pagkakatuto</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Hilingin sa keyboard na i-disable ang personalisadong pagkakatuto</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Mga naka-block na kontak</string> -->
   <string name="preferences_chats__when_using_mobile_data">Kapag gumagamit ng mobile data</string>
   <string name="preferences_chats__when_using_wifi">Kapag gumagamit ng WI-FI</string>

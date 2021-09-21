@@ -5,7 +5,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Pair;
 
+import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -19,10 +21,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public abstract class MediaConstraints {
-  private static final String TAG = MediaConstraints.class.getSimpleName();
+  private static final String TAG = Log.tag(MediaConstraints.class);
 
   public static MediaConstraints getPushMediaConstraints() {
-    return new PushMediaConstraints();
+    return getPushMediaConstraints(null);
+  }
+
+  public static MediaConstraints getPushMediaConstraints(@Nullable SentMediaQuality sentMediaQuality) {
+    return new PushMediaConstraints(sentMediaQuality);
   }
 
   public static MediaConstraints getMmsMediaConstraints(int subscriptionId) {
@@ -42,6 +48,10 @@ public abstract class MediaConstraints {
 
   public abstract int getGifMaxSize(Context context);
   public abstract int getVideoMaxSize(Context context);
+
+  public @IntRange(from = 0, to = 100) int getImageCompressionQualitySetting(@NonNull Context context) {
+    return 70;
+  }
 
   public int getUncompressedVideoMaxSize(Context context) {
     return getVideoMaxSize(context);

@@ -68,8 +68,8 @@ public class Data {
   }
 
   public byte[] getStringAsBlob(@NonNull String key) {
-    throwIfAbsent(strings, key);
-    return Base64.decodeOrThrow(strings.get(key));
+    String raw = getString(key);
+    return raw != null ? Base64.decodeOrThrow(raw) : null;
   }
 
   public String getStringOrDefault(@NonNull String key, String defaultValue) {
@@ -356,8 +356,8 @@ public class Data {
       return this;
     }
 
-    public Builder putBlobAsString(@NonNull String key, @NonNull byte[] value) {
-      String serialized = Base64.encodeBytes(value);
+    public Builder putBlobAsString(@NonNull String key, @Nullable byte[] value) {
+      String serialized = value != null ? Base64.encodeBytes(value) : null;
       strings.put(key, serialized);
       return this;
     }

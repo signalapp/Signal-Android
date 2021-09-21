@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import java.io.IOException;
 
 public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsConnection {
-  private static final String TAG = CompatMmsConnection.class.getSimpleName();
+  private static final String TAG = Log.tag(CompatMmsConnection.class);
 
   private Context context;
 

@@ -5,7 +5,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,10 +46,16 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
     requireActivity().finish();
   }
 
+  @Override
+  protected void navigateToTransferComplete() {
+    NavHostFragment.findNavController(this).navigate(R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
+  }
+
   private class ClientTaskListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(@NonNull OldDeviceClientTask.Status event) {
       if (event.isDone()) {
+        transferFinished = true;
         ignoreTransferStatusEvents();
         EventBus.getDefault().removeStickyEvent(TransferStatus.class);
         DeviceToDeviceTransferService.stop(requireContext());

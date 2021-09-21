@@ -27,6 +27,7 @@ public class Media implements Parcelable {
   private final long    size;
   private final long    duration;
   private final boolean borderless;
+  private final boolean videoGif;
 
   private Optional<String>                                 bucketId;
   private Optional<String>                                 caption;
@@ -40,6 +41,7 @@ public class Media implements Parcelable {
                long size,
                long duration,
                boolean borderless,
+               boolean videoGif,
                Optional<String> bucketId,
                Optional<String> caption,
                Optional<AttachmentDatabase.TransformProperties> transformProperties)
@@ -52,6 +54,7 @@ public class Media implements Parcelable {
     this.size                = size;
     this.duration            = duration;
     this.borderless          = borderless;
+    this.videoGif            = videoGif;
     this.bucketId            = bucketId;
     this.caption             = caption;
     this.transformProperties = transformProperties;
@@ -66,6 +69,7 @@ public class Media implements Parcelable {
     size       = in.readLong();
     duration   = in.readLong();
     borderless = in.readInt() == 1;
+    videoGif   = in.readInt() == 1;
     bucketId   = Optional.fromNullable(in.readString());
     caption    = Optional.fromNullable(in.readString());
     try {
@@ -108,6 +112,10 @@ public class Media implements Parcelable {
     return borderless;
   }
 
+  public boolean isVideoGif() {
+    return videoGif;
+  }
+
   public Optional<String> getBucketId() {
     return bucketId;
   }
@@ -139,6 +147,7 @@ public class Media implements Parcelable {
     dest.writeLong(size);
     dest.writeLong(duration);
     dest.writeInt(borderless ? 1 : 0);
+    dest.writeInt(videoGif ? 1 : 0);
     dest.writeString(bucketId.orNull());
     dest.writeString(caption.orNull());
     dest.writeString(transformProperties.transform(JsonUtil::toJson).orNull());
@@ -169,5 +178,20 @@ public class Media implements Parcelable {
   @Override
   public int hashCode() {
     return uri.hashCode();
+  }
+
+  public static @NonNull Media withMimeType(@NonNull Media media, @NonNull String newMimeType) {
+    return new Media(media.getUri(),
+                     newMimeType,
+                     media.getDate(),
+                     media.getWidth(),
+                     media.getHeight(),
+                     media.getSize(),
+                     media.getDuration(),
+                     media.isBorderless(),
+                     media.isVideoGif(),
+                     media.getBucketId(),
+                     media.getCaption(),
+                     media.getTransformProperties());
   }
 }

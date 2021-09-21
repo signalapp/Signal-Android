@@ -27,12 +27,12 @@ final class MessageDetailsViewModel extends ViewModel {
     messageDetails = Transformations.switchMap(messageRecord, repository::getMessageDetails);
   }
 
-  @NonNull LiveData<MaterialColor> getRecipientColor() {
-    return Transformations.distinctUntilChanged(Transformations.map(recipient, Recipient::getColor));
-  }
-
   @NonNull LiveData<MessageDetails> getMessageDetails() {
     return messageDetails;
+  }
+
+  @NonNull LiveData<Recipient> getRecipient() {
+    return recipient;
   }
 
   static final class Factory implements ViewModelProvider.Factory {

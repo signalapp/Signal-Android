@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:background="@color/media_overview_toolbar_background"
-             android:padding="16dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/signal_background_primary"
+    android:minHeight="48dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="12dp">
 
-    <TextView android:id="@+id/text"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="start|center_vertical"
-              android:textColor="@color/media_overview_header_foreground"
-              android:textSize="14sp"
-              android:textStyle="bold"
-              android:textAllCaps="true"
-              tools:text="March 1, 2015" />
+    <TextView
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        android:textStyle="bold"
+        tools:text="March 1, 2015" />
 </FrameLayout>

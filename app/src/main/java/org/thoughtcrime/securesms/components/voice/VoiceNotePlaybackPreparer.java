@@ -4,8 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ResultReceiver;
-import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -13,13 +13,16 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
+import com.google.android.exoplayer2.ControlDispatcher;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.MediaMetadata;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
-import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -32,6 +35,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 /**
  * ExoPlayer Preparer for Voice Notes. This only supports ACTION_PLAY_FROM_URI
@@ -42,28 +46,20 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   private static final Executor EXECUTOR = Executors.newSingleThreadExecutor();
   private static final long     LIMIT    = 5;
 
-  public static final Uri NEXT_URI = Uri.parse("file:///android_asset/sounds/state-change_confirm-down.ogg");
-  public static final Uri END_URI  = Uri.parse("file:///android_asset/sounds/state-change_confirm-up.ogg");
-
   private final Context                     context;
-  private final SimpleExoPlayer             player;
-  private final VoiceNoteQueueDataAdapter   queueDataAdapter;
-  private final VoiceNoteMediaSourceFactory mediaSourceFactory;
-  private final ConcatenatingMediaSource    dataSource;
+  private final Player                      player;
+  private final VoiceNotePlaybackParameters voiceNotePlaybackParameters;
 
   private boolean canLoadMore;
   private Uri     latestUri = Uri.EMPTY;
 
   VoiceNotePlaybackPreparer(@NonNull Context context,
-                            @NonNull SimpleExoPlayer player,
-                            @NonNull VoiceNoteQueueDataAdapter queueDataAdapter,
-                            @NonNull VoiceNoteMediaSourceFactory mediaSourceFactory)
+                            @NonNull Player player,
+                            @NonNull VoiceNotePlaybackParameters voiceNotePlaybackParameters)
   {
-    this.context            = context;
-    this.player             = player;
-    this.queueDataAdapter   = queueDataAdapter;
-    this.mediaSourceFactory = mediaSourceFactory;
-    this.dataSource         = new ConcatenatingMediaSource();
+    this.context                     = context;
+    this.player                      = player;
+    this.voiceNotePlaybackParameters = voiceNotePlaybackParameters;
   }
 
   @Override
@@ -72,25 +68,29 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   }
 
   @Override
-  public void onPrepare() {
-    throw new UnsupportedOperationException("VoiceNotePlaybackPreparer does not support onPrepare");
+  public void onPrepare(boolean playWhenReady) {
+    Log.w(TAG, "Requested playback from IDLE state. Ignoring.");
   }
 
   @Override
-  public void onPrepareFromMediaId(String mediaId, Bundle extras) {
+  public void onPrepareFromMediaId(@NonNull String mediaId, boolean playWhenReady, @Nullable Bundle extras) {
     throw new UnsupportedOperationException("VoiceNotePlaybackPreparer does not support onPrepareFromMediaId");
   }
 
   @Override
-  public void onPrepareFromSearch(String query, Bundle extras) {
+  public void onPrepareFromSearch(@NonNull String query, boolean playWhenReady, @Nullable Bundle extras) {
     throw new UnsupportedOperationException("VoiceNotePlaybackPreparer does not support onPrepareFromSearch");
   }
 
   @Override
-  public void onPrepareFromUri(final Uri uri, Bundle extras) {
+  public void onPrepareFromUri(@NonNull Uri uri, boolean playWhenReady, @Nullable Bundle extras) {
     Log.d(TAG, "onPrepareFromUri: " + uri);
+    if (extras == null) {
+      return;
+    }
 
     long    messageId      = extras.getLong(VoiceNoteMediaController.EXTRA_MESSAGE_ID);
+    long    threadId       = extras.getLong(VoiceNoteMediaController.EXTRA_THREAD_ID);
     double  progress       = extras.getDouble(VoiceNoteMediaController.EXTRA_PROGRESS, 0);
     boolean singlePlayback = extras.getBoolean(VoiceNoteMediaController.EXTRA_PLAY_SINGLE, false);
 
@@ -100,122 +100,121 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
     SimpleTask.run(EXECUTOR,
                    () -> {
                      if (singlePlayback) {
-                       return loadMediaDescriptionForSinglePlayback(messageId);
+                       if (messageId != -1) {
+                         return loadMediaItemsForSinglePlayback(messageId);
+                       } else {
+                         return loadMediaItemsForDraftPlayback(threadId, uri);
+                       }
                      } else {
-                       return loadMediaDescriptionsForConsecutivePlayback(messageId);
+                       return loadMediaItemsForConsecutivePlayback(messageId);
                      }
                    },
-                   descriptions -> {
-                     queueDataAdapter.clear();
-                     dataSource.clear();
+                   mediaItems -> {
+                     player.clearMediaItems();
 
-                     if (Util.hasItems(descriptions) && Objects.equals(latestUri, uri)) {
-                       applyDescriptionsToQueue(descriptions);
+                     if (Util.hasItems(mediaItems) && Objects.equals(latestUri, uri)) {
+                       applyDescriptionsToQueue(mediaItems);
 
-                       int window = Math.max(0, queueDataAdapter.indexOf(uri));
+                       int window = Math.max(0, indexOfPlayerMediaItemByUri(uri));
 
-                       player.addListener(new Player.EventListener() {
+                       player.addListener(new Player.Listener() {
                          @Override
-                         public void onTimelineChanged(Timeline timeline, @Nullable Object manifest, int reason) {
+                         public void onTimelineChanged(@NonNull Timeline timeline, int reason) {
                            if (timeline.getWindowCount() >= window) {
+                             player.setPlayWhenReady(false);
+                             player.setPlaybackParameters(voiceNotePlaybackParameters.getParameters());
                              player.seekTo(window, (long) (player.getDuration() * progress));
+                             player.setPlayWhenReady(true);
                              player.removeListener(this);
                            }
                          }
                        });
 
-                       player.prepare(dataSource);
+                       player.prepare();
                        canLoadMore = !singlePlayback;
+                     } else if (Objects.equals(latestUri, uri)) {
+                       Log.w(TAG, "Requested playback but no voice notes could be found.");
+                       ThreadUtil.postToMain(() -> {
+                         Toast.makeText(context, R.string.VoiceNotePlaybackPreparer__failed_to_play_voice_message, Toast.LENGTH_SHORT)
+                              .show();
+                       });
                      }
                    });
   }
 
-  @Override
-  public String[] getCommands() {
-    return new String[0];
-  }
-
-  @Override
-  public void onCommand(Player player, String command, Bundle extras, ResultReceiver cb) {
-  }
-
   @MainThread
-  private void applyDescriptionsToQueue(@NonNull List<MediaDescriptionCompat> descriptions) {
-    for (MediaDescriptionCompat description : descriptions) {
-      int                    holderIndex  = queueDataAdapter.indexOf(description.getMediaUri());
-      MediaDescriptionCompat next         = createNextClone(description);
-      int                    currentIndex = player.getCurrentWindowIndex();
+  private void applyDescriptionsToQueue(@NonNull List<MediaItem> mediaItems) {
+    for (MediaItem mediaItem : mediaItems) {
+      MediaItem.PlaybackProperties playbackProperties = mediaItem.playbackProperties;
+      if (playbackProperties == null) {
+        continue;
+      }
+      int       holderIndex  = indexOfPlayerMediaItemByUri(playbackProperties.uri);
+      MediaItem next         = VoiceNoteMediaItemFactory.buildNextVoiceNoteMediaItem(mediaItem);
+      int       currentIndex = player.getCurrentWindowIndex();
 
       if (holderIndex != -1) {
-        queueDataAdapter.remove(holderIndex);
-
-        if (!queueDataAdapter.isEmpty()) {
-          queueDataAdapter.remove(holderIndex);
-        }
-
-        queueDataAdapter.add(holderIndex, createNextClone(description));
-        queueDataAdapter.add(holderIndex, description);
-
         if (currentIndex != holderIndex) {
-          dataSource.removeMediaSource(holderIndex);
-          dataSource.addMediaSource(holderIndex, mediaSourceFactory.createMediaSource(description));
+          player.removeMediaItem(holderIndex);
+          player.addMediaItem(holderIndex, mediaItem);
         }
 
         if (currentIndex != holderIndex + 1) {
-          if (dataSource.getSize() > 1) {
-            dataSource.removeMediaSource(holderIndex + 1);
+          if (player.getMediaItemCount() > 1) {
+            player.removeMediaItem(holderIndex + 1);
           }
 
-          dataSource.addMediaSource(holderIndex + 1, mediaSourceFactory.createMediaSource(next));
+          player.addMediaItem(holderIndex + 1, next);
         }
       } else {
-        int insertLocation = queueDataAdapter.indexAfter(description);
+        int insertLocation = indexAfter(mediaItem);
 
-        queueDataAdapter.add(insertLocation, next);
-        queueDataAdapter.add(insertLocation, description);
-
-        dataSource.addMediaSource(insertLocation, mediaSourceFactory.createMediaSource(next));
-        dataSource.addMediaSource(insertLocation, mediaSourceFactory.createMediaSource(description));
+        player.addMediaItem(insertLocation, next);
+        player.addMediaItem(insertLocation, mediaItem);
       }
     }
 
-    int                    lastIndex = queueDataAdapter.size() - 1;
-    MediaDescriptionCompat last      = queueDataAdapter.getMediaDescription(lastIndex);
+    int itemsCount = player.getMediaItemCount();
+    if (itemsCount > 0) {
+      int       lastIndex = itemsCount - 1;
+      MediaItem last      = player.getMediaItemAt(lastIndex);
 
-    if (Objects.equals(last.getMediaUri(), NEXT_URI)) {
-      queueDataAdapter.remove(lastIndex);
-      dataSource.removeMediaSource(lastIndex);
+      if (last.playbackProperties != null &&
+          Objects.equals(last.playbackProperties.uri, VoiceNoteMediaItemFactory.NEXT_URI))
+      {
+        player.removeMediaItem(lastIndex);
 
-      if (queueDataAdapter.size() > 1) {
-        MediaDescriptionCompat end = createEndClone(last);
+        if (player.getMediaItemCount() > 1) {
+          MediaItem end = VoiceNoteMediaItemFactory.buildEndVoiceNoteMediaItem(last);
 
-        queueDataAdapter.add(lastIndex, end);
-        dataSource.addMediaSource(lastIndex, mediaSourceFactory.createMediaSource(end));
+          player.addMediaItem(lastIndex, end);
+        }
       }
     }
+  }
 
-    if (queueDataAdapter.size() != dataSource.getSize()) {
-      throw new IllegalStateException("QueueDataAdapter and DataSource size inconsistency.");
+  private int indexOfPlayerMediaItemByUri(@NonNull Uri uri) {
+    for (int i = 0; i < player.getMediaItemCount(); i++) {
+      MediaItem.PlaybackProperties playbackProperties = player.getMediaItemAt(i).playbackProperties;
+      if (playbackProperties != null && playbackProperties.uri.equals(uri)) {
+        return i;
+      }
     }
+    return -1;
   }
 
-  private @NonNull MediaDescriptionCompat createEndClone(@NonNull MediaDescriptionCompat source) {
-    return buildUpon(source).setMediaId("end").setMediaUri(END_URI).build();
-  }
+  private int indexAfter(@NonNull MediaItem target) {
+    int  size            = player.getMediaItemCount();
+    long targetMessageId = target.mediaMetadata.extras.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID);
+    for (int i = 0; i < size; i++) {
+      MediaMetadata mediaMetadata = player.getMediaItemAt(i).mediaMetadata;
+      long          messageId     = mediaMetadata.extras.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID);
 
-  private @NonNull MediaDescriptionCompat createNextClone(@NonNull MediaDescriptionCompat source) {
-    return buildUpon(source).setMediaId("next").setMediaUri(NEXT_URI).build();
-  }
-
-  private @NonNull MediaDescriptionCompat.Builder buildUpon(@NonNull MediaDescriptionCompat source) {
-    return new MediaDescriptionCompat.Builder()
-                                     .setSubtitle(source.getSubtitle())
-                                     .setDescription(source.getDescription())
-                                     .setTitle(source.getTitle())
-                                     .setIconUri(source.getIconUri())
-                                     .setIconBitmap(source.getIconBitmap())
-                                     .setMediaId(source.getMediaId())
-                                     .setExtras(source.getExtras());
+      if (messageId > targetMessageId) {
+        return i;
+      }
+    }
+    return size;
   }
 
   public void loadMoreVoiceNotes() {
@@ -223,46 +222,60 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
       return;
     }
 
-    MediaDescriptionCompat mediaDescriptionCompat = queueDataAdapter.getMediaDescription(player.getCurrentWindowIndex());
-    if (Objects.equals(mediaDescriptionCompat, VoiceNoteQueueDataAdapter.EMPTY)) {
+    MediaItem currentMediaItem = player.getCurrentMediaItem();
+    if (currentMediaItem == null) {
       return;
     }
 
-    long messageId = mediaDescriptionCompat.getExtras().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_ID);
+    long messageId = currentMediaItem.mediaMetadata.extras.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID);
 
     SimpleTask.run(EXECUTOR,
-                   () -> loadMediaDescriptionsForConsecutivePlayback(messageId),
-                   descriptions -> {
-                     if (Util.hasItems(descriptions) && canLoadMore) {
-                       applyDescriptionsToQueue(descriptions);
+                   () -> loadMediaItemsForConsecutivePlayback(messageId),
+                   mediaItems -> {
+                     if (Util.hasItems(mediaItems) && canLoadMore) {
+                       applyDescriptionsToQueue(mediaItems);
                      }
                    });
   }
 
-  private @NonNull List<MediaDescriptionCompat> loadMediaDescriptionForSinglePlayback(long messageId) {
+  private @NonNull List<MediaItem> loadMediaItemsForSinglePlayback(long messageId) {
     try {
-      MessageRecord messageRecord = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
+      MessageRecord messageRecord = DatabaseFactory.getMmsDatabase(context)
+                                                   .getMessageRecord(messageId);
 
       if (!MessageRecordUtil.hasAudio(messageRecord)) {
         Log.w(TAG, "Message does not contain audio.");
         return Collections.emptyList();
       }
 
-      return Collections.singletonList(VoiceNoteMediaDescriptionCompatFactory.buildMediaDescription(context ,messageRecord));
+      MediaItem mediaItem = VoiceNoteMediaItemFactory.buildMediaItem(context, messageRecord);
+      if (mediaItem == null) {
+        return Collections.emptyList();
+      } else {
+        return Collections.singletonList(mediaItem);
+      }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "Could not find message.", e);
       return Collections.emptyList();
     }
   }
 
-  @WorkerThread
-  private @NonNull List<MediaDescriptionCompat> loadMediaDescriptionsForConsecutivePlayback(long messageId) {
-    try {
-      List<MessageRecord> recordsAfter  = DatabaseFactory.getMmsSmsDatabase(context).getMessagesAfterVoiceNoteInclusive(messageId, LIMIT);
+  private @NonNull List<MediaItem> loadMediaItemsForDraftPlayback(long threadId, @NonNull Uri draftUri) {
+    return Collections
+        .singletonList(VoiceNoteMediaItemFactory.buildMediaItem(context, threadId, draftUri));
+  }
 
-      return Stream.of(buildFilteredMessageRecordList(recordsAfter))
-                   .map(record -> VoiceNoteMediaDescriptionCompatFactory.buildMediaDescription(context, record))
-                   .toList();
+  @WorkerThread
+  private @NonNull List<MediaItem> loadMediaItemsForConsecutivePlayback(long messageId) {
+    try {
+      List<MessageRecord> recordsAfter = DatabaseFactory.getMmsSmsDatabase(context)
+                                                        .getMessagesAfterVoiceNoteInclusive(messageId, LIMIT);
+
+      return buildFilteredMessageRecordList(recordsAfter).stream()
+                                                         .map(record -> VoiceNoteMediaItemFactory
+                                                             .buildMediaItem(context, record))
+                                                         .filter(Objects::nonNull)
+                                                         .collect(Collectors.toList());
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "Could not find message.", e);
       return Collections.emptyList();
@@ -273,5 +286,16 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
     return Stream.of(recordsAfter)
                  .takeWhile(MessageRecordUtil::hasAudio)
                  .toList();
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public boolean onCommand(@NonNull Player player,
+                           @NonNull ControlDispatcher controlDispatcher,
+                           @NonNull String command,
+                           @Nullable Bundle extras,
+                           @Nullable ResultReceiver cb)
+  {
+    return false;
   }
 }

@@ -1,15 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.tabs.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/category_tabs"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height"
+    android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="@color/signal_background_secondary"
-    app:layout_constraintTop_toTopOf="parent"
-    app:tabIndicatorColor="@color/core_ultramarine"
-    app:tabPadding="0dp"
-    app:tabPaddingBottom="0dp"
-    app:tabPaddingEnd="0dp"
-    app:tabPaddingStart="0dp"
-    app:tabPaddingTop="0dp" />
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/react_with_any_emoji_bottom_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bottom_toolbar_shadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="@color/signal_background_dialog"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/customize_reactions_frame"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/react_with_any_customize_background"
+            android:clipChildren="false"
+            android:elevation="1dp"
+            android:visibility="gone"
+            tools:ignore="UnusedAttribute"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/customize_reactions"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/EditReactionsFragment__customize_reactions"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_settings_24"
+                app:tint="@color/signal_icon_tint_tab_unselected"
+                tools:ignore="UnusedAttribute" />
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/emoji_categories_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/keyboard_pager_category_icon" />
+    </LinearLayout>
+</LinearLayout>

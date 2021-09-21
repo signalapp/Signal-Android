@@ -8,6 +8,11 @@
         <item name="android:letterSpacing" tools:ignore="NewApi">0</item>
     </style>
 
+    <style name="Signal.Text.Headline.Medium">
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="Signal.Text.Body" parent="Base.TextAppearance.AppCompat.Body1">
         <item name="android:textSize">16sp</item>
         <item name="android:lineSpacingExtra">2sp</item>
@@ -20,6 +25,10 @@
         <item name="android:lineSpacingExtra">3sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
+    <style name="Signal.Text.Preview.Secondary">
+        <item name="android:textColor">@color/signal_text_secondary</item>
     </style>
 
     <style name="Signal.Text.Preview.Medium">
@@ -41,14 +50,13 @@
         <item name="android:letterSpacing" tools:ignore="NewApi">0.03</item>
     </style>
 
-
     <style name="Signal.Text.Caption.MessageSent">
         <item name="android:textColor">@color/signal_text_secondary</item>
         <item name="android:shadowRadius">0</item>
     </style>
 
     <style name="Signal.Text.Caption.MessageReceived">
-        <item name="android:textColor">@color/conversation_item_received_text_secondary_color</item>
+        <item name="android:textColor">@color/conversation_item_sent_text_secondary_color</item>
         <item name="android:shadowRadius">0</item>
         <item name="android:alpha">0.7</item>
     </style>
@@ -63,8 +71,15 @@
         <item name="android:color">@color/signal_text_primary</item>
     </style>
 
-    <style name="TextAppearance.Signal.Title2" parent="@style/TextAppearance.AppCompat.Title">
+    <style name="TextAppearance.Signal.Title2" parent="@style/TextAppearance.AppCompat.Title" />
+
+    <style name="TextAppearance.Signal.Title2.Bold">
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Title2.MaterialDialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 
     <style name="TextAppearance.Signal.Headline.Insights" parent="">
@@ -90,6 +105,11 @@
     <style name="TextAppearance.Signal.Title.Insights" parent="">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/insight_title</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Title.InfoCard" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextAppearance.Signal.Body.Insights" parent="">
@@ -127,11 +147,20 @@
         <item name="fontFamily">sans-serif-medium</item>
     </style>
 
+    <style name="TextAppearance.Signal.Mono" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
     <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.AppCompat.Caption">
     </style>
 
     <style name="TextAppearance.Signal.Subtitle" parent="TextAppearance.Signal.Caption">
         <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Subtitle.Bold">
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">
@@ -150,6 +179,19 @@
     <style name="Signal.Text.MessageRequest.Description" parent="Base.TextAppearance.AppCompat.Subhead">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/signal_text_secondary</item>
+    </style>
+
+    <style name="Signal.Text.Title" parent="Base.TextAppearance.AppCompat.Title">
+    </style>
+
+    <style name="Signal.Text.Title.SettingsBio">
+    </style>
+
+    <style name="Signal.Text.Title.BottomSheet" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
     </style>
 
 </resources>

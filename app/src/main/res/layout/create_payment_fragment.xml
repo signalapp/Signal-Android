@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/create_payment_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/create_payment_fragment_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/create_payment_fragment_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:textColor="@color/signal_text_secondary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="684.924 MOB available" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_payment_fragment_request"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/CreatePaymentFragment__request"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_balance"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_pay"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_payment_fragment_pay"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/CreatePaymentFragment__pay"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_balance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_request"
+                app:layout_goneMarginStart="48dp" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_decimal"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_row_margin_bottom"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__decimal"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_bottom_controls"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_0"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_row_margin_bottom"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__0"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_bottom_controls"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_lt"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_decimal" />
+
+            <ImageView
+                android:id="@+id/create_payment_fragment_keyboard_lt"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_row_margin_bottom"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/CreatePaymentFragment__backspace"
+                android:gravity="center"
+                android:padding="14dp"
+                android:scaleType="centerInside"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_bottom_controls"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_0"
+                app:srcCompat="@drawable/ic_arrow_left_20" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_7"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__7"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_decimal"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_8"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_8"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__8"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_decimal"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_9"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_7" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_9"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__9"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_decimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_8" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_4"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__4"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_7"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_5"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__5"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_7"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_6"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_4" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_6"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__6"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_5" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_1"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:layout_marginTop="@dimen/create_payment_key_top_row_margin_top"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__1"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_4"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="1" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_2"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:layout_marginTop="@dimen/create_payment_key_top_row_margin_top"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__2"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_4"
+                app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_3"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_1"
+                app:layout_constraintTop_toTopOf="@id/create_payment_fragment_keyboard_1"
+                app:layout_constraintVertical_bias="1" />
+
+            <TextView
+                android:id="@+id/create_payment_fragment_keyboard_3"
+                android:layout_width="@dimen/create_payment_key_size"
+                android:layout_height="@dimen/create_payment_key_size"
+                android:layout_marginTop="@dimen/create_payment_key_top_row_margin_top"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/CreatePaymentFragment__3"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_2"
+                app:layout_constraintTop_toTopOf="@id/create_payment_fragment_keyboard_1"
+                app:layout_constraintVertical_bias="1" />
+
+            <include
+                android:id="@+id/create_payment_fragment_amount_header"
+                layout="@layout/create_payment_fragment_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/create_payment_fragment_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_rectangle_tertiary"
+                android:paddingStart="12dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/create_payment_fragment_amount_header"
+                app:layout_constraintVertical_bias="0.2"
+                tools:text="Thanks for dinner!" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_payment_fragment_add_note"
+                style="@style/Signal.Widget.Button.Medium.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CreatePaymentFragment__add_note"
+                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/create_payment_fragment_amount_header"
+                app:layout_constraintVertical_bias="0.2" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/create_payment_fragment_bottom_controls"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:barrierDirection="top"
+                app:constraint_referenced_ids="create_payment_fragment_request,create_payment_fragment_pay,create_payment_fragment_balance" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</LinearLayout>

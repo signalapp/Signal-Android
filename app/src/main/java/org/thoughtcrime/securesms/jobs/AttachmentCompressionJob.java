@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -141,7 +142,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     }
 
     MediaConstraints mediaConstraints = mms ? MediaConstraints.getMmsMediaConstraints(mmsSubscriptionId)
-                                            : MediaConstraints.getPushMediaConstraints();
+                                            : MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(databaseAttachment.getTransformProperties().getSentMediaQuality()));
 
     compress(database, mediaConstraints, databaseAttachment);
   }
@@ -319,7 +320,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                                 new DecryptableStreamUriLoader.DecryptableUri(uri),
                                                                 size,
                                                                 mediaConstraints.getImageMaxSize(context),
-                                                                70);
+                                                                mediaConstraints.getImageCompressionQualitySetting(context));
         if (result != null) {
           break;
         }

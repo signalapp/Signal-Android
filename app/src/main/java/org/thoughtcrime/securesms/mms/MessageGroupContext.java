@@ -132,8 +132,7 @@ public final class MessageGroupContext {
       return Stream.of(groupContext.getMembersList())
                    .map(GroupContext.Member::getE164)
                    .withoutNulls()
-                   .map(e164 -> new SignalServiceAddress(null, e164))
-                   .map(RecipientId::from)
+                   .map(RecipientId::fromExternalPush)
                    .filterNot(selfId::equals)
                    .toList();
     }

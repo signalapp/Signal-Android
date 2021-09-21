@@ -3,6 +3,8 @@
     android:id="@+id/log_item_scroll"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
     android:scrollbars="none">
 
   <TextView

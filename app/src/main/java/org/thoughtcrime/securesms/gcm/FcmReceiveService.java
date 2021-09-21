@@ -11,6 +11,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -18,7 +19,7 @@ import java.util.Locale;
 
 public class FcmReceiveService extends FirebaseMessagingService {
 
-  private static final String TAG = FcmReceiveService.class.getSimpleName();
+  private static final String TAG = Log.tag(FcmReceiveService.class);
 
 
   @Override
@@ -30,10 +31,14 @@ public class FcmReceiveService extends FirebaseMessagingService {
                              remoteMessage.getPriority(),
                              remoteMessage.getOriginalPriority()));
 
-    String challenge = remoteMessage.getData().get("challenge");
-    if (challenge != null) {
-      handlePushChallenge(challenge);
-    } else {
+    String registrationChallenge = remoteMessage.getData().get("challenge");
+    String rateLimitChallenge    = remoteMessage.getData().get("rateLimitChallenge");
+
+    if (registrationChallenge != null) {
+      handleRegistrationPushChallenge(registrationChallenge);
+    } else if (rateLimitChallenge != null) {
+      handleRateLimitPushChallenge(rateLimitChallenge);
+    }else {
       handleReceivedNotification(ApplicationDependencies.getApplication());
     }
   }
@@ -75,9 +80,13 @@ public class FcmReceiveService extends FirebaseMessagingService {
     }
   }
 
-  private static void handlePushChallenge(@NonNull String challenge) {
-    Log.d(TAG, String.format("Got a push challenge \"%s\"", challenge));
-
+  private static void handleRegistrationPushChallenge(@NonNull String challenge) {
+    Log.d(TAG, "Got a registration push challenge.");
     PushChallengeRequest.postChallengeResponse(challenge);
+  }
+
+  private static void handleRateLimitPushChallenge(@NonNull String challenge) {
+    Log.d(TAG, "Got a rate limit push challenge.");
+    ApplicationDependencies.getJobManager().add(new SubmitRateLimitPushChallengeJob(challenge));
   }
 }

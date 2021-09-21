@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @SuppressLint("UseSparseArrays")
 public class TypingStatusRepository {
 
-  private static final String TAG = TypingStatusRepository.class.getSimpleName();
+  private static final String TAG = Log.tag(TypingStatusRepository.class);
 
   private static final long RECIPIENT_TYPING_TIMEOUT = TimeUnit.SECONDS.toMillis(15);
 

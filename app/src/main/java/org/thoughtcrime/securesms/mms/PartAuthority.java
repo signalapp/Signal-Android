@@ -11,7 +11,9 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
@@ -22,19 +24,25 @@ import java.io.InputStream;
 
 public class PartAuthority {
 
-  private static final String AUTHORITY             = BuildConfig.APPLICATION_ID;
-  private static final String PART_URI_STRING       = "content://" + AUTHORITY + "/part";
-  private static final String STICKER_URI_STRING    = "content://" + AUTHORITY + "/sticker";
-  private static final String WALLPAPER_URI_STRING  = "content://" + AUTHORITY + "/wallpaper";
-  private static final Uri    PART_CONTENT_URI      = Uri.parse(PART_URI_STRING);
-  private static final Uri    STICKER_CONTENT_URI   = Uri.parse(STICKER_URI_STRING);
-  private static final Uri    WALLPAPER_CONTENT_URI = Uri.parse(WALLPAPER_URI_STRING);
+  private static final String AUTHORITY                 = BuildConfig.APPLICATION_ID;
+  private static final String PART_URI_STRING           = "content://" + AUTHORITY + "/part";
+  private static final String STICKER_URI_STRING        = "content://" + AUTHORITY + "/sticker";
+  private static final String WALLPAPER_URI_STRING      = "content://" + AUTHORITY + "/wallpaper";
+  private static final String EMOJI_URI_STRING          = "content://" + AUTHORITY + "/emoji";
+  private static final String AVATAR_PICKER_URI_STRING  = "content://" + AUTHORITY + "/avatar_picker";
+  private static final Uri    PART_CONTENT_URI          = Uri.parse(PART_URI_STRING);
+  private static final Uri    STICKER_CONTENT_URI       = Uri.parse(STICKER_URI_STRING);
+  private static final Uri    WALLPAPER_CONTENT_URI     = Uri.parse(WALLPAPER_URI_STRING);
+  private static final Uri    EMOJI_CONTENT_URI         = Uri.parse(EMOJI_URI_STRING);
+  private static final Uri    AVATAR_PICKER_CONTENT_URI = Uri.parse(AVATAR_PICKER_URI_STRING);
 
-  private static final int PART_ROW       = 1;
-  private static final int PERSISTENT_ROW = 2;
-  private static final int BLOB_ROW       = 3;
-  private static final int STICKER_ROW    = 4;
-  private static final int WALLPAPER_ROW  = 5;
+  private static final int PART_ROW          = 1;
+  private static final int PERSISTENT_ROW    = 2;
+  private static final int BLOB_ROW          = 3;
+  private static final int STICKER_ROW       = 4;
+  private static final int WALLPAPER_ROW     = 5;
+  private static final int EMOJI_ROW         = 6;
+  private static final int AVATAR_PICKER_ROW = 7;
 
   private static final UriMatcher uriMatcher;
 
@@ -43,6 +51,8 @@ public class PartAuthority {
     uriMatcher.addURI(AUTHORITY, "part/*/#", PART_ROW);
     uriMatcher.addURI(AUTHORITY, "sticker/#", STICKER_ROW);
     uriMatcher.addURI(AUTHORITY, "wallpaper/*", WALLPAPER_ROW);
+    uriMatcher.addURI(AUTHORITY, "emoji/*", EMOJI_ROW);
+    uriMatcher.addURI(AUTHORITY, "avatar_picker/*", AVATAR_PICKER_ROW);
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
     uriMatcher.addURI(BlobProvider.AUTHORITY, BlobProvider.PATH, BLOB_ROW);
@@ -60,12 +70,14 @@ public class PartAuthority {
     int match = uriMatcher.match(uri);
     try {
       switch (match) {
-      case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
-      case STICKER_ROW:    return DatabaseFactory.getStickerDatabase(context).getStickerStream(ContentUris.parseId(uri));
-      case PERSISTENT_ROW: return DeprecatedPersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
-      case BLOB_ROW:       return BlobProvider.getInstance().getStream(context, uri);
-      case WALLPAPER_ROW:  return WallpaperStorage.read(context, getWallpaperFilename(uri));
-      default:             return context.getContentResolver().openInputStream(uri);
+      case PART_ROW:          return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
+      case STICKER_ROW:       return DatabaseFactory.getStickerDatabase(context).getStickerStream(ContentUris.parseId(uri));
+      case PERSISTENT_ROW:    return DeprecatedPersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
+      case BLOB_ROW:          return BlobProvider.getInstance().getStream(context, uri);
+      case WALLPAPER_ROW:     return WallpaperStorage.read(context, getWallpaperFilename(uri));
+      case EMOJI_ROW:         return EmojiFiles.openForReading(context, getEmojiFilename(uri));
+      case AVATAR_PICKER_ROW: return AvatarPickerStorage.read(context, getAvatarPickerFilename(uri));
+      default:                return context.getContentResolver().openInputStream(uri);
       }
     } catch (SecurityException se) {
       throw new IOException(se);
@@ -126,6 +138,20 @@ public class PartAuthority {
     }
   }
 
+  public static boolean getAttachmentIsVideoGif(@NonNull Context context, @NonNull Uri uri) {
+    int match = uriMatcher.match(uri);
+
+    switch (match) {
+      case PART_ROW:
+        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+
+        if (attachment != null) return attachment.isVideoGif();
+        else                    return false;
+      default:
+        return false;
+    }
+  }
+
   public static Uri getAttachmentPublicUri(Uri uri) {
     PartUriParser partUri = new PartUriParser(uri);
     return PartProvider.getContentUri(partUri.getPartId());
@@ -148,7 +174,23 @@ public class PartAuthority {
     return Uri.withAppendedPath(WALLPAPER_CONTENT_URI, filename);
   }
 
+  public static Uri getAvatarPickerUri(String filename) {
+    return Uri.withAppendedPath(AVATAR_PICKER_CONTENT_URI, filename);
+  }
+
+  public static Uri getEmojiUri(String sprite) {
+    return Uri.withAppendedPath(EMOJI_CONTENT_URI, sprite);
+  }
+
   public static String getWallpaperFilename(Uri uri) {
+    return uri.getPathSegments().get(1);
+  }
+
+  public static String getEmojiFilename(Uri uri) {
+    return uri.getPathSegments().get(1);
+  }
+
+  public static String getAvatarPickerFilename(Uri uri) {
     return uri.getPathSegments().get(1);
   }
 

@@ -8,11 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -24,6 +26,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -35,7 +38,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceReadUpdateJob";
 
-  private static final String TAG = MultiDeviceReadUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceReadUpdateJob.class);
 
   private static final String KEY_MESSAGE_IDS = "message_ids";
 
@@ -99,6 +102,10 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device...");
       return;
@@ -108,17 +115,18 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
     for (SerializableSyncMessageId messageId : messageIds) {
       Recipient recipient = Recipient.resolved(RecipientId.from(messageId.recipientId));
-      if (!recipient.isGroup()) {
+      if (!recipient.isGroup() && recipient.isMaybeRegistered()) {
         readMessages.add(new ReadMessage(RecipientUtil.toSignalServiceAddress(context, recipient), messageId.timestamp));
       }
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ServerRejectedException) return false;
     return exception instanceof PushNetworkException;
   }
 

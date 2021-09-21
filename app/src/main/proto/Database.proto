@@ -70,6 +70,16 @@ message BodyRangeList {
     repeated BodyRange ranges = 1;
 }
 
+message CryptoValue {
+  oneof Value {
+    MobileCoinValue mobileCoinValue = 1;
+  }
+
+  message MobileCoinValue {
+    string picoMobileCoin = 1;
+  }
+}
+
 message GroupCallUpdateDetails {
              string eraId                = 1;
              string startedCallUuid      = 2;
@@ -114,4 +124,53 @@ message Wallpaper {
     }
 
     float dimLevelInDarkTheme = 4;
+}
+
+message ChatColor {
+    message SingleColor {
+        int32 color = 1;
+    }
+
+    message LinearGradient {
+        float rotation  = 1;
+        repeated int32 colors    = 2;
+        repeated float positions = 3;
+    }
+
+    message File {
+        string uri = 1;
+    }
+
+    oneof chatColor {
+        SingleColor    singleColor    = 1;
+        LinearGradient linearGradient = 2;
+    }
+}
+
+message RecipientExtras {
+    bool manuallyShownAvatar = 1;
+}
+
+message CustomAvatar {
+
+    message Text {
+        string text   = 1;
+        string colors = 2;
+    }
+
+    message Vector {
+        string key    = 1;
+        string colors = 2;
+    }
+
+    message Photo {
+        string uri   = 1;
+        int64  size  = 2;
+    }
+
+    oneof avatar {
+        Text   text   = 1;
+        Vector vector = 2;
+        Photo  photo  = 3;
+    }
 }

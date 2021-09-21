@@ -3,54 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/media_overview_detail_item_height">
 
     <FrameLayout
         android:id="@+id/image_container"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/document_icon_container"
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="38dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_document_large" />
+
+        <TextView
+            android:id="@+id/document_extension"
+            style="@style/Signal.Text.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="false"
-            android:focusable="false"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="38dp"
-                android:layout_height="50dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_document_large" />
-
-            <TextView
-                android:id="@+id/document_extension"
-                style="@style/Signal.Text.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:clickable="false"
-                android:gravity="center"
-                android:scaleType="centerInside"
-                android:textAlignment="center"
-                android:textColor="@color/core_black"
-                android:textSize="10sp"
-                android:visibility="visible"
-                tools:text="PDF"
-                tools:visibility="visible" />
-        </FrameLayout>
-
-        <include layout="@layout/media_overview_selected_overlay" />
+            android:textAppearance="@style/TextAppearance.Signal.Subtitle.Bold"
+            android:textColor="@color/core_black"
+            android:visibility="visible"
+            tools:text="pdf"
+            tools:visibility="visible" />
 
     </FrameLayout>
 
+    <include layout="@layout/media_overview_selected_overlay" />
+
     <include layout="@layout/media_overview_detail_text" />
+
+    <View
+        android:id="@+id/audio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

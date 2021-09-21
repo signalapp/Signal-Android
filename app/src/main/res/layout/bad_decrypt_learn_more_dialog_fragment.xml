@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="?attr/dialogPreferredPadding">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/chat_session_refresh" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/BadDecryptLearnMoreDialog_delivery_issue"
+        android:textAppearance="@style/TextAppearance.Signal.Title2" />
+
+    <TextView
+        android:id="@+id/bad_decrypt_dialog_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        tools:text="@string/BadDecryptLearnMoreDialog_couldnt_be_delivered_individual" />
+
+</LinearLayout>

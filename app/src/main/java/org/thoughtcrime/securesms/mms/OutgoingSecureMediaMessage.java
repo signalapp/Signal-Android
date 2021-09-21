@@ -36,4 +36,19 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
   public boolean isSecure() {
     return true;
   }
+
+  @Override
+  public @NonNull OutgoingMediaMessage withExpiry(long expiresIn) {
+    return new OutgoingSecureMediaMessage(getRecipient(),
+                                          getBody(),
+                                          getAttachments(),
+                                          getSentTimeMillis(),
+                                          getDistributionType(),
+                                          expiresIn,
+                                          isViewOnce(),
+                                          getOutgoingQuote(),
+                                          getSharedContacts(),
+                                          getLinkPreviews(),
+                                          getMentions());
+  }
 }

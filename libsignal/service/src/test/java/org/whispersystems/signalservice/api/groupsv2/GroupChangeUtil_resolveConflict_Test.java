@@ -11,6 +11,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -46,7 +47,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 19, maxFieldFound);
+                 21, maxFieldFound);
   }
 
   /**
@@ -59,7 +60,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + GroupChange.class.getName(),
-                 19, maxFieldFound);
+                 21, maxFieldFound);
   }
 
     /**
@@ -72,7 +73,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 10, maxFieldFound);
+                 12, maxFieldFound);
   }
 
 
@@ -671,5 +672,73 @@ public final class GroupChangeUtil_resolveConflict_Test {
                                                       .setModifyInviteLinkPassword(GroupChange.Actions.ModifyInviteLinkPasswordAction.newBuilder().setInviteLinkPassword(password2))
                                                       .build();
     assertEquals(expected, resolvedActions);
+  }
+
+  @Test
+  public void field_20__description_change_is_preserved() {
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setDescription("Existing title")
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewDescription(DecryptedString.newBuilder().setValue("New title").build())
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyDescription(GroupChange.Actions.ModifyDescriptionAction.newBuilder().setDescription(ByteString.copyFrom("New title encrypted".getBytes())))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    assertEquals(change, resolvedActions);
+  }
+
+  @Test
+  public void field_20__no_description_change_is_removed() {
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setDescription("Existing title")
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewDescription(DecryptedString.newBuilder().setValue("Existing title").build())
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyDescription(GroupChange.Actions.ModifyDescriptionAction.newBuilder().setDescription(ByteString.copyFrom("Existing title encrypted".getBytes())))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    assertTrue(GroupChangeUtil.changeIsEmpty(resolvedActions));
+  }
+
+  @Test
+  public void field_21__announcement_change_is_preserved() {
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setIsAnnouncementGroup(EnabledState.DISABLED)
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewIsAnnouncementGroup(EnabledState.ENABLED)
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyAnnouncementsOnly(GroupChange.Actions.ModifyAnnouncementsOnlyAction.newBuilder().setAnnouncementsOnly(true))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    assertEquals(change, resolvedActions);
+  }
+
+  @Test
+  public void field_21__announcement_change_is_removed() {
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setIsAnnouncementGroup(EnabledState.ENABLED)
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewIsAnnouncementGroup(EnabledState.ENABLED)
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyAnnouncementsOnly(GroupChange.Actions.ModifyAnnouncementsOnlyAction.newBuilder().setAnnouncementsOnly(true))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    assertTrue(GroupChangeUtil.changeIsEmpty(resolvedActions));
   }
 }

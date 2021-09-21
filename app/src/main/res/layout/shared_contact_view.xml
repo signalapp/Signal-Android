@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,13 +58,13 @@
             android:id="@+id/contact_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginTop="4dp"
             android:layout_gravity="end"
-            android:gravity="end"
+            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:elevation="9dp"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            app:footer_mode="outgoing" />
 
         <TextView
             android:id="@+id/contact_action_button"

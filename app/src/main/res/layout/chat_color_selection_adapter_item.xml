@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="68dp"
+    android:layout_marginBottom="20dp">
+
+    <ImageView
+        android:id="@+id/chat_color"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_gravity="center"
+        android:background="@drawable/chat_color_selection_bg"
+        android:cropToPadding="true"
+        android:padding="6dp"
+        android:src="@drawable/circle_tintable"
+        tools:tint="@color/signal_accent_primary" />
+
+    <TextView
+        android:id="@+id/auto"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/ChatColorSelectionFragment__auto"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle.Bold"
+        android:textColor="@color/core_white" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/edit"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        app:tint="@color/core_white"
+        app:srcCompat="@drawable/ic_compose_24" />
+</FrameLayout>

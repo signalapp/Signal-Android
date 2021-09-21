@@ -106,7 +106,8 @@ public class KeyValueDataSet implements KeyValueReader {
     }
   }
 
-  boolean containsKey(@NonNull String key) {
+  @Override
+  public boolean containsKey(@NonNull String key) {
     return values.containsKey(key);
   }
 

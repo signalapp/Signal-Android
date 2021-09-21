@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="?selectableItemBackgroundBorderless"
+    tools:layout_height="60dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/emoji_image"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/ic_emoji_smiley_24" />
+
+</FrameLayout>

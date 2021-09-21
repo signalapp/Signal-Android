@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.reactions.any;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -8,6 +10,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.Emoji;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 
 import java.util.List;
 
@@ -20,6 +23,11 @@ class ThisMessageEmojiPageModel implements EmojiPageModel {
 
   ThisMessageEmojiPageModel(@NonNull List<String> emoji) {
     this.emoji = emoji;
+  }
+
+  @Override
+  public String getKey() {
+    return RecentEmojiPageModel.KEY;
   }
 
   @Override
@@ -38,12 +46,7 @@ class ThisMessageEmojiPageModel implements EmojiPageModel {
   }
 
   @Override
-  public boolean hasSpriteMap() {
-    return false;
-  }
-
-  @Override
-  public @Nullable String getSprite() {
+  public @Nullable Uri getSpriteUri() {
     return null;
   }
 

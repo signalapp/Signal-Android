@@ -6,8 +6,8 @@ dependencyVerification {
         ['androidx.activity:activity:1.0.0',
          'd1bc9842455c2e534415d88c44df4d52413b478db9093a1ba36324f705f44c3d'],
 
-        ['androidx.annotation:annotation:1.1.0',
-         'd38d63edb30f1467818d50aaf05f8a692dea8b31392a049bfa991b159ad5b692'],
+        ['androidx.annotation:annotation:1.2.0',
+         '9029262bddce116e6d02be499e4afdba21f24c239087b76b3b57d7e98b490a36'],
 
         ['androidx.appcompat:appcompat-resources:1.2.0',
          'c470297c03ff3de1c3d15dacf0be0cae63abc10b52f021dd07ae28daa3100fe5'],
@@ -78,25 +78,10 @@ dependencyVerification {
         ['com.google.protobuf:protobuf-javalite:3.10.0',
          '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
 
-        ['com.madgag.spongycastle:core:1.58.0.0',
-         '199617dd5698c5a9312b898c0a4cec7ce9dd8649d07f65d91629f58229d72728'],
-
-        ['com.madgag.spongycastle:pg:1.54.0.0',
-         '3f1011ec280c51434dd94396ec25c8d7876d861c0fb1fa9ae70824eddcda2f8f'],
-
-        ['com.madgag.spongycastle:pkix:1.54.0.0',
-         '721a302f5ce18bf6fff89d514ef224c37b5dd9ca67a16b56fafaea4b24a51482'],
-
-        ['com.madgag.spongycastle:prov:1.58.0.0',
-         '092fd09e7006b0814980513b013d4c2b3ffd24a49a635ab4b2d204bb51af1727'],
-
-        ['junit:junit:4.12',
-         '59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a'],
-
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
 
-        ['org.hamcrest:hamcrest-core:1.3',
-         '66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9'],
+        ['org.whispersystems:signal-client-java:0.9.4',
+         '629fb84dbbf5663cbfda0cb87420b0f64ad9902088c575478b04009cce9cbf8a'],
     ]
 }

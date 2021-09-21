@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photo_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="16dp"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:scrollbars="none"/>
+        android:id="@+id/photo_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:scrollbars="none"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/recipient_preference_photo_rail_item"
+        tools:orientation="horizontal" />
 </merge>

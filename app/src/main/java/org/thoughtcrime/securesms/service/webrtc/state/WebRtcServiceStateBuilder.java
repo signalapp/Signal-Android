@@ -8,6 +8,7 @@ import com.annimon.stream.OptionalLong;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcActionProcessor;
-import org.webrtc.EglBase;
 
 import java.util.Collection;
 
@@ -101,8 +101,23 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
+    public @NonNull LocalDeviceStateBuilder wantsBluetooth(boolean wantsBluetooth) {
+      toBuild.wantsBluetooth = wantsBluetooth;
+      return this;
+    }
+
     public @NonNull LocalDeviceStateBuilder setOrientation(@NonNull Orientation orientation) {
       toBuild.orientation = orientation;
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setLandscapeEnabled(boolean isLandscapeEnabled) {
+      toBuild.isLandscapeEnabled = isLandscapeEnabled;
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setDeviceOrientation(@NonNull Orientation deviceOrientation) {
+      toBuild.deviceOrientation = deviceOrientation;
       return this;
     }
   }
@@ -111,7 +126,7 @@ public class WebRtcServiceStateBuilder {
     private CallSetupState toBuild;
 
     public CallSetupStateBuilder() {
-      toBuild = new CallSetupState(WebRtcServiceStateBuilder.this.toBuild.callSetupState);
+      toBuild = WebRtcServiceStateBuilder.this.toBuild.callSetupState.duplicate();
     }
 
     public @NonNull WebRtcServiceStateBuilder commit() {
@@ -125,22 +140,37 @@ public class WebRtcServiceStateBuilder {
     }
 
     public @NonNull CallSetupStateBuilder enableVideoOnCreate(boolean enableVideoOnCreate) {
-      toBuild.enableVideoOnCreate = enableVideoOnCreate;
+      toBuild.setEnableVideoOnCreate(enableVideoOnCreate);
       return this;
     }
 
     public @NonNull CallSetupStateBuilder isRemoteVideoOffer(boolean isRemoteVideoOffer) {
-      toBuild.isRemoteVideoOffer = isRemoteVideoOffer;
+      toBuild.setRemoteVideoOffer(isRemoteVideoOffer);
       return this;
     }
 
     public @NonNull CallSetupStateBuilder acceptWithVideo(boolean acceptWithVideo) {
-      toBuild.acceptWithVideo = acceptWithVideo;
+      toBuild.setAcceptWithVideo(acceptWithVideo);
       return this;
     }
 
     public @NonNull CallSetupStateBuilder sentJoinedMessage(boolean sentJoinedMessage) {
-      toBuild.sentJoinedMessage = sentJoinedMessage;
+      toBuild.setSentJoinedMessage(sentJoinedMessage);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder setRingGroup(boolean ringGroup) {
+      toBuild.setRingGroup(ringGroup);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder ringId(long ringId) {
+      toBuild.setRingId(ringId);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder ringerRecipient(@NonNull Recipient ringerRecipient) {
+      toBuild.setRingerRecipient(ringerRecipient);
       return this;
     }
   }
@@ -162,7 +192,7 @@ public class WebRtcServiceStateBuilder {
       return WebRtcServiceStateBuilder.this.build();
     }
 
-    public @NonNull VideoStateBuilder eglBase(@Nullable EglBase eglBase) {
+    public @NonNull VideoStateBuilder eglBase(@Nullable EglBaseWrapper eglBase) {
       toBuild.eglBase = eglBase;
       return this;
     }
@@ -255,8 +285,8 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
-    public @NonNull CallInfoStateBuilder addIdentityChangedRecipient(@NonNull RecipientId id) {
-      toBuild.identityChangedRecipients.add(id);
+    public @NonNull CallInfoStateBuilder addIdentityChangedRecipients(@NonNull Collection<RecipientId> id) {
+      toBuild.identityChangedRecipients.addAll(id);
       return this;
     }
 

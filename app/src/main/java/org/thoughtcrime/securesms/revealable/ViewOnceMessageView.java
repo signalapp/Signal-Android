@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms.revealable;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,6 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.ImageViewCompat;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
@@ -24,6 +30,8 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.util.ContextUtil;
+import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -31,13 +39,15 @@ public class ViewOnceMessageView extends LinearLayout {
 
   private static final String TAG = Log.tag(ViewOnceMessageView.class);
 
-  private ImageView     icon;
-  private ProgressWheel progress;
-  private TextView      text;
-  private Attachment    attachment;
-  private int           unopenedForegroundColor;
-  private int           openedForegroundColor;
-  private int           foregroundColor;
+  private AppCompatImageView icon;
+  private ProgressWheel      progress;
+  private TextView           text;
+  private Attachment         attachment;
+  private int                textColor;
+  private int                openedIconColor;
+  private int                unopenedIconColor;
+  private int                circleColor;
+  private int                circleColorWithWallpaper;
 
   public ViewOnceMessageView(Context context) {
     super(context);
@@ -54,10 +64,12 @@ public class ViewOnceMessageView extends LinearLayout {
     setOrientation(LinearLayout.HORIZONTAL);
 
     if (attrs != null) {
-      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ViewOnceMessageView, 0, 0);
-
-      unopenedForegroundColor = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_unopenedForegroundColor, Color.BLACK);
-      openedForegroundColor   = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_openedForegroundColor, Color.BLACK);
+      TypedArray typedArray    = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ViewOnceMessageView, 0, 0);
+      textColor                = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_textColor, Color.BLACK);
+      openedIconColor          = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_openedIconColor, Color.BLACK);
+      unopenedIconColor        = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_unopenedIconColor, Color.BLACK);
+      circleColor              = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_circleColor, Color.BLACK);
+      circleColorWithWallpaper = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_circleColorWithWallpaper, Color.BLACK);
 
       typedArray.recycle();
     }
@@ -91,53 +103,70 @@ public class ViewOnceMessageView extends LinearLayout {
            attachment.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING;
   }
 
-  public void setMessage(@NonNull MmsMessageRecord message) {
+  public void setMessage(@NonNull MmsMessageRecord message, boolean hasWallpaper) {
     this.attachment = message.getSlideDeck().getThumbnailSlide() != null ? message.getSlideDeck().getThumbnailSlide().asAttachment() : null;
 
-    presentMessage(message);
+    presentMessage(message, hasWallpaper);
   }
 
-  public void presentMessage(@NonNull MmsMessageRecord message) {
-    presentText(message);
+  public void presentMessage(@NonNull MmsMessageRecord message, boolean hasWallpaper) {
+    presentText(message, hasWallpaper);
   }
 
-  private void presentText(@NonNull MmsMessageRecord messageRecord) {
+  private void presentText(@NonNull MmsMessageRecord messageRecord, boolean hasWallpaper) {
+    int iconColor;
+    boolean showProgress = false;
+
     if (messageRecord.isOutgoing() && networkInProgress(messageRecord)) {
-      foregroundColor = openedForegroundColor;
+      iconColor = openedIconColor;
       text.setText(R.string.RevealableMessageView_media);
       icon.setImageResource(0);
-      progress.setVisibility(VISIBLE);
+      showProgress = true;
     } else if (messageRecord.isOutgoing()) {
-      foregroundColor = openedForegroundColor;
-      text.setText(R.string.RevealableMessageView_media);
-      icon.setImageResource(R.drawable.ic_viewed_once_24);
-      progress.setVisibility(GONE);
+      if (messageRecord.isRemoteViewed()) {
+        iconColor = openedIconColor;
+        text.setText(R.string.RevealableMessageView_viewed);
+        icon.setImageResource(R.drawable.ic_viewed_once_24);
+      } else {
+        iconColor = unopenedIconColor;
+        text.setText(R.string.RevealableMessageView_media);
+        icon.setImageResource(R.drawable.ic_view_once_24);
+      }
     } else if (ViewOnceUtil.isViewable(messageRecord)) {
-      foregroundColor = unopenedForegroundColor;
+      iconColor = unopenedIconColor;
       text.setText(getDescriptionId(messageRecord));
       icon.setImageResource(R.drawable.ic_view_once_24);
-      progress.setVisibility(GONE);
     } else if (networkInProgress(messageRecord)) {
-      foregroundColor = unopenedForegroundColor;
+      iconColor = unopenedIconColor;
       text.setText("");
       icon.setImageResource(0);
-      progress.setVisibility(VISIBLE);
+      showProgress = true;
     } else if (requiresTapToDownload(messageRecord)) {
-      foregroundColor = unopenedForegroundColor;
+      iconColor = unopenedIconColor;
       text.setText(formatFileSize(messageRecord));
       icon.setImageResource(R.drawable.ic_arrow_down_circle_outline_24);
-      progress.setVisibility(GONE);
     } else {
-      foregroundColor = openedForegroundColor;
+      iconColor = openedIconColor;
       text.setText(R.string.RevealableMessageView_viewed);
       icon.setImageResource(R.drawable.ic_viewed_once_24);
-      progress.setVisibility(GONE);
     }
 
-    text.setTextColor(foregroundColor);
-    icon.setColorFilter(foregroundColor);
-    progress.setBarColor(foregroundColor);
+    text.setTextColor(textColor);
+    icon.setColorFilter(iconColor);
+    icon.setBackgroundDrawable(getBackgroundDrawable(hasWallpaper));
+    progress.setBarColor(iconColor);
     progress.setRimColor(Color.TRANSPARENT);
+    if (showProgress) {
+      progress.setVisibility(VISIBLE);
+    } else {
+      progress.setVisibility(GONE);
+    }
+  }
+
+  private Drawable getBackgroundDrawable(boolean hasWallpaper) {
+    int backgroundColor = hasWallpaper ? circleColorWithWallpaper : circleColor;
+    Drawable drawable = ContextUtil.requireDrawable(getContext(), R.drawable.circle_tintable);
+    return DrawableUtil.tint(drawable, backgroundColor);
   }
 
   private boolean networkInProgress(@NonNull MmsMessageRecord messageRecord) {

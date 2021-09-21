@@ -23,7 +23,7 @@ public class MediaFolder {
     this.folderType   = folderType;
   }
 
-  Uri getThumbnailUri() {
+  public Uri getThumbnailUri() {
     return thumbnailUri;
   }
 
@@ -31,7 +31,7 @@ public class MediaFolder {
     return title;
   }
 
-  int getItemCount() {
+  public int getItemCount() {
     return itemCount;
   }
 
@@ -39,7 +39,7 @@ public class MediaFolder {
     return bucketId;
   }
 
-  FolderType getFolderType() {
+  public FolderType getFolderType() {
     return folderType;
   }
 

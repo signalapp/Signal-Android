@@ -16,7 +16,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:scrollIndicators="top|bottom">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -35,7 +36,7 @@
 
                 <TextView
                     android:id="@+id/title"
-                    style="@style/TextAppearance.Signal.Title2"
+                    style="@style/TextAppearance.Signal.Title2.Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -56,7 +57,6 @@
                     android:layout_height="96dp"
                     android:layout_marginTop="16dp"
                     android:src="@drawable/circle_tintable"
-                    android:tint="@color/core_grey_05"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title"
@@ -68,7 +68,6 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:tint="@color/core_grey_75"
                     android:transitionName="avatar"
                     app:layout_constraintBottom_toBottomOf="@+id/avatar_background"
                     app:layout_constraintEnd_toEndOf="@+id/avatar_background"
@@ -163,6 +162,7 @@
                         android:hint="@string/CreateProfileActivity_last_name_optional"
                         android:inputType="textPersonName"
                         android:singleLine="true" />
+
                 </LinearLayout>
 
                 <org.thoughtcrime.securesms.util.views.LearnMoreTextView

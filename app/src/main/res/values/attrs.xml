@@ -3,7 +3,6 @@
     <attr name="theme_type" format="string"/>
 
     <attr name="search_view_style" format="reference" />
-    <attr name="search_view_style_dark" format="reference" />
 
     <attr name="emoji_category_recent" format="reference"/>
     <attr name="emoji_category_people" format="reference"/>
@@ -15,6 +14,8 @@
     <attr name="emoji_category_symbols" format="reference"/>
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
+
+    <attr name="settingsToolbarStyle" format="reference" />
 
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
 
@@ -51,6 +52,8 @@
             <enum name="center_crop" value="0" />
             <enum name="fit_center" value="1" />
         </attr>
+        <!-- Color to overlay on top of image. This should be a transparent color so that the user can still see the original thumbnail underneath. -->
+        <attr name="transparent_overlay_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="DeliveryStatusView">
@@ -67,9 +70,14 @@
         <attr name="waveformThumbTint" format="color" />
         <attr name="waveformPlayedBarsColor" format="color" />
         <attr name="waveformUnplayedBarsColor" format="color" />
+        <attr name="audioView_showSeekBar" format="boolean" />
         <attr name="progressAndPlayTint" format="color" />
-        <attr name="small" format="boolean" />
         <attr name="autoRewind" format="boolean" />
+        <attr name="audioView_mode" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="small" value="1" />
+            <enum name="draft" value="2" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="CircleColorImageView">
@@ -101,9 +109,14 @@
         <attr name="pickerBorderColor" format="color" />
         <attr name="pickerBorderWidth" format="dimension" />
         <attr name="pickerColors" format="reference" />
+        <attr name="pickerOrientation" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="EmojiTextView">
+        <attr name="measureLastLine" format="boolean" />
         <attr name="scaleEmojis" format="boolean" />
         <attr name="emoji_maxLength" format="integer" />
         <attr name="emoji_forceCustom" format="boolean" />
@@ -166,6 +179,10 @@
         <attr name="footer_text_color" format="color" />
         <attr name="footer_icon_color" format="color" />
         <attr name="footer_reveal_dot_color" format="color" />
+        <attr name="footer_mode" format="enum">
+            <enum name="outgoing" value="0" />
+            <enum name="incoming" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="ConversationItemThumbnail">
@@ -173,6 +190,7 @@
         <attr name="conversationThumbnail_maxWidth" format="dimension" />
         <attr name="conversationThumbnail_minHeight" format="dimension" />
         <attr name="conversationThumbnail_maxHeight" format="dimension" />
+        <attr name="conversationThumbnail_gifWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="TypingIndicatorView">
@@ -190,8 +208,11 @@
     </declare-styleable>
 
     <declare-styleable name="ViewOnceMessageView">
-        <attr name="revealable_unopenedForegroundColor" format="color" />
-        <attr name="revealable_openedForegroundColor" format="color" />
+        <attr name="revealable_textColor" format="color" />
+        <attr name="revealable_openedIconColor" format="color" />
+        <attr name="revealable_unopenedIconColor" format="color" />
+        <attr name="revealable_circleColor" format="color" />
+        <attr name="revealable_circleColorWithWallpaper" format="color" />
     </declare-styleable>
 
     <declare-styleable name="MediaKeyboard">
@@ -210,6 +231,8 @@
     <declare-styleable name="ContactFilterToolbar">
         <attr name="searchTextStyle" format="reference" />
         <attr name="showDialpad" format="boolean" />
+        <attr name="cfv_autoFocus" format="boolean" />
+        <attr name="cfv_background" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="SquareImageView">
@@ -271,5 +294,36 @@
 
     <declare-styleable name="WarningTextView">
         <attr name="warning_text_color" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="MoneyView">
+        <attr name="always_show_sign" format="boolean" />
+        <attr name="money" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ChatColorPreviewView">
+        <attr name="ccpv_chat_bubble_count" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="KeyboardPageSearchView">
+        <attr name="show_always" format="boolean" />
+        <attr name="search_bar_tint" format="color|reference" />
+        <attr name="search_icon_tint" format="color|reference" />
+        <attr name="search_hint" format="string|reference" />
+        <attr name="click_only" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TopShadowBehavior">
+        <attr name="app_bar_layout_id" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomShadowBehavior">
+        <attr name="bottom_bar_id" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ButtonStripItemView">
+        <attr name="bsiv_icon" format="reference" />
+        <attr name="bsiv_label" format="string" />
+        <attr name="bsiv_icon_contentDescription" format="string" />
     </declare-styleable>
 </resources>

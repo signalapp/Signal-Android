@@ -11,7 +11,7 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:padding="8dp"
-      android:text="@string/log_submit_activity__this_log_will_be_posted_online"
+      android:text="@string/SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors"
       android:textColor="@color/core_black"
       android:background="@color/core_yellow"
       android:visibility="gone"
@@ -47,9 +47,8 @@
       android:id="@+id/debug_log_lines"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginEnd="8dp"
       android:layout_marginBottom="8dp"
+      android:scrollbars="vertical"
       app:layout_constraintTop_toBottomOf="@id/debug_log_header_barrier"
       app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
 

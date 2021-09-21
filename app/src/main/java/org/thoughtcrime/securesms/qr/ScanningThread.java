@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ScanningThread extends Thread implements CameraView.PreviewCallback {
 
-  private static final String TAG = ScanningThread.class.getSimpleName();
+  private static final String TAG = Log.tag(ScanningThread.class);
 
   private final QRCodeReader                  reader       = new QRCodeReader();
   private final AtomicReference<ScanListener> scanListener = new AtomicReference<>();

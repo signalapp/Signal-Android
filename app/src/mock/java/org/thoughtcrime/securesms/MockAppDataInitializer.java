@@ -5,7 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -41,7 +41,12 @@ final class MockAppDataInitializer {
       "mms_fts_data",
       "mms_fts_idx",
       "mms_fts_docsize",
-      "mms_fts_config"
+      "mms_fts_config",
+      "emoji_search",
+      "emoji_search_data",
+      "emoji_search_idx",
+      "emoji_search_docsize",
+      "emoji_search_config"
   );
 
   public static void initialize(@NonNull Application application, @NonNull File sqlDirectory) throws IOException {

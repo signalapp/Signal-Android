@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.wallpaper;
 
-import android.app.AlertDialog;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -11,23 +12,33 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.ImageViewCompat;
+import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
 import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
+import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.util.Collections;
 
 public class ChatWallpaperFragment extends Fragment {
 
   private boolean  isSettingDimFromViewModel;
-  private TextView clearWallpaper;
-  private View     resetAllWallpaper;
-  private View     divider;
+
+  private ChatWallpaperViewModel viewModel;
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,24 +47,40 @@ public class ChatWallpaperFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    ChatWallpaperViewModel viewModel            = ViewModelProviders.of(requireActivity()).get(ChatWallpaperViewModel.class);
+    viewModel = ViewModelProviders.of(requireActivity()).get(ChatWallpaperViewModel.class);
+
+    AvatarImageView        portrait             = view.findViewById(R.id.chat_wallpaper_preview_top_bar_portrait);
+    Toolbar                toolbar              = view.findViewById(R.id.toolbar);
     ImageView              chatWallpaperPreview = view.findViewById(R.id.chat_wallpaper_preview_background);
     View                   setWallpaper         = view.findViewById(R.id.chat_wallpaper_set_wallpaper);
     SwitchCompat           dimInNightMode       = view.findViewById(R.id.chat_wallpaper_dark_theme_dims_wallpaper);
     View                   chatWallpaperDim     = view.findViewById(R.id.chat_wallpaper_dim);
+    TextView               setChatColor         = view.findViewById(R.id.chat_wallpaper_set_chat_color);
+    TextView               resetChatColors      = view.findViewById(R.id.chat_wallpaper_reset_chat_colors);
+    ImageView              sentBubble           = view.findViewById(R.id.chat_wallpaper_preview_bubble_2);
+    ColorizerView          colorizerView        = view.findViewById(R.id.colorizer);
+    TextView               resetAllWallpaper    = view.findViewById(R.id.chat_wallpaper_reset_all_wallpapers);
+    AppCompatImageView     recvBubble           = view.findViewById(R.id.chat_wallpaper_preview_bubble_1);
 
-    clearWallpaper       = view.findViewById(R.id.chat_wallpaper_clear_wallpaper);
-    resetAllWallpaper    = view.findViewById(R.id.chat_wallpaper_reset_all_wallpapers);
-    divider              = view.findViewById(R.id.chat_wallpaper_divider);
+    toolbar.setTitle(R.string.preferences__chat_color_and_wallpaper);
+    toolbar.setNavigationOnClickListener(nav -> {
+      if (!Navigation.findNavController(nav).popBackStack()) {
+        requireActivity().finish();
+      }
+    });
 
     forceAspectRatioToScreenByAdjustingHeight(chatWallpaperPreview);
+
+    viewModel.getWallpaperPreviewPortrait().observe(getViewLifecycleOwner(),
+                                                    wallpaperPreviewPortrait -> wallpaperPreviewPortrait.applyToAvatarImageView(portrait));
 
     viewModel.getCurrentWallpaper().observe(getViewLifecycleOwner(), wallpaper -> {
       if (wallpaper.isPresent()) {
         wallpaper.get().loadInto(chatWallpaperPreview);
+        ImageViewCompat.setImageTintList(recvBubble, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.conversation_item_wallpaper_bubble_color)));
       } else {
         chatWallpaperPreview.setImageDrawable(null);
-        chatWallpaperPreview.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.signal_background_primary));
+        ImageViewCompat.setImageTintList(recvBubble, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_background_secondary)));
       }
     });
 
@@ -71,56 +98,104 @@ public class ChatWallpaperFragment extends Fragment {
     viewModel.getEnableWallpaperControls().observe(getViewLifecycleOwner(), enableWallpaperControls -> {
       dimInNightMode.setEnabled(enableWallpaperControls);
       dimInNightMode.setAlpha(enableWallpaperControls ? 1 : 0.5f);
-      clearWallpaper.setEnabled(enableWallpaperControls);
-      clearWallpaper.setAlpha(enableWallpaperControls ? 1 : 0.5f);
     });
 
     chatWallpaperPreview.setOnClickListener(unused -> setWallpaper.performClick());
     setWallpaper.setOnClickListener(unused -> Navigation.findNavController(view)
                                                         .navigate(R.id.action_chatWallpaperFragment_to_chatWallpaperSelectionFragment));
+    setChatColor.setOnClickListener(unused -> Navigation.findNavController(view)
+                                                        .navigate(ChatWallpaperFragmentDirections.actionChatWallpaperFragmentToChatColorSelectionFragment(viewModel.getRecipientId())));
 
-    resetAllWallpaper.setVisibility(viewModel.isGlobal() ? View.VISIBLE : View.GONE);
+    if (viewModel.isGlobal()) {
+      resetAllWallpaper.setOnClickListener(unused -> {
+        new MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.ChatWallpaperFragment__reset_wallpaper)
+            .setMessage(R.string.ChatWallpaperFragment__would_you_like_to_override_all_wallpapers)
+            .setPositiveButton(R.string.ChatWallpaperFragment__reset_default_wallpaper, (dialog, which) -> {
+              viewModel.setWallpaper(null);
+              viewModel.setDimInDarkTheme(true);
+              viewModel.saveWallpaperSelection();
+              dialog.dismiss();
+            })
+            .setNegativeButton(R.string.ChatWallpaperFragment__reset_all_wallpapers, (dialog, which) -> {
+              viewModel.setWallpaper(null);
+              viewModel.setDimInDarkTheme(true);
+              viewModel.resetAllWallpaper();
+              dialog.dismiss();
+            })
+            .setNeutralButton(android.R.string.cancel, (dialog, which) -> {
+              dialog.dismiss();
+            })
+            .show();
+      });
 
-    clearWallpaper.setOnClickListener(unused -> {
-      confirmAction(viewModel.isGlobal() ? R.string.ChatWallpaperFragment__clear_wallpaper_this_will_not
-                                         : R.string.ChatWallpaperFragment__clear_wallpaper_for_this_chat,
-                    R.string.ChatWallpaperFragment__clear,
-                    () -> {
-                      viewModel.setWallpaper(null);
-                      viewModel.setDimInDarkTheme(true);
-                      viewModel.saveWallpaperSelection();
-                    });
-    });
+      resetChatColors.setOnClickListener(unused -> {
+        new MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.ChatWallpaperFragment__reset_chat_colors)
+            .setMessage(R.string.ChatWallpaperFragment__would_you_like_to_override_all_chat_colors)
+            .setPositiveButton(R.string.ChatWallpaperFragment__reset_default_colors, (dialog, which) -> {
+              viewModel.clearChatColor();
+              dialog.dismiss();
+            })
+            .setNegativeButton(R.string.ChatWallpaperFragment__reset_all_colors, (dialog, which) -> {
+              viewModel.resetAllChatColors();
+              dialog.dismiss();
+            })
+            .setNeutralButton(android.R.string.cancel, (dialog, which) -> {
+              dialog.dismiss();
+            })
+            .show();
+      });
+    } else {
+      resetAllWallpaper.setText(R.string.ChatWallpaperFragment__reset_wallpaper);
+      resetChatColors.setText(R.string.ChatWallpaperFragment__reset_chat_color);
 
-    resetAllWallpaper.setOnClickListener(unused -> {
-      confirmAction(R.string.ChatWallpaperFragment__reset_all_wallpapers_including_custom,
-                    R.string.ChatWallpaperFragment__reset,
-                    () -> {
-                      viewModel.setWallpaper(null);
-                      viewModel.setDimInDarkTheme(true);
-                      viewModel.resetAllWallpaper();
-                    });
-    });
+      resetAllWallpaper.setOnClickListener(unused -> {
+        new MaterialAlertDialogBuilder(requireContext())
+            .setMessage(R.string.ChatWallpaperFragment__reset_wallpaper_question)
+            .setPositiveButton(R.string.ChatWallpaperFragment__reset, (dialog, which) -> {
+              viewModel.setWallpaper(null);
+              viewModel.setDimInDarkTheme(true);
+              viewModel.saveWallpaperSelection();
+              viewModel.refreshChatColors();
+            })
+            .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+            .show();
+      });
+
+      resetChatColors.setOnClickListener(unused -> {
+        new MaterialAlertDialogBuilder(requireContext())
+            .setMessage(R.string.ChatWallpaperFragment__reset_chat_color_question)
+            .setPositiveButton(R.string.ChatWallpaperFragment__reset, (dialog, which) -> viewModel.clearChatColor())
+            .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+            .show();
+      });
+    }
 
     dimInNightMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
       if (!isSettingDimFromViewModel) {
         viewModel.setDimInDarkTheme(isChecked);
       }
     });
+
+    viewModel.getCurrentChatColors().observe(getViewLifecycleOwner(), chatColors -> {
+      sentBubble.getDrawable().setColorFilter(chatColors.getChatBubbleColorFilter());
+      colorizerView.setBackground(chatColors.getChatBubbleMask());
+      Projection projection = Projection.relativeToViewWithCommonRoot(sentBubble, colorizerView, new Projection.Corners(ViewUtil.dpToPx(10)));
+      colorizerView.setProjections(Collections.singletonList(projection));
+
+      Drawable colorCircle = chatColors.asCircle();
+      colorCircle.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
+      TextViewCompat.setCompoundDrawablesRelative(setChatColor, null, null, colorCircle, null);
+    });
+
+    sentBubble.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> viewModel.refreshChatColors());
   }
 
-  private void confirmAction(@StringRes int title, @StringRes int positiveActionLabel, @NonNull Runnable onPositiveAction) {
-    new AlertDialog.Builder(requireContext())
-                   .setMessage(title)
-                   .setPositiveButton(positiveActionLabel, (dialog, which) -> {
-                     onPositiveAction.run();
-                     dialog.dismiss();
-                   })
-                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-                     dialog.dismiss();
-                   })
-                   .setCancelable(true)
-                   .show();
+  @Override
+  public void onResume() {
+    super.onResume();
+    viewModel.refreshChatColors();
   }
 
   private void forceAspectRatioToScreenByAdjustingHeight(@NonNull View view) {

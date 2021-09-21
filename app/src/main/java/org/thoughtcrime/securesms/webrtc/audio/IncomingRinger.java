@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.webrtc.audio;
 
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
@@ -9,22 +8,24 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.util.RingtoneUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.io.IOException;
 
 public class IncomingRinger {
 
-  private static final String TAG = IncomingRinger.class.getSimpleName();
+  private static final String TAG = Log.tag(IncomingRinger.class);
 
   private static final long[] VIBRATE_PATTERN = {0, 1000, 1000};
 
-  private final Context context;
+  private final Context  context;
   private final Vibrator vibrator;
 
   private MediaPlayer player;
@@ -37,8 +38,13 @@ public class IncomingRinger {
   public void start(@Nullable Uri uri, boolean vibrate) {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
-    if (player != null) player.release();
-    if (uri != null)    player = createPlayer(uri);
+    if (player != null) {
+      player.release();
+    }
+
+    if (uri != null) {
+      player = createPlayer(uri);
+    }
 
     int ringerMode = audioManager.getRingerMode();
 
@@ -61,7 +67,7 @@ public class IncomingRinger {
         player = null;
       }
     } else {
-      Log.w(TAG, "Not ringing, mode: " + ringerMode);
+      Log.w(TAG, "Not ringing, player: " + (player != null ? "available" : "null") + " mode: " + ringerMode);
     }
   }
 
@@ -81,11 +87,6 @@ public class IncomingRinger {
       return true;
     }
 
-    return shouldVibrateNew(context, ringerMode, vibrate);
-  }
-
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  private boolean shouldVibrateNew(Context context, int ringerMode, boolean vibrate) {
     Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
     if (vibrator == null || !vibrator.hasVibrator()) {
@@ -99,26 +100,24 @@ public class IncomingRinger {
     }
   }
 
-  private boolean shouldVibrateOld(Context context, boolean vibrate) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
-    return vibrate && audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
-  }
-
-  private MediaPlayer createPlayer(@NonNull Uri ringtoneUri) {
+  private @Nullable MediaPlayer createPlayer(@NonNull Uri ringtoneUri) {
     try {
-      MediaPlayer mediaPlayer = new MediaPlayer();
+      MediaPlayer mediaPlayer = safeCreatePlayer(ringtoneUri);
+
+      if (mediaPlayer == null) {
+        Log.w(TAG, "Failed to create player for incoming call ringer due to custom rom most likely");
+        return null;
+      }
 
       mediaPlayer.setOnErrorListener(new MediaPlayerErrorListener());
-      mediaPlayer.setDataSource(context, ringtoneUri);
       mediaPlayer.setLooping(true);
 
       if (Build.VERSION.SDK_INT <= 21) {
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
       } else {
-        mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
-                                                          .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                                                          .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION_SIGNALLING)
-                                                          .build());
+        mediaPlayer.setAudioAttributes(new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                                                    .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION_SIGNALLING)
+                                                                    .build());
       }
 
       return mediaPlayer;
@@ -128,6 +127,30 @@ public class IncomingRinger {
     }
   }
 
+  private @Nullable MediaPlayer safeCreatePlayer(@NonNull Uri ringtoneUri) throws IOException {
+    try {
+      MediaPlayer mediaPlayer = new MediaPlayer();
+      mediaPlayer.setDataSource(context, ringtoneUri);
+      return mediaPlayer;
+    } catch (SecurityException e) {
+      Log.w(TAG, "Failed to create player with ringtone the normal way", e);
+    }
+
+    if (ringtoneUri.equals(Settings.System.DEFAULT_RINGTONE_URI)) {
+      try {
+        Uri defaultRingtoneUri = RingtoneUtil.getActualDefaultRingtoneUri(context);
+        if (defaultRingtoneUri != null) {
+          MediaPlayer mediaPlayer = new MediaPlayer();
+          mediaPlayer.setDataSource(context, defaultRingtoneUri);
+          return mediaPlayer;
+        }
+      } catch (SecurityException e) {
+        Log.w(TAG, "Failed to set default ringtone with fallback approach", e);
+      }
+    }
+
+    return null;
+  }
 
   private class MediaPlayerErrorListener implements MediaPlayer.OnErrorListener {
     @Override

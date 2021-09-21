@@ -39,6 +39,11 @@ public class Quote {
     this.text = spannable;
   }
 
+  public @NonNull Quote withAttachment(@NonNull SlideDeck updatedAttachment) {
+    return new Quote(id, author, text, missing, updatedAttachment, mentions);
+  }
+
+
   public long getId() {
     return id;
   }

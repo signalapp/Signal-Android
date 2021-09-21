@@ -53,8 +53,9 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
+import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -66,9 +67,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Manages all the stuff around determining if a user is registered or not.
@@ -99,7 +101,7 @@ public class DirectoryHelper {
     Set<String>       databaseNumbers   = sanitizeNumbers(recipientDatabase.getAllPhoneNumbers());
     Set<String>       systemNumbers     = sanitizeNumbers(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
 
-    refreshNumbers(context, databaseNumbers, systemNumbers, notifyOfNewUsers);
+    refreshNumbers(context, databaseNumbers, systemNumbers, notifyOfNewUsers, true);
 
     StorageSyncHelper.scheduleSyncForDataChange();
   }
@@ -123,7 +125,7 @@ public class DirectoryHelper {
                                 .map(Recipient::requireE164)
                                 .collect(Collectors.toSet());
 
-    refreshNumbers(context, numbers, numbers, notifyOfNewUsers);
+    refreshNumbers(context, numbers, numbers, notifyOfNewUsers, false);
   }
 
   @WorkerThread
@@ -131,7 +133,7 @@ public class DirectoryHelper {
     Stopwatch         stopwatch               = new Stopwatch("single");
     RecipientDatabase recipientDatabase       = DatabaseFactory.getRecipientDatabase(context);
     RegisteredState   originalRegisteredState = recipient.resolve().getRegistered();
-    RegisteredState   newRegisteredState      = null;
+    RegisteredState   newRegisteredState;
 
     if (recipient.hasUuid() && !recipient.hasE164()) {
       boolean isRegistered = isUuidRegistered(context, recipient);
@@ -173,7 +175,7 @@ public class DirectoryHelper {
           recipient = Recipient.resolved(recipientDatabase.getByUuid(uuid).get());
         }
       } else {
-        recipientDatabase.markRegistered(recipient.getId());
+        Log.w(TAG, "Registered number set had a null UUID!");
       }
     } else if (recipient.hasUuid() && recipient.isRegistered() && hasCommunicatedWith(context, recipient)) {
       if (isUuidRegistered(context, recipient)) {
@@ -209,8 +211,15 @@ public class DirectoryHelper {
     return newRegisteredState;
   }
 
+  /**
+   * Reads the system contacts and copies over any matching data (like names) int our local store.
+   */
+  public static void syncRecipientInfoWithSystemContacts(@NonNull Context context) {
+    syncRecipientInfoWithSystemContacts(context, Collections.emptyMap());
+  }
+
   @WorkerThread
-  private static void refreshNumbers(@NonNull Context context, @NonNull Set<String> databaseNumbers, @NonNull Set<String> systemNumbers, boolean notifyOfNewUsers) throws IOException {
+  private static void refreshNumbers(@NonNull Context context, @NonNull Set<String> databaseNumbers, @NonNull Set<String> systemNumbers, boolean notifyOfNewUsers, boolean removeSystemContactEntryForMissing) throws IOException {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     Set<String>       allNumbers        = SetUtil.union(databaseNumbers, systemNumbers);
 
@@ -259,7 +268,7 @@ public class DirectoryHelper {
 
     stopwatch.split("update-registered");
 
-    updateContactsDatabase(context, activeIds, true, result.getNumberRewrites());
+    updateContactsDatabase(context, activeIds, removeSystemContactEntryForMissing, result.getNumberRewrites());
 
     stopwatch.split("contacts-db");
 
@@ -310,89 +319,93 @@ public class DirectoryHelper {
     }
 
     try {
-      RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-      ContactsDatabase  contactsDatabase  = DatabaseFactory.getContactsDatabase(context);
-      List<String>      activeAddresses   = Stream.of(activeIds)
-                                                  .map(Recipient::resolved)
-                                                  .filter(Recipient::hasE164)
-                                                  .map(Recipient::requireE164)
-                                                  .toList();
+      ContactsDatabase  contactsDatabase = DatabaseFactory.getContactsDatabase(context);
+      List<String>      activeAddresses  = Stream.of(activeIds)
+                                                 .map(Recipient::resolved)
+                                                 .filter(Recipient::hasE164)
+                                                 .map(Recipient::requireE164)
+                                                 .toList();
 
       contactsDatabase.removeDeletedRawContacts(account.getAccount());
       contactsDatabase.setRegisteredUsers(account.getAccount(), activeAddresses, removeMissing);
 
-      BulkOperationsHandle  handle = recipientDatabase.beginBulkSystemContactUpdate();
-
-      try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
-        while (cursor != null && cursor.moveToNext()) {
-          String mimeType = getMimeType(cursor);
-
-          if (!isPhoneMimeType(mimeType)) {
-            Log.w(TAG, "Ignoring unwanted mime type: " + mimeType);
-            continue;
-          }
-
-          String        lookupKey     = getLookupKey(cursor);
-          ContactHolder contactHolder = new ContactHolder(lookupKey);
-
-          while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
-            String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
-
-            if (isValidContactNumber(number)) {
-              String formattedNumber = PhoneNumberFormatter.get(context).format(number);
-              String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
-
-              PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
-
-              builder.withRecipientId(Recipient.externalContact(context, realNumber).getId());
-              builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-              builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
-              builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
-              builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
-              builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
-                                                                            CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
-
-              contactHolder.addPhoneNumberRecord(builder.build());
-            } else {
-              Log.w(TAG, "Skipping phone entry with invalid number");
-            }
-
-            cursor.moveToNext();
-          }
-
-          if (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey)) {
-            if (isStructuredNameMimeType(getMimeType(cursor))) {
-              StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
-
-              builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-              builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
-
-              contactHolder.setStructuredNameRecord(builder.build());
-            } else {
-              Log.i(TAG, "Skipping invalid mimeType " + mimeType);
-            }
-          } else {
-            Log.i(TAG, "No structured name for user, rolling back cursor.");
-            cursor.moveToPrevious();
-          }
-
-          contactHolder.commit(handle);
-        }
-
-      } finally {
-        handle.finish();
-      }
-
-      if (NotificationChannels.supported()) {
-        try (RecipientDatabase.RecipientReader recipients = DatabaseFactory.getRecipientDatabase(context).getRecipientsWithNotificationChannels()) {
-          Recipient recipient;
-          while ((recipient = recipients.getNext()) != null) {
-            NotificationChannels.updateContactChannelName(context, recipient);
-          }
-        }
-      }
+      syncRecipientInfoWithSystemContacts(context, rewrites);
     } catch (RemoteException | OperationApplicationException e) {
       Log.w(TAG, "Failed to update contacts.", e);
+    }
+  }
+
+  private static void syncRecipientInfoWithSystemContacts(@NonNull Context context, @NonNull Map<String, String> rewrites) {
+    RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    BulkOperationsHandle  handle            = recipientDatabase.beginBulkSystemContactUpdate();
+
+    try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
+      while (cursor != null && cursor.moveToNext()) {
+        String mimeType = getMimeType(cursor);
+
+        if (!isPhoneMimeType(mimeType)) {
+          continue;
+        }
+
+        String        lookupKey     = getLookupKey(cursor);
+        ContactHolder contactHolder = new ContactHolder(lookupKey);
+
+        while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
+          String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+          if (isValidContactNumber(number)) {
+            String formattedNumber = PhoneNumberFormatter.get(context).format(number);
+            String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
+
+            PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
+
+            builder.withRecipientId(Recipient.externalContact(context, realNumber).getId());
+            builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+            builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
+            builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
+            builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
+                CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
+
+            contactHolder.addPhoneNumberRecord(builder.build());
+          } else {
+            Log.w(TAG, "Skipping phone entry with invalid number");
+          }
+
+          cursor.moveToNext();
+        }
+
+        if (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey)) {
+          if (isStructuredNameMimeType(getMimeType(cursor))) {
+            StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
+
+            builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+            builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+
+            contactHolder.setStructuredNameRecord(builder.build());
+          } else {
+            Log.i(TAG, "Skipping invalid mimeType " + mimeType);
+          }
+        } else {
+          Log.i(TAG, "No structured name for user, rolling back cursor.");
+          cursor.moveToPrevious();
+        }
+
+        contactHolder.commit(handle);
+      }
+    } catch (IllegalStateException e) {
+      Log.w(TAG, "Hit an issue with the cursor while reading!", e);
+    } finally {
+      handle.finish();
+    }
+
+    if (NotificationChannels.supported()) {
+      try (RecipientDatabase.RecipientReader recipients = DatabaseFactory.getRecipientDatabase(context).getRecipientsWithNotificationChannels()) {
+        Recipient recipient;
+        while ((recipient = recipients.getNext()) != null) {
+          NotificationChannels.updateContactChannelName(context, recipient);
+        }
+      }
     }
   }
 
@@ -452,12 +465,12 @@ public class DirectoryHelper {
   private static void notifyNewUsers(@NonNull  Context context,
                                      @NonNull  Collection<RecipientId> newUsers)
   {
-    if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
+    if (!SignalStore.settings().isNotifyWhenContactJoinsSignal()) return;
 
     for (RecipientId newUser: newUsers) {
       Recipient recipient = Recipient.resolved(newUser);
-      if (!SessionUtil.hasSession(context, recipient.getId()) &&
-          !recipient.isSelf()                                 &&
+      if (!SessionUtil.hasSession(recipient.getId()) &&
+          !recipient.isSelf()                        &&
           recipient.hasAUserSetDisplayName(context))
       {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(recipient.getId());
@@ -499,34 +512,40 @@ public class DirectoryHelper {
                                              .filter(r -> hasCommunicatedWith(context, r))
                                              .toList();
 
-    List<Pair<Recipient, ListenableFuture<ProfileAndCredential>>> futures = Stream.of(possiblyUnlisted)
-                                                                                  .map(r -> new Pair<>(r, ProfileUtil.retrieveProfile(context, r, SignalServiceProfile.RequestType.PROFILE)))
-                                                                                  .toList();
-    Set<RecipientId> potentiallyActiveIds = new HashSet<>();
-    Set<RecipientId> retries              = new HashSet<>();
+    ProfileService profileService = new ProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
+                                                       ApplicationDependencies.getSignalServiceMessageReceiver(),
+                                                       ApplicationDependencies.getSignalWebSocket());
 
-    Stream.of(futures)
-          .forEach(pair -> {
-            try {
-              pair.second().get(5, TimeUnit.SECONDS);
-              potentiallyActiveIds.add(pair.first().getId());
-            } catch (InterruptedException | TimeoutException e) {
-              retries.add(pair.first().getId());
-              potentiallyActiveIds.add(pair.first().getId());
-            } catch (ExecutionException e) {
-              if (!(e.getCause() instanceof NotFoundException)) {
-                retries.add(pair.first().getId());
-                potentiallyActiveIds.add(pair.first().getId());
-              }
-            }
-          });
+    List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> requests = Stream.of(possiblyUnlisted)
+                                                                                              .map(r -> ProfileUtil.retrieveProfile(context, r, SignalServiceProfile.RequestType.PROFILE, profileService)
+                                                                                                                   .toObservable()
+                                                                                                                   .timeout(5, TimeUnit.SECONDS)
+                                                                                                                   .onErrorReturn(t -> new Pair<>(r, ServiceResponse.forUnknownError(t))))
+                                                                                              .toList();
 
-    return new UnlistedResult(potentiallyActiveIds, retries);
+    return Observable.mergeDelayError(requests)
+                     .observeOn(Schedulers.io(), true)
+                     .scan(new UnlistedResult.Builder(), (builder, pair) -> {
+                       Recipient                               recipient = pair.first();
+                       ProfileService.ProfileResponseProcessor processor = new ProfileService.ProfileResponseProcessor(pair.second());
+                       if (processor.hasResult()) {
+                         builder.potentiallyActiveIds.add(recipient.getId());
+                       } else if (processor.genericIoError() || !processor.notFound()) {
+                         builder.retries.add(recipient.getId());
+                         builder.potentiallyActiveIds.add(recipient.getId());
+                       }
+
+                       return builder;
+                     })
+                     .lastOrError()
+                     .map(UnlistedResult.Builder::build)
+                     .blockingGet();
   }
 
   private static boolean hasCommunicatedWith(@NonNull Context context, @NonNull Recipient recipient) {
-    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId()) ||
-           DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.getId());
+    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId())                                                ||
+           (recipient.hasUuid() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireUuid().toString())) ||
+           (recipient.hasE164() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireE164()));
   }
 
   static class DirectoryResult {
@@ -572,6 +591,15 @@ public class DirectoryHelper {
 
     @NonNull Set<RecipientId> getRetries() {
       return retries;
+    }
+
+    private static class Builder {
+      final Set<RecipientId> potentiallyActiveIds = new HashSet<>();
+      final Set<RecipientId> retries              = new HashSet<>();
+
+      @NonNull UnlistedResult build() {
+        return new UnlistedResult(potentiallyActiveIds, retries);
+      }
     }
   }
 

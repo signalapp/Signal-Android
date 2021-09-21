@@ -9,6 +9,7 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -32,6 +33,11 @@ class EditGroupProfileRepository implements EditProfileRepository {
   EditGroupProfileRepository(@NonNull Context context, @NonNull GroupId groupId) {
     this.context = context.getApplicationContext();
     this.groupId = groupId;
+  }
+
+  @Override
+  public void getCurrentAvatarColor(@NonNull Consumer<AvatarColor> avatarColorConsumer) {
+    SimpleTask.run(() -> Recipient.resolved(getRecipientId()).getAvatarColor(), avatarColorConsumer::accept);
   }
 
   @Override
@@ -79,16 +85,33 @@ class EditGroupProfileRepository implements EditProfileRepository {
   }
 
   @Override
+  public void getCurrentDescription(@NonNull Consumer<String> descriptionConsumer) {
+    SimpleTask.run(() -> {
+      RecipientId recipientId = getRecipientId();
+
+      return DatabaseFactory.getGroupDatabase(context)
+                            .getGroup(recipientId)
+                            .transform(groupRecord -> {
+                              String description = groupRecord.getDescription();
+                              return description == null ? "" : description;
+                            })
+                            .or("");
+    }, descriptionConsumer::accept);
+  }
+
+  @Override
   public void uploadProfile(@NonNull ProfileName profileName,
                             @NonNull String displayName,
                             boolean displayNameChanged,
+                            @NonNull String description,
+                            boolean descriptionChanged,
                             @Nullable byte[] avatar,
                             boolean avatarChanged,
                             @NonNull Consumer<UploadResult> uploadResultConsumer)
   {
     SimpleTask.run(() -> {
       try {
-        GroupManager.updateGroupDetails(context, groupId, avatar, avatarChanged, displayName, displayNameChanged);
+        GroupManager.updateGroupDetails(context, groupId, avatar, avatarChanged, displayName, displayNameChanged, description, descriptionChanged);
 
         return UploadResult.SUCCESS;
       } catch (GroupChangeException | IOException e) {

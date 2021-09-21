@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
   <string name="ApplicationPreferencesActivity_hide">Fshihe</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Të fshihet kujtuesi?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Regjistroni frazë rikthimi pagesash</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Regjistroni frazën</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Përpara se të mund të çaktivizoni PIN-in tuaj, duhet të regjistroni frazën tuaj të rikthimit të pagesave, për të garantuar se mund të riktheni llogarinë tuaj të pagesave.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutë</item>
@@ -49,14 +52,15 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vendndodhje)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(përgjigju)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Mesazh zanor)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
   <string name="AttachmentKeyboard_file">Kartelë</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Vendndodhje</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal-i lyp leje të shfaqë fotot dhe videot tuaja.</string>
   <string name="AttachmentKeyboard_give_access">Lejo Hyrje</string>
+  <string name="AttachmentKeyboard_payment">Pagesë</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">S\’gjendet dot aplikacion për përzgjedhje mediash.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Signal-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
@@ -89,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Të zhbllokohet %1$s?</string>
   <string name="BlockUnblockDialog_block">Bllokoje</string>
   <string name="BlockUnblockDialog_block_and_leave">Bllokoje dhe Braktise</string>
-  <string name="BlockUnblockDialog_block_and_delete">Bllokoje dhe Fshije</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Njoftoni mesazh të padëshiruar dhe bllokojeni</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Sot</string>
   <string name="BucketedThreadMedia_Yesterday">Dje</string>
@@ -165,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Dërgimi dështoi</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">U mor mesazh shkëmbimi kyçesh, prekeni që të bëhet.</string>
   <string name="ConversationItem_group_action_left">%1$s e la grupin.</string>
+  <string name="ConversationItem_send_paused">Dërgimi i ndal</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, prekeni për dërgim të pasigurt</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Të përdoren SMS të pafshehtëzuara?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Të përdoren MMS të pafshehtëzuara?</string>
@@ -203,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bashkëngjitja tejkalon kufij madhësie për llojin e mesazhit që po dërgoni.</string>
   <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">S’mund të dërgoni mesazhe te ky grup, ngaqë s’jeni më anëtar.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Vetëm %1$s mund të dërgojë mesazhe.</string>
+  <string name="ConversationActivity_admins">përgjegjësit</string>
+  <string name="ConversationActivity_message_an_admin">Dërgojini mesazh një përgjegjësi</string>
+  <string name="ConversationActivity_cant_start_group_call">S’mund të niset thirrje grupi</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Vetëm përgjegjësit e këtij grupi mund të fillojnë një thirrje.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Kërkesa juaj për t’u bërë pjesë e grupit i është dërguar përgjegjësit të grupit. Kur të veprohet prej tij, do të njoftoheni.</string>
   <string name="ConversationActivity_cancel_request">Anuloje Kërkesën</string>
@@ -235,6 +245,7 @@
   <string name="ConversationActivity_join">Merrni pjesë</string>
   <string name="ConversationActivity_full">Plot</string>
   <string name="ConversationActivity_error_sending_media">Gabim në dërgim mediash</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Raportuar si mesazh i padëshiruar dhe bllokuar.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
@@ -315,8 +326,11 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">U verifikua</string>
   <string name="ConversationTitleView_you">Ju</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Disa kontakte s’mund të jenë në grupe të dikurshëm.</string>
+  <string name="CreateGroupActivity__select_members">Përzgjidhni anëtarë</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gabim në caktim fotoje profili</string>
@@ -330,6 +344,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Ikonë rikthe prej kopjeruajtjeje</string>
   <string name="ChooseBackupFragment__choose_backup">Zgjidhni kopjeruajtje</string>
   <string name="ChooseBackupFragment__learn_more">Mësoni më tepër</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">S’ka shfletues kartelash </string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Rikthim i plotësuar</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Që të vazhdoni të përdorni kopjeruajtje, ju lutemi, zgjidhni një dosje. Kopjeruajtjet e reja do të ruhen te kjo vendndodhje.</string>
@@ -407,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Ndaje me</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Disa bashkëngjitje njëherësh mbulohen vetëm për figura dhe video</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">S’keni leje të dërgoni në këtë grup</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i përhershëm komunikimi nga Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal-i s\’arriti të bëjë regjistrimin me Google Play Services. Mesashet dhe thirrjet Signal janë çaktivizuar, ju lutemi, provoni riregjistrimin që nga Rregullime &gt; Të mëtejshme.</string>
@@ -423,6 +439,7 @@
   <string name="AddToGroupActivity_add_to_groups">Shtoni te grupe</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ky person s’mund të shtohet te grupe të dikurshëm.</string>
   <string name="AddToGroupActivity_add">Shtoje</string>
+  <string name="AddToGroupActivity_add_to_a_group">Shtoje te grup</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Zgjidhni përgjegjës të ri</string>
   <string name="ChooseNewAdminActivity_done">U bë</string>
@@ -470,10 +487,6 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="one">Ky anëtar s’është i aftë të bëhet pjesë Grupesh të Rinj, dhe do të hiqet prej grupit:</item>
     <item quantity="other">Këta anëtarë s’janë të aftë të bëhen pjesë Grupesh të Rinj, dhe do të hiqen prej grupit:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, përmirësojeni këtë grup.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Jo tani</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Përmirësoni grupin</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d anëtar s’u rishtua dot te Grupi i Ri. Doni të shtohet tani?</item>
@@ -553,11 +566,13 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">U bë</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ky përdorues s’mund të shtohet te grupe të dikurshëm.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ky person s’mund të shtohet te grupe njoftimesh.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Të shtohet \"%1$s\" te \"%2$s\"?</item>
     <item quantity="other">Të shtohen %3$d anëtarë te \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Shtoje</string>
+  <string name="AddMembersActivity__add_members">Shtoni anëtarë</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Emërtojeni këtë grup</string>
   <string name="AddGroupDetailsFragment__create_group">Krijo grup</string>
@@ -609,8 +624,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_mute_notifications">Heshtoji njoftimet</string>
   <string name="ManageGroupActivity_custom_notifications">Njoftime vetjake</string>
   <string name="ManageGroupActivity_mentions">Përmendje</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Sfond fjalosjesh</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Ngjyrë &amp; sfond fjalosjeje</string>
   <string name="ManageGroupActivity_until_s">Deri më %1$s</string>
+  <string name="ManageGroupActivity_always">Përherë</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Shihni krejt anëtarët</string>
@@ -624,6 +640,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Lidhjen e ndashme të grupit mund ta ricaktojnë vetëm përgjegjësit.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">S’keni të drejta për ta bërë këtë</string>
   <string name="ManageGroupActivity_not_capable">Dikush që shtuat, nuk mbulon grupe të reja dhe lypset të përditësojë Signal-in</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Dikush, të cilin e shtuat ju, nuk mbulon grupe njoftimesh dhe duhet të përditësojë Signal-in</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">S’u arrit të përditësohej grupi</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">S’jeni anëtar i grupit</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">S’u arrit të përditësohet grupi, ju lutemi, riprovoni më vonë</string>
@@ -636,6 +653,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_upgrade_this_group">përmirësoni këtë grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht, ftojini kontaktet tuaj te Signal-i.</string>
   <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
+  <string name="ManageGroupActivity_more">më tepër</string>
+  <string name="ManageGroupActivity_add_group_description">Shtoni përshkrim grupi…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Të merren njoftime, kur jeni përmendur në fjalosje të heshtuara?</string>
@@ -650,31 +669,11 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageProfileFragment_your_username">Emri juaj i përdoruesit</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">S’u arrit të caktohej avatar</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Shtoje te kontakte sistemi</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ky person gjendet në kontaktet tuaja</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Zhdukje mesazhesh</string>
-  <string name="ManageRecipientActivity_chat_color">Ngjyrë fjalosjeje</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Sfond fjalosjesh</string>
-  <string name="ManageRecipientActivity_block">Bllokoje</string>
-  <string name="ManageRecipientActivity_unblock">Zhbllokoje</string>
-  <string name="ManageRecipientActivity_view_safety_number">Shihni numër sigurie</string>
-  <string name="ManageRecipientActivity_mute_notifications">Heshtoji njoftimet</string>
-  <string name="ManageRecipientActivity_custom_notifications">Njoftime vetjake</string>
-  <string name="ManageRecipientActivity_until_s">Deri më %1$s</string>
-  <string name="ManageRecipientActivity_off">Off</string>
-  <string name="ManageRecipientActivity_on">On</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Shtoje te grup</string>
-  <string name="ManageRecipientActivity_view_all_groups">Shihni krejt grupet</string>
-  <string name="ManageRecipientActivity_see_all">Shihini krejt</string>
   <string name="ManageRecipientActivity_no_groups_in_common">S’ka grupe të përbashkët</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grup i përbashkët</item>
     <item quantity="other">%d grupe të përbashkët</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Mesazh</string>
-  <string name="ManageRecipientActivity_voice_call_description">Thirrje zanore</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Thirrje zanore jo e sigurt</string>
-  <string name="ManageRecipientActivity_video_call_description">Thirrje video</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ftoi 1 person</item>
     <item quantity="other">%1$s ftoi %2$d vetë</item>
@@ -754,22 +753,18 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Ndaje</string>
   <string name="InviteActivity_share_with_contacts">Ndajeni me kontaktet</string>
-  <string name="InviteActivity_choose_how_to_share">Zgjidhni si të ndajet</string>
+  <string name="InviteActivity_share_via">Ndajeni me të tjerë përmes…</string>
   <string name="InviteActivity_cancel">Anuloje</string>
   <string name="InviteActivity_sending">Po dërgohet…</string>
   <string name="InviteActivity_invitations_sent">Ftesat u dërguan!</string>
   <string name="InviteActivity_invite_to_signal">Ftojeni në Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">DËRGOJINI SMS %d SHOKU</item>
-    <item quantity="other">DËRGOJINI SMS %d SHOKËVE</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Dërgo SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Të dërgohet %d ftesë SMS?</item>
     <item quantity="other">Të dërgohen %d ftesa SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Le të kalojmë në Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Duket sikur s\’keni aplikacione me të cilat të ndani.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kush të do, s\'të lë të bisedosh në mënyrë të pafshehtëzuar.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mësoni më tepër</string>
   <!--LongMessageActivity-->
@@ -818,6 +813,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Figurë</string>
+  <string name="MediaOverviewActivity_voice_message">Mesazh zanor</string>
   <string name="MediaOverviewActivity_sent_by_s">Dërguar nga %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Dërguar nga ju</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dërguar nga %1$s për %2$s</string>
@@ -833,14 +829,19 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="Megaphones_new_group">Grup i ri</string>
   <string name="Megaphones_invite_friends">Ftoni shokë</string>
   <string name="Megaphones_use_sms">Use SMS</string>
+  <string name="Megaphones_appearance">Dukje</string>
+  <string name="Megaphones_add_photo">Shtoni foto</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Thirrje ardhëse Signal</string>
-  <string name="NotificationBarManager__deny_call">Refuzoje thirrjen</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Thirrje ardhëse për grup Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Po ndalet shërbimi Signal i thirrjeve</string>
+  <string name="NotificationBarManager__decline_call">Hidhe poshtë thirrjen</string>
   <string name="NotificationBarManager__answer_call">Përgjigju thirrjes</string>
   <string name="NotificationBarManager__end_call">Përfundoje thirrjen</string>
   <string name="NotificationBarManager__cancel_call">Anuloje thirrjen</string>
+  <string name="NotificationBarManager__join_call">Hyni në thirrje</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Të aktivizohen Njoftimet?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Mos humbni kurrë një mesazh nga kontakte dhe grupe tuajt.</string>
@@ -856,6 +857,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Shtoni një përshkrim…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">U hoq një objekt, ngaqë tejkalonte kufirin për madhësitë</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">U hoq një objekt, ngaqë ishte i një lloji të panjohur</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">U hoq një objekt, ngaqë tejkalonte kufirin për madhësinë, ose ishte i një lloji të panjohur</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera jo gati.</string>
   <string name="MediaSendActivity_message_to_s">Mesazh për %s</string>
   <string name="MediaSendActivity_message">Mesazh</string>
@@ -871,6 +874,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Krejt mediat</string>
   <string name="MediaRepository__camera">Kamerë</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">S’u arrit të shfshehtëzohet mesazhi</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Prekeni që të dërgoni një regjistër diagnostikimesh</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">I panjohur</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Signal-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
@@ -926,7 +932,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_s_made_s_an_admin">%1$s bëri %2$s përgjegjës.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ju bëri përgjegjës.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">I shfuqizuat %1$s privilegje përgjegjësi.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s shfuqizoi privilegjet tuaja si përgjegjës.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s shfuqizoi privilegjet tuaja prej përgjegjësi.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s i shfuqizoi %2$s privilegje përgjegjësi.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s tani është përgjegjës.</string>
   <string name="MessageRecord_you_are_now_an_admin">Tani jeni një përgjegjës.</string>
@@ -970,6 +976,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_changed_the_group_name_to_s">Ndryshuat emrin e grupit në \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ndryshoi emrin e grupit në \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Emri i grupit u ndryshua në \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Ndryshuat përshkrimin e grupit.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ndryshoi përshkrimin e grupit.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Përshkrimi i grupit ndryshoi.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Ndryshuat avatarin e grupit.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ndryshoi avatarin e grupit.</string>
@@ -982,6 +992,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Ndryshuat cilët mund të përpunojnë anëtarësi grupi te \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ndryshoi se cilët mund të përpunojnë anëtarësi grupi te \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Te \"%1$s\" është ndryshuas se kush mund të përpunojë anëtarësi te grupi.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Ndryshuat rregullimet e grupit për të lejuar krejt anëtarët të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Ndryshuat rregullimet e grupit për të lejuar vetëm përgjegjësit të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ndryshoi rregullimet e grupit për të lejuar krejt anëtarët të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ndryshoi rregullimet e grupit për të lejuar vetëm përgjegjësit të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Rregullimet e grupit u ndryshuan për të lejuar krejt anëtarët të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Rregullimet e grupit u ndryshuan për të lejuar vetëm përgjegjësit të dërgojnë mesazhe.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Aktivizuat lidhjen e grupit me miratim nga përgjegjësi të çaktivizuar.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Aktivizuat lidhjen e grupit me miratim nga përgjegjësi të aktivizuar.</string>
@@ -1026,6 +1043,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të verifikuar nga një tjetër pajisje</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">S’u dërgua dot një mesazh prej %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s e ndryshoi numrin e vet me një numër të ri.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
@@ -1061,6 +1080,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Të bëhet anëtarësim në këtë grup dhe të ndahet emri dhe fotoja juaj me anëtarët e tij? S’do ta dinë se i keni parë mesazhet e tyre, para se të pranoni këtë.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të bëheni pjesë e këtij grupi? S’do ta dinë se i keni parë mesazhet e tyre, deri sa të pranoni.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Të zhbllokohet ky grup dhe të lejohet të ndajë emrin dhe foton tuaj me anëtarët e tij? S’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
+  <string name="MessageRequestProfileView_view">Shihni</string>
   <string name="MessageRequestProfileView_member_of_one_group">Anëtar i %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Anëtar i %1$s dhe %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Anëtar i %1$s, %2$s, dhe %3$s</string>
@@ -1099,10 +1119,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Duket sikur po provoni të lidhni një pajisje Signal duke përdorur skaner të një pale të tretë. Si masë mbrojtëse, ju lutemi, riskanojeni kodin që nga brenda Signal-it.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Që të mund të skanojë një kod QR, Signal lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">S\’arrihet të skanohet kod QR pa leje mbi Kamerën</string>
-  <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Zhdukje mesazhesh</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Mesazhet tuaja nuk do të skadojnë.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesazhet e dërguara dhe të marra në këtë bisedë do të zhduken %s pasi të jenë parë.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Përditësoje tani</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ky version i Signal-it do të skadojë sot. Përditësojeni me versionin më të freskët.</string>
@@ -1154,13 +1170,18 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RatingManager_rate_now">Vlerësojeni që tani!</string>
   <string name="RatingManager_no_thanks">Jo, faleminderit</string>
   <string name="RatingManager_later">Më vonë</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hëm, aplikacioni Play Store s\’duket të jetë i instaluar në pajisjen tuaj.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Krejt · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Ju</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifikojeni, që të vazhdoni shkëmbim mesazhesh</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Që të ndihmoni të pengohen në Signal mesazhe të padëshiruar, ju lutemi, plotësoni verifikimin.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Pas verifikimit, mund të vazhdoni të shkëmbeni mesazhe. Çfarëdo mesazhesh të ndalur do të dërgohen automatikisht.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Ju</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bllokoje</string>
   <string name="RecipientPreferenceActivity_unblock">Zhbllokoje</string>
@@ -1181,26 +1202,59 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Për të thirrur %1$s, Signal-i lyp leje përdorimi të kamerës tuaj</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Po thirret…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupi është shumë i madh për t’u rënë ziles së pjesëmarrësve.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Thirrje Signal me zë…</string>
-  <string name="WebRtcCallView__signal_video_call">Thirrje Signal me video…</string>
+  <string name="WebRtcCallView__signal_call">Thirrje Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Thirrje Signal Me Video</string>
   <string name="WebRtcCallView__start_call">Nise Thirrjen</string>
   <string name="WebRtcCallView__join_call">Hyni në Thirrje</string>
   <string name="WebRtcCallView__call_is_full">Thirrja është plot</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Për këtë thirrje është mbërritur në numrin maksimum prej %1$dpjesëmarrësish. Riprovoni më vonë.</string>
-  <string name="WebRtcCallView__s_group_call">Thirrje Grupi me \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Shihni pjesëmarrësit</string>
   <string name="WebRtcCallView__your_video_is_off">Videoja juaj është e fikur</string>
   <string name="WebRtcCallView__reconnecting">Po rilidhet…</string>
   <string name="WebRtcCallView__joining">Po hyhet…</string>
   <string name="WebRtcCallView__disconnected">I shkëputur</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal-i do t’i bjerë ziles për %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal-i do t’i bjerë ziles për %1$s dhe %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal-i do t’i bjerë ziles për %1$s, %2$s, dhe %3$d tjetër</item>
+    <item quantity="other">Signal-i do t’i bjerë ziles për %1$s, %2$s, dhe %3$d të tjerë</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s do të njoftohet</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s dhe %2$sdo të njoftohen</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s, dhe %3$d tjetër do të njoftohen</item>
+    <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë do të njoftohen</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Po i bihet ziles për %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Po i bihet ziles për %1$s dhe %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Po i bihet ziles për %1$s, %2$s, dhe %3$d tjetër</item>
+    <item quantity="other">Po i bihet ziles për %1$s, %2$s, dhe %3$d të tjerë</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s po ju thërret</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s po thërret ju dhe %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s po thërret ju, %2$s, dhe %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s po thërret ju, %2$s, %3$s, dhe %4$d tjetër</item>
+    <item quantity="other">%1$s po thërret ju, %2$s, %3$s, dhe %4$d të tjerë</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">S’ka tjetër këtu</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s është në këtë thirrje</string>
+  <string name="WebRtcCallView__s_are_in_this_call">Në këtë thirrje gjenden %1$s</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s dhe %2$s janë në këtë thirrje</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s po paraqet</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, dhe %3$d tjetër janë në në këtë thirrje</item>
     <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë janë në këtë thirrje</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Ktheje më anë tjetër</string>
+  <string name="WebRtcCallView__speaker">Altoparlant</string>
+  <string name="WebRtcCallView__camera">Kamerë</string>
+  <string name="WebRtcCallView__mute">Heshtoje</string>
+  <string name="WebRtcCallView__ring">Bjeri ziles</string>
+  <string name="WebRtcCallView__end_call">Përfundoje thirrjen</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Në këtë thirrje · %1$d person</item>
@@ -1213,12 +1267,17 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">S’mund të merret audio &amp; video prej %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">S’mund të merret audio dhe video prej %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Kjo mund të vijë ngaqë s’kanë verifikuar ndryshimin e numrit tuaj të sigurisë, ka një problem me pajisjen e tyre, ose ju kanë bllokuar.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Fërkojeni që të shihni ndarje ekrani</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Shërbyes ndërmjetës</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adresë ndërmjetësi</string>
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Doni të përdoret kjo adresë ndërmjetësi?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Përdor ndërmjetës</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">U lidh me sukses te ndërmjetësi.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">S’u arrit të parashtrohej</string>
+  <string name="RecaptchaProofActivity_complete_verification">Plotësoni verifikimin</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni
@@ -1244,6 +1303,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirrje të siguruara, Signal-i lyp hyrje te kontaktet tuaja</string>
   <string name="RegistrationActivity_rate_limited_to_service">Keni bërë shumë përpjekje për të regjistruar këtë numër. Ju lutemi, riprovoni më vonë.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">S\’arrihet të bëhet lidhja te shërbimi. Ju lutemi, kontrolloni lidhjen me rrjetin dhe riprovoni.</string>
+  <string name="RegistrationActivity_call_requested">U kërkua thirrje</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ju ndan %d hap nga parashtrimi i një regjistri diagnostikimesh.</item>
     <item quantity="other">Ju ndajnë %d hapa nga parashtrimi i një regjistri diagnostikimesh.</item>
@@ -1335,6 +1395,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopjojeni këtë URL dhe shtojeni te njoftimi i problemit tuaj ose email-i për asistencën:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Ndajeni Me të Tjerë</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ky regjistër do të postohet publikisht në internet që ta shohin kontribuesit. Para se ta ngarkoni, mund ta shqyrtoni.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtër:</string>
   <string name="SupportEmailUtil_device_info">Të dhëna pajisjeje:</string>
@@ -1367,6 +1428,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ThreadRecord_you_marked_verified">E shënuat si të verifikuar</string>
   <string name="ThreadRecord_you_marked_unverified">E shënuat si të paverifikuar</string>
   <string name="ThreadRecord_message_could_not_be_processed">Mesazhi s’u përpunua dot</string>
+  <string name="ThreadRecord_delivery_issue">Problem dërgimi</string>
   <string name="ThreadRecord_message_request">Kërkesë Mesazhi</string>
   <string name="ThreadRecord_photo">Foto</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1447,6 +1509,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageNotifier_message_delivery_failed">Dërgimi i mesazhit dështoi.</string>
   <string name="MessageNotifier_failed_to_deliver_message">S\’u arrit të dërgohej mesazhi.</string>
   <string name="MessageNotifier_error_delivering_message">Gabim në dërgimin e mesazhit.</string>
+  <string name="MessageNotifier_message_delivery_paused">U ndal dërgimi i mesazheve.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Që të vazhdoni të shkëmbeni mesazhe në Signal, verifikojeni.</string>
   <string name="MessageNotifier_mark_all_as_read">Vëru shenjë të gjithëve si të lexuar</string>
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_turn_off_these_notifications">Çaktivizoji këto njoftime</string>
@@ -1469,16 +1533,18 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageNotifier_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Të çaktivizohen njoftime Signal për kontakte të sapoardhur? Mund t’i aktivizoni sërish që nga Signal &gt; Rregullime &gt; Njoftime.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Parazgjedhje</string>
+  <string name="NotificationChannel_channel_messages">Mesazhe</string>
   <string name="NotificationChannel_calls">Thirrje</string>
   <string name="NotificationChannel_failures">Dështime</string>
   <string name="NotificationChannel_backups">Kopjeruajtje</string>
   <string name="NotificationChannel_locked_status">Gjendje kyçjeje</string>
   <string name="NotificationChannel_app_updates">Përditësime aplikacioni</string>
   <string name="NotificationChannel_other">Tjetër</string>
-  <string name="NotificationChannel_group_messages">Mesazhe</string>
+  <string name="NotificationChannel_group_chats">Fjalosje</string>
   <string name="NotificationChannel_missing_display_name">I panjohur</string>
   <string name="NotificationChannel_voice_notes">Shënime Zanore</string>
+  <string name="NotificationChannel_contact_joined_signal">Kontakti zuri të përdorë Signal-in</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">S’ka veprimtari për hapje rregullimesh kanali njoftimesh.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">S\’bëhet dot përgjigje e shpejtë, kur Signal-i është i kyçur!</string>
@@ -1494,6 +1560,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Kërkesë mesazhi</string>
+  <string name="SingleRecipientNotificationBuilder_you">Ju</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Luaje videon</string>
   <string name="ThumbnailView_Has_a_caption_description">Ka përshkrim</string>
@@ -1599,6 +1667,12 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_return_to_call">Kthehuni te thirrja</string>
   <string name="ConversationUpdateItem_call_is_full">Thirrja është plot</string>
   <string name="ConversationUpdateItem_invite_friends">Ftoni shokë</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Aktivizo Njoftime Thirrjesh</string>
+  <string name="ConversationUpdateItem_update_contact">Përditësoni kontaktin</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Pa grupe të përbashkët. Shqyrtojini me kujdes kërkesat.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Pa kontakte në këtë grup. Shqyrtojini me kujdes kërkesat.</string>
+  <string name="ConversationUpdateItem_view">Shihni</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Koha për mesazhe që treten do të caktohet si %1$s, kur u dërgoni mesazhe.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -1614,6 +1688,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rrëshqit drejt fundit</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Ndryshime Numri Sigurie</string>
+  <string name="safety_number_change_dialog__accept">Pranoje</string>
   <string name="safety_number_change_dialog__send_anyway">Dërgoje, sido qoftë</string>
   <string name="safety_number_change_dialog__call_anyway">Thirre, sido qoftë</string>
   <string name="safety_number_change_dialog__join_call">Hyni në thirrje</string>
@@ -1622,6 +1697,18 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Personat vijues mund të kenë riinstaluar ose ndryshuar pajisjet. Për të siguruar privatësi, verifikoni me ta numrin tuaj të sigurisë.</string>
   <string name="safety_number_change_dialog__view">Shihni</string>
   <string name="safety_number_change_dialog__previous_verified">Verifikuar më herët</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Njoftimet e thirrjeve u aktivizuan.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Aktivizo njoftime thirrjesh</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Aktivizo veprimtari në prapaskenë</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tani gjithçka duket në rregull!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni “Shfaq njoftime”.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Për të marrë njoftime thirrjes, prekeni këtu dhe aktivizoni njoftimet dhe sigurohuni se Tinguj dhe Flluska janë të aktivizuara.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni veprimtari në prapaskenë, te rregullimet e “Baterisë”.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Rregullime</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekni Rregullime dhe aktivizoni “Shfaq njoftime”.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Për të marrë njoftime thirrjes, prekni Rregullime dhe aktivizoni njoftimet dhe sigurohuni se Tinguj dhe Flluska janë të aktivizuara.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, prekni Rregullime dhe aktivizoni veprimtari në prapaskenë, te rregullimet e “Baterisë”.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Po ngarkohen vende…</string>
   <string name="country_selection_fragment__search">Kërko</string>
@@ -1676,11 +1763,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="other">%d të tjerë</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIF-e dhe ngjitës</string>
+  <string name="giphy_activity_toolbar__search_gifs">Kërko për GIF-e</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">S\’u gjet gjë</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Ky regjistër do të postohet publikisht në internet që kontribuesit ta shohin, mund ta ekzaminoni dhe përpunoni përpara se ta parashtroni.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doni të importohen mesazhet tuaj tekst te baza e fshehtëzuar e të dhënave të Signal-it?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza parazgjedhje e sistemit për të dhënat nuk do modifikohet apo tjetërsohet në ndonjë mënyrë.</string>
@@ -1707,6 +1792,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Që të shpërndajë media dhe mesazhe grupi përmes shërbimit tuaj celular, Signal-i lyp rregullime për MMS-në. Pajisja juaj celulare nuk ofron të dhëna të tilla, çka ndodh, me raste, për pajisje të kyçura ose formësimeve të tjera kufizuese.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Për të dërgua media dhe mesazhe grupi, prekni \'OK\' dhe plotësoni rregullimet e domosdoshme. Rregullimet MMS për operatorin tuaj zakonisht mund të gjenden duke kërkuar për \'APN-në e operatorit tuaj\'. Këtë do t\’ju duhet ta bëni vetëm një herë.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem Dërgimi</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">S’u dërgua dot te ju një mesazh, ngjitës, reagim, ose dëftesë leximi nga %s. Mund të ketë provuar ta dërgojë drejtpërsëdrejti për ju, ose në një grup.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">S’u dërgua dot te ju një mesazh, ngjitës, reagim, ose dëftesë leximi nga %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Emër (i domosdoshëm)</string>
   <string name="CreateProfileActivity_last_name_optional">Mbiemër (i domosdoshëm)</string>
@@ -1714,6 +1803,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CreateProfileActivity__username">Emër përdoruesi</string>
   <string name="CreateProfileActivity__create_a_username">Krijoni emër përdoruesi</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Emra dhe foto vetjake grupesh MMS do të jenë të dukshme vetëm për ju.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Përshkrimet e grupeve do të jenë të dukshëm për anëtarë të këtij grupi dhe për persona që janë ftuar.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Mbi</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Shkruani dy rreshta rreth vetes…</string>
@@ -1726,8 +1816,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="EditAboutFragment_taking_a_break">Pushoni ca</string>
   <string name="EditAboutFragment_working_on_something_new">Po merrem me diçka të re</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Përpunoni emër dhe foto grupi</string>
+  <string name="EditProfileFragment__edit_group">Përpunoni grup</string>
   <string name="EditProfileFragment__group_name">Emër grupi</string>
+  <string name="EditProfileFragment__group_description">Përshkrim grupi</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Emri juaj</string>
   <string name="EditProfileNameFragment_first_name">Emër</string>
@@ -1739,21 +1830,26 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Jepni një emër ose një numër</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Nëse dëshironi të verifikoni sigurinë e fshehtëzimit tuaj me %s, krahasojeni numrin më sipër me numrin në pajisjen e tyre. Ndryshe, mund të skanoni kodin në telefonin e tyre, ose t\’u kërkoni të skanojnë kodin tuaj. <a href="https://signal.org/redirect/safety-numbers">Mësoni më tepër.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Që të verifikoni sigurinë e fshehtëzimit tuaj skaj-më-skaj me %s, krahasoni numrat më sipër me pajisjen e tij. Mundeni edhe të skanoni kodin në telefonin e tij. <a href="https://signal.org/redirect/safety-numbers">Mësoni më tepër.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Prekeni që të skanohet</string>
+  <string name="verify_display_fragment__successful_match">Përputhje e suksesshme</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">S’u arri të verifikohet numër sigurie</string>
   <string name="verify_display_fragment__loading">Po ngarkohet…</string>
-  <string name="verify_display_fragment__verified">U verifikua</string>
+  <string name="verify_display_fragment__mark_as_verified">Vëri shenjë si i verifikuar</string>
+  <string name="verify_display_fragment__clear_verification">Spastroje verifikimin</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Ndajeni me të tjerët numrin tuaj të sigurisë</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skanoni kodin QR te pajisja e kontaktit tuaj.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Për t\’u përgjigjur, fërkojeni për sipër</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Për ta hedhur tej, fërkojeni për poshtë</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Disa çështje lypin vëmendjen tuaj.</string>
-  <string name="message_details_header__sent">Dërguar më</string>
-  <string name="message_details_header__received">Marrë më</string>
-  <string name="message_details_header__disappears">Zhduket më</string>
-  <string name="message_details_header__via">Përmes</string>
+  <string name="message_details_header__sent">U dërgua:</string>
+  <string name="message_details_header__received">U mor:</string>
+  <string name="message_details_header__disappears">Zhduket më:</string>
+  <string name="message_details_header__via">Përmes:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pezull</string>
   <string name="message_details_recipient_header__sent_to">Dërguar te</string>
@@ -1761,6 +1857,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="message_details_recipient_header__delivered_to">Dorëzuar te</string>
   <string name="message_details_recipient_header__read_by">Lexuar nga</string>
   <string name="message_details_recipient_header__not_sent">S’u dërgua</string>
+  <string name="message_details_recipient_header__viewed">Parë nga</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Dështoi dërgimi</string>
   <string name="message_details_recipient__new_safety_number">Numër i ri sigurie</string>
@@ -1788,11 +1885,21 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__include_debug_log">Përfshi regjistër diagnostikimi.</string>
   <string name="HelpFragment__whats_this">Po kjo, ç’është?</string>
   <string name="HelpFragment__how_do_you_feel">Si ndiheni? (Opsionale)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Tregonani se përse po lidheni me ne.</string>
   <string name="HelpFragment__support_info">Të dhëna Asistence</string>
   <string name="HelpFragment__signal_android_support_request">Kërkesë Për Asistencë për Signal Android</string>
   <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- Ju lutemi, përzgjidhni një mundësi --</item>
+    <item>Diçka S’po Funksionon</item>
+    <item>Kërkesë Për Veçori</item>
+    <item>Pyetje</item>
+    <item>Përshtypje</item>
+    <item>Tjetër</item>
+    <item>Pagesa</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
@@ -1805,14 +1912,15 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbole</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flamuj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikone</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">S’u gjet përfundim</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Përdor parazgjedhje</string>
   <string name="arrays__use_custom">Përdor vetjake</string>
   <string name="arrays__mute_for_one_hour">Heshtoje për 1 orë</string>
-  <string name="arrays__mute_for_two_hours">Heshtoje për 2 orë</string>
+  <string name="arrays__mute_for_eight_hours">Heshtoji për 8 orë</string>
   <string name="arrays__mute_for_one_day">Heshtoje për 1 ditë</string>
   <string name="arrays__mute_for_seven_days">Heshtoje për 7 ditë</string>
-  <string name="arrays__mute_for_one_year">Heshtoje për 1 vit</string>
+  <string name="arrays__always">Përherë</string>
   <string name="arrays__settings_default">Rregullime parazgjedhje</string>
   <string name="arrays__enabled">E aktivizuar</string>
   <string name="arrays__disabled">E çaktivizuar</string>
@@ -1836,6 +1944,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS dhe MMS</string>
   <string name="preferences__pref_all_sms_title">Merri krejt SMS-të</string>
   <string name="preferences__pref_all_mms_title">Merri krejt MMS-të</string>
@@ -1864,6 +1973,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__pref_led_blink_title">Rregullsi xixëllimi LED-i</string>
   <string name="preferences__sound">Tingull</string>
   <string name="preferences__silent">Heshtazi</string>
+  <string name="preferences__default">Parazgjedhje</string>
   <string name="preferences__repeat_alerts">Alarme të përsëritur</string>
   <string name="preferences__never">Kurrë</string>
   <string name="preferences__one_time">Një herë</string>
@@ -1898,6 +2008,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni</string>
   <string name="preferences__data_and_storage">Të dhëna dhe depozitim</string>
   <string name="preferences__storage">Hapësirë</string>
+  <string name="preferences__payments">Pagesa</string>
+  <string name="preferences__payments_beta">beta</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
   <string name="preferences__keep_messages">Mbaji mesazhet</string>
   <string name="preferences__clear_message_history">Spastro historik mesazhesh</string>
@@ -1907,6 +2019,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__appearance">Dukje</string>
   <string name="preferences__theme">Temë</string>
   <string name="preferences__chat_wallpaper">Sfond fjalosjesh</string>
+  <string name="preferences__chat_color_and_wallpaper">Ngjyrë &amp; sfond fjalosjeje</string>
   <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
   <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni PIN-in, do të humbni krejt të dhënat, kur riregjistroni
@@ -1927,7 +2040,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi nga të tjerët.</string>
   <string name="preferences__typing_indicators">Tregues shtypjeje</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nëse treguesit e shtypjeve janë të çaktivizuar, s\’do të jeni në gjendje të shihni tregues shtypjesh nga të tjerët.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërkoji tastierës të çaktivizojë të nxënit e personalizuar. Ky rregullim s’përbën garanci, dhe tastiera juaj mund ta shpërfillë.</string>
+  <string name="preferences__request_keyboard_to_disable">Kërkoji tastierës të çaktivizojë nxënie të personalizuar.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Ky rregullim s’është garanci dhe tastiera juaj mund ta shpërfillë.</string>
   <string name="preferences_app_protection__blocked_users">Përdorues të bllokuar</string>
   <string name="preferences_chats__when_using_mobile_data">Kur përdoret rrjet celular</string>
   <string name="preferences_chats__when_using_wifi">Kur përdoret Wi-Fi</string>
@@ -1967,8 +2081,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_data_and_storage__calls">Thirrje</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Përdor më pak të dhënë për thirrjet</string>
   <string name="preferences_data_and_storage__never">Kurrë</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi dhe Celulare</string>
-  <string name="preferences_data_and_storage__cellular_only">Vetëm celulare</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Të dhëna WiFi dhe celulare</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Vetëm të dhëna celulare</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Përdorim i më pak të dhënave mund të përmirësojë thirrjet në rrjete të dobët</string>
   <string name="preferences_notifications__messages">Mesazhe</string>
   <string name="preferences_notifications__events">Veprimtari</string>
@@ -2006,6 +2120,137 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_enter_proxy_address">Jepni adresë ndërmjetësi</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Krejt veprimtaria</string>
+  <string name="PaymentsAllActivityFragment__all">Krejt</string>
+  <string name="PaymentsAllActivityFragment__sent">Dërguar më</string>
+  <string name="PaymentsAllActivityFragment__received">Marrë më</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Ju paraqesim pagesa (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Përdorni Signal-in për të dërguar dhe marrë MobileCoin, një monedhë e re dixhitale e fokusuar te privatësia. Që t’ia filloni, aktivizojeni.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Pagesa</string>
+  <string name="PaymentsHomeFragment__activating_payments">Po aktivizohen pagesa…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Riktheni llogari pagesash</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ende pa veprimtari së fundi</string>
+  <string name="PaymentsHomeFragment__pending_requests">Kërkesa pezull</string>
+  <string name="PaymentsHomeFragment__recent_activity">Veprimtari së fundi</string>
+  <string name="PaymentsHomeFragment__see_all">Shihini krejt</string>
+  <string name="PaymentsHomeFragment__add_funds">Shtoni fonde</string>
+  <string name="PaymentsHomeFragment__send">Dërgoje</string>
+  <string name="PaymentsHomeFragment__sent_s">Dërguar %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Marrë %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Shpërngulni në një platformë</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Kurs këmbimi</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Çaktivizo pagesa</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Frazë:</string>
+  <string name="PaymentsHomeFragment__help">Ndihmë</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Tarifë Coin Cleanup</string>
+  <string name="PaymentsHomeFragment__sent_payment">U dërgua pagesë</string>
+  <string name="PaymentsHomeFragment__received_payment">U mor pagesë</string>
+  <string name="PaymentsHomeFragment__processing_payment">Po kryhet pagesa</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Kurs këmbimi jo gati</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">S’shfaqet dot kurs këmbimi. Kontrolloni lidhjen e telefonit tuaj dhe riprovoni.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Pagesat s’janë të përdorshme në rajonin tuaj.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">S’u aktivizuan dot pagesat. Riprovoni më vonë.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Të çaktivizohen Pagesa?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">S’do të jeni në gjendje të dërgoni ose merrni Mobilecoin në Signal, nëse çaktivizoni pagesat.</string>
+  <string name="PaymentsHomeFragment__deactivate">Çaktivizoje</string>
+  <string name="PaymentsHomeFragment__continue">Vazhdo</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Depozitë aktualisht jo e përdorshme</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">E çaktivizuar</string>
+  <string name="PaymentsHomeFragment__payment_failed">Pagesa dështoi</string>
+  <string name="PaymentsHomeFragment__details">Hollësi</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Mund të përdorni Signal-in për të dërguar dhe marrë MobileCoin. Krejt pagesat tuaja janë subjekt i Kushteve të Përdorimit të MobileCoins dhe MobileCoin Wallet. Kjo është një veçori beta, ndaj mundet të hasni probleme dhe pagesat apo depozitat që mund të humbni, s’mund të rikthehen.</string>
+  <string name="PaymentsHomeFragment__activate">Aktivizoje</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Shihni kushte MobileCoin-i</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Pagesat në Signal s’janë më të përdorshme. Mundeni ende të shpërngulni fonde në një platformë, por s’mund të dërgoni apo merrni më pagesa, apo të shtoni fonde.</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Shtoni fonde</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Portofol</string>
+  <string name="PaymentsAddMoneyFragment__copy">Kopjoje</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">U kopjua në të papastër</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Për të shtuar fonde, dërgoni MobileCoin te adresa e portofolit tuaj. Fillon një transaksion që nga llogaria juaj në një platformë që mbulon MobileCoin, mandej skanoni kodin QR ose kopjoni adresën e portofolit tuaj.</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Hollësi</string>
+  <string name="PaymentsDetailsFragment__status">Gjendje</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Po parashtrohet pagesa…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Po kryhet pagesa…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Pagesë e plotësuar</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Pagesa dështoi</string>
+  <string name="PaymentsDetailsFragment__network_fee">Tarifë rrjeti</string>
+  <string name="PaymentsDetailsFragment__sent_by">Dërguar nga</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Dërguar te %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Ju, në %1$s më %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s në %2$s më %3$s</string>
+  <string name="PaymentsDetailsFragment__to">Për</string>
+  <string name="PaymentsDetailsFragment__from">Nga</string>
+  <string name="PaymentsDetailsFragment__information">Hollësi transaksioni, përfshi llogari pagesash dhe kohë transaksioni, janë pjesë e MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tarifë Coin Cleanup</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Një “tarifë pastrimi monedhash” aplikohet kur monedhat në pronësinë tuaj s’mund të ndërthuren për të plotësuar një transaksion. Pastrimi do t’ju lejojë të vazhdoni dërgim pagesash.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">S’ka hollësi të mëtejshme për këtë transaksion</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Pagesë e dërguar</string>
+  <string name="PaymentsDetailsFragment__received_payment">Pagesë e marrë</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Pagesë e plotësuar %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Numër blloku</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Shpërngule</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">Skanoni kodin QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Adresë portofoli Bitcoin (kyç publik)</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Mund të shpërngulni MobileCoin duke plotësuar një shpërngulje drejt adresës së portofolit të dhënë nga platforma. Adresa e portofolit është një varg numrash dhe shkronjash, në më të shumtën e rasteve nën kodin QR.</string>
+  <string name="PaymentsTransferFragment__next">Pasuesi</string>
+  <string name="PaymentsTransferFragment__invalid_address">Adresë e pavlefshme</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Kontrolloni adresën e portofolit që po përpiqeni të shpërngulni dhe riprovoni.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">S’mund të shpërngulni te adresa e portofolit tuaj Signal. Jepni adresën e portofolit prej llogarisë tuaj në një platformë që mbulohet.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Që të skanohet një kod QR, Signal-i ka nevojë të përdorë kamerën.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal-it i duhen leje përdorimi Kamere për të marrë një kod QR. Kaloni te rregullimet, përzgjidhni “Leje”, dhe aktivizoni “Kamera”.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Që të skanohet një kod QR, Signal-i ka nevojë të përdorë kamerën.</string>
+  <string name="PaymentsTransferFragment__settings">Rregullime</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skanoni Kod QR Adrese</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skanoni adresën kod QR të të paguarit</string>
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Kërkesë</string>
+  <string name="CreatePaymentFragment__pay">Paguani</string>
+  <string name="CreatePaymentFragment__available_balance_s">Depozitë e përdorshme: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Shfaqe/Fshihe</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">Shtoni shënim</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Kurset e këmbimit janë thjesht të përafërt dhe mund të mos jenë të përpiktë.</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Shënim</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Ripohoni pagesën</string>
+  <string name="ConfirmPayment__network_fee">Tarifë rrjeti</string>
+  <string name="ConfirmPayment__error_getting_fee">Gabim në marrje tarife</string>
+  <string name="ConfirmPayment__estimated_s">Afërsisht %1$s</string>
+  <string name="ConfirmPayment__to">Për</string>
+  <string name="ConfirmPayment__total_amount">Sasi gjithsej</string>
+  <string name="ConfirmPayment__balance_s">Depozitë	: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Po parashtrohet pagesa…</string>
+  <string name="ConfirmPayment__processing_payment">Po kryhet pagesa…</string>
+  <string name="ConfirmPayment__payment_complete">Pagesë e plotësuar</string>
+  <string name="ConfirmPayment__payment_failed">Pagesa dështoi</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Pagesa do të vazhdojë të përpunohet</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Marrës i pavlefshëm</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ky person s’ka aktivizuar pagesa</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">S’arrihet të kërkohet një tarifë rrjeti. Për të vazhduar këtë pagesë, prekni OK, që të riprovohet.</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s më %2$s</string>
+  <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Caktoni Monedhë</string>
+  <string name="SetCurrencyFragment__all_currencies">Krejt Monedhat</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2244,9 +2489,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="backup_enable_dialog__folder">Dosje</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\’do të jem në gjendje të rikthej një kopjeruajtje.</string>
   <string name="registration_activity__restore_backup">Riktheje kopjeruajtjen</string>
+  <string name="registration_activity__transfer_or_restore_account">Shpërngulni ose riktheni llogari</string>
+  <string name="registration_activity__transfer_account">Shpërngulni llogari</string>
   <string name="registration_activity__skip">Anashkaloje</string>
   <string name="preferences_chats__chat_backups">Kopjeruajtje fjalosjesh</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Kopjeruaji fjalosje te depozitë e jashtme</string>
+  <string name="preferences_chats__transfer_account">Shpërngulni llogari</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Shpërngulni llogari te një pajisje Android e re</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
   <string name="RegistrationActivity_restore">Riktheje</string>
   <string name="RegistrationActivity_backup_failure_downgrade">S\’mund të importohen kopjeruajtje prej versionesh më të rinj të Signal-it</string>
@@ -2282,6 +2531,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Lidhuni Me Asistencën e Signal-it</string>
   <string name="RegistrationActivity_code_support_subject">Regjistrim Signal-i - Kod Verifikimi për Android</string>
+  <string name="RegistrationActivity_incorrect_code">Kod i gabuar</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__see_my_phone_number">Shohë numrin tim të telefonit</string>
@@ -2321,26 +2571,122 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>
   <string name="Recipient_unknown">I panjohur</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Shpërngulni ose riktheni llogari</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Nëse keni regjistruar më herët një llogari Signal, mund të shpërngulni ose riktheni llogarinë dhe mesazhet tuaja.</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Shpërngulni prej pajisjeje Android</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Shpërngulni llogarinë dhe mesazhet tuaj nga pajisja juaj e vjetër Android. Duhet të keni hyrje te pajisja juaj e vjetër.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Ju duhet hyrje te pajisja juaj e vjetër.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Riktheni prej kopjeruajtje</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Riktheni mesazhet tuaja që prej një kopjeruajtjeje vendore. Nëse s\’i riktheni tani, s\’do të jeni në gjendje t\’i riktheni më vonë.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Hapni Signal-in në telefonin tuaj të vjetër Android.</string>
   <string name="NewDeviceTransferInstructions__continue">Vazhdo</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Prekni mbi foton e profilit tuaj në cepin e majtë sipër, që të hapen Rregullimet.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Prekni mbi “Llogari”</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Prekni “Shpërngulni Llogari” dhe mandej “Vazhdoni” në të dyjat e pajisjeve</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Po gatitet të lidhet me një pajisje Android të vjetër…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Po ha një çast, duhet të jetë gati së shpejti</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Po pritet që të lidhet pajisje e vjetër Android…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal-i lyp leje vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-i lyp aktivizim shërbimesh vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-i lyp Wi-Fi të hapur që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android. Wi-Fi duhet të jetë i hapur, por jo edhe të jetë i lidhur në një rrjet Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Na ndjeni, duket se kjo pajisje s’mbulon Wi-Fi Direct. Signal-i e përdor Wi-Fi Direct që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android. Mundeni ende të riktheni një kopjeruajtje, që të riktheni llogarinë tuaj nga pajisja juaj e vjetër Android.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Riktheni një kopjeruajtje</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ndodhi një gabim i papritur teksa provohej të lidhej me pajisjen tuaj të vjetër Android.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Po kërkohet për pajisje të re Android…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal-i lyp leje vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të re Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal-i lyp aktivizim shërbimesh vendndodhjesh, për të pikasur dhe për t’u lidhur me pajisjen tuaj të re Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal-i lyp Wi-Fi të hapur që të pikasë dhe lidhet me pajisjen tuaj të re Android. Wi-Fi duhet të jetë i hapur, por jo edhe të jetë i lidhur në një rrjet Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Na ndjeni, duket se kjo pajisje s’mbulon Wi-Fi Direct. Signal-i e përdor Wi-Fi Direct që të pikasë dhe lidhet me pajisjen tuaj të re Android. Mundeni ende të krijoni një kopjeruajtje, që të riktheni llogarinë tuaj nga pajisja juaj e re Android.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Krijoni kopjeruajtje</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ndodhi një gabim i papritur teksa provohej të lidhej me pajisjen tuaj të re Android.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">S’arrihet të hapen Rregullime Wi-Fi. Ju lutemi, hapeni dorazi Wi-Fi-n.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Akordoni leje vendndodhjesh</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Aktivizoni shërbime vendndodhjesh</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">S’arrihet të hapen rregullime vendndodhjesh.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Hapni Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Gabim Gjatë Lidhjes</string>
   <string name="DeviceTransferSetup__retry">Riprovo</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Parashtroni regjistra diagnostikimi</string>
+  <string name="DeviceTransferSetup__verify_code">Verifikoni kodin</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifikoni se kodi më poshtë përputhet në të dy pajisjet. Mandej prekeni që të vazhdohet.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrat s’përputhen</string>
   <string name="DeviceTransferSetup__continue">Vazhdo</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Numri s’është po ai</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Nëse numrat në pajisjet tuaja nuk përputhen, mundet që të keni lidhur pajisje të gabuar. Për ta ndrequr këtë, ndaleni shpërnguljen dhe riprovoni, dhe mbajini të mbyllura të dyja pajisjet tuaja.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Ndale shpërnguljen</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">S’arrihet të pikaset pajisje e vjetër</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">S’arrihet të pikaset pajisje e re</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sigurohuni se janë akorduar lejet vijuese dhe aktivizuar shërbimet vijuese.</string>
+  <string name="DeviceTransferSetup__location_permission">Leje vendndodhjesh</string>
+  <string name="DeviceTransferSetup__location_services">Shërbime vendndodhjesh</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Te skena për WiFi Direct, hiqni krejt grupet e mbajtur mend dhe hiqni lidhjet për çfarëdo pajisje të ftua ose të lidhur.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Skenë për WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Provoni të mbyllni dhe hapni Wi-Fi-n, në të dyja pajisjet.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Sigurohuni se që të dyja pajisjet janë nën mënyrën shpërngulje.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Kaloni te faqja e asistencës</string>
   <string name="DeviceTransferSetup__try_again">Riprovo</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Po pritet për pajisjen tjetër</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Prekni Vazhdo, te pajisja tjetër e juaj, që të nisë shpërngulja.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Prekni Vazhdo, te pajisja juaj tjetër…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">S’mund të shpërngulet prej një versioni më të ri të Signal-it</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Shpërngulje të dhënash</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Mbajini të dyja pajisjet afër njëra-tjetrës. Mos fikni pajisjet dhe mbajeni hapur Signal-in. Shpërnguljet janë të fshehtëzuara skaj-më-skaj.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d mesazhe deri këtu…</string>
   <string name="DeviceTransfer__cancel">Anuloje</string>
   <string name="DeviceTransfer__try_again">Riprovo</string>
+  <string name="DeviceTransfer__stop_transfer_question">Të ndalet shpërngulja?</string>
+  <string name="DeviceTransfer__stop_transfer">Ndale shpërnguljen</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Krejt ecuria e shpërnguljes do të humbë.</string>
+  <string name="DeviceTransfer__transfer_failed">Shpërngulja dështoi</string>
+  <string name="DeviceTransfer__unable_to_transfer">S’arrihet të shpërngulet</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Shpërngul Llogari</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Mund të shpërngulni llogarinë tuaj Signal, kur ujdiset Signal-i në një pajisje të re Android. Para se të vazhdohet:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Shkarkojeni Signal-in në pajisjen tuaj të re Android</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Prekni mbi “Shpërngulni ose riktheni llogari”</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Përzgjidhni “Shpërngulni nga pajisje Android” kur të pyeteni dhe mandej “Vazhdoni”. Mbajini pranë dy pajisjet.</string>
   <string name="OldDeviceTransferInstructions__continue">Vazhdo</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Shpërngulje e plotë</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Kaloni te pajisja juaj e re</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Të dhënat tuaja Signal u shpërngulën te pajisja juaj e re. Që të plotësohet procesi i shpërnguljes, duhet të vazhdoni regjistrimin te pajisja juaj e re.</string>
   <string name="OldDeviceTransferComplete__close">Mbylle</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Shpërngulje e suksesshme</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Shpërngulje e plotë</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Që të plotësoni procesin e shpërnguljes, duhet të vazhdoni regjistrimin.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Vazhdoni regjistrimin</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Shpërngulje llogarie</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Po bëhet gati të lidhet me pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Po bëhet gati të lidhet me pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Po kërkohet për pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Po lidhet me pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Lyp verifikim</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Po shpërngulet llogari…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Plotësoni regjistrimin në pajisjen tuaj të re</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Llogaria juaj Signal u shpërngul te pajisja juaj e re, por duhet të plotësoni regjistrimin, që të vazhdohet. Signal-i do të jetë joaktiv në këtë pajisje.</string>
+  <string name="OldDeviceTransferLockedDialog__done">U bë</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anulojeni dhe aktivizoni këtë pajisje</string>
+  <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Të shpërngulet depozitë MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Keni në depozitë %1$s. Nëse nuk i shpërngulni fondet tuaja në një adresë tjetër portofoli, përpara fshirjes së llogarisë tuaj, do ta humbni përgjithmonë.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Mos shpërngul</string>
+  <string name="AdvancedPreferenceFragment__transfer">Shpërngule</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>
@@ -2348,7 +2694,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_add_to_a_group">Shtoje te grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Shtojeni në grup tjetër</string>
   <string name="RecipientBottomSheet_view_safety_number">Shihni numër sigurie</string>
-  <string name="RecipientBottomSheet_make_group_admin">Bëje përgjegjës grupi</string>
+  <string name="RecipientBottomSheet_make_admin">Bëje përgjegjës</string>
   <string name="RecipientBottomSheet_remove_as_admin">Hiqe nga përgjegjës</string>
   <string name="RecipientBottomSheet_remove_from_group">Hiqe nga grup</string>
   <string name="RecipientBottomSheet_message_description">Mesazh</string>
@@ -2380,9 +2726,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">U kopjua në të papastër</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Lidhja hëpërhë s’është aktive</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">S’u arrit të luhej mesazh zanor</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mesazh zanor · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s për %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Mesazh zanor · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s për %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" u bllokua.</string>
@@ -2433,6 +2780,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DeleteAccountFragment__delete_account">Fshijë llogarinë</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Fshijë të dhënat e llogarisë tuaj dhe foton e profilit tuaj</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Fshijë krejt mesazhet tuaj</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Fshini %1$s te llogaria juaj e pagesave</string>
   <string name="DeleteAccountFragment__no_country_code">S’u dha kod vendi</string>
   <string name="DeleteAccountFragment__no_number">S’u tregua numër</string>
   <string name="DeleteAccountFragment__the_phone_number">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
@@ -2445,10 +2793,14 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DeleteAccountCountryPickerFragment__search_countries">Kërkoni Te Vendet</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Anashkaloje</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d anëtar</item>
+    <item quantity="other">%1$d anëtarë</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Ndajeni Me të Tjerë</string>
   <string name="ShareActivity__send">Dërgoje</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Dhënia e diçkaje në shumë fjalosje mbulohet vetëm për mesazhe Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">S’u arrit të dërgoheshin ca përdorues</string>
@@ -2458,17 +2810,25 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Sfond fjalosjesh</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Ngjyrë fjalosjeje</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Riktheji te parazgjedhjet ngjyrat e fjalosjes</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Riktheje te parazgjedhja ngjyrën e fjalosjes</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Të rikthehet te parazgjedhja ngjyra e fjalosjes?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Caktoni sfond</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema e errët e ul ndriçimin e sfondit</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Hiqe sfondin</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Të hiqet sfondi për këtë fjalosje?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Të hiqet sfondi? Kjo s’do të spastrojë sfonde vetjake që keni vënë për fjalosjet tuaja.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Rikthe te parazgjedhjet krejt sfondet</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Të rikthehen te parazgjedhjet krejt sfondet, përfshi sfonde vetjake që keni caktuar për fjalosjet tuaja?</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mënyra e errët e ul ndriçimin e sfondit</string>
   <string name="ChatWallpaperFragment__contact_name">Emër kontakti</string>
   <string name="ChatWallpaperFragment__reset">Riktheje</string>
   <string name="ChatWallpaperFragment__clear">Spastroje</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Paraparje sfondi</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Do të donit të anashkalohen krejt ngjyrat e fjalosjes?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Do të donit të anashkalohen krejt ngjyrat sfondet?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Riktheji ngjyrat parazgjedhje</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Riktheji te parazgjedhjet krejt ngjyrat</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Riktheje sfondin te parazgjedhja</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Rikthe te parazgjedhjet krejt sfondet</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Rikthe sfondet te parazgjedhjet</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Rikthe sfondin te parazgjedhja</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Të rikthehet sfondi te parazgjedhja?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Zgjidhni prej fotosh</string>
   <string name="ChatWallpaperSelectionFragment__presets">Paracaktime</string>
@@ -2487,5 +2847,394 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Caktoni sfond për %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Gabim në vënie sfondi</string>
   <string name="WallpaperCropActivity__blur_photo">Turbulloje foton</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Rreth MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin është një monedhë e re dixhitale e fokusuar te privatësia.</string>
+  <string name="payment_info_card_adding_funds">Shtim fondesh</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Mund të shtoni fonde për përdorim në Signal duke dërguar MobileCoin në adresën e portofolit tuaj.</string>
+  <string name="payment_info_card_cashing_out">Thyerje çeqesh</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Mund të thyeni MobileCoin në çfarëdo kohe në një platformë që mbulon MobileCoin. Thjesht bëni një shpërngulje te llogaria juaj në atë platformë.</string>
+  <string name="payment_info_card_hide_this_card">Të fshihet kjo kartë?</string>
+  <string name="payment_info_card_hide">Fshihe</string>
+  <string name="payment_info_card_record_recovery_phrase">Regjistroje</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Fraza juaj e rikthimeve ju jep një rrugë tjetër për të rikthyer llogarinë tuaj të pagesave.</string>
+  <string name="payment_info_card_record_your_phrase">Regjistroni frazën tuaj</string>
+  <string name="payment_info_card_update_your_pin">Përditësoni PIN-in tuaj</string>
+  <string name="payment_info_card_with_a_high_balance">Me një depozitë të madhe, mund të doni ta përditësoni me një PIN alfanumerik, për të shtuar më tepër mbrojtje te llogaria juaj.</string>
+  <string name="payment_info_card_update_pin">Përditësoni PIN-in</string>
+  <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Çaktivizoni Portofolin</string>
+  <string name="DeactivateWalletFragment__your_balance">Depozita juaj</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Rekomandohet që të shpërngulni fondet tuaja në një portofol tjetër, përpara se të çaktivizoni pagesat. Nëse zgjidhni të mos shpërngulen fonte tuaja tani, do të mbeten në portofolin tuaj të lidhur me Signal-in, nëse riaktivizoni pagesat.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Shpërngulni depozitën e mbetur</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Çaktivizoje pa e shpërngulur</string>
+  <string name="DeactivateWalletFragment__deactivate">Çaktivizoje</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Të çaktivizohet pa e shpërngulur?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Depozita juaj do të mbetet në portofolin tuaj të lidhur me Signal-in, nëse zgjidhni të riaktivizoni pagesat.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Gabim gjatë çaktivizimit të portofolit.</string>
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frazë:</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Shihni frazë rikthimi</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Jepni frazë rikthimi</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Depozita juaj do të rikthehet automatikisht, kur të riinstaloni Signal-in, nëse ripohoni PIN-in tuaj Signal. Depozitën tuaj mund ta riktheni edhe duke përdorur një frazë rikthimesh, që është një frazë prej %1$d fjalësh unike për ju. Mbajeni shënim diku dhe depozitojeni në një vend të parrezik.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Fraza juaj e rikthimeve është një frazë prej %1$d fjalësh, unike për ju. Përdoreni këtë frazë për të rikthyer depozitën tuaj.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Fillojeni</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Jepeni dorazi</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Ngjite prej së papastrës</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Ngjit frazë rikthimi</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frazë:</string>
+  <string name="PaymentsRecoveryPasteFragment__next">Pasuesi</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frazë rikthimi e pavlefshme</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Sigurohuni se keni dhënë %1$d fjalët dhe riprovoni.</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Pasuesi</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Përpunojeni</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">E mëprashmja</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Fraza juaj e rikthimit</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Mbani shënim %1$d fjalët vijuese, sipas radhës. Depozitojeni listën tuaj në një vend të sigurt.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Sigurohuni se e keni dhënë saktë frazën tuaj.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Dërgo foto ekrani</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">U rimor</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frazë rikthimi e pavlefshme</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Sigurohuni se e keni dhënë saktë frazën dhe riprovoni.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Të kopjohet në të papastër?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Nëse zgjidhni ta depozitoni frazën tuaj të rikthimit si dixhitale, sigurohuni se depozitohet diku ku keni besim.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopjoje</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Ripohoni frazë rikthimi</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Jepni fjalët vijuese nga fraza juaj e rikthimit.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Fjalë %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Rishiheni frazën</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">U bë</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">U ripohua frazë rikthimi</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Jepni frazë rikthimi</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Jepni fjalë %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Fjalë %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__next">Pasuesi</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Fjalë e pavlefshme</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">E papastra u spastrua.</string>
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Shihni</string>
+  <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s ju dërgoi %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d njoftime pagesash të reja</string>
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">S’dërgohet dot pagesë</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Për të dërguar një pagesë te ky përdorues, atij i duhet të pranojë një kërkesë mesazhi nga ju. Dërgojini një mesazh që të krijohet kërkesë mesazhi.</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">Dërgoni një mesazh</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">S’keni grupe të përbashkët me këtë person. Për të shmangur mesazhe të padëshiruar, shqyrtojini me kujdes kërkesat, para se t’i miratoni.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Asnjë prej kontakteve tuaj, apo persona me të cilët bisedoni, s’gjenden në këtë grup. Për të shmangur mesazhe të padëshiruar, shqyrtojini me kujdes kërkesat, përpara se t’i miratoni.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Mbi kërkesa mesazhesh</string>
+  <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ja një paraparje e ngjyrës së fjalosjes.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ngjyra është e dukshme vetëm për ju.</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Përshkrim grupi</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Më i shpejtë, më pak të dhëna</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Lartësi</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Më i ngadaltë, më tepër të dhëna</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Cilësi fotografie</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Ftoni shokët tuaj</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Llogari</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Me kalimin e kohës, do të pyeteni më rrallë</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Kërko që PIN-i i Signal-it tuaj të riregjistrojë numrin e telefonit tuaj me Signal-in</string>
+  <string name="AccountSettingsFragment__change_phone_number">Ndryshoni numër telefoni</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Përdoreni këtë që të ndryshoni numrin tuaj të tanishëm të telefonit me një numër të ri. Këtë ndryshim s’mund ta zhbëni.\n\nPara se të vazhdoni, sigurohuni se numri juaj i ri mund të marrë SMS ose thirrje.</string>
+  <string name="ChangeNumberFragment__continue">Vazhdo</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Numri juaj i telefonit është ndryshuar.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ndrysho Numrin</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Numri juaj i vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Numër telefoni i vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Numri juaj i ri</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Numër telefoni i ri</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Duhet të jepni kod vendi të numrit tuaj të vjetër</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Duhet të jepni numrin tuaj të vjetër të telefonit</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Duhet të jepni kod vendi të numrit tuaj të ri</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Duhet të jepni numrin tuaj të ri të telefonit</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Ndrysho Numrin</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Po verifikohet %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Zgjidhja e captcha-s është e domosdoshme</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Ndryshoje numrin</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Ju ndan një hap nga ndryshimi i numrit tuaj të telefonit nga %1$s në %2$s.\n\nPara se të ecet më tej, ju lutemi, verifikoni se numri më poshtë është i saktë.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Modifiko numrin</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Ndryshim Numri Signal-i - Duhet Ndihmë me PIN për Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-et s’përputhen</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-i i përshoqëruar numrit tuaj të ri është i ndryshëm nga PIN-i përshoqëruar me numrin tuaj të vjetër. Doni të mbani PIN-i tuaj të vjetër, apo ta përditësoni?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Mbaj PIN-in e vjetër</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Përditësoni PIN-in</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Të mbahet PIN-i i vjetër?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Duket sikur provuat të ndryshonit numrin tuaj, por s’qemë në gjendje të përcaktojmë nëse kjo qe e suksesshme.\n\nPo rikontrollohet tani…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Ndryshim gjendjeje i verifikuar</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numri juaj është verifikuar si %1$s. Nëse ky s’është numri juaj i ri, ju lutemi, rinisni procesin e ndryshimit të numrit.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Ndryshim gjendjeje i paverifikuar</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">S’përcaktuam dot gjendjen e kërkesës tuaj për ndryshim numri.\n\n(Gabim: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Riprovo</string>
+  <string name="ChangeNumberLockActivity__leave">Braktise</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Parashtro regjistër diagnostikimi</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Tastierë</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Tasti Enter dërgon</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Mesazhe</string>
+  <string name="NotificationsSettingsFragment__calls">Thirrje</string>
+  <string name="NotificationsSettingsFragment__notify_when">Njoftomë kur…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakti vjen në Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">E bllokuar</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakte</string>
+  <string name="PrivacySettingsFragment__messaging">Shkëmbim Mesazhesh</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Zhdukje mesazhesh</string>
+  <string name="PrivacySettingsFragment__app_security">Siguri aplikacioni</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blloko foto ekrani te lista e të rejave dhe brenda aplikacionit</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Mesazhe dhe thirrje Signal, thirrjet kaloji përherë përmes relesh, dhe dërgues të vulosur</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Kohëmatës parazgjedhje për fjalosje të reja</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ujdisni një kohëmatës tretjeje mesazhesh për krejt fjalosjet e reja të nisura nga ju.</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Shfaq ikonë gjendjesh</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Shfaq një ikonë te hollësi mesazhesh, kur këta janë dorëzuar duke përdorur dërgues të vulosur.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Në u aktivizoftë, mesazhet e dërguar dhe të marrë në fjalosje të reja të nisura nga ju do të zhduken, pasi të jenë parë.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kur aktivizohet, mesazhe të rinj të dërguar dhe marrë në këtë fjalosje do të treten, pasi të jenë parë.</string>
+  <string name="ExpireTimerSettingsFragment__off">Off</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 javë</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 javë</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 ditë</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 orë</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 orë</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minuta</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekonda</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Kohë vetjake</string>
+  <string name="ExpireTimerSettingsFragment__set">Vëre</string>
+  <string name="ExpireTimerSettingsFragment__save">Ruaje</string>
+  <string name="CustomExpireTimerSelectorView__seconds">sekonda</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuta</string>
+  <string name="CustomExpireTimerSelectorView__hours">horë</string>
+  <string name="CustomExpireTimerSelectorView__days">ditë</string>
+  <string name="CustomExpireTimerSelectorView__weeks">javë</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Qendër asistence</string>
+  <string name="HelpSettingsFragment__contact_us">Lidhuni me ne</string>
+  <string name="HelpSettingsFragment__version">Version</string>
+  <string name="HelpSettingsFragment__debug_log">Regjistër diagnostikimesh</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Kushte &amp; Rregulla Privatësie</string>
+  <string name="HelpFragment__copyright_signal_messenger">Të drejta kopjimi Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Licencuar nën GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Thirrje</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Përdor ngjyra vetjake</string>
+  <string name="ChatColorSelectionFragment__chat_color">Ngjyrë fjalosjeje</string>
+  <string name="ChatColorSelectionFragment__edit">Përpunojeni</string>
+  <string name="ChatColorSelectionFragment__duplicate">E përsëdytur</string>
+  <string name="ChatColorSelectionFragment__delete">Fshije</string>
+  <string name="ChatColorSelectionFragment__delete_color">Fshije ngjyrën</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Kjo ngjyrë vetjake përdoret në 1%1$d fjalosje. Doni të fshihet për krejt fjalosjet?</item>
+    <item quantity="other">Kjo ngjyrë vetjake përdoret në %1$d fjalosje. Doni të fshihet për krejt fjalosjet?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Të fshihet ngjyrë fjalosjeje?</string>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">E plotë</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+  <string name="CustomChatColorCreatorFragment__hue">Ngjyresë</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Ngopje</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Ruaje</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Përpunoni ngjyrë</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Kjo ngjyrë vetjake përdoret në %1$d fjalosje. Doni të ruhen ndryshimet për krejt fjalosjet?</item>
+    <item quantity="other">Kjo ngjyrë vetjake përdoret në %1$d fjalosje. Doni të ruhen ndryshimet për krejt fjalosjet?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Përzgjedhësi i skajit të epërm</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Përzgjedhës i skajit të poshtëm</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Përshtatni reagime</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Prekeni që të zëvendësoni një emoxhi</string>
+  <string name="EditReactionsFragment__reset">Riktheje</string>
+  <string name="EditReactionsFragment_save">Ruaje</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Përputhje e automatizuar e ngjyrës me sfondin</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Tërhiqeni që të ndryshohet drejtimi i gradientit</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Ngjyra të Reja Fjalosjeje</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Kemi këmbyer ngjyrat e fjalosjes, për t’ju dhënë më tepër mundësi dhe për t’i bërë fjalosjet të lexohen më kollaj.</string>
+  <string name="ChatColorsMegaphone__appearance">Dukje</string>
+  <string name="ChatColorsMegaphone__not_now">Jo tani</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Shtoni një foto profili</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Zgjidhni një pamje dhe ngjyrë, ose përshtatni inicialet tuaja.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Jo tani</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Shtoni foto</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Hap kërkim emoji-sh</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Hap kërkim ngjitësish</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Hap kërkim gif-esh</string>
+  <string name="KeyboardPagerFragment_stickers">Ngjitës</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gif-e</string>
+  <string name="KeyboardPagerFragment_search_emoji">Kërkoni emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Mbrapsht te emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Spastro zë kërkimi</string>
+  <string name="KeyboardPagerFragment_search_giphy">Kërkoni GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Kërkoni ngjitës</string>
+  <string name="StickerSearchDialogFragment_no_results_found">S’u gjet përfundim</string>
+  <string name="EmojiSearchFragment__no_results_found">S’u gjet përfundim</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Zile e panjohur</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Dërgoni mesazh</string>
+  <string name="ConversationSettingsFragment__start_video_call">Nisni thirrje video</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Nisni thirrje audio</string>
+  <string name="ConversationSettingsFragment__message">Mesazh</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Audio</string>
+  <string name="ConversationSettingsFragment__call">Thirrje</string>
+  <string name="ConversationSettingsFragment__mute">Heshtoje</string>
+  <string name="ConversationSettingsFragment__muted">Pa zë</string>
+  <string name="ConversationSettingsFragment__search">Kërko</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Zhdukje mesazhesh</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Tinguj &amp; njoftime</string>
+  <string name="ConversationSettingsFragment__contact_details">Hollësi kontakti</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Shihni numër sigurie</string>
+  <string name="ConversationSettingsFragment__block">Bllokoje</string>
+  <string name="ConversationSettingsFragment__block_group">Blloko grup</string>
+  <string name="ConversationSettingsFragment__unblock">Zhbllokoje</string>
+  <string name="ConversationSettingsFragment__unblock_group">Zhbllokoje grupin</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Shtoje te grup</string>
+  <string name="ConversationSettingsFragment__see_all">Shihini krejt</string>
+  <string name="ConversationSettingsFragment__add_members">Shtoni anëtarë</string>
+  <string name="ConversationSettingsFragment__permissions">Leje</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Kërkesa &amp; ftesa</string>
+  <string name="ConversationSettingsFragment__group_link">Lidhje grupi</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Shtojeni si kontakt</string>
+  <string name="ConversationSettingsFragment__unmute">Çheshtoji</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Bisedë e heshtuar deri më %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Bisedë e heshtuar përgjithmonë</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numri i telefonit u kopjua në të papastër.</string>
+  <string name="ConversationSettingsFragment__phone_number">Numër telefoni</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Përpunoni të dhëna grupi</string>
+  <string name="PermissionsSettingsFragment__send_messages">Dërgo mesazhe</string>
+  <string name="PermissionsSettingsFragment__all_members">Krejt anëtarët</string>
+  <string name="PermissionsSettingsFragment__only_admins">Vetëm përgjegjësit</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Cilët mund të shtojnë anëtarë të rinj?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cilët mund të përpunojnë të dhënat mbi këtë grup?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Cilët mund të dërgojnë mesazhe?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Heshtoji njoftimet</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">S’është heshtuar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Heshtuar deri më %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Përmendje</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Njofto përherë</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Mos njofto</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Njoftime vetjake</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Përdorur së fundi</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Pagesë e re</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Mesazh i ri</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Kërkoni emër ose numër</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Ndale mesazhin zanor</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Ndryshoni shpejtësinë e mesazhit zanor</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pushoje mesazhin zanor</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Luaje mesazhin zanor</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Kalo te mesazh zanor</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Paraparje avatari</string>
+  <string name="AvatarPickerFragment__camera">Kamerë</string>
+  <string name="AvatarPickerFragment__take_a_picture">Bëni një foto</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Zgjidhni një foto</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
+  <string name="AvatarPickerFragment__save">Ruaje</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Përzgjidhni një avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Spastroje avatarin</string>
+  <string name="AvatarPickerFragment__edit">Përpunojeni</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">S’u arrit të ruhej avatari</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Paraparje</string>
+  <string name="TextAvatarCreationFragment__done">U bë</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
+  <string name="TextAvatarCreationFragment__color">Ngjyrë</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Përzgjidhni një ngjyrë</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Ngjituni</string>
+  <string name="MultiselectForwardFragment__forward_to">Përcillja</string>
+  <string name="MultiselectForwardFragment__add_a_message">Shtoni një mesazh</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Përcjellje më të shpejta</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesazhet e përcjellë tanimë dërgohen menjëherë.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Dërgo %1$d mesazh</item>
+    <item quantity="other">Dërgo %1$d mesazhe</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mesazhi u dërgua</item>
+    <item quantity="other">Mesazhet u dërguan</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Dështoi dërgimi i mesazhit</item>
+    <item quantity="other">Dështoi dërgimi i mesazheve</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">S’u përcoll dot mesazhi, ngaqë s’është më.</item>
+    <item quantity="other">S’u përcollën dot mesazhe, ngaqë s’janë më.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">U mbërrit në kufi</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Shtoni një mesazh</string>
+  <string name="MediaReviewFragment__add_a_reply">Shtoni një përgjigje</string>
+  <string name="MediaReviewFragment__send_to">Dërgoja</string>
+  <string name="ImageEditorHud__cancel">Anuloje</string>
+  <string name="ImageEditorHud__draw">Vizatoni</string>
+  <string name="ImageEditorHud__write_text">Shkruani tekst</string>
+  <string name="ImageEditorHud__add_a_sticker">Shtoni një ngjitës</string>
+  <string name="ImageEditorHud__blur">Turbulloje</string>
+  <string name="ImageEditorHud__done_editing">U mbarua së përpunuari</string>
+  <string name="ImageEditorHud__clear_all">Spastroji krejt</string>
+  <string name="ImageEditorHud__undo">Zhbëje</string>
+  <string name="MediaCountIndicatorButton__send">Dërgoje</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Prekeni që të hiqet</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Prekeni që të përzgjidhet</string>
+  <string name="MediaReviewImagePageFragment__discard">Hidhe tej</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Të hidhen tej ndryshimet?</string>
+  <string name="MediaReviewFragment__view_once_message">Mesazh për parje vetëm një herë</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Do të humbni çfarëdo ndryshimi që bëtë te kjo foto.</string>
+  <string name="ImageEditorHud__delete">Fshije</string>
+  <string name="CameraFragment__failed_to_open_camera">S’u arrit të hapet kamera</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Kaloni nga një stil teksti në tjetër</string>
   <!--EOF-->
 </resources>

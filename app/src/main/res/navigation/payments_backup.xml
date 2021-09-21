@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payments_backup"
+    app:startDestination="@id/paymentsRecoveryStart">
+
+    <fragment
+        android:id="@+id/paymentsRecoveryStart"
+        android:name="org.thoughtcrime.securesms.payments.backup.PaymentsRecoveryStartFragment"
+        android:label="payments_recovery_start"
+        tools:layout="@layout/payments_recovery_start_fragment">
+
+        <action
+            android:id="@+id/action_paymentsRecoveryStart_to_paymentsRecoveryPhrase"
+            app:destination="@id/paymentsRecoveryPhrase"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/paymentsHome" />
+
+        <action
+            android:id="@+id/action_paymentsRecoveryStart_to_paymentsRecoveryEntry"
+            app:destination="@id/paymentsRecoveryEntry"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsRecoveryStart_to_paymentsRecoveryPaste"
+            app:destination="@id/paymentsRecoveryPaste"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <argument
+            android:name="is_restore"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="finish_on_confirm"
+            android:defaultValue="false"
+            app:argType="boolean"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsRecoveryPhrase"
+        android:name="org.thoughtcrime.securesms.payments.backup.phrase.PaymentsRecoveryPhraseFragment"
+        android:label="payments_recovery_phrase"
+        tools:layout="@layout/payments_recovery_phrase_fragment">
+
+        <action
+            android:id="@+id/action_paymentsRecoveryPhrase_to_paymentsRecoveryPhraseConfirm"
+            app:destination="@id/paymentsRecoveryPhraseConfirm"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <argument
+            android:name="finish_on_confirm"
+            app:argType="boolean"
+            app:nullable="false" />
+
+        <argument
+            android:name="words"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsRecoveryEntry"
+        android:name="org.thoughtcrime.securesms.payments.backup.entry.PaymentsRecoveryEntryFragment"
+        android:label="payments_recovery_entry"
+        tools:layout="@layout/payments_recovery_entry_fragment">
+
+        <action
+            android:id="@+id/action_paymentsRecoveryEntry_to_paymentsRecoveryPhrase"
+            app:destination="@id/paymentsRecoveryPhrase"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsRecoveryPaste"
+        android:name="org.thoughtcrime.securesms.payments.backup.PaymentsRecoveryPasteFragment"
+        android:label="payments_recovery_paste"
+        tools:layout="@layout/payments_recovery_paste_fragment">
+
+        <action
+            android:id="@+id/action_paymentsRecoveryEntry_to_paymentsRecoveryPhrase"
+            app:destination="@id/paymentsRecoveryPhrase"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsRecoveryPhraseConfirm"
+        android:name="org.thoughtcrime.securesms.payments.backup.confirm.PaymentsRecoveryPhraseConfirmFragment"
+        android:label="payments_recovery_phrase_confirm"
+        tools:layout="@layout/payments_recovery_phrase_confirm_fragment">
+
+        <argument
+            android:name="finish_on_confirm"
+            app:argType="boolean"
+            app:nullable="false" />
+    </fragment>
+
+</navigation>

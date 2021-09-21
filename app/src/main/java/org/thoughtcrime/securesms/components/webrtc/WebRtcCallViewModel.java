@@ -2,21 +2,25 @@ package org.thoughtcrime.securesms.components.webrtc;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Pair;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
@@ -27,6 +31,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -38,46 +43,65 @@ import java.util.Objects;
 
 public class WebRtcCallViewModel extends ViewModel {
 
-  private final MutableLiveData<Boolean>                       microphoneEnabled         = new MutableLiveData<>(true);
-  private final MutableLiveData<Boolean>                       isInPipMode               = new MutableLiveData<>(false);
-  private final MutableLiveData<WebRtcControls>                webRtcControls            = new MutableLiveData<>(WebRtcControls.NONE);
-  private final LiveData<WebRtcControls>                       realWebRtcControls        = LiveDataUtil.combineLatest(isInPipMode, webRtcControls, this::getRealWebRtcControls);
-  private final SingleLiveEvent<Event>                         events                    = new SingleLiveEvent<Event>();
-  private final MutableLiveData<Long>                          elapsed                   = new MutableLiveData<>(-1L);
-  private final MutableLiveData<LiveRecipient>                 liveRecipient             = new MutableLiveData<>(Recipient.UNKNOWN.live());
-  private final MutableLiveData<CallParticipantsState>         participantsState         = new MutableLiveData<>(CallParticipantsState.STARTING_STATE);
-  private final SingleLiveEvent<CallParticipantListUpdate>     callParticipantListUpdate = new SingleLiveEvent<>();
-  private final MutableLiveData<Collection<RecipientId>>       identityChangedRecipients = new MutableLiveData<>(Collections.emptyList());
-  private final LiveData<SafetyNumberChangeEvent>              safetyNumberChangeEvent   = LiveDataUtil.combineLatest(isInPipMode, identityChangedRecipients, SafetyNumberChangeEvent::new);
-  private final LiveData<Recipient>                            groupRecipient            = LiveDataUtil.filter(Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData), Recipient::isActiveGroup);
-  private final LiveData<List<GroupMemberEntry.FullMember>>    groupMembers              = LiveDataUtil.skip(Transformations.switchMap(groupRecipient, r -> Transformations.distinctUntilChanged(new LiveGroup(r.requireGroupId()).getFullMembers())), 1);
-  private final LiveData<Boolean>                              shouldShowSpeakerHint     = Transformations.map(participantsState, this::shouldShowSpeakerHint);
-  private final LiveData<Orientation>                          orientation;
+  private final MutableLiveData<Boolean>                      microphoneEnabled         = new MutableLiveData<>(true);
+  private final MutableLiveData<Boolean>                      isInPipMode               = new MutableLiveData<>(false);
+  private final MutableLiveData<WebRtcControls>               webRtcControls            = new MutableLiveData<>(WebRtcControls.NONE);
+  private final MutableLiveData<WebRtcControls.FoldableState> foldableState             = new MutableLiveData<>(WebRtcControls.FoldableState.flat());
+  private final LiveData<WebRtcControls>                      controlsWithFoldableState = LiveDataUtil.combineLatest(foldableState, webRtcControls, this::updateControlsFoldableState);
+  private final LiveData<WebRtcControls>                      realWebRtcControls        = LiveDataUtil.combineLatest(isInPipMode, controlsWithFoldableState, this::getRealWebRtcControls);
+  private final SingleLiveEvent<Event>                        events                    = new SingleLiveEvent<>();
+  private final MutableLiveData<Long>                         elapsed                   = new MutableLiveData<>(-1L);
+  private final MutableLiveData<LiveRecipient>                liveRecipient             = new MutableLiveData<>(Recipient.UNKNOWN.live());
+  private final DefaultValueLiveData<CallParticipantsState>   participantsState         = new DefaultValueLiveData<>(CallParticipantsState.STARTING_STATE);
+  private final SingleLiveEvent<CallParticipantListUpdate>    callParticipantListUpdate = new SingleLiveEvent<>();
+  private final MutableLiveData<Collection<RecipientId>>      identityChangedRecipients = new MutableLiveData<>(Collections.emptyList());
+  private final LiveData<SafetyNumberChangeEvent>             safetyNumberChangeEvent   = LiveDataUtil.combineLatest(isInPipMode, identityChangedRecipients, SafetyNumberChangeEvent::new);
+  private final LiveData<Recipient>                           groupRecipient            = LiveDataUtil.filter(Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData), Recipient::isActiveGroup);
+  private final LiveData<List<GroupMemberEntry.FullMember>>   groupMembers              = Transformations.switchMap(groupRecipient, r -> Transformations.distinctUntilChanged(new LiveGroup(r.requireGroupId()).getFullMembers()));
+  private final LiveData<List<GroupMemberEntry.FullMember>>   groupMembersChanged       = LiveDataUtil.skip(groupMembers, 1);
+  private final LiveData<Integer>                             groupMemberCount          = Transformations.map(groupMembers, List::size);
+  private final LiveData<Boolean>                             shouldShowSpeakerHint     = Transformations.map(participantsState, this::shouldShowSpeakerHint);
+  private final LiveData<Orientation>                         orientation;
+  private final MutableLiveData<Boolean>                      isLandscapeEnabled        = new MutableLiveData<>();
+  private final LiveData<Integer>                             controlsRotation;
+  private final Observer<List<GroupMemberEntry.FullMember>>   groupMemberStateUpdater   = m -> participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), m));
+
+  private final Handler  elapsedTimeHandler      = new Handler(Looper.getMainLooper());
+  private final Runnable elapsedTimeRunnable     = this::handleTick;
+  private final Runnable stopOutgoingRingingMode = this::stopOutgoingRingingMode;
 
   private boolean               canDisplayTooltipIfNeeded = true;
   private boolean               hasEnabledLocalVideo      = false;
+  private boolean               wasInOutgoingRingingMode  = false;
   private long                  callConnectedTime         = -1;
-  private Handler               elapsedTimeHandler        = new Handler(Looper.getMainLooper());
   private boolean               answerWithVideoAvailable  = false;
-  private Runnable              elapsedTimeRunnable       = this::handleTick;
   private boolean               canEnterPipMode           = false;
-  private List<CallParticipant> previousParticipantsList = Collections.emptyList();
-  private boolean               callStarting             = false;
+  private List<CallParticipant> previousParticipantsList  = Collections.emptyList();
+  private boolean               callStarting              = false;
+  private boolean               switchOnFirstScreenShare  = true;
+  private boolean               showScreenShareTip        = true;
 
   private final WebRtcCallRepository repository = new WebRtcCallRepository(ApplicationDependencies.getApplication());
 
   private WebRtcCallViewModel(@NonNull DeviceOrientationMonitor deviceOrientationMonitor) {
-    orientation = LiveDataUtil.combineLatest(deviceOrientationMonitor.getOrientation(), webRtcControls, (deviceOrientation, controls) -> {
-      if (controls.canRotateControls()) {
-        return deviceOrientation;
-      } else {
-        return Orientation.PORTRAIT_BOTTOM_EDGE;
-      }
-    });
+    orientation      = deviceOrientationMonitor.getOrientation();
+    controlsRotation = LiveDataUtil.combineLatest(Transformations.distinctUntilChanged(isLandscapeEnabled),
+                                                  Transformations.distinctUntilChanged(orientation),
+                                                  this::resolveRotation);
+
+    groupMembers.observeForever(groupMemberStateUpdater);
+  }
+
+  public LiveData<Integer> getControlsRotation() {
+    return controlsRotation;
   }
 
   public LiveData<Orientation> getOrientation() {
     return Transformations.distinctUntilChanged(orientation);
+  }
+
+  public LiveData<Pair<Orientation, Boolean>> getOrientationAndLandscapeEnabled() {
+    return LiveDataUtil.combineLatest(orientation, isLandscapeEnabled, Pair::new);
   }
 
   public LiveData<Boolean> getMicrophoneEnabled() {
@@ -94,6 +118,12 @@ public class WebRtcCallViewModel extends ViewModel {
 
   public void setRecipient(@NonNull Recipient recipient) {
     liveRecipient.setValue(recipient.live());
+  }
+
+  public void setFoldableState(@NonNull WebRtcControls.FoldableState foldableState) {
+    this.foldableState.postValue(foldableState);
+
+    ThreadUtil.runOnMain(() -> participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), foldableState)));
   }
 
   public LiveData<Event> getEvents() {
@@ -116,8 +146,12 @@ public class WebRtcCallViewModel extends ViewModel {
     return safetyNumberChangeEvent;
   }
 
-  public LiveData<List<GroupMemberEntry.FullMember>> getGroupMembers() {
-    return groupMembers;
+  public LiveData<List<GroupMemberEntry.FullMember>> getGroupMembersChanged() {
+    return groupMembersChanged;
+  }
+
+  public LiveData<Integer> getGroupMemberCount() {
+    return groupMemberCount;
   }
 
   public LiveData<Boolean> shouldShowSpeakerHint() {
@@ -140,8 +174,11 @@ public class WebRtcCallViewModel extends ViewModel {
   public void setIsInPipMode(boolean isInPipMode) {
     this.isInPipMode.setValue(isInPipMode);
 
-    //noinspection ConstantConditions
     participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), isInPipMode));
+  }
+
+  public void setIsLandscapeEnabled(boolean isLandscapeEnabled) {
+    this.isLandscapeEnabled.postValue(isLandscapeEnabled);
   }
 
   @MainThread
@@ -150,7 +187,16 @@ public class WebRtcCallViewModel extends ViewModel {
       SignalStore.tooltips().markGroupCallSpeakerViewSeen();
     }
 
-    //noinspection ConstantConditions
+    CallParticipantsState state = participantsState.getValue();
+    if (showScreenShareTip &&
+        state.getFocusedParticipant().isScreenSharing() &&
+        state.isViewingFocusedParticipant() &&
+        page == CallParticipantsState.SelectedPage.GRID)
+    {
+      showScreenShareTip = false;
+      events.setValue(new Event.ShowSwipeToSpeakerHint());
+    }
+
     participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), page));
   }
 
@@ -179,8 +225,15 @@ public class WebRtcCallViewModel extends ViewModel {
 
     microphoneEnabled.setValue(localParticipant.isMicrophoneEnabled());
 
-    //noinspection ConstantConditions
-    participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), webRtcViewModel, enableVideo));
+    CallParticipantsState state            = participantsState.getValue();
+    boolean               wasScreenSharing = state.getFocusedParticipant().isScreenSharing();
+    CallParticipantsState newState         = CallParticipantsState.update(state, webRtcViewModel, enableVideo);
+
+    participantsState.setValue(newState);
+    if (switchOnFirstScreenShare && !wasScreenSharing && newState.getFocusedParticipant().isScreenSharing()) {
+      switchOnFirstScreenShare = false;
+      events.setValue(new Event.SwitchToSpeaker());
+    }
 
     if (webRtcViewModel.getGroupState().isConnected()) {
       if (!containsPlaceholders(previousParticipantsList)) {
@@ -205,12 +258,20 @@ public class WebRtcCallViewModel extends ViewModel {
                          webRtcViewModel.getRemoteDevicesCount().orElse(0),
                          webRtcViewModel.getParticipantLimit());
 
-    if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
-      callConnectedTime = webRtcViewModel.getCallConnectedTime();
-      startTimer();
-    } else if (webRtcViewModel.getState() != WebRtcViewModel.State.CALL_CONNECTED || webRtcViewModel.getGroupState().isNotIdleOrConnected()) {
+    if (newState.isInOutgoingRingingMode()) {
       cancelTimer();
-      callConnectedTime = -1;
+      if (!wasInOutgoingRingingMode) {
+        elapsedTimeHandler.postDelayed(stopOutgoingRingingMode, CallParticipantsState.MAX_OUTGOING_GROUP_RING_DURATION);
+      }
+      wasInOutgoingRingingMode = true;
+    } else {
+      if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
+        callConnectedTime = wasInOutgoingRingingMode ? System.currentTimeMillis() : webRtcViewModel.getCallConnectedTime();
+        startTimer();
+      } else if (webRtcViewModel.getState() != WebRtcViewModel.State.CALL_CONNECTED || webRtcViewModel.getGroupState().isNotIdleOrConnected()) {
+        cancelTimer();
+        callConnectedTime = -1;
+      }
     }
 
     if (localParticipant.getCameraState().isEnabled()) {
@@ -223,6 +284,23 @@ public class WebRtcCallViewModel extends ViewModel {
     if (canDisplayTooltipIfNeeded && webRtcViewModel.isRemoteVideoEnabled() && !hasEnabledLocalVideo) {
       canDisplayTooltipIfNeeded = false;
       events.setValue(new Event.ShowVideoTooltip());
+    }
+  }
+
+  private int resolveRotation(boolean isLandscapeEnabled, @NonNull Orientation orientation) {
+    if (isLandscapeEnabled) {
+      return 0;
+    }
+
+    switch (orientation) {
+      case LANDSCAPE_LEFT_EDGE:
+        return 90;
+      case LANDSCAPE_RIGHT_EDGE:
+        return -90;
+      case PORTRAIT_BOTTOM_EDGE:
+        return 0;
+      default:
+        throw new AssertionError();
     }
   }
 
@@ -301,7 +379,12 @@ public class WebRtcCallViewModel extends ViewModel {
                                                callState,
                                                groupCallState,
                                                audioOutput,
-                                               participantLimit));
+                                               participantLimit,
+                                               WebRtcControls.FoldableState.flat()));
+  }
+
+  private @NonNull WebRtcControls updateControlsFoldableState(@NonNull WebRtcControls.FoldableState foldableState, @NonNull WebRtcControls controls) {
+    return controls.withFoldableState(foldableState);
   }
 
   private @NonNull WebRtcControls getRealWebRtcControls(boolean isInPipMode, @NonNull WebRtcControls controls) {
@@ -309,16 +392,24 @@ public class WebRtcCallViewModel extends ViewModel {
   }
 
   private boolean shouldShowSpeakerHint(@NonNull CallParticipantsState state) {
-    return !state.isInPipMode()                        &&
+    return !state.isInPipMode() &&
            state.getRemoteDevicesCount().orElse(0) > 1 &&
-           state.getGroupCallState().isConnected()     &&
+           state.getGroupCallState().isConnected() &&
            !SignalStore.tooltips().hasSeenGroupCallSpeakerView();
   }
 
   private void startTimer() {
     cancelTimer();
+    elapsedTimeHandler.removeCallbacks(stopOutgoingRingingMode);
 
     elapsedTimeHandler.post(elapsedTimeRunnable);
+  }
+
+  private void stopOutgoingRingingMode() {
+    if (callConnectedTime == -1) {
+      callConnectedTime = System.currentTimeMillis();
+      startTimer();
+    }
   }
 
   private void handleTick() {
@@ -341,6 +432,7 @@ public class WebRtcCallViewModel extends ViewModel {
   protected void onCleared() {
     super.onCleared();
     cancelTimer();
+    groupMembers.removeObserver(groupMemberStateUpdater);
   }
 
   public void startCall(boolean isVideoCall) {
@@ -349,7 +441,7 @@ public class WebRtcCallViewModel extends ViewModel {
     if (recipient.isGroup()) {
       repository.getIdentityRecords(recipient, identityRecords -> {
         if (identityRecords.isUntrusted(false) || identityRecords.isUnverified(false)) {
-          List<IdentityDatabase.IdentityRecord> records = identityRecords.getUnverifiedRecords();
+          List<IdentityRecord> records = identityRecords.getUnverifiedRecords();
           records.addAll(identityRecords.getUntrustedRecords());
           events.postValue(new Event.ShowGroupCallSafetyNumberChange(records));
         } else {
@@ -384,15 +476,21 @@ public class WebRtcCallViewModel extends ViewModel {
     }
 
     public static class ShowGroupCallSafetyNumberChange extends Event {
-      private final List<IdentityDatabase.IdentityRecord> identityRecords;
+      private final List<IdentityRecord> identityRecords;
 
-      public ShowGroupCallSafetyNumberChange(@NonNull List<IdentityDatabase.IdentityRecord> identityRecords) {
+      public ShowGroupCallSafetyNumberChange(@NonNull List<IdentityRecord> identityRecords) {
         this.identityRecords = identityRecords;
       }
 
-      public @NonNull List<IdentityDatabase.IdentityRecord> getIdentityRecords() {
+      public @NonNull List<IdentityRecord> getIdentityRecords() {
         return identityRecords;
       }
+    }
+
+    public static class SwitchToSpeaker extends Event {
+    }
+
+    public static class ShowSwipeToSpeakerHint extends Event {
     }
   }
 

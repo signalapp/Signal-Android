@@ -5,7 +5,8 @@
     <dimen name="default_custom_keyboard_size">220dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
-    <dimen name="emoji_drawer_item_width">48dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_landscape_bubble">56dp</dimen>
+    <dimen name="emoji_drawer_item_width">46dp</dimen>
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="transport_selection_popup_width">200sp</dimen>
@@ -13,6 +14,7 @@
     <dimen name="transport_selection_popup_yoff">2dp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
+    <dimen name="keyboard_toolbar_height">44dp</dimen>
 
     <dimen name="album_total_width">210dp</dimen>
     <dimen name="album_2_total_height">105dp</dimen>
@@ -33,11 +35,15 @@
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="message_bubble_horizontal_padding">12dp</dimen>
-    <dimen name="message_bubble_top_padding">6dp</dimen>
+    <dimen name="message_bubble_top_padding">7dp</dimen>
+    <dimen name="message_bubble_top_image_margin">4dp</dimen>
+    <dimen name="message_bubble_text_only_top_margin">4dp</dimen>
     <dimen name="message_bubble_top_padding_audio">12dp</dimen>
     <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
     <dimen name="message_bubble_edge_margin">32dp</dimen>
-    <dimen name="message_bubble_bottom_padding">8dp</dimen>
+    <dimen name="message_bubble_bottom_padding">7dp</dimen>
+    <dimen name="message_bubble_collapsed_bottom_padding">7dp</dimen>
+    <dimen name="message_bubble_revealable_padding">12dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
     <dimen name="media_bubble_default_dimens">210dp</dimen>
@@ -47,7 +53,10 @@
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
-    <dimen name="message_audio_width">242dp</dimen>
+    <dimen name="media_bubble_gif_width">240dp</dimen>
+    <dimen name="message_audio_width">200dp</dimen>
+    <dimen name="message_bubble_default_footer_bottom_margin">-4dp</dimen>
+    <dimen name="message_bubble_same_line_footer_bottom_margin">-24dp</dimen>
 
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
@@ -81,11 +90,12 @@
 
     <dimen name="mention_corner_radius">4dp</dimen>
 
-    <integer name="media_overview_cols">3</integer>
+    <integer name="media_overview_cols">4</integer>
+    <dimen name="media_overview_detail_item_height">72dp</dimen>
     <dimen name="message_details_table_row_pad">8dp</dimen>
 
-    <dimen name="sticker_page_item_padding">8dp</dimen>
-    <dimen name="sticker_page_item_divisor">88dp</dimen>
+    <dimen name="sticker_page_item_padding">16dp</dimen>
+    <dimen name="sticker_page_item_width">72dp</dimen>
     <dimen name="sticker_page_item_multiplier">8dp</dimen>
 
     <dimen name="sticker_management_horizontal_margin">16dp</dimen>
@@ -98,8 +108,9 @@
     <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
-    <dimen name="unread_count_bubble_radius">13sp</dimen>
-    <dimen name="unread_count_bubble_diameter">26sp</dimen>
+    <dimen name="unread_count_bubble_radius">12.5dp</dimen>
+    <dimen name="unread_count_bubble_diameter">25dp</dimen>
+    <dimen name="unread_count_bubble_barrier_margin">4dp</dimen>
 
     <dimen name="insights_modal_title_margin_top">41dp</dimen>
     <dimen name="insights_modal_description_margin_top">12dp</dimen>
@@ -164,11 +175,36 @@
     <dimen name="review_card_icon_arc_radius">14.5dp</dimen>
 
     <dimen name="conversation_update_vertical_margin">4dp</dimen>
-    <dimen name="conversation_update_vertical_padding">5dp</dimen>
-    <dimen name="conversation_update_vertical_padding_collapsed">2dp</dimen>
+    <dimen name="conversation_update_vertical_padding">8dp</dimen>
+    <dimen name="conversation_update_vertical_padding_collapsed">4dp</dimen>
+    <dimen name="conversation_update_horizontal_padding">8dp</dimen>
 
     <dimen name="transfer_top_padding">64dp</dimen>
     <dimen name="transfer_split_top_padding">32dp</dimen>
     <dimen name="transfer_item_spacing">24dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="create_payment_key_size">70dp</dimen>
+    <dimen name="create_payment_key_bottom_row_margin_bottom">33dp</dimen>
+    <dimen name="create_payment_key_top_row_margin_top">11dp</dimen>
+
+    <dimen name="payment_recovery_phrase_adapter_margin">49dp</dimen>
+    <dimen name="payment_recovery_phrase_outline_margin">32dp</dimen>
+
+    <dimen name="dsl_settings_gutter">16dp</dimen>
+    <dimen name="media_overview_toggle_gutter">2dp</dimen>
+    <dimen name="wallpaper_selection_gutter">8dp</dimen>
+
+    <dimen name="chat_colors_preview_bubble_max_width">240dp</dimen>
+
+    <dimen name="conversation_settings_button_strip_spacing">16dp</dimen>
+    <dimen name="conversation_settings_button_strip_button_size">48dp</dimen>
+    <dimen name="conversation_settings_button_strip_button_padding">12dp</dimen>
+
+    <dimen name="avatar_picker_image_width">100dp</dimen>
+
+    <dimen name="toolbar_avatar_size">28dp</dimen>
+    <dimen name="toolbar_avatar_margin">26dp</dimen>
+    <dimen name="conversation_list_avatar_size">48dp</dimen>
+
+    <dimen name="verify_identity_vertical_margin">16dp</dimen>
 </resources>

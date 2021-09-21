@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
@@ -23,20 +26,25 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
+public class ContactSelectionListItem extends ConstraintLayout implements RecipientForeverObserver {
 
   @SuppressWarnings("unused")
-  private static final String TAG = ContactSelectionListItem.class.getSimpleName();
+  private static final String TAG = Log.tag(ContactSelectionListItem.class);
 
   private AvatarImageView contactPhotoImage;
   private TextView        numberView;
   private FromTextView    nameView;
   private TextView        labelView;
   private CheckBox        checkBox;
+  private View            smsTag;
 
   private String        number;
   private String        chipName;
   private int           contactType;
+  private String        contactName;
+  private String        contactNumber;
+  private String        contactLabel;
+  private String        contactAbout;
   private LiveRecipient recipient;
   private GlideRequests glideRequests;
 
@@ -56,6 +64,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.labelView         = findViewById(R.id.label);
     this.nameView          = findViewById(R.id.name);
     this.checkBox          = findViewById(R.id.check_box);
+    this.smsTag            = findViewById(R.id.sms_tag);
 
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
@@ -67,12 +76,15 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
                   String number,
                   String label,
                   String about,
-                  int color,
                   boolean checkboxVisible)
   {
     this.glideRequests = glideRequests;
     this.number        = number;
     this.contactType   = type;
+    this.contactName   = name;
+    this.contactNumber = number;
+    this.contactLabel  = label;
+    this.contactAbout  = about;
 
     if (type == ContactRepository.NEW_PHONE_TYPE || type == ContactRepository.NEW_USERNAME_TYPE) {
       this.recipient = null;
@@ -80,22 +92,48 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     } else if (recipientId != null) {
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);
-      name = this.recipient.get().getDisplayName(getContext());
     }
 
     Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
 
-    this.nameView.setTextColor(color);
-    this.numberView.setTextColor(color);
-    this.contactPhotoImage.setAvatar(glideRequests, recipientSnapshot, false);
+    if (recipientSnapshot != null && !recipientSnapshot.isResolving()) {
+      contactName = recipientSnapshot.getDisplayName(getContext());
+      name        = contactName;
+    } else if (recipient != null) {
+      name = "";
+    }
 
-    setText(recipientSnapshot, type, name, number, label, about);
+    if (recipientSnapshot == null || recipientSnapshot.isResolving() || recipientSnapshot.isRegistered()) {
+      smsTag.setVisibility(GONE);
+    } else {
+      smsTag.setVisibility(VISIBLE);
+    }
+
+    if (recipientSnapshot == null || recipientSnapshot.isResolving()) {
+      this.contactPhotoImage.setAvatar(glideRequests, null, false);
+      setText(null, type, name, number, label, about);
+    } else {
+      this.contactPhotoImage.setAvatar(glideRequests, recipientSnapshot, false);
+      setText(recipientSnapshot, type, name, number, label, about);
+    }
 
     this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
   }
 
-  public void setChecked(boolean selected) {
-    this.checkBox.setChecked(selected);
+  public void setChecked(boolean selected, boolean animate) {
+    boolean wasSelected = checkBox.isChecked();
+
+    if (wasSelected != selected) {
+      checkBox.setChecked(selected);
+
+      float alpha = selected ? 1f : 0f;
+      if (animate) {
+        checkBox.animate().setDuration(250L).alpha(alpha);
+      } else {
+        checkBox.animate().cancel();
+        checkBox.setAlpha(alpha);
+      }
+    }
   }
 
   @Override
@@ -133,7 +171,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     } else {
       this.numberView.setText(!Util.isEmpty(about) ? about : number);
       this.nameView.setEnabled(true);
-      this.labelView.setText(label != null && !label.equals("null") ? label : "");
+      this.labelView.setText(label != null && !label.equals("null") ? getResources().getString(R.string.ContactSelectionListItem__dot_s, label) : "");
       this.labelView.setVisibility(View.VISIBLE);
     }
 
@@ -176,10 +214,23 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
-    contactPhotoImage.setAvatar(glideRequests, recipient, false);
-    nameView.setText(recipient);
-    if (recipient.isGroup()) {
-      numberView.setText(getGroupMemberCount(recipient));
+    if (this.recipient != null && this.recipient.getId().equals(recipient.getId())) {
+      contactName   = recipient.getDisplayName(getContext());
+      contactAbout  = recipient.getCombinedAboutAndEmoji();
+
+      if (recipient.isGroup() && recipient.getGroupId().isPresent()) {
+        contactNumber = recipient.getGroupId().get().toString();
+      } else if (recipient.hasE164()) {
+        contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+      } else {
+        contactNumber = recipient.getEmail().or("");
+      }
+
+      contactPhotoImage.setAvatar(glideRequests, recipient, false);
+      setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
+      smsTag.setVisibility(recipient.isRegistered() ? GONE : VISIBLE);
+    } else {
+      Log.w(TAG, "Bad change! Local recipient doesn't match. Ignoring. Local: " + (this.recipient == null ? "null" : this.recipient.getId()) + ", Changed: " + recipient.getId());
     }
   }
 }

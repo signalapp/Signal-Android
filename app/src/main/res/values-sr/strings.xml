@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">ПИН је искључен</string>
   <string name="ApplicationPreferencesActivity_hide">Сакриј</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Сакрити подсетник?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Сними фразу опоравка за уплату</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Сними фразу</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Пре него што онемогућите свој PIN, морате да снимите фразу за опоравак уплате да бисте осигурали да можете да вратите свој налог за уплате.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минут</item>
@@ -50,14 +53,15 @@
   <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
   <string name="DraftDatabase_Draft_location_snippet">(локација)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(одговор)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Гласовна порука)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Галерија</string>
-  <string name="AttachmentKeyboard_gif">ГИФ</string>
-  <string name="AttachmentKeyboard_file">Фајл</string>
+  <string name="AttachmentKeyboard_file">Датотека</string>
   <string name="AttachmentKeyboard_contact">Контакт</string>
   <string name="AttachmentKeyboard_location">Локација</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Сигналу су потребне дозволе да прикаже ваше слике и видео.</string>
   <string name="AttachmentKeyboard_give_access">Дaj приступ</string>
+  <string name="AttachmentKeyboard_payment">Уплата</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Нема апликације за избор медијума.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal захтева дозовле за меморију како би могао слати фотографије, видео снимке или аудио снимке, али су трајно забрањене. Молимо Вас идите у мени за подешавања и дозволите приступ меморији.</string>
@@ -90,7 +94,7 @@
   <string name="BlockUnblockDialog_unblock_s">Одблокирати контакт %1$s?</string>
   <string name="BlockUnblockDialog_block">Блокирај</string>
   <string name="BlockUnblockDialog_block_and_leave">Блокирај и напусти</string>
-  <string name="BlockUnblockDialog_block_and_delete">Блокирај и избриши</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Пријавити нежељену пошту и блокирати</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Данас</string>
   <string name="BucketedThreadMedia_Yesterday">Јуче</string>
@@ -114,7 +118,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Можете користити дугме камере за слање фотографија само Signal контактима.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете наћи оно што тражите?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Позовите контакт да се прикључи апликацији Signal</string>
-  <string name="CameraContacts__menu_search">Тражи</string>
+  <string name="CameraContacts__menu_search">Претрага</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Уклони</string>
   <string name="ClearProfileActivity_remove_profile_photo">Да уклоним профилну слику?</string>
@@ -166,6 +170,7 @@
   <string name="ConversationItem_error_network_not_delivered">Слање није успело</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Примљена порука размене кључева, тапните за обраду.</string>
   <string name="ConversationItem_group_action_left">%1$s напусти групу.</string>
+  <string name="ConversationItem_send_paused">Слање паузирано</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Слање није успело, тапните за необезбеђену одступницу</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Да одступим на нешифровани СМС?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да одступим на нешифровани ММС?</string>
@@ -204,6 +209,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Прилог прекорачује ограничење величине за тип поруке коју шаљете.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не могу да снимим звук!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не можете да шаљете поруке овој групи зато што више нисте члан.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Само %1$s може да шаље поруке.</string>
+  <string name="ConversationActivity_admins">админи</string>
+  <string name="ConversationActivity_message_an_admin">Послати поруку админу</string>
+  <string name="ConversationActivity_cant_start_group_call">Не може да се покрене групни позив</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Само админи ове групе могу започети позив.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нема апликације за руковање овом везом на вашем уређају.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш захтев за придруживање је послат администратору групе. Бићете обавештени када администратори предузму мере.</string>
   <string name="ConversationActivity_cancel_request">Откажи захтев</string>
@@ -235,6 +245,8 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Сада више опција у „Поставке групе“</string>
   <string name="ConversationActivity_join">Придружи се</string>
   <string name="ConversationActivity_full">Пуно</string>
+  <string name="ConversationActivity_error_sending_media">Грешка приликом слања медија</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Пријављено као нежељена пошта и блокирано.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитана порука</item>
@@ -325,8 +337,11 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Потврђен</string>
   <string name="ConversationTitleView_you">Ви</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Неки контакти не могу бити у застарелим групама.</string>
+  <string name="CreateGroupActivity__select_members">Одаберите чланове</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профил</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Грешка постављања профилне слике</string>
@@ -340,6 +355,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Икона за враћање из резервне копије</string>
   <string name="ChooseBackupFragment__choose_backup">Одабери резервну копију</string>
   <string name="ChooseBackupFragment__learn_more">Сазнај више</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Није доступан претраживач датотека.</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Враћање је завршено</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Да бисте наставили да користите резервне копије, одаберите фасциклу. Нове резервне копије ће се чувати на овој локацији.</string>
@@ -418,6 +434,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Вишеструки прилози су само подржани за слике и видео снимке</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Немате дозволу за слање овој групи</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајни неуспех комуникације Signal-a!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal није успео да се пријави на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко Поставке &gt; Напредно.</string>
@@ -434,6 +451,7 @@
   <string name="AddToGroupActivity_add_to_groups">Додај у групе</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ова особа не може да се дода у застареле групе.</string>
   <string name="AddToGroupActivity_add">Додај</string>
+  <string name="AddToGroupActivity_add_to_a_group">Додај у групу</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Изабери новог администратора</string>
   <string name="ChooseNewAdminActivity_done">Готово</string>
@@ -485,10 +503,6 @@
     <item quantity="few">Овај члан не може да се придружи новим групама и биће уклоњен из групе:</item>
     <item quantity="other">Ови чланови не могу да се придруже новим групама и биће уклоњени из групе:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Да бисте приступили новим функцијама попут @помињања и администратори, надоградите ову групу.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Не сада</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надогради групу</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d члана није могуће додати у групу. Да ли желите да га додате сада?</item>
@@ -578,12 +592,14 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ова особа не може да се дода у застареле групе.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ова особа се не може додати у огласне групе.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Додати контакт „%1$s“ у групу „%2$s“?</item>
     <item quantity="few">Додати %3$d члана у групу „%2$s“?</item>
     <item quantity="other">Додати %3$d чланова у групу „%2$s“?</item>
   </plurals>
   <string name="AddMembersActivity__add">Додај</string>
+  <string name="AddMembersActivity__add_members">Додај чланове</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Дајте назив групи</string>
   <string name="AddGroupDetailsFragment__create_group">Направи групу</string>
@@ -636,8 +652,9 @@
   <string name="ManageGroupActivity_mute_notifications">Утишај обавештења</string>
   <string name="ManageGroupActivity_custom_notifications">Прилагођена обавештења</string>
   <string name="ManageGroupActivity_mentions">Помињања</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Позадина за ћаскање</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Боја ћаскања и позадина</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
+  <string name="ManageGroupActivity_always">Увек</string>
   <string name="ManageGroupActivity_off">Искључено</string>
   <string name="ManageGroupActivity_on">Укључено</string>
   <string name="ManageGroupActivity_view_all_members">Прикажи све чланове</string>
@@ -652,6 +669,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Само администратори могу да онемогуће везу за дељење групе.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Немате дозволу да урадите ово.</string>
   <string name="ManageGroupActivity_not_capable">Неко кога сте додали не подржава нове групе и мора да ажурира Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Неко кога сте додали не подржава огласне групе и треба да ажурира Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ажурирање групе није успело</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ви нисте члан групе</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ажурирање групе није успело, покушајте касније</string>
@@ -664,6 +682,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">надогради ову групу.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ово је несигурна ММС група. Да бисте приватно ћаскали, позовите своје контакте у Signal.</string>
   <string name="ManageGroupActivity_invite_now">Позови сада</string>
+  <string name="ManageGroupActivity_more">више</string>
+  <string name="ManageGroupActivity_add_group_description">Додај опис групи…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Обавести ме за помињања</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Желите ли да примате обавештења када сте поменути у утишаним ћаскањима?</string>
@@ -678,32 +698,12 @@
   <string name="ManageProfileFragment_your_username">Твоје корисничко име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Неуспех постављења аватара</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Додај у системске контакте</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ова особа је у вашим контактима</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Самонестајуће поруке</string>
-  <string name="ManageRecipientActivity_chat_color">Боја ћаскања</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Позадина за ћаскање</string>
-  <string name="ManageRecipientActivity_block">Блокирај</string>
-  <string name="ManageRecipientActivity_unblock">Одблокирај</string>
-  <string name="ManageRecipientActivity_view_safety_number">Прикажи сигурносни број</string>
-  <string name="ManageRecipientActivity_mute_notifications">Утишај обавештења</string>
-  <string name="ManageRecipientActivity_custom_notifications">Прилагођена обавештења</string>
-  <string name="ManageRecipientActivity_until_s">До %1$s</string>
-  <string name="ManageRecipientActivity_off">Искључено</string>
-  <string name="ManageRecipientActivity_on">Укључено</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Додај у групу</string>
-  <string name="ManageRecipientActivity_view_all_groups">Види све групе</string>
-  <string name="ManageRecipientActivity_see_all">Погледај све</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Нема заједничких група</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d заједничка група</item>
     <item quantity="few">%d заједничке групе</item>
     <item quantity="other">%d заједничких група</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Порука</string>
-  <string name="ManageRecipientActivity_voice_call_description">Гласовни позив</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Несигуран гласовни позив</string>
-  <string name="ManageRecipientActivity_video_call_description">Видео позив</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s је позвао/ла једну особу</item>
     <item quantity="few">%1$s је позвао/ла %2$d особа</item>
@@ -786,16 +786,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Дели</string>
   <string name="InviteActivity_share_with_contacts">Подели са контактима</string>
-  <string name="InviteActivity_choose_how_to_share">Одабрати начин дељења</string>
+  <string name="InviteActivity_share_via">Дели преко…</string>
   <string name="InviteActivity_cancel">Одустани</string>
   <string name="InviteActivity_sending">Шаље се…</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
   <string name="InviteActivity_invite_to_signal">Слање позивнице за Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-    <item quantity="few">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-    <item quantity="other">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Пошаљи СМС (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Послати %d СМС позивницу?</item>
     <item quantity="few">Послати %d СМС позивнице?</item>
@@ -803,7 +799,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Пребацимо се на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Сазнај више</string>
   <!--LongMessageActivity-->
@@ -856,6 +851,7 @@
   <string name="MediaOverviewActivity_audio">Звук</string>
   <string name="MediaOverviewActivity_video">Видео</string>
   <string name="MediaOverviewActivity_image">Слика</string>
+  <string name="MediaOverviewActivity_voice_message">Гласовна порука</string>
   <string name="MediaOverviewActivity_sent_by_s">Послао %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Ви сте послали</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Послао %1$s за %2$s</string>
@@ -871,14 +867,19 @@
   <string name="Megaphones_new_group">Нова група</string>
   <string name="Megaphones_invite_friends">Позивница пријатељима</string>
   <string name="Megaphones_use_sms">Користи СМС</string>
+  <string name="Megaphones_appearance">Изглед</string>
+  <string name="Megaphones_add_photo">Додајте слику</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Signal-a у току</string>
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
   <string name="NotificationBarManager__incoming_signal_call">Долазни Signal позив</string>
-  <string name="NotificationBarManager__deny_call">Одбиј позив</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Долазни Signal групни позив</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Заустављање сервиса позива Signal-а</string>
+  <string name="NotificationBarManager__decline_call">Одбиј позив</string>
   <string name="NotificationBarManager__answer_call">Одговори на позив</string>
   <string name="NotificationBarManager__end_call">Окончај позив</string>
   <string name="NotificationBarManager__cancel_call">Откажи позив</string>
+  <string name="NotificationBarManager__join_call">Придружи се позиву</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Укључите обавештења?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Никада не пропустите поруке од ваших контаката и група.</string>
@@ -894,6 +895,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Додај натпис</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Датотека је уклоњена јер је прекорачила дозвољену величину</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Датотека је уклоњена јер је имала непознати тип</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Датотека је уклоњена јер је прекорачила дозвољену величину или има непознати тип</string>
   <string name="MediaSendActivity_camera_unavailable">Камера није доступна.</string>
   <string name="MediaSendActivity_message_to_s">Порука за %s</string>
   <string name="MediaSendActivity_message">Порука</string>
@@ -910,6 +913,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Сви медији</string>
   <string name="MediaRepository__camera">Камера</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Грешка при дешифровању поруке</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Кликните да пошаљете извештај грешака</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Непознато</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Примљена је порука шифрована старим издањем Signal-a које више није подржано. Замолите пошиљаоца да надогради на најновије издање и поново пошаље поруку.</string>
@@ -967,7 +973,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s је поставио/ла %2$s за администратора.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s Вас је поставио за администратора.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Одузели сте администраторске дозволе од %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s вам је одузео администраторске дозволе.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s вам је одузео администраторске дозволе.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s одузео администраторске дозволе за  %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s је сада администратор</string>
   <string name="MessageRecord_you_are_now_an_admin">Постали сте администратор.</string>
@@ -1016,6 +1022,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Променили сте име групе у „%1$s”.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s је променио/ла име групе у „%2$s”.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Име групе је промењено у „%1$s”.</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Променили сте опис групе.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s је променио опис групе.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Опис групе је промењен.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Променили сте слику групе.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s је променио/ла слику групе.</string>
@@ -1028,6 +1038,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Поставили сте да дозволу измене чланова групе имају „%1$s”.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s је поставио/ла да дозволу измене чланова групе имају „%2$s”.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ко има дозволу промене чланова групе је промењено на „%1$s”.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Променили сте подешавања групе како би се омогућили свим члановима да шаљу поруке.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Променили сте подешавања групе како би се омогућили да само админи шаљу поруке.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s је изменио/ла како би се омогућили свим члановима да шаљу поруке.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s је променио/ла подешавања групе како би се омогућили да само админи шаљу поруке.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Подешавања групе су измењена како би се омогућили свим члановима да шаљу поруке.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Подешавања групе су измењена како би се омогућили да само админи шаљу поруке.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Укључили сте везу до групе без одобрења администратора.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Укључили сте везу до групе са одобрењем администратора.</string>
@@ -1072,6 +1089,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Означили сте ваш сигурносни број са %s као проверен на другом уређају.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Означили сте ваш сигурносни број са %s као непроверен.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Означили сте ваш сигурносни број са %s као непроверен на другом уређају.</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порука од %s није могла да се испоручи</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s променио свој број на нови број</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s покренуо/ла групни позив · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s је у групном позиву · %2$s</string>
@@ -1109,9 +1128,10 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Да ли желите да се придружите овој групи и да са њеним члановима поделите ваше име и слику? Неће знати да сте прочитали поруке док не прихватите.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Придружите се групи? Неће знати да сте им прочитали поруке док не прихватите.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Да ли желите да одблокирате ову групу и да са њеним члановима поделите ваше име и слику? Нећете добити ни једну поруку док је не одблокирате.</string>
+  <string name="MessageRequestProfileView_view">Приказ</string>
   <string name="MessageRequestProfileView_member_of_one_group">Члан %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Члан од %1$s и %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Члан од %1$s, %2$s, и %3$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Члан %1$s и %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Члан %1$s, %2$s, и %3$s</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d члан</item>
     <item quantity="few">%1$d члан(ов)а</item>
@@ -1151,10 +1171,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа да покушавате повезати Signal уређај користећи спољашњи читач бар-кôда. Због сопствене заштите, очитајте кôд поново помоћу Signal-a.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal захтева приступ камери да би скенирао QR кôд, али су му дозволе трајно забрањене. Молимо вас да у апликацији за подешавање телефона Signal-у дозволите пруиступ камери.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Није могуће скенирати QR кôд без дозволе камере</string>
-  <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Нестајуће поруке</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Ваше поруке неће истећи.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Примљене и послате поруке ове преписке ће нестати %s након што су погледане.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај сада</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ваша верзија Signal-а истиче данас. Ажурирате на најновију верзију.</string>
@@ -1208,13 +1224,18 @@
   <string name="RatingManager_rate_now">Оцени одмах!</string>
   <string name="RatingManager_no_thanks">Не, хвала</string>
   <string name="RatingManager_later">Касније</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Упс, изгледа да апликација Плеј продавница није инсталирана на вашем уређају.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Све · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Ви</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Верификујте да би се наставило преписивање</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Да бисте спречили спем у Signаl-у, испуните верификацију.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Након верификације, можете наставити са порукама. Било која паузирана порука ће аутоматски бити послана.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Ви</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
@@ -1235,27 +1256,64 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Да бисте позвали %1$s, апликацији Signal је потребан приступ Вашој камери.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Позивам…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Група је превелика да би позвала учеснике.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal гласовни позив…</string>
-  <string name="WebRtcCallView__signal_video_call">Сигнал видео позив</string>
+  <string name="WebRtcCallView__signal_call">Signal позив</string>
+  <string name="WebRtcCallView__signal_video_call">Signal видео позив</string>
   <string name="WebRtcCallView__start_call">Започети позив</string>
   <string name="WebRtcCallView__join_call">Придружи се позиву</string>
   <string name="WebRtcCallView__call_is_full">Позив је пун</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">За овај позив је достигнут максималан број %1$d учесника. Покушајте поново касније.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" групни позив</string>
   <string name="WebRtcCallView__view_participants_list">Погледајте учеснике</string>
   <string name="WebRtcCallView__your_video_is_off">Ваш видео је искључен</string>
   <string name="WebRtcCallView__reconnecting">Обнављање везе…</string>
   <string name="WebRtcCallView__joining">Придружавање…</string>
   <string name="WebRtcCallView__disconnected">Прекинуто</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal ће звонити %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ће звонити %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal ће звонити %1$s, %2$s и још %3$d</item>
+    <item quantity="few">Signal ће звонити %1$s, %2$s и још %3$d</item>
+    <item quantity="other">Signal ће звонити %1$s, %2$s и још %3$d</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s биће обавештен/а</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s ће бити обавештени</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s, и још %3$d ће бити обавештен</item>
+    <item quantity="few">%1$s, %2$s, и још %3$d ће бити обавештени</item>
+    <item quantity="other">%1$s, %2$s, и још %3$d ће бити обавештени</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Звоњење %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Звоњење %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Звоњење %1$s, %2$s, и још %3$d</item>
+    <item quantity="few">Звоњење %1$s, %2$s, и још %3$d</item>
+    <item quantity="other">Звоњење %1$s, %2$s, и још %3$d</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s вас зове</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s зове вас и %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s зове вас, %2$s и %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s зове вас, %2$s, %3$s и још %4$d</item>
+    <item quantity="few">%1$s зове вас, %2$s, %3$s и још %4$d</item>
+    <item quantity="other">%1$s зове вас, %2$s, %3$s и још %4$d</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Нема никога овде</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s је у овом позиву</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s је у овом позиву</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s су у овом позиву</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s презентира</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, и још %3$d су у овом позиву</item>
     <item quantity="few">%1$s, %2$s, и још %3$d су у овом позиву</item>
     <item quantity="other">%1$s, %2$s, и још %3$d су у овом позиву</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Обрнути</string>
+  <string name="WebRtcCallView__speaker">Звучник</string>
+  <string name="WebRtcCallView__camera">Камера</string>
+  <string name="WebRtcCallView__mute">Утишај</string>
+  <string name="WebRtcCallView__ring">Звони</string>
+  <string name="WebRtcCallView__end_call">Заврши позив</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">У овом позиву · %1$d особа</item>
@@ -1269,12 +1327,17 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не може да се прими звук &amp; видео од %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не може да се прими звук и видео од %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">То је можда зато што нису потврдили промену вашег сигурносног броја, постоји проблем са њиховим уређајем или су вас блокирали.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Превуците да бисте видели дељење екрана</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Прокси сервер</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Адреса проксија</string>
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Да ли желите да користите ову прокси адресу?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Користи проки</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно повезан са прокси сервером.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Неуспех слања</string>
+  <string name="RecaptchaProofActivity_complete_verification">Довршите верификацију</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изаберите вашу државу</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Морате навести позивни број
@@ -1301,6 +1364,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal-у је потребан приступ вашем именику да бисте могли ступити у контакт са пријатељима, размењивати поруке и водити сигурне позиве</string>
   <string name="RegistrationActivity_rate_limited_to_service">Превише пута сте покушали да региструјете овај број. Покушајте поново касније.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Није могуће успоставити везу са сервисом. Проверите да ли сте повезани на интернет и покушајте поново.</string>
+  <string name="RegistrationActivity_call_requested">Затражен позив</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Сада сте на %d корак од слања извештаја грешака.</item>
     <item quantity="few">Сада сте на %d корака од слања извештаја грешака.</item>
@@ -1393,6 +1457,7 @@
   <string name="SubmitDebugLogActivity_success">Успех!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Копирајте овај УРЛ и додајте га и вашу пријаву или имејл:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Дели</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Овај извештај ће бити објављен и видљив пројектантима. Можете га прегледати пре преноса.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Филтер:</string>
   <string name="SupportEmailUtil_device_info">Инфо о уређају:</string>
@@ -1425,6 +1490,7 @@
   <string name="ThreadRecord_you_marked_verified">Означили сте провереним</string>
   <string name="ThreadRecord_you_marked_unverified">Означили сте непровереним</string>
   <string name="ThreadRecord_message_could_not_be_processed">Порука се није могла обрадити</string>
+  <string name="ThreadRecord_delivery_issue">Проблем у испоруци</string>
   <string name="ThreadRecord_message_request">Захтев за разговор</string>
   <string name="ThreadRecord_photo">Фотографија</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1506,6 +1572,8 @@
   <string name="MessageNotifier_message_delivery_failed">Испорука поруке није успела.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не успех да испоручим поруку.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при испоруци поруке.</string>
+  <string name="MessageNotifier_message_delivery_paused">Испорука поруке је паузирана.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Верификујте да би се наставило преписивање на Signal-у.</string>
   <string name="MessageNotifier_mark_all_as_read">Означи све прочитаним</string>
   <string name="MessageNotifier_mark_read">Означи прочитаним</string>
   <string name="MessageNotifier_turn_off_these_notifications">Искључи ова обавештења</string>
@@ -1528,16 +1596,18 @@
   <string name="MessageNotifier_this_message_was_deleted">Ова порука је избрисана.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Искључити нотификације контакта који се придружио Signal-у? Можете их поново омогућити у Signal &gt; Подешавања &gt; Нотификације.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Подразумеван</string>
+  <string name="NotificationChannel_channel_messages">Поруке</string>
   <string name="NotificationChannel_calls">Позиви</string>
   <string name="NotificationChannel_failures">Грешке</string>
   <string name="NotificationChannel_backups">Резерве</string>
   <string name="NotificationChannel_locked_status">Закључај стање</string>
   <string name="NotificationChannel_app_updates">Листа ажурирања</string>
   <string name="NotificationChannel_other">Остало</string>
-  <string name="NotificationChannel_group_messages">Поруке</string>
+  <string name="NotificationChannel_group_chats">Ћаскања</string>
   <string name="NotificationChannel_missing_display_name">Непозната</string>
   <string name="NotificationChannel_voice_notes">Гласовне белешке</string>
+  <string name="NotificationChannel_contact_joined_signal">Контакт се придружио Signalу</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала нотификације.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Signal закључан!</string>
@@ -1553,6 +1623,8 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порука</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Захтев за разговор</string>
+  <string name="SingleRecipientNotificationBuilder_you">Ви</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Пусти видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Има натпис</string>
@@ -1662,6 +1734,12 @@
   <string name="ConversationUpdateItem_return_to_call">Врати се на позив</string>
   <string name="ConversationUpdateItem_call_is_full">Позив је пун</string>
   <string name="ConversationUpdateItem_invite_friends">Позивница пријатељима</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Обавештења о позиву</string>
+  <string name="ConversationUpdateItem_update_contact">Ажурирај контакт</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нема заједничких група. Пажљиво прегледајте захтеве.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контаката у овој групи. Пажљиво прегледајте захтеве.</string>
+  <string name="ConversationUpdateItem_view">Приказ</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Време нестајања поруке биће постављено на %1$s када их шаљете.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пусти … Заустави</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
@@ -1677,6 +1755,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Клизај на дно</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Промене сигурносног броја</string>
+  <string name="safety_number_change_dialog__accept">Прихвати</string>
   <string name="safety_number_change_dialog__send_anyway">Нема везе, пошаљи</string>
   <string name="safety_number_change_dialog__call_anyway">Нема везе, позови</string>
   <string name="safety_number_change_dialog__join_call">Придружи се позиву</string>
@@ -1685,6 +1764,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следеће особе су вероватно реинсталирале или промениле уређаје. За гаранцију приватности, оверите сигурносне бројеве са њима.</string>
   <string name="safety_number_change_dialog__view">Више</string>
   <string name="safety_number_change_dialog__previous_verified">Претходно оверено</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Обавештења о позиву омогућена.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Обавештења о позиву</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Омогући позадинску активност</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Сада све изгледа добро!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Да бисте примили обавештења о позивима, додирните овде и укључите \"Прикажи обавештења\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Да бисте примили обавештења о позивима, додирните овде и укључите обавештења и осигурајте да се упали „звук“ и „скочни прозор“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Да бисте примили обавештења о позивима, додирните овде и омогућите позадинску активност у „батеријским“ подешавањима.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Подешавања</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Да бисте примили обавештења о позивима, додирните „Подешавање“ и укључите „Прикажи обавештења“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Да бисте примили обавештења о позивима, додирните „Подешавање“ и укључите обавештења и осигурајте да се упали „звук“ и „скочни прозор“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Да бисте примили обавештења о позивима, додирните „Подешавање“ и омогућите позадинску активност у „батеријским“ подешавањима.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Учитавање држава…</string>
   <string name="country_selection_fragment__search">Тражи</string>
@@ -1745,11 +1836,9 @@
     <item quantity="other">%d осталих</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Тражите ГИФ сличице и налепнице</string>
+  <string name="giphy_activity_toolbar__search_gifs">Тражи GIF-ове</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Нема резултата</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Овај извештај ће бити објављен и видљив пројектантима. Можете га прегледати и изменити пре објаве.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желите ли да увезете постојеће текстуалне поруке у Signalову шифровану базу података?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Подразумевана системска база података неће бити измењена или преуређена на било који начин.</string>
@@ -1777,6 +1866,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal захтева ММС поставке да би испоручио мултимедијалне и групне поруке преко вашег оператера. Ваш уређај не даје ове податке, што повремено важи за закључане уређаје и друге ограничавајуће конфигурације.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Да бисте слали мултимедијалне и групне поруке тапните „У реду“ и попуните захтеване поставке. ММС поставке за вашег оператера углавном можете наћи претрагом „мој оператер APN“. Ово треба да урадите само једном.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем у испоруци</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порука, налепница, реакција, потврда о читању или медиј од %s није могло да се испоручи. Можда су то покушали да вам пошаљу директно или у групи.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порука, налепница, реакција или потврда о читању од %s није вам достављена.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Име (потребно)</string>
   <string name="CreateProfileActivity_last_name_optional">Презиме (опционо)</string>
@@ -1784,6 +1877,7 @@
   <string name="CreateProfileActivity__username">Корисничко име</string>
   <string name="CreateProfileActivity__create_a_username">Додајте корисничко име</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Имена и фотографије прилагођене ММС групе биће видљиви само Вама.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Описи групе биће видљиви члановима ове групе и особама које су позване.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">О контакту</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишите неколико речи о себи</string>
@@ -1796,8 +1890,9 @@
   <string name="EditAboutFragment_taking_a_break">Правим паузу</string>
   <string name="EditAboutFragment_working_on_something_new">Радим на нешто ново</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Уреди име и слику групе</string>
+  <string name="EditProfileFragment__edit_group">Уређивање групе</string>
   <string name="EditProfileFragment__group_name">Назив групе</string>
+  <string name="EditProfileFragment__group_description">Опис групе</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Ваше име</string>
   <string name="EditProfileNameFragment_first_name">Име</string>
@@ -1809,21 +1904,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Унесите име или број</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желите да потврдите да је шифровање са %s безбедно, упоредите број изнад са бројем на њиховом уређају. Алтернативно, можете да очитате кôд са њиховог телефона или замолити их да очитају ваш кôд. <a href="https://signal.org/redirect/safety-numbers">Сазнајте више.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Да бисте проверили сигурност ваше шифрирања са %s, упоредите горе наведене бројеве са њиховим уређајем. Такође можете да скенирате код на њихов телефон. <a href="https://signal.org/redirect/safety-numbers">Сазнати више.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
+  <string name="verify_display_fragment__successful_match">Успешно подударање</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Сигурносни број није оверен</string>
   <string name="verify_display_fragment__loading">Учитавање…</string>
-  <string name="verify_display_fragment__verified">Оверен/на</string>
+  <string name="verify_display_fragment__mark_as_verified">Означи као проверено</string>
+  <string name="verify_display_fragment__clear_verification">Уклони оверу</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Подели безбедносни број</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Скенирајте QR кôд приказан на уређају вашег контакта.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Превуците ка горе да се јавите</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Превуците ка доле да одбијете</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Неки од проблема захтевају вашу пажњу.</string>
-  <string name="message_details_header__sent">Послата</string>
-  <string name="message_details_header__received">Примљена</string>
+  <string name="message_details_header__sent">Послато:</string>
+  <string name="message_details_header__received">Примљено:</string>
   <string name="message_details_header__disappears">Нестаје</string>
-  <string name="message_details_header__via">Преко</string>
+  <string name="message_details_header__via">Преко:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">На чекању</string>
   <string name="message_details_recipient_header__sent_to">Послато</string>
@@ -1831,6 +1931,7 @@
   <string name="message_details_recipient_header__delivered_to">Достављено</string>
   <string name="message_details_recipient_header__read_by">Прочитао</string>
   <string name="message_details_recipient_header__not_sent">Није послато</string>
+  <string name="message_details_recipient_header__viewed">Погледао</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Неуспех слања</string>
   <string name="message_details_recipient__new_safety_number">Нова шифра преписке</string>
@@ -1858,11 +1959,21 @@
   <string name="HelpFragment__include_debug_log">Убаци извештај грешака.</string>
   <string name="HelpFragment__whats_this">Шта је ово?</string>
   <string name="HelpFragment__how_do_you_feel">Како се осећате? (Опционо)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Кажите нам због чега нас контактирате.</string>
   <string name="HelpFragment__support_info">Инфо о подршци</string>
   <string name="HelpFragment__signal_android_support_request">Signal Андроид захтев за подржку</string>
   <string name="HelpFragment__debug_log">Извештај о грешкама:</string>
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- Молимо, изаберите опцију --</item>
+    <item>Нешто не ради</item>
+    <item>Захтев за функцију</item>
+    <item>Питање</item>
+    <item>Повратне информације</item>
+    <item>Друго</item>
+    <item>Плаћања</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ова порука</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно коришћено</string>
@@ -1875,14 +1986,15 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Симболи</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Заставе</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Емотикони</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Нема резултата</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
-  <string name="arrays__mute_for_two_hours">Утишај 2 сата</string>
+  <string name="arrays__mute_for_eight_hours">Утишај 8 сати</string>
   <string name="arrays__mute_for_one_day">Утишај 1 дан</string>
   <string name="arrays__mute_for_seven_days">Утишај 7 сати</string>
-  <string name="arrays__mute_for_one_year">Утишај 1 годину</string>
+  <string name="arrays__always">Увек</string>
   <string name="arrays__settings_default">Подразумевана поставка</string>
   <string name="arrays__enabled">Укључи</string>
   <string name="arrays__disabled">Искључи</string>
@@ -1907,6 +2019,7 @@
     <item quantity="other">%dч</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">СМС и ММС</string>
   <string name="preferences__pref_all_sms_title">Примај све СМС</string>
   <string name="preferences__pref_all_mms_title">Примај све ММС</string>
@@ -1935,6 +2048,7 @@
   <string name="preferences__pref_led_blink_title">Трептање ЛЕД светла</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__silent">Без звука</string>
+  <string name="preferences__default">Подразумеван</string>
   <string name="preferences__repeat_alerts">Понављај обавештења</string>
   <string name="preferences__never">Никад</string>
   <string name="preferences__one_time">Једном</string>
@@ -1969,6 +2083,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Захтевај извештај о испоруци за сваку послату СМС поруку</string>
   <string name="preferences__data_and_storage">Подаци и складиште</string>
   <string name="preferences__storage">Складиште</string>
+  <string name="preferences__payments">Уплате</string>
+  <string name="preferences__payments_beta">Уплате (Beta)</string>
   <string name="preferences__conversation_length_limit">Ограничење дужине преписке</string>
   <string name="preferences__keep_messages">Задржити поруке</string>
   <string name="preferences__clear_message_history">Очисти историју поруке</string>
@@ -1978,6 +2094,7 @@
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__chat_wallpaper">Позадина за ћаскање</string>
+  <string name="preferences__chat_color_and_wallpaper">Боја ћаскања и позадина</string>
   <string name="preferences__disable_pin">Искључи PIN</string>
   <string name="preferences__enable_pin">Укључи PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако онемогућите PIN, изгубићете све податке када поново региструјете Signal, осим ако ручно направите резервне копије и вратите податке. Не можете укључити закључавање регистрације док је PIN онемогућен.</string>
@@ -1996,7 +2113,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Уколико су извештаји читања онемогућени, нећете видети када неко прочита ваше поруке.</string>
   <string name="preferences__typing_indicators">Показатељи куцања</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Уколико су показатељи куцања онемогућени, нећете видети када вам неко пише поруку.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Затражите да тастатура онемогући персонализовано учење. Ово подешавање није гаранција и ваша тастатура га може занемарити.</string>
+  <string name="preferences__request_keyboard_to_disable">Затражите да тастатура онемогући персонализовано учење.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Ово подешавање није гаранција и ваша тастатура га може занемарити.</string>
   <string name="preferences_app_protection__blocked_users">Блокирани корисници</string>
   <string name="preferences_chats__when_using_mobile_data">На мобилном интернету</string>
   <string name="preferences_chats__when_using_wifi">На бежичној</string>
@@ -2036,8 +2154,8 @@
   <string name="preferences_data_and_storage__calls">Позиви</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користите мање података за позиве</string>
   <string name="preferences_data_and_storage__never">Никад</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">ВиФи и мобилни податци</string>
-  <string name="preferences_data_and_storage__cellular_only">Само мобилни податци</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">ВиФи и мобилна мрежа</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Само мобилна мрежа</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Коришћење мање података може побољшати позиве на лошим мрежама</string>
   <string name="preferences_notifications__messages">Поруке</string>
   <string name="preferences_notifications__events">Догађаји</string>
@@ -2075,6 +2193,137 @@
   <string name="preferences_enter_proxy_address">Унети адресу проксија</string>
   <string name="configurable_single_select__customize_option">Прилагодите опцију</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Сва активност</string>
+  <string name="PaymentsAllActivityFragment__all">Сви</string>
+  <string name="PaymentsAllActivityFragment__sent">Послато</string>
+  <string name="PaymentsAllActivityFragment__received">Примљено</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Увођење уплате (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Користите Signal за слање и примање MobileCoin, нова дигитална валута фокусирана на приватност. Активирајте за почетак.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Активирати уплате</string>
+  <string name="PaymentsHomeFragment__activating_payments">Активирање уплате…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Вратити налог уплате</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Још нема недавне активности</string>
+  <string name="PaymentsHomeFragment__pending_requests">Захтеви на чекању</string>
+  <string name="PaymentsHomeFragment__recent_activity">Недавне активности</string>
+  <string name="PaymentsHomeFragment__see_all">Погледај све</string>
+  <string name="PaymentsHomeFragment__add_funds">Додај средства</string>
+  <string name="PaymentsHomeFragment__send">Пошаљи</string>
+  <string name="PaymentsHomeFragment__sent_s">Пошаљи %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Примљено %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Пренос на размену</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Конверзија валута</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Деактивирати уплате</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Фраза опоравка</string>
+  <string name="PaymentsHomeFragment__help">Помоћ</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Накнада за чишћење новчића</string>
+  <string name="PaymentsHomeFragment__sent_payment">Пошаљи уплату</string>
+  <string name="PaymentsHomeFragment__received_payment">Примљена уплата</string>
+  <string name="PaymentsHomeFragment__processing_payment">Обрађујем уплату</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверзија валута није доступно</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се приказује конверзија валуте. Проверите везу свог телефона и покушајте поново.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Уплате нису доступне у вашем региону.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Не могу да омогућим уплате. Покушајте поново касније.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Деактивирати уплате?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Нећете моћи да пошаљете или примите MobileCoin у Signal ако деактивирате уплате.</string>
+  <string name="PaymentsHomeFragment__deactivate">Деактивирати</string>
+  <string name="PaymentsHomeFragment__continue">Настави</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Салдо није тренутно доступан.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Уплате деактивиране.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Неуспешна уплата</string>
+  <string name="PaymentsHomeFragment__details">Опширније</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да користите Signal да бисте послали и примили MobileCoin. Сва плаћања подлежу условима коришћења за MobileCoins  и новчаник MobileCoin-а. Ово је бета карактеристика, тако да можете наићи на грешке и плаћања или салто које можете изгубити не можете се вратити.</string>
+  <string name="PaymentsHomeFragment__activate">Активирај</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледајте појмове MobileCoin-а</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Плаћања у Signal-у више није доступна. И даље можете преносити средства на размену, али више не можете да шаљете и примате уплате или да додате средства.</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Додај средства</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Адреса Вашег новчаника</string>
+  <string name="PaymentsAddMoneyFragment__copy">Копирај</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Копирано у остави</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Да бисте додали средства, пошаљите MobileCoin на адресу вашег новчаника. Покрените трансакцију са свог рачуна на размени која подржава MobileCoin, а затим скенирајте QR кôд или копирајте адресу вашег новчаника.</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Опширније</string>
+  <string name="PaymentsDetailsFragment__status">Стање</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Слање уплате…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Обрађујем уплату…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Уплата завршена</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Неуспешна уплата</string>
+  <string name="PaymentsDetailsFragment__network_fee">Мрежна накнада</string>
+  <string name="PaymentsDetailsFragment__sent_by">Послао</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Послано %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Ви на %1$s у %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s на %2$s у %3$s</string>
+  <string name="PaymentsDetailsFragment__to">За</string>
+  <string name="PaymentsDetailsFragment__from">Од</string>
+  <string name="PaymentsDetailsFragment__information">Детаљи трансакције, укључујући количину плаћања и време трансакције део су књиге MobileCoin-а.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Накнада за чишћење новчића</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">„Накнада за чишћење новчића“ наплаћује се када се новчићи у вашем власништву не могу комбиновати да заврше трансакцију. Чишћење ће вам омогућити да наставите са слањем плаћања.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Нема додатних детаља за ову трансакцију</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Пошаљи уплату</string>
+  <string name="PaymentsDetailsFragment__received_payment">Примљена уплата</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Уплата завршена %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Блокирај број</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Пренос</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">Скенирајте QR кôд</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">За: Скенирање или унос адресе новчаника</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoin можете пренети попуњавањем преноса на адресу новчаника која је дала размена. Адреса новчаника је низ бројева и слова најчешће испод QR кôда.</string>
+  <string name="PaymentsTransferFragment__next">Даље</string>
+  <string name="PaymentsTransferFragment__invalid_address">Погрешна адреса</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Проверите адресу новчаника који покушавате да пребаците и покушате поново.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Не можете пренети на своју адресу новчаника Signal-а. Унесите адресу новчаника са свог налога на подржаној размени.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Да бисте скенирали QR кôд, Signal-у је потребан приступ камери.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal захтева приступ камери да би фотографисао QR кôд. Идите на подешавања, изаберите „Дозволе“ и омогућите „Камера“.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Да бисте скенирали QR кôд, Signal-у је потребан приступ камери.</string>
+  <string name="PaymentsTransferFragment__settings">Подешавања</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Скенирајте адресу QR кôда</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Скенирајте адресу QR кôда примаоца уплате</string>
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Захтев</string>
+  <string name="CreatePaymentFragment__pay">Платити</string>
+  <string name="CreatePaymentFragment__available_balance_s">Доступан салдо: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Пребаци</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">Додај белешку</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Конверзије су само процене и можда нису тачне.</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Белешка</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Потврдити уплату</string>
+  <string name="ConfirmPayment__network_fee">Мрежна накнада</string>
+  <string name="ConfirmPayment__error_getting_fee">Грешка приликом добијања накнаде</string>
+  <string name="ConfirmPayment__estimated_s">Процењено %1$s</string>
+  <string name="ConfirmPayment__to">За</string>
+  <string name="ConfirmPayment__total_amount">Укупан износ</string>
+  <string name="ConfirmPayment__balance_s">Салдо: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Слање уплате…</string>
+  <string name="ConfirmPayment__processing_payment">Обрађујем уплату…</string>
+  <string name="ConfirmPayment__payment_complete">Уплата завршена</string>
+  <string name="ConfirmPayment__payment_failed">Неуспешна уплата</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Уплата ће наставити прераду</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Неисправан прималац</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ова особа није активирала уплате</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Није могуће затражити мрежну накнаду. Да бисте наставили са овом уплатом додирните „у реду“ да бисте покушали поново.</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s у %2$s</string>
+  <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Поставити валуту</string>
+  <string name="SetCurrencyFragment__all_currencies">Све валуте</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2318,9 +2567,13 @@
   <string name="backup_enable_dialog__folder">Фасцикла</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Записао сам ову фразу. Без тога нећу моћи да вратим резервну копију.</string>
   <string name="registration_activity__restore_backup">Поврати резерву</string>
+  <string name="registration_activity__transfer_or_restore_account">Пренос или враћање налога</string>
+  <string name="registration_activity__transfer_account">Пренос налога</string>
   <string name="registration_activity__skip">Прескочи</string>
   <string name="preferences_chats__chat_backups">Резерве ћаскања</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Направи резерве ћаскања у спољашње складиште</string>
+  <string name="preferences_chats__transfer_account">Пренос налога</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Пренос налога на новом Android уређају</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Унесите бекап лозинку</string>
   <string name="RegistrationActivity_restore">Врати</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Није могуће увести резервну копију из новије верзије Signal-а.</string>
@@ -2356,6 +2609,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Позовите ме (Доступно у %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Контактирајте Signal подршку</string>
   <string name="RegistrationActivity_code_support_subject">Signal регистрација - верификациони кôд за Android</string>
+  <string name="RegistrationActivity_incorrect_code">Погрешан кôд</string>
   <string name="BackupUtil_never">Никад</string>
   <string name="BackupUtil_unknown">Непозната</string>
   <string name="preferences_app_protection__see_my_phone_number">Види мој број телефона</string>
@@ -2395,26 +2649,123 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">ТАПНИ ЗА ОТКЉУЧАВАЊЕ</string>
   <string name="Recipient_unknown">Непозната</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Пренос или враћање налога</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ако сте претходно регистровали Signal налог, можете пренети или вратити свој налог и поруке</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Пренос са Android уређаја</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Пренесите свој налог и поруке са старог Android уређаја. Потребан вам је приступ старом уређају.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Потребан вам је приступ старом уређају.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Поврати податке из бекапа</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Вратите своје поруке из локалне копије. Ако сада не вратите, нећете моћи да то вратите касније.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Отворите Signal на старом Android телефону</string>
   <string name="NewDeviceTransferInstructions__continue">Настави</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Додирните фотографију свог профила у горњем левом углу да бисте отворили подешавања</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Додирните „налог“</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Додирните „Пренос налога“ и после „Настави“ на оба уређаја</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Припрема за повезивање на стари Android уређај…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Потребно је мало времена, треба да буде спремно ускоро</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Чека се да се стари Android уређај повеже…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal-у је потребна дозвола локације за откривање и повезивање са вашим старим Android уређајем.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-у је потребна да локације буде упаљена за откривање и повезивање са вашим старим Android уређајем.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-у је потребно Wi-Fi за откривање и повезивање са својим старим Android уређајем. Wi-Fi мора бити укључен, али не мора бити повезано са Wi-Fi мрежом.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, чини се да овај уређај не подржава Wi-Fi Direct. Signal користи Wi-Fi Direct да би открио и повезивао са старим Android уређајем. И даље можете да вратите резервну копију да бисте вратили свој рачун са свог старог Android уређаја.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Поврати бекап</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Дошло је до неочекиване грешке приликом покушаја повезивања са својим старим Android уређајем.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Тражење новог Android уређаја…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal-у је потребна дозвола локације за откривање и повезивање на ваш нови Android уређај.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal-у је потребно да локација буде упаљена за откривање и повезивање на ваш нови Android уређај.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal-у је потребно Wi-Fi за откривање и повезивање са својим новим Android уређајем. Wi-Fi мора бити укључен, али не мора бити повезано са Wi-Fi мрежом.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, чини се да овај уређај не подржава Wi-Fi Direct. Signal користи Wi-Fi Direct да би открио и повезивао са новим Android уређајем. И даље можете да креирате резервну копију да бисте вратили свој рачун на свој нови Android уређаја.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Направи бекап</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Дошло је до неочекиване грешке приликом покушаја повезивања са својим новим Android уређајем.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Не могу да отворим Wi-Fi подешавања. Молимо да ручно упалите Wi-Fi.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Одобри дозвоlу за локацију</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Укључити сервис локације</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Није могуће отворити подешавања локације</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Укључити Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Грешка повезивања</string>
   <string name="DeviceTransferSetup__retry">Покушај поново</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Пошаљи дневник исправљања грешака</string>
+  <string name="DeviceTransferSetup__verify_code">Верификациони код</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Проверите да ли је код испод исти на оба уређаја. Затим додирните Настави.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Бројеви се не подударају</string>
   <string name="DeviceTransferSetup__continue">Настави</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Бројеви нису исти</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ако се бројеви на вашим уређајима не подударају, могуће је да сте повезани на погрешан уређај. Да бисте то поправили, зауставите пренос и покушајте поново и држите оба уређаја близу.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Заустави пренос</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Није могуће открити стари уређај</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Није могуће открити нови уређај</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Проверите да ли су следеће дозволе и услуге омогућене:</string>
+  <string name="DeviceTransferSetup__location_permission">Дозвола за локацију</string>
+  <string name="DeviceTransferSetup__location_services">Сервиси локације</string>
   <string name="DeviceTransferSetup__wifi">Ви-фи</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На WiFi Direct екрану уклоните све упамћене групе и откачите било које позване или повезане уређаје.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct екран</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Покушајте да угасите/упалите Wi-Fi на оба уређаја.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Проверите да ли су оба уређаја у режиму преноса.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Идите на страницу за подршку</string>
   <string name="DeviceTransferSetup__try_again">Покушај поново</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Чека се други уређај</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Додирните „Настави“ на другом уређају да бисте започели пренос.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Додирните „Настави“ на другом уређају…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Није могуће да се пренесе из новије верзије Signal-а.</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Подаци се преносе</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Keep both devices near each other. Do not turn off the devices and keep Signal open. Transfers are end-to-end encrypted.
+Држите оба уређаја близу једни другима. Не искључујте уређаје и одржавајте Signal отворен. Преноси су потпуно енкриптовани.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d порука до сад…</string>
   <string name="DeviceTransfer__cancel">Поништи</string>
   <string name="DeviceTransfer__try_again">Покушај поново</string>
+  <string name="DeviceTransfer__stop_transfer_question">Заустави пренос?</string>
+  <string name="DeviceTransfer__stop_transfer">Заустави пренос</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Цео напредак преноса ће се изгубити.</string>
+  <string name="DeviceTransfer__transfer_failed">Неуспешан пренос</string>
+  <string name="DeviceTransfer__unable_to_transfer">Није могуће пренети</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Пренесите налог</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Можете да пренете свој Signal рачун приликом подешавања Signal на новом Android уређају. Пре наставка:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Преузмите Signal на свом новом Android уређају</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Додирните „Пренос или враћање налога“</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Када је тражено, додирните „Пренос са  Android уређаја“ и после „Настави“. Држите оба уређаја у близини.</string>
   <string name="OldDeviceTransferInstructions__continue">Настави</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Пренос завршен</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Идите на свој нови уређај</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Подаци о Signal-у су пребачени на ваш нови уређај. Да бисте довршили поступак преноса, морате да наставите са регистрацијом на свом новом уређају.</string>
   <string name="OldDeviceTransferComplete__close">Затвори</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Пренос успешан</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Пренос завршен</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Да бисте довршили пренос, морате наставити са регистрацијом.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Настави регистрацију</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Пренос налога</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Припрема за повезивање са другим Android уређајем …</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Припрема за повезивање са другим Android уређајем …</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Тражење вашег другог Android уређаја …</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Повезивање са вашим другим Android уређајем…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Овера је потврда</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Пренос налога…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Завршите регистрација на свом новом уређају</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ваш Signal рачун је пребачен на ваш нови уређај, али морате да завршите регистрацију на њега да бисте наставили. Signal ће бити неактиван на овом уређају.</string>
+  <string name="OldDeviceTransferLockedDialog__done">Готово</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Откажите и активирајте овај уређај</string>
+  <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Пренос MOB салда?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Имате салдо од %1$s. Ако не пренесете средства на другу адресу новчаника пре брисања налога, изгубит ћете га заувек.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Немој да пренесеш</string>
+  <string name="AdvancedPreferenceFragment__transfer">Пренос</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>
@@ -2422,7 +2773,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Додај у групу</string>
   <string name="RecipientBottomSheet_add_to_another_group">Додај у другу групу</string>
   <string name="RecipientBottomSheet_view_safety_number">Прикажи сигурносни број</string>
-  <string name="RecipientBottomSheet_make_group_admin">Постави за администратора групе</string>
+  <string name="RecipientBottomSheet_make_admin">Постави за администратора</string>
   <string name="RecipientBottomSheet_remove_as_admin">Одузми администраторске дозволе</string>
   <string name="RecipientBottomSheet_remove_from_group">Уклони из групе</string>
   <string name="RecipientBottomSheet_message_description">Порука</string>
@@ -2445,6 +2796,8 @@
   <string name="GroupsLearnMore_paragraph_2">Старе групе још увек не могу да се надограде на Нове групе, али можете да направите нову групу са истим члановима ако су на најновијој верзији Signal-а.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ће убудуће понудити начин за надоградњу старих група.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Свако са овом везом може да види име и слику ове групе и да затражи да се придружи. Поделите везу са људима у које имате поверења.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Свако са овом везом може да види име и слику ове групе и да се придружи. Поделите везу са људима у које имате поверења.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Поделите Signal-ом</string>
   <string name="GroupLinkBottomSheet_copy">Копирај</string>
   <string name="GroupLinkBottomSheet_qr_code">QR кôд</string>
@@ -2452,9 +2805,10 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Копирано у остави</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Веза није тренутно активна</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Гласовна порука није успешно учитана</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Гласовна порука · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s за %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Гласовна порука · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s за %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ је блокиран/на.</string>
@@ -2507,6 +2861,7 @@
   <string name="DeleteAccountFragment__delete_account">Избриши налог</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Обрисати информације о налогу и слику профила</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Обрисати све Ваше поруке</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Избрисати %1$s на рачуну плаћања</string>
   <string name="DeleteAccountFragment__no_country_code">Није изабран позивни број државе</string>
   <string name="DeleteAccountFragment__no_number">Није наведен број</string>
   <string name="DeleteAccountFragment__the_phone_number">Унет телефонски број се не подудара са вашим налогом.</string>
@@ -2519,10 +2874,15 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Претражити државе</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Прескочи</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d члан(ов)а</item>
+    <item quantity="few">%1$d члан(ов)а</item>
+    <item quantity="other">%1$d члан(ов)а</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Поделите</string>
   <string name="ShareActivity__send">Пошаљи</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Дељење у више ћаскања је подржано само за Signal поруке</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Слање неким корисницима није успело</string>
@@ -2532,17 +2892,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Позадина за ћаскање</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Боја ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Рисетовати боје ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Рисетовати боје ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Рисетовати боје ћаскања?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Поставити позадину</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Тамна тема затамњује позадину</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Уклони позадину</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Уклонити позадину за овај чет?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Уклонити позадину? Ово неће уклонити посебне позадине које сте поставили за ћаскање.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Рисетуј све позадине</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ресетујте све позадине, укључујући посебне позадине које сте поставили за ћаскање?</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Тамни режим затамњује позадину</string>
   <string name="ChatWallpaperFragment__contact_name">Име контакта</string>
   <string name="ChatWallpaperFragment__reset">Ресетуј</string>
   <string name="ChatWallpaperFragment__clear">Очистити</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед позадине</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Да ли желите да надјачате све боје за ћаскање?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Да ли желите да надјачате све позадине?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Рисетовати подразумеване боје</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Рисетовати све боје</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Рисетовати подразумевану позадину</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Рисетуј све позадине</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Рисетовати позадине</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Рисетовати позадину</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Рисетовати позадину?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Одабери из фотографије</string>
   <string name="ChatWallpaperSelectionFragment__presets">Предефинисано</string>
@@ -2561,5 +2929,399 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">поставити позадину за %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Грешка постављања позадине.</string>
   <string name="WallpaperCropActivity__blur_photo">Замути фотографију</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">О MobileCoin-у</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin је нова дигитална валута фокусирана на приватност.</string>
+  <string name="payment_info_card_adding_funds">Додавање средства</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Средства за употребу можете додати у Signal-у слањем MobileCoin-а на адресу свог новчаника.</string>
+  <string name="payment_info_card_cashing_out">Уновчити</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Можете да уновчите MobileCoin у било којем тренутку на размени која подржава MobileCoin. Само пренесите на свој рачун на тој размени.</string>
+  <string name="payment_info_card_hide_this_card">Сакрити ову картицу?</string>
+  <string name="payment_info_card_hide">Сакриј</string>
+  <string name="payment_info_card_record_recovery_phrase">Сними фразу опоравка</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Ваша фраза за опоравак вам даје други начин да вратите свој налог за исплату.</string>
+  <string name="payment_info_card_record_your_phrase">Снимити Вашу фразу</string>
+  <string name="payment_info_card_update_your_pin">Ажурирати PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Са високим салдом, можда ћете желети да ажурирате на алфанумерички ПИН да бисте додали више заштите на свој рачун.</string>
+  <string name="payment_info_card_update_pin">Ажурирати PIN</string>
+  <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирати новчаник</string>
+  <string name="DeactivateWalletFragment__your_balance">Ваш салдо</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Препоручује се да преносите средства на другу адресу новчаника пре деактивирања плаћања. Ако одлучите да не преносите своја средства сада, они ће остати у вашем новчанику везаном за Signal ако поново активирате уплате.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Пренос преосталог салда</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирање без преноса података</string>
+  <string name="DeactivateWalletFragment__deactivate">Деактивирати</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Деактивирање без преноса података?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Ваш салдо ће остати у вашем новчанику везаном за Signal ако поново активирате уплате.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка деактивирајући новчаник.</string>
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Фраза опоравка</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Прегледати фразу опоравка</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Унети фразу опоравка</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Ваш салдо ће се аутоматски вратити када поново инсталирате Signal ако потврдите свој ПИН Signal-а. Такође можете да вратите салдо користећи фразу за опоравак, која је јединствена%1$d-речи фраза. Запишите је и чувајте га на сигурном месту.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза опоравка је %1$d-речи фраза јединствена за вас. Користите ову фразу да бисте вратили салто.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Започни</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Унесите ручно</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Прилепи из оставе</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Прилепи фразу опоравка</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Фраза опоравка</string>
+  <string name="PaymentsRecoveryPasteFragment__next">Даље</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Неисправна фраза опоравка</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Будите сигурни да сте унели %1$d речи и покушајте поново.</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Даље</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Уреди</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Ваша фраза опоравка</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Запишите следеће %1$d речи у редоследу. Чувајте своју листу на сигурном месту.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Проверите да сте правилно унели своју фразу.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не снимате или не шаљите е-поштом.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Ресторирани плаћања рачуна.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Неисправна фраза опоравка</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Проверите да сте правилно унели своју фразу и поновите.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Копирај у остави</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ако одлучите да дигитално чувате фразу за опоравак, осигурајте да је сигурносно чува негде где имате поверења.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Потврдите фразу опоравка</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Унесите следеће речи из фразе опоравка.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Реч %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Опет видети фразу</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Фраза опоравка је потврђена</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Унети фразу опоравка</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Унесите реч %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Реч %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__next">Даље</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Неисправна реч</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Остава је изпразњена.</string>
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Приказ</string>
+  <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s послао вам %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d нових обавештења о уплати</string>
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Не може да се пошаље уплата</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Да бисте послали уплате овом кориснику, потребно је да прихвати ваш захтев. Пошаљите чу поруку да бисте креирали захтев за поруке.</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">Пошаљи поруку</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заједничких група са овом особом. Пажљиво прегледајте захтеве пре него што прихватите тако да бисте избегли нежељене поруке.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниједан од ваших контаката или људи са којима разговарате су у овој групи. Пажљиво прегледајте захтеве пре него што прихватите тако да бисте избегли нежељене поруке.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">О захтеву за разговор</string>
+  <string name="GroupsInCommonMessageRequest__okay">У реду</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ево прегледа боје ћаскања.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Само ви видите боју.</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Опис групе</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Стандардно</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Брже, мање података</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Висок</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Спорије, више података</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Квалитет фотографије</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Позовите ваше пријатеље</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Налог</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Временом ће бити тражено све ређе</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Захтева Signal PIN да поново региструјете свој телефонски број Signal-ом</string>
+  <string name="AccountSettingsFragment__change_phone_number">Промена броја телефона</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користите ово да промените свој тренутни телефонски број на нови телефонски број. Не можете поништити ову промену.\n\nПре него што наставите, проверите да ли ваш нови број може да прима СМС или позиве.</string>
+  <string name="ChangeNumberFragment__continue">Настави</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш телефонски број је промењен.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Променити број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ваш стари број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Стари број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ваш нови број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Нови број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Унет телефонски број се не подудара са вашим налогом.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Морате навести код државе свог старог броја</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Морате навести Ваш стари број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Морате навести код државе свог новог броја</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Морате навести Ваш нови број</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Променити број</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Провера %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Потребна провера</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Промени број</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Ускоро ћете променити свој телефонски број од %1$s на %2$s.\n\nПре него што наставите, проверите да ли је доњи број тачан.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Измени број</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal промена броја - Потребна вам је помоћ са PIN за Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">ПИН нису исти</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">ПИН повезан са вашим новим бројем разликује се од ПИН-а повезан са старим. Да ли бисте желели да задржите стари ПИН или да га ажурирате?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Задржи стари ПИН</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирати PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Задржати стари ПИН?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Изгледа да сте покушали да промените свој број, али нисмо успели да утврдимо да ли је успео.\n\nПоново проверавам…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Промена статуса промењена</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ваш број је потврђен као %1$s. Ако то нијен Ваш нови број, поново покрените процес промена броја.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Промена статуса непотврђена</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Нисмо могли да утврдимо статус вашег захтева за промену броја.\n\n(Грешка: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Покушај поново</string>
+  <string name="ChangeNumberLockActivity__leave">Напусти</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Објави програмерски извештај</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Ентер тастер шаље</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Користи као подразумевану апл. за СМС</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Поруке</string>
+  <string name="NotificationsSettingsFragment__calls">Позиви</string>
+  <string name="NotificationsSettingsFragment__notify_when">Обавести када…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт се придружио Signal-у</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Блокиран/на</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d контаката</string>
+  <string name="PrivacySettingsFragment__messaging">Поруке</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Самонестајуће поруке</string>
+  <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Поруке и позиви преко Signal-а, увек преузмеравај позиве, запечаћени пошиљалац</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Подразумевани тајмер за нове преписке</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевани тајмер нестајања поруке за све нове преписке које сте започели.</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусну икону</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Унутар „Детаљи поруке” ће бити приказан индикатор да је порука послата са запечаћеним пошиљаоцем.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Када је омогућено, послате и примљене поруке у нова ћаскања што сте ви започели ће нестати након што буду приказане.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Када је омогућено, послате и примљене поруке у овој преписци ће нестати након што буду приказане.</string>
+  <string name="ExpireTimerSettingsFragment__off">Искључено</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 недеље</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 недеља</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 дан</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 сати</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 минута</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Прилагодити време</string>
+  <string name="ExpireTimerSettingsFragment__set">Поставити</string>
+  <string name="ExpireTimerSettingsFragment__save">Сачувај</string>
+  <string name="CustomExpireTimerSelectorView__seconds">секунд(и)</string>
+  <string name="CustomExpireTimerSelectorView__minutes">минута</string>
+  <string name="CustomExpireTimerSelectorView__hours">сати</string>
+  <string name="CustomExpireTimerSelectorView__days">дан(а)</string>
+  <string name="CustomExpireTimerSelectorView__weeks">недељ(а)</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Центар за подршку</string>
+  <string name="HelpSettingsFragment__contact_us">Контактирај нас</string>
+  <string name="HelpSettingsFragment__version">Верзија</string>
+  <string name="HelpSettingsFragment__debug_log">Извештај о грешкама</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Услови и политика приватности</string>
+  <string name="HelpFragment__copyright_signal_messenger">Ауторска права Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Позиви</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Ауто</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Користити посебне боје</string>
+  <string name="ChatColorSelectionFragment__chat_color">Боја ћаскања</string>
+  <string name="ChatColorSelectionFragment__edit">Уреди</string>
+  <string name="ChatColorSelectionFragment__duplicate">Дупликат</string>
+  <string name="ChatColorSelectionFragment__delete">Избриши</string>
+  <string name="ChatColorSelectionFragment__delete_color">Обрисати боју</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Ова прилагођена боја користи се у %1$d ћаскање. Да ли желите да је избришете из ћаскања?</item>
+    <item quantity="few">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
+    <item quantity="other">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Обрисати боје ћаскања?</string>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Солидно</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Градијент</string>
+  <string name="CustomChatColorCreatorFragment__hue">Нијанса</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Засићење боје</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Сачувај</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Променити боју</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Ова боја користи се у %1$d ћаскање. Да ли желите да сачувате промене за ово ћаскање?</item>
+    <item quantity="few">Ова боја користи се у %1$d ћаскања. Да ли желите да сачувате промене за свих ћаскања?</item>
+    <item quantity="other">Ова боја користи се у %1$d ћаскања. Да ли желите да сачувате промене за свих ћаскања?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Селектор горње ивице</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Селектор доње ивице</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Прилагодите реакције</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Пипните за промену емоџиа</string>
+  <string name="EditReactionsFragment__reset">Ресетуј</string>
+  <string name="EditReactionsFragment_save">Сачувај</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Се подудара према бојом позадине</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Превуците да бисте променили смер градијента</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Нове боје ћаскања</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Пребацили смо боје ћаскања да вам дају више опција и олакшавају читање ћаскања.</string>
+  <string name="ChatColorsMegaphone__appearance">Изглед</string>
+  <string name="ChatColorsMegaphone__not_now">Не сада</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Додајте фотографију за профил</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Изаберите изглед и боју или прилагодите своје иницијале.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Не сада</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Додајте слику</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Емоџи</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Отворите претрагу емоџија</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Отворите претрагу налепница</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Отворите претрагу Гифа</string>
+  <string name="KeyboardPagerFragment_stickers">Налепнице</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Гифови</string>
+  <string name="KeyboardPagerFragment_search_emoji">Претражити емоџи</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Назад на емоџи</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Испразни претрагу</string>
+  <string name="KeyboardPagerFragment_search_giphy">Тражити GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Тражити налепнице</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Нема резултата</string>
+  <string name="EmojiSearchFragment__no_results_found">Нема резултата</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Непозната мелодија звона</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Пошаљите поруку</string>
+  <string name="ConversationSettingsFragment__start_video_call">Започните видео позив</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Започните гласовни позив</string>
+  <string name="ConversationSettingsFragment__message">Порука</string>
+  <string name="ConversationSettingsFragment__video">Видео запис</string>
+  <string name="ConversationSettingsFragment__audio">Звучни запис</string>
+  <string name="ConversationSettingsFragment__call">Позови</string>
+  <string name="ConversationSettingsFragment__mute">Утишај</string>
+  <string name="ConversationSettingsFragment__muted">Утишано</string>
+  <string name="ConversationSettingsFragment__search">Претрага</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Самонестајуће поруке</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Звук и обавештења</string>
+  <string name="ConversationSettingsFragment__contact_details">Детаљи контакта</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Прикажи сигурносни број</string>
+  <string name="ConversationSettingsFragment__block">Блокирај</string>
+  <string name="ConversationSettingsFragment__block_group">Блокирај групу</string>
+  <string name="ConversationSettingsFragment__unblock">Одблокирај</string>
+  <string name="ConversationSettingsFragment__unblock_group">Одблокирај групу</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Додај у групу</string>
+  <string name="ConversationSettingsFragment__see_all">Погледај све</string>
+  <string name="ConversationSettingsFragment__add_members">Додај чланове</string>
+  <string name="ConversationSettingsFragment__permissions">Дозволе</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Захтеви и позивнице</string>
+  <string name="ConversationSettingsFragment__group_link">Веза до групе</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Додај у контакте</string>
+  <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Преписка је утишана до %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Преписка је заувек утишана</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Број телефона је копиран у оставу.</string>
+  <string name="ConversationSettingsFragment__phone_number">Број телефона</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Додај чланове</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Уреди информације о групи</string>
+  <string name="PermissionsSettingsFragment__send_messages">Слање поруке</string>
+  <string name="PermissionsSettingsFragment__all_members">Сви чланови</string>
+  <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Ко може додати нове чланове?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ко може мењати информације о групи?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Ко може да шаље поруке?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Утишај обавештења</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Није утишано</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Утишано до %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Помињања</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Увек обавести</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Немој обавештавати</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Прилагођена обавештења</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Недавно коришћено</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Нова уплата</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Нова порука</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Претрага имена или броја</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Заустави гласовну поруку</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Промени брзину гласовне поруке</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Паузирај гласовну поруку</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Пусти гласовну поруку</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Ићи до гласовне поруке</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Преглед аватара</string>
+  <string name="AvatarPickerFragment__camera">Камера</string>
+  <string name="AvatarPickerFragment__take_a_picture">Усликајте се</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Одаберите слику</string>
+  <string name="AvatarPickerFragment__photo">Фотографија</string>
+  <string name="AvatarPickerFragment__text">Текст</string>
+  <string name="AvatarPickerFragment__save">Сачувај</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Одаберите аватар</string>
+  <string name="AvatarPickerFragment__clear_avatar">Уклонити слику</string>
+  <string name="AvatarPickerFragment__edit">Уреди</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Неуспех сачувавања аватара</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Преглед</string>
+  <string name="TextAvatarCreationFragment__done">Готово</string>
+  <string name="TextAvatarCreationFragment__text">Текст</string>
+  <string name="TextAvatarCreationFragment__color">Боја</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Одаберите боју</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">СМС</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Ићи на горе</string>
+  <string name="MultiselectForwardFragment__forward_to">Напред на</string>
+  <string name="MultiselectForwardFragment__add_a_message">Додати поруку</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Убрзавање прослеђивање</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Прослеђивање поруке је сада урађено сместа.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Слање %1$d поруке</item>
+    <item quantity="few">Слање %1$d поруке/а</item>
+    <item quantity="other">Слање %1$d поруке/а</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Порука је послата</item>
+    <item quantity="few">Поруке су послате</item>
+    <item quantity="other">Поруке су послате</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Порука није послата</item>
+    <item quantity="few">Поруке нису послате</item>
+    <item quantity="other">Поруке нису послате</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Није могуће да се проследи порука јер више није доступна.</item>
+    <item quantity="few">Није могуће да се проследе поруке јер више нису доступне.</item>
+    <item quantity="other">Није могуће да се проследе поруке јер више нису доступне.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Достигнут лимит</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Додати поруку</string>
+  <string name="MediaReviewFragment__add_a_reply">Додај одговор</string>
+  <string name="MediaReviewFragment__send_to">Пошаљи у</string>
+  <string name="ImageEditorHud__cancel">Поништи</string>
+  <string name="ImageEditorHud__draw">Нацртај</string>
+  <string name="ImageEditorHud__write_text">Пиши текст</string>
+  <string name="ImageEditorHud__add_a_sticker">Додај налепницу</string>
+  <string name="ImageEditorHud__blur">Замутити</string>
+  <string name="ImageEditorHud__done_editing">Крај промене</string>
+  <string name="ImageEditorHud__clear_all">Очисти све</string>
+  <string name="ImageEditorHud__undo">Опозови</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Пребаци маркер/најамнички</string>
+  <string name="MediaCountIndicatorButton__send">Пошаљи</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Пипнути за уклон</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Додирни за избор</string>
+  <string name="MediaReviewImagePageFragment__discard">Одбаци</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Одбацити промене?</string>
+  <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Изгубићете све промене које сте направили на овој фотографији.</string>
+  <string name="ImageEditorHud__delete">Избриши</string>
+  <string name="CameraFragment__failed_to_open_camera">Неуспешно отварање камере</string>
   <!--EOF-->
 </resources>

@@ -2,18 +2,18 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.ApplicationContext;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -21,31 +21,33 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class PushTextSendJob extends PushSendJob {
 
   public static final String KEY = "PushTextSendJob";
 
-  private static final String TAG = PushTextSendJob.class.getSimpleName();
+  private static final String TAG = Log.tag(PushTextSendJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
 
-  private long messageId;
+  private final long messageId;
 
   public PushTextSendJob(long messageId, @NonNull Recipient recipient) {
     this(constructParameters(recipient, false), messageId);
@@ -72,8 +74,10 @@ public class PushTextSendJob extends PushSendJob {
   }
 
   @Override
-  public void onPushSend() throws IOException, NoSuchMessageException, UndeliverableMessageException {
-    ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+  public void onPushSend() throws IOException, NoSuchMessageException, UndeliverableMessageException, RetryLaterException {
+    SignalLocalMetrics.IndividualMessageSend.onJobStarted(messageId);
+
+    ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
     MessageDatabase        database          = DatabaseFactory.getSmsDatabase(context);
     SmsMessageRecord       record            = database.getSmsMessage(messageId);
 
@@ -87,7 +91,7 @@ public class PushTextSendJob extends PushSendJob {
 
       RecipientUtil.shareProfileIfFirstSecureMessage(context, record.getRecipient());
 
-      Recipient              recipient  = record.getRecipient().fresh();
+      Recipient              recipient  = record.getRecipient().resolve();
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
 
@@ -132,7 +136,17 @@ public class PushTextSendJob extends PushSendJob {
       database.markAsSentFailed(record.getId());
       database.markAsPush(record.getId());
       RetrieveProfileJob.enqueue(recipientId);
+    } catch (ProofRequiredException e) {
+      handleProofRequiredException(e, record.getRecipient(), record.getThreadId(), messageId, false);
     }
+
+    SignalLocalMetrics.IndividualMessageSend.onJobFinished(messageId);
+  }
+
+  @Override
+  public void onRetry() {
+    SignalLocalMetrics.IndividualMessageSend.cancel(messageId);
+    super.onRetry();
   }
 
   @Override
@@ -153,7 +167,12 @@ public class PushTextSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      Recipient                        messageRecipient   = message.getIndividualRecipient().fresh();
+      Recipient messageRecipient = message.getIndividualRecipient().resolve();
+
+      if (messageRecipient.isUnregistered()) {
+        throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
+      }
+
       SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       SignalServiceAddress             address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       Optional<byte[]>                 profileKey         = getProfileKey(messageRecipient);
@@ -169,20 +188,54 @@ public class PushTextSendJob extends PushSendJob {
                                                                            .asEndSessionMessage(message.isEndSession())
                                                                            .build();
 
-      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid().orNull())) {
+      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid())) {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
 
-        messageSender.sendMessage(syncMessage, syncAccess);
+        SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId);
+        SendMessageResult result = messageSender.sendSyncMessage(syncMessage, syncAccess);
+
+        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, new MessageId(messageId, false));
         return syncAccess.isPresent();
       } else {
-        return messageSender.sendMessage(address, unidentifiedAccess, textSecureMessage).getSuccess().isUnidentified();
+        SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId);
+        SendMessageResult result = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.RESENDABLE, textSecureMessage, new MetricEventListener(messageId));
+
+        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, new MessageId(messageId, false));
+        return result.getSuccess().isUnidentified();
       }
     } catch (UnregisteredUserException e) {
       warn(TAG, "Failure", e);
       throw new InsecureFallbackApprovalException(e);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
+    }
+  }
+
+  public static long getMessageId(@NonNull Data data) {
+    return data.getLong(KEY_MESSAGE_ID);
+  }
+
+  private static class MetricEventListener implements SignalServiceMessageSender.IndividualSendEvents {
+    private final long messageId;
+
+    private MetricEventListener(long messageId) {
+      this.messageId = messageId;
+    }
+
+    @Override
+    public void onMessageEncrypted() {
+      SignalLocalMetrics.IndividualMessageSend.onMessageEncrypted(messageId);
+    }
+
+    @Override
+    public void onMessageSent() {
+      SignalLocalMetrics.IndividualMessageSend.onMessageSent(messageId);
+    }
+
+    @Override
+    public void onSyncMessageSent() {
+      SignalLocalMetrics.IndividualMessageSend.onSyncMessageSent(messageId);
     }
   }
 

@@ -125,6 +125,14 @@ public final class LiveGroup {
     });
   }
 
+  public LiveData<String> getDescription() {
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getDescription);
+  }
+
+  public LiveData<Boolean> isAnnouncementGroup() {
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::isAnnouncementGroup);
+  }
+
   public LiveData<Recipient> getGroupRecipient() {
     return recipient;
   }
@@ -180,7 +188,7 @@ public final class LiveGroup {
   }
 
   public LiveData<Integer> getExpireMessages() {
-    return Transformations.map(recipient, Recipient::getExpireMessages);
+    return Transformations.map(recipient, Recipient::getExpiresInSeconds);
   }
 
   public LiveData<Boolean> selfCanEditGroupAttributes() {

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.longmessage;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -17,25 +16,27 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.WindowUtil;
+import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.views.Stub;
+
+import java.util.Collections;
 
 import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
 
@@ -50,8 +51,10 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
 
-  private Stub<ViewGroup> sentBubble;
-  private Stub<ViewGroup> receivedBubble;
+  private Stub<ViewGroup>      sentBubble;
+  private Stub<ViewGroup>      receivedBubble;
+  private ColorizerView        colorizerView;
+  private BubbleLayoutListener bubbleLayoutListener;
 
   private LongMessageViewModel viewModel;
 
@@ -77,6 +80,9 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
 
     sentBubble     = new Stub<>(findViewById(R.id.longmessage_sent_stub));
     receivedBubble = new Stub<>(findViewById(R.id.longmessage_received_stub));
+    colorizerView  = findViewById(R.id.colorizer);
+
+    bubbleLayoutListener = new BubbleLayoutListener();
 
     initViewModel(getIntent().getLongExtra(KEY_MESSAGE_ID, -1), getIntent().getBooleanExtra(KEY_IS_MMS, false));
 
@@ -129,10 +135,14 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
 
       if (message.get().getMessageRecord().isOutgoing()) {
         bubble = sentBubble.get();
-        bubble.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.signal_background_secondary), PorterDuff.Mode.MULTIPLY);
+        colorizerView.setVisibility(View.VISIBLE);
+        colorizerView.setBackground(message.get().getMessageRecord().getRecipient().getChatColors().getChatBubbleMask());
+        bubble.getBackground().setColorFilter(message.get().getMessageRecord().getRecipient().getChatColors().getChatBubbleColorFilter());
+        bubble.addOnLayoutChangeListener(bubbleLayoutListener);
+        bubbleLayoutListener.onLayoutChange(bubble, 0, 0, 0, 0, 0, 0, 0, 0);
       } else {
         bubble = receivedBubble.get();
-        bubble.getBackground().setColorFilter(message.get().getMessageRecord().getRecipient().getColor().toConversationColor(this), PorterDuff.Mode.MULTIPLY);
+        bubble.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.signal_background_secondary), PorterDuff.Mode.MULTIPLY);
       }
 
       EmojiTextView          text   = bubble.findViewById(R.id.longmessage_text);
@@ -144,8 +154,8 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
       bubble.setVisibility(View.VISIBLE);
       text.setText(styledBody);
       text.setMovementMethod(LinkMovementMethod.getInstance());
-      text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
-      if (message.get().getMessageRecord().isOutgoing()) {
+      text.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());
+      if (!message.get().getMessageRecord().isOutgoing()) {
         text.setMentionBackgroundTint(ContextCompat.getColor(this, isDarkTheme(this) ? R.color.core_grey_60 : R.color.core_grey_20));
       } else {
         text.setMentionBackgroundTint(ContextCompat.getColor(this, R.color.transparent_black_40));
@@ -161,7 +171,7 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
 
   private SpannableString linkifyMessageBody(SpannableString messageBody) {
     int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-    boolean hasLinks    = Linkify.addLinks(messageBody, linkPattern);
+    boolean hasLinks    = LinkifyCompat.addLinks(messageBody, linkPattern);
 
     if (hasLinks) {
       Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))
@@ -169,5 +179,14 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
             .forEach(messageBody::removeSpan);
     }
     return messageBody;
+  }
+
+  private final class BubbleLayoutListener implements View.OnLayoutChangeListener {
+    @Override
+    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+      Projection projection = Projection.relativeToViewWithCommonRoot(v, colorizerView, new Projection.Corners(16));
+
+      colorizerView.setProjections(Collections.singletonList(projection));
+    }
   }
 }

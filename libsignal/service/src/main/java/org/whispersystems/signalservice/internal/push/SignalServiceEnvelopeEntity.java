@@ -57,7 +57,7 @@ public class SignalServiceEnvelopeEntity {
   }
 
   public boolean hasSource() {
-    return source != null || sourceUuid != null;
+    return sourceUuid != null;
   }
 
   public int getSourceDevice() {

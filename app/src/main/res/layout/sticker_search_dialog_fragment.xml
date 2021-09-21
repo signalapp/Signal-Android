@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/signal_background_primary">
+
+    <FrameLayout
+        android:id="@+id/sticker_search_text_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+            android:id="@+id/sticker_search_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:search_bar_tint="@color/signal_background_secondary"
+            app:search_hint="@string/StickerSearchDialogFragment_search_stickers"
+            app:search_icon_tint="@color/signal_icon_tint_secondary"
+            app:show_always="true" />
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sticker_search_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="8dp"
+        android:scrollIndicators="top|bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sticker_search_text_frame"
+        tools:listitem="@layout/sticker_keyboard_page_list_item"
+        tools:ignore="UnusedAttribute" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/sticker_search_no_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/StickerSearchDialogFragment_no_results_found"
+        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sticker_search_text_frame"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

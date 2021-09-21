@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:drawable="@drawable/recipient_bottom_sheet_icon_button_squircle" />
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/signal_inverse_transparent_10" />
+                    <corners android:radius="18dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:drawable="@drawable/recipient_bottom_sheet_icon_button_squircle" />
+</selector>

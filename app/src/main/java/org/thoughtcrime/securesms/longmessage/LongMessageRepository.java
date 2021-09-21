@@ -26,7 +26,7 @@ import java.io.InputStream;
 
 class LongMessageRepository {
 
-  private final static String TAG = LongMessageRepository.class.getSimpleName();
+  private final static String TAG = Log.tag(LongMessageRepository.class);
 
   private final MessageDatabase mmsDatabase;
   private final MessageDatabase smsDatabase;
@@ -54,9 +54,9 @@ class LongMessageRepository {
       TextSlide textSlide = record.get().getSlideDeck().getTextSlide();
 
       if (textSlide != null && textSlide.getUri() != null) {
-        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), readFullBody(context, textSlide.getUri())));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get(), readFullBody(context, textSlide.getUri()))));
       } else {
-        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get())));
       }
     } else {
       return Optional.absent();
@@ -68,7 +68,7 @@ class LongMessageRepository {
     Optional<MessageRecord> record = getSmsMessage(smsDatabase, messageId);
 
     if (record.isPresent()) {
-      return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
+      return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get())));
     } else {
       return Optional.absent();
     }
@@ -89,7 +89,7 @@ class LongMessageRepository {
     }
   }
 
-  private String readFullBody(@NonNull Context context, @NonNull Uri uri) {
+  private @NonNull String readFullBody(@NonNull Context context, @NonNull Uri uri) {
     try (InputStream stream = PartAuthority.getAttachmentStream(context, uri)) {
       return StreamUtil.readFullyAsString(stream);
     } catch (IOException e) {

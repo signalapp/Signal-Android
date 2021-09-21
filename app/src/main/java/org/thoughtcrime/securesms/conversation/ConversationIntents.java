@@ -7,6 +7,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -31,6 +32,7 @@ public class ConversationIntents {
   private static final String EXTRA_DISTRIBUTION_TYPE                = "distribution_type";
   private static final String EXTRA_STARTING_POSITION                = "starting_position";
   private static final String EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP = "first_time_in_group";
+  private static final String EXTRA_WITH_SEARCH_OPEN                 = "with_search_open";
 
   private ConversationIntents() {
   }
@@ -67,8 +69,9 @@ public class ConversationIntents {
     private final StickerLocator   stickerLocator;
     private final boolean          isBorderless;
     private final int              distributionType;
-    private final int     startingPosition;
-    private final boolean firstTimeInSelfCreatedGroup;
+    private final int              startingPosition;
+    private final boolean          firstTimeInSelfCreatedGroup;
+    private final boolean          withSearchOpen;
 
     static Args from(@NonNull Intent intent) {
       if (isBubbleIntent(intent)) {
@@ -80,6 +83,7 @@ public class ConversationIntents {
                         false,
                         ThreadDatabase.DistributionTypes.DEFAULT,
                         -1,
+                        false,
                         false);
       }
 
@@ -91,7 +95,8 @@ public class ConversationIntents {
                       intent.getBooleanExtra(EXTRA_BORDERLESS, false),
                       intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT),
                       intent.getIntExtra(EXTRA_STARTING_POSITION, -1),
-                      intent.getBooleanExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false));
+                      intent.getBooleanExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false),
+                      intent.getBooleanExtra(EXTRA_WITH_SEARCH_OPEN, false));
     }
 
     private Args(@NonNull RecipientId recipientId,
@@ -102,7 +107,8 @@ public class ConversationIntents {
                  boolean isBorderless,
                  int distributionType,
                  int startingPosition,
-                 boolean firstTimeInSelfCreatedGroup)
+                 boolean firstTimeInSelfCreatedGroup,
+                 boolean withSearchOpen)
     {
       this.recipientId                 = recipientId;
       this.threadId                    = threadId;
@@ -113,6 +119,7 @@ public class ConversationIntents {
       this.distributionType            = distributionType;
       this.startingPosition            = startingPosition;
       this.firstTimeInSelfCreatedGroup = firstTimeInSelfCreatedGroup;
+      this.withSearchOpen              = withSearchOpen;
     }
 
     public @NonNull RecipientId getRecipientId() {
@@ -155,6 +162,14 @@ public class ConversationIntents {
       // TODO [greyson][wallpaper] Is it worth it to do this beforehand?
       return Recipient.resolved(recipientId).getWallpaper();
     }
+
+    public @NonNull ChatColors getChatColors() {
+      return Recipient.resolved(recipientId).getChatColors();
+    }
+
+    public boolean isWithSearchOpen() {
+      return withSearchOpen;
+    }
   }
 
   public final static class Builder {
@@ -172,6 +187,7 @@ public class ConversationIntents {
     private Uri            dataUri;
     private String         dataType;
     private boolean        firstTimeInSelfCreatedGroup;
+    private boolean        withSearchOpen;
 
     private Builder(@NonNull Context context,
                     @NonNull RecipientId recipientId,
@@ -231,6 +247,11 @@ public class ConversationIntents {
       return this;
     }
 
+    public @NonNull Builder withSearchOpen(boolean withSearchOpen) {
+      this.withSearchOpen = withSearchOpen;
+      return this;
+    }
+
     public Builder firstTimeInSelfCreatedGroup() {
       this.firstTimeInSelfCreatedGroup = true;
       return this;
@@ -260,6 +281,7 @@ public class ConversationIntents {
       intent.putExtra(EXTRA_STARTING_POSITION, startingPosition);
       intent.putExtra(EXTRA_BORDERLESS, isBorderless);
       intent.putExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, firstTimeInSelfCreatedGroup);
+      intent.putExtra(EXTRA_WITH_SEARCH_OPEN, withSearchOpen);
 
       if (draftText != null) {
         intent.putExtra(EXTRA_TEXT, draftText);

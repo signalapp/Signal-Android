@@ -29,7 +29,8 @@ import java.util.Set;
 
 public abstract class Database {
 
-  protected static final String ID_WHERE = "_id = ?";
+  protected static final String   ID_WHERE = "_id = ?";
+  protected static final String[] COUNT    = new String[] { "COUNT(*)" };
 
   protected       SQLCipherOpenHelper databaseHelper;
   protected final Context             context;
@@ -49,19 +50,18 @@ public abstract class Database {
 
   protected void notifyConversationListeners(long threadId) {
     ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId);
+  }
 
-    context.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
-    notifyVerboseConversationListeners(threadId);
+  protected void notifyVerboseConversationListeners(Set<Long> threadIds) {
+    ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(threadIds);
   }
 
   protected void notifyVerboseConversationListeners(long threadId) {
     ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(threadId);
-    context.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
   }
 
   protected void notifyConversationListListeners() {
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
-    context.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null);
   }
 
   protected void notifyStickerListeners() {
@@ -69,7 +69,7 @@ public abstract class Database {
   }
 
   protected void notifyStickerPackListeners() {
-    context.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
+    ApplicationDependencies.getDatabaseObserver().notifyStickerPackObservers();
   }
 
   @Deprecated
@@ -85,11 +85,6 @@ public abstract class Database {
   @Deprecated
   protected void setNotifyVerboseConversationListeners(Cursor cursor, long threadId) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId));
-  }
-
-  @Deprecated
-  protected void setNotifyConversationListListeners(Cursor cursor) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.ConversationList.CONTENT_URI);
   }
 
   @Deprecated

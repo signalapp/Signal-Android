@@ -25,6 +25,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon;
+import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -34,7 +36,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -42,13 +44,15 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
 
+import kotlin.Unit;
+
 /**
  * A bottom sheet that shows some simple recipient details, as well as some actions (like calling,
  * adding to contacts, etc).
  */
 public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
-  public static final int REQUEST_CODE_ADD_CONTACT = 1111;
+  public static final int REQUEST_CODE_SYSTEM_CONTACT_SHEET = 1111;
 
   private static final String ARGS_RECIPIENT_ID = "RECIPIENT_ID";
   private static final String ARGS_GROUP_ID     = "GROUP_ID";
@@ -58,13 +62,10 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private TextView                 fullName;
   private TextView                 about;
   private TextView                 usernameNumber;
-  private Button                   messageButton;
-  private Button                   secureCallButton;
-  private Button                   insecureCallButton;
-  private Button                   secureVideoCallButton;
   private Button                   blockButton;
   private Button                   unblockButton;
   private Button                   addContactButton;
+  private Button                   contactDetailsButton;
   private Button                   addToGroupButton;
   private Button                   viewSafetyNumberButton;
   private Button                   makeGroupAdminButton;
@@ -72,6 +73,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private Button                   removeFromGroupButton;
   private ProgressBar              adminActionBusy;
   private View                     noteToSelfDescription;
+  private View                     buttonStrip;
+  private View                     interactionsContainer;
 
   public static BottomSheetDialogFragment create(@NonNull RecipientId recipientId,
                                                  @Nullable GroupId groupId)
@@ -106,13 +109,10 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     fullName               = view.findViewById(R.id.rbs_full_name);
     about                  = view.findViewById(R.id.rbs_about);
     usernameNumber         = view.findViewById(R.id.rbs_username_number);
-    messageButton          = view.findViewById(R.id.rbs_message_button);
-    secureCallButton       = view.findViewById(R.id.rbs_secure_call_button);
-    insecureCallButton     = view.findViewById(R.id.rbs_insecure_call_button);
-    secureVideoCallButton  = view.findViewById(R.id.rbs_video_call_button);
     blockButton            = view.findViewById(R.id.rbs_block_button);
     unblockButton          = view.findViewById(R.id.rbs_unblock_button);
     addContactButton       = view.findViewById(R.id.rbs_add_contact_button);
+    contactDetailsButton   = view.findViewById(R.id.rbs_contact_details_button);
     addToGroupButton       = view.findViewById(R.id.rbs_add_to_group_button);
     viewSafetyNumberButton = view.findViewById(R.id.rbs_view_safety_number_button);
     makeGroupAdminButton   = view.findViewById(R.id.rbs_make_group_admin_button);
@@ -120,6 +120,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     removeFromGroupButton  = view.findViewById(R.id.rbs_remove_from_group_button);
     adminActionBusy        = view.findViewById(R.id.rbs_admin_action_busy);
     noteToSelfDescription  = view.findViewById(R.id.rbs_note_to_self_description);
+    buttonStrip            = view.findViewById(R.id.button_strip);
+    interactionsContainer  = view.findViewById(R.id.interactions_container);
 
     return view;
   }
@@ -137,10 +139,12 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel = ViewModelProviders.of(this, factory).get(RecipientDialogViewModel.class);
 
     viewModel.getRecipient().observe(getViewLifecycleOwner(), recipient -> {
+      interactionsContainer.setVisibility(recipient.isSelf() ? View.GONE : View.VISIBLE);
+
       avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
         @Override
         public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getColor().toAvatarColor(requireContext()));
+          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getAvatarColor());
         }
       });
       avatar.setAvatar(recipient);
@@ -193,18 +197,58 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         unblockButton.setVisibility(View.GONE);
       }
 
-      messageButton.setVisibility(!recipient.isSelf() ? View.VISIBLE : View.GONE);
-      secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-      insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-      secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+      ButtonStripPreference.State  buttonStripState = new ButtonStripPreference.State(
+          /* isMessageAvailable = */ !recipient.isSelf(),
+          /* isVideoAvailable = */   recipient.isRegistered() && !recipient.isSelf(),
+          /* isAudioAvailable = */   !recipient.isSelf(),
+          /* isMuteAvailable = */    false,
+          /* isSearchAvailable = */  false,
+          /* isAudioSecure = */      recipient.isRegistered(),
+          /* isMuted = */            false
+      );
+
+      ButtonStripPreference.Model buttonStripModel = new ButtonStripPreference.Model(
+          buttonStripState,
+          DSLSettingsIcon.from(ContextUtil.requireDrawable(requireContext(), R.drawable.selectable_recipient_bottom_sheet_icon_button)),
+          () -> {
+            dismiss();
+            viewModel.onMessageClicked(requireActivity());
+            return Unit.INSTANCE;
+          },
+          () -> {
+            viewModel.onSecureVideoCallClicked(requireActivity());
+            return Unit.INSTANCE;
+          },
+          () -> {
+            if (buttonStripState.isAudioSecure()) {
+              viewModel.onSecureCallClicked(requireActivity());
+            } else {
+              viewModel.onInsecureCallClicked(requireActivity());
+            }
+            return Unit.INSTANCE;
+          },
+          () -> Unit.INSTANCE,
+          () -> Unit.INSTANCE
+      );
+
+      new ButtonStripPreference.ViewHolder(buttonStrip).bind(buttonStripModel);
 
       if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf()) {
         addContactButton.setVisibility(View.GONE);
       } else {
         addContactButton.setVisibility(View.VISIBLE);
         addContactButton.setOnClickListener(v -> {
-          startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
+          startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_SYSTEM_CONTACT_SHEET);
         });
+      }
+
+      if (recipient.isSystemContact() && !recipient.isGroup() && !recipient.isSelf()) {
+        contactDetailsButton.setVisibility(View.VISIBLE);
+        contactDetailsButton.setOnClickListener(v -> {
+          startActivityForResult(new Intent(Intent.ACTION_VIEW, recipient.getContactUri()), REQUEST_CODE_SYSTEM_CONTACT_SHEET);
+        });
+      } else {
+        contactDetailsButton.setVisibility(View.GONE);
       }
     });
 
@@ -235,15 +279,6 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       viewModel.onAvatarClicked(requireActivity());
     });
 
-    messageButton.setOnClickListener(view -> {
-      dismiss();
-      viewModel.onMessageClicked(requireActivity());
-    });
-
-    secureCallButton.setOnClickListener(view -> viewModel.onSecureCallClicked(requireActivity()));
-    insecureCallButton.setOnClickListener(view -> viewModel.onInsecureCallClicked(requireActivity()));
-    secureVideoCallButton.setOnClickListener(view -> viewModel.onSecureVideoCallClicked(requireActivity()));
-
     blockButton.setOnClickListener(view -> viewModel.onBlockClicked(requireActivity()));
     unblockButton.setOnClickListener(view -> viewModel.onUnblockClicked(requireActivity()));
 
@@ -268,8 +303,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_ADD_CONTACT) {
-      viewModel.onAddedToContacts();
+    if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_SYSTEM_CONTACT_SHEET) {
+      viewModel.refreshRecipient();
     }
   }
 

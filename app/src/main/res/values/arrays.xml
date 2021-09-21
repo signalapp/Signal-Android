@@ -11,10 +11,12 @@
 <!-- bs --><item>Bosanski</item>
 <!-- bg --><item>Bulgarian български</item>
 <!-- my --><item>Burmese ဗမာစကား</item>
+<!-- yue --><item>Cantonese (Traditional) 粵語 (繁體)</item>
 <!-- ca --><item>Català</item>
 <!-- cs --><item>Čeština</item>
 <!-- zh_CN --><item>Chinese (Simplified) 中文 (简体)</item>
 <!-- zh_TW --><item>Chinese (Traditional) 中文 (繁體)</item>
+<!-- zh_HK --><item>Chinese (Traditional, Hong Kong) 中文 (香港)</item>
 <!-- cy --><item>Cymraeg</item>
 <!-- da --><item>Dansk</item>
 <!-- de --><item>Deutsch</item>
@@ -73,6 +75,7 @@
 <!-- te --><item>Telugu తెలుగు</item>
 <!-- th --><item>Thai ภาษาไทย</item>
 <!-- tr --><item>Türkçe</item>
+<!-- ug --><item>Uyghurche / ئۇيغۇرچە‎</item>
 <!-- uk --><item>Ukrainian Українська</item>
 <!-- ur --><item>Urdu اردو‎</item>
 <!-- vi --><item>Vietnamese Tiếng Việt</item>
@@ -88,11 +91,13 @@
       <item>bs</item>
       <item>bg</item>
       <item>my</item>
+      <item>yue</item>
       <item>ca</item>
       <item>cs</item>
       <item>zh_CN</item>
       <item>zh_TW</item>
-      <item>cy</item> 
+      <item>zh_HK</item>
+      <item>cy</item>
       <item>da</item>
       <item>de</item>
       <item>et</item>
@@ -150,6 +155,7 @@
       <item>te</item>
       <item>th</item>
       <item>tr</item>
+      <item>ug</item>
       <item>uk</item>
       <item>ur</item>
       <item>vi</item>
@@ -230,10 +236,10 @@
 
   <string-array name="mute_durations">
       <item>@string/arrays__mute_for_one_hour</item>
-      <item>@string/arrays__mute_for_two_hours</item>
+      <item>@string/arrays__mute_for_eight_hours</item>
       <item>@string/arrays__mute_for_one_day</item>
       <item>@string/arrays__mute_for_seven_days</item>
-      <item>@string/arrays__mute_for_one_year</item>
+      <item>@string/arrays__always</item>
   </string-array>
 
   <string-array name="recipient_vibrate_entries">
@@ -283,8 +289,8 @@
 
   <string-array name="pref_data_and_storage_call_bandwidth_values">
       <item>@string/preferences_data_and_storage__never</item>
-      <item>@string/preferences_data_and_storage__cellular_only</item>
-      <item>@string/preferences_data_and_storage__wifi_and_cellular</item>
+      <item>@string/preferences_data_and_storage__mobile_data_only</item>
+      <item>@string/preferences_data_and_storage__wifi_and_mobile_data</item>
   </string-array>
 
   <string-array name="pref_media_download_roaming_default" />
@@ -356,6 +362,59 @@
         <item>@string/MediaOverviewActivity_Newest</item>
         <item>@string/MediaOverviewActivity_Oldest</item>
         <item>@string/MediaOverviewActivity_Storage_used</item>
+    </string-array>
+
+    <string-array name="ExpireTimerSettingsFragment__labels">
+        <item>@string/ExpireTimerSettingsFragment__off</item>
+        <item>@string/ExpireTimerSettingsFragment__4_weeks</item>
+        <item>@string/ExpireTimerSettingsFragment__1_week</item>
+        <item>@string/ExpireTimerSettingsFragment__1_day</item>
+        <item>@string/ExpireTimerSettingsFragment__8_hours</item>
+        <item>@string/ExpireTimerSettingsFragment__1_hour</item>
+        <item>@string/ExpireTimerSettingsFragment__5_minutes</item>
+        <item>@string/ExpireTimerSettingsFragment__30_seconds</item>
+    </string-array>
+
+    <integer-array name="ExpireTimerSettingsFragment__values">
+        <item>0</item>
+        <item>2419200</item>
+        <item>604800</item>
+        <item>86400</item>
+        <item>28800</item>
+        <item>3600</item>
+        <item>300</item>
+        <item>30</item>
+    </integer-array>
+
+    <string-array name="CustomExpireTimerSelectorView__unit_labels">
+        <item>@string/CustomExpireTimerSelectorView__seconds</item>
+        <item>@string/CustomExpireTimerSelectorView__minutes</item>
+        <item>@string/CustomExpireTimerSelectorView__hours</item>
+        <item>@string/CustomExpireTimerSelectorView__days</item>
+        <item>@string/CustomExpireTimerSelectorView__weeks</item>
+    </string-array>
+
+    <string-array name="PermissionsSettingsFragment__editor_labels">
+        <item>@string/PermissionsSettingsFragment__only_admins</item>
+        <item>@string/PermissionsSettingsFragment__all_members</item>
+    </string-array>
+
+    <string-array name="SoundsAndNotificationsSettingsFragment__mention_labels">
+        <item>@string/SoundsAndNotificationsSettingsFragment__always_notify</item>
+        <item>@string/SoundsAndNotificationsSettingsFragment__do_not_notify</item>
+    </string-array>
+
+    <integer-array name="PlaybackSpeedToggleTextView__speeds">
+        <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>50</item>
+    </integer-array>
+    <string-array name="PlaybackSpeedToggleTextView__speed_labels">
+        <item>@string/PlaybackSpeedToggleTextView__1x</item>
+        <item>@string/PlaybackSpeedToggleTextView__1p5x</item>
+        <item>@string/PlaybackSpeedToggleTextView__2x</item>
+        <item>@string/PlaybackSpeedToggleTextView__p5x</item>
     </string-array>
 
 </resources>

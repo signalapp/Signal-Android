@@ -23,9 +23,12 @@ public class ShapeScrim extends View {
   private final Paint     eraser;
   private final ShapeType shape;
   private final float     radius;
+  private final int       canvasColor;
 
   private Bitmap scrim;
   private Canvas scrimCanvas;
+  private int    scrimWidth;
+  private int    scrimHeight;
 
   public ShapeScrim(Context context) {
     this(context, null);
@@ -57,13 +60,30 @@ public class ShapeScrim extends View {
     this.eraser = new Paint();
     this.eraser.setColor(0xFFFFFFFF);
     this.eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+
+    this.canvasColor = Color.parseColor("#55BDBDBD");
+  }
+
+  @Override
+  protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    super.onLayout(changed, l, t, r, b);
+    int   shortDimension = Math.min(getWidth(), getHeight());
+    float drawRadius     = shortDimension * radius;
+
+    float left   = (getMeasuredWidth() / 2 ) - drawRadius;
+    float top    = (getMeasuredHeight() / 2) - drawRadius;
+    float right  = left + (drawRadius * 2);
+    float bottom = top + (drawRadius * 2);
+
+    scrimWidth  = (int) (right - left);
+    scrimHeight = (int) (bottom - top);
   }
 
   @Override
   public void onDraw(Canvas canvas) {
     super.onDraw(canvas);
 
-    int   shortDimension = getWidth() < getHeight() ? getWidth() : getHeight();
+    int   shortDimension = Math.min(getWidth(), getHeight());
     float drawRadius     = shortDimension * radius;
 
     if (scrimCanvas == null) {
@@ -72,7 +92,7 @@ public class ShapeScrim extends View {
     }
 
     scrim.eraseColor(Color.TRANSPARENT);
-    scrimCanvas.drawColor(Color.parseColor("#55BDBDBD"));
+    scrimCanvas.drawColor(canvasColor);
 
     if (shape == ShapeType.CIRCLE) drawCircle(scrimCanvas, drawRadius, eraser);
     else                           drawSquare(scrimCanvas, drawRadius, eraser);
@@ -103,5 +123,13 @@ public class ShapeScrim extends View {
     RectF square = new RectF(left, top, right, bottom);
 
     canvas.drawRoundRect(square, 25, 25, eraser);
+  }
+
+  public int getScrimWidth() {
+    return scrimWidth;
+  }
+
+  public int getScrimHeight() {
+    return scrimHeight;
   }
 }

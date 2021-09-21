@@ -11,19 +11,21 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.BaseSettingsAdapter;
 import org.thoughtcrime.securesms.components.settings.BaseSettingsFragment;
 import org.thoughtcrime.securesms.components.settings.CustomizableSingleSelectSetting;
 import org.thoughtcrime.securesms.components.settings.SingleSelectSetting;
+import org.thoughtcrime.securesms.components.settings.app.wrapped.SettingsWrapperFragment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -52,15 +54,15 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
 
     trimLength = findPreference(SettingsValues.THREAD_TRIM_LENGTH);
     trimLength.setOnPreferenceClickListener(p -> {
-      getApplicationPreferencesActivity().requireSupportActionBar().setTitle(R.string.preferences__conversation_length_limit);
-      getApplicationPreferencesActivity().pushFragment(BaseSettingsFragment.create(new ConversationLengthLimitConfiguration()));
+      updateToolbarTitle(R.string.preferences__conversation_length_limit);
+      pushFragment(BaseSettingsFragment.create(new ConversationLengthLimitConfiguration()));
       return true;
     });
 
     keepMessages = findPreference(SettingsValues.KEEP_MESSAGES_DURATION);
     keepMessages.setOnPreferenceClickListener(p -> {
-      getApplicationPreferencesActivity().requireSupportActionBar().setTitle(R.string.preferences__keep_messages);
-      getApplicationPreferencesActivity().pushFragment(BaseSettingsFragment.create(new KeepMessagesConfiguration()));
+      updateToolbarTitle(R.string.preferences__keep_messages);
+      pushFragment(BaseSettingsFragment.create(new KeepMessagesConfiguration()));
       return true;
     });
 
@@ -81,7 +83,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) requireActivity()).requireSupportActionBar().setTitle(R.string.preferences__storage);
+    updateToolbarTitle(R.string.preferences__storage);
 
     FragmentActivity                activity  = requireActivity();
     ApplicationPreferencesViewModel viewModel = ApplicationPreferencesViewModel.getApplicationPreferencesViewModel(activity);
@@ -99,8 +101,17 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  private @NonNull ApplicationPreferencesActivity getApplicationPreferencesActivity() {
-    return (ApplicationPreferencesActivity) requireActivity();
+  private void updateToolbarTitle(@StringRes int title) {
+    if (getParentFragment() instanceof SettingsWrapperFragment) {
+      ((SettingsWrapperFragment) getParentFragment()).setTitle(title);
+    }
+  }
+
+  private void pushFragment(@NonNull Fragment fragment) {
+    getParentFragmentManager().beginTransaction()
+        .replace(R.id.wrapped_fragment, fragment)
+        .addToBackStack(null)
+        .commit();
   }
 
   private class ClearMessageHistoryClickListener implements Preference.OnPreferenceClickListener {
@@ -137,7 +148,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
     public @NonNull MappingModelList getSettings() {
       KeepMessagesDuration currentDuration = SignalStore.settings().getKeepMessagesDuration();
       return Stream.of(KeepMessagesDuration.values())
-                   .map(duration -> new SingleSelectSetting.Item(duration, activity.getString(duration.getStringResource()), duration.equals(currentDuration)))
+                   .map(duration -> new SingleSelectSetting.Item(duration, activity.getString(duration.getStringResource()), null, duration.equals(currentDuration)))
                    .collect(MappingModelList.toMappingModelList());
     }
 
@@ -187,7 +198,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
         String  text       = option == 0 ? activity.getString(R.string.preferences_storage__none)
                                          : activity.getString(R.string.preferences_storage__s_messages, NumberFormat.getInstance().format(option));
 
-        settings.add(new SingleSelectSetting.Item(option, text, isSelected));
+        settings.add(new SingleSelectSetting.Item(option, text, null, isSelected));
 
         hasSelection = hasSelection || isSelected;
       }

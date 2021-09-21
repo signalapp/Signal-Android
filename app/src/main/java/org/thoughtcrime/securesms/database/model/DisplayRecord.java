@@ -178,6 +178,10 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isProfileChange(type);
   }
 
+  public boolean isChangeNumber() {
+    return SmsDatabase.Types.isChangeNumber(type);
+  }
+
   public int getDeliveryStatus() {
     return deliveryStatus;
   }
@@ -204,6 +208,10 @@ public abstract class DisplayRecord {
   public boolean isDelivered() {
     return (deliveryStatus >= SmsDatabase.Status.STATUS_COMPLETE &&
             deliveryStatus < SmsDatabase.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
+  }
+
+  public boolean isRemoteViewed() {
+    return viewReceiptCount > 0;
   }
 
   public boolean isRemoteRead() {

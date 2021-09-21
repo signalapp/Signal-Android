@@ -47,12 +47,13 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class MmsDownloadJob extends BaseJob {
 
   public static final String KEY = "MmsDownloadJob";
 
-  private static final String TAG = MmsDownloadJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsDownloadJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_THREAD_ID  = "thread_id";
@@ -237,7 +238,7 @@ public class MmsDownloadJob extends BaseJob {
 
             attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                            part.getData().length, name, false, false, false, null, null, null, null, null));
+                            part.getData().length, name, false, false, false, false, null, null, null, null, null));
           }
         }
       }
@@ -248,7 +249,7 @@ public class MmsDownloadJob extends BaseJob {
       group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipients));
     }
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, -1, attachments, subscriptionId, 0, false, false, false, Optional.of(sharedContacts));
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, TimeUnit.SECONDS.toMillis(retrieved.getDate()), -1, System.currentTimeMillis(), attachments, subscriptionId, 0, false, false, false, Optional.of(sharedContacts));
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {

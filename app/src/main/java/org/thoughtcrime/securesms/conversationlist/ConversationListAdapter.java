@@ -101,7 +101,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
       v.setLayoutParams(new FrameLayout.LayoutParams(1, ViewUtil.dpToPx(100)));
       return new PlaceholderViewHolder(v);
     } else if (viewType == TYPE_HEADER) {
-      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_item_header, parent, false);
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dsl_section_header, parent, false);
       return new HeaderViewHolder(v);
     } else {
       throw new IllegalStateException("Unknown type! " + viewType);
@@ -297,7 +297,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
     public HeaderViewHolder(@NonNull View itemView) {
       super(itemView);
-      headerText = (TextView) itemView;
+      headerText = itemView.findViewById(R.id.section_header);
     }
   }
 

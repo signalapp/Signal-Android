@@ -1,5 +1,9 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spanned;
@@ -26,17 +31,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppInitialization;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
@@ -46,6 +53,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -56,7 +64,7 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import java.io.IOException;
 import java.util.Locale;
 
-public final class RestoreBackupFragment extends BaseRegistrationFragment {
+public final class RestoreBackupFragment extends LoggingFragment {
 
   private static final String TAG                            = Log.tag(RestoreBackupFragment.class);
   private static final short  OPEN_DOCUMENT_TREE_RESULT_CODE = 13782;
@@ -93,14 +101,15 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
                                  .navigate(RestoreBackupFragmentDirections.actionSkip());
                      });
 
-    if (isReregister()) {
+    RegistrationViewModel viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
+    if (viewModel.isReregister()) {
       Log.i(TAG, "Skipping backup restore during re-register.");
       Navigation.findNavController(view)
                 .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
       return;
     }
 
-    if (TextSecurePreferences.isBackupEnabled(requireContext())) {
+    if (SignalStore.settings().isBackupEnabled()) {
       Log.i(TAG, "Backups enabled, so a backup must have been previously restored.");
       Navigation.findNavController(view)
                 .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
@@ -108,7 +117,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     }
 
     RestoreBackupFragmentArgs args = RestoreBackupFragmentArgs.fromBundle(requireArguments());
-    if (BackupUtil.isUserSelectionRequired(requireContext()) && args.getUri() != null) {
+    if ((Build.VERSION.SDK_INT < 29 || BackupUtil.isUserSelectionRequired(requireContext())) && args.getUri() != null) {
       Log.i(TAG, "Restoring backup from passed uri");
       initializeBackupForUri(view, args.getUri());
 
@@ -142,7 +151,6 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     }
   }
 
-  @RequiresApi(29)
   private void initializeBackupForUri(@NonNull View view, @NonNull Uri uri) {
     getFromUri(requireContext(), uri, backup -> handleBackupInfo(view, backup));
   }
@@ -197,7 +205,6 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     }.execute();
   }
 
-  @RequiresApi(29)
   static void getFromUri(@NonNull Context context,
                          @NonNull Uri backupUri,
                          @NonNull OnBackupSearchResultListener listener)
@@ -330,7 +337,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
   private void enableBackups(@NonNull Context context) {
     if (BackupUtil.canUserAccessBackupDirectory(context)) {
       LocalBackupListener.setNextBackupTimeToIntervalFromNow(context);
-      TextSecurePreferences.setBackupEnabled(context, true);
+      SignalStore.settings().setBackupEnabled(true);
       LocalBackupListener.schedule(context);
     }
   }

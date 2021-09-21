@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import org.thoughtcrime.securesms.R;
+
 public class EmojiImageView extends AppCompatImageView {
   public EmojiImageView(Context context) {
     super(context);
@@ -15,6 +17,10 @@ public class EmojiImageView extends AppCompatImageView {
   }
 
   public void setImageEmoji(CharSequence emoji) {
-    setImageDrawable(EmojiProvider.getInstance(getContext()).getEmojiDrawable(emoji));
+    if (isInEditMode()) {
+      setImageResource(R.drawable.ic_emoji);
+    } else {
+      setImageDrawable(EmojiProvider.getEmojiDrawable(getContext(), emoji));
+    }
   }
 }

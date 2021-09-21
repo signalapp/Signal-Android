@@ -51,12 +51,12 @@ public class SmsMessageRecord extends MessageRecord {
                           int subscriptionId, long expiresIn, long expireStarted,
                           int readReceiptCount, boolean unidentified,
                           @NonNull List<ReactionRecord> reactions, boolean remoteDelete,
-                          long notifiedTimestamp)
+                          long notifiedTimestamp, long receiptTimestamp)
   {
     super(id, body, recipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, dateServer, threadId, status, deliveryReceiptCount, type,
           mismatches, new LinkedList<>(), subscriptionId,
-          expiresIn, expireStarted, readReceiptCount, unidentified, reactions, remoteDelete, notifiedTimestamp, 0);
+          expiresIn, expireStarted, readReceiptCount, unidentified, reactions, remoteDelete, notifiedTimestamp, 0, receiptTimestamp);
   }
 
   public long getType() {
@@ -65,7 +65,7 @@ public class SmsMessageRecord extends MessageRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (SmsDatabase.Types.isFailedDecryptType(type)) {
+    if (SmsDatabase.Types.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MessageRecord_chat_session_refreshed));
     } else if (isCorruptedKeyExchange()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_corrupted_key_exchange_message));

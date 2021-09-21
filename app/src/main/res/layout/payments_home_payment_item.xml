@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/recipient_view_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <FrameLayout
+        android:id="@+id/payments_home_payment_item_avatar_progress_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle_inverse_transparent_60"
+        app:layout_constraintBottom_toBottomOf="@+id/recipient_view_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/recipient_view_avatar"
+        app:layout_constraintStart_toStartOf="@+id/recipient_view_avatar"
+        app:layout_constraintTop_toTopOf="@+id/recipient_view_avatar">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminateTint="@color/signal_background_primary" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/unread_indicator"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginBottom="27dp"
+        android:background="@drawable/unread_count_background"
+        app:layout_constraintBottom_toBottomOf="@id/recipient_view_avatar"
+        app:layout_constraintStart_toStartOf="@id/recipient_view_avatar"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/recipient_view_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintBottom_toTopOf="@id/payments_home_payment_item_date"
+        app:layout_constraintEnd_toStartOf="@id/payments_home_payment_item_amount"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@id/recipient_view_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Mike Hernandez" />
+
+    <TextView
+        android:id="@+id/payments_home_payment_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/payments_home_payment_item_amount"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/recipient_view_name"
+        app:layout_constraintTop_toBottomOf="@id/recipient_view_name"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Sent 2/2/20" />
+
+    <TextView
+        android:id="@+id/payments_home_payment_item_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@id/recipient_view_name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="-54.787 MOB" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

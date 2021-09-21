@@ -20,7 +20,7 @@ import java.io.IOException;
 public class SignalPlace {
 
   private static final String URL = "https://maps.google.com/maps";
-  private static final String TAG = SignalPlace.class.getSimpleName();
+  private static final String TAG = Log.tag(SignalPlace.class);
 
   @JsonProperty
   private CharSequence name;

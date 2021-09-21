@@ -26,18 +26,45 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
+
+import java.util.Objects;
 
 
 public class AudioSlide extends Slide {
 
+  public static @NonNull AudioSlide createFromVoiceNoteDraft(@NonNull Context context, @NonNull DraftDatabase.Draft draft) {
+    VoiceNoteDraft voiceNoteDraft = VoiceNoteDraft.fromDraft(draft);
+
+    return new AudioSlide(context, new UriAttachment(voiceNoteDraft.getUri(),
+                                                     MediaUtil.AUDIO_AAC,
+                                                     AttachmentDatabase.TRANSFER_PROGRESS_DONE,
+                                                     voiceNoteDraft.getSize(),
+                                                     0,
+                                                     0,
+                                                     null,
+                                                     null,
+                                                     true,
+                                                     false,
+                                                     false,
+                                                     false,
+                                                     null,
+                                                     null,
+                                                     null,
+                                                     null,
+                                                     null));
+  }
+
   public AudioSlide(Context context, Uri uri, long dataSize, boolean voiceNote) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.AUDIO_UNSPECIFIED, dataSize, 0, 0, false, null, null, null, null, null, voiceNote, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.AUDIO_UNSPECIFIED, dataSize, 0, 0, false, null, null, null, null, null, voiceNote, false, false, false));
   }
 
   public AudioSlide(Context context, Uri uri, long dataSize, String contentType, boolean voiceNote) {
-    super(context,  new UriAttachment(uri, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize, 0, 0, null, null, voiceNote, false, false, null, null, null, null, null));
+    super(context,  new UriAttachment(uri, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize, 0, 0, null, null, voiceNote, false, false, false, null, null, null, null, null));
   }
 
   public AudioSlide(Context context, Attachment attachment) {

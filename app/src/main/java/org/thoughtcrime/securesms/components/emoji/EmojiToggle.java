@@ -6,16 +6,17 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
+import org.thoughtcrime.securesms.keyboard.KeyboardPage;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.MediaKeyboardListener {
 
   private Drawable emojiToggle;
   private Drawable stickerToggle;
+  private Drawable gifToggle;
 
   private Drawable mediaToggle;
   private Drawable imeToggle;
@@ -45,9 +46,10 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
   }
 
   private void initialize() {
-    this.emojiToggle   = ContextCompat.getDrawable(getContext(), R.drawable.ic_emoji_smiley_24);
-    this.stickerToggle = ContextCompat.getDrawable(getContext(), R.drawable.ic_sticker_24);
-    this.imeToggle     = ContextCompat.getDrawable(getContext(), R.drawable.ic_keyboard_24);
+    this.emojiToggle   = ContextUtil.requireDrawable(getContext(), R.drawable.ic_emoji);
+    this.stickerToggle = ContextUtil.requireDrawable(getContext(), R.drawable.ic_sticker_24);
+    this.gifToggle     = ContextUtil.requireDrawable(getContext(), R.drawable.ic_gif_24);
+    this.imeToggle     = ContextUtil.requireDrawable(getContext(), R.drawable.ic_keyboard_24);
     this.mediaToggle   = emojiToggle;
 
     setToMedia();
@@ -57,8 +59,18 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
     drawer.setKeyboardListener(this);
   }
 
-  public void setStickerMode(boolean stickerMode) {
-    this.mediaToggle = stickerMode ? stickerToggle : emojiToggle;
+  public void setStickerMode(@NonNull KeyboardPage page) {
+    switch (page) {
+      case EMOJI:
+        mediaToggle = emojiToggle;
+        break;
+      case STICKER:
+        mediaToggle = stickerToggle;
+        break;
+      case GIF:
+        mediaToggle = gifToggle;
+        break;
+    }
 
     if (getDrawable() != imeToggle) {
       setToMedia();
@@ -78,9 +90,18 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
   }
 
   @Override
-  public void onKeyboardProviderChanged(@NonNull MediaKeyboardProvider provider) {
-    setStickerMode(provider instanceof StickerKeyboardProvider);
-    TextSecurePreferences.setMediaKeyboardMode(getContext(), (provider instanceof StickerKeyboardProvider) ? TextSecurePreferences.MediaKeyboardMode.STICKER
-                                                                                                           : TextSecurePreferences.MediaKeyboardMode.EMOJI);
+  public void onKeyboardChanged(@NonNull KeyboardPage page) {
+    setStickerMode(page);
+    switch (page) {
+      case EMOJI:
+        TextSecurePreferences.setMediaKeyboardMode(getContext(), TextSecurePreferences.MediaKeyboardMode.EMOJI);
+        break;
+      case STICKER:
+        TextSecurePreferences.setMediaKeyboardMode(getContext(), TextSecurePreferences.MediaKeyboardMode.STICKER);
+        break;
+      case GIF:
+        TextSecurePreferences.setMediaKeyboardMode(getContext(), TextSecurePreferences.MediaKeyboardMode.GIF);
+        break;
+    }
   }
 }

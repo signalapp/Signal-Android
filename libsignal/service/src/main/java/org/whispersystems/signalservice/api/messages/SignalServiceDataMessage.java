@@ -6,6 +6,7 @@
 
 package org.whispersystems.signalservice.api.messages;
 
+import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
@@ -39,6 +40,7 @@ public class SignalServiceDataMessage {
   private final Optional<Reaction>                      reaction;
   private final Optional<RemoteDelete>                  remoteDelete;
   private final Optional<GroupCallUpdate>               groupCallUpdate;
+  private final Optional<Payment>                       payment;
 
   /**
    * Construct a SignalServiceDataMessage.
@@ -58,7 +60,8 @@ public class SignalServiceDataMessage {
                            boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
                            Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
                            List<Mention> mentions, Sticker sticker, boolean viewOnce, Reaction reaction, RemoteDelete remoteDelete,
-                           GroupCallUpdate groupCallUpdate)
+                           GroupCallUpdate groupCallUpdate,
+                           Payment payment)
   {
     try {
       this.group = SignalServiceGroupContext.createOptional(group, groupV2);
@@ -79,6 +82,7 @@ public class SignalServiceDataMessage {
     this.reaction         = Optional.fromNullable(reaction);
     this.remoteDelete     = Optional.fromNullable(remoteDelete);
     this.groupCallUpdate  = Optional.fromNullable(groupCallUpdate);
+    this.payment          = Optional.fromNullable(payment);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
@@ -227,6 +231,24 @@ public class SignalServiceDataMessage {
     return groupCallUpdate;
   }
 
+  public Optional<Payment> getPayment() {
+    return payment;
+  }
+
+  public Optional<byte[]> getGroupId() {
+    byte[] groupId = null;
+
+    if (getGroupContext().isPresent() && getGroupContext().get().getGroupV2().isPresent()) {
+      SignalServiceGroupV2 gv2 = getGroupContext().get().getGroupV2().get();
+      groupId = GroupSecretParams.deriveFromMasterKey(gv2.getMasterKey())
+                                 .getPublicParams()
+                                 .getGroupIdentifier()
+                                 .serialize();
+    }
+
+    return Optional.fromNullable(groupId);
+  }
+
   public static class Builder {
 
     private List<SignalServiceAttachment> attachments    = new LinkedList<>();
@@ -249,6 +271,7 @@ public class SignalServiceDataMessage {
     private Reaction             reaction;
     private RemoteDelete         remoteDelete;
     private GroupCallUpdate      groupCallUpdate;
+    private Payment              payment;
 
     private Builder() {}
 
@@ -371,13 +394,19 @@ public class SignalServiceDataMessage {
       return this;
     }
 
+    public Builder withPayment(Payment payment) {
+      this.payment = payment;
+      return this;
+    }
+
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
       return new SignalServiceDataMessage(timestamp, group, groupV2, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
                                           mentions, sticker, viewOnce, reaction, remoteDelete,
-                                          groupCallUpdate);
+                                          groupCallUpdate,
+                                          payment);
     }
   }
 
@@ -588,6 +617,37 @@ public class SignalServiceDataMessage {
 
     public String getEraId() {
       return eraId;
+    }
+  }
+
+  public static class PaymentNotification {
+
+    private final byte[] receipt;
+    private final String note;
+
+    public PaymentNotification(byte[] receipt, String note) {
+      this.receipt = receipt;
+      this.note    = note;
+    }
+
+    public byte[] getReceipt() {
+      return receipt;
+    }
+
+    public String getNote() {
+      return note;
+    }
+  }
+
+  public static class Payment {
+    private final Optional<PaymentNotification> paymentNotification;
+
+    public Payment(PaymentNotification paymentNotification) {
+      this.paymentNotification = Optional.of(paymentNotification);
+    }
+
+    public Optional<PaymentNotification> getPaymentNotification() {
+      return paymentNotification;
     }
   }
 }

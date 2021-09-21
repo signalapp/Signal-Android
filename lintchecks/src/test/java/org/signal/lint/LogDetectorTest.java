@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import static com.android.tools.lint.checks.infrastructure.TestFiles.java;
+import static com.android.tools.lint.checks.infrastructure.TestFiles.kotlin;
 import static com.android.tools.lint.checks.infrastructure.TestLintTask.lint;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -134,6 +135,45 @@ public final class LogDetectorTest {
   }
 
   @Test
+  public void log_uses_tag_constant_kotlin() {
+    lint()
+      .files(appLogStub,
+         kotlin("package foo\n" +
+              "import org.signal.core.util.logging.Log\n" +
+              "class Example {\n" +
+              "  const val TAG: String = Log.tag(Example::class.java)\n" +
+              "  fun log() {\n" +
+              "    Log.d(TAG, \"msg\")\n" +
+              "  }\n" +
+              "}")
+      )
+      .issues(SignalLogDetector.INLINE_TAG)
+      .run()
+      .expectClean();
+  }
+
+  @Test
+  public void log_uses_tag_companion_kotlin() {
+    lint()
+        .files(appLogStub,
+               kotlin("package foo\n" +
+                      "import org.signal.core.util.logging.Log\n" +
+                      "class Example {\n" +
+                      "  companion object { val TAG: String = Log.tag(Example::class.java) }\n" +
+                      "  fun log() {\n" +
+                      "    Log.d(TAG, \"msg\")\n" +
+                      "  }\n" +
+                      "}\n"+
+                      "fun logOutsie() {\n" +
+                      "  Log.d(Example.TAG, \"msg\")\n" +
+                      "}\n")
+        )
+        .issues(SignalLogDetector.INLINE_TAG)
+        .run()
+        .expectClean();
+  }
+
+  @Test
   public void log_uses_inline_tag() {
     lint()
       .files(appLogStub,
@@ -152,6 +192,26 @@ public final class LogDetectorTest {
                 "    ~~~~~~~~~~~~~~~~~~~\n" +
                 "1 errors, 0 warnings")
       .expectFixDiffs("");
+  }
+
+  @Test
+  public void log_uses_inline_tag_kotlin() {
+    lint()
+        .files(appLogStub,
+               kotlin("package foo\n" +
+                      "import org.signal.core.util.logging.Log\n" +
+                      "class Example {\n" +
+                      "  fun log() {\n" +
+                      "    Log.d(\"TAG\", \"msg\")\n" +
+                      "  }\n" +
+                      "}"))
+        .issues(SignalLogDetector.INLINE_TAG)
+        .run()
+        .expect("src/foo/Example.kt:5: Error: Not using a tag constant [LogTagInlined]\n" +
+                "    Log.d(\"TAG\", \"msg\")\n" +
+                "    ~~~~~~~~~~~~~~~~~~~\n" +
+                "1 errors, 0 warnings")
+        .expectFixDiffs("");
   }
 
   @Test

@@ -13,7 +13,7 @@
     android:paddingBottom="8dp">
 
     <RadioButton
-        android:id="@+id/customizable_single_select_radio"
+        android:id="@+id/single_select_item_radio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -30,23 +30,23 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textColor="?attr/textColorAlertDialogListItem"
-        app:layout_constraintBottom_toTopOf="@id/customizable_single_select_summary"
-        app:layout_constraintStart_toEndOf="@id/customizable_single_select_radio"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintBottom_toTopOf="@id/single_select_item_summary"
+        app:layout_constraintStart_toEndOf="@id/single_select_item_radio"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Pick me!" />
 
     <TextView
-        android:id="@+id/customizable_single_select_summary"
+        android:id="@+id/single_select_item_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/core_grey_60"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/single_select_item_text"
         app:layout_constraintTop_toBottomOf="@id/single_select_item_text"
         tools:text="Test" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/customizable_single_select_customize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,14 +56,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_settings_outline_24" />
+        app:srcCompat="@drawable/ic_settings_24"
+        app:tint="@color/signal_icon_tint_primary" />
 
     <View
         android:id="@+id/customizable_single_select_divider"
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/core_grey_20"
+        android:background="@color/signal_divider_minor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/customizable_single_select_customize"
         app:layout_constraintTop_toTopOf="parent" />
@@ -73,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="customizable_single_select_summary,customizable_single_select_customize,customizable_single_select_divider" />
+        app:constraint_referenced_ids="single_select_item_summary,customizable_single_select_customize,customizable_single_select_divider"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

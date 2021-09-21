@@ -4,14 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.MappingModel;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -26,7 +32,11 @@ public class ChatWallpaperViewModel extends ViewModel {
   private final MutableLiveData<List<ChatWallpaper>>     builtins                = new MutableLiveData<>();
   private final MutableLiveData<Boolean>                 dimInDarkTheme          = new MutableLiveData<>();
   private final MutableLiveData<Boolean>                 enableWallpaperControls = new MutableLiveData<>();
+  private final MutableLiveData<ChatColors>              chatColors              = new MutableLiveData<>();
   private final RecipientId                              recipientId;
+  private final LiveRecipient                            liveRecipient;
+  private final RecipientForeverObserver                 recipientObserver       = r -> refreshChatColors();
+  private final LiveData<WallpaperPreviewPortrait>       wallpaperPreviewPortrait;
 
   private ChatWallpaperViewModel(@Nullable RecipientId recipientId) {
     this.recipientId = recipientId;
@@ -35,10 +45,36 @@ public class ChatWallpaperViewModel extends ViewModel {
     dimInDarkTheme.setValue(currentWallpaper == null || currentWallpaper.getDimLevelForDarkTheme() > 0f);
     enableWallpaperControls.setValue(hasClearableWallpaper());
     wallpaper.setValue(Optional.fromNullable(currentWallpaper));
+
+    if (recipientId != null) {
+      liveRecipient = Recipient.live(recipientId);
+      liveRecipient.observeForever(recipientObserver);
+      wallpaperPreviewPortrait = Transformations.map(liveRecipient.getLiveData(), recipient -> {
+        if (recipient.getContactPhoto() != null) {
+          return new WallpaperPreviewPortrait.ContactPhoto(recipient);
+        } else {
+          return new WallpaperPreviewPortrait.SolidColor(recipient.getAvatarColor());
+        }
+      });
+    } else {
+      liveRecipient            = null;
+      wallpaperPreviewPortrait = new DefaultValueLiveData<>(new WallpaperPreviewPortrait.SolidColor(AvatarColor.A100));
+    }
+  }
+
+  @Override
+  protected void onCleared() {
+    if (liveRecipient != null) {
+      liveRecipient.removeForeverObserver(recipientObserver);
+    }
   }
 
   void refreshWallpaper() {
     repository.getAllWallpaper(builtins::postValue);
+  }
+
+  void refreshChatColors() {
+    chatColors.postValue(repository.getCurrentChatColors(recipientId));
   }
 
   void setDimInDarkTheme(boolean shouldDimInDarkTheme) {
@@ -59,7 +95,7 @@ public class ChatWallpaperViewModel extends ViewModel {
     boolean                 dimInDarkTheme = this.dimInDarkTheme.getValue();
 
     if (!wallpaper.isPresent()) {
-      repository.saveWallpaper(recipientId, null);
+      repository.saveWallpaper(recipientId, null, this::refreshChatColors);
 
       if (recipientId != null) {
         ChatWallpaper globalWallpaper = SignalStore.wallpaper().getWallpaper();
@@ -77,12 +113,12 @@ public class ChatWallpaperViewModel extends ViewModel {
     Optional<ChatWallpaper> updated = wallpaper.transform(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkTheme ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f));
 
     if (updated.isPresent()) {
-      repository.saveWallpaper(recipientId, updated.get());
+      repository.saveWallpaper(recipientId, updated.get(), this::refreshChatColors);
     }
   }
 
   void resetAllWallpaper() {
-    repository.resetAllWallpaper();
+    repository.resetAllWallpaper(this::refreshChatColors);
   }
 
   @Nullable RecipientId getRecipientId() {
@@ -93,10 +129,18 @@ public class ChatWallpaperViewModel extends ViewModel {
     return wallpaper;
   }
 
+  @NonNull LiveData<ChatColors> getCurrentChatColors() {
+    return chatColors;
+  }
+
+  @NonNull LiveData<WallpaperPreviewPortrait> getWallpaperPreviewPortrait() {
+    return wallpaperPreviewPortrait;
+  }
+
   @NonNull LiveData<List<MappingModel<?>>> getWallpapers() {
     return LiveDataUtil.combineLatest(builtins, dimInDarkTheme, (wallpapers, dimInDarkMode) ->
-      Stream.of(wallpapers)
-            .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
+        Stream.of(wallpapers)
+              .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
             .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).toList()
     );
   }
@@ -113,9 +157,17 @@ public class ChatWallpaperViewModel extends ViewModel {
     return recipientId == null;
   }
 
+  void clearChatColor() {
+    repository.clearChatColor(recipientId, this::refreshChatColors);
+  }
+
   private boolean hasClearableWallpaper() {
     return (isGlobal() && SignalStore.wallpaper().hasWallpaperSet()) ||
            (recipientId != null && Recipient.live(recipientId).get().hasOwnWallpaper());
+  }
+
+  public void resetAllChatColors() {
+    repository.resetAllChatColors(this::refreshChatColors);
   }
 
   public static class Factory implements ViewModelProvider.Factory {

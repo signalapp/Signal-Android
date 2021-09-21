@@ -21,7 +21,7 @@ import java.util.Locale;
 
 @SuppressWarnings("deprecation")
 public class CameraUtils {
-  private static final String TAG = CameraUtils.class.getSimpleName();
+  private static final String TAG = Log.tag(CameraUtils.class);
   /*
    * modified from: https://github.com/commonsguy/cwac-camera/blob/master/camera/src/com/commonsware/cwac/camera/CameraUtils.java
    */

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
@@ -22,24 +21,24 @@ import com.dd.CircularProgressButton;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 public class EditProxyFragment extends Fragment {
 
-  private SwitchCompat           proxySwitch;
-  private EditText               proxyText;
-  private TextView               proxyTitle;
-  private TextView               proxyStatus;
-  private View                   shareButton;
-  private CircularProgressButton saveButton;
-  private EditProxyViewModel     viewModel;
+  private SwitchCompat                 proxySwitch;
+  private EditText                     proxyText;
+  private TextView                     proxyTitle;
+  private TextView                     proxyStatus;
+  private View                         shareButton;
+  private CircularProgressButton       saveButton;
+  private EditProxyViewModel           viewModel;
 
   public static EditProxyFragment newInstance() {
     return new EditProxyFragment();
@@ -85,7 +84,7 @@ public class EditProxyFragment extends Fragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(R.string.preferences_use_proxy);
+
     SignalProxyUtil.startListeningToWebsocket();
   }
 
@@ -119,10 +118,11 @@ public class EditProxyFragment extends Fragment {
     }
   }
 
-  private void presentProxyState(@NonNull PipeConnectivityListener.State proxyState) {
+  private void presentProxyState(@NonNull WebSocketConnectionState proxyState) {
     if (SignalStore.proxy().getProxy() != null) {
       switch (proxyState) {
         case DISCONNECTED:
+        case DISCONNECTING:
         case CONNECTING:
           proxyStatus.setText(R.string.preferences_connecting_to_proxy);
           proxyStatus.setTextColor(getResources().getColor(R.color.signal_text_secondary));
@@ -131,7 +131,8 @@ public class EditProxyFragment extends Fragment {
           proxyStatus.setText(R.string.preferences_connected_to_proxy);
           proxyStatus.setTextColor(getResources().getColor(R.color.signal_accent_green));
           break;
-        case FAILURE:
+        case AUTHENTICATION_FAILED:
+        case FAILED:
           proxyStatus.setText(R.string.preferences_connection_failed);
           proxyStatus.setTextColor(getResources().getColor(R.color.signal_alert_primary));
           break;

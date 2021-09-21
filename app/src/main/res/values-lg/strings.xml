@@ -218,7 +218,7 @@ a</string>
   <string name="InviteActivity_invite_to_signal">Muyite ku Signal</string>
   <string name="InviteActivity_lets_switch_to_signal">Katudde ku Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kirabika toyina app za ku gabanya ne.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Emikwaano tejibuzbuza mboozi yamikwaano</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Emikwaano tejibuzbuza mboozi yamikwaano</string> -->
   <!--Job-->
   <!--MessageDetailsRecipient-->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Eremereddwa okuwerezwa</string> -->
@@ -235,7 +235,7 @@ a</string>
   <string name="NotificationBarManager_signal_call_in_progress">Essimu eya Signal egenda mumaaso</string>
   <string name="NotificationBarManager__establishing_signal_call">tutekateeka kuba ssimu ya Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">essimu ya Signal eyingirawo</string>
-  <string name="NotificationBarManager__deny_call">Gaana essimu</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Gaana essimu</string> -->
   <string name="NotificationBarManager__answer_call">Ddamu essimu</string>
   <string name="NotificationBarManager__end_call">komya esimu</string>
   <string name="NotificationBarManager__cancel_call">Sazaamu essimu</string>
@@ -274,9 +274,9 @@ a</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Bambi  QR koodi eno sintufu</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Yungako divayisi ya Signal?</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Obubaka bwo bubuzibwaawo</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Obubaka bwo tebujja kugwako.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Obubaka bwowereza ne bwofunye mu mbozi eno %s bujakubula bwomaliriza obulaba</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Obubaka bwo bubuzibwaawo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Obubaka bwo tebujja kugwako.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Obubaka bwowereza ne bwofunye mu mbozi eno %s bujakubula bwomaliriza obulaba</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Yingiza passiwaddi nga yabigaambo ne namba</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Akabonero ka Signal</string>
@@ -388,7 +388,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="MessageNotifier_reply">ddamu</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">wifi calling compatiblity mode</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">wifi calling compatiblity mode</string> -->
   <string name="NotificationChannel_missing_display_name">Tekimanyikiddwa</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">okudamu okwangu tekubawo nga amayengo gasibidwa</string>
@@ -470,7 +470,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="expiration_weeks_abbreviated">%dwiiki</string>
   <!--unverified safety numbers-->
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Noonya GIFs ne sticka</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Noonya GIFs ne sticka</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Tewali kisangidwa</string>
   <!--log_submit_activity-->
@@ -556,10 +556,10 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="arrays__use_default">Kozesa nga bwebyakolebwa</string>
   <string name="arrays__use_custom">Kozesa bwoyagala</string>
   <string name="arrays__mute_for_one_hour">Silisa okumala essawa emu  </string>
-  <string name="arrays__mute_for_two_hours">Silisa okumala esawa bbiri </string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silisa okumala esawa bbiri </string> -->
   <string name="arrays__mute_for_one_day">Silisa okumala olunaku 1</string>
   <string name="arrays__mute_for_seven_days">Silisa okumala enaku 7</string>
-  <string name="arrays__mute_for_one_year">Silisa okumala omwaka 1</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silisa okumala omwaka 1</string> -->
   <string name="arrays__settings_default">Settingi ngabwezaali</string>
   <string name="arrays__enabled">Etereddwaako</string>
   <string name="arrays__disabled">Egyiddwaako</string>

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.annotation.SuppressLint;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.util.Util;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @SuppressLint("UseSparseArrays")
 public class TypingStatusSender {
 
-  private static final String TAG = TypingStatusSender.class.getSimpleName();
+  private static final String TAG = Log.tag(TypingStatusSender.class);
 
   private static final long REFRESH_TYPING_TIMEOUT = TimeUnit.SECONDS.toMillis(10);
   private static final long PAUSE_TYPING_TIMEOUT   = TimeUnit.SECONDS.toMillis(3);

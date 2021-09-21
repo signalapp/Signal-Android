@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -24,6 +25,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -34,7 +36,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
   public static String KEY = "MultiDeviceProfileKeyUpdateJob";
 
-  private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceProfileKeyUpdateJob.class);
 
   public MultiDeviceProfileKeyUpdateJob() {
     this(new Job.Parameters.Builder()
@@ -61,6 +63,10 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device...");
       return;
@@ -92,11 +98,12 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
     SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    messageSender.sendMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ServerRejectedException) return false;
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

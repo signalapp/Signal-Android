@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
+import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +14,8 @@ import java.util.Objects;
 
 public final class LocalCodeRequestRateLimiter implements Parcelable {
 
-  private final long                                    timePeriod;
-  private final Map<RegistrationCodeRequest.Mode, Data> dataMap;
+  private final long            timePeriod;
+  private final Map<Mode, Data> dataMap;
 
   public LocalCodeRequestRateLimiter(long timePeriod) {
     this.timePeriod = timePeriod;
@@ -23,7 +23,7 @@ public final class LocalCodeRequestRateLimiter implements Parcelable {
   }
 
   @MainThread
-  public boolean canRequest(@NonNull RegistrationCodeRequest.Mode mode, @NonNull String e164Number, long currentTime) {
+  public boolean canRequest(@NonNull Mode mode, @NonNull String e164Number, long currentTime) {
     Data data = dataMap.get(mode);
 
     return data == null || !data.limited(e164Number, currentTime);
@@ -33,7 +33,7 @@ public final class LocalCodeRequestRateLimiter implements Parcelable {
    * Call this when the server has returned that it was successful in requesting a code via the specified mode.
    */
   @MainThread
-  public void onSuccessfulRequest(@NonNull RegistrationCodeRequest.Mode mode, @NonNull String e164Number, long currentTime) {
+  public void onSuccessfulRequest(@NonNull Mode mode, @NonNull String e164Number, long currentTime) {
     dataMap.put(mode, new Data(e164Number, currentTime + timePeriod));
   }
 
@@ -69,9 +69,9 @@ public final class LocalCodeRequestRateLimiter implements Parcelable {
       LocalCodeRequestRateLimiter localCodeRequestRateLimiter = new LocalCodeRequestRateLimiter(timePeriod);
 
       for (int i = 0; i < numberOfMapEntries; i++) {
-        RegistrationCodeRequest.Mode mode         = RegistrationCodeRequest.Mode.values()[in.readInt()];
-        String                       e164Number   = in.readString();
-        long                         limitedUntil = in.readLong();
+        Mode   mode         = Mode.values()[in.readInt()];
+        String e164Number   = in.readString();
+        long   limitedUntil = in.readLong();
 
         localCodeRequestRateLimiter.dataMap.put(mode, new Data(Objects.requireNonNull(e164Number), limitedUntil));
       }
@@ -94,7 +94,7 @@ public final class LocalCodeRequestRateLimiter implements Parcelable {
     dest.writeLong(timePeriod);
     dest.writeInt(dataMap.size());
 
-    for (Map.Entry<RegistrationCodeRequest.Mode, Data> a : dataMap.entrySet()) {
+    for (Map.Entry<Mode, Data> a : dataMap.entrySet()) {
       dest.writeInt(a.getKey().ordinal());
       dest.writeString(a.getValue().e164Number);
       dest.writeLong(a.getValue().limitedUntil);

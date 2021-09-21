@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/dsl_settings_toolbar" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/edit_reactions_one_third_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/edit_reactions_reset_emoji"
+        style="@style/Signal.Widget.Button.Medium.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/EditReactionsFragment__reset"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_reactions_fragment_save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_reactions_fragment_save" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/edit_reactions_fragment_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:cornerRadius="80dp"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="?colorAccent"
+        app:cpb_cornerRadius="28dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/EditReactionsFragment_save"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/edit_reactions_fragment_tap_to_replace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/EditReactionsFragment__tap_to_replace_an_emoji"
+        android:textAppearance="@style/Signal.Text.Caption"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_reactions_fragment_scrubber" />
+
+    <View
+        android:id="@+id/edit_reactions_fragment_reaction_mask"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:background="@color/reactions_screen_shade_color"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_reactions_fragment_scrubber"
+        android:layout_width="@dimen/reaction_scrubber_width"
+        android:clickable="false"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/conversation_reaction_overlay_background"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_reactions_one_third_guideline"
+        tools:ignore="UnusedAttribute">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+            android:id="@+id/reaction_1"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:foreground="@drawable/dsl_preference_item_background_borderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+            android:id="@+id/reaction_2"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:foreground="@drawable/dsl_preference_item_background_borderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_3"
+            app:layout_constraintStart_toEndOf="@id/reaction_1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+            android:id="@+id/reaction_3"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:foreground="@drawable/dsl_preference_item_background_borderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_4"
+            app:layout_constraintStart_toEndOf="@id/reaction_2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+            android:id="@+id/reaction_4"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:foreground="@drawable/dsl_preference_item_background_borderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_5"
+            app:layout_constraintStart_toEndOf="@id/reaction_3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+            android:id="@+id/reaction_5"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:foreground="@drawable/dsl_preference_item_background_borderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_6"
+            app:layout_constraintStart_toEndOf="@id/reaction_4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+            android:id="@+id/reaction_6"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:foreground="@drawable/dsl_preference_item_background_borderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/reaction_5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

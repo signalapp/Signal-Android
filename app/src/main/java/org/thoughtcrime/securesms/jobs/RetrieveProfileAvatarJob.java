@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -31,7 +32,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileAvatarJob";
 
-  private static final String TAG = RetrieveProfileAvatarJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RetrieveProfileAvatarJob.class);
 
   private static final int MAX_PROFILE_SIZE_BYTES = 20 * 1024 * 1024;
 
@@ -100,6 +101,10 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
       try {
         AvatarHelper.setAvatar(context, recipient.getId(), avatarStream);
+
+        if (recipient.isSelf()) {
+          SignalStore.misc().markHasEverHadAnAvatar();
+        }
       } catch (AssertionError e) {
         throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
       }

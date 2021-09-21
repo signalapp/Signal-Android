@@ -220,7 +220,7 @@ final class GroupManagerV2 {
       GroupDatabase.GroupRecord groupRecord       = groupDatabase.requireGroup(groupIdV1);
       String                    name              = Util.emptyIfNull(groupRecord.getTitle());
       byte[]                    avatar            = groupRecord.hasAvatar() ? AvatarHelper.getAvatarBytes(context, groupRecord.getRecipientId()) : null;
-      int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpireMessages();
+      int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpiresInSeconds();
       Set<RecipientId>          memberIds         = Stream.of(members)
                                                           .map(Recipient::getId)
                                                           .filterNot(m -> m.equals(Recipient.self().getId()))
@@ -244,23 +244,15 @@ final class GroupManagerV2 {
     @WorkerThread
     @NonNull GroupManager.GroupActionResult createGroup(@NonNull Collection<RecipientId> members,
                                                         @Nullable String name,
-                                                        @Nullable byte[] avatar)
-        throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception
-    {
-      return createGroup(name, avatar, members);
-    }
-
-    @WorkerThread
-    private @NonNull GroupManager.GroupActionResult createGroup(@Nullable String name,
-                                                                @Nullable byte[] avatar,
-                                                                @NonNull Collection<RecipientId> members)
+                                                        @Nullable byte[] avatar,
+                                                        int disappearingMessagesTimer)
         throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception
     {
       GroupSecretParams groupSecretParams = GroupSecretParams.generate();
       DecryptedGroup    decryptedGroup;
 
       try {
-        decryptedGroup = createGroupOnServer(groupSecretParams, name, avatar, members, Member.Role.DEFAULT, 0);
+        decryptedGroup = createGroupOnServer(groupSecretParams, name, avatar, members, Member.Role.DEFAULT, disappearingMessagesTimer);
       } catch (GroupAlreadyExistsException e) {
         throw new GroupChangeFailedException(e);
       }
@@ -345,12 +337,23 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult updateGroupTitleAndAvatar(@Nullable String title, @Nullable byte[] avatarBytes, boolean avatarChanged)
+    @NonNull GroupManager.GroupActionResult updateAnnouncementGroup(boolean isAnnouncementGroup)
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      return commitChangeWithConflictResolution(groupOperations.createAnnouncementGroupChange(isAnnouncementGroup));
+    }
+
+    @WorkerThread
+    @NonNull GroupManager.GroupActionResult updateGroupTitleDescriptionAndAvatar(@Nullable String title, @Nullable String description, @Nullable byte[] avatarBytes, boolean avatarChanged)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       try {
         GroupChange.Actions.Builder change = title != null ? groupOperations.createModifyGroupTitle(title)
                                                            : GroupChange.Actions.newBuilder();
+
+        if (description != null) {
+          change.setModifyDescription(groupOperations.createModifyGroupDescriptionAction(description));
+        }
 
         if (avatarChanged) {
           String cdnKey = avatarBytes != null ? groupsV2Api.uploadAvatar(avatarBytes, groupSecretParams, authorization.getAuthorizationForToday(selfUuid, groupSecretParams))
@@ -565,7 +568,7 @@ final class GroupManagerV2 {
           if (GroupChangeUtil.changeIsEmpty(change.build())) {
             Log.i(TAG, "Change is empty after conflict resolution");
             Recipient groupRecipient = Recipient.externalGroupExact(context, groupId);
-            long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+            long      threadId       = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
 
             return new GroupManager.GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
           }
@@ -1148,7 +1151,7 @@ final class GroupManagerV2 {
       ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
       return new RecipientAndThread(groupRecipient, -1);
     } else {
-      long threadId = MessageSender.send(context, outgoingMessage, -1, false, null);
+      long threadId = MessageSender.send(context, outgoingMessage, -1, false, null, null);
       return new RecipientAndThread(groupRecipient, threadId);
     }
   }

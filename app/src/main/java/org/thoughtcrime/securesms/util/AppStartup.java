@@ -96,6 +96,7 @@ public final class AppStartup {
     if (outstandingCriticalRenderEvents == 0 && postRender.size() > 0) {
       Log.i(TAG, "Received first critical render event.");
       renderStartTime = System.currentTimeMillis();
+      SignalLocalMetrics.ColdStart.onRenderStart();
 
       postRenderHandler.removeCallbacksAndMessages(null);
       postRenderHandler.postDelayed(() -> {
@@ -121,6 +122,7 @@ public final class AppStartup {
 
     if (outstandingCriticalRenderEvents == 0 && postRender.size() > 0) {
       renderEndTime = System.currentTimeMillis();
+      SignalLocalMetrics.ColdStart.onRenderFinished();
 
       Log.i(TAG, "First render has finished. " +
                  "Cold Start: " + (renderEndTime - applicationStartTime) + " ms, " +

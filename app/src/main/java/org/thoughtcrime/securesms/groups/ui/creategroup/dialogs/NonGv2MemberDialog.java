@@ -20,7 +20,7 @@ public final class NonGv2MemberDialog {
   private NonGv2MemberDialog() {
   }
 
-  public static @Nullable Dialog showNonGv2Members(@NonNull Context context, @NonNull List<Recipient> recipients, boolean forcedMigration) {
+  public static @Nullable Dialog showNonGv2Members(@NonNull Context context, @NonNull List<Recipient> recipients) {
     int size = recipients.size();
     if (size == 0) {
       return null;
@@ -32,13 +32,9 @@ public final class NonGv2MemberDialog {
                                                  //  })
                                                  .setPositiveButton(android.R.string.ok, null);
     if (size == 1) {
-      int stringRes = forcedMigration ? R.string.NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration
-                                      : R.string.NonGv2MemberDialog_single_users_are_non_gv2_capable;
-      builder.setMessage(context.getString(stringRes, recipients.get(0).getDisplayName(context)));
+      builder.setMessage(context.getString(R.string.NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration, recipients.get(0).getDisplayName(context)));
     } else {
-      int pluralRes = forcedMigration ? R.plurals.NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration
-                                      : R.plurals.NonGv2MemberDialog_d_users_are_non_gv2_capable;
-      builder.setMessage(context.getResources().getQuantityString(pluralRes, size, size))
+      builder.setMessage(context.getResources().getQuantityString(R.plurals.NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration, size, size))
              .setView(R.layout.dialog_multiple_members_non_gv2_capable);
     }
 

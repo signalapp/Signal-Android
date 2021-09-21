@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -22,12 +23,13 @@ import androidx.lifecycle.ViewModelProviders;
 import com.annimon.stream.Stream;
 import com.dd.CircularProgressButton;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.signal.core.util.ResourceUtil;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.util.ArrayList;
@@ -35,16 +37,19 @@ import java.util.List;
 
 public class HelpFragment extends LoggingFragment {
 
-  private EditText                   problem;
-  private CheckBox                   includeDebugLogs;
-  private View                       debugLogInfo;
-  private View                       faq;
-  private CircularProgressButton     next;
-  private View                       toaster;
-  private List<EmojiImageView>       emoji;
-  private HelpViewModel              helpViewModel;
-  private Spinner                    categorySpinner;
-  private ArrayAdapter<CharSequence> categoryAdapter;
+  public static final String START_CATEGORY_INDEX = "start_category_index";
+  public static final int    PAYMENT_INDEX        = 5;
+
+  private EditText                     problem;
+  private CheckBox                     includeDebugLogs;
+  private View                         debugLogInfo;
+  private View                         faq;
+  private CircularProgressButton       next;
+  private View                         toaster;
+  private List<EmojiImageView>         emoji;
+  private HelpViewModel                helpViewModel;
+  private Spinner                      categorySpinner;
+  private ArrayAdapter<CharSequence>   categoryAdapter;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +67,6 @@ public class HelpFragment extends LoggingFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) requireActivity()).requireSupportActionBar().setTitle(R.string.preferences__help);
 
     cancelSpinning(next);
     problem.setEnabled(true);
@@ -92,6 +96,11 @@ public class HelpFragment extends LoggingFragment {
     categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
     categorySpinner.setAdapter(categoryAdapter);
+
+    Bundle args = getArguments();
+    if (args != null) {
+      categorySpinner.setSelection(Util.clamp(args.getInt(START_CATEGORY_INDEX, 0), 0, categorySpinner.getCount() - 1));
+    }
   }
 
   private void initializeListeners() {
@@ -100,7 +109,13 @@ public class HelpFragment extends LoggingFragment {
     faq.setOnClickListener(v -> launchFaq());
     debugLogInfo.setOnClickListener(v -> launchDebugLogInfo());
     next.setOnClickListener(v -> submitForm());
-    toaster.setOnClickListener(v -> Toast.makeText(requireContext(), R.string.HelpFragment__please_be_as_descriptive_as_possible, Toast.LENGTH_LONG).show());
+    toaster.setOnClickListener(v -> {
+      if (helpViewModel.getCategoryIndex() == 0) {
+        categorySpinner.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.shake_horizontal));
+      }
+
+      Toast.makeText(requireContext(), R.string.HelpFragment__please_be_as_descriptive_as_possible, Toast.LENGTH_LONG).show();
+    });
     categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -193,7 +208,9 @@ public class HelpFragment extends LoggingFragment {
       suffix.append(getString(feeling.getStringId()));
     }
 
-    String category = categoryAdapter.getItem(helpViewModel.getCategoryIndex()).toString();
+    String[] englishCategories = ResourceUtil.getEnglishResources(getContext()).getStringArray(R.array.HelpFragment__categories);
+    String   category          = (helpViewModel.getCategoryIndex() >= 0 && helpViewModel.getCategoryIndex() < englishCategories.length) ? englishCategories[helpViewModel.getCategoryIndex()]
+                                                                                                                                        : categoryAdapter.getItem(helpViewModel.getCategoryIndex()).toString();
 
     return SupportEmailUtil.generateSupportEmailBody(requireContext(),
                                                      R.string.HelpFragment__signal_android_support_request,

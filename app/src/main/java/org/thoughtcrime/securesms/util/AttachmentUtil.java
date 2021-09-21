@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class AttachmentUtil {
 
-  private static final String TAG = AttachmentUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(AttachmentUtil.class);
 
   @WorkerThread
   public static boolean isAutoDownloadPermitted(@NonNull Context context, @Nullable DatabaseAttachment attachment) {
@@ -46,6 +46,8 @@ public class AttachmentUtil {
         attachment.isSticker())
     {
       return true;
+    } else if (attachment.isVideoGif()) {
+      return NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains("image");
     } else if (isNonDocumentType(contentType)) {
       return NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
     } else {

@@ -8,14 +8,14 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MappingModel;
 
-class ShareSelectionMappingModel implements MappingModel<ShareSelectionMappingModel> {
+public class ShareSelectionMappingModel implements MappingModel<ShareSelectionMappingModel> {
 
   private final ShareContact shareContact;
-  private final boolean      isLast;
+  private final boolean      isFirst;
 
-  ShareSelectionMappingModel(@NonNull ShareContact shareContact, boolean isLast) {
+  public ShareSelectionMappingModel(@NonNull ShareContact shareContact, boolean isFirst) {
     this.shareContact = shareContact;
-    this.isLast       = isLast;
+    this.isFirst      = isFirst;
   }
 
   @NonNull String getName(@NonNull Context context) {
@@ -23,9 +23,9 @@ class ShareSelectionMappingModel implements MappingModel<ShareSelectionMappingMo
                               .transform(Recipient::resolved)
                               .transform(recipient -> recipient.isSelf() ? context.getString(R.string.note_to_self)
                                                                          : recipient.getShortDisplayNameIncludingUsername(context))
-                              .or(shareContact.getNumber());
+                              .or(shareContact::getNumber);
 
-    return isLast ? name : context.getString(R.string.ShareActivity__s_comma, name);
+    return isFirst ? name : context.getString(R.string.ShareActivity__comma_s, name);
   }
 
   @Override
@@ -35,6 +35,6 @@ class ShareSelectionMappingModel implements MappingModel<ShareSelectionMappingMo
 
   @Override
   public boolean areContentsTheSame(@NonNull ShareSelectionMappingModel newItem) {
-    return areItemsTheSame(newItem) && newItem.isLast == isLast;
+    return areItemsTheSame(newItem) && newItem.isFirst == isFirst;
   }
 }

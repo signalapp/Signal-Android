@@ -8,6 +8,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -41,7 +42,7 @@ public final class GroupChangeReconstructTest {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
 
     assertEquals("GroupChangeReconstruct and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 10, maxFieldFound);
+                 12, maxFieldFound);
   }
 
   @Test
@@ -72,6 +73,26 @@ public final class GroupChangeReconstructTest {
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
     assertEquals(DecryptedGroupChange.newBuilder().setNewTitle(DecryptedString.newBuilder().setValue("B")).build(), decryptedGroupChange);
+  }
+
+  @Test
+  public void description_change() {
+    DecryptedGroup from = DecryptedGroup.newBuilder().setDescription("A").build();
+    DecryptedGroup to   = DecryptedGroup.newBuilder().setDescription("B").build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder().setNewDescription(DecryptedString.newBuilder().setValue("B")).build(), decryptedGroupChange);
+  }
+
+  @Test
+  public void announcement_group_change() {
+    DecryptedGroup from = DecryptedGroup.newBuilder().setIsAnnouncementGroup(EnabledState.DISABLED).build();
+    DecryptedGroup to   = DecryptedGroup.newBuilder().setIsAnnouncementGroup(EnabledState.ENABLED).build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder().setNewIsAnnouncementGroup(EnabledState.ENABLED).build(), decryptedGroupChange);
   }
 
   @Test

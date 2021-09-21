@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 final class RecipientDeliveryStatus {
 
   enum Status {
-    UNKNOWN, PENDING, SENT, DELIVERED, READ
+    UNKNOWN, PENDING, SENT, DELIVERED, READ, VIEWED
   }
 
   private final MessageRecord       messageRecord;

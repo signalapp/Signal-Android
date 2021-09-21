@@ -22,6 +22,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.NotarySignature;
 import org.signal.zkgroup.ServerPublicParams;
@@ -59,7 +60,7 @@ public final class GroupsV2Operations {
   public static final UUID UNKNOWN_UUID = UuidUtil.UNKNOWN_UUID;
 
   /** Highest change epoch this class knows now to decrypt */
-  public static final int HIGHEST_KNOWN_EPOCH = 1;
+  public static final int HIGHEST_KNOWN_EPOCH = 3;
 
   private final ServerPublicParams        serverPublicParams;
   private final ClientZkProfileOperations clientZkProfileOperations;
@@ -147,6 +148,14 @@ public final class GroupsV2Operations {
       return GroupChange.Actions.newBuilder().setModifyTitle(GroupChange.Actions.ModifyTitleAction
                                                                                 .newBuilder()
                                                                                 .setTitle(encryptTitle(title)));
+    }
+
+    public GroupChange.Actions.ModifyDescriptionAction.Builder createModifyGroupDescriptionAction(final String description) {
+      return GroupChange.Actions.ModifyDescriptionAction.newBuilder().setDescription(encryptDescription(description));
+    }
+
+    public GroupChange.Actions.Builder createModifyGroupDescription(final String description) {
+      return GroupChange.Actions.newBuilder().setModifyDescription(createModifyGroupDescriptionAction(description));
     }
 
     public GroupChange.Actions.Builder createModifyGroupMembershipChange(Set<GroupCandidate> membersToAdd, UUID selfUuid) {
@@ -326,6 +335,14 @@ public final class GroupsV2Operations {
                                                                       .setAttributesAccess(newRights));
     }
 
+    public GroupChange.Actions.Builder createAnnouncementGroupChange(boolean isAnnouncementGroup) {
+      return GroupChange.Actions
+                        .newBuilder()
+                        .setModifyAnnouncementsOnly(GroupChange.Actions.ModifyAnnouncementsOnlyAction
+                                                                       .newBuilder()
+                                                                       .setAnnouncementsOnly(isAnnouncementGroup));
+    }
+
     private Member.Builder member(ProfileKeyCredential credential, Member.Role role) {
       ProfileKeyCredentialPresentation presentation = clientZkProfileOperations.createProfileKeyCredentialPresentation(new SecureRandom(), groupSecretParams, credential);
 
@@ -381,6 +398,8 @@ public final class GroupsV2Operations {
 
       return DecryptedGroup.newBuilder()
                            .setTitle(decryptTitle(group.getTitle()))
+                           .setDescription(decryptDescription(group.getDescription()))
+                           .setIsAnnouncementGroup(group.getAnnouncementsOnly() ? EnabledState.ENABLED : EnabledState.DISABLED)
                            .setAvatar(group.getAvatar())
                            .setAccessControl(group.getAccessControl())
                            .setRevision(group.getRevision())
@@ -565,6 +584,16 @@ public final class GroupsV2Operations {
         builder.setNewInviteLinkPassword(actions.getModifyInviteLinkPassword().getInviteLinkPassword());
       }
 
+      // Field 20
+      if (actions.hasModifyDescription()) {
+        builder.setNewDescription(DecryptedString.newBuilder().setValue(decryptDescription(actions.getModifyDescription().getDescription())));
+      }
+
+      // Field 21
+      if (actions.hasModifyAnnouncementsOnly()) {
+        builder.setNewIsAnnouncementGroup(actions.getModifyAnnouncementsOnly().getAnnouncementsOnly() ? EnabledState.ENABLED : EnabledState.DISABLED);
+      }
+
       return builder.build();
     }
 
@@ -576,6 +605,7 @@ public final class GroupsV2Operations {
                                    .setAddFromInviteLink(joinInfo.getAddFromInviteLink())
                                    .setRevision(joinInfo.getRevision())
                                    .setPendingAdminApproval(joinInfo.getPendingAdminApproval())
+                                   .setDescription(decryptDescription(joinInfo.getDescription()))
                                    .build();
     }
 
@@ -706,6 +736,20 @@ public final class GroupsV2Operations {
 
     private String decryptTitle(ByteString cipherText) {
       return decryptBlob(cipherText).getTitle().trim();
+    }
+
+    ByteString encryptDescription(String description) {
+      try {
+        GroupAttributeBlob blob = GroupAttributeBlob.newBuilder().setDescription(description).build();
+
+        return ByteString.copyFrom(clientZkGroupCipher.encryptBlob(blob.toByteArray()));
+      } catch (VerificationFailedException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    private String decryptDescription(ByteString cipherText) {
+      return decryptBlob(cipherText).getDescription().trim();
     }
 
     private int decryptDisappearingMessagesTimer(ByteString encryptedTimerMessage) {

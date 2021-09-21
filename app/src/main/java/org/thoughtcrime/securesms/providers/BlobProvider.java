@@ -17,10 +17,13 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.ByteArrayMediaDataSource;
@@ -32,20 +35,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 /**
  * Allows for the creation and retrieval of blobs.
  */
 public class BlobProvider {
 
-  private static final String TAG = BlobProvider.class.getSimpleName();
+  private static final String TAG = Log.tag(BlobProvider.class);
 
-  private static final String MULTI_SESSION_DIRECTORY  = "multi_session_blobs";
-  private static final String SINGLE_SESSION_DIRECTORY = "single_session_blobs";
+  private static final String DRAFT_ATTACHMENTS_DIRECTORY = "draft_blobs";
+  private static final String MULTI_SESSION_DIRECTORY     = "multi_session_blobs";
+  private static final String SINGLE_SESSION_DIRECTORY    = "single_session_blobs";
 
   public static final String AUTHORITY   = BuildConfig.APPLICATION_ID + ".blob";
   public static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/blob");
@@ -219,11 +226,45 @@ public class BlobProvider {
           Log.w(TAG, "Null directory listing!");
         }
 
+        deleteOrphanedDraftFiles(context);
+
         Log.i(TAG, "Initialized.");
         initialized = true;
         notifyAll();
       }
     });
+  }
+
+  private static void deleteOrphanedDraftFiles(@NonNull Context context) {
+    File   directory = getOrCreateDirectory(context, DRAFT_ATTACHMENTS_DIRECTORY);
+    File[] files     = directory.listFiles();
+
+    if (files == null || files.length == 0) {
+      Log.d(TAG, "No attachment drafts exist. Skipping.");
+      return;
+    }
+
+    DraftDatabase        draftDatabase   = DatabaseFactory.getDraftDatabase(context);
+    DraftDatabase.Drafts voiceNoteDrafts = draftDatabase.getAllVoiceNoteDrafts();
+
+    @SuppressWarnings("ConstantConditions")
+    List<String> draftFileNames = voiceNoteDrafts.stream()
+                                                 .map(VoiceNoteDraft::fromDraft)
+                                                 .map(VoiceNoteDraft::getUri)
+                                                 .map(BlobProvider::getId)
+                                                 .filter(Objects::nonNull)
+                                                 .map(BlobProvider::buildFileName)
+                                                 .collect(Collectors.toList());
+
+    for (final File file : files) {
+      if (!draftFileNames.contains(file.getName())) {
+        if (file.delete()) {
+          Log.d(TAG, "Deleted orphaned attachment draft: " + file.getName());
+        } else {
+          Log.d(TAG, "Failed to delete orphaned attachment draft: " + file.getName());
+        }
+      }
+    }
   }
 
   public static @Nullable String getMimeType(@NonNull Uri uri) {
@@ -344,6 +385,17 @@ public class BlobProvider {
   }
 
   private static @NonNull String getDirectory(@NonNull StorageType storageType) {
+    switch (storageType) {
+      case SINGLE_USE_MEMORY:
+      case SINGLE_SESSION_MEMORY:
+        throw new IllegalArgumentException("In-Memory Blobs do not have directories.");
+      case SINGLE_SESSION_DISK:
+        return SINGLE_SESSION_DIRECTORY;
+      case MULTI_SESSION_DISK:
+        return MULTI_SESSION_DIRECTORY;
+      case ATTACHMENT_DRAFT:
+        return DRAFT_ATTACHMENTS_DIRECTORY;
+    }
     return storageType == StorageType.MULTI_SESSION_DISK ? MULTI_SESSION_DIRECTORY : SINGLE_SESSION_DIRECTORY;
   }
 
@@ -417,6 +469,7 @@ public class BlobProvider {
      * Create a blob that will exist for multiple app sessions. It is the caller's responsibility to
      * eventually call {@link BlobProvider#delete(Context, Uri)} when the blob is no longer in use.
      */
+    @Deprecated
     @WorkerThread
     public Uri createForMultipleSessionsOnDisk(@NonNull Context context) throws IOException {
       return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK));
@@ -431,12 +484,12 @@ public class BlobProvider {
      * when the blob is no longer in use.
      */
     @WorkerThread
-    public Uri createForMultipleSessionsOnDiskAsync(@NonNull Context context,
-                                                    @Nullable SuccessListener successListener,
-                                                    @Nullable ErrorListener errorListener)
+    public Uri createForDraftAttachmentAsync(@NonNull Context context,
+                                             @Nullable SuccessListener successListener,
+                                             @Nullable ErrorListener errorListener)
         throws IOException
     {
-      return writeBlobSpecToDiskAsync(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK), successListener, errorListener);
+      return writeBlobSpecToDiskAsync(context, buildBlobSpec(StorageType.ATTACHMENT_DRAFT), successListener, errorListener);
     }
   }
 
@@ -555,7 +608,8 @@ public class BlobProvider {
     SINGLE_USE_MEMORY("single-use-memory", true),
     SINGLE_SESSION_MEMORY("single-session-memory", true),
     SINGLE_SESSION_DISK("single-session-disk", false),
-    MULTI_SESSION_DISK("multi-session-disk", false);
+    MULTI_SESSION_DISK("multi-session-disk", false),
+    ATTACHMENT_DRAFT("attachment-draft", false);
 
     private final String  encoded;
     private final boolean inMemory;

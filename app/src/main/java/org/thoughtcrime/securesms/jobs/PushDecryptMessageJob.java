@@ -8,53 +8,25 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.metadata.InvalidMetadataMessageException;
-import org.signal.libsignal.metadata.InvalidMetadataVersionException;
-import org.signal.libsignal.metadata.ProtocolDuplicateMessageException;
-import org.signal.libsignal.metadata.ProtocolException;
-import org.signal.libsignal.metadata.ProtocolInvalidKeyException;
-import org.signal.libsignal.metadata.ProtocolInvalidKeyIdException;
-import org.signal.libsignal.metadata.ProtocolInvalidMessageException;
-import org.signal.libsignal.metadata.ProtocolInvalidVersionException;
-import org.signal.libsignal.metadata.ProtocolLegacyMessageException;
-import org.signal.libsignal.metadata.ProtocolNoSessionException;
-import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
-import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
-import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.groups.BadGroupIdException;
-import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.messages.MessageContentProcessor;
-import org.thoughtcrime.securesms.messages.MessageContentProcessor.ExceptionMetadata;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.MessageState;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
-import org.whispersystems.signalservice.api.messages.SignalServiceContent;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -97,6 +69,11 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   @Override
+  protected boolean shouldTrace() {
+    return true;
+  }
+
+  @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putBlobAsString(KEY_ENVELOPE, envelope.serialize())
                              .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)
@@ -120,6 +97,10 @@ public final class PushDecryptMessageJob extends BaseJob {
     DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
 
     if (result.getContent() != null) {
+      if (result.getContent().getSenderKeyDistributionMessage().isPresent()) {
+        handleSenderKeyDistributionMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getSenderKeyDistributionMessage().get());
+      }
+
       jobs.add(new PushProcessMessageJob(result.getContent(), smsMessageId, envelope.getTimestamp()));
     } else if (result.getException() != null && result.getState() != MessageState.NOOP) {
       jobs.add(new PushProcessMessageJob(result.getState(), result.getException(), smsMessageId, envelope.getTimestamp()));
@@ -141,12 +122,18 @@ public final class PushDecryptMessageJob extends BaseJob {
   public void onFailure() {
   }
 
+  private void handleSenderKeyDistributionMessage(@NonNull SignalServiceAddress address, int deviceId, @NonNull SenderKeyDistributionMessage message) {
+    Log.i(TAG, "Processing SenderKeyDistributionMessage.");
+    SignalServiceMessageSender sender = ApplicationDependencies.getSignalServiceMessageSender();
+    sender.processSenderKeyDistributionMessage(new SignalProtocolAddress(address.getIdentifier(), deviceId), message);
+  }
+
   private boolean needsMigration() {
     return !IdentityKeyUtil.hasIdentityKey(context) || TextSecurePreferences.getNeedsSqlCipherMigration(context);
   }
 
   private void postMigrationNotification() {
-    NotificationManagerCompat.from(context).notify(494949,
+    NotificationManagerCompat.from(context).notify(NotificationIds.LEGACY_SQLCIPHER_MIGRATION,
                                                    new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
                                                                          .setSmallIcon(R.drawable.ic_notification)
                                                                          .setPriority(NotificationCompat.PRIORITY_HIGH)

@@ -19,7 +19,7 @@ public final class VCardUtil {
 
     private VCardUtil(){}
 
-    private static final String TAG = VCardUtil.class.getSimpleName();
+    private static final String TAG = Log.tag(VCardUtil.class);
 
     public static List<Contact> parseContacts(@NonNull String vCardData) {
         List<VCard> vContacts = Ezvcard.parse(vCardData).all();

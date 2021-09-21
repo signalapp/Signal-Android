@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public abstract class BaseJob extends Job {
 
-  private static final String TAG = BaseJob.class.getSimpleName();
+  private static final String TAG = Log.tag(BaseJob.class);
 
   private Data outputData;
 

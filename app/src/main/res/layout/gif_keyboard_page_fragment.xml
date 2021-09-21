@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/signal_background_secondary">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/signal_background_secondary"
+        app:elevation="0dp">
+
+        <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+            android:id="@+id/gif_keyboard_search_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:click_only="true"
+            app:layout_scrollFlags="scroll|snap"
+            app:search_hint="@string/KeyboardPagerFragment_search_giphy"
+            app:show_always="true" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/gif_keyboard_giphy_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <LinearLayout
+        android:id="@+id/gif_keyboard_packs_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_toolbar_height"
+        android:layout_gravity="bottom"
+        android:background="@drawable/keyboard_bottom_bar_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/gif_keyboard_search"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/KeyboardPagerFragment_open_gif_search"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_search_24"
+            app:tint="@color/icon_tab_selector" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gif_keyboard_quick_search_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/keyboard_pager_category_icon" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

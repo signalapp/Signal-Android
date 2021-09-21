@@ -50,9 +50,11 @@ public final class LiveRecipient {
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
     this.observers         = new CopyOnWriteArraySet<>();
     this.foreverObserver   = recipient -> {
-      for (RecipientForeverObserver o : observers) {
-        o.onRecipientChanged(recipient);
-      }
+      ThreadUtil.postToMain(() -> {
+        for (RecipientForeverObserver o : observers) {
+          o.onRecipientChanged(recipient);
+        }
+      });
     };
     this.refreshForceNotify = new MutableLiveData<>(new Object());
     this.observableLiveData = LiveDataUtil.combineLatest(LiveDataUtil.distinctUntilChanged(liveData, Recipient::hasSameContent),
@@ -212,10 +214,10 @@ public final class LiveRecipient {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
       }
 
-      return new RecipientDetails(title, null,  avatarId, false, false, settings, members);
+      return new RecipientDetails(title, null,  avatarId, false, false, settings.getRegistered(), settings, members);
     }
 
-    return new RecipientDetails(null, null, Optional.absent(), false, false, settings, null);
+    return new RecipientDetails(null, null, Optional.absent(), false, false, settings.getRegistered(), settings, null);
   }
 
   synchronized void set(@NonNull Recipient recipient) {

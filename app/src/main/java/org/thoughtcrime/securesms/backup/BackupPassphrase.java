@@ -18,7 +18,7 @@ public final class BackupPassphrase {
   private BackupPassphrase() {
   }
 
-  private static final String TAG = BackupPassphrase.class.getSimpleName();
+  private static final String TAG = Log.tag(BackupPassphrase.class);
 
   public static @Nullable String get(@NonNull Context context) {
     String passphrase          = TextSecurePreferences.getBackupPassphrase(context);

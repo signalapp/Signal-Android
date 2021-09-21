@@ -6,6 +6,9 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
+import java.util.Arrays;
+import java.util.List;
+
 public final class ProxyValues extends SignalStoreValues {
 
   private static final String  KEY_PROXY_ENABLED = "proxy.enabled";
@@ -18,6 +21,11 @@ public final class ProxyValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Arrays.asList(KEY_PROXY_ENABLED, KEY_HOST, KEY_PORT);
   }
 
   public void enableProxy(@NonNull SignalProxy proxy) {

@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOperationMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
@@ -91,12 +92,13 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob {
     SignalServiceMessageSender  messageSender        = ApplicationDependencies.getSignalServiceMessageSender();
     StickerPackOperationMessage stickerPackOperation = new StickerPackOperationMessage(packIdBytes, packKeyBytes, remoteType);
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
+    if (e instanceof ServerRejectedException) return false;
     return e instanceof PushNetworkException;
   }
 

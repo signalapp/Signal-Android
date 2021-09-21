@@ -11,7 +11,7 @@ import org.signal.core.util.logging.Log;
 
 public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
 
-  private static final String TAG = PersistentAlarmManagerListener.class.getSimpleName();
+  private static final String TAG = Log.tag(PersistentAlarmManagerListener.class);
 
   protected abstract long getNextScheduledExecutionTime(Context context);
   protected abstract long onAlarm(Context context, long scheduledTime);
@@ -31,7 +31,11 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
 
     Log.i(TAG, getClass() + " scheduling for: " + scheduledTime + " action: " + intent.getAction());
 
-    alarmManager.cancel(pendingIntent);
-    alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
+    if (pendingIntent != null) {
+      alarmManager.cancel(pendingIntent);
+      alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
+    } else {
+      Log.i(TAG, "PendingIntent somehow null, skipping");
+    }
   }
 }

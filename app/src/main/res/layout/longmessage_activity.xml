@@ -18,6 +18,12 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
+            <org.thoughtcrime.securesms.conversation.colors.ColorizerView
+                android:id="@+id/colorizer"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
             <ViewStub
                 android:id="@+id/longmessage_sent_stub"
                 android:layout_width="match_parent"

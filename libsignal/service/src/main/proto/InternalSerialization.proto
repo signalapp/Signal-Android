@@ -41,10 +41,11 @@ message MetadataProto {
   optional int64        serverReceivedTimestamp  = 5;
   optional int64        serverDeliveredTimestamp = 6;
   optional bool         needsReceipt             = 4;
+  optional string       serverGuid               = 7;
+  optional bytes        groupId                  = 8;
 }
 
 message AddressProto {
   optional bytes  uuid  = 1;
   optional string e164  = 2;
-  optional string relay = 3;
 }

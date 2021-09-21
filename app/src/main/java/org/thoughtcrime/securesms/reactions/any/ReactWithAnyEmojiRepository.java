@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
+import org.thoughtcrime.securesms.emoji.EmojiCategory;
+import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.reactions.ReactionDetails;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -41,10 +43,10 @@ final class ReactWithAnyEmojiRepository {
     this.recentEmojiPageModel = new RecentEmojiPageModel(context, storageKey);
     this.emojiPages           = new LinkedList<>();
 
-    emojiPages.addAll(Stream.of(EmojiUtil.getDisplayPages())
-                            .map(page -> new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(getCategoryLabel(page.getIconAttr()), page))))
+    emojiPages.addAll(Stream.of(EmojiSource.getLatest().getDisplayPages())
+                            .filterNot(p -> p.getIconAttr() == EmojiCategory.EMOTICONS.getIcon())
+                            .map(page -> new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(EmojiCategory.getCategoryLabel(page.getIconAttr()), page))))
                             .toList());
-    emojiPages.remove(emojiPages.size() - 1);
   }
 
   List<ReactWithAnyEmojiPage> getEmojiPageModels(@NonNull List<ReactionDetails> thisMessagesReactions) {
@@ -86,30 +88,5 @@ final class ReactWithAnyEmojiRepository {
         Log.w(TAG, "Message not found! Ignoring.");
       }
     });
-  }
-
-  private @StringRes int getCategoryLabel(@AttrRes int iconAttr) {
-    switch (iconAttr) {
-      case R.attr.emoji_category_people:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people;
-      case R.attr.emoji_category_nature:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__nature;
-      case R.attr.emoji_category_foods:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__food;
-      case R.attr.emoji_category_activity:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__activities;
-      case R.attr.emoji_category_places:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__places;
-      case R.attr.emoji_category_objects:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__objects;
-      case R.attr.emoji_category_symbols:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__symbols;
-      case R.attr.emoji_category_flags:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__flags;
-      case R.attr.emoji_category_emoticons:
-        return R.string.ReactWithAnyEmojiBottomSheetDialogFragment__emoticons;
-      default:
-        throw new AssertionError();
-    }
   }
 }

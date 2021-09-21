@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.util;
 
-import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
+import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
@@ -14,10 +14,12 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -42,7 +44,7 @@ import java.util.concurrent.TimeUnit;
  * Other interesting things you can do:
  * - Make a flag {@link #HOT_SWAPPABLE}
  * - Make a flag {@link #STICKY} -- booleans only!
- * - Register a listener for flag changes in  {@link #FLAG_CHANGE_LISTENERS}
+ * - Register a listener for flag changes in {@link #FLAG_CHANGE_LISTENERS}
  */
 public final class FeatureFlags {
 
@@ -50,6 +52,7 @@ public final class FeatureFlags {
 
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
+  private static final String PAYMENTS_KILL_SWITCH              = "android.payments.kill";
   private static final String USERNAMES                         = "android.usernames";
   private static final String GROUPS_V2_RECOMMENDED_LIMIT       = "global.groupsv2.maxGroupSize";
   private static final String GROUPS_V2_HARD_LIMIT              = "global.groupsv2.groupSizeHardLimit";
@@ -59,10 +62,6 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY_VERSION      = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
   public  static final String DONATE_MEGAPHONE                  = "android.donate";
-  private static final String VIEWED_RECEIPTS                   = "android.viewed.receipts";
-  private static final String GROUP_CALLING                     = "android.groupsv2.calling.2";
-  private static final String GV1_FORCED_MIGRATE                = "android.groupsV1Migration.forced";
-  private static final String SEND_VIEWED_RECEIPTS              = "android.sendViewedReceipts";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
@@ -75,6 +74,15 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
+  private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
+  private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
+  private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
+  private static final String SENDER_KEY                        = "android.senderKey.5";
+  private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
+  private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
+  private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
+  private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
+  private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -82,6 +90,7 @@ public final class FeatureFlags {
    */
   @VisibleForTesting
   static final Set<String> REMOTE_CAPABLE = SetUtil.newHashSet(
+      PAYMENTS_KILL_SWITCH,
       GROUPS_V2_RECOMMENDED_LIMIT,
       GROUPS_V2_HARD_LIMIT,
       INTERNAL_USER,
@@ -89,10 +98,6 @@ public final class FeatureFlags {
       VERIFY_V2,
       CLIENT_EXPIRATION,
       DONATE_MEGAPHONE,
-      VIEWED_RECEIPTS,
-      GV1_FORCED_MIGRATE,
-      GROUP_CALLING,
-      SEND_VIEWED_RECEIPTS,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
@@ -105,12 +110,21 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_MEMORY,
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
-      MESSAGE_PROCESSOR_DELAY
+      MESSAGE_PROCESSOR_DELAY,
+      MEDIA_QUALITY_LEVELS,
+      RETRY_RECEIPT_LIFESPAN,
+      RETRY_RESPOND_MAX_AGE,
+      SENDER_KEY,
+      RETRY_RECEIPTS,
+      SUGGEST_SMS_BLACKLIST,
+      MAX_GROUP_CALL_RING_SIZE,
+      GROUP_CALL_RINGING
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY_VERSION
+      PHONE_NUMBER_PRIVACY_VERSION,
+      CHANGE_NUMBER_ENABLED
   );
 
   /**
@@ -135,7 +149,6 @@ public final class FeatureFlags {
   static final Set<String> HOT_SWAPPABLE = SetUtil.newHashSet(
       VERIFY_V2,
       CLIENT_EXPIRATION,
-      GROUP_CALLING,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
@@ -148,7 +161,15 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_MEMORY,
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
-      MESSAGE_PROCESSOR_DELAY
+      MESSAGE_PROCESSOR_DELAY,
+      MEDIA_QUALITY_LEVELS,
+      RETRY_RECEIPT_LIFESPAN,
+      RETRY_RESPOND_MAX_AGE,
+      SUGGEST_SMS_BLACKLIST,
+      RETRY_RECEIPTS,
+      SENDER_KEY,
+      MAX_GROUP_CALL_RING_SIZE,
+      GROUP_CALL_RINGING
   );
 
   /**
@@ -172,6 +193,7 @@ public final class FeatureFlags {
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
+    put(SENDER_KEY, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -190,7 +212,7 @@ public final class FeatureFlags {
     Log.i(TAG, "init() " + REMOTE_VALUES.toString());
   }
 
-  public static synchronized void refreshIfNecessary() {
+  public static void refreshIfNecessary() {
     long timeSinceLastFetch = System.currentTimeMillis() - SignalStore.remoteConfigValues().getLastFetchTime();
 
     if (timeSinceLastFetch < 0 || timeSinceLastFetch > FETCH_INTERVAL) {
@@ -199,6 +221,12 @@ public final class FeatureFlags {
     } else {
       Log.i(TAG, "Skipping remote config refresh. Refreshed " + timeSinceLastFetch + " ms ago.");
     }
+  }
+
+  @WorkerThread
+  public static void refreshSync() throws IOException {
+    Map<String, Object> config = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
+    FeatureFlags.update(config);
   }
 
   public static synchronized void update(@NonNull Map<String, Object> config) {
@@ -232,6 +260,11 @@ public final class FeatureFlags {
                                getInteger(GROUPS_V2_HARD_LIMIT, 1001));
   }
 
+  /** Payments Support */
+  public static boolean payments() {
+    return !getBoolean(PAYMENTS_KILL_SWITCH, false);
+  }
+
   /** Internal testing extensions. */
   public static boolean internalUser() {
     return getBoolean(INTERNAL_USER, false);
@@ -258,26 +291,6 @@ public final class FeatureFlags {
    */
   public static boolean phoneNumberPrivacy() {
     return getVersionFlag(PHONE_NUMBER_PRIVACY_VERSION) == VersionFlag.ON;
-  }
-
-  /** Whether the user should display the content revealed dot in voice notes. */
-  public static boolean viewedReceipts() {
-    return getBoolean(VIEWED_RECEIPTS, false);
-  }
-
-  /** Whether or not group calling is enabled. */
-  public static boolean groupCalling() {
-    return Build.VERSION.SDK_INT > 19 && getBoolean(GROUP_CALLING, false);
-  }
-
-  /** Whether or not forced migration from GV1->GV2 is enabled. */
-  public static boolean groupsV1ForcedMigration() {
-    return getBoolean(GV1_FORCED_MIGRATE, false);
-  }
-
-  /** Whether or not to send viewed receipts. */
-  public static boolean sendViewedReceipts() {
-    return getBoolean(SEND_VIEWED_RECEIPTS, false);
   }
 
   /** Whether to use the custom streaming muxer or built in android muxer. */
@@ -333,6 +346,50 @@ public final class FeatureFlags {
   /** The minimum total memory for rendering animated stickers in the keyboard and such */
   public static int animatedStickerMinimumTotalMemoryMb() {
     return getInteger(ANIMATED_STICKER_MIN_TOTAL_MEMORY, (int) ByteUnit.GIGABYTES.toMegabytes(3));
+  }
+
+  public static @NonNull String getMediaQualityLevels() {
+    return getString(MEDIA_QUALITY_LEVELS, "");
+  }
+
+  /** Whether or not sending or responding to retry receipts is enabled. */
+  public static boolean retryReceipts() {
+    return getBoolean(RETRY_RECEIPTS, true);
+  }
+
+  /** How long to wait before considering a retry to be a failure. */
+  public static long retryReceiptLifespan() {
+    return getLong(RETRY_RECEIPT_LIFESPAN, TimeUnit.HOURS.toMillis(1));
+  }
+
+  /** How old a message is allowed to be while still resending in response to a retry receipt . */
+  public static long retryRespondMaxAge() {
+    return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(14));
+  }
+
+  /** Whether or not sending using sender key is enabled. */
+  public static boolean senderKey() {
+    return getBoolean(SENDER_KEY, true);
+  }
+
+  /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
+  public static @NonNull String suggestSmsBlacklist() {
+    return getString(SUGGEST_SMS_BLACKLIST, "");
+  }
+
+  /** Max group size that can be use group call ringing. */
+  public static long maxGroupCallRingSize() {
+    return getLong(MAX_GROUP_CALL_RING_SIZE, 16);
+  }
+
+  /** Whether or not to show the group call ring toggle in the UI. */
+  public static boolean groupCallRinging() {
+    return getBoolean(GROUP_CALL_RINGING, false);
+  }
+
+  /** Weather or not to show change number in the UI. */
+  public static boolean changeNumber() {
+    return getBoolean(CHANGE_NUMBER_ENABLED, false);
   }
 
   /** Only for rendering debug info. */
@@ -516,6 +573,24 @@ public final class FeatureFlags {
         return Integer.parseInt((String) remote);
       } catch (NumberFormatException e) {
         Log.w(TAG, "Expected an int for key '" + key + "', but got something else! Falling back to the default.");
+      }
+    }
+
+    return defaultValue;
+  }
+
+  private static long getLong(@NonNull String key, long defaultValue) {
+    Long forced = (Long) FORCED_VALUES.get(key);
+    if (forced != null) {
+      return forced;
+    }
+
+    Object remote = REMOTE_VALUES.get(key);
+    if (remote instanceof String) {
+      try {
+        return Long.parseLong((String) remote);
+      } catch (NumberFormatException e) {
+        Log.w(TAG, "Expected a long for key '" + key + "', but got something else! Falling back to the default.");
       }
     }
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <FrameLayout
+        android:id="@+id/emoji_search_nav"
+        android:layout_width="45dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/search_bar_start"
+        android:paddingStart="7dp"
+        app:layout_constraintBottom_toBottomOf="@id/emoji_search_entry"
+        app:layout_constraintEnd_toStartOf="@id/emoji_search_entry"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/emoji_search_entry"
+        tools:ignore="RtlSymmetry">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/emoji_search_nav_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?selectableItemBackground"
+            android:clickable="false"
+            android:contentDescription="@string/KeyboardPagerfragment_back_to_emoji"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_search_24"
+            app:tint="@color/signal_icon_tint_primary" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/emoji_search_clear"
+        android:layout_width="45dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_bar_end"
+        android:paddingEnd="7dp"
+        app:layout_constraintBottom_toBottomOf="@id/emoji_search_entry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/emoji_search_entry"
+        app:layout_constraintTop_toTopOf="@id/emoji_search_entry"
+        tools:ignore="RtlSymmetry">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/emoji_search_clear_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?selectableItemBackground"
+            android:clickable="false"
+            android:contentDescription="@string/KeyboardPagerfragment_clear_search_entry"
+            android:scaleType="centerInside"
+            app:tint="@color/signal_icon_tint_primary"
+            tools:srcCompat="@drawable/ic_x" />
+
+    </FrameLayout>
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+        android:id="@+id/emoji_search_entry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/signal_background_primary"
+        android:inputType="textNoSuggestions"
+        android:maxLines="1"
+        android:minHeight="40dp"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/emoji_search_clear"
+        app:layout_constraintStart_toEndOf="@id/emoji_search_nav"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:hint="@string/KeyboardPagerFragment_search_emoji" />
+
+    <FrameLayout
+        android:id="@+id/keyboard_search_click_only"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</merge>

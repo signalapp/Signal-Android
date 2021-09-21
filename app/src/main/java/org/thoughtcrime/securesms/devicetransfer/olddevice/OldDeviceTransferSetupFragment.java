@@ -11,8 +11,8 @@ import androidx.annotation.StringRes;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferSetupFragment;
 import org.thoughtcrime.securesms.devicetransfer.SetupStep;
@@ -46,9 +46,7 @@ public final class OldDeviceTransferSetupFragment extends DeviceTransferSetupFra
 
   @Override
   protected void navigateWhenWifiDirectUnavailable() {
-    Intent intent = new Intent(requireContext(), ApplicationPreferencesActivity.class);
-    intent.putExtra(ApplicationPreferencesActivity.LAUNCH_TO_BACKUPS_FRAGMENT, true);
-    startActivity(intent);
+    startActivity(AppSettingsActivity.backups(requireContext()));
     requireActivity().finish();
   }
 
@@ -92,7 +90,7 @@ public final class OldDeviceTransferSetupFragment extends DeviceTransferSetupFra
     switch (step) {
       case SETTING_UP:
       case WAITING:
-        return R.string.OldDeviceTransferSetup__searching_for_your_new_android_device;
+        return R.string.OldDeviceTransferSetup__searching_for_new_android_device;
       case ERROR:
         return R.string.OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device;
       case TROUBLESHOOTING:

@@ -4,13 +4,12 @@ package org.thoughtcrime.securesms.database.helpers;
 import android.content.ContentValues;
 import android.content.Context;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionState;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.File;
@@ -19,7 +18,7 @@ import java.io.IOException;
 
 class SessionStoreMigrationHelper {
 
-  private static final String TAG = SessionStoreMigrationHelper.class.getSimpleName();
+  private static final String TAG = Log.tag(SessionStoreMigrationHelper.class);
 
   private static final String SESSIONS_DIRECTORY_V2 = "sessions-v2";
   private static final Object FILE_LOCK             = new Object();
@@ -64,9 +63,7 @@ class SessionStoreMigrationHelper {
 
             if (versionMarker == SINGLE_STATE_VERSION) {
               Log.i(TAG, "Migrating single state version: " + sessionFile.getAbsolutePath());
-              SessionState sessionState = new SessionState(serialized);
-
-              sessionRecord = new SessionRecord(sessionState);
+              sessionRecord = new SessionRecord(serialized);
             } else if (versionMarker >= ARCHIVE_STATES_VERSION) {
               Log.i(TAG, "Migrating session: " + sessionFile.getAbsolutePath());
               sessionRecord = new SessionRecord(serialized);
@@ -76,7 +73,7 @@ class SessionStoreMigrationHelper {
 
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(SessionDatabase.RECIPIENT_ID, address);
+            contentValues.put(SessionDatabase.ADDRESS, address);
             contentValues.put(SessionDatabase.DEVICE, deviceId);
             contentValues.put(SessionDatabase.RECORD, sessionRecord.serialize());
 

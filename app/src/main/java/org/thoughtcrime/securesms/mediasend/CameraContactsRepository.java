@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,7 +119,7 @@ class CameraContactsRepository {
 
     List<Recipient> recipients = new ArrayList<>();
 
-    try (GroupDatabase.Reader reader = groupDatabase.getGroupsFilteredByTitle(query, false, FeatureFlags.groupsV1ForcedMigration())) {
+    try (GroupDatabase.Reader reader = groupDatabase.getGroupsFilteredByTitle(query, false, true, true)) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         RecipientId recipientId = recipientDatabase.getOrInsertFromGroupId(groupRecord.getId());

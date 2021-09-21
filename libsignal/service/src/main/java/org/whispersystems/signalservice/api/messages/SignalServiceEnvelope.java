@@ -9,29 +9,14 @@ package org.whispersystems.signalservice.api.messages;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.libsignal.InvalidVersionException;
-import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope;
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceEnvelopeProto;
-import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.Mac;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 /**
  * This class represents an encrypted Signal Service envelope.
@@ -85,9 +70,7 @@ public class SignalServiceEnvelope {
                                        .setServerTimestamp(serverReceivedTimestamp);
 
     if (sender.isPresent()) {
-      if (sender.get().getUuid().isPresent()) {
-        builder.setSourceUuid(sender.get().getUuid().get().toString());
-      }
+      builder.setSourceUuid(sender.get().getUuid().toString());
 
       if (sender.get().getNumber().isPresent()) {
         builder.setSourceE164(sender.get().getNumber().get());
@@ -129,19 +112,19 @@ public class SignalServiceEnvelope {
     this.serverDeliveredTimestamp = serverDeliveredTimestamp;
   }
 
-  public String getUuid() {
+  public String getServerGuid() {
     return envelope.getServerGuid();
   }
 
-  public boolean hasUuid() {
+  public boolean hasServerGuid() {
     return envelope.hasServerGuid();
   }
 
   /**
    * @return True if either a source E164 or UUID is present.
    */
-  public boolean hasSource() {
-    return envelope.hasSourceE164() || envelope.hasSourceUuid();
+  public boolean hasSourceUuid() {
+    return envelope.hasSourceUuid();
   }
 
   /**
@@ -261,6 +244,10 @@ public class SignalServiceEnvelope {
     return envelope.getType().getNumber() == Envelope.Type.UNIDENTIFIED_SENDER_VALUE;
   }
 
+  public boolean isPlaintextContent() {
+    return envelope.getType().getNumber() == Envelope.Type.PLAINTEXT_CONTENT_VALUE;
+  }
+
   public byte[] serialize() {
     SignalServiceEnvelopeProto.Builder builder = SignalServiceEnvelopeProto.newBuilder()
                                                                            .setType(getType())
@@ -285,8 +272,8 @@ public class SignalServiceEnvelope {
       builder.setContent(ByteString.copyFrom(getContent()));
     }
 
-    if (hasUuid()) {
-      builder.setServerGuid(getUuid());
+    if (hasServerGuid()) {
+      builder.setServerGuid(getServerGuid());
     }
 
     return builder.build().toByteArray();

@@ -96,6 +96,25 @@ public class OutgoingMediaMessage {
     this.mentions.addAll(that.mentions);
   }
 
+  public @NonNull OutgoingMediaMessage withExpiry(long expiresIn) {
+    return new OutgoingMediaMessage(
+        getRecipient(),
+        body,
+        attachments,
+        sentTimeMillis,
+        subscriptionId,
+        expiresIn,
+        viewOnce,
+        distributionType,
+        outgoingQuote,
+        contacts,
+        linkPreviews,
+        mentions,
+        networkFailures,
+        identityKeyMismatches
+    );
+  }
+
   public Recipient getRecipient() {
     return recipient;
   }

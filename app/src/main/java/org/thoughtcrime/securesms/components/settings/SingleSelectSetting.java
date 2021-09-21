@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.components.settings;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckedTextView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,44 +26,60 @@ public class SingleSelectSetting {
 
   public static class ViewHolder extends MappingViewHolder<Item> {
 
+    private final   RadioButton                          radio;
     protected final CheckedTextView                      text;
+    private final   TextView                             summaryText;
     protected final SingleSelectSelectionChangedListener selectionChangedListener;
 
     public ViewHolder(@NonNull View itemView, @NonNull SingleSelectSelectionChangedListener selectionChangedListener) {
       super(itemView);
       this.selectionChangedListener = selectionChangedListener;
+      this.radio                    = findViewById(R.id.single_select_item_radio);
       this.text                     = findViewById(R.id.single_select_item_text);
+      this.summaryText              = findViewById(R.id.single_select_item_summary);
     }
 
     @Override
     public void bind(@NonNull Item model) {
+      radio.setChecked(model.isSelected);
       text.setText(model.text);
-      setChecked(model.isSelected);
+      if (!TextUtils.isEmpty(model.summaryText)) {
+        summaryText.setText(model.summaryText);
+        summaryText.setVisibility(View.VISIBLE);
+      } else {
+        summaryText.setVisibility(View.GONE);
+      }
       itemView.setOnClickListener(v -> selectionChangedListener.onSelectionChanged(model.item));
-    }
-
-    protected void setChecked(boolean checked) {
-      text.setChecked(checked);
     }
   }
 
   public static class Item implements MappingModel<Item> {
-    private final String  text;
     private final Object  item;
+    private final String  text;
+    private final String  summaryText;
     private final boolean isSelected;
 
-    public <T> Item(@NonNull T item, @Nullable String text, boolean isSelected) {
-      this.item       = item;
-      this.text       = text != null ? text : item.toString();
-      this.isSelected = isSelected;
-    }
-
-    public @NonNull String getText() {
-      return text;
+    public <T> Item(@NonNull T item, @Nullable String text, @Nullable String summaryText, boolean isSelected) {
+      this.item        = item;
+      this.summaryText = summaryText;
+      this.text        = text != null ? text : item.toString();
+      this.isSelected  = isSelected;
     }
 
     public @NonNull Object getItem() {
       return item;
+    }
+
+    public @Nullable String getText() {
+      return text;
+    }
+
+    public @Nullable String getSummaryText() {
+      return summaryText;
+    }
+
+    public boolean isSelected() {
+      return isSelected;
     }
 
     @Override
@@ -70,7 +89,9 @@ public class SingleSelectSetting {
 
     @Override
     public boolean areContentsTheSame(@NonNull Item newItem) {
-      return Objects.equals(text, newItem.text) && isSelected == newItem.isSelected;
+      return Objects.equals(text, newItem.text)               &&
+             Objects.equals(summaryText, newItem.summaryText) &&
+             isSelected == newItem.isSelected;
     }
   }
 }

@@ -7,9 +7,11 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class CornerMask {
 
@@ -29,10 +31,7 @@ public class CornerMask {
   }
 
   public void mask(Canvas canvas) {
-    bounds.left   = 0;
-    bounds.top    = 0;
-    bounds.right  = canvas.getWidth();
-    bounds.bottom = canvas.getHeight();
+    bounds.set(canvas.getClipBounds());
 
     corners.reset();
     corners.addRoundRect(bounds, radii, Path.Direction.CW);
@@ -57,6 +56,13 @@ public class CornerMask {
     radii[6] = radii[7] = bottomLeft;
   }
 
+  public void setRadii(float topLeft, float topRight, float bottomRight, float bottomLeft) {
+    radii[0] = radii[1] = topLeft;
+    radii[2] = radii[3] = topRight;
+    radii[4] = radii[5] = bottomRight;
+    radii[6] = radii[7] = bottomLeft;
+  }
+
   public void setTopLeftRadius(int radius) {
     radii[0] = radii[1] = radius;
   }
@@ -71,5 +77,9 @@ public class CornerMask {
 
   public void setBottomLeftRadius(int radius) {
     radii[6] = radii[7] = radius;
+  }
+
+  public float[] getRadii() {
+    return radii;
   }
 }

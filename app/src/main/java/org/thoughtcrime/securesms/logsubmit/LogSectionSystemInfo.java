@@ -14,10 +14,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.emoji.EmojiFiles;
+import org.thoughtcrime.securesms.emoji.EmojiSource;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.DeviceProperties;
+import org.thoughtcrime.securesms.util.ScreenDensity;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -28,6 +33,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 public class LogSectionSystemInfo implements LogSection {
 
@@ -46,8 +52,8 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Model         : ").append(Build.MODEL).append("\n");
     builder.append("Product       : ").append(Build.PRODUCT).append("\n");
     builder.append("Screen        : ").append(getScreenResolution(context)).append(", ")
-                                     .append(getScreenDensityClass(context)).append(", ")
-                                     .append(getScreenRefreshRate(context)).append("\n");
+                                      .append(ScreenDensity.get(context)).append(", ")
+                                      .append(getScreenRefreshRate(context)).append("\n");
     builder.append("Font Scale    : ").append(context.getResources().getConfiguration().fontScale).append("\n");
     builder.append("Android       : ").append(Build.VERSION.RELEASE).append(" (")
                                      .append(Build.VERSION.INCREMENTAL).append(", ")
@@ -57,6 +63,8 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Memclass      : ").append(getMemoryClass(context)).append("\n");
     builder.append("MemInfo       : ").append(getMemoryInfo(context)).append("\n");
     builder.append("OS Host       : ").append(Build.HOST).append("\n");
+    builder.append("RecipientId   : ").append(SignalStore.registrationValues().isRegistrationComplete() ? Recipient.self().getId() : "N/A").append("\n");
+    builder.append("UUID          : ").append(getCensoredUuid(context)).append("\n");
     builder.append("Censored      : ").append(CensorshipUtil.isCensored(context)).append("\n");
     builder.append("Play Services : ").append(getPlayServicesString(context)).append("\n");
     builder.append("FCM           : ").append(!TextSecurePreferences.isFcmDisabled(context)).append("\n");
@@ -65,6 +73,8 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Linked Devices: ").append(TextSecurePreferences.isMultiDevice(context)).append("\n");
     builder.append("First Version : ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
     builder.append("Days Installed: ").append(VersionTracker.getDaysSinceFirstInstalled(context)).append("\n");
+    builder.append("Build Variant : ").append(BuildConfig.BUILD_DISTRIBUTION_TYPE).append(BuildConfig.BUILD_ENVIRONMENT_TYPE).append(BuildConfig.BUILD_VARIANT_TYPE).append("\n");
+    builder.append("Emoji Version : ").append(getEmojiVersionString(context)).append("\n");
     builder.append("App           : ");
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
@@ -133,30 +143,6 @@ public class LogSectionSystemInfo implements LogSection {
     return displayMetrics.widthPixels + "x" + displayMetrics.heightPixels;
   }
 
-  private static @NonNull String getScreenDensityClass(@NonNull Context context) {
-    int density = context.getResources().getDisplayMetrics().densityDpi;
-
-    LinkedHashMap<Integer, String> levels = new LinkedHashMap<Integer, String>() {{
-      put(DisplayMetrics.DENSITY_LOW,     "ldpi");
-      put(DisplayMetrics.DENSITY_MEDIUM,  "mdpi");
-      put(DisplayMetrics.DENSITY_HIGH,    "hdpi");
-      put(DisplayMetrics.DENSITY_XHIGH,   "xhdpi");
-      put(DisplayMetrics.DENSITY_XXHIGH,  "xxhdpi");
-      put(DisplayMetrics.DENSITY_XXXHIGH, "xxxhdpi");
-    }};
-
-    String densityString = "unknown";
-
-    for (Map.Entry<Integer, String> entry : levels.entrySet()) {
-      densityString = entry.getValue();
-      if (entry.getKey() > density) {
-        break;
-      }
-    }
-
-    return densityString + " (" + density + ")";
-  }
-
   private static @NonNull String getScreenRefreshRate(@NonNull Context context) {
     return String.format(Locale.ENGLISH, "%.2f hz", ServiceUtil.getWindowManager(context).getDefaultDisplay().getRefreshRate());
   }
@@ -168,5 +154,28 @@ public class LogSectionSystemInfo implements LogSection {
   private static String getPlayServicesString(@NonNull Context context) {
     int result = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
     return result == ConnectionResult.SUCCESS ? "true" : "false (" + result + ")";
+  }
+
+  private static String getEmojiVersionString(@NonNull Context context) {
+    EmojiFiles.Version version = EmojiFiles.Version.readVersion(context);
+
+    if (version == null) {
+      return "None";
+    } else {
+      return version.getVersion() + " (" + version.getDensity() + ")";
+    }
+  }
+
+  private static String getCensoredUuid(@NonNull Context context) {
+    UUID uuid = TextSecurePreferences.getLocalUuid(context);
+
+    if (uuid != null) {
+      String uuidString = uuid.toString();
+      String lastTwo    = uuidString.substring(uuidString.length() - 2);
+
+      return "********-****-****-****-**********" + lastTwo;
+    } else {
+      return "N/A";
+    }
   }
 }

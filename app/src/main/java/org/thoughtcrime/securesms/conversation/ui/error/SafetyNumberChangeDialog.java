@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -35,6 +38,8 @@ import java.util.List;
 
 public final class SafetyNumberChangeDialog extends DialogFragment implements SafetyNumberChangeAdapter.Callbacks {
 
+  private static final String TAG = Log.tag(SafetyNumberChangeDialog.class);
+
   public static final String SAFETY_NUMBER_DIALOG = "SAFETY_NUMBER";
 
   private static final String RECIPIENT_IDS_EXTRA          = "recipient_ids";
@@ -42,14 +47,25 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   private static final String MESSAGE_TYPE_EXTRA           = "message_type";
   private static final String CONTINUE_TEXT_RESOURCE_EXTRA = "continue_text_resource";
   private static final String CANCEL_TEXT_RESOURCE_EXTRA   = "cancel_text_resource";
+  private static final String SKIP_CALLBACKS_EXTRA         = "skip_callbacks_extra";
 
   private SafetyNumberChangeViewModel viewModel;
   private SafetyNumberChangeAdapter   adapter;
   private View                        dialogView;
 
-  public static void show(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityDatabase.IdentityRecord> identityRecords) {
+  public static void show(@NonNull FragmentManager fragmentManager, @NonNull RecipientId recipientId) {
+    Bundle arguments = new Bundle();
+    arguments.putStringArray(RECIPIENT_IDS_EXTRA, new String[] { recipientId.serialize() });
+    arguments.putInt(CONTINUE_TEXT_RESOURCE_EXTRA, R.string.safety_number_change_dialog__accept);
+    arguments.putBoolean(SKIP_CALLBACKS_EXTRA, true);
+    SafetyNumberChangeDialog fragment = new SafetyNumberChangeDialog();
+    fragment.setArguments(arguments);
+    fragment.show(fragmentManager, SAFETY_NUMBER_DIALOG);
+  }
+
+  public static void show(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityRecord> identityRecords) {
     List<String> ids = Stream.of(identityRecords)
-                             .filterNot(IdentityDatabase.IdentityRecord::isFirstUse)
+                             .filterNot(IdentityRecord::isFirstUse)
                              .map(record -> record.getRecipientId().serialize())
                              .distinct()
                              .toList();
@@ -87,9 +103,9 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     fragment.show(fragmentManager, SAFETY_NUMBER_DIALOG);
   }
 
-  public static void showForGroupCall(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityDatabase.IdentityRecord> identityRecords) {
+  public static void showForGroupCall(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityRecord> identityRecords) {
     List<String> ids = Stream.of(identityRecords)
-                             .filterNot(IdentityDatabase.IdentityRecord::isFirstUse)
+                             .filterNot(IdentityRecord::isFirstUse)
                              .map(record -> record.getRecipientId().serialize())
                              .distinct()
                              .toList();
@@ -156,13 +172,19 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
     builder.setTitle(R.string.safety_number_change_dialog__safety_number_changes)
            .setView(dialogView)
-           .setCancelable(false)
            .setPositiveButton(continueText, this::handleSendAnyway)
            .setNegativeButton(cancelText, this::handleCancel);
 
     setCancelable(false);
 
-    return builder.create();
+    AlertDialog dialog = builder.create();
+    dialog.setOnShowListener(d -> {
+      Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+      positive.setEnabled(false);
+      viewModel.getTrustOrVerifyReady().observe(getViewLifecycleOwner(), positive::setEnabled);
+    });
+
+    return dialog;
   }
 
   @Override
@@ -184,12 +206,21 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   }
 
   private void handleSendAnyway(DialogInterface dialogInterface, int which) {
+    Log.d(TAG, "handleSendAnyway");
+
+    boolean skipCallbacks = requireArguments().getBoolean(SKIP_CALLBACKS_EXTRA, false);
+
     Activity activity = getActivity();
     Callback callback;
-    if (activity instanceof Callback) {
+    if (activity instanceof Callback && !skipCallbacks) {
       callback = (Callback) activity;
     } else {
-      callback = null;
+      Fragment parent = getParentFragment();
+      if (parent instanceof Callback && !skipCallbacks) {
+        callback = (Callback) parent;
+      } else {
+        callback = null;
+      }
     }
 
     LiveData<TrustAndVerifyResult> trustOrVerifyResultLiveData = viewModel.trustOrVerifyChangedRecipients();
@@ -200,9 +231,11 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
         if (callback != null) {
           switch (result.getResult()) {
             case TRUST_AND_VERIFY:
+              Log.d(TAG, "Trust and verify");
               callback.onSendAnywayAfterSafetyNumberChange(result.getChangedRecipients());
               break;
             case TRUST_VERIFY_AND_RESEND:
+              Log.d(TAG, "Trust, verify, and resent");
               callback.onMessageResentAfterSafetyNumberChange();
               break;
           }
@@ -217,17 +250,21 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   private void handleCancel(@NonNull DialogInterface dialogInterface, int which) {
     if (getActivity() instanceof Callback) {
       ((Callback) getActivity()).onCanceled();
+    } else if (getParentFragment() instanceof Callback) {
+      ((Callback) getParentFragment()).onCanceled();
     }
   }
 
   @Override
-  public void onViewIdentityRecord(@NonNull IdentityDatabase.IdentityRecord identityRecord) {
+  public void onViewIdentityRecord(@NonNull IdentityRecord identityRecord) {
     startActivity(VerifyIdentityActivity.newIntent(requireContext(), identityRecord));
   }
 
   public interface Callback {
     void onSendAnywayAfterSafetyNumberChange(@NonNull List<RecipientId> changedRecipients);
+
     void onMessageResentAfterSafetyNumberChange();
+
     void onCanceled();
   }
 }

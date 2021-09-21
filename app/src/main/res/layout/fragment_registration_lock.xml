@@ -32,7 +32,7 @@
             android:minHeight="66dp"
             android:text="@string/RegistrationLockFragment__enter_the_pin_you_created"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:textColor="@color/core_grey_60"
+            android:textColor="@color/signal_text_secondary"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_title" />
 
         <EditText

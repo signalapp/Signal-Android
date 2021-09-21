@@ -116,14 +116,16 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   }
 
   public void clearVerticalBoundaries() {
-    setVerticalBoundaries(parent.getTop(), parent.getMeasuredHeight() + parent.getTop());
+    setTopVerticalBoundary(parent.getTop());
+    setBottomVerticalBoundary(parent.getMeasuredHeight() + parent.getTop());
   }
 
-  public void setVerticalBoundaries(int topBoundary, int bottomBoundary) {
-    extraPaddingTop    = topBoundary - parent.getTop();
-    extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
+  public void setTopVerticalBoundary(int topBoundary) {
+    extraPaddingTop = topBoundary - parent.getTop();
+  }
 
-    adjustPip();
+  public void setBottomVerticalBoundary(int bottomBoundary) {
+    extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
   }
 
   private boolean onGestureFinished(MotionEvent e) {

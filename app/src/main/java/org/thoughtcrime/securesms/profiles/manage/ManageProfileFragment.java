@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,29 +19,28 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.Avatars;
+import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
-import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
-import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarState;
+import org.thoughtcrime.securesms.util.NameUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
-
-import static android.app.Activity.RESULT_OK;
 
 public class ManageProfileFragment extends LoggingFragment {
 
-  private static final String TAG                        = Log.tag(ManageProfileFragment.class);
-  private static final short  REQUEST_CODE_SELECT_AVATAR = 31726;
+  private static final String TAG                       = Log.tag(ManageProfileFragment.class);
 
   private Toolbar                toolbar;
   private ImageView              avatarView;
-  private View                   avatarPlaceholderView;
+  private ImageView              avatarPlaceholderView;
   private TextView               profileNameView;
   private View                   profileNameContainer;
   private TextView               usernameView;
@@ -49,6 +49,8 @@ public class ManageProfileFragment extends LoggingFragment {
   private View                   aboutContainer;
   private ImageView              aboutEmojiView;
   private AlertDialog            avatarProgress;
+  private TextView               avatarInitials;
+  private ImageView              avatarBackground;
 
   private ManageProfileViewModel viewModel;
 
@@ -69,6 +71,8 @@ public class ManageProfileFragment extends LoggingFragment {
     this.aboutView             = view.findViewById(R.id.manage_profile_about);
     this.aboutContainer        = view.findViewById(R.id.manage_profile_about_container);
     this.aboutEmojiView        = view.findViewById(R.id.manage_profile_about_icon);
+    this.avatarInitials        = view.findViewById(R.id.manage_profile_avatar_initials);
+    this.avatarBackground      = view.findViewById(R.id.manage_profile_avatar_background);
 
     initializeViewModel();
 
@@ -86,22 +90,21 @@ public class ManageProfileFragment extends LoggingFragment {
     this.aboutContainer.setOnClickListener(v -> {
       Navigation.findNavController(v).navigate(ManageProfileFragmentDirections.actionManageAbout());
     });
-  }
 
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (requestCode == REQUEST_CODE_SELECT_AVATAR && resultCode == RESULT_OK) {
-      if (data != null && data.getBooleanExtra("delete", false)) {
+    getParentFragmentManager().setFragmentResultListener(AvatarPickerFragment.REQUEST_KEY_SELECT_AVATAR, getViewLifecycleOwner(), (key, bundle) -> {
+      if (bundle.getBoolean(AvatarPickerFragment.SELECT_AVATAR_CLEAR)) {
         viewModel.onAvatarSelected(requireContext(), null);
-        return;
+      } else {
+        Media result = bundle.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
+        viewModel.onAvatarSelected(requireContext(), result);
       }
+    });
 
-      Media result = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
-
-      viewModel.onAvatarSelected(requireContext(), result);
-    }
+    avatarInitials.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      if (avatarInitials.length() > 0) {
+        updateInitials(avatarInitials.getText().toString());
+      }
+    });
   }
 
   private void initializeViewModel() {
@@ -123,9 +126,26 @@ public class ManageProfileFragment extends LoggingFragment {
   private void presentAvatar(@NonNull AvatarState avatarState) {
     if (avatarState.getAvatar() == null) {
       avatarView.setImageDrawable(null);
-      avatarPlaceholderView.setVisibility(View.VISIBLE);
+
+      CharSequence            initials        = NameUtil.getAbbreviation(avatarState.getSelf().getDisplayName(requireContext()));
+      Avatars.ForegroundColor foregroundColor = Avatars.getForegroundColor(avatarState.getSelf().getAvatarColor());
+
+      avatarBackground.setColorFilter(new SimpleColorFilter(avatarState.getSelf().getAvatarColor().colorInt()));
+      avatarPlaceholderView.setColorFilter(new SimpleColorFilter(foregroundColor.getColorInt()));
+      avatarInitials.setTextColor(foregroundColor.getColorInt());
+
+      if (TextUtils.isEmpty(initials)) {
+        avatarPlaceholderView.setVisibility(View.VISIBLE);
+        avatarInitials.setVisibility(View.GONE);
+      } else {
+        updateInitials(initials.toString());
+        avatarPlaceholderView.setVisibility(View.GONE);
+        avatarInitials.setVisibility(View.VISIBLE);
+      }
     } else {
       avatarPlaceholderView.setVisibility(View.GONE);
+      avatarInitials.setVisibility(View.GONE);
+
       Glide.with(this)
            .load(avatarState.getAvatar())
            .circleCrop()
@@ -137,6 +157,11 @@ public class ManageProfileFragment extends LoggingFragment {
     } else if (avatarProgress != null && avatarState.getLoadingState() == ManageProfileViewModel.LoadingState.LOADED) {
       avatarProgress.dismiss();
     }
+  }
+
+  private void updateInitials(String initials) {
+    avatarInitials.setTextSize(TypedValue.COMPLEX_UNIT_PX, Avatars.getTextSizeForLength(requireContext(), initials, avatarInitials.getMeasuredWidth() * 0.8f, avatarInitials.getMeasuredWidth() * 0.45f));
+    avatarInitials.setText(initials);
   }
 
   private void presentProfileName(@Nullable ProfileName profileName) {
@@ -193,10 +218,6 @@ public class ManageProfileFragment extends LoggingFragment {
   }
 
   private void onAvatarClicked() {
-    AvatarSelectionBottomSheetDialogFragment.create(viewModel.canRemoveAvatar(),
-                                                    true,
-                                                    REQUEST_CODE_SELECT_AVATAR,
-                                                    false)
-                                            .show(getChildFragmentManager(), null);
+    Navigation.findNavController(requireView()).navigate(ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null));
   }
 }

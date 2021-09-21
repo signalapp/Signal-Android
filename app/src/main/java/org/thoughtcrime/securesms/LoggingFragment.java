@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,7 +18,7 @@ public abstract class LoggingFragment extends Fragment {
 
   public LoggingFragment() { }
 
-  public LoggingFragment(int contentLayoutId) {
+  public LoggingFragment(@LayoutRes int contentLayoutId) {
     super(contentLayoutId);
   }
 

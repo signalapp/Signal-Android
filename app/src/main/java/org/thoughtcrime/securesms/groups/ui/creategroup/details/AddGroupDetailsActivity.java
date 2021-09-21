@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
@@ -46,9 +47,11 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
     if (bundle == null) {
       ArrayList<RecipientId>      recipientIds = getIntent().getParcelableArrayListExtra(EXTRA_RECIPIENTS);
       AddGroupDetailsFragmentArgs arguments    = new AddGroupDetailsFragmentArgs.Builder(recipientIds.toArray(new RecipientId[0])).build();
-      NavGraph                    graph        = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
+      NavHostFragment             fragment     = NavHostFragment.create(R.navigation.create_group, arguments.toBundle());
 
-      Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, arguments.toBundle());
+      getSupportFragmentManager().beginTransaction()
+                                 .replace(R.id.nav_host_fragment, fragment)
+                                 .commit();
     }
   }
 

@@ -1,240 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+    android:layout_height="wrap_content">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
-        android:id="@+id/rbs_recipient_avatar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/rbs_admin_action_busy"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rbs_recipient_avatar"
-        app:layout_constraintEnd_toEndOf="@+id/rbs_recipient_avatar"
-        app:layout_constraintStart_toStartOf="@+id/rbs_recipient_avatar"
-        app:layout_constraintTop_toTopOf="@+id/rbs_recipient_avatar"
-        tools:visibility="visible" />
-
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-        android:id="@+id/rbs_full_name"
-        style="@style/TextAppearance.Signal.Body1.Bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/signal_text_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rbs_recipient_avatar"
-        tools:text="Gwen Stacy" />
-
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-        android:id="@+id/rbs_about"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:textColor="@color/signal_text_secondary"
-        style="@style/Signal.Text.Body"
-        app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
-        app:emoji_forceCustom="true"
-        tools:text="🕷🕷🕷Hangin' on the web🕷🕷"/>
+        tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-        android:id="@+id/rbs_username_number"
-        style="@style/Signal.Text.Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/signal_text_secondary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbs_about"
-        tools:text="\@spidergwen  +1 555-654-6657" />
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/rbs_recipient_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/rbs_note_to_self_description"
-        style="@style/TextAppearance.Signal.Body2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation"
-        android:textAlignment="center"
-        android:textColor="@color/signal_text_primary"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbs_username_number"
-        tools:visibility="visible" />
+        <ProgressBar
+            android:id="@+id/rbs_admin_action_busy"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/rbs_recipient_avatar"
+            app:layout_constraintEnd_toEndOf="@+id/rbs_recipient_avatar"
+            app:layout_constraintStart_toStartOf="@+id/rbs_recipient_avatar"
+            app:layout_constraintTop_toTopOf="@+id/rbs_recipient_avatar"
+            tools:visibility="visible" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbs_note_to_self_description">
-
-        <LinearLayout
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/rbs_full_name"
+            style="@style/Signal.Text.Headline.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="12dp">
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:textColor="@color/signal_text_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rbs_recipient_avatar"
+            tools:text="Gwen Stacy" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/rbs_message_button"
-                style="@style/Widget.Signal.Button.Icon.Circular"
-                android:contentDescription="@string/RecipientBottomSheet_message_description"
-                app:backgroundTint="@color/recipient_contact_button_color"
-                app:icon="@drawable/ic_message_primary_accent_24"
-                app:rippleColor="@color/core_ultramarine" />
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/rbs_about"
+            style="@style/Signal.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:gravity="center"
+            android:textColor="@color/signal_text_secondary"
+            app:emoji_forceCustom="true"
+            app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
+            tools:text="🕷🕷🕷Hangin' on the web🕷🕷" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/rbs_video_call_button"
-                style="@style/Widget.Signal.Button.Icon.Circular"
-                android:layout_marginStart="36dp"
-                android:contentDescription="@string/RecipientBottomSheet_video_call_description"
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/rbs_username_number"
+            style="@style/Signal.Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:textColor="@color/signal_text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbs_about"
+            app:layout_goneMarginTop="8dp"
+            tools:text="\@spidergwen  +1 555-654-6657" />
+
+        <TextView
+            android:id="@+id/rbs_note_to_self_description"
+            style="@style/TextAppearance.Signal.Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:text="@string/ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation"
+            android:textAlignment="center"
+            android:textColor="@color/signal_text_primary"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbs_username_number"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/interactions_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbs_note_to_self_description">
+
+            <include layout="@layout/conversation_settings_button_strip" />
+
+            <include layout="@layout/dsl_divider_item" />
+
+            <Button
+                android:id="@+id/rbs_block_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/RecipientBottomSheet_block"
                 android:visibility="gone"
-                app:backgroundTint="@color/recipient_contact_button_color"
-                app:icon="@drawable/ic_video_primary_accent_24"
+                app:drawableStartCompat="@drawable/ic_block_tinted_24"
                 tools:visibility="visible" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/rbs_secure_call_button"
-                style="@style/Widget.Signal.Button.Icon.Circular"
-                android:layout_marginStart="36dp"
-                android:contentDescription="@string/RecipientBottomSheet_voice_call_description"
+            <Button
+                android:id="@+id/rbs_unblock_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/RecipientBottomSheet_unblock"
                 android:visibility="gone"
-                app:backgroundTint="@color/recipient_contact_button_color"
-                app:icon="@drawable/ic_phone_right_primary_accent_24"
+                app:drawableStartCompat="@drawable/ic_block_tinted_24"
                 tools:visibility="visible" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/rbs_insecure_call_button"
-                style="@style/Widget.Signal.Button.Icon.Circular"
-                android:layout_marginStart="36dp"
-                android:contentDescription="@string/RecipientBottomSheet_insecure_voice_call_description"
+            <Button
+                android:id="@+id/rbs_remove_from_group_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/RecipientBottomSheet_remove_from_group"
                 android:visibility="gone"
-                app:backgroundTint="@color/recipient_contact_button_color"
-                app:icon="@drawable/ic_phone_right_unlock_primary_accent_24"
+                app:drawableStartCompat="@drawable/ic_leave_tinted_24"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/rbs_make_group_admin_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/RecipientBottomSheet_make_admin"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_group_24"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/rbs_remove_group_admin_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/RecipientBottomSheet_remove_as_admin"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_group_24"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/rbs_add_to_group_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_group_24"
+                tools:text="@string/RecipientBottomSheet_add_to_a_group"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/rbs_add_contact_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/RecipientBottomSheet_add_to_contacts"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_plus_24"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/rbs_contact_details_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/ConversationSettingsFragment__contact_details"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_profile_circle_24"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/rbs_view_safety_number_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/RecipientBottomSheet_view_safety_number"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_safety_number_24"
+                app:drawableTint="@color/signal_icon_tint_primary"
                 tools:visibility="visible" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/rbs_block_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_block"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_block_tinted_24"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/rbs_unblock_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_unblock"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_block_tinted_24"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/rbs_add_contact_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_add_to_contacts"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_plus_24"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/rbs_add_to_group_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_group_24"
-            tools:text="@string/RecipientBottomSheet_add_to_a_group"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/rbs_view_safety_number_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_view_safety_number"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_info_tinted_24"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/rbs_make_group_admin_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_make_group_admin"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_group_24"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/rbs_remove_group_admin_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_remove_as_admin"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_group_24"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/rbs_remove_from_group_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_remove_from_group"
-            android:visibility="gone"
-            app:drawableStartCompat="@drawable/ic_leave_tinted_24"
-            tools:visibility="visible" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

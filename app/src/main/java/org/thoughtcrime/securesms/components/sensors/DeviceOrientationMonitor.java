@@ -31,7 +31,7 @@ public final class DeviceOrientationMonitor implements DefaultLifecycleObserver 
   private final float[] rotationMatrix    = new float[9];
   private final float[] orientationAngles = new float[3];
 
-  private final MutableLiveData<Orientation> orientation = new MutableLiveData<>();
+  private final MutableLiveData<Orientation> orientation = new MutableLiveData<>(Orientation.PORTRAIT_BOTTOM_EDGE);
 
   public DeviceOrientationMonitor(@NonNull Context context) {
     this.sensorManager = ServiceUtil.getSensorManager(context);

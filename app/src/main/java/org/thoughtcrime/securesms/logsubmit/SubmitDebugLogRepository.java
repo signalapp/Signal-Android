@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.logsubmit;
 
+import android.app.Application;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
+import android.os.ParcelFileDescriptor;
+import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,20 +15,31 @@ import com.annimon.stream.Stream;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.signal.core.util.tracing.Tracer;
+import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.util.ByteUnit;
+import org.thoughtcrime.securesms.util.Stopwatch;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPOutputStream;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -33,6 +48,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okio.BufferedSink;
+import okio.Okio;
+import okio.Source;
 
 /**
  * Handles retrieving, scrubbing, and uploading of all debug logs.
@@ -55,12 +73,13 @@ public class SubmitDebugLogRepository {
     add(new LogSectionSystemInfo());
     add(new LogSectionJobs());
     add(new LogSectionConstraints());
+    add(new LogSectionCapabilities());
+    add(new LogSectionLocalMetrics());
+    add(new LogSectionFeatureFlags());
+    add(new LogSectionPin());
     if (Build.VERSION.SDK_INT >= 28) {
       add(new LogSectionPower());
     }
-    add(new LogSectionPin());
-    add(new LogSectionCapabilities());
-    add(new LogSectionFeatureFlags());
     add(new LogSectionNotifications());
     add(new LogSectionKeyPreferences());
     add(new LogSectionPermissions());
@@ -68,10 +87,10 @@ public class SubmitDebugLogRepository {
     add(new LogSectionThreads());
     add(new LogSectionBlockedThreads());
     add(new LogSectionLogcat());
-    add(new LogSectionLogger());
+    add(new LogSectionLoggerHeader());
   }};
 
-  private final Context         context;
+  private final Application     context;
   private final ExecutorService executor;
 
   public SubmitDebugLogRepository() {
@@ -79,44 +98,100 @@ public class SubmitDebugLogRepository {
     this.executor = SignalExecutors.SERIAL;
   }
 
-  public void getLogLines(@NonNull Callback<List<LogLine>> callback) {
-    executor.execute(() -> callback.onResult(getLogLinesInternal()));
+  public void getPrefixLogLines(@NonNull Callback<List<LogLine>> callback) {
+    executor.execute(() -> callback.onResult(getPrefixLogLinesInternal()));
   }
 
-  public void submitLog(@NonNull List<LogLine> lines, Callback<Optional<String>> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(lines, null)));
+  public void buildAndSubmitLog(@NonNull Callback<Optional<String>> callback) {
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      LogDatabase.getInstance(context).trimToSize();
+      callback.onResult(submitLogInternal(System.currentTimeMillis(), getPrefixLogLinesInternal(), Tracer.getInstance().serialize()));
+    });
   }
 
-  public void submitLog(@NonNull List<LogLine> lines, @Nullable byte[] trace, Callback<Optional<String>> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(lines, trace)));
+  /**
+   * Submits a log with the provided prefix lines.
+   *
+   * @param untilTime Only submit logs from {@link LogDatabase} if they were created before this time. This is our way of making sure that the logs we submit
+   *                  only include the logs that we've already shown the user. It's possible some old logs may have been trimmed off in the meantime, but no
+   *                  new ones could pop up.
+   */
+  public void submitLogWithPrefixLines(long untilTime, @NonNull List<LogLine> prefixLines, @Nullable byte[] trace, Callback<Optional<String>> callback) {
+    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(untilTime, prefixLines, trace)));
   }
 
   @WorkerThread
-  private @NonNull Optional<String> submitLogInternal(@NonNull List<LogLine> lines, @Nullable byte[] trace) {
+  private @NonNull Optional<String> submitLogInternal(long untilTime, @NonNull List<LogLine> prefixLines, @Nullable byte[] trace) {
     String traceUrl = null;
     if (trace != null) {
       try {
-        traceUrl = uploadContent("application/octet-stream", trace);
+        traceUrl = uploadContent("application/octet-stream", RequestBody.create(MediaType.get("application/octet-stream"), trace));
       } catch (IOException e) {
         Log.w(TAG, "Error during trace upload.", e);
         return Optional.absent();
       }
     }
 
-    StringBuilder bodyBuilder = new StringBuilder();
-    for (LogLine line : lines) {
+    StringBuilder prefixStringBuilder = new StringBuilder();
+    for (LogLine line : prefixLines) {
       switch (line.getPlaceholderType()) {
         case NONE:
-          bodyBuilder.append(line.getText()).append('\n');
+          prefixStringBuilder.append(line.getText()).append('\n');
           break;
         case TRACE:
-          bodyBuilder.append(traceUrl).append('\n');
+          prefixStringBuilder.append(traceUrl).append('\n');
           break;
       }
     }
 
     try {
-      String logUrl = uploadContent("text/plain", bodyBuilder.toString().getBytes());
+      Stopwatch stopwatch = new Stopwatch("log-upload");
+
+      ParcelFileDescriptor[] fds     = ParcelFileDescriptor.createPipe();
+      Uri                    gzipUri = BlobProvider.getInstance()
+                                                   .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
+                                                   .withMimeType("application/gzip")
+                                                   .createForSingleSessionOnDiskAsync(context, null, null);
+
+      OutputStream gzipOutput = new GZIPOutputStream(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));
+
+      gzipOutput.write(prefixStringBuilder.toString().getBytes());
+
+      stopwatch.split("front-matter");
+
+      try (LogDatabase.Reader reader = LogDatabase.getInstance(context).getAllBeforeTime(untilTime)) {
+        while (reader.hasNext()) {
+          gzipOutput.write(reader.next().getBytes());
+          gzipOutput.write("\n".getBytes());
+        }
+      }
+
+      StreamUtil.close(gzipOutput);
+
+      stopwatch.split("body");
+
+      String logUrl = uploadContent("application/gzip", new RequestBody() {
+        @Override
+        public @NonNull MediaType contentType() {
+          return MediaType.get("application/gzip");
+        }
+
+        @Override public long contentLength() {
+          return BlobProvider.getInstance().calculateFileSize(context, gzipUri);
+        }
+
+        @Override
+        public void writeTo(@NonNull BufferedSink sink) throws IOException {
+          Source source = Okio.source(BlobProvider.getInstance().getStream(context, gzipUri));
+          sink.writeAll(source);
+        }
+      });
+
+      stopwatch.split("upload");
+      stopwatch.stop(TAG);
+
+      BlobProvider.getInstance().delete(context, gzipUri);
+
       return Optional.of(logUrl);
     } catch (IOException e) {
       Log.w(TAG, "Error during log upload.", e);
@@ -125,7 +200,7 @@ public class SubmitDebugLogRepository {
   }
 
   @WorkerThread
-  private @NonNull String uploadContent(@NonNull String contentType, @NonNull byte[] content) throws IOException {
+  private @NonNull String uploadContent(@NonNull String contentType, @NonNull RequestBody requestBody) throws IOException {
     try {
       OkHttpClient client   = new OkHttpClient.Builder().addInterceptor(new StandardUserAgentInterceptor()).dns(SignalServiceNetworkAccess.DNS).build();
       Response     response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute();
@@ -149,7 +224,7 @@ public class SubmitDebugLogRepository {
         post.addFormDataPart(key, fields.getString(key));
       }
 
-      post.addFormDataPart("file", "file", RequestBody.create(MediaType.parse(contentType), content));
+      post.addFormDataPart("file", "file", requestBody);
 
       Response postResponse = client.newCall(new Request.Builder().url(url).post(post.build()).build()).execute();
 
@@ -165,7 +240,7 @@ public class SubmitDebugLogRepository {
   }
 
   @WorkerThread
-  private @NonNull List<LogLine> getLogLinesInternal() {
+  private @NonNull List<LogLine> getPrefixLogLinesInternal() {
     long startTime = System.currentTimeMillis();
 
     int maxTitleLength = Stream.of(SECTIONS).reduce(0, (max, section) -> Math.max(max, section.getTitle().length()));
@@ -202,14 +277,16 @@ public class SubmitDebugLogRepository {
     List<LogLine> out = new ArrayList<>();
     out.add(new SimpleLogLine(formatTitle(section.getTitle(), maxTitleLength), LogLine.Style.NONE, LogLine.Placeholder.NONE));
 
-    CharSequence content = Scrubber.scrub(section.getContent(context));
+    if (section.hasContent()) {
+      CharSequence content = Scrubber.scrub(section.getContent(context));
 
-    List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
-                                .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
-                                .map(line -> (LogLine) line)
-                                .toList();
+      List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
+                                  .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
+                                  .map(line -> (LogLine) line)
+                                  .toList();
 
-    out.addAll(lines);
+      out.addAll(lines);
+    }
 
     Log.d(TAG, "[" + section.getTitle() + "] Took " + (System.currentTimeMillis() - startTime) + " ms");
 

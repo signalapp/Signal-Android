@@ -9,12 +9,14 @@ import android.provider.ContactsContract;
 
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
+import org.signal.core.util.logging.Log;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 class ContactPhotoLocalUriFetcher extends StreamLocalUriFetcher {
 
-  private static final String TAG = ContactPhotoLocalUriFetcher.class.getSimpleName();
+  private static final String TAG = Log.tag(ContactPhotoLocalUriFetcher.class);
 
   ContactPhotoLocalUriFetcher(Context context, Uri uri) {
     super(context.getContentResolver(), uri);

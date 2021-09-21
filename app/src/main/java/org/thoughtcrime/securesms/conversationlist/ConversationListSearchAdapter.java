@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
-import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
+import org.thoughtcrime.securesms.search.MessageResult;
+import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -96,7 +96,7 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
   @Override
   public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
     return new HeaderViewHolder(LayoutInflater.from(parent.getContext())
-                                              .inflate(R.layout.search_result_list_divider, parent, false));
+                                              .inflate(R.layout.dsl_section_header, parent, false));
   }
 
   @Override
@@ -198,7 +198,7 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
 
     public HeaderViewHolder(View itemView) {
       super(itemView);
-      titleView = itemView.findViewById(R.id.label);
+      titleView = itemView.findViewById(R.id.section_header);
     }
 
     public void bind(int headerType) {

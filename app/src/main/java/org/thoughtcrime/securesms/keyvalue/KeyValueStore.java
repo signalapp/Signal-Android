@@ -87,6 +87,13 @@ public final class KeyValueStore implements KeyValueReader {
     return dataSet.getString(key, defaultValue);
   }
 
+  @AnyThread
+  @Override
+  public synchronized boolean containsKey(@NonNull String key) {
+    initializeIfNecessary();
+    return dataSet.containsKey(key);
+  }
+
   /**
    * @return A writer that allows writing and removing multiple entries in a single atomic
    *         transaction.

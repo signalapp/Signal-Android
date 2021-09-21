@@ -9,6 +9,8 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -16,6 +18,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
 
@@ -23,7 +26,7 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceConfigurationUpdateJob";
 
-  private static final String TAG = MultiDeviceConfigurationUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceConfigurationUpdateJob.class);
 
   private static final String KEY_READ_RECEIPTS_ENABLED                    = "read_receipts_enabled";
   private static final String KEY_TYPING_INDICATORS_ENABLED                = "typing_indicators_enabled";
@@ -82,21 +85,26 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
-                                                                                                 Optional.of(unidentifiedDeliveryIndicatorsEnabled),
-                                                                                                 Optional.of(typingIndicatorsEnabled),
-                                                                                                 Optional.of(linkPreviewsEnabled))),
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
+                                                                                                     Optional.of(unidentifiedDeliveryIndicatorsEnabled),
+                                                                                                     Optional.of(typingIndicatorsEnabled),
+                                                                                                     Optional.of(linkPreviewsEnabled))),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
+    if (e instanceof ServerRejectedException) return false;
     return e instanceof PushNetworkException;
   }
 

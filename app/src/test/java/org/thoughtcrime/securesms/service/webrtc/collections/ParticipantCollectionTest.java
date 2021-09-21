@@ -239,12 +239,13 @@ public class ParticipantCollectionTest {
         new CallParticipantId(serializedId, RecipientId.from(serializedId)),
         Recipient.UNKNOWN,
         null,
-        new BroadcastVideoSink(null),
+        new BroadcastVideoSink(),
         false,
         false,
         lastSpoke,
         false,
         added,
+        false,
         CallParticipant.DeviceOrdinal.PRIMARY);
   }
 }

@@ -4,5 +4,5 @@
         android:angle="90"
         android:dither="true"
         android:startColor="@color/transparent_black"
-        android:endColor="@color/transparent_black_10" />
+        android:endColor="@color/transparent_black_15" />
 </shape>

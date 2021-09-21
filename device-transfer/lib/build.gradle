@@ -13,7 +13,6 @@ android {
     defaultConfig {
         minSdkVersion MINIMUM_SDK
         targetSdkVersion TARGET_SDK
-        consumerProguardFiles 'lib-proguard-rules.pro'
     }
 
     compileOptions {
@@ -27,19 +26,18 @@ dependencyVerification {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation libs.androidx.appcompat
     implementation project(':core-util')
-    implementation 'com.madgag.spongycastle:core:1.58.0.0'
-    implementation 'com.madgag.spongycastle:prov:1.58.0.0'
-    implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
-    implementation 'com.madgag.spongycastle:pg:1.54.0.0'
-    api 'org.greenrobot:eventbus:3.0.0'
+    implementation libs.signal.client.java
+    api libs.greenrobot.eventbus
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'androidx.test:core:1.2.0'
-    testImplementation ('org.robolectric:robolectric:4.4') {
+    testImplementation testLibs.junit.junit
+    testImplementation testLibs.androidx.test.core
+    testImplementation (testLibs.robolectric.robolectric) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
-    testImplementation 'org.robolectric:shadows-multidex:4.4'
-    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation testLibs.robolectric.shadows.multidex
+    testImplementation testLibs.hamcrest.hamcrest
+
+    testImplementation(testFixtures(project(":libsignal-service")))
 }

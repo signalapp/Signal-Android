@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.sharing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,6 +63,12 @@ public final class ShareIntents {
 
     public boolean isBorderless() {
       return isBorderless;
+    }
+
+    public boolean isEmpty() {
+      return extraSticker == null                         &&
+             (extraMedia == null || extraMedia.isEmpty()) &&
+             TextUtils.isEmpty(extraText);
     }
   }
 

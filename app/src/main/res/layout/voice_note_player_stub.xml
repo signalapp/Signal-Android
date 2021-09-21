@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/voice_note_player_view_background">
+
+    <org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
+        android:id="@+id/voice_note_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground" />
+</FrameLayout>

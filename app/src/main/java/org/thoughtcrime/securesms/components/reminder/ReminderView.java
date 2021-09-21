@@ -87,7 +87,7 @@ public final class ReminderView extends FrameLayout {
         break;
       case ERROR:
         container.setBackgroundResource(R.drawable.reminder_background_error);
-        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
+        text.setTextColor(ContextCompat.getColor(getContext(), R.color.core_black));
         break;
       case TERMINAL:
         container.setBackgroundResource(R.drawable.reminder_background_terminal);

@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
@@ -46,7 +45,7 @@ public final class AttachmentDownloadJob extends BaseJob {
   public static final String KEY = "AttachmentDownloadJob";
 
   private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
-  private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
+  private static final String TAG                  = Log.tag(AttachmentDownloadJob.class);
 
   private static final String KEY_MESSAGE_ID    = "message_id";
   private static final String KEY_PART_ROW_ID   = "part_row_id";
@@ -213,6 +212,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),
+                                                attachment.isVideoGif(),
                                                 Optional.absent(),
                                                 Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash),
                                                 attachment.getUploadTimestamp());

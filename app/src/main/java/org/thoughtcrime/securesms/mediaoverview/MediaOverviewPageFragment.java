@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 public final class MediaOverviewPageFragment extends Fragment
@@ -109,10 +110,11 @@ public final class MediaOverviewPageFragment extends Fragment
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     Context context = requireContext();
     View    view    = inflater.inflate(R.layout.media_overview_page_fragment, container, false);
+    int     spans   = getResources().getInteger(R.integer.media_overview_cols);
 
     this.recyclerView = view.findViewById(R.id.media_grid);
     this.noMedia      = view.findViewById(R.id.no_images);
-    this.gridManager  = new StickyHeaderGridLayoutManager(getResources().getInteger(R.integer.media_overview_cols));
+    this.gridManager  = new StickyHeaderGridLayoutManager(spans);
 
     this.adapter = new MediaGalleryAllAdapter(context,
                                               GlideApp.with(this),
@@ -124,6 +126,7 @@ public final class MediaOverviewPageFragment extends Fragment
     this.recyclerView.setAdapter(adapter);
     this.recyclerView.setLayoutManager(gridManager);
     this.recyclerView.setHasFixedSize(true);
+    this.recyclerView.addItemDecoration(new MediaGridDividerDecoration(spans, ViewUtil.dpToPx(4), adapter));
 
     MediaOverviewViewModel viewModel = MediaOverviewViewModel.getMediaOverviewViewModel(requireActivity());
 
@@ -236,6 +239,7 @@ public final class MediaOverviewPageFragment extends Fragment
       intent.putExtra(MediaPreviewActivity.HIDE_ALL_MEDIA_EXTRA, true);
       intent.putExtra(MediaPreviewActivity.SHOW_THREAD_EXTRA, threadId == MediaDatabase.ALL_THREADS);
       intent.putExtra(MediaPreviewActivity.SORTING_EXTRA, sorting.ordinal());
+      intent.putExtra(MediaPreviewActivity.IS_VIDEO_GIF, attachment.isVideoGif());
 
       intent.setDataAndType(mediaRecord.getAttachment().getUri(), mediaRecord.getContentType());
       context.startActivity(intent);
@@ -263,7 +267,6 @@ public final class MediaOverviewPageFragment extends Fragment
   @Override
   public void onMediaLongClicked(MediaDatabase.MediaRecord mediaRecord) {
     ((MediaGalleryAllAdapter) recyclerView.getAdapter()).toggleSelection(mediaRecord);
-    recyclerView.getAdapter().notifyDataSetChanged();
 
     if (actionMode == null) {
       enterMultiSelect();

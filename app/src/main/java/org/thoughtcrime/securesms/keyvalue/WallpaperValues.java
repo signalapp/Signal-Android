@@ -15,6 +15,9 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory;
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage;
 
+import java.util.Collections;
+import java.util.List;
+
 public final class WallpaperValues extends SignalStoreValues {
 
   private static final String TAG = Log.tag(WallpaperValues.class);
@@ -27,6 +30,11 @@ public final class WallpaperValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public void setWallpaper(@NonNull Context context, @Nullable ChatWallpaper wallpaper) {

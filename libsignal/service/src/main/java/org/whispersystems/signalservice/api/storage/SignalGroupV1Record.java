@@ -1,13 +1,20 @@
 package org.whispersystems.signalservice.api.storage;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public final class SignalGroupV1Record implements SignalRecord {
+
+  private static final String TAG = SignalGroupV1Record.class.getSimpleName();
 
   private final StorageId     id;
   private final GroupV1Record proto;
@@ -24,6 +31,55 @@ public final class SignalGroupV1Record implements SignalRecord {
   @Override
   public StorageId getId() {
     return id;
+  }
+
+  @Override
+  public SignalStorageRecord asStorageRecord() {
+    return SignalStorageRecord.forGroupV1(this);
+  }
+
+  @Override
+  public String describeDiff(SignalRecord other) {
+    if (other instanceof SignalGroupV1Record) {
+      SignalGroupV1Record that = (SignalGroupV1Record) other;
+      List<String>        diff = new LinkedList<>();
+
+      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
+        diff.add("ID");
+      }
+
+      if (!Arrays.equals(this.groupId, that.groupId)) {
+        diff.add("MasterKey");
+      }
+
+      if (!Objects.equals(this.isBlocked(), that.isBlocked())) {
+        diff.add("Blocked");
+      }
+
+      if (!Objects.equals(this.isProfileSharingEnabled(), that.isProfileSharingEnabled())) {
+        diff.add("ProfileSharing");
+      }
+
+      if (!Objects.equals(this.isArchived(), that.isArchived())) {
+        diff.add("Archived");
+      }
+
+      if (!Objects.equals(this.isForcedUnread(), that.isForcedUnread())) {
+        diff.add("ForcedUnread");
+      }
+
+      if (!Objects.equals(this.getMuteUntil(), that.getMuteUntil())) {
+        diff.add("MuteUntil");
+      }
+
+      if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
+        diff.add("UnknownFields");
+      }
+
+      return diff.toString();
+    } else {
+      return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
+    }
   }
 
   public boolean hasUnknownFields() {
@@ -52,6 +108,10 @@ public final class SignalGroupV1Record implements SignalRecord {
 
   public boolean isForcedUnread() {
     return proto.getMarkedUnread();
+  }
+
+  public long getMuteUntil() {
+    return proto.getMutedUntilTimestamp();
   }
 
   GroupV1Record toProto() {
@@ -110,11 +170,20 @@ public final class SignalGroupV1Record implements SignalRecord {
       return this;
     }
 
+    public Builder setMuteUntil(long muteUntil) {
+      builder.setMutedUntilTimestamp(muteUntil);
+      return this;
+    }
+
     public SignalGroupV1Record build() {
       GroupV1Record proto = builder.build();
 
       if (unknownFields != null) {
-        proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+        try {
+          proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+        } catch (InvalidProtocolBufferException e) {
+          Log.w(TAG, "Failed to combine unknown fields!", e);
+        }
       }
 
       return new SignalGroupV1Record(id, proto);

@@ -40,7 +40,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class JobManager implements ConstraintObserver.Notifier {
 
-  private static final String TAG = JobManager.class.getSimpleName();
+  private static final String TAG = Log.tag(JobManager.class);
 
   public static final int CURRENT_VERSION = 8;
 
@@ -221,6 +221,15 @@ public class JobManager implements ConstraintObserver.Notifier {
    */
   public void cancelAllInQueue(@NonNull String queue) {
     runOnExecutor(() -> jobController.cancelAllInQueue(queue));
+  }
+
+  /**
+   * Perform an arbitrary update on enqueued jobs. Will not apply to jobs that are already running.
+   * You shouldn't use this if you can help it. You give yourself an opportunity to really screw
+   * things up.
+   */
+  public void update(@NonNull JobUpdater updater) {
+    runOnExecutor(() -> jobController.update(updater));
   }
 
   /**

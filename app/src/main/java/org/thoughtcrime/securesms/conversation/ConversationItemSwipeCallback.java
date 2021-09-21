@@ -11,10 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4DisplayUpdater;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.util.AccessibilityUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
-class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
+public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
   private static float SWIPE_SUCCESS_DX           = ConversationSwipeAnimationHelper.TRIGGER_DX;
   private static long  SWIPE_SUCCESS_VIBE_TIME_MS = 10;
@@ -28,14 +30,17 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
   private final SwipeAvailabilityProvider     swipeAvailabilityProvider;
   private final ConversationItemTouchListener itemTouchListener;
   private final OnSwipeListener               onSwipeListener;
+  private final OnViewHolderTranslated        onViewHolderTranslated;
 
   ConversationItemSwipeCallback(@NonNull SwipeAvailabilityProvider swipeAvailabilityProvider,
-                                @NonNull OnSwipeListener onSwipeListener)
+                                @NonNull OnSwipeListener onSwipeListener,
+                                @NonNull OnViewHolderTranslated onViewHolderTranslated)
   {
     super(0, ItemTouchHelper.END);
     this.itemTouchListener          = new ConversationItemTouchListener(this::updateLatestDownCoordinate);
     this.swipeAvailabilityProvider  = swipeAvailabilityProvider;
     this.onSwipeListener            = onSwipeListener;
+    this.onViewHolderTranslated     = onViewHolderTranslated;
     this.shouldTriggerSwipeFeedback = true;
     this.canTriggerSwipe            = true;
   }
@@ -88,18 +93,24 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
     if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && isCorrectSwipeDir) {
       ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, Math.abs(dx), sign);
+      dispatchTranslationUpdate(recyclerView, viewHolder);
       handleSwipeFeedback((ConversationItem) viewHolder.itemView, Math.abs(dx));
       if (canTriggerSwipe) {
         setTouchListener(recyclerView, viewHolder, Math.abs(dx));
       }
     } else if (actionState == ItemTouchHelper.ACTION_STATE_IDLE || dx == 0) {
       ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, 0, 1);
+      dispatchTranslationUpdate(recyclerView, viewHolder);
     }
 
     if (dx == 0) {
       shouldTriggerSwipeFeedback = true;
       canTriggerSwipe            = true;
     }
+  }
+
+  private void dispatchTranslationUpdate(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+    onViewHolderTranslated.onViewHolderTranslated(recyclerView, viewHolder);
   }
 
   private void handleSwipeFeedback(@NonNull ConversationItem item, float dx) {
@@ -134,7 +145,7 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
         case MotionEvent.ACTION_CANCEL:
           swipeBack = true;
           shouldTriggerSwipeFeedback = false;
-          resetProgressIfAnimationsDisabled(viewHolder);
+          resetProgressIfAnimationsDisabled(recyclerView, viewHolder);
           break;
       }
       return false;
@@ -156,11 +167,12 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
     recyclerView.cancelPendingInputEvents();
   }
 
-  private static void resetProgressIfAnimationsDisabled(RecyclerView.ViewHolder viewHolder) {
+  private void resetProgressIfAnimationsDisabled(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
     if (AccessibilityUtil.areAnimationsDisabled(viewHolder.itemView.getContext())) {
       ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView,
                                               0f,
                                               getSignFromDirection(viewHolder.itemView));
+      dispatchTranslationUpdate(recyclerView, viewHolder);
     }
   }
 
@@ -196,5 +208,9 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
   interface OnSwipeListener {
     void onSwipe(ConversationMessage conversationMessage);
+  }
+
+  public interface OnViewHolderTranslated {
+    void onViewHolderTranslated(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder);
   }
 }

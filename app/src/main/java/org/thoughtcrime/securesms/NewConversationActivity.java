@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 /**
  * Activity container for starting a new conversation.
@@ -49,17 +50,18 @@ public class NewConversationActivity extends ContactSelectionActivity
 {
 
   @SuppressWarnings("unused")
-  private static final String TAG = NewConversationActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(NewConversationActivity.class);
 
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
     super.onCreate(bundle, ready);
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setTitle(R.string.NewConversationActivity__new_message);
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     if (recipientId.isPresent()) {
       launch(Recipient.resolved(recipientId.get()));
     } else {
@@ -93,7 +95,11 @@ public class NewConversationActivity extends ContactSelectionActivity
       }
     }
 
-    return true;
+    callback.accept(true);
+  }
+
+  @Override
+  public void onSelectionChanged() {
   }
 
   private void launch(Recipient recipient) {

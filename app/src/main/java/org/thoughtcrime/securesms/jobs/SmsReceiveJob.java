@@ -43,7 +43,7 @@ public class SmsReceiveJob extends BaseJob {
 
   public static final String KEY = "SmsReceiveJob";
 
-  private static final String TAG = SmsReceiveJob.class.getSimpleName();
+  private static final String TAG = Log.tag(SmsReceiveJob.class);
 
   private static final String KEY_PDUS            = "pdus";
   private static final String KEY_SUBSCRIPTION_ID = "subscription_id";

@@ -16,8 +16,6 @@ import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.SetUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +26,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Manages the queue of jobs. This is the only class that should write to {@link JobStorage} to
@@ -36,7 +33,7 @@ import java.util.concurrent.TimeUnit;
  */
 class JobController {
 
-  private static final String TAG = JobController.class.getSimpleName();
+  private static final String TAG = Log.tag(JobController.class);
 
   private final Application            application;
   private final JobStorage             jobStorage;
@@ -98,9 +95,9 @@ class JobController {
     }
 
     insertJobChain(chain);
-    scheduleJobs(chain.get(0));
     triggerOnSubmit(chain);
     notifyAll();
+    scheduleJobs(chain.get(0));
   }
 
   @WorkerThread
@@ -174,6 +171,23 @@ class JobController {
     Stream.of(jobStorage.getJobsInQueue(queue))
           .map(JobSpec::getId)
           .forEach(this::cancelJob);
+  }
+
+  @WorkerThread
+  synchronized void update(@NonNull JobUpdater updater) {
+    List<JobSpec> allJobs     = jobStorage.getAllJobSpecs();
+    List<JobSpec> updatedJobs = new LinkedList<>();
+
+    for (JobSpec job : allJobs) {
+      JobSpec updated = updater.update(job, dataSerializer);
+      if (updated != job) {
+        updatedJobs.add(updated);
+      }
+    }
+
+    jobStorage.updateJobs(updatedJobs);
+
+    notifyAll();
   }
 
   @WorkerThread
@@ -404,11 +418,11 @@ class JobController {
   @WorkerThread
   private void scheduleJobs(@NonNull List<Job> jobs) {
     for (Job job : jobs) {
-      List<Constraint> constraints = Stream.of(job.getParameters().getConstraintKeys())
-                                           .map(key -> new ConstraintSpec(job.getId(), key, job.getParameters().isMemoryOnly()))
-                                           .map(ConstraintSpec::getFactoryKey)
-                                           .map(constraintInstantiator::instantiate)
-                                           .toList();
+      List<String>     constraintKeys = job.getParameters().getConstraintKeys();
+      List<Constraint> constraints    = new ArrayList<>(constraintKeys.size());
+      for (String key : constraintKeys) {
+        constraints.add(constraintInstantiator.instantiate(key));
+      }
 
       scheduler.schedule(0, constraints);
     }

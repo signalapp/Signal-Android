@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_hide"
+        android:contentDescription="@string/payment_info_card_hide_this_card"
+        android:icon="@drawable/ic_more_vert_24"
+        android:title="@string/payment_info_card_hide_this_card"
+        app:iconTint="@color/payment_info_card_overflow_tint"
+        app:showAsAction="always" />
+</menu>

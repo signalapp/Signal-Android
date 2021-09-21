@@ -19,8 +19,8 @@
         android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
         style="@style/Signal.Text.Body"
-        android:textColor="@color/signal_text_primary"
-        android:textColorLink="@color/signal_text_primary"
+        android:textColor="@color/conversation_item_sent_text_primary_color"
+        android:textColorLink="@color/conversation_item_sent_text_primary_color"
         android:textIsSelectable="true"
         app:scaleEmojis="true"
         tools:text="With great power comes great responsibility."/>
@@ -34,10 +34,11 @@
         android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
         android:layout_gravity="end"
-        android:gravity="end"
         android:clipChildren="false"
         android:clipToPadding="false"
-        app:footer_text_color="@color/signal_text_secondary"
-        app:footer_icon_color="@color/signal_icon_tint_secondary"/>
+        app:footer_mode="outgoing"
+        app:footer_text_color="@color/conversation_item_sent_text_secondary_color"
+        app:footer_reveal_dot_color="@color/conversation_item_sent_text_secondary_color"
+        app:footer_icon_color="@color/conversation_item_sent_text_secondary_color"/>
 
 </LinearLayout>

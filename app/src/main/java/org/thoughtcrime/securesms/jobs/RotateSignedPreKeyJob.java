@@ -22,7 +22,7 @@ public class RotateSignedPreKeyJob extends BaseJob {
 
   public static final String KEY = "RotateSignedPreKeyJob";
 
-  private static final String TAG = RotateSignedPreKeyJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RotateSignedPreKeyJob.class);
 
   public RotateSignedPreKeyJob() {
     this(new Job.Parameters.Builder()

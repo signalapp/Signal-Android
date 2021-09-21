@@ -10,13 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 
 public class EmojiEditText extends AppCompatEditText {
-  private static final String TAG = EmojiEditText.class.getSimpleName();
+  private static final String TAG = Log.tag(EmojiEditText.class);
 
   public EmojiEditText(Context context) {
     this(context, null);
@@ -33,7 +35,7 @@ public class EmojiEditText extends AppCompatEditText {
     boolean forceCustom = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     a.recycle();
 
-    if (forceCustom || !TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
+    if (!isInEditMode() && (forceCustom || !SignalStore.settings().isPreferSystemEmoji())) {
       setFilters(appendEmojiFilter(this.getFilters()));
     }
   }

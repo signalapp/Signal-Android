@@ -2,14 +2,18 @@ package org.thoughtcrime.securesms.conversation;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 final class MenuState {
+
+  private static final int MAX_FORWARDABLE_COUNT = 32;
 
   private final boolean forward;
   private final boolean reply;
@@ -17,6 +21,7 @@ final class MenuState {
   private final boolean saveAttachment;
   private final boolean resend;
   private final boolean copy;
+  private final boolean delete;
 
   private MenuState(@NonNull Builder builder) {
     forward        = builder.forward;
@@ -25,6 +30,7 @@ final class MenuState {
     saveAttachment = builder.saveAttachment;
     resend         = builder.resend;
     copy           = builder.copy;
+    delete         = builder.delete;
   }
 
   boolean shouldShowForwardAction() {
@@ -51,26 +57,45 @@ final class MenuState {
     return copy;
   }
 
+  boolean shouldShowDeleteAction() {
+    return delete;
+  }
+
   static MenuState getMenuState(@NonNull Recipient conversationRecipient,
-                                @NonNull Set<MessageRecord> messageRecords,
-                                boolean shouldShowMessageRequest)
+                                @NonNull Set<MultiselectPart> selectedParts,
+                                boolean shouldShowMessageRequest,
+                                boolean isNonAdminInAnnouncementGroup)
   {
     
-    Builder builder       = new Builder();
-    boolean actionMessage = false;
-    boolean hasText       = false;
-    boolean sharedContact = false;
-    boolean viewOnce      = false;
-    boolean remoteDelete  = false;
+    Builder builder         = new Builder();
+    boolean actionMessage   = false;
+    boolean hasText         = false;
+    boolean sharedContact   = false;
+    boolean viewOnce        = false;
+    boolean remoteDelete    = false;
+    boolean hasInMemory     = false;
+    boolean hasPendingMedia = false;
+    boolean mediaIsSelected = false;
 
-    for (MessageRecord messageRecord : messageRecords) {
-      if (isActionMessage(messageRecord))
-      {
+    for (MultiselectPart part : selectedParts) {
+      MessageRecord messageRecord = part.getMessageRecord();
+
+      if (isActionMessage(messageRecord)) {
         actionMessage = true;
+        if (messageRecord.isInMemoryMessageRecord()) {
+          hasInMemory = true;
+        }
       }
 
-      if (messageRecord.getBody().length() > 0) {
-        hasText = true;
+      if (!(part instanceof MultiselectPart.Attachments)) {
+        if (messageRecord.getBody().length() > 0) {
+          hasText = true;
+        }
+      } else {
+        mediaIsSelected = true;
+        if (messageRecord.isMediaPending()) {
+          hasPendingMedia = true;
+        }
       }
 
       if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
@@ -86,34 +111,61 @@ final class MenuState {
       }
     }
 
-    if (messageRecords.size() > 1) {
-      builder.shouldShowForwardAction(false)
+    boolean shouldShowForwardAction = !actionMessage   &&
+                                      !sharedContact   &&
+                                      !viewOnce        &&
+                                      !remoteDelete    &&
+                                      !hasPendingMedia &&
+                                      selectedParts.size() <= MAX_FORWARDABLE_COUNT;
+
+    int uniqueRecords = selectedParts.stream()
+                                     .map(MultiselectPart::getMessageRecord)
+                                     .collect(Collectors.toSet())
+                                     .size();
+
+    if (uniqueRecords > 1) {
+      builder.shouldShowForwardAction(shouldShowForwardAction)
              .shouldShowReplyAction(false)
              .shouldShowDetailsAction(false)
              .shouldShowSaveAttachmentAction(false)
              .shouldShowResendAction(false);
     } else {
-      MessageRecord messageRecord = messageRecords.iterator().next();
+      MessageRecord messageRecord = selectedParts.iterator().next().getMessageRecord();
 
       builder.shouldShowResendAction(messageRecord.isFailed())
-             .shouldShowSaveAttachmentAction(!actionMessage                                              &&
+             .shouldShowSaveAttachmentAction(mediaIsSelected                                             &&
+                                             !actionMessage                                              &&
                                              !viewOnce                                                   &&
                                              messageRecord.isMms()                                       &&
-                                             !messageRecord.isMediaPending()                             &&
+                                             !hasPendingMedia                                            &&
                                              !messageRecord.isMmsNotification()                          &&
                                              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                              ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
-             .shouldShowForwardAction(!actionMessage && !sharedContact && !viewOnce && !remoteDelete && !messageRecord.isMediaPending())
+             .shouldShowForwardAction(shouldShowForwardAction)
              .shouldShowDetailsAction(!actionMessage)
-             .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest));
+             .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest, isNonAdminInAnnouncementGroup));
     }
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText)
+                  .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
                   .build();
   }
 
-  static boolean canReplyToMessage(@NonNull Recipient conversationRecipient, boolean actionMessage, @NonNull MessageRecord messageRecord, boolean isDisplayingMessageRequest) {
+  private static boolean onlyContainsCompleteMessages(@NonNull Set<MultiselectPart> multiselectParts) {
+    return multiselectParts.stream()
+                           .map(MultiselectPart::getConversationMessage)
+                           .map(ConversationMessage::getMultiselectCollection)
+                           .allMatch(collection -> multiselectParts.containsAll(collection.toSet()));
+  }
+
+  static boolean canReplyToMessage(@NonNull Recipient conversationRecipient,
+                                   boolean actionMessage,
+                                   @NonNull MessageRecord messageRecord,
+                                   boolean isDisplayingMessageRequest,
+                                   boolean isNonAdminInAnnouncementGroup)
+  {
     return !actionMessage                                                              &&
+           !isNonAdminInAnnouncementGroup                                              &&
            !messageRecord.isRemoteDelete()                                             &&
            !messageRecord.isPending()                                                  &&
            !messageRecord.isFailed()                                                   &&
@@ -124,16 +176,19 @@ final class MenuState {
   }
 
   static boolean isActionMessage(@NonNull MessageRecord messageRecord) {
-    return messageRecord.isGroupAction()           ||
-           messageRecord.isCallLog()               ||
-           messageRecord.isJoined()                ||
+    return messageRecord.isGroupAction() ||
+           messageRecord.isCallLog() ||
+           messageRecord.isJoined() ||
            messageRecord.isExpirationTimerUpdate() ||
-           messageRecord.isEndSession()            ||
-           messageRecord.isIdentityUpdate()        ||
-           messageRecord.isIdentityVerified()      ||
-           messageRecord.isIdentityDefault()       ||
-           messageRecord.isProfileChange()         ||
-           messageRecord.isFailedDecryptionType();
+           messageRecord.isEndSession() ||
+           messageRecord.isIdentityUpdate() ||
+           messageRecord.isIdentityVerified() ||
+           messageRecord.isIdentityDefault() ||
+           messageRecord.isProfileChange() ||
+           messageRecord.isGroupV1MigrationEvent() ||
+           messageRecord.isChatSessionRefresh() ||
+           messageRecord.isInMemoryMessageRecord() ||
+           messageRecord.isChangeNumber();
   }
 
   private final static class Builder {
@@ -144,6 +199,7 @@ final class MenuState {
     private boolean saveAttachment;
     private boolean resend;
     private boolean copy;
+    private boolean delete;
 
     @NonNull Builder shouldShowForwardAction(boolean forward) {
       this.forward = forward;
@@ -172,6 +228,11 @@ final class MenuState {
 
     @NonNull Builder shouldShowCopyAction(boolean copy) {
       this.copy = copy;
+      return this;
+    }
+
+    @NonNull Builder shouldShowDeleteAction(boolean delete) {
+      this.delete = delete;
       return this;
     }
 

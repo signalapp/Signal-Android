@@ -31,22 +31,23 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class DeleteAccountFragment extends Fragment {
 
-  private ArrayAdapter<String>   countrySpinnerAdapter;
-  private LabeledEditText        countryCode;
-  private LabeledEditText        number;
-  private AsYouTypeFormatter     countryFormatter;
-  private DeleteAccountViewModel viewModel;
-  private DialogInterface        deletionProgressDialog;
+  private ArrayAdapter<String>         countrySpinnerAdapter;
+  private TextView                     bullets;
+  private LabeledEditText              countryCode;
+  private LabeledEditText              number;
+  private AsYouTypeFormatter           countryFormatter;
+  private DeleteAccountViewModel       viewModel;
+  private DialogInterface              deletionProgressDialog;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,10 +56,10 @@ public class DeleteAccountFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    TextView        bullets        = view.findViewById(R.id.delete_account_fragment_bullets);
-    Spinner         countrySpinner = view.findViewById(R.id.delete_account_fragment_country_spinner);
-    View            confirm        = view.findViewById(R.id.delete_account_fragment_delete);
+    Spinner countrySpinner = view.findViewById(R.id.delete_account_fragment_country_spinner);
+    View    confirm        = view.findViewById(R.id.delete_account_fragment_delete);
 
+    bullets     = view.findViewById(R.id.delete_account_fragment_bullets);
     countryCode = view.findViewById(R.id.delete_account_fragment_country_code);
     number      = view.findViewById(R.id.delete_account_fragment_number);
 
@@ -67,6 +68,7 @@ public class DeleteAccountFragment extends Fragment {
     viewModel.getCountryDisplayName().observe(getViewLifecycleOwner(), this::setCountryDisplay);
     viewModel.getRegionCode().observe(getViewLifecycleOwner(), this::handleRegionUpdated);
     viewModel.getEvents().observe(getViewLifecycleOwner(), this::handleEvent);
+    viewModel.getWalletBalance().observe(getViewLifecycleOwner(), this::updateBullets);
 
     initializeNumberInput();
 
@@ -74,20 +76,24 @@ public class DeleteAccountFragment extends Fragment {
     countryCode.getInput().setImeOptions(EditorInfo.IME_ACTION_NEXT);
     confirm.setOnClickListener(unused -> viewModel.submit());
 
-    bullets.setText(buildBulletsText());
     initializeSpinner(countrySpinner);
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__delete_account);
+  private void updateBullets(@NonNull Optional<String> formattedBalance) {
+    bullets.setText(buildBulletsText(formattedBalance));
   }
 
-  private @NonNull CharSequence buildBulletsText() {
-    return new SpannableStringBuilder().append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_your_account_info_and_profile_photo)))
-                                       .append("\n")
-                                       .append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_all_your_messages)));
+  private @NonNull CharSequence buildBulletsText(@NonNull Optional<String> formattedBalance) {
+    SpannableStringBuilder builder =  new SpannableStringBuilder().append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_your_account_info_and_profile_photo)))
+                                                                  .append("\n")
+                                                                  .append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_all_your_messages)));
+
+    if (formattedBalance.isPresent()) {
+      builder.append("\n");
+      builder.append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_s_in_your_payments_account, formattedBalance.get())));
+    }
+
+    return builder;
   }
 
   @SuppressLint("ClickableViewAccessibility")

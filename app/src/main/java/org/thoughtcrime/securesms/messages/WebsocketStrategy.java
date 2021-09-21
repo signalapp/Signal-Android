@@ -6,28 +6,25 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
-import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 class WebsocketStrategy extends MessageRetrievalStrategy {
 
   private static final String TAG = Log.tag(WebsocketStrategy.class);
 
-  private final SignalServiceMessageReceiver receiver;
-  private final JobManager                   jobManager;
+  private final SignalWebSocket signalWebSocket;
+  private final JobManager      jobManager;
 
   public WebsocketStrategy() {
-    this.receiver   = ApplicationDependencies.getSignalServiceMessageReceiver();
-    this.jobManager = ApplicationDependencies.getJobManager();
+    this.signalWebSocket = ApplicationDependencies.getSignalWebSocket();
+    this.jobManager      = ApplicationDependencies.getJobManager();
   }
 
   @Override
@@ -55,15 +52,15 @@ class WebsocketStrategy extends MessageRetrievalStrategy {
   }
 
   private @NonNull Set<String> drainWebsocket(long timeout, long startTime) throws IOException {
-    SignalServiceMessagePipe pipe          = receiver.createMessagePipe();
     QueueFindingJobListener  queueListener = new QueueFindingJobListener();
 
     jobManager.addListener(job -> job.getParameters().getQueue() != null && job.getParameters().getQueue().startsWith(PushProcessMessageJob.QUEUE_PREFIX), queueListener);
 
     try {
+      signalWebSocket.connect();
       while (shouldContinue()) {
         try {
-          Optional<SignalServiceEnvelope> result = pipe.readOrEmpty(timeout, TimeUnit.MILLISECONDS, envelope -> {
+          Optional<SignalServiceEnvelope> result = signalWebSocket.readOrEmpty(timeout, envelope -> {
             Log.i(TAG, "Retrieved envelope! " + envelope.getTimestamp() + timeSuffix(startTime));
             try (IncomingMessageProcessor.Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
               processor.processEnvelope(envelope);
@@ -79,7 +76,7 @@ class WebsocketStrategy extends MessageRetrievalStrategy {
         }
       }
     } finally {
-      pipe.shutdown();
+      signalWebSocket.disconnect();
       jobManager.removeListener(queueListener);
     }
 

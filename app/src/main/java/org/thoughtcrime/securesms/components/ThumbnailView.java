@@ -3,6 +3,12 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
+import android.graphics.drawable.shapes.Shape;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
@@ -12,6 +18,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -25,6 +32,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -36,8 +44,11 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.thoughtcrime.securesms.util.views.Stub;
+import org.thoughtcrime.securesms.video.VideoPlayer;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Objects;
@@ -47,7 +58,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 
 public class ThumbnailView extends FrameLayout {
 
-  private static final String TAG        = ThumbnailView.class.getSimpleName();
+  private static final String TAG        = Log.tag(ThumbnailView.class);
   private static final int    WIDTH      = 0;
   private static final int    HEIGHT     = 1;
   private static final int    MIN_WIDTH  = 0;
@@ -55,11 +66,11 @@ public class ThumbnailView extends FrameLayout {
   private static final int    MIN_HEIGHT = 2;
   private static final int    MAX_HEIGHT = 3;
 
-  private ImageView       image;
-  private ImageView       blurhash;
-  private View            playOverlay;
-  private View            captionIcon;
-  private OnClickListener parentClickListener;
+  private ImageView         image;
+  private ImageView         blurhash;
+  private View              playOverlay;
+  private View              captionIcon;
+  private OnClickListener   parentClickListener;
 
   private final int[] dimens        = new int[2];
   private final int[] bounds        = new int[4];
@@ -90,6 +101,7 @@ public class ThumbnailView extends FrameLayout {
     this.blurhash    = findViewById(R.id.thumbnail_blurhash);
     this.playOverlay = findViewById(R.id.play_overlay);
     this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
+
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
@@ -100,9 +112,18 @@ public class ThumbnailView extends FrameLayout {
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
       radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
       fit                = typedArray.getInt(R.styleable.ThumbnailView_thumbnail_fit, 0) == 1 ? new FitCenter() : new CenterCrop();
+
+      int transparentOverlayColor = typedArray.getColor(R.styleable.ThumbnailView_transparent_overlay_color, -1);
+      if (transparentOverlayColor > 0) {
+        image.setColorFilter(new PorterDuffColorFilter(transparentOverlayColor, PorterDuff.Mode.SRC_ATOP));
+      } else {
+        image.setColorFilter(null);
+      }
+
       typedArray.recycle();
     } else {
       radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
+      image.setColorFilter(null);
     }
   }
 
@@ -335,6 +356,7 @@ public class ThumbnailView extends FrameLayout {
       }
 
       buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
+
       resultHandled = true;
     } else {
       glideRequests.clear(image);
@@ -442,7 +464,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     request = request.override(size[WIDTH], size[HEIGHT]);
-    
+
     if (radius > 0) {
       return request.transforms(fitting, new RoundedCorners(radius));
     } else {

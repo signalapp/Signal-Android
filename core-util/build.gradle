@@ -10,9 +10,11 @@ android {
     defaultConfig {
         minSdkVersion MINIMUM_SDK
         targetSdkVersion TARGET_SDK
+        multiDexEnabled true
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
@@ -40,9 +42,12 @@ protobuf {
 dependencies {
     lintChecks project(':lintchecks')
 
-    api 'androidx.annotation:annotation:1.1.0'
+    coreLibraryDesugaring libs.android.tools.desugar
 
-    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+    api libs.androidx.annotation
 
-    testImplementation 'junit:junit:4.13.1'
+    implementation libs.google.protobuf.javalite
+
+    testImplementation testLibs.junit.junit
+    testImplementation testLibs.mockito.core
 }

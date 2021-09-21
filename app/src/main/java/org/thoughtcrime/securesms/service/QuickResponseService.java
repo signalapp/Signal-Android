@@ -15,10 +15,11 @@ import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
+import java.util.concurrent.TimeUnit;
 
 public class QuickResponseService extends IntentService {
 
-  private static final String TAG = QuickResponseService.class.getSimpleName();
+  private static final String TAG = Log.tag(QuickResponseService.class);
 
   public QuickResponseService() {
     super("QuickResponseService");
@@ -48,10 +49,10 @@ public class QuickResponseService extends IntentService {
 
       Recipient recipient      = Recipient.external(this, number);
       int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-      long      expiresIn      = recipient.getExpireMessages() * 1000L;
+      long      expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
 
       if (!TextUtils.isEmpty(content)) {
-        MessageSender.send(this, new OutgoingTextMessage(recipient, content, expiresIn, subscriptionId), -1, false, null);
+        MessageSender.send(this, new OutgoingTextMessage(recipient, content, expiresIn, subscriptionId), -1, false, null, null);
       }
     } catch (URISyntaxException e) {
       Toast.makeText(this, R.string.QuickResponseService_problem_sending_message, Toast.LENGTH_LONG).show();

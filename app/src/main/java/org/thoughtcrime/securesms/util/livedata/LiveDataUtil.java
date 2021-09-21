@@ -18,6 +18,7 @@ import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
@@ -125,6 +126,10 @@ public final class LiveDataUtil {
     return new MutableLiveData<>(item);
   }
 
+  public static <A> LiveData<A> empty() {
+    return new MutableLiveData<>();
+  }
+
   /**
    * Emits {@param whileWaiting} until {@param main} starts emitting.
    */
@@ -178,6 +183,14 @@ public final class LiveDataUtil {
     };
   }
 
+  public static <T> LiveData<T> never() {
+    return new MutableLiveData<>();
+  }
+
+  public static <T, R> LiveData<T> distinctUntilChanged(@NonNull LiveData<T> source, @NonNull Function<T, R> selector) {
+    return LiveDataUtil.distinctUntilChanged(source, (current, next) -> Objects.equals(selector.apply(current), selector.apply(next)));
+  }
+
   public static <T> LiveData<T> distinctUntilChanged(@NonNull LiveData<T> source, @NonNull EqualityChecker<T> checker) {
     final MediatorLiveData<T> outputLiveData = new MediatorLiveData<>();
     outputLiveData.addSource(source, new Observer<T>() {
@@ -224,6 +237,10 @@ public final class LiveDataUtil {
 
   public interface Combine<A, B, R> {
     @NonNull R apply(@NonNull A a, @NonNull B b);
+  }
+
+  public interface Combine3<A, B, C, R> {
+    @NonNull R apply(@NonNull A a, @NonNull B b, @NonNull C c);
   }
 
   public interface EqualityChecker<T> {

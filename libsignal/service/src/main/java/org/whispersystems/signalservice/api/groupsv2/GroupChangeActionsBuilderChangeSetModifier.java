@@ -102,4 +102,14 @@ final class GroupChangeActionsBuilderChangeSetModifier implements ChangeSetModif
   public void removePromoteRequestingMembers(int i) {
     result.removePromoteRequestingMembers(i);
   }
+
+  @Override
+  public void clearModifyDescription() {
+    result.clearModifyDescription();
+  }
+
+  @Override
+  public void clearModifyAnnouncementsOnly() {
+    result.clearModifyAnnouncementsOnly();
+  }
 }

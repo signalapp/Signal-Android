@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ProfileUtil;
@@ -71,6 +72,16 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
+    if (SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().hasOptedOut() && SignalStore.storageService().getLastSyncTime() == 0) {
+      Log.i(TAG, "Registered with PIN but haven't completed storage sync yet.");
+      return;
+    }
+
+    if (!SignalStore.registrationValues().hasUploadedProfile()) {
+      Log.i(TAG, "Registered but haven't uploaded profile yet.");
+      return;
+    }
+
     Recipient            self                 = Recipient.self();
     ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self));
     SignalServiceProfile profile              = profileAndCredential.getProfile();
@@ -110,9 +121,10 @@ public class RefreshOwnProfileJob extends BaseJob {
   private void setProfileName(@Nullable String encryptedName) {
     try {
       ProfileKey  profileKey    = ProfileKeyUtil.getSelfProfileKey();
-      String      plaintextName = ProfileUtil.decryptName(profileKey, encryptedName);
+      String      plaintextName = ProfileUtil.decryptString(profileKey, encryptedName);
       ProfileName profileName   = ProfileName.fromSerialized(plaintextName);
 
+      Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextName) ? "non-" : "") + "empty name.");
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
@@ -122,8 +134,8 @@ public class RefreshOwnProfileJob extends BaseJob {
   private void setProfileAbout(@Nullable String encryptedAbout, @Nullable String encryptedEmoji) {
     try {
       ProfileKey  profileKey     = ProfileKeyUtil.getSelfProfileKey();
-      String      plaintextAbout = ProfileUtil.decryptName(profileKey, encryptedAbout);
-      String      plaintextEmoji = ProfileUtil.decryptName(profileKey, encryptedEmoji);
+      String      plaintextAbout = ProfileUtil.decryptString(profileKey, encryptedAbout);
+      String      plaintextEmoji = ProfileUtil.decryptString(profileKey, encryptedEmoji);
 
       Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextAbout) ? "non-" : "") + "empty about.");
       Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextEmoji) ? "non-" : "") + "empty emoji.");
@@ -135,6 +147,7 @@ public class RefreshOwnProfileJob extends BaseJob {
   }
 
   private static void setProfileAvatar(@Nullable String avatar) {
+    Log.d(TAG, "Saving " + (!Util.isEmpty(avatar) ? "non-" : "") + "empty avatar.");
     ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), avatar));
   }
 

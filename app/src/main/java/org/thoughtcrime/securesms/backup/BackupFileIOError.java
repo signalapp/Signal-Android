@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.backup;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,8 +10,8 @@ import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 
@@ -39,11 +38,7 @@ public enum BackupFileIOError {
   }
 
   public void postNotification(@NonNull Context context) {
-    Intent intent = new Intent(context, ApplicationPreferencesActivity.class);
-
-    intent.putExtra(ApplicationPreferencesActivity.LAUNCH_TO_BACKUPS_FRAGMENT, true);
-
-    PendingIntent pendingIntent           = PendingIntent.getActivity(context, -1, intent, 0);
+    PendingIntent pendingIntent           = PendingIntent.getActivity(context, -1, AppSettingsActivity.backups(context), 0);
     Notification backupFailedNotification = new NotificationCompat.Builder(context, NotificationChannels.FAILURES)
                                                                   .setSmallIcon(R.drawable.ic_signal_backup)
                                                                   .setContentTitle(context.getString(titleId))

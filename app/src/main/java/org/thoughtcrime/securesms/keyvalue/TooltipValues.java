@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collections;
+import java.util.List;
+
 public class TooltipValues extends SignalStoreValues {
 
   private static final int GROUP_CALLING_MAX_TOOLTIP_DISPLAY_COUNT = 3;
@@ -9,6 +12,7 @@ public class TooltipValues extends SignalStoreValues {
   private static final String BLUR_HUD_ICON                    = "tooltip.blur_hud_icon";
   private static final String GROUP_CALL_SPEAKER_VIEW          = "tooltip.group_call_speaker_view";
   private static final String GROUP_CALL_TOOLTIP_DISPLAY_COUNT = "tooltip.group_call_tooltip_display_count";
+  private static final String MULTI_FORWARD_DIALOG             = "tooltip.multi.forward.dialog";
 
 
   TooltipValues(@NonNull KeyValueStore store) {
@@ -17,6 +21,12 @@ public class TooltipValues extends SignalStoreValues {
 
   @Override
   public void onFirstEverAppLaunch() {
+    markMultiForwardDialogSeen();
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public boolean hasSeenBlurHudIconTooltip() {
@@ -45,5 +55,13 @@ public class TooltipValues extends SignalStoreValues {
 
   public void markGroupCallingLobbyEntered() {
     putInteger(GROUP_CALL_TOOLTIP_DISPLAY_COUNT, Integer.MAX_VALUE);
+  }
+
+  public boolean showMultiForwardDialog() {
+    return getBoolean(MULTI_FORWARD_DIALOG, true);
+  }
+
+  public void markMultiForwardDialogSeen() {
+    putBoolean(MULTI_FORWARD_DIALOG, false);
   }
 }

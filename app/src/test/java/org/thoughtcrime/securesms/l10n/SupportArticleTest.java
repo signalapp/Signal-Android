@@ -24,8 +24,8 @@ import static org.junit.Assert.assertTrue;
 public final class SupportArticleTest {
 
   private static final File    MAIN_STRINGS            = new File("src/main/res/values/strings.xml");
-  private static final Pattern SUPPORT_ARTICLE         = Pattern.compile(".*:\\/\\/support.signal.org\\/.*articles\\/.*"        );
-  private static final Pattern CORRECT_SUPPORT_ARTICLE = Pattern.compile("https:\\/\\/support.signal.org\\/hc\\/articles\\/\\d+");
+  private static final Pattern SUPPORT_ARTICLE         = Pattern.compile(".*:\\/\\/support.signal.org\\/.*articles\\/.*");
+  private static final Pattern CORRECT_SUPPORT_ARTICLE = Pattern.compile("https:\\/\\/support.signal.org\\/hc\\/articles\\/\\d+(#[a-z_]+)?");
 
   /**
    * Tests that support articles found in strings.xml:

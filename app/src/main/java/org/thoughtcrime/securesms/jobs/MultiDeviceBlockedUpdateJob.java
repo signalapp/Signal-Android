@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -20,6 +21,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMess
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -31,7 +33,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
   public static final String KEY = "MultiDeviceBlockedUpdateJob";
 
   @SuppressWarnings("unused")
-  private static final String TAG = MultiDeviceBlockedUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceBlockedUpdateJob.class);
 
   public MultiDeviceBlockedUpdateJob() {
     this(new Job.Parameters.Builder()
@@ -60,6 +62,10 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
   public void onRun()
       throws IOException, UntrustedIdentityException
   {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
@@ -76,19 +82,20 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
       while ((recipient = reader.getNext()) != null) {
         if (recipient.isPushGroup()) {
           blockedGroups.add(recipient.requireGroupId().getDecodedId());
-        } else if (recipient.hasServiceIdentifier()) {
+        } else if (recipient.isMaybeRegistered() && (recipient.hasUuid() || recipient.hasE164())) {
           blockedIndividuals.add(RecipientUtil.toSignalServiceAddress(context, recipient));
         }
       }
 
       SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
-                                UnidentifiedAccessUtil.getAccessForSync(context));
+      messageSender.sendSyncMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
+                                    UnidentifiedAccessUtil.getAccessForSync(context));
     }
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ServerRejectedException) return false;
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

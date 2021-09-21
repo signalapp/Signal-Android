@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_settings_expire_timer"
+    app:startDestination="@id/expireTimerSettingsFragment">
+
+    <fragment
+        android:id="@+id/expireTimerSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsFragment"
+        android:label="disappearing_messages_timer_select_fragment">
+
+        <argument
+            android:name="recipient_id"
+            android:defaultValue="@null"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:nullable="true" />
+
+        <argument
+            android:name="for_result_mode"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="initial_value"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="java.lang.Integer" />
+
+        <action
+            android:id="@+id/action_expireTimerSettingsFragment_to_customExpireTimerSelectDialog"
+            app:destination="@id/customExpireTimerSelectDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/customExpireTimerSelectDialog"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.expire.CustomExpireTimerSelectDialog"
+        tools:layout="@layout/custom_expire_timer_select_dialog" />
+
+</navigation>

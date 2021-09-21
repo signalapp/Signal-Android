@@ -14,6 +14,7 @@ import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -23,6 +24,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -35,6 +37,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Handles the retrieval of media present on the user's device.
@@ -47,7 +50,7 @@ public class MediaRepository {
   /**
    * Retrieves a list of folders that contain media.
    */
-  void getFolders(@NonNull Context context, @NonNull Callback<List<MediaFolder>> callback) {
+  public void getFolders(@NonNull Context context, @NonNull Callback<List<MediaFolder>> callback) {
     if (!StorageUtil.canReadFromMediaStore()) {
       Log.w(TAG, "No storage permissions!", new Throwable());
       callback.onComplete(Collections.emptyList());
@@ -74,7 +77,7 @@ public class MediaRepository {
    * Given an existing list of {@link Media}, this will ensure that the media is populate with as
    * much data as we have, like width/height.
    */
-  void getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull Callback<List<Media>> callback) {
+  public void getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull Callback<List<Media>> callback) {
     if (Stream.of(media).allMatch(this::isPopulated)) {
       callback.onComplete(media);
       return;
@@ -105,7 +108,7 @@ public class MediaRepository {
                              @NonNull Map<Media, MediaTransform> modelsToTransform,
                              @NonNull Callback<LinkedHashMap<Media, Media>> callback)
   {
-    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(transformMedia(context, currentMedia, modelsToTransform)));
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(transformMediaSync(context, currentMedia, modelsToTransform)));
   }
 
   @WorkerThread
@@ -199,14 +202,20 @@ public class MediaRepository {
 
   @WorkerThread
   private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId) {
+    Stopwatch stopwatch = new Stopwatch("getMediaInBucket");
+
     List<Media> images = getMediaInBucket(context, bucketId, Images.Media.EXTERNAL_CONTENT_URI, true);
     List<Media> videos = getMediaInBucket(context, bucketId, Video.Media.EXTERNAL_CONTENT_URI, false);
     List<Media> media  = new ArrayList<>(images.size() + videos.size());
 
+    stopwatch.split("post fetch");
+
     media.addAll(images);
     media.addAll(videos);
     Collections.sort(media, (o1, o2) -> Long.compare(o2.getDate(), o1.getDate()));
+    stopwatch.split("post sort");
 
+    stopwatch.stop(TAG);
     return media;
   }
 
@@ -242,7 +251,7 @@ public class MediaRepository {
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
         long   duration    = !isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Video.Media.DURATION)) : 0;
 
-        media.add(new Media(uri, mimetype, date, width, height, size, duration, false, Optional.of(bucketId), Optional.absent(), Optional.absent()));
+        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, Optional.of(bucketId), Optional.absent(), Optional.absent())));
       }
     }
 
@@ -254,26 +263,29 @@ public class MediaRepository {
   }
 
   @WorkerThread
-  private List<Media> getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media) {
-    return Stream.of(media).map(m -> {
-      try {
-        if (isPopulated(m)) {
-          return m;
-        } else if (PartAuthority.isLocalUri(m.getUri())) {
-          return getLocallyPopulatedMedia(context, m);
-        } else {
-          return getContentResolverPopulatedMedia(context, m);
-        }
-      } catch (IOException e) {
-        return m;
-      }
-    }).toList();
+  public List<Media> getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media) {
+    return media.stream()
+                .map(m -> {
+                  try {
+                    if (isPopulated(m)) {
+                      return m;
+                    } else if (PartAuthority.isLocalUri(m.getUri())) {
+                      return getLocallyPopulatedMedia(context, m);
+                    } else {
+                      return getContentResolverPopulatedMedia(context, m);
+                    }
+                  } catch (IOException e) {
+                    return m;
+                  }
+                })
+                .map(m -> fixMimeType(context, m))
+                .collect(Collectors.toList());
   }
 
   @WorkerThread
-  private static LinkedHashMap<Media, Media> transformMedia(@NonNull Context context,
-                                                            @NonNull List<Media> currentMedia,
-                                                            @NonNull Map<Media, MediaTransform> modelsToTransform)
+  public static LinkedHashMap<Media, Media> transformMediaSync(@NonNull Context context,
+                                                               @NonNull List<Media> currentMedia,
+                                                               @NonNull Map<Media, MediaTransform> modelsToTransform)
   {
     LinkedHashMap<Media, Media> updatedMedia = new LinkedHashMap<>(currentMedia.size());
 
@@ -332,7 +344,7 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.getBucketId(), media.getCaption(), Optional.absent());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.absent());
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -358,7 +370,26 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.getBucketId(), media.getCaption(), Optional.absent());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.absent());
+  }
+
+  @VisibleForTesting
+  public static @NonNull Media fixMimeType(@NonNull Context context, @NonNull Media media) {
+    if (MediaUtil.isOctetStream(media.getMimeType())) {
+      Log.w(TAG, "Media has mimetype octet stream");
+      String newMimeType = MediaUtil.getMimeType(context, media.getUri());
+      if (newMimeType != null && !newMimeType.equals(media.getMimeType())) {
+        Log.d(TAG, "Changing mime type to '" + newMimeType + "'");
+        return Media.withMimeType(media, newMimeType);
+      } else if (media.getSize() > 0 && media.getWidth() > 0 && media.getHeight() > 0) {
+        boolean likelyVideo = media.getDuration() > 0;
+        Log.d(TAG, "Assuming content is " + (likelyVideo ? "a video" : "an image") + ", setting mimetype");
+        return Media.withMimeType(media, likelyVideo ? MediaUtil.VIDEO_UNSPECIFIED : MediaUtil.IMAGE_JPEG);
+      } else {
+        Log.d(TAG, "Unable to fix mimetype");
+      }
+    }
+    return media;
   }
 
   private static class FolderResult {

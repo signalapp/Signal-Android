@@ -10,6 +10,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 public abstract class SignalServiceAttachment {
@@ -39,6 +40,10 @@ public abstract class SignalServiceAttachment {
     return new Builder();
   }
 
+  public static SignalServiceAttachmentStream emptyStream(String contentType) {
+    return new SignalServiceAttachmentStream(new ByteArrayInputStream(new byte[0]), contentType, 0, Optional.absent(), false, false, false, null, null);
+  }
+
   public static class Builder {
 
     private InputStream             inputStream;
@@ -49,6 +54,7 @@ public abstract class SignalServiceAttachment {
     private CancelationSignal       cancelationSignal;
     private boolean                 voiceNote;
     private boolean                 borderless;
+    private boolean                 gif;
     private int                     width;
     private int                     height;
     private String                  caption;
@@ -98,6 +104,11 @@ public abstract class SignalServiceAttachment {
       return this;
     }
 
+    public Builder withGif(boolean gif) {
+      this.gif = gif;
+      return this;
+    }
+
     public Builder withWidth(int width) {
       this.width = width;
       return this;
@@ -139,6 +150,7 @@ public abstract class SignalServiceAttachment {
                                                Optional.fromNullable(fileName),
                                                voiceNote,
                                                borderless,
+                                               gif,
                                                Optional.<byte[]>absent(),
                                                width,
                                                height,

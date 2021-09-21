@@ -40,6 +40,7 @@ public abstract class Attachment {
 
   private final boolean voiceNote;
   private final boolean borderless;
+  private final boolean videoGif;
   private final int     width;
   private final int     height;
   private final boolean quote;
@@ -72,6 +73,7 @@ public abstract class Attachment {
                     @Nullable String fastPreflightId,
                     boolean voiceNote,
                     boolean borderless,
+                    boolean videoGif,
                     int width,
                     int height,
                     boolean quote,
@@ -94,6 +96,7 @@ public abstract class Attachment {
     this.fastPreflightId     = fastPreflightId;
     this.voiceNote           = voiceNote;
     this.borderless          = borderless;
+    this.videoGif            = videoGif;
     this.width               = width;
     this.height              = height;
     this.quote               = quote;
@@ -107,6 +110,8 @@ public abstract class Attachment {
 
   @Nullable
   public abstract Uri getUri();
+
+  public abstract @Nullable Uri getPublicUri();
 
   public int getTransferState() {
     return transferState;
@@ -166,6 +171,10 @@ public abstract class Attachment {
 
   public boolean isBorderless() {
     return borderless;
+  }
+
+  public boolean isVideoGif() {
+    return videoGif;
   }
 
   public int getWidth() {

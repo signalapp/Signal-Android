@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/group_link_enable_and_share_title"
-        style="@style/TextAppearance.Signal.Title2"
+        style="@style/TextAppearance.Signal.Title2.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

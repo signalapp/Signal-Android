@@ -127,7 +127,7 @@ public final class CameraXFlashToggleView extends AppCompatImageView {
   }
 
   public interface OnFlashModeChangedListener {
-    void flashModeChanged(@ImageCapture.CaptureMode int flashMode);
+    void flashModeChanged(int flashMode);
   }
 
   private enum FlashMode {

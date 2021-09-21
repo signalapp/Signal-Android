@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.sms;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -26,6 +28,10 @@ public class OutgoingTextMessage {
     this.subscriptionId = base.getSubscriptionId();
     this.expiresIn      = base.getExpiresIn();
     this.message        = body;
+  }
+
+  public @NonNull OutgoingTextMessage withExpiry(long expiresIn) {
+    return new OutgoingTextMessage(recipient, message, expiresIn, subscriptionId);
   }
 
   public long getExpiresIn() {

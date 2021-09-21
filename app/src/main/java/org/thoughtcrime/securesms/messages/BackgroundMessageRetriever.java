@@ -60,7 +60,7 @@ public class BackgroundMessageRetriever {
     }
 
     synchronized (this) {
-      try (DelayedNotificationController controller = GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), showNotificationAfterMs)) {
+      try (DelayedNotificationController controller = GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), showNotificationAfterMs, R.drawable.ic_signal_refresh)) {
         PowerManager.WakeLock wakeLock = null;
 
         try {

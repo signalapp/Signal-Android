@@ -19,7 +19,7 @@ import java.io.OutputStream;
 
 public class EncryptedBitmapResourceEncoder extends EncryptedCoder implements ResourceEncoder<Bitmap> {
 
-  private static final String TAG = EncryptedBitmapResourceEncoder.class.getSimpleName();
+  private static final String TAG = Log.tag(EncryptedBitmapResourceEncoder.class);
 
   private final byte[] secret;
 

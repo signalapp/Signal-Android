@@ -57,7 +57,7 @@ public final class ThreadBodyUtil {
     for (Slide slide : record.getSlideDeck().getSlides()) {
       hasVideo |= slide.hasVideo();
       hasImage |= slide.hasImage();
-      hasGif   |= slide instanceof GifSlide;
+      hasGif   |= slide instanceof GifSlide || slide.isVideoGif();
     }
 
     if (hasGif) {
