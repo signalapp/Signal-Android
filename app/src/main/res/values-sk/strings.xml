@@ -755,6 +755,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Povolené</string>
   <string name="CustomNotificationsDialogFragment__disabled">Zakázané</string>
   <string name="CustomNotificationsDialogFragment__default">Predvolená</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Neznámy</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Zdieľateľný odkaz do skupiny</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Spravovať a zdieľať</string>

@@ -720,6 +720,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Iespējota</string>
   <string name="CustomNotificationsDialogFragment__disabled">Atspējota</string>
   <string name="CustomNotificationsDialogFragment__default">Noklusējuma</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nezināms</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kopīgojama grupas saite</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Pārvaldīt &amp; kopīgot</string>

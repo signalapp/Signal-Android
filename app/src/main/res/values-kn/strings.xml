@@ -687,6 +687,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__default">ಡೀಫಾಲ್ಟ್</string>
+  <string name="CustomNotificationsDialogFragment__unknown">ತಿಳಿದಿಲ್ಲ</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಗ್ರೂಪ್ ಲಿಂಕ್</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ನಿರ್ವಹಿಸಿ ಮತ್ತು ಹಂಚಿಕೊಳ್ಳಿ</string>

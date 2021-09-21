@@ -643,6 +643,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">已启用</string>
   <string name="CustomNotificationsDialogFragment__disabled">已禁用</string>
   <string name="CustomNotificationsDialogFragment__default">默认</string>
+  <string name="CustomNotificationsDialogFragment__unknown">未知</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">可分享的群组链接</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理和分享</string>

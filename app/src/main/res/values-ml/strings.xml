@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
+  <string name="CustomNotificationsDialogFragment__unknown">അജ്ഞാതം</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">പങ്കിടാവുന്ന ഗ്രൂപ്പ് ലിങ്ക്</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">നിയന്ത്രിച്ച് പങ്കിടുക</string>

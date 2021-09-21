@@ -682,6 +682,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Разрешено</string>
   <string name="CustomNotificationsDialogFragment__disabled">Деактивирани</string>
   <string name="CustomNotificationsDialogFragment__default">По подразбиране</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Непознат</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Групова връзка за споделяне</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управление на споделянията</string>

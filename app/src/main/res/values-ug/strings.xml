@@ -686,6 +686,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">ئوچۇق</string>
   <string name="CustomNotificationsDialogFragment__disabled">تاقالغان</string>
   <string name="CustomNotificationsDialogFragment__default">كۆڭۈلدىكى</string>
+  <string name="CustomNotificationsDialogFragment__unknown">نامەلۇم</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ھەمبەھىرچان گۇرۇپپا ئۇلانمىسى</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">باشقۇرۇش ۋە ھەمبەھىر</string>

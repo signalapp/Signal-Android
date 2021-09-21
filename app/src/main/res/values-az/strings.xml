@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Fəallaşdırıldı</string>
   <string name="CustomNotificationsDialogFragment__disabled">Sıradan çıxarıldı</string>
   <string name="CustomNotificationsDialogFragment__default">İlkin</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Bilinmir</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Paylaşıla bilən qrup bağlantısı</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">İdarə et və paylaş</string>

@@ -634,6 +634,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">လုပ်ဆောင်သော</string>
   <string name="CustomNotificationsDialogFragment__disabled">မလုပ်ဆောင်သော</string>
   <string name="CustomNotificationsDialogFragment__default">မူလ</string>
+  <string name="CustomNotificationsDialogFragment__unknown">မသိရှိသော</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">မျှဝေနိုင်သော အဖွဲ့လင့််ခ်</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">စီမံ &amp; မျှဝေမယ်</string>

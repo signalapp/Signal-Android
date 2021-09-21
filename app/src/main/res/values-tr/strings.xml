@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Etkin</string>
   <string name="CustomNotificationsDialogFragment__disabled">Devre dışı</string>
   <string name="CustomNotificationsDialogFragment__default">Varsayılan</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Bilinmeyen</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Paylaşılabilir grup bağlantısı</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Yönet ve paylaş</string>

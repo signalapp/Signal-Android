@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">有効</string>
   <string name="CustomNotificationsDialogFragment__disabled">無効</string>
   <string name="CustomNotificationsDialogFragment__default">既定</string>
+  <string name="CustomNotificationsDialogFragment__unknown">不明</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">グループリンク</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理と共有</string>

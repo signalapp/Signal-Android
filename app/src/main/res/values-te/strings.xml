@@ -689,6 +689,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">చేతనం అయింది</string>
   <string name="CustomNotificationsDialogFragment__disabled">అచేతనం అయింది</string>
   <string name="CustomNotificationsDialogFragment__default">అప్రమేయం</string>
+  <string name="CustomNotificationsDialogFragment__unknown">గుర్తు తెలియని</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">భాగస్వామ్యం చేయదగిన సమూహ లింక్</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">నిర్వహించండి &amp; భాగస్వామ్యం</string>

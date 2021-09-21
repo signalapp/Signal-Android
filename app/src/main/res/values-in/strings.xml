@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Diaktifkan</string>
   <string name="CustomNotificationsDialogFragment__disabled">Ternonaktifkan</string>
   <string name="CustomNotificationsDialogFragment__default">Standar</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Tidak Dikenal</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Tautan grup yang dapat dibagikan</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Kelola &amp;amp bagikan</string>

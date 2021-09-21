@@ -679,6 +679,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Lubatud</string>
   <string name="CustomNotificationsDialogFragment__disabled">Keelatud</string>
   <string name="CustomNotificationsDialogFragment__default">Vaikimisi</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Tundmatu</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Jagatav grupilink</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Halda ja jaga</string>

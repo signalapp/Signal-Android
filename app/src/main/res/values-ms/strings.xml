@@ -651,6 +651,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Didayakan</string>
   <string name="CustomNotificationsDialogFragment__disabled">Diyahdayakan</string>
   <string name="CustomNotificationsDialogFragment__default">Lalai</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Tidak diketahui</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Pautan kumpulan boleh kongsi</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Urus &amp; kongsi</string>

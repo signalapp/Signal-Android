@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Imewezeshwa</string>
   <string name="CustomNotificationsDialogFragment__disabled">Imelemazwa</string>
   <string name="CustomNotificationsDialogFragment__default">Chaguo msingi</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Isiyojulikana</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kiungo cha kikundi kinachoweza kushirikiwa</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Dhibiti na ushiriki</string>

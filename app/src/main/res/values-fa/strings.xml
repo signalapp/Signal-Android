@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">فعال</string>
   <string name="CustomNotificationsDialogFragment__disabled">غیرفعال</string>
   <string name="CustomNotificationsDialogFragment__default">پیش‌فرض</string>
+  <string name="CustomNotificationsDialogFragment__unknown">ناشناخته</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">پیوند قابل اشتراک گروه</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">مدیریت و اشتراک‌گذاری</string>
@@ -3148,6 +3149,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">۵. برابر</string>
   <string name="PlaybackSpeedToggleTextView__1x">۱ برابر</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">۱.۵ برابر</string>
   <string name="PlaybackSpeedToggleTextView__2x">۲ برابر</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">پرداخت جدید</string>

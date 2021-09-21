@@ -755,6 +755,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Įjungta</string>
   <string name="CustomNotificationsDialogFragment__disabled">Išjungta</string>
   <string name="CustomNotificationsDialogFragment__default">Numatytoji</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nežinoma</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Bendrinama grupės nuoroda</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Tvarkyti ir bendrinti</string>

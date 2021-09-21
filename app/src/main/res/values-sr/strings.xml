@@ -720,6 +720,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Укључено</string>
   <string name="CustomNotificationsDialogFragment__disabled">Искључено</string>
   <string name="CustomNotificationsDialogFragment__default">Подразумеван</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Непознато</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Линк за дељење групе</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управи &amp; дели</string>

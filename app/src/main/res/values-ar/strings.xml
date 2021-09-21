@@ -826,6 +826,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">مُفعَّل</string>
   <string name="CustomNotificationsDialogFragment__disabled">مُعطَّل</string>
   <string name="CustomNotificationsDialogFragment__default">افتراضي</string>
+  <string name="CustomNotificationsDialogFragment__unknown">غير معروف</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">وصلة المجموعة القابلة للمشاركة</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">الإدارة والمشاركة</string>

@@ -752,6 +752,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Izklopljena</string>
   <string name="CustomNotificationsDialogFragment__disabled">Vklopljena</string>
   <string name="CustomNotificationsDialogFragment__default">Privzeto</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Neznano</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deljiva povezava do skupine</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Upravljanje in delitev</string>

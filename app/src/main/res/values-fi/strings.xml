@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Päällä</string>
   <string name="CustomNotificationsDialogFragment__disabled">Pois päältä</string>
   <string name="CustomNotificationsDialogFragment__default">Oletus</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Tuntematon</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Jaettava ryhmälinkki</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Hallinnoi &amp; jaa</string>

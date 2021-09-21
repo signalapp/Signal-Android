@@ -687,6 +687,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ingeschakeld</string>
   <string name="CustomNotificationsDialogFragment__disabled">Uitgeschakeld</string>
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Gebruiker niet bekend</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheren &amp; delen</string>

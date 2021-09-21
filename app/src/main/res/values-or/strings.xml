@@ -672,6 +672,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">ସକ୍ଷମ</string>
   <string name="CustomNotificationsDialogFragment__disabled">ଅକ୍ଷମ</string>
   <string name="CustomNotificationsDialogFragment__default">ଡିଫଲ୍ଟ</string>
+  <string name="CustomNotificationsDialogFragment__unknown">ଅଜଣା</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ଅଂଶୀଦାର କରିବା ଯୋଗ୍ୟ ଗୋଷ୍ଠୀ ଲିଙ୍କ୍</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ପରିଚାଳନା ଓ ଅଂଶୀଦାର</string>

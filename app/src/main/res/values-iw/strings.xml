@@ -755,6 +755,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">מאופשר</string>
   <string name="CustomNotificationsDialogFragment__disabled">מושבת</string>
   <string name="CustomNotificationsDialogFragment__default">ברירת מחדל</string>
+  <string name="CustomNotificationsDialogFragment__unknown">בלתי ידוע</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">קישור קבוצה בר־שיתוף</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">נהל ושתף</string>

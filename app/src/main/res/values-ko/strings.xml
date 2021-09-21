@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">활성화됨</string>
   <string name="CustomNotificationsDialogFragment__disabled">비활성화됨</string>
   <string name="CustomNotificationsDialogFragment__default">기본값</string>
+  <string name="CustomNotificationsDialogFragment__unknown">알 수 없음</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">공유 가능한 그룹 링크</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">관리 &amp; 공유</string>

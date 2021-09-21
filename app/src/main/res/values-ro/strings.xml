@@ -720,6 +720,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activat</string>
   <string name="CustomNotificationsDialogFragment__disabled">Dezactivat</string>
   <string name="CustomNotificationsDialogFragment__default">Implicit</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Necunoscut</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link grup partajabil</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestionează și distribuie</string>

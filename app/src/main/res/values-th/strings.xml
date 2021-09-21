@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">เปิดใช้</string>
   <string name="CustomNotificationsDialogFragment__disabled">หยุดใช้</string>
   <string name="CustomNotificationsDialogFragment__default">ค่าเริ่มต้น</string>
+  <string name="CustomNotificationsDialogFragment__unknown">ไม่รู้จัก</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ลิงก์กลุ่มที่แบ่งปันได้</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">จัดการ &amp; แชร์</string>

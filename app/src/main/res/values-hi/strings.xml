@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">सक्षम</string>
   <string name="CustomNotificationsDialogFragment__disabled">अक्षम</string>
   <string name="CustomNotificationsDialogFragment__default">डिफ़ॉल्ट</string>
+  <string name="CustomNotificationsDialogFragment__unknown">अनजान</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">शेयर करने योग्य ग्रुप लिंक</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">मैनेज और शेयर करें</string>

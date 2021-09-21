@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">فعال ہونا</string>
   <string name="CustomNotificationsDialogFragment__disabled">غیر فعال ہونا</string>
   <string name="CustomNotificationsDialogFragment__default">پہلے سے طے شدہ</string>
+  <string name="CustomNotificationsDialogFragment__unknown">نامعلوم</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">قابل اشتراک گروپ لنک</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share"> انتظام کریں؛&amp;amp بانٹیں</string>

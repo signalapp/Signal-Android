@@ -682,6 +682,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ενεργοποιημένο</string>
   <string name="CustomNotificationsDialogFragment__disabled">Απενεργοποιημένο</string>
   <string name="CustomNotificationsDialogFragment__default">Προκαθορισμένη</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Άγνωστο</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Σύνδεσμος για είσοδο στην ομάδα</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Διαχείριση &amp; διαμοιρασμός</string>

@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Virkt</string>
   <string name="CustomNotificationsDialogFragment__disabled">Óvirkt</string>
   <string name="CustomNotificationsDialogFragment__default">Sjálfgefið</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Óþekkt</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deilanlegur tengill á hóp</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Sýsla með og deila</string>

@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">இயக்கப்பட்டது</string>
   <string name="CustomNotificationsDialogFragment__disabled">முடக்கப்பட்டது</string>
   <string name="CustomNotificationsDialogFragment__default">இயல்புநிலை</string>
+  <string name="CustomNotificationsDialogFragment__unknown">தெரியாத</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">பகிரக்கூடிய குழு இணைப்பு</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">நிர்வகிக்கவும் மற்றும் பகிரவும்</string>

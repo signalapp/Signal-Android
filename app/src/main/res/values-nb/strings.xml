@@ -671,6 +671,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Aktivert</string>
   <string name="CustomNotificationsDialogFragment__disabled">Deaktivert</string>
   <string name="CustomNotificationsDialogFragment__default">Forvalgt</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Ukjent</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Delbar gruppelenke</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administrer &amp; del</string>

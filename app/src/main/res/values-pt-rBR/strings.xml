@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Habilitada</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desabilitada</string>
   <string name="CustomNotificationsDialogFragment__default">Padrão</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Desconhecida/o</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link do grupo compartilhável</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gerenciar e compartilhar</string>

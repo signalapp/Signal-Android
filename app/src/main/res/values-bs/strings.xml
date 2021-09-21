@@ -720,6 +720,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Omogućeno</string>
   <string name="CustomNotificationsDialogFragment__disabled">Onemogućeno</string>
   <string name="CustomNotificationsDialogFragment__default">Standardno</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nepoznato</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link za grupu</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Kreiranje i dijeljenje</string>

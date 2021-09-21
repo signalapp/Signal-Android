@@ -669,6 +669,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Irmed</string>
   <string name="CustomNotificationsDialogFragment__disabled">Yensa</string>
   <string name="CustomNotificationsDialogFragment__default">Amezwer</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Arussin</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Aseɣwen n ugraw yettwabḍayen</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Sefrek &amp; bḍu</string>

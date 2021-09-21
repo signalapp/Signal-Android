@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">সক্রিয়</string>
   <string name="CustomNotificationsDialogFragment__disabled">নিষ্ক্রিয়</string>
   <string name="CustomNotificationsDialogFragment__default">সচারচর</string>
+  <string name="CustomNotificationsDialogFragment__unknown">অজানা</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">শেয়ার করার উপযোগী গ্রুপের লিংক</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ব্যাবস্থাপনা এবং শেয়ার</string>

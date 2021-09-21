@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ŝaltita</string>
   <string name="CustomNotificationsDialogFragment__disabled">Malŝaltita</string>
   <string name="CustomNotificationsDialogFragment__default">Defaŭlta</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nekonata</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kunhavebla grupligilo</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administri kaj kunhavigi</string>

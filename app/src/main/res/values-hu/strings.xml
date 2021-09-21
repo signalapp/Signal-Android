@@ -682,6 +682,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Engedélyezve</string>
   <string name="CustomNotificationsDialogFragment__disabled">Letiltva</string>
   <string name="CustomNotificationsDialogFragment__default">Alapértelmezett</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Ismeretlen</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Megosztható csoporthivatkozás</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Kezelés és megosztás</string>

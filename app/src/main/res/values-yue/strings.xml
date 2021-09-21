@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">啟用</string>
   <string name="CustomNotificationsDialogFragment__disabled">停用</string>
   <string name="CustomNotificationsDialogFragment__default">預設</string>
+  <string name="CustomNotificationsDialogFragment__unknown">未知</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">可以分享畀人嘅谷拎</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理與分享</string>

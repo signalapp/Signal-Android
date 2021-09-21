@@ -643,6 +643,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Đã bật</string>
   <string name="CustomNotificationsDialogFragment__disabled">Tắt</string>
   <string name="CustomNotificationsDialogFragment__default">Mặc định</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Vô danh</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Đường dẫn nhóm có thể chia sẻ</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Quản lí &amp; chia sẻ</string>
