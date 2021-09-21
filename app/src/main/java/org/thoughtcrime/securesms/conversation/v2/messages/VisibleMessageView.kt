@@ -218,7 +218,9 @@ class VisibleMessageView : LinearLayout {
                 if (message.expireStarted + message.expiresIn <= System.currentTimeMillis()) {
                     ApplicationContext.getInstance(context).expiringMessageManager.checkSchedule()
                 }
-            } else if (!message.isOutgoing && !message.isMediaPending) {
+            } else if (!message.isMediaPending) {
+                expirationTimerView.setPercentComplete(0.0f)
+                expirationTimerView.stopAnimation()
                 ThreadUtils.queue {
                     val expirationManager = ApplicationContext.getInstance(context).expiringMessageManager
                     val id = message.getId()
@@ -226,6 +228,9 @@ class VisibleMessageView : LinearLayout {
                     if (mms) DatabaseFactory.getMmsDatabase(context).markExpireStarted(id) else DatabaseFactory.getSmsDatabase(context).markExpireStarted(id)
                     expirationManager.scheduleDeletion(id, mms, message.expiresIn)
                 }
+            } else {
+                expirationTimerView.stopAnimation()
+                expirationTimerView.setPercentComplete(0.0f)
             }
         } else {
             expirationTimerView.isVisible = false
