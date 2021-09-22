@@ -112,6 +112,7 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
   override fun onEmojiSelected(emoji: String) {
     SignalStore.emojiValues().setPreferredVariation(emoji)
     eventListener.onEmojiSelected(emoji)
+    viewModel.addToRecents(emoji)
   }
 
   override fun onKeyEvent(keyEvent: KeyEvent?) {
