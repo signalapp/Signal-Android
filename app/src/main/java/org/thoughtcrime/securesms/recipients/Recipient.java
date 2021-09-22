@@ -635,7 +635,7 @@ public class Recipient {
     UUID resolved = resolving ? resolve().uuid : uuid;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -646,7 +646,7 @@ public class Recipient {
     String resolved = resolving ? resolve().e164 : e164;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -656,7 +656,7 @@ public class Recipient {
     String resolved = resolving ? resolve().email : email;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -670,7 +670,7 @@ public class Recipient {
     } else if (recipient.getEmail().isPresent()) {
       return recipient.getEmail().get();
     } else {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
   }
 
@@ -694,7 +694,7 @@ public class Recipient {
     GroupId resolved = resolving ? resolve().groupId : groupId;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -1252,5 +1252,8 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
+    MissingAddressError(@NonNull RecipientId recipientId) {
+      super("Missing address for " + recipientId.serialize());
+    }
   }
 }
