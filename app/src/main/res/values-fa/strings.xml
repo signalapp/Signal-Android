@@ -1679,6 +1679,7 @@
   <string name="QuoteView_audio">صوت</string>
   <string name="QuoteView_video">ویدئو</string>
   <string name="QuoteView_photo">عکس</string>
+  <string name="QuoteView_gif">گیف</string>
   <string name="QuoteView_view_once_media">رسانهٔ یکبار مصرف </string>
   <string name="QuoteView_sticker">استیکر</string>
   <string name="QuoteView_you">شما</string>

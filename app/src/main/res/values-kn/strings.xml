@@ -1643,6 +1643,7 @@
   <string name="QuoteView_audio">ಆಡಿಯೊ</string>
   <string name="QuoteView_video">ವೀಡಿಯೊ</string>
   <string name="QuoteView_photo">ಫೋಟೋ</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">ಏಕ ವೀಕ್ಷಣೆ ಮೀಡಿಯಾ</string>
   <string name="QuoteView_sticker">ಸ್ಟಿಕ್ಕರ್</string>
   <string name="QuoteView_you">ನೀವು</string>

@@ -1608,6 +1608,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Bilde</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Vis en gang media</string>
   <string name="QuoteView_sticker">Klistremerke</string>
   <string name="QuoteView_you">Deg</string>

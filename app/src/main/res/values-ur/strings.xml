@@ -1632,6 +1632,7 @@
   <string name="QuoteView_audio">آڈیو</string>
   <string name="QuoteView_video">ویڈیو</string>
   <string name="QuoteView_photo">تصویر</string>
+  <string name="QuoteView_gif">گِف</string>
   <string name="QuoteView_view_once_media">صرف ایک بار دیکھنے کے قابل میڈیا</string>
   <string name="QuoteView_sticker">اسٹیکر</string>
   <string name="QuoteView_you">تم</string>

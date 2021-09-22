@@ -1570,6 +1570,7 @@
   <string name="QuoteView_audio">音频</string>
   <string name="QuoteView_video">视频</string>
   <string name="QuoteView_photo">图片</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">一次性媒体</string>
   <string name="QuoteView_sticker">表情</string>
   <string name="QuoteView_you">您</string>

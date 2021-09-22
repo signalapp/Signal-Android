@@ -1816,6 +1816,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografie</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Média pro jednorázové zobrazení</string>
   <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_you">Vy</string>

@@ -1680,6 +1680,7 @@
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Fotografia</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Multimédia de visualização única</string>
   <string name="QuoteView_sticker">Autocolante</string>
   <string name="QuoteView_you">Você</string>

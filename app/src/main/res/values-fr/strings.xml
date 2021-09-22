@@ -1672,6 +1672,7 @@
   <string name="QuoteView_audio">Son</string>
   <string name="QuoteView_video">Vidéo</string>
   <string name="QuoteView_photo">Photo</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Média éphémère</string>
   <string name="QuoteView_sticker">Autocollant</string>
   <string name="QuoteView_you">Vous</string>

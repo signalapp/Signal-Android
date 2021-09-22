@@ -1681,6 +1681,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Media për t’u parë vetëm një herë</string>
   <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_you">Ju</string>

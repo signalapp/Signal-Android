@@ -1674,6 +1674,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="QuoteView_audio">Ljud</string>
   <string name="QuoteView_video">Filmer</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Visa-en-gång media</string>
   <string name="QuoteView_sticker">Klistermärke</string>
   <string name="QuoteView_you">Du</string>

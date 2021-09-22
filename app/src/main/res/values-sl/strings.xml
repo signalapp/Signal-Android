@@ -1805,6 +1805,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_audio">Zvok</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Medijska datoteka za enkraten ogled</string>
   <string name="QuoteView_sticker">Nalepka</string>
   <string name="QuoteView_you">Vi</string>

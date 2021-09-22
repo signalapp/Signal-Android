@@ -1640,6 +1640,7 @@ nambari yako ya simu</string>
   <string name="QuoteView_audio">Sauti</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Picha</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Media ya mtazamo-mmoja</string>
   <string name="QuoteView_sticker">Kibandiko</string>
   <string name="QuoteView_you">Wewe</string>

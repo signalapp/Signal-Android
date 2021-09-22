@@ -1709,6 +1709,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Attēls</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Vienreiz skatāms multivides fails</string>
   <string name="QuoteView_sticker">Uzlīme</string>
   <string name="QuoteView_you">Jūs</string>

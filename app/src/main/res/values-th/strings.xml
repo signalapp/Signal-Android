@@ -1580,6 +1580,7 @@
   <string name="QuoteView_audio">เสียง</string>
   <string name="QuoteView_video">วิดีโอ</string>
   <string name="QuoteView_photo">รูปภาพ</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">สื่อที่ดูได้ครั้งเดียว</string>
   <string name="QuoteView_sticker">สติกเกอร์</string>
   <string name="QuoteView_you">คุณ</string>

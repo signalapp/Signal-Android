@@ -1809,6 +1809,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuoteView_audio">Dźwięk</string>
   <string name="QuoteView_video">Wideo</string>
   <string name="QuoteView_photo">Zdjęcie</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Multimedia jednorazowe</string>
   <string name="QuoteView_sticker">Naklejka</string>
   <string name="QuoteView_you">Ty</string>

@@ -1680,6 +1680,7 @@
   <string name="QuoteView_audio">Hljóð</string>
   <string name="QuoteView_video">Myndskeið</string>
   <string name="QuoteView_photo">Mynd</string>
+  <string name="QuoteView_gif">GIF-mynd</string>
   <string name="QuoteView_view_once_media">Skoða-einu-sinni margmiðlunarefni</string>
   <string name="QuoteView_sticker">Límmerki</string>
   <string name="QuoteView_you">Þú</string>

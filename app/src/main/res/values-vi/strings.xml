@@ -1563,6 +1563,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="QuoteView_audio">Âm thanh</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Ảnh</string>
+  <string name="QuoteView_gif">Ảnh GIF</string>
   <string name="QuoteView_view_once_media">Đa phương tiện xem một lần</string>
   <string name="QuoteView_sticker">Nhãn dán</string>
   <string name="QuoteView_you">Bạn</string>

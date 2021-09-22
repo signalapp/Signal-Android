@@ -1681,6 +1681,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Media visualizzabile una volta</string>
   <string name="QuoteView_sticker">Adesivo</string>
   <string name="QuoteView_you">Tu</string>

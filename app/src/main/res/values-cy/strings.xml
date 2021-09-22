@@ -1819,6 +1819,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
   <string name="QuoteView_photo">Llun</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Cyfrwng gweld unwaith</string>
   <string name="QuoteView_sticker">Sticer</string>
   <string name="QuoteView_you">Chi</string>

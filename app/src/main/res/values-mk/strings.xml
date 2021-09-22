@@ -1677,6 +1677,7 @@
   <string name="QuoteView_audio">Звук</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Слика</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Еднократно видлива медија</string>
   <string name="QuoteView_sticker">Стикер</string>
   <string name="QuoteView_you">Вие</string>

@@ -1641,6 +1641,7 @@
   <string name="QuoteView_audio">ऑडिओ</string>
   <string name="QuoteView_video">व्हिडिओ</string>
   <string name="QuoteView_photo">फोटो</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">एकदा-बघा मिडिया</string>
   <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_you">आपण</string>

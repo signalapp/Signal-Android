@@ -1613,6 +1613,7 @@
   <string name="QuoteView_audio">聲音</string>
   <string name="QuoteView_video">影片</string>
   <string name="QuoteView_photo">相</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">流聲掠影多媒體檔案</string>
   <string name="QuoteView_sticker">貼圖</string>
   <string name="QuoteView_you">您</string>
