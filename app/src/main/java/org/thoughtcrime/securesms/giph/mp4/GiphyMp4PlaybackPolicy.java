@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
+import android.os.Build;
+
 import com.google.android.exoplayer2.mediacodec.MediaCodecInfo;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
 import com.google.android.exoplayer2.util.MimeTypes;
@@ -34,7 +36,7 @@ public final class GiphyMp4PlaybackPolicy {
   }
 
   public static int maxSimultaneousPlaybackInConversation() {
-    return maxSimultaneousPlaybackWithRatio(1f - SEARCH_RESULT_RATIO);
+    return Build.VERSION.SDK_INT >= 23 ? maxSimultaneousPlaybackWithRatio(1f - SEARCH_RESULT_RATIO) : 0;
   }
 
   public static int maxSimultaneousPlaybackInSearchResults() {
