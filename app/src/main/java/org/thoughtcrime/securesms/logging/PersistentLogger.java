@@ -108,13 +108,18 @@ public class PersistentLogger extends Log.Logger {
 
     executor.execute(() -> {
       StringBuilder builder = new StringBuilder();
+      long entriesWritten = 0;
 
       try {
         File[] logs = getSortedLogFiles();
-        for (int i = logs.length - 1; i >= 0; i--) {
+        for (int i = logs.length - 1; i >= 0 && entriesWritten <= MAX_LOG_EXPORT; i--) {
           try {
             LogFile.Reader reader = new LogFile.Reader(secret, logs[i]);
-            builder.append(reader.readAll());
+            String entry;
+            while ((entry = reader.readEntry()) != null) {
+              entriesWritten++;
+              builder.append(entry).append('\n');
+            }
           } catch (IOException e) {
             android.util.Log.w(TAG, "Failed to read log at index " + i + ". Removing reference.");
             logs[i].delete();

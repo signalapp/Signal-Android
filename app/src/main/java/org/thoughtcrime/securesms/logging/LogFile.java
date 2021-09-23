@@ -123,7 +123,7 @@ class LogFile {
       return builder.toString();
     }
 
-    private String readEntry() throws IOException {
+    String readEntry() throws IOException {
       try {
         Util.readFully(inputStream, ivBuffer);
         Util.readFully(inputStream, intBuffer);

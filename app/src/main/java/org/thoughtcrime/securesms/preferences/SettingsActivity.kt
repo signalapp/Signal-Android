@@ -85,6 +85,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         helpTranslateButton.setOnClickListener { helpTranslate() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
+        supportButton.setOnClickListener { shareLogs() }
         val isLightMode = UiModeUtilities.isDayUiMode(this)
         oxenLogoImageView.setImageResource(if (isLightMode) R.drawable.oxen_light_mode else R.drawable.oxen_dark_mode)
         versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
@@ -319,6 +320,10 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     private fun clearAllData() {
         ClearAllDataDialog().show(supportFragmentManager, "Clear All Data Dialog")
+    }
+
+    private fun shareLogs() {
+        ShareLogsDialog().show(supportFragmentManager,"Share Logs Dialog")
     }
 
     // endregion
