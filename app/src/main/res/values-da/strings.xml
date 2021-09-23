@@ -1204,6 +1204,7 @@
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe er for stor til at ringe til alle deltagerne.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-opkald</string>
+  <string name="WebRtcCallView__signal_video_call">Signal videoopkald</string>
   <string name="WebRtcCallView__start_call">Foretag opkald</string>
   <string name="WebRtcCallView__join_call">Deltag i opkaldet</string>
   <string name="WebRtcCallView__call_is_full">Samtalen er fuld</string>
@@ -1837,6 +1838,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="verify_display_fragment__failed_to_verify_safety_number">Kunne ikke verificere sikkerhedsnummer</string>
   <string name="verify_display_fragment__loading">Henter…</string>
   <string name="verify_display_fragment__mark_as_verified">Markér som verificeret</string>
+  <string name="verify_display_fragment__clear_verification">Fjern verifikation</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhedsnummer</string>
   <!--verity_scan_fragment-->
@@ -2961,11 +2963,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Skift nummer</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Bekræfter %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha påkrævet</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Skift nummer</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du er ved at ændre dit telefonnummer fra %1$s til %2$s.\n\nFør du går videre, bedes du kontrollere, at nedenstående nummer er korrekt.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Redigér nummer</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal-nummerændring - Brug for hjælp med PIN-kode til Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Pinkoderne stemmer ikke overens</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Den pinkode, der er knyttet til dit nye nummer, er forskellig fra den pinkode, der er knyttet til dit gamle nummer. Vil du beholde din gamle pinkode eller opdatere den?</string>
@@ -3122,6 +3126,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConversationSettingsFragment__group_link">Gruppelink</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Tilføj som en kontakt</string>
   <string name="ConversationSettingsFragment__unmute">Aktivér lyd</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtale dæmpet indtil %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Samtale dæmpet for evigt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierede telefonnummer til udklipsholder.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
   <!--PermissionsSettingsFragment-->
@@ -3136,12 +3142,18 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Udsæt meddelelser</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ikke udsat</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Dæmpet indtil %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Omtaler</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Underret altid</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Underret ikke</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Brugerdefinerede notifikationer</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Senest brugte</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1,5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Ny betaling</string>
   <!--NewConversationActivity-->
@@ -3164,6 +3176,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Gem</string>
   <string name="AvatarPickerFragment__select_an_avatar">Vælg en avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Fjern avatar</string>
   <string name="AvatarPickerFragment__edit">Redigér</string>
   <string name="AvatarPickerRepository__failed_to_save_avatar">Kunne ikke gemme avatar</string>
   <!--TextAvatarCreationFragment-->
@@ -3175,8 +3188,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="VectorAvatarCreationFragment__select_a_color">Vælg en farve</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Naviger opad</string>
+  <string name="MultiselectForwardFragment__forward_to">Videresend til</string>
   <string name="MultiselectForwardFragment__add_a_message">Tilføj en besked</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Hurtigere videresendelser</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Videresendte beskeder sendes nu øjeblikkeligt.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Send %1$d besked</item>
