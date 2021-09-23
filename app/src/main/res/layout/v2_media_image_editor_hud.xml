@@ -228,7 +228,6 @@
             app:layout_constraintBottom_toBottomOf="@id/image_editor_hud_draw_color_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/image_editor_hud_draw_color_bar"
-            app:srcCompat="@drawable/ic_draw_white_24"
             tools:alpha="1"
             tools:visibility="visible" />
 
@@ -255,7 +254,6 @@
             android:id="@+id/image_editor_hud_draw_width_bar"
             android:layout_width="174dp"
             android:layout_height="48dp"
-            android:progressDrawable="@drawable/ic_width_slider_bg"
             android:rotation="270"
             android:splitTrack="false"
             android:visibility="gone"

@@ -181,6 +181,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   @SuppressLint("ClickableViewAccessibility")
   private fun setupWidthSeekBar() {
+    widthSeekBar.progressDrawable = AppCompatResources.getDrawable(context, R.drawable.ic_width_slider_bg)
     widthSeekBar.thumb = HSVColorSlider.createThumbDrawable(Color.WHITE)
     widthSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
