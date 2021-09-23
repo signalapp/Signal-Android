@@ -15,6 +15,9 @@
  */
 package org.thoughtcrime.securesms;
 
+import static nl.komponents.kovenant.android.KovenantAndroid.startKovenant;
+import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -48,24 +51,23 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.groups.OpenGroupManager;
+import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
+import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
-import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.notifications.BackgroundPollWorker;
-import org.thoughtcrime.securesms.notifications.LokiPushNotificationManager;
-import org.thoughtcrime.securesms.groups.OpenGroupManager;
-import org.thoughtcrime.securesms.database.LokiAPIDatabase;
-import org.thoughtcrime.securesms.util.Broadcaster;
-import org.thoughtcrime.securesms.notifications.FcmUtils;
-import org.thoughtcrime.securesms.util.UiModeUtilities;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
+import org.thoughtcrime.securesms.notifications.FcmUtils;
+import org.thoughtcrime.securesms.notifications.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -75,6 +77,8 @@ import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.sskenvironment.ProfileManager;
 import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
 import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
+import org.thoughtcrime.securesms.util.Broadcaster;
+import org.thoughtcrime.securesms.util.UiModeUtilities;
 import org.thoughtcrime.securesms.util.dynamiclanguage.LocaleParseHelper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
@@ -92,9 +96,6 @@ import dagger.ObjectGraph;
 import kotlin.Unit;
 import kotlinx.coroutines.Job;
 import network.loki.messenger.BuildConfig;
-
-import static nl.komponents.kovenant.android.KovenantAndroid.startKovenant;
-import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -276,7 +277,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     }
 
     private void initializeLogging() {
-        Log.initialize(new AndroidLogger());
+        Log.initialize(new AndroidLogger(), new PersistentLogger(this));
     }
 
     private void initializeCrashHandling() {
