@@ -74,6 +74,7 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
+  private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport.2";
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
@@ -111,6 +112,7 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
+      MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
@@ -162,6 +164,7 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
+      MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
@@ -346,6 +349,10 @@ public final class FeatureFlags {
   /** The minimum total memory for rendering animated stickers in the keyboard and such */
   public static int animatedStickerMinimumTotalMemoryMb() {
     return getInteger(ANIMATED_STICKER_MIN_TOTAL_MEMORY, (int) ByteUnit.GIGABYTES.toMegabytes(3));
+  }
+
+  public static boolean mp4GifSendSupport() {
+    return getBoolean(MP4_GIF_SEND_SUPPORT, false);
   }
 
   public static @NonNull String getMediaQualityLevels() {

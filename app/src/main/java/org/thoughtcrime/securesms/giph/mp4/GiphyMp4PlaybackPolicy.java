@@ -23,6 +23,10 @@ public final class GiphyMp4PlaybackPolicy {
 
   private GiphyMp4PlaybackPolicy() { }
 
+  public static boolean sendAsMp4() {
+    return FeatureFlags.mp4GifSendSupport();
+  }
+
   public static boolean autoplay() {
     return !DeviceProperties.isLowMemoryDevice(ApplicationDependencies.getApplication());
   }
