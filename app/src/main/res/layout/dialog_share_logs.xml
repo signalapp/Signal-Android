@@ -42,10 +42,10 @@
             android:text="@string/cancel" />
 
         <Button
-            style="@style/Widget.Session.Button.Dialog"
+            style="@style/Widget.Session.Button.Dialog.Unimportant"
             android:id="@+id/shareButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             android:layout_marginStart="@dimen/medium_spacing"
             android:text="@string/share" />

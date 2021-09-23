@@ -124,6 +124,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
     private Handler conversationListNotificationHandler;
+    private PersistentLogger persistentLogger;
 
     private volatile boolean isAppVisible;
 
@@ -133,6 +134,10 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
     public Handler getConversationListNotificationHandler() {
         return this.conversationListNotificationHandler;
+    }
+
+    public PersistentLogger getPersistentLogger() {
+        return this.persistentLogger;
     }
 
 @Override
@@ -277,7 +282,10 @@ public class ApplicationContext extends Application implements DependencyInjecto
     }
 
     private void initializeLogging() {
-        Log.initialize(new AndroidLogger(), new PersistentLogger(this));
+        if (persistentLogger == null) {
+            persistentLogger = new PersistentLogger(this);
+        }
+        Log.initialize(new AndroidLogger(), persistentLogger);
     }
 
     private void initializeCrashHandling() {
