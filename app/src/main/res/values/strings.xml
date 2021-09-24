@@ -1781,6 +1781,7 @@
     <string name="MessageNotifier_reacted_s_to_s">Reacted %1$s to: \"%2$s\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Reacted %1$s to your video.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Reacted %1$s to your image.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reacted %1$s to your GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Reacted %1$s to your file.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reacted %1$s to your audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacted %1$s to your view-once media.</string>
