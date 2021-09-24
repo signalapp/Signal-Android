@@ -30,18 +30,14 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
-import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.video.exo.SignalDataSource;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -61,6 +57,8 @@ public class VideoPlayer extends FrameLayout {
   private PlayerCallback                      playerCallback;
   private boolean                             clipped;
   private long                                clippedStartUs;
+  private ExoPlayerListener                   exoPlayerListener;
+  private Player.Listener                     playerListener;
 
   public VideoPlayer(Context context) {
     this(context, null);
@@ -78,51 +76,49 @@ public class VideoPlayer extends FrameLayout {
     this.exoView     = findViewById(R.id.video_view);
     this.exoControls = new PlayerControlView(getContext());
     this.exoControls.setShowTimeoutMs(-1);
+
+    this.exoPlayerListener = new ExoPlayerListener(this, window, playerStateCallback, playerPositionDiscontinuityCallback);
+    this.playerListener = new Player.Listener() {
+      @Override
+      public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+        onPlaybackStateChanged(playWhenReady, exoPlayer.getPlaybackState());
+      }
+
+      @Override
+      public void onPlaybackStateChanged(int playbackState) {
+        onPlaybackStateChanged(exoPlayer.getPlayWhenReady(), playbackState);
+      }
+
+      private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
+        if (playerCallback != null) {
+          switch (playbackState) {
+            case Player.STATE_READY:
+              if (playWhenReady) playerCallback.onPlaying();
+              break;
+            case Player.STATE_ENDED:
+              playerCallback.onStopped();
+              break;
+          }
+        }
+      }
+
+      @Override
+      public void onPlayerError(@NonNull PlaybackException error) {
+        Log.w(TAG, "A player error occurred", error);
+        if (playerCallback != null) {
+          playerCallback.onError();
+        }
+      }
+    };
   }
 
   private MediaItem mediaItem;
 
   public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay) {
-    Context context = getContext();
-
     if (exoPlayer == null) {
-      DataSource.Factory attachmentDataSourceFactory = new SignalDataSource.Factory(context, null, null);
-      MediaSourceFactory mediaSourceFactory          = new DefaultMediaSourceFactory(attachmentDataSourceFactory);
-
-      exoPlayer = new SimpleExoPlayer.Builder(context).setMediaSourceFactory(mediaSourceFactory).build();
-      exoPlayer.addListener(new ExoPlayerListener(this, window, playerStateCallback, playerPositionDiscontinuityCallback));
-      exoPlayer.addListener(new Player.Listener() {
-        @Override
-        public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
-          onPlaybackStateChanged(playWhenReady, exoPlayer.getPlaybackState());
-        }
-
-        @Override
-        public void onPlaybackStateChanged(int playbackState) {
-          onPlaybackStateChanged(exoPlayer.getPlayWhenReady(), playbackState);
-        }
-
-        private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
-          if (playerCallback != null) {
-            switch (playbackState) {
-              case Player.STATE_READY:
-                if (playWhenReady) playerCallback.onPlaying();
-                break;
-              case Player.STATE_ENDED:
-                playerCallback.onStopped();
-                break;
-            }
-          }
-        }
-
-        @Override
-        public void onPlayerError(@NonNull PlaybackException error) {
-          Log.w(TAG, "A player error occurred", error);
-          if (playerCallback != null) {
-            playerCallback.onError();
-          }
-        }
-      });
+      exoPlayer = ApplicationDependencies.getExoPlayerPool().require();
+      exoPlayer.addListener(exoPlayerListener);
+      exoPlayer.addListener(playerListener);
       exoView.setPlayer(exoPlayer);
       exoControls.setPlayer(exoPlayer);
     }
@@ -159,7 +155,16 @@ public class VideoPlayer extends FrameLayout {
 
   public void cleanup() {
     if (this.exoPlayer != null) {
-      this.exoPlayer.release();
+      exoPlayer.stop();
+      exoPlayer.clearMediaItems();
+
+      exoView.setPlayer(null);
+      exoControls.setPlayer(null);
+
+      exoPlayer.removeListener(playerListener);
+      exoPlayer.removeListener(exoPlayerListener);
+
+      ApplicationDependencies.getExoPlayerPool().pool(exoPlayer);
       this.exoPlayer = null;
     }
   }

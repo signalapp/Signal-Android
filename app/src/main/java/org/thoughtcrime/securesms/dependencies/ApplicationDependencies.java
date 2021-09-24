@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
+import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -99,7 +100,8 @@ public class ApplicationDependencies {
   private static volatile TextSecureSessionStore       sessionStore;
   private static volatile TextSecurePreKeyStore        preKeyStore;
   private static volatile SignalSenderKeyStore         senderKeyStore;
-  private static volatile GiphyMp4Cache                giphyMp4Cache;
+  private static volatile GiphyMp4Cache       giphyMp4Cache;
+  private static volatile SimpleExoPlayerPool exoPlayerPool;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -564,6 +566,17 @@ public class ApplicationDependencies {
     return giphyMp4Cache;
   }
 
+  public static @NonNull SimpleExoPlayerPool getExoPlayerPool() {
+    if (exoPlayerPool == null) {
+      synchronized (LOCK) {
+        if (exoPlayerPool == null) {
+          exoPlayerPool = provider.provideExoPlayerPool();
+        }
+      }
+    }
+    return exoPlayerPool;
+  }
+
   public interface Provider {
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
@@ -597,5 +610,6 @@ public class ApplicationDependencies {
     @NonNull TextSecurePreKeyStore providePreKeyStore();
     @NonNull SignalSenderKeyStore provideSenderKeyStore();
     @NonNull GiphyMp4Cache provideGiphyMp4Cache();
+    @NonNull SimpleExoPlayerPool provideExoPlayerPool();
   }
 }

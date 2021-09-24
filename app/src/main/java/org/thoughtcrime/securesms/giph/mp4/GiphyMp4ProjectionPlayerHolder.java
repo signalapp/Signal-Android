@@ -8,15 +8,20 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.video.exo.ExoPlayerKt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +29,9 @@ import java.util.List;
 /**
  * Object which holds on to an injected video player.
  */
-public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
+public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, DefaultLifecycleObserver {
+  private static final String TAG = Log.tag(GiphyMp4ProjectionPlayerHolder.class);
+
   private final FrameLayout         container;
   private final GiphyMp4VideoPlayer player;
 
@@ -45,6 +52,20 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
     this.mediaItem      = mediaItem;
     this.policyEnforcer = policyEnforcer;
 
+    if (player.getExoPlayer() == null) {
+      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get();
+
+      if (fromPool == null) {
+        Log.i(TAG, "Could not get exoplayer from pool.");
+        return;
+      } else {
+        ExoPlayerKt.configureForGifPlayback(fromPool);
+        fromPool.addListener(this);
+      }
+
+      player.setExoPlayer(fromPool);
+    }
+
     player.setVideoItem(mediaItem);
     player.play();
   }
@@ -52,7 +73,14 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
   public void clearMedia() {
     this.mediaItem      = null;
     this.policyEnforcer = null;
-    player.stop();
+
+    SimpleExoPlayer exoPlayer = player.getExoPlayer();
+    if (exoPlayer != null) {
+      player.stop();
+      player.setExoPlayer(null);
+      exoPlayer.removeListener(this);
+      ApplicationDependencies.getExoPlayerPool().pool(exoPlayer);
+    }
   }
 
   public @Nullable MediaItem getMediaItem() {
@@ -98,25 +126,46 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
     }
   }
 
+  @Override
+  public void onResume(@NonNull LifecycleOwner owner) {
+    if (mediaItem != null) {
+      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get();
+      if (fromPool != null) {
+        ExoPlayerKt.configureForGifPlayback(fromPool);
+        fromPool.addListener(this);
+        player.setExoPlayer(fromPool);
+        player.setVideoItem(mediaItem);
+        player.play();
+      }
+    }
+  }
+
+  @Override
+  public void onPause(@NonNull LifecycleOwner owner) {
+    if (player.getExoPlayer() != null) {
+      player.getExoPlayer().stop();
+      player.getExoPlayer().clearMediaItems();
+      player.getExoPlayer().removeListener(this);
+      ApplicationDependencies.getExoPlayerPool().pool(player.getExoPlayer());
+      player.setExoPlayer(null);
+    }
+  }
+
   public static @NonNull List<GiphyMp4ProjectionPlayerHolder> injectVideoViews(@NonNull Context context,
                                                                                @NonNull Lifecycle lifecycle,
                                                                                @NonNull ViewGroup viewGroup,
                                                                                int nPlayers)
   {
-    List<GiphyMp4ProjectionPlayerHolder> holders        = new ArrayList<>(nPlayers);
-    GiphyMp4ExoPlayerProvider            playerProvider = new GiphyMp4ExoPlayerProvider(context);
+    List<GiphyMp4ProjectionPlayerHolder> holders = new ArrayList<>(nPlayers);
 
     for (int i = 0; i < nPlayers; i++) {
       FrameLayout container = (FrameLayout) LayoutInflater.from(context)
                                                           .inflate(R.layout.giphy_mp4_player, viewGroup, false);
-      GiphyMp4VideoPlayer            player    = container.findViewById(R.id.video_player);
-      ExoPlayer                      exoPlayer = playerProvider.create();
-      GiphyMp4ProjectionPlayerHolder holder    = new GiphyMp4ProjectionPlayerHolder(container, player);
+      GiphyMp4VideoPlayer            player = container.findViewById(R.id.video_player);
+      GiphyMp4ProjectionPlayerHolder holder = new GiphyMp4ProjectionPlayerHolder(container, player);
 
-      lifecycle.addObserver(player);
-      player.setExoPlayer(exoPlayer);
+      lifecycle.addObserver(holder);
       player.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
-      exoPlayer.addListener(holder);
 
       holders.add(holder);
       viewGroup.addView(container);

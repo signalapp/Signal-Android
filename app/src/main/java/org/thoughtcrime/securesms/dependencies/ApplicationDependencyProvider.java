@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -287,6 +288,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull GiphyMp4Cache provideGiphyMp4Cache() {
     return new GiphyMp4Cache(ByteUnit.MEGABYTES.toBytes(16));
+  }
+
+  @Override
+  public @NonNull SimpleExoPlayerPool provideExoPlayerPool() {
+    return new SimpleExoPlayerPool(context);
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

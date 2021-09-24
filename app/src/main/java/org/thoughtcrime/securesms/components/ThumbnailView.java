@@ -439,7 +439,7 @@ public class ThumbnailView extends FrameLayout {
                                           .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                           .transition(withCrossFade()), fit);
 
-    boolean doNotShowMissingThumbnailImage = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation() == 0;
+    boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
 
     if (slide.isInProgress() || doNotShowMissingThumbnailImage) return request;
     else                                                        return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
