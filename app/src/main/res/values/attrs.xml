@@ -326,4 +326,9 @@
         <attr name="bsiv_label" format="string" />
         <attr name="bsiv_icon_contentDescription" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="BadgeImageView">
+        <attr name="badge_outline_width" format="dimension" />
+        <attr name="badge_outline_color" format="color" />
+    </declare-styleable>
 </resources>

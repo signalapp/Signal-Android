@@ -1031,6 +1031,14 @@ public class Recipient {
     return badges;
   }
 
+  public @Nullable Badge getFeaturedBadge() {
+    if (badges.isEmpty()) {
+      return null;
+    } else {
+      return badges.get(0);
+    }
+  }
+
   public @Nullable String getCombinedAboutAndEmoji() {
     if (!Util.isEmpty(aboutEmoji)) {
       if (!Util.isEmpty(about)) {

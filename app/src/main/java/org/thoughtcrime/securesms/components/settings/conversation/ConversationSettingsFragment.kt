@@ -259,6 +259,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
                 )
               }
             }
+          },
+          onBadgeClick = { badge ->
+            ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, state.recipient.id, badge)
           }
         )
       )

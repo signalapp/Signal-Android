@@ -3854,6 +3854,8 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Become a sustainer</string>
 
+    <string name="ImageView__badge">Badge</string>
+
     <!-- EOF -->
 
 </resources>

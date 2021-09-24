@@ -42,6 +42,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.Unbindable;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
@@ -105,6 +106,7 @@ public final class ConversationListItem extends ConstraintLayout
   private boolean             batchMode;
   private Locale              locale;
   private String              highlightSubstring;
+  private BadgeImageView      badge;
 
   private int             unreadCount;
   private AvatarImageView contactPhotoImage;
@@ -135,6 +137,7 @@ public final class ConversationListItem extends ConstraintLayout
     this.thumbnailView           = findViewById(R.id.conversation_list_item_thumbnail);
     this.archivedView            = findViewById(R.id.conversation_list_item_archived);
     this.unreadIndicator         = findViewById(R.id.conversation_list_item_unread_indicator);
+    this.badge                   = findViewById(R.id.conversation_list_item_badge);
     thumbnailView.setClickable(false);
   }
 
@@ -201,6 +204,7 @@ public final class ConversationListItem extends ConstraintLayout
     setThumbnailSnippet(thread);
     setBatchMode(batchMode);
     setRippleColor(recipient.get());
+    badge.setBadgeFromRecipient(recipient.get());
     setUnreadIndicator(thread);
     this.contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
@@ -428,6 +432,7 @@ public final class ConversationListItem extends ConstraintLayout
     }
     contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
     setRippleColor(recipient);
+    badge.setBadgeFromRecipient(recipient);
   }
 
   private static @NonNull LiveData<SpannableString> getThreadDisplayBody(@NonNull Context context, @NonNull ThreadRecord thread) {
