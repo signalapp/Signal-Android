@@ -178,7 +178,11 @@ class ConversationSettingsRepository(
   fun block(recipientId: RecipientId) {
     SignalExecutors.BOUNDED.execute {
       val recipient = Recipient.resolved(recipientId)
-      RecipientUtil.blockNonGroup(context, recipient)
+      if (recipient.isGroup) {
+        RecipientUtil.block(context, recipient)
+      } else {
+        RecipientUtil.blockNonGroup(context, recipient)
+      }
     }
   }
 
