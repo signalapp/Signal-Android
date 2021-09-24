@@ -343,7 +343,9 @@ public class EditProfileFragment extends LoggingFragment {
       @Override
       public void onAnimationEnd(Animator animation) {
         finishButton.setProgress(0);
-        if (nextIntent != null)  startActivity(nextIntent);
+        if (nextIntent != null && getActivity() != null) {
+          startActivity(nextIntent);
+        }
 
         controller.onProfileNameUploadCompleted();
       }
