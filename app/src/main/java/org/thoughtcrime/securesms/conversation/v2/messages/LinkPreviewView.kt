@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
-import android.text.method.LinkMovementMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -11,20 +10,17 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.text.getSpans
-import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_link_preview.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.components.CornerMask
-import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
+import org.thoughtcrime.securesms.conversation.v2.ModalUrlBottomSheet
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
-import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.util.UiModeUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.ImageSlide
+import org.thoughtcrime.securesms.util.UiModeUtilities
 
 class LinkPreviewView : LinearLayout {
     private val cornerMask by lazy { CornerMask(this) }
@@ -97,7 +93,7 @@ class LinkPreviewView : LinearLayout {
     fun openURL() {
         val url = this.url ?: return
         val activity = context as AppCompatActivity
-        OpenURLDialog(url).show(activity.supportFragmentManager, "Open URL Dialog")
+        ModalUrlBottomSheet(url).show(activity.supportFragmentManager, "Open URL Dialog")
     }
     // endregion
 }

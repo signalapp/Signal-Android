@@ -15,23 +15,18 @@ import org.session.libsession.messaging.sending_receiving.notifications.PushNoti
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.GroupRecord
+import org.session.libsession.utilities.*
 import org.session.libsession.utilities.recipients.Recipient
-import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.SSKEnvironment
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.ProfileKeyUtil
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.protos.SignalServiceProtos
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.guava.Optional
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import java.security.MessageDigest
 import java.util.*
 import kotlin.collections.ArrayList
@@ -285,7 +280,8 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     val userPublicKey = TextSecurePreferences.getLocalNumber(context)
     // Create the group
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
-    if (storage.getGroup(groupID) != null) {
+    val groupExists = storage.getGroup(groupID) != null
+    if (groupExists) {
         // Update the group
         if (!storage.isGroupActive(groupPublicKey)) {
             // Clear zombie list if the group wasn't active
@@ -309,10 +305,10 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, storage.getUserPublicKey()!!)
     // Notify the user
-    if (userPublicKey == sender) {
+    if (userPublicKey == sender && !groupExists) {
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
         storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, threadID, sentTimestamp)
-    } else {
+    } else if (userPublicKey != sender) {
         storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, sentTimestamp)
     }
     // Start polling

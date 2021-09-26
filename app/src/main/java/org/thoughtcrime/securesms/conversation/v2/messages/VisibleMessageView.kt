@@ -59,6 +59,7 @@ class VisibleMessageView : LinearLayout {
         const val longPressMovementTreshold = 10.0f // dp
         const val longPressDurationThreshold = 250L // ms
         const val maxDoubleTapInterval = 200L
+        const val maxTimeBetweenBreaks = 5 * 60 * 1000L // 5 minutes
     }
 
     // region Lifecycle
@@ -111,7 +112,7 @@ class VisibleMessageView : LinearLayout {
             senderNameTextView.visibility = View.GONE
         }
         // Date break
-        val showDateBreak = (previous == null || !DateUtils.isSameHour(message.timestamp, previous.timestamp))
+        val showDateBreak = (previous == null || message.timestamp - previous.timestamp > maxTimeBetweenBreaks)
         dateBreakTextView.isVisible = showDateBreak
         dateBreakTextView.text = if (showDateBreak) DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), message.timestamp) else ""
         // Timestamp
@@ -217,7 +218,9 @@ class VisibleMessageView : LinearLayout {
                 if (message.expireStarted + message.expiresIn <= System.currentTimeMillis()) {
                     ApplicationContext.getInstance(context).expiringMessageManager.checkSchedule()
                 }
-            } else if (!message.isOutgoing && !message.isMediaPending) {
+            } else if (!message.isMediaPending) {
+                expirationTimerView.setPercentComplete(0.0f)
+                expirationTimerView.stopAnimation()
                 ThreadUtils.queue {
                     val expirationManager = ApplicationContext.getInstance(context).expiringMessageManager
                     val id = message.getId()
@@ -225,6 +228,9 @@ class VisibleMessageView : LinearLayout {
                     if (mms) DatabaseFactory.getMmsDatabase(context).markExpireStarted(id) else DatabaseFactory.getSmsDatabase(context).markExpireStarted(id)
                     expirationManager.scheduleDeletion(id, mms, message.expiresIn)
                 }
+            } else {
+                expirationTimerView.stopAnimation()
+                expirationTimerView.setPercentComplete(0.0f)
             }
         } else {
             expirationTimerView.isVisible = false

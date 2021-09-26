@@ -3,10 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.Manifest
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
@@ -237,7 +234,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpLinkPreviewObserver()
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
-        scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
+        scrollToBottomButton.setOnClickListener {
+            val layoutManager = conversationRecyclerView.layoutManager ?: return@setOnClickListener
+            if (layoutManager.isSmoothScrolling) {
+                conversationRecyclerView.scrollToPosition(0)
+            } else {
+                conversationRecyclerView.smoothScrollToPosition(0)
+            }
+        }
         unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
         updateUnreadCountIndicator()
         setUpTypingObserver()
@@ -972,7 +976,23 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun showGIFPicker() {
-        AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
+        val hasSeenGIFMetaDataWarning: Boolean = TextSecurePreferences.hasSeenGIFMetaDataWarning(this)
+        if (!hasSeenGIFMetaDataWarning) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Search GIFs?")
+            builder.setMessage("You will not have full metadata protection when sending GIFs.")
+            builder.setPositiveButton("OK") { dialog: DialogInterface, which: Int ->
+                TextSecurePreferences.setHasSeenGIFMetaDataWarning(this)
+                AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
+                dialog.dismiss()
+            }
+            builder.setNegativeButton(
+                "Cancel"
+            ) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
+            builder.create().show()
+        } else {
+            AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
+        }
     }
 
     private fun showDocumentPicker() {
@@ -1325,12 +1345,21 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun copyMessages(messages: Set<MessageRecord>) {
         val sortedMessages = messages.sortedBy { it.dateSent }
+        val messageSize = sortedMessages.size
         val builder = StringBuilder()
-        for (message in sortedMessages) {
+        val messageIterator = sortedMessages.iterator()
+        while (messageIterator.hasNext()) {
+            val message = messageIterator.next()
             val body = MentionUtilities.highlightMentions(message.body, threadID, this)
             if (TextUtils.isEmpty(body)) { continue }
-            val formattedTimestamp = DateUtils.getDisplayFormattedTimeSpanString(this, Locale.getDefault(), message.timestamp)
-            builder.append("$formattedTimestamp: $body").append('\n')
+            if (messageSize > 1) {
+                val formattedTimestamp = DateUtils.getDisplayFormattedTimeSpanString(this, Locale.getDefault(), message.timestamp)
+                builder.append("$formattedTimestamp: ")
+            }
+            builder.append(body)
+            if (messageIterator.hasNext()) {
+                builder.append('\n')
+            }
         }
         if (builder.isNotEmpty() && builder[builder.length - 1] == '\n') {
             builder.deleteCharAt(builder.length - 1)

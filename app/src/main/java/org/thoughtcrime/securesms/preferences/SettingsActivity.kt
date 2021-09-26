@@ -33,15 +33,11 @@ import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
-import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
-import org.thoughtcrime.securesms.util.UiModeUtilities
-import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
-import org.thoughtcrime.securesms.util.BitmapDecodingException
-import org.thoughtcrime.securesms.util.BitmapUtil
+import org.thoughtcrime.securesms.util.*
 import java.io.File
 import java.security.SecureRandom
 import java.util.*
@@ -85,6 +81,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         chatsButton.setOnClickListener { showChatSettings() }
         sendInvitationButton.setOnClickListener { sendInvitation() }
         faqButton.setOnClickListener { showFAQ() }
+        surveyButton.setOnClickListener { showSurvey() }
         helpTranslateButton.setOnClickListener { helpTranslate() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
@@ -289,6 +286,16 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun showFAQ() {
         try {
             val url = "https://getsession.org/faq"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Can't open URL", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun showSurvey() {
+        try {
+            val url = "https://getsession.org/survey"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         } catch (e: Exception) {

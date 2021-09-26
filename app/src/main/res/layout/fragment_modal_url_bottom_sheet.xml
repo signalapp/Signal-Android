@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:gravity="center_horizontal"
+    android:paddingTop="@dimen/large_spacing">
+
+    <TextView
+        android:id="@+id/openURLTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_open_url_title"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:textSize="@dimen/large_font_size" />
+
+    <TextView
+        android:id="@+id/openURLExplanationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_open_url_explanation"
+        android:paddingHorizontal="@dimen/medium_spacing"
+        android:textColor="@color/text"
+        android:textSize="@dimen/small_font_size"
+        android:layout_margin="@dimen/large_spacing"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/openURLButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/BottomSheetActionItem"
+        android:text="@string/open"
+        />
+
+    <TextView
+        android:id="@+id/copyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/BottomSheetActionItem"
+        android:text="@string/copy_url"
+        />
+
+    <TextView
+        android:textColor="@color/destructive"
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/BottomSheetActionItem"
+        android:text="@string/cancel"
+        />
+
+</LinearLayout>
