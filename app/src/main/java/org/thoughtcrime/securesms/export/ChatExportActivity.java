@@ -9,10 +9,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
+//import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -20,14 +21,16 @@ import org.thoughtcrime.securesms.util.FullscreenHelper;
 
 public class ChatExportActivity extends PassphraseRequiredActivity {
 
-    private static final String RECIPIENT_ID      = "RECIPIENT_ID";
+    private static final String TAG                = ChatExportActivity.class.getSimpleName ();
+
+    private static final String RECIPIENT_EXTRA = "recipient_id";
 
     private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
     private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
     public static Intent createIntent(Context requireContext, RecipientId recipientId) {
         Intent intent = new Intent(requireContext, ChatExportActivity.class);
-        intent.putExtra(RECIPIENT_ID, recipientId);
+        intent.putExtra(RECIPIENT_EXTRA, recipientId);
         return intent;
     }
 
@@ -39,7 +42,8 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean ready) {
-        ChatExportViewModel.Factory factory = new ChatExportViewModel.Factory(getIntent().getParcelableExtra(RECIPIENT_ID));
+        ChatExportViewModel.Factory factory = new ChatExportViewModel.Factory(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
+        Log.w(TAG, getIntent().getParcelableExtra(RECIPIENT_EXTRA).toString());
         ViewModelProviders.of(this, factory).get(ChatExportViewModel.class);
 
         dynamicTheme.onCreate(this);
@@ -51,7 +55,7 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
         toolbar.setNavigationOnClickListener(unused -> {
             if (!Navigation.findNavController(this, R.id.nav_host_fragment).popBackStack()) {
                 finish();
-                ActivityTransitionUtil.setSlideOutTransition(this);
+                //ActivityTransitionUtil.setSlideOutTransition(this);
             }
         });
 
@@ -66,7 +70,7 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ActivityTransitionUtil.setSlideOutTransition(this);
+        //ActivityTransitionUtil.setSlideOutTransition(this);
     }
 
     @Override

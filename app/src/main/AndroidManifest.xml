@@ -38,7 +38,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-                     android:maxSdkVersion="28" />
+                     tools:remove="android:maxSdkVersion" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -407,6 +407,12 @@
         </activity>
 
         <activity android:name=".wallpaper.ChatWallpaperPreviewActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".export.ChatExportActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>

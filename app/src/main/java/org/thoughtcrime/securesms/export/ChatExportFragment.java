@@ -49,12 +49,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The ChatExportFragment include the management elements
+ * The ChatExportFragment include the management elements of the settings
  * for starting the conversation export process.
  *
  * @author  @anlaji
  * @version 2.5 add_export_chats_feature
- * @since   2021-09-14
+ * @since   2021-09-26
  */
 
 
@@ -62,7 +62,7 @@ public class ChatExportFragment extends Fragment {
 
     private static final String TAG = ChatExportFragment.class.getSimpleName ();
 
-    private static final String      RECIPIENT_ID      = "RECIPIENT_ID";
+    private static final String      RECIPIENT_ID      = "recipient_id";
     private static final String      FROM_CONVERSATION = "FROM_CONVERSATION";
     private static final short       RESULT_GALLERY    = 1;
 
@@ -70,13 +70,7 @@ public class ChatExportFragment extends Fragment {
     private        ChatExportViewModel     viewModel;
     private static long                    existingThread;
 
-    private View         allMedia;
-    private View         htmlViewer;
-    private SwitchCompat allMediaSwitch;
-    private SwitchCompat htmlViewerSwitch;
-    private View         selectTimePeriod;
-    private TextView     selectedTimePeriod;
-    private Button       exportButton;
+
 
     private        boolean       includeHTMLViewer;
     private        boolean       includeAllMedia;
@@ -84,36 +78,34 @@ public class ChatExportFragment extends Fragment {
     private static ChatExportZipUtil zip;
 
 
-    public ChatExportFragment newInstance (@NonNull RecipientId recipientId, boolean fromConversation) {
-        ChatExportFragment fragment = new ChatExportFragment ();
-        Bundle args = new Bundle ();
-        args.putParcelable (RECIPIENT_ID, recipientId);
-        args.putBoolean (FROM_CONVERSATION, fromConversation);
-        fragment.setArguments (args);
-        return fragment;
-    }
-
-    @Override
+    @SuppressLint("LogTagInlined") @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate (R.layout.chat_export_fragment, container, false);
         assert getArguments () != null;
-        existingThread = DatabaseFactory.getThreadDatabase (this.getContext ()).getThreadIdIfExistsFor (getArguments ().getParcelable (RECIPIENT_ID));
 
-        this.allMediaSwitch = view.findViewById (R.id.include_all_media_switch);
-        this.allMedia = view.findViewById (R.id.include_all_media);
-        this.htmlViewerSwitch = view.findViewById (R.id.include_html_viewer_switch);
-        this.htmlViewer = view.findViewById (R.id.include_html_viewer);
-        this.selectTimePeriod = view.findViewById (R.id.chat_export_select_time_period);
-        this.selectedTimePeriod = view.findViewById (R.id.chat_export_selected_time_period);
-        this.exportButton = view.findViewById (R.id.chat_export_button);
+        Log.w(TAG, String.valueOf(getArguments ().size()));
+        RecipientId rId = (RecipientId) getActivity().getIntent().getExtras().get(RECIPIENT_ID);
+        if(rId!=null)
+        Log.w(TAG, rId.toString());
+        existingThread = DatabaseFactory.getThreadDatabase (this.getContext ()).getThreadIdIfExistsFor (rId);
+        Log.w(TAG, String.valueOf(existingThread));
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         viewModel  = ViewModelProviders.of(requireActivity()).get(ChatExportViewModel.class);
+
+        View         allMedia = view.findViewById (R.id.include_all_media);
+        View         htmlViewer = view.findViewById (R.id.include_html_viewer);
+        SwitchCompat allMediaSwitch = view.findViewById (R.id.include_all_media_switch);
+        SwitchCompat htmlViewerSwitch = view.findViewById (R.id.include_html_viewer_switch);
+        View         selectTimePeriod = view.findViewById (R.id.chat_export_select_time_period);
+        TextView     selectedTimePeriod = view.findViewById (R.id.chat_export_selected_time_period);
+        Button       exportButton = view.findViewById (R.id.chat_export_button);
+
         allMedia.setOnClickListener(v -> viewModel.toggleSelectAllMedia ());
 
         viewModel.getAllMedia().observe(getViewLifecycleOwner(), shouldIncludeAllMedia -> {
@@ -166,20 +158,17 @@ public class ChatExportFragment extends Fragment {
                 .setView(R.layout.chatexport_choose_location_dialog)
                 .setCancelable(true)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
-                .setPositiveButton(R.string.ChatExportDialog_choose_folder, ((dialog, which) -> {
+                .setPositiveButton(R.string.ChatExportDialog_choose_folder, (dialog, which) -> {
                     if (Build.VERSION.SDK_INT >= 23) {
                         dialog.dismiss();
-                        if (isUserSelectionRequired (getContext ())) {
+                        if (isUserSelectionRequired (getContext ()))
                             openGallery();
-                        } else {
+                        else
                             allowPermissionForFile();
-                        }
-                    } else {
-                        if (Build.VERSION.SDK_INT >= 21) {
+                    } else
+                        if (Build.VERSION.SDK_INT >= 21)
                             openGallery();
-                        }
-                    }
-                }))
+                })
                 .create()
                 .show();
 
@@ -198,7 +187,6 @@ public class ChatExportFragment extends Fragment {
                 .withPermanentDenialDialog (this.getString (R.string.ChatExport_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                 .onAnyDenied (() -> Toast.makeText (this.getContext (), R.string.ChatExport_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show ())
                 .onAllGranted(this::chooseSaveFileLocation)
-                .withPermanentDenialDialog(getString(R.string.ChatExportDialog_signal_requires_external_storage_permission_in_order_to_create_chat_file))
                 .execute();
     }
 

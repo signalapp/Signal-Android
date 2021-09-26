@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.S
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.export.ChatExportActivity
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog
@@ -401,6 +402,14 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           }
         )
       }
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.ManageRecipientActivity_chat_export),
+        icon = DSLSettingsIcon.from(R.drawable.ic_arrow_down_circle_outline_24),
+        onClick = {
+          startActivity(ChatExportActivity.createIntent(requireContext(), state.recipient.id))
+        }
+      )
 
       state.withRecipientSettingsState { recipientState ->
         when (recipientState.contactLinkState) {
