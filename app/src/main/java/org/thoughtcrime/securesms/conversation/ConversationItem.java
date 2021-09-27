@@ -1718,7 +1718,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (messageRecord.isOutgoing()      &&
         !hasNoBubble(messageRecord)     &&
         !messageRecord.isRemoteDelete() &&
-        bodyBubbleCorners != null)
+        bodyBubbleCorners != null       &&
+        bodyBubble.getProjections().isEmpty())
     {
       projections.add(Projection.relativeToViewRoot(bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX()));
     }

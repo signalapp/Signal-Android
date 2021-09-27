@@ -5,6 +5,7 @@ import android.graphics.ColorFilter
 import android.graphics.Path
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.graphics.Shader
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.ShapeDrawable
@@ -52,6 +53,18 @@ class ChatColors private constructor(
         }
       }
     }
+
+  fun asShader(left: Int, top: Int, right: Int, bottom: Int): Shader? {
+    return linearGradient?.let {
+      RotatableGradientDrawable(
+        linearGradient.degrees,
+        linearGradient.colors,
+        linearGradient.positions
+      ).apply {
+        setBounds(left, top, right, bottom)
+      }
+    }?.shader
+  }
 
   /**
    * Returns the ColorFilter to apply to a conversation bubble or other relevant piece of UI.

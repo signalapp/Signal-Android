@@ -88,7 +88,7 @@ import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
-import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemAnimator;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
@@ -218,7 +218,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private OnScrollListener            conversationScrollListener;
   private int                         pulsePosition = -1;
   private View                        toolbarShadow;
-  private ColorizerView               colorizerView;
   private Stopwatch                   startupStopwatch;
 
   private GiphyMp4ProjectionRecycler giphyMp4ProjectionRecycler;
@@ -256,10 +255,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
     scrollDateHeader      = view.findViewById(R.id.scroll_date_header);
     toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
-    colorizerView         = view.findViewById(R.id.conversation_colorizer_view);
 
     ConversationIntents.Args args = ConversationIntents.Args.from(requireActivity().getIntent());
-    colorizerView.setBackground(args.getChatColors().getChatBubbleMask());
 
     final LinearLayoutManager     layoutManager           = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     final MultiselectItemAnimator multiselectItemAnimator = new MultiselectItemAnimator(() -> {
@@ -351,10 +348,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     updateToolbarDependentMargins();
 
-    colorizer = new Colorizer(colorizerView);
-    colorizer.attachToRecyclerView(list);
+    colorizer = new Colorizer();
+    RecyclerViewColorizer recyclerViewColorizer = new RecyclerViewColorizer(list);
 
-    conversationViewModel.getChatColors().observe(getViewLifecycleOwner(), chatColors -> colorizer.onChatColorsChanged(chatColors));
+    conversationViewModel.getChatColors().observe(getViewLifecycleOwner(), recyclerViewColorizer::setChatColors);
     conversationViewModel.getNameColorsMap().observe(getViewLifecycleOwner(), nameColorsMap -> {
       colorizer.onNameColorsChanged(nameColorsMap);
 
@@ -412,12 +409,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private void setListVerticalTranslation() {
     if (list.canScrollVertically(1) || list.canScrollVertically(-1) || list.getChildCount() == 0) {
       list.setTranslationY(0);
-      colorizerView.setTranslationY(0);
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS);
     } else {
       int chTop = list.getChildAt(list.getChildCount() - 1).getTop();
       list.setTranslationY(Math.min(0, -chTop));
-      colorizerView.setTranslationY(Math.min(0, -chTop));
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     }
 
@@ -538,10 +533,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private void onViewHolderPositionTranslated(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
     if (viewHolder instanceof GiphyMp4Playable) {
       giphyMp4ProjectionRecycler.updateVideoDisplayPositionAndSize(recyclerView, (GiphyMp4Playable) viewHolder);
-    }
-
-    if (colorizer != null) {
-      colorizer.applyClipPathsToMaskedGradient(recyclerView);
     }
   }
 
