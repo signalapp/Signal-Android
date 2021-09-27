@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import android.media.AudioManager;
 import android.os.ResultReceiver;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -66,16 +65,13 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     Log.i(TAG, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
-    androidAudioManager.setSpeakerphoneOn(false);
-    WebRtcUtil.enableSpeakerPhoneIfNeeded(context, currentState.getCallSetupState().isEnableVideoOnCreate());
-
+    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer);
+    webRtcInteractor.setDefaultAudioDevice(currentState.getCallSetupState().isEnableVideoOnCreate() ? SignalAudioManager.AudioDevice.SPEAKER_PHONE
+                                                                                                    : SignalAudioManager.AudioDevice.EARPIECE,
+                                           false);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     webRtcInteractor.initializeAudioForCall();
     webRtcInteractor.startOutgoingRinger();
-
-    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer);
-    webRtcInteractor.setWantsBluetoothConnection(true);
 
     RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(remotePeer.getId()));
     DatabaseFactory.getSmsDatabase(context).insertOutgoingCall(remotePeer.getId(), currentState.getCallSetupState().isEnableVideoOnCreate());
@@ -87,7 +83,6 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                   .callState(WebRtcViewModel.State.CALL_OUTGOING)
                   .commit()
                   .changeLocalDeviceState()
-                  .wantsBluetooth(true)
                   .build();
   }
 

@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import android.media.AudioManager;
-
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
@@ -20,7 +18,6 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.List;
@@ -148,13 +145,9 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     currentState = WebRtcVideoUtil.reinitializeCamera(context, webRtcInteractor.getCameraEventListener(), currentState);
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
-    androidAudioManager.setSpeakerphoneOn(false);
-
+    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, currentState.getCallInfoState().getCallRecipient());
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     webRtcInteractor.initializeAudioForCall();
-    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, currentState.getCallInfoState().getCallRecipient());
-    webRtcInteractor.setWantsBluetoothConnection(true);
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
@@ -174,7 +167,6 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                        .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)
                        .commit()
                        .changeLocalDeviceState()
-                       .wantsBluetooth(true)
                        .build();
   }
 

@@ -1,9 +1,5 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.HangupMetadata;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswerMetadata;
-
 import android.content.Context;
 import android.os.ResultReceiver;
 
@@ -39,6 +35,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.IdentityKey;
@@ -52,7 +49,12 @@ import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMess
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
+
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.HangupMetadata;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswerMetadata;
 
 /**
  * Base WebRTC action processor and core of the calling state machine. As actions (as intents)
@@ -370,6 +372,16 @@ public abstract class WebRtcActionProcessor {
     return builder.build();
   }
 
+  protected @NonNull WebRtcServiceState handleAudioDeviceChanged(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice activeDevice, @NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
+    Log.i(tag, "handleAudioDeviceChanged not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice userDevice) {
+    Log.i(tag, "handleSetUserAudioDevice not processed");
+    return currentState;
+  }
+
   //endregion Active call
 
   //region Call setup
@@ -410,16 +422,6 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSetSpeakerAudio(@NonNull WebRtcServiceState currentState, boolean isSpeaker) {
-    Log.i(tag, "handleSetSpeakerAudio not processed");
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleSetBluetoothAudio(@NonNull WebRtcServiceState currentState, boolean isBluetooth) {
-    Log.i(tag, "handleSetBluetoothAudio not processed");
-    return currentState;
-  }
-
   protected @NonNull WebRtcServiceState handleSetCameraFlip(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleSetCameraFlip not processed");
     return currentState;
@@ -427,16 +429,6 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleScreenOffChange(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleScreenOffChange not processed");
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleBluetoothChange(@NonNull WebRtcServiceState currentState, boolean available) {
-    Log.i(tag, "handleBluetoothChange not processed");
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleWiredHeadsetChange(@NonNull WebRtcServiceState currentState, boolean present) {
-    Log.i(tag, "handleWiredHeadsetChange not processed");
     return currentState;
   }
 
@@ -564,7 +556,6 @@ public abstract class WebRtcActionProcessor {
                                   (activePeer.getState() == CallState.CONNECTED);
     webRtcInteractor.stopAudio(playDisconnectSound);
 
-    webRtcInteractor.setWantsBluetoothConnection(false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
     webRtcInteractor.stopForegroundService();
 
@@ -574,7 +565,6 @@ public abstract class WebRtcActionProcessor {
                           .activePeer(null)
                           .commit()
                           .changeLocalDeviceState()
-                          .wantsBluetooth(false)
                           .commit()
                           .actionProcessor(currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED ? new DisconnectingCallActionProcessor(webRtcInteractor) : new IdleActionProcessor(webRtcInteractor))
                           .terminate()
@@ -723,7 +713,6 @@ public abstract class WebRtcActionProcessor {
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
     boolean playDisconnectSound = currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED;
     webRtcInteractor.stopAudio(playDisconnectSound);
-    webRtcInteractor.setWantsBluetoothConnection(false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
     webRtcInteractor.stopForegroundService();
 

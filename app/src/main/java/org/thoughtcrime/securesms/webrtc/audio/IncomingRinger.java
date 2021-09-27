@@ -51,6 +51,8 @@ public class IncomingRinger {
     if (shouldVibrate(context, player, ringerMode, vibrate)) {
       Log.i(TAG, "Starting vibration");
       vibrator.vibrate(VIBRATE_PATTERN, 1);
+    } else {
+      Log.i(TAG, "Skipping vibration");
     }
 
     if (player != null && ringerMode == AudioManager.RINGER_MODE_NORMAL) {

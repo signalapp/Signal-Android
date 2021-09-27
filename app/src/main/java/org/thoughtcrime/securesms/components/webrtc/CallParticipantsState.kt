@@ -221,7 +221,7 @@ data class CallParticipantsState(
         localRenderState = localRenderState,
         showVideoForOutgoing = newShowVideoForOutgoing,
         remoteDevicesCount = webRtcViewModel.remoteDevicesCount,
-        ringGroup = webRtcViewModel.shouldRingGroup(),
+        ringGroup = webRtcViewModel.ringGroup,
         isInOutgoingRingingMode = isInOutgoingRingingMode,
         ringerRecipient = webRtcViewModel.ringerRecipient
       )
