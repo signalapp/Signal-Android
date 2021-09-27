@@ -104,7 +104,7 @@ class MultiselectItemAnimator(
       selectedAnimations[selection] = animator
       animator.duration = 150L
       animator.addUpdateListener {
-        (selection.viewHolder.itemView.parent as RecyclerView).invalidateItemDecorations()
+        (selection.viewHolder.itemView.parent as RecyclerView?)?.invalidateItemDecorations()
       }
       animator.doOnEnd {
         dispatchAnimationFinished(selection.viewHolder)
