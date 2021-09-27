@@ -106,10 +106,8 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   @Override
   public void onResume(@NonNull LifecycleOwner owner) {
-    if (!mediaBrowser.isConnected()) {
-      mediaBrowser.connect();
-    }
-
+    mediaBrowser.disconnect();
+    mediaBrowser.connect();
     activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
   }
 
