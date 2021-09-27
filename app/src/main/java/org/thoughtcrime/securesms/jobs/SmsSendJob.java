@@ -237,7 +237,7 @@ public class SmsSendJob extends SendJob {
   private static Job.Parameters constructParameters(@NonNull Recipient destination) {
     return new Job.Parameters.Builder()
                              .setMaxAttempts(MAX_ATTEMPTS)
-                             .setQueue(destination.getId().toQueueKey())
+                             .setQueue(destination.getId().toQueueKey() + "::SMS")
                              .addConstraint(NetworkOrCellServiceConstraint.KEY)
                              .build();
   }
