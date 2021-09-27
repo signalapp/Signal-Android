@@ -29,6 +29,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   private static final String STATE_FCM_TOKEN          = "FCM_TOKEN";
   private static final String STATE_RESTORE_FLOW_SHOWN = "RESTORE_FLOW_SHOWN";
   private static final String STATE_IS_REREGISTER      = "IS_REREGISTER";
+  private static final String STATE_BACKUP_COMPLETED   = "BACKUP_COMPLETED";
 
   private final RegistrationRepository registrationRepository;
 
@@ -43,6 +44,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     this.registrationRepository = registrationRepository;
 
     setInitialDefaultValue(STATE_RESTORE_FLOW_SHOWN, false);
+    setInitialDefaultValue(STATE_BACKUP_COMPLETED, false);
 
     this.savedState.set(STATE_IS_REREGISTER, isReregister);
   }
@@ -79,6 +81,15 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
 
   public void setIsReregister(boolean isReregister) {
     savedState.set(STATE_IS_REREGISTER, isReregister);
+  }
+
+  public void markBackupCompleted() {
+    savedState.set(STATE_BACKUP_COMPLETED, true);
+  }
+
+  public boolean hasBackupCompleted() {
+    Boolean completed = savedState.get(STATE_BACKUP_COMPLETED);
+    return completed != null ? completed : false;
   }
 
   @Override
