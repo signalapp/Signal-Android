@@ -686,6 +686,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">ئوچۇق</string>
   <string name="CustomNotificationsDialogFragment__disabled">تاقالغان</string>
   <string name="CustomNotificationsDialogFragment__default">كۆڭۈلدىكى</string>
+  <string name="CustomNotificationsDialogFragment__unknown">نامەلۇم</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ھەمبەھىرچان گۇرۇپپا ئۇلانمىسى</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">باشقۇرۇش ۋە ھەمبەھىر</string>
@@ -1645,6 +1646,7 @@
   <string name="QuoteView_audio">ئۈن</string>
   <string name="QuoteView_video">سىن</string>
   <string name="QuoteView_photo">رەسىم</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">بىرلا كۆرسەت ۋاسىتە</string>
   <string name="QuoteView_sticker">چىراي ئىپادە</string>
   <string name="QuoteView_you">سىز</string>

@@ -687,6 +687,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ingeschakeld</string>
   <string name="CustomNotificationsDialogFragment__disabled">Uitgeschakeld</string>
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Onbekend</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheren &amp; delen</string>
@@ -1684,6 +1685,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Afbeelding</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Eenmaligeweergave-media</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_you">Jij</string>

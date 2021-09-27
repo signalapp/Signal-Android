@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Päällä</string>
   <string name="CustomNotificationsDialogFragment__disabled">Pois päältä</string>
   <string name="CustomNotificationsDialogFragment__default">Oletus</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Tuntematon</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Jaettava ryhmälinkki</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Hallinnoi &amp; jaa</string>
@@ -1648,6 +1649,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuoteView_audio">Äänitallenne</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Kuva</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Kerran katsottava media</string>
   <string name="QuoteView_sticker">Tarra</string>
   <string name="QuoteView_you">Sinä</string>
@@ -1798,9 +1800,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Syötä nimi tai numero</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Varmentaaksesi päästä päähän -salauksen tietoturvan henkilön %s kanssa, vertaa yllä näkyviä numeroita vastapuolen laitteen kanssa. Voit myös skannata koodin vastapuolen puhelimesta. <a href="https://signal.org/redirect/safety-numbers">Lue lisää.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napauttamalla</string>
+  <string name="verify_display_fragment__successful_match">Vastaavuus varmistettu</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Turvanumeron varmentaminen epäonnistui</string>
   <string name="verify_display_fragment__loading">Ladataan…</string>
   <string name="verify_display_fragment__mark_as_verified">Merkitse varmennetuksi</string>
+  <string name="verify_display_fragment__clear_verification">Poista varmennus</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaa turvanumero</string>
   <!--verity_scan_fragment-->
@@ -3168,14 +3174,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ImageEditorHud__cancel">Peruuta</string>
   <string name="ImageEditorHud__write_text">Kirjoita teksti</string>
   <string name="ImageEditorHud__add_a_sticker">Lisää tarra</string>
+  <string name="ImageEditorHud__clear_all">Tyhjennä kaikki</string>
   <string name="ImageEditorHud__undo">Kumoa</string>
   <string name="MediaCountIndicatorButton__send">Lähetä</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Napauta poistaaksesi</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Valitse napauttamalla</string>
   <string name="MediaReviewImagePageFragment__discard">Hylkää</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Hylätäänkö muutokset?</string>
+  <string name="MediaReviewFragment__view_once_message">Kerran katsottava viesti</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
   <string name="ImageEditorHud__delete">Poista</string>
   <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Vaihda tekstityylien välillä</string>
   <!--EOF-->
 </resources>

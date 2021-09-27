@@ -682,6 +682,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Engedélyezve</string>
   <string name="CustomNotificationsDialogFragment__disabled">Letiltva</string>
   <string name="CustomNotificationsDialogFragment__default">Alapértelmezett</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Ismeretlen</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Megosztható csoporthivatkozás</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Kezelés és megosztás</string>
@@ -1642,6 +1643,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuoteView_audio">Hang</string>
   <string name="QuoteView_video">Videó</string>
   <string name="QuoteView_photo">Fotó</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Egyszer megjelenő médiafájl</string>
   <string name="QuoteView_sticker">Matrica</string>
   <string name="QuoteView_you">Te</string>

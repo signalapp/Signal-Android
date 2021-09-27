@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">활성화됨</string>
   <string name="CustomNotificationsDialogFragment__disabled">비활성화됨</string>
   <string name="CustomNotificationsDialogFragment__default">기본값</string>
+  <string name="CustomNotificationsDialogFragment__unknown">알 수 없음</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">공유 가능한 그룹 링크</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">관리 &amp; 공유</string>
@@ -1587,6 +1588,7 @@
   <string name="QuoteView_audio">오디오</string>
   <string name="QuoteView_video">동영상</string>
   <string name="QuoteView_photo">사진</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">한 번 볼 수 있는 미디어</string>
   <string name="QuoteView_sticker">스티커</string>
   <string name="QuoteView_you">나</string>

@@ -51,15 +51,19 @@ final class GiphyMp4Repository {
 
   @WorkerThread
   private @NonNull Uri saveToBlobInternal(@NonNull GiphyImage giphyImage, boolean isForMms) throws IOException {
+    boolean sendAsMp4 = GiphyMp4PlaybackPolicy.sendAsMp4();
     String  url;
     String  mime;
 
-    if (isForMms) {
+    if (sendAsMp4) {
+      url  = giphyImage.getMp4Url();
+      mime = MediaUtil.VIDEO_MP4;
+    } else if (isForMms) {
       url  = giphyImage.getGifMmsUrl();
       mime = MediaUtil.IMAGE_GIF;
     } else {
-      url  = giphyImage.getMp4Url();
-      mime = MediaUtil.VIDEO_MP4;
+      url  = giphyImage.getGifUrl();
+      mime = MediaUtil.IMAGE_GIF;
     }
 
     Request request = new Request.Builder().url(url).build();

@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Virkt</string>
   <string name="CustomNotificationsDialogFragment__disabled">Óvirkt</string>
   <string name="CustomNotificationsDialogFragment__default">Sjálfgefið</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Óþekkt</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deilanlegur tengill á hóp</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Sýsla með og deila</string>
@@ -1679,6 +1680,7 @@
   <string name="QuoteView_audio">Hljóð</string>
   <string name="QuoteView_video">Myndskeið</string>
   <string name="QuoteView_photo">Mynd</string>
+  <string name="QuoteView_gif">GIF-mynd</string>
   <string name="QuoteView_view_once_media">Skoða-einu-sinni margmiðlunarefni</string>
   <string name="QuoteView_sticker">Límmerki</string>
   <string name="QuoteView_you">Þú</string>

@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Attiva</string>
   <string name="CustomNotificationsDialogFragment__disabled">Non attiva</string>
   <string name="CustomNotificationsDialogFragment__default">Predefinita</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Sconosciuto</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link del gruppo condivisibile</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestisci e condividi</string>
@@ -1680,6 +1681,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Media visualizzabile una volta</string>
   <string name="QuoteView_sticker">Adesivo</string>
   <string name="QuoteView_you">Tu</string>

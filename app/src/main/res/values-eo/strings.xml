@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ŝaltita</string>
   <string name="CustomNotificationsDialogFragment__disabled">Malŝaltita</string>
   <string name="CustomNotificationsDialogFragment__default">Defaŭlta</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nekonata</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kunhavebla grupligilo</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administri kaj kunhavigi</string>
@@ -1645,6 +1646,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_audio">Sonaĵo</string>
   <string name="QuoteView_video">Videaĵo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Nurunufoje videbla aŭdvidaĵo</string>
   <string name="QuoteView_sticker">Glumarko</string>
   <string name="QuoteView_you">Vi</string>

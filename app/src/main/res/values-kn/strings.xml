@@ -687,6 +687,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__default">ಡೀಫಾಲ್ಟ್</string>
+  <string name="CustomNotificationsDialogFragment__unknown">ತಿಳಿದಿಲ್ಲ</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಗ್ರೂಪ್ ಲಿಂಕ್</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ನಿರ್ವಹಿಸಿ ಮತ್ತು ಹಂಚಿಕೊಳ್ಳಿ</string>
@@ -832,6 +833,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal ಕರೆ ಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="NotificationBarManager__incoming_signal_call">ಒಳಬರುವ Signal ಕರೆ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal ಕಾಲ್ ಸರ್ವೀಸ್ ಅನ್ನು ನಿಲ್ಲಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="NotificationBarManager__decline_call">ಕರೆ ನಿರಾಕರಿಸಿ</string>
   <string name="NotificationBarManager__answer_call">ಕರೆಗೆ ಉತ್ತರಿಸಿ</string>
   <string name="NotificationBarManager__end_call">ಕರೆ ಅಂತ್ಯಗೊಳಿಸಿ</string>
   <string name="NotificationBarManager__cancel_call">ಕರೆ ರದ್ದುಗೊಳಿಸಿ</string>
@@ -926,6 +928,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ಅವರು %2$s ಅವರನ್ನು ಅಡ್ಮಿನ್ ಆಗಿ ಮಾಡಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ಅವರು ನಿಮ್ಮನ್ನು ಅಡ್ಮಿನ್ ಆಗಿ ಮಾಡಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s ಅವರಿಂದ ನೀವು ಅಡ್ಮಿನ್ ಸವಲತ್ತುಗಳನ್ನು ಹಿಂಪಡೆದಿದ್ದೀರಿ.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges"> %1$s ಅವರು ನಿಮ್ಮ ಅಡ್ಮಿನ್ ಸವಲತ್ತುಗಳನ್ನು ಹಿಂಪಡೆದಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ಅವರು %2$s ಅವರಿಂದ ಅಡ್ಮಿನ್ ಸವಲತ್ತುಗಳನ್ನು ಹಿಂಪಡೆದಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ಅವರು ಈಗ ಅಡ್ಮಿನ್ ಆಗಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_are_now_an_admin">ನೀವು ಈಗ ಆಡ್ಮಿನ್ ಆಗಿದ್ದೀರಿ.</string>
@@ -1640,6 +1643,7 @@
   <string name="QuoteView_audio">ಆಡಿಯೊ</string>
   <string name="QuoteView_video">ವೀಡಿಯೊ</string>
   <string name="QuoteView_photo">ಫೋಟೋ</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">ಏಕ ವೀಕ್ಷಣೆ ಮೀಡಿಯಾ</string>
   <string name="QuoteView_sticker">ಸ್ಟಿಕ್ಕರ್</string>
   <string name="QuoteView_you">ನೀವು</string>

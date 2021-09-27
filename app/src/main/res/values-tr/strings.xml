@@ -33,12 +33,12 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekran kilidi %1$s, Kayıt kilidi %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Dil %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kayıt kilidi için PIN gereklidir. PIN\'leri devre dışı bırakmak için, lütfen ilk önce kayıt kilidini devre dışı bırakın.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kayıt kilidi için PIN gereklidir. PIN\'i devre dışı bırakmak için, lütfen ilk önce kayıt kilidini devre dışı bırakın.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN oluşturuldu.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN devre dışı.</string>
   <string name="ApplicationPreferencesActivity_hide">Gizle</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Hatırlatıcıyı gizle?</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödemeler kurtarma parolasını kaydet</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödemeleri kurtarma parolasını kaydet</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Parolayı kaydet</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN\'inizi devre dışı bırakmadan önce, ödemeler hesabınızın kurtarılmasını güvence altına almak için ödemeler kurtarma parolanızı kaydetmeniz gerekiyor.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -85,7 +85,7 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s grubunu engelle ve ayrıl?</string>
   <string name="BlockUnblockDialog_block_s">%1$s engellensin mi?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Bu grubun iletilerini veya güncellemelerini artık almayacaksınız, ve üyeleri sizi bu gruba tekrar ekleyemeyecekler.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Bu grubun iletilerini veya güncellemelerini artık almayacaksınız, ve grup üyeleri sizi tekrardan gruba ekleyemeyecek.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grup üyeleri sizi bu gruba ekleyemeyecekler.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grup üyeleri sizi bu gruba tekrar ekleyebilecekler.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Birbirinizi arayıp ileti gönderebileceksiniz ve adınızla fotonuz onlarla paylaşılacak.</string>
@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Etkin</string>
   <string name="CustomNotificationsDialogFragment__disabled">Devre dışı</string>
   <string name="CustomNotificationsDialogFragment__default">Varsayılan</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Bilinmeyen</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Paylaşılabilir grup bağlantısı</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Yönet ve paylaş</string>
@@ -1678,6 +1679,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="QuoteView_audio">Ses</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotoğraf</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Tek görümlük içerik</string>
   <string name="QuoteView_sticker">Çıkartma</string>
   <string name="QuoteView_you">Siz</string>
@@ -1828,6 +1830,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Bir ad veya numara girin</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s ile uçtan uca şifrelemenizin güvenliğini doğrulamak için, yukarıdaki numaraları onların aygıtındakilerle karşılaştırın. Kodu onların telefonunda da tarayabilirsiniz. <a href="https://signal.org/redirect/safety-numbers">Daha fazlasını öğrenin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
   <string name="verify_display_fragment__successful_match">Doğru eşleşme</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Güvenlik numarası doğrulanamadı</string>
@@ -2121,7 +2124,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsAllActivityFragment__sent">Gönderildi</string>
   <string name="PaymentsAllActivityFragment__received">Alındı</string>
   <string name="PaymentsHomeFragment__introducing_payments">Ödemeler tanıtımı (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Yeni gizlilik odaklı dijital para birimi MobileCoin alıp göndermek için Signal kullanın. Başlamak için etkinleştirin.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Yeni gizlilik odaklı dijital para birimi MobileCoin\'i alıp göndermek için Signal\'i kullanın. Başlamak için etkinleştirin.</string>
   <string name="PaymentsHomeFragment__activate_payments">Ödemeleri Etkinleştir</string>
   <string name="PaymentsHomeFragment__activating_payments">Ödemeler etkinleştiriliyor…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Ödemeler hesabını geri getir</string>
@@ -2594,7 +2597,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Yeni Android cihaz aranıyor…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum erişimine ihtiyaç duyar</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum hizmetlerinin etkinleştirilmesine ihtiyaç duyar</string>
-  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için kablosuzun etkinleştirilmesine ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için Wi-Fi\'a ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Üzgünüz, görünüşe göre bu cihaz Wi-Fi Direct desteklemiyor. Signal yeni Android cihazınızı keşfetmek ve bağlamak için Wi-Fi Direct kullanır. Yeni Android cihazınıza hesabınızı geri yüklemek için yedek kullanabilirsiniz.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Yedek oluştur</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Yeni Android cihazınıza bağlanmaya çalışılırken beklenmedik bir hata oluştu.</string>
@@ -2964,12 +2967,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefon numaranızı (%1$s --&gt; %2$s) değiştirmek üzeresiniz.\n\nDevam etmeden önce lütfen aşağıdaki numaranın doğru olduğundan emin olun.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Numarayı düzenle</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Numara Değiştir - Android için PIN (v2 PIN) ile ilgili Yardıma mı İhtiyacınız Var</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN\'ler eşleşmiyor</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Yeni numaranızla ilişkili PIN, eski numaranızla ilişkili PIN \'den farklıdır. Eski PIN\'ı saklamak mı yoksa güncellemek mi istersiniz?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Eski PIN dursun</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN\'i güncelle</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Eski PIN dursun mu?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Numaranızı değiştirmeye çalıştınız gibi gözüküyor ama başarıyla değişip değişmediğini bilemedik.\n\nTekrar bakıyoruz…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Değişiklik durumu doğrulandı</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numaranız %1$s olarak doğrulandı. Eğer bu yeni numaranız değilse lütfen numara değiştirme sürecini yeniden başlatın.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Değişiklik durumunu doğrulanamadı</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Numara değişikliği talebinizin durumunu belirleyemedik.\n\n(Hata: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Tekrar dene</string>
   <string name="ChangeNumberLockActivity__leave">Ayrıl</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Hata ayıklama günlüğünü gönder</string>
@@ -3140,6 +3150,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Yeni ödeme</string>

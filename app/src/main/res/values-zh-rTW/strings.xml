@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">啟動</string>
   <string name="CustomNotificationsDialogFragment__disabled">關閉</string>
   <string name="CustomNotificationsDialogFragment__default">預設</string>
+  <string name="CustomNotificationsDialogFragment__unknown">未知</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">可分享的群組連結</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理與分享</string>
@@ -1608,6 +1609,7 @@
   <string name="QuoteView_audio">音訊</string>
   <string name="QuoteView_video">影片</string>
   <string name="QuoteView_photo">照片</string>
+  <string name="QuoteView_gif">動態圖檔</string>
   <string name="QuoteView_view_once_media">一次性多媒體檔案</string>
   <string name="QuoteView_sticker">貼圖</string>
   <string name="QuoteView_you">你</string>

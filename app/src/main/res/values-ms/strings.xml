@@ -651,6 +651,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Didayakan</string>
   <string name="CustomNotificationsDialogFragment__disabled">Diyahdayakan</string>
   <string name="CustomNotificationsDialogFragment__default">Lalai</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Tidak diketahui</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Pautan kumpulan boleh kongsi</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Urus &amp; kongsi</string>
@@ -1572,6 +1573,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Media lihat sekali</string>
   <string name="QuoteView_sticker">Pelekat</string>
   <string name="QuoteView_you">Anda</string>

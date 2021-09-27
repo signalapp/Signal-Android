@@ -643,6 +643,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">已启用</string>
   <string name="CustomNotificationsDialogFragment__disabled">已禁用</string>
   <string name="CustomNotificationsDialogFragment__default">默认</string>
+  <string name="CustomNotificationsDialogFragment__unknown">未知</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">可分享的群组链接</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理和分享</string>
@@ -1569,6 +1570,7 @@
   <string name="QuoteView_audio">音频</string>
   <string name="QuoteView_video">视频</string>
   <string name="QuoteView_photo">图片</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">一次性媒体</string>
   <string name="QuoteView_sticker">表情</string>
   <string name="QuoteView_you">您</string>

@@ -672,6 +672,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">ସକ୍ଷମ</string>
   <string name="CustomNotificationsDialogFragment__disabled">ଅକ୍ଷମ</string>
   <string name="CustomNotificationsDialogFragment__default">ଡିଫଲ୍ଟ</string>
+  <string name="CustomNotificationsDialogFragment__unknown">ଅଜଣା</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ଅଂଶୀଦାର କରିବା ଯୋଗ୍ୟ ଗୋଷ୍ଠୀ ଲିଙ୍କ୍</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ପରିଚାଳନା ଓ ଅଂଶୀଦାର</string>
@@ -1596,6 +1597,7 @@
   <string name="QuoteView_audio">ଅଡ଼ିଓ</string>
   <string name="QuoteView_video">ଭିଡ଼ିଓ</string>
   <string name="QuoteView_photo">ଛବି</string>
+  <string name="QuoteView_gif">ଜିଆଇଏଫ୍</string>
   <string name="QuoteView_view_once_media">ଥରେ-ଦେଖିବା ମିଡ଼ିଆ</string>
   <string name="QuoteView_sticker">ଷ୍ଟିକର୍</string>
   <string name="QuoteView_you">ଆପଣ</string>

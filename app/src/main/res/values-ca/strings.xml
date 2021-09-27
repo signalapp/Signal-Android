@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activat</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desactivat</string>
   <string name="CustomNotificationsDialogFragment__default">Per defecte</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Desconegut</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Enllaç de grup que es pot compartir</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestió i compartició</string>
@@ -1674,6 +1675,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QuoteView_audio">Àudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Contingut d\'una sola visualització</string>
   <string name="QuoteView_sticker">Adhesiu</string>
   <string name="QuoteView_you">Jo</string>

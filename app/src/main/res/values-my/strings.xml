@@ -634,6 +634,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">လုပ်ဆောင်သော</string>
   <string name="CustomNotificationsDialogFragment__disabled">မလုပ်ဆောင်သော</string>
   <string name="CustomNotificationsDialogFragment__default">မူလ</string>
+  <string name="CustomNotificationsDialogFragment__unknown">မသိရှိသော</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">မျှဝေနိုင်သော အဖွဲ့လင့််ခ်</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">စီမံ &amp; မျှဝေမယ်</string>
@@ -1531,6 +1532,7 @@
   <string name="QuoteView_audio">အသံ</string>
   <string name="QuoteView_video">ဗီဒီယို</string>
   <string name="QuoteView_photo">ရုပ်ပုံ</string>
+  <string name="QuoteView_gif">လှုပ်ရှားနေသောရုပ်ပုံ GIF</string>
   <string name="QuoteView_view_once_media">တစ်ခါကြည့် မီဒီယာ</string>
   <string name="QuoteView_sticker">စတစ်ကာ</string>
   <string name="QuoteView_you">သင်</string>

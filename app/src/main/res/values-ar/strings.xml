@@ -826,6 +826,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">مُفعَّل</string>
   <string name="CustomNotificationsDialogFragment__disabled">مُعطَّل</string>
   <string name="CustomNotificationsDialogFragment__default">افتراضي</string>
+  <string name="CustomNotificationsDialogFragment__unknown">غير معروف</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">وصلة المجموعة القابلة للمشاركة</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">الإدارة والمشاركة</string>
@@ -1551,6 +1552,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات اتصالك والوسائط من أجل التواصل مع الأصدقاء، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
+  <string name="RegistrationActivity_call_requested">طُلبَت مكالمة</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="zero">أنت الآن على بعد %d خطوة من إرسال سجل التصحيح.</item>
     <item quantity="one">أنت الآن على بعد %d خطوة من إرسال سجل التصحيح.</item>
@@ -1948,6 +1950,7 @@
   <string name="QuoteView_audio">صوت</string>
   <string name="QuoteView_video">فيديو</string>
   <string name="QuoteView_photo">صورة</string>
+  <string name="QuoteView_gif">صورة متحركة</string>
   <string name="QuoteView_view_once_media">ملف متعدّد الوسائط لمشاهدة-واحدة</string>
   <string name="QuoteView_sticker">ملصق</string>
   <string name="QuoteView_you">أنت</string>
@@ -3307,6 +3310,7 @@
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">إنك على وشك تغيير رقم هاتفك من %1$s إلى %2$s.\n\nيٌرجى التحقق من أن رقم الهاتف أسفله صحيح قبل الاستمرار.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">تعديل الرقم</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">رقم التغيير لـ Signal - تلزم المساعدة بواسطة الرقم التعريفي الشخصي لأندرويد (الإصدار الثاني للرقم التعريفي الشخصي)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">رقما التعريف الشخصي غير متوافقان.</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">إن الرقم التعريفي الشخصي المرتبط برقم هاتف الجديد يختلف عن ذاك المرتبط بهاتفك القديم. أأقوم بالمحافظة على الرقم التعريفي الشخصي القديم أم أقوم بتحديثه ؟</string>
@@ -3497,6 +3501,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">‎½ ×‎</string>
   <string name="PlaybackSpeedToggleTextView__1x">‎1 ×‎</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">‎2 ×‎</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">دفع جديد</string>

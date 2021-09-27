@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 
@@ -108,11 +109,11 @@ public class IdentityDatabase extends Database {
                                        firstUse,
                                        timestamp,
                                        nonblockingApproval);
-      } else if (!fastIsE164(addressName)) {
+      } else if (UuidUtil.isUuid(addressName)) {
         if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(addressName)) {
           Recipient recipient = Recipient.external(context, addressName);
 
-          if (recipient.hasE164()) {
+          if (recipient.hasE164() && !UuidUtil.isUuid(recipient.requireE164())) {
             Log.i(TAG, "Could not find identity for UUID. Attempting E164.");
             return getIdentityStoreRecord(recipient.requireE164());
           } else {
@@ -268,9 +269,5 @@ public class IdentityDatabase extends Database {
     database.replace(TABLE_NAME, null, contentValues);
 
     EventBus.getDefault().post(new IdentityRecord(recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval));
-  }
-
-  private boolean fastIsE164(@NonNull String value) {
-    return value.charAt(0) == '+' || value.length() <= 15;
   }
 }

@@ -689,6 +689,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CustomNotificationsDialogFragment__enabled">E aktivizuar</string>
   <string name="CustomNotificationsDialogFragment__disabled">E çaktivizuar</string>
   <string name="CustomNotificationsDialogFragment__default">Parazgjedhje</string>
+  <string name="CustomNotificationsDialogFragment__unknown">I panjohur</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Lidhje grupi e ndashme</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administroni &amp; ndani me të tjerë</string>
@@ -1680,6 +1681,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Media për t’u parë vetëm një herë</string>
   <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_you">Ju</string>

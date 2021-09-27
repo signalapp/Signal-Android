@@ -720,6 +720,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Iespējota</string>
   <string name="CustomNotificationsDialogFragment__disabled">Atspējota</string>
   <string name="CustomNotificationsDialogFragment__default">Noklusējuma</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nezināms</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kopīgojama grupas saite</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Pārvaldīt &amp; kopīgot</string>
@@ -1708,6 +1709,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Attēls</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Vienreiz skatāms multivides fails</string>
   <string name="QuoteView_sticker">Uzlīme</string>
   <string name="QuoteView_you">Jūs</string>

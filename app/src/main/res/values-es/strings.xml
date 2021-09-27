@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activada</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desactivada</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Desconocid@</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Enlace para unirse al grupo</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestionar y compartir</string>
@@ -1680,6 +1681,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Adjunto para ver una vez</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_you">Tú</string>
@@ -3148,7 +3150,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Usados recientemente</string>
   <!--PlaybackSpeedToggleTextView-->
-  <string name="PlaybackSpeedToggleTextView__p5x">1/2x</string>
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__1p5x">1,5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>

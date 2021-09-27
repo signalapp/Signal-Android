@@ -755,6 +755,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Включено</string>
   <string name="CustomNotificationsDialogFragment__disabled">Отключено</string>
   <string name="CustomNotificationsDialogFragment__default">По умолчанию</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Неизвестная</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Ссылка на группу</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управлять и поделиться</string>
@@ -1809,6 +1810,7 @@
   <string name="QuoteView_audio">Аудио</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Фото</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Одноразовое медиа</string>
   <string name="QuoteView_sticker">Стикер</string>
   <string name="QuoteView_you">Вы</string>

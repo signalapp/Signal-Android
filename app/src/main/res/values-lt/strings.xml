@@ -755,6 +755,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Įjungta</string>
   <string name="CustomNotificationsDialogFragment__disabled">Išjungta</string>
   <string name="CustomNotificationsDialogFragment__default">Numatytoji</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nežinoma</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Bendrinama grupės nuoroda</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Tvarkyti ir bendrinti</string>
@@ -1816,6 +1817,7 @@
   <string name="QuoteView_audio">Garso įrašai</string>
   <string name="QuoteView_video">Vaizdo įrašai</string>
   <string name="QuoteView_photo">Nuotrauka</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Vienkartinės peržiūros medija</string>
   <string name="QuoteView_sticker">Lipdukas</string>
   <string name="QuoteView_you">Jūs</string>

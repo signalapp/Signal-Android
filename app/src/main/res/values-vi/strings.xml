@@ -643,6 +643,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Đã bật</string>
   <string name="CustomNotificationsDialogFragment__disabled">Tắt</string>
   <string name="CustomNotificationsDialogFragment__default">Mặc định</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Vô danh</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Đường dẫn nhóm có thể chia sẻ</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Quản lí &amp; chia sẻ</string>
@@ -1562,6 +1563,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="QuoteView_audio">Âm thanh</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Ảnh</string>
+  <string name="QuoteView_gif">Ảnh GIF</string>
   <string name="QuoteView_view_once_media">Đa phương tiện xem một lần</string>
   <string name="QuoteView_sticker">Nhãn dán</string>
   <string name="QuoteView_you">Bạn</string>

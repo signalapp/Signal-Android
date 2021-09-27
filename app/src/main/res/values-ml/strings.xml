@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
+  <string name="CustomNotificationsDialogFragment__unknown">അജ്ഞാതം</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">പങ്കിടാവുന്ന ഗ്രൂപ്പ് ലിങ്ക്</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">നിയന്ത്രിച്ച് പങ്കിടുക</string>
@@ -1638,6 +1639,7 @@
   <string name="QuoteView_audio">ഓഡിയോ</string>
   <string name="QuoteView_video">വീഡിയോ</string>
   <string name="QuoteView_photo">ഫോട്ടോ</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">ഒരു തവണ-ദൃശ്യമാകുന്ന മീഡിയ</string>
   <string name="QuoteView_sticker">സ്റ്റിക്കർ</string>
   <string name="QuoteView_you">നിങ്ങൾ</string>

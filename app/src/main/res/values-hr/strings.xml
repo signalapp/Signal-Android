@@ -720,6 +720,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Omogućeno</string>
   <string name="CustomNotificationsDialogFragment__disabled">Onemogućeno</string>
   <string name="CustomNotificationsDialogFragment__default">Zadano</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nepoznato</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Poveznica grupe koja se može dijeliti</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Upravljanje i dijeljenje</string>
@@ -1707,6 +1708,7 @@ broj telefona</string>
   <string name="QuoteView_audio">Zvuk</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Jednom vidljiv medijski zapis</string>
   <string name="QuoteView_sticker">Naljepnica</string>
   <string name="QuoteView_you">Vi</string>

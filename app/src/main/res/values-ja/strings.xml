@@ -650,6 +650,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">有効</string>
   <string name="CustomNotificationsDialogFragment__disabled">無効</string>
   <string name="CustomNotificationsDialogFragment__default">既定</string>
+  <string name="CustomNotificationsDialogFragment__unknown">不明</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">グループリンク</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理と共有</string>
@@ -1602,6 +1603,7 @@
   <string name="QuoteView_audio">音声</string>
   <string name="QuoteView_video">動画</string>
   <string name="QuoteView_photo">写真</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">使い捨てメディア</string>
   <string name="QuoteView_sticker">ステッカー</string>
   <string name="QuoteView_you">あなた</string>

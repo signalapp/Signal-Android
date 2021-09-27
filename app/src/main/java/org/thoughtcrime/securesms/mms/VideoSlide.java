@@ -55,7 +55,7 @@ public class VideoSlide extends Slide {
 
   @Override
   public boolean hasPlayOverlay() {
-    return !(isVideoGif() && GiphyMp4PlaybackPolicy.autoplay());
+    return !(isVideoGif() && GiphyMp4PlaybackPolicy.autoplay()) || GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation() == 0;
   }
 
   @Override

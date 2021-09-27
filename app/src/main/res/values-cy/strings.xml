@@ -757,6 +757,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CustomNotificationsDialogFragment__enabled">Galluogwyd</string>
   <string name="CustomNotificationsDialogFragment__disabled">Analluogwyd</string>
   <string name="CustomNotificationsDialogFragment__default">Rhagosodedig</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Anhysbys</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Dolen grŵp rhanadwy</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Rheoli a rhannu</string>
@@ -1818,6 +1819,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
   <string name="QuoteView_photo">Llun</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Cyfrwng gweld unwaith</string>
   <string name="QuoteView_sticker">Sticer</string>
   <string name="QuoteView_you">Chi</string>

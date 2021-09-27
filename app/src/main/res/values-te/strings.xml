@@ -689,6 +689,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">చేతనం అయింది</string>
   <string name="CustomNotificationsDialogFragment__disabled">అచేతనం అయింది</string>
   <string name="CustomNotificationsDialogFragment__default">అప్రమేయం</string>
+  <string name="CustomNotificationsDialogFragment__unknown">గుర్తు తెలియని</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">భాగస్వామ్యం చేయదగిన సమూహ లింక్</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">నిర్వహించండి &amp; భాగస్వామ్యం</string>
@@ -1624,6 +1625,7 @@
   <string name="QuoteView_audio">ఆడియో</string>
   <string name="QuoteView_video">వీడియో</string>
   <string name="QuoteView_photo">ఛాయాచిత్రం</string>
+  <string name="QuoteView_gif">గిఫ్</string>
   <string name="QuoteView_view_once_media">ఒకసారి-దృశ్యం మీడియా</string>
   <string name="QuoteView_sticker">స్టికర్</string>
   <string name="QuoteView_you">మీరు</string>

@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Imewezeshwa</string>
   <string name="CustomNotificationsDialogFragment__disabled">Imelemazwa</string>
   <string name="CustomNotificationsDialogFragment__default">Chaguo msingi</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Isiyojulikana</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kiungo cha kikundi kinachoweza kushirikiwa</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Dhibiti na ushiriki</string>
@@ -1639,6 +1640,7 @@ nambari yako ya simu</string>
   <string name="QuoteView_audio">Sauti</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Picha</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Media ya mtazamo-mmoja</string>
   <string name="QuoteView_sticker">Kibandiko</string>
   <string name="QuoteView_you">Wewe</string>

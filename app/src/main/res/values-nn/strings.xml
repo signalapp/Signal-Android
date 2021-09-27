@@ -690,6 +690,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="CustomNotificationsDialogFragment__enabled">Slått på</string>
   <string name="CustomNotificationsDialogFragment__disabled">Slått av</string>
   <string name="CustomNotificationsDialogFragment__default">Standard</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Ukjend</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Delbar gruppelenke</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Handter &amp; del</string>
@@ -1684,6 +1685,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Éivisningsmedia</string>
   <string name="QuoteView_sticker">Klistremerke</string>
   <string name="QuoteView_you">Deg</string>

@@ -26,6 +26,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
@@ -131,6 +132,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   @Override
+  @WorkerThread
   public SpannableString getDisplayBody(@NonNull Context context) {
     UpdateDescription updateDisplayBody = getUpdateDisplayBody(context);
 
@@ -201,6 +203,10 @@ public abstract class MessageRecord extends DisplayRecord {
     }
 
     return null;
+  }
+
+  public boolean isDisplayBodyEmpty(@NonNull Context context) {
+    return getUpdateDisplayBody(context) == null && getBody().isEmpty();
   }
 
   public boolean isSelfCreatedGroup() {

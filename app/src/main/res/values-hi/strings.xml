@@ -685,6 +685,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">सक्षम</string>
   <string name="CustomNotificationsDialogFragment__disabled">अक्षम</string>
   <string name="CustomNotificationsDialogFragment__default">डिफ़ॉल्ट</string>
+  <string name="CustomNotificationsDialogFragment__unknown">अनजान</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">शेयर करने योग्य ग्रुप लिंक</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">मैनेज और शेयर करें</string>
@@ -1637,6 +1638,7 @@
   <string name="QuoteView_audio">ऑडियो</string>
   <string name="QuoteView_video">वीडियो </string>
   <string name="QuoteView_photo">फ़ोटो</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">देखें-एक बार मीडिया</string>
   <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_you">आप</string>

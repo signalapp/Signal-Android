@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -19,6 +20,9 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.RingtoneUtil
+import java.lang.NullPointerException
+
+private val TAG = Log.tag(CustomNotificationsSettingsFragment::class.java)
 
 class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomNotificationsDialogFragment__custom_notifications) {
 
@@ -135,7 +139,12 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
     } else {
       val tone = RingtoneUtil.getRingtone(requireContext(), ringtone)
       if (tone != null) {
-        return tone.getTitle(context)
+        return try {
+          tone.getTitle(context)
+        } catch (e: NullPointerException) {
+          Log.w(TAG, "Could not get correct title for ringtone.", e)
+          context.getString(R.string.CustomNotificationsDialogFragment__unknown)
+        }
       }
     }
     return context.getString(R.string.CustomNotificationsDialogFragment__default)

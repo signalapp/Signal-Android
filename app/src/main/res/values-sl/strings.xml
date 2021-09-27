@@ -752,6 +752,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Izklopljena</string>
   <string name="CustomNotificationsDialogFragment__disabled">Vklopljena</string>
   <string name="CustomNotificationsDialogFragment__default">Privzeto</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Neznano</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deljiva povezava do skupine</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Upravljanje in delitev</string>
@@ -1804,6 +1805,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_audio">Zvok</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Medijska datoteka za enkraten ogled</string>
   <string name="QuoteView_sticker">Nalepka</string>
   <string name="QuoteView_you">Vi</string>
@@ -2279,7 +2281,15 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PaymentsHomeFragment__transfer_to_exchange">Prenesi v menjalnico</string>
   <string name="PaymentsHomeFragment__currency_conversion">Pretvorba valut</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Izklop Plačil</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Obnovitvena fraza</string>
   <string name="PaymentsHomeFragment__help">Pomoč</string>
+  <string name="PaymentsHomeFragment__sent_payment">Poslano plačilo</string>
+  <string name="PaymentsHomeFragment__received_payment">Prejeto plačilo</string>
+  <string name="PaymentsHomeFragment__processing_payment">Obdelovanje plačila</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Preračun valut ni na voljo</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Preračuna valut ni mogoče pokazati. Preverite svojo internetno povezavo in poskusite znova.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Plačila v vaši regiji niso na voljo.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Plačil ni bilo mogoče vključiti. Poskusite znova kasneje.</string>
   <string name="PaymentsHomeFragment__continue">Nadaljuj</string>
   <string name="PaymentsHomeFragment__details">Podrobnosti</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2291,6 +2301,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PaymentsDetailsFragment__status">Status</string>
   <string name="PaymentsDetailsFragment__to">Naslovnik</string>
   <string name="PaymentsDetailsFragment__from">Pošiljatelj</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Poslano plačilo</string>
+  <string name="PaymentsDetailsFragment__received_payment">Prejeto plačilo</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">Skeniraj kodo QR</string>
   <string name="PaymentsTransferFragment__next">Naprej</string>
@@ -2928,16 +2940,27 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="payment_info_card_update_pin">Posodobite PIN</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Obnovitvena fraza</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Prikaži obnovitveno frazo</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vnesi obnovitveno frazo</string>
+  <string name="PaymentsRecoveryStartFragment__start">Začni</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Ročen vnos</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Prilepi iz odložišča</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Prilepi obnovitveno frazo</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Obnovitvena fraza</string>
   <string name="PaymentsRecoveryPasteFragment__next">Naprej</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Neveljavna obnovitvena fraza</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Naprej</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Uredi</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Nazaj</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Neveljavna obnovitvena fraza</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopiraj</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">OK</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Vnesi obnovitveno frazo</string>
   <string name="PaymentsRecoveryEntryFragment__next">Naprej</string>
   <!--ClearClipboardAlarmReceiver-->
   <!--PaymentNotificationsView-->

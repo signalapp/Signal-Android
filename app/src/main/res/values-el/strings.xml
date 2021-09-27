@@ -3,7 +3,7 @@
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
-  <string name="please_wait">Παρακαλώ περίμενε…</string>
+  <string name="please_wait">Παρακαλώ περιμένετε…</string>
   <string name="save">Αποθήκευση</string>
   <string name="note_to_self">Μήνυμα σε μένα</string>
   <!--AbstractNotificationBuilder-->
@@ -682,6 +682,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ενεργοποιημένο</string>
   <string name="CustomNotificationsDialogFragment__disabled">Απενεργοποιημένο</string>
   <string name="CustomNotificationsDialogFragment__default">Προκαθορισμένη</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Άγνωστο</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Σύνδεσμος για είσοδο στην ομάδα</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Διαχείριση &amp; διαμοιρασμός</string>
@@ -1195,6 +1196,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στην κάμερά σου</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Καλεί…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Η ομάδα είναι πολύ μεγάλη ώστε να χρησιμοποιηθεί κουδούνισμα κλήσης για τους συμμετέχοντες.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
   <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal</string>
@@ -1207,11 +1209,23 @@
   <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
   <string name="WebRtcCallView__joining">Εισέρχεσαι…</string>
   <string name="WebRtcCallView__disconnected">Αποσυνδέθηκε</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Το Signal θα καλέσει με κουδόυνισμα τον/την %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Το Signal θα καλέσει με κουδόυνισμα τους %1$s και %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Το Signal θα καλέσει με κουδόυνισμα τους %1$s, %2$s και %3$d ακόμα</item>
+    <item quantity="other">Το Signal θα καλέσει με κουδόυνισμα τους %1$s, %2$s και %3$d ακόμα</item>
+  </plurals>
   <string name="WebRtcCallView__s_will_be_notified">Ο/Η %1$s θα ειδοποιηθεί</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">Οι %1$s και %2$s θα ειδοποιηθούν</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
     <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα θα ειδοποιηθούν</item>
     <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα θα ειδοποιηθούν</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Ο/Η %1$s καλείται με κουδούνισμα</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Οι %1$s και %2$s καλούνται με κουδούνισμα</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα καλούνται με κουδούνισμα</item>
+    <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα καλούνται με κουδούνισμα</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">Ο/Η %1$s σε καλεί</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">Ο/Η %1$s καλεί εσένα και τον/την%2$s</string>
@@ -1233,6 +1247,7 @@
   <string name="WebRtcCallView__speaker">Μεγάφωνο</string>
   <string name="WebRtcCallView__camera">Κάμερα</string>
   <string name="WebRtcCallView__mute">Σίγαση</string>
+  <string name="WebRtcCallView__ring">Κουδούνισμα</string>
   <string name="WebRtcCallView__end_call">Τερματισμός κλήσης</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1654,6 +1669,7 @@
   <string name="QuoteView_audio">Ήχος</string>
   <string name="QuoteView_video">Βίντεο</string>
   <string name="QuoteView_photo">Φωτογραφία</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Πολυμέσο μιας μόνο προβολής</string>
   <string name="QuoteView_sticker">Αυτοκόλλητο</string>
   <string name="QuoteView_you">Εσύ</string>
@@ -3004,6 +3020,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
@@ -3084,5 +3101,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Θα χάσεις όλες τις αλλαγές που έχεις κάνει σε αυτή τη φωτογραφία.</string>
   <string name="ImageEditorHud__delete">Διαγραφή</string>
   <string name="CameraFragment__failed_to_open_camera">Αποτυχία ενεργοποίησης κάμερας</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Εναλλαγή μεταξύ στυλ κειμένου</string>
   <!--EOF-->
 </resources>
