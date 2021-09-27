@@ -77,6 +77,10 @@ class MediaSelectionRepository(context: Context) {
       throw IllegalStateException("Provided recipients to send to, but this is SMS!")
     }
 
+    if (selectedMedia.isEmpty()) {
+      throw IllegalStateException("No selected media!")
+    }
+
     return Maybe.create<MediaSendActivityResult> { emitter ->
       val trimmedBody: String = if (isViewOnce) "" else message?.toString()?.trim() ?: ""
       val trimmedMentions: List<Mention> = if (isViewOnce) emptyList() else mentions
@@ -120,8 +124,11 @@ class MediaSelectionRepository(context: Context) {
             sendMessages(recipients, splitBody, uploadResults, trimmedMentions, isViewOnce)
             uploadRepository.deleteAbandonedAttachments()
             emitter.onComplete()
-          } else {
+          } else if (uploadResults.isNotEmpty()) {
             emitter.onSuccess(MediaSendActivityResult.forPreUpload(requireNotNull(singleRecipient).id, uploadResults, splitBody, transport, isViewOnce, trimmedMentions))
+          } else {
+            Log.w(TAG, "Got empty upload results! isSms: $isSms, updatedMedia.size(): ${updatedMedia.size}, isViewOnce: $isViewOnce, target: $singleRecipientId")
+            emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(requireNotNull(singleRecipient).id, updatedMedia, trimmedBody, transport, isViewOnce, trimmedMentions))
           }
         }
       }
