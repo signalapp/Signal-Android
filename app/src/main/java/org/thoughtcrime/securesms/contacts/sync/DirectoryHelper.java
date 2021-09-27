@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.CursorUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -230,7 +231,12 @@ public class DirectoryHelper {
 
     Stopwatch stopwatch = new Stopwatch("refresh");
 
-    DirectoryResult result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
+    DirectoryResult result;
+    if (FeatureFlags.cdsh()) {
+      result = ContactDiscoveryV3.getDirectoryResult(databaseNumbers, systemNumbers);
+    } else {
+      result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
+    }
 
     stopwatch.split("network");
 

@@ -85,6 +85,7 @@ public final class FeatureFlags {
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
   private static final String DONOR_BADGES                      = "android.donorBadges";
+  private static final String CDSH                              = "android.cdsh";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -121,7 +122,8 @@ public final class FeatureFlags {
       RETRY_RECEIPTS,
       SUGGEST_SMS_BLACKLIST,
       MAX_GROUP_CALL_RING_SIZE,
-      GROUP_CALL_RINGING
+      GROUP_CALL_RINGING,
+      CDSH
   );
 
   @VisibleForTesting
@@ -174,7 +176,8 @@ public final class FeatureFlags {
       RETRY_RECEIPTS,
       SENDER_KEY,
       MAX_GROUP_CALL_RING_SIZE,
-      GROUP_CALL_RINGING
+      GROUP_CALL_RINGING,
+      CDSH
   );
 
   /**
@@ -408,6 +411,10 @@ public final class FeatureFlags {
     } else {
       return getBoolean(DONOR_BADGES, false);
     }
+  }
+
+  public static boolean cdsh() {
+    return Environment.IS_STAGING && getBoolean(CDSH, false);
   }
 
   /** Only for rendering debug info. */

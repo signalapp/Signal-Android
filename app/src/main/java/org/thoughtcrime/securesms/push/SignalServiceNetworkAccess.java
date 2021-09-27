@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
+import org.whispersystems.signalservice.internal.configuration.SignalCdshUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalContactDiscoveryUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalKeyBackupServiceUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
@@ -159,7 +160,6 @@ public class SignalServiceNetworkAccess {
     final SignalContactDiscoveryUrl omanGoogleDiscovery     = new SignalContactDiscoveryUrl("https://www.google.com.om/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalContactDiscoveryUrl qatarGoogleDiscovery    = new SignalContactDiscoveryUrl("https://www.google.com.qa/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
-
     final SignalKeyBackupServiceUrl baseGoogleKbs     = new SignalKeyBackupServiceUrl("https://www.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalKeyBackupServiceUrl baseAndroidKbs    = new SignalKeyBackupServiceUrl("https://android.clients.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
     final SignalKeyBackupServiceUrl mapsOneAndroidKbs = new SignalKeyBackupServiceUrl("https://clients3.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
@@ -204,6 +204,7 @@ public class SignalServiceNetworkAccess {
                                                              new SignalContactDiscoveryUrl[] {egyptGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                              new SignalKeyBackupServiceUrl[] {egyptGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                              new SignalStorageUrl[] {egyptGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
+                                                             new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
                                                              interceptors,
                                                              dns,
                                                              Optional.absent(),
@@ -215,6 +216,7 @@ public class SignalServiceNetworkAccess {
                                                            new SignalContactDiscoveryUrl[] {uaeGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                            new SignalKeyBackupServiceUrl[] {uaeGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                            new SignalStorageUrl[] {uaeGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
+                                                           new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
                                                            interceptors,
                                                            dns,
                                                            Optional.absent(),
@@ -226,6 +228,7 @@ public class SignalServiceNetworkAccess {
                                                             new SignalContactDiscoveryUrl[] {omanGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                             new SignalKeyBackupServiceUrl[] {omanGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                             new SignalStorageUrl[] {omanGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
+                                                            new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
                                                             interceptors,
                                                             dns,
                                                             Optional.absent(),
@@ -238,6 +241,7 @@ public class SignalServiceNetworkAccess {
                                                              new SignalContactDiscoveryUrl[] {qatarGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                              new SignalKeyBackupServiceUrl[] {qatarGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                              new SignalStorageUrl[] {qatarGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
+                                                             new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
                                                              interceptors,
                                                              dns,
                                                              Optional.absent(),
@@ -249,6 +253,7 @@ public class SignalServiceNetworkAccess {
                                                             Stream.of(fastUrls).map(url -> new SignalContactDiscoveryUrl(url, DIRECTORY_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalContactDiscoveryUrl[]::new),
                                                             Stream.of(fastUrls).map(url -> new SignalKeyBackupServiceUrl(url, KBS_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalKeyBackupServiceUrl[]::new),
                                                             Stream.of(fastUrls).map(url -> new SignalStorageUrl(url, STORAGE_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalStorageUrl[]::new),
+                                                            new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
                                                             interceptors,
                                                             dns,
                                                             Optional.absent(),
@@ -261,6 +266,7 @@ public class SignalServiceNetworkAccess {
                                                                   new SignalContactDiscoveryUrl[] {new SignalContactDiscoveryUrl(BuildConfig.SIGNAL_CONTACT_DISCOVERY_URL, new SignalServiceTrustStore(context))},
                                                                   new SignalKeyBackupServiceUrl[] { new SignalKeyBackupServiceUrl(BuildConfig.SIGNAL_KEY_BACKUP_URL, new SignalServiceTrustStore(context)) },
                                                                   new SignalStorageUrl[] {new SignalStorageUrl(BuildConfig.STORAGE_URL, new SignalServiceTrustStore(context))},
+                                                                  new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
                                                                   interceptors,
                                                                   dns,
                                                                   SignalStore.proxy().isProxyEnabled() ? Optional.of(SignalStore.proxy().getProxy()) : Optional.absent(),
