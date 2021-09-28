@@ -579,11 +579,11 @@ dependencyVerification {
         ['org.signal:ringrtc-android:2.13.1',
          '5bb5c9829053006d27e3444ae1984a3e3daece1edddb870c3f1da2c2179c40fc'],
 
-        ['org.signal:zkgroup-android:0.7.0',
-         '52b172565bd01526e93ebf1796b834bdc449d4fe3422c1b827e49cb8d4f13fbd'],
+        ['org.signal:zkgroup-android:0.8.1',
+         '97e18f753509248b0569bd22aeee9c2d96b09c24993e92208a2d0fbc6d413057'],
 
-        ['org.signal:zkgroup-java:0.7.0',
-         'd0099eedd60d6f7d4df5b288175e5d585228ed8897789926bdab69bf8c05659f'],
+        ['org.signal:zkgroup-java:0.8.1',
+         'ef2b7c0fa862b54dd40f0a76462f400855f4927fabe5fc0ffdd19bd01344f0c5'],
 
         ['org.slf4j:slf4j-api:1.7.24',
          'baf3c7fe15fefeaf9e5b000d94547379dc48370f22a8797e239c127e7d7756ec'],
