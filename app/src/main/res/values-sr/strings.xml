@@ -3240,6 +3240,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Нова уплата</string>
@@ -3325,5 +3326,6 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Изгубићете све промене које сте направили на овој фотографији.</string>
   <string name="ImageEditorHud__delete">Избриши</string>
   <string name="CameraFragment__failed_to_open_camera">Неуспешно отварање камере</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Пребацити стил текста</string>
   <!--EOF-->
 </resources>

@@ -422,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Megosztás…</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Több csatolmányt használata csak fényképek és videók esetén támogatott.</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nincs jogosultságod, hogy bármit ebbe a csoportba küldj</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal nem tudott beregisztrálni a Google Play Szolgáltatásokra. A Signal üzenetek és hívások ezért le lettek tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban!</string>
@@ -436,7 +437,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" hozzáadva a \"%2$s\" csoporthoz.</string>
   <string name="AddToGroupActivity_add_to_group">Hozzáadás a csoporthoz</string>
   <string name="AddToGroupActivity_add_to_groups">Hozzáadás csoportokhoz</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ez a személyt nem adható régi típusú csoporthoz.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ez a személy nem adható régi típusú csoporthoz.</string>
   <string name="AddToGroupActivity_add">Hozzáadás</string>
   <string name="AddToGroupActivity_add_to_a_group">Hozzáadás egy csoporthoz</string>
   <!--ChooseNewAdminActivity-->
@@ -563,7 +564,8 @@
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" elutasítva</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Befejezés</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ez a személyt nem adható régi típusú csoporthoz.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ez a személy nem adható régi típusú csoporthoz.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ez a személy nem adható hozzá hírcsatorna típusú csoporthoz.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Hozzáadod \"%1$s\"-t a \"%2$s\" csoporthoz?</item>
     <item quantity="other">Hozzáadsz %3$d tagot a \"%2$s\" csoporthoz?</item>
@@ -634,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">A megosztható csoporthivatkozást csak az adminok módosíthatják.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ehhez nincs elegendő jogosultságod</string>
   <string name="ManageGroupActivity_not_capable">Egy általad hozzáadott csoporttag nem támogatja az új csoportokat, ezért frissítenie kell a Signalt</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Egy új tag elavult Signalt használ, frissítenie kell a hírcsatorna típusú csoport használatához</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nem vagy a csoport tagja</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>

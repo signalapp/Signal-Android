@@ -1732,7 +1732,7 @@
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">此群組中的成員，以及獲邀加入群組的人，將會見到群組描述。</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">關於</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">錯折中行過 尚有點忘我…</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">共你星光中看着瀑布…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">☝️息尚存</string>
   <string name="EditAboutFragment_encrypted">清風不識字</string>
