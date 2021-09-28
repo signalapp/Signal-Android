@@ -79,7 +79,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   private fun getConfiguration(state: SelectFeaturedBadgeState): DSLConfiguration {
     return configure {
       sectionHeaderPref(R.string.SelectFeaturedBadgeFragment__select_a_badge)
-      displayBadges(state.allUnlockedBadges, state.selectedBadge)
+      displayBadges(requireContext(), state.allUnlockedBadges, state.selectedBadge)
     }
   }
 }

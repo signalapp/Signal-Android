@@ -5,6 +5,8 @@ import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -49,6 +51,16 @@ public final class ScreenDensity {
     }
 
     return new ScreenDensity(bucket, density);
+  }
+
+  public static @NonNull String getBestDensityBucketForDevice() {
+    ScreenDensity density = get(ApplicationDependencies.getApplication());
+
+    if (density.isKnownDensity()) {
+      return density.bucket;
+    } else {
+      return "xhdpi";
+    }
   }
 
   public String getBucket() {

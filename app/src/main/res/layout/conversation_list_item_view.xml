@@ -191,14 +191,13 @@
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/conversation_list_item_badge"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="@dimen/conversation_list_badge_offset"
-        android:layout_marginTop="@dimen/conversation_list_badge_offset"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="26dp"
         android:contentDescription="@string/ImageView__badge"
         android:visibility="gone"
-        app:badge_outline_color="@color/signal_background_primary"
-        app:badge_outline_width="1dp"
+        app:badge_size="medium"
         app:layout_constraintStart_toStartOf="@id/conversation_list_item_avatar"
         app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar"
         tools:visibility="visible" />

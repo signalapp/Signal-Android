@@ -25,14 +25,13 @@
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/contact_badge"
-        android:layout_width="@dimen/badge_size_small"
-        android:layout_height="@dimen/badge_size_small"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="23dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:contentDescription="@string/ImageView__badge"
         android:visibility="gone"
-        app:badge_outline_color="@color/signal_background_primary"
-        app:badge_outline_width="1dp"
+        app:badge_size="small"
         app:layout_constraintStart_toStartOf="@id/contact_photo_image"
         app:layout_constraintTop_toTopOf="@id/contact_photo_image"
         tools:visibility="visible" />

@@ -129,13 +129,28 @@ public class SignalServiceProfile {
     private String category;
 
     @JsonProperty
-    private String imageUrl;
-
-    @JsonProperty
     private String name;
 
     @JsonProperty
     private String description;
+
+    @JsonProperty
+    private String ldpi;
+
+    @JsonProperty
+    private String mdpi;
+
+    @JsonProperty
+    private String hdpi;
+
+    @JsonProperty
+    private String xhdpi;
+
+    @JsonProperty
+    private String xxhdpi;
+
+    @JsonProperty
+    private String xxxhdpi;
 
     @JsonProperty
     private BigDecimal expiration;
@@ -159,12 +174,32 @@ public class SignalServiceProfile {
       return description;
     }
 
-    public BigDecimal getExpiration() {
-      return expiration;
+    public String getLdpiUri() {
+      return ldpi;
     }
 
-    public String getImageUrl() {
-      return imageUrl;
+    public String getMdpiUri() {
+      return mdpi;
+    }
+
+    public String getHdpiUri() {
+      return hdpi;
+    }
+
+    public String getXhdpiUri() {
+      return xhdpi;
+    }
+
+    public String getXxhdpiUri() {
+      return xxhdpi;
+    }
+
+    public String getXxxhdpiUri() {
+      return xxxhdpi;
+    }
+
+    public BigDecimal getExpiration() {
+      return expiration;
     }
 
     public boolean isVisible() {

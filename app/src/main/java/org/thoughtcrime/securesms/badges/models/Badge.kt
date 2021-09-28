@@ -2,22 +2,26 @@ package org.thoughtcrime.securesms.badges.models
 
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Parcel
 import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.Key
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
+import kotlinx.parcelize.Parcelize
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges.selectable
+import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.ThemeUtil
 import java.security.MessageDigest
 
 typealias OnBadgeClicked = (Badge, Boolean) -> Unit
@@ -25,42 +29,22 @@ typealias OnBadgeClicked = (Badge, Boolean) -> Unit
 /**
  * A Badge that can be collected and displayed by a user.
  */
+@Parcelize
 data class Badge(
   val id: String,
   val category: Category,
-  val imageUrl: Uri,
   val name: String,
   val description: String,
+  val imageUrl: Uri,
+  val imageDensity: String,
   val expirationTimestamp: Long,
-  val visible: Boolean
+  val visible: Boolean,
 ) : Parcelable, Key {
-
-  constructor(parcel: Parcel) : this(
-    requireNotNull(parcel.readString()),
-    Category.fromCode(requireNotNull(parcel.readString())),
-    requireNotNull(parcel.readParcelable(Uri::class.java.classLoader)),
-    requireNotNull(parcel.readString()),
-    requireNotNull(parcel.readString()),
-    parcel.readLong(),
-    parcel.readByte() == 1.toByte()
-  )
-
-  override fun describeContents(): Int {
-    return 0
-  }
-
-  override fun writeToParcel(parcel: Parcel, flags: Int) {
-    parcel.writeString(id)
-    parcel.writeString(category.code)
-    parcel.writeParcelable(imageUrl, flags)
-    parcel.writeString(name)
-    parcel.writeString(description)
-    parcel.writeLong(expirationTimestamp)
-    parcel.writeByte(if (visible) 1 else 0)
-  }
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(id.toByteArray(Key.CHARSET))
+    messageDigest.update(imageUrl.toString().toByteArray(Key.CHARSET))
+    messageDigest.update(imageDensity.toByteArray(Key.CHARSET))
   }
 
   fun resolveDescription(shortName: String): String {
@@ -130,6 +114,9 @@ data class Badge(
 
       GlideApp.with(badge)
         .load(model.badge)
+        .downsample(DownsampleStrategy.NONE)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.XLARGE, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)))
         .into(target)
 
       if (model.isSelected) {
@@ -170,7 +157,6 @@ data class Badge(
       val drawable = resource.selectable(
         DimensionUnit.DP.toPixels(2.5f),
         ContextCompat.getColor(view.context, R.color.signal_inverse_primary),
-        ContextCompat.getColor(view.context, R.color.signal_background_primary),
         animator
       )
 
@@ -202,20 +188,34 @@ data class Badge(
     }
   }
 
-  companion object CREATOR : Parcelable.Creator<Badge> {
+  companion object {
     private val SELECTION_CHANGED = Any()
-
-    override fun createFromParcel(parcel: Parcel): Badge {
-      return Badge(parcel)
-    }
-
-    override fun newArray(size: Int): Array<Badge?> {
-      return arrayOfNulls(size)
-    }
 
     fun register(mappingAdapter: MappingAdapter, onBadgeClicked: OnBadgeClicked) {
       mappingAdapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it, onBadgeClicked) }, R.layout.badge_preference_view))
       mappingAdapter.registerFactory(EmptyModel::class.java, MappingAdapter.LayoutFactory({ EmptyViewHolder(it) }, R.layout.badge_preference_view))
+    }
+  }
+
+  @Parcelize
+  data class ImageSet(
+    val ldpi: String,
+    val mdpi: String,
+    val hdpi: String,
+    val xhdpi: String,
+    val xxhdpi: String,
+    val xxxhdpi: String
+  ) : Parcelable {
+    fun getByDensity(density: String): String {
+      return when (density) {
+        "ldpi" -> ldpi
+        "mdpi" -> mdpi
+        "hdpi" -> hdpi
+        "xhdpi" -> xhdpi
+        "xxhdpi" -> xxhdpi
+        "xxxhdpi" -> xxxhdpi
+        else -> xhdpi
+      }
     }
   }
 }

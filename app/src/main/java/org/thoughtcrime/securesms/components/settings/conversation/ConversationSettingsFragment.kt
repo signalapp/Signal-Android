@@ -489,7 +489,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
           sectionHeaderPref(R.string.ManageProfileFragment_badges)
 
-          displayBadges(state.recipient.badges)
+          displayBadges(requireContext(), state.recipient.badges)
         }
 
         if (recipientSettingsState.selfHasGroups) {

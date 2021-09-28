@@ -52,7 +52,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
     return configure {
       sectionHeaderPref(R.string.BadgesOverviewFragment__my_badges)
 
-      displayBadges(state.allUnlockedBadges)
+      displayBadges(requireContext(), state.allUnlockedBadges)
 
       switchPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__display_badges_on_profile),
