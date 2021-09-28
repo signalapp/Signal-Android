@@ -666,6 +666,7 @@
   <string name="ManageProfileFragment_your_name">Je naam</string>
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
+  <string name="ManageProfileFragment_badges">Badges</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1531,6 +1532,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_reacted_s_to_s">reageerde met %1$s op “%2$s”.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">reageerde met %1$s op je video.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">reageerde met %1$s op je afbeelding.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reageerde met %1$s op je GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">reageerde met %1$s op je bestand.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">reageerde met %1$s op je audio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">reageerde met %1$s op je eenmaligeweergave-media.</string>
@@ -3220,6 +3222,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MediaReviewFragment__add_a_message">Een bericht bijvoegen</string>
   <string name="MediaReviewFragment__add_a_reply">Een reactie toevoegen</string>
   <string name="MediaReviewFragment__send_to">Verzonden aan</string>
+  <string name="MediaReviewFragment__view_once_message">Eenmaligeweergave-bericht</string>
   <string name="ImageEditorHud__cancel">Annuleren</string>
   <string name="ImageEditorHud__draw">Tekenen</string>
   <string name="ImageEditorHud__write_text">Schrijf tekst</string>
@@ -3229,15 +3232,25 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ImageEditorHud__clear_all">Alles wissen</string>
   <string name="ImageEditorHud__undo">Ongedaan maken</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Schakelen tussen stift en markeerstift</string>
+  <string name="ImageEditorHud__delete">Gesprek wissen</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Wisselen tussen tekststijlen</string>
   <string name="MediaCountIndicatorButton__send">Verzenden</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Tik om te verwijderen</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tik om te selecteren</string>
   <string name="MediaReviewImagePageFragment__discard">Verwerpen</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Aanpassingen verwerpen?</string>
-  <string name="MediaReviewFragment__view_once_message">Eenmaligeweergave-bericht</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veranderingen die je aan deze afbeelding hebt gemaakt zullen verloren gaan.</string>
-  <string name="ImageEditorHud__delete">Gesprek wissen</string>
   <string name="CameraFragment__failed_to_open_camera">Camera openen is mislukt</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Wisselen tussen tekststijlen</string>
+  <string name="BadgesOverviewFragment__my_badges">Jouw badges</string>
+  <string name="BadgesOverviewFragment__featured_badge">Weergegeven badges</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Maak badges zichtbaar op mijn profiel</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profiel bijwerken mislukt</string>
+  <string name="BadgeSelectionFragment__select_badges">Badges selecteren</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Voorbeeld</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Kies een badge</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Je moet een badge kiezen</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiel bijwerken mislukt</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Wordt een ondersteuner</string>
+  <string name="ImageView__badge">Badge</string>
   <!--EOF-->
 </resources>

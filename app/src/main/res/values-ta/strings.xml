@@ -3139,9 +3139,10 @@
   <string name="ImageEditorHud__cancel">ரத்து</string>
   <string name="ImageEditorHud__blur">தெளிவின்மை</string>
   <string name="ImageEditorHud__undo">செயல்தவிர்</string>
+  <string name="ImageEditorHud__delete">நீக்கு</string>
   <string name="MediaCountIndicatorButton__send">அனுப்புக</string>
   <string name="MediaReviewSelectedItem__tap_to_select">தேர்ந்தெடுக்க தட்டவும்</string>
   <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
-  <string name="ImageEditorHud__delete">நீக்கு</string>
+  <string name="SelectFeaturedBadgeFragment__preview">முன்னோட்டம்</string>
   <!--EOF-->
 </resources>

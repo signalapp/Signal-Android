@@ -3206,9 +3206,10 @@ broj telefona</string>
   <string name="ImageEditorHud__cancel">Poništi</string>
   <string name="ImageEditorHud__blur">Zamuti</string>
   <string name="ImageEditorHud__undo">Poništi</string>
+  <string name="ImageEditorHud__delete">Izbriši</string>
   <string name="MediaCountIndicatorButton__send">Pošalji</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pritisni za odabir slike profila</string>
   <string name="MediaReviewImagePageFragment__discard">Poništi</string>
-  <string name="ImageEditorHud__delete">Izbriši</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Pregled</string>
   <!--EOF-->
 </resources>

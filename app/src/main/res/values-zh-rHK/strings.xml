@@ -3123,6 +3123,7 @@
   <string name="MediaReviewFragment__add_a_message">新增訊息</string>
   <string name="MediaReviewFragment__add_a_reply">新增回覆</string>
   <string name="MediaReviewFragment__send_to">傳送給</string>
+  <string name="MediaReviewFragment__view_once_message">閱後即焚訊息</string>
   <string name="ImageEditorHud__cancel">取消</string>
   <string name="ImageEditorHud__draw">繪畫</string>
   <string name="ImageEditorHud__write_text">寫字</string>
@@ -3132,15 +3133,15 @@
   <string name="ImageEditorHud__clear_all">全部清除</string>
   <string name="ImageEditorHud__undo">復原</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">切換彩色筆與螢光筆</string>
+  <string name="ImageEditorHud__delete">刪除</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">切換文字樣式</string>
   <string name="MediaCountIndicatorButton__send">傳送</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">輕觸以移除</string>
   <string name="MediaReviewSelectedItem__tap_to_select">輕觸以選取</string>
   <string name="MediaReviewImagePageFragment__discard">捨棄</string>
   <string name="MediaReviewImagePageFragment__discard_changes">要捨棄變更嗎？</string>
-  <string name="MediaReviewFragment__view_once_message">閱後即焚訊息</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">您對此照片所作的任何變更將會遺失。</string>
-  <string name="ImageEditorHud__delete">刪除</string>
   <string name="CameraFragment__failed_to_open_camera">無法開啟相機</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">切換文字樣式</string>
+  <string name="SelectFeaturedBadgeFragment__preview">預覽</string>
   <!--EOF-->
 </resources>

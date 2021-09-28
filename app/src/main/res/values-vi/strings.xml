@@ -3001,9 +3001,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">Hủy</string>
   <string name="ImageEditorHud__undo">Hoàn tác</string>
+  <string name="ImageEditorHud__delete">Xóa</string>
   <string name="MediaCountIndicatorButton__send">Gửi</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Nhấn để chọn</string>
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
-  <string name="ImageEditorHud__delete">Xóa</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Xem trước</string>
   <!--EOF-->
 </resources>

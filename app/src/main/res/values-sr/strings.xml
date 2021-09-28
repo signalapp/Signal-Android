@@ -3308,6 +3308,7 @@
   <string name="MediaReviewFragment__add_a_message">Додати поруку</string>
   <string name="MediaReviewFragment__add_a_reply">Додај одговор</string>
   <string name="MediaReviewFragment__send_to">Пошаљи у</string>
+  <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
   <string name="ImageEditorHud__cancel">Поништи</string>
   <string name="ImageEditorHud__draw">Нацртај</string>
   <string name="ImageEditorHud__write_text">Пиши текст</string>
@@ -3317,15 +3318,15 @@
   <string name="ImageEditorHud__clear_all">Очисти све</string>
   <string name="ImageEditorHud__undo">Опозови</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Пребаци маркер/најамнички</string>
+  <string name="ImageEditorHud__delete">Избриши</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Пребацити стил текста</string>
   <string name="MediaCountIndicatorButton__send">Пошаљи</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Пипнути за уклон</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Додирни за избор</string>
   <string name="MediaReviewImagePageFragment__discard">Одбаци</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Одбацити промене?</string>
-  <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Изгубићете све промене које сте направили на овој фотографији.</string>
-  <string name="ImageEditorHud__delete">Избриши</string>
   <string name="CameraFragment__failed_to_open_camera">Неуспешно отварање камере</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Пребацити стил текста</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>
   <!--EOF-->
 </resources>

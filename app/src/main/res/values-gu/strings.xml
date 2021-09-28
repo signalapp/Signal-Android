@@ -3109,9 +3109,10 @@
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">રદ કરો</string>
   <string name="ImageEditorHud__undo">પૂર્વવત્ કરો</string>
+  <string name="ImageEditorHud__delete">કાઢી નાખો </string>
   <string name="MediaCountIndicatorButton__send">મોકલો</string>
   <string name="MediaReviewSelectedItem__tap_to_select">પસંદ કરવા માટે ટેપ કરો</string>
   <string name="MediaReviewImagePageFragment__discard">કાઢી નાખો</string>
-  <string name="ImageEditorHud__delete">કાઢી નાખો </string>
+  <string name="SelectFeaturedBadgeFragment__preview">પ્રિવ્યૂ</string>
   <!--EOF-->
 </resources>

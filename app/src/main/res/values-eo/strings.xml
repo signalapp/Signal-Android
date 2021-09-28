@@ -3014,9 +3014,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ImageEditorHud__cancel">Nuligi</string>
   <string name="ImageEditorHud__blur">Malklarigi</string>
   <string name="ImageEditorHud__undo">Malfari</string>
+  <string name="ImageEditorHud__delete">Forigi</string>
   <string name="MediaCountIndicatorButton__send">Sendi</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tuŝeto por elekti</string>
   <string name="MediaReviewImagePageFragment__discard">Ne konservi</string>
-  <string name="ImageEditorHud__delete">Forigi</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Antaŭrigardo</string>
   <!--EOF-->
 </resources>

@@ -3208,6 +3208,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaReviewFragment__add_a_message">Lägg till ett meddelande</string>
   <string name="MediaReviewFragment__add_a_reply">Lägg till ett svar</string>
   <string name="MediaReviewFragment__send_to">Skicka till</string>
+  <string name="MediaReviewFragment__view_once_message">Visa engångsmeddelande</string>
   <string name="ImageEditorHud__cancel">Avbryt</string>
   <string name="ImageEditorHud__draw">Dra</string>
   <string name="ImageEditorHud__write_text">Skriv text</string>
@@ -3217,15 +3218,15 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ImageEditorHud__clear_all">Rensa alla</string>
   <string name="ImageEditorHud__undo">Ångra</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Växla mellan markör och markering</string>
+  <string name="ImageEditorHud__delete">Ta bort</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Växla mellan textformat</string>
   <string name="MediaCountIndicatorButton__send">Skicka</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Tryck för att ta bort</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tryck för att välja</string>
   <string name="MediaReviewImagePageFragment__discard">Kassera</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Kassera ändringar?</string>
-  <string name="MediaReviewFragment__view_once_message">Visa engångsmeddelande</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du förlorar alla ändringar du har gjort på detta foto.</string>
-  <string name="ImageEditorHud__delete">Ta bort</string>
   <string name="CameraFragment__failed_to_open_camera">Det gick inte att öppna kameran</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Växla mellan textformat</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Förhandsgranskning</string>
   <!--EOF-->
 </resources>

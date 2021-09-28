@@ -2755,8 +2755,9 @@
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">ବାତିଲ କରନ୍ତୁ</string>
   <string name="ImageEditorHud__write_text">ପାଠ୍ୟ ଲେଖନ୍ତୁ</string>
+  <string name="ImageEditorHud__delete">ବିଲୋପ କରନ୍ତୁ</string>
   <string name="MediaCountIndicatorButton__send">ପଠାନ୍ତୁ</string>
   <string name="MediaReviewSelectedItem__tap_to_select">ମନୋନୟନ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
-  <string name="ImageEditorHud__delete">ବିଲୋପ କରନ୍ତୁ</string>
+  <string name="SelectFeaturedBadgeFragment__preview">ପୂର୍ବାବଲୋକନ</string>
   <!--EOF-->
 </resources>

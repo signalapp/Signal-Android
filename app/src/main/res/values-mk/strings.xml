@@ -3155,13 +3155,14 @@
   <string name="ImageEditorHud__done_editing">Заврши со уредување</string>
   <string name="ImageEditorHud__clear_all">Исчисте сѐ</string>
   <string name="ImageEditorHud__undo">Врати</string>
+  <string name="ImageEditorHud__delete">Избриши</string>
   <string name="MediaCountIndicatorButton__send">Испрати</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Допрете за да отстраните</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Допри за да одбереш</string>
   <string name="MediaReviewImagePageFragment__discard">Откажи</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Да ги откажам промените?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Ќе ги изгубите сите промени направени на оваа фотографија.</string>
-  <string name="ImageEditorHud__delete">Избриши</string>
   <string name="CameraFragment__failed_to_open_camera">Не успеа да се отвори камерата</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>
   <!--EOF-->
 </resources>

@@ -3117,9 +3117,10 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">Ghairi</string>
   <string name="ImageEditorHud__undo">Ondoa</string>
+  <string name="ImageEditorHud__delete">Futa</string>
   <string name="MediaCountIndicatorButton__send">Tuma</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Gusa kuchagua</string>
   <string name="MediaReviewImagePageFragment__discard">Ghairi</string>
-  <string name="ImageEditorHud__delete">Futa</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Hakiki</string>
   <!--EOF-->
 </resources>
