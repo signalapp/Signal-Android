@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.EdgeEffect
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.thoughtcrime.securesms.components.RotatableGradientDrawable
 
 /**
  * Draws the ChatColors color or gradient following this procedure:
@@ -77,7 +78,6 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
       color = Color.BLACK
     }
 
-    private val shaderPaint = Paint()
     private val colorPaint = Paint()
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
@@ -107,24 +107,25 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
 
     private fun drawShaderMask(canvas: Canvas, parent: RecyclerView, chatColors: ChatColors) {
       if (useLayer) {
-        shaderPaint.xfermode = layerXfermode
         colorPaint.xfermode = layerXfermode
       } else {
-        shaderPaint.xfermode = noLayerXfermode
         colorPaint.xfermode = noLayerXfermode
       }
 
-      val shader = chatColors.asShader(0, 0, parent.width, parent.height)
-      shaderPaint.shader = shader
-      colorPaint.color = chatColors.asSingleColor()
-
-      canvas.drawRect(
-        0f,
-        0f,
-        parent.width.toFloat(),
-        parent.height.toFloat(),
-        if (shader == null) colorPaint else shaderPaint
-      )
+      if (chatColors.isGradient()) {
+        val mask = chatColors.chatBubbleMask as RotatableGradientDrawable
+        mask.setXfermode(colorPaint.xfermode)
+        mask.setBounds(0, 0, parent.width, parent.height)
+        mask.draw(canvas)
+      } else {
+        canvas.drawRect(
+          0f,
+          0f,
+          parent.width.toFloat(),
+          parent.height.toFloat(),
+          colorPaint
+        )
+      }
     }
   }
 

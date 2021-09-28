@@ -8,6 +8,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Shader;
+import android.graphics.Xfermode;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
@@ -100,8 +101,8 @@ public final class RotatableGradientDrawable extends Drawable {
     fillPaint.setShader(new LinearGradient(fillRect.left, fillRect.top, fillRect.right, fillRect.bottom, colors, positions, Shader.TileMode.CLAMP));
   }
 
-  public @Nullable Shader getShader() {
-    return fillPaint.getShader();
+  public void setXfermode(@NonNull Xfermode xfermode) {
+    fillPaint.setXfermode(xfermode);
   }
 
   private static Point cornerPrime(@NonNull Point origin, @NonNull Point corner, float degrees) {
