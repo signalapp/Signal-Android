@@ -6,6 +6,7 @@
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
     <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
     <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="safety_number_support_url" translatable="false">https://support.signal.org/hc/articles/360007060632</string>
     <string name="support_center_url" translatable="false">https://support.signal.org/</string>
     <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
 
@@ -2160,13 +2161,14 @@
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[To verify the security of your end-to-end encryption with %s, compare the numbers above with their device. You can also scan the code on their phone. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
+    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s">To verify the security of your end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their phone. %2$s</string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
     <string name="verify_display_fragment__successful_match">Successful match</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Failed to verify safety number</string>
     <string name="verify_display_fragment__loading">Loading…</string>
     <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
     <string name="verify_display_fragment__clear_verification">Clear verification</string>
+    <string name="verify_display_fragment__learn_more">Learn more</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Share safety number</string>
