@@ -1683,7 +1683,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       return null;
     } else {
       return new GiphyMp4PlaybackPolicyEnforcer(() -> {
-        eventListener.onPlayInlineContent(null);
+        if (eventListener != null) {
+          eventListener.onPlayInlineContent(null);
+        }
       });
     }
   }
