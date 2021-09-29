@@ -97,7 +97,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static final int    SUMMARY_NOTIFICATION_ID    = 1338;
   private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
-  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
+  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(5);
   private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
 
   private volatile static       long               visibleThread                = -1;
@@ -440,9 +440,12 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   private void sendInThreadNotification(Context context, Recipient recipient) {
     if (!TextSecurePreferences.isInThreadNotifications(context) ||
-        ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
+            ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL ||
+            (System.currentTimeMillis() - lastAudibleNotification) < MIN_AUDIBLE_PERIOD_MILLIS)
     {
       return;
+    } else {
+      lastAudibleNotification = System.currentTimeMillis();
     }
 
     Uri uri = null;
