@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Votre nom</string>
   <string name="ManageProfileFragment_your_username">Votre nom d’utilisateur</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Échec de définition de l’avatar</string>
+  <string name="ManageProfileFragment_badges">Badges</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Aucun groupe en commun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1518,6 +1519,7 @@
   <string name="MessageNotifier_reacted_s_to_s">A réagi %1$s à : « %2$s ».</string>
   <string name="MessageNotifier_reacted_s_to_your_video">A réagi %1$s à votre vidéo.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">A réagi %1$s à votre image.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">A réagi avec %1$s à votre GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">A réagi %1$s à votre fichier.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">A réagi %1$s à votre son.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">A réagi %1$s à votre média éphémère.</string>
@@ -1829,6 +1831,7 @@
   <string name="verify_display_fragment__failed_to_verify_safety_number">Échec de la confirmation du numéro de sécurité.</string>
   <string name="verify_display_fragment__loading">Chargement…</string>
   <string name="verify_display_fragment__mark_as_verified">Marquer comme confirmé</string>
+  <string name="verify_display_fragment__clear_verification">Annuler la confirmation</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partager le numéro de sécurité</string>
   <!--verity_scan_fragment-->
@@ -3201,6 +3204,7 @@
   <string name="MediaReviewFragment__add_a_message">Ajouter un message</string>
   <string name="MediaReviewFragment__add_a_reply">Ajouter une réponse</string>
   <string name="MediaReviewFragment__send_to">Envoyer à</string>
+  <string name="MediaReviewFragment__view_once_message">Message éphémère</string>
   <string name="ImageEditorHud__cancel">Annuler</string>
   <string name="ImageEditorHud__draw">Dessiner</string>
   <string name="ImageEditorHud__write_text">Écrire du texte</string>
@@ -3208,15 +3212,23 @@
   <string name="ImageEditorHud__blur">Flouter</string>
   <string name="ImageEditorHud__undo">Annuler</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Passer du marqueur au surligneur</string>
+  <string name="ImageEditorHud__delete">Supprimer</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Basculer entre les styles de texte</string>
   <string name="MediaCountIndicatorButton__send">Envoyer</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Touchez pour retirer</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Touchez pour sélectionner</string>
   <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Abandonner les changements ?</string>
-  <string name="MediaReviewFragment__view_once_message">Message éphémère</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
-  <string name="ImageEditorHud__delete">Supprimer</string>
   <string name="CameraFragment__failed_to_open_camera">Échec d’ouverture de l’appareil photo</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Basculer entre les styles de texte</string>
+  <string name="BadgesOverviewFragment__my_badges">Mes badges</string>
+  <string name="BadgesOverviewFragment__featured_badge">Badges mis en avant</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Afficher les badges sur le profil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Aperçu</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Choisissez un badge</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vous devez sélectionner un badge</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
+  <string name="ImageView__badge">Badge</string>
   <!--EOF-->
 </resources>

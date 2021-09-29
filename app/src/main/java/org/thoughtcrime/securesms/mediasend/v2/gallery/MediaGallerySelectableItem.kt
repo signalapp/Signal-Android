@@ -1,9 +1,15 @@
 package org.thoughtcrime.securesms.mediasend.v2.gallery
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaFolder
@@ -17,6 +23,8 @@ import org.thoughtcrime.securesms.util.visible
 
 typealias OnMediaFolderClicked = (MediaFolder) -> Unit
 typealias OnMediaClicked = (Media, Boolean) -> Unit
+
+private val FILE_VIEW_HOLDER_TAG = Log.tag(MediaGallerySelectableItem.FileViewHolder::class.java)
 
 object MediaGallerySelectableItem {
 
@@ -79,6 +87,7 @@ object MediaGallerySelectableItem {
     override fun bind(model: FileModel) {
       GlideApp.with(imageView)
         .load(DecryptableStreamUriLoader.DecryptableUri(model.media.uri))
+        .addListener(ErrorLoggingRequestListener(FILE_VIEW_HOLDER_TAG))
         .into(imageView)
 
       checkView?.isSelected = model.isSelected
@@ -86,5 +95,14 @@ object MediaGallerySelectableItem {
       itemView.setOnClickListener { onMediaClicked(model.media, model.isSelected) }
       title?.visible = false
     }
+  }
+
+  private class ErrorLoggingRequestListener(private val tag: String) : RequestListener<Drawable> {
+    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+      Log.w(tag, "Failed to load media.", e)
+      return false
+    }
+
+    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean = false
   }
 }

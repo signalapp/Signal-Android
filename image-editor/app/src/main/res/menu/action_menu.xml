@@ -38,12 +38,6 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_rotate_right_90"
-        android:icon="@drawable/ic_rotate_right_black_24dp"
-        android:title="@string/rotate_90_right"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/action_rotate_left_90"
         android:icon="@drawable/ic_rotate_left_black_24dp"
         android:title="@string/rotate_90_left"
@@ -53,11 +47,6 @@
         android:id="@+id/action_flip_horizontal"
         android:icon="@drawable/ic_flip_black_24dp"
         android:title="@string/flip_horizontal"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_flip_vertical"
-        android:title="@string/flip_vertical"
         app:showAsAction="ifRoom" />
 
     <item

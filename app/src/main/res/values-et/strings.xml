@@ -3046,6 +3046,7 @@
   <string name="MediaReviewFragment__add_a_message">Lisa sõnum</string>
   <string name="MediaReviewFragment__add_a_reply">Lisa vastus</string>
   <string name="MediaReviewFragment__send_to">Saaja</string>
+  <string name="MediaReviewFragment__view_once_message">Ühekordne sõnum</string>
   <string name="ImageEditorHud__cancel">Loobu</string>
   <string name="ImageEditorHud__draw">Joonista</string>
   <string name="ImageEditorHud__write_text">Kirjuta tekst</string>
@@ -3055,15 +3056,15 @@
   <string name="ImageEditorHud__clear_all">Eemalda kõik</string>
   <string name="ImageEditorHud__undo">Võta tagasi</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Lülita markeri ja esiletõstja vahel</string>
+  <string name="ImageEditorHud__delete">Kustuta</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Lülita tekstistiilide vahel</string>
   <string name="MediaCountIndicatorButton__send">Saada</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Klõpsa eemaldamiseks</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Koputa valimiseks</string>
   <string name="MediaReviewImagePageFragment__discard">Keeldu</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Kas loobuda muudatustest?</string>
-  <string name="MediaReviewFragment__view_once_message">Ühekordne sõnum</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Sa kaotad kõik sellele fotole tehtud muudatused</string>
-  <string name="ImageEditorHud__delete">Kustuta</string>
   <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Lülita tekstistiilide vahel</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Eelvaade</string>
   <!--EOF-->
 </resources>

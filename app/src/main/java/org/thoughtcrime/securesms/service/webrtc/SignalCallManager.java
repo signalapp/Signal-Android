@@ -1,12 +1,5 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import static org.thoughtcrime.securesms.events.WebRtcViewModel.GroupCallState.IDLE;
-import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOMING;
-import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.NETWORK_FAILURE;
-import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.NO_SUCH_USER;
-import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.UNTRUSTED_IDENTITY;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcUtil.getUrgencyFromCallUrgency;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -85,6 +78,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
+import static org.thoughtcrime.securesms.events.WebRtcViewModel.GroupCallState.IDLE;
+import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOMING;
+import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.NETWORK_FAILURE;
+import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.NO_SUCH_USER;
+import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.UNTRUSTED_IDENTITY;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcUtil.getUrgencyFromCallUrgency;
+
 /**
  * Entry point for all things calling. Lives for the life of the app instance and will spin up a foreground service when needed to
  * handle "active" calls.
@@ -126,7 +126,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     this.serviceState = new WebRtcServiceState(new IdleActionProcessor(new WebRtcInteractor(this.context,
                                                                                             this,
                                                                                             lockManager,
-                                                                                            new SignalAudioManager(context),
                                                                                             this,
                                                                                             this,
                                                                                             this)));
@@ -193,14 +192,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleOrientationChanged(s, isLandscapeEnabled, degrees));
   }
 
-  public void setAudioSpeaker(boolean isSpeaker) {
-    process((s, p) -> p.handleSetSpeakerAudio(s, isSpeaker));
-  }
-
-  public void setAudioBluetooth(boolean isBluetooth) {
-    process((s, p) -> p.handleSetBluetoothAudio(s, isBluetooth));
-  }
-
   public void setMuteAudio(boolean enabled) {
     process((s, p) -> p.handleSetMuteAudio(s, enabled));
   }
@@ -237,10 +228,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleIsInCallQuery(s, resultReceiver));
   }
 
-  public void wiredHeadsetChange(boolean available) {
-    process((s, p) -> p.handleWiredHeadsetChange(s, available));
-  }
-
   public void networkChange(boolean available) {
     process((s, p) -> p.handleNetworkChanged(s, available));
   }
@@ -251,10 +238,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public void screenOff() {
     process((s, p) -> p.handleScreenOffChange(s));
-  }
-
-  public void bluetoothChange(boolean available) {
-    process((s, p) -> p.handleBluetoothChange(s, available));
   }
 
   public void postStateUpdate(@NonNull WebRtcServiceState state) {
@@ -297,6 +280,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   private void receivedGroupCallPeekForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo, long deviceCount) {
     process((s, p) -> p.handleReceivedGroupCallPeekForRingingCheck(s, groupCallRingCheckInfo, deviceCount));
+  }
+
+  public void onAudioDeviceChanged(@NonNull SignalAudioManager.AudioDevice activeDevice, @NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
+    process((s, p) -> p.handleAudioDeviceChanged(s, activeDevice, availableDevices));
+  }
+
+  public void selectAudioDevice(@NonNull SignalAudioManager.AudioDevice desiredDevice) {
+    process((s, p) -> p.handleSetUserAudioDevice(s, desiredDevice));
   }
 
   public void peekGroupCall(@NonNull RecipientId id) {

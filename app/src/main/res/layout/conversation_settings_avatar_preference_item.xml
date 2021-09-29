@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="40dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/bio_preference_avatar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="40dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/bio_preference_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/bio_preference_badge"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="47dp"
+            android:contentDescription="@string/ImageView__badge"
+            android:visibility="gone"
+            app:badge_outline_color="@color/signal_background_primary"
+            app:badge_outline_width="1dp"
+            app:layout_constraintStart_toStartOf="@id/bio_preference_avatar"
+            app:layout_constraintTop_toTopOf="@id/bio_preference_avatar"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

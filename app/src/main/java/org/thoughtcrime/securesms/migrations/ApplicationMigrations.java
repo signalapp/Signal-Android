@@ -88,9 +88,10 @@ public class ApplicationMigrations {
     static final int CHANGE_NUMBER_SYNC            = 44;
     static final int CHANGE_NUMBER_CAPABILITY      = 45;
     static final int CHANGE_NUMBER_CAPABILITY_2    = 46;
+    static final int DEFAULT_REACTIONS_SYNC        = 47;
   }
 
-  public static final int CURRENT_VERSION = 46;
+  public static final int CURRENT_VERSION = 47;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -382,6 +383,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.CHANGE_NUMBER_CAPABILITY_2) {
       jobs.put(Version.CHANGE_NUMBER_CAPABILITY_2, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DEFAULT_REACTIONS_SYNC) {
+      jobs.put(Version.DEFAULT_REACTIONS_SYNC, new StorageServiceMigrationJob());
     }
 
     return jobs;

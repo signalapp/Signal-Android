@@ -130,6 +130,7 @@ public final class StorageSyncHelper {
                                                          .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
                                                          .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
                                                          .setE164(TextSecurePreferences.getLocalNumber(context))
+                                                         .setDefaultReactions(SignalStore.emojiValues().getReactions())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -152,6 +153,7 @@ public final class StorageSyncHelper {
     SignalStore.settings().setPreferSystemContactPhotos(update.getNew().isPreferContactAvatars());
     SignalStore.paymentsValues().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orNull()));
     SignalStore.settings().setUniversalExpireTimer(update.getNew().getUniversalExpireTimer());
+    SignalStore.emojiValues().setReactions(update.getNew().getDefaultReactions());
 
     if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(self, update.getNew().getAvatarUrlPath().get()));

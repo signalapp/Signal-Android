@@ -3114,9 +3114,10 @@
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">বাতিল করুন</string>
   <string name="ImageEditorHud__undo">পূর্বাবস্থায় ফিরে যান</string>
+  <string name="ImageEditorHud__delete">মুছুন</string>
   <string name="MediaCountIndicatorButton__send">পাঠান</string>
   <string name="MediaReviewSelectedItem__tap_to_select">নির্বাচন করতে চাপুন</string>
   <string name="MediaReviewImagePageFragment__discard">বাতিল করুন</string>
-  <string name="ImageEditorHud__delete">মুছুন</string>
+  <string name="SelectFeaturedBadgeFragment__preview">প্রিভিউ</string>
   <!--EOF-->
 </resources>

@@ -3214,6 +3214,7 @@
   <string name="MediaReviewFragment__add_a_message">افزودن یک پیام</string>
   <string name="MediaReviewFragment__add_a_reply">یک پاسخ اضافه کنید</string>
   <string name="MediaReviewFragment__send_to">ارسال به</string>
+  <string name="MediaReviewFragment__view_once_message">پیام یکبار مصرف</string>
   <string name="ImageEditorHud__cancel">لغو</string>
   <string name="ImageEditorHud__draw">کشیدن</string>
   <string name="ImageEditorHud__write_text">نوشتن متن</string>
@@ -3223,15 +3224,15 @@
   <string name="ImageEditorHud__clear_all">پاک کردن همه</string>
   <string name="ImageEditorHud__undo">لغو</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">تعویض میان ماژیک معمولی و هایلایت</string>
+  <string name="ImageEditorHud__delete">حذف</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">تعویض میان سبک‌های متن</string>
   <string name="MediaCountIndicatorButton__send">ارسال</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">برای حذف کردن ضربه بزنید</string>
   <string name="MediaReviewSelectedItem__tap_to_select">برای انتخاب ضربه بزنید</string>
   <string name="MediaReviewImagePageFragment__discard">دور انداختن</string>
   <string name="MediaReviewImagePageFragment__discard_changes">نادیده گرفتن تغییرات</string>
-  <string name="MediaReviewFragment__view_once_message">پیام یکبار مصرف</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
-  <string name="ImageEditorHud__delete">حذف</string>
   <string name="CameraFragment__failed_to_open_camera">باز کردن دوربین ناموفق بود</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">تعویض میان سبک‌های متن</string>
+  <string name="SelectFeaturedBadgeFragment__preview">پیش‌نمایش</string>
   <!--EOF-->
 </resources>

@@ -3113,9 +3113,10 @@
   <string name="ImageEditorHud__cancel">रद्द करा</string>
   <string name="ImageEditorHud__blur">अस्पष्ट</string>
   <string name="ImageEditorHud__undo">अनडू करा</string>
+  <string name="ImageEditorHud__delete">हटवा</string>
   <string name="MediaCountIndicatorButton__send">पाठवा</string>
   <string name="MediaReviewSelectedItem__tap_to_select">निवडण्यासाठी टॅप करा</string>
   <string name="MediaReviewImagePageFragment__discard">टाकून द्या</string>
-  <string name="ImageEditorHud__delete">हटवा</string>
+  <string name="SelectFeaturedBadgeFragment__preview">पुनरावलोकन</string>
   <!--EOF-->
 </resources>

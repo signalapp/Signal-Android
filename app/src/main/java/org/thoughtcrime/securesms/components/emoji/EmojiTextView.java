@@ -266,7 +266,7 @@ public class EmojiTextView extends AppCompatTextView {
            Util.equals(previousBufferType, bufferType)     &&
            useSystemEmoji == useSystemEmoji()              &&
            !sizeChangeInProgress                           &&
-           previousTransformationMethod != getTransformationMethod();
+           previousTransformationMethod == getTransformationMethod();
   }
 
   private boolean useSystemEmoji() {

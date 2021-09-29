@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -28,6 +30,10 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -83,13 +89,14 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
 
     Recipient            self                 = Recipient.self();
-    ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self));
+    ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self), false);
     SignalServiceProfile profile              = profileAndCredential.getProfile();
 
     setProfileName(profile.getName());
     setProfileAbout(profile.getAbout(), profile.getAboutEmoji());
     setProfileAvatar(profile.getAvatar());
     setProfileCapabilities(profile.getCapabilities());
+    setProfileBadges(profile.getBadges());
     Optional<ProfileKeyCredential> profileKeyCredential = profileAndCredential.getProfileKeyCredential();
     if (profileKeyCredential.isPresent()) {
       setProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), profileKeyCredential.get());
@@ -157,6 +164,32 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
 
     DatabaseFactory.getRecipientDatabase(context).setCapabilities(Recipient.self().getId(), capabilities);
+  }
+
+  private void setProfileBadges(@Nullable List<SignalServiceProfile.Badge> badges) {
+    if (badges == null) {
+      return;
+    }
+
+    DatabaseFactory.getRecipientDatabase(context)
+                   .setBadges(Recipient.self().getId(),
+                              badges.stream().map(RefreshOwnProfileJob::adaptFromServiceBadge).collect(Collectors.toList()));
+  }
+
+  private static Badge adaptFromServiceBadge(@NonNull SignalServiceProfile.Badge serviceBadge) {
+    return new Badge(
+        serviceBadge.getId(),
+        Badge.Category.Companion.fromCode(serviceBadge.getCategory()),
+        Uri.parse(serviceBadge.getImageUrl()),
+        serviceBadge.getName(),
+        serviceBadge.getDescription(),
+        getTimestamp(serviceBadge.getExpiration()),
+        serviceBadge.isVisible()
+    );
+  }
+
+  private static long getTimestamp(@NonNull BigDecimal bigDecimal) {
+    return new Timestamp(bigDecimal.longValue() * 1000).getTime();
   }
 
   public static final class Factory implements Job.Factory<RefreshOwnProfileJob> {

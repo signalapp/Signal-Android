@@ -256,13 +256,6 @@ public class MmsSmsDatabase extends Database {
     }
   }
 
-  public Cursor getUnread() {
-    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection       = MmsSmsColumns.NOTIFIED + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1)";
-
-    return queryTables(PROJECTION, selection, order, null);
-  }
-
   public Cursor getMessagesForNotificationState(Collection<MessageNotifierV2.StickyThread> stickyThreads) {
     StringBuilder stickyQuery = new StringBuilder();
     for (MessageNotifierV2.StickyThread stickyThread : stickyThreads) {
@@ -286,13 +279,13 @@ public class MmsSmsDatabase extends Database {
   }
 
   public int getUnreadCount(long threadId) {
-    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId;
     Cursor cursor    = queryTables(PROJECTION, selection, null, null);
 
     try {
       return cursor != null ? cursor.getCount() : 0;
     } finally {
-      if (cursor != null) cursor.close();;
+      if (cursor != null) cursor.close();
     }
   }
 

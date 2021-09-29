@@ -3039,9 +3039,10 @@
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">취소</string>
   <string name="ImageEditorHud__undo">실행 취소</string>
+  <string name="ImageEditorHud__delete">삭제</string>
   <string name="MediaCountIndicatorButton__send">보내기</string>
   <string name="MediaReviewSelectedItem__tap_to_select">탭하여 선택</string>
   <string name="MediaReviewImagePageFragment__discard">파기</string>
-  <string name="ImageEditorHud__delete">삭제</string>
+  <string name="SelectFeaturedBadgeFragment__preview">미리보기</string>
   <!--EOF-->
 </resources>

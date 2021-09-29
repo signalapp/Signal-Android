@@ -5,7 +5,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -37,16 +37,17 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
   private TextView        labelView;
   private CheckBox        checkBox;
   private View            smsTag;
+  private BadgeImageView  badge;
 
-  private String        number;
-  private String        chipName;
-  private int           contactType;
-  private String        contactName;
-  private String        contactNumber;
-  private String        contactLabel;
-  private String        contactAbout;
-  private LiveRecipient recipient;
-  private GlideRequests glideRequests;
+  private String           number;
+  private String           chipName;
+  private int              contactType;
+  private String           contactName;
+  private String           contactNumber;
+  private String           contactLabel;
+  private String           contactAbout;
+  private LiveRecipient    recipient;
+  private GlideRequests    glideRequests;
 
   public ContactSelectionListItem(Context context) {
     super(context);
@@ -65,6 +66,7 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     this.nameView          = findViewById(R.id.name);
     this.checkBox          = findViewById(R.id.check_box);
     this.smsTag            = findViewById(R.id.sms_tag);
+    this.badge             = findViewById(R.id.contact_badge);
 
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
@@ -118,6 +120,8 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     }
 
     this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
+
+    badge.setBadgeFromRecipient(recipientSnapshot);
   }
 
   public void setChecked(boolean selected, boolean animate) {
@@ -229,6 +233,7 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
       contactPhotoImage.setAvatar(glideRequests, recipient, false);
       setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
       smsTag.setVisibility(recipient.isRegistered() ? GONE : VISIBLE);
+      badge.setBadgeFromRecipient(recipient);
     } else {
       Log.w(TAG, "Bad change! Local recipient doesn't match. Ignoring. Local: " + (this.recipient == null ? "null" : this.recipient.getId()) + ", Changed: " + recipient.getId());
     }

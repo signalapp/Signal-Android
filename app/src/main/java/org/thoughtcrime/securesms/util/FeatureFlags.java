@@ -74,7 +74,6 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
-  private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport.2";
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
@@ -84,6 +83,8 @@ public final class FeatureFlags {
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
+  private static final String DONOR_BADGES                      = "android.donorBadges";
+  private static final String CDSH                              = "android.cdsh";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -112,7 +113,6 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
@@ -120,13 +120,15 @@ public final class FeatureFlags {
       RETRY_RECEIPTS,
       SUGGEST_SMS_BLACKLIST,
       MAX_GROUP_CALL_RING_SIZE,
-      GROUP_CALL_RINGING
+      GROUP_CALL_RINGING,
+      CDSH
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
       PHONE_NUMBER_PRIVACY_VERSION,
-      CHANGE_NUMBER_ENABLED
+      CHANGE_NUMBER_ENABLED,
+      DONOR_BADGES
   );
 
   /**
@@ -164,7 +166,6 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
@@ -172,7 +173,8 @@ public final class FeatureFlags {
       RETRY_RECEIPTS,
       SENDER_KEY,
       MAX_GROUP_CALL_RING_SIZE,
-      GROUP_CALL_RINGING
+      GROUP_CALL_RINGING,
+      CDSH
   );
 
   /**
@@ -351,10 +353,6 @@ public final class FeatureFlags {
     return getInteger(ANIMATED_STICKER_MIN_TOTAL_MEMORY, (int) ByteUnit.GIGABYTES.toMegabytes(3));
   }
 
-  public static boolean mp4GifSendSupport() {
-    return getBoolean(MP4_GIF_SEND_SUPPORT, false);
-  }
-
   public static @NonNull String getMediaQualityLevels() {
     return getString(MEDIA_QUALITY_LEVELS, "");
   }
@@ -394,9 +392,22 @@ public final class FeatureFlags {
     return getBoolean(GROUP_CALL_RINGING, false);
   }
 
-  /** Weather or not to show change number in the UI. */
+  /** Whether or not to show change number in the UI. */
   public static boolean changeNumber() {
     return getBoolean(CHANGE_NUMBER_ENABLED, false);
+  }
+
+  /** Whether or not to show donor badges in the UI. */
+  public static boolean donorBadges() {
+    if (Environment.IS_STAGING) {
+      return  true;
+    } else {
+      return getBoolean(DONOR_BADGES, false);
+    }
+  }
+
+  public static boolean cdsh() {
+    return Environment.IS_STAGING && getBoolean(CDSH, false);
   }
 
   /** Only for rendering debug info. */

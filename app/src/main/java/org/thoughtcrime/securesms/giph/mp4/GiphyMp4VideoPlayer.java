@@ -13,13 +13,16 @@ import androidx.lifecycle.LifecycleOwner;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CornerMask;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.video.exo.ExoPlayerKt;
 
 /**
  * Video Player class specifically created for the GiphyMp4Fragment.
@@ -29,9 +32,10 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(GiphyMp4VideoPlayer.class);
 
-  private final PlayerView exoView;
-  private       ExoPlayer  exoPlayer;
-  private       CornerMask cornerMask;
+  private final PlayerView      exoView;
+  private       SimpleExoPlayer exoPlayer;
+  private       CornerMask      cornerMask;
+  private       MediaItem       mediaItem;
 
   public GiphyMp4VideoPlayer(Context context) {
     this(context, null);
@@ -64,16 +68,25 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     }
   }
 
-  void setExoPlayer(@NonNull ExoPlayer exoPlayer) {
+  @Nullable SimpleExoPlayer getExoPlayer() {
+    return exoPlayer;
+  }
+
+  void setExoPlayer(@Nullable SimpleExoPlayer exoPlayer) {
     exoView.setPlayer(exoPlayer);
     this.exoPlayer = exoPlayer;
   }
 
   int getPlaybackState() {
-    return exoPlayer.getPlaybackState();
+    if (exoPlayer != null) {
+      return exoPlayer.getPlaybackState();
+    } else {
+      return -1;
+    }
   }
 
   void setVideoItem(@NonNull MediaItem mediaItem) {
+    this.mediaItem = mediaItem;
     exoPlayer.setMediaItem(mediaItem);
     exoPlayer.prepare();
   }
@@ -98,6 +111,7 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     if (exoPlayer != null) {
       exoPlayer.stop();
       exoPlayer.clearMediaItems();
+      mediaItem = null;
     }
   }
 
@@ -111,12 +125,5 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
 
   void setResizeMode(@AspectRatioFrameLayout.ResizeMode int resizeMode) {
     exoView.setResizeMode(resizeMode);
-  }
-
-  @Override
-  public void onDestroy(@NonNull LifecycleOwner owner) {
-    if (exoPlayer != null) {
-      exoPlayer.release();
-    }
   }
 }

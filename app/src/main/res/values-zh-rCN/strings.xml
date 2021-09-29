@@ -3012,9 +3012,10 @@
   <string name="ImageEditorHud__cancel">取消</string>
   <string name="ImageEditorHud__blur">模糊</string>
   <string name="ImageEditorHud__undo">撤消</string>
+  <string name="ImageEditorHud__delete">删除</string>
   <string name="MediaCountIndicatorButton__send">发送</string>
   <string name="MediaReviewSelectedItem__tap_to_select">点击选择</string>
   <string name="MediaReviewImagePageFragment__discard">放弃</string>
-  <string name="ImageEditorHud__delete">删除</string>
+  <string name="SelectFeaturedBadgeFragment__preview">预览</string>
   <!--EOF-->
 </resources>

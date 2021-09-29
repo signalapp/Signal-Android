@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -162,6 +163,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
     private val avatarView: AvatarImageView = itemView.findViewById(R.id.icon)
     private val aboutView: TextView = itemView.findViewById(R.id.about)
+    private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
 
     override fun bind(model: BioPreference) {
       super.bind(model)
@@ -171,6 +173,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
       titleView.text = model.recipient.profileName.toString()
       summaryView.text = PhoneNumberFormatter.prettyPrint(model.recipient.requireE164())
       avatarView.setRecipient(Recipient.self())
+      badgeView.setBadgeFromRecipient(Recipient.self())
 
       titleView.visibility = View.VISIBLE
       summaryView.visibility = View.VISIBLE

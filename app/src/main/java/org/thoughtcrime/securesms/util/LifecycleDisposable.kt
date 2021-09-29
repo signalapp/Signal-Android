@@ -26,4 +26,8 @@ class LifecycleDisposable : DefaultLifecycleObserver {
     owner.lifecycle.removeObserver(this)
     disposables.clear()
   }
+
+  operator fun plusAssign(disposable: Disposable) {
+    add(disposable)
+  }
 }

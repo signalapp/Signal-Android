@@ -3124,6 +3124,7 @@
   <string name="MediaReviewFragment__add_a_message">寫番句訊息</string>
   <string name="MediaReviewFragment__add_a_reply">寫番句回覆</string>
   <string name="MediaReviewFragment__send_to">傳畀</string>
+  <string name="MediaReviewFragment__view_once_message">流聲掠影訊息</string>
   <string name="ImageEditorHud__cancel">取消</string>
   <string name="ImageEditorHud__draw">畫畫</string>
   <string name="ImageEditorHud__write_text">題字</string>
@@ -3133,15 +3134,15 @@
   <string name="ImageEditorHud__clear_all">全部抹走</string>
   <string name="ImageEditorHud__undo">復原</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">換箱頭筆或螢光筆</string>
+  <string name="ImageEditorHud__delete">刪除</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">換另一種字樣</string>
   <string name="MediaCountIndicatorButton__send">傳送</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">撳一下剷除</string>
   <string name="MediaReviewSelectedItem__tap_to_select">撳一下揀選</string>
   <string name="MediaReviewImagePageFragment__discard">掉咗佢</string>
   <string name="MediaReviewImagePageFragment__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
-  <string name="MediaReviewFragment__view_once_message">流聲掠影訊息</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都冇得留低個囉噃。</string>
-  <string name="ImageEditorHud__delete">刪除</string>
   <string name="CameraFragment__failed_to_open_camera">開唔到相機</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">換另一種字樣</string>
+  <string name="SelectFeaturedBadgeFragment__preview">試嚟睇下</string>
   <!--EOF-->
 </resources>

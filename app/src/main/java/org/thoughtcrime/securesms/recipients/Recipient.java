@@ -15,6 +15,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
@@ -124,6 +125,7 @@ public class Recipient {
   private final String                 systemContactName;
   private final Optional<Extras>       extras;
   private final boolean                hasGroupsInCommon;
+  private final List<Badge>            badges;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -376,6 +378,7 @@ public class Recipient {
     this.systemContactName           = null;
     this.extras                      = Optional.absent();
     this.hasGroupsInCommon           = false;
+    this.badges                      = Collections.emptyList();
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -429,6 +432,7 @@ public class Recipient {
     this.systemContactName           = details.systemContactName;
     this.extras                      = details.extras;
     this.hasGroupsInCommon           = details.hasGroupsInCommon;
+    this.badges                      = details.badges;
   }
 
   public @NonNull RecipientId getId() {
@@ -631,7 +635,7 @@ public class Recipient {
     UUID resolved = resolving ? resolve().uuid : uuid;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -642,7 +646,7 @@ public class Recipient {
     String resolved = resolving ? resolve().e164 : e164;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -652,7 +656,7 @@ public class Recipient {
     String resolved = resolving ? resolve().email : email;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -666,7 +670,7 @@ public class Recipient {
     } else if (recipient.getEmail().isPresent()) {
       return recipient.getEmail().get();
     } else {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
   }
 
@@ -690,7 +694,7 @@ public class Recipient {
     GroupId resolved = resolving ? resolve().groupId : groupId;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -1023,6 +1027,18 @@ public class Recipient {
     return aboutEmoji;
   }
 
+  public @NonNull List<Badge> getBadges() {
+    return badges;
+  }
+
+  public @Nullable Badge getFeaturedBadge() {
+    if (badges.isEmpty()) {
+      return null;
+    } else {
+      return badges.get(0);
+    }
+  }
+
   public @Nullable String getCombinedAboutAndEmoji() {
     if (!Util.isEmpty(aboutEmoji)) {
       if (!Util.isEmpty(about)) {
@@ -1202,7 +1218,8 @@ public class Recipient {
            Objects.equals(about, other.about) &&
            Objects.equals(aboutEmoji, other.aboutEmoji) &&
            Objects.equals(extras, other.extras) &&
-           hasGroupsInCommon == other.hasGroupsInCommon;
+           hasGroupsInCommon == other.hasGroupsInCommon &&
+           Objects.equals(badges, other.badges);
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {
@@ -1243,5 +1260,8 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
+    MissingAddressError(@NonNull RecipientId recipientId) {
+      super("Missing address for " + recipientId.serialize());
+    }
   }
 }

@@ -58,7 +58,9 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -287,6 +289,16 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull GiphyMp4Cache provideGiphyMp4Cache() {
     return new GiphyMp4Cache(ByteUnit.MEGABYTES.toBytes(16));
+  }
+
+  @Override
+  public @NonNull SimpleExoPlayerPool provideExoPlayerPool() {
+    return new SimpleExoPlayerPool(context);
+  }
+
+  @Override
+  public @NonNull AudioManagerCompat provideAndroidCallAudioManager() {
+    return AudioManagerCompat.create(context);
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

@@ -3216,6 +3216,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaReviewFragment__add_a_message">Añadir mensaje</string>
   <string name="MediaReviewFragment__add_a_reply">Añadir respuesta</string>
   <string name="MediaReviewFragment__send_to">Enviar a</string>
+  <string name="MediaReviewFragment__view_once_message">Mensaje para ver una vez</string>
   <string name="ImageEditorHud__cancel">Cancelar</string>
   <string name="ImageEditorHud__draw">Dibujar</string>
   <string name="ImageEditorHud__write_text">Texto</string>
@@ -3225,15 +3226,15 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ImageEditorHud__clear_all">Deshacer todo</string>
   <string name="ImageEditorHud__undo">Deshacer</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Alternar tipo de marcadores </string>
+  <string name="ImageEditorHud__delete">Eliminar</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Alternar entre estilos de texto</string>
   <string name="MediaCountIndicatorButton__send">Enviar</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Toca para eliminar</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Toca para seleccionar</string>
   <string name="MediaReviewImagePageFragment__discard">Descartar</string>
   <string name="MediaReviewImagePageFragment__discard_changes">¿Deshacer cambios?</string>
-  <string name="MediaReviewFragment__view_once_message">Mensaje para ver una vez</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perderás todos los cambios que has hecho a esta imagen.</string>
-  <string name="ImageEditorHud__delete">Eliminar</string>
   <string name="CameraFragment__failed_to_open_camera">Fallo al acceder a la cámara</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Alternar entre estilos de texto</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Vista previa</string>
   <!--EOF-->
 </resources>

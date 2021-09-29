@@ -19,15 +19,6 @@
         app:navigationContentDescription="@string/DSLSettingsToolbar__navigate_up"
         tools:title="Message Details" />
 
-    <org.thoughtcrime.securesms.conversation.colors.ColorizerView
-        android:id="@+id/message_details_colorizer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
     <FrameLayout
         android:id="@+id/video_container"
         android:layout_width="0dp"

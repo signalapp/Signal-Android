@@ -55,6 +55,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -87,7 +88,7 @@ import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
-import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemAnimator;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
@@ -216,8 +217,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private Animation                   mentionButtonOutAnimation;
   private OnScrollListener            conversationScrollListener;
   private int                         pulsePosition = -1;
+  private int                         lastSeenScrollOffset;
   private View                        toolbarShadow;
-  private ColorizerView               colorizerView;
   private Stopwatch                   startupStopwatch;
 
   private GiphyMp4ProjectionRecycler giphyMp4ProjectionRecycler;
@@ -255,10 +256,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
     scrollDateHeader      = view.findViewById(R.id.scroll_date_header);
     toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
-    colorizerView         = view.findViewById(R.id.conversation_colorizer_view);
 
     ConversationIntents.Args args = ConversationIntents.Args.from(requireActivity().getIntent());
-    colorizerView.setBackground(args.getChatColors().getChatBubbleMask());
 
     final LinearLayoutManager     layoutManager           = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     final MultiselectItemAnimator multiselectItemAnimator = new MultiselectItemAnimator(() -> {
@@ -350,10 +349,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     updateToolbarDependentMargins();
 
-    colorizer = new Colorizer(colorizerView);
-    colorizer.attachToRecyclerView(list);
+    colorizer = new Colorizer();
+    RecyclerViewColorizer recyclerViewColorizer = new RecyclerViewColorizer(list);
 
-    conversationViewModel.getChatColors().observe(getViewLifecycleOwner(), chatColors -> colorizer.onChatColorsChanged(chatColors));
+    conversationViewModel.getChatColors().observe(getViewLifecycleOwner(), recyclerViewColorizer::setChatColors);
     conversationViewModel.getNameColorsMap().observe(getViewLifecycleOwner(), nameColorsMap -> {
       colorizer.onNameColorsChanged(nameColorsMap);
 
@@ -367,7 +366,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     getViewLifecycleOwner().getLifecycle().addObserver(conversationUpdateTick);
 
     listener.getVoiceNoteMediaController().getVoiceNotePlayerViewState().observe(getViewLifecycleOwner(), state -> conversationViewModel.setInlinePlayerVisible(state.isPresent()));
-    conversationViewModel.getScrollDateTopMargin().observe(getViewLifecycleOwner(), topMargin -> ViewUtil.setTopMargin(scrollDateHeader, topMargin));
+    conversationViewModel.getConversationTopMargin().observe(getViewLifecycleOwner(), topMargin -> {
+      lastSeenScrollOffset = topMargin;
+      ViewUtil.setTopMargin(scrollDateHeader, topMargin + ViewUtil.dpToPx(8));
+    });
 
     return view;
   }
@@ -411,12 +413,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private void setListVerticalTranslation() {
     if (list.canScrollVertically(1) || list.canScrollVertically(-1) || list.getChildCount() == 0) {
       list.setTranslationY(0);
-      colorizerView.setTranslationY(0);
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS);
     } else {
       int chTop = list.getChildAt(list.getChildCount() - 1).getTop();
       list.setTranslationY(Math.min(0, -chTop));
-      colorizerView.setTranslationY(Math.min(0, -chTop));
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     }
 
@@ -538,10 +538,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (viewHolder instanceof GiphyMp4Playable) {
       giphyMp4ProjectionRecycler.updateVideoDisplayPositionAndSize(recyclerView, (GiphyMp4Playable) viewHolder);
     }
-
-    if (colorizer != null) {
-      colorizer.applyClipPathsToMaskedGradient(recyclerView);
-    }
   }
 
   private int getStartPosition() {
@@ -578,6 +574,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     int          memberCount        = recipientInfo.getGroupMemberCount();
     int          pendingMemberCount = recipientInfo.getGroupPendingMemberCount();
     List<String> groups             = recipientInfo.getSharedGroups();
+
+    conversationBanner.setBadge(recipient);
 
     if (recipient != null) {
       conversationBanner.setAvatar(GlideApp.with(context), recipient);
@@ -1107,7 +1105,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                            .submit();
     } else if (conversation.getMessageRequestData().isMessageRequestAccepted()) {
       snapToTopDataObserver.buildScrollPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition)
-                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight()))
+                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight() - (conversation.shouldScrollToLastSeen() ? lastSeenScrollOffset : 0)))
                            .withOnScrollRequestComplete(afterScroll)
                            .submit();
     } else {
@@ -1253,7 +1251,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       public void onGlobalLayout() {
         Rect rect = new Rect();
         toolbar.getGlobalVisibleRect(rect);
-        conversationViewModel.setToolbarBottom(rect.bottom + ViewUtil.dpToPx(8));
+        conversationViewModel.setToolbarBottom(rect.bottom);
         ViewUtil.setTopMargin(conversationBanner, rect.bottom + ViewUtil.dpToPx(16));
         toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
       }
@@ -1510,6 +1508,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView) {
       if (getContext() != null && getActivity() != null) {
+        ViewCompat.setTransitionName(avatarTransitionView, "avatar");
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), avatarTransitionView, "avatar").toBundle();
         ActivityCompat.startActivity(getActivity(), SharedContactDetailsActivity.getIntent(getContext(), contact), bundle);
       }

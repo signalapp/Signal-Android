@@ -774,6 +774,7 @@
     <string name="ManageProfileFragment_your_name">Your name</string>
     <string name="ManageProfileFragment_your_username">Your username</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+    <string name="ManageProfileFragment_badges">Badges</string>
 
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">No groups in common</string>
@@ -1779,6 +1780,7 @@
     <string name="MessageNotifier_reacted_s_to_s">Reacted %1$s to: \"%2$s\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Reacted %1$s to your video.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Reacted %1$s to your image.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reacted %1$s to your GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Reacted %1$s to your file.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reacted %1$s to your audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacted %1$s to your view-once media.</string>
@@ -3889,6 +3891,7 @@
     <string name="MediaReviewFragment__add_a_message">Add a message</string>
     <string name="MediaReviewFragment__add_a_reply">Add a reply</string>
     <string name="MediaReviewFragment__send_to">Send to</string>
+    <string name="MediaReviewFragment__view_once_message">View once message</string>
 
     <string name="ImageEditorHud__cancel">Cancel</string>
     <string name="ImageEditorHud__draw">Draw</string>
@@ -3899,18 +3902,36 @@
     <string name="ImageEditorHud__clear_all">Clear all</string>
     <string name="ImageEditorHud__undo">Undo</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Toggle between marker and highlighter</string>
+    <string name="ImageEditorHud__delete">Delete</string>
+    <string name="ImageEditorHud__toggle_between_text_styles">Toggle between text styles</string>
 
     <string name="MediaCountIndicatorButton__send">Send</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">Tap to remove</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Tap to select</string>
+
     <string name="MediaReviewImagePageFragment__discard">Discard</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Discard changes?</string>
-    <string name="MediaReviewFragment__view_once_message">View once message</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
-    <string name="ImageEditorHud__delete">Delete</string>
+
     <string name="CameraFragment__failed_to_open_camera">Failed to open camera</string>
-    <string name="ImageEditorHud__toggle_between_text_styles">Toggle between text styles</string>
+    
+    <string name="BadgesOverviewFragment__my_badges">My badges</string>
+    <string name="BadgesOverviewFragment__featured_badge">Featured badge</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+
+
+    <string name="BadgeSelectionFragment__select_badges">Select badges</string>
+
+    <string name="SelectFeaturedBadgeFragment__preview">Preview</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">You must select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+
+    <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Become a sustainer</string>
+
+    <string name="ImageView__badge">Badge</string>
 
     <!-- EOF -->
 

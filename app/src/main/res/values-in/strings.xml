@@ -3102,11 +3102,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ImageEditorHud__done_editing">Selesai mengedit</string>
   <string name="ImageEditorHud__clear_all">Hapus semua</string>
   <string name="ImageEditorHud__undo">Urungkan</string>
+  <string name="ImageEditorHud__delete">Hapus</string>
   <string name="MediaCountIndicatorButton__send">Kirim</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Ketuk untuk menghilangkan</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Ketuk untuk memilih </string>
   <string name="MediaReviewImagePageFragment__discard">Batalkan</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Anda akan kehilangan perubahan yang telah dibuat terhadap foto ini.</string>
-  <string name="ImageEditorHud__delete">Hapus</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Pratinjau</string>
   <!--EOF-->
 </resources>

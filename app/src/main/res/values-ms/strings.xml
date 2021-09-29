@@ -3029,9 +3029,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">Batal</string>
   <string name="ImageEditorHud__undo">Buat Asal</string>
+  <string name="ImageEditorHud__delete">Padam</string>
   <string name="MediaCountIndicatorButton__send">Hantar</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Ketik untuk dipilih</string>
   <string name="MediaReviewImagePageFragment__discard">Buang</string>
-  <string name="ImageEditorHud__delete">Padam</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Pratonton</string>
   <!--EOF-->
 </resources>

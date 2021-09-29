@@ -3100,9 +3100,10 @@
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">منسوخ کریں</string>
   <string name="ImageEditorHud__undo">کالعدم کریں</string>
+  <string name="ImageEditorHud__delete">حذف کریں</string>
   <string name="MediaCountIndicatorButton__send">بھیجیں</string>
   <string name="MediaReviewSelectedItem__tap_to_select">منتخب کرنے کے لیے ٹیپ کریں</string>
   <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
-  <string name="ImageEditorHud__delete">حذف کریں</string>
+  <string name="SelectFeaturedBadgeFragment__preview">پیش نظارہ</string>
   <!--EOF-->
 </resources>

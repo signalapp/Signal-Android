@@ -21,6 +21,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/rbs_badge"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="47dp"
+            android:contentDescription="@string/ImageView__badge"
+            android:visibility="gone"
+            app:badge_outline_color="@color/signal_background_primary"
+            app:badge_outline_width="1dp"
+            app:layout_constraintStart_toStartOf="@id/rbs_recipient_avatar"
+            app:layout_constraintTop_toTopOf="@id/rbs_recipient_avatar"
+            tools:visibility="visible" />
+
         <ProgressBar
             android:id="@+id/rbs_admin_action_busy"
             android:layout_width="0dp"

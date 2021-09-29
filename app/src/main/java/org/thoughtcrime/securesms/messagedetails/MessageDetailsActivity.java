@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +15,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
-import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -46,6 +45,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
   private MessageDetailsViewModel viewModel;
   private MessageDetailsAdapter   adapter;
   private Colorizer               colorizer;
+  private RecyclerViewColorizer   recyclerViewColorizer;
 
   private DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
@@ -100,16 +100,15 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
 
   private void initializeList() {
     RecyclerView  list          = findViewById(R.id.message_details_list);
-    ColorizerView colorizerView = findViewById(R.id.message_details_colorizer);
     View          toolbarShadow = findViewById(R.id.toolbar_shadow);
 
-    colorizer = new Colorizer(colorizerView);
-    adapter   = new MessageDetailsAdapter(this, glideRequests, colorizer, this::onErrorClicked);
+    colorizer             = new Colorizer();
+    adapter               = new MessageDetailsAdapter(this, glideRequests, colorizer, this::onErrorClicked);
+    recyclerViewColorizer = new RecyclerViewColorizer(list);
 
     list.setAdapter(adapter);
     list.setItemAnimator(null);
     list.addOnScrollListener(new ToolbarShadowAnimationHelper(toolbarShadow));
-    colorizer.attachToRecyclerView(list);
   }
 
   private void initializeViewModel() {
@@ -126,7 +125,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
         adapter.submitList(convertToRows(details));
       }
     });
-    viewModel.getRecipient().observe(this, recipient -> colorizer.onChatColorsChanged(recipient.getChatColors()));
+    viewModel.getRecipient().observe(this, recipient -> recyclerViewColorizer.setChatColors(recipient.getChatColors()));
   }
 
   private void initializeVideoPlayer() {

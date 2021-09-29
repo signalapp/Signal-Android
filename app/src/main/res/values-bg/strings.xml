@@ -2988,9 +2988,10 @@
   <string name="ImageEditorHud__cancel">Отказ</string>
   <string name="ImageEditorHud__blur">Мъгли</string>
   <string name="ImageEditorHud__undo">Върни</string>
+  <string name="ImageEditorHud__delete">Изтрий</string>
   <string name="MediaCountIndicatorButton__send">Изпращане</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Натиснете, за да изберете</string>
   <string name="MediaReviewImagePageFragment__discard">Откажи</string>
-  <string name="ImageEditorHud__delete">Изтрий</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>
   <!--EOF-->
 </resources>

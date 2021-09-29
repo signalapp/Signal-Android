@@ -742,7 +742,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   private static boolean shouldScaleViewPort(@NonNull ImageEditorHudV2.Mode mode) {
-    return mode != ImageEditorHudV2.Mode.NONE && mode != ImageEditorHudV2.Mode.CROP;
+    return mode != ImageEditorHudV2.Mode.NONE;
   }
 
   private void performSaveToDisk() {

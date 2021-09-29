@@ -1697,10 +1697,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
     if (mediaThumbnailStub != null && mediaThumbnailStub.isResolvable()) {
       return Projection.relativeToParent(recyclerView, mediaThumbnailStub.require(), mediaThumbnailStub.require().getCorners())
-                       .translateX(bodyBubble.getTranslationX());
+                       .translateX(bodyBubble.getTranslationX())
+                       .translateX(getTranslationX());
     } else {
       return Projection.relativeToParent(recyclerView, bodyBubble, bodyBubbleCorners)
-                       .translateX(bodyBubble.getTranslationX());
+                       .translateX(bodyBubble.getTranslationX())
+                       .translateX(getTranslationX());
     }
   }
 
@@ -1716,7 +1718,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (messageRecord.isOutgoing()      &&
         !hasNoBubble(messageRecord)     &&
         !messageRecord.isRemoteDelete() &&
-        bodyBubbleCorners != null)
+        bodyBubbleCorners != null       &&
+        bodyBubble.getProjections().isEmpty())
     {
       projections.add(Projection.relativeToViewRoot(bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX()));
     }
@@ -1786,7 +1789,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     @Override
     public void onClick(View view) {
       if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
-        eventListener.onSharedContactDetailsClicked(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), sharedContactStub.get().getAvatarView());
+        eventListener.onSharedContactDetailsClicked(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), (View) sharedContactStub.get().getAvatarView().getParent());
       } else {
         passthroughClickListener.onClick(view);
       }

@@ -3144,8 +3144,9 @@
   <string name="MediaReviewFragment__add_a_message">بىز ئۇچۇر قوش</string>
   <string name="ImageEditorHud__cancel">ۋاز كەچ</string>
   <string name="ImageEditorHud__undo">يېنىۋال</string>
+  <string name="ImageEditorHud__delete">ئۆچۈر</string>
   <string name="MediaCountIndicatorButton__send">ئەۋەت</string>
   <string name="MediaReviewImagePageFragment__discard">تاشلىۋەت</string>
-  <string name="ImageEditorHud__delete">ئۆچۈر</string>
+  <string name="SelectFeaturedBadgeFragment__preview">ئالدىن كۆرۈش</string>
   <!--EOF-->
 </resources>

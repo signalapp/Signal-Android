@@ -216,8 +216,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int GROUP_CALL_RING_TABLE            = 115;
   private static final int CLEANUP_SESSION_MIGRATION        = 116;
   private static final int RECEIPT_TIMESTAMP                = 117;
+  private static final int BADGES                           = 118;
 
-  private static final int    DATABASE_VERSION = 117;
+  private static final int    DATABASE_VERSION = 118;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context context;
@@ -2041,6 +2042,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < RECEIPT_TIMESTAMP) {
         db.execSQL("ALTER TABLE sms ADD COLUMN receipt_timestamp INTEGER DEFAULT -1");
         db.execSQL("ALTER TABLE mms ADD COLUMN receipt_timestamp INTEGER DEFAULT -1");
+      }
+
+      if (oldVersion < BADGES) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN badges BLOB DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

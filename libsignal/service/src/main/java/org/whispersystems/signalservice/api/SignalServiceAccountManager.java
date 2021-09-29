@@ -38,6 +38,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.services.CdshService;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageModels;
@@ -97,6 +98,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import io.reactivex.rxjava3.core.Single;
+
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionMessage;
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisioningVersion;
 
@@ -110,10 +113,11 @@ public class SignalServiceAccountManager {
 
   private static final String TAG = SignalServiceAccountManager.class.getSimpleName();
 
-  private final PushServiceSocket   pushServiceSocket;
-  private final CredentialsProvider credentials;
-  private final String              userAgent;
-  private final GroupsV2Operations  groupsV2Operations;
+  private final PushServiceSocket          pushServiceSocket;
+  private final CredentialsProvider        credentials;
+  private final String                     userAgent;
+  private final GroupsV2Operations         groupsV2Operations;
+  private final SignalServiceConfiguration configuration;
 
   /**
    * Construct a SignalServiceAccountManager.
@@ -145,6 +149,7 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket  = new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry);
     this.credentials        = credentialsProvider;
     this.userAgent          = signalAgent;
+    this.configuration      = configuration;
   }
 
   public byte[] getSenderCertificate() throws IOException {
@@ -437,6 +442,7 @@ public class SignalServiceAccountManager {
     return activeTokens;
   }
 
+  @SuppressWarnings("SameParameterValue")
   public Map<String, UUID> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String mrenclave)
       throws IOException, Quote.InvalidQuoteFormatException, UnauthenticatedQuoteException, SignatureException, UnauthenticatedResponseException, InvalidKeyException
   {
@@ -480,6 +486,31 @@ public class SignalServiceAccountManager {
       throw new UnauthenticatedResponseException(e);
     }
   }
+
+  public Map<String, UUID> getRegisteredUsersWithCdsh(Set<String> e164numbers, String hexPublicKey, String hexCodeHash)
+      throws IOException
+  {
+    CdshService                                service = new CdshService(configuration, hexPublicKey, hexCodeHash);
+    Single<ServiceResponse<Map<String, UUID>>> result  = service.getRegisteredUsers(e164numbers);
+
+    ServiceResponse<Map<String, UUID>> response;
+    try {
+      response = result.blockingGet();
+    } catch (Exception e) {
+      throw new RuntimeException("Unexpected exception when retrieving registered users!", e);
+    }
+
+    if (response.getResult().isPresent()) {
+      return response.getResult().get();
+    } else if (response.getApplicationError().isPresent()) {
+      throw new IOException(response.getApplicationError().get());
+    } else if (response.getExecutionError().isPresent()) {
+      throw new IOException(response.getExecutionError().get());
+    } else {
+      throw new IOException("Missing result!");
+    }
+  }
+
 
   public Optional<SignalStorageManifest> getStorageManifest(StorageKey storageKey) throws IOException {
     try {
@@ -722,7 +753,8 @@ public class SignalServiceAccountManager {
                                               String about,
                                               String aboutEmoji,
                                               Optional<SignalServiceProtos.PaymentAddress> paymentsAddress,
-                                              StreamDetails avatar)
+                                              StreamDetails avatar,
+                                              List<String> visibleBadgeIds)
       throws IOException
   {
     if (name == null) name = "";
@@ -748,7 +780,8 @@ public class SignalServiceAccountManager {
                                                                              ciphertextEmoji,
                                                                              ciphertextMobileCoinAddress,
                                                                              hasAvatar,
-                                                                             profileKey.getCommitment(uuid).serialize()),
+                                                                             profileKey.getCommitment(uuid).serialize(),
+                                                                             visibleBadgeIds),
                                                                              profileAvatarData);
   }
 

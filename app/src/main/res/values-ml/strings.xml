@@ -3143,9 +3143,10 @@
   <string name="ImageEditorHud__cancel">റദ്ദാക്കൂ</string>
   <string name="ImageEditorHud__clear_all">എല്ലാം മായ്ക്കുക</string>
   <string name="ImageEditorHud__undo">തിരിച്ചാക്കുക</string>
+  <string name="ImageEditorHud__delete">ഇല്ലാതാക്കൂ</string>
   <string name="MediaCountIndicatorButton__send">അയയ്‌ക്കുക</string>
   <string name="MediaReviewSelectedItem__tap_to_select">തിരഞ്ഞെടുക്കാൻ ടാപ്പുചെയ്യുക</string>
   <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
-  <string name="ImageEditorHud__delete">ഇല്ലാതാക്കൂ</string>
+  <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
   <!--EOF-->
 </resources>

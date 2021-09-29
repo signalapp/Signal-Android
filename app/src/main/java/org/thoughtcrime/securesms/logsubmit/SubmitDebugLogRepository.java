@@ -164,6 +164,9 @@ public class SubmitDebugLogRepository {
           gzipOutput.write(reader.next().getBytes());
           gzipOutput.write("\n".getBytes());
         }
+      } catch (IllegalStateException e) {
+        Log.e(TAG, "Failed to read row!", e);
+        return Optional.absent();
       }
 
       StreamUtil.close(gzipOutput);

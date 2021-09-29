@@ -75,7 +75,7 @@ public class ConversationViewModel extends ViewModel {
   private final LiveData<ChatColors>                chatColors;
   private final MutableLiveData<Integer>            toolbarBottom;
   private final MutableLiveData<Integer>            inlinePlayerHeight;
-  private final LiveData<Integer>                   scrollDateTopMargin;
+  private final LiveData<Integer>                   conversationTopMargin;
 
   private final Map<GroupId, Set<Recipient>> sessionMemberCache = new HashMap<>();
 
@@ -98,7 +98,7 @@ public class ConversationViewModel extends ViewModel {
     this.messageInsertObserver  = messageId -> pagingController.onDataItemInserted(messageId, 0);
     this.toolbarBottom          = new MutableLiveData<>();
     this.inlinePlayerHeight     = new MutableLiveData<>();
-    this.scrollDateTopMargin    = Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(toolbarBottom, inlinePlayerHeight, Integer::sum));
+    this.conversationTopMargin  = Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(toolbarBottom, inlinePlayerHeight, Integer::sum));
 
     LiveData<Recipient>          recipientLiveData  = LiveDataUtil.mapAsync(recipientId, Recipient::resolved);
     LiveData<ThreadAndRecipient> threadAndRecipient = LiveDataUtil.combineLatest(threadId, recipientLiveData, ThreadAndRecipient::new);
@@ -161,11 +161,11 @@ public class ConversationViewModel extends ViewModel {
   }
 
   void setToolbarBottom(int bottom) {
-    toolbarBottom.postValue(bottom);
+    toolbarBottom.setValue(bottom);
   }
 
   void setInlinePlayerVisible(boolean isVisible) {
-    inlinePlayerHeight.postValue(isVisible ? ViewUtil.dpToPx(36) : 0);
+    inlinePlayerHeight.setValue(isVisible ? ViewUtil.dpToPx(36) : 0);
   }
 
   void onAttachmentKeyboardOpen() {
@@ -186,8 +186,8 @@ public class ConversationViewModel extends ViewModel {
     this.threadId.postValue(-1L);
   }
 
-  @NonNull LiveData<Integer> getScrollDateTopMargin() {
-    return scrollDateTopMargin;
+  @NonNull LiveData<Integer> getConversationTopMargin() {
+    return conversationTopMargin;
   }
 
   @NonNull LiveData<Boolean> canShowAsBubble() {

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import android.media.AudioManager;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -108,11 +106,9 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState);
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
-    androidAudioManager.setSpeakerphoneOn(false);
-
     webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
+    webRtcInteractor.initializeAudioForCall();
 
     boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext());
     if (shouldDisturbUserWithCall) {
@@ -123,7 +119,6 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
       }
     }
 
-    webRtcInteractor.initializeAudioForCall();
     if (shouldDisturbUserWithCall && SignalStore.settings().isCallNotificationsEnabled()) {
       Uri                            ringtone     = recipient.resolve().getCallRingtone();
       RecipientDatabase.VibrateState vibrateState = recipient.resolve().getCallVibrate();
@@ -135,7 +130,6 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
       webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientDatabase.VibrateState.ENABLED || (vibrateState == RecipientDatabase.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
     }
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup);
     webRtcInteractor.registerPowerButtonReceiver();
 
     return currentState.builder()
@@ -196,13 +190,9 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                .enableVideoOnCreate(answerWithVideo)
                                .build();
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
-    androidAudioManager.setSpeakerphoneOn(false);
-
+    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, currentState.getCallInfoState().getCallRecipient());
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     webRtcInteractor.initializeAudioForCall();
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, currentState.getCallInfoState().getCallRecipient());
-    webRtcInteractor.setWantsBluetoothConnection(true);
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
@@ -222,7 +212,6 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                        .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)
                        .commit()
                        .changeLocalDeviceState()
-                       .wantsBluetooth(true)
                        .build();
   }
 
@@ -246,7 +235,6 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
     webRtcInteractor.stopAudio(false);
-    webRtcInteractor.setWantsBluetoothConnection(false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
     webRtcInteractor.stopForegroundService();
 

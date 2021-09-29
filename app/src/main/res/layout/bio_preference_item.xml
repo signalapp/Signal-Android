@@ -19,6 +19,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/badge"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="39dp"
+        android:contentDescription="@string/ImageView__badge"
+        android:visibility="gone"
+        app:badge_outline_color="@color/signal_background_primary"
+        app:badge_outline_width="1dp"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/icon"
+        tools:visibility="visible" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"

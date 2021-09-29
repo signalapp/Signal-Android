@@ -3171,20 +3171,21 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Lisää viesti</string>
   <string name="MediaReviewFragment__add_a_reply">Lisää vastaus</string>
+  <string name="MediaReviewFragment__view_once_message">Kerran katsottava viesti</string>
   <string name="ImageEditorHud__cancel">Peruuta</string>
   <string name="ImageEditorHud__write_text">Kirjoita teksti</string>
   <string name="ImageEditorHud__add_a_sticker">Lisää tarra</string>
   <string name="ImageEditorHud__clear_all">Tyhjennä kaikki</string>
   <string name="ImageEditorHud__undo">Kumoa</string>
+  <string name="ImageEditorHud__delete">Poista</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Vaihda tekstityylien välillä</string>
   <string name="MediaCountIndicatorButton__send">Lähetä</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Napauta poistaaksesi</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Valitse napauttamalla</string>
   <string name="MediaReviewImagePageFragment__discard">Hylkää</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Hylätäänkö muutokset?</string>
-  <string name="MediaReviewFragment__view_once_message">Kerran katsottava viesti</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
-  <string name="ImageEditorHud__delete">Poista</string>
   <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Vaihda tekstityylien välillä</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
   <!--EOF-->
 </resources>

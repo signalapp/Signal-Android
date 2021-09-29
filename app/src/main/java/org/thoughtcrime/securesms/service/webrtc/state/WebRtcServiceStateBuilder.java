@@ -18,8 +18,10 @@ import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcActionProcessor;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Builder that creates a new {@link WebRtcServiceState} from an existing one and allows
@@ -73,7 +75,7 @@ public class WebRtcServiceStateBuilder {
     private LocalDeviceState toBuild;
 
     public LocalDeviceStateBuilder() {
-      toBuild = new LocalDeviceState(WebRtcServiceStateBuilder.this.toBuild.localDeviceState);
+      toBuild = WebRtcServiceStateBuilder.this.toBuild.localDeviceState.duplicate();
     }
 
     public @NonNull WebRtcServiceStateBuilder commit() {
@@ -87,37 +89,37 @@ public class WebRtcServiceStateBuilder {
     }
 
     public @NonNull LocalDeviceStateBuilder cameraState(@NonNull CameraState cameraState) {
-      toBuild.cameraState = cameraState;
+      toBuild.setCameraState(cameraState);
       return this;
     }
 
     public @NonNull LocalDeviceStateBuilder isMicrophoneEnabled(boolean enabled) {
-      toBuild.microphoneEnabled = enabled;
-      return this;
-    }
-
-    public @NonNull LocalDeviceStateBuilder isBluetoothAvailable(boolean available) {
-      toBuild.bluetoothAvailable = available;
-      return this;
-    }
-
-    public @NonNull LocalDeviceStateBuilder wantsBluetooth(boolean wantsBluetooth) {
-      toBuild.wantsBluetooth = wantsBluetooth;
+      toBuild.setMicrophoneEnabled(enabled);
       return this;
     }
 
     public @NonNull LocalDeviceStateBuilder setOrientation(@NonNull Orientation orientation) {
-      toBuild.orientation = orientation;
+      toBuild.setOrientation(orientation);
       return this;
     }
 
     public @NonNull LocalDeviceStateBuilder setLandscapeEnabled(boolean isLandscapeEnabled) {
-      toBuild.isLandscapeEnabled = isLandscapeEnabled;
+      toBuild.setLandscapeEnabled(isLandscapeEnabled);
       return this;
     }
 
     public @NonNull LocalDeviceStateBuilder setDeviceOrientation(@NonNull Orientation deviceOrientation) {
-      toBuild.deviceOrientation = deviceOrientation;
+      toBuild.setDeviceOrientation(deviceOrientation);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setActiveDevice(@NonNull SignalAudioManager.AudioDevice audioDevice) {
+      toBuild.setActiveDevice(audioDevice);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setAvailableDevices(@NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
+      toBuild.setAvailableDevices(availableDevices);
       return this;
     }
   }

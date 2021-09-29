@@ -3036,9 +3036,10 @@
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">ยกเลิก</string>
   <string name="ImageEditorHud__undo">เลิกทำ</string>
+  <string name="ImageEditorHud__delete">ลบ</string>
   <string name="MediaCountIndicatorButton__send">ส่ง</string>
   <string name="MediaReviewSelectedItem__tap_to_select">แตะเพื่อเลือก</string>
   <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
-  <string name="ImageEditorHud__delete">ลบ</string>
+  <string name="SelectFeaturedBadgeFragment__preview">ภาพตัวอย่าง</string>
   <!--EOF-->
 </resources>

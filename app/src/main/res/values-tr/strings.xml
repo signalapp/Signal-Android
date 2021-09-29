@@ -3214,6 +3214,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaReviewFragment__add_a_message">İleti ekle</string>
   <string name="MediaReviewFragment__add_a_reply">Yanıt ekle</string>
   <string name="MediaReviewFragment__send_to">Gönderilecek</string>
+  <string name="MediaReviewFragment__view_once_message">Tek görümlük ileti</string>
   <string name="ImageEditorHud__cancel">İptal</string>
   <string name="ImageEditorHud__draw">Çizim</string>
   <string name="ImageEditorHud__write_text">Yazı yazma</string>
@@ -3223,15 +3224,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ImageEditorHud__clear_all">Tümünü temizle</string>
   <string name="ImageEditorHud__undo">Geri al</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Kalem ile vurgulayıcı arasında geçiş yap</string>
+  <string name="ImageEditorHud__delete">Sil</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Yazı stilleri arasında geçiş yap</string>
   <string name="MediaCountIndicatorButton__send">Gönder</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Kaldırmak için dokun</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Seçmek için dokunun</string>
   <string name="MediaReviewImagePageFragment__discard">Vazgeç</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Değişiklikler silinsin mi?</string>
-  <string name="MediaReviewFragment__view_once_message">Tek görümlük ileti</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bu fotoğrafa yaptığınız değişiklikleri kaybedeceksiniz.</string>
-  <string name="ImageEditorHud__delete">Sil</string>
   <string name="CameraFragment__failed_to_open_camera">Kamera açılamadı</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Yazı stilleri arasında geçiş yap</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Ön izleme</string>
   <!--EOF-->
 </resources>

@@ -3402,6 +3402,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaReviewFragment__add_a_message">Ychwanegu neges</string>
   <string name="MediaReviewFragment__add_a_reply">Ychwanegu ymateb:</string>
   <string name="MediaReviewFragment__send_to">Anfon at</string>
+  <string name="MediaReviewFragment__view_once_message">Gweld neges unwaith</string>
   <string name="ImageEditorHud__cancel">Canslo</string>
   <string name="ImageEditorHud__draw">Lluniadu</string>
   <string name="ImageEditorHud__write_text">Ysgrifennu testun</string>
@@ -3411,15 +3412,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="ImageEditorHud__clear_all">Clirio\'r cyfan</string>
   <string name="ImageEditorHud__undo">Dadwneud</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Toglo rhwng y marciwr a\'r amlygwr</string>
+  <string name="ImageEditorHud__delete">Dileu</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Toglo rhwng arddulliau testun</string>
   <string name="MediaCountIndicatorButton__send">Anfon</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Tapio i dynnu</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tapio i ddewis</string>
   <string name="MediaReviewImagePageFragment__discard">Dileu</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Dileu\'r newidiadau?</string>
-  <string name="MediaReviewFragment__view_once_message">Gweld neges unwaith</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Byddwch chi\'n colli unrhyw newidiadau rydych wedi\'u gwneud i\'r llun hwn.</string>
-  <string name="ImageEditorHud__delete">Dileu</string>
   <string name="CameraFragment__failed_to_open_camera">Wedi methu agor camera</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Toglo rhwng arddulliau testun</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Rhagolwg</string>
   <!--EOF-->
 </resources>

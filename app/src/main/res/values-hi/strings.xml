@@ -3114,9 +3114,10 @@
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">रद्द करें</string>
   <string name="ImageEditorHud__undo">पूर्ववत</string>
+  <string name="ImageEditorHud__delete">हटाए </string>
   <string name="MediaCountIndicatorButton__send">भेजें</string>
   <string name="MediaReviewSelectedItem__tap_to_select">चयन के लिए टैप करें</string>
   <string name="MediaReviewImagePageFragment__discard">रद्द करें</string>
-  <string name="ImageEditorHud__delete">हटाए </string>
+  <string name="SelectFeaturedBadgeFragment__preview">प्रीव्यू</string>
   <!--EOF-->
 </resources>

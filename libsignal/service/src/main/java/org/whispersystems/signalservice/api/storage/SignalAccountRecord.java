@@ -32,6 +32,7 @@ public final class SignalAccountRecord implements SignalRecord {
   private final Optional<byte[]>         profileKey;
   private final List<PinnedConversation> pinnedConversations;
   private final Payments                 payments;
+  private final List<String>             defaultReactions;
 
   public SignalAccountRecord(StorageId id, AccountRecord proto) {
     this.id               = id;
@@ -44,6 +45,7 @@ public final class SignalAccountRecord implements SignalRecord {
     this.avatarUrlPath        = OptionalUtil.absentIfEmpty(proto.getAvatarUrlPath());
     this.pinnedConversations  = new ArrayList<>(proto.getPinnedConversationsCount());
     this.payments             = new Payments(proto.getPayments().getEnabled(), OptionalUtil.absentIfEmpty(proto.getPayments().getEntropy()));
+    this.defaultReactions     = new ArrayList<>(proto.getPreferredReactionEmojiList());
 
     for (AccountRecord.PinnedConversation conversation : proto.getPinnedConversationsList()) {
       pinnedConversations.add(PinnedConversation.fromRemote(conversation));
@@ -142,6 +144,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("E164");
       }
 
+      if (!Objects.equals(this.getDefaultReactions(), that.getDefaultReactions())) {
+        diff.add("DefaultReactions");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -230,6 +236,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public String getE164() {
     return proto.getE164();
+  }
+
+  public List<String> getDefaultReactions() {
+    return defaultReactions;
   }
 
   AccountRecord toProto() {
@@ -498,6 +508,12 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setE164(String e164) {
       builder.setE164(e164);
+      return this;
+    }
+
+    public Builder setDefaultReactions(List<String> defaultReactions) {
+      builder.clearPreferredReactionEmoji();
+      builder.addAllPreferredReactionEmoji(defaultReactions);
       return this;
     }
 
