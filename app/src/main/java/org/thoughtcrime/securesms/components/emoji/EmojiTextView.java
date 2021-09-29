@@ -165,10 +165,9 @@ public class EmojiTextView extends AppCompatTextView {
 
       int lines = layout.getLineCount();
       int start = layout.getLineStart(lines - 1);
-      int count = text.length() - start;
 
-      if ((getLayoutDirection() == LAYOUT_DIRECTION_LTR && textDirection.isRtl(text, start, count)) ||
-          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, start, count))) {
+      if ((getLayoutDirection() == LAYOUT_DIRECTION_LTR && textDirection.isRtl(text, 0, text.length())) ||
+          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, 0, text.length()))) {
         lastLineWidth = getMeasuredWidth();
       } else {
         lastLineWidth = (int) getPaint().measureText(text, start, text.length());
