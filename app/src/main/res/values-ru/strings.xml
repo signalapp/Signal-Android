@@ -3415,6 +3415,7 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Вы потеряете все изменения, которые вы сделали в этой фотографии.</string>
   <string name="CameraFragment__failed_to_open_camera">Не удалось открыть камеру</string>
   <string name="BadgesOverviewFragment__my_badges">Мои значки</string>
+  <string name="BadgesOverviewFragment__featured_badge">Главный значок</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Показывать значки в профиле</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Не удалось обновить профиль</string>
   <string name="BadgeSelectionFragment__select_badges">Выберите значки</string>

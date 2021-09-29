@@ -730,6 +730,7 @@
   <string name="ManageProfileFragment_your_name">Jūsų vardas</string>
   <string name="ManageProfileFragment_your_username">Jūsų naudotojo vardas</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepavyko nustatyti avataro</string>
+  <string name="ManageProfileFragment_badges">Ženkliukai</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nėra bendrų grupių</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1657,6 +1658,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Sureagavo %1$s į: „%2$s“.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Sureagavo į jūsų vaizdo įrašą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Sureagavo į jūsų paveikslą: %1$s.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Sureagavo į jūsų GIF: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Sureagavo į jūsų failą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Sureagavo į jūsų garso įrašą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Sureagavo į jūsų vienkartinės peržiūros mediją: %1$s</string>
@@ -3419,6 +3421,14 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Atmesti pakeitimus?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Prarasite bet kokius šiai nuotraukai atliktus pakeitimus.</string>
   <string name="CameraFragment__failed_to_open_camera">Nepavyko atverti kameros</string>
+  <string name="BadgesOverviewFragment__my_badges">Mano ženkliukai</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Rodyti profilyje ženkliukus</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Nepavyko atnaujinti profilio</string>
+  <string name="BadgeSelectionFragment__select_badges">Pasirinkti ženkliukus</string>
   <string name="SelectFeaturedBadgeFragment__preview">Peržiūra</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Pasirinkti ženkliuką</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Privalote pasirinkti ženkliuką</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nepavyko atnaujinti profilio</string>
+  <string name="ImageView__badge">Ženkliukas</string>
   <!--EOF-->
 </resources>

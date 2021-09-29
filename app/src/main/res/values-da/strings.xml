@@ -18,9 +18,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette låser permanent op for Signal og besked notifikationer </string>
   <string name="ApplicationPreferencesActivity_disable">Déaktiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afmeld</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Afregistrerer fra Signal beskeder og opkald…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Afregistrerer fra Signal-beskeder og opkald…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Déaktiver Signalbeskeder og -opkald?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Déaktiver Signalbeskeder og -opkald fra serveren ved afmelding. Det er nødvendigt igen at registrere telefonnummeret, for at bruge det fremadrettet</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Déaktiver Signalbeskeder og -opkald ved at afregistrere fra serveren. Det er nødvendigt at registrere telefonnummeret igen for at bruge det fremadrettet.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fejl ved oprettelse af forbindelse til serveren</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap for at ændre din standard SMS applikation</string>
@@ -67,7 +67,7 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal kræver tilladelse til at tilgå dine kontakter, for at kunne vedhæfte kontakt informationer, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal kræver tilladelse til at tilgå din lokation, for at kunne vedhæfte lokationer, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Lokation\"</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Oploader medie…</string>
+  <string name="AttachmentUploadJob_uploading_media">Uploader medie…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video…</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">Tjekker efter beskeder…</string>
@@ -618,7 +618,7 @@
   <string name="ManageGroupActivity_block_group">Blokér gruppe</string>
   <string name="ManageGroupActivity_unblock_group">Ophæv blokering af gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlad gruppe</string>
-  <string name="ManageGroupActivity_mute_notifications">Udsæt notifikationer</string>
+  <string name="ManageGroupActivity_mute_notifications">Mute notifikationer</string>
   <string name="ManageGroupActivity_custom_notifications">Brugerdefinerede notifikationer</string>
   <string name="ManageGroupActivity_mentions">Omtaler</string>
   <string name="ManageGroupActivity_chat_color_and_wallpaper">Chatfarve &amp; baggrund</string>
@@ -665,6 +665,7 @@
   <string name="ManageProfileFragment_your_name">Dit navn</string>
   <string name="ManageProfileFragment_your_username">Dit brugernavn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avataren kunne ikke opsættes</string>
+  <string name="ManageProfileFragment_badges">Badges</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ingen grupper tilfælles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1088,7 +1089,7 @@
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d medlem (+2%2$d inviterede)</item>
-    <item quantity="other">%1$d medlemmer (+2 %2$d inviterede)</item>
+    <item quantity="other">%1$d medlemmer (+%2$d inviterede)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d yderligere gruppe</item>
@@ -1527,6 +1528,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MessageNotifier_reacted_s_to_s">%1$s reagerede på: \"%2$s\"</string>
   <string name="MessageNotifier_reacted_s_to_your_video">%1$s reagerede på din video</string>
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s reagerede på dit billede</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagerede %1$s på din GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s reagerede på din fil</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s reagerede på din lydfil</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s reagerede på dit engangsvisnings-medie.</string>
@@ -3235,6 +3237,16 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MediaReviewImagePageFragment__discard_changes">Kassér ændringer?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du mister alle ændringer, du har lavet for dette billede.</string>
   <string name="CameraFragment__failed_to_open_camera">Kunne ikke åbne kamera</string>
+  <string name="BadgesOverviewFragment__my_badges">Mine badges</string>
+  <string name="BadgesOverviewFragment__featured_badge">Fremhævet badge</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Vis badges på profil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Opdatering af profil mislykkedes</string>
+  <string name="BadgeSelectionFragment__select_badges">Vælg badges</string>
   <string name="SelectFeaturedBadgeFragment__preview">Eksempel</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Vælg et badge</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du skal vælge et badge</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Opdatering af profil mislykkedes</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
+  <string name="ImageView__badge">Badge</string>
   <!--EOF-->
 </resources>

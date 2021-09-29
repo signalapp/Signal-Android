@@ -3235,7 +3235,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Wähle ein Abzeichen</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du musst ein Abzeichen auswählen</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil konnte nicht aktualisiert werden</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde ein Unterstützer</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
   <string name="ImageView__badge">Abzeichen</string>
   <!--EOF-->
 </resources>

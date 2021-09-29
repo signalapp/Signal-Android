@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">نام شما</string>
   <string name="ManageProfileFragment_your_username">نام کاربری شما</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم عکس پروفایل ناموفق بود</string>
+  <string name="ManageProfileFragment_badges">نشان‌ها</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">هیچ گروه مشترکی وجود ندارد</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -3233,6 +3234,14 @@
   <string name="MediaReviewImagePageFragment__discard_changes">نادیده گرفتن تغییرات</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
   <string name="CameraFragment__failed_to_open_camera">باز کردن دوربین ناموفق بود</string>
+  <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">نمایش نشان‌ها روی پروفایل</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
+  <string name="BadgeSelectionFragment__select_badges">انتخاب نشان‌ها</string>
   <string name="SelectFeaturedBadgeFragment__preview">پیش‌نمایش</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">انتخاب یک نشان</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">شما باید یک نشان انتخاب کنید</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
+  <string name="ImageView__badge">نشان</string>
   <!--EOF-->
 </resources>

@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Il tuo nome</string>
   <string name="ManageProfileFragment_your_username">Il tuo nome utente</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Impossibile impostare avatar</string>
+  <string name="ManageProfileFragment_badges">Badge</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nessun gruppo in comune</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1527,6 +1528,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Reagito %1$s a: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagito %1$s al tuo video.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagito %1$s alla tua immagine.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Ha reagito %1$s alla tua GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagito %1$s al tuo file.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagito %1$s al tuo audio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagito %1$s al tuo media visualizzabile una volta.</string>
@@ -3235,6 +3237,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Eliminare le modifiche?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perderai tutte le modifiche che hai fatto a questa foto.</string>
   <string name="CameraFragment__failed_to_open_camera">Impossibile aprire la camera</string>
+  <string name="BadgesOverviewFragment__my_badges">I miei badge</string>
+  <string name="BadgesOverviewFragment__featured_badge">Badge in evidenza</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Mostra badge sul profilo</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Impossibile aggiornare il profilo</string>
+  <string name="BadgeSelectionFragment__select_badges">Seleziona badge</string>
   <string name="SelectFeaturedBadgeFragment__preview">Anteprima</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Seleziona un badge</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Devi selezionare un badge</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Impossibile aggiornare il profilo</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Diventa un sostenitore</string>
+  <string name="ImageView__badge">Badge</string>
   <!--EOF-->
 </resources>

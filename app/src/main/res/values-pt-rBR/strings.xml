@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Seu nome</string>
   <string name="ManageProfileFragment_your_username">Seu nome de usuário</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao salvar foto de perfil</string>
+  <string name="ManageProfileFragment_badges">Selos</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nenhum grupo em comum</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1527,6 +1528,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Reagiu com %1$s para: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagiu com %1$s ao seu vídeo.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagiu com %1$s à sua imagem.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagiu com %1$s ao seu GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagiu com %1$s ao seu arquivo.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu com %1$s ao seu áudio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu com %1$s à sua mídia efêmera.</string>
@@ -3235,6 +3237,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Descartar alterações?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Você perderá todas as alterações feitas nessa foto.</string>
   <string name="CameraFragment__failed_to_open_camera">Falha ao abrir a câmera</string>
+  <string name="BadgesOverviewFragment__my_badges">Meus selos</string>
+  <string name="BadgesOverviewFragment__featured_badge">Selo em destaque</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Mostrar emblemas no perfil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
+  <string name="BadgeSelectionFragment__select_badges">Escolher selos</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pré-visualização</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Escolher um selo</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Você precisa escolher um selo</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
+  <string name="ImageView__badge">Selo</string>
   <!--EOF-->
 </resources>

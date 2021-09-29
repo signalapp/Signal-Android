@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Adınız</string>
   <string name="ManageProfileFragment_your_username">İstifadəçi adınız</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar tənzimlənmədi</string>
+  <string name="ManageProfileFragment_badges">Nişanlar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Heç bir ortaq qrup yoxdur</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1527,6 +1528,7 @@
   <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" mesajına reaksiya verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Videonuza reaksiya verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Şəklinizə reaksiya verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">GIF-inizə reaksiya verdi: %1$s </string>
   <string name="MessageNotifier_reacted_s_to_your_file">Faylınıza reaksiya verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Səsinizə reaksiya verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Bir dəfə baxıla bilən medianıza reaksiya verdi: %1$s</string>
@@ -3235,6 +3237,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Dəyişikliklər ləğv edilsin?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bu foto üzərində etdiyiniz bütün dəyişiklikləri itirəcəksiniz.</string>
   <string name="CameraFragment__failed_to_open_camera">Kamera açılmadı</string>
+  <string name="BadgesOverviewFragment__my_badges">Nişanlarım</string>
+  <string name="BadgesOverviewFragment__featured_badge">Xüsusi nişan</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Profildə görüntülənən nişanlar</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profil yenilənmədi</string>
+  <string name="BadgeSelectionFragment__select_badges">Nişanları seçin</string>
   <string name="SelectFeaturedBadgeFragment__preview">Önbaxış</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Bir nişan seçin</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bir nişan seçməlisiniz</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil yenilənmədi</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi ol</string>
+  <string name="ImageView__badge">Nişan</string>
   <!--EOF-->
 </resources>

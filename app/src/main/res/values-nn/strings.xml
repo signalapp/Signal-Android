@@ -669,6 +669,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageProfileFragment_your_name">Namnet ditt</string>
   <string name="ManageProfileFragment_your_username">Brukarnamnet ditt</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Klarte ikkje endra profilbilde</string>
+  <string name="ManageProfileFragment_badges">Merke</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga grupper felles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1531,6 +1532,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_reacted_s_to_s">reagerte med %1$s til: «%2$s».</string>
   <string name="MessageNotifier_reacted_s_to_your_video">reagerte med %1$s til videoen din.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">reagerte med %1$s til bildet ditt.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagerte med %1$s på din GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">reagerte med %1$s til fila di.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">reagerte med %1$s til lyden din.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte med %1$s til éivisningsmediet ditt.</string>
@@ -3249,6 +3251,14 @@ Sjekkar igjen no …</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Forkast endringane?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du mister alle endringane du har gjort på dette bildet</string>
   <string name="CameraFragment__failed_to_open_camera">Klarte ikkje opna kameraet</string>
+  <string name="BadgesOverviewFragment__my_badges">Mine merke</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Vis merke på profilen</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Klarte ikkje oppdatera profilen</string>
+  <string name="BadgeSelectionFragment__select_badges">Vel merke</string>
   <string name="SelectFeaturedBadgeFragment__preview">Førehandsvisning</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Vel eit merke</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du må velja eit merke</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Klarte ikkje oppdatera profilen</string>
+  <string name="ImageView__badge">Merke</string>
   <!--EOF-->
 </resources>

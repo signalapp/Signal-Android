@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">El nom</string>
   <string name="ManageProfileFragment_your_username">El nom d\'usuari</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
+  <string name="ManageProfileFragment_badges">Insígnies</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">No hi ha grups en comú.</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1521,6 +1522,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_reacted_s_to_s">%1$s ha reaccionat a : \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">%1$s ha reaccionat al vostre vídeo.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s ha reaccionat al vostre missatge.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">%1$s ha reaccionat al vostre GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s ha reaccionat al vostre fitxer.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s ha reaccionat al vostre contingut d\'una visualització.</string>
@@ -3229,6 +3231,16 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MediaReviewImagePageFragment__discard_changes">Voleu descartar-ne els canvis?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perdreu qualsevol canvi que hàgiu fet en aquesta fotografia.</string>
   <string name="CameraFragment__failed_to_open_camera">Ha fallat obrir la càmera.</string>
+  <string name="BadgesOverviewFragment__my_badges">Les meves insígnies</string>
+  <string name="BadgesOverviewFragment__featured_badge">Insígnia inclosa</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Mostra les insígnies en el perfil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
+  <string name="BadgeSelectionFragment__select_badges">Selecciona insígnies</string>
   <string name="SelectFeaturedBadgeFragment__preview">Previsualitza</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecciona una insígnia</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Heu de seleccionar una insígnia</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
+  <string name="ImageView__badge">Insígnia</string>
   <!--EOF-->
 </resources>
