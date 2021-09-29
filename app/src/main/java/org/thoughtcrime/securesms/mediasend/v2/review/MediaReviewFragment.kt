@@ -248,7 +248,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   }
 
   private fun presentAddMessageEntry(message: CharSequence?) {
-    addMessageEntry.text = message
+    addMessageEntry.setText(message, TextView.BufferType.SPANNABLE)
   }
 
   private fun presentImageQualityToggle(quality: SentMediaQuality) {

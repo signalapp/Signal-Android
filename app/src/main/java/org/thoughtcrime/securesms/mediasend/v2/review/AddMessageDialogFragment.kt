@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend.v2.review
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.view.KeyEvent
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
-import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
@@ -66,11 +66,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     input = view.findViewById(R.id.add_a_message_input)
     input.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
-    input.addTextChangedListener(object : SimpleTextWatcher() {
-      override fun onTextChanged(text: String?) {
-        viewModel.setMessage(text)
-      }
-    })
 
     emojiDrawerToggle = view.findViewById(R.id.emoji_toggle)
     emojiDrawerStub = Stub(view.findViewById(R.id.emoji_drawer_stub))
@@ -112,6 +107,11 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     super.onPause()
 
     ViewUtil.hideKeyboard(requireContext(), input)
+  }
+
+  override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
+    viewModel.setMessage(input.text)
   }
 
   override fun onKeyboardHidden() {
