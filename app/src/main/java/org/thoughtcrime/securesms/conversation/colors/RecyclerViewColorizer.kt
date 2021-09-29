@@ -118,6 +118,7 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
         mask.setBounds(0, 0, parent.width, parent.height)
         mask.draw(canvas)
       } else {
+        colorPaint.color = chatColors.asSingleColor()
         canvas.drawRect(
           0f,
           0f,
