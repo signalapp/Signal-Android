@@ -403,7 +403,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       int      availableWidth     = getAvailableMessageBubbleWidth(bodyText);
       int      collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
 
-      if (bodyText.isSingleLine()) {
+      if (bodyText.isSingleLine() && !messageRecord.isFailed()) {
         int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
         int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
         int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
@@ -423,7 +423,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         }
       }
 
-      if (!updatingFooter && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
+      if (!updatingFooter && !messageRecord.isFailed() && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
         ViewUtil.setTopMargin(footer, collapsedTopMargin);
         ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
         updatingFooter = true;
