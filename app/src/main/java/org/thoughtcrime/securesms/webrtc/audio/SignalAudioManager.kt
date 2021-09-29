@@ -208,13 +208,13 @@ class SignalAudioManager(private val context: Context, private val eventListener
       userSelectedAudioDevice = AudioDevice.NONE
     }
 
-    if (hasWiredHeadset && autoSwitchToWiredHeadset && userSelectedAudioDevice == AudioDevice.SPEAKER_PHONE) {
+    if (hasWiredHeadset && autoSwitchToWiredHeadset) {
       userSelectedAudioDevice = AudioDevice.WIRED_HEADSET
       autoSwitchToWiredHeadset = false
     }
 
     if (!hasWiredHeadset && userSelectedAudioDevice == AudioDevice.WIRED_HEADSET) {
-      userSelectedAudioDevice = AudioDevice.SPEAKER_PHONE
+      userSelectedAudioDevice = AudioDevice.NONE
     }
 
     val needBluetoothAudioStart = signalBluetoothManager.state == SignalBluetoothManager.State.AVAILABLE &&
