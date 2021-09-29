@@ -19,7 +19,7 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
     bufferType = type
     val candidates = if (isInEditMode) null else EmojiProvider.getCandidates(text)
     if (SignalStore.settings().isPreferSystemEmoji || candidates == null || candidates.size() == 0) {
-      super.setText(Optional.fromNullable(text).or(""), BufferType.NORMAL)
+      super.setText(Optional.fromNullable(text).or(""), type)
     } else {
       val newContent = if (width == 0 || maxLines == -1) {
         text
@@ -41,7 +41,7 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
   override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
     super.onSizeChanged(width, height, oldWidth, oldHeight)
     if (width > 0 && oldWidth != width) {
-      setText(text, bufferType ?: BufferType.NORMAL)
+      setText(text, bufferType ?: BufferType.SPANNABLE)
     }
   }
 }

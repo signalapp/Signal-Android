@@ -133,7 +133,7 @@ public class EmojiTextView extends AppCompatTextView {
     previousTransformationMethod = getTransformationMethod();
 
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
-      super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.NORMAL);
+      super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.SPANNABLE);
     } else {
       CharSequence emojified = EmojiProvider.emojify(candidates, text, this);
       super.setText(new SpannableStringBuilder(emojified), BufferType.SPANNABLE);
@@ -219,7 +219,7 @@ public class EmojiTextView extends AppCompatTextView {
       EmojiParser.CandidateList newCandidates = isInEditMode() ? null : EmojiProvider.getCandidates(newContent);
 
       if (useSystemEmoji || newCandidates == null || newCandidates.size() == 0) {
-        super.setText(newContent, BufferType.NORMAL);
+        super.setText(newContent, BufferType.SPANNABLE);
       } else {
         CharSequence emojified = EmojiProvider.emojify(newCandidates, newContent, this);
         super.setText(emojified, BufferType.SPANNABLE);
