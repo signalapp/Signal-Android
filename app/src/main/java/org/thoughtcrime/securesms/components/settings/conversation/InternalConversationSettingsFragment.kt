@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -60,6 +62,13 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         title = DSLSettingsText.from("UUID"),
         summary = DSLSettingsText.from(uuid),
         onLongClick = { copyToClipboard(uuid) }
+      )
+
+      val threadId: String = if (state.threadId != null) state.threadId.toString() else "N/A"
+      longClickPref(
+        title = DSLSettingsText.from("ThreadId"),
+        summary = DSLSettingsText.from(threadId),
+        onLongClick = { copyToClipboard(threadId) }
       )
 
       textPref(
@@ -162,17 +171,25 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
     val recipientId: RecipientId
   ) : ViewModel(), RecipientForeverObserver {
 
-    private val store = Store(InternalState(Recipient.resolved(recipientId)))
+    private val store = Store(InternalState(Recipient.resolved(recipientId), null))
 
     val state = store.stateLiveData
     val liveRecipient = Recipient.live(recipientId)
 
     init {
       liveRecipient.observeForever(this)
+
+      SignalExecutors.BOUNDED.execute {
+        val threadId: Long? = DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).getThreadIdFor(recipientId)
+        store.update { state -> state.copy(threadId = threadId) }
+      }
     }
 
     override fun onRecipientChanged(recipient: Recipient) {
-      store.update { InternalState(recipient) }
+      SignalExecutors.BOUNDED.execute {
+        val threadId: Long? = DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).getThreadIdFor(recipient.id)
+        store.update { InternalState(recipient, threadId) }
+      }
     }
 
     override fun onCleared() {
@@ -187,6 +204,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
   }
 
   data class InternalState(
-    val recipient: Recipient
+    val recipient: Recipient,
+    val threadId: Long?
   )
 }
