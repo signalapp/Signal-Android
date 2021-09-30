@@ -531,6 +531,12 @@ dependencyVerification {
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
 
+        ['org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.4.32',
+         '3b4b51777bc900507bca4d6a33fe26379eda598961fa998463747fcee6460044'],
+
+        ['org.jetbrains.kotlin:kotlin-parcelize-runtime:1.4.32',
+         'f5c188f6828d3554a3edf3863f0a5eb1c3518fb320583d9cf131e851b9d8af7b'],
+
         ['org.jetbrains.kotlin:kotlin-reflect:1.5.10',
          'd6a6a36120ebcc8b291c4b6508d123b01347a4ee73dffdc744e88a3dd630d474'],
 
@@ -579,11 +585,11 @@ dependencyVerification {
         ['org.signal:ringrtc-android:2.13.1',
          '5bb5c9829053006d27e3444ae1984a3e3daece1edddb870c3f1da2c2179c40fc'],
 
-        ['org.signal:zkgroup-android:0.8.1',
-         '97e18f753509248b0569bd22aeee9c2d96b09c24993e92208a2d0fbc6d413057'],
+        ['org.signal:zkgroup-android:0.8.2',
+         '3883a9c8101e40d35fd749a1908eda43ee9036e63d98944f57bec62384e05889'],
 
-        ['org.signal:zkgroup-java:0.8.1',
-         'ef2b7c0fa862b54dd40f0a76462f400855f4927fabe5fc0ffdd19bd01344f0c5'],
+        ['org.signal:zkgroup-java:0.8.2',
+         'eaae035a974e0179052d9b90fb4dc4d5b8bd2fdb0b20ed36824f2bdf9fb6dd36'],
 
         ['org.slf4j:slf4j-api:1.7.24',
          'baf3c7fe15fefeaf9e5b000d94547379dc48370f22a8797e239c127e7d7756ec'],
