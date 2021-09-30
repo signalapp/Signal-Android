@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
+import android.content.Context
 import android.graphics.Color
 import android.text.TextUtils
 import android.widget.Toast
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -57,12 +59,23 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         summary = DSLSettingsText.from(recipient.id.serialize())
       )
 
-      val uuid = recipient.uuid.transform(UUID::toString).or("null")
-      longClickPref(
-        title = DSLSettingsText.from("UUID"),
-        summary = DSLSettingsText.from(uuid),
-        onLongClick = { copyToClipboard(uuid) }
-      )
+      if (!recipient.isGroup) {
+        val uuid = recipient.uuid.transform(UUID::toString).or("null")
+        longClickPref(
+          title = DSLSettingsText.from("UUID"),
+          summary = DSLSettingsText.from(uuid),
+          onLongClick = { copyToClipboard(uuid) }
+        )
+      }
+
+      if (state.groupId != null) {
+        val groupId: String = state.groupId.toString()
+        longClickPref(
+          title = DSLSettingsText.from("GroupId"),
+          summary = DSLSettingsText.from(groupId),
+          onLongClick = { copyToClipboard(groupId) }
+        )
+      }
 
       val threadId: String = if (state.threadId != null) state.threadId.toString() else "N/A"
       longClickPref(
@@ -71,72 +84,78 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         onLongClick = { copyToClipboard(threadId) }
       )
 
-      textPref(
-        title = DSLSettingsText.from("Profile Name"),
-        summary = DSLSettingsText.from("[${recipient.profileName.givenName}] [${state.recipient.profileName.familyName}]")
-      )
+      if (!recipient.isGroup) {
+        textPref(
+          title = DSLSettingsText.from("Profile Name"),
+          summary = DSLSettingsText.from("[${recipient.profileName.givenName}] [${state.recipient.profileName.familyName}]")
+        )
 
-      val profileKeyBase64 = recipient.profileKey?.let(Base64::encodeBytes) ?: "None"
-      longClickPref(
-        title = DSLSettingsText.from("Profile Key (Base64)"),
-        summary = DSLSettingsText.from(profileKeyBase64),
-        onLongClick = { copyToClipboard(profileKeyBase64) }
-      )
+        val profileKeyBase64 = recipient.profileKey?.let(Base64::encodeBytes) ?: "None"
+        longClickPref(
+          title = DSLSettingsText.from("Profile Key (Base64)"),
+          summary = DSLSettingsText.from(profileKeyBase64),
+          onLongClick = { copyToClipboard(profileKeyBase64) }
+        )
 
-      val profileKeyHex = recipient.profileKey?.let(Hex::toStringCondensed) ?: ""
-      longClickPref(
-        title = DSLSettingsText.from("Profile Key (Hex)"),
-        summary = DSLSettingsText.from(profileKeyHex),
-        onLongClick = { copyToClipboard(profileKeyHex) }
-      )
+        val profileKeyHex = recipient.profileKey?.let(Hex::toStringCondensed) ?: ""
+        longClickPref(
+          title = DSLSettingsText.from("Profile Key (Hex)"),
+          summary = DSLSettingsText.from(profileKeyHex),
+          onLongClick = { copyToClipboard(profileKeyHex) }
+        )
 
-      textPref(
-        title = DSLSettingsText.from("Sealed Sender Mode"),
-        summary = DSLSettingsText.from(recipient.unidentifiedAccessMode.toString())
-      )
+        textPref(
+          title = DSLSettingsText.from("Sealed Sender Mode"),
+          summary = DSLSettingsText.from(recipient.unidentifiedAccessMode.toString())
+        )
+      }
 
       textPref(
         title = DSLSettingsText.from("Profile Sharing (AKA \"Whitelisted\")"),
         summary = DSLSettingsText.from(recipient.isProfileSharing.toString())
       )
 
-      textPref(
-        title = DSLSettingsText.from("Capabilities"),
-        summary = DSLSettingsText.from(buildCapabilitySpan(recipient))
-      )
+      if (!recipient.isGroup) {
+        textPref(
+          title = DSLSettingsText.from("Capabilities"),
+          summary = DSLSettingsText.from(buildCapabilitySpan(recipient))
+        )
+      }
 
-      sectionHeaderPref(DSLSettingsText.from("Actions"))
+      if (!recipient.isGroup) {
+        sectionHeaderPref(DSLSettingsText.from("Actions"))
 
-      clickPref(
-        title = DSLSettingsText.from("Disable Profile Sharing"),
-        summary = DSLSettingsText.from("Clears profile sharing/whitelisted status, which should cause the Message Request UI to show."),
-        onClick = {
-          MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Are you sure?")
-            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
-            .setPositiveButton(android.R.string.ok) { _, _ -> DatabaseFactory.getRecipientDatabase(requireContext()).setProfileSharing(recipient.id, false) }
-            .show()
-        }
-      )
+        clickPref(
+          title = DSLSettingsText.from("Disable Profile Sharing"),
+          summary = DSLSettingsText.from("Clears profile sharing/whitelisted status, which should cause the Message Request UI to show."),
+          onClick = {
+            MaterialAlertDialogBuilder(requireContext())
+              .setTitle("Are you sure?")
+              .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+              .setPositiveButton(android.R.string.ok) { _, _ -> DatabaseFactory.getRecipientDatabase(requireContext()).setProfileSharing(recipient.id, false) }
+              .show()
+          }
+        )
 
-      clickPref(
-        title = DSLSettingsText.from("Delete Session"),
-        summary = DSLSettingsText.from("Deletes the session, essentially guaranteeing an encryption error if they send you a message."),
-        onClick = {
-          MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Are you sure?")
-            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
-            .setPositiveButton(android.R.string.ok) { _, _ ->
-              if (recipient.hasUuid()) {
-                DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireUuid().toString())
+        clickPref(
+          title = DSLSettingsText.from("Delete Session"),
+          summary = DSLSettingsText.from("Deletes the session, essentially guaranteeing an encryption error if they send you a message."),
+          onClick = {
+            MaterialAlertDialogBuilder(requireContext())
+              .setTitle("Are you sure?")
+              .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+              .setPositiveButton(android.R.string.ok) { _, _ ->
+                if (recipient.hasUuid()) {
+                  DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireUuid().toString())
+                }
+                if (recipient.hasE164()) {
+                  DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireE164())
+                }
               }
-              if (recipient.hasE164()) {
-                DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireE164())
-              }
-            }
-            .show()
-        }
-      )
+              .show()
+          }
+        )
+      }
     }
   }
 
@@ -171,7 +190,13 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
     val recipientId: RecipientId
   ) : ViewModel(), RecipientForeverObserver {
 
-    private val store = Store(InternalState(Recipient.resolved(recipientId), null))
+    private val store = Store(
+      InternalState(
+        recipient = Recipient.resolved(recipientId),
+        threadId = null,
+        groupId = null
+      )
+    )
 
     val state = store.stateLiveData
     val liveRecipient = Recipient.live(recipientId)
@@ -180,16 +205,15 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       liveRecipient.observeForever(this)
 
       SignalExecutors.BOUNDED.execute {
-        val threadId: Long? = DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).getThreadIdFor(recipientId)
-        store.update { state -> state.copy(threadId = threadId) }
+        val context: Context = ApplicationDependencies.getApplication()
+        val threadId: Long? = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId)
+        val groupId: GroupId? = DatabaseFactory.getGroupDatabase(context).getGroup(recipientId).transform { it.id }.orNull()
+        store.update { state -> state.copy(threadId = threadId, groupId = groupId) }
       }
     }
 
     override fun onRecipientChanged(recipient: Recipient) {
-      SignalExecutors.BOUNDED.execute {
-        val threadId: Long? = DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).getThreadIdFor(recipient.id)
-        store.update { InternalState(recipient, threadId) }
-      }
+      store.update { state -> state.copy(recipient = recipient) }
     }
 
     override fun onCleared() {
@@ -205,6 +229,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
   data class InternalState(
     val recipient: Recipient,
-    val threadId: Long?
+    val threadId: Long?,
+    val groupId: GroupId?
   )
 }

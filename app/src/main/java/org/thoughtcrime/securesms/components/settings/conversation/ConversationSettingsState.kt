@@ -16,6 +16,7 @@ data class ConversationSettingsState(
   val canModifyBlockedState: Boolean = false,
   val sharedMedia: Cursor? = null,
   val sharedMediaIds: List<Long> = listOf(),
+  val displayInternalRecipientDetails: Boolean = false,
   private val sharedMediaLoaded: Boolean = false,
   private val specificSettingsState: SpecificSettingsState,
 ) {
@@ -49,8 +50,7 @@ sealed class SpecificSettingsState {
     val selfHasGroups: Boolean = false,
     val canShowMoreGroupsInCommon: Boolean = false,
     val groupsInCommonExpanded: Boolean = false,
-    val contactLinkState: ContactLinkState = ContactLinkState.NONE,
-    val displayInternalRecipientDetails: Boolean
+    val contactLinkState: ContactLinkState = ContactLinkState.NONE
   ) : SpecificSettingsState() {
 
     override val isLoaded: Boolean = true

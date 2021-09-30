@@ -314,18 +314,16 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
       }
 
-      state.withRecipientSettingsState { recipientState ->
-        if (recipientState.displayInternalRecipientDetails) {
-          customPref(
-            InternalPreference.Model(
-              recipient = state.recipient,
-              onInternalDetailsClicked = {
-                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
-                navController.navigate(action)
-              }
-            )
+      if (state.displayInternalRecipientDetails) {
+        customPref(
+          InternalPreference.Model(
+            recipient = state.recipient,
+            onInternalDetailsClicked = {
+              val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
+              navController.navigate(action)
+            }
           )
-        }
+        )
       }
 
       customPref(

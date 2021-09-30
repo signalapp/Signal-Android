@@ -71,7 +71,8 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           sharedMedia = cursor.orNull(),
           sharedMediaIds = ids,
-          sharedMediaLoaded = true
+          sharedMediaLoaded = true,
+          displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
         )
       } else {
         cursor.orNull().ensureClosed()
@@ -121,9 +122,7 @@ sealed class ConversationSettingsViewModel(
     private val repository: ConversationSettingsRepository
   ) : ConversationSettingsViewModel(
     repository,
-    SpecificSettingsState.RecipientSettingsState(
-      displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
-    )
+    SpecificSettingsState.RecipientSettingsState()
   ) {
 
     private val liveRecipient = Recipient.live(recipientId)
