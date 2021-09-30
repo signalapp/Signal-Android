@@ -222,6 +222,10 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState().isRemoteVideoOffer());
     }
 
+    if (state == WebRtcViewModel.State.CALL_ACCEPTED_ELSEWHERE) {
+      webRtcInteractor.insertReceivedCall(remotePeer, currentState.getCallSetupState().isRemoteVideoOffer());
+    }
+
     currentState = currentState.builder()
                                .changeCallInfoState()
                                .callState(state)
