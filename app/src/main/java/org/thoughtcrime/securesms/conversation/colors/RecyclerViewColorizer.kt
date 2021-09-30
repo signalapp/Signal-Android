@@ -95,9 +95,12 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
 
       for (i in 0 until parent.childCount) {
         val child = parent.getChildAt(i)
-        if (child != null && child is Colorizable) {
-          child.colorizerProjections.forEach {
-            c.drawPath(it.path, holePunchPaint)
+        if (child != null) {
+          val holder = parent.getChildViewHolder(child)
+          if (holder is Colorizable) {
+            holder.colorizerProjections.forEach {
+              c.drawPath(it.path, holePunchPaint)
+            }
           }
         }
       }
