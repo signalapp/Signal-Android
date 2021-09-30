@@ -68,6 +68,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
@@ -299,6 +300,15 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull AudioManagerCompat provideAndroidCallAudioManager() {
     return AudioManagerCompat.create(context);
+  }
+
+  @Override
+  public @NonNull DonationsService provideDonationsService() {
+    return new DonationsService(provideSignalServiceNetworkAccess().getConfiguration(context),
+                                new DynamicCredentialsProvider(context),
+                                BuildConfig.SIGNAL_AGENT,
+                                provideGroupsV2Operations(),
+                                FeatureFlags.okHttpAutomaticRetry());
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

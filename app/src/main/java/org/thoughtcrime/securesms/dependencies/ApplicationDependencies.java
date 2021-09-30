@@ -48,6 +48,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.services.DonationsService;
 
 import okhttp3.OkHttpClient;
 
@@ -104,6 +105,7 @@ public class ApplicationDependencies {
   private static volatile GiphyMp4Cache                giphyMp4Cache;
   private static volatile SimpleExoPlayerPool          exoPlayerPool;
   private static volatile AudioManagerCompat           audioManagerCompat;
+  private static volatile DonationsService             donationsService;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -590,6 +592,17 @@ public class ApplicationDependencies {
     return audioManagerCompat;
   }
 
+  public static @NonNull DonationsService getDonationsService() {
+    if (donationsService == null) {
+      synchronized (LOCK) {
+        if (donationsService == null) {
+          donationsService = provider.provideDonationsService();
+        }
+      }
+    }
+    return donationsService;
+  }
+
   public interface Provider {
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
@@ -625,5 +638,6 @@ public class ApplicationDependencies {
     @NonNull GiphyMp4Cache provideGiphyMp4Cache();
     @NonNull SimpleExoPlayerPool provideExoPlayerPool();
     @NonNull AudioManagerCompat provideAndroidCallAudioManager();
+    @NonNull DonationsService provideDonationsService();
   }
 }
