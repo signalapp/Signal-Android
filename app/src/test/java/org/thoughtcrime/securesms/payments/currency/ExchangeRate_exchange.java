@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.signal.core.util.money.FiatMoney;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.math.BigDecimal;
@@ -12,7 +13,6 @@ import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Currency;
-import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
