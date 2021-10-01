@@ -142,16 +142,6 @@ public final class Projection {
     return new Projection(viewBounds.left, viewBounds.top, toProject.getWidth(), toProject.getHeight(), corners);
   }
 
-  public static @NonNull Projection translateFromRootToDescendantCoords(@NonNull Projection rootProjection, @NonNull View descendant) {
-    Rect viewBounds = new Rect();
-
-    viewBounds.set((int) rootProjection.x, (int) rootProjection.y, (int) rootProjection.x + rootProjection.width, (int) rootProjection.y + rootProjection.height);
-
-    ((ViewGroup) descendant.getRootView()).offsetRectIntoDescendantCoords(descendant, viewBounds);
-
-    return new Projection(viewBounds.left, viewBounds.top, rootProjection.width, rootProjection.height, rootProjection.corners);
-  }
-
   public static @NonNull Projection translateFromDescendantToParentCoords(@NonNull Projection descendantProjection, @NonNull View descendant, @NonNull ViewGroup parent) {
     Rect viewBounds = new Rect();
 

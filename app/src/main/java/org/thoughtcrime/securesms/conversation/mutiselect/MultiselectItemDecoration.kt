@@ -127,7 +127,7 @@ class MultiselectItemDecoration(
 
       val parts: MultiselectCollection = child.conversationMessage.multiselectCollection
 
-      val projections: List<Projection> = child.colorizerProjections + if (child.canPlayContent()) listOf(child.getGiphyMp4PlayableProjection(child.rootView as ViewGroup)) else emptyList()
+      val projections: List<Projection> = child.getColorizerProjections(parent) + if (child.canPlayContent()) listOf(child.getGiphyMp4PlayableProjection(parent)) else emptyList()
       path.reset()
       projections.forEach { it.applyToPath(path) }
 
@@ -307,7 +307,7 @@ class MultiselectItemDecoration(
       parent.forEach { child ->
         if (child is Multiselectable && child.conversationMessage == inFocus.conversationMessage) {
           path.addRect(child.left.toFloat(), child.top.toFloat(), child.right.toFloat(), child.bottom.toFloat(), Path.Direction.CW)
-          child.colorizerProjections.forEach {
+          child.getColorizerProjections(parent).forEach {
             path.op(it.path, Path.Op.DIFFERENCE)
           }
 

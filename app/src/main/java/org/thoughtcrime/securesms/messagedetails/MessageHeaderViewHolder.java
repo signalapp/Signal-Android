@@ -250,11 +250,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
-  public @NonNull List<Projection> getColorizerProjections() {
-    return conversationItem.getColorizerProjections()
-                           .stream()
-                           .map(p -> Projection.translateFromRootToDescendantCoords(p, (ViewGroup) itemView.getParent()))
-                           .collect(Collectors.toList());
+  public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
+    return conversationItem.getColorizerProjections(coordinateRoot);
   }
 
   private class ExpiresUpdater implements Runnable {

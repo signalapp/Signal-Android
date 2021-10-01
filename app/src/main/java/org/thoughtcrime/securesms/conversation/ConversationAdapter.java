@@ -691,8 +691,8 @@ public class ConversationAdapter
     }
 
     @Override
-    public @NonNull List<Projection> getColorizerProjections() {
-      return getBindable().getColorizerProjections();
+    public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
+      return getBindable().getColorizerProjections(coordinateRoot);
     }
   }
 

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.colors
 
+import android.view.ViewGroup
 import org.thoughtcrime.securesms.util.Projection
 
 /**
@@ -7,5 +8,5 @@ import org.thoughtcrime.securesms.util.Projection
  * generating its own projection.
  */
 interface Colorizable {
-  val colorizerProjections: List<Projection>
+  fun getColorizerProjections(coordinateRoot: ViewGroup): List<Projection>
 }
