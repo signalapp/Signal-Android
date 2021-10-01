@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend.v2
 
 import android.net.Uri
 import org.thoughtcrime.securesms.TransportOption
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendConstants
 import org.thoughtcrime.securesms.mms.SentMediaQuality
@@ -12,7 +13,7 @@ data class MediaSelectionState(
   val selectedMedia: List<Media> = listOf(),
   val focusedMedia: Media? = null,
   val recipient: Recipient? = null,
-  val quality: SentMediaQuality = SentMediaQuality.STANDARD,
+  val quality: SentMediaQuality = SignalStore.settings().sentMediaQuality,
   val message: CharSequence? = null,
   val viewOnceToggleState: ViewOnceToggleState = ViewOnceToggleState.INFINITE,
   val isTouchEnabled: Boolean = true,

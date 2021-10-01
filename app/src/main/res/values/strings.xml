@@ -3610,6 +3610,11 @@
     <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__high">High</string>
+    <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Calls</string>
 
     <!-- ChatColorSelectionFragment -->
