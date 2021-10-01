@@ -150,11 +150,11 @@ public final class PushGroupSendJob extends PushSendJob {
   {
     SignalLocalMetrics.GroupMessageSend.onJobStarted(messageId);
 
-    MessageDatabase           database                   = DatabaseFactory.getMmsDatabase(context);
-    OutgoingMediaMessage      message                    = database.getOutgoingMessage(messageId);
-    long                      threadId                   = database.getMessageRecord(messageId).getThreadId();
-    List<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
-    List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
+    MessageDatabase          database                   = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage     message                    = database.getOutgoingMessage(messageId);
+    long                     threadId                   = database.getMessageRecord(messageId).getThreadId();
+    Set<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
+    Set<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
     ApplicationDependencies.getJobManager().cancelAllInQueue(TypingSendJob.getQueue(threadId));
 
@@ -183,8 +183,8 @@ public final class PushGroupSendJob extends PushSendJob {
       List<Recipient> target;
 
       if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient));
-      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> Recipient.resolved(nf.getRecipientId(context))).toList();
-      else                                         target = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
+      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
+      else                                         target = Stream.of(getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId)).distinctBy(Recipient::getId).toList();
 
       RecipientAccessList accessList = new RecipientAccessList(target);
 
@@ -206,23 +206,11 @@ public final class PushGroupSendJob extends PushSendJob {
         recipientDatabase.markUnregistered(unregistered.getId());
       }
 
-      for (NetworkFailure resolvedFailure : resolvedNetworkFailures) {
-        database.removeFailure(messageId, resolvedFailure);
-        existingNetworkFailures.remove(resolvedFailure);
-      }
+      existingNetworkFailures.removeAll(resolvedNetworkFailures);
+      database.setNetworkFailures(messageId, existingNetworkFailures);
 
-      for (IdentityKeyMismatch resolvedIdentity : resolvedIdentityFailures) {
-        database.removeMismatchedIdentity(messageId, resolvedIdentity.getRecipientId(context), resolvedIdentity.getIdentityKey());
-        existingIdentityMismatches.remove(resolvedIdentity);
-      }
-
-      if (!networkFailures.isEmpty()) {
-        database.addFailures(messageId, networkFailures);
-      }
-
-      for (IdentityKeyMismatch mismatch : identityMismatches) {
-        database.addMismatchedIdentity(messageId, mismatch.getRecipientId(context), mismatch.getIdentityKey());
-      }
+      existingIdentityMismatches.removeAll(resolvedIdentityFailures);
+      database.setMismatchedIdentities(messageId, existingIdentityMismatches);
 
       DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(successUnidentifiedStatus, messageId);
 

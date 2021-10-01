@@ -33,7 +33,7 @@ import net.sqlcipher.database.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateD
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
-import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -1548,7 +1547,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void removeFailure(long messageId, NetworkFailure failure) {
+  public void setNetworkFailures(long messageId, Set<NetworkFailure> failures) {
     throw new UnsupportedOperationException();
   }
 
@@ -1642,7 +1641,7 @@ public class SmsDatabase extends MessageDatabase {
                                   message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
                                   threadId,
                                   0,
-                                  new LinkedList<>(),
+                                  new HashSet<>(),
                                   message.getSubscriptionId(),
                                   message.getExpiresIn(),
                                   System.currentTimeMillis(),
@@ -1704,8 +1703,8 @@ public class SmsDatabase extends MessageDatabase {
         readReceiptCount = 0;
       }
 
-      List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
-      Recipient                 recipient  = Recipient.live(RecipientId.from(recipientId)).get();
+      Set<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
+      Recipient                recipient  = Recipient.live(RecipientId.from(recipientId)).get();
 
       return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,
@@ -1717,16 +1716,16 @@ public class SmsDatabase extends MessageDatabase {
                                   notifiedTimestamp, receiptTimestamp);
     }
 
-    private List<IdentityKeyMismatch> getMismatches(String document) {
+    private Set<IdentityKeyMismatch> getMismatches(String document) {
       try {
         if (!TextUtils.isEmpty(document)) {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getList();
+          return JsonUtils.fromJson(document, IdentityKeyMismatchSet.class).getItems();
         }
       } catch (IOException e) {
         Log.w(TAG, e);
       }
 
-      return new LinkedList<>();
+      return Collections.emptySet();
     }
 
     @Override

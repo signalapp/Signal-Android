@@ -1359,7 +1359,7 @@ public final class MessageContentProcessor {
         sharedContacts.or(Collections.emptyList()),
         previews.or(Collections.emptyList()),
         mentions.or(Collections.emptyList()),
-        Collections.emptyList(), Collections.emptyList());
+        Collections.emptySet(), Collections.emptySet());
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 

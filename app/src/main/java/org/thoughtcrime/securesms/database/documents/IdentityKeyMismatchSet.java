@@ -3,19 +3,21 @@ package org.thoughtcrime.securesms.database.documents;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-public class IdentityKeyMismatchList implements Document<IdentityKeyMismatch> {
+public class IdentityKeyMismatchSet implements Document<IdentityKeyMismatch> {
 
   @JsonProperty(value = "m")
-  private List<IdentityKeyMismatch> mismatches;
+  private Set<IdentityKeyMismatch> mismatches;
 
-  public IdentityKeyMismatchList() {
-    this.mismatches = new LinkedList<>();
+  public IdentityKeyMismatchSet() {
+    this.mismatches = new HashSet<>();
   }
 
-  public IdentityKeyMismatchList(List<IdentityKeyMismatch> mismatches) {
+  public IdentityKeyMismatchSet(Set<IdentityKeyMismatch> mismatches) {
     this.mismatches = mismatches;
   }
 
@@ -27,7 +29,7 @@ public class IdentityKeyMismatchList implements Document<IdentityKeyMismatch> {
 
   @Override
   @JsonIgnore
-  public List<IdentityKeyMismatch> getList() {
+  public Set<IdentityKeyMismatch> getItems() {
     return mismatches;
   }
 }

@@ -3,19 +3,21 @@ package org.thoughtcrime.securesms.database.documents;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-public class NetworkFailureList implements Document<NetworkFailure> {
+public class NetworkFailureSet implements Document<NetworkFailure> {
 
   @JsonProperty(value = "l")
-  private List<NetworkFailure> failures;
+  private Set<NetworkFailure> failures;
 
-  public NetworkFailureList() {
-    this.failures = new LinkedList<>();
+  public NetworkFailureSet() {
+    this.failures = new HashSet<>();
   }
 
-  public NetworkFailureList(List<NetworkFailure> failures) {
+  public NetworkFailureSet(Set<NetworkFailure> failures) {
     this.failures = failures;
   }
 
@@ -27,7 +29,7 @@ public class NetworkFailureList implements Document<NetworkFailure> {
 
   @Override
   @JsonIgnore
-  public List<NetworkFailure> getList() {
+  public Set<NetworkFailure> getItems() {
     return failures;
   }
 }
