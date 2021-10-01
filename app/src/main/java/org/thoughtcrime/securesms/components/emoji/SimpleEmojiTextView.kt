@@ -21,10 +21,14 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
     if (SignalStore.settings().isPreferSystemEmoji || candidates == null || candidates.size() == 0) {
       super.setText(Optional.fromNullable(text).or(""), type)
     } else {
+      val startDrawableSize: Int = compoundDrawables[0]?.let { it.intrinsicWidth + compoundDrawablePadding } ?: 0
+      val endDrawableSize: Int = compoundDrawables[1]?.let { it.intrinsicWidth + compoundDrawablePadding } ?: 0
+      val adjustedWidth: Int = width - startDrawableSize - endDrawableSize
+
       val newContent = if (width == 0 || maxLines == -1) {
         text
       } else {
-        TextUtils.ellipsize(text, paint, (width * maxLines).toFloat(), TextUtils.TruncateAt.END, false, null)
+        TextUtils.ellipsize(text, paint, (adjustedWidth * maxLines).toFloat(), TextUtils.TruncateAt.END, false, null)
       }
 
       val newCandidates = if (isInEditMode) null else EmojiProvider.getCandidates(newContent)
