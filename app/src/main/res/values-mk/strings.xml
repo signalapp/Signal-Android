@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Вашето име</string>
   <string name="ManageProfileFragment_your_username">Вашето корисничко име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Не успеав да поставам аватар</string>
+  <string name="ManageProfileFragment_badges">Беџови</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Немате заеднички групи</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1838,7 +1839,7 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Сподели сигурносен број</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Скенирајте го QR кодот на уредот на вашите контакти.</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Скенирајте го QR кодот на уредот на Вашиот контакт.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Повлечете нагоре за одговор</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Повлечете надолу за одбивање</string>
@@ -2125,6 +2126,7 @@
   <string name="PaymentsHomeFragment__activate_payments">Активираj плаќања</string>
   <string name="PaymentsHomeFragment__activating_payments">Активирање на плаќања…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Врати ја сметката за плаќања</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Сѐ уште нема активност</string>
   <string name="PaymentsHomeFragment__pending_requests">Барања кои што чекаат</string>
   <string name="PaymentsHomeFragment__recent_activity">Скорешна активност</string>
   <string name="PaymentsHomeFragment__see_all">Види сѐ</string>
@@ -2649,6 +2651,7 @@
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Откажи и активирај го овој уред</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__dont_transfer">Не префрлувај</string>
   <string name="AdvancedPreferenceFragment__transfer">Трансфер</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
@@ -2815,13 +2818,16 @@
   <string name="payment_info_card_adding_funds">Додавање на средства</string>
   <string name="payment_info_card_hide_this_card">Да ја сокријам оваа картичка?</string>
   <string name="payment_info_card_hide">Сокриј</string>
+  <string name="payment_info_card_record_your_phrase">Снимете ја Вашата фраза</string>
   <string name="payment_info_card_update_your_pin">Ажурирајте го Вашиот PIN</string>
   <string name="payment_info_card_update_pin">Ажурирај PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирај го паричникот</string>
   <string name="DeactivateWalletFragment__your_balance">Вашиот баланс</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Префли го преостанатиот баланс</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирај без пренос</string>
   <string name="DeactivateWalletFragment__deactivate">Деактивирај</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Да деактивирам без пренос?</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка при деактивирање на паричникот.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__start">Започни</string>
@@ -2853,6 +2859,7 @@
   <string name="UnreadPayments__s_sent_you_s">%1$s Ви испрати %2$s</string>
   <string name="UnreadPayments__d_new_payment_notifications">%1$d нови известувања за плаќање</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Не можам да го испратам плаќањето</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Испрати порака</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заеднички групи со оваа личност. Прегледувајте ги барањата внимателно за да избегнете несакани пораки.</string>
@@ -3163,6 +3170,15 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Да ги откажам промените?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Ќе ги изгубите сите промени направени на оваа фотографија.</string>
   <string name="CameraFragment__failed_to_open_camera">Не успеа да се отвори камерата</string>
+  <string name="BadgesOverviewFragment__my_badges">Мои беџови</string>
+  <string name="BadgesOverviewFragment__featured_badge">Достапни беџови</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Прикажи беџоци на профил</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Не успеав да го ажурирам профилот</string>
+  <string name="BadgeSelectionFragment__select_badges">Изберете беџови</string>
   <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Изберете беџ</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Морате да изберете беџ</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не успеав да го ажурирам профилот</string>
+  <string name="ImageView__badge">Беџ</string>
   <!--EOF-->
 </resources>

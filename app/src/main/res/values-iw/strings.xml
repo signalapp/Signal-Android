@@ -730,6 +730,7 @@
   <string name="ManageProfileFragment_your_name">שמך</string>
   <string name="ManageProfileFragment_your_username">שם המשתמש שלך</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">נכשל בהגדרת יצגן</string>
+  <string name="ManageProfileFragment_badges">תגים</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">אין קבוצות במשותף</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1657,6 +1658,7 @@
   <string name="MessageNotifier_reacted_s_to_s">הגיב עם %1$s אל: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">הגיב עם %1$s אל הסרטון שלך.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">הגיב עם %1$s אל התמונה שלך.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">הגיב %1$s אל ה־GIF שלך.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">הגיב עם %1$s אל הקובץ שלך.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">הגיב עם %1$s אל השמע שלך.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">הגיב/ה עם %1$s אל המדיה לצפייה חד־פעמית שלך.</string>
@@ -3419,6 +3421,15 @@
   <string name="MediaReviewImagePageFragment__discard_changes">להשמיט שינויים?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">תאבד שינויים כלשהם שעשית אל התמונה הזאת.</string>
   <string name="CameraFragment__failed_to_open_camera">נכשל בפתיחת מצלמה</string>
+  <string name="BadgesOverviewFragment__my_badges">התגים שלי</string>
+  <string name="BadgesOverviewFragment__featured_badge">תג בולט</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">הצג תגים בפרופיל שלי</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
+  <string name="BadgeSelectionFragment__select_badges">בחר תגים</string>
   <string name="SelectFeaturedBadgeFragment__preview">תצוגה מקדימה</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">בחר תג</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">אתה חייב לבחור תג</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
+  <string name="ImageView__badge">תג</string>
   <!--EOF-->
 </resources>

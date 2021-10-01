@@ -144,7 +144,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">最近傾過嘅偈</string>
   <string name="ContactsCursorLoader_contacts">聯絡人</string>
-  <string name="ContactsCursorLoader_groups">吹水谷</string>
+  <string name="ContactsCursorLoader_groups">谷</string>
   <string name="ContactsCursorLoader_phone_number_search">查電話冧把</string>
   <string name="ContactsCursorLoader_username_search">查使用者名稱</string>
   <!--ContactsDatabase-->
@@ -384,7 +384,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">無名嘅機</string>
   <string name="DeviceListItem_linked_s">喺 %s 連結咗</string>
-  <string name="DeviceListItem_last_active_s">最近幾時用過：%s</string>
+  <string name="DeviceListItem_last_active_s">對上一次喺 %s 用過</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名嘅檔案</string>
@@ -520,7 +520,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">您無仲等緊嘅邀請。</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">個谷其他成員發出嘅邀請</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">個谷其他成員無仲等緊嘅邀請。</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">由谷嘅其他成員邀請嘅人係乜水，唔會喺呢度詳細顯示出嚟。獲邀請嘅人若然選擇加入，佢哋嘅資訊到時就會同呢個谷分享。佢哋入谷之前，唔會見到呢個谷嘅任何訊息。</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">谷嘅其他成員邀請咗邊位，唔會喺呢度詳細顯示出嚟。獲邀請嘅人若然選擇加入，佢哋嘅資訊到時就會同呢個谷分享。佢哋入谷之前，唔會見到呢個谷嘅任何訊息。</string>
   <string name="PendingMembersActivity_revoke_invite">撤回邀請</string>
   <string name="PendingMembersActivity_revoke_invites">撤回呢啲邀請</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -631,6 +631,7 @@
   <string name="ManageProfileFragment_your_name">您嘅名稱</string>
   <string name="ManageProfileFragment_your_username">您嘅使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">頭像設定唔到</string>
+  <string name="ManageProfileFragment_badges">襟章</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">無有緣相遇嘅谷</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1462,6 +1463,7 @@
   <string name="MessageNotifier_reacted_s_to_s">對「%2$s」畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_video">對您條片畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_image">對您幅圖畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">對您個 GIF 畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">對您個檔案畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗 %1$s 心情。</string>
@@ -2458,7 +2460,7 @@
   <string name="PhoneNumberPrivacy_everyone_find_description">任何人如果喺通訊錄入面有您個電話冧把，喺 Signal 度都會見到您係佢嘅聯絡人。其他人就可以喺搜尋度搵到您。</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">用 Android 嘅螢幕鎖定或指紋，為存取 Signal 上鎖</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">閒置幾耐謂之逾時等畫面鎖嚟料</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">閒置幾耐先要將畫面上鎖</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN 碼</string>
   <string name="preferences_app_protection__create_a_pin">建立一個 PIN 碼</string>
   <string name="preferences_app_protection__change_your_pin">更改您嘅 PIN 碼</string>
@@ -3143,6 +3145,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都冇得留低個囉噃。</string>
   <string name="CameraFragment__failed_to_open_camera">開唔到相機</string>
+  <string name="BadgesOverviewFragment__my_badges">我嘅襟章</string>
+  <string name="BadgesOverviewFragment__featured_badge">頭號襟章</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">喺個人資料度展示襟章</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">更新唔到個人資料</string>
+  <string name="BadgeSelectionFragment__select_badges">揀選襟章</string>
   <string name="SelectFeaturedBadgeFragment__preview">試嚟睇下</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">揀個襟章</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">您要揀一個襟章</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新唔到個人資料</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
+  <string name="ImageView__badge">襟章</string>
   <!--EOF-->
 </resources>
