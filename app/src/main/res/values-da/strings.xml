@@ -33,9 +33,9 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Skærmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Sprog %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs er påkrævet for registreringslås. For at deaktivere PINs skal registreringslås først deaktiveres</string>
-  <string name="ApplicationPreferencesActivity_pin_created">PIN oprettet.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktiveret</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Pinkoder er påkrævet for registreringslås. For at deaktivere pinkoder skal registreringslås først deaktiveres</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Pinkode oprettet.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Pinkode deaktiveret</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påmindelse?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer sætning til betalingsgendannelse</string>
@@ -136,8 +136,8 @@
   <string name="CommunicationActions_start_voice_call">Foretag opkald?</string>
   <string name="CommunicationActions_cancel">Annuller</string>
   <string name="CommunicationActions_call">Ring op</string>
-  <string name="CommunicationActions_insecure_call">Usikret opkald</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Ekstra omkostninger til din udbyder kan forekomme. Nummeret du ringer til er ikke et registreret Signal nummer. Opkaldet vil ske via din udbyder og ikke over internettet</string>
+  <string name="CommunicationActions_insecure_call">Usikkert opkald</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Ekstra omkostninger til dit mobilselskab kan forekomme. Nummeret du ringer til er ikke et registreret Signal-nummer. Opkaldet vil ske via dit mobilselskab og ikke over internettet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhedsnummeret for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at opsnappe kommunikationen, eller at %2$s blot har geninstalleret Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør verificere dit sikkerhedsnummer med kontakten</string>
@@ -173,7 +173,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse, tryk for at sende usikret SMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Benyt ukrypteret SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Benyt ukrypteret MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere bruger Signal.\n\nSend standard besked?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere bruger Signal.\n\nSend usikret besked?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ikke finde en app, der kan åbne mediet</string>
   <string name="ConversationItem_copied_text">Kopieret %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
@@ -199,8 +199,8 @@
   <string name="ConversationActivity_added_to_home_screen">Tilføjet startskærmen</string>
   <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Enheden understøtter ikke initieret opkald</string>
-  <string name="ConversationActivity_transport_insecure_sms">Usikret SMS</string>
-  <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
+  <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Signal %1$s?</string>
   <string name="ConversationActivity_specify_recipient">Vælg venligst en kontakt</string>
@@ -226,7 +226,7 @@
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal kræver tilladelse til at tilgå mikrofonen, for at kunne optage videoer, men er blevet afvist. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal kræver adgang til mikrofonen, for at kunne optage video</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-beskeder, fordi det ikke er din standard besked-app. Vil du ændre dette under Android-indstillinger?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-beskeder, fordi det ikke er din standard SMS-app. Vil du ændre dette under Android-indstillinger?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d af %2$d</string>
@@ -241,7 +241,7 @@
   <string name="ConversationActivity_delete">Slet</string>
   <string name="ConversationActivity_delete_and_leave">Slet og forlad</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">For at ringe til %1$s kræver Signal tilladelse til at tilgå din mikrofon</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">Nu flere funktioner under \"Gruppe-indstillinger\"</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Nu flere funktioner under \"Gruppeindstillinger\"</string>
   <string name="ConversationActivity_join">Deltag</string>
   <string name="ConversationActivity_full">Fuld</string>
   <string name="ConversationActivity_error_sending_media">Fejl ved afsendelse af medier</string>
@@ -351,13 +351,13 @@
   <string name="RestoreBackupFragment__choose_folder">Vælg mappe</string>
   <string name="RestoreBackupFragment__not_now">Ikke nu</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Backup Chats</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups er krypteret med et kodeord, og gemt på din enhed.</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Backup af chats</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups er krypteret med et kodeord og gemt på din enhed.</string>
   <string name="BackupsPreferenceFragment__create_backup">Opret backup</string>
   <string name="BackupsPreferenceFragment__last_backup">Seneste backup: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Backup-mappe</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificer kodeord for backup</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test dit kodeord for backup og verificer at det virker</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test dit kodeord for backup og bekræft, at det matcher</string>
   <string name="BackupsPreferenceFragment__turn_on">Aktiver</string>
   <string name="BackupsPreferenceFragment__turn_off">Deaktiver</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">For at gendanne fra backup, skal du installere Signal igen. Åbn app\'en og tryk \"Gendan backup\", vælg derefter en backup fil %1$s</string>
@@ -395,7 +395,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Unavngivet enhed</string>
   <string name="DeviceListItem_linked_s">Forbundet %s</string>
-  <string name="DeviceListItem_last_active_s">Sidste aktive %s</string>
+  <string name="DeviceListItem_last_active_s">Sidst aktiv %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Unavngivet fil</string>
@@ -647,7 +647,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Dette er en forældet gruppe. For adgang til nye funktioner som @omtaler og administrator,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Denne forældede gruppe er for stor til at kunne opgraderes til en Ny gruppe. Den maksimale størrelse på grupper er %1$d</string>
   <string name="ManageGroupActivity_upgrade_this_group">opgrader gruppen</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. For at chatte privat skal du invitere dine kontakter til Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. Inviter dine kontakter til Signal for at chatte privat.</string>
   <string name="ManageGroupActivity_invite_now">Invitér nu</string>
   <string name="ManageGroupActivity_more">mere</string>
   <string name="ManageGroupActivity_add_group_description">Tilføj gruppebeskrivelse…</string>
@@ -747,7 +747,7 @@
   <string name="ImageEditorHud_draw_anywhere_to_blur">Tegn hvor du vil for at sløre</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Tegn for at sløre flere ansigter eller områder</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryk og hold for at optage en stemmebesked. Slip for at sende</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryk og hold for at optage en talebesked. Slip for at sende</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_share_with_contacts">Del med kontakter</string>
@@ -820,9 +820,9 @@
   <string name="Megaphones_introducing_reactions">Introducerer Reaktioner </string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tryk og hold på enhver besked for hurtigt at vise hvad du føler</string>
   <string name="Megaphones_remind_me_later">Påmind mig senere</string>
-  <string name="Megaphones_verify_your_signal_pin">Verificer din Signal PIN</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Vi vil indimellem bede dig om at verificere din PIN, så du ikke glemmer den</string>
-  <string name="Megaphones_verify_pin">Verificer PIN</string>
+  <string name="Megaphones_verify_your_signal_pin">Verificer din Signal-pinkode</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Vi vil indimellem bede dig om at verificere din pinkode, så du ikke glemmer den.</string>
+  <string name="Megaphones_verify_pin">Verificer pinkode</string>
   <string name="Megaphones_get_started">Kom igang</string>
   <string name="Megaphones_new_group">Opret ny gruppe</string>
   <string name="Megaphones_invite_friends">Invitér venner</string>
@@ -1108,64 +1108,64 @@
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Tilføjer enhed</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Forbinder ny enhed…</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhed forbundet!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Enhed godkendt!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhed fundet</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netværksfejl</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ups. Du har allerede for mange enheder tilsluttet, prøv at fjerne én</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager. Du har allerede for mange enheder tilsluttet, prøv at fjerne én</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager - QR-koden kan ikke bruges til at forbinde enheder</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Tilføj en Signal enhed?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at tilføje en Signal-enhed via en 3 parts skanner. Af sikkerhedshensyn bør du bruge den integrerede skanner i Signal app\'en</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at tilføje en Signal-enhed via en 3 parts skanner. Af sikkerhedshensyn bør du bruge den integrerede skanner i Signal-app\'en.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan ikke scanne en QR kode uden tilladelse til at tilgå kameraet</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Opdatér nu</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne version af Signal udløber i dag. Opdatér til den nyeste version</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne version af Signal udløber i dag. Opdatér til den nyeste version.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Denne version af Signal udløber i morgen. Opdater til den nyeste version.</item>
     <item quantity="other">Denne version af Signal udløber om %d dage. Opdatér til den nyeste version</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Tilføj kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Lås Signal op</string>
-  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Lås skærm</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Låseskærm</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kort</string>
-  <string name="PlacePickerActivity_drop_pin">Placér pin</string>
+  <string name="PlacePickerActivity_drop_pin">Placér markør</string>
   <string name="PlacePickerActivity_accept_address">Godkend adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din installerede version af Google Play tjenester virker ikke korrekt. Geninstallér venligst Google Play tjenester og prøv igen</string>
   <!--PinRestoreEntryFragment-->
-  <string name="PinRestoreEntryFragment_incorrect_pin">Forkert PIN</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">Drop pinkode-indtastning?</string>
+  <string name="PinRestoreEntryFragment_incorrect_pin">Forkert pinkode</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Spring over pinkode-indtastning?</string>
   <string name="PinRestoreEntryFragment_need_help">Brug for hjælp?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Din pinkode er en %1$d+ cifret kode, du oprettede, og som kan være numerisk eller alfanumerisk.\n\nHvis du ikke kan huske din pinkode, kan du oprette en ny. Du kan registrere og bruge din konto, men du vil miste nogle gemte indstillinger som dine profiloplysninger</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Hvis du glemmer din PIN, kan du oprette en ny. Du kan registrere og bruge din konto, men du vil miste nogle indstillinger, såsom din profil information</string>
-  <string name="PinRestoreEntryFragment_create_new_pin">Opret ny PIN</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Hvis du glemmer din pinkode, kan du oprette en ny. Du kan registrere og bruge din konto, men du vil miste nogle indstillinger, såsom dine profiloplysninger.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Opret ny pinkode</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt Support</string>
   <string name="PinRestoreEntryFragment_cancel">Annullér</string>
   <string name="PinRestoreEntryFragment_skip">Spring over</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">Du har %1$d forsøg tilbage. Hvis du løber tør for forsøg, kan du oprette en ny pinkode. Du kan registrere og bruge din konto, men du mister nogle gemte indstillinger som dine profiloplysninger.</item>
-    <item quantity="other">Du har %1$d forsøg tilbage. Hvis du løber tør for forsøg, kan du oprette en ny pinkode. Du kan registrere og bruge din konto, men du mister nogle gemte indstillinger som dine profiloplysninger</item>
+    <item quantity="other">Du har %1$d forsøg tilbage. Hvis du løber tør for forsøg, kan du oprette en ny pinkode. Du kan registrere og bruge din konto, men du mister nogle gemte indstillinger som dine profiloplysninger.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal registrering - Brug for hjælp med pinkode til Android</string>
-  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv alfanumerisk PIN</string>
-  <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv numerisk PIN</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv alfanumerisk pinkode</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv numerisk pinkode</string>
   <!--PinRestoreLockedFragment-->
-  <string name="PinRestoreLockedFragment_create_your_pin">Opret din PIN</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har løbet tør for pinkode gæt, men du kan stadig få adgang til din Signal-konto ved at oprette en ny pinkode. Af hensyn til dit privatliv og sikkerhed gendannes din konto uden gemte profiloplysninger eller indstillinger</string>
+  <string name="PinRestoreLockedFragment_create_your_pin">Opret din pinkode</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har løbet tør for pinkode-gæt, men du kan stadig få adgang til din Signal-konto ved at oprette en ny pinkode. Af hensyn til dit privatliv og sikkerhed gendannes din konto uden gemte profiloplysninger eller indstillinger.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Opret ny pinkode</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Advarsel</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN mister du alle data når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere Registreringslås, mens PIN er deaktiveret</string>
-  <string name="PinOptOutDialog_disable_pin">Deaktiver PIN</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkode mister du alle data, når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere registreringslås, mens pinkoden er deaktiveret.</string>
+  <string name="PinOptOutDialog_disable_pin">Deaktiver pinkode</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bedøm app\'en</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge app\'en, så hjælp os venligst ved at give den en bedømmelse</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge app\'en, så hjælp os venligst ved at give den en bedømmelse.</string>
   <string name="RatingManager_rate_now">Bedøm nu!</string>
   <string name="RatingManager_no_thanks">Nej tak</string>
   <string name="RatingManager_later">Senere</string>
@@ -1205,7 +1205,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-opkald</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videoopkald</string>
-  <string name="WebRtcCallView__start_call">Foretag opkald</string>
+  <string name="WebRtcCallView__start_call">Start opkald</string>
   <string name="WebRtcCallView__join_call">Deltag i opkaldet</string>
   <string name="WebRtcCallView__call_is_full">Opkaldet er fuldt</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Det maksimale antal på %1$d deltagere er nået for dette opkald. Prøv igen senere.</string>
@@ -1298,16 +1298,16 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services bliver opdateret eller er midlertidigt utilgængelig. Prøv venligst igen</string>
   <string name="RegistrationActivity_terms_and_privacy">Vilkår og privatlivspolitik</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal kræver tilladelse til at tilgå dine kontakter og medieindhold, for at oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal kræver adgang til dine kontakter, for at kunne forbinde med dine venner, udveksle beskeder, og foretage sikre opkald</string>
-  <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen</string>
-  <string name="RegistrationActivity_call_requested">Anmodning om opkald</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal har brug for tilladelse til at tilgå dine kontakter og medieindhold for at kunne oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal har brug for adgang til dine kontakter for at kunne forbinde med dine venner, udveksle beskeder og foretage sikre opkald</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen.</string>
+  <string name="RegistrationActivity_call_requested">Anmodet om opkald</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du er nu kun %d trin fra at indsende en fejllog</item>
-    <item quantity="other">Du er nu kun %d trin fra at indsende en fejllog</item>
+    <item quantity="other">Du er nu kun %d trin fra at indsende en fejlsøgningslog.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi skal verificere at du er et menneske</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi skal verificere, at du er et menneske.</string>
   <string name="RegistrationActivity_next">Næste</string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Tag privatlivet med dig. \nSkriv hvad du ønsker i enhver besked</string>
@@ -1322,7 +1322,7 @@ nummer (%s) er ugyldigt</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din PIN-kode til Signal ved genregistrering af Signal, vil du blive låst ude af din konto i 7 dage</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din pinkode til Signal ved genregistrering af Signal, vil du blive låst ude af din konto i 7 dage.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Aktiver</string>
   <string name="RegistrationLockV2Dialog_turn_off">Deaktiver</string>
   <!--RevealableMessageView-->
@@ -1394,7 +1394,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SubmitDebugLogActivity_submit">Send</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Fejl ved indsendelse af logs</string>
   <string name="SubmitDebugLogActivity_success">Fuldført!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL og tilføj den til din fejlrapport, eller til support email:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL og tilføj den til din fejlrapport, eller til din e-mail til supporten:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Denne log vil blive offentliggjort online, så bidragyderne kan se den. Du kan undersøge den, inden den uploades.</string>
   <!--SupportEmailUtil-->
@@ -1539,12 +1539,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="NotificationChannel_calls">Opkald</string>
   <string name="NotificationChannel_failures">Registrerede fejl</string>
   <string name="NotificationChannel_backups">Backups</string>
-  <string name="NotificationChannel_locked_status">Låse status</string>
-  <string name="NotificationChannel_app_updates">App opdateringer</string>
+  <string name="NotificationChannel_locked_status">Låsestatus</string>
+  <string name="NotificationChannel_app_updates">App-opdateringer</string>
   <string name="NotificationChannel_other">Andet</string>
   <string name="NotificationChannel_group_chats">Chats</string>
   <string name="NotificationChannel_missing_display_name">Ukendt</string>
-  <string name="NotificationChannel_voice_notes">Stemme noter</string>
+  <string name="NotificationChannel_voice_notes">Stemmenoter</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt er nu tilmeldt Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for meddelelseskanal.</string>
   <!--ProfileEditNameFragment-->
@@ -1574,9 +1574,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Enhed ikke længere registreret</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sikkert grundet du har registreret dit mobilnummer med Signal, på en anden enhed allerede. Tryk for at registrere på ny</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Det skyldes sandsynligvis, at du har registreret dit telefonnummer hos Signal på en anden enhed. Tryk for at genregistrere.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">For at svare opkald fra %s skal Signal gives adgang til din mikrofon</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">For at besvare opkald fra %s skal Signal gives adgang til din mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal kræver tilladelse til at tilgå mikrofon og kamera, for at kunne modtage og foretage opkald, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvaret på en forbundet enhed</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Afvist på en forbundet enhed</string>
@@ -1586,14 +1586,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="WebRtcCallScreen_swipe_up_to_change_views">Stryg op for at skifte skærm</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Afvis</string>
-  <string name="WebRtcCallScreen__answer">Svar</string>
+  <string name="WebRtcCallScreen__answer">Besvar</string>
   <string name="WebRtcCallScreen__answer_without_video">Besvar uden video</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Audio output</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefon ørestykke</string>
   <string name="WebRtcAudioOutputToggle__speaker">Højttaler</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-  <string name="WebRtcCallControls_answer_call_description">Svar opkald</string>
+  <string name="WebRtcCallControls_answer_call_description">Besvar opkald</string>
   <string name="WebRtcCallControls_reject_call_description">Afvis opkald</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammelt kodeord</string>
@@ -1771,7 +1771,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Signals krypterede database?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard system databasen vil ikke blive ændret</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard systemdatabasen vil ikke blive ændret.</string>
   <string name="database_migration_activity__skip">Spring over</string>
   <string name="database_migration_activity__import">Importér</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Det kan tage et øjeblik. Vent venligst indtil importen er fuldført</string>
@@ -1815,7 +1815,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="EditAboutFragment_encrypted">Krypteret</string>
   <string name="EditAboutFragment_be_kind">Vær venlig</string>
   <string name="EditAboutFragment_coffee_lover">Kaffeelsker</string>
-  <string name="EditAboutFragment_free_to_chat">Gratis at chatte</string>
+  <string name="EditAboutFragment_free_to_chat">Klar til at chatte</string>
   <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
   <string name="EditAboutFragment_working_on_something_new">Arbejder på noget nyt</string>
   <!--EditProfileFragment-->
@@ -1845,7 +1845,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--verity_scan_fragment-->
   <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan QR-koden på din kontakts enhed</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Swipe op for at svare</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Stryg op for at besvare</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Swipe ned for at afvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Nogle ting kræver din opmærksomhed</string>
@@ -1869,7 +1869,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="AndroidManifest__select_contacts">Vælg kontakter</string>
   <string name="AndroidManifest__change_passphrase">Skift kodeord</string>
   <string name="AndroidManifest__verify_safety_number">Verificer sikkerhedsnummer</string>
-  <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
+  <string name="AndroidManifest__log_submit">Indsend fejlsøgningslog</string>
   <string name="AndroidManifest__media_preview">Medievisning</string>
   <string name="AndroidManifest__message_details">Besked detaljer</string>
   <string name="AndroidManifest__linked_devices">Forbundne enheder</string>
@@ -1885,14 +1885,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__next">Næste</string>
   <string name="HelpFragment__contact_us">Kontakt os</string>
   <string name="HelpFragment__tell_us_whats_going_on">Fortæl os hvad der sker</string>
-  <string name="HelpFragment__include_debug_log">Inkludér fejllog</string>
+  <string name="HelpFragment__include_debug_log">Inkludér fejlsøgningslog.</string>
   <string name="HelpFragment__whats_this">Hvad er det?</string>
   <string name="HelpFragment__how_do_you_feel">Hvordan har du det? (Frivilligt)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Fortæl os hvorfor du har kontaktet os.</string>
   <string name="HelpFragment__support_info">Support Info</string>
-  <string name="HelpFragment__signal_android_support_request">Signal Android support spørgsmål</string>
-  <string name="HelpFragment__debug_log">Fejllog:</string>
-  <string name="HelpFragment__could_not_upload_logs">Fejl ved afsendelse af logs</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android support-anmodning</string>
+  <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
+  <string name="HelpFragment__could_not_upload_logs">Fejl ved afsendelse af logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
   <string-array name="HelpFragment__categories">
     <item>-- Vælg en valgmulighed --</item>
@@ -1906,7 +1906,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; Mennesker</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; Personer</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mad</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviteter</string>
@@ -1971,9 +1971,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__inactivity_timeout_passphrase">Kodeord for timeout ved inaktivitet</string>
   <string name="preferences__inactivity_timeout_interval">Tidsinterval for inaktivitet</string>
   <string name="preferences__notifications">Notifikationer</string>
-  <string name="preferences__led_color">LED farve</string>
+  <string name="preferences__led_color">LED-farve</string>
   <string name="preferences__led_color_unknown">Ukendt</string>
-  <string name="preferences__pref_led_blink_title">LED blinke mønster</string>
+  <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__silent">Lydløs</string>
   <string name="preferences__default">Standard</string>
@@ -1984,7 +1984,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__three_times">3 gange</string>
   <string name="preferences__five_times">4 gange</string>
   <string name="preferences__ten_times">10 gange</string>
-  <string name="preferences__vibrate">Vibration</string>
+  <string name="preferences__vibrate">Vibrer</string>
   <string name="preferences__green">Grøn</string>
   <string name="preferences__red">Rød</string>
   <string name="preferences__blue">Blå</string>
@@ -2023,22 +2023,22 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Chatbaggrund</string>
   <string name="preferences__chat_color_and_wallpaper">Chatfarve &amp; baggrund</string>
-  <string name="preferences__disable_pin">Deaktiver PIN</string>
-  <string name="preferences__enable_pin">Aktiver PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN mister du alle data når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere Registreringslås, mens PIN er deaktiveret.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Pinkoder opbevarer krypteret information, lagret med Signal, så kun du kan få adgang til den. Din profil, indstillinger og kontaktpersoner gendannes mens du geninstallerer. Du har ikke brug for din pinkode for at åbne app\'en.</string>
-  <string name="preferences__system_default">System standard</string>
+  <string name="preferences__disable_pin">Deaktiver pinkode</string>
+  <string name="preferences__enable_pin">Aktiver pinkode</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkoden mister du alle data når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere registreringslås, mens pinkoden er deaktiveret.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Pinkoder sørger for at information lagret hos Signal er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontaktpersoner gendannes når du geninstallerer. Du har ikke brug for din pinkode for at åbne app\'en.</string>
+  <string name="preferences__system_default">Systemstandard</string>
   <string name="preferences__language">Sprog</string>
   <string name="preferences__signal_messages_and_calls">Signal-beskeder og opkald</string>
-  <string name="preferences__advanced_pin_settings">Avancerede PIN indstillinger</string>
+  <string name="preferences__advanced_pin_settings">Avancerede pinkode-indstillinger</string>
   <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal-brugere</string>
-  <string name="preferences__submit_debug_log">Indsend fejlfindingslog</string>
+  <string name="preferences__submit_debug_log">Indsend fejlsøgningslog</string>
   <string name="preferences__delete_account">Slet konto</string>
   <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi-opkald</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver hvis din enhed bruger SMS/MMS via WiFi (brug kun hvis WiFi-opkald er aktiveret på din enhed)</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatur</string>
-  <string name="preferences__read_receipts">Læst af modtager</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiveret, er det ikke muligt at se status for beskeder.</string>
+  <string name="preferences__read_receipts">Læsekvittering</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læsekvittering er deaktiveret, vil du ikke kunne se læsekvitteringer fra andre.</string>
   <string name="preferences__typing_indicators">Skriveindikator</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikator er deaktiveret, er det ikke muligt at se når andre skriver.</string>
   <string name="preferences__request_keyboard_to_disable">Anmod tastatur om at deaktivere personlig læring.</string>
@@ -2070,15 +2070,15 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_storage__none">Ingen</string>
   <string name="preferences_storage__s_messages">%1$s beskeder</string>
   <string name="preferences_storage__custom">Tilpasset</string>
-  <string name="preferences_advanced__use_system_emoji">Anvend system emoji</string>
+  <string name="preferences_advanced__use_system_emoji">Anvend system-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktiver Signals indbyggede emoji-understøttelse</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren, for at undgå at afsløre din IP-adresse over for din kontakt. Opkaldskvaliteten vil blive forringet.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
-  <string name="preferences_app_protection__app_access">App adgang</string>
+  <string name="preferences_app_protection__app_access">App-adgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Chats</string>
-  <string name="preferences_data_and_storage__manage_storage">Håndtér lager</string>
+  <string name="preferences_data_and_storage__manage_storage">Administrer lager</string>
   <string name="preferences_data_and_storage__calls">Opkald</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
   <string name="preferences_data_and_storage__never">Aldrig</string>
@@ -2087,12 +2087,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk</string>
   <string name="preferences_notifications__messages">Beskeder</string>
   <string name="preferences_notifications__events">Begivenheder</string>
-  <string name="preferences_notifications__in_chat_sounds">Chat lyde</string>
+  <string name="preferences_notifications__in_chat_sounds">Chatlyde</string>
   <string name="preferences_notifications__show">Vis</string>
   <string name="preferences_notifications__calls">Opkald</string>
   <string name="preferences_notifications__ringtone">Ringetone</string>
-  <string name="preferences_chats__show_invitation_prompts">Invitationsprompt</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitationsprompt for kontakter uden Signal</string>
+  <string name="preferences_chats__show_invitation_prompts">Vis invitationsprompter</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitationsprompter for kontakter uden Signal</string>
   <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
   <string name="preferences_events__contact_joined_signal">Kontakt er nu tilmeldt Signal</string>
   <string name="preferences_notifications__priority">Prioritet</string>
@@ -2354,12 +2354,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Indblik</string>
   <string name="InsightsDashboardFragment__title">Indblik</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signals protokol beskyttede automatisk %1$d%% af dine sendte beskeder, de seneste %2$d dage. Samtaler mellem Signal brugere er altid end-to-end krypterede</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol beskyttede automatisk %1$d%% af dine sendte beskeder de seneste %2$d dage. Samtaler mellem Signal-brugere er altid end-to-end krypterede.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Boost Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkeligt data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Kommunikér sikkert og aktiver nye funktioner som går længere end blot usikre SMS-beskeder ved at invitere flere kontakter til at bruge Signal.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Begynd at kommunikere sikkert og aktiver nye funktioner, der ikke har samme begrænsninger som ukrypterede SMS-beskeder, ved at invitere flere kontakter til at bruge Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed, og kan kun ses af dig. De bliver ikke videredelt.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
@@ -2376,75 +2376,75 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">Næste</string>
-  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Generér alfanumerisk PIN</string>
-  <string name="BaseKbsPinFragment__create_numeric_pin">Generér numerisk PIN</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Generér alfanumerisk pinkode</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Generér numerisk pinkode</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="one">PIN skal være på mindst %1$d karakterer</item>
-    <item quantity="other">PIN skal være på mindst %1$d karakterer</item>
+    <item quantity="other">Pinkoden skal være på mindst %1$d karakterer</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="one">PIN skal være på mindst %1$d cifre</item>
-    <item quantity="other">PIN skal være på mindst %1$d cifre</item>
+    <item quantity="other">Pinkoden skal være på mindst %1$d cifre</item>
   </plurals>
-  <string name="CreateKbsPinFragment__create_a_new_pin">Opret en ny PIN</string>
-  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan ændre din PIN-kode, så længe denne enheden er registreret</string>
-  <string name="CreateKbsPinFragment__create_your_pin">Opret din PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs gemmer informationen krypteret i Signal, så kun du har adgang til den. Din profil, indstillinger og kontakter vil blive gendannet når du geninstallerer. Du behøver ikke din PIN for at åbne app\'en.</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Opret en ny pinkode</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan ændre din pinkode, så længe denne enheden er registreret</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Opret din pinkode</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Pinkoder sørger for at information opbevaret hos Signal er krypteret, så kun du har adgang til den. Din profil, indstillinger og kontakter vil blive gendannet når du geninstallerer. Du behøver ikke din pinkode for at åbne app\'en.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vælg en stærkere pinkode</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">PINs matcher ikke. Prøv igen.</string>
-  <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekræft din PIN</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">Fejl ved oprettelse af PIN</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN koden blev ikke gemt. Du bliver bedt om at oprette en PIN kode senere</string>
-  <string name="ConfirmKbsPinFragment__pin_created">PIN oprettet.</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Pinkoder matcher ikke. Prøv igen.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekræft din pinkode</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Fejl ved oprettelse af pinkode</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Din pinkode blev ikke gemt. Vi vil minde dig om at oprette en pinkode senere.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">Pinkode oprettet.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Indtast din pinkode igen</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Opretter PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Opretter pinkode…</string>
   <!--KbsSplashFragment-->
-  <string name="KbsSplashFragment__introducing_pins">Introducerer PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs gemmer informationen krypteret i Signal, så kun du har adgang til den. Din profil, indstillinger og kontakter vil blive gendannet når du geninstallerer. Du behøver ikke din PIN for at åbne app\'en.</string>
+  <string name="KbsSplashFragment__introducing_pins">Introducerer pinkoder</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Pinkoder sørger for at information opbevaret hos Signal er krypteret, så kun du har adgang til den. Din profil, indstillinger og kontakter vil blive gendannet når du geninstallerer. Du behøver ikke din pinkode for at åbne app\'en.</string>
   <string name="KbsSplashFragment__learn_more">Lær mere</string>
-  <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringslås kaldes nu en PIN, og den gør mere. Opdater den nu</string>
-  <string name="KbsSplashFragment__update_pin">Opdatér PIN</string>
-  <string name="KbsSplashFragment__create_your_pin">Opret din PIN</string>
-  <string name="KbsSplashFragment__learn_more_about_pins">Lær mere om PINs</string>
-  <string name="KbsSplashFragment__disable_pin">Deaktiver PIN</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = pinkode</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringslås kaldes nu en pinkode, og den gør mere. Opdater den nu.</string>
+  <string name="KbsSplashFragment__update_pin">Opdatér pinkode</string>
+  <string name="KbsSplashFragment__create_your_pin">Opret din pinkode</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Lær mere om pinkoder</string>
+  <string name="KbsSplashFragment__disable_pin">Deaktiver pinkode</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Skriv din Signal PIN</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For at hjælpe med at huske din PIN, beder vi dig om at skrive den periodisk. Vi vil bede om den sjældnere over tid</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Indtast din Signal-pinkode</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For at hjælpe med at huske din pinkode, beder vi dig periodisk om at indtaste den. Vi vil bede om den sjældnere over tid</string>
   <string name="KbsReminderDialog__skip">Spring over</string>
   <string name="KbsReminderDialog__submit">Send</string>
-  <string name="KbsReminderDialog__forgot_pin">Glemt PIN?</string>
-  <string name="KbsReminderDialog__incorrect_pin_try_again">Forkert PIN. Prøv igen</string>
+  <string name="KbsReminderDialog__forgot_pin">Glemt pinkode?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto låst</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Din konto er blevet låst for at beskytte din konto og privatliv. Eftere %1$d dages inaktivitet på din konto, vil det igen blive muligt at genregistrere dette mobilnummer uden PIN er nødvendigt. Alt indhold vil blive slettet</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Din konto er blevet låst for at beskytte din konto og privatliv. Efter %1$d dages inaktivitet på din konto, vil det igen blive muligt at genregistrere dette mobilnummer uden at pinkode er nødvendigt. Alt indhold vil blive slettet.</string>
   <string name="AccountLockedFragment__next">Næste</string>
   <string name="AccountLockedFragment__learn_more">Lær mere</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__enter_your_pin">Skriv din PIN</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv den PIN du oprettede til din konto. Den er anderledes end din SMS verifikationskode.</string>
-  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Skriv alfanumerisk PIN</string>
-  <string name="RegistrationLockFragment__enter_numeric_pin">Skriv numerisk PIN</string>
-  <string name="RegistrationLockFragment__incorrect_pin_try_again">Forkert PIN. Prøv igen</string>
-  <string name="RegistrationLockFragment__forgot_pin">Glemt PIN?</string>
-  <string name="RegistrationLockFragment__incorrect_pin">Forkert PIN</string>
-  <string name="RegistrationLockFragment__forgot_your_pin">Glemt din PIN?</string>
+  <string name="RegistrationLockFragment__enter_your_pin">Indtast din pinkode</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Indtast den pinkode du oprettede til din konto. Den er forskellig fra din SMS-verifikationskode.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Indtast alfanumerisk pinkode</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Indtast numerisk pinkode</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
+  <string name="RegistrationLockFragment__forgot_pin">Glemt pinkode?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">Forkert pinkode</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Glemt din pinkode?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Ikke mange forsøg tilbage!</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-registrering - Brug for hjælp med PIN-kode til Android (v1 PIN)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrering - Brug for hjælp med PIN-kode til Android (v2 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-registrering - Brug for hjælp med pinkode til Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrering - Brug for hjælp med pinkode til Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
-    <item quantity="other">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
+    <item quantity="other">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din pinkode. Hvis du ikke kan huske din pinkode, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive ryddet og alt indhold slettet.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Forkert PIN. %1$d forsøg tilbage</item>
-    <item quantity="other">Forkert PIN. %1$d forsøg tilbage</item>
+    <item quantity="other">Forkert pinkode. %1$d forsøg tilbage.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">Hvis du bruger alle forsøg, vil din konto blive låst i %1$d dag. Efter %1$d dages inaktivitet, kan du registrere på ny uden din PIN. Din konto vil blive fjernet og alt indhold slettet</item>
-    <item quantity="other">Hvis du bruger alle forsøg, vil din konto blive låst i %1$d dage. Efter %1$d dages inaktivitet, kan du registrere på ny uden din PIN. Din konto vil blive fjernet og alt indhold slettet</item>
+    <item quantity="other">Hvis du bruger alle forsøg, vil din konto blive låst i %1$d dage. Efter %1$d dages inaktivitet, kan du registrere på ny uden din pinkode. Din konto vil blive ryddet og alt indhold slettet.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Du har %1$d forsøg tilbage</item>
@@ -2457,9 +2457,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s vil modtage en beskedanmodning fra dig. Du kan ringe, når din beskedanmodning er accepteret</string>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__create_a_pin">Opret en PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Pinkoder opbevarer krypterede oplysninger, som er lagret med Signal.</string>
-  <string name="KbsMegaphone__create_pin">Opret PIN</string>
+  <string name="KbsMegaphone__create_a_pin">Opret en pinkode</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Pinkoder krypterer oplysninger, som er lagret hos Signal.</string>
+  <string name="KbsMegaphone__create_pin">Opret pinkode</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Fortæl Signal hvad du synes</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">For at gøre Signal til den bedste besked-app på planeten, vil vi meget gerne bede om din feedback</string>
@@ -2491,8 +2491,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="registration_activity__transfer_or_restore_account">Overfør eller gendan konto</string>
   <string name="registration_activity__transfer_account">Overfør konto</string>
   <string name="registration_activity__skip">Spring over</string>
-  <string name="preferences_chats__chat_backups">Backup chats</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Backup chats til ekstern placering</string>
+  <string name="preferences_chats__chat_backups">Backup af chats</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Lav backup af chats til eksternt lager</string>
   <string name="preferences_chats__transfer_account">Overfør konto</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til en ny Android-enhed</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv kodeord for backup</string>
@@ -2543,26 +2543,26 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_app_protection__screen_lock">Skærmlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås adgang til Signal med Android skærmlås eller fingeraftryk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout for inaktiv skærmlås</string>
-  <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-  <string name="preferences_app_protection__create_a_pin">Opret PIN-kode</string>
-  <string name="preferences_app_protection__change_your_pin">Skift din PIN-kode</string>
-  <string name="preferences_app_protection__pin_reminders">PIN påmindelser</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder sikrer information lagret med Signal er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontakter gendannes, når du installerer Signal igen.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Tilføj ekstra sikkerhed ved at kræve din Signal-pinkode til at registrere dit telefonnummer med Signal igen.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påmindelser hjælper dig med at huske din PIN, da den ikke kan gendannes. Over tid vil der gå længere tid imellem du bliver spurgt.</string>
+  <string name="preferences_app_protection__signal_pin">Signal-pinkode</string>
+  <string name="preferences_app_protection__create_a_pin">Opret en pinkode</string>
+  <string name="preferences_app_protection__change_your_pin">Skift din pinkode</string>
+  <string name="preferences_app_protection__pin_reminders">Pinkode-påmindelser</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Pinkoder sikrer at information som er lagret hos Signal, er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontakter gendannes, når du installerer Signal igen.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Tilføj ekstra sikkerhed ved at kræve din Signal-pinkode for at registrere af dit telefonnummer med Signal igen.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påmindelser hjælper dig med at huske din pinkode, da den ikke kan gendannes. Over tid vil der gå længere tid imellem at du bliver spurgt.</string>
   <string name="preferences_app_protection__turn_off">Deaktiver</string>
-  <string name="preferences_app_protection__confirm_pin">Bekræft PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Bekræft din Signal PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller sikkert gemmer din PIN, da den ikke kan gendannes. Hvis du glemmer din PIN, kan du miste data når du genregistrerer din Signal-konto.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Forkert PIN. Prøv igen</string>
+  <string name="preferences_app_protection__confirm_pin">Bekræft pinkode</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Bekræft din Signal-pinkode</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller opbevarer din pinkode sikkert, da den ikke kan gendannes. Hvis du glemmer din pinkode, kan du miste data når du genregistrerer din Signal-konto.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivering af registreringslås mislykkedes</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Deaktivering af registreringslås mislykkedes</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="preferences_app_protection__registration_lock">Registreringslås</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringslås PIN</string>
-  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din PIN består af mindst %d tal eller bogstaver</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringslås-pinkode</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din pinkode består af mindst %d tal eller bogstaver</string>
   <string name="RegistrationActivity_too_many_attempts">For mange forsøg</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har skrevet den forkerte Registreringslås PIN for mange gange. Vent venligst til i morgen og prøv igen</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har skrevet den forkerte Registreringslås-pinkode for mange gange. Vent venligst til i morgen og prøv igen.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">For mange mislykkede forsøg. Prøv igen senere</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fejl ved oprettelse af forbindelse til service</string>
   <string name="preferences_chats__backups">Backups</string>
@@ -2612,7 +2612,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="DeviceTransferSetup__turn_on_wifi">Aktiver Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Forbindelsesfejl</string>
   <string name="DeviceTransferSetup__retry">Prøv igen</string>
-  <string name="DeviceTransferSetup__submit_debug_logs">Indsend fejlfindingslogfiler</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Indsend fejlsøgningslogger</string>
   <string name="DeviceTransferSetup__verify_code">Bekræft kode</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Bekræft, at nedenstående kode matcher på begge dine enheder. Tryk derefter på Fortsæt.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrene stemmer ikke overens</string>
@@ -2698,7 +2698,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RecipientBottomSheet_remove_from_group">Fjern fra gruppe</string>
   <string name="RecipientBottomSheet_message_description">Besked</string>
   <string name="RecipientBottomSheet_voice_call_description">Taleopkald</string>
-  <string name="RecipientBottomSheet_insecure_voice_call_description">Ukrypteret taleopkald</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Usikkert taleopkald</string>
   <string name="RecipientBottomSheet_video_call_description">Videoopkald</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjern %1$s som gruppeadministrator?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" vil være i stand til at redigere gruppen og dens medlemmer</string>
@@ -2858,9 +2858,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="payment_info_card_record_recovery_phrase">Registrer gendannelsessætning</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Din gendannelsessætning giver dig en anden måde at gendanne din betalingskonto på.</string>
   <string name="payment_info_card_record_your_phrase">Registrer din sætning</string>
-  <string name="payment_info_card_update_your_pin">Opdatér PIN-koden</string>
-  <string name="payment_info_card_with_a_high_balance">Med en høj saldo kan du opdatere til en alfanumerisk PIN-kode for at tilføje mere beskyttelse til din konto.</string>
-  <string name="payment_info_card_update_pin">Opdatér PIN</string>
+  <string name="payment_info_card_update_your_pin">Opdatér din pinkode</string>
+  <string name="payment_info_card_with_a_high_balance">Med en høj saldo kan du opdatere til en alfanumerisk pinkode for at tilføje mere beskyttelse til din konto.</string>
+  <string name="payment_info_card_update_pin">Opdatér pinkode</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Deaktiver Wallet</string>
   <string name="DeactivateWalletFragment__your_balance">Din saldo</string>
@@ -2875,7 +2875,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gendannelsessætning</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Vis gendannelsessætning</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Indtast gendannelsessætning</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Din saldo gendannes automatisk, når du geninstallerer Signal, hvis du bekræfter din Signal PIN-kode. Du kan også gendanne din saldo ved hjælp af en gendannelsessætning, som er en %1$d-ords sætning, der er unik for dig. Skriv det ned, og opbevar det et sikkert sted.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Din saldo gendannes automatisk, når du geninstallerer Signal, hvis du bekræfter din Signal-pinkode. Du kan også gendanne din saldo ved hjælp af en gendannelsessætning, som er en %1$d-ords sætning, der er unik for dig. Skriv den ned, og opbevar den et sikkert sted.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Din gendannelsessætning er en %1$d-ords sætning, der er unik for dig. Brug den til at gendanne din saldo.</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Indtast manuelt</string>
@@ -2944,7 +2944,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du bliver spurgt sjældnere med tiden</string>
-  <string name="AccountSettingsFragment__require_your_signal_pin">Kræv din Signal-PIN-kode til at registrere dit telefonnummer med Signal igen</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Kræv din Signal-pinkode til at registrere dit telefonnummer med Signal igen</string>
   <string name="AccountSettingsFragment__change_phone_number">Skift telefonnummer</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Brug dette til at ændre dit nuværende telefonnummer til et nyt telefonnummer. Du kan ikke fortryde denne ændring.\n\nFør du fortsætter, skal du sikre dig, at dit nye nummer kan modtage SMS\'er eller opkald.</string>
@@ -2970,12 +2970,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du er ved at ændre dit telefonnummer fra %1$s til %2$s.\n\nFør du går videre, bedes du kontrollere, at nedenstående nummer er korrekt.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Redigér nummer</string>
   <!--ChangeNumberRegistrationLockFragment-->
-  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal-nummerændring - Brug for hjælp med PIN-kode til Android (v2 PIN)</string>
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal-nummerændring - Brug for hjælp med pinkode til Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Pinkoderne stemmer ikke overens</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Den pinkode, der er knyttet til dit nye nummer, er forskellig fra den pinkode, der er knyttet til dit gamle nummer. Vil du beholde din gamle pinkode eller opdatere den?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Behold gammel pinkode</string>
-  <string name="ChangeNumberPinDiffersFragment__update_pin">Opdatér PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Opdatér pinkode</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Behold gammel pinkode?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Det ser ud til, at du forsøgte at ændre dit nummer, men vi kunne ikke fastslå, om det lykkedes.\n\nTjekker igen nu…</string>
@@ -3005,7 +3005,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i listen \"Seneste apps\" og i Signal</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardtimer for nye chats</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Angiv en standard tidsindstilling til forsvindende beskeder for alle nye chats, startet af dig.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Angiv en standardtidsindstilling til forsvindende beskeder for alle nye chats startet af dig.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>
