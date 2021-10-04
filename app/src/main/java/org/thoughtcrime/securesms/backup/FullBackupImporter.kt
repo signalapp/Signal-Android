@@ -7,13 +7,6 @@ import android.net.Uri
 import androidx.annotation.WorkerThread
 import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
-import org.thoughtcrime.securesms.backup.BackupProtos.*
-import org.thoughtcrime.securesms.crypto.AttachmentSecret
-import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
-import org.thoughtcrime.securesms.database.*
-import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.util.BackupUtil
-
 import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.utilities.Address
@@ -21,7 +14,13 @@ import org.session.libsession.utilities.Conversions
 import org.session.libsession.utilities.Util
 import org.session.libsignal.crypto.kdf.HKDFv3
 import org.session.libsignal.utilities.ByteUtil
-
+import org.session.libsignal.utilities.Log
+import org.thoughtcrime.securesms.backup.BackupProtos.*
+import org.thoughtcrime.securesms.crypto.AttachmentSecret
+import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
+import org.thoughtcrime.securesms.database.*
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
+import org.thoughtcrime.securesms.util.BackupUtil
 import java.io.*
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
@@ -179,14 +178,14 @@ object FullBackupImporter {
         val where = AttachmentDatabase.MMS_ID + trimmedCondition
         db.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null).use { cursor ->
             while (cursor != null && cursor.moveToNext()) {
-                DatabaseFactory.getAttachmentDatabase(context)
+                DatabaseComponent.get(context).attachmentDatabase()
                         .deleteAttachment(AttachmentId(cursor.getLong(0), cursor.getLong(1)))
             }
         }
         db.query(ThreadDatabase.TABLE_NAME, arrayOf(ThreadDatabase.ID),
                 ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null).use { cursor ->
             while (cursor != null && cursor.moveToNext()) {
-                DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false)
+                DatabaseComponent.get(context).threadDatabase().update(cursor.getLong(0), false)
             }
         }
     }

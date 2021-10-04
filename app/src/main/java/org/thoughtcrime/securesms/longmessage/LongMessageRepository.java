@@ -3,20 +3,21 @@ package org.thoughtcrime.securesms.longmessage;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.TextSlide;
-import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.concurrent.SignalExecutors;
-import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,8 +30,8 @@ class LongMessageRepository {
   private final SmsDatabase smsDatabase;
 
   LongMessageRepository(@NonNull Context context) {
-    this.mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-    this.smsDatabase = DatabaseFactory.getSmsDatabase(context);
+    this.mmsDatabase = DatabaseComponent.get(context).mmsDatabase();
+    this.smsDatabase = DatabaseComponent.get(context).smsDatabase();
   }
 
   void getMessage(@NonNull Context context, long messageId, boolean isMms, @NonNull Callback<Optional<LongMessage>> callback) {

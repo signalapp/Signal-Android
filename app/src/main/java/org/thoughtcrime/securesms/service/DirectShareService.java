@@ -11,16 +11,17 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.service.chooser.ChooserTarget;
 import android.service.chooser.ChooserTargetService;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ShareActivity;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.LinkedList;
@@ -38,7 +39,7 @@ public class DirectShareService extends ChooserTargetService {
   {
     List<ChooserTarget> results        = new LinkedList<>();
     ComponentName       componentName  = new ComponentName(this, ShareActivity.class);
-    ThreadDatabase      threadDatabase = DatabaseFactory.getThreadDatabase(this);
+    ThreadDatabase      threadDatabase = DatabaseComponent.get(this).threadDatabase();
     Cursor              cursor         = threadDatabase.getDirectShareList();
 
     try {

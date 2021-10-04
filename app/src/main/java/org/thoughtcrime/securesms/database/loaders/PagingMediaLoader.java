@@ -4,15 +4,16 @@ package org.thoughtcrime.securesms.database.loaders;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 
 public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
@@ -34,8 +35,8 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
   @Nullable
   @Override
   public Pair<Cursor, Integer> loadInBackground() {
-    long   threadId = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(recipient);
-    Cursor cursor   = DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId);
+    long   threadId = DatabaseComponent.get(getContext()).threadDatabase().getOrCreateThreadIdFor(recipient);
+    Cursor cursor   = DatabaseComponent.get(getContext()).mediaDatabase().getGalleryMediaForThread(threadId);
 
     while (cursor != null && cursor.moveToNext()) {
       AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));

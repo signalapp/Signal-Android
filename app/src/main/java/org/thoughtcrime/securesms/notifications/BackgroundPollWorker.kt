@@ -14,7 +14,7 @@ import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPolle
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -63,7 +63,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             allGroupPublicKeys.forEach { closedGroupPoller.poll(it) }
 
             // Open Groups
-            val threadDB = DatabaseFactory.getLokiThreadDatabase(context)
+            val threadDB = DatabaseComponent.get(context).lokiThreadDatabase()
             val v2OpenGroups = threadDB.getAllV2OpenGroups()
             val v2OpenGroupServers = v2OpenGroups.map { it.value.server }.toSet()
 

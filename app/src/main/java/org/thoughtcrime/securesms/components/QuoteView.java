@@ -13,26 +13,28 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.ThemeUtil;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.database.SessionContactDatabase;
-import org.thoughtcrime.securesms.util.UiModeUtilities;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.RecipientModifiedListener;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.ThemeUtil;
-import org.session.libsession.utilities.Util;
+import org.thoughtcrime.securesms.util.UiModeUtilities;
 
 import java.util.List;
 
@@ -200,7 +202,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {
       quoteeDisplayName = TextSecurePreferences.getProfileName(getContext());
     } else {
-      SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(getContext());
+      SessionContactDatabase contactDB = DatabaseComponent.get(getContext()).sessionContactDatabase();
       Contact contact = contactDB.getContactWithSessionID(senderHexEncodedPublicKey);
       if (contact != null) {
         Contact.ContactContext context = (this.conversationRecipient.isOpenGroupRecipient()) ? Contact.ContactContext.OPEN_GROUP : Contact.ContactContext.REGULAR;

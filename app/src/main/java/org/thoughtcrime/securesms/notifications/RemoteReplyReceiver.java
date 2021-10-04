@@ -23,19 +23,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.core.app.RemoteInput;
 
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.utilities.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
-import org.session.libsession.utilities.recipients.Recipient;
 
 import java.util.Collections;
 import java.util.List;
@@ -71,7 +73,8 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         @Override
         protected Void doInBackground(Void... params) {
           Recipient recipient = Recipient.from(context, address, false);
-          long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+          ThreadDatabase threadDatabase = DatabaseComponent.get(context).threadDatabase();
+          long threadId = threadDatabase.getOrCreateThreadIdFor(recipient);
           VisibleMessage message = new VisibleMessage();
           message.setSentTimestamp(System.currentTimeMillis());
           message.setText(responseText.toString());
@@ -80,7 +83,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
             case GroupMessage: {
               OutgoingMediaMessage reply = OutgoingMediaMessage.from(message, recipient, Collections.emptyList(), null, null);
               try {
-                DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(reply, threadId, false, null);
+                DatabaseComponent.get(context).mmsDatabase().insertMessageOutbox(reply, threadId, false, null);
                 MessageSender.send(message, address);
               } catch (MmsException e) {
                 Log.w(TAG, e);
@@ -89,7 +92,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
             }
             case SecureMessage: {
               OutgoingTextMessage reply = OutgoingTextMessage.from(message, recipient);
-              DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, reply, false, System.currentTimeMillis(), null);
+              DatabaseComponent.get(context).smsDatabase().insertMessageOutbox(threadId, reply, false, System.currentTimeMillis(), null);
               MessageSender.send(message, address);
               break;
             }
@@ -97,7 +100,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
               throw new AssertionError("Unknown Reply method");
           }
 
-          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+          List<MarkedMessageInfo> messageIds = threadDatabase.setRead(threadId, true);
 
           ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
           MarkReadReceiver.process(context, messageIds);

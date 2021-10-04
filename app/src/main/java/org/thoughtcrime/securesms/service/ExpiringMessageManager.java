@@ -2,24 +2,22 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 
-
 import org.jetbrains.annotations.NotNull;
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
 import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.messages.SignalServiceGroup;
 import org.session.libsignal.utilities.Log;
-
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.MmsException;
 
 import java.io.IOException;
@@ -41,8 +39,8 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
 
   public ExpiringMessageManager(Context context) {
     this.context     = context.getApplicationContext();
-    this.smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    this.mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+    this.smsDatabase = DatabaseComponent.get(context).smsDatabase();
+    this.mmsDatabase = DatabaseComponent.get(context).mmsDatabase();
 
     executor.execute(new LoadTask());
     executor.execute(new ProcessTask());
@@ -81,12 +79,12 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
     }
 
     if (message.getId() != null) {
-      DatabaseFactory.getSmsDatabase(context).deleteMessage(message.getId());
+      DatabaseComponent.get(context).smsDatabase().deleteMessage(message.getId());
     }
   }
 
   private void insertIncomingExpirationTimerMessage(ExpirationTimerUpdate message) {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    MmsDatabase database = DatabaseComponent.get(context).mmsDatabase();
 
     String senderPublicKey = message.getSender();
     Long sentTimestamp = message.getSentTimestamp();
@@ -123,7 +121,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
       database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
       //set the timer to the conversation
-      DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);
+      DatabaseComponent.get(context).recipientDatabase().setExpireMessages(recipient, duration);
 
     } catch (IOException | MmsException ioe) {
       Log.e("Loki", "Failed to insert expiration update message.");
@@ -131,7 +129,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   }
 
   private void insertOutgoingExpirationTimerMessage(ExpirationTimerUpdate message) {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    MmsDatabase database = DatabaseComponent.get(context).mmsDatabase();
 
     Long sentTimestamp = message.getSentTimestamp();
     String groupId = message.getGroupPublicKey();
@@ -149,7 +147,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
         recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(groupId)), false);
       }
       //set the timer to the conversation
-      DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);
+      DatabaseComponent.get(context).recipientDatabase().setExpireMessages(recipient, duration);
 
     } catch (MmsException | IOException ioe) {
       Log.e("Loki", "Failed to insert expiration update message.");
@@ -163,7 +161,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
 
   @Override
   public void startAnyExpiration(long timestamp, @NotNull String author) {
-    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(timestamp, author);
+    MessageRecord messageRecord = DatabaseComponent.get(context).mmsSmsDatabase().getMessageFor(timestamp, author);
     if (messageRecord != null) {
       boolean mms = messageRecord.isMms();
       Recipient recipient = messageRecord.getRecipient();

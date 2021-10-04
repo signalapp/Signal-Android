@@ -1,18 +1,18 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.os.Build
-import org.session.libsignal.utilities.Log
 import org.greenrobot.eventbus.EventBus
-import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.utilities.DecodedAudio
 import org.session.libsession.utilities.InputStreamMediaDataSource
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.session.libsignal.utilities.Log
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobs.PrepareAttachmentAudioExtrasJob.AudioExtrasUpdatedEvent
 import org.thoughtcrime.securesms.mms.PartAuthority
-import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -68,7 +68,7 @@ class PrepareAttachmentAudioExtrasJob : BaseJob {
     override fun onRun() {
         Log.v(TAG, "Processing attachment: $attachmentId")
 
-        val attachDb = DatabaseFactory.getAttachmentDatabase(context)
+        val attachDb = DatabaseComponent.get(context).attachmentDatabase()
         val attachment = attachDb.getAttachment(attachmentId)
 
         if (attachment == null) {

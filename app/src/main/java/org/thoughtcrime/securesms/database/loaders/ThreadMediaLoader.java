@@ -3,11 +3,12 @@ package org.thoughtcrime.securesms.database.loaders;
 
 import android.content.Context;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 
 import org.session.libsession.utilities.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 
 public class ThreadMediaLoader extends AbstractCursorLoader {
@@ -23,10 +24,10 @@ public class ThreadMediaLoader extends AbstractCursorLoader {
 
   @Override
   public Cursor getCursor() {
-    long threadId = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(Recipient.from(getContext(), address, true));
+    long threadId = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(Recipient.from(getContext(), address, true));
 
-    if (gallery) return DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId);
-    else         return DatabaseFactory.getMediaDatabase(getContext()).getDocumentMediaForThread(threadId);
+    if (gallery) return DatabaseComponent.get(context).mediaDatabase().getGalleryMediaForThread(threadId);
+    else         return DatabaseComponent.get(context).mediaDatabase().getDocumentMediaForThread(threadId);
   }
 
   public Address getAddress() {

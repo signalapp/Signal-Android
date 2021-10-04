@@ -19,6 +19,7 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.seed_reminder_stub.*
 import kotlinx.android.synthetic.main.seed_reminder_stub.view.*
@@ -42,8 +43,11 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.utilities.NotificationUtils
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.GroupDatabase
+import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.dms.CreatePrivateChatActivity
 import org.thoughtcrime.securesms.groups.CreateClosedGroupActivity
 import org.thoughtcrime.securesms.groups.JoinPublicChatActivity
@@ -56,10 +60,16 @@ import org.thoughtcrime.securesms.preferences.SettingsActivity
 import org.thoughtcrime.securesms.util.*
 import java.io.IOException
 import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
+
+    @Inject lateinit var threadDb: ThreadDatabase
+    @Inject lateinit var recipientDatabase: RecipientDatabase
+    @Inject lateinit var groupDatabase: GroupDatabase
 
     private val publicKey: String
         get() = TextSecurePreferences.getLocalNumber(this)!!
@@ -94,7 +104,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             seedReminderStub.isVisible = false
         }
         // Set up recycler view
-        val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
+        val cursor = threadDb.conversationList
         val homeAdapter = HomeAdapter(this, cursor)
         homeAdapter.setHasStableIds(true)
         homeAdapter.glide = glide
@@ -280,7 +290,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                 .setNegativeButton(android.R.string.cancel, null)
                 .setPositiveButton(R.string.RecipientPreferenceActivity_block) { dialog, _ ->
                     ThreadUtils.queue {
-                        DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, true)
+                        recipientDatabase.setBlocked(thread.recipient, true)
                         Util.runOnMain {
                             recyclerView.adapter!!.notifyDataSetChanged()
                             dialog.dismiss()
@@ -296,7 +306,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                 .setNegativeButton(android.R.string.cancel, null)
                 .setPositiveButton(R.string.RecipientPreferenceActivity_unblock) { dialog, _ ->
                     ThreadUtils.queue {
-                        DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, false)
+                        recipientDatabase.setBlocked(thread.recipient, false)
                         Util.runOnMain {
                             recyclerView.adapter!!.notifyDataSetChanged()
                             dialog.dismiss()
@@ -308,7 +318,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
     private fun setConversationMuted(thread: ThreadRecord, isMuted: Boolean) {
         if (!isMuted) {
             ThreadUtils.queue {
-                DatabaseFactory.getRecipientDatabase(this).setMuted(thread.recipient, 0)
+                recipientDatabase.setMuted(thread.recipient, 0)
                 Util.runOnMain {
                     recyclerView.adapter!!.notifyDataSetChanged()
                 }
@@ -316,7 +326,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         } else {
             MuteDialog.show(this) { until: Long ->
                 ThreadUtils.queue {
-                    DatabaseFactory.getRecipientDatabase(this).setMuted(thread.recipient, until)
+                    recipientDatabase.setMuted(thread.recipient, until)
                     Util.runOnMain {
                         recyclerView.adapter!!.notifyDataSetChanged()
                     }
@@ -327,7 +337,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
 
     private fun setNotifyType(thread: ThreadRecord, newNotifyType: Int) {
         ThreadUtils.queue {
-            DatabaseFactory.getRecipientDatabase(this).setNotifyType(thread.recipient, newNotifyType)
+            recipientDatabase.setNotifyType(thread.recipient, newNotifyType)
             Util.runOnMain {
                 recyclerView.adapter!!.notifyDataSetChanged()
             }
@@ -337,10 +347,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
     private fun deleteConversation(thread: ThreadRecord) {
         val threadID = thread.threadId
         val recipient = thread.recipient
-        val threadDB = DatabaseFactory.getThreadDatabase(this)
         val message: String
         if (recipient.isGroupRecipient) {
-            val group = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.address.toString()).orNull()
+            val group = groupDatabase.getGroup(recipient.address.toString()).orNull()
             if (group != null && group.admins.map { it.toString() }.contains(TextSecurePreferences.getLocalNumber(this))) {
                 message = "Because you are the creator of this group it will be deleted for everyone. This cannot be undone."
             } else {
@@ -355,14 +364,14 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             lifecycleScope.launch(Dispatchers.Main) {
                 val context = this@HomeActivity as Context
                 // Cancel any outstanding jobs
-                DatabaseFactory.getSessionJobDatabase(context).cancelPendingMessageSendJobs(threadID)
+                DatabaseComponent.get(context).sessionJobDatabase().cancelPendingMessageSendJobs(threadID)
                 // Send a leave group message if this is an active closed group
-                if (recipient.address.isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
+                if (recipient.address.isClosedGroup && DatabaseComponent.get(context).groupDatabase().isActive(recipient.address.toGroupString())) {
                     var isClosedGroup: Boolean
                     var groupPublicKey: String?
                     try {
                         groupPublicKey = GroupUtil.doubleDecodeGroupID(recipient.address.toString()).toHexString()
-                        isClosedGroup = DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(groupPublicKey)
+                        isClosedGroup = DatabaseComponent.get(context).lokiAPIDatabase().isClosedGroup(groupPublicKey)
                     } catch (e: IOException) {
                         groupPublicKey = null
                         isClosedGroup = false
@@ -372,12 +381,12 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                     }
                 }
                 // Delete the conversation
-                val v2OpenGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
+                val v2OpenGroup = DatabaseComponent.get(this@HomeActivity).lokiThreadDatabase().getOpenGroupChat(threadID)
                 if (v2OpenGroup != null) {
                     OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
                 } else {
                     ThreadUtils.queue {
-                        threadDB.deleteConversation(threadID)
+                        threadDb.deleteConversation(threadID)
                     }
                 }
                 // Update the badge count

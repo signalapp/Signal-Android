@@ -10,18 +10,20 @@ import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.*
+import org.thoughtcrime.securesms.database.SessionContactDatabase
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.UiModeUtilities
+import org.thoughtcrime.securesms.util.toPx
+import javax.inject.Inject
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -32,8 +34,11 @@ import kotlin.math.roundToInt
 // • Quoted images and videos in both private chats and group chats
 // • Quoted voice messages and documents in both private chats and group chats
 // • All of the above in both dark mode and light mode
-
+@AndroidEntryPoint
 class QuoteView : LinearLayout {
+
+    @Inject lateinit var contactDb: SessionContactDatabase
+
     private lateinit var mode: Mode
     private val vPadding by lazy { toPx(6, resources) }
     var delegate: QuoteViewDelegate? = null
@@ -107,14 +112,13 @@ class QuoteView : LinearLayout {
     fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
         isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean, threadID: Long,
         isOriginalMissing: Boolean, glide: GlideRequests) {
-        val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         // Reduce the max body text view line count to 2 if this is a group thread because
         // we'll be showing the author text view and we don't want the overall quote view height
         // to get too big.
         quoteViewBodyTextView.maxLines = if (thread.isGroupRecipient) 2 else 3
         // Author
         if (thread.isGroupRecipient) {
-            val author = contactDB.getContactWithSessionID(authorPublicKey)
+            val author = contactDb.getContactWithSessionID(authorPublicKey)
             val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: authorPublicKey
             quoteViewAuthorTextView.text = authorDisplayName
             quoteViewAuthorTextView.setTextColor(getTextColor(isOutgoingMessage))

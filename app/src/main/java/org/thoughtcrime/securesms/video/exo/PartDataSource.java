@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.video.exo;
 
 import android.content.Context;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -12,7 +13,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 
 import java.io.EOFException;
@@ -43,7 +44,7 @@ public class PartDataSource implements DataSource {
   public long open(DataSpec dataSpec) throws IOException {
     this.uri = dataSpec.uri;
 
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase attachmentDatabase = DatabaseComponent.get(context).attachmentDatabase();
     PartUriParser      partUri            = new PartUriParser(uri);
     Attachment         attachment         = attachmentDatabase.getAttachment(partUri.getPartId());
 

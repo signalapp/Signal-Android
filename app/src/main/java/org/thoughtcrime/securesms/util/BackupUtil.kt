@@ -22,8 +22,8 @@ import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference
 import org.thoughtcrime.securesms.backup.FullBackupExporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.BackupFileRecord
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import java.io.IOException
 import java.security.MessageDigest
@@ -114,7 +114,7 @@ object BackupUtil {
 
     @JvmStatic
     fun getLastBackupTimeString(context: Context, locale: Locale): String {
-        val timestamp = DatabaseFactory.getLokiBackupFilesDatabase(context).getLastBackupFileTime()
+        val timestamp = DatabaseComponent.get(context).lokiBackupFilesDatabase().getLastBackupFileTime()
         if (timestamp == null) {
             return context.getString(R.string.BackupUtil_never)
         }
@@ -123,7 +123,7 @@ object BackupUtil {
 
     @JvmStatic
     fun getLastBackup(context: Context): BackupFileRecord? {
-        return DatabaseFactory.getLokiBackupFilesDatabase(context).getLastBackupFile()
+        return DatabaseComponent.get(context).lokiBackupFilesDatabase().getLastBackupFile()
     }
 
     @JvmStatic
@@ -206,10 +206,10 @@ object BackupUtil {
 
         try {
             FullBackupExporter.export(context,
-                    AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                    DatabaseFactory.getBackupDatabase(context),
-                    fileUri,
-                    backupPassword)
+                AttachmentSecretProvider.getInstance(context).orCreateAttachmentSecret,
+                DatabaseComponent.get(context).openHelper().readableDatabase,
+                fileUri,
+                backupPassword)
         } catch (e: Exception) {
             // Delete the backup file on any error.
             DocumentsContract.deleteDocument(context.contentResolver, fileUri)
@@ -217,7 +217,7 @@ object BackupUtil {
         }
 
         //TODO Use real file size.
-        val record = DatabaseFactory.getLokiBackupFilesDatabase(context)
+        val record = DatabaseComponent.get(context).lokiBackupFilesDatabase()
                 .insertBackupFile(BackupFileRecord(fileUri, -1, date))
 
         Log.v(TAG, "A backup file was created: $fileUri")
@@ -228,7 +228,7 @@ object BackupUtil {
     @JvmStatic
     @JvmOverloads
     fun deleteAllBackupFiles(context: Context, except: Collection<BackupFileRecord>? = null) {
-        val db = DatabaseFactory.getLokiBackupFilesDatabase(context)
+        val db = DatabaseComponent.get(context).lokiBackupFilesDatabase()
         db.getBackupFiles().forEach { record ->
             if (except != null && except.contains(record)) return@forEach
 

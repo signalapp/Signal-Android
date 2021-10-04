@@ -2,31 +2,18 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
-import androidx.annotation.DimenRes
-import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import kotlinx.android.synthetic.main.activity_message_detail.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.messages.visible.LinkPreview
-import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
-import org.session.libsession.messaging.messages.visible.Quote
-import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsession.messaging.sending_receiving.MessageSender
-import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.utilities.ResendMessageUtilities
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.util.DateUtils
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.roundToInt
 
 
 class MessageDetailActivity: PassphraseRequiredActionBarActivity() {
@@ -48,7 +35,7 @@ class MessageDetailActivity: PassphraseRequiredActionBarActivity() {
         // We only show this screen for messages fail to send,
         // so the author of the messages must be the current user.
         val author = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)!!)
-        messageRecord = DatabaseFactory.getMmsSmsDatabase (this).getMessageFor(timestamp, author)
+        messageRecord = DatabaseComponent.get(this).mmsSmsDatabase().getMessageFor(timestamp, author)
         updateContent()
         resend_button.setOnClickListener {
             ResendMessageUtilities.resend(messageRecord!!)
@@ -61,7 +48,7 @@ class MessageDetailActivity: PassphraseRequiredActionBarActivity() {
         val dateFormatter: SimpleDateFormat = DateUtils.getDetailedDateFormatter(this, dateLocale)
         sent_time.text = dateFormatter.format(Date(messageRecord!!.dateSent))
 
-        val errorMessage = DatabaseFactory.getLokiMessageDatabase(this).getErrorMessage(messageRecord!!.getId()) ?: "Message failed to send."
+        val errorMessage = DatabaseComponent.get(this).lokiMessageDatabase().getErrorMessage(messageRecord!!.getId()) ?: "Message failed to send."
         error_message.text = errorMessage
 
         if (messageRecord!!.getExpiresIn() <= 0 || messageRecord!!.getExpireStarted() <= 0) {

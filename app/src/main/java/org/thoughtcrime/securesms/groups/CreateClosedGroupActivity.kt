@@ -3,31 +3,30 @@ package org.thoughtcrime.securesms.groups
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.Loader
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.groupSizeLimit
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-
 import org.session.libsession.utilities.Address
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.fadeIn
-import org.thoughtcrime.securesms.util.fadeOut
-import org.thoughtcrime.securesms.mms.GlideApp
-import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.contacts.SelectContactsAdapter
 import org.thoughtcrime.securesms.contacts.SelectContactsLoader
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
+import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.util.fadeIn
+import org.thoughtcrime.securesms.util.fadeOut
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
@@ -121,7 +120,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         MessageSender.createClosedGroup(name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
             loaderContainer.fadeOut()
             isLoading = false
-            val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
+            val threadID = DatabaseComponent.get(this).threadDatabase().getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
              if (!isFinishing) {
                 openConversationActivity(this, threadID, Recipient.from(this, Address.fromSerialized(groupID), false))
                 finish()

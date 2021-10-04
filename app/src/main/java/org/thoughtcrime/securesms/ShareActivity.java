@@ -35,20 +35,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
-import org.session.libsession.utilities.DistributionTypes;
-import org.thoughtcrime.securesms.components.SearchToolbar;
-
 import org.session.libsession.utilities.Address;
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListLoader.DisplayMode;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.session.libsession.utilities.ViewUtil;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -251,7 +249,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onContactSelected(String number) {
     Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
-    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+    long existingThread = ApplicationContext.getInstance(this).getDatabaseComponent().threadDatabase().getThreadIdIfExistsFor(recipient);
     createConversation(existingThread, recipient.getAddress(), DistributionTypes.DEFAULT);
   }
 

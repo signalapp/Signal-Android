@@ -19,11 +19,10 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.utilities.Data;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.session.libsignal.utilities.Log;
-
 import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
+import org.thoughtcrime.securesms.jobmanager.Job;
 
 public class TrimThreadJob extends BaseJob {
 
@@ -63,7 +62,7 @@ public class TrimThreadJob extends BaseJob {
     if (!trimmingEnabled)
       return;
 
-    DatabaseFactory.getThreadDatabase(context).trimThread(threadId, threadLengthLimit);
+    DatabaseComponent.get(context).threadDatabase().trimThread(threadId, threadLengthLimit);
   }
 
   @Override
