@@ -6,8 +6,8 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteOpenHelper;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -50,8 +50,7 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
 
   private static volatile MegaphoneDatabase instance;
 
-  private final Application    application;
-  private final DatabaseSecret databaseSecret;
+  private final Application application;
 
   public static @NonNull MegaphoneDatabase getInstance(@NonNull Application context) {
     if (instance == null) {
@@ -66,10 +65,9 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   }
 
   public MegaphoneDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
+    super(application, DATABASE_NAME, databaseSecret.asString(),  null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
-    this.application    = application;
-    this.databaseSecret = databaseSecret;
+    this.application = application;
   }
 
   @Override
@@ -219,13 +217,5 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
         newDb.insert(TABLE_NAME, null, values);
       }
     }
-  }
-
-  private SQLiteDatabase getReadableDatabase() {
-    return super.getReadableDatabase(databaseSecret.asString());
-  }
-
-  private SQLiteDatabase getWritableDatabase() {
-    return super.getWritableDatabase(databaseSecret.asString());
   }
 }

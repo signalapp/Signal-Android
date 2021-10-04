@@ -4,7 +4,8 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.DatabaseErrorHandler;
+import net.zetetic.database.DatabaseErrorHandler;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -26,7 +27,7 @@ public final class SqlCipherDeletingErrorHandler implements DatabaseErrorHandler
   }
 
   @Override
-  public void onCorruption(net.sqlcipher.database.SQLiteDatabase db) {
+  public void onCorruption(SQLiteDatabase db) {
     Log.e(TAG, "Database '" + databaseName + "' corrupted! Going to try to run some diagnostics.");
 
     Log.w(TAG, " ===== PRAGMA integrity_check =====");

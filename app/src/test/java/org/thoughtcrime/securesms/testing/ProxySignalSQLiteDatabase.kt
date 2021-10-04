@@ -5,8 +5,8 @@ import android.database.Cursor
 import java.util.Locale
 import android.database.sqlite.SQLiteDatabase as AndroidSQLiteDatabase
 import android.database.sqlite.SQLiteTransactionListener as AndroidSQLiteTransactionListener
-import net.sqlcipher.database.SQLiteStatement as SQLCipherSQLiteStatement
-import net.sqlcipher.database.SQLiteTransactionListener as SQLCipherSQLiteTransactionListener
+import net.zetetic.database.sqlcipher.SQLiteStatement as SQLCipherSQLiteStatement
+import net.zetetic.database.sqlcipher.SQLiteTransactionListener as SQLCipherSQLiteTransactionListener
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSQLiteDatabase
 
 /**
@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSQLiteDatabas
  * of SQLCipher.
  */
 class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : SignalSQLiteDatabase(null) {
-  override fun getSqlCipherDatabase(): net.sqlcipher.database.SQLiteDatabase {
+  override fun getSqlCipherDatabase(): net.zetetic.database.sqlcipher.SQLiteDatabase {
     throw UnsupportedOperationException()
   }
 
@@ -35,7 +35,7 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
   }
 
   override fun queryWithFactory(
-    cursorFactory: net.sqlcipher.database.SQLiteDatabase.CursorFactory?,
+    cursorFactory: net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory?,
     distinct: Boolean,
     table: String?,
     columns: Array<out String>?,
@@ -65,7 +65,7 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     return database.rawQuery(sql, args?.map(Any::toString)?.toTypedArray())
   }
 
-  override fun rawQueryWithFactory(cursorFactory: net.sqlcipher.database.SQLiteDatabase.CursorFactory?, sql: String?, selectionArgs: Array<out String>?, editTable: String?): Cursor {
+  override fun rawQueryWithFactory(cursorFactory: net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory?, sql: String?, selectionArgs: Array<out String>?, editTable: String?): Cursor {
     return database.rawQueryWithFactory(null, sql, selectionArgs, editTable)
   }
 

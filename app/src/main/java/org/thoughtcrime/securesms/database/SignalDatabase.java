@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.database;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 /**
  * Simple interface for common methods across our various
- * {@link net.sqlcipher.database.SQLiteOpenHelper}s.
+ * {@link net.zetetic.database.sqlcipher.SQLiteOpenHelper}s.
  */
 public interface SignalDatabase {
   SQLiteDatabase getSqlCipherDatabase();
