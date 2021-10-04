@@ -148,10 +148,10 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
 
 @Override
     public void onCreate() {
+        DatabaseModule.init(this);
         super.onCreate();
         Log.i(TAG, "onCreate()");
         startKovenant();
-        DatabaseModule.init(this);
         initializeSecurityProvider();
         initializeLogging();
         initializeCrashHandling();

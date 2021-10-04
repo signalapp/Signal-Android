@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -249,7 +250,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onContactSelected(String number) {
     Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
-    long existingThread = ApplicationContext.getInstance(this).getDatabaseComponent().threadDatabase().getThreadIdIfExistsFor(recipient);
+    long existingThread = DatabaseComponent.get(this).threadDatabase().getThreadIdIfExistsFor(recipient);
     createConversation(existingThread, recipient.getAddress(), DistributionTypes.DEFAULT);
   }
 
