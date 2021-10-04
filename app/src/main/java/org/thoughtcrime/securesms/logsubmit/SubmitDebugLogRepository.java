@@ -104,6 +104,7 @@ public class SubmitDebugLogRepository {
 
   public void buildAndSubmitLog(@NonNull Callback<Optional<String>> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
+      Log.blockUntilAllWritesFinished();
       LogDatabase.getInstance(context).trimToSize();
       callback.onResult(submitLogInternal(System.currentTimeMillis(), getPrefixLogLinesInternal(), Tracer.getInstance().serialize()));
     });
