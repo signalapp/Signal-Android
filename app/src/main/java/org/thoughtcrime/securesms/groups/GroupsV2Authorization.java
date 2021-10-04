@@ -57,6 +57,10 @@ public final class GroupsV2Authorization {
     }
   }
 
+  public void clear() {
+    cache.clear();
+  }
+
   private static int currentTimeDays() {
     return (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis());
   }
