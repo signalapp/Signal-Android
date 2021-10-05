@@ -1365,7 +1365,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     public void onItemClick(MultiselectPart item) {
       if (actionMode != null) {
         ((ConversationAdapter) list.getAdapter()).toggleSelection(item);
-        list.getAdapter().notifyDataSetChanged();
+        list.invalidateItemDecorations();
 
         if (getListAdapter().getSelectedItems().size() == 0) {
           actionMode.finish();
@@ -1405,7 +1405,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       } else {
         clearFocusedItem();
         ((ConversationAdapter) list.getAdapter()).toggleSelection(item);
-        list.getAdapter().notifyDataSetChanged();
+        list.invalidateItemDecorations();
 
         actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
       }
@@ -1740,7 +1740,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       ((ConversationAdapter) list.getAdapter()).toggleSelection(part);
     });
 
-    list.getAdapter().notifyDataSetChanged();
+    list.invalidateItemDecorations();
 
     actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
   }
@@ -1884,7 +1884,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onDestroyActionMode(ActionMode mode) {
       ((ConversationAdapter)list.getAdapter()).clearSelection();
-      list.getAdapter().notifyDataSetChanged();
+      list.invalidateItemDecorations();
 
       if (Build.VERSION.SDK_INT >= 21) {
         WindowUtil.setStatusBarColor(requireActivity().getWindow(), statusBarColor);
