@@ -126,7 +126,14 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       Bundle  configValues            = smsManager.getCarrierConfigValues();
       boolean parseContentDisposition = configValues.getBoolean(SmsManager.MMS_CONFIG_SUPPORT_MMS_CONTENT_DISPOSITION);
 
-      RetrieveConf retrieved = (RetrieveConf) new PduParser(baos.toByteArray(), parseContentDisposition).parse();
+      RetrieveConf retrieved;
+
+      try {
+        retrieved = (RetrieveConf) new PduParser(baos.toByteArray(), parseContentDisposition).parse();
+      } catch (NullPointerException e) {
+        Log.w(TAG, "Badly formatted MMS message caused the parser to fail.", e);
+        throw new MmsException(e);
+      }
 
       if (retrieved == null) return null;
 
