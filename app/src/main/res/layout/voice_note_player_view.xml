@@ -20,23 +20,40 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/voice_note_player_info"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
         android:marqueeRepeatLimit="marquee_forever"
         android:minHeight="36dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="13dp"
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_icon_tint_primary"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/voice_note_player_speed_touch_target"
+        app:layout_constraintEnd_toStartOf="@id/voice_note_player_duration"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/voice_note_player_play_pause_toggle"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Miles Morales in Some strange spider-man group · 5:20" />
+        tools:text="Miles Morales Admiration Station" />
+
+    <TextView
+        android:id="@+id/voice_note_player_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="36dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="13dp"
+        android:singleLine="true"
+        android:textColor="@color/signal_icon_tint_primary"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/voice_note_player_speed_touch_target"
+        app:layout_constraintStart_toEndOf="@id/voice_note_player_info"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="· 1:00" />
 
     <FrameLayout
         android:id="@+id/voice_note_player_speed_touch_target"
