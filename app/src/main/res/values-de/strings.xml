@@ -3069,7 +3069,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatColorsMegaphone__appearance">Darstellung</string>
   <string name="ChatColorsMegaphone__not_now">Jetzt nicht</string>
   <!--AddAProfilePhotoMegaphone-->
-  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Füge ein Profilfoto hinzu</string>
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Füg ein Profilfoto hinzu</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Wähle Aussehen und Farbe oder passe deine Initialen an.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Jetzt nicht</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Foto hinzufügen</string>
@@ -3183,7 +3183,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Aufwärts navigieren</string>
   <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
-  <string name="MultiselectForwardFragment__add_a_message">Füge eine Nachricht hinzu</string>
+  <string name="MultiselectForwardFragment__add_a_message">Füg eine Nachricht hinzu</string>
   <string name="MultiselectForwardFragment__faster_forwards">Schnellere Weiterleitungen</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Weitergeleitete Nachrichten werden nun sofort gesendet.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
@@ -3204,7 +3204,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Höchstzahl erreicht</string>
   <!--Media V2-->
-  <string name="MediaReviewFragment__add_a_message">Füge eine Nachricht hinzu</string>
+  <string name="MediaReviewFragment__add_a_message">Füg eine Nachricht hinzu</string>
   <string name="MediaReviewFragment__add_a_reply">Antwort hinzufügen</string>
   <string name="MediaReviewFragment__send_to">Senden an</string>
   <string name="MediaReviewFragment__view_once_message">Einmalig anzeigbare Nachricht</string>
