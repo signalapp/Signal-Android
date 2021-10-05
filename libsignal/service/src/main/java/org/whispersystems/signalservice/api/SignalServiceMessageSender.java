@@ -1820,6 +1820,10 @@ public class SignalServiceMessageSender {
     Set<SignalProtocolAddress>               destinations         = store.getAllAddressesWithActiveSessions(addressNames);
     Map<String, List<Integer>>               devicesByAddressName = new HashMap<>();
 
+    destinations.addAll(recipients.stream()
+                                  .map(a -> new SignalProtocolAddress(a.getIdentifier(), SignalServiceAddress.DEFAULT_DEVICE_ID))
+                                  .collect(Collectors.toList()));
+
     for (SignalProtocolAddress destination : destinations) {
       List<Integer> devices = devicesByAddressName.containsKey(destination.getName()) ? devicesByAddressName.get(destination.getName()) : new LinkedList<>();
       devices.add(destination.getDeviceId());
