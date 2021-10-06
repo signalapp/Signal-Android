@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 public class DeleteNotificationReceiver extends BroadcastReceiver {
 
@@ -30,8 +30,8 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
         @Override
         protected Void doInBackground(Void... params) {
           for (int i=0;i<ids.length;i++) {
-            if (!mms[i]) DatabaseFactory.getSmsDatabase(context).markAsNotified(ids[i]);
-            else         DatabaseFactory.getMmsDatabase(context).markAsNotified(ids[i]);
+            if (!mms[i]) DatabaseComponent.get(context).smsDatabase().markAsNotified(ids[i]);
+            else         DatabaseComponent.get(context).mmsDatabase().markAsNotified(ids[i]);
           }
 
           return null;

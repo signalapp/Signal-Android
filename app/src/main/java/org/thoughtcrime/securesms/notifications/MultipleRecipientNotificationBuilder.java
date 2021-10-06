@@ -15,8 +15,8 @@ import org.session.libsession.utilities.NotificationPrivacyPreference;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SessionContactDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.home.HomeActivity;
 
 import java.util.LinkedList;
@@ -116,7 +116,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
    * @param recipient the * individual * recipient for which to get the open group display name.
    */
   private String getOpenGroupDisplayName(Recipient recipient) {
-    SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(context);
+    SessionContactDatabase contactDB = DatabaseComponent.get(context).sessionContactDatabase();
     String sessionID = recipient.getAddress().serialize();
     Contact contact = contactDB.getContactWithSessionID(sessionID);
     if (contact == null) { return sessionID; }

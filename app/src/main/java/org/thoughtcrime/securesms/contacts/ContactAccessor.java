@@ -21,16 +21,15 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import network.loki.messenger.R;
-
-import org.session.libsession.utilities.GroupRecord;
-import org.session.libsession.utilities.TextSecurePreferences;
 
 /**
  * This class was originally a layer of indirection between
@@ -71,7 +70,7 @@ public class ContactAccessor {
     GroupRecord record;
 
     try {
-      reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(constraint);
+      reader = DatabaseComponent.get(context).groupDatabase().getGroupsFilteredByTitle(constraint);
 
       while ((record = reader.getNext()) != null) {
         numberList.add(record.getEncodedId());

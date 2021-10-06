@@ -20,7 +20,7 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.UiModeUtilities
 
@@ -103,7 +103,7 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             newNickName = nicknameEditText.text.toString()
         }
         val publicKey = recipient.address.serialize()
-        val contactDB = DatabaseFactory.getSessionContactDatabase(context)
+        val contactDB = DatabaseComponent.get(requireContext()).sessionContactDatabase()
         val contact = contactDB.getContactWithSessionID(publicKey) ?: Contact(publicKey)
         contact.nickname = newNickName
         contactDB.setContact(contact)

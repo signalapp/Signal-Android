@@ -7,26 +7,23 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
 import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
 import network.loki.messenger.R;
 
-public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment implements InjectableType {
+public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment {
 
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    ApplicationContext.getInstance(activity).injectDependencies(this);
   }
 
   @Override

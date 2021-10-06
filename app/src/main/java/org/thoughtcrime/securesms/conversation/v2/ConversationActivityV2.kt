@@ -30,6 +30,7 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.annimon.stream.Stream
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
@@ -91,8 +92,7 @@ import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.*
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MnemonicUtilities
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.DraftDatabase
+import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -109,6 +109,7 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.*
 import java.util.*
 import java.util.concurrent.ExecutionException
+import javax.inject.Inject
 import kotlin.collections.component1
 import kotlin.collections.component2
 import kotlin.collections.set
@@ -117,11 +118,26 @@ import kotlin.math.*
 // Some things that seemingly belong to the input bar (e.g. the voice message recording UI) are actually
 // part of the conversation activity layout. This is just because it makes the layout a lot simpler. The
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
-
+@AndroidEntryPoint
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
         InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
         ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener,
         SearchBottomBar.EventListener, VoiceMessageViewDelegate {
+
+    @Inject lateinit var threadDb: ThreadDatabase
+    @Inject lateinit var mmsSmsDb: MmsSmsDatabase
+    @Inject lateinit var draftDb: DraftDatabase
+    @Inject lateinit var lokiThreadDb: LokiThreadDatabase
+    @Inject lateinit var sessionContactDb: SessionContactDatabase
+    @Inject lateinit var groupDb: GroupDatabase
+    @Inject lateinit var lokiApiDb: LokiAPIDatabase
+    @Inject lateinit var recipientDb: RecipientDatabase
+    @Inject lateinit var smsDb: SmsDatabase
+    @Inject lateinit var mmsDb: MmsDatabase
+    @Inject lateinit var lokiMessageDb: LokiMessageDatabase
+
+
+
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -165,7 +181,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private val adapter by lazy {
-        val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
+        val cursor = mmsSmsDb.getConversation(threadID)
         val adapter = ConversationAdapter(
             this,
             cursor,
@@ -185,7 +201,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private val thread by lazy {
-        DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID)!!
+        threadDb.getRecipientForThreadId(threadID)!!
     }
 
     private val glide by lazy { GlideApp.with(this) }
@@ -216,14 +232,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_conversation_v2)
-        var threadID = intent.getLongExtra(THREAD_ID, -1L)
+        threadID = intent.getLongExtra(THREAD_ID, -1L)
         if (threadID == -1L) {
             val address = intent.getParcelableExtra<Address>(ADDRESS) ?: return finish()
             val recipient = Recipient.from(this, address, false)
-            threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(recipient)
+            threadID = threadDb.getOrCreateThreadIdFor(recipient)
         }
-        this.threadID = threadID
-        val thread = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID)
+        val thread = threadDb.getRecipientForThreadId(threadID)
         if (thread == null) {
             Toast.makeText(this, "This thread has been deleted.", Toast.LENGTH_LONG).show()
             return finish()
@@ -242,7 +257,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 conversationRecyclerView.smoothScrollToPosition(0)
             }
         }
-        unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
+        unreadCount = mmsSmsDb.getUnreadCount(threadID)
         updateUnreadCountIndicator()
         setUpTypingObserver()
         setUpRecipientObserver()
@@ -254,7 +269,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         scrollToFirstUnreadMessageIfNeeded()
         showOrHideInputIfNeeded()
         if (this.thread.isOpenGroupRecipient) {
-            val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+            val openGroup = lokiThreadDb.getOpenGroupChat(threadID)
             if (openGroup == null) {
                 Toast.makeText(this, "This thread has been deleted.", Toast.LENGTH_LONG).show()
                 return finish()
@@ -384,16 +399,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             val dataTextExtra = intent.getCharSequenceExtra(Intent.EXTRA_TEXT) ?: ""
             inputBar.text = dataTextExtra.toString()
         } else {
-            val draftDB = DatabaseFactory.getDraftDatabase(this)
-            val drafts = draftDB.getDrafts(threadID)
-            draftDB.clearDrafts(threadID)
+            val drafts = draftDb.getDrafts(threadID)
+            draftDb.clearDrafts(threadID)
             val text = drafts.find { it.type == DraftDatabase.Draft.TEXT }?.value ?: return
             inputBar.text = text
         }
     }
 
     private fun addOpenGroupGuidelinesIfNeeded() {
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID) ?: return
+        val openGroup = lokiThreadDb.getOpenGroupChat(threadID) ?: return
         val isOxenHostedOpenGroup = openGroup.room == "session" || openGroup.room == "oxen"
             || openGroup.room == "lokinet" || openGroup.room == "crypto"
         if (!isOxenHostedOpenGroup) { return }
@@ -427,13 +441,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun getLatestOpenGroupInfoIfNeeded() {
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID) ?: return
+        val openGroup = lokiThreadDb.getOpenGroupChat(threadID) ?: return
         OpenGroupAPIV2.getMemberCount(openGroup.room, openGroup.server).successUi { updateSubtitle() }
     }
 
     private fun setUpBlockedBanner() {
         if (thread.isGroupRecipient) { return }
-        val contactDB = DatabaseFactory.getSessionContactDatabase(this)
+        val contactDB = sessionContactDb
         val sessionID = thread.address.toString()
         val contact = contactDB.getContactWithSessionID(sessionID)
         val name = contact?.displayName(Contact.ContactContext.REGULAR) ?: sessionID
@@ -461,7 +475,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun scrollToFirstUnreadMessageIfNeeded() {
-        val lastSeenTimestamp = DatabaseFactory.getThreadDatabase(this).getLastSeenAndHasSent(threadID).first()
+        val lastSeenTimestamp = threadDb.getLastSeenAndHasSent(threadID).first()
         val lastSeenItemPosition = adapter.findLastSeenItemPosition(lastSeenTimestamp) ?: return
         if (lastSeenItemPosition <= 3) { return }
         conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
@@ -492,7 +506,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun showOrHideInputIfNeeded() {
         if (thread.isClosedGroupRecipient) {
-            val group = DatabaseFactory.getGroupDatabase(this).getGroup(thread.address.toGroupString()).orNull()
+            val group = groupDb.getGroup(thread.address.toGroupString()).orNull()
             val isActive = (group?.isActive == true)
             inputBar.showInput = isActive
         } else {
@@ -501,7 +515,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun markAllAsRead() {
-        val messages = DatabaseFactory.getThreadDatabase(this).setRead(threadID, true)
+        val messages = threadDb.setRead(threadID, true)
         if (thread.isGroupRecipient) {
             for (message in messages) {
                 MarkReadReceiver.scheduleDeletion(this, message.expirationInfo)
@@ -733,9 +747,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_forever)
             }
         } else if (thread.isGroupRecipient) {
-            val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+            val openGroup = lokiThreadDb.getOpenGroupChat(threadID)
             if (openGroup != null) {
-                val userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(openGroup.room, openGroup.server) ?: 0
+                val userCount = lokiApiDb.getUserCount(openGroup.room, openGroup.server) ?: 0
                 conversationSubtitleView.text = getString(R.string.ConversationActivity_member_count, userCount)
             } else {
                 conversationSubtitleView.isVisible = false
@@ -867,7 +881,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun unblock() {
         if (!thread.isContactRecipient) { return }
-        DatabaseFactory.getRecipientDatabase(this).setBlocked(thread, false)
+        recipientDb.setBlocked(thread, false)
     }
 
     private fun handleMentionSelected(mention: Mention) {
@@ -937,7 +951,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         currentMentionStartIndex = -1
         mentions.clear()
         // Put the message in the database
-        message.id = DatabaseFactory.getSmsDatabase(this).insertMessageOutbox(threadID, outgoingTextMessage, false, message.sentTimestamp!!) { }
+        message.id = smsDb.insertMessageOutbox(threadID, outgoingTextMessage, false, message.sentTimestamp!!) { }
         // Send it
         MessageSender.send(message, thread.address)
         // Send a typing stopped message
@@ -968,7 +982,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // Reset attachments button if needed
         if (isShowingAttachmentOptions) { toggleAttachmentOptions() }
         // Put the message in the database
-        message.id = DatabaseFactory.getMmsDatabase(this).insertMessageOutbox(outgoingTextMessage, threadID, false) { }
+        message.id = mmsDb.insertMessageOutbox(outgoingTextMessage, threadID, false) { }
         // Send it
         MessageSender.send(message, thread.address, attachments, quote, linkPreview)
         // Send a typing stopped message
@@ -1070,7 +1084,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 val extras = intent?.extras ?: return
                 if (!intent.hasExtra(SelectContactsActivity.selectedContactsKey)) { return }
                 val selectedContacts = extras.getStringArray(selectedContactsKey)!!
-                val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+                val openGroup = lokiThreadDb.getOpenGroupChat(threadID)
                 for (contact in selectedContacts) {
                     val recipient = Recipient.from(this, fromSerialized(contact), true)
                     val message = VisibleMessage()
@@ -1080,7 +1094,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                     openGroupInvitation.url = openGroup!!.joinURL
                     message.openGroupInvitation = openGroupInvitation
                     val outgoingTextMessage = OutgoingTextMessage.fromOpenGroupInvitation(openGroupInvitation, recipient, message.sentTimestamp)
-                    DatabaseFactory.getSmsDatabase(this).insertMessageOutbox(-1, outgoingTextMessage, message.sentTimestamp!!)
+                    smsDb.insertMessageOutbox(-1, outgoingTextMessage, message.sentTimestamp!!)
                     MessageSender.send(message, recipient.address)
                 }
             }
@@ -1166,10 +1180,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             MessageSender.send(unsendRequest, thread.address)
         }
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
-        val messageDB = DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2)
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+        val openGroup = lokiThreadDb.getOpenGroupChat(threadID)
         if (openGroup != null) {
-            messageDB.getServerID(message.id, !message.isMms)?.let { messageServerID ->
+            lokiMessageDb.getServerID(message.id, !message.isMms)?.let { messageServerID ->
                 OpenGroupAPIV2.deleteMessage(messageServerID, openGroup.room, openGroup.server)
                     .success {
                         messageDataProvider.deleteMessage(message.id, !message.isMms)
@@ -1194,17 +1207,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     fun deleteMessagesWithoutUnsendRequest(messages: Set<MessageRecord>) {
         val messageCount = messages.size
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
-        val messageDB = DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2)
         val builder = AlertDialog.Builder(this)
         builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
         builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
         builder.setCancelable(true)
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+        val openGroup = lokiThreadDb.getOpenGroupChat(threadID)
         builder.setPositiveButton(R.string.delete) { _, _ ->
             if (openGroup != null) {
                 val messageServerIDs = mutableMapOf<Long, MessageRecord>()
                 for (message in messages) {
-                    val messageServerID = messageDB.getServerID(message.id, !message.isMms) ?: continue
+                    val messageServerID = lokiMessageDb.getServerID(message.id, !message.isMms) ?: continue
                     messageServerIDs[messageServerID] = message
                 }
                 for ((messageServerID, message) in messageServerIDs) {
@@ -1218,9 +1230,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             } else {
                 for (message in messages) {
                     if (message.isMms) {
-                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
+                        mmsDb.deleteMessage(message.id)
                     } else {
-                        DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
+                        smsDb.deleteMessage(message.id)
                     }
                 }
             }
@@ -1239,7 +1251,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             return
         }
         val allSentByCurrentUser = messages.all { it.isOutgoing }
-        val allHasHash = messages.all { DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2).getMessageServerHash(it.id) != null }
+        val allHasHash = messages.all { lokiMessageDb.getMessageServerHash(it.id) != null }
         if (thread.isOpenGroupRecipient) {
             val messageCount = messages.size
             val builder = AlertDialog.Builder(this)
@@ -1305,7 +1317,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         builder.setTitle(R.string.ConversationFragment_ban_selected_user)
         builder.setMessage("This will ban the selected user from this room. It won't ban them from other rooms.")
         builder.setCancelable(true)
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)!!
+        val openGroup = lokiThreadDb.getOpenGroupChat(threadID)!!
         builder.setPositiveButton(R.string.ban) { _, _ ->
             OpenGroupAPIV2.ban(sessionID, openGroup.room, openGroup.server).successUi {
                 Toast.makeText(this@ConversationActivityV2, "Successfully banned user", Toast.LENGTH_LONG).show()
@@ -1327,7 +1339,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         builder.setTitle(R.string.ConversationFragment_ban_selected_user)
         builder.setMessage("This will ban the selected user from this room and delete all messages sent by them. It won't ban them from other rooms or delete the messages they sent there.")
         builder.setCancelable(true)
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)!!
+        val openGroup = lokiThreadDb.getOpenGroupChat(threadID)!!
         builder.setPositiveButton(R.string.ban) { _, _ ->
             OpenGroupAPIV2.banAndDeleteAll(sessionID, openGroup.room, openGroup.server).successUi {
                 Toast.makeText(this@ConversationActivityV2, "Successfully banned user and deleted all their messages", Toast.LENGTH_LONG).show()
@@ -1468,8 +1480,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         if (text.isEmpty()) { return }
         val drafts = Drafts()
         drafts.add(DraftDatabase.Draft(DraftDatabase.Draft.TEXT, text))
-        val draftDB = DatabaseFactory.getDraftDatabase(this)
-        draftDB.insertDrafts(threadID, drafts)
+        draftDb.insertDrafts(threadID, drafts)
     }
     // endregion
 
@@ -1502,7 +1513,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun jumpToMessage(author: Address, timestamp: Long, onMessageNotFound: Runnable?) {
         SimpleTask.run(lifecycle, {
-            DatabaseFactory.getMmsSmsDatabase(this).getMessagePositionInConversation(threadID, timestamp, author)
+            mmsSmsDb.getMessagePositionInConversation(threadID, timestamp, author)
         }) { p: Int -> moveToMessagePosition(p, onMessageNotFound) }
     }
 

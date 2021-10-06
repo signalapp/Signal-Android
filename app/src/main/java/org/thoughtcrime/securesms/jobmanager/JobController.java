@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager;
 
 import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -8,13 +9,13 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.utilities.Data;
+import org.session.libsession.utilities.Debouncer;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
-import org.session.libsignal.utilities.Log;
-import org.session.libsession.utilities.Debouncer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,7 +38,6 @@ class JobController {
   private final JobInstantiator        jobInstantiator;
   private final ConstraintInstantiator constraintInstantiator;
   private final Data.Serializer        dataSerializer;
-  private final DependencyInjector     dependencyInjector;
   private final Scheduler              scheduler;
   private final Debouncer              debouncer;
   private final Callback               callback;
@@ -48,7 +48,6 @@ class JobController {
                 @NonNull JobInstantiator jobInstantiator,
                 @NonNull ConstraintInstantiator constraintInstantiator,
                 @NonNull Data.Serializer dataSerializer,
-                @NonNull DependencyInjector dependencyInjector,
                 @NonNull Scheduler scheduler,
                 @NonNull Debouncer debouncer,
                 @NonNull Callback callback)
@@ -58,7 +57,6 @@ class JobController {
     this.jobInstantiator        = jobInstantiator;
     this.constraintInstantiator = constraintInstantiator;
     this.dataSerializer         = dataSerializer;
-    this.dependencyInjector     = dependencyInjector;
     this.scheduler              = scheduler;
     this.debouncer              = debouncer;
     this.callback               = callback;
@@ -328,8 +326,6 @@ class JobController {
     job.setRunAttempt(jobSpec.getRunAttempt());
     job.setNextRunAttemptTime(jobSpec.getNextRunAttemptTime());
     job.setContext(application);
-
-    dependencyInjector.injectDependencies(job);
 
     return job;
   }

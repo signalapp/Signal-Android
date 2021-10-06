@@ -12,11 +12,9 @@ import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.session.libsession.avatars.ProfileContactPhoto
 import org.session.libsession.messaging.contacts.Contact
-import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator
 
@@ -46,14 +44,14 @@ class ProfilePictureView : RelativeLayout {
     // region Updating
     fun update(recipient: Recipient, threadID: Long) {
         fun getUserDisplayName(publicKey: String): String {
-            val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+            val contact = DatabaseComponent.get(context).sessionContactDatabase().getContactWithSessionID(publicKey)
             return contact?.displayName(Contact.ContactContext.REGULAR) ?: publicKey
         }
         fun isOpenGroupWithProfilePicture(recipient: Recipient): Boolean {
             return recipient.isOpenGroupRecipient && recipient.groupAvatarId != null
         }
         if (recipient.isGroupRecipient && !isOpenGroupWithProfilePicture(recipient)) {
-            val members = DatabaseFactory.getGroupDatabase(context)
+            val members = DatabaseComponent.get(context).groupDatabase()
                     .getGroupMemberAddresses(recipient.address.toGroupString(), true)
                     .sorted()
                     .take(2)

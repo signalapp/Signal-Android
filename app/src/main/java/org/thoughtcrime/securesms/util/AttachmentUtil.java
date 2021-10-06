@@ -14,9 +14,8 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
-
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.util.Collections;
 import java.util.Set;
@@ -61,14 +60,14 @@ public class AttachmentUtil {
   {
     AttachmentId attachmentId    = attachment.getAttachmentId();
     long         mmsId           = attachment.getMmsId();
-    int          attachmentCount = DatabaseFactory.getAttachmentDatabase(context)
+    int          attachmentCount = DatabaseComponent.get(context).attachmentDatabase()
         .getAttachmentsForMessage(mmsId)
         .size();
 
     if (attachmentCount <= 1) {
-      DatabaseFactory.getMmsDatabase(context).deleteMessage(mmsId);
+      DatabaseComponent.get(context).mmsDatabase().deleteMessage(mmsId);
     } else {
-      DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(attachmentId);
+      DatabaseComponent.get(context).attachmentDatabase().deleteAttachment(attachmentId);
     }
   }
 

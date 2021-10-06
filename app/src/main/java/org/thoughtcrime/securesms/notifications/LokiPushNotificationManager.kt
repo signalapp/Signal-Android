@@ -2,14 +2,16 @@ package org.thoughtcrime.securesms.notifications
 
 import android.content.Context
 import nl.komponents.kovenant.functional.map
-import okhttp3.*
+import okhttp3.MediaType
+import okhttp3.Request
+import okhttp3.RequestBody
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.snode.OnionRequestAPI
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.JsonUtil
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.retryIfNeeded
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 
 object LokiPushNotificationManager {
     private val maxRetryCount = 4
@@ -53,7 +55,7 @@ object LokiPushNotificationManager {
             }
         }
         // Unsubscribe from all closed groups
-        val allClosedGroupPublicKeys = DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys()
+        val allClosedGroupPublicKeys = DatabaseComponent.get(context).lokiAPIDatabase().getAllClosedGroupPublicKeys()
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(context, ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
@@ -84,7 +86,7 @@ object LokiPushNotificationManager {
             }
         }
         // Subscribe to all closed groups
-        val allClosedGroupPublicKeys = DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys()
+        val allClosedGroupPublicKeys = DatabaseComponent.get(context).lokiAPIDatabase().getAllClosedGroupPublicKeys()
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(context, ClosedGroupOperation.Subscribe, closedGroup, publicKey)
         }

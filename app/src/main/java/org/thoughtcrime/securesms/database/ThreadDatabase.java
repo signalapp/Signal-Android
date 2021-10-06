@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.util.SessionMetaProtocol;
@@ -241,7 +242,7 @@ public class ThreadDatabase extends Database {
     Cursor cursor = null;
 
     try {
-      cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId);
+      cursor = DatabaseComponent.get(context).mmsSmsDatabase().getConversation(threadId);
 
       if (cursor != null && length > 0 && cursor.getCount() > length) {
         Log.w("ThreadDatabase", "Cursor count is greater than length!");
@@ -251,8 +252,8 @@ public class ThreadDatabase extends Database {
 
         Log.i("ThreadDatabase", "Cut off tweet date: " + lastTweetDate);
 
-        DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
-        DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
+        DatabaseComponent.get(context).smsDatabase().deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
+        DatabaseComponent.get(context).mmsDatabase().deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
 
         update(threadId, false);
         notifyConversationListeners(threadId);
@@ -275,8 +276,8 @@ public class ThreadDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
 
-    final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
-    final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
+    final List<MarkedMessageInfo> smsRecords = DatabaseComponent.get(context).smsDatabase().setMessagesRead(threadId);
+    final List<MarkedMessageInfo> mmsRecords = DatabaseComponent.get(context).mmsDatabase().setMessagesRead(threadId);
 
     notifyConversationListListeners();
 
@@ -428,10 +429,10 @@ public class ThreadDatabase extends Database {
   }
 
   public void deleteConversation(long threadId) {
-    DatabaseFactory.getSmsDatabase(context).deleteThread(threadId);
-    DatabaseFactory.getMmsDatabase(context).deleteThread(threadId);
-    DatabaseFactory.getDraftDatabase(context).clearDrafts(threadId);
-    DatabaseFactory.getLokiMessageDatabase(context).deleteThread(threadId);
+    DatabaseComponent.get(context).smsDatabase().deleteThread(threadId);
+    DatabaseComponent.get(context).mmsDatabase().deleteThread(threadId);
+    DatabaseComponent.get(context).draftDatabase().clearDrafts(threadId);
+    DatabaseComponent.get(context).lokiMessageDatabase().deleteThread(threadId);
     deleteThread(threadId);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
@@ -485,7 +486,7 @@ public class ThreadDatabase extends Database {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
       } else {
-        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
+        DatabaseComponent.get(context).recipientDatabase().setProfileSharing(recipient, true);
         return createThreadForRecipient(recipient.getAddress(), recipient.isGroupRecipient(), distributionType);
       }
     } finally {
@@ -529,7 +530,7 @@ public class ThreadDatabase extends Database {
   }
 
   public boolean update(long threadId, boolean unarchive) {
-    MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
+    MmsSmsDatabase mmsSmsDatabase = DatabaseComponent.get(context).mmsSmsDatabase();
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
     boolean shouldDeleteEmptyThread = deleteThreadOnEmpty(threadId);
@@ -657,8 +658,8 @@ public class ThreadDatabase extends Database {
       Optional<GroupRecord>       groupRecord;
 
       if (distributionType != DistributionTypes.ARCHIVE && distributionType != DistributionTypes.INBOX_ZERO) {
-        settings    = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(cursor);
-        groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(cursor);
+        settings    = DatabaseComponent.get(context).recipientDatabase().getRecipientSettings(cursor);
+        groupRecord = DatabaseComponent.get(context).groupDatabase().getGroup(cursor);
       } else {
         settings    = Optional.absent();
         groupRecord = Optional.absent();

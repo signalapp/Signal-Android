@@ -17,8 +17,6 @@ class MessageReceiveJob(val data: ByteArray, val serverHash: String? = null, val
         val TAG = MessageReceiveJob::class.simpleName
         val KEY: String = "MessageReceiveJob"
 
-        private val RECEIVE_LOCK = Object()
-
         // Keys used for database storage
         private val DATA_KEY = "data"
         private val SERVER_HASH_KEY = "serverHash"
@@ -36,9 +34,7 @@ class MessageReceiveJob(val data: ByteArray, val serverHash: String? = null, val
             val isRetry: Boolean = failureCount != 0
             val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID)
             message.serverHash = serverHash
-            synchronized(RECEIVE_LOCK) { // FIXME: Do we need this?
-                MessageReceiver.handle(message, proto, this.openGroupID)
-            }
+            MessageReceiver.handle(message, proto, this.openGroupID)
             this.handleSuccess()
             deferred.resolve(Unit)
         } catch (e: Exception) {
@@ -82,11 +78,15 @@ class MessageReceiveJob(val data: ByteArray, val serverHash: String? = null, val
     class Factory: Job.Factory<MessageReceiveJob> {
 
         override fun create(data: Data): MessageReceiveJob {
+            val dataArray = data.getByteArray(DATA_KEY)
+            val serverHash = data.getStringOrDefault(SERVER_HASH_KEY, null)
+            val openGroupMessageServerID = data.getLongOrDefault(OPEN_GROUP_MESSAGE_SERVER_ID_KEY, -1).let { if (it == -1L) null else it }
+            val openGroupID = data.getStringOrDefault(OPEN_GROUP_ID_KEY, null)
             return MessageReceiveJob(
-                data.getByteArray(DATA_KEY),
-                data.getString(SERVER_HASH_KEY),
-                data.getLong(OPEN_GROUP_MESSAGE_SERVER_ID_KEY),
-                data.getString(OPEN_GROUP_ID_KEY)
+                dataArray,
+                serverHash,
+                openGroupMessageServerID,
+                openGroupID
             )
         }
     }

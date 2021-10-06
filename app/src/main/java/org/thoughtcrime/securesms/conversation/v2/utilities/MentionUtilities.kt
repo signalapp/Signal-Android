@@ -11,8 +11,8 @@ import androidx.core.content.res.ResourcesCompat
 import network.loki.messenger.R
 import nl.komponents.kovenant.combine.Tuple2
 import org.session.libsession.messaging.contacts.Contact
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.util.UiModeUtilities
 import java.util.regex.Pattern
 
@@ -26,7 +26,7 @@ object MentionUtilities {
     @JvmStatic
     fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, threadID: Long, context: Context): SpannableString {
         @Suppress("NAME_SHADOWING") var text = text
-        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        val threadDB = DatabaseComponent.get(context).threadDatabase()
         val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
         val pattern = Pattern.compile("@[0-9a-fA-F]*")
         var matcher = pattern.matcher(text)
@@ -39,7 +39,7 @@ object MentionUtilities {
                 val userDisplayName: String? = if (publicKey.equals(userPublicKey, ignoreCase = true)) {
                     TextSecurePreferences.getProfileName(context)
                 } else {
-                    val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+                    val contact = DatabaseComponent.get(context).sessionContactDatabase().getContactWithSessionID(publicKey)
                     @Suppress("NAME_SHADOWING") val context = if (isOpenGroup) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
                     contact?.displayName(context)
                 }

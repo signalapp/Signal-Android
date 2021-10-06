@@ -12,30 +12,32 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.text.TextUtils;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import network.loki.messenger.BuildConfig;
-import network.loki.messenger.R;
 import org.session.libsession.utilities.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.Recipient.*;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.VibrateState;
 import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import network.loki.messenger.BuildConfig;
+import network.loki.messenger.R;
 
 public class NotificationChannels {
 
@@ -90,7 +92,7 @@ public class NotificationChannels {
       return;
     }
 
-    RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase db = DatabaseComponent.get(context).recipientDatabase();
 
     try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
       Recipient recipient;
@@ -292,7 +294,7 @@ public class NotificationChannels {
                                                  generateChannelIdFor(recipient.getAddress()),
                                                  channel -> channel.setSound(uri == null ? Settings.System.DEFAULT_NOTIFICATION_URI : uri, getRingtoneAudioAttributes()));
 
-    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient, success ? newChannelId : null);
+    DatabaseComponent.get(context).recipientDatabase().setNotificationChannel(recipient, success ? newChannelId : null);
     ensureCustomChannelConsistency(context);
   }
 
@@ -359,7 +361,7 @@ public class NotificationChannels {
                                                  newChannelId,
                                                  channel -> channel.enableVibration(enabled));
 
-    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient, success ? newChannelId : null);
+    DatabaseComponent.get(context).recipientDatabase().setNotificationChannel(recipient, success ? newChannelId : null);
     ensureCustomChannelConsistency(context);
   }
 
@@ -391,7 +393,7 @@ public class NotificationChannels {
   @WorkerThread
   public static synchronized void ensureCustomChannelConsistency(@NonNull Context context) {
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    RecipientDatabase   db                  = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase   db                  = DatabaseComponent.get(context).recipientDatabase();
     List<Recipient>     customRecipients    = new ArrayList<>();
     Set<String>         customChannelIds    = new HashSet<>();
     Set<String>         existingChannelIds  = Stream.of(notificationManager.getNotificationChannels()).map(NotificationChannel::getId).collect(Collectors.toSet());
@@ -503,7 +505,7 @@ public class NotificationChannels {
   @WorkerThread
   @TargetApi(26)
   private static void updateAllRecipientChannelLedColors(@NonNull Context context, @NonNull NotificationManager notificationManager, @NonNull String color) {
-    RecipientDatabase database = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase database = DatabaseComponent.get(context).recipientDatabase();
 
     try (RecipientDatabase.RecipientReader recipients = database.getRecipientsWithNotificationChannels()) {
       Recipient recipient;

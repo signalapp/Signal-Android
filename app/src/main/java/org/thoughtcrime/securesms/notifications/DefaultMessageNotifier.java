@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -61,6 +60,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.SessionMetaProtocol;
@@ -97,7 +97,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static final int    SUMMARY_NOTIFICATION_ID    = 1338;
   private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
-  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
+  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(5);
   private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
 
   private volatile static       long               visibleThread                = -1;
@@ -228,9 +228,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
   {
     boolean    isVisible  = visibleThread == threadId;
 
-    ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
-    Recipient      recipients = DatabaseFactory.getThreadDatabase(context)
-                                               .getRecipientForThreadId(threadId);
+    ThreadDatabase threads    = DatabaseComponent.get(context).threadDatabase();
+    Recipient      recipients = threads.getRecipientForThreadId(threadId);
 
     if (isVisible && recipients != null) {
       List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
@@ -257,8 +256,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
     Cursor pushCursor  = null;
 
     try {
-      telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
-      pushCursor  = DatabaseFactory.getPushDatabase(context).getPending();
+      telcoCursor = DatabaseComponent.get(context).mmsSmsDatabase().getUnread();
+      pushCursor  = DatabaseComponent.get(context).pushDatabase().getPending();
 
       if (((telcoCursor == null || telcoCursor.isAfterLast()) &&
           (pushCursor == null || pushCursor.isAfterLast())) || !TextSecurePreferences.hasSeenWelcomeScreen(context))
@@ -440,9 +439,12 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   private void sendInThreadNotification(Context context, Recipient recipient) {
     if (!TextSecurePreferences.isInThreadNotifications(context) ||
-        ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
+            ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL ||
+            (System.currentTimeMillis() - lastAudibleNotification) < MIN_AUDIBLE_PERIOD_MILLIS)
     {
       return;
+    } else {
+      lastAudibleNotification = System.currentTimeMillis();
     }
 
     Uri uri = null;
@@ -481,7 +483,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
                                                        @NonNull  Cursor cursor)
   {
     NotificationState     notificationState = new NotificationState();
-    MmsSmsDatabase.Reader reader            = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor);
+    MmsSmsDatabase.Reader reader            = DatabaseComponent.get(context).mmsSmsDatabase().readerFor(cursor);
 
     MessageRecord record;
 
@@ -498,7 +500,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
 
       if (threadId != -1) {
-        threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
+        threadRecipients = DatabaseComponent.get(context).threadDatabase().getRecipientForThreadId(threadId);
       }
 
       if (KeyCachingService.isLocked(context)) {
