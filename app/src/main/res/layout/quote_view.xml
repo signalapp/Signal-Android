@@ -132,11 +132,11 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="13dp"
                             android:layout_height="16dp"
-                            android:layout_marginStart="11dp"
                             android:layout_marginTop="8dp"
+                            android:layout_gravity="center_horizontal"
                             android:scaleType="fitXY"
                             android:tint="@color/core_ultramarine"
-                            app:srcCompat="@drawable/triangle_right" />
+                            app:srcCompat="@drawable/exo_icon_play" />
 
                     </FrameLayout>
 
