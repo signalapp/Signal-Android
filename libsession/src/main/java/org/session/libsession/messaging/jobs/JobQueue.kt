@@ -19,7 +19,6 @@ class JobQueue : JobDelegate {
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
     private val rxDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val txDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
-    private val attachmentDispatcher = Executors.newFixedThreadPool(4).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
     private val pendingJobIds = mutableSetOf<String>()
@@ -39,18 +38,15 @@ class JobQueue : JobDelegate {
         scope.launch {
             val rxQueue = Channel<Job>(capacity = 4096)
             val txQueue = Channel<Job>(capacity = 4096)
-            val attachmentQueue = Channel<Job>(capacity = 4096)
 
             val receiveJob = processWithDispatcher(rxQueue, rxDispatcher)
             val txJob = processWithDispatcher(txQueue, txDispatcher)
-            val attachmentJob = processWithDispatcher(attachmentQueue, attachmentDispatcher)
 
             while (isActive) {
                 for (job in queue) {
                     when (job) {
                         is NotifyPNServerJob, is AttachmentUploadJob, is MessageSendJob -> txQueue.send(job)
-                        is AttachmentDownloadJob -> attachmentQueue.send(job)
-                        is MessageReceiveJob, is BatchMessageReceiveJob, is TrimThreadJob -> rxQueue.send(job)
+                        is MessageReceiveJob, is TrimThreadJob, is BatchMessageReceiveJob, is AttachmentDownloadJob-> rxQueue.send(job)
                         else -> throw IllegalStateException("Unexpected job type.")
                     }
                 }
@@ -59,7 +55,6 @@ class JobQueue : JobDelegate {
             // The job has been cancelled
             receiveJob.cancel()
             txJob.cancel()
-            attachmentJob.cancel()
 
         }
     }
