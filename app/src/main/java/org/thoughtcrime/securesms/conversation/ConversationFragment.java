@@ -219,6 +219,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private int                         lastSeenScrollOffset;
   private View                        toolbarShadow;
   private Stopwatch                   startupStopwatch;
+  private View                        reactionsShade;
 
   private GiphyMp4ProjectionRecycler giphyMp4ProjectionRecycler;
   private Colorizer                  colorizer;
@@ -256,6 +257,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
     scrollDateHeader      = view.findViewById(R.id.scroll_date_header);
     toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
+    reactionsShade        = view.findViewById(R.id.reactions_shade);
 
     ConversationIntents.Args args = ConversationIntents.Args.from(requireActivity().getIntent());
 
@@ -387,6 +389,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void clearFocusedItem() {
     multiselectItemDecoration.setFocusedItem(null);
     list.invalidateItemDecorations();
+    reactionsShade.setVisibility(View.GONE);
   }
 
   private void setupListLayoutListeners() {
@@ -408,10 +411,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private void setListVerticalTranslation() {
     if (list.canScrollVertically(1) || list.canScrollVertically(-1) || list.getChildCount() == 0) {
       list.setTranslationY(0);
+      reactionsShade.setTranslationY(0);
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS);
     } else {
       int chTop = list.getChildAt(list.getChildCount() - 1).getTop();
       list.setTranslationY(Math.min(0, -chTop));
+      reactionsShade.setTranslationY(Math.min(0, -chTop));
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     }
   }
@@ -1392,6 +1397,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
         multiselectItemDecoration.setFocusedItem(new MultiselectPart.Message(item.getConversationMessage()));
+        reactionsShade.setVisibility(View.VISIBLE);
         list.invalidateItemDecorations();
 
         isReacting = true;
@@ -1548,6 +1554,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       if (getContext() == null) return;
 
       multiselectItemDecoration.setFocusedItem(multiselectPart);
+      reactionsShade.setVisibility(View.VISIBLE);
       ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
     }
 
