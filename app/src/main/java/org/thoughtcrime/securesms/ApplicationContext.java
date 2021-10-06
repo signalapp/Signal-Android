@@ -33,6 +33,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import org.conscrypt.Conscrypt;
 import org.session.libsession.avatars.AvatarHelper;
+import org.session.libsession.database.MessageDataProvider;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2;
@@ -50,13 +51,16 @@ import org.session.libsignal.utilities.ThreadUtils;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.LokiAPIDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.database.Storage;
+import org.thoughtcrime.securesms.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
+import org.thoughtcrime.securesms.dependencies.DatabaseModule;
 import org.thoughtcrime.securesms.groups.OpenGroupManager;
 import org.thoughtcrime.securesms.home.HomeActivity;
-import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
+import org.thoughtcrime.securesms.groups.OpenGroupManager;
+import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
@@ -92,7 +96,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import dagger.ObjectGraph;
+import javax.inject.Inject;
+
+import dagger.hilt.EntryPoints;
+import dagger.hilt.android.HiltAndroidApp;
 import kotlin.Unit;
 import kotlinx.coroutines.Job;
 import network.loki.messenger.BuildConfig;
@@ -105,7 +112,8 @@ import network.loki.messenger.BuildConfig;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends Application implements DependencyInjector, DefaultLifecycleObserver {
+@HiltAndroidApp
+public class ApplicationContext extends Application implements DefaultLifecycleObserver {
 
     public static final String PREFERENCES_NAME = "SecureSMS-Preferences";
 
@@ -117,19 +125,26 @@ public class ApplicationContext extends Application implements DependencyInjecto
     private JobManager jobManager;
     private ReadReceiptManager readReceiptManager;
     private ProfileManager profileManager;
-    private ObjectGraph objectGraph;
     public MessageNotifier messageNotifier = null;
     public Poller poller = null;
     public Broadcaster broadcaster = null;
-    public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
     private Handler conversationListNotificationHandler;
     private PersistentLogger persistentLogger;
+
+    @Inject LokiAPIDatabase lokiAPIDatabase;
+    @Inject Storage storage;
+    @Inject MessageDataProvider messageDataProvider;
+    @Inject JobDatabase jobDatabase;
 
     private volatile boolean isAppVisible;
 
     public static ApplicationContext getInstance(Context context) {
         return (ApplicationContext) context.getApplicationContext();
+    }
+
+    public DatabaseComponent getDatabaseComponent() {
+        return EntryPoints.get(getApplicationContext(), DatabaseComponent.class);
     }
 
     public Handler getConversationListNotificationHandler() {
@@ -142,23 +157,23 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
 @Override
     public void onCreate() {
+        DatabaseModule.init(this);
         super.onCreate();
         Log.i(TAG, "onCreate()");
         startKovenant();
         initializeSecurityProvider();
         initializeLogging();
         initializeCrashHandling();
-        initializeDependencyInjection();
         NotificationChannels.create(this);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         AppContext.INSTANCE.configureKovenant();
         messageNotifier = new OptimizedMessageNotifier(new DefaultMessageNotifier());
         broadcaster = new Broadcaster(this);
         conversationListNotificationHandler = new Handler(Looper.getMainLooper());
-        LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
+        LokiAPIDatabase apiDB = getDatabaseComponent().lokiAPIDatabase();
         MessagingModuleConfiguration.Companion.configure(this,
-                DatabaseFactory.getStorage(this),
-                DatabaseFactory.getAttachmentProvider(this),
+                storage,
+                messageDataProvider,
                 ()-> KeyPairUtilities.INSTANCE.getUserED25519KeyPair(this)
         );
         SnodeModule.Companion.configure(apiDB, broadcaster);
@@ -214,13 +229,6 @@ public class ApplicationContext extends Application implements DependencyInjecto
         stopKovenant(); // Loki
         OpenGroupManager.INSTANCE.stopPolling();
         super.onTerminate();
-    }
-
-    @Override
-    public void injectDependencies(Object object) {
-        if (object instanceof InjectableType) {
-            objectGraph.inject(object);
-        }
     }
 
     public void initializeLocaleParser() {
@@ -299,14 +307,8 @@ public class ApplicationContext extends Application implements DependencyInjecto
             .setJobFactories(JobManagerFactories.getJobFactories(this))
             .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
             .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
-            .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
-            .setDependencyInjector(this)
+            .setJobStorage(new FastJobStorage(jobDatabase))
             .build());
-    }
-
-    private void initializeDependencyInjection() {
-        communicationModule = new SignalCommunicationModule(this);
-        this.objectGraph = ObjectGraph.create(communicationModule);
     }
 
     private void initializeExpiringMessageManager() {

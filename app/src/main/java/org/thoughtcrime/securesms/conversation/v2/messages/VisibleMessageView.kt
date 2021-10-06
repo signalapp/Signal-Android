@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact.ContactContext
@@ -24,18 +25,27 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.home.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.*
 import java.util.*
+import javax.inject.Inject
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
-
+@AndroidEntryPoint
 class VisibleMessageView : LinearLayout {
+
+    @Inject lateinit var threadDb: ThreadDatabase
+    @Inject lateinit var contactDb: SessionContactDatabase
+    @Inject lateinit var lokiThreadDb: LokiThreadDatabase
+    @Inject lateinit var mmsSmsDb: MmsSmsDatabase
+    @Inject lateinit var smsDb: SmsDatabase
+    @Inject lateinit var mmsDb: MmsDatabase
+
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val swipeToReplyIcon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_reply_24)!!.mutate()
     private val swipeToReplyIconRect = Rect()
@@ -82,10 +92,8 @@ class VisibleMessageView : LinearLayout {
         val sender = message.individualRecipient
         val senderSessionID = sender.address.serialize()
         val threadID = message.threadId
-        val threadDB = DatabaseFactory.getThreadDatabase(context)
-        val thread = threadDB.getRecipientForThreadId(threadID) ?: return
-        val contactDB = DatabaseFactory.getSessionContactDatabase(context)
-        val contact = contactDB.getContactWithSessionID(senderSessionID)
+        val thread = threadDb.getRecipientForThreadId(threadID) ?: return
+        val contact = contactDb.getContactWithSessionID(senderSessionID)
         val isGroupThread = thread.isGroupRecipient
         val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
         val isEndOfMessageCluster = isEndOfMessageCluster(message, next, isGroupThread)
@@ -98,7 +106,7 @@ class VisibleMessageView : LinearLayout {
             profilePictureView.update(message.individualRecipient, threadID)
             profilePictureView.setOnClickListener { showUserDetails(message.recipient.address.toString()) }
             if (thread.isOpenGroupRecipient) {
-                val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID) ?: return
+                val openGroup = lokiThreadDb.getOpenGroupChat(threadID) ?: return
                 val isModerator = OpenGroupAPIV2.isUserModerator(senderSessionID, openGroup.room, openGroup.server)
                 moderatorIconImageView.visibility = if (isModerator) View.VISIBLE else View.INVISIBLE
             } else {
@@ -143,7 +151,7 @@ class VisibleMessageView : LinearLayout {
             messageStatusImageView.setImageDrawable(drawable)
         }
         if (message.isOutgoing) {
-            val lastMessageID = DatabaseFactory.getMmsSmsDatabase(context).getLastMessageID(message.threadId)
+            val lastMessageID = mmsSmsDb.getLastMessageID(message.threadId)
             messageStatusImageView.isVisible = !message.isSent || message.id == lastMessageID
         } else {
             messageStatusImageView.isVisible = false
@@ -225,7 +233,7 @@ class VisibleMessageView : LinearLayout {
                     val expirationManager = ApplicationContext.getInstance(context).expiringMessageManager
                     val id = message.getId()
                     val mms = message.isMms
-                    if (mms) DatabaseFactory.getMmsDatabase(context).markExpireStarted(id) else DatabaseFactory.getSmsDatabase(context).markExpireStarted(id)
+                    if (mms) mmsDb.markExpireStarted(id) else smsDb.markExpireStarted(id)
                     expirationManager.scheduleDeletion(id, mms, message.expiresIn)
                 }
             } else {

@@ -5,18 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.TaskStackBuilder;
-import android.text.TextUtils;
-import android.widget.Toast;
 
+import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import network.loki.messenger.R;
-
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.session.libsession.utilities.recipients.Recipient;
 
 public class CommunicationActions {
 
@@ -28,7 +27,7 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+        return DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(recipient);
       }
 
       @Override

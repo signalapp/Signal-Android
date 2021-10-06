@@ -4,12 +4,13 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
 
@@ -47,8 +48,8 @@ public class PartAuthority {
     int match = uriMatcher.match(uri);
     try {
       switch (match) {
-      case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
-      case THUMB_ROW:      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(new PartUriParser(uri).getPartId());
+      case PART_ROW:       return DatabaseComponent.get(context).attachmentDatabase().getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
+      case THUMB_ROW:      return DatabaseComponent.get(context).attachmentDatabase().getThumbnailStream(new PartUriParser(uri).getPartId());
       case BLOB_ROW:       return BlobProvider.getInstance().getStream(context, uri);
       default:             return context.getContentResolver().openInputStream(uri);
       }
@@ -63,7 +64,7 @@ public class PartAuthority {
     switch (match) {
     case THUMB_ROW:
     case PART_ROW:
-      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+      Attachment attachment = DatabaseComponent.get(context).attachmentDatabase().getAttachment(new PartUriParser(uri).getPartId());
 
       if (attachment != null) return attachment.getFileName();
       else                    return null;
@@ -80,7 +81,7 @@ public class PartAuthority {
     switch (match) {
       case THUMB_ROW:
       case PART_ROW:
-        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+        Attachment attachment = DatabaseComponent.get(context).attachmentDatabase().getAttachment(new PartUriParser(uri).getPartId());
 
         if (attachment != null) return attachment.getSize();
         else                    return null;
@@ -97,7 +98,7 @@ public class PartAuthority {
     switch (match) {
       case THUMB_ROW:
       case PART_ROW:
-        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+        Attachment attachment = DatabaseComponent.get(context).attachmentDatabase().getAttachment(new PartUriParser(uri).getPartId());
 
         if (attachment != null) return attachment.getContentType();
         else                    return null;

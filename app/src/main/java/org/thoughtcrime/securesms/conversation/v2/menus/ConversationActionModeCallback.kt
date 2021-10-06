@@ -9,9 +9,9 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.ConversationAdapter
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 
 class ConversationActionModeCallback(private val adapter: ConversationAdapter, private val threadID: Long,
     private val context: Context) : ActionMode.Callback {
@@ -31,8 +31,8 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         val hasText = selectedItems.any { it.body.isNotEmpty() }
         if (selectedItems.isEmpty()) { return }
         val firstMessage = selectedItems.iterator().next()
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
-        val thread = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!
+        val openGroup = DatabaseComponent.get(context).lokiThreadDatabase().getOpenGroupChat(threadID)
+        val thread = DatabaseComponent.get(context).threadDatabase().getRecipientForThreadId(threadID)!!
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         fun userCanDeleteSelectedItems(): Boolean {
             val allSentByCurrentUser = selectedItems.all { it.isOutgoing }

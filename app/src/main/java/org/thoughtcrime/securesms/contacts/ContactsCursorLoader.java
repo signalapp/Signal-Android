@@ -21,21 +21,21 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.provider.ContactsContract;
-import androidx.annotation.NonNull;
-import androidx.loader.content.CursorLoader;
 import android.text.TextUtils;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
+import androidx.loader.content.CursorLoader;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsession.utilities.GroupRecord;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-
-import org.session.libsession.utilities.GroupRecord;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import network.loki.messenger.R;
 
 /**
  * CursorLoader that initializes a ContactsDatabase instance
@@ -169,7 +169,7 @@ public class ContactsCursorLoader extends CursorLoader {
 
 
   private Cursor getRecentConversationsCursor() {
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getContext());
+    ThreadDatabase threadDatabase = DatabaseComponent.get(getContext()).threadDatabase();
 
     MatrixCursor recentConversations = new MatrixCursor(CONTACT_PROJECTION, RECENT_CONVERSATION_MAX);
     try (Cursor rawConversations = threadDatabase.getRecentConversationList(RECENT_CONVERSATION_MAX)) {
@@ -208,7 +208,7 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private Cursor getGroupsCursor() {
     MatrixCursor groupContacts = new MatrixCursor(CONTACT_PROJECTION);
-    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter)) {
+    try (GroupDatabase.Reader reader = DatabaseComponent.get(getContext()).groupDatabase().getGroupsFilteredByTitle(filter)) {
       GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groupContacts.addRow(new Object[] { groupRecord.getTitle(),

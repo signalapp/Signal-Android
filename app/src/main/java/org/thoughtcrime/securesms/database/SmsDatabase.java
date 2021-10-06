@@ -43,6 +43,7 @@ import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -120,7 +121,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     long threadId = getThreadIdForMessage(id);
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    DatabaseComponent.get(context).threadDatabase().update(threadId, false);
     notifyConversationListeners(threadId);
   }
 
@@ -191,7 +192,7 @@ public class SmsDatabase extends MessagingDatabase {
     contentValues.put(BODY, "");
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
     long threadId = getThreadIdForMessage(messageId);
-    if (!read) { DatabaseFactory.getThreadDatabase(context).decrementUnread(threadId, 1); }
+    if (!read) { DatabaseComponent.get(context).threadDatabase().decrementUnread(threadId, 1); }
     updateTypeBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_DELETED_TYPE);
   }
 
@@ -210,7 +211,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     long threadId = getThreadIdForMessage(id);
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    DatabaseComponent.get(context).threadDatabase().update(threadId, false);
     notifyConversationListeners(threadId);
   }
 
@@ -273,7 +274,7 @@ public class SmsDatabase extends MessagingDatabase {
                              ID + " = ?",
                              new String[] {String.valueOf(cursor.getLong(cursor.getColumnIndexOrThrow(ID)))});
 
-            DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+            DatabaseComponent.get(context).threadDatabase().update(threadId, false);
             notifyConversationListeners(threadId);
             foundMessage = true;
           }
@@ -353,7 +354,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     long threadId = getThreadIdForMessage(messageId);
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    DatabaseComponent.get(context).threadDatabase().update(threadId, true);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
 
@@ -387,8 +388,8 @@ public class SmsDatabase extends MessagingDatabase {
 
     long       threadId;
 
-    if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-    else                        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
+    if (groupRecipient == null) threadId = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(recipient);
+    else                        threadId = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(groupRecipient);
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender().serialize());
@@ -421,13 +422,13 @@ public class SmsDatabase extends MessagingDatabase {
       long           messageId = db.insert(TABLE_NAME, null, values);
 
       if (unread) {
-        DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+        DatabaseComponent.get(context).threadDatabase().incrementUnread(threadId, 1);
       }
 
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      DatabaseComponent.get(context).threadDatabase().update(threadId, true);
 
       if (message.getSubscriptionId() != -1) {
-        DatabaseFactory.getRecipientDatabase(context).setDefaultSubscriptionId(recipient, message.getSubscriptionId());
+        DatabaseComponent.get(context).recipientDatabase().setDefaultSubscriptionId(recipient, message.getSubscriptionId());
       }
 
       notifyConversationListeners(threadId);
@@ -446,7 +447,7 @@ public class SmsDatabase extends MessagingDatabase {
 
   public Optional<InsertResult> insertMessageOutbox(long threadId, OutgoingTextMessage message, long serverTimestamp) {
     if (threadId == -1) {
-      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(message.getRecipient());
+      threadId = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(message.getRecipient());
     }
     long messageId = insertMessageOutbox(threadId, message, false, serverTimestamp, null);
     if (messageId == -1) {
@@ -493,10 +494,10 @@ public class SmsDatabase extends MessagingDatabase {
       insertListener.onComplete();
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
-    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
+    DatabaseComponent.get(context).threadDatabase().update(threadId, true);
+    DatabaseComponent.get(context).threadDatabase().setLastSeen(threadId);
 
-    DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
+    DatabaseComponent.get(context).threadDatabase().setHasSent(threadId, true);
 
     notifyConversationListeners(threadId);
 
@@ -536,12 +537,12 @@ public class SmsDatabase extends MessagingDatabase {
     long threadId = getThreadIdForMessage(messageId);
     try {
       SmsMessageRecord toDelete = getMessage(messageId);
-      DatabaseFactory.getMmsDatabase(context).deleteQuotedFromMessages(toDelete);
+      DatabaseComponent.get(context).mmsDatabase().deleteQuotedFromMessages(toDelete);
     } catch (NoSuchMessageException e) {
       Log.e(TAG, "Couldn't find message record for messageId "+messageId, e);
     }
     db.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
-    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    boolean threadDeleted = DatabaseComponent.get(context).threadDatabase().update(threadId, false);
     notifyConversationListeners(threadId);
     return threadDeleted;
   }

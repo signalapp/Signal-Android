@@ -3,11 +3,12 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.JsonUtil
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
@@ -26,7 +27,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     fun getThreadID(hexEncodedPublicKey: String): Long {
         val address = Address.fromSerialized(hexEncodedPublicKey)
         val recipient = Recipient.from(context, address, false)
-        return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
+        return DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(recipient)
     }
 
     fun getAllV2OpenGroups(): Map<Long, OpenGroupV2> {

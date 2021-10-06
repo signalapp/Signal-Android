@@ -29,7 +29,6 @@ import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.ListenableFutureTask;
 import org.session.libsession.utilities.MaterialColor;
-import org.session.libsession.utilities.SoftHashMap;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
@@ -43,6 +42,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 
 class RecipientProvider {
@@ -222,17 +222,17 @@ class RecipientProvider {
 
   private static class RecipientCache {
 
-    private final Map<Address,Recipient> cache = new SoftHashMap<>(1000);
+    private final Map<Address,Recipient> cache = new ConcurrentHashMap<>(1000);
 
-    public synchronized Recipient get(Address address) {
+    public Recipient get(Address address) {
       return cache.get(address);
     }
 
-    public synchronized void set(Address address, Recipient recipient) {
+    public void set(Address address, Recipient recipient) {
       cache.put(address, recipient);
     }
 
-    public synchronized boolean remove(Address address) {
+    public boolean remove(Address address) {
       return cache.remove(address) != null;
     }
 

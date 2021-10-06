@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 
@@ -264,8 +265,8 @@ public class MmsDatabase extends MessagingDatabase {
                              columnName + " = " + columnName + " + 1 WHERE " + ID + " = ?",
                              new String[] {String.valueOf(id)});
 
-            DatabaseFactory.getGroupReceiptDatabase(context).update(ourAddress, id, status, timestamp);
-            DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+            DatabaseComponent.get(context).groupReceiptDatabase().update(ourAddress, id, status, timestamp);
+            DatabaseComponent.get(context).threadDatabase().update(threadId, false);
             notifyConversationListeners(threadId);
           }
         }
@@ -312,10 +313,10 @@ public class MmsDatabase extends MessagingDatabase {
   private long getThreadIdFor(IncomingMediaMessage retrieved) throws RecipientFormattingException, MmsException {
     if (retrieved.getGroupId() != null) {
       Recipient groupRecipients = Recipient.from(context, retrieved.getGroupId(), true);
-      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipients);
+      return DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(groupRecipients);
     } else {
       Recipient sender = Recipient.from(context, retrieved.getFrom(), true);
-      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(sender);
+      return DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(sender);
     }
   }
 
@@ -324,7 +325,7 @@ public class MmsDatabase extends MessagingDatabase {
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
     Recipient recipient = Recipient.from(context, Address.fromExternal(context, fromString), false);
-    return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    return DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(recipient);
   }
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments) {
@@ -353,7 +354,7 @@ public class MmsDatabase extends MessagingDatabase {
                    " WHERE " + ID + " = ?", new String[] {id + ""});
 
     if (threadId.isPresent()) {
-      DatabaseFactory.getThreadDatabase(context).update(threadId.get(), false);
+      DatabaseComponent.get(context).threadDatabase().update(threadId.get(), false);
     }
   }
 
@@ -399,11 +400,11 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(BODY, "");
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
 
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase attachmentDatabase = DatabaseComponent.get(context).attachmentDatabase();
     ThreadUtils.queue(() -> attachmentDatabase.deleteAttachmentsForMessage(messageId));
 
     long threadId = getThreadIdForMessage(messageId);
-    if (!read) { DatabaseFactory.getThreadDatabase(context).decrementUnread(threadId, 1); }
+    if (!read) { DatabaseComponent.get(context).threadDatabase().decrementUnread(threadId, 1); }
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_DELETED_TYPE, Optional.of(threadId));
     notifyConversationListeners(threadId);
   }
@@ -478,7 +479,7 @@ public class MmsDatabase extends MessagingDatabase {
   public OutgoingMediaMessage getOutgoingMessage(long messageId)
       throws MmsException, NoSuchMessageException
   {
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase attachmentDatabase = DatabaseComponent.get(context).attachmentDatabase();
     Cursor             cursor             = null;
 
     try {
@@ -494,7 +495,7 @@ public class MmsDatabase extends MessagingDatabase {
         long             expiresIn          = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
         String           address            = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
         long             threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
-        int              distributionType   = DatabaseFactory.getThreadDatabase(context).getDistributionType(threadId);
+        int              distributionType   = DatabaseComponent.get(context).threadDatabase().getDistributionType(threadId);
         String           mismatchDocument   = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
         String           networkDocument    = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
 
@@ -687,8 +688,8 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), contentValues, null);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
-      DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      DatabaseComponent.get(context).threadDatabase().incrementUnread(threadId, 1);
+      DatabaseComponent.get(context).threadDatabase().update(threadId, true);
     }
 
     notifyConversationListeners(threadId);
@@ -715,9 +716,9 @@ public class MmsDatabase extends MessagingDatabase {
           throw new MmsException(e);
         }
         Recipient group = Recipient.from(context, Address.fromSerialized(groupId), false);
-        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(group);
+        threadId = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(group);
       } else {
-        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(retrieved.getRecipient());
+        threadId = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(retrieved.getRecipient());
       }
     }
     long messageId = insertMessageOutbox(retrieved, threadId, false, null, serverTimestamp);
@@ -823,8 +824,8 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(message.getBody(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), contentValues, insertListener);
 
     if (message.getRecipient().getAddress().isGroup()) {
-      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().getAddress().toGroupString(), false);
-      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+      List<Recipient>      members         = DatabaseComponent.get(context).groupDatabase().getGroupMembers(message.getRecipient().getAddress().toGroupString(), false);
+      GroupReceiptDatabase receiptDatabase = DatabaseComponent.get(context).groupReceiptDatabase();
 
       receiptDatabase.insert(Stream.of(members).map(Recipient::getAddress).toList(),
                              messageId, GroupReceiptDatabase.STATUS_UNDELIVERED, message.getSentTimeMillis());
@@ -833,8 +834,8 @@ public class MmsDatabase extends MessagingDatabase {
       for (Address address : earlyReadReceipts.keySet())     receiptDatabase.update(address, messageId, GroupReceiptDatabase.STATUS_READ, -1);
     }
 
-    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
-    DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
+    DatabaseComponent.get(context).threadDatabase().setLastSeen(threadId);
+    DatabaseComponent.get(context).threadDatabase().setHasSent(threadId, true);
 
     return messageId;
   }
@@ -849,7 +850,7 @@ public class MmsDatabase extends MessagingDatabase {
       throws MmsException
   {
     SQLiteDatabase     db            = databaseHelper.getWritableDatabase();
-    AttachmentDatabase partsDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase partsDatabase = DatabaseComponent.get(context).attachmentDatabase();
 
     List<Attachment> allAttachments     = new LinkedList<>();
     List<Attachment> contactAttachments = Stream.of(sharedContacts).map(Contact::getAvatarAttachment).filter(a -> a != null).toList();
@@ -904,7 +905,7 @@ public class MmsDatabase extends MessagingDatabase {
       }
 
       notifyConversationListeners(contentValues.getAsLong(THREAD_ID));
-      DatabaseFactory.getThreadDatabase(context).update(contentValues.getAsLong(THREAD_ID), true);
+      DatabaseComponent.get(context).threadDatabase().update(contentValues.getAsLong(THREAD_ID), true);
     }
   }
 
@@ -926,10 +927,10 @@ public class MmsDatabase extends MessagingDatabase {
   @Override
   public boolean deleteMessage(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase attachmentDatabase = DatabaseComponent.get(context).attachmentDatabase();
     ThreadUtils.queue(() -> attachmentDatabase.deleteAttachmentsForMessage(messageId));
 
-    GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+    GroupReceiptDatabase groupReceiptDatabase = DatabaseComponent.get(context).groupReceiptDatabase();
     groupReceiptDatabase.deleteRowsForMessage(messageId);
 
     MessageRecord toDelete;
@@ -940,7 +941,7 @@ public class MmsDatabase extends MessagingDatabase {
     deleteQuotedFromMessages(toDelete);
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
-    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    boolean threadDeleted = DatabaseComponent.get(context).threadDatabase().update(threadId, false);
     notifyConversationListeners(threadId);
     notifyStickerListeners();
     notifyStickerPackListeners();
@@ -1088,8 +1089,8 @@ public class MmsDatabase extends MessagingDatabase {
 
 
   public void deleteAllThreads() {
-    DatabaseFactory.getAttachmentDatabase(context).deleteAllAttachments();
-    DatabaseFactory.getGroupReceiptDatabase(context).deleteAllRows();
+    DatabaseComponent.get(context).attachmentDatabase().deleteAllAttachments();
+    DatabaseComponent.get(context).groupReceiptDatabase().deleteAllRows();
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
@@ -1258,7 +1259,7 @@ public class MmsDatabase extends MessagingDatabase {
       Recipient                 recipient          = getRecipientFor(address);
       List<IdentityKeyMismatch> mismatches         = getMismatchedIdentities(mismatchDocument);
       List<NetworkFailure>      networkFailures    = getFailures(networkDocument);
-      List<DatabaseAttachment>  attachments        = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      List<DatabaseAttachment>  attachments        = DatabaseComponent.get(context).attachmentDatabase().getAttachment(cursor);
       List<Contact>             contacts           = getSharedContacts(cursor, attachments);
       Set<Attachment>           contactAttachments = Stream.of(contacts).map(Contact::getAvatarAttachment).filter(a -> a != null).collect(Collectors.toSet());
       List<LinkPreview>         previews           = getLinkPreviews(cursor, attachments);
@@ -1321,7 +1322,7 @@ public class MmsDatabase extends MessagingDatabase {
       String                     quoteAuthor      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_AUTHOR));
       String                     quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_BODY));
       boolean                    quoteMissing     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_MISSING)) == 1;
-      List<DatabaseAttachment>   attachments      = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      List<DatabaseAttachment>   attachments      = DatabaseComponent.get(context).attachmentDatabase().getAttachment(cursor);
       List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 

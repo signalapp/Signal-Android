@@ -2,15 +2,16 @@ package org.thoughtcrime.securesms.components;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.messages.control.TypingIndicator;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.util.SessionMetaProtocol;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -76,7 +77,7 @@ public class TypingStatusSender {
   }
 
   private void sendTyping(long threadId, boolean typingStarted) {
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    ThreadDatabase threadDatabase = DatabaseComponent.get(context).threadDatabase();
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
     if (recipient == null) { return; }
     if (!SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }

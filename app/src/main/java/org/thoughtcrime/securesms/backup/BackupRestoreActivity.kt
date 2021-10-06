@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.backup;
+package org.thoughtcrime.securesms.backup
 
 import android.app.Activity
 import android.app.Application
@@ -24,17 +24,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.backup.FullBackupImporter.DatabaseDowngradeException
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.util.show
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
+import org.thoughtcrime.securesms.home.HomeActivity
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.BackupUtil
-import org.session.libsession.utilities.TextSecurePreferences
-import org.thoughtcrime.securesms.home.HomeActivity
+import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
+import org.thoughtcrime.securesms.util.show
 
 class BackupRestoreActivity : BaseActionBarActivity() {
 
@@ -170,11 +171,11 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
 
         withContext(Dispatchers.IO) {
             result = try {
-                val database = DatabaseFactory.getBackupDatabase(context)
+                val database = DatabaseComponent.get(context).openHelper().readableDatabase
                 FullBackupImporter.importFromUri(
                         context,
                         AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                        DatabaseFactory.getBackupDatabase(context),
+                        database,
                         backupFile,
                         passphrase
                 )

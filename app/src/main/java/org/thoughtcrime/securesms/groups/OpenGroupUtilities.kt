@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
-import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import java.util.*
 
 //TODO Refactor so methods declare specific type of checked exceptions and not generalized Exception.
@@ -25,7 +25,7 @@ object OpenGroupUtilities {
     @Throws(Exception::class)
     fun updateGroupInfo(context: Context, server: String, room: String) {
         val groupId = GroupUtil.getEncodedOpenGroupID("$server.$room".toByteArray())
-        if (!DatabaseFactory.getGroupDatabase(context).hasGroup(groupId)) {
+        if (!DatabaseComponent.get(context).groupDatabase().hasGroup(groupId)) {
             throw IllegalStateException("Attempt to update open group info for non-existent DB record: $groupId")
         }
 

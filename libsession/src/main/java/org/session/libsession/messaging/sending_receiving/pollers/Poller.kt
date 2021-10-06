@@ -3,12 +3,13 @@ package org.session.libsession.messaging.sending_receiving.pollers
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.jobs.BatchMessageReceiveJob
 import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.jobs.MessageReceiveJob
+import org.session.libsession.messaging.jobs.MessageReceiveParameters
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeModule
-import org.session.libsignal.utilities.Snode
 import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.Snode
 import java.security.SecureRandom
 import java.util.*
 
@@ -91,10 +92,14 @@ class Poller {
                 task { Unit } // The long polling connection has been canceled; don't recurse
             } else {
                 val messages = SnodeAPI.parseRawMessagesResponse(rawResponse, snode, userPublicKey)
-                messages.forEach { (envelope, serverHash) ->
-                    val job = MessageReceiveJob(envelope.toByteArray(), serverHash)
+                val parameters = messages.map { (envelope, serverHash) ->
+                    MessageReceiveParameters(envelope.toByteArray(), serverHash = serverHash)
+                }
+                parameters.chunked(20).forEach { chunk ->
+                    val job = BatchMessageReceiveJob(chunk)
                     JobQueue.shared.add(job)
                 }
+
                 poll(snode, deferred)
             }
         }

@@ -8,13 +8,12 @@ import androidx.annotation.Nullable;
 
 import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.DistributionTypes;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
-
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.HashSet;
@@ -31,7 +30,7 @@ public class GroupManager {
 
   public static long getThreadIDFromGroupID(String groupID, @NonNull  Context context) {
     final Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupID), false);
-    return DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
+    return DatabaseComponent.get(context).threadDatabase().getThreadIdIfExistsFor(groupRecipient);
   }
 
   public static @NonNull GroupActionResult createOpenGroup(@NonNull  String  id,
@@ -49,7 +48,7 @@ public class GroupManager {
                                                             @Nullable String  name)
   {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
-    final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
+    final GroupDatabase groupDatabase   = DatabaseComponent.get(context).groupDatabase();
     final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = new HashSet<>();
 
@@ -58,7 +57,7 @@ public class GroupManager {
 
     groupDatabase.updateProfilePicture(groupId, avatarBytes);
 
-    long threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(
+    long threadID = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(
             groupRecipient, DistributionTypes.CONVERSATION);
     return new GroupActionResult(groupRecipient, threadID);
   }
@@ -66,8 +65,8 @@ public class GroupManager {
   public static boolean deleteGroup(@NonNull String  groupId,
                                     @NonNull Context context)
   {
-    final GroupDatabase  groupDatabase  = DatabaseFactory.getGroupDatabase(context);
-    final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    final GroupDatabase  groupDatabase  = DatabaseComponent.get(context).groupDatabase();
+    final ThreadDatabase threadDatabase = DatabaseComponent.get(context).threadDatabase();
     final Recipient      groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), false);
 
     long threadId = threadDatabase.getThreadIdIfExistsFor(groupRecipient);

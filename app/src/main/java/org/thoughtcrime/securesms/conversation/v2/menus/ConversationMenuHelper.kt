@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.*
 import org.thoughtcrime.securesms.contacts.SelectContactsActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.utilities.NotificationUtils
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.groups.EditClosedGroupActivity
 import org.thoughtcrime.securesms.groups.EditClosedGroupActivity.Companion.groupIDKey
 import org.thoughtcrime.securesms.util.BitmapUtil
@@ -214,11 +214,11 @@ object ConversationMenuHelper {
 
     private fun showExpiringMessagesDialog(context: Context, thread: Recipient) {
         if (thread.isClosedGroupRecipient) {
-            val group = DatabaseFactory.getGroupDatabase(context).getGroup(thread.address.toGroupString()).orNull()
+            val group = DatabaseComponent.get(context).groupDatabase().getGroup(thread.address.toGroupString()).orNull()
             if (group?.isActive == false) { return }
         }
         ExpirationDialog.show(context, thread.expireMessages) { expirationTime: Int ->
-            DatabaseFactory.getRecipientDatabase(context).setExpireMessages(thread, expirationTime)
+            DatabaseComponent.get(context).recipientDatabase().setExpireMessages(thread, expirationTime)
             val message = ExpirationTimerUpdate(expirationTime)
             message.recipient = thread.address.serialize()
             message.sentTimestamp = System.currentTimeMillis()
@@ -239,7 +239,7 @@ object ConversationMenuHelper {
             .setMessage(message)
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.ConversationActivity_unblock) { _, _ ->
-                DatabaseFactory.getRecipientDatabase(context)
+                DatabaseComponent.get(context).recipientDatabase()
                     .setBlocked(thread, false)
             }.show()
     }
@@ -253,7 +253,7 @@ object ConversationMenuHelper {
             .setMessage(message)
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.RecipientPreferenceActivity_block) { _, _ ->
-                DatabaseFactory.getRecipientDatabase(context)
+                DatabaseComponent.get(context).recipientDatabase()
                     .setBlocked(thread, true)
             }.show()
     }
@@ -281,7 +281,7 @@ object ConversationMenuHelper {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(context.resources.getString(R.string.ConversationActivity_leave_group))
         builder.setCancelable(true)
-        val group = DatabaseFactory.getGroupDatabase(context).getGroup(thread.address.toGroupString()).orNull()
+        val group = DatabaseComponent.get(context).groupDatabase().getGroup(thread.address.toGroupString()).orNull()
         val admins = group.admins
         val sessionID = TextSecurePreferences.getLocalNumber(context)
         val isCurrentUserAdmin = admins.any { it.toString() == sessionID }
@@ -296,7 +296,7 @@ object ConversationMenuHelper {
             var isClosedGroup: Boolean
             try {
                 groupPublicKey = doubleDecodeGroupID(thread.address.toString()).toHexString()
-                isClosedGroup = DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(groupPublicKey)
+                isClosedGroup = DatabaseComponent.get(context).lokiAPIDatabase().isClosedGroup(groupPublicKey)
             } catch (e: IOException) {
                 groupPublicKey = null
                 isClosedGroup = false
@@ -323,18 +323,18 @@ object ConversationMenuHelper {
     }
 
     private fun unmute(context: Context, thread: Recipient) {
-        DatabaseFactory.getRecipientDatabase(context).setMuted(thread, 0)
+        DatabaseComponent.get(context).recipientDatabase().setMuted(thread, 0)
     }
 
     private fun mute(context: Context, thread: Recipient) {
         MuteDialog.show(context) { until: Long ->
-            DatabaseFactory.getRecipientDatabase(context).setMuted(thread, until)
+            DatabaseComponent.get(context).recipientDatabase().setMuted(thread, until)
         }
     }
 
     private fun setNotifyType(context: Context, thread: Recipient) {
         NotificationUtils.showNotifyDialog(context, thread) { notifyType ->
-            DatabaseFactory.getRecipientDatabase(context).setNotifyType(thread, notifyType)
+            DatabaseComponent.get(context).recipientDatabase().setNotifyType(thread, notifyType)
         }
     }
 

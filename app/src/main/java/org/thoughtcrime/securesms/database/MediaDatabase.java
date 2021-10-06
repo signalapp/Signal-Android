@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -10,8 +11,8 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.utilities.Address;
-
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class MediaDatabase extends Database {
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'audio/%' AND " +
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'text/x-signal-plain'");
 
-  MediaDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public MediaDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -101,7 +102,7 @@ public class MediaDatabase extends Database {
     }
 
     public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
-      AttachmentDatabase       attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+      AttachmentDatabase       attachmentDatabase = DatabaseComponent.get(context).attachmentDatabase();
       List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachment(cursor);
       String                   serializedAddress  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
       boolean                  outgoing           = MessagingDatabase.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)));

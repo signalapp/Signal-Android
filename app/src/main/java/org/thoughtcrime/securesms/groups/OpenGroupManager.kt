@@ -10,7 +10,7 @@ import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.ThreadUtils
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.util.BitmapUtil
 import java.util.concurrent.Executors
 
@@ -59,7 +59,7 @@ object OpenGroupManager {
         val openGroupID = "$server.$room"
         var threadID = GroupManager.getOpenGroupThreadID(openGroupID, context)
         val storage = MessagingModuleConfiguration.shared.storage
-        val threadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        val threadDB = DatabaseComponent.get(context).lokiThreadDatabase()
         // Check it it's added already
         val existingOpenGroup = threadDB.getOpenGroupChat(threadID)
         if (existingOpenGroup != null) { return }
@@ -97,7 +97,7 @@ object OpenGroupManager {
 
     fun delete(server: String, room: String, context: Context) {
         val storage = MessagingModuleConfiguration.shared.storage
-        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        val threadDB = DatabaseComponent.get(context).threadDatabase()
         val openGroupID = "$server.$room"
         val threadID = GroupManager.getOpenGroupThreadID(openGroupID, context)
         val recipient = threadDB.getRecipientForThreadId(threadID) ?: return
@@ -112,7 +112,7 @@ object OpenGroupManager {
         // Delete
         storage.removeLastDeletionServerID(room, server)
         storage.removeLastMessageServerID(room, server)
-        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        val lokiThreadDB = DatabaseComponent.get(context).lokiThreadDatabase()
         lokiThreadDB.removeOpenGroupChat(threadID)
         ThreadUtils.queue {
             threadDB.deleteConversation(threadID) // Must be invoked on a background thread
