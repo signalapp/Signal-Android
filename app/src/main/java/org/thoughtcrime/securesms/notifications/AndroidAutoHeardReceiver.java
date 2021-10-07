@@ -22,12 +22,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+
 import androidx.core.app.NotificationManagerCompat;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -62,7 +63,7 @@ public class AndroidAutoHeardReceiver extends BroadcastReceiver {
 
           for (long threadId : threadIds) {
             Log.i(TAG, "Marking meassage as read: " + threadId);
-            List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+            List<MarkedMessageInfo> messageIds = DatabaseComponent.get(context).threadDatabase().setRead(threadId, true);
 
             messageIdsCollection.addAll(messageIds);
           }

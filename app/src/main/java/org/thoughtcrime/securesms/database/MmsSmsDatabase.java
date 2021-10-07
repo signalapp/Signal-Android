@@ -30,6 +30,7 @@ import org.session.libsession.utilities.Util;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -161,20 +162,20 @@ public class MmsSmsDatabase extends Database {
   }
 
   public int getConversationCount(long threadId) {
-    int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThread(threadId);
-    count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
+    int count = DatabaseComponent.get(context).smsDatabase().getMessageCountForThread(threadId);
+    count    += DatabaseComponent.get(context).mmsDatabase().getMessageCountForThread(threadId);
 
     return count;
   }
 
   public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, true, false);
-    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true, false);
+    DatabaseComponent.get(context).smsDatabase().incrementReceiptCount(syncMessageId, true, false);
+    DatabaseComponent.get(context).mmsDatabase().incrementReceiptCount(syncMessageId, timestamp, true, false);
   }
 
   public void incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, false, true);
-    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false, true);
+    DatabaseComponent.get(context).smsDatabase().incrementReceiptCount(syncMessageId, false, true);
+    DatabaseComponent.get(context).mmsDatabase().incrementReceiptCount(syncMessageId, timestamp, false, true);
   }
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull Address address) {
@@ -417,7 +418,7 @@ public class MmsSmsDatabase extends Database {
 
     private SmsDatabase.Reader getSmsReader() {
       if (smsReader == null) {
-        smsReader = DatabaseFactory.getSmsDatabase(context).readerFor(cursor);
+        smsReader = DatabaseComponent.get(context).smsDatabase().readerFor(cursor);
       }
 
       return smsReader;
@@ -425,7 +426,7 @@ public class MmsSmsDatabase extends Database {
 
     private MmsDatabase.Reader getMmsReader() {
       if (mmsReader == null) {
-        mmsReader = DatabaseFactory.getMmsDatabase(context).readerFor(cursor);
+        mmsReader = DatabaseComponent.get(context).mmsDatabase().readerFor(cursor);
       }
 
       return mmsReader;

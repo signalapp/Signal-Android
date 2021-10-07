@@ -15,8 +15,8 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.conversation.v2.components.ExpirationTimerView;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 
@@ -117,8 +117,8 @@ public class ConversationItemFooter extends LinearLayout {
             long                   id                = messageRecord.getId();
             boolean                mms               = messageRecord.isMms();
 
-            if (mms) DatabaseFactory.getMmsDatabase(getContext()).markExpireStarted(id);
-            else     DatabaseFactory.getSmsDatabase(getContext()).markExpireStarted(id);
+            if (mms) DatabaseComponent.get(getContext()).mmsDatabase().markExpireStarted(id);
+            else     DatabaseComponent.get(getContext()).smsDatabase().markExpireStarted(id);
 
             expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
             return null;

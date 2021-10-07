@@ -8,16 +8,15 @@ import androidx.annotation.NonNull;
 import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.utilities.Data;
 import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.streams.ProfileCipherInputStream;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.exceptions.PushNetworkException;
+import org.session.libsignal.streams.ProfileCipherInputStream;
 import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 
@@ -29,7 +28,7 @@ import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
-public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType {
+public class RetrieveProfileAvatarJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileAvatarJob";
 
@@ -77,7 +76,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
 
   @Override
   public void onRun() throws IOException {
-    RecipientDatabase database   = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase database   = DatabaseComponent.get(context).recipientDatabase();
     byte[]            profileKey = recipient.resolve().getProfileKey();
 
     if (profileKey == null) {

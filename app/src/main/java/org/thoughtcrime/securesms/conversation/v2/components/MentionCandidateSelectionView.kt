@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.toPx
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.messaging.mentions.Mention
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
+import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.util.toPx
 
 class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var mentionCandidates = listOf<Mention>()
@@ -68,7 +68,7 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
     }
 
     fun show(mentionCandidates: List<Mention>, threadID: Long) {
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
+        val openGroup = DatabaseComponent.get(context).lokiThreadDatabase().getOpenGroupChat(threadID)
         if (openGroup != null) {
             openGroupServer = openGroup.server
             openGroupRoom = openGroup.room

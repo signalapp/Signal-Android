@@ -3,25 +3,29 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.view_voice_message.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
-
+@AndroidEntryPoint
 class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
+
+    @Inject lateinit var attachmentDb: AttachmentDatabase
+
     private val cornerMask by lazy { CornerMask(this) }
     private var isPlaying = false
     set(value) {
@@ -67,7 +71,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         this.player = player
 
         (audio.asAttachment() as? DatabaseAttachment)?.let { attachment ->
-            DatabaseFactory.getAttachmentDatabase(context).getAttachmentAudioExtras(attachment.attachmentId)?.let { audioExtras ->
+            attachmentDb.getAttachmentAudioExtras(attachment.attachmentId)?.let { audioExtras ->
                 if (audioExtras.durationMs > 0) {
                     duration = audioExtras.durationMs
                     voiceMessageViewDurationTextView.visibility = View.VISIBLE

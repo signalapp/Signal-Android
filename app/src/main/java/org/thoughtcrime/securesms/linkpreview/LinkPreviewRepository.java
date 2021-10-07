@@ -4,34 +4,30 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.common.util.IOUtils;
 
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
+import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.utilities.MediaTypes;
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.ContentProxySafetyInterceptor;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsignal.utilities.guava.Optional;
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
-
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
-import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
-import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.inject.Inject;
 
 import okhttp3.CacheControl;
 import okhttp3.Call;
@@ -39,7 +35,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LinkPreviewRepository implements InjectableType {
+public class LinkPreviewRepository {
 
   private static final String TAG = LinkPreviewRepository.class.getSimpleName();
 
@@ -52,8 +48,6 @@ public class LinkPreviewRepository implements InjectableType {
                                   .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)
                                   .build();
-
-    ApplicationContext.getInstance(context).injectDependencies(this);
   }
 
   RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {

@@ -1,21 +1,30 @@
 package org.thoughtcrime.securesms.conversation.v2.search
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.session.libsession.utilities.Debouncer
 import org.session.libsession.utilities.Util.runOnMain
 import org.session.libsession.utilities.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.contacts.ContactAccessor
 import org.thoughtcrime.securesms.database.CursorList
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.SearchDatabase
+import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.search.model.MessageResult
 import org.thoughtcrime.securesms.util.CloseableLiveData
 import java.io.Closeable
+import javax.inject.Inject
 
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    @ApplicationContext context: Context,
+    searchDb: SearchDatabase,
+    threadDb: ThreadDatabase
+) : ViewModel() {
 
-class SearchViewModel(application: Application) : AndroidViewModel(application) {
     private val searchRepository: SearchRepository
     private val result: CloseableLiveData<SearchResult>
     private val debouncer: Debouncer
@@ -99,13 +108,12 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     init {
-        val context = application.applicationContext
         result = CloseableLiveData()
         debouncer = Debouncer(500)
         searchRepository = SearchRepository(context,
-                DatabaseFactory.getSearchDatabase(context),
-                DatabaseFactory.getThreadDatabase(context),
-                ContactAccessor.getInstance(),
-                SignalExecutors.SERIAL)
+            searchDb,
+            threadDb,
+            ContactAccessor.getInstance(),
+            SignalExecutors.SERIAL)
     }
 }

@@ -9,10 +9,10 @@ import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
+import org.thoughtcrime.securesms.mms.GlideRequests
 
 class UserView : LinearLayout {
     var openGroupThreadID: Long = -1 // FIXME: This is a bit ugly
@@ -50,10 +50,10 @@ class UserView : LinearLayout {
     // region Updating
     fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
         fun getUserDisplayName(publicKey: String): String {
-            val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+            val contact = DatabaseComponent.get(context).sessionContactDatabase().getContactWithSessionID(publicKey)
             return contact?.displayName(Contact.ContactContext.REGULAR) ?: publicKey
         }
-        val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(user)
+        val threadID = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(user)
         MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, context) // FIXME: This is a bad place to do this
         val address = user.address.serialize()
         profilePictureView.glide = glide

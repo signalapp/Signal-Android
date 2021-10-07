@@ -1,33 +1,33 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.utilities.Data;
 import org.session.libsession.utilities.DownloadUtilities;
-import org.session.libsignal.streams.AttachmentCipherInputStream;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.session.libsession.utilities.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.session.libsignal.exceptions.InvalidMessageException;
+import org.session.libsignal.exceptions.NonSuccessfulResponseCodeException;
+import org.session.libsignal.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.streams.AttachmentCipherInputStream;
+import org.session.libsignal.utilities.Hex;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.session.libsignal.utilities.Hex;
-import org.session.libsignal.exceptions.InvalidMessageException;
-import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.messages.SignalServiceAttachmentPointer;
-import org.session.libsignal.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AvatarDownloadJob extends BaseJob implements InjectableType {
+public class AvatarDownloadJob extends BaseJob {
 
   public static final String KEY = "AvatarDownloadJob";
 
@@ -64,7 +64,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    GroupDatabase         database   = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase         database   = DatabaseComponent.get(context).groupDatabase();
     Optional<GroupRecord> record     = database.getGroup(groupId);
     File                  attachment = null;
 

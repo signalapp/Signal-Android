@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.conversation.v2.utilities
 
 import android.content.Context
-import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.messaging.mentions.MentionsManager
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 
 object MentionManagerUtilities {
 
@@ -13,12 +13,12 @@ object MentionManagerUtilities {
         if (MentionsManager.userPublicKeyCache[threadID] != null) return
 
         val result = mutableSetOf<String>()
-        val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID) ?: return
+        val recipient = DatabaseComponent.get(context).threadDatabase().getRecipientForThreadId(threadID) ?: return
         if (recipient.address.isClosedGroup) {
-            val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.address.toGroupString(), false).map { it.address.serialize() }
+            val members = DatabaseComponent.get(context).groupDatabase().getGroupMembers(recipient.address.toGroupString(), false).map { it.address.serialize() }
             result.addAll(members)
         } else {
-            val messageDatabase = DatabaseFactory.getMmsSmsDatabase(context)
+            val messageDatabase = DatabaseComponent.get(context).mmsSmsDatabase()
             val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID, 0, 200))
             var record: MessageRecord? = reader.next
             while (record != null) {

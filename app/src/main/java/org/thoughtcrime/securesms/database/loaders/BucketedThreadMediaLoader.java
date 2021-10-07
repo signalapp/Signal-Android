@@ -4,16 +4,16 @@ package org.thoughtcrime.securesms.database.loaders;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 import androidx.loader.content.AsyncTaskLoader;
 
 import com.annimon.stream.Stream;
 
-import network.loki.messenger.R;
 import org.session.libsession.utilities.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +25,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import network.loki.messenger.R;
 
 public class BucketedThreadMediaLoader extends AsyncTaskLoader<BucketedThreadMediaLoader.BucketedThreadMedia> {
 
@@ -56,16 +58,18 @@ public class BucketedThreadMediaLoader extends AsyncTaskLoader<BucketedThreadMed
 
   @Override
   protected void onAbandon() {
-    DatabaseFactory.getMediaDatabase(getContext()).unsubscribeToMediaChanges(observer);
+    DatabaseComponent.get(getContext()).mediaDatabase().unsubscribeToMediaChanges(observer);
   }
 
   @Override
   public BucketedThreadMedia loadInBackground() {
     BucketedThreadMedia result   = new BucketedThreadMedia(getContext());
-    long                threadId = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(Recipient.from(getContext(), address, true));
+    long                threadId = DatabaseComponent.get(getContext()).threadDatabase().getOrCreateThreadIdFor(Recipient.from(getContext(), address, true));
 
-    DatabaseFactory.getMediaDatabase(getContext()).subscribeToMediaChanges(observer);
-    try (Cursor cursor = DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId)) {
+    MediaDatabase mediaDatabase = DatabaseComponent.get(getContext()).mediaDatabase();
+
+    mediaDatabase.subscribeToMediaChanges(observer);
+    try (Cursor cursor = mediaDatabase.getGalleryMediaForThread(threadId)) {
       while (cursor != null && cursor.moveToNext()) {
         result.add(MediaDatabase.MediaRecord.from(getContext(), cursor));
       }

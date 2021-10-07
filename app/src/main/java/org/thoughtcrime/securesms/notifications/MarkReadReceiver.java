@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -13,16 +14,16 @@ import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.messages.control.ReadReceipt;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.utilities.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.util.SessionMetaProtocol;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
           for (long threadId : threadIds) {
             Log.i(TAG, "Marking as read: " + threadId);
-            List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+            List<MarkedMessageInfo> messageIds = DatabaseComponent.get(context).threadDatabase().setRead(threadId, true);
             messageIdsCollection.addAll(messageIds);
           }
 
@@ -92,8 +93,8 @@ public class MarkReadReceiver extends BroadcastReceiver {
     if (expirationInfo.getExpiresIn() > 0 && expirationInfo.getExpireStarted() <= 0) {
       ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
 
-      if (expirationInfo.isMms()) DatabaseFactory.getMmsDatabase(context).markExpireStarted(expirationInfo.getId());
-      else                        DatabaseFactory.getSmsDatabase(context).markExpireStarted(expirationInfo.getId());
+      if (expirationInfo.isMms()) DatabaseComponent.get(context).mmsDatabase().markExpireStarted(expirationInfo.getId());
+      else                        DatabaseComponent.get(context).smsDatabase().markExpireStarted(expirationInfo.getId());
 
       expirationManager.scheduleDeletion(expirationInfo.getId(), expirationInfo.isMms(), expirationInfo.getExpiresIn());
     }

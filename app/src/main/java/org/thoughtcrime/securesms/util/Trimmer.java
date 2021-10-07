@@ -5,9 +5,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
+
+import network.loki.messenger.R;
 
 public class Trimmer {
 
@@ -37,7 +38,7 @@ public class Trimmer {
 
     @Override
     protected Void doInBackground(Integer... params) {
-      DatabaseFactory.getThreadDatabase(context).trimAllThreads(params[0], this);
+      DatabaseComponent.get(context).threadDatabase().trimAllThreads(params[0], this);
       return null;
     }
 

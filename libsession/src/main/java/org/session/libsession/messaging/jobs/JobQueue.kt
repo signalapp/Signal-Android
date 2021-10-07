@@ -5,7 +5,6 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsignal.utilities.Log
-import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
@@ -20,7 +19,6 @@ class JobQueue : JobDelegate {
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
     private val rxDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val txDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
-    private val attachmentDispatcher = Executors.newFixedThreadPool(4).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
     private val pendingJobIds = mutableSetOf<String>()
@@ -40,18 +38,15 @@ class JobQueue : JobDelegate {
         scope.launch {
             val rxQueue = Channel<Job>(capacity = 4096)
             val txQueue = Channel<Job>(capacity = 4096)
-            val attachmentQueue = Channel<Job>(capacity = 4096)
 
             val receiveJob = processWithDispatcher(rxQueue, rxDispatcher)
             val txJob = processWithDispatcher(txQueue, txDispatcher)
-            val attachmentJob = processWithDispatcher(attachmentQueue, attachmentDispatcher)
 
             while (isActive) {
                 for (job in queue) {
                     when (job) {
                         is NotifyPNServerJob, is AttachmentUploadJob, is MessageSendJob -> txQueue.send(job)
-                        is AttachmentDownloadJob -> attachmentQueue.send(job)
-                        is MessageReceiveJob, is TrimThreadJob -> rxQueue.send(job)
+                        is MessageReceiveJob, is TrimThreadJob, is BatchMessageReceiveJob, is AttachmentDownloadJob-> rxQueue.send(job)
                         else -> throw IllegalStateException("Unexpected job type.")
                     }
                 }
@@ -60,7 +55,6 @@ class JobQueue : JobDelegate {
             // The job has been cancelled
             receiveJob.cancel()
             txJob.cancel()
-            attachmentJob.cancel()
 
         }
     }
@@ -128,7 +122,8 @@ class JobQueue : JobDelegate {
             AttachmentDownloadJob.KEY,
             MessageReceiveJob.KEY,
             MessageSendJob.KEY,
-            NotifyPNServerJob.KEY
+            NotifyPNServerJob.KEY,
+            BatchMessageReceiveJob.KEY
         )
         allJobTypes.forEach { type ->
             resumePendingJobs(type)
@@ -152,6 +147,11 @@ class JobQueue : JobDelegate {
             Log.i("Loki", "Message send job waiting for attachment upload to finish.")
             return
         }
+        // Batch message receive job, re-queue non-permanently failed jobs
+        if (job is BatchMessageReceiveJob) {
+            val replacementParameters = job.failures
+        }
+
         // Regular job failure
         job.failureCount += 1
         if (job.failureCount >= job.maxFailureCount) {

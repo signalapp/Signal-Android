@@ -21,18 +21,18 @@ import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.groupSizeLimit
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.session.libsession.utilities.Address
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.fadeIn
-import org.thoughtcrime.securesms.util.fadeOut
-import org.thoughtcrime.securesms.mms.GlideApp
-import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.ThemeUtil
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.toHexString
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.contacts.SelectContactsActivity
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
+import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.util.fadeIn
+import org.thoughtcrime.securesms.util.fadeOut
 import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
@@ -90,7 +90,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 ThemeUtil.getThemedDrawableResId(this, R.attr.actionModeCloseDrawable))
 
         groupID = intent.getStringExtra(groupIDKey)!!
-        val groupInfo = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get()
+        val groupInfo = DatabaseComponent.get(this).groupDatabase().getGroup(groupID).get()
         originalName = groupInfo.title
         isSelfAdmin = groupInfo.admins.any{ it.serialize() == TextSecurePreferences.getLocalNumber(this) }
 
@@ -260,7 +260,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         var groupPublicKey: String?
         try {
             groupPublicKey = GroupUtil.doubleDecodeGroupID(groupID).toHexString()
-            isClosedGroup = DatabaseFactory.getLokiAPIDatabase(this).isClosedGroup(groupPublicKey)
+            isClosedGroup = DatabaseComponent.get(this).lokiAPIDatabase().isClosedGroup(groupPublicKey)
         } catch (e: IOException) {
             groupPublicKey = null
             isClosedGroup = false

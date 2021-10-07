@@ -2,15 +2,15 @@ package org.thoughtcrime.securesms.home
 
 import android.content.Context
 import android.database.Cursor
-import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideRequests
 
 class HomeAdapter(context: Context, cursor: Cursor?) : CursorRecyclerViewAdapter<HomeAdapter.ViewHolder>(context, cursor) {
-    private val threadDatabase = DatabaseFactory.getThreadDatabase(context)
+    private val threadDatabase = DatabaseComponent.get(context).threadDatabase()
     lateinit var glide: GlideRequests
     var typingThreadIDs = setOf<Long>()
         set(value) { field = value; notifyDataSetChanged() }

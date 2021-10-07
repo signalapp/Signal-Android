@@ -26,15 +26,14 @@ import android.net.Uri;
 import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
-import androidx.annotation.NonNull;
 
-import org.session.libsignal.utilities.Log;
+import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.utilities.Util;
-
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
@@ -107,7 +106,7 @@ public class PartProvider extends ContentProvider {
     switch (uriMatcher.match(uri)) {
       case SINGLE_ROW:
         PartUriParser      partUriParser = new PartUriParser(uri);
-        DatabaseAttachment attachment    = DatabaseFactory.getAttachmentDatabase(getContext())
+        DatabaseAttachment attachment    = DatabaseComponent.get(getContext()).attachmentDatabase()
                                                           .getAttachment(partUriParser.getPartId());
 
         if (attachment != null) {
@@ -133,7 +132,7 @@ public class PartProvider extends ContentProvider {
     switch (uriMatcher.match(url)) {
       case SINGLE_ROW:
         PartUriParser      partUri      = new PartUriParser(url);
-        DatabaseAttachment attachment   = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(partUri.getPartId());
+        DatabaseAttachment attachment   = DatabaseComponent.get(getContext()).attachmentDatabase().getAttachment(partUri.getPartId());
 
         if (attachment == null) return null;
 
@@ -160,10 +159,10 @@ public class PartProvider extends ContentProvider {
   }
 
   private ParcelFileDescriptor getParcelStreamForAttachment(AttachmentId attachmentId) throws IOException {
-    long       plaintextLength = Util.getStreamLength(DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId, 0));
+    long       plaintextLength = Util.getStreamLength(DatabaseComponent.get(getContext()).attachmentDatabase().getAttachmentStream(attachmentId, 0));
     MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
 
-    InputStream  in  = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId, 0);
+    InputStream  in  = DatabaseComponent.get(getContext()).attachmentDatabase().getAttachmentStream(attachmentId, 0);
     OutputStream out = memoryFile.getOutputStream();
 
     Util.copy(in, out);

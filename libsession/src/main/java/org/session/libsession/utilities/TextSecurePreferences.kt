@@ -363,7 +363,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun getDirectCaptureCameraId(context: Context): Int {
-        return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, Camera.CameraInfo.CAMERA_FACING_FRONT)
+        return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, Camera.CameraInfo.CAMERA_FACING_BACK)
     }
 
     @JvmStatic

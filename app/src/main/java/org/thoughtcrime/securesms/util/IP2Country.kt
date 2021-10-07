@@ -99,7 +99,7 @@ class IP2Country private constructor(private val context: Context) {
 
         val bestMatchCountry = comps.lastOrNull { it.key <= Ipv4Int(ip)  }?.let { (_, code) ->
             if (code != null) {
-                countryToNames[code]
+                countryToNames[code] + " [" + ip + "]"
             } else {
                 null
             }

@@ -3,17 +3,12 @@ package org.session.libsession.messaging.sending_receiving.pollers
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.jobs.TrimThreadJob
+import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupMessageV2
-import org.session.libsession.messaging.sending_receiving.MessageReceiver
-import org.session.libsession.messaging.sending_receiving.handle
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.protos.SignalServiceProtos
-import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.successBackground
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.ScheduledFuture
@@ -27,7 +22,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
     private var future: ScheduledFuture<*>? = null
 
     companion object {
-        private val pollInterval: Long = 4 * 1000
+        private const val pollInterval: Long = 4000L
         const val maxInactivityPeriod = 14 * 24 * 60 * 60 * 1000
     }
 
@@ -66,30 +61,28 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
         val threadId = storage.getThreadId(Address.fromSerialized(groupID)) ?: -1
         val threadExists = threadId >= 0
         if (!hasStarted || !threadExists) { return }
-        messages.sortedBy { it.serverID!! }.forEach { message ->
-            try {
-                val senderPublicKey = message.sender!!
-                val builder = SignalServiceProtos.Envelope.newBuilder()
-                builder.type = SignalServiceProtos.Envelope.Type.SESSION_MESSAGE
-                builder.source = senderPublicKey
-                builder.sourceDevice = 1
-                builder.content = message.toProto().toByteString()
-                builder.timestamp = message.sentTimestamp
-                val envelope = builder.build()
-                val (parsedMessage, content) = MessageReceiver.parse(envelope.toByteArray(), message.serverID)
-                MessageReceiver.handle(parsedMessage, content, openGroupID)
-            } catch (e: Exception) {
-                Log.e("Loki", "Exception parsing message", e)
+        val envelopes = messages.sortedBy { it.serverID!! }.map { message ->
+            val senderPublicKey = message.sender!!
+            val builder = SignalServiceProtos.Envelope.newBuilder()
+            builder.type = SignalServiceProtos.Envelope.Type.SESSION_MESSAGE
+            builder.source = senderPublicKey
+            builder.sourceDevice = 1
+            builder.content = message.toProto().toByteString()
+            builder.timestamp = message.sentTimestamp
+            builder.build() to message.serverID
+        }
+
+        envelopes.chunked(20).forEach { list ->
+            val parameters = list.map { (message, serverId) ->
+                MessageReceiveParameters(message.toByteArray(), openGroupMessageServerID = serverId)
             }
+            JobQueue.shared.add(BatchMessageReceiveJob(parameters, openGroupID))
         }
 
         val currentLastMessageServerID = storage.getLastMessageServerID(room, server) ?: 0
         val actualMax = max(messages.mapNotNull { it.serverID }.maxOrNull() ?: 0, currentLastMessageServerID)
         if (actualMax > 0) {
             storage.setLastMessageServerID(room, server, actualMax)
-        }
-        if (messages.isNotEmpty()) {
-            JobQueue.shared.add(TrimThreadJob(threadId))
         }
     }
 

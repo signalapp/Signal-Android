@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.toPx
-import org.thoughtcrime.securesms.mms.GlideRequests
+import dagger.hilt.android.AndroidEntryPoint
 import org.session.libsession.messaging.mentions.Mention
+import org.thoughtcrime.securesms.database.LokiThreadDatabase
+import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.util.toPx
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var candidates = listOf<Mention>()
         set(newValue) { field = newValue; snAdapter.candidates = newValue }
@@ -22,6 +25,8 @@ class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr
     var openGroupRoom: String? = null
         set(newValue) { field = newValue; snAdapter.openGroupRoom = openGroupRoom }
     var onCandidateSelected: ((Mention) -> Unit)? = null
+
+    @Inject lateinit var threadDb: LokiThreadDatabase
 
     private val snAdapter by lazy { Adapter(context) }
 
@@ -60,7 +65,7 @@ class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr
     }
 
     fun show(candidates: List<Mention>, threadID: Long) {
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
+        val openGroup = threadDb.getOpenGroupChat(threadID)
         if (openGroup != null) {
             openGroupServer = openGroup.server
             openGroupRoom = openGroup.room
