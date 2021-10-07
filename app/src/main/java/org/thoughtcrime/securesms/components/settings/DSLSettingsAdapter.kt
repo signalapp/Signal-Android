@@ -11,6 +11,7 @@ import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.MappingAdapter
@@ -97,8 +98,13 @@ class RadioListPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Radio
   override fun bind(model: RadioListPreference) {
     super.bind(model)
 
-    summaryView.visibility = View.VISIBLE
-    summaryView.text = model.listItems[model.selected]
+    if (model.selected >= 0) {
+      summaryView.visibility = View.VISIBLE
+      summaryView.text = model.listItems[model.selected]
+    } else {
+      summaryView.visibility = View.GONE
+      Log.w(TAG, "Detected a radio list without a default selection: ${model.dialogTitle}")
+    }
 
     itemView.setOnClickListener {
       var selection = -1
@@ -127,6 +133,10 @@ class RadioListPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Radio
         builder.show()
       }
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(RadioListPreference::class.java)
   }
 }
 
