@@ -229,6 +229,18 @@
 
             <TextView
                 android:padding="@dimen/small_spacing"
+                android:id="@+id/supportButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_spacing"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/activity_settings_support" />
+
+            <TextView
+                android:padding="@dimen/small_spacing"
                 android:id="@+id/helpTranslateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

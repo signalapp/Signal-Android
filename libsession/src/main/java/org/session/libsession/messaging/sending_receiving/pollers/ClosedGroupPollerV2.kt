@@ -10,7 +10,6 @@ import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.crypto.getRandomElementOrNull
 import org.session.libsignal.utilities.Log
-import org.session.libsignal.utilities.successBackground
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
@@ -82,7 +81,6 @@ class ClosedGroupPollerV2 {
         val limit: Long = 12 * 60 * 60 * 1000
         val a = (Companion.maxPollInterval - minPollInterval).toDouble() / limit.toDouble()
         val nextPollInterval = a * min(timeSinceLastMessage, limit) + minPollInterval
-        Log.d("Loki", "Next poll interval for closed group with public key: $groupPublicKey is ${nextPollInterval / 1000} s.")
         executorService?.schedule({
             poll(groupPublicKey).success {
                 pollRecursively(groupPublicKey)
@@ -108,7 +106,7 @@ class ClosedGroupPollerV2 {
             }
         }
         promise.fail {
-            Log.d("Loki", "Polling failed for closed group with public key: $groupPublicKey due to error: $it.")
+            Log.d("Loki", "Polling failed for closed group due to error: $it.")
         }
         return promise.map { }
     }

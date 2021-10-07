@@ -54,8 +54,11 @@ import org.thoughtcrime.securesms.crypto.KeyPairUtilities;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.database.Storage;
+import org.thoughtcrime.securesms.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.dependencies.DatabaseModule;
+import org.thoughtcrime.securesms.groups.OpenGroupManager;
+import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.groups.OpenGroupManager;
 import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -63,6 +66,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
+import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.notifications.BackgroundPollWorker;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
@@ -126,6 +130,7 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
     public Broadcaster broadcaster = null;
     private Job firebaseInstanceIdJob;
     private Handler conversationListNotificationHandler;
+    private PersistentLogger persistentLogger;
 
     @Inject LokiAPIDatabase lokiAPIDatabase;
     @Inject Storage storage;
@@ -144,6 +149,10 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
 
     public Handler getConversationListNotificationHandler() {
         return this.conversationListNotificationHandler;
+    }
+
+    public PersistentLogger getPersistentLogger() {
+        return this.persistentLogger;
     }
 
 @Override
@@ -281,7 +290,10 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
     }
 
     private void initializeLogging() {
-        Log.initialize(new AndroidLogger());
+        if (persistentLogger == null) {
+            persistentLogger = new PersistentLogger(this);
+        }
+        Log.initialize(new AndroidLogger(), persistentLogger);
     }
 
     private void initializeCrashHandling() {
