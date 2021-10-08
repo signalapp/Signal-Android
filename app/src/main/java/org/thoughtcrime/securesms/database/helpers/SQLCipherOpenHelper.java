@@ -217,8 +217,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int CLEANUP_SESSION_MIGRATION        = 116;
   private static final int RECEIPT_TIMESTAMP                = 117;
   private static final int BADGES                           = 118;
+  private static final int SENDER_KEY_UUID                  = 119;
 
-  private static final int    DATABASE_VERSION = 118;
+  private static final int    DATABASE_VERSION = 119;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context context;
@@ -2046,6 +2047,32 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
       if (oldVersion < BADGES) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN badges BLOB DEFAULT NULL");
+      }
+
+      if (oldVersion < SENDER_KEY_UUID) {
+        long start = System.currentTimeMillis();
+
+        db.execSQL("CREATE TABLE sender_keys_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                   "address TEXT NOT NULL, " +
+                   "device INTEGER NOT NULL, " +
+                   "distribution_id TEXT NOT NULL, " +
+                   "record BLOB NOT NULL, " +
+                   "created_at INTEGER NOT NULL, " +
+                   "UNIQUE(address, device, distribution_id) ON CONFLICT REPLACE)");
+
+        db.execSQL("INSERT INTO sender_keys_tmp (address, device, distribution_id, record, created_at) "  +
+                   "SELECT recipient.uuid AS new_address, " +
+                   "sender_keys.device, " +
+                   "sender_keys.distribution_id, " +
+                   "sender_keys.record, " +
+                   "sender_keys.created_at " +
+                   "FROM sender_keys INNER JOIN recipient ON sender_keys.recipient_id = recipient._id " +
+                   "WHERE new_address NOT NULL");
+
+        db.execSQL("DROP TABLE sender_keys");
+        db.execSQL("ALTER TABLE sender_keys_tmp RENAME TO sender_keys");
+
+        Log.d(TAG, "Sender key migration took " + (System.currentTimeMillis() - start) + " ms");
       }
 
       db.setTransactionSuccessful();

@@ -3111,6 +3111,9 @@ public class RecipientDatabase extends Database {
       Log.w(TAG, "Had no sessions. No action necessary.", true);
     }
 
+    // MSL
+    DatabaseFactory.getMessageLogDatabase(context).remapRecipient(byE164, byUuid);
+
     // Mentions
     ContentValues mentionRecipientValues = new ContentValues();
     mentionRecipientValues.put(MentionDatabase.RECIPIENT_ID, byUuid.serialize());
