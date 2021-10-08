@@ -7,10 +7,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.AsyncTask
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -323,7 +320,17 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun shareLogs() {
-        ShareLogsDialog().show(supportFragmentManager,"Share Logs Dialog")
+        Permissions.with(this)
+            .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .maxSdkVersion(Build.VERSION_CODES.P)
+            .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+            .onAnyDenied {
+                Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show()
+            }
+            .onAllGranted {
+                ShareLogsDialog().show(supportFragmentManager,"Share Logs Dialog")
+            }
+            .execute()
     }
 
     // endregion
