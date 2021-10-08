@@ -257,12 +257,11 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
-            output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
             def abiName = output.getFilter("ABI") ?: 'universal'
             def postFix = abiPostFix.get(abiName, 0)
 
             if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
-
+            output.outputFileName = output.outputFileName = "session-${variant.versionName}-${abiName}.apk"
             output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
         }
     }
