@@ -191,7 +191,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     long startTime = System.currentTimeMillis();
     Log.i(TAG, "App is now visible.");
 
-    ApplicationDependencies.getFrameRateTracker().begin();
+    ApplicationDependencies.getFrameRateTracker().start();
     ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
 
     SignalExecutors.BOUNDED.execute(() -> {
@@ -203,6 +203,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       KeyCachingService.onAppForegrounded(this);
       ApplicationDependencies.getShakeToReport().enable();
       checkBuildExpiration();
+      ApplicationDependencies.getDeadlockDetector().start();
     });
 
     Log.d(TAG, "onStart() took " + (System.currentTimeMillis() - startTime) + " ms");
@@ -213,8 +214,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
     ApplicationDependencies.getMessageNotifier().clearVisibleThread();
-    ApplicationDependencies.getFrameRateTracker().end();
+    ApplicationDependencies.getFrameRateTracker().stop();
     ApplicationDependencies.getShakeToReport().disable();
+    ApplicationDependencies.getDeadlockDetector().stop();
   }
 
   public PersistentLogger getPersistentLogger() {

@@ -39,8 +39,11 @@ dependencyVerification {
         ['androidx.coordinatorlayout:coordinatorlayout:1.1.0',
          '44a9e30abf56af1025c52a0af506fee9c4131aa55efda52f9fd9451211c5e8cb'],
 
-        ['androidx.core:core:1.3.1',
-         'e92ea65a37d589943d405a6a54d1be9d12a225948f26c4e41e511dd55e81efb6'],
+        ['androidx.core:core-ktx:1.5.0',
+         '5964cfe7a4882da2a00fb6ca3d3a072d04139208186f7bc4b3cb66022764fc42'],
+
+        ['androidx.core:core:1.5.0',
+         '2b279712795689069cfb63e48b3ab63c32a5649bdda44c482eb8f81ca1a72161'],
 
         ['androidx.cursoradapter:cursoradapter:1.0.0',
          'a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564'],
@@ -105,8 +108,8 @@ dependencyVerification {
         ['androidx.vectordrawable:vectordrawable:1.1.0',
          '46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26'],
 
-        ['androidx.versionedparcelable:versionedparcelable:1.1.0',
-         '9a1d77140ac222b7866b5054ee7d159bc1800987ed2d46dd6afdd145abb710c1'],
+        ['androidx.versionedparcelable:versionedparcelable:1.1.1',
+         '57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4'],
 
         ['androidx.viewpager2:viewpager2:1.0.0',
          'e95c0031d4cc247cd48196c6287e58d2cee54d9c79b85afea7c90920330275af'],
@@ -119,5 +122,14 @@ dependencyVerification {
 
         ['com.google.protobuf:protobuf-javalite:3.10.0',
          '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+
+        ['org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32',
+         'e1ff6f55ee9e7591dcc633f7757bac25a7edb1cc7f738b37ec652f10f66a4145'],
+
+        ['org.jetbrains.kotlin:kotlin-stdlib:1.4.32',
+         '13e9fd3e69dc7230ce0fc873a92a4e5d521d179bcf1bef75a6705baac3bfecba'],
+
+        ['org.jetbrains:annotations:13.0',
+         'ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478'],
     ]
 }

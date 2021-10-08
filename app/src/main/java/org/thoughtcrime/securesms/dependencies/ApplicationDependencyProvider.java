@@ -2,9 +2,12 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
+import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
@@ -76,6 +79,7 @@ import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -309,6 +313,13 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                 BuildConfig.SIGNAL_AGENT,
                                 provideGroupsV2Operations(),
                                 FeatureFlags.okHttpAutomaticRetry());
+  }
+
+  @Override
+  public @NonNull DeadlockDetector provideDeadlockDetector() {
+    HandlerThread handlerThread = new HandlerThread("signal-DeadlockDetector");
+    handlerThread.start();
+    return new DeadlockDetector(new Handler(handlerThread.getLooper()), TimeUnit.SECONDS.toMillis(5));
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

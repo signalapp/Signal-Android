@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.concurrent.DeadlockDetector;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -106,6 +107,7 @@ public class ApplicationDependencies {
   private static volatile SimpleExoPlayerPool          exoPlayerPool;
   private static volatile AudioManagerCompat           audioManagerCompat;
   private static volatile DonationsService             donationsService;
+  private static volatile DeadlockDetector             deadlockDetector;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -603,6 +605,17 @@ public class ApplicationDependencies {
     return donationsService;
   }
 
+  public static @NonNull DeadlockDetector getDeadlockDetector() {
+    if (deadlockDetector == null) {
+      synchronized (LOCK) {
+        if (deadlockDetector == null) {
+          deadlockDetector = provider.provideDeadlockDetector();
+        }
+      }
+    }
+    return deadlockDetector;
+  }
+
   public interface Provider {
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
@@ -639,5 +652,6 @@ public class ApplicationDependencies {
     @NonNull SimpleExoPlayerPool provideExoPlayerPool();
     @NonNull AudioManagerCompat provideAndroidCallAudioManager();
     @NonNull DonationsService provideDonationsService();
+    @NonNull DeadlockDetector provideDeadlockDetector();
   }
 }
