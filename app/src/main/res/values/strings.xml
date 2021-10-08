@@ -899,7 +899,7 @@
     <string name="delete_message_for_everyone">Delete for everyone</string>
     <string name="delete_message_for_me_and_recipient">Delete for me and %s</string>
     <string name="activity_settings_survey_feedback">Feedback/Survey</string>
-    <string name="activity_settings_support">Support</string>
+    <string name="activity_settings_support">Debug Log</string>
     <string name="dialog_share_logs_title">Share Logs</string>
     <string name="dialog_share_logs_explanation">Would you like to export your application logs to be able to share for troubleshooting?</string>
 

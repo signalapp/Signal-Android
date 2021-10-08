@@ -40,7 +40,7 @@ class ShareLogsDialog : BaseDialog() {
             val persistentLogger = ApplicationContext.getInstance(context).persistentLogger
             try {
                 val logs = persistentLogger.logs.get()
-                val fileName = "${Build.MANUFACTURER}-${Build.DEVICE}-API${Build.VERSION.SDK_INT}-v${BuildConfig.VERSION_NAME}.log"
+                val fileName = "${Build.MANUFACTURER}-${Build.DEVICE}-API${Build.VERSION.SDK_INT}-v${BuildConfig.VERSION_NAME}.txt"
                 val logUri = BlobProvider().forData(logs.toByteArray())
                     .withFileName(fileName)
                     .withMimeType("text/plain")
