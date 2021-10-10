@@ -390,7 +390,8 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
 
     private void setStorageUri (long threadId) {
         DocumentFile zipFile = instantiateZipFile(threadId);
-        setStorageUri (zipFile.getUri ());
+        if(zipFile != null)
+            setStorageUri (zipFile.getUri ());
     }
 
     private void setZipOutputStream (long threadId) throws IOException {

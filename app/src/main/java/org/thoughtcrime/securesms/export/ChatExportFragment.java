@@ -155,7 +155,7 @@ public class ChatExportFragment extends Fragment {
 
     private void chooseSaveFileLocation() {
         new AlertDialog.Builder(this.getParentFragment ().requireContext())
-                .setView(R.layout.chatexport_choose_location_dialog)
+                .setView(R.layout.chat_export_choose_location_dialog)
                 .setCancelable(true)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setPositiveButton(R.string.ChatExportDialog_choose_folder, (dialog, which) -> {
@@ -292,7 +292,8 @@ public class ChatExportFragment extends Fragment {
 
 
     private static void performSaveToDisk (@NonNull Context context,
-                                           Uri path, @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords,
+                                           Uri path,
+                                           @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords,
                                            HashMap<String, Uri> moreFiles,
                                            boolean hasViewer,
                                            String resultXML) {
@@ -313,10 +314,12 @@ public class ChatExportFragment extends Fragment {
                     for (ChatFormatter.MediaRecord mediaRecord : mediaRecords) {
                         assert mediaRecord.getAttachment () != null;
                         if (mediaRecord.getAttachment ().getUri () != null) {
-                            attachments.add (new ChatExportZipUtil.Attachment (mediaRecord.getAttachment ().getUri (),
+                            attachments.add (new ChatExportZipUtil.Attachment (
+                                    mediaRecord.getAttachment ().getUri (),
                                     mediaRecord.getContentType (),
                                     mediaRecord.getDate (),
-                                    mediaRecord.getAttachment ().getSize ()));
+                                    mediaRecord.getAttachment ().getSize ())
+                            );
                         }
                         if (isCancelled ()) break;
                     }

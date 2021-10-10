@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/chatExportSettingsFragment"
         android:name="org.thoughtcrime.securesms.export.ChatExportFragment"
-        android:label="chat_export_settings_fragment"
+        android:label="chat_export_fragment"
         tools:layout="@layout/chat_export_fragment">
 
         <action
@@ -30,7 +30,7 @@
         android:id="@+id/chat_export_time_period_Fragment"
         android:name="org.thoughtcrime.securesms.export.ChatExportTimePickerFragment"
         android:label="chat_export_time_picker_fragment"
-        tools:layout="@layout/fragment_chat_export_time_picker">
+        tools:layout="@layout/chat_export_time_picker_fragment">
 
         <action
             android:id="@+id/action_chatExportTimePicker_comeback"

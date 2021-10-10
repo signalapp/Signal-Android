@@ -55,7 +55,7 @@ public class ChatExportTimePickerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_chat_export_time_picker, container, false);
+        View view = inflater.inflate(R.layout.chat_export_time_picker_fragment, container, false);
 
         viewModel = ViewModelProviders.of(getActivity ()).get(ChatExportViewModel.class);
         chipGroup = view.findViewById (R.id.chat_export_chip_group);

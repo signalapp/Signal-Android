@@ -40,24 +40,24 @@
                         android:id="@+id/fragment_export_files_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
                         android:layout_marginBottom="0dp"
                         android:text="@string/ChatExportFragment__format_information"
-                        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-                        android:textColor="?attr/colorAccent" />
+                        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+                        android:textStyle="bold"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/signal_divider_major" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/chat_export_all_media"
                         style="@style/Widget.Signal.CardView.PreferenceRow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/dsl_settings_gutter"
+                        android:paddingEnd="@dimen/dsl_settings_gutter"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
                         android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -74,6 +74,7 @@
 
                             <TextView
                                 android:id="@+id/include_all_media"
+                                android:layout_marginStart="8dp"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -87,16 +88,18 @@
                             <androidx.appcompat.widget.SwitchCompat
                                 android:id="@+id/include_all_media_switch"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:checked="false"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
                                 android:clickable="true"
-                                android:enabled="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="false"
                                 android:minWidth="48dp"
+                                android:paddingStart="@dimen/dsl_settings_gutter"
+                                android:paddingEnd="@dimen/dsl_settings_gutter"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/include_all_media"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:focusable="true" />
+                                app:layout_constraintTop_toTopOf="parent" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -106,6 +109,10 @@
                         style="@style/Widget.Signal.CardView.PreferenceRow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/dsl_settings_gutter"
+                        android:paddingEnd="@dimen/dsl_settings_gutter"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
                         android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -121,6 +128,7 @@
 
                             <TextView
                                 android:id="@+id/include_html_viewer"
+                                android:layout_marginStart="8dp"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -133,75 +141,93 @@
 
                             <androidx.appcompat.widget.SwitchCompat
                                 android:id="@+id/include_html_viewer_switch"
+                                android:labelFor="@+id/html_viewer_switch"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:checked="false"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
                                 android:clickable="true"
-                                android:enabled="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="false"
                                 android:minWidth="48dp"
+                                android:paddingStart="@dimen/dsl_settings_gutter"
+                                android:paddingEnd="@dimen/dsl_settings_gutter"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/include_html_viewer"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:focusable="true" />
+                                app:layout_constraintTop_toTopOf="parent"/>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/fragment_export_time_period_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="0dp"
-                        android:text="@string/ChatExporFragment__time_period_information"
-                        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-                        android:textColor="?attr/colorAccent" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/signal_divider_major" />
+
+                    <TextView
+                        android:id="@+id/fragment_export_time_period_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="0dp"
+                        android:text="@string/ChatExporFragment__time_period_information"
+                        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+                        android:textStyle="bold" />
+
+
                     <LinearLayout
-                        android:id="@+id/chat_export_select_time_period"
+                        android:id="@+id/chat_export_select_time"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="?selectableItemBackground"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center_vertical"
                         android:minHeight="@dimen/group_manage_fragment_row_height"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        tools:visibility="visible">
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                             android:id="@+id/manage_profile_about_container"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/dsl_settings_gutter"
+                            android:paddingEnd="@dimen/dsl_settings_gutter"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                             android:background="?selectableItemBackground"
+                             app:layout_constraintTop_toBottomOf="@id/fragment_export_time_period_info">
 
                         <TextView
-                            android:id="@+id/chat_export_select_time_period_text"
+                            android:id="@+id/chat_export_select_time_period"
                             android:layout_width="match_parent"
-                            android:layout_height="34dp"
-                            android:layout_marginTop="16dp"
-                            android:gravity="center_vertical"
-                            android:paddingStart="16dp"
-                            android:paddingEnd="16dp"
+                            android:layout_height="wrap_content"
                             android:text="@string/ChatExportFragment__select_time_period"
                             android:textAppearance="@style/Signal.Text.Body"
                             android:textColor="@color/signal_text_primary"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_lightbox" />
+                            style="@style/Signal.Text.Body"
+                            tools:ignore="MissingConstraints" />
 
                         <TextView
                             android:id="@+id/chat_export_selected_time_period"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:textAppearance="@style/Signal.Text.Preview"
-                            android:textColor="@color/signal_text_secondary" />
+                            style="@style/Signal.Text.Preview"
+                            android:text="@string/ChatExportFragment_default_time"
+                            android:textColor="@color/signal_text_secondary"
+                            app:layout_constraintTop_toBottomOf="@id/chat_export_select_time_period"
+                            app:layout_constraintStart_toStartOf="@id/chat_export_select_time_period"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </LinearLayout>
                 </LinearLayout>
+            </ScrollView>
+
+
 
 
                 <!--               <TextView
@@ -257,7 +283,8 @@
                                         </androidx.cardview.widget.CardView>
 
                 </LinearLayout>-->
-            </ScrollView>
+
+
 
             <Button
                 android:id="@+id/chat_export_button"
@@ -272,22 +299,21 @@
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:text="@string/export_now"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/signal_divider_major" />
 
-            <TextView
+            <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                 android:id="@+id/fragment_export_chat_info"
+                style="@style/Signal.Text.Preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="33dp"
                 android:layout_marginBottom="16dp"
+                android:padding="@dimen/dsl_settings_gutter"
                 android:text="@string/ExportChatsFragment__chatexport_info"
-                android:textAppearance="@style/Signal.Text.Preview"
-                android:textColor="@color/signal_text_secondary" />
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chat_export_button"
+                app:layout_constraintVertical_bias="1.0" />
 
         </LinearLayout>
 

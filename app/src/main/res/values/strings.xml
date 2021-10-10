@@ -673,6 +673,7 @@
         <item quantity="other">Add %3$d members to \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Add</string>
+    <string name="AddMembersActivity__add_members">Add members</string>
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Name this group</string>
@@ -3395,8 +3396,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ExportChatsFragment__info">Here it will be displayed some information about how it works</string>
-    <string name="ChatExporFragment__time_period_information">Time period:</string>
-    <string name="ChatExportFragment__format_information">Export options:</string>
+    <string name="ChatExporFragment__time_period_information">Time period</string>
+    <string name="ChatExportFragment__format_information">Export options</string>
     <string name="ChatExportFragment__folder">Destination folder</string>
     <string name="ChatExportFragment__folder_information">"Select path to folder"</string>
 
@@ -3434,7 +3435,7 @@
     <string name="export_select_until_title">TO</string>
     <string name="date">date</string>
     <string name="ChatExportFragment__set_time_period">Time Period</string>
-    <string name="ChatExportFragment__select_time_period">Select time period</string>
+    <string name="ChatExportFragment__select_time_period">Change period</string>
     <string name="ExportChatsFragment__chatexport_info">Storage permission is required to export the chat.\nExporting a lot of messages can take some time. </string>
     <string name="open_export_directory">Open directory</string>
     <string name="export_dialog_close">Close</string>
@@ -3932,6 +3933,10 @@
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Become a sustainer</string>
 
     <string name="ImageView__badge">Badge</string>
+    <string name="conversation_group_options__recipients_list">Conversation Group Options</string>
+    <string name="ChatExportFragment_default_time">Whole conversation</string>
+    <string name="start_date">dd/mm/yyyy</string>
+    <string name="end_date">dd/mm/yyyy</string>
 
     <!-- EOF -->
 

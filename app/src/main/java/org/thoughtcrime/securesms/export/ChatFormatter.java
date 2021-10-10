@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.media.MediaFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -38,6 +40,10 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
+import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
+import org.thoughtcrime.securesms.media.MediaInput;
+import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -45,6 +51,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -58,6 +66,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -78,7 +88,7 @@ import javax.xml.transform.stream.StreamResult;
  *
  * @author  @anlaji
  * @version 1.0
- * @since   2021-06-20
+ * @since   2021-10-10
  */
 
 public class ChatFormatter {
@@ -107,7 +117,9 @@ public class ChatFormatter {
         timePeriod =  DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, atStartOfDay (fromDate).getTime ()) + " - " + DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, atEndOfDay (untilDate).getTime ());
         int countBeforeStartDate = db.getConversationCount (threadId, atStartOfDay (fromDate).getTime ());
         int countBeforeEndDate = db.getConversationCount (threadId, atEndOfDay (untilDate).getTime ());
-        this.conversation = db.getConversation (threadId, db.getMessagePositionOnOrAfterTimestamp (threadId, atEndOfDay (untilDate).getTime ()), countBeforeEndDate - countBeforeStartDate );
+        this.conversation = db.getConversation (threadId,
+                                                db.getMessagePositionOnOrAfterTimestamp (threadId, atEndOfDay (untilDate).getTime ()),
+                                                countBeforeEndDate - countBeforeStartDate );
         conversation.moveToLast ();
         this.reader = MmsSmsDatabase.readerFor (conversation);
     }
@@ -157,6 +169,10 @@ public class ChatFormatter {
              StringBuffer sb = outWriter.getBuffer ();
              finalstring = sb.toString ();
              Log.w(TAG, finalstring);
+             for(MediaRecord m: selectedMedia.values()){
+                if(m.getAttachment().isSticker())
+                 Log.w(TAG + "_Sticker", m.getAttachment().getKey() + " " + m.getAttachment().getSticker().getPackKey());
+             }
             }
 
         } catch (ParserConfigurationException | TransformerConfigurationException pce) {
@@ -197,7 +213,7 @@ public class ChatFormatter {
         }
     }
 
-    private void createPersonElem (Element parent, Recipient recipient, RecipientDatabase.RecipientSettings settings) {
+    private void createPersonElem (Element parent, @NonNull Recipient recipient, RecipientDatabase.RecipientSettings settings) {
         Element contact = addElement (parent, "contact");
 
         addAttribute (contact, "id", recipient.getId ().toString ());
@@ -302,15 +318,14 @@ public class ChatFormatter {
                 List<Mention> mentions = DatabaseFactory.getMentionDatabase (context).getMentionsForMessage (record.getId ());
                 if (!mentions.isEmpty ())
                     createMentions (context, record, mentions, body);
-                else if (record.isMms () && !((MmsMessageRecord) record).getSharedContacts ().isEmpty ())
+                else if (record.isMms () && MessageRecordUtil.hasSharedContact(record))
                     createSharedContact(record, body);
-                else if (record.isMms () && !((MmsMessageRecord) record).getLinkPreviews ().isEmpty ())
+                else if (record.isMms () && (MessageRecordUtil.hasLinkPreview(record)))
                     createLinkPreviews(record, body);
-                else if (record.isMms () && ((MediaMmsMessageRecord)record).getQuote() != null)
+                else if (record.isMms () && MessageRecordUtil.hasQuote(record))
                     createQuote(record, body);
-                else{
+                else
                     createMediaContentElem (body, record);
-                }
             }
             if(getMessageType (record).contentEquals ("OUTGOING") || getMessageType (record).contentEquals ("PUSH")) createTextElement (body, record);
             else if(getMessageType (record).contentEquals ("CALL_LOG")){
@@ -328,59 +343,84 @@ public class ChatFormatter {
     }
 
     private void createQuote (MessageRecord record, Element body) {
-        Quote q = ((MediaMmsMessageRecord)record).getQuote();
         Element quote = addElement (body, "quote");
+        Quote q = ((MediaMmsMessageRecord)record).getQuote();
         assert q != null;
-        addAttribute (quote, "id", String.valueOf (q.getId ()));
-        Recipient author = Recipient.resolved (q.getAuthor ());
-        addElement (quote, "author", author.getProfileName ().getGivenName ());
+        List<DatabaseAttachment> attachments = getDatabaseAttachments(record);
+        long              quoteId            = q.getId ();
+        Recipient         quoteAuthor        = Recipient.resolved (q.getAuthor ());
+        String            quoteText          = String.valueOf(q.getDisplayText ());
+        boolean           quoteMissing       = q.isOriginalMissing ();
+        List<DatabaseAttachment> quoteAttachments = attachments.stream().filter(Attachment::isQuote).collect(Collectors.toList());
+
+        addAttribute (quote, "id", String.valueOf(quoteId));
+        addElement (quote, "author", quoteAuthor.getProfileName ().getGivenName ());
         assert q.getDisplayText () != null;
-        addElement (quote, "quote_text",q.getDisplayText ().toString ());
-        if (q.isOriginalMissing ())
-            addElement (quote, "original", "is_missing");
-        if(q.getAttachment ().getSlides().size()!= 0){
-            List<Slide> slides = Stream.of(q.getAttachment ().getSlides()).filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker() || s.hasLocation ()
-                    || s.hasAudio () || s.hasDocument () || s.hasPlayOverlay ()).limit(1).toList();
-            for(Slide s: slides){
-                createAttachmentElem (quote, (DatabaseAttachment) s.asAttachment());
+        if (quoteText.length() > 0)    addElement (quote, "quote_text",quoteText);
+        if (quoteMissing)     addElement (quote, "original", "is_missing");
+        if(quoteAttachments.size()!= 0) {
+
+            Element mediaQuote = addElement (quote, "attachment");
+            for (DatabaseAttachment a : quoteAttachments) {
+                if(a.getSize()>0)
+                    createAttachmentElem(mediaQuote, a);
             }
         }
         else{
             if(q.getDisplayText () == null)
                 addElement (quote, "attachment", "is_missing");
         }
-        MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(q.getId(), author.getId ());
+        MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(q.getId(), quoteAuthor.getId ());
         if(message != null)
             addElement(quote, "timestamp",
                     DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, message.getTimestamp ()));
         else
             addElement(quote, "timestamp", "Unknown");
-        createTextElement (body,record);
     }
 
     private void createLinkPreviews (MessageRecord record, Element body) {
-        for(LinkPreview lp: ((MmsMessageRecord) record).getLinkPreviews ()) {
+
+        List<LinkPreview>           linkPreviews = ((MmsMessageRecord) record).getLinkPreviews();
+
+        List<Attachment> previewAttachments = Stream.of(linkPreviews).filter(lp -> lp.getThumbnail().isPresent()).map(lp -> lp.getThumbnail().get()).toList();
+
+        for(LinkPreview lp: linkPreviews) {
             Element link = addElement (body, "link");
-            addAttribute (link, "title", lp.getTitle ());
-            addElement (link, "url", escapeXML (lp.getUrl ()));
-            addElement (link, "description", lp.getDescription ());
-            if (lp.getAttachmentId() != null && lp.getAttachmentId().isValid()) {
-                DatabaseAttachment a = DatabaseFactory.getAttachmentDatabase(context).getAttachment(lp.getAttachmentId());
-                Element link_preview = addElement(link, "link_preview");
-                MediaRecord mediaRecord = new MediaRecord(a, record.getRecipient().getId(), threadId, record.getDateSent(), record.isOutgoing());
-                selectedMedia.put(lp.getThumbnail().get().getKey(), mediaRecord);
-                if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getAttachmentId() != null)
-                    addAttribute(link_preview, "id", mediaRecord.getAttachment().getAttachmentId().toString());
-                if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getFileName() != null)
-                    addElement(link_preview, "filename", mediaRecord.getAttachment().getFileName());
-                if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getUri()!=null)
-                    addElement(link_preview, "content_path", getContentPath(mediaRecord.getContentType(), mediaRecord.getDate(), mediaRecord.getAttachment().getUri()));
-                if (a != null)
-                    addAttribute(link_preview, "content_type", a.getContentType());
+            String title = lp.getTitle();
+            String url = lp.getUrl();
+            String description = lp.getDescription();
+            LinkPreviewUtil.Links urlsInMessage = LinkPreviewUtil.findValidPreviewUrls(url);
+            boolean              hasTitle      = !TextUtils.isEmpty(title);
+            boolean              presentInBody = urlsInMessage.containsUrl(url);
+            boolean              validDomain   = LinkPreviewUtil.isValidPreviewUrl(url);
+
+            if (hasTitle && presentInBody && validDomain) {
+                addAttribute (link, "title", title);
+                addElement (link, "url", escapeXML (url));
+                addElement (link, "description", description);
+                if(lp.getDate () > 0 )
+                    addElement (link, "date",
+                                DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale,
+                                                       lp.getDate ()));
+                if (lp.getAttachmentId() != null && lp.getAttachmentId().isValid()) {
+                    DatabaseAttachment a = DatabaseFactory.getAttachmentDatabase(context).getAttachment(lp.getAttachmentId());
+                    Element link_preview = addElement(link, "link_preview");
+                    MediaRecord mediaRecord = new MediaRecord(a, record.getRecipient().getId(), threadId, record.getDateSent(), record.isOutgoing());
+                    selectedMedia.put(a.getKey(), mediaRecord);
+                    if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getAttachmentId() != null)
+                        addAttribute(link_preview, "id", mediaRecord.getAttachment().getAttachmentId().toString());
+                    if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getFileName() != null)
+                        addElement(link_preview, "filename", mediaRecord.getAttachment().getFileName());
+                    if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getUri()!=null)
+                        addElement(link_preview, "content_path", getContentPath(mediaRecord.getContentType(), mediaRecord.getDate(), mediaRecord.getAttachment().getUri()));
+                    if (a != null)
+                        addAttribute(link_preview, "content_type", a.getContentType());
+                }
             }
-            if (Build.VERSION.SDK_INT >= 26)
-                if(lp.getDate () > 0 )addElement (link, "date",  DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, lp.getDate ()));
-        }
+            else{
+                addAttribute (link, "error", "invalid");
+            }
+                }
     }
 
     private void createSharedContact (MessageRecord record, Element body) {
@@ -417,7 +457,7 @@ public class ChatFormatter {
             }
     }
 
-    private void createMentions (Context context, MessageRecord record, List<Mention> mentions, Element body) {
+    private void createMentions (Context context, @NonNull MessageRecord record, List<Mention> mentions, Element body) {
         MentionUtil.UpdatedBodyAndMentions updated = MentionUtil.updateBodyAndMentionsWithDisplayNames (context, record.getBody (), mentions);
         mentions = updated.getMentions ();
         for (Mention m : mentions) {
@@ -450,37 +490,43 @@ public class ChatFormatter {
 
     private void createMediaContentElem (Element body, MessageRecord record) {
         try {
-
-            addElement (body, "media1", String.valueOf((record instanceof MediaMmsMessageRecord)));
             if (record instanceof MediaMmsMessageRecord) {
                 Element media = addElement (body, "media_content");
-                Element attachment;
-                List<DatabaseAttachment> attachments;
-                attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(record.getId());
+                Element a;
+                List<DatabaseAttachment> allAttachments = getDatabaseAttachments(record);
+                if (allAttachments.size() > 0) {
+                    record = ((MediaMmsMessageRecord) record).withAttachments(context, allAttachments);
+                }
+                List<DatabaseAttachment> attachments        = Stream.of(allAttachments).filterNot(Attachment::isQuote).toList();
 
                 if (Util.hasItems(attachments)) {
-                    for (DatabaseAttachment a : attachments) {
-                        attachment = addElement (media, "attachment");
-                        createAttachmentElem (attachment, a);
-                        MediaRecord mediaRecord = new MediaRecord (a,
+                    for (DatabaseAttachment attachment : attachments) {
+                        a = addElement (media, "attachment");
+                        createAttachmentElem (a, attachment);
+                        MediaRecord mediaRecord = new MediaRecord (attachment,
                                                                    record.getRecipient ().getId (),
                                                                    threadId,
-                                                                   a.getUploadTimestamp (),
+                                                                   attachment.getUploadTimestamp (),
                                                                    record.isOutgoing ());
 
                         String path = "";
                         if (mediaRecord.getAttachment () != null && !mediaRecord.getAttachment ().hasData ())
-                        {
-                            addAttribute (attachment, "downloaded", String.valueOf (mediaRecord.getAttachment ().hasData ()));
-                        }
+                            addAttribute (a, "downloaded", String.valueOf (mediaRecord.getAttachment ().hasData ()));
                         else if (mediaRecord.getAttachment () != null && mediaRecord.getAttachment ().hasData () && mediaRecord.getAttachment ().getUri () != null) {
-                            selectedMedia.put (a.getKey (), mediaRecord);
+                            if(mediaRecord.getAttachment().isSticker()) {
+                                Log.w(TAG, "Sticker!!" + attachment.getSticker().getStickerId() + " " + attachment.getSticker().getPackKey());
+                                selectedMedia.put (attachment.getSticker ().getPackKey() + attachment.getSticker().getStickerId(), mediaRecord);
+                            }
+                            else
+                                selectedMedia.put (attachment.getKey (), mediaRecord);
                             path = getContentPath (mediaRecord.getContentType (), mediaRecord.getDate (), mediaRecord.getAttachment ().getUri ());
                         }
                         else
-                        if (a.getUri () != null)
-                            otherFiles.put (a.getKey (), a.getUri ());
-                        addElement (attachment, "content_path", path);
+                        if (attachment.getUri () != null)
+                            otherFiles.put (attachment.getKey (), attachment.getUri ());
+
+                        if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getUri()!=null)
+                            addElement (a, "content_path", path);
                     }
                 }
             }
@@ -489,113 +535,126 @@ public class ChatFormatter {
         }
     }
 
-    private String getContentPath (String content_type, long timestamp,@NonNull Uri uri) {
-        return ChatExportZipUtil.getMediaStoreContentPathForType (content_type) +
-                ChatExportZipUtil.generateOutputFileName (content_type, timestamp, uri.getPathSegments ().get (uri.getPathSegments ().size ()-1));
+    @NonNull private List<DatabaseAttachment> getDatabaseAttachments(@NonNull MessageRecord record) {
+        List<DatabaseAttachment> allAttachments;
+        allAttachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(record.getId());
+        return allAttachments;
     }
 
-    private void createAttachmentElem (Element attachment, DatabaseAttachment s) {
-        try {
-            addAttribute (attachment, "id", String.valueOf (s.getAttachmentId()));
-            if(s.getFileName()!=null)
-                addElement (attachment, "filename", s.getFileName ());
-            if(s.getFastPreflightId ()!=null)
-                addElement (attachment, "fast_preflight_id", s.getFastPreflightId ());
-            if(s.getKey ()!=null)
-                addAttribute (attachment, "key", s.getKey ());
+    private void createStickerAttachmentElem(Element a, @NonNull DatabaseAttachment sticker) {
+        String name;
+        Element s = addElement (a, "sticker");
+        addAttribute (s, "id", String.valueOf (Objects.requireNonNull (sticker.getSticker ()).getStickerId ()));
+        if (sticker.isBorderless ()) addElement (s, "is_borderless", "true");
+        addElement (s, "emoji", Objects.requireNonNull (sticker.getSticker ()).getEmoji ());
+        addElement (s, "describe_contents", String.valueOf(sticker.getSticker ().describeContents ()));
+        addAttribute (s, "content_type", sticker.getContentType ());
+        if (sticker.getFileName ()!=null) {
+            name = sticker.getFileName ();
+            addElement (s, "name", name);
+        }
+    }
 
-            Element metadata = addElement (attachment, "metadata");
+    private void createAttachmentElem (Element a, @NonNull DatabaseAttachment attachment) {
+        try {
+            addAttribute (a, "id", String.valueOf (attachment.getAttachmentId()));
+            if(attachment.getFileName()!=null)
+                addElement (a, "filename", attachment.getFileName ());
+            if(attachment.getFastPreflightId ()!=null)
+                addElement (a, "fast_preflight_id", attachment.getFastPreflightId ());
+            if(attachment.getKey ()!=null && !attachment.isSticker())
+                addAttribute (a, "key", attachment.getKey ());
+            else if (attachment.getKey ()!=null && attachment.isSticker())
+                addAttribute (a, "key", attachment.getSticker().getPackKey() + attachment.getSticker().getStickerId());
+
+            Element metadata = addElement (a, "metadata");
             String name;
-            addElement (metadata, "size", Util.getPrettyFileSize (s.getSize()));
-            /*if (s.hasAudio ()) {
+            addElement (metadata, "size", Util.getPrettyFileSize (attachment.getSize()));
+
+            if (MediaUtil.isAudio(attachment)) {
                 Element audio = addElement (metadata, "audio");
-                addAttribute (audio, "content_type", s.getContentType ());
-                if (s.getFileName ().isPresent ()) {
-                    name = s.getFileName ().get ();
+                addAttribute (audio, "content_type", attachment.getContentType ());
+                if (attachment.getFileName() != null) {
+                    name = attachment.getFileName ();
                     addElement (audio, "name", name);
                 }
-                if (s.isVoiceNote ())
+                if (attachment.isVoiceNote ())
                     addAttribute (audio, "is", "voice_note");
-                if(s.getCaption ()!=null)
-                    addElement (audio, "caption", String.valueOf (s.getCaption ()));
+                if(attachment.getCaption ()!=null)
+                    addElement (audio, "caption", String.valueOf (attachment.getCaption ()));
                 MediaInput dataSource;
-                if (android.os.Build.VERSION.SDK_INT >= 23 && s.getUri()!=null) {
-                    dataSource = DecryptableUriMediaInput.createForUri(context, s.getUri ());
+                if (Build.VERSION.SDK_INT >= 23 && attachment.getUri() != null) {
+                    dataSource = DecryptableUriMediaInput.createForUri(context, attachment.getUri ());
                     addElement (audio, "duration_sec", String.valueOf (TimeUnit.SECONDS.convert((dataSource.createExtractor ().getTrackFormat (0).getLong(MediaFormat.KEY_DURATION)), TimeUnit.SECONDS)));
                 }
-            } else if (s.hasVideo ()) {
+            } else if (MediaUtil.isVideo(attachment)) {
                 Element video = addElement (metadata, "video");
-                addAttribute (video, "content_type", s.getContentType ());
-                if (s.getFileName ().isPresent ()) {
-                    name = s.getFileName ().get ();
+                addAttribute (video, "content_type", attachment.getContentType ());
+                if (attachment.getFileName ()!=null) {
+                    name = attachment.getFileName ();
                     addElement (video, "name", name);
                 }
-                addElement (video, "width", String.valueOf (s.getWidth ()));
-                addElement (video, "height", String.valueOf (s.getHeight ()));
-                if(s.getCaption ()!=null)
-                    addElement (video, "caption", String.valueOf (s.getCaption ()));
-                if (s.getTransformProperties ().isVideoEdited ())
+                addElement (video, "width", String.valueOf (attachment.getWidth ()));
+                addElement (video, "height", String.valueOf (attachment.getHeight ()));
+                if(attachment.getCaption ()!=null)
+                    addElement (video, "caption", String.valueOf (attachment.getCaption ()));
+                if (attachment.getTransformProperties ().isVideoEdited ())
                     addElement (video, "video_edited", "true");
-                if (s.getTransformProperties ().isVideoTrim ())
+                if (attachment.getTransformProperties ().isVideoTrim ())
                     addElement (video, "video_trim", "true");
                 MediaInput dataSource;
-                if(s.getUri () != null) {
+                if(attachment.getUri () != null) {
                     if (Build.VERSION.SDK_INT >= 23) {
-                        dataSource = DecryptableUriMediaInput.createForUri(context, s.getUri ());
-                        addElement (video, "duration_sec", String.valueOf (TimeUnit.SECONDS.convert((dataSource.createExtractor ().getTrackFormat (0).getLong(MediaFormat.KEY_DURATION)), TimeUnit.SECONDS)));
-                    }
+                        dataSource = DecryptableUriMediaInput.createForUri(context, attachment.getUri ());
+                        addElement (video, "duration_sec",
+                                    String.valueOf (TimeUnit.SECONDS.convert(
+                                        (dataSource.createExtractor ().getTrackFormat (0).getLong(MediaFormat.KEY_DURATION)), TimeUnit.SECONDS)));
                     }
                 }
-            else if(s.hasLocation () && s.getLocation ()!=null){
-                Element location = addElement (metadata, "location");
-                addElement (location, "description", String.valueOf( ((LocationSlide)s).getPlace().getDescription ()));
-                addElement (location, "latitude", String.valueOf( ((LocationSlide)s).getPlace().getLatLong ().latitude));
-                addElement (location, "longitude", String.valueOf( ((LocationSlide)s).getPlace().getLatLong ().longitude));
             }
-            else if (s.hasImage ()) {
+            else if(MessageRecordUtil.hasLocation(DatabaseFactory.getMmsDatabase(context).getMessageRecord(attachment.getMmsId()))){
+                Element location = addElement (metadata, "location");
+                addElement (location, "description", attachment.getLocation());
+            }
+            else if (MediaUtil.isImage(attachment) && !attachment.isSticker()) {
                 Element image;
                 image = addElement (metadata, "image");
-                addAttribute (image, "content_type", s.getContentType ());
-                if (s.getFileName ().isPresent ()) {
-                    name = s.getFileName ().get ();
+                addAttribute (image, "content_type", attachment.getContentType ());
+                if (attachment.getFileName () != null) {
+                    name = attachment.getFileName ();
                     addElement (image, "name", name);
                 }
-                addElement (image, "width", String.valueOf (s.getWidth ()));
-                addElement (image, "height", String.valueOf (s.getHeight ()));
-                if(s.getCaption ()!=null)
-                    addElement (image, "caption", String.valueOf (s.getCaption ()));
-            } else if (s.hasDocument ()) {
+                addElement (image, "width", String.valueOf (attachment.getWidth ()));
+                addElement (image, "height", String.valueOf (attachment.getHeight ()));
+                if(attachment.getCaption ()!=null)
+                    addElement (image, "caption", String.valueOf (attachment.getCaption ()));
+            } else if (MediaUtil.isFile(attachment)) {
                 Element document = addElement (metadata, "document");
-                addAttribute (document, "content_type", s.getContentType ());
-                if (s.getFileName ().isPresent ()) {
-                    name = s.getFileName ().get ();
+                addAttribute (document, "content_type", attachment.getContentType ());
+                if (attachment.getFileName ()!=null) {
+                    name = attachment.getFileName ();
                     addElement (document, "name", name);
                 }
             }
-            else if (s.hasSticker ()) {
-                Element sticker = createStickerElem (metadata, s);
-                addAttribute (sticker, "content_type", s.getContentType ());
-                if (s.getFileName ().isPresent ()) {
-                    name = s.getFileName ().get ();
-                    addElement (sticker, "name", name);
-                }
-            }
-
+            else if (attachment.isSticker())
+                createStickerAttachmentElem(metadata, attachment);
             else {
                 Element unknown = addElement (metadata, "unknown");
-                addAttribute (unknown, "content_type", s.getContentType ());
-                if (s.getFileName ().isPresent ()) {
-                    name = s.getFileName ().get ();
+                addAttribute (unknown, "content_type", attachment.getContentType ());
+                if (attachment.getFileName ()!=null) {
+                    name = attachment.getFileName ();
                     addElement (unknown, "name", name);
                 }
             }
-            if (s.getBody ().isPresent ()) {
-                addElement (attachment, "comment", escapeXML(s.getBody ().get ()));
-            }*/
         } catch (Exception e) {
             e.printStackTrace ();
         }
 
+    }
+
+    @NonNull private String getContentPath (String content_type, long timestamp, @NonNull Uri uri) {
+        return ChatExportZipUtil.getMediaStoreContentPathForType (content_type) +
+                ChatExportZipUtil.generateOutputFileName (content_type, timestamp, uri.getPathSegments ().get (uri.getPathSegments ().size ()-1));
     }
 
     private void createReactionsElem (Element body, MessageRecord record) {
@@ -869,7 +928,8 @@ public class ChatFormatter {
 
         public static MediaRecord from (@NonNull Context context, @NonNull Cursor cursor, MessageRecord record) {
             AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase (context);
-            List<DatabaseAttachment> attachments = attachmentDatabase.getAttachments (cursor);
+           // List<DatabaseAttachment> attachments = attachmentDatabase.getAttachment (cursor);
+            List<DatabaseAttachment> attachments = null;
             RecipientId recipientId = RecipientId.from (cursor.getLong (cursor.getColumnIndexOrThrow (MmsDatabase.RECIPIENT_ID)));
             long threadId = cursor.getLong (cursor.getColumnIndexOrThrow (MmsDatabase.THREAD_ID));
             boolean outgoing = MessageDatabase.Types.isOutgoingMessageType (cursor.getLong (cursor.getColumnIndexOrThrow (MmsDatabase.MESSAGE_BOX)));

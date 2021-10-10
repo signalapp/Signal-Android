@@ -210,8 +210,8 @@
           id = $(this_quote).find("quote").attr("id");
           author = $(this_quote).find("author").text();
           quote_timestamp = $(this_quote).find("timestamp").text();
-            quote_text = $(this_quote).find("quote_text").text();
-            return "<\/br><div class= 'quote' style='border:1px solid #ccc; background-clip: border-box;'><b>"+ author +"<\/b> ["+ quote_timestamp+"]:<p><i>"+quote_text+"<\/i><\/p><\/div>";
+          quote_text = $(this_quote).find("quote_text").text();
+            return "<\/br><div class= 'quote' style='border:1px solid #ccc; background-clip: border-box;'><b>"+ author +"<\/b> ["+ quote_timestamp+"]<p><i>"+quote_text+"<\/i><\/p><\/div>";
         }
 
 
@@ -230,7 +230,6 @@
               return result;
             }
             comment = $(this).find("comment").text();
-
 
             signal_document =  $(this).find("metadata").find("document").text();
             sticker =  $(this).find("sticker").text();
