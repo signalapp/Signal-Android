@@ -697,6 +697,7 @@
   <string name="ManageProfileFragment_your_name">Ваше име</string>
   <string name="ManageProfileFragment_your_username">Твоје корисничко име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Неуспех постављења аватара</string>
+  <string name="ManageProfileFragment_badges">Значке</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Нема заједничких група</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1590,6 +1591,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Реаговао %1$s на: „%2$s”.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Реакција %1$s на ваш видео.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Реакција %1$s на вашу слику.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Реакција %1$s на ваш GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Реакција %1$s на вашу датотеку.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Реакција %1$s на ваш звучни запис.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реакција %1$s на ваш једнократни медиј.</string>
@@ -3327,6 +3329,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Одбацити промене?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Изгубићете све промене које сте направили на овој фотографији.</string>
   <string name="CameraFragment__failed_to_open_camera">Неуспешно отварање камере</string>
+  <string name="BadgesOverviewFragment__my_badges">Моје значке</string>
+  <string name="BadgesOverviewFragment__featured_badge">Способности значке</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Показати значке на прифилу</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Ажурирање профила није успело</string>
+  <string name="BadgeSelectionFragment__select_badges">Одабрати значке</string>
   <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Одабрати значку</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Морате одабрати значку</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ажурирање профила није успело</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
+  <string name="ImageView__badge">Значка</string>
   <!--EOF-->
 </resources>

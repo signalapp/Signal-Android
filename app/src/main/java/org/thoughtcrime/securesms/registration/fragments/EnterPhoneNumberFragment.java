@@ -96,7 +96,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                                                                          countryCode,
                                                                                          number,
                                                                                          countrySpinner,
-                                                                                         false,
+                                                                                         true,
                                                                                          this);
 
     register.setOnClickListener(v -> handleRegister(requireContext()));

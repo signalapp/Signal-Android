@@ -697,6 +697,7 @@
   <string name="ManageProfileFragment_your_name">Vaše ime</string>
   <string name="ManageProfileFragment_your_username">Vaše korisničko ime</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Neuspjelo postavljanje slike profila</string>
+  <string name="ManageProfileFragment_badges">Značke</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nema zajedničkih grupa</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1592,6 +1593,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Reagovao/la je sa %1$s na: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagovao/la je sa %1$s na Vaš videozapis.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagovao/la je sa %1$s na Vašu sliku.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagovao/la je sa %1$s na Vaš GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagovao/la je sa %1$s na Vašu datoteku.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagovao/la je sa %1$s na Vaš audiozapis.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagovao/la je sa %1$s na Vaš jednokratni zapis.</string>
@@ -3332,6 +3334,16 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Poništiti promjene?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Poništit ćete svaku izmjenu koju ste načinili na ovoj slici.</string>
   <string name="CameraFragment__failed_to_open_camera">Neuspjelo pokretanje kamere</string>
+  <string name="BadgesOverviewFragment__my_badges">Moje značke</string>
+  <string name="BadgesOverviewFragment__featured_badge">Odabrana značka</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Prikaži značke na profilu</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Neuspjelo ažuriranje profila</string>
+  <string name="BadgeSelectionFragment__select_badges">Izaberi značke</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pregled</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Izaberi značku</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Morate izabrati značku</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Neuspjelo ažuriranje profila</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pomagač</string>
+  <string name="ImageView__badge">Značka</string>
   <!--EOF-->
 </resources>

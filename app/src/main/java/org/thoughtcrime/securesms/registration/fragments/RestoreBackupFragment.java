@@ -32,7 +32,7 @@ import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

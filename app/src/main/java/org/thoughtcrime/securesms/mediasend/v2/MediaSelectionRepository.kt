@@ -201,7 +201,7 @@ class MediaSelectionRepository(context: Context) {
         isViewOnce,
         ThreadDatabase.DistributionTypes.DEFAULT,
         null, emptyList(), emptyList(),
-        mentions, emptyList(), emptyList()
+        mentions, mutableSetOf(), mutableSetOf()
       )
       messages.add(OutgoingSecureMediaMessage(message))
 

@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">O seu nome</string>
   <string name="ManageProfileFragment_your_username">O seu nome de utilizador</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao tentar definir o avatar</string>
+  <string name="ManageProfileFragment_badges">Crachás</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Sem grupos em comum</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1526,6 +1527,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Reagiu %1$s a: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagiu %1$s ao seu vídeo.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagiu %1$s à sua imagem.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagiu ao seu GIF com %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagiu %1$s ao seu ficheiro.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu %1$s ao seu áudio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu %1$s ao seu ficheiro multimédia de visualização única</string>
@@ -3234,6 +3236,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Descartar alterações?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Irá perder quaisquer alterações que fez nesta fotografia.</string>
   <string name="CameraFragment__failed_to_open_camera">Ocorreu um erro a tentar abrir a câmara</string>
+  <string name="BadgesOverviewFragment__my_badges">Os meus crachás</string>
+  <string name="BadgesOverviewFragment__featured_badge">Crachá em destaque</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Exibir os crachás no perfil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
+  <string name="BadgeSelectionFragment__select_badges">Selecionar crachás</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pré-visualização</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecione um crachá</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Deverá selecionar uma etiqueta</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num apoiante</string>
+  <string name="ImageView__badge">Crachá</string>
   <!--EOF-->
 </resources>

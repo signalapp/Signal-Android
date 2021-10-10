@@ -345,6 +345,7 @@
   <string name="ChooseBackupFragment__icon_content_description">\"Visszaállítás biztonsági mentésből\" ikonja</string>
   <string name="ChooseBackupFragment__choose_backup">Válassz biztonsági mentést!</string>
   <string name="ChooseBackupFragment__learn_more">További információ</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Nincs elérhető fájlkezelő</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Visszaállítás kész</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">A biztonsági mentések használatának folytatásához válassz egy mappát! Az újabb mentések már itt lesznek létrehozva.</string>
@@ -664,6 +665,7 @@
   <string name="ManageProfileFragment_your_name">Neved</string>
   <string name="ManageProfileFragment_your_username">Felhasználóneved</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nem sikerült beállítani a profilképet</string>
+  <string name="ManageProfileFragment_badges">Jelvények</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nincsenek közös csoportok</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1209,6 +1211,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallView__reconnecting">Újracsatlakozás…</string>
   <string name="WebRtcCallView__joining">Csatlakozás…</string>
   <string name="WebRtcCallView__disconnected">Lecsatlakozva</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s értesítve lesz</string>
   <string name="WebRtcCallView__no_one_else_is_here">Nincs itt senki</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s ebben a hívásban van</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s és  %2$s ebben a hívásban van</string>
@@ -2923,7 +2926,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Meg kell adnod új telefonszámodat</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Szám változtatása</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha szükséges</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Szám megváltoztatása</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Szám szerkesztése</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
@@ -3090,6 +3095,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Új fizetés</string>
@@ -3099,8 +3105,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ContactFilterView__search_name_or_number">Telefonszám vagy név keresése</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Hangüzenet leállítása</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Hangüzenet sebességének megváltoztatása</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Hangüzenet szüneteltetése</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Hangüzenet lejátszása</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Kép készítése</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Fotó választás</string>
   <string name="AvatarPickerFragment__photo">Fotó</string>
   <string name="AvatarPickerFragment__text">Szöveg</string>
   <string name="AvatarPickerFragment__save">Mentés</string>
@@ -3111,6 +3123,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="TextAvatarCreationFragment__text">Szöveg</string>
   <string name="TextAvatarCreationFragment__color">Szín</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Szín választása</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
@@ -3134,13 +3147,28 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Szöveg hozzáadása</string>
   <string name="ImageEditorHud__cancel">Mégsem</string>
+  <string name="ImageEditorHud__draw">Rajz</string>
+  <string name="ImageEditorHud__write_text">Szövegírás</string>
+  <string name="ImageEditorHud__add_a_sticker">Matrica hozzáadás</string>
   <string name="ImageEditorHud__blur">Elmosás</string>
+  <string name="ImageEditorHud__done_editing">Szerkesztés befejezése</string>
+  <string name="ImageEditorHud__clear_all">Összes törlése</string>
   <string name="ImageEditorHud__undo">Visszavonás</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Váltás jelölő és kiemelő között</string>
   <string name="ImageEditorHud__delete">Törlés</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Váltás szövegstílusok között</string>
   <string name="MediaCountIndicatorButton__send">Küldés</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Érints az eltávolításhoz</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Koppints a kiválasztáshoz</string>
   <string name="MediaReviewImagePageFragment__discard">Elvetés</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Elveted a változásokat?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Elvesztesz minden változtatást, amit ezen a fotón csináltál.</string>
   <string name="CameraFragment__failed_to_open_camera">Kamera megnyitása sikertelen</string>
+  <string name="BadgesOverviewFragment__my_badges">Jelvényeim</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Jelvények megjelenítése a profilon</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Nem sikerült a profil frissítése</string>
   <string name="SelectFeaturedBadgeFragment__preview">Előnézet</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nem sikerült a profil frissítése</string>
+  <string name="ImageView__badge">Jelvény</string>
   <!--EOF-->
 </resources>

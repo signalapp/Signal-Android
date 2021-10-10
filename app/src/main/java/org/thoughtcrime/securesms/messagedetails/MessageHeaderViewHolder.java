@@ -43,6 +43,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
   private final TextView               sentDate;
@@ -55,7 +56,6 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   private final ViewStub               updateStub;
   private final ViewStub               sentStub;
   private final ViewStub               receivedStub;
-  private final ClipProjectionDrawable clipProjectionDrawable;
   private final Colorizer              colorizer;
 
   private       GlideRequests    glideRequests;
@@ -77,9 +77,6 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     updateStub      = itemView.findViewById(R.id.message_details_header_message_view_update);
     sentStub        = itemView.findViewById(R.id.message_details_header_message_view_sent_multimedia);
     receivedStub    = itemView.findViewById(R.id.message_details_header_message_view_received_multimedia);
-
-    clipProjectionDrawable = new ClipProjectionDrawable(itemView.getBackground());
-    itemView.setBackground(clipProjectionDrawable);
   }
 
   void bind(@NonNull LifecycleOwner lifecycleOwner, @Nullable ConversationMessage conversationMessage, boolean running) {
@@ -225,13 +222,11 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   @Override
   public void showProjectionArea() {
     conversationItem.showProjectionArea();
-    updateProjections();
   }
 
   @Override
   public void hideProjectionArea() {
     conversationItem.hideProjectionArea();
-    updateProjections();
   }
 
   @Override
@@ -255,24 +250,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
-  public @NonNull List<Projection> getColorizerProjections() {
-    List<Projection> projections = conversationItem.getColorizerProjections();
-    updateProjections();
-    return projections;
-  }
-
-  private void updateProjections() {
-    Set<Projection> projections = new HashSet<>();
-
-    if (canPlayContent()) {
-      projections.add(conversationItem.getGiphyMp4PlayableProjection((ViewGroup) itemView));
-    }
-
-    projections.addAll(Stream.of(conversationItem.getColorizerProjections())
-                             .map(p -> Projection.translateFromRootToDescendantCoords(p, itemView))
-                             .toList());
-
-    clipProjectionDrawable.setProjections(projections);
+  public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
+    return conversationItem.getColorizerProjections(coordinateRoot);
   }
 
   private class ExpiresUpdater implements Runnable {

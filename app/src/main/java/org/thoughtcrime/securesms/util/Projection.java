@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.CornerMask;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -139,16 +142,6 @@ public final class Projection {
     return new Projection(viewBounds.left, viewBounds.top, toProject.getWidth(), toProject.getHeight(), corners);
   }
 
-  public static @NonNull Projection translateFromRootToDescendantCoords(@NonNull Projection rootProjection, @NonNull View descendant) {
-    Rect viewBounds = new Rect();
-
-    viewBounds.set((int) rootProjection.x, (int) rootProjection.y, (int) rootProjection.x + rootProjection.width, (int) rootProjection.y + rootProjection.height);
-
-    ((ViewGroup) descendant.getRootView()).offsetRectIntoDescendantCoords(descendant, viewBounds);
-
-    return new Projection(viewBounds.left, viewBounds.top, rootProjection.width, rootProjection.height, rootProjection.corners);
-  }
-
   public static @NonNull Projection translateFromDescendantToParentCoords(@NonNull Projection descendantProjection, @NonNull View descendant, @NonNull ViewGroup parent) {
     Rect viewBounds = new Rect();
 
@@ -157,6 +150,42 @@ public final class Projection {
     parent.offsetDescendantRectToMyCoords(descendant, viewBounds);
 
     return new Projection(viewBounds.left, viewBounds.top, descendantProjection.width, descendantProjection.height, descendantProjection.corners);
+  }
+
+  public static @NonNull List<Projection> getCapAndTail(@NonNull Projection parentProjection, @NonNull Projection childProjection) {
+    if (parentProjection.equals(childProjection)) {
+      return Collections.emptyList();
+    }
+
+    float topX      = parentProjection.x;
+    float topY      = parentProjection.y;
+    int   topWidth  = parentProjection.getWidth();
+    int   topHeight = (int) (childProjection.y - parentProjection.y);
+
+    final Corners topCorners;
+    Corners       parentCorners = parentProjection.getCorners();
+    if (parentCorners != null) {
+      topCorners = new Corners(parentCorners.topLeft, parentCorners.topRight, 0f, 0f);
+    } else {
+      topCorners = null;
+    }
+
+    float bottomX      = parentProjection.x;
+    float bottomY      = parentProjection.y + topHeight + childProjection.getHeight();
+    int   bottomWidth  = parentProjection.getWidth();
+    int   bottomHeight = (int) ((parentProjection.y + parentProjection.getHeight()) - bottomY);
+
+    final Corners bottomCorners;
+    if (parentCorners != null) {
+      bottomCorners = new Corners(0f, 0f, parentCorners.bottomRight, parentCorners.bottomLeft);
+    } else {
+      bottomCorners = null;
+    }
+
+    return Arrays.asList(
+        new Projection(topX, topY, topWidth, topHeight, topCorners),
+        new Projection(bottomX, bottomY, bottomWidth, bottomHeight, bottomCorners)
+    );
   }
 
   public static final class Corners {

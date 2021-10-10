@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Ditt namn</string>
   <string name="ManageProfileFragment_your_username">Ditt användarnamn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Det gick inte att ställa in avataren</string>
+  <string name="ManageProfileFragment_badges">Märken</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga gemensamma grupper</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1520,6 +1521,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_s">Reagerade %1$s på: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagerade %1$s på din video.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagerade %1$s på din bild.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagerade %1$s på din GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagerade %1$s på din fil</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagerade %1$s på din ljudfil.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerade %1$s på din visa-en-gång media.</string>
@@ -3227,6 +3229,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Kassera ändringar?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du förlorar alla ändringar du har gjort på detta foto.</string>
   <string name="CameraFragment__failed_to_open_camera">Det gick inte att öppna kameran</string>
+  <string name="BadgesOverviewFragment__my_badges">Mina märken</string>
+  <string name="BadgesOverviewFragment__featured_badge">Presenterat märke</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Visa märken på profilen</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
+  <string name="BadgeSelectionFragment__select_badges">Välj märken</string>
   <string name="SelectFeaturedBadgeFragment__preview">Förhandsgranskning</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Välj ett märke</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du måste välja ett märke</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
+  <string name="ImageView__badge">Märke</string>
   <!--EOF-->
 </resources>

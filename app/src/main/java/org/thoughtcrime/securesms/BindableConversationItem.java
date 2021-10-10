@@ -66,7 +66,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onAddToContactsClicked(@NonNull Contact contact);
     void onMessageSharedContactClicked(@NonNull List<Recipient> choices);
     void onInviteSharedContactClicked(@NonNull List<Recipient> choices);
-    void onReactionClicked(@NonNull View reactionTarget, long messageId, boolean isMms);
+    void onReactionClicked(@NonNull MultiselectPart multiselectPart, long messageId, boolean isMms);
     void onGroupMemberClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId);
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
     void onMessageWithRecaptchaNeededClicked(@NonNull MessageRecord messageRecord);

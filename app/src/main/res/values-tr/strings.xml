@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Adınız</string>
   <string name="ManageProfileFragment_your_username">Kullanıcı adınız</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar ayarlanamadı</string>
+  <string name="ManageProfileFragment_badges">Rozetler</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ortak grubunuz yok</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1525,6 +1526,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" iletisine karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Videonuza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Görüntünüze karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">GIF\'inize karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Dosyanıza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Sesinize karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Tek görümlük içeriğinize karşılık verdi: %1$s</string>
@@ -3233,6 +3235,16 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Değişiklikler silinsin mi?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bu fotoğrafa yaptığınız değişiklikleri kaybedeceksiniz.</string>
   <string name="CameraFragment__failed_to_open_camera">Kamera açılamadı</string>
+  <string name="BadgesOverviewFragment__my_badges">Rozetlerim</string>
+  <string name="BadgesOverviewFragment__featured_badge">Öne çıkan rozet</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Rozetleri profilinizde gösterin</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profil güncellenemedi</string>
+  <string name="BadgeSelectionFragment__select_badges">Rozetleri seçin</string>
   <string name="SelectFeaturedBadgeFragment__preview">Ön izleme</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Bir rozet seçin</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bir rozet seçmelisiniz</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil güncellenemedi</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Destekleyin</string>
+  <string name="ImageView__badge">Rozet</string>
   <!--EOF-->
 </resources>

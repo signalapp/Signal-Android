@@ -12,12 +12,12 @@ import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.zetetic.database.sqlcipher.SQLiteStatement;
+import net.sqlcipher.database.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -138,7 +138,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract @NonNull List<MarkedMessageInfo> setIncomingMessagesViewed(@NonNull List<Long> messageIds);
 
   public abstract void addFailures(long messageId, List<NetworkFailure> failure);
-  public abstract void removeFailure(long messageId, NetworkFailure failure);
+  public abstract void setNetworkFailures(long messageId, Set<NetworkFailure> failures);
 
   public abstract @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address, boolean isVideoOffer);
   public abstract @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address, boolean isVideoOffer);
@@ -395,7 +395,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     try {
       addToDocument(messageId, MISMATCHED_IDENTITIES,
                     new IdentityKeyMismatch(recipientId, identityKey),
-                    IdentityKeyMismatchList.class);
+                    IdentityKeyMismatchSet.class);
     } catch (IOException e) {
       Log.w(TAG, e);
     }
@@ -405,7 +405,15 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     try {
       removeFromDocument(messageId, MISMATCHED_IDENTITIES,
                          new IdentityKeyMismatch(recipientId, identityKey),
-                         IdentityKeyMismatchList.class);
+                         IdentityKeyMismatchSet.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  public void setMismatchedIdentities(long messageId, @NonNull Set<IdentityKeyMismatch> mismatches) {
+    try {
+      setDocument(databaseHelper.getSignalWritableDatabase(), messageId, MISMATCHED_IDENTITIES, new IdentityKeyMismatchSet(mismatches));
     } catch (IOException e) {
       Log.w(TAG, e);
     }
@@ -458,7 +466,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
     try {
       D           document = getDocument(database, messageId, column, clazz);
-      Iterator<I> iterator = document.getList().iterator();
+      Iterator<I> iterator = document.getItems().iterator();
 
       while (iterator.hasNext()) {
         I item = iterator.next();
@@ -490,7 +498,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
     try {
       T document = getDocument(database, messageId, column, clazz);
-      document.getList().addAll(objects);
+      document.getItems().addAll(objects);
       setDocument(database, messageId, column, document);
 
       database.setTransactionSuccessful();
@@ -499,7 +507,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     }
   }
 
-  private void setDocument(SQLiteDatabase database, long messageId, String column, Document document) throws IOException {
+  protected void setDocument(SQLiteDatabase database, long messageId, String column, Document document) throws IOException {
     ContentValues contentValues = new ContentValues();
 
     if (document == null || document.size() == 0) {

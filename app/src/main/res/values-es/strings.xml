@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">Tu nombre</string>
   <string name="ManageProfileFragment_your_username">Alias (nombre de usuari@)</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Fallo al seleccionar foto de perfil</string>
+  <string name="ManageProfileFragment_badges">Distintivos</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1527,6 +1528,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reacted_s_to_s">Reacción %1$s a: «%2$s».</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reacción a tu video: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reacción a tu foto: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reacción a tu GIF: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reacción a tu fichero: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reacción a tu audio: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacción a tu adjunto para ver una vez: %1$s.</string>
@@ -3235,6 +3237,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaReviewImagePageFragment__discard_changes">¿Deshacer cambios?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perderás todos los cambios que has hecho a esta imagen.</string>
   <string name="CameraFragment__failed_to_open_camera">Fallo al acceder a la cámara</string>
+  <string name="BadgesOverviewFragment__my_badges">Mis distintivos</string>
+  <string name="BadgesOverviewFragment__featured_badge">Distintivo especial</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Mostrar distintivos en el perfil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Fallo al actualizar el perfil</string>
+  <string name="BadgeSelectionFragment__select_badges">Seleccionar distintivos</string>
   <string name="SelectFeaturedBadgeFragment__preview">Vista previa</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecciona un distintivo</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Debes seleccionar un distintivo</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Fallo al actualizar el perfil</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
+  <string name="ImageView__badge">Distintivo</string>
   <!--EOF-->
 </resources>

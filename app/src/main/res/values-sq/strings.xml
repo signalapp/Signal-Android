@@ -668,6 +668,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageProfileFragment_your_name">Emri juaj</string>
   <string name="ManageProfileFragment_your_username">Emri juaj i përdoruesit</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">S’u arrit të caktohej avatar</string>
+  <string name="ManageProfileFragment_badges">Stema</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">S’ka grupe të përbashkët</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1527,6 +1528,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageNotifier_reacted_s_to_s">Reagoi me %1$s ndaj: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagoi me %1$s ndaj videos tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoi me %1$s ndaj figurës tuaj.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagoi me %1$s ndaj GIF-it tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoi me %1$s ndaj kartelës tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi me %1$s ndaj audios tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoi me %1$s te media juaj për një parje të vetme</string>
@@ -3238,6 +3240,16 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MediaReviewImagePageFragment__discard_changes">Të hidhen tej ndryshimet?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Do të humbni çfarëdo ndryshimi që bëtë te kjo foto.</string>
   <string name="CameraFragment__failed_to_open_camera">S’u arrit të hapet kamera</string>
+  <string name="BadgesOverviewFragment__my_badges">Stemat e mia</string>
+  <string name="BadgesOverviewFragment__featured_badge">Stemë e zgjedhur</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Shfaq stema në profil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">S’u arrit të përditësohej profili</string>
+  <string name="BadgeSelectionFragment__select_badges">Përzgjidhni stema</string>
   <string name="SelectFeaturedBadgeFragment__preview">Paraparje</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Përzgjidhni një stemë</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Duhet të përzgjidhni një stemë</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">S’u arrit të përditësohej profili</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bëhuni një mbështetës</string>
+  <string name="ImageView__badge">Stemë</string>
   <!--EOF-->
 </resources>

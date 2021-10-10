@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/group_media_card"
-    style="@style/Widget.Signal.CardView.PreferenceRow"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -135,4 +134,4 @@
         android:layout_gravity="bottom"
         android:background="@color/signal_inverse_transparent_05" />
 
-</androidx.cardview.widget.CardView>
+</FrameLayout>

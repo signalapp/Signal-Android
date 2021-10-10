@@ -29,8 +29,10 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The message record model which represents standard SMS messages.
@@ -48,7 +50,7 @@ public class SmsMessageRecord extends MessageRecord {
                           long dateSent, long dateReceived, long dateServer,
                           int deliveryReceiptCount,
                           long type, long threadId,
-                          int status, List<IdentityKeyMismatch> mismatches,
+                          int status, Set<IdentityKeyMismatch> mismatches,
                           int subscriptionId, long expiresIn, long expireStarted,
                           int readReceiptCount, boolean unidentified,
                           @NonNull List<ReactionRecord> reactions, boolean remoteDelete,
@@ -56,7 +58,7 @@ public class SmsMessageRecord extends MessageRecord {
   {
     super(id, body, recipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, dateServer, threadId, status, deliveryReceiptCount, type,
-          mismatches, new LinkedList<>(), subscriptionId,
+          mismatches, new HashSet<>(), subscriptionId,
           expiresIn, expireStarted, readReceiptCount, unidentified, reactions, remoteDelete, notifiedTimestamp, 0, receiptTimestamp);
   }
 

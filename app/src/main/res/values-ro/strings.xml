@@ -697,6 +697,7 @@
   <string name="ManageProfileFragment_your_name">Numele dvs.</string>
   <string name="ManageProfileFragment_your_username">Numele dvs. de utilizator</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Eroare la setarea avatarului</string>
+  <string name="ManageProfileFragment_badges">Insigne</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nu există grupuri în comun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -927,7 +928,7 @@
   <string name="MessageRecord_missed_audio_call_date">Apel audio nepreluat · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Apel video nepreluat · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
-  <string name="MessageRecord_s_called_you_date">%1$s va apelat · %2$s</string>
+  <string name="MessageRecord_s_called_you_date">%1$s v-a apelat · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s folosește Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Ați dezactivat dispariția mesajelor.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a dezactivat dispariția mesajelor.</string>
@@ -1588,6 +1589,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_reacted_s_to_s">A reacționat cu %1$s la: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">A reacționat cu %1$s la videoul dvs.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">A reacționat cu %1$s la imaginea dvs.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">A reacționat cu %1$s la GIF-ul tău.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">A reacționat cu %1$s la fișierul dvs.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">A reacționat cu %1$s la înregistrarea dvs. audio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">A reacționat cu %1$s la media ta vizibilă o singură dată.</string>
@@ -3324,6 +3326,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaReviewImagePageFragment__discard_changes">Renunțați la modificări?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veți pierde toate modificările făcute acestei fotografii.</string>
   <string name="CameraFragment__failed_to_open_camera">Camera nu a putut fi deschisă</string>
+  <string name="BadgesOverviewFragment__my_badges">Insignele mele</string>
+  <string name="BadgesOverviewFragment__featured_badge">Insignă evidențiată</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Afișați insignele pe profil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Actualizarea profilului a eșuat</string>
+  <string name="BadgeSelectionFragment__select_badges">Selectați insigne</string>
   <string name="SelectFeaturedBadgeFragment__preview">Previzualizare</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Selectați o insignă</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Trebuie să selectați o insignă</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Actualizarea profilului a eșuat</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Deveniți un susținător</string>
+  <string name="ImageView__badge">Insignă</string>
   <!--EOF-->
 </resources>

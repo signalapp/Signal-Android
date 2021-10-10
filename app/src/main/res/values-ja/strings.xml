@@ -631,6 +631,7 @@
   <string name="ManageProfileFragment_your_name">あなたの名前</string>
   <string name="ManageProfileFragment_your_username">あなたのユーザー名</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
+  <string name="ManageProfileFragment_badges">バッジ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">共通のグループ なし</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1452,6 +1453,7 @@
   <string name="MessageNotifier_reacted_s_to_s">「%2$s」に %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_video">あなたのビデオに %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_image">あなたの画像に %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">あなたのGIFに %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_file">あなたのファイルに %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">あなたの使い捨てメディアに %1$s</string>
@@ -3133,6 +3135,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">変更を破棄しますか？</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">この写真に加えた変更はすべて失われます。</string>
   <string name="CameraFragment__failed_to_open_camera">カメラを起動できませんでした</string>
+  <string name="BadgesOverviewFragment__my_badges">マイバッジ</string>
+  <string name="BadgesOverviewFragment__featured_badge">注目のバッジ</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">バッジをプロフィールに表示</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
+  <string name="BadgeSelectionFragment__select_badges">バッジを選択</string>
   <string name="SelectFeaturedBadgeFragment__preview">プレビュー</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">バッジを選択</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">バッジを選択して下さい</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
+  <string name="ImageView__badge">バッジ</string>
   <!--EOF-->
 </resources>

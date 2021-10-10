@@ -95,9 +95,12 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
 
       for (i in 0 until parent.childCount) {
         val child = parent.getChildAt(i)
-        if (child != null && child is Colorizable) {
-          child.colorizerProjections.forEach {
-            c.drawPath(it.path, holePunchPaint)
+        if (child != null) {
+          val holder = parent.getChildViewHolder(child)
+          if (holder is Colorizable) {
+            holder.getColorizerProjections(parent).forEach {
+              c.drawPath(it.path, holePunchPaint)
+            }
           }
         }
       }
@@ -118,6 +121,7 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
         mask.setBounds(0, 0, parent.width, parent.height)
         mask.draw(canvas)
       } else {
+        colorPaint.color = chatColors.asSingleColor()
         canvas.drawRect(
           0f,
           0f,

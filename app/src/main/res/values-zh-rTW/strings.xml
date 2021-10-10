@@ -631,6 +631,7 @@
   <string name="ManageProfileFragment_your_name">你的名字</string>
   <string name="ManageProfileFragment_your_username">你的使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
+  <string name="ManageProfileFragment_badges">徽章</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">沒有共同的群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1458,6 +1459,7 @@
   <string name="MessageNotifier_reacted_s_to_s">對「%2$s」作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_video">對你的影片作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_image">對你的影像作出了 %1$s 反應。</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">對你的 GIF 做出 %1$s 的反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">對你的檔案作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">對你的語音作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的一次觀看的媒體做出%1$s反應。</string>
@@ -3139,6 +3141,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">放棄更改？</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">你將遺失對此照片所做的任何更改。</string>
   <string name="CameraFragment__failed_to_open_camera">無法開啟相機</string>
+  <string name="BadgesOverviewFragment__my_badges">我的徽章</string>
+  <string name="BadgesOverviewFragment__featured_badge">特色徽章</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">在個人資料上顯示徽章</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">無法更新個人資料</string>
+  <string name="BadgeSelectionFragment__select_badges">選擇徽章</string>
   <string name="SelectFeaturedBadgeFragment__preview">預覽</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">選擇徽章</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">你必須選擇一個徽章</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">無法更新個人資料</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
+  <string name="ImageView__badge">徽章</string>
   <!--EOF-->
 </resources>

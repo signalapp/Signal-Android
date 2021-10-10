@@ -38,8 +38,8 @@ object TestMms {
       emptyList(),
       emptyList(),
       emptyList(),
-      emptyList(),
-      emptyList()
+      emptySet(),
+      emptySet()
     )
 
     return insertMmsMessage(

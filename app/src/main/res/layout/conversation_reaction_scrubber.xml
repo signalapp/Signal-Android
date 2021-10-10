@@ -13,13 +13,6 @@
     android:visibility="gone"
     tools:visibility="visible">
 
-    <org.thoughtcrime.securesms.components.MaskView
-        android:id="@+id/conversation_reaction_mask"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0"
-        android:background="@color/reactions_screen_shade_color" />
-
     <include
         android:id="@+id/conversation_reaction_toolbar"
         layout="@layout/conversation_reaction_long_press_toolbar" />

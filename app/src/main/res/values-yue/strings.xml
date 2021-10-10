@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">取消緊個註冊</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消緊 Signal 訊息同通話嘅註冊…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">係咪要停用 Signal 訊息同通話？</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">停用 Signal 訊息同通話，會喺伺服器度同您取消個註冊。之後要用番嘅話，就要重新註冊番您個電話冧把㗎喇。</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">停用 Signal 訊息同通話，會喺伺服器度同您取消個註冊。之後要用返嘅話，就要重新註冊返您個電話冧把㗎喇。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">伺服器連唔到線！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">已啟用短訊</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">撳一下去改您預設嘅短訊 app</string>
@@ -31,7 +31,7 @@
   <string name="ApplicationPreferencesActivity_off">唔用</string>
   <string name="ApplicationPreferencesActivity_Off">唔用</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">%1$s短訊，%2$s多媒體短訊</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">%1$s螢幕鎖，%2$s註冊鎖</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">%1$s畫面鎖，%2$s註冊鎖</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">佈景主題：%1$s，語言：%2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">註冊鎖需要用到 PIN 碼。停用 PIN 碼嘅話，就要先停用註冊鎖。</string>
   <string name="ApplicationPreferencesActivity_pin_created">整好咗 PIN 碼。</string>
@@ -61,7 +61,7 @@
   <string name="AttachmentKeyboard_give_access">畀權限</string>
   <string name="AttachmentKeyboard_payment">付款</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">搵唔到畀您揀多媒體嘅 app。</string>
+  <string name="AttachmentManager_cant_open_media_selection">搵唔到俾您揀多媒體嘅 app。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 要攞「儲存裝置」權限，先可以加入相片、影片或者聲音做附件，但權限已被永久拒絕。請到呢個 app 嘅設定功能表，揀選「權限」，然後啟用「儲存裝置」。</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 要攞「聯絡人」權限，先可以加入聯絡人資訊做附件，但權限已被永久拒絕。請到呢個 app 嘅設定功能表，揀選「權限」，然後啟用「聯絡人」。</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 要攞「位置」權限，先可以加入位置，但權限已被永久拒絕。請到呢個 app 嘅設定功能表，揀選「權限」，然後啟用「位置」。</string>
@@ -84,9 +84,9 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">係咪要封鎖同退出 %1$s？</string>
   <string name="BlockUnblockDialog_block_s">係咪要封鎖 %1$s？</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">您無得再接收呢個谷嘅訊息或者任何新消息，而且呢個谷嘅成員亦都無得再摻番您入個谷度個囉喎。</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">呢個谷嘅成員無得再摻番您入個谷度㗎喇。</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">呢個谷嘅成員可以再摻番您入個谷度㗎喇。</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">您無得再接收呢個谷嘅訊息或者任何新消息，而且呢個谷嘅成員亦都無得再摻返您入個谷度個囉喎。</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">呢個谷嘅成員無得再摻返您入個谷度㗎喇。</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">呢個谷嘅成員可以再摻返您入個谷度㗎喇。</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您哋可以再寫訊息或者通話，您個名同幅相亦都會分享畀佢。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">封鎖咗嘅人就無得再同您通話或者寫訊息畀您。</string>
   <string name="BlockUnblockDialog_unblock_s">係咪要解除封鎖 %1$s？</string>
@@ -127,7 +127,7 @@
   <string name="ClientDeprecatedActivity_update">更新</string>
   <string name="ClientDeprecatedActivity_dont_update">唔更新</string>
   <string name="ClientDeprecatedActivity_warning">警告</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">呢個版本嘅 Signal 已經 out 咗喇。您可以睇番先前嘅訊息記錄，但係要升咗級先至可以收發訊息。</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">呢個版本嘅 Signal 已經 out 咗喇。您可以睇返先前嘅訊息記錄，但係要升咗級先至可以收發訊息。</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">搵唔到網頁瀏覽器。</string>
   <string name="CommunicationActions_send_email">傳送電子郵件</string>
@@ -144,7 +144,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">最近傾過嘅偈</string>
   <string name="ContactsCursorLoader_contacts">聯絡人</string>
-  <string name="ContactsCursorLoader_groups">吹水谷</string>
+  <string name="ContactsCursorLoader_groups">谷</string>
   <string name="ContactsCursorLoader_phone_number_search">查電話冧把</string>
   <string name="ContactsCursorLoader_username_search">查使用者名稱</string>
   <!--ContactsDatabase-->
@@ -187,7 +187,7 @@
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">假如呢個對話出現加密問題，可以試下咁做。啲訊息唔會受影響。</string>
   <string name="ConversationActivity_reset">重設</string>
   <string name="ConversationActivity_add_attachment">加附件</string>
-  <string name="ConversationActivity_select_contact_info">揀一個聯絡人資訊</string>
+  <string name="ConversationActivity_select_contact_info">揀選聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">寫訊息</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">唔好意思，您份附件搞唔掂。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人唔係有效嘅短訊或電子郵件地址！</string>
@@ -202,7 +202,7 @@
   <string name="ConversationActivity_transport_insecure_mms">唔安全嘅多媒體短訊</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">不如我哋齊齊轉會 Signal %1$s</string>
-  <string name="ConversationActivity_specify_recipient">請揀一個聯絡人吖</string>
+  <string name="ConversationActivity_specify_recipient">請揀一位聯絡人吖</string>
   <string name="ConversationActivity_unblock">解除封鎖</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">附件太大，擠唔落您而家寫緊嘅呢類訊息度。</string>
   <string name="ConversationActivity_unable_to_record_audio">錄唔到音噃！</string>
@@ -255,7 +255,7 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">係咪要儲存落部機嘅儲存空間度？</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="other">儲存呢 %1$d 個多媒體到儲存空間，會畀呢部機嘅其他 app 都存取到佢哋。\n\n係咪要繼續？</item>
+    <item quantity="other">儲存呢 %1$d 個多媒體到儲存空間，會俾呢部機嘅其他 app 都存取到佢哋。\n\n係咪要繼續？</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">附件儲存唔到去儲存空間！</item>
@@ -287,7 +287,7 @@
   <string name="ConversationFragment__d_group_members_have_the_same_name">個谷有 %1$d 個成員撞名。</string>
   <string name="ConversationFragment__tap_to_review">撳一下細閱</string>
   <string name="ConversationFragment__review_requests_carefully">請求要金睛火眼睇清楚</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal 搵到另一個聯絡人，都係同一個名。</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal 搵到另一位聯絡人，都係同一個名。</string>
   <string name="ConversationFragment_contact_us">聯絡我哋</string>
   <string name="ConversationFragment_verify">驗證</string>
   <string name="ConversationFragment_not_now">遲啲先啦</string>
@@ -306,7 +306,7 @@
   </plurals>
   <string name="ConversationListFragment_undo">復原</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-    <item quantity="other">%d 個對話已經搬番去收件匣</item>
+    <item quantity="other">%d 個對話已經搬返去收件匣</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
@@ -328,8 +328,8 @@
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您嘅個人資料係受到端對端加密。當您發起或接受新嘅對話，又或者加入新嘅谷，您嘅聯絡人就會睇到您嘅個人資料 (以及您之後所作嘅變化)。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">係咪要攞番備份嚟還原？</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">攞番本機備份嚟還原您嘅訊息同埋多媒體檔案。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
+  <string name="ChooseBackupFragment__restore_from_backup">係咪要攞返備份嚟還原？</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">攞返本機備份嚟還原您嘅訊息同埋多媒體檔案。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
   <string name="ChooseBackupFragment__icon_content_description">用備份還原公仔</string>
   <string name="ChooseBackupFragment__choose_backup">揀一個備份</string>
   <string name="ChooseBackupFragment__learn_more">講多啲畀我聽</string>
@@ -349,7 +349,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">測試下您備份嘅密碼，睇下啱唔啱</string>
   <string name="BackupsPreferenceFragment__turn_on">開啟</string>
   <string name="BackupsPreferenceFragment__turn_off">關閉</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">要還原一個備份嘅話，首先請重新裝過 Signal。開番個 app 出嚟，撳一下「還原備份」，然後揀番嗰一個備份檔。%1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">要還原一個備份嘅話，首先請重新裝過 Signal。開返個 app 出嚟，撳一下「還原備份」，然後揀返嗰一個備份檔。%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">講多啲畀我聽</string>
   <string name="BackupsPreferenceFragment__in_progress">幫緊您幫緊您…</string>
   <string name="BackupsPreferenceFragment__d_so_far">暫時去到 %1$d…</string>
@@ -372,7 +372,7 @@
   <string name="DateUtils_yesterday">琴日</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">傾偈階段已經重新整理</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal 採用端對端加密，間唔中都需要重新整理下您嘅傾偈階段嘅。咁唔會影響您傾偈嘅安全性，只不過就話，您可能錯失咗呢個聯絡人畀您嘅一個訊息，您可以請佢再傳送一次畀您。</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal 採用端對端加密，間唔中都需要重新整理下您嘅傾偈階段嘅。咁唔會影響您傾偈嘅安全性，只不過就話，您可能錯失咗呢位聯絡人畀您嘅一個訊息，您可以請佢再傳送一次畀您。</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">係咪要解除連結「%s」？</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">解除咗連結嘅話，呢部機就無辦法再傳送同接收訊息㗎喇。</string>
@@ -384,13 +384,13 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">無名嘅機</string>
   <string name="DeviceListItem_linked_s">喺 %s 連結咗</string>
-  <string name="DeviceListItem_last_active_s">最近幾時用過：%s</string>
+  <string name="DeviceListItem_last_active_s">對上一次喺 %s 用過</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名嘅檔案</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">課金 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全靠每一個有心人先有今日。請您大力「懲罰」，多多益善，少少無拘！</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全靠每一位有心人先有今日。請您大力「懲罰」，多多益善，少少無拘！</string>
   <string name="DonateMegaphone_donate">課金</string>
   <string name="DonateMegaphone_no_thanks">有心</string>
   <!--GroupCallingMegaphone-->
@@ -471,7 +471,7 @@
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="other">%1$d 個成員冇辦法重新加入去個新版谷度。您而家要唔要加番佢哋？</item>
+    <item quantity="other">%1$d 個成員冇辦法重新加入去個新版谷度。您而家要唔要加返佢哋？</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">加成員</item>
@@ -482,7 +482,7 @@
     <item quantity="other">係咪要加成員？</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="other">下列成員，喺升級完個谷之後，冇辦法自動加入番去個新版谷度：</item>
+    <item quantity="other">下列成員，喺升級完個谷之後，冇辦法自動加入返去個新版谷度：</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="other">加成員</item>
@@ -520,7 +520,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">您無仲等緊嘅邀請。</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">個谷其他成員發出嘅邀請</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">個谷其他成員無仲等緊嘅邀請。</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">由谷嘅其他成員邀請嘅人係乜水，唔會喺呢度詳細顯示出嚟。獲邀請嘅人若然選擇加入，佢哋嘅資訊到時就會同呢個谷分享。佢哋入谷之前，唔會見到呢個谷嘅任何訊息。</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">谷嘅其他成員邀請咗邊位，唔會喺呢度詳細顯示出嚟。獲邀請嘅人若然選擇加入，佢哋嘅資訊到時就會同呢個谷分享。佢哋入谷之前，唔會見到呢個谷嘅任何訊息。</string>
   <string name="PendingMembersActivity_revoke_invite">撤回邀請</string>
   <string name="PendingMembersActivity_revoke_invites">撤回呢啲邀請</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -555,7 +555,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">呢欄一定要填。</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">開唔到新谷。</string>
   <string name="AddGroupDetailsFragment__try_again_later">陣間再試下啦。</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">您揀選嘅一個聯絡人唔支援 Signal 谷，因此呢個谷將會使用多媒體短訊溝通。</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">您揀選嘅一位聯絡人唔支援 Signal 谷，因此呢個谷將會使用多媒體短訊溝通。</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自訂嘅多媒體短訊谷名同相淨係得您自己睇到。</string>
   <string name="AddGroupDetailsFragment__remove">移除</string>
   <string name="AddGroupDetailsFragment__sms_contact">短訊聯絡人</string>
@@ -617,7 +617,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">呢個係唔安全嘅多媒體短訊谷。若果要私密傾偈，請邀請您嘅聯絡人轉用 Signal。</string>
   <string name="ManageGroupActivity_invite_now">即刻邀請</string>
   <string name="ManageGroupActivity_more">更多</string>
-  <string name="ManageGroupActivity_add_group_description">加番個谷嘅描述…</string>
+  <string name="ManageGroupActivity_add_group_description">加返個谷嘅描述…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">點名講起我嘅時候通知</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">喺沈默嘅傾偈中點名講起您嘅時候，使唔使接收通知？</string>
@@ -627,10 +627,11 @@
   <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
   <string name="ManageProfileFragment_username">使用者名稱</string>
   <string name="ManageProfileFragment_about">關於</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">係咁咦寫番句自介下</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">係咁咦寫返句自介下</string>
   <string name="ManageProfileFragment_your_name">您嘅名稱</string>
   <string name="ManageProfileFragment_your_username">您嘅使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">頭像設定唔到</string>
+  <string name="ManageProfileFragment_badges">襟章</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">無有緣相遇嘅谷</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -749,7 +750,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">刪除緊</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">刪除緊啲訊息…</string>
   <string name="MediaOverviewActivity_Select_all">全部揀選</string>
-  <string name="MediaOverviewActivity_collecting_attachments">啲附件執番齊埋欄先…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">啲附件執返齊埋欄先…</string>
   <string name="MediaOverviewActivity_Sort_by">排序方法</string>
   <string name="MediaOverviewActivity_Newest">最新到最舊</string>
   <string name="MediaOverviewActivity_Oldest">最舊到最新</string>
@@ -940,12 +941,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s 已將邊個可以編輯個谷嘅成員名單改為「%2$s」。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">邊個可以編輯個谷嘅成員名單，而家已改咗做「%1$s」。</string>
   <!--GV2 announcement group change-->
-  <string name="MessageRecord_you_allow_all_members_to_send">您已改咗個谷嘅設定，畀所有成員傳送訊息。</string>
-  <string name="MessageRecord_you_allow_only_admins_to_send">您已改咗個谷嘅設定，淨係畀話事人傳送訊息。</string>
-  <string name="MessageRecord_s_allow_all_members_to_send">%1$s 已改咗個谷嘅設定，畀所有成員傳送訊息。</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s 已改咗個谷嘅設定，淨係畀話事人傳送訊息。</string>
-  <string name="MessageRecord_allow_all_members_to_send">個谷嘅設定已改咗，畀所有成員傳送訊息。</string>
-  <string name="MessageRecord_allow_only_admins_to_send">個谷嘅設定已改咗，淨係畀話事人傳送訊息。</string>
+  <string name="MessageRecord_you_allow_all_members_to_send">您已改咗個谷嘅設定，俾所有成員傳送訊息。</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">您已改咗個谷嘅設定，淨係俾話事人傳送訊息。</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s 已改咗個谷嘅設定，俾所有成員傳送訊息。</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s 已改咗個谷嘅設定，淨係俾話事人傳送訊息。</string>
+  <string name="MessageRecord_allow_all_members_to_send">個谷嘅設定已改咗，俾所有成員傳送訊息。</string>
+  <string name="MessageRecord_allow_only_admins_to_send">個谷嘅設定已改咗，淨係俾話事人傳送訊息。</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">您開啟咗條谷拎，但唔使送交話事人審批。</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">您開啟咗條谷拎，但會送交話事人審批。</string>
@@ -1099,7 +1100,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">輸入數字 PIN 碼</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">建立您嘅 PIN 碼</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">撞番啱個 PIN 碼嘅機會畀您用晒喇，但係您仍然可以整過個新嘅，以便繼續用番您個 Signal 帳戶。為確保您嘅私隱同保安，您嘅帳戶會新簇簇咁還原，先前儲存落嘅任何個人資料資訊或者設定將會冇得留低。</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">撞返啱個 PIN 碼嘅機會畀您用晒喇，但係您仍然可以整過個新嘅，以便繼續用返您個 Signal 帳戶。為確保您嘅私隱同保安，您嘅帳戶會新簇簇咁還原，先前儲存落嘅任何個人資料資訊或者設定將會冇得留低。</string>
   <string name="PinRestoreLockedFragment_create_new_pin">建立新嘅 PIN 碼</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
@@ -1120,7 +1121,7 @@
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">驗證完先再繼續發訊息</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">為協助 Signal 打擊垃圾訊息，請先完成驗證。</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">驗證完之後，您就可以繼續發訊息。先前 hold 住嘅訊息會自動發送番出去。</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">驗證完之後，您就可以繼續發訊息。先前 hold 住嘅訊息會自動發送返出去。</string>
   <!--Recipient-->
   <string name="Recipient_you">您</string>
   <!--RecipientPreferencesActivity-->
@@ -1246,7 +1247,7 @@
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我哋需要驗證下您係真有其人。</string>
   <string name="RegistrationActivity_next">下一步</string>
   <string name="RegistrationActivity_continue">繼續</string>
-  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">讓私隱與您同在。\n每封訊息都做番自己、講人話。</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">讓私隱與您同在。\n每封訊息都做返自己、講人話。</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">輸入您嘅電話冧把，以便註冊使用</string>
   <string name="RegistrationActivity_enter_your_phone_number">輸入您嘅電話冧把</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">您將會收到一個驗證碼。接收短訊要視乎個別電訊商會唔會收費。</string>
@@ -1396,7 +1397,7 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">喺 Signal 唔係事必要整個使用者名稱嘅。若果您揀去整個使用者名稱嘅話，咁其他 Signal 使用者就唔使知您個電話冧把，都可以用您呢個使用者名稱去搵到您、同您聯絡囉。</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="other">%d 個聯絡人開咗 Signal 喇！</item>
+    <item quantity="other">%d 位聯絡人開咗 Signal 喇！</item>
   </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您嘅聯絡人用緊舊版本嘅 Signal。請叫佢更新咗，先驗證您嘅安全碼。</string>
@@ -1447,7 +1448,7 @@
   <string name="MessageNotifier_error_delivering_message">送遞訊息嘅時候發生錯誤。</string>
   <string name="MessageNotifier_message_delivery_paused">訊息送遞已暫止。</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">驗證完先再繼續喺 Signal 發訊息。</string>
-  <string name="MessageNotifier_mark_all_as_read">冚唪唥剔低話睇咗</string>
+  <string name="MessageNotifier_mark_all_as_read">全部剔低話睇咗</string>
   <string name="MessageNotifier_mark_read">剔低話睇咗</string>
   <string name="MessageNotifier_turn_off_these_notifications">閂咗呢啲通知</string>
   <string name="MessageNotifier_view_once_photo">流聲掠影相片</string>
@@ -1462,12 +1463,13 @@
   <string name="MessageNotifier_reacted_s_to_s">對「%2$s」畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_video">對您條片畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_image">對您幅圖畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">對您個 GIF 畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">對您個檔案畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">對您嘅貼圖畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_this_message_was_deleted">呢個訊息已被刪除。</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">係咪要閂咗聯絡人加入 Signal 嘅通知？您可以喺 Signal &gt; 設定 &gt; 通知 度再啟用番。</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">係咪要閂咗聯絡人加入 Signal 嘅通知？您可以喺 Signal &gt; 設定 &gt; 通知 度再啟用返。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">訊息</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -1717,12 +1719,12 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal 要攞番 MMS 設定，先可以透過您嘅流動電訊商送遞多媒體檔案同谷嘅訊息。呢層您部機未有提供相關嘅資訊，呢種情況可能係您部機設有鎖定或其他限制式嘅設置。</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal 要攞返 MMS 設定，先可以透過您嘅流動電訊商送遞多媒體檔案同谷嘅訊息。呢層您部機未有提供相關嘅資訊，呢種情況可能係您部機設有鎖定或其他限制式嘅設置。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">要傳送多媒體檔案同谷嘅訊息嘅話，請撳一下「確定」並完成所要求嘅設定。至於您嘅流動電訊商要咩 MMS 設定，通常上網查下「您個台 APN」就會搵到。呢樣嘢淨係需要設定一次。</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">送遞有問題</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s 有個訊息、貼圖、心情或者睇咗嘅藍剔送遞唔到畀您。都送唔到過嚟吖嘛，咁都唔知佢係直接發畀您，定發去谷度。</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s 有個訊息、貼圖、心情或者睇咗嘅藍剔送遞唔到畀您。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s 有個訊息、貼圖、心情或者睇咗扱嘅印送遞唔到畀您。都送唔到過嚟吖嘛，咁都唔知佢係直接發畀您，定發去谷度。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s 有個訊息、貼圖、心情或者睇咗扱嘅印送遞唔到畀您。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名 (必填)</string>
   <string name="CreateProfileActivity_last_name_optional">姓 (選填)</string>
@@ -1775,7 +1777,7 @@
   <string name="message_details_header__issues_need_your_attention">有事請您注意。</string>
   <string name="message_details_header__sent">送出：</string>
   <string name="message_details_header__received">收到：</string>
-  <string name="message_details_header__disappears">剩番：</string>
+  <string name="message_details_header__disappears">剩返：</string>
   <string name="message_details_header__via">透過：</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">仲要等等</string>
@@ -1803,7 +1805,7 @@
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">訊息請求</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">使用者而家有得揀係咪接受新嘅對話。個人資料嘅名等人哋知道邊個傳訊息嚟畀佢。</string>
-  <string name="MessageRequestsMegaphone__add_profile_name">加番個人資料嘅名</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">加返個人資料嘅名</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">您有冇睇過我哋嘅常見問答呀？</string>
   <string name="HelpFragment__next">下一步</string>
@@ -1841,14 +1843,14 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">表情符號</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">查無結果</string>
   <!--arrays.xml-->
-  <string name="arrays__use_default">跟番預設咁樣</string>
+  <string name="arrays__use_default">跟返預設咁樣</string>
   <string name="arrays__use_custom">自己揀選咁樣</string>
   <string name="arrays__mute_for_one_hour">沈默 1 個鐘</string>
   <string name="arrays__mute_for_eight_hours">沈默 8 個鐘</string>
   <string name="arrays__mute_for_one_day">沈默 1 日</string>
   <string name="arrays__mute_for_seven_days">沈默 7 日</string>
   <string name="arrays__always">幾時都係</string>
-  <string name="arrays__settings_default">跟番 [設定] 點話點好</string>
+  <string name="arrays__settings_default">跟返 [設定] 點話點好</string>
   <string name="arrays__enabled">啟用</string>
   <string name="arrays__disabled">停用</string>
   <string name="arrays__name_and_message">個名同訊息</string>
@@ -1878,10 +1880,10 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">用 Signal 接收所有傳入嘅多媒體訊息</string>
   <string name="preferences__pref_enter_sends_title">Enter 掣唔換行當係傳送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">撳輸入掣嘅時候會直接傳送文字訊息</string>
-  <string name="preferences__pref_use_address_book_photos">用番通訊錄嘅相</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">如果您喺通訊錄度有佢張相，咁聯絡人會顯示番嗰張相出嚟</string>
+  <string name="preferences__pref_use_address_book_photos">用返通訊錄嘅相</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">如果您喺通訊錄度有佢張相，咁聯絡人會顯示返嗰張相出嚟</string>
   <string name="preferences__generate_link_previews">幫啲拎整個預覽</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">您傳送嘅訊息如果有拎嘅話，跟住條拎去網站度攞番個預覽。</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">您傳送嘅訊息如果有拎嘅話，跟住條拎去網站度攞返個預覽。</string>
   <string name="preferences__choose_identity">揀選身份</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">喺聯絡人清單之中揀選您嘅聯絡人項目。</string>
   <string name="preferences__change_passphrase">更改密碼</string>
@@ -1931,7 +1933,7 @@
   <string name="preferences__mmsc_username">MMSC 使用者名稱</string>
   <string name="preferences__mmsc_password">MMSC 密碼</string>
   <string name="preferences__sms_delivery_reports">短訊傳遞報告</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">您發送嘅每一個短訊都要攞番份傳遞報告</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">您發送嘅每一個短訊都要攞返份傳遞報告</string>
   <string name="preferences__data_and_storage">數據同儲存空間</string>
   <string name="preferences__storage">儲存空間</string>
   <string name="preferences__payments">付款</string>
@@ -1950,7 +1952,7 @@
   <string name="preferences__enable_pin">啟用 PIN 碼</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">若然您停用 PIN 碼，咁當您重新註冊 Signal 嘅時候，除非話您自己手動備份同還原啦，否則您將會遺失所有資料。當 PIN 碼停用嘅時候，冇得開啟註冊鎖。</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">有 PIN 碼，儲存喺 Signal 嘅資訊就安心加密，淨係得您先接觸到。當您重新裝過 Signal 嘅時候，您嘅個人資料、設定同埋聯絡人亦都可以還原。平時開啟個 app 就唔需要用到您個 PIN 碼。</string>
-  <string name="preferences__system_default">跟番系統預設咁樣</string>
+  <string name="preferences__system_default">跟返系統預設咁樣</string>
   <string name="preferences__language">語言</string>
   <string name="preferences__signal_messages_and_calls">Signal 訊息同通話</string>
   <string name="preferences__advanced_pin_settings">進階 PIN 碼設定</string>
@@ -1960,8 +1962,8 @@
   <string name="preferences__support_wifi_calling">「WiFi 通話」相容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">若果您部機係用 WiFi 嚟做短訊/多媒體短訊傳遞嘅話 (只限您部機啟用咗「WiFi 通話」嘅時候)，就啟用呢個設定</string>
   <string name="preferences__incognito_keyboard">無痕式鍵盤</string>
-  <string name="preferences__read_receipts">睇咗有藍剔</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">若然您停用睇咗有藍剔，人哋睇咗嘅藍剔，您都唔會睇到。</string>
+  <string name="preferences__read_receipts">睇咗扱個印</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">若然您停用睇咗扱個印，人哋睇咗扱個印，您都唔會睇到。</string>
   <string name="preferences__typing_indicators">示意打緊字</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">若然您停用示意打緊字，人哋示意打緊字，您都唔會睇到。</string>
   <string name="preferences__request_keyboard_to_disable">要求鍵盤停用個人化學習。</string>
@@ -1981,7 +1983,7 @@
   <string name="preferences_storage__delete_older_messages">係咪要刪除較舊嘅訊息？</string>
   <string name="preferences_storage__clear_message_history">係咪要清除訊息紀錄？</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">咁就會喺您部機度永久刪除 %1$s之前嘅所有訊息紀錄同埋媒體檔案個囉噃。</string>
-  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">咁就會永久刪減所有對話，淨係留番最近期嗰 %1$s 個訊息個囉噃。</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">咁就會永久刪減所有對話，淨係留返最近期嗰 %1$s 個訊息個囉噃。</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">咁就會喺您部機度永久刪除所有訊息紀錄同埋媒體檔案個囉噃。</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">真係要刪除所有訊息紀錄？</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">所有訊息紀錄就會永久刪除個囉噃。呢壇嘢無得掹㗎吓，舉手不回，喊都無謂。</string>
@@ -1993,7 +1995,7 @@
   <string name="preferences_storage__none">無</string>
   <string name="preferences_storage__s_messages">%1$s 個訊息</string>
   <string name="preferences_storage__custom">自訂</string>
-  <string name="preferences_advanced__use_system_emoji">用番系統本身嘅表情符號</string>
+  <string name="preferences_advanced__use_system_emoji">用返系統本身嘅表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內置嘅表情符號支援</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">將所有通話中轉 Signal 伺服器，以避免向您嘅聯絡人透露您嘅 IP 位址。啟用嘅時候會犧牲通話質素。</string>
   <string name="preferences_advanced__always_relay_calls">一律轉駁通話</string>
@@ -2023,7 +2025,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">擺放標誌</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">當您揀選「訊息詳情」嘅時候，顯示呢個標誌以表示呢個訊息係用封密發送人送遞嘅。</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">不拘任何人</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">就算佢唔係您嘅聯絡人，又或您未有同佢分享個人資料，都畀人哋用封密發送人傳入訊息。</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">就算佢唔係您嘅聯絡人，又或您未有同佢分享個人資料，都俾人哋用封密發送人傳入訊息。</string>
   <string name="preferences_communication__sealed_sender_learn_more">講多啲畀我聽</string>
   <string name="preferences_setup_a_username">設立一個使用者名稱</string>
   <string name="preferences_proxy">代理伺服器</string>
@@ -2124,7 +2126,7 @@
   <string name="PaymentsTransferFragment__next">下一步</string>
   <string name="PaymentsTransferFragment__invalid_address">位址唔啱</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">請檢查您嘗試轉移去嗰度嘅銀包位址，然後再試下啦。</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">您冇得轉移番去自己嘅 Signal 銀包位址度㗎。請輸入喺支援嘅交易平台上面您所屬帳戶嘅銀包位址。</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">您冇得轉移返去自己嘅 Signal 銀包位址度㗎。請輸入喺支援嘅交易平台上面您所屬帳戶嘅銀包位址。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">要掃二維碼嘅話，Signal 需要存取您部機嘅相機。</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal 要攞「相機」權限，先可以影到二維碼。請到設定，揀選「權限」，然後啟用「相機」。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">要掃二維碼嘅話，Signal 需要存取您部機嘅相機。</string>
@@ -2251,7 +2253,7 @@
   <string name="text_secure_normal__menu_new_group">開個新谷</string>
   <string name="text_secure_normal__menu_settings">設定</string>
   <string name="text_secure_normal__menu_clear_passphrase">鎖定</string>
-  <string name="text_secure_normal__mark_all_as_read">冚唪唥剔低話睇咗</string>
+  <string name="text_secure_normal__mark_all_as_read">全部剔低話睇咗</string>
   <string name="text_secure_normal__invite_friends">誠邀好友</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製到剪貼簿</string>
@@ -2340,35 +2342,35 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN 碼唔啱。請再試一次。</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">帳戶已上鎖</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">您嘅帳戶已經被暫時凍結，以保障您嘅私隱同保密。等您嘅帳戶閒置 %1$d 日之後，您就可以用番呢個電話冧把重新註冊，唔需要打您個 PIN 碼。到時，所有內容將會抹除得一乾二淨。</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">您嘅帳戶已經被暫時凍結，以保障您嘅私隱同保密。等您嘅帳戶閒置 %1$d 日之後，您就可以用返呢個電話冧把重新註冊，唔需要打您個 PIN 碼。到時，所有內容將會抹除得一乾二淨。</string>
   <string name="AccountLockedFragment__next">下一步</string>
   <string name="AccountLockedFragment__learn_more">講多啲畀我聽</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">輸入您嘅 PIN 碼</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">先前您咪幫您個帳戶整過一個 PIN 碼嘅，請您喺度輸入番。咪搞錯呀吓，呢度唔係講緊您個短訊驗證碼。</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">先前您咪幫您個帳戶整過一個 PIN 碼嘅，請您喺度輸入返。咪搞錯呀吓，呢度唔係講緊您個短訊驗證碼。</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">輸入字母數字 PIN 碼</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">輸入數字 PIN 碼</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 碼唔啱。請再試一次。</string>
   <string name="RegistrationLockFragment__forgot_pin">唔記得咗 PIN 碼？</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN 碼唔啱</string>
   <string name="RegistrationLockFragment__forgot_your_pin">唔記得咗您個 PIN 碼？</string>
-  <string name="RegistrationLockFragment__not_many_tries_left">冇剩番幾多次機會畀您撞㗎喇！</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">冇剩返幾多次機會畀您撞㗎喇！</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal 註冊 - Android 版 PIN 碼需要幫手 (v1 PIN)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 註冊 - Android 版 PIN 碼需要幫手 (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="other">為確保您嘅私隱同保密，您嘅 PIN 碼係冇其他辦法搵得番嘅。若果您唔記得咗您個 PIN 碼，您可以喺閒置 %1$d 日之後再以短訊重新驗證。不過咁嘅話，您嘅帳戶將會被抹除得一乾二淨，而所有內容亦會被刪除。</item>
+    <item quantity="other">為確保您嘅私隱同保密，您嘅 PIN 碼係冇其他辦法搵得返嘅。若果您唔記得咗您個 PIN 碼，您可以喺閒置 %1$d 日之後再以短訊重新驗證。不過咁嘅話，您嘅帳戶將會被抹除得一乾二淨，而所有內容亦會被刪除。</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-    <item quantity="other">PIN 碼唔啱。剩番 %1$d 次機會。</item>
+    <item quantity="other">PIN 碼唔啱。剩返 %1$d 次機會。</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="other">若果您用盡晒啲機會都撞唔啱，您嘅帳戶將會被暫時凍結 %1$d 日。等您嘅帳戶閒置 %1$d 日之後，您就唔使您個 PIN 碼都可以重新註冊。到時，您嘅帳戶將會被抹除得一乾二淨，而所有內容亦會被刪除。</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
-    <item quantity="other">您仲剩番 %1$d 次機會。</item>
+    <item quantity="other">您仲剩返 %1$d 次機會。</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
-    <item quantity="other">剩番 %1$d 次機會。</item>
+    <item quantity="other">剩返 %1$d 次機會。</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s 將會收到您嘅訊息請求。等佢接受咗您嘅訊息請求之後，您就可以同佢通話。</string>
@@ -2399,8 +2401,8 @@
   <string name="PushDecryptJob_new_locked_message">新訊息已上鎖</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解鎖去睇下等緊嘅訊息</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">備份密碼</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">啲備份會儲存喺外置儲存裝置並用下底個密碼嚟加密。您務必要有呢個密碼先可以攞番個備份嚟還原。</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">您務必要有呢個密碼先可以攞番個備份嚟還原。</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">啲備份會儲存喺外置儲存裝置並用下底個密碼嚟加密。您務必要有呢個密碼先可以攞返個備份嚟還原。</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">您務必要有呢個密碼先可以攞返個備份嚟還原。</string>
   <string name="backup_enable_dialog__folder">資料夾</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">本人寫低咗呢個密碼㗎嘞。本人明白，無咗呢個密碼，個備份係還原唔到，得物無所用。</string>
   <string name="registration_activity__restore_backup">還原備份</string>
@@ -2417,8 +2419,8 @@
   <string name="RegistrationActivity_incorrect_backup_passphrase">備份密碼唔啱</string>
   <string name="RegistrationActivity_checking">檢查緊…</string>
   <string name="RegistrationActivity_d_messages_so_far">目前為止 %d 個訊息…</string>
-  <string name="RegistrationActivity_restore_from_backup">係咪要攞番備份嚟還原？</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">攞番本機備份嚟還原您嘅訊息同埋多媒體檔案。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
+  <string name="RegistrationActivity_restore_from_backup">係咪要攞返備份嚟還原？</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">攞返本機備份嚟還原您嘅訊息同埋多媒體檔案。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
   <string name="RegistrationActivity_backup_size_s">備份大小：%s</string>
   <string name="RegistrationActivity_backup_timestamp_s">備份時間戳：%s</string>
   <string name="BackupDialog_enable_local_backups">係咪要啟用本機備份？</string>
@@ -2431,7 +2433,7 @@
   <string name="BackupDialog_choose_folder">揀一個資料夾</string>
   <string name="BackupDialog_copied_to_clipboard">複製咗去剪貼簿</string>
   <string name="BackupDialog_no_file_picker_available">部機無檔案挑選器用得到。</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">打番您個備份密碼去驗證下</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">打返您個備份密碼去驗證下</string>
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">您輸入嘅備份密碼正確無誤</string>
   <string name="BackupDialog_passphrase_was_not_correct">密碼有誤</string>
@@ -2456,9 +2458,9 @@
   <string name="PhoneNumberPrivacy_nobody">邊個都唔得</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">您傳訊息嘅所有人同谷，都會睇到您個電話冧把。</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">任何人如果喺通訊錄入面有您個電話冧把，喺 Signal 度都會見到您係佢嘅聯絡人。其他人就可以喺搜尋度搵到您。</string>
-  <string name="preferences_app_protection__screen_lock">螢幕鎖</string>
+  <string name="preferences_app_protection__screen_lock">畫面鎖</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">用 Android 嘅螢幕鎖定或指紋，為存取 Signal 上鎖</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">閒置幾耐謂之逾時等畫面鎖嚟料</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">閒置幾耐先要將畫面上鎖</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN 碼</string>
   <string name="preferences_app_protection__create_a_pin">建立一個 PIN 碼</string>
   <string name="preferences_app_protection__change_your_pin">更改您嘅 PIN 碼</string>
@@ -2492,7 +2494,7 @@
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">由您部舊嘅 Android 機轉移您嘅帳戶同訊息過嚟。您部舊機要喺您手先得。</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">您部舊機要喺您手先得。</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">用備份還原</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">攞番本機備份嚟還原您嘅訊息。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">攞返本機備份嚟還原您嘅訊息。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">喺您部舊嘅 Android 手機開啟 Signal</string>
   <string name="NewDeviceTransferInstructions__continue">繼續</string>
@@ -2509,15 +2511,15 @@
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal 要攞「位置」權限，先可以探索同連接您部舊嘅 Android 機。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal 要啟用定位服務，先可以探索同連接您部舊嘅 Android 機。</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal 要開啟 Wi-Fi，先可以探索同連接您部舊嘅 Android 機。Wi-Fi 著咗就得，唔需要連接到 Wi-Fi 網絡。</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">抱歉，呢部機似乎唔支援 Wi-Fi Direct。Signal 會用到 Wi-Fi Direct 嚟探索同連接您部舊嘅 Android 機。您仍然可以攞番一個喺您部舊嘅 Android 機度整嘅備份嚟還原您嘅帳戶。</string>
-  <string name="NewDeviceTransferSetup__restore_a_backup">攞番備份嚟還原</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">抱歉，呢部機似乎唔支援 Wi-Fi Direct。Signal 會用到 Wi-Fi Direct 嚟探索同連接您部舊嘅 Android 機。您仍然可以攞返一個喺您部舊嘅 Android 機度整嘅備份嚟還原您嘅帳戶。</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">攞返備份嚟還原</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試同您部舊嘅 Android 機連線嘅時候，發生未預期嘅錯誤。</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">搵緊部新嘅 Android 機…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal 要攞「位置」權限，先可以探索同連接您部新嘅 Android 機。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal 要啟用定位服務，先可以探索同連接您部新嘅 Android 機。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal 要開啟 Wi-Fi，先可以探索同連接您部新嘅 Android 機。Wi-Fi 著咗就得，唔需要連接到 Wi-Fi 網絡。</string>
-  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">抱歉，呢部機似乎唔支援 Wi-Fi Direct。Signal 會用到 Wi-Fi Direct 嚟探索同連接您部新嘅 Android 機。您仍然可以建立一個備份，用嚟喺您部新嘅 Android 機度還原番您個帳戶。</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">抱歉，呢部機似乎唔支援 Wi-Fi Direct。Signal 會用到 Wi-Fi Direct 嚟探索同連接您部新嘅 Android 機。您仍然可以建立一個備份，用嚟喺您部新嘅 Android 機度還原返您個帳戶。</string>
   <string name="OldDeviceTransferSetup__create_a_backup">建立一個備份</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試同您部新嘅 Android 機連線嘅時候，發生未預期嘅錯誤。</string>
   <!--DeviceTransferSetupFragment-->
@@ -2534,7 +2536,7 @@
   <string name="DeviceTransferSetup__the_numbers_do_not_match">啲數字唔夾</string>
   <string name="DeviceTransferSetup__continue">繼續</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">數字唔同</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">若果兩部機上面嘅數字唔一樣，咁可能係搭錯線駁咗落另一部機度。要掹番正佢，首先停止轉移先，然後再試一次，並且將兩部機泊埋一齊。</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">若果兩部機上面嘅數字唔一樣，咁可能係搭錯線駁咗落另一部機度。要掹返正佢，首先停止轉移先，然後再試一次，並且將兩部機泊埋一齊。</string>
   <string name="DeviceTransferSetup__stop_transfer">停止轉移</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">探索唔到部舊機</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">探索唔到部新機</string>
@@ -2544,7 +2546,7 @@
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">喺 WiFi Direct 畫面，請剷走晒所有記住嘅群組，並且解除連結任何邀請咗或連結咗嘅裝置。</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct 畫面</string>
-  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">試下熄咗再開番 Wi-Fi，兩部機都係。</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">試下熄咗再開返 Wi-Fi，兩部機都係。</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">請確保兩部機都處於轉移模式中。</string>
   <string name="DeviceTransferSetup__go_to_support_page">前往支援網頁</string>
   <string name="DeviceTransferSetup__try_again">再試一次</string>
@@ -2576,7 +2578,7 @@
   <string name="OldDeviceTransferInstructions__continue">繼續</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">轉移完成</string>
-  <string name="OldDeviceTransferComplete__go_to_your_new_device">跟住拎番起您部新機</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">跟住拎返起您部新機</string>
   <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">您嘅 Signal 資料已經轉移到您部新機度。您要喺新機繼續搞掂埋註冊，成個轉移程序先算功德圓滿。</string>
   <string name="OldDeviceTransferComplete__close">關閉</string>
   <!--NewDeviceTransferComplete-->
@@ -2629,7 +2631,7 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">乜嘢係「舊版谷」？</string>
   <string name="GroupsLearnMore_paragraph_1">新版谷有新特色，好似係話事人同埋個谷嘅更新有更具體嘅描述，舊版谷泛指欠奉呢啲功能嘅谷。</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">我可唔可以將舊版谷升級？</string>
-  <string name="GroupsLearnMore_paragraph_2">舊版谷暫時仲未可以升級得做新版谷住，但係您可以建立一個新版谷，並且加番晒一樣嘅成員入去，若果大家都用緊最新版本嘅 Signal。</string>
+  <string name="GroupsLearnMore_paragraph_2">舊版谷暫時仲未可以升級得做新版谷住，但係您可以建立一個新版谷，並且加返晒一樣嘅成員入去，若果大家都用緊最新版本嘅 Signal。</string>
   <string name="GroupsLearnMore_paragraph_3">Signal 日後將會提供升級舊版谷嘅方法。</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">條拎任何人揸住都可以睇到個谷嘅名同相，亦可以請求加入。分享條拎嘅時候請謹慎，以免所託非人。</string>
@@ -2778,7 +2780,7 @@
   <string name="DeactivateWalletFragment__deactivate_wallet">停用銀包</string>
   <string name="DeactivateWalletFragment__your_balance">您嘅結餘</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">建議您停用付款之前，先轉移您嘅款項到另一個銀包位址。若果您而家揀唔轉移您嘅款項，假如您重新啟用付款，啲款項到時仍然會留喺您連結咗 Signal 嘅銀包入面。</string>
-  <string name="DeactivateWalletFragment__transfer_remaining_balance">轉移剩番嘅結餘</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">轉移剩返嘅結餘</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">唔轉移就停用</string>
   <string name="DeactivateWalletFragment__deactivate">停用</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">係咪要唔轉移就停用？</string>
@@ -2860,7 +2862,7 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">要求講得啱您個 Signal PIN 碼先可以喺 Signal 重新註冊您個電話冧把</string>
   <string name="AccountSettingsFragment__change_phone_number">轉電話冧把</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">呢度係俾您將您而家用緊個電話冧把轉做一個新嘅電話冧把。一轉咗您就冇得返番轉頭㗎喇。\n\n咁喺繼續之前，請確定您個新冧把而家可以收到短訊或者聽到電話。</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">呢度係俾您將您而家用緊個電話冧把轉做一個新嘅電話冧把。一轉咗您就冇得返轉頭㗎喇。\n\n咁喺繼續之前，請確定您個新冧把而家可以收到短訊或者聽到電話。</string>
   <string name="ChangeNumberFragment__continue">繼續</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">您嘅電話冧把而家已改咗。</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2870,10 +2872,10 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">您個新冧把</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新嘅電話冧把</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">您輸入嘅電話冧把，同您嘅帳戶唔脗合。</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您要打番您個舊冧把嘅國碼</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您要打番您個舊嘅電話冧把</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您要打番您個新冧把嘅國碼</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您要打番您個新嘅電話冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">您要打返您個舊冧把嘅國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您要打返您個舊嘅電話冧把</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您要打返您個新冧把嘅國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您要打返您個新嘅電話冧把</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">轉冧把</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">驗證緊 %1$s</string>
@@ -2911,7 +2913,7 @@
   <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人開咗 Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">封鎖咗</string>
-  <string name="PrivacySettingsFragment__d_contacts">%1$d 個聯絡人</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d 位聯絡人</string>
   <string name="PrivacySettingsFragment__messaging">發訊息</string>
   <string name="PrivacySettingsFragment__disappearing_messages">過眼雲煙訊息</string>
   <string name="PrivacySettingsFragment__app_security">App 保安措施</string>
@@ -2991,7 +2993,7 @@
   <string name="ChatColorsMegaphone__not_now">遲啲先啦</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">加張個人資料嘅相</string>
-  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">您可以揀個公仔、校下色水，又或者整番個屬於自己嘅頭文字都得。</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">您可以揀個公仔、校下色水，又或者整返個屬於自己嘅頭文字都得。</string>
   <string name="AddAProfilePhotoMegaphone__not_now">遲啲先啦</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">加張相</string>
   <!--KeyboardPagerFragment-->
@@ -3003,7 +3005,7 @@
   <string name="KeyboardPagerFragment_backspace">褪後一格</string>
   <string name="KeyboardPagerFragment_gifs">GIF</string>
   <string name="KeyboardPagerFragment_search_emoji">搵表情符號</string>
-  <string name="KeyboardPagerfragment_back_to_emoji">返番去表情符號</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">返回表情符號</string>
   <string name="KeyboardPagerfragment_clear_search_entry">清走搜尋輸入</string>
   <string name="KeyboardPagerFragment_search_giphy">搵 GIPHY</string>
   <!--StickerSearchDialogFragment-->
@@ -3082,7 +3084,7 @@
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>
-  <string name="AvatarPickerFragment__take_a_picture">影番幅相</string>
+  <string name="AvatarPickerFragment__take_a_picture">影返幅相</string>
   <string name="AvatarPickerFragment__choose_a_photo">揀張相</string>
   <string name="AvatarPickerFragment__photo">揀相</string>
   <string name="AvatarPickerFragment__text">文字</string>
@@ -3102,9 +3104,9 @@
   <string name="ContactSelectionListItem__sms">短訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
-  <string name="DSLSettingsToolbar__navigate_up">返番轉頭</string>
+  <string name="DSLSettingsToolbar__navigate_up">返去上一版</string>
   <string name="MultiselectForwardFragment__forward_to">轉寄畀</string>
-  <string name="MultiselectForwardFragment__add_a_message">寫番句訊息</string>
+  <string name="MultiselectForwardFragment__add_a_message">寫返句訊息</string>
   <string name="MultiselectForwardFragment__faster_forwards">更快趣嘅轉寄傳送門</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">轉寄訊息，而家嗱嗱聲同您迅速純熟送出。</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
@@ -3121,8 +3123,8 @@
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">頂晒櫳喇</string>
   <!--Media V2-->
-  <string name="MediaReviewFragment__add_a_message">寫番句訊息</string>
-  <string name="MediaReviewFragment__add_a_reply">寫番句回覆</string>
+  <string name="MediaReviewFragment__add_a_message">寫返句訊息</string>
+  <string name="MediaReviewFragment__add_a_reply">寫返句回覆</string>
   <string name="MediaReviewFragment__send_to">傳畀</string>
   <string name="MediaReviewFragment__view_once_message">流聲掠影訊息</string>
   <string name="ImageEditorHud__cancel">取消</string>
@@ -3143,6 +3145,16 @@
   <string name="MediaReviewImagePageFragment__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都冇得留低個囉噃。</string>
   <string name="CameraFragment__failed_to_open_camera">開唔到相機</string>
+  <string name="BadgesOverviewFragment__my_badges">我嘅襟章</string>
+  <string name="BadgesOverviewFragment__featured_badge">頭號襟章</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">喺個人資料度展示襟章</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">更新唔到個人資料</string>
+  <string name="BadgeSelectionFragment__select_badges">揀選襟章</string>
   <string name="SelectFeaturedBadgeFragment__preview">試嚟睇下</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">揀個襟章</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">您要揀一個襟章</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新唔到個人資料</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
+  <string name="ImageView__badge">襟章</string>
   <!--EOF-->
 </resources>

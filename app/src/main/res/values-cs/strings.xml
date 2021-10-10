@@ -730,6 +730,7 @@
   <string name="ManageProfileFragment_your_name">Vaše jméno</string>
   <string name="ManageProfileFragment_your_username">Vaše uživatelské jméno</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepodařilo se nastavit avatar</string>
+  <string name="ManageProfileFragment_badges">Odznaky</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Žádné společné skupiny</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1656,6 +1657,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_reacted_s_to_s">Reagoval(a) %1$s na: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagoval(a) %1$s na vaše video.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoval(a) %1$s na váš obrázek.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagoval(a) %1$s na váš GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoval(a) %1$s na váš soubor.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval(a) %1$s na vaše audio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval(a) %1$s na vaše média pro jednorázové zobrazení.</string>
@@ -3418,6 +3420,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MediaReviewImagePageFragment__discard_changes">Zrušit změny?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Ztratíte všechny změny, které jste na této fotografii provedli.</string>
   <string name="CameraFragment__failed_to_open_camera">Nepodařilo se otevřít kameru</string>
+  <string name="BadgesOverviewFragment__my_badges">Mé odznaky</string>
+  <string name="BadgesOverviewFragment__featured_badge">Doporučený odznak</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Zobrazení odznaků na profilu</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Nepodařilo se aktualizovat profil</string>
+  <string name="BadgeSelectionFragment__select_badges">Vybrat odznaky</string>
   <string name="SelectFeaturedBadgeFragment__preview">Náhled</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Vybrat odznak</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Musíte vybrat odznak</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nepodařilo se aktualizovat profil</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
+  <string name="ImageView__badge">Odznak</string>
   <!--EOF-->
 </resources>

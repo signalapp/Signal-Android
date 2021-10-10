@@ -69,6 +69,10 @@ public class ConversationItemBodyBubble extends LinearLayout {
     clipProjectionDrawable.setProjections(getProjections());
   }
 
+  public @Nullable Projection getVideoPlayerProjection() {
+    return videoPlayerProjection;
+  }
+
   public @NonNull Set<Projection> getProjections() {
     return Stream.of(quoteViewProjection, videoPlayerProjection)
                  .filterNot(Objects::isNull)

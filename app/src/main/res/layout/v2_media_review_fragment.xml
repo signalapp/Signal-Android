@@ -151,7 +151,7 @@
             app:layout_constraintBottom_toTopOf="@id/button_barrier"
             tools:alpha="1" />
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/add_a_message_entry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

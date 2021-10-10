@@ -9,9 +9,11 @@ import android.graphics.Path
 import android.graphics.Rect
 import android.graphics.Region
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
+import androidx.core.view.forEach
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
@@ -54,6 +56,12 @@ class MultiselectItemDecoration(
 
   private var checkedBitmap: Bitmap? = null
 
+  private var focusedItem: MultiselectPart? = null
+
+  fun setFocusedItem(multiselectPart: MultiselectPart?) {
+    this.focusedItem = multiselectPart
+  }
+
   override fun onCreate(owner: LifecycleOwner) {
     val bitmap = Bitmap.createBitmap(circleRadius * 2, circleRadius * 2, Bitmap.Config.ARGB_8888)
     val canvas = Canvas(bitmap)
@@ -66,6 +74,8 @@ class MultiselectItemDecoration(
     checkedBitmap?.recycle()
     checkedBitmap = null
   }
+
+  private val shadeColor = ContextCompat.getColor(context, R.color.reactions_screen_shade_color)
 
   private val unselectedPaint = Paint().apply {
     isAntiAlias = true
@@ -102,6 +112,7 @@ class MultiselectItemDecoration(
     val adapter = parent.adapter as ConversationAdapter
 
     if (adapter.selectedItems.isEmpty()) {
+      drawFocusShadeUnderIfNecessary(canvas, parent)
       return
     }
 
@@ -116,7 +127,7 @@ class MultiselectItemDecoration(
 
       val parts: MultiselectCollection = child.conversationMessage.multiselectCollection
 
-      val projections: List<Projection> = child.colorizerProjections
+      val projections: List<Projection> = child.getColorizerProjections(parent) + if (child.canPlayContent()) listOf(child.getGiphyMp4PlayableProjection(parent)) else emptyList()
       path.reset()
       projections.forEach { it.applyToPath(path) }
 
@@ -148,6 +159,7 @@ class MultiselectItemDecoration(
   override fun onDrawOver(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
     val adapter = parent.adapter as ConversationAdapter
     if (adapter.selectedItems.isEmpty()) {
+      drawFocusShadeOverIfNecessary(canvas, parent)
       return
     }
 
@@ -283,6 +295,50 @@ class MultiselectItemDecoration(
       }
     } else if (child is Multiselectable) {
       child.translationX = 0f
+    }
+  }
+
+  private fun drawFocusShadeUnderIfNecessary(canvas: Canvas, parent: RecyclerView) {
+    val inFocus = focusedItem
+    if (inFocus != null) {
+      path.reset()
+      canvas.save()
+
+      parent.forEach { child ->
+        if (child is Multiselectable && child.conversationMessage == inFocus.conversationMessage) {
+          path.addRect(child.left.toFloat(), child.top.toFloat(), child.right.toFloat(), child.bottom.toFloat(), Path.Direction.CW)
+          child.getColorizerProjections(parent).forEach {
+            path.op(it.path, Path.Op.DIFFERENCE)
+          }
+
+          if (child.canPlayContent()) {
+            val mp4GifProjection = child.getGiphyMp4PlayableProjection(child.rootView as ViewGroup)
+            path.op(mp4GifProjection.path, Path.Op.DIFFERENCE)
+          }
+        }
+      }
+
+      canvas.clipPath(path)
+      canvas.drawColor(shadeColor)
+      canvas.restore()
+    }
+  }
+
+  private fun drawFocusShadeOverIfNecessary(canvas: Canvas, parent: RecyclerView) {
+    val inFocus = focusedItem
+    if (inFocus != null) {
+      path.reset()
+      canvas.save()
+
+      parent.forEach { child ->
+        if (child is Multiselectable && child.conversationMessage == inFocus.conversationMessage) {
+          path.addRect(child.left.toFloat(), child.top.toFloat(), child.right.toFloat(), child.bottom.toFloat(), Path.Direction.CW)
+        }
+      }
+
+      canvas.clipPath(path, Region.Op.DIFFERENCE)
+      canvas.drawColor(shadeColor)
+      canvas.restore()
     }
   }
 }

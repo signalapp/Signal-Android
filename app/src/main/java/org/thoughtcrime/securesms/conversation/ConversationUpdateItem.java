@@ -221,7 +221,7 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   @Override
-  public @NonNull List<Projection> getColorizerProjections() {
+  public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
     return Collections.emptyList();
   }
 
