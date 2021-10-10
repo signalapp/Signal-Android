@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
 import org.thoughtcrime.securesms.media.MediaInput;
-import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -168,11 +167,6 @@ public class ChatFormatter {
              transformer.transform (source, result);
              StringBuffer sb = outWriter.getBuffer ();
              finalstring = sb.toString ();
-             Log.w(TAG, finalstring);
-             for(MediaRecord m: selectedMedia.values()){
-                if(m.getAttachment().isSticker())
-                 Log.w(TAG + "_Sticker", m.getAttachment().getKey() + " " + m.getAttachment().getSticker().getPackKey());
-             }
             }
 
         } catch (ParserConfigurationException | TransformerConfigurationException pce) {
@@ -509,17 +503,21 @@ public class ChatFormatter {
                                                                    attachment.getUploadTimestamp (),
                                                                    record.isOutgoing ());
 
-                        String path = "";
+                        String path = null;
                         if (mediaRecord.getAttachment () != null && !mediaRecord.getAttachment ().hasData ())
                             addAttribute (a, "downloaded", String.valueOf (mediaRecord.getAttachment ().hasData ()));
                         else if (mediaRecord.getAttachment () != null && mediaRecord.getAttachment ().hasData () && mediaRecord.getAttachment ().getUri () != null) {
                             if(mediaRecord.getAttachment().isSticker()) {
-                                Log.w(TAG, "Sticker!!" + attachment.getSticker().getStickerId() + " " + attachment.getSticker().getPackKey());
-                                selectedMedia.put (attachment.getSticker ().getPackKey() + attachment.getSticker().getStickerId(), mediaRecord);
+                                if(selectedMedia.containsKey(getStickerKey(attachment))) {
+                                    MediaRecord repitedSticker = selectedMedia.get(getStickerKey(attachment));
+                                    path = getContentPath(repitedSticker.getContentType(), repitedSticker.getDate(), repitedSticker.getAttachment().getUri());
+                                }
+                                else
+                                    selectedMedia.put(getStickerKey(attachment), mediaRecord);
                             }
                             else
                                 selectedMedia.put (attachment.getKey (), mediaRecord);
-                            path = getContentPath (mediaRecord.getContentType (), mediaRecord.getDate (), mediaRecord.getAttachment ().getUri ());
+                            if(path == null || path.isEmpty())  path = getContentPath (mediaRecord.getContentType (), mediaRecord.getDate (), mediaRecord.getAttachment ().getUri ());
                         }
                         else
                         if (attachment.getUri () != null)
@@ -565,7 +563,7 @@ public class ChatFormatter {
             if(attachment.getKey ()!=null && !attachment.isSticker())
                 addAttribute (a, "key", attachment.getKey ());
             else if (attachment.getKey ()!=null && attachment.isSticker())
-                addAttribute (a, "key", attachment.getSticker().getPackKey() + attachment.getSticker().getStickerId());
+                addAttribute (a, "key", getStickerKey(attachment));
 
             Element metadata = addElement (a, "metadata");
             String name;
@@ -650,6 +648,10 @@ public class ChatFormatter {
             e.printStackTrace ();
         }
 
+    }
+
+    @NonNull private String getStickerKey(@NonNull DatabaseAttachment attachment) {
+        return attachment.getSticker().getPackKey() + attachment.getSticker().getStickerId();
     }
 
     @NonNull private String getContentPath (String content_type, long timestamp, @NonNull Uri uri) {
