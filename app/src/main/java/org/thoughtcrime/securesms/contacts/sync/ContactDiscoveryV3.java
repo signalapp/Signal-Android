@@ -46,8 +46,8 @@ class ContactDiscoveryV3 {
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
     try {
-      Map<String, UUID>                     results      = accountManager.getRegisteredUsersWithCdsh(sanitizedNumbers, BuildConfig.CDSH_PUBLIC_KEY, BuildConfig.CDSH_CODE_HASH);
-      FuzzyPhoneNumberHelper.OutputResultV2 outputResult = FuzzyPhoneNumberHelper.generateOutputV2(results, inputResult);
+      Map<String, UUID>                   results      = accountManager.getRegisteredUsersWithCdsh(sanitizedNumbers, BuildConfig.CDSH_PUBLIC_KEY, BuildConfig.CDSH_CODE_HASH);
+      FuzzyPhoneNumberHelper.OutputResult outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
 
       return new DirectoryResult(outputResult.getNumbers(), outputResult.getRewrites(), ignoredNumbers);
     } catch (IOException e) {

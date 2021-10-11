@@ -30,7 +30,6 @@ class FuzzyPhoneNumberHelper {
     Set<String>         allNumbers = new HashSet<>(testNumbers);
     Map<String, String> fuzzies    = new HashMap<>();
 
-
     for (String number : testNumbers) {
       for (FuzzyVariant fuzzyVariant: FUZZY_VARIANTS) {
         if(fuzzyVariant.hasVariants(number)) {
@@ -50,37 +49,7 @@ class FuzzyPhoneNumberHelper {
    * these results and our initial input set, we can decide if we need to rewrite which number we
    * have stored locally.
    */
-  static @NonNull OutputResult generateOutput(@NonNull Collection<String> registeredNumbers, @NonNull InputResult inputResult) {
-    Set<String>         allNumbers = new HashSet<>(registeredNumbers);
-    Map<String, String> rewrites   = new HashMap<>();
-
-    for (Map.Entry<String, String> entry : inputResult.getFuzzies().entrySet()) {
-      if (registeredNumbers.contains(entry.getKey()) && registeredNumbers.contains(entry.getValue())) {
-        for (FuzzyVariant fuzzyVariant: FUZZY_VARIANTS) {
-          if(fuzzyVariant.hasVariants(entry.getKey())) {
-            if (fuzzyVariant.isDefaultVariant(entry.getKey())) {
-              allNumbers.remove(entry.getValue());
-            } else {
-              rewrites.put(entry.getKey(), entry.getValue());
-              allNumbers.remove(entry.getKey());
-            }
-          }
-        }
-      } else if (registeredNumbers.contains(entry.getValue())) {
-        rewrites.put(entry.getKey(), entry.getValue());
-        allNumbers.remove(entry.getKey());
-      }
-    }
-
-    return new OutputResult(allNumbers, rewrites);
-  }
-
-  /**
-   * This should be run on the list of numbers we find out are registered with the server. Based on
-   * these results and our initial input set, we can decide if we need to rewrite which number we
-   * have stored locally.
-   */
-  static @NonNull OutputResultV2 generateOutputV2(@NonNull Map<String, UUID> registeredNumbers, @NonNull InputResult inputResult) {
+  static @NonNull OutputResult generateOutput(@NonNull Map<String, UUID> registeredNumbers, @NonNull InputResult inputResult) {
     Map<String, UUID>   allNumbers = new HashMap<>(registeredNumbers);
     Map<String, String> rewrites   = new HashMap<>();
 
@@ -102,7 +71,7 @@ class FuzzyPhoneNumberHelper {
       }
     }
 
-    return new OutputResultV2(allNumbers, rewrites);
+    return new OutputResult(allNumbers, rewrites);
   }
 
   private interface FuzzyVariant {
@@ -183,28 +152,10 @@ class FuzzyPhoneNumberHelper {
   }
 
   public static class OutputResult {
-    private final Set<String>         numbers;
-    private final Map<String, String> rewrites;
-
-    private OutputResult(@NonNull Set<String> numbers, @NonNull Map<String, String> rewrites) {
-      this.numbers  = numbers;
-      this.rewrites = rewrites;
-    }
-
-    public @NonNull Set<String> getNumbers() {
-      return numbers;
-    }
-
-    public @NonNull Map<String, String> getRewrites() {
-      return rewrites;
-    }
-  }
-
-  public static class OutputResultV2 {
     private final Map<String, UUID>   numbers;
     private final Map<String, String> rewrites;
 
-    private OutputResultV2(@NonNull Map<String, UUID> numbers, @NonNull Map<String, String> rewrites) {
+    private OutputResult(@NonNull Map<String, UUID> numbers, @NonNull Map<String, String> rewrites) {
       this.numbers  = numbers;
       this.rewrites = rewrites;
     }
