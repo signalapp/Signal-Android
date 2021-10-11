@@ -202,6 +202,7 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(id, false));
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   @Override
