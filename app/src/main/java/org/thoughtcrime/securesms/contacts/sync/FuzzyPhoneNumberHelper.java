@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contacts.sync;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import java.util.Arrays;
@@ -20,28 +21,28 @@ import java.util.UUID;
  */
 class FuzzyPhoneNumberHelper {
 
-  private final static List<FuzzyVariant> FUZZY_VARIANTS = Arrays.asList(new MxFuzzyVariant(), new ArFuzzyVariant());
+  private final static List<FuzzyMatcher> FUZZY_MATCHERS = Arrays.asList(new MexicoFuzzyMatcher(), new ArgentinaFuzzyMatcher());
 
   /**
    * This should be run on the list of eligible numbers for contact intersection so that we can
    * create an updated list that has potentially more "fuzzy" number matches in it.
    */
   static @NonNull InputResult generateInput(@NonNull Collection<String> testNumbers, @NonNull Collection<String> storedNumbers) {
-    Set<String>         allNumbers = new HashSet<>(testNumbers);
-    Map<String, String> fuzzies    = new HashMap<>();
+    Set<String>         allNumbers        = new HashSet<>(testNumbers);
+    Map<String, String> originalToVariant = new HashMap<>();
 
     for (String number : testNumbers) {
-      for (FuzzyVariant fuzzyVariant: FUZZY_VARIANTS) {
-        if(fuzzyVariant.hasVariants(number)) {
-          String variant = fuzzyVariant.getVariant(number);
+      for (FuzzyMatcher matcher : FUZZY_MATCHERS) {
+        if(matcher.matches(number)) {
+          String variant = matcher.getVariant(number);
           if(variant != null && !storedNumbers.contains(variant) && allNumbers.add(variant)) {
-            fuzzies.put(number, variant);
+            originalToVariant.put(number, variant);
           }
         }
       }
     }
 
-    return new InputResult(allNumbers, fuzzies);
+    return new InputResult(allNumbers, originalToVariant);
   }
 
   /**
@@ -53,45 +54,57 @@ class FuzzyPhoneNumberHelper {
     Map<String, UUID>   allNumbers = new HashMap<>(registeredNumbers);
     Map<String, String> rewrites   = new HashMap<>();
 
-    for (Map.Entry<String, String> entry : inputResult.getFuzzies().entrySet()) {
-      if (registeredNumbers.containsKey(entry.getKey()) && registeredNumbers.containsKey(entry.getValue())) {
-        for (FuzzyVariant fuzzyVariant: FUZZY_VARIANTS) {
-          if(fuzzyVariant.hasVariants(entry.getKey())) {
-            if (fuzzyVariant.isDefaultVariant(entry.getKey())) {
-              allNumbers.remove(entry.getValue());
+    for (Map.Entry<String, String> entry : inputResult.getMapOfOriginalToVariant().entrySet()) {
+      String original = entry.getKey();
+      String variant  = entry.getValue();
+
+      if (registeredNumbers.containsKey(original) && registeredNumbers.containsKey(variant)) {
+        for (FuzzyMatcher matcher: FUZZY_MATCHERS) {
+          if(matcher.matches(original)) {
+            if (matcher.isPreferredVariant(original)) {
+              allNumbers.remove(variant);
             } else {
-              rewrites.put(entry.getKey(), entry.getValue());
-              allNumbers.remove(entry.getKey());
+              rewrites.put(original, variant);
+              allNumbers.remove(original);
             }
           }
         }
-      } else if (registeredNumbers.containsKey(entry.getValue())) {
-        rewrites.put(entry.getKey(), entry.getValue());
-        allNumbers.remove(entry.getKey());
+      } else if (registeredNumbers.containsKey(variant)) {
+        rewrites.put(original, variant);
+        allNumbers.remove(original);
       }
     }
 
     return new OutputResult(allNumbers, rewrites);
   }
 
-  private interface FuzzyVariant {
-    boolean hasVariants(@NonNull String number);
-    String getVariant(@NonNull String number);
-    boolean isDefaultVariant(@NonNull String number);
+  private interface FuzzyMatcher {
+    boolean matches(@NonNull String number);
+    @Nullable String getVariant(@NonNull String number);
+    boolean isPreferredVariant(@NonNull String number);
   }
 
-  private static class MxFuzzyVariant implements FuzzyVariant {
+  /**
+   * Mexico has an optional 1 after their +52 country code, e.g. both of these numbers are valid and map to the same logical number:
+   * +525512345678
+   * +5215512345678
+   *
+   * Mexico used to require the 1, but has since removed the requirement.
+   */
+  @VisibleForTesting
+  static class MexicoFuzzyMatcher implements FuzzyMatcher {
 
     @Override
-    public boolean hasVariants(@NonNull String number) {
+    public boolean matches(@NonNull String number) {
       return number.startsWith("+52") && (number.length() == 13 || number.length() == 14);
     }
 
     @Override
-    public String getVariant(String number) {
+    public @Nullable String getVariant(String number) {
       if(number.startsWith("+521") && number.length() == 14) {
         return "+52" + number.substring("+521".length());
       }
+
       if(number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13) {
         return "+521" + number.substring("+52".length());
       }
@@ -100,24 +113,30 @@ class FuzzyPhoneNumberHelper {
     }
 
     @Override
-    public boolean isDefaultVariant(@NonNull String number) {
+    public boolean isPreferredVariant(@NonNull String number) {
       return number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13;
     }
-
   }
 
-  private static class ArFuzzyVariant implements FuzzyVariant {
+  /**
+   * Argentina has an optional 9 after their +54 country code, e.g. both of these numbers are valid and map to the same logical number:
+   * +545512345678
+   * +5495512345678
+   */
+  @VisibleForTesting
+  static class ArgentinaFuzzyMatcher implements FuzzyMatcher {
 
     @Override
-    public boolean hasVariants(@NonNull String number) {
+    public boolean matches(@NonNull String number) {
       return number.startsWith("+54") && (number.length() == 13 || number.length() == 14);
     }
 
     @Override
-    public String getVariant(String number) {
+    public @Nullable String getVariant(String number) {
       if(number.startsWith("+549") && number.length() == 14) {
         return "+54" + number.substring("+549".length());
       }
+
       if(number.startsWith("+54") && !number.startsWith("+549") && number.length() == 13) {
         return "+549" + number.substring("+54".length());
       }
@@ -126,28 +145,27 @@ class FuzzyPhoneNumberHelper {
     }
 
     @Override
-    public boolean isDefaultVariant(@NonNull String number) {
-      return number.startsWith("+54") && !number.startsWith("+549") && number.length() == 13;
+    public boolean isPreferredVariant(@NonNull String number) {
+      return number.startsWith("+549") && number.length() == 14;
     }
-
   }
 
   public static class InputResult {
     private final Set<String>         numbers;
-    private final Map<String, String> fuzzies;
+    private final Map<String, String> originalToVariant;
 
     @VisibleForTesting
-    InputResult(@NonNull Set<String> numbers, @NonNull Map<String, String> fuzzies) {
-      this.numbers = numbers;
-      this.fuzzies = fuzzies;
+    InputResult(@NonNull Set<String> numbers, @NonNull Map<String, String> originalToVariant) {
+      this.numbers           = numbers;
+      this.originalToVariant = originalToVariant;
     }
 
     public @NonNull Set<String> getNumbers() {
       return numbers;
     }
 
-    public @NonNull Map<String, String> getFuzzies() {
-      return fuzzies;
+    public @NonNull Map<String, String> getMapOfOriginalToVariant() {
+      return originalToVariant;
     }
   }
 

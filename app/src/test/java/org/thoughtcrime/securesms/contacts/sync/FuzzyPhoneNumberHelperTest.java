@@ -32,7 +32,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(2, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, US_B)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -41,7 +41,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertEquals(MX_A, result.getFuzzies().get(MX_A_1));
+    assertEquals(MX_A, result.getMapOfOriginalToVariant().get(MX_A_1));
   }
 
   @Test
@@ -50,7 +50,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(2, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -59,7 +59,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertEquals(MX_A_1, result.getFuzzies().get(MX_A));
+    assertEquals(MX_A_1, result.getMapOfOriginalToVariant().get(MX_A));
   }
 
   @Test
@@ -68,7 +68,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(2, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -77,7 +77,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -86,7 +86,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -95,7 +95,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
