@@ -432,7 +432,7 @@ public class Recipient {
     this.systemContactName           = details.systemContactName;
     this.extras                      = details.extras;
     this.hasGroupsInCommon           = details.hasGroupsInCommon;
-    this.badges                      = details.badges;
+    this.badges                      = FeatureFlags.donorBadges() ? details.badges : Collections.emptyList();
   }
 
   public @NonNull RecipientId getId() {
