@@ -164,4 +164,6 @@
 
     <color name="voice_note_player_view_background">@color/core_grey_02</color>
     <color name="voice_note_player_speed_background_tint">@color/transparent_black_08</color>
+
+    <color name="signal_accent_primary_transparent_15">#262c6bed</color>
 </resources>

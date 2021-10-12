@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/manage_badges"
+    app:startDestination="@id/badgeManageFragment">
+    <fragment
+        android:id="@+id/badgeManageFragment"
+        android:name="org.thoughtcrime.securesms.badges.self.overview.BadgesOverviewFragment"
+        android:label="fragment_manage_badges">
+
+        <action
+            android:id="@+id/action_badgeManageFragment_to_featuredBadgeFragment"
+            app:destination="@id/featuredBadgeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_badgeManageFragment_to_expiredBadgeDialog"
+            app:destination="@id/expiredBadgeDialog" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/featuredBadgeFragment"
+        android:name="org.thoughtcrime.securesms.badges.self.featured.SelectFeaturedBadgeFragment"
+        android:label="fragment_featured_badge" />
+
+    <dialog
+        android:id="@+id/expiredBadgeDialog"
+        android:name="org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment"
+        android:label="dialog_expired_badge">
+
+        <argument
+            android:name="badge"
+            app:argType="org.thoughtcrime.securesms.badges.models.Badge"
+            app:nullable="false" />
+
+    </dialog>
+</navigation>

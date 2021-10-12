@@ -23,21 +23,20 @@ class StripeApi(private val configuration: Configuration, private val paymentInt
     data class Success(val paymentIntent: PaymentIntent) : CreatePaymentIntentResult()
   }
 
-  fun createPaymentIntent(price: FiatMoney, description: String? = null): Single<CreatePaymentIntentResult> = Single.fromCallable {
-    if (Validation.isAmountTooSmall(price)) {
-      CreatePaymentIntentResult.AmountIsTooSmall(price)
+  fun createPaymentIntent(price: FiatMoney, description: String? = null): Single<CreatePaymentIntentResult> {
+    @Suppress("CascadeIf")
+    return if (Validation.isAmountTooSmall(price)) {
+      Single.just(CreatePaymentIntentResult.AmountIsTooSmall(price))
     } else if (Validation.isAmountTooLarge(price)) {
-      CreatePaymentIntentResult.AmountIsTooLarge(price)
+      Single.just(CreatePaymentIntentResult.AmountIsTooLarge(price))
     } else if (!Validation.supportedCurrencyCodes.contains(price.currency.currencyCode.toUpperCase(Locale.ROOT))) {
-      CreatePaymentIntentResult.CurrencyIsNotSupported(price.currency.currencyCode)
+      Single.just<CreatePaymentIntentResult>(CreatePaymentIntentResult.CurrencyIsNotSupported(price.currency.currencyCode))
     } else {
-      CreatePaymentIntentResult.Success(
-        paymentIntentFetcher.fetchPaymentIntent(
-          price, description
-        )
-      )
-    }
-  }.subscribeOn(Schedulers.io())
+      paymentIntentFetcher
+        .fetchPaymentIntent(price, description)
+        .map<CreatePaymentIntentResult> { CreatePaymentIntentResult.Success(it) }
+    }.subscribeOn(Schedulers.io())
+  }
 
   fun confirmPaymentIntent(paymentSource: PaymentSource, paymentIntent: PaymentIntent): Completable = Completable.fromAction {
     val paymentMethodId = createPaymentMethod(paymentSource).use { response ->
@@ -293,7 +292,7 @@ class StripeApi(private val configuration: Configuration, private val paymentInt
     fun fetchPaymentIntent(
       price: FiatMoney,
       description: String? = null
-    ): PaymentIntent
+    ): Single<PaymentIntent>
   }
 
   data class PaymentIntent(

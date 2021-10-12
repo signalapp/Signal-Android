@@ -1,21 +1,16 @@
 package org.thoughtcrime.securesms.badges.models
 
-import android.graphics.drawable.Drawable
+import android.animation.ObjectAnimator
 import android.net.Uri
 import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.Key
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
-import com.bumptech.glide.request.target.CustomViewTarget
-import com.bumptech.glide.request.transition.Transition
 import kotlinx.parcelize.Parcelize
-import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.Badges.selectable
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -40,6 +35,8 @@ data class Badge(
   val expirationTimestamp: Long,
   val visible: Boolean,
 ) : Parcelable, Key {
+
+  fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis()
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(id.toByteArray(Key.CHARSET))
@@ -94,35 +91,47 @@ data class Badge(
 
   class ViewHolder(itemView: View, private val onBadgeClicked: OnBadgeClicked) : MappingViewHolder<Model>(itemView) {
 
+    private val check: ImageView = itemView.findViewById(R.id.checkmark)
     private val badge: ImageView = itemView.findViewById(R.id.badge)
     private val name: TextView = itemView.findViewById(R.id.name)
-    private val target = Target(badge)
+
+    private var checkAnimator: ObjectAnimator? = null
+
+    init {
+      check.isSelected = true
+    }
 
     override fun bind(model: Model) {
       itemView.setOnClickListener {
         onBadgeClicked(model.badge, model.isSelected)
       }
 
+      checkAnimator?.cancel()
       if (payload.isNotEmpty()) {
-        if (model.isSelected) {
-          target.animateToStart()
+        checkAnimator = if (model.isSelected) {
+          ObjectAnimator.ofFloat(check, "alpha", 1f)
         } else {
-          target.animateToEnd()
+          ObjectAnimator.ofFloat(check, "alpha", 0f)
         }
+        checkAnimator?.start()
         return
       }
+
+      badge.alpha = if (model.badge.isExpired()) 0.5f else 1f
 
       GlideApp.with(badge)
         .load(model.badge)
         .downsample(DownsampleStrategy.NONE)
         .diskCacheStrategy(DiskCacheStrategy.NONE)
-        .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.XLARGE, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)))
-        .into(target)
+        .transform(
+          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.XLARGE, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
+        )
+        .into(badge)
 
       if (model.isSelected) {
-        target.setAnimationToStart()
+        check.alpha = 1f
       } else {
-        target.setAnimationToEnd()
+        check.alpha = 0f
       }
 
       name.text = model.badge.name
@@ -142,49 +151,6 @@ data class Badge(
           else -> Other
         }
       }
-    }
-  }
-
-  private class Target(view: ImageView) : CustomViewTarget<ImageView, Drawable>(view) {
-
-    private val animator: BadgeAnimator = BadgeAnimator()
-
-    override fun onLoadFailed(errorDrawable: Drawable?) {
-      view.setImageDrawable(errorDrawable)
-    }
-
-    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-      val drawable = resource.selectable(
-        DimensionUnit.DP.toPixels(2.5f),
-        ContextCompat.getColor(view.context, R.color.signal_inverse_primary),
-        animator
-      )
-
-      view.setImageDrawable(drawable)
-    }
-
-    override fun onResourceCleared(placeholder: Drawable?) {
-      view.setImageDrawable(placeholder)
-    }
-
-    fun setAnimationToStart() {
-      animator.setState(BadgeAnimator.State.START)
-      view.drawable?.invalidateSelf()
-    }
-
-    fun setAnimationToEnd() {
-      animator.setState(BadgeAnimator.State.END)
-      view.drawable?.invalidateSelf()
-    }
-
-    fun animateToStart() {
-      animator.setState(BadgeAnimator.State.REVERSE)
-      view.drawable?.invalidateSelf()
-    }
-
-    fun animateToEnd() {
-      animator.setState(BadgeAnimator.State.FORWARD)
-      view.drawable?.invalidateSelf()
     }
   }
 

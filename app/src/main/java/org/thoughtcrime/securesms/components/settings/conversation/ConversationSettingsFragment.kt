@@ -660,7 +660,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         val blockUnblockIcon = if (isBlocked) unblockIcon else blockIcon
 
         clickPref(
-          title = DSLSettingsText.from(title, titleTint),
+          title = if (titleTint != null) DSLSettingsText.from(title, titleTint) else DSLSettingsText.from(title),
           icon = DSLSettingsIcon.from(blockUnblockIcon),
           onClick = {
             if (state.recipient.isBlocked) {

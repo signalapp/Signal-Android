@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.badges.models.FeaturedBadgePreview
+import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
 import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -58,7 +58,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
     }
 
     val previewView: View = requireView().findViewById(R.id.preview)
-    val previewViewHolder = FeaturedBadgePreview.ViewHolder(previewView)
+    val previewViewHolder = BadgePreview.ViewHolder<BadgePreview.Model>(previewView)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe { event: SelectFeaturedBadgeEvent ->
@@ -71,7 +71,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       save.isEnabled = state.stage == SelectFeaturedBadgeState.Stage.READY
-      previewViewHolder.bind(FeaturedBadgePreview.Model(state.selectedBadge))
+      previewViewHolder.bind(BadgePreview.Model(state.selectedBadge))
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
   }

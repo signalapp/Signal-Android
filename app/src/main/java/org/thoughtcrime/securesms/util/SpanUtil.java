@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -12,6 +13,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
+import android.text.style.AlignmentSpan;
 import android.text.style.BulletSpan;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
@@ -20,12 +22,14 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TextAppearanceSpan;
 import android.text.style.TypefaceSpan;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
@@ -39,6 +43,18 @@ public final class SpanUtil {
   private final static Typeface MEDIUM_BOLD_TYPEFACE = Typeface.create("sans-serif-medium", Typeface.BOLD);
   private final static Typeface BOLD_TYPEFACE        = Typeface.create("sans-serif-medium", Typeface.NORMAL);
   private final static Typeface LIGHT_TYPEFACE       = Typeface.create("sans-serif", Typeface.NORMAL);
+
+  public static CharSequence center(@NonNull CharSequence sequence) {
+    SpannableString spannable = new SpannableString(sequence);
+    spannable.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    return spannable;
+  }
+
+  public static CharSequence textAppearance(@NonNull Context context, @StyleRes int textAppearance, @NonNull CharSequence sequence) {
+    SpannableString spannable = new SpannableString(sequence);
+    spannable.setSpan(new TextAppearanceSpan(context, textAppearance), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    return spannable;
+  }
 
   public static CharSequence italic(CharSequence sequence) {
     return italic(sequence, sequence.length());

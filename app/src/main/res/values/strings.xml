@@ -2352,6 +2352,8 @@
     <string name="preferences__help">Help</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__donate_to_signal">Donate to Signal</string>
+    <string name="preferences__subscription">Subscription</string>
+    <string name="preferences__signal_boost">Signal Boost</string>
     <string name="preferences__privacy">Privacy</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
@@ -3865,6 +3867,55 @@
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Become a sustainer</string>
 
     <string name="ImageView__badge">Badge</string>
+
+    <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal is powered by people like you.</string>
+    <string name="SubscribeFragment__support_technology_that_is_built_for_you">Support technology that is built for you—not for your data—by joining the community of people that sustain it.</string>
+    <string name="SubscribeFragment__donation_amount">Donation amount</string>
+    <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
+    <string name="SubscribeFragment__cancel_subscription">Cancel Subscription</string>
+    <string name="SubscribeFragment__confirm_cancellation">Confirm Cancellation?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">You won\'t be charged again. Your badge will be removed from your profile at the end of your billing period.</string>
+    <string name="SubscribeFragment__not_now">Not now</string>
+    <string name="SubscribeFragment__confirm">Confirm</string>
+    <string name="SubscribeFragment__update_subscription">Update Subscription</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Your subscription has been cancelled.</string>
+
+    <string name="Subscription__s_per_month">%s/month</string>
+    <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Renews %2$s</string>
+
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is a non-profit with no advertisers or investors, sustained only by the people who use and value it. Make a recurring monthly contribution and receive a profile badge to share your support.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Why Contribute?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">The team at Signal is committed to the mission of developing open source privacy technology that protects free expression and enables secure global communication. Your contribution fuels this cause. No ads. No trackers. No kidding.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Your contribution helps pay for the development, servers, and bandwidth of an app used by millions around the world for private and instantaneous communication.</string>
+
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Thanks for your Support!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Thanks for the Boost!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">You\'ve earned a %s badge! Displaying your badge will show people you chat with that you support Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Display on Profile</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make featured badge</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Done</string>
+
+    <string name="ManageDonationsFragment__my_support">My support</string>
+    <string name="ManageDonationsFragment__manage_subscription">Manage subscription</string>
+    <string name="ManageDonationsFragment__badges">Badges</string>
+    <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
+
+    <string name="BoostFragment__give_signal_a_boost">Give Signal a Boost</string>
+    <string name="BoostFragment__say_thanks_and_earn">Say "Thanks!" and earn the Boost badge for %1$d days.</string>
+
+    <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
+    <string name="Boost__one_time_contribution">One-time contribution</string>
+
+    <string name="MySupportPreference__add_a_signal_boost">Add a Signal Boost</string>
+    <string name="MySupportPreference__s_per_month">%1$s/month</string>
+    <string name="MySupportPreference__renews_s">Renews %1$s</string>
+
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Your Badge has Expired</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Your %1$s badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">To continue supporting technology that is built for you—not for your data—please consider becoming a monthly subscriber.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Become a subscriber</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Not now</string>
 
     <!-- EOF -->
 

@@ -29,7 +29,8 @@ class BadgesOverviewViewModel(private val badgeRepository: BadgeRepository) : Vi
       state.copy(
         stage = if (state.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else state.stage,
         allUnlockedBadges = recipient.badges,
-        displayBadgesOnProfile = recipient.badges.firstOrNull()?.visible == true
+        displayBadgesOnProfile = recipient.badges.firstOrNull()?.visible == true,
+        featuredBadge = recipient.featuredBadge
       )
     }
   }

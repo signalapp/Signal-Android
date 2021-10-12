@@ -30,7 +30,11 @@ class BadgesOverviewFragment : DSLSettingsFragment(
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     Badge.register(adapter) { badge, _ ->
-      ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, Recipient.self().id, badge)
+      if (badge.isExpired()) {
+        findNavController().navigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToExpiredBadgeDialog(badge))
+      } else {
+        ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, Recipient.self().id, badge)
+      }
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
@@ -57,6 +61,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
       switchPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__display_badges_on_profile),
         isChecked = state.displayBadgesOnProfile,
+        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges,
         onClick = {
           viewModel.setDisplayBadgesOnProfile(!state.displayBadgesOnProfile)
         }
@@ -65,7 +70,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
       clickPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__featured_badge),
         summary = state.featuredBadge?.name?.let { DSLSettingsText.from(it) },
-        isEnabled = state.stage == BadgesOverviewState.Stage.READY,
+        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges,
         onClick = {
           findNavController().navigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToFeaturedBadgeFragment())
         }

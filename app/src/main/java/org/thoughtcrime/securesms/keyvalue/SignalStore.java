@@ -34,6 +34,7 @@ public final class SignalStore {
   private final OnboardingValues         onboardingValues;
   private final WallpaperValues          wallpaperValues;
   private final PaymentsValues           paymentsValues;
+  private final DonationsValues          donationsValues;
   private final ProxyValues              proxyValues;
   private final RateLimitValues          rateLimitValues;
   private final ChatColorsValues         chatColorsValues;
@@ -57,6 +58,7 @@ public final class SignalStore {
     this.onboardingValues         = new OnboardingValues(store);
     this.wallpaperValues          = new WallpaperValues(store);
     this.paymentsValues           = new PaymentsValues(store);
+    this.donationsValues          = new DonationsValues(store);
     this.proxyValues              = new ProxyValues(store);
     this.rateLimitValues          = new RateLimitValues(store);
     this.chatColorsValues         = new ChatColorsValues(store);
@@ -80,6 +82,7 @@ public final class SignalStore {
     onboarding().onFirstEverAppLaunch();
     wallpaper().onFirstEverAppLaunch();
     paymentsValues().onFirstEverAppLaunch();
+    donationsValues().onFirstEverAppLaunch();
     proxy().onFirstEverAppLaunch();
     rateLimit().onFirstEverAppLaunch();
     chatColorsValues().onFirstEverAppLaunch();
@@ -104,6 +107,7 @@ public final class SignalStore {
     keys.addAll(onboarding().getKeysToIncludeInBackup());
     keys.addAll(wallpaper().getKeysToIncludeInBackup());
     keys.addAll(paymentsValues().getKeysToIncludeInBackup());
+    keys.addAll(donationsValues().getKeysToIncludeInBackup());
     keys.addAll(proxy().getKeysToIncludeInBackup());
     keys.addAll(rateLimit().getKeysToIncludeInBackup());
     keys.addAll(chatColorsValues().getKeysToIncludeInBackup());
@@ -182,6 +186,10 @@ public final class SignalStore {
 
   public static @NonNull PaymentsValues paymentsValues() {
     return INSTANCE.paymentsValues;
+  }
+
+  public static @NonNull DonationsValues donationsValues() {
+    return INSTANCE.donationsValues;
   }
 
   public static @NonNull ProxyValues proxy() {

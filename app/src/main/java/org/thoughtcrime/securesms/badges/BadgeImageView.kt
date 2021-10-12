@@ -44,7 +44,6 @@ class BadgeImageView @JvmOverloads constructor(
 
     val lifecycle = ViewUtil.getActivityLifecycle(this)
     if (lifecycle?.currentState == Lifecycle.State.DESTROYED) {
-      Log.w(TAG, "Ignoring setBadge call for destroyed activity.")
       return
     }
 

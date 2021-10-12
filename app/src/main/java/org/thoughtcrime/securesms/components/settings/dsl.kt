@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.components.settings
 
 import androidx.annotation.CallSuper
+import androidx.annotation.Px
 import androidx.annotation.StringRes
+import org.thoughtcrime.securesms.components.settings.models.Button
+import org.thoughtcrime.securesms.components.settings.models.Space
+import org.thoughtcrime.securesms.components.settings.models.Text
 import org.thoughtcrime.securesms.util.MappingModel
 import org.thoughtcrime.securesms.util.MappingModelList
 
@@ -118,6 +122,35 @@ class DSLConfiguration {
 
   fun sectionHeaderPref(title: Int) {
     val preference = SectionHeaderPreference(DSLSettingsText.from(title))
+    children.add(preference)
+  }
+
+  fun noPadTextPref(title: DSLSettingsText) {
+    val preference = Text(title)
+    children.add(Text.Model(preference))
+  }
+
+  fun space(@Px pixels: Int) {
+    val preference = Space(pixels)
+    children.add(Space.Model(preference))
+  }
+
+  fun primaryButton(
+    text: DSLSettingsText,
+    isEnabled: Boolean = true,
+    onClick: () -> Unit
+  ) {
+    val preference = Button.Model.Primary(text, null, isEnabled, onClick)
+    children.add(preference)
+  }
+
+  fun secondaryButtonNoOutline(
+    text: DSLSettingsText,
+    icon: DSLSettingsIcon? = null,
+    isEnabled: Boolean = true,
+    onClick: () -> Unit
+  ) {
+    val preference = Button.Model.SecondaryNoOutline(text, icon, isEnabled, onClick)
     children.add(preference)
   }
 
