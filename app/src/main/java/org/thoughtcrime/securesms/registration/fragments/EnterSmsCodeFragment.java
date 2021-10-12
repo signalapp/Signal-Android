@@ -13,11 +13,11 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 
-public final class EnterCodeFragment extends BaseEnterCodeFragment<RegistrationViewModel> implements SignalStrengthPhoneStateListener.Callback {
+public final class EnterSmsCodeFragment extends BaseEnterSmsCodeFragment<RegistrationViewModel> implements SignalStrengthPhoneStateListener.Callback {
 
-  private static final String TAG = Log.tag(EnterCodeFragment.class);
+  private static final String TAG = Log.tag(EnterSmsCodeFragment.class);
 
-  public EnterCodeFragment() {
+  public EnterSmsCodeFragment() {
     super(R.layout.fragment_registration_enter_code);
   }
 
@@ -37,18 +37,18 @@ public final class EnterCodeFragment extends BaseEnterCodeFragment<RegistrationV
         Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms.", e);
       }
       return null;
-    }, none -> displaySuccess(() -> Navigation.findNavController(requireView()).navigate(EnterCodeFragmentDirections.actionSuccessfulRegistration())));
+    }, none -> displaySuccess(() -> Navigation.findNavController(requireView()).navigate(EnterSmsCodeFragmentDirections.actionSuccessfulRegistration())));
   }
 
   @Override
   protected void navigateToRegistrationLock(long timeRemaining) {
     Navigation.findNavController(requireView())
-              .navigate(EnterCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining));
+              .navigate(EnterSmsCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining));
   }
 
   @Override
   protected void navigateToCaptcha() {
-    NavHostFragment.findNavController(this).navigate(EnterCodeFragmentDirections.actionRequestCaptcha());
+    NavHostFragment.findNavController(this).navigate(EnterSmsCodeFragmentDirections.actionRequestCaptcha());
   }
 
   @Override

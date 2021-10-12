@@ -50,9 +50,9 @@ import io.reactivex.rxjava3.disposables.Disposable;
  *
  * @param <ViewModel> - The concrete view model used by the subclasses, for ease of access in said subclass
  */
-public abstract class BaseEnterCodeFragment<ViewModel extends BaseRegistrationViewModel> extends LoggingFragment implements SignalStrengthPhoneStateListener.Callback {
+public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistrationViewModel> extends LoggingFragment implements SignalStrengthPhoneStateListener.Callback {
 
-  private static final String TAG = Log.tag(BaseEnterCodeFragment.class);
+  private static final String TAG = Log.tag(BaseEnterSmsCodeFragment.class);
 
   private ScrollView              scrollView;
   private TextView                header;
@@ -68,7 +68,7 @@ public abstract class BaseEnterCodeFragment<ViewModel extends BaseRegistrationVi
 
   protected final LifecycleDisposable disposables = new LifecycleDisposable();
 
-  public BaseEnterCodeFragment(@LayoutRes int contentLayoutId) {
+  public BaseEnterSmsCodeFragment(@LayoutRes int contentLayoutId) {
     super(contentLayoutId);
   }
 

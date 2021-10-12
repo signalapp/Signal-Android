@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNum
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.getCaptchaArguments
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.getViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.fragments.BaseEnterCodeFragment
+import org.thoughtcrime.securesms.registration.fragments.BaseEnterSmsCodeFragment
 
-class ChangeNumberEnterCodeFragment : BaseEnterCodeFragment<ChangeNumberViewModel>(R.layout.fragment_change_number_enter_code) {
+class ChangeNumberEnterSmsCodeFragment : BaseEnterSmsCodeFragment<ChangeNumberViewModel>(R.layout.fragment_change_number_enter_code) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -54,10 +54,10 @@ class ChangeNumberEnterCodeFragment : BaseEnterCodeFragment<ChangeNumberViewMode
   }
 
   override fun navigateToRegistrationLock(timeRemaining: Long) {
-    findNavController().navigate(ChangeNumberEnterCodeFragmentDirections.actionChangeNumberEnterCodeFragmentToChangeNumberRegistrationLock(timeRemaining))
+    findNavController().navigate(ChangeNumberEnterSmsCodeFragmentDirections.actionChangeNumberEnterCodeFragmentToChangeNumberRegistrationLock(timeRemaining))
   }
 
   override fun navigateToKbsAccountLocked() {
-    findNavController().navigate(ChangeNumberEnterCodeFragmentDirections.actionChangeNumberEnterCodeFragmentToChangeNumberAccountLocked())
+    findNavController().navigate(ChangeNumberEnterSmsCodeFragmentDirections.actionChangeNumberEnterCodeFragmentToChangeNumberAccountLocked())
   }
 }

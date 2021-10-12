@@ -98,7 +98,7 @@
 
     <fragment
         android:id="@+id/changeNumberEnterCodeFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberEnterCodeFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberEnterSmsCodeFragment"
         tools:layout="@layout/fragment_change_number_enter_code">
 
         <action
