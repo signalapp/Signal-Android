@@ -3011,7 +3011,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">이름 또는 번호 검색</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s, %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s, %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">아바타 미리 보기</string>
   <string name="AvatarPickerFragment__camera">카메라</string>

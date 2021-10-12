@@ -3332,7 +3332,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Остановить воспроизведение голосового сообщения</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Изменить скорость воспроизведения голосового сообщения</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Приостановить воспроизведение голосового сообщения</string>

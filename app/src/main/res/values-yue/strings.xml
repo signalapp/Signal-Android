@@ -136,7 +136,7 @@
   <string name="CommunicationActions_cancel">取消</string>
   <string name="CommunicationActions_call">通話</string>
   <string name="CommunicationActions_insecure_call">唔安全嘅通話</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">電訊商可能會收費。因為呢個冧把未有喺 Signal 註冊，呢則通話會係由您的流動網絡打出嘅電話，唔會用到上網。</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">電訊商可能會收費。因為呢個冧把未有喺 Signal 註冊，呢則通話會係由您嘅流動網絡打出嘅電話，唔會用到上網。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">您同 %1$s 之間嘅安全碼已經郁動過。話唔埋係有人企圖截取您嘅通訊，但又或者，只係 %2$s 重新裝過 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可以同呢位聯絡人再驗證一次安全碼，咁未嘗唔係一件好事。</string>
@@ -2913,7 +2913,7 @@
   <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人開咗 Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">封鎖咗</string>
-  <string name="PrivacySettingsFragment__d_contacts">%1$d 位聯絡人</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d 位仁兄</string>
   <string name="PrivacySettingsFragment__messaging">發訊息</string>
   <string name="PrivacySettingsFragment__disappearing_messages">過眼雲煙訊息</string>
   <string name="PrivacySettingsFragment__app_security">App 保安措施</string>
@@ -3075,7 +3075,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">查名或者冧把</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">調整語音訊息速度</string>
   <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>

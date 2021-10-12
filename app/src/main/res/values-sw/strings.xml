@@ -3084,7 +3084,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Tafuta jina au nambari</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s  · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s  · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Simamisha ujumbe wa sauti</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Badilisha kasi ya ujumbe wa sauti</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sitisha ujumbe wa sauti</string>

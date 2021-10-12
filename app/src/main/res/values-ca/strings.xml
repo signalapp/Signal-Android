@@ -3157,7 +3157,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cerqueu un nom o un número</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Atura el missatge de veu</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Canvia la velocitat del missatge de veu</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Interromp el missatge de veu</string>

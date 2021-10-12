@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
   <string name="BlockUnblockDialog_block">Bloquer</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquer et quitter</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">Signaler comme spam et bloquer</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Signaler comme indésirable et bloquer</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Aujourd’hui</string>
   <string name="BucketedThreadMedia_Yesterday">Hier</string>
@@ -2962,6 +2962,7 @@
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vous êtes sur le point de changer votre numéro de téléphone de %1$s en %2$s.\n\nAvant de continuer, assurez-vous que le numéro ci-dessus soit le bon.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Modifier le numéro</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Changer Numéro – Besoin d’aide avec le NIP sur Android (NIP v2)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Les NIP ne correspondent pas</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Le NIP associé à votre nouveau numéro est différent de celui de votre ancien. Souhaiteriez-vous conserver votre ancien NIP ou le mettre à jour ?</string>
@@ -2969,7 +2970,15 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">Mettre le NIP à jour</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Conserver l’ancien NIP ?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Il semble que vous avez essayé de changer votre numéro mais nous n\'avons pas pu déterminer si l\'opération a réussi.
+
+Nouvelle tentative…</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Changement d’état confirmé</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Votre numéro %1$s a été confirmé. Si ce n’est pas le vôtre, veuillez recommencer la procédure de changement de numéro.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">État du changement non confirmé</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nous n\'avons pas pu déterminer l\'état de votre requête de changement de numéro.
+
+(Erreur: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Réessayer</string>
   <string name="ChangeNumberLockActivity__leave">Quitter</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Envoyer le journal de débogage</string>
@@ -3149,7 +3158,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Chercher un nom ou un numéro</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Arrêter le message vocal</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Changer la vitesse du message vocal</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Mettre le message vocal en pause</string>
@@ -3210,6 +3219,8 @@
   <string name="ImageEditorHud__write_text">Écrire du texte</string>
   <string name="ImageEditorHud__add_a_sticker">Ajouter un autocollant</string>
   <string name="ImageEditorHud__blur">Flouter</string>
+  <string name="ImageEditorHud__done_editing">Fini de modifier</string>
+  <string name="ImageEditorHud__clear_all">Tout enlever</string>
   <string name="ImageEditorHud__undo">Annuler</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Passer du marqueur au surligneur</string>
   <string name="ImageEditorHud__delete">Supprimer</string>
@@ -3225,10 +3236,12 @@
   <string name="BadgesOverviewFragment__featured_badge">Badges mis en avant</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Afficher les badges sur le profil</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
+  <string name="BadgeSelectionFragment__select_badges">Sélectionnez des badges</string>
   <string name="SelectFeaturedBadgeFragment__preview">Aperçu</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Choisissez un badge</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vous devez sélectionner un badge</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un pourvoyeur</string>
   <string name="ImageView__badge">Badge</string>
   <!--EOF-->
 </resources>

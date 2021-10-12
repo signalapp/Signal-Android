@@ -3084,7 +3084,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">नाव किंवा नंबर शोधा</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">अवतार पुनरावलोकन</string>
   <string name="AvatarPickerFragment__camera">कॅमेरा</string>

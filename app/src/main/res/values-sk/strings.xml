@@ -3338,7 +3338,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Vyhľadajte meno, alebo číslo</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Zastaviť hlasovú správu</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Zmeniť rýchlosť hlasových správ</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pozastaviť hlasovú správu</string>

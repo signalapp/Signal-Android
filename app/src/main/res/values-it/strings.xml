@@ -3163,7 +3163,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cerca nome o numero</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Interrompi messaggio vocale</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Cambia velocità messaggio vocale</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Metti in pausa messaggio vocale</string>

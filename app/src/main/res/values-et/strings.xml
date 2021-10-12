@@ -1203,6 +1203,7 @@
   <string name="WebRtcCallView__joining">Liitumine…</string>
   <string name="WebRtcCallView__disconnected">Ühendus katkestatud</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal helistab isikule %1$s</string>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s helistab sulle</string>
   <string name="WebRtcCallView__no_one_else_is_here">Kedagi teist pole siin</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s on selles kõnes</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ja %2$s on selles kõnes</string>
@@ -1488,6 +1489,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Reageeris %1$s sõnumile: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reageeris %1$s sinu videole.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reageeris %1$s sinu pildile.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reageeris %1$s sinu GIF-ile.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reageeris %1$s sinu failile.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reageeris %1$s sinu helile.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reageeris %1$s sinu ühekordsele meediale</string>
@@ -1791,6 +1793,7 @@
   <string name="recipients_panel__to"><small>Sisesta nimi või number</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Koputa skäneerimiseks</string>
+  <string name="verify_display_fragment__successful_match">Edukas sobivus.</string>
   <string name="verify_display_fragment__loading">Laadimine…</string>
   <string name="verify_display_fragment__mark_as_verified">Märgi kinnitatuks</string>
   <!--verify_identity-->
@@ -2153,7 +2156,9 @@
   <string name="ConfirmPayment__to">Saaja</string>
   <string name="ConfirmPayment__total_amount">Kogusumma</string>
   <string name="ConfirmPayment__payment_failed">Makse ei õnnestunud</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">See isik pole makseid aktiveerinud</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s kursiga %2$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">Määra valuuta</string>
   <string name="SetCurrencyFragment__all_currencies">Kõik valuutad</string>
@@ -2991,7 +2996,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Otsi nime või numbri järgi</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Lõpeta häälsõnum</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Muuda häälsõnumi kiirust</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pane häälsõnum pausile</string>

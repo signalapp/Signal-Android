@@ -664,6 +664,7 @@
   <string name="ManageProfileFragment_your_name">നിങ്ങളുടെ പേര്</string>
   <string name="ManageProfileFragment_your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമം</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">അവതാർ സജ്ജമാക്കാന്‍ കഴിഞ്ഞില്ല</string>
+  <string name="ManageProfileFragment_badges">ബാഡ്ജുകള്‍</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">സാമാന്യമായി ഗ്രൂപ്പുകളൊന്നുമില്ല</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -3094,7 +3095,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">പേര് അല്ലെങ്കിൽ നമ്പർ തിരയുക</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">ശബ്ദ സന്ദേശം നിർത്തുക</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">ശബ്ദ സന്ദേശം വേഗത മാറ്റുക</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ശബ്ദ സന്ദേശം താൽക്കാലികമായി നിർത്തുക</string>

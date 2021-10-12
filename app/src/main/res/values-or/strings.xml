@@ -2730,7 +2730,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">ନାମ କିମ୍ୱା ନମ୍ଵର୍ ସନ୍ଧାନ କରନ୍ତୁ</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">ଅବତାର ପୂର୍ବାବଲୋକନ</string>
   <string name="AvatarPickerFragment__camera">କ୍ୟାମେରା</string>

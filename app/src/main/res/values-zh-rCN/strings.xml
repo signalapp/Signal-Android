@@ -2991,7 +2991,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">搜索名字或号码</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">相机</string>
   <string name="AvatarPickerFragment__photo">图片</string>

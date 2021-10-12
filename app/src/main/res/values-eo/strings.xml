@@ -2996,7 +2996,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NewConversationActivity__new_message">Nova mesaĝo</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Fotilo</string>
   <string name="AvatarPickerFragment__photo">Foto</string>

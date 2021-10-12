@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">リマインダーを閉じますか？</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">支払いリカバリーフレーズを保存</string>
   <string name="ApplicationPreferencesActivity_record_phrase">フレーズを記録</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PINを無効化する前に、口座を回復するためのリカバリーフレーズを保存しなければなりません。</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PINを無効にする前に、口座を回復するためのリカバリーフレーズを保存しなければなりません。</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d分</item>
@@ -2048,7 +2048,7 @@
   <string name="PaymentsHomeFragment__restore_payments_account">支払い口座を復元</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">最近の取引はありません</string>
   <string name="PaymentsHomeFragment__pending_requests">保留中のメンバー申請</string>
-  <string name="PaymentsHomeFragment__recent_activity">最近のアクティビティ</string>
+  <string name="PaymentsHomeFragment__recent_activity">最近の取引</string>
   <string name="PaymentsHomeFragment__see_all">すべて表示</string>
   <string name="PaymentsHomeFragment__add_funds">入金</string>
   <string name="PaymentsHomeFragment__send">送信する</string>
@@ -2856,7 +2856,7 @@
   <string name="ChangeNumberFragment__continue">続ける</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">電話番号を変更しました。</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
-  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">番号を変更</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">電話番号の変更</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">変更前の電話番号</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">変更前の電話番号</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">新しい電話番号</string>
@@ -3059,13 +3059,13 @@
   <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
-  <string name="PaymentRecipientSelectionFragment__new_payment">新しい送金</string>
+  <string name="PaymentRecipientSelectionFragment__new_payment">新規の送金</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">新規メッセージ</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">名前か電話番号で検索</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">音声メッセージを停止</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">音声メッセージの再生速度を変更</string>
   <string name="VoiceNotePlayerView__pause_voice_message">音声メッセージを一時停止</string>
@@ -3137,11 +3137,11 @@
   <string name="CameraFragment__failed_to_open_camera">カメラを起動できませんでした</string>
   <string name="BadgesOverviewFragment__my_badges">マイバッジ</string>
   <string name="BadgesOverviewFragment__featured_badge">注目のバッジ</string>
-  <string name="BadgesOverviewFragment__display_badges_on_profile">バッジをプロフィールに表示</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">バッジをプロフィールに表示する</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
-  <string name="BadgeSelectionFragment__select_badges">バッジを選択</string>
+  <string name="BadgeSelectionFragment__select_badges">バッジの選択</string>
   <string name="SelectFeaturedBadgeFragment__preview">プレビュー</string>
-  <string name="SelectFeaturedBadgeFragment__select_a_badge">バッジを選択</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">バッジの選択</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">バッジを選択して下さい</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>

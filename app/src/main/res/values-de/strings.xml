@@ -124,7 +124,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Gruppenfoto entfernen?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signal aktualisieren</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Signal-Version wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf neueste Version.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Signal-Version wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf die neueste Version.</string>
   <string name="ClientDeprecatedActivity_update">Aktualisieren</string>
   <string name="ClientDeprecatedActivity_dont_update">Nicht aktualisieren</string>
   <string name="ClientDeprecatedActivity_warning">Warnung</string>
@@ -137,7 +137,7 @@
   <string name="CommunicationActions_cancel">Abbrechen</string>
   <string name="CommunicationActions_call">Anrufen</string>
   <string name="CommunicationActions_insecure_call">Unverschlüsselter Anruf</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter anstatt über das Internet erfolgen.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter und nicht über das Internet erfolgen.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Möglicherweise möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
@@ -2037,7 +2037,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
-  <string name="preferences_chats__media_auto_download">Medieninhalte autom. herunterladen</string>
+  <string name="preferences_chats__media_auto_download">Medieninhalte automatisch herunterladen</string>
   <string name="preferences_chats__message_history">Nachrichtenverlauf</string>
   <string name="preferences_storage__storage_usage">Speicherbelegung</string>
   <string name="preferences_storage__photos">Bilder</string>
@@ -3152,7 +3152,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Sprachnachricht stoppen</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Geschwindigkeit der Sprachnachricht ändern</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sprachnachricht pausieren</string>

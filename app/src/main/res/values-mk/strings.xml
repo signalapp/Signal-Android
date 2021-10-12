@@ -171,8 +171,8 @@
   <string name="ConversationItem_group_action_left">%1$s ја напушти групата.</string>
   <string name="ConversationItem_send_paused">Испраќањето е паузирано</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Испраќањето не успеа, допрете за необезбеден одговор</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Враќање на неенкриптирани SMS пораки?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Враќање на неенкриптирани MMS пораки?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Да се вратам на нешифрирани SMS пораки?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да се вратам на нешифрирани MMS пораки?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Оваа порака <b>нема</b> да биде шифрирана бидејќи примачот повеќе не е корисник на Signal.\n\nДа испратам небезбедна порака?</string>
   <string name="ConversationItem_unable_to_open_media">Не можам да пронајдам апликација за отворање на овој тип на медија.</string>
   <string name="ConversationItem_copied_text">Ископирано %s</string>
@@ -352,7 +352,7 @@
   <string name="RestoreBackupFragment__not_now">Не сега</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Резервни копии на разговори</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервните коопии се енкриптирани со лозинката складирана на Вашиот уред.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервните коопии се шифрирани со лозинката складирана на Вашиот уред.</string>
   <string name="BackupsPreferenceFragment__create_backup">Направи резервна копија</string>
   <string name="BackupsPreferenceFragment__last_backup">Последна резервна копија: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Папка за резервна копија</string>
@@ -383,7 +383,7 @@
   <string name="DateUtils_yesterday">Вчера</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Сесијата со разговорот е освежена</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal користи од-крај-до-крај енкрипција и можно е да има потреба да ги освежи Вашите разговори понекогаш. Ова нема никаков ефект на безбедноста на разговорите, но може да се случи да пропуштите порака од овој контакт. Затоа можете да го прашате да ја препрати.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal користи шифрирање од-крај-до-крај и можно е да има потреба да ги освежи Вашите разговори понекогаш. Ова нема никаков ефект на безбедноста на разговорите, но може да се случи да пропуштите порака од овој контакт. Затоа можете да го прашате да ја препрати.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Да го одврзам \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако од одврзете овој уред истиот повеќе нема да може да праќа и прима пораки.</string>
@@ -406,7 +406,7 @@
   <string name="DonateMegaphone_no_thanks">Не, благодарам</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ви претставуваме групни повици</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворете нова група за да започнете бесплатен енкриптиран групен повик</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворете нова група за да започнете бесплатен шифриран групен повик</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизација за недостапни Play сервиси</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овој уред не поддржува Play сервиси. Допрете за да ги исклучите оптимизациите за батеријата кои што го спредчуваат Signal да прима пораки при неактивност.</string>
@@ -877,7 +877,7 @@
   <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Допрете да испратите запис за дебагирање</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Непознато</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е шифрирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
   <string name="MessageRecord_you_updated_group">Ја уредивте групата.</string>
   <string name="MessageRecord_the_group_was_updated">Групата беше ажурирана.</string>
@@ -1099,7 +1099,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Погрешна стара лозинка!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Внесете нова лозинка!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Поврзете го овај уред?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Да го поврзам овој уред?</string>
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Ќе може</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1113,7 +1113,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Уредот не е пронајден.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Мрежна грешка.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Погрешен QR код.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Извинете но имате премногу врзани уреди, пробајте да отстраните неколку</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Извинете, но имате премногу врзани уреди, пробајте да отстраните неколку</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Извинете, но ова не е валиден QR код за уред.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Да поврзам уред со Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа дека сакате да поврзете Signal уред користејќи скенер од 3та страна. За Ваша заштита, Ве молиме скенирајте го кодот преку Signal.</string>
@@ -1266,7 +1266,7 @@
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Нема да добивате аудио и видео и тие нема да го добиваат Вашето аудио и видео.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не добивам аудио &amp; видео од %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не можам да добијам аудио и видео од %1$s</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случува бидејќи тие го немаат проверено Вашиот сигурносен број по промената, има некаков проблем со нивниот уред или пак Ве имаат блокирано.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случи бидејќи тие го немаат проверено Вашиот сигурносен број по промената, има некаков проблем со нивниот уред или пак Ве имаат блокирано.</string>
   <!--CallToastPopupWindow-->
   <string name="CallToastPopupWindow__swipe_to_view_screen_share">Повелчете за да го видите споделениот екран</string>
   <!--ProxyBottomSheetFragment-->
@@ -1474,10 +1474,10 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Пораката е енкриптирана за непостоечка сесија</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Пораката е шифрирана за непостоечка сесија</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Лошо енкриптирана MMS порака</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Енкрипција на MMS порака за непостоечка сесија</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Погрешно шифрирана MMS порака</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Шифрирање на MMS порака за непостоечка сесија</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Исклучи известувања</string>
   <!--ApplicationMigrationService-->
@@ -1524,6 +1524,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Реакција %1$s на „%2$s“.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Реагираше %1$s на Вашето видео.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Реагираше %1$s на Вашата слика.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Реагираше %1$s на Вашиот GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Реагираше %1$s на Вашата датотека.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше %1$s на Вашето аудио.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше %1$s на Вашата медија за еден преглед.</string>
@@ -1766,7 +1767,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ништо не е пронајдено</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Дали сакате да ги увезете постоечките текстуални пораки во енкриптираната база на Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Дали сакате да ги увезете постоечките текстуални пораки во шифрираната база на Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Стандардната системска база нема да биде променета на ниеден начин.</string>
   <string name="database_migration_activity__skip">Прескокни</string>
   <string name="database_migration_activity__import">Увези</string>
@@ -1808,7 +1809,7 @@
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Неколку зборови за Вас…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Тука сум, кажи</string>
-  <string name="EditAboutFragment_encrypted">Енкриптирано</string>
+  <string name="EditAboutFragment_encrypted">Шифрирано</string>
   <string name="EditAboutFragment_be_kind">Бидете љубезни</string>
   <string name="EditAboutFragment_coffee_lover">Љубител/ка на кафе</string>
   <string name="EditAboutFragment_free_to_chat">Слободно за муабет</string>
@@ -2022,7 +2023,7 @@
   <string name="preferences__disable_pin">Исклучи PIN</string>
   <string name="preferences__enable_pin">Вклучи PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно не направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN кодовите ги чуваат информациите складирани на Signal енкриптирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="preferences__system_default">Стандардно</string>
   <string name="preferences__language">Јазик</string>
   <string name="preferences__signal_messages_and_calls">Signal пораки и повици</string>
@@ -2030,8 +2031,8 @@
   <string name="preferences__free_private_messages_and_calls">Бесплатни приватни пораки и повици кон Signal корисниците</string>
   <string name="preferences__submit_debug_log">Испратете запис за дебагирање</string>
   <string name="preferences__delete_account">Избриши сметка</string>
-  <string name="preferences__support_wifi_calling">„WiFi Calling“ режим за компатибилност</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку „WiFi Calling“ е вклучено на уредот)</string>
+  <string name="preferences__support_wifi_calling">„Повикување преку WiFi“ режим на компатибилност</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку „Повикување преку WiFi“ е вклучено на уредот)</string>
   <string name="preferences__incognito_keyboard">Инкогнито тастатура</string>
   <string name="preferences__read_receipts">Потврди за прочитани пораки</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако се исклучени потврдите за прочитани пораки, нема да видите кога некој ќе ги прочита Вашите пораки.</string>
@@ -2304,7 +2305,7 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Спореди со табелата за исечоци</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Увези SMS од системот</string>
-  <string name="reminder_header_sms_import_text">Допрете за да ги увезете SMS пораките од телефонот во енкриптираната база на податоци на Signal.</string>
+  <string name="reminder_header_sms_import_text">Допрете за да ги увезете SMS пораките од телефонот во шифрираната база на податоци на Signal.</string>
   <string name="reminder_header_push_title">Вклучи Signal пораки и повици</string>
   <string name="reminder_header_push_text">Надградете го Вашето комуникациско искуство.</string>
   <string name="reminder_header_service_outage_text">Signal се соочува со технички потешкотии. Работиме напорно да го повратиме сервисот што е можно поскоро.</string>
@@ -2323,21 +2324,21 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Согледувања</string>
   <string name="InsightsDashboardFragment__title">Согледувања</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal протоколот автоматски заштити %1$d%% од Вашите пораки во изминатите %2$d дена. Разговорите помеѓу корисниците на Signal секогаш се енкриптирани од-крај-до-крај.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal протоколот автоматски заштити %1$d%% од Вашите пораки во изминатите %2$d дена. Разговорите помеѓу корисниците на Signal секогаш се шифрирани од-крај-до-крај.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Повеќе безбедна комуникација со Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Нема доволно податоци</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Вашиот процент на увид е искалкулиран базирано на испратените пораки во минатите %1$d дена кои што не се исчезнати или избришани.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Започни разговор</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Надминете ги ограничувањата на неенкритпираните SMS пораки, почнете да комуницирате безбедно преку испраќање покани за Signal на Вашите контакти.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Надминете ги ограничувањата на нешифрираните SMS пораки, почнете да комуницирате безбедно преку испраќање покани за Signal на Вашите контакти.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Овие статистики се генерирани локално на Вашиот уред и можат да бидат видени само од Вас. Тие не се испраќаат никаде.</string>
-  <string name="InsightsDashboardFragment__encrypted_messages">Енкриптирани пораки</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Шифрирани пораки</string>
   <string name="InsightsDashboardFragment__cancel">Откажи</string>
   <string name="InsightsDashboardFragment__send">Испрати</string>
   <string name="InsightsModalFragment__title">Ви претставуваме „Согледувања“</string>
   <string name="InsightsModalFragment__description">Дознајте колку од Вашите пораки се испратени безбедно и потоа брзо поканете нови контакти за да го зајакнете процентот во Signal.</string>
   <string name="InsightsModalFragment__view_insights">Провери согледувања</string>
   <string name="FirstInviteReminder__title">Поканете на Signal</string>
-  <string name="FirstInviteReminder__description">Можете да го зголемите бројот на енкриптираните пораки што ги испраќате на %1$d%%</string>
+  <string name="FirstInviteReminder__description">Можете да го зголемите бројот на шифрираните пораки што ги испраќате на %1$d%%</string>
   <string name="SecondInviteReminder__title">Зајакнете го Вашиот Signal</string>
   <string name="SecondInviteReminder__description">Покани %1$s</string>
   <string name="InsightsReminder__view_insights">Види согледувања</string>
@@ -2359,7 +2360,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Направи нов PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Можете да го промените Вашиот PIN се додека овој уред е регистриран.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Направете го Вашиот PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal енкриптирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Изберете покомплексен PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN кодовите не се совпаѓаат. Пробајте пак.</string>
@@ -2371,7 +2372,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Создавање на PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ви претставуваме PIN кодови</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal енкриптирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="KbsSplashFragment__learn_more">Дознајте повеќе</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Заклучување на регистрација = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Заклучувањето на регистрацијата сега се вика PIN, и прави повеќе. Ажурирајте сега.</string>
@@ -2427,7 +2428,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s ќе добие барање за порака од Вас. Можете да воспоставите повик кога Вашата порака ќе биде прифатена.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Создадете PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN кодовите ги чуваат енкриптирани информациите складирани во Signal.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN кодовите ги чуваат шифрирани информациите складирани во Signal.</string>
   <string name="KbsMegaphone__create_pin">Создадете PIN</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Кажете ни што мислите за Signal</string>
@@ -2452,7 +2453,7 @@
   <string name="PushDecryptJob_new_locked_message">Нова заклучена порака</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Отклучете за да ги видите пораките што чекаат</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Лозинка за резервната копија</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервните копии ќе бидат зачувани на екстерен склад и енкриптирани со лозинката подолу. Морате да ја имате оваа лозинка за да ја вратите резервната копија.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервните копии ќе бидат зачувани на екстерен склад и шифриран со лозинката подолу. Морате да ја имате оваа лозинка за да ја вратите резервната копија.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">Мора да ја имате оваа лозинка за да ја вратите резервната копија.</string>
   <string name="backup_enable_dialog__folder">Папка</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ја запишав оваа лозинка. Без неа нема да можам да ја вратам резервната копија.</string>
@@ -2516,7 +2517,7 @@
   <string name="preferences_app_protection__create_a_pin">Создадете PIN</string>
   <string name="preferences_app_protection__change_your_pin">Сменете го Вашиот PIN</string>
   <string name="preferences_app_protection__pin_reminders">Потсетувања за PIN</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани со Signal енкриптирани така што само Вие можете да им пристапите. Вашиот профил, поставувањата и контактите ќе се повратат кога ќе го реинсталирате Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани со Signal шифрирани така што само Вие можете да им пристапите. Вашиот профил, поставувањата и контактите ќе се повратат кога ќе го реинсталирате Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Зголемете ја безбедноста преку повторно барање на Signal PIN код за регистрација на Вашиот телефон со Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Потсетниците помагаат да го запомните Вашиот PIN бидејќи истиот не може да биде повратен ако го изгубите. Со тек на време ќе бидете прашувани поретко.</string>
   <string name="preferences_app_protection__turn_off">Исклучи</string>
@@ -2608,7 +2609,7 @@
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Не можам да префрлам од понови верзии нa Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Префрлување податоци</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">Држете ги двата уреди еден до друг. Не исклучувајте ги уредите и задржете го Signal отворен. Преносите се од-крај-до-крај енкриптирани.</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Држете ги двата уреди еден до друг. Не ги исклучувајте уредите и задржете го Signal отворен. Преносот на податоци е шифриран од-крај-до-крај.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d пораки досега…</string>
   <string name="DeviceTransfer__cancel">Откажи</string>
   <string name="DeviceTransfer__try_again">Обиди сѐ повторно </string>
@@ -3099,7 +3100,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Пребарај име или број</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Стопирај гласовна порака</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Промени ја брзината на гласовната порака</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Паузирај гласовна порака</string>
@@ -3172,7 +3173,7 @@
   <string name="CameraFragment__failed_to_open_camera">Не успеа да се отвори камерата</string>
   <string name="BadgesOverviewFragment__my_badges">Мои беџови</string>
   <string name="BadgesOverviewFragment__featured_badge">Достапни беџови</string>
-  <string name="BadgesOverviewFragment__display_badges_on_profile">Прикажи беџоци на профил</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Прикажи беџови на профил</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Не успеав да го ажурирам профилот</string>
   <string name="BadgeSelectionFragment__select_badges">Изберете беџови</string>
   <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>

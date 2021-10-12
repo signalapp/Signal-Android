@@ -3161,7 +3161,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">İsim veya numara bul</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Sesli iletiyi durdur</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Sesli ileti hızını değiştir</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sesli iletiyi duraklat</string>

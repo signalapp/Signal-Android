@@ -665,6 +665,7 @@
   <string name="ManageProfileFragment_your_name">ئاتىڭىز</string>
   <string name="ManageProfileFragment_your_username">ئىشلەتكۈچى ئاتىڭىز</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">سىما تەڭشىيەلمىدى</string>
+  <string name="ManageProfileFragment_badges">ئىزناكلار</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">ئورتاق گۇرۇپپا يوق</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -751,10 +752,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">ھەمبەھىرلە</string>
   <string name="InviteActivity_share_with_contacts">ئالاقەداشلار بىلەن ھەمبەھىر</string>
+  <string name="InviteActivity_share_via">… بىلەن ھەمبەھىر</string>
   <string name="InviteActivity_cancel">بىكار قىل</string>
   <string name="InviteActivity_sending">ئەۋەتىلىۋاتىدۇ…</string>
   <string name="InviteActivity_invitations_sent">تەكلىپ يوللاندى!</string>
   <string name="InviteActivity_invite_to_signal">Signal ئىشلىتىش تەكلىپى</string>
+  <string name="InviteActivity_send_sms">‏SMS ئەۋەت %d</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d كۆپ ۋاسىتە ئۇچۇر تەكلىپىنى يوللامدۇ؟</item>
     <item quantity="other">%d كۆپ ۋاسىتە ئۇچۇر تەكلىپىنى يوللامدۇ؟</item>
@@ -831,7 +834,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal چاقىرىشى داۋاملىشىۋاتىدۇ</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal چاقىرىشى قۇرۇلۇۋاتىدۇ</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal چاقىرىلىشى</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">كەلگەن Signal گۇرۇپ چاقىرىقى</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal چاقىرىش مۇلازىمىتىنى توختىتىۋاتىدۇ</string>
+  <string name="NotificationBarManager__decline_call">چاقىرىقنى رەت قىل</string>
   <string name="NotificationBarManager__answer_call">سۆزلەشكەن چاقىرىش</string>
   <string name="NotificationBarManager__end_call">ئاخىرلاشقان چاقىرىش</string>
   <string name="NotificationBarManager__cancel_call">چاقىرىشتىن ۋاز كەچ</string>
@@ -1038,6 +1043,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">سىز %s بىلەن بولغان بىخەتەرلىك نومۇرىڭىزغا دەلىللەنمىدى بەلگىسى سالدىڭىز.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">باشقا بىر ئۈسكۈنىدە  %s بىلەن بولغان بىخەتەرلىك نومۇرىڭىزغا دەلىللەنمىدى بەلگىسى سالدىڭىز.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s نىڭ بىر ئۇچۇرىنى يەتكۈزەلمىدى</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s لارنىڭ نومۇرىنى يېڭى نومۇرغا ئۆزگەرتىش</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s گۇرۇپپىغا چاقىرىشىنى باشلىدى. %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s گۇرۇپپا چاقىرىقىدا. %2$s</string>
@@ -1195,6 +1201,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$sنى چاقىرىش ئۈچۈن Signal كامېرانى ئىشلىتەلىشى كېرەك</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">چاقىرىۋاتىدۇ…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">قېتىلغۇچىلارنى چاقىرىشقا گۇرۇپپا بەك چوڭ كېلىپ قالدى</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">‫Signal چاقىرىقى</string>
   <string name="WebRtcCallView__signal_video_call">‏Signal سىنلىق چاقىرىقى</string>
@@ -1207,8 +1214,34 @@
   <string name="WebRtcCallView__reconnecting">قايتا ئۇلىنىۋاتىدۇ…</string>
   <string name="WebRtcCallView__joining">قېتىلىۋتىدۇ…</string>
   <string name="WebRtcCallView__disconnected">ئۈزۈلدى</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s نى چاقىرىدۇ</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">‏Signal %1$s بىلەن %2$s نى چاقىرىدۇ</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal %1$s، %2$s ۋە %3$dقاتارلىقلارنى چاقىرىدۇ</item>
+    <item quantity="other">‏Signal %1$s، %2$s ۋە %3$dقاتارلىقلارنى چاقىرىدۇ</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s كە ئۇقتۇرۇش قىلىنىدۇ</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s ۋە %2$s كە ئۇقتۇرۇش قىلىنىدۇ</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s، %2$s ۋە %3$d قاتارلىقلارغا ئۇقتۇرۇش قىلىنىدۇ</item>
+    <item quantity="other">%1$s، %2$s ۋە  %3$d قاتارلىقلارغا ئۇقتۇرۇش قىلىنىدۇ</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$sچاقىرىلىۋاتىدۇ</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s بىلەن %2$s چاقىرىلىۋاتىدۇ</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">%1$s، %2$s ۋە %3$d قاتارلىقلار چاقىرىلىۋاتىدۇ</item>
+    <item quantity="other">%1$s، %2$s ۋە %3$d قاتارلىقلار چاقىرىلىۋاتىدۇ</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s سىزنى چاقىرىۋاتىدۇ</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s سىز ۋە %2$s نى چاقىرىۋاتىدۇ</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s سىزنى، %2$s ۋە %3$s قاتارلىقلارنى چاقىرىۋاتىدۇ</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s سىزنى، %2$s نى، %3$s ۋە %4$d قاتارلىقلارنى چاقىرىۋاتىدۇ</item>
+    <item quantity="other">%1$s سىزنى، %2$s نى، %3$s ۋە %4$d قاتارلىقلارنى چاقىرىۋاتىدۇ</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">بۇ يەردە ھېچكىم يوق</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s بۇ چاقىرىقتا</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s مۇ بۇ چاقىرىقتا</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ۋە %2$s بۇ چاقىرىقتا</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s نامايان قىلىۋاتىدۇ</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1219,6 +1252,7 @@
   <string name="WebRtcCallView__speaker">ياڭراتقۇ</string>
   <string name="WebRtcCallView__camera">كامېرا</string>
   <string name="WebRtcCallView__mute">ئۈنسىز</string>
+  <string name="WebRtcCallView__ring">قوڭغۇراق</string>
   <string name="WebRtcCallView__end_call">توختات</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1269,6 +1303,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">دوستلار بىلەن ئالاقىلىشىش، ئۇچۇر ئالماشتۇرۇش ۋە بىخەتەر تېلېفون قىلالىشىڭىز ئۈچۈن Signal ئالاقەداشلىرىڭىزنى زىيارەت قىلىشى كېرەك</string>
   <string name="RegistrationActivity_rate_limited_to_service">سىز بۇ نومۇرنى تىزىملىتىشقا بەك كۆپ قېتىم ئۇرۇندىڭىز. كېيىنرەك قايتا سىناڭ.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">مۇلازىمەتكە ئۇلانغىلى بولمىدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
+  <string name="RegistrationActivity_call_requested">چاقىرىق تەلەپ قىلىندى</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">You are now %d step away from submitting a debug log.</item>
     <item quantity="other">خاتالىق خاتىرىسىنى يوللىشىڭىزغا يەنە %d قەدەم قالدى.</item>
@@ -1281,7 +1316,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">تېلېفون نومۇرىڭىزنى كىرگۈزۈڭ</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">سىز بىر دەلىللەش كودى تاپشۇرۇۋالىسىز. كۆچمە خەۋەرلىشىش ھەققى ئېلىنىشى مۇمكىن.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">بىز ئەۋەتكەن كودنى كىرگۈزۈڭ %s</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">تېلېفونىڭىزنىڭ قىسقا ئۇچۇر ياكى ئۇرۇلغان تېلېفوننى قوبۇل قىلالايدىغانلىقىغا يانفون سىگنالى بارلىقىغا كاپالەت قىلىڭ</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">تېلېفونىڭىزنىڭ كەلگەن SMS ياكى تېلېفوننى قوبۇل قىلىدىغان يانفون سىگنالى بارلىقىغا كاپالەتلىك قىلىڭ</string>
   <string name="RegistrationActivity_phone_number_description">تېلېفون نومۇرىڭىز</string>
   <string name="RegistrationActivity_country_code_description">دۆلەت كودى</string>
   <string name="RegistrationActivity_call">چاقىر</string>
@@ -1492,6 +1527,7 @@
   <string name="MessageNotifier_reacted_s_to_s">«%2$s» غا قايتۇرغان ئىنكاس %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">سىنىڭىزغا %1$s ئىنكاس قايتۇردى.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">رەسىمىڭىزگە%1$s ئىنكاس قايتۇردى.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">GIF غا %1$s ئىنكاس قايتۇردى</string>
   <string name="MessageNotifier_reacted_s_to_your_file">ھۆججىتىڭىز %1$s ئىنكاس قايتۇردى.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">ئۈنىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">كۆرۈن-غايىپ ۋاسىتىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
@@ -1797,9 +1833,13 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ئات ياكى نومۇر كىرگۈزۈڭ</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ئارقىلىق سىزنىڭ %s بىلەن بولغان ئۇچتىن ئۇچقا شىفرىلىشىڭىزنىڭ بىخەتەرلىگىنى تەكشۈرۈش ئۈچۈن، يۇقۇرىدىكى نومۇرلار بىلەن ئۇلارنىڭ ئۈسكىنىسىدىكىنى سېلىشتۇرۇڭ. ئۇلارنىڭ تېلېفونىدىكى كودنى تاراتسىڭىزمۇ بولىدۇ. <a href="https://signal.org/redirect/safety-numbers"> تەپسلىي ئۇچۇر.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">چېكىلسە تارايدۇ</string>
+  <string name="verify_display_fragment__successful_match">ئوڭۇشلۇق ماسلاشتى</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">بىخەتەرلىك نومۇرىنى دەلىللىيەلمىدى</string>
   <string name="verify_display_fragment__loading">قاچىلىنىۋاتىدۇ…</string>
   <string name="verify_display_fragment__mark_as_verified">دەلىللەندى بەلگىسى سال</string>
+  <string name="verify_display_fragment__clear_verification">دەلىللەشنى تازىلا</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">بىخەتەرلىك نومۇر ھەمبەھىر</string>
   <!--verity_scan_fragment-->
@@ -1809,6 +1849,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ئاستىغا سۈرۈلسە رەت قىلىدۇ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">كاشىلا كۆرۈلدى دىققەت قىلىڭ.</string>
+  <string name="message_details_header__sent">يوللانغان:</string>
+  <string name="message_details_header__received">تاپشۇرۇۋېلىنغان:</string>
+  <string name="message_details_header__disappears">غايىب:</string>
+  <string name="message_details_header__via">يولى:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">كۈتۈۋاتىدۇ…</string>
   <string name="message_details_recipient_header__sent_to">يوللانغۇچى</string>
@@ -2486,6 +2530,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">ئۇنىڭ ئورنىغا ماڭا تېلېفون قىلىڭ \n ( %1$02d:%2$02d دە مەۋجۇت)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal قوللىغۇچىلىرى  بىلەن ئالاقىلىشىڭ</string>
   <string name="RegistrationActivity_code_support_subject">Signal تىزىملىتىش - Android ئۈچۈن دەلىللەش كودى</string>
+  <string name="RegistrationActivity_incorrect_code">خاتا كود</string>
   <string name="BackupUtil_never">ھەرگىز</string>
   <string name="BackupUtil_unknown">نامەلۇم</string>
   <string name="preferences_app_protection__see_my_phone_number">تېلېفون نومۇرۇمنى كۆرىمەن</string>
@@ -2900,17 +2945,44 @@
   <string name="AccountSettingsFragment__account">ھېسابات</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ۋاقىتنىڭ ئۆتۈشىگە ئەگىشىپ سوئالىڭىز ئازىيىدۇ</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">تېلېفون نومۇرىڭىزنى Signal دا قايتا تىزىملىتىش ئۈچۈن Signal PIN نىڭىز لازىم.</string>
+  <string name="AccountSettingsFragment__change_phone_number">تېلېفون نومۇرىنى ئۆزگەرت</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">بۇنى ئىشلىتىپ ھازىرقى نومۇرڭىزنى يېڭى تېلېفون نومۇرىغا ئۆزگەرتىڭ..\n\nباشلاشتىن بۇرۇن، يېڭى نومۇرىڭىز بىلەن SMS قوبۇل قىلىپ، چاقىرىق قىلالايدىغىنىڭىزنى جەزم قىلىڭ.</string>
   <string name="ChangeNumberFragment__continue">داۋاملاشتۇر</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">تېلېفون نومۇرىڭىز ئۆزگەردى</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">نومۇرنى ئۆزگەرت</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">كونا نومۇرىڭىز</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">كونا تېلېفون نومۇرى</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">يېڭى نومۇرىڭىز</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">يېڭى تېلېفون نومۇرى</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">كىرگۈزگەن تېلېفون نومۇرىڭىز ھېساباتىڭىزنىڭكى بىلەن ئوخشاش ئەمەس</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">كونا نومۇرىڭىزنىڭ دۆلەت كودىنى بېكىتىشىڭىز كېرەك</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">كونا تېلېفون نومۇرىڭىزنى بېكىتىشىڭىز كېرەك</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">كونا نومۇرىڭىزنىڭ دۆلەت كودىنى بېكىتىشىڭىز كېرەك</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">يېڭى تېلېفون نومۇرىڭىزنى بېكىتىشىڭىز كېرەك</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">نومۇرنى ئۆزگەرت</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">‏%1$s نى دەلىللەۋاتىدۇ </string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">تەستىق بەلگىسى لازىم</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">نومۇرنى ئۆزگەرت</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">تېلېفون نومۇرىڭىزنى %1$s دىن %2$s گە ئۆزگەرتمەكچى بولىۋاتىسىز.\n\nباشلاشتىن بۇرۇن تۆۋەندىكى نومۇرلار توغرىمۇ تەكشۈرۈپ چىقىڭ.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">نومۇرنى تەھرىرلەش</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">‏Signal نومۇرى ئۆزگەرتىش _ Android  ئۈچۈن PIN ياردىمى لازىم (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">‏PIN ماس كەلمىدى</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">يېڭى نومۇرىڭىغا باغلانغان PIN بىلەن كونا نومۇرىڭىزغا باغلانغان PIN ئوخشىمايدىكەن. كونا PIN نى ساقلاپ قالامسىز ياكى ئۇنى يېڭىلامسىز؟</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">كونا PIN نى ساقلاپ قال</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN يېڭىلا</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">كونا PIN نى ساقلاپ قالامسىز؟</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">قارىغاندا تېلېفون نومۇرىڭىزنى ئۆزگەرتمەكچى بولغاندەك قىلىسىز. ئەمما بىز ئوڭۇشلۇق بولدىمۇ-يوق بىلەلمەي قالدۇق. \n\nھازىرلا قايتا تەكشۈرۈپ بېقىڭ…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">ھالەت ئۆزگىرىش توغرىلاندى</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">نومۇرىڭىز %1$s بولۇپ جەزملەندى. ئەگەر بۇ سىزنىڭ يېڭى نومۇرىڭىز بولمىسا، نومۇر ئۆزگەرتىش  جەريانىنى قايتا باشلاڭ.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">ھالەت ئۆزگىرىش توغرىلانمدى</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">بىز سىزنىڭ نومۇر ئۆزگەرتىش تەلىپىڭىزنىڭ ھالىتىنى بىلەلمەي قالدۇق. \n\n(خاتالىق: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">قايتا سىنا</string>
   <string name="ChangeNumberLockActivity__leave">ئايرىلىڭ</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">سازلاش خاتىرە يوللا</string>
@@ -3057,7 +3129,7 @@
   <string name="ConversationSettingsFragment__unmute">ئۈنلۈك</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">سۆھبەت %1$s غىچە ئۇنسىز قىلىندى</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">سۆھبەت مەڭگۈلۈك ئۈنسىز قىلىندى</string>
-  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">تېلىفون نومۇرىنى چاپلاش تاختىسىغا كۆچۈر</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">تېلېفون نومۇرىنى چاپلاش تاختىسىغا كۆچۈر</string>
   <string name="ConversationSettingsFragment__phone_number">تېلېفون نومۇرىڭىز</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ئەزا قوشۇش</string>
@@ -3081,6 +3153,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">يېڭى چىقىم</string>
@@ -3089,7 +3162,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">نام ياكى سانىنى ئاختۇر</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">ئۈن ئۇچۇرنى توختات</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">ئۈن ئۇچۇرنىڭ سۈرئىتىنى ئۆزگەرت</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ئۈن ئۇچۇرنى ۋاقتىنچە توختات</string>
@@ -3142,11 +3215,37 @@
   <string name="MultiselectForwardFragment__limit_reached">چەككە يەتتى</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">بىز ئۇچۇر قوش</string>
+  <string name="MediaReviewFragment__add_a_reply">جاۋاپ قوش</string>
+  <string name="MediaReviewFragment__send_to">يوللانغۇچى</string>
+  <string name="MediaReviewFragment__view_once_message">بىرلا كۆرسەت ئۇچۇر</string>
   <string name="ImageEditorHud__cancel">ۋاز كەچ</string>
+  <string name="ImageEditorHud__draw">سىزما</string>
+  <string name="ImageEditorHud__write_text">خەت ياز</string>
+  <string name="ImageEditorHud__add_a_sticker">چاپلاق قوش</string>
+  <string name="ImageEditorHud__blur">خىرەلەشتۈر</string>
+  <string name="ImageEditorHud__done_editing">تەھرىرلەشنى تۈگەت </string>
+  <string name="ImageEditorHud__clear_all">ھەممىنى تازىلا</string>
   <string name="ImageEditorHud__undo">يېنىۋال</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">بەلگە بىلەن سىزىلغانلار ئارىسىدا ئالماشتۇر</string>
   <string name="ImageEditorHud__delete">ئۆچۈر</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">تېكىست نۇسخىلىرى ئارسىدا ئالماشتۇر</string>
   <string name="MediaCountIndicatorButton__send">ئەۋەت</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">چېكىپ ئۆچۈرۈڭ</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">چېكىپ تاللاڭ</string>
   <string name="MediaReviewImagePageFragment__discard">تاشلىۋەت</string>
-  <string name="SelectFeaturedBadgeFragment__preview">ئالدىن كۆرۈش</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">ئۆزگىرىشلەرنى تاشلىۋەت</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">رەسىمگە قىلغان ھەرقانداق ئۆزگەرتىشلىرىڭىز يوق بولىدۇ.</string>
+  <string name="CameraFragment__failed_to_open_camera">كامېرانى ئېچىش ئوڭۇشسىز</string>
+  <string name="BadgesOverviewFragment__my_badges">ئىزناكلىرىم</string>
+  <string name="BadgesOverviewFragment__featured_badge">تاللانغان ئىزناك</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">ئىزناكلارنى ئارخىپىمدە كۆرسەت</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">ئارخىپ يېڭىلاش ئوڭۇشسىز بولدى</string>
+  <string name="BadgeSelectionFragment__select_badges">ئىزناكلارنى تاللاڭ</string>
+  <string name="SelectFeaturedBadgeFragment__preview">ئالدىن كۆر</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">بىر ئىزناك تاللاڭ</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">بىر ئىزناك تاللىشىڭىز كېرەك</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ئارخىپ يېڭىلاش ئوڭۇشسىز بولدى</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">قۇۋۋەتلىگۈچى بولۇڭ</string>
+  <string name="ImageView__badge">ئىزناك</string>
   <!--EOF-->
 </resources>

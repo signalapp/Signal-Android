@@ -3163,7 +3163,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Buscar por nombre o número</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Detener nota de voz</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Modificar velocidad de reproducción</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausar nota de voz</string>

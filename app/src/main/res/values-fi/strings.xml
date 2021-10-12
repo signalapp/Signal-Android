@@ -3121,7 +3121,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Etsi nimellä tai numerolla</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Pysäytä ääniviesti</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Muuta ääniviestin nopeutta</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Tauota ääniviesti</string>

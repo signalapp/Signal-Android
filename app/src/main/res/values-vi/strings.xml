@@ -2981,7 +2981,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Tìm kiếm tên hoặc số điện thoại</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Máy ảnh</string>
   <string name="AvatarPickerFragment__photo">Ảnh</string>

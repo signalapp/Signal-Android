@@ -1526,6 +1526,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Brást við með %1$s við: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Brást við með %1$s við myndskeiðinu þínu.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Brást við með %1$s við myndinni þinni.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Brást við með %1$s við GIF-myndinni þinni.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Brást við með %1$s við skránni þinni.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Brást við með %1$s við hljóðskránni þinni.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Brást við með %1$s við skoða-einu-sinni myndefni frá þér.</string>
@@ -3160,7 +3161,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Leita eftir nafni eða símanúmeri</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Stöðva talskilaboð</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Breyta hraða talskilaboða</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Setja talskilaboð á bið</string>

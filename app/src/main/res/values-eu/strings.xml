@@ -2617,7 +2617,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="NewConversationActivity__new_message">Mezu berria</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Argazkia</string>

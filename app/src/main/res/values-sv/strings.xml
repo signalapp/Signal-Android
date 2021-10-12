@@ -2522,7 +2522,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
   <string name="RegistrationActivity_wrong_number">Fel nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring mig istället \n (Tillgänglig om %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Kontakta Signal-supporten</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontakta Signal-support</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registrering - Verifieringskod för Android</string>
   <string name="RegistrationActivity_incorrect_code">Felaktig kod</string>
   <string name="BackupUtil_never">Aldrig</string>
@@ -3155,7 +3155,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Sök namn eller nummer</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Stoppa röstmeddelandet</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Ändra röstmeddelandets hastighet</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausa röstmeddelandet</string>

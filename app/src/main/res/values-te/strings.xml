@@ -2742,7 +2742,7 @@
   <string name="NewConversationActivity__new_message">కొత్త సందేశం</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">కెమెరా</string>
   <string name="AvatarPickerFragment__photo">ఛాయాచిత్రం</string>

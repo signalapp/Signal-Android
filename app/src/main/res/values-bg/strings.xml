@@ -2961,7 +2961,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Търси по име или номер</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Преглед на аватар</string>
   <string name="AvatarPickerFragment__camera">Камера</string>

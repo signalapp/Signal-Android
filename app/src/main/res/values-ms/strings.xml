@@ -2996,7 +2996,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cari nama atau nombor</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Hentikan mesej suara</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Tukar kelajuan mesej suara</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Jedakan mesej suara</string>

@@ -3167,7 +3167,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Zoek op naam of telefoonnummer</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">Audiobericht afspelen stoppen</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Audioafspeelsnelheid aanpassen</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Audiobericht pauzeren</string>

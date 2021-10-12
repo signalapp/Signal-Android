@@ -3086,7 +3086,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ ನಡೆಸಿ</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <string name="VoiceNotePlayerView__stop_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ನಿಲ್ಲಿಸಿ</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">ಧ್ವನಿ ಸಂದೇಶದ ವೇಗವನ್ನು ಬದಲಿಸಿ</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ಸದ್ಯಕ್ಕೆ ನಿಲ್ಲಿಸಿ</string>
