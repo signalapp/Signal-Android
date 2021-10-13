@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -118,6 +119,12 @@ public final class SpanUtil {
 
     imageSpan.setSpan(new ImageSpan(drawable, flag), 0, imageSpan.length(), 0);
 
+    return imageSpan;
+  }
+
+  public static CharSequence buildCenteredImageSpan(@NonNull Drawable drawable) {
+    SpannableString imageSpan = new SpannableString(" ");
+    imageSpan.setSpan(new CenteredImageSpan(drawable), 0, imageSpan.length(), 0);
     return imageSpan;
   }
 

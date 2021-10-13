@@ -109,7 +109,7 @@
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
     <dimen name="unread_count_bubble_radius">12.5dp</dimen>
-    <dimen name="unread_count_bubble_diameter">25dp</dimen>
+    <dimen name="unread_count_bubble_diameter">18dp</dimen>
     <dimen name="unread_count_bubble_barrier_margin">4dp</dimen>
 
     <dimen name="insights_modal_title_margin_top">41dp</dimen>
