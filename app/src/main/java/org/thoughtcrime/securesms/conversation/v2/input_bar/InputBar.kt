@@ -70,7 +70,8 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         sendButton.isVisible = false
         sendButton.onUp = { delegate?.sendMessage() }
         // Edit text
-        inputBarEditText.imeOptions = inputBarEditText.imeOptions or 16777216 // Always use incognito keyboard
+        val incognitoFlag = if (TextSecurePreferences.isIncognitoKeyboardEnabled(context)) 16777216 else 0
+        inputBarEditText.imeOptions = inputBarEditText.imeOptions or incognitoFlag // Always use incognito keyboard if setting enabled
         inputBarEditText.inputType = inputBarEditText.inputType or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
         inputBarEditText.delegate = this
     }
