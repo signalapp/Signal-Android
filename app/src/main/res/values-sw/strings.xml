@@ -2960,6 +2960,9 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger yenye Hakimiliki</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Imeidhinishwa kwa Leseni chini ya GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Kutuma media ya hali ya juu kutatumia data zaidi.</string>
+  <string name="DataAndStorageSettingsFragment__high">Juu</string>
+  <string name="DataAndStorageSettingsFragment__standard">Kawaida</string>
   <string name="DataAndStorageSettingsFragment__calls">Simu</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Kiotomatiki</string>
@@ -3084,7 +3087,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Tafuta jina au nambari</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s  · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Simamisha ujumbe wa sauti</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Badilisha kasi ya ujumbe wa sauti</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sitisha ujumbe wa sauti</string>
@@ -3122,5 +3125,12 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Gusa kuchagua</string>
   <string name="MediaReviewImagePageFragment__discard">Ghairi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Hakiki</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal inaendeshwa na watu kama wewe.</string>
+  <string name="SubscribeFragment__donation_amount">Kiasi cha mchango</string>
+  <string name="SubscribeFragment__not_now">Sio sasa</string>
+  <string name="SubscribeFragment__confirm">Thibitisha</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Imekamilika</string>
+  <string name="Boost__enter_custom_amount">Weka Kiasi Maalum</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Sio sasa</string>
   <!--EOF-->
 </resources>

@@ -1914,6 +1914,7 @@
   <string name="preferences__help">ヘルプ</string>
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__donate_to_signal">Signalへの寄付</string>
+  <string name="preferences__signal_boost">Signalブースト</string>
   <string name="preferences__privacy">プライバシー</string>
   <string name="preferences__mms_user_agent">MMSユーザーエージェント</string>
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
@@ -2942,6 +2943,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">メディアの品質</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">送信済みメディアの品質</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">高画質なメディアの送信には、より多くのデータ量を使用します。</string>
+  <string name="DataAndStorageSettingsFragment__high">高画質</string>
+  <string name="DataAndStorageSettingsFragment__standard">標準</string>
   <string name="DataAndStorageSettingsFragment__calls">通話</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">自動</string>
@@ -3065,7 +3071,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">名前か電話番号で検索</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">音声メッセージを停止</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">音声メッセージの再生速度を変更</string>
   <string name="VoiceNotePlayerView__pause_voice_message">音声メッセージを一時停止</string>
@@ -3117,6 +3123,8 @@
   <string name="MediaReviewFragment__add_a_reply">返信を追加</string>
   <string name="MediaReviewFragment__send_to">宛先</string>
   <string name="MediaReviewFragment__view_once_message">使い捨てメッセージ</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">1つ以上のアイテムのサイズが大きすぎます</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">1つ以上のアイテムが不正です</string>
   <string name="ImageEditorHud__cancel">キャンセル</string>
   <string name="ImageEditorHud__draw">描く</string>
   <string name="ImageEditorHud__write_text">テキストを記入</string>
@@ -3146,5 +3154,13 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
   <string name="ImageView__badge">バッジ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalはユーザーの皆様によって支えられています。</string>
+  <string name="SubscribeFragment__donation_amount">寄付額</string>
+  <string name="SubscribeFragment__not_now">あとで</string>
+  <string name="SubscribeFragment__confirm">確認</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
+  <string name="ManageDonationsFragment__badges">バッジ</string>
+  <string name="Boost__enter_custom_amount">金額を入力してください</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <!--EOF-->
 </resources>

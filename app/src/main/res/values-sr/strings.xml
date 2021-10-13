@@ -3124,6 +3124,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Ауторска права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Слање висококвалитетних медија користиће више података.</string>
+  <string name="DataAndStorageSettingsFragment__high">Висок</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандардно</string>
   <string name="DataAndStorageSettingsFragment__calls">Позиви</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Ауто</string>
@@ -3251,7 +3254,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Претрага имена или броја</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Заустави гласовну поруку</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Промени брзину гласовне поруке</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Паузирај гласовну поруку</string>
@@ -3340,5 +3343,13 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ажурирање профила није успело</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
   <string name="ImageView__badge">Значка</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal покрећу особе попут Вас.</string>
+  <string name="SubscribeFragment__donation_amount">Износ донације</string>
+  <string name="SubscribeFragment__not_now">Не сада</string>
+  <string name="SubscribeFragment__confirm">Потврди</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ManageDonationsFragment__badges">Значке</string>
+  <string name="Boost__enter_custom_amount">Унети износ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>
   <!--EOF-->
 </resources>

@@ -2864,6 +2864,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpFragment__copyright_signal_messenger">Bản quyền Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Cấp phép dưới GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Cao</string>
+  <string name="DataAndStorageSettingsFragment__standard">Tiêu chuẩn</string>
   <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Tự động</string>
@@ -2981,7 +2983,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Tìm kiếm tên hoặc số điện thoại</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Máy ảnh</string>
   <string name="AvatarPickerFragment__photo">Ảnh</string>
@@ -3006,5 +3008,12 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MediaReviewSelectedItem__tap_to_select">Nhấn để chọn</string>
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
   <string name="SelectFeaturedBadgeFragment__preview">Xem trước</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal được hỗ trợ bởi những cá nhân như bạn.</string>
+  <string name="SubscribeFragment__donation_amount">Số tiền đóng góp</string>
+  <string name="SubscribeFragment__not_now">Để sau</string>
+  <string name="SubscribeFragment__confirm">Xác nhận</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Xong</string>
+  <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
   <!--EOF-->
 </resources>

@@ -3000,6 +3000,8 @@
   <string name="HelpFragment__copyright_signal_messenger">ਕਾਪੀਰਾਈਟ Signal ਮੈਸੰਜਰ</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ਦੇ ਅਧੀਨ ਲਸੰਸ ਦਿੱਤਾ</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">ਉੱਚਾ</string>
+  <string name="DataAndStorageSettingsFragment__standard">ਸਟੈਂਡਰਡ</string>
   <string name="DataAndStorageSettingsFragment__calls">ਕਾਲਾਂ </string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">ਆਟੋ</string>
@@ -3125,7 +3127,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">ਨਾਂ ਜਾਂ ਨੰਬਰ ਖੋਜੋ</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਨੂੰ ਰੋਕੋ</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਦੀ ਗਤੀ ਨੂੰ ਬਦਲੋ</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਨੂੰ ਵਿਰਾਮ ਕਰੋ</string>
@@ -3200,5 +3202,13 @@
   <string name="BadgesOverviewFragment__my_badges">ਮੇਰੇ ਬੈਜ</string>
   <string name="SelectFeaturedBadgeFragment__preview">ਝਲਕ</string>
   <string name="ImageView__badge">ਬੈਜ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਦਾ ਆਸਰਾ ਹੈ।</string>
+  <string name="SubscribeFragment__donation_amount">ਦਾਨ ਦੀ ਰਕਮ</string>
+  <string name="SubscribeFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
+  <string name="SubscribeFragment__confirm">ਪੁਸ਼ਟੀ ਕਰੋ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ਮੁਕੰਮਲ</string>
+  <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
+  <string name="Boost__enter_custom_amount">ਪਸੰਦੀਦਾ ਰਕਮ ਦਿਓ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--EOF-->
 </resources>

@@ -3121,6 +3121,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__copyright_signal_messenger">Drepturi de autor Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Sub licența GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Trimiterea fișierelor media la calitate înaltă va duce la un consum mai mare de date.</string>
+  <string name="DataAndStorageSettingsFragment__high">Mare</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Apeluri</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3248,7 +3251,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Căutare nume sau număr</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Opriți mesajul vocal</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Schimbați viteza mesajului vocal</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Puneți pauză mesajului vocal</string>
@@ -3337,5 +3340,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Actualizarea profilului a eșuat</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Deveniți un susținător</string>
   <string name="ImageView__badge">Insignă</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal este susținut de oameni ca tine.</string>
+  <string name="SubscribeFragment__donation_amount">Sumă donație</string>
+  <string name="SubscribeFragment__not_now">Nu acum</string>
+  <string name="SubscribeFragment__confirm">Confirmă</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gata</string>
+  <string name="ManageDonationsFragment__badges">Insigne</string>
+  <string name="Boost__enter_custom_amount">Introduceți o sumă specifică</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <!--EOF-->
 </resources>

@@ -2936,6 +2936,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__copyright_signal_messenger">Hak Cipta Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Berlisensi dibawah GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Mengirimkan media dengan kualitas tinggi akan menggunakan lebih banyak data.</string>
+  <string name="DataAndStorageSettingsFragment__high">Tinggi</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standar</string>
   <string name="DataAndStorageSettingsFragment__calls">Panggilan</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3057,7 +3060,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cari nama atau nomor</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Hentikan pesan suara</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Ubah kecepatan pesan suara</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Jeda pesan suara</string>
@@ -3122,5 +3125,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MediaReviewImagePageFragment__discard">Batalkan</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Anda akan kehilangan perubahan yang telah dibuat terhadap foto ini.</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pratinjau</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
+  <string name="SubscribeFragment__donation_amount">Jumlah donasi</string>
+  <string name="SubscribeFragment__not_now">Nanti saja</string>
+  <string name="SubscribeFragment__confirm">Konfirmasi</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
+  <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
   <!--EOF-->
 </resources>

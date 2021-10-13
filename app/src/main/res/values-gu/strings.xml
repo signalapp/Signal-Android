@@ -2957,6 +2957,8 @@
   <string name="HelpFragment__copyright_signal_messenger">કોપીરાઇટ Signal મેસેન્જર</string>
   <string name="HelpFragment__licenced_under_the_gplv3"> GPLv3 હેઠળ લાયસન્સ </string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">ઉચ્ચ</string>
+  <string name="DataAndStorageSettingsFragment__standard">સ્ટાન્ડર્ડ</string>
   <string name="DataAndStorageSettingsFragment__calls">કૉલ્સ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">આપમેળે</string>
@@ -3081,7 +3083,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">નામ અથવા નંબર સર્ચ કરો</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">અવતાર પ્રિવ્યૂ</string>
   <string name="AvatarPickerFragment__camera">કૅમેરા</string>
@@ -3114,5 +3116,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">પસંદ કરવા માટે ટેપ કરો</string>
   <string name="MediaReviewImagePageFragment__discard">કાઢી નાખો</string>
   <string name="SelectFeaturedBadgeFragment__preview">પ્રિવ્યૂ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal તમારા જેવા લોકો દ્વારા સંચાલિત છે.</string>
+  <string name="SubscribeFragment__donation_amount">ફાળાની રકમ</string>
+  <string name="SubscribeFragment__not_now">અત્યારે નહીં </string>
+  <string name="SubscribeFragment__confirm">ખાતરી કરો</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">થઈ ગયું</string>
+  <string name="Boost__enter_custom_amount">કસ્ટમ રકમ દાખલ કરો</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">અત્યારે નહીં </string>
   <!--EOF-->
 </resources>

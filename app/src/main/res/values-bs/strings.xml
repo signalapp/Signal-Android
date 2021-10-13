@@ -2076,6 +2076,8 @@
   <string name="preferences__help">Pomoć</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Donirajte za Signal</string>
+  <string name="preferences__subscription">Pretplata</string>
+  <string name="preferences__signal_boost">Snaga Signala</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručna MMS podešavanja</string>
@@ -3129,6 +3131,11 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="HelpFragment__copyright_signal_messenger">Prava: Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenca: GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kvalitet zapisa</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalitet poslatih zapisa</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Slanje visokokvalitetnih zapisa kreirat će veći protok.</string>
+  <string name="DataAndStorageSettingsFragment__high">Visoki</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standardni</string>
   <string name="DataAndStorageSettingsFragment__calls">Pozivi</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automatski</string>
@@ -3256,7 +3263,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Traži ime ili broj</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Prekini glasovnu poruku</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Promijeni brzinu glasovne poruke</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pauziraj glasovnu poruku</string>
@@ -3316,6 +3323,9 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MediaReviewFragment__add_a_reply">Odgovor</string>
   <string name="MediaReviewFragment__send_to">Pošalji za</string>
   <string name="MediaReviewFragment__view_once_message">Jednokratna poruka</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jedna ili više datoteka su prevelike</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jedna ili više datoteka nisu validne</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Označeno je previše datoteka</string>
   <string name="ImageEditorHud__cancel">Prekini</string>
   <string name="ImageEditorHud__draw">Crtaj</string>
   <string name="ImageEditorHud__write_text">Piši</string>
@@ -3345,5 +3355,45 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Neuspjelo ažuriranje profila</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pomagač</string>
   <string name="ImageView__badge">Značka</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal postoji zbog osoba poput Vas.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podržite tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – pridruživši se zajednici koja je održava.</string>
+  <string name="SubscribeFragment__donation_amount">Iznos donacije</string>
+  <string name="SubscribeFragment__more_payment_options">Više opcija za plaćanje</string>
+  <string name="SubscribeFragment__cancel_subscription">Otkaži pretplatu</string>
+  <string name="SubscribeFragment__confirm_cancellation">Potvrditi otkazivanje?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Iznos neće biti ponovo naplaćen od Vas. Značka će biti uklonjena s Vašeg profila kad istekne platni period.</string>
+  <string name="SubscribeFragment__not_now">Ne sada</string>
+  <string name="SubscribeFragment__confirm">Potvrdi</string>
+  <string name="SubscribeFragment__update_subscription">Ažuriraj pretplatu</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaša je pretplata otkazana.</string>
+  <string name="Subscription__s_per_month">%s/mjesecu</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/mjesecu · obnavlja se %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija koja se ne finansira reklamama i investicijama, već je održavaju osobe koje koriste aplikaciju i cijene je. Dajte mjesečni doprinos i primite značku za svoj profil koja pokazuje Vašu podršku.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zašto se pretplatiti?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim koji stoji iza Signala predan je misiji razvoja tehnologije otvorenog kōda koja štiti privatnost i slobodu izražavanja i koja omogućava sigurnu globalnu komunikaciju. Vaš doprinos održava tu misiju. Bez reklama. Bez uhođenja. Bez zezanja.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Vaš doprinos pomaže finansiranje razvoja, servera i protoka za aplikaciju koju koriste milioni ljudi širom svijeta za privatnu i trenutačnu komunikaciju.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala Vam za Vašu podršku!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za podsticaj!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Zaslužili ste %s značku! Prikazivanjem značke pokazat ćete osobama s kojima razgovarate da podržavate Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži na profilu</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Odredi za odabranu značku</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Uredu</string>
+  <string name="ManageDonationsFragment__my_support">Moja podrška</string>
+  <string name="ManageDonationsFragment__manage_subscription">Upravljaj pretplatom</string>
+  <string name="ManageDonationsFragment__badges">Značke</string>
+  <string name="ManageDonationsFragment__subscription_faq">Česta pitanja o pretplati</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Greška u obradi pretplate.</string>
+  <string name="BoostFragment__give_signal_a_boost">Pojačajte Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Recite \"Hvala!\" i zaslužit ćete značku podrške na %1$d dana.</string>
+  <string name="Boost__enter_custom_amount">Unesite iznos</string>
+  <string name="Boost__one_time_contribution">Jednokratni doprinos</string>
+  <string name="MySupportPreference__add_a_signal_boost">Pojačajte Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/mjesecu</string>
+  <string name="MySupportPreference__renews_s">Obnavlja se %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaša je značka istekla</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Vaša %1$s značka istekla je i više nije prikazana na Vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Da nastavite podržavati tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – razmislite o tome da postanete mjesečni pretplatnik.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite pretplatnik</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <!--EOF-->
 </resources>

@@ -3019,6 +3019,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3 </string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">A nagyfelbontású média nagyobb adathasználatot igényel.</string>
+  <string name="DataAndStorageSettingsFragment__high">Magas</string>
+  <string name="DataAndStorageSettingsFragment__standard">Normál</string>
   <string name="DataAndStorageSettingsFragment__calls">Hívások</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3135,7 +3138,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Telefonszám vagy név keresése</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Hangüzenet leállítása</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Hangüzenet sebességének megváltoztatása</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Hangüzenet szüneteltetése</string>
@@ -3216,5 +3219,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ki kell választanod egy jelvényt</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nem sikerült a profil frissítése</string>
   <string name="ImageView__badge">Jelvény</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">A Signalt hozzád hasonló emberek működtetik.</string>
+  <string name="SubscribeFragment__donation_amount">Adomány összege</string>
+  <string name="SubscribeFragment__not_now">Később</string>
+  <string name="SubscribeFragment__confirm">Megerősítés</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Befejezés</string>
+  <string name="ManageDonationsFragment__badges">Jelvények</string>
+  <string name="Boost__enter_custom_amount">Egyedi összeg</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
   <!--EOF-->
 </resources>

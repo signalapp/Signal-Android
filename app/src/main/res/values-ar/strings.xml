@@ -3377,6 +3377,9 @@
   <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال Signal‬</string>
   <string name="HelpFragment__licenced_under_the_gplv3">بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">إن إرسال وسائط بجودة عالية سوف يستخدم كما أكبر من البيانات.</string>
+  <string name="DataAndStorageSettingsFragment__high">بالغ الأهميّة </string>
+  <string name="DataAndStorageSettingsFragment__standard">قياسي</string>
   <string name="DataAndStorageSettingsFragment__calls">المكالمات</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">تلقائي</string>
@@ -3510,7 +3513,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">البحث باستخدام الاسم أو الرقم</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">إيقاف الرسالة الصوتية</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">تغيير سرعة الرسالة الصوتية</string>
   <string name="VoiceNotePlayerView__pause_voice_message">إيقاف الرسالة الصوتية مؤقتا</string>
@@ -3601,5 +3604,12 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تضيع كل تغييرات قمت بها على هذه الصورة.</string>
   <string name="CameraFragment__failed_to_open_camera">فشل تشغيل الكاميرا</string>
   <string name="SelectFeaturedBadgeFragment__preview">مُعاينة</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">يُشغَّل Signal بِواسِطَة أشخاص مِثلَك.</string>
+  <string name="SubscribeFragment__donation_amount">مَبلَغ التَّبَرُّع</string>
+  <string name="SubscribeFragment__not_now">ليس الآن</string>
+  <string name="SubscribeFragment__confirm">تأكيد</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمّ</string>
+  <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
   <!--EOF-->
 </resources>

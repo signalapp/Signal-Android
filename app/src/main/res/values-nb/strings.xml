@@ -2851,6 +2851,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Høy</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -2934,7 +2936,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NewConversationActivity__new_message">Ny melding</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Bilde</string>
@@ -2956,5 +2957,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
   <string name="MediaReviewImagePageFragment__discard">Kast</string>
   <string name="SelectFeaturedBadgeFragment__preview">Forhåndsvisning</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drives av folk som deg.</string>
+  <string name="SubscribeFragment__donation_amount">Donasjonsbeløp</string>
+  <string name="SubscribeFragment__not_now">Ikke nå</string>
+  <string name="SubscribeFragment__confirm">Bekreft</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
+  <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
   <!--EOF-->
 </resources>

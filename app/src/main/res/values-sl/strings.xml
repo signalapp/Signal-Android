@@ -3083,6 +3083,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__copyright_signal_messenger">Vse pravice Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Pod licenco GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Visoka</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standardna</string>
   <string name="DataAndStorageSettingsFragment__calls">Klici</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Avtomatično</string>
@@ -3212,7 +3214,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Iskanje po imenu ali številki</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Zaustavi glasovno sporočilo</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Spremeni hitrost predvajanja</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Prekini glasovno sporočilo</string>
@@ -3305,5 +3307,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Posodobitev profila ni uspela</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postani podpornik</string>
   <string name="ImageView__badge">Značka</string>
+  <string name="SubscribeFragment__not_now">Ne zdaj</string>
+  <string name="SubscribeFragment__confirm">Potrdi</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">OK</string>
+  <string name="ManageDonationsFragment__badges">Značke</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
   <!--EOF-->
 </resources>

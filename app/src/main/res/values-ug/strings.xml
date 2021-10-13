@@ -3037,6 +3037,9 @@
   <string name="HelpFragment__copyright_signal_messenger">‫Signal Messenger نەشر ھوقۇقىغا ئىگە</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ئىجازىتىدە تارقىتىلدى</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">يۇقىرى سۈپەتلىك ۋاسىتە يوللىسىڭىز كۆپرەك مەلۇمات ئىشلىتىسىز</string>
+  <string name="DataAndStorageSettingsFragment__high">يۇقىرى</string>
+  <string name="DataAndStorageSettingsFragment__standard">ئۆلچەملىك</string>
   <string name="DataAndStorageSettingsFragment__calls">چاقىرىشلار</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">ئاپتوماتىك</string>
@@ -3162,7 +3165,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">نام ياكى سانىنى ئاختۇر</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">‏· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">ئۈن ئۇچۇرنى توختات</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">ئۈن ئۇچۇرنىڭ سۈرئىتىنى ئۆزگەرت</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ئۈن ئۇچۇرنى ۋاقتىنچە توختات</string>
@@ -3247,5 +3250,13 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ئارخىپ يېڭىلاش ئوڭۇشسىز بولدى</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">قۇۋۋەتلىگۈچى بولۇڭ</string>
   <string name="ImageView__badge">ئىزناك</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal نى سىزگە ئوخشاش كىشىلەر قوللايدۇ.</string>
+  <string name="SubscribeFragment__donation_amount">ئىئانە سوممىسى</string>
+  <string name="SubscribeFragment__not_now">ھازىر ئەمەس</string>
+  <string name="SubscribeFragment__confirm">جەزملە</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">بولدى</string>
+  <string name="ManageDonationsFragment__badges">ئىزناكلار</string>
+  <string name="Boost__enter_custom_amount">ئىختىيارىچە سومما كىرگۈزۈڭ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ھازىر ئەمەس</string>
   <!--EOF-->
 </resources>

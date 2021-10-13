@@ -3210,6 +3210,9 @@
   <string name="HelpFragment__copyright_signal_messenger">זכויות יוצרים Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">ברישיון תחת GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">שליחת מדיה באיכות גבוהה תשתמש ביותר נתונים.</string>
+  <string name="DataAndStorageSettingsFragment__high">גבוה</string>
+  <string name="DataAndStorageSettingsFragment__standard">תקנית</string>
   <string name="DataAndStorageSettingsFragment__calls">שיחות</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">אוטומטי</string>
@@ -3339,7 +3342,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">הפסק הודעה קולית</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">שנה מהירות של הודעה קולית</string>
   <string name="VoiceNotePlayerView__pause_voice_message">השהה הודעה קולית</string>
@@ -3431,5 +3434,13 @@
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">אתה חייב לבחור תג</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
   <string name="ImageView__badge">תג</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ממונע על ידי אנשים כמוך.</string>
+  <string name="SubscribeFragment__donation_amount">סכום תרומה</string>
+  <string name="SubscribeFragment__not_now">לא עכשיו</string>
+  <string name="SubscribeFragment__confirm">אשר</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">סיים</string>
+  <string name="ManageDonationsFragment__badges">תגים</string>
+  <string name="Boost__enter_custom_amount">הכנס סכום מותאם אישית</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
   <!--EOF-->
 </resources>

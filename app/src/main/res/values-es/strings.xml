@@ -3038,6 +3038,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__copyright_signal_messenger">Derechos de Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">App liberada bajo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Se usarán más datos al seleccionar la opción de alta calidad.</string>
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Normal</string>
   <string name="DataAndStorageSettingsFragment__calls">Llamadas</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3163,7 +3166,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Buscar por nombre o número</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Detener nota de voz</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Modificar velocidad de reproducción</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausar nota de voz</string>
@@ -3248,5 +3251,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Fallo al actualizar el perfil</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
   <string name="ImageView__badge">Distintivo</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal depende de gente como tú.</string>
+  <string name="SubscribeFragment__donation_amount">Cantidad de donación</string>
+  <string name="SubscribeFragment__not_now">Ahora no</string>
+  <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hecho</string>
+  <string name="ManageDonationsFragment__badges">Distintivos</string>
+  <string name="Boost__enter_custom_amount">Introduce una cantidad personalizada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
   <!--EOF-->
 </resources>

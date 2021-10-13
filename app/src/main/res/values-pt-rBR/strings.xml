@@ -3038,6 +3038,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Direitos autorais Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenciado nos termos da GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Enviar mídia com alta qualidade usará mais dados de internet.</string>
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Padrão</string>
   <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3163,7 +3166,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Pesquise o nome ou número</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Parar mensagem de voz</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Alterar a velocidade da mensagem de voz</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausar mensagem de voz</string>
@@ -3248,5 +3251,13 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
   <string name="ImageView__badge">Selo</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é mantido por pessoas como você.</string>
+  <string name="SubscribeFragment__donation_amount">Valor da doação</string>
+  <string name="SubscribeFragment__not_now">Agora não</string>
+  <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Pronto</string>
+  <string name="ManageDonationsFragment__badges">Selos</string>
+  <string name="Boost__enter_custom_amount">Insira o valor</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <!--EOF-->
 </resources>

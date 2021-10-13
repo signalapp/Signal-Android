@@ -2761,6 +2761,7 @@
   <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">မြင့်သော</string>
   <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">စကားပြောဆိုမှု၏ အရောင်</string>
@@ -2822,7 +2823,6 @@
   <string name="NewConversationActivity__new_message">စာအသစ်</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">ကင်မရာ</string>
   <string name="AvatarPickerFragment__photo">ရုပ်ပုံ</string>
@@ -2842,5 +2842,9 @@
   <string name="MediaCountIndicatorButton__send">ပေးပို့မယ်</string>
   <string name="MediaReviewImagePageFragment__discard">စွန့်ပစ်သည် </string>
   <string name="SelectFeaturedBadgeFragment__preview">ကြိုတင်ကြည့်မယ်</string>
+  <string name="SubscribeFragment__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+  <string name="SubscribeFragment__confirm">အတည်ပြုသည် </string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ပြီးပါပြီ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <!--EOF-->
 </resources>

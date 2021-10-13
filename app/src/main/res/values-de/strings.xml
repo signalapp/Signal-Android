@@ -3027,6 +3027,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__copyright_signal_messenger">Urheberrecht Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lizenziert unter GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Das Senden von Medieninhalten hoher Qualität verbraucht mehr Datenvolumen.</string>
+  <string name="DataAndStorageSettingsFragment__high">Hoch</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Anrufe</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3152,7 +3155,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Sprachnachricht stoppen</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Geschwindigkeit der Sprachnachricht ändern</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sprachnachricht pausieren</string>
@@ -3237,5 +3240,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil konnte nicht aktualisiert werden</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
   <string name="ImageView__badge">Abzeichen</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
+  <string name="SubscribeFragment__donation_amount">Spendenbetrag</string>
+  <string name="SubscribeFragment__not_now">Jetzt nicht</string>
+  <string name="SubscribeFragment__confirm">Bestätigen</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
+  <string name="ManageDonationsFragment__badges">Abzeichen</string>
+  <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
   <!--EOF-->
 </resources>

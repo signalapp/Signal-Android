@@ -2874,6 +2874,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="HelpFragment__copyright_signal_messenger">Hak Cipta Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Berlesen di bawah GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Menghantar media berkualiti tinggi akan menggunakan lebih banyak data.</string>
+  <string name="DataAndStorageSettingsFragment__high">Tinggi</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Panggilan</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automatik</string>
@@ -2996,7 +2999,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cari nama atau nombor</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Hentikan mesej suara</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Tukar kelajuan mesej suara</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Jedakan mesej suara</string>
@@ -3034,5 +3037,12 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Ketik untuk dipilih</string>
   <string name="MediaReviewImagePageFragment__discard">Buang</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pratonton</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal dikuasakan oleh orang seperti anda.</string>
+  <string name="SubscribeFragment__donation_amount">Jumlah derma</string>
+  <string name="SubscribeFragment__not_now">Bukan sekarang</string>
+  <string name="SubscribeFragment__confirm">Sahkan</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
+  <string name="Boost__enter_custom_amount">Masukkan Jumlah Tersuai</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
   <!--EOF-->
 </resources>

@@ -29,7 +29,7 @@
   <string name="ApplicationPreferencesActivity_on">روښانه </string>
   <string name="ApplicationPreferencesActivity_On">روښانه </string>
   <string name="ApplicationPreferencesActivity_off">خاموش</string>
-  <string name="ApplicationPreferencesActivity_Off">خاموشه</string>
+  <string name="ApplicationPreferencesActivity_Off">خاموش</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS ،%1$s SMS%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">د سکرین قفل%1$s،  د نوملیکنې قفل %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">تیم %1$s، ژبه %2$s</string>
@@ -43,7 +43,7 @@
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">وړاندې تر دې چې خپل PIN غیرفعال کړئ، نو باید تاسې خپل د پرداختونو د بیرته تر لاسه کولو عبارت ثبت کړئ تر څو ډاډ تر لاسه کړئ چې کولای شئ خپل د پرداختونو اکاونټ تر لاسه کولای شئ.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">%d پېل</item>
+    <item quantity="one">%d دقیقه</item>
     <item quantity="other">%d دقیقې</item>
   </plurals>
   <!--DraftDatabase-->
@@ -248,20 +248,32 @@
   <string name="ConversationActivity__reported_as_spam_and_blocked">د سپم او بلاک په توګه رپوټ شوی.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
-    <item quantity="one">%d </item>
+    <item quantity="one">%d نالوستی پیغام</item>
     <item quantity="other">%d نالوستي پیغامونه</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">غواړئ ټاکل شوي پیغامونه پاک کړئ؟</item>
+    <item quantity="one">غواړئ ټاکل شوی پیغام پاک کړئ؟</item>
     <item quantity="other">غواړئ ټاکل شوي پیغامونه پاک کړئ؟</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">غواړئ په زیرمه کې یې ثبت کړئ؟</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">زیرمې ته د دغې میډیا ثبتول به ستاسو په وسیله کې نورو اپلیکیشنونو ته اجازه ورکړي تر څو ادامه ورکړي؟</item>
+    <item quantity="other">دزیرمې ته د ټولې %1$d میډیا ثبتول به ستاسو په وسیله کې نورو اپلیکیشنونو ته اجازه ورکړي تر څو ادامه ورکړي؟</item>
+  </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">زیرمې ته د ضمیمو د ثبت په مهال تیروتنه رامنځته شوې!</item>
+    <item quantity="one">زیرمې ته د ضمیمې د ثبت په مهال تیروتنه رامنځته شوې!</item>
     <item quantity="other">زیرمې ته د ضمیمو د ثبتولو په مهال تیروتنه رامنځته شوې ده!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">په زیرمه کې لیکل غیرفعاله ده!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">د ضمیمې ثبت</item>
+    <item quantity="other">د ضمیمو %1$d ثبت</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">زیرمې ته د ضمیمې ثبت…</item>
+    <item quantity="other">زیرمې ته د ضمیمو %1$d ثبت…</item>
+  </plurals>
   <string name="ConversationFragment_pending">د ځنډ په حال کې ده…</string>
   <string name="ConversationFragment_push">اطلاعات (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -289,16 +301,24 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">ستاسې د خوندیتوب شمېره له %s سره بدله شوې ده</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">ستاسې د خوندیتوب شمېره له %s سره بدله شوې ده، احتمال لري چې هغوی Signal له سره انسټال کړی وي یا هم وسیله یې بدله کړې وي. د نوي خوندیتوب د شمېرې د تصدیق لپاره پر تایید باندې کلیک وکړئ. دا کار اختیاري ده.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="one">غواړئ ټاکل شوي پیغامونه پاک کړئ؟</item>
+    <item quantity="one">غواړئ ټاکل شوی پیغام پاک کړئ؟</item>
     <item quantity="other">غواړئ ټاکل شوي پیغامونه پاک کړئ؟</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">س</item>
+    <item quantity="one">دا کار به ټاکل شوې محاوره د تل لپاره پاکه کړي.</item>
     <item quantity="other">دا کار به ټولې %1$d ټاکل شوې محاورې د تل لپاره پاکې کړي.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">د پاکولو په حال کې ده</string>
   <string name="ConversationListFragment_deleting_selected_conversations">ټاکل شوي محاورې د پاکولو په حال کې دي…</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">محاوره ارشیف شوه</item>
+    <item quantity="other">%d محاورې ارشیف شوې</item>
+  </plurals>
   <string name="ConversationListFragment_undo">اصلي حالت ته راوستل</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">محاوره انباکس ته ولیږدول شوه</item>
+    <item quantity="other">محاورې انباکس ته %dولیږدول شوې</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">د کلید د تبادلې پیغام</string>
   <!--ConversationListItemAction-->
@@ -394,6 +414,10 @@
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">د Signal دغه نسخه منقضي شوې ده. همدا اوس یې اپډیټ کړئ تر څو پیغامونه ولیږئ او تر لاسه یې کړئ.</string>
   <string name="ExpiredBuildReminder_update_now">همدا اوس یې اپډیټ کړئ</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">د %d غړي ځنډول شوې غوښتنه.</item>
+    <item quantity="other">د %d غړو ځنډول شوې غوښتنې.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">ليدل</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">سره شریکول</string>
@@ -429,7 +453,7 @@
   <string name="GroupManagement_access_level_no_one">هېڅ یو</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
-    <item quantity="one">س</item>
+    <item quantity="one">بلنه ولیږل شوه</item>
     <item quantity="other">%d بلنې لیږل شوي دي</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">\"%1$s\" نشي کېدای چې په اتومات ډول ستاسې له خوا په دغه ګروپ کې اضافه کړل شي./n/nهغوی دلته د یو ځای کېدو لپاره رابلل شوي دي، او تر هغه چې ویې نه مني نو هېڅ راز د ګروپ پیغامونه به و نه ویني.</string>
@@ -440,12 +464,12 @@
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">د پیغام ټوله تاریخچه او میډیا له اپګریډ کېدو وړاندې څخه ساتل کېږي.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">تاسې اړتیا لری تر څو بیا له دغه ګروپ سره د یو ځای کېدو لپاره یوه بلنه ومنئ، او تر هغه چې و یې نه منئ د ګروپ هېڅ پیغام به تر لاسه نه کړئ.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">دغه غړي باید بیا له دغه ګروپ سره د یو ځای کېدو لپاره یوه بلنه ومني او تر هغه چې و یې نه مني د ګروپ هېڅ پیغام به تر لاسه نه کړي: </item>
+    <item quantity="one">دغه غړی باید بیا له دغه ګروپ سره د یو ځای کېدو لپاره یوه بلنه ومني او تر هغه چې و یې نه مني د ګروپ هېڅ پیغام به تر لاسه نه کړي: </item>
     <item quantity="other">دغه غړي باید بیا له دغه ګروپ سره د یو ځای کېدو لپاره یوه بلنه ومني او تر هغه چې و یې نه مني د ګروپ هېڅ پیغام به تر لاسه نه کړي:</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-    <item quantity="one">دغه غړي له ګروپ څخه ایسته کړل شول او بیا به تر هغه وخته پورې بیرته یو ځای نشي تر څو چې یې اپګریډ نه کړي:</item>
-    <item quantity="other">دغه غړی</item>
+    <item quantity="one">دغه غړی له ګروپ څخه ایسته کړل شو او بیا به تر هغه وخته پورې بیرته یو ځای نشي تر څو چې یې اپګریډ نه کړي:</item>
+    <item quantity="other">دغه غړي له ګروپ څخه ایسته کړل شول او بیا به تر هغه وخته پورې بیرته یو ځای نشي تر څو چې یې اپګریډ نه کړي:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">نوي ګروپ ته اپګریډ کول</string>
@@ -455,42 +479,42 @@
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">د نیټورک تیروتنه رامنخته شوې ده. وروسته هڅه وکړئ.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">اپګریډ کېدل ناکام شو.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">دغه غړي باید له دغه ګروپ سره د بیا یو ځای کېدو لپاره بلنه ومني او تر څو چې دا بلنه و نه مني نو هېڅ راز د ګروپ پیغامونه به تر لاسه نه کړي:</item>
+    <item quantity="one">دغه غړی باید له دغه ګروپ سره د بیا یو ځای کېدو لپاره بلنه ومني او تر څو چې دا بلنه و نه مني نو هېڅ راز د ګروپ پیغامونه به تر لاسه نه کړي:</item>
     <item quantity="other">دغه غړي باید بیا له دغه ګروپ سره د یو ځای کېدو لپاره یوه بلنه ومني او تر هغه چې و یې نه مني د ګروپ هېڅ پیغام به تر لاسه نه کړي:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">دغه غړي له نویو ګروپونو سره د یو ځای کېدو وړ نه دي، نو له دې ګروپ څخه به ایسته کړل شي:</item>
+    <item quantity="one">دغه غړی له نویو ګروپونو سره د یو ځای کېدو وړ نه دی، نو له دې ګروپ څخه به ایسته کړل شي:</item>
     <item quantity="other">دغه غړي له نويو ګروپونو سره د یو ځای کېدو وړ نه دي، نو له ګروپ څخه به ایسته کړل شي:</item>
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one"> %1$dغړي له نوي ګروپ سره نشي اضافه کېدای. غواړئ چې همدا اوس یې اضافه کړئ؟</item>
+    <item quantity="one"> %1$dغړی له نوي ګروپ سره نشي اضافه کېدای. غواړئ چې همدا اوس یې اضافه کړئ؟</item>
     <item quantity="other"> %1$d غړي له نوي ګروپ سره نشي بیرته اضافه کېدای. غواړئ چې همدا اوس یې اضافه کړئ؟</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
-    <item quantity="one">د غړو اضافه کول</item>
+    <item quantity="one">د غړي اضافه کول</item>
     <item quantity="other">د غړو اضافه کول</item>
   </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">نه مننه</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-    <item quantity="one">غواړئ غړي اضافه کړئ؟</item>
+    <item quantity="one">غواړئ غړی اضافه کړئ؟</item>
     <item quantity="other">غواړئ غړي اضافه کړئ؟</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="one">کله چې دغه غړي خپل ګروپ اپګریډ کړي نو له نوي ګروپ سره به په اتومات ډول اضافه نشي:</item>
-    <item quantity="other">دغه غړي کله چې یې خپل ګروپ اپډیټ کړ نو په اتومات ډول به له نوي ګروپ سره اضافه نشي.</item>
+    <item quantity="one">کله چې دغه غړی خپل ګروپ اپګریډ کړي نو له نوي ګروپ سره به په اتومات ډول اضافه نشي:</item>
+    <item quantity="other">کله چې دغه غړي خپل ګروپ اپګریډ کړي نو له نوي ګروپ سره به په اتومات ډول اضافه نشي:</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
-    <item quantity="one">د غړو اضافه کول</item>
+    <item quantity="one">د غړي اضافه کول</item>
     <item quantity="other">د غړو اضافه کول</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-    <item quantity="one">د غړو اضافه کول ناکام شو. وروسته هڅه وکړئ.</item>
+    <item quantity="one">د غړي اضافه کول ناکام شو. وروسته هڅه وکړئ.</item>
     <item quantity="other">د غړو اضافه کول ناکام شو. وروسته هڅه وکړئ.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
-    <item quantity="one">غړي نشي اضافه کولای</item>
+    <item quantity="one">غړی نشي اضافه کولای</item>
     <item quantity="other">غړي نشی اضافه کولای</item>
   </plurals>
   <!--LeaveGroupDialog-->
@@ -510,7 +534,7 @@
   <string name="LinkPreviewView_domain_date">%1$s . %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
-    <item quantity="one">%1$d غړي</item>
+    <item quantity="one">%1$d غړی</item>
     <item quantity="other">%1$d غړي</item>
   </plurals>
   <!--PendingMembersActivity-->
@@ -524,8 +548,12 @@
   <string name="PendingMembersActivity_missing_detail_explanation">د ګروپ د نورو غړو له خوا د را بلل شویو کسانو جزئیات نه ښودل کېږي. که چیرته رابلل شوي کسان وغواړي چې یو ځای شي، نو د هغوی معلومات به په هغه وخت کې له ګروپ سره شریک کړل شي. هغوی به تر هغه پورې په ګروپ کې پیغامونه و نه ویني تر څو چې یو خای شوي نه وي.</string>
   <string name="PendingMembersActivity_revoke_invite">د بلنې لغوه کول</string>
   <string name="PendingMembersActivity_revoke_invites">د بلنو لغوه کول</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">د بلنې لغوه کول</item>
+    <item quantity="other">د بلنو %1$dلغوه کول</item>
+  </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
-    <item quantity="one">س </item>
+    <item quantity="one">د بلنې په لغوه کولو کې تیروتنه</item>
     <item quantity="other">د بلنو په لغوه کولو کې تیروتنه</item>
   </plurals>
   <!--RequestingMembersFragment-->
@@ -539,8 +567,8 @@
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">دغه کس په پخوانیو ګروپونو کې نشي اضافه کېدای.</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">دغه کس د خبرتیاوو په ګروپونو کې نشي اضافه کېدای.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="one">غواړئ \"%1$s\" غړي \"%2$s\" ته اضافه کړئ؟</item>
-    <item quantity="other">غواړئ %3$dغړی%2$s ته اضافه کړئ؟ </item>
+    <item quantity="one">غواړئ \"%1$s\" \"%2$s\" ته اضافه کړئ؟</item>
+    <item quantity="other">غواړئ %3$dغړي%2$s ته اضافه کړئ؟ </item>
   </plurals>
   <string name="AddMembersActivity__add">اضافه کول</string>
   <string name="AddMembersActivity__add_members">د غړو اضافه کول</string>
@@ -561,18 +589,18 @@
   <string name="AddGroupDetailsFragment__sms_contact">مخاطب ته SMS کول</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">غواړئ %1$s له دغه ګروپ څخه ایسته کړئ؟</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d غړي له نويو ګروپونو څخه ملاتړ نه کوي، نو دا به یو پخوانی ګروپ وي.</item>
+    <item quantity="one">%d غړی له نويو ګروپونو څخه ملاتړ نه کوي، نو دا به یو پخوانی ګروپ وي.</item>
     <item quantity="other">%d غړي له نويو ګروپونو څخه ملاتړ نه کوي، نو دا به یو پخوانی ګروپ وي.</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="one">%d غړي له نویو ګروپونو څخه ملاتړ نه کوي، نو دا ګروپ نشي رامنځته کېدای.</item>
+    <item quantity="one">%d غړی له نویو ګروپونو څخه ملاتړ نه کوي، نو دا ګروپ نشي رامنځته کېدای.</item>
     <item quantity="other">%d غړي له نويو ګروپونو څخه ملاتړ نه کوي، نو دا ګروپ نشي رامنځته کېدای.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">یو پخوانی ګروپ به رامنځته شي ځکه چې”%1$s“ د Signal پخوانۍ نسخه کاروي. تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ کله چې هغوی Signal اپډیټ کړ، یا هم د ګروپ له جوړولو وړاندې یې رامنځته کړ.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">یو پخوانی ګروپ به رامنځته شي ځکه چې %1$d غړي د Signal پخوانۍ نسخه کاروي. تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ کله چې هغوی Signal اپډیټ کړ، یا هم د ګروپ له جوړولو وړاندې یې ایسته کړئ.</item>
-    <item quantity="other">یو پخوانی ګروپ به رامنځته شي ځکه چې %1$d د Signal پخوانۍ نسخه کاروي. کله چې هغوی Signal اپډیټ کړ نو تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ یا هم د ګروپ له جوړولو وړاندې یې له منځه یوسئ.</item>
+    <item quantity="one">یو پخوانی ګروپ به رامنځته شي ځکه چې %1$d غړی د Signal پخوانۍ نسخه کاروي. تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ کله چې هغوی Signal اپډیټ کړ، یا هم د ګروپ له جوړولو وړاندې یې ایسته کړئ.</item>
+    <item quantity="other">یو پخوانی ګروپ به رامنځته شي ځکه چې %1$d غړي د Signal پخوانۍ نسخه کاروي. کله چې هغوی Signal اپډیټ کړ نو تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ یا هم د ګروپ له جوړولو وړاندې یې له منځه یوسئ.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">دا ګروپ نشي جوړیدای، ځکه چې ”%1$s“ د Signal زړه نسخه کاروي. تاسې باید هغه د ګروپ له جوړولو وړاندې ایسته کړئ.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
@@ -639,6 +667,14 @@
   <string name="ManageProfileFragment_badges">بجونه</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">هېڅ ګډ ګروپ نشته</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">په %d ګروپ کې یو ځای دي</item>
+    <item quantity="other">په %d ګروپونو کې یو ځای دي</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">1 کس یې را وباله%1$s</item>
+    <item quantity="other">%2$dکسان یې %1$sرا وبلل</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">سفارشي شوي خبرتیاووې</string>
   <string name="CustomNotificationsDialogFragment__messages">پیغامونه</string>
@@ -667,6 +703,10 @@
   <string name="GroupLinkShareQrDialogFragment__share_code">د کوډ شریکول</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">ایا غواړئ چې %1$s ته ستاسې لیږل شوې بلنه لغوه شي؟</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">ایا غواړئ چې د %1$s له خوا لیږل شوې  بلنه رد کړئ؟</item>
+    <item quantity="other">ایا غواړئ چې د %1$s له خوا لیږل شوې %2$d بلنې لغوه کړئ؟</item>
+  </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">تاسې له پخوا څخه دلته غړي یاست</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">یو ځای کېدل</string>
@@ -677,6 +717,10 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">د ګروپ په اړه معلومات نشي تر لاسه کېدای، مهرباني وکړئ وروسته هڅه وکړئ</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">غواړئ له دغه ګروپ سره یو ځای شئ او خپل نوم او انځور مو د هغه له غړو سره شریک کړئ؟</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">د دغه ګروپ یو اډمین باید وړاندې تر دې چې له دغه ګروپ سره یو ځای شئ، ستاسې غوښتنه باید تایید کړي. کله چې تاسې د یو ځای کېدو لپاره غوښتنه لیږئ، نو ستاسې نوم او انځور به د هغه له غړو سره شریک شی.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">ګروپ. %1$d غړی</item>
+    <item quantity="other">ګروپ. %1$d غړي</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Signal اپډیټ کړئ تر څو د ګروپ لینکونه وکاروئ</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">د Signal هغه نسخه چې تاسې یې کاروئ د دغه ګروپ لینک نشي ملاتړ کولای. وروستۍ نسخه یې اپډیټ کړئ تر څو له دغه ګروپ سره د لینک له لارې یو ځای شئ.</string>
@@ -714,7 +758,7 @@
   <string name="InviteActivity_invite_to_signal">Signal ته رابلل</string>
   <string name="InviteActivity_send_sms">د SMS لیږل (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">غواړئ SMS %d بلنې ولیږئ؟</item>
+    <item quantity="one">غواړئ  %d SMS بلنه ولیږئ؟</item>
     <item quantity="other">غواړئ%d SMS بلنې ولیږئ؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">راځئ چې Signal ته واوړو: %1$s</string>
@@ -736,8 +780,12 @@
   <string name="MediaOverviewActivity_Audio">اډیو</string>
   <string name="MediaOverviewActivity_All">ټول</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">غواړئ ټاکل شوي مواد پاک کړئ؟</item>
-    <item quantity="other">غواړئ ټاکل شوي مواد پاک کړئ؟</item>
+    <item quantity="one">غواړئ ټاکل شوی توکی پاک کړئ؟</item>
+    <item quantity="other">غواړئ ټاکل شوي توکي پاک کړئ؟</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">دا به د تل لپاره ټاکل شوی فایل پاک کړي. له دغه توکي سره هر ډول مل لیکل شوی پیغام به هم پاک شي.</item>
+    <item quantity="other">دا به د تل لپاره ټاکل شوي فایلونه %1$d پاک کړي. له دغو توکو سره هر ډول مل لیکل شوي پیغامونه به هم پاک شي.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">د پاکولو په حال کې ده</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">پیغامونه د پاکولو په حال کې دي…</string>
@@ -752,12 +800,12 @@
   <string name="MediaOverviewActivity_List_view_description">د لیست په ډول لیدل</string>
   <string name="MediaOverviewActivity_Selected_description">ټاکل شوي</string>
   <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">د %1$d موادو %2$s</item>
-    <item quantity="other">د %1$d موادو %2$s</item>
+    <item quantity="one">د %1$d توکی %2$s</item>
+    <item quantity="other">د %1$d توکي %2$s</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d</item>
-    <item quantity="other">%1$d مواد</item>
+    <item quantity="one">%1$d توکی</item>
+    <item quantity="other">%1$d توکي</item>
   </plurals>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">اډیو</string>
@@ -816,8 +864,8 @@
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">د دې لپاره چې هغوی ښکاره کړي نو Signal ستاسې مخاطبینو ته د لاسرسي لرلو لپاره اړتیا لري.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal د مخاطبینو اجازې ته اړتیا لري تر څو ستاسې مخاطبین وښیي، خو هغه د تل لپاره رد شوی دی. نو مهرباني وکړئ د اپلیکیشن تنظیماتو ته ورشئ، \"اجازې\" وټاکئ او \"مخاطبین\" فعاله کړئ.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="one">تاسې نشئ کولای چې له %d څخه زیات مواد شریک کړئ.</item>
-    <item quantity="other">تاسې نشئ کولای چې له %d څخه زیات مواد شریک کړئ.</item>
+    <item quantity="one">تاسې نشئ کولای چې له %d څخه زیات توکی شریک کړئ.</item>
+    <item quantity="other">تاسې نشئ کولای چې له %d څخه زیات توکي شریک کړئ.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">تر لاسه کېدونکي کسان وټاکئ</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">که غواړئ چې دا پیغام مو له لیدل کېدو وروسته ورک شي نو دلته کلیک وکړئ.</string>
@@ -848,11 +896,11 @@
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">تاسې له نوي ګروپ سره اضافه نشوئ او د یو ځای کېدو لپاره ورته رابلل شوي یاست.</string>
   <string name="MessageRecord_chat_session_refreshed">د چټ غونډه ریفریش شوې</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">غړي نوي ګروپ ته اضافه نشول او د یو ځای کېدو لپاره رابلل شوي دي.</item>
+    <item quantity="one">یو غړی نوي ګروپ ته اضافه نشو او د یو ځای کېدو لپاره رابلل شوی دی.</item>
     <item quantity="other">%1$s غړي نوي ګروپ ته اضافه نشول او د یو ځای کېدو لپاره رابلل شوي دي.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-    <item quantity="one">ب</item>
+    <item quantity="one"> یو غړی نوي ګروپ ته اضافه نشو او لري کړل شو.</item>
     <item quantity="other">%1$s غړي نوي ګروپ ته اضافه نشول او لري کړل شول.</item>
   </plurals>
   <!--Profile change updates-->
@@ -891,20 +939,32 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">تاسې %1$s دغه ګروپ ته راوباله.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s تاسې دغه ګروپ ته راوبللی.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s 1 کس ګروپ ته را وباله.</item>
+    <item quantity="other">%1$s %2$dکسان ګروپ ته را وبلل.</item>
+  </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">تاسې ګروپ ته رابلل شوي وئ.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-    <item quantity="one">خلک ګروپ ته رابلل شوي دي.</item>
+    <item quantity="one">1 کس ګروپ ته رابلل شوی دی.</item>
     <item quantity="other">%1$d کسان ګروپ ته رابلل شوي وو.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="one">س</item>
+    <item quantity="one">تاسې ګروپ ته یوه بلنه لغوه کړه.</item>
     <item quantity="other">تاسې ګروپ ته %1$d بلنې لغوه کړي.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$sګروپ ته یوه بلنه لغوه کړه.</item>
+    <item quantity="other">%1$sګروپ ته %2$dبلنې لغوې کړي.</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">کوم چا ګروپ ته بلنه رد کړه.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">تاسې ګروپ ته بلنه رد کړه.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ګروپ ته ستاسې بلنه لغوه کړه.</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">یوه اډمین ګروپ ته ستاسې بلنه لغوه کړه.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">ګروپ ته یوه بلنه لغوه شوه.</item>
+    <item quantity="other">ګروپ ته %1$d بلنې لغوې شوې.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">تاسې ګروپ ته بلنه ومنله.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s ګروپ ته یوه بلنه ومنله.</string>
@@ -997,11 +1057,11 @@
   <string name="MessageRecord_you">تاسې</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s، %2$s، او %3$d نور په ګروپ کال کې دي. %4$s</item>
-    <item quantity="other">%1$s، %2$s، او %3$d نور په ګروپ کال کې دي. %4$s</item>
+    <item quantity="other">%1$s، %2$s، او %3$d نور خلک په ګروپ کال کې دي. %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">%1$s، %2$s، او %3$d نور په ګروپ کال کي دي</item>
-    <item quantity="other">%1$s، %2$s، او %3$d نور په ګروپ کال کې دي</item>
+    <item quantity="other">%1$s، %2$s، او %3$d نور خلک په ګروپ کال کې دي</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">منل</string>
@@ -1023,15 +1083,15 @@
   <string name="MessageRequestProfileView_member_of_two_groups">د %1$s او %2$s غړی</string>
   <string name="MessageRequestProfileView_member_of_many_groups">د %1$s، %2$s، او %3$s غړی</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="one">%1$d غړي </item>
+    <item quantity="one">%1$d غړی</item>
     <item quantity="other">%1$d غړي</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$dغړي (+ %2$dرابلل شوي)</item>
+    <item quantity="one">%1$dغړی (+ %2$dرابلل شوی)</item>
     <item quantity="other">%1$dغړي (+ %2$dرابلل شوي)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="one">%d اضافي ګروپونه</item>
+    <item quantity="one">%d اضافي ګروپ</item>
     <item quantity="other">%d اضافي ګروپونه</item>
   </plurals>
   <!--PassphraseChangeActivity-->
@@ -1061,6 +1121,10 @@
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">همدا اوس یې اپډیټ کړئ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">د Signal نسخه به نن منقضي شي. تر ټولو وروستۍ نسخې له مخې یې اپډیټ کړئ.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">د Signal دغه نسخه به سبا منقضي شي. تر ټولو وروستۍ نسخې له مخې یې اپډیټ کړئ. </item>
+    <item quantity="other">د Signal دغه نسخه به په %d ورځو کې منقضي شي. تر ټولو وروستۍ نسخې له مخې یې اپډیټ کړئ. </item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">د پټ عبارت دننه کول</string>
   <string name="PassphrasePromptActivity_watermark_content_description">د Signal ایکن</string>
@@ -1085,7 +1149,7 @@
   <string name="PinRestoreEntryFragment_cancel">لغوه کول</string>
   <string name="PinRestoreEntryFragment_skip">ترې تیر شئ</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">ستاسې%1$d هڅې پاتې دي. که چیرته تاسې د نورو هڅو د کولو حق نه لری، نو کولای شئ نوی PIN جوړ کړئ. تاسې کولای شئ خپل اکاونټ ثبت او ویې کاروئ خو ځینې ثبت شوي تنظیمات لکه خپل د پروفایل معلومات به له لاسه ورکړئ.</item>
+    <item quantity="one">ستاسې%1$d هڅه پاته ده. که چیرته تاسې د نورو هڅو د کولو حق نه لری، نو کولای شئ نوی PIN جوړ کړئ. تاسې کولای شئ خپل اکاونټ ثبت او ویې کاروئ خو ځینې ثبت شوي تنظیمات لکه خپل د پروفایل معلومات به له لاسه ورکړئ.</item>
     <item quantity="other">ستاسې %1$d هڅې پاتې دي. که چیرته تاسې د نورو هڅو د کولو حق نه لری، نو کولای شئ نوی PIN جوړ کړئ. تاسې کولای شئ خپل اکاونټ ثبت او ویې کاروئ خو ځینې ثبت شوي تنظیمات لکه خپل د پروفایل معلومات به له لاسه ورکړئ.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">د Signal  نوم لیکنه - د Android لپاره له PIN سره مرستې ته اړتیا لرئ</string>
@@ -1154,26 +1218,26 @@
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal به %1$s او %2$s ته زنګ ووهي</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
     <item quantity="one">Signal به %1$s، %2$s، او %3$d نورو ته زنګ ووهي</item>
-    <item quantity="other">Signal به %1$s، %2$s، او %3$d نورو ته زنګ ووهي</item>
+    <item quantity="other">Signal به %1$s، %2$s، او %3$d نورو خلکو ته زنګ ووهي</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s ته به خبر ورکړل شي</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s او %2$s ته به خبر ورکړل شي</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
     <item quantity="one">%1$s، %2$s، او %3$d نورو ته به خبر ورکړل شي</item>
-    <item quantity="other">%1$s، %2$s، او نورو %3$d ته به خبر ورکړل شي</item>
+    <item quantity="other">%1$s، %2$s، او  %3$d نورو خلکو ته به خبر ورکړل شي</item>
   </plurals>
   <string name="WebRtcCallView__ringing_s">%1$s ته زنګ وهي</string>
   <string name="WebRtcCallView__ringing_s_and_s">%1$sاو %2$s ته زنګ وهي</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
     <item quantity="one">%1$s، %2$s، او %3$d نورو ته زنګ وهي</item>
-    <item quantity="other">%1$s، %2$s، او نورو %3$d ته زنګ وهي</item>
+    <item quantity="other">%1$s، %2$s، او  %3$d نورو خلکو ته زنګ وهي</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s تاسې ته زنګ وهي</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s تاسې او %2$s ته زنګ وهي</string>
   <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s تاسې، %2$s، او %3$s ته زنګ وهي</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$sتاسې، %2$s، %3$s، او %4$d نورو ته زنګ وهي</item>
-    <item quantity="other">%1$sتاسې، %2$s، %3$s، او %4$d نورو ته زنګ وهي</item>
+    <item quantity="other">%1$sتاسې، %2$s، %3$s، او %4$d نورو خلکو ته زنګ وهي</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">نور هېڅوک دلته نشته</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s په دغه اړیکه کې ده</string>
@@ -1182,7 +1246,7 @@
   <string name="WebRtcCallView__s_is_presenting">%1$s یې وړاندې کوي</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s، %2$s، او %3$d نور په دغه اړیکه کې دي</item>
-    <item quantity="other">%1$s، %2$s، او %3$d نور په دغه اړیکه کې دي</item>
+    <item quantity="other">%1$s، %2$s، او %3$d نور خلک په دغه اړیکه کې دي</item>
   </plurals>
   <string name="WebRtcCallView__flip">ګرځول</string>
   <string name="WebRtcCallView__speaker">سپیکر</string>
@@ -1191,6 +1255,10 @@
   <string name="WebRtcCallView__ring">زنګ</string>
   <string name="WebRtcCallView__end_call"> د زنګ پای ته رسول</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">په دغه اړیکه کې. %1$d کس دی</item>
+    <item quantity="other">په دغه اړیکه کې. %1$d کسان دي</item>
+  </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s بلاک شوي دي</string>
   <string name="CallParticipantView__more_info">لا زیات معلومات</string>
@@ -1238,7 +1306,7 @@
   <string name="RegistrationActivity_call_requested">د اړیکې نیولو غوښتنه شوې</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">  تاسو اوس د ستونزو د هواري سيستم له دخول څخه%dګام لرې یاست. </item>
-    <item quantity="other">  تاسې اوس د ستونزو د هواري سيستم له تسلیمولو څخه%dګامه لرې یاست.</item>
+    <item quantity="other">  تاسې اوس د ستونزو د هواري سيستم له تسلیمولو څخه%dګامونه لرې یاست.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">موږ باید دا تصديق کړو چې تاسې انسان یاست.</string>
   <string name="RegistrationActivity_next">بل</string>
@@ -1393,7 +1461,7 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">کارن نومونه باید له %1$d تر %2$d تورو پورې وی.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">په Signal کې کارن نومونه اختیاري دي. که غواړئ چې یو کارن نوم جوړ کړئ، د Signal نور کارنونه به وکولای شي چې تاسې د همدې کارن نوم په مټ ومومي او پرته له دې چې ستاسې د ټلیفون شمېره ولري، تاسې سره اړیکه کې شي.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="one">%d مخاطبین په Signal کې دي!</item>
+    <item quantity="one">%d مخاطب په Signal کې ده!</item>
     <item quantity="other">%d مخاطبین په Signal کې دي!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
@@ -1502,8 +1570,8 @@
   <string name="ThumbnailView_Has_a_caption_description">کپشن ولري</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
-    <item quantity="one">%d مواد</item>
-    <item quantity="other">%d مواد</item>
+    <item quantity="one">%d توکی</item>
+    <item quantity="other">%d توکي</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">دغه وسیله نوره ثبت شوې نه ده</string>
@@ -1556,7 +1624,7 @@
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">د سپارښت شویو غړو اندازه ډکه شوه</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">د Signal ګروپونه له %1$d غړیو یا کمو سره ښه کار ورکوي. د زیات شمېر غړو اضافه کول به د پیغامونو لیږل او تر لاسه کول وځنډوي.</string>
   <plurals name="ContactSelectionListFragment_d_members">
-    <item quantity="one">%1$d غړي</item>
+    <item quantity="one">%1$d غړی</item>
     <item quantity="other">%1$d غړي</item>
   </plurals>
   <!--contact_selection_list_fragment-->
@@ -1564,8 +1632,8 @@
   <string name="contact_selection_list_fragment__show_contacts">د مخاطبینو ښکاره کول</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
-    <item quantity="one">%1$d غړي</item>
-    <item quantity="other">%1$d</item>
+    <item quantity="one">%1$d غړی</item>
+    <item quantity="other">%1$d غړي</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">د Signal پیغام</string>
@@ -1659,22 +1727,22 @@
   <!--expiration-->
   <string name="expiration_off">خاموش</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">%d ثانیې</item>
+    <item quantity="one">%d ثانیه</item>
     <item quantity="other">%d ثانیې</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d ثانیه</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">%d دقیقې</item>
+    <item quantity="one">%d دقیقه</item>
     <item quantity="other">%d دقیقې</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dدقیقه</string>
   <plurals name="expiration_hours">
-    <item quantity="one">%d ساعتونه</item>
+    <item quantity="one">%d ساعت</item>
     <item quantity="other">%d ساعتونه</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d ساعت</string>
   <plurals name="expiration_days">
-    <item quantity="one">%d ورځې</item>
+    <item quantity="one">%d ورځ</item>
     <item quantity="other">%dورځې</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d ورځ</string>
@@ -1696,7 +1764,7 @@
   <string name="IdentityUtil_untrusted_dialog_many">ستاسې د خوندیتوب شمېرې له %1$s، %2$s او %3$s سره تازه بدلې شوي دی.</string>
   <plurals name="identity_others">
     <item quantity="one">%d نور</item>
-    <item quantity="other">%d نور</item>
+    <item quantity="other">%d نورې</item>
   </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs">د GIFs پلټنه</string>
@@ -1720,7 +1788,7 @@
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s له ګروپ سره یو ځای شو.</item>
-    <item quantity="other">%1$s</item>
+    <item quantity="other">%1$s له ګروپ سره یو ځای شول.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">د ګروپ نوم اوس دی \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
@@ -1932,6 +2000,8 @@
   <string name="preferences__help">مرسته</string>
   <string name="preferences__advanced">پرمختللی</string>
   <string name="preferences__donate_to_signal">Signal سره مرسته کول</string>
+  <string name="preferences__subscription">ګډون</string>
+  <string name="preferences__signal_boost">د Signal پیاوړی کول</string>
   <string name="preferences__privacy">محرمیت</string>
   <string name="preferences__mms_user_agent">د MMS د کارن استازی</string>
   <string name="preferences__advanced_mms_access_point_names">د MMS لاسي تنظیمات</string>
@@ -2313,11 +2383,11 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">د عددي PIN جوړول</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
-    <item quantity="one">PIN باید کم تر کمه %1$d توري ولري</item>
+    <item quantity="one">PIN باید کم تر کمه %1$d توری ولري</item>
     <item quantity="other">PIN باید کم تر کمه %1$d توري ولري</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
-    <item quantity="one">PIN باید کم تر کمه %1$d رقمي وي</item>
+    <item quantity="one">PIN باید کم تر کمه %1$d رقم وي</item>
     <item quantity="other">PIN باید کم تر کمه %1$d رقمي وي</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">یو نوی PIN جوړ کړئ</string>
@@ -2368,19 +2438,19 @@
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">د Signal نوملیکنه – د Android لپاره په PIN سره مرستې ته اړتیا لرئ (v1 PIN)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">د Signal نوملیکنه – د Android لپاره په PIN سره مرستې ته اړتیا لرئ (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one"> ستا د محرمیت او امنیت لپاره، هېڅ داسې لاره شتون نه لري چې خپل پېن بیا ترلاسه کړی. که خپل پېن په یاد ونلری، ته کولای شی د اېس اېم اېس له طریقه يې د غیرفعالیتوب له %1$dورځو څخه وروسته بیا تصديق کړی. په دې صورت کې به، ستا حساب پاکېږي او ټول محتویات به يې توږل کېږي. </item>
+    <item quantity="one"> ستا د محرمیت او امنیت لپاره، هېڅ داسې لاره شتون نه لري چې خپل پېن بیا ترلاسه کړی. که خپل پېن په یاد ونلری، ته کولای شی د اېس اېم اېس له طریقه يې د غیرفعالیتوب له %1$dورځ څخه وروسته بیا تصديق کړی. په دې صورت کې به، ستا حساب پاکېږي او ټول محتویات به يې توږل کېږي. </item>
     <item quantity="other">ستاسو د محرمیت او امنیت لپاره، هېڅ داسې لاره نشته چې خپل PIN بیا ترلاسه کړئ. که خپل PIN په یاد ونلرئ، تاسو کولای شئ د SMS له طریقه يې د غیرفعالیتوب له %1$dورځو څخه وروسته بیا تصديق کړئ. په دې صورت کې به، ستاسو حساب پاکېږي او ټول محتویات به يې له منځه ولاړ شي. </item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-    <item quantity="one"> ناسم پېن. %1$d هڅې پاتې دي.</item>
+    <item quantity="one"> ناسم PIN. %1$d هڅه پاته ده.</item>
     <item quantity="other">ناسم PIN.%1$dهڅې پاتې دي.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">که ستاسو هڅې ختمې شي، ستاسو حساب به د%1$dورځې لپاره بند شي. د غیرفعالتوب له   %1$dورځې وروسته، ستاسو کولای شئ له پېن پرته بیا نوملیکنه وکړئ. ستاسو حساب به پاک شي او ټول محتویات به يې وتوږل شي. </item>
+    <item quantity="one">که ستاسو هڅې ختمې شي، ستاسو حساب به د%1$dورځ لپاره بند شي. د غیرفعالتوب له   %1$dورځ وروسته، ستاسو کولای شئ له PIN پرته بیا نوملیکنه وکړئ. ستاسو حساب به پاک شي او ټول محتویات به يې وتوږل شي. </item>
     <item quantity="other">که ستاسو هڅې ختمې شي، ستاسو حساب به د%1$dورځو لپاره بند شي. د غیرفعالتوب له%1$dورځو وروسته، تاسې کولای شئ له PIN پرته بیا نوملیکنه وکړئ. ستاسو حساب به پاک شي او ټول محتویات به يې له منځه ولاړ شي.  </item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
-    <item quantity="one"> ستاسو%1$dهڅه پاتې ده</item>
+    <item quantity="one"> ستاسو%1$dهڅه پاتې ده.</item>
     <item quantity="other">ستاسو%1$dهڅې پاتې دي.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
@@ -2675,11 +2745,11 @@
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">په هېڅ نورو ګروپونو کې یو ځای نه دي.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">په هېڅ ګروپ کې یو ځای نه دي.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-    <item quantity="one">په %d ګروپونو کې یو ځای دي</item>
-    <item quantity="other">%d</item>
+    <item quantity="one">په %d ګروپ کې یو ځای دي</item>
+    <item quantity="other">په %d ګروپونو کې یو ځای دي</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
-    <item quantity="one">په %dګروپونو کې یو ځای دي</item>
+    <item quantity="one">په %dګروپ کې یو ځای دي</item>
     <item quantity="other">په %d ګروپونو کې یو ځای دي</item>
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s له ګروپ څخه ایسته کړئ؟</string>
@@ -2727,7 +2797,7 @@
   <string name="CreateGroupActivity__skip">ترې تیر شئ</string>
   <plurals name="CreateGroupActivity__d_members">
     <item quantity="one">%1$d غړي</item>
-    <item quantity="other">%1$d</item>
+    <item quantity="other">%1$d غړی</item>
   </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">شریکول</string>
@@ -2970,6 +3040,11 @@
   <string name="HelpFragment__copyright_signal_messenger">د Signal مسینجر د کاپي حق</string>
   <string name="HelpFragment__licenced_under_the_gplv3">د GPLv3 له مخې جواز ورکړل شوی</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">د رسنۍ کیفیت</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">د لیږل شوې رسنۍ کیفیت</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">د لوړ کیفیت رسنۍ لیږل به زیاتې ډیټا ته اړتیا ولري.</string>
+  <string name="DataAndStorageSettingsFragment__high">لوړ</string>
+  <string name="DataAndStorageSettingsFragment__standard">سټنډرډ</string>
   <string name="DataAndStorageSettingsFragment__calls">ټلیفوني اړیکې</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">اتومات</string>
@@ -2980,7 +3055,7 @@
   <string name="ChatColorSelectionFragment__delete">پاکول</string>
   <string name="ChatColorSelectionFragment__delete_color">د رنګ پاکول</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">دغه سفارشي رنګ په %1$d چټونو کې کاریدلی دی. غواړئ چې د ټولو چټونو لپاره یې پاک کړئ؟</item>
+    <item quantity="one">دغه سفارشي رنګ په %1$d چټ کې کاریدلی دی. غواړئ چې د ټولو چټونو لپاره یې پاک کړئ؟</item>
     <item quantity="other">دغه سفارشي رنګ په %1$d چټونو کې کاریدلی دی. غواړئ چې د ټولو چټونو لپاره یې پاک کړئ؟</item>
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">غواړئ د چټ رنګ پاک کړئ؟</string>
@@ -2993,7 +3068,7 @@
   <string name="CustomChatColorCreatorFragmentPage__save">ثبت</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">د رنګ اصلاح</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">دغه رنګ د %1$d په چټونو کې کاریدلی دی. غواړئ چې په ټولو چټونو کې بدلونونه ثبت کړئ؟</item>
+    <item quantity="one">دغه رنګ د %1$d په چټ کې کاریدلی دی. غواړئ چې په ټولو چټونو کې بدلونونه ثبت کړئ؟</item>
     <item quantity="other">دغه رنګ د %1$d په چټونو کې کاریدلی دی. غواړئ چې په ټولو چټونو کې بدلونونه ثبت کړئ؟</item>
   </plurals>
   <!--ChatColorGradientTool-->
@@ -3095,7 +3170,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">د نوم یا شمېرې پلټنه</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">د غږیز پیغام بندول</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">د غږیز پیغام د سرعت بدلول</string>
   <string name="VoiceNotePlayerView__pause_voice_message">د غږیز پیغام درول</string>
@@ -3130,19 +3205,19 @@
   <string name="MultiselectForwardFragment__faster_forwards">چټک فاروارډونه</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">فاروارډ شوي پیغامونه اوس سملاسي ولیږل شول.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
-    <item quantity="one">%1$d پیغامونه ولیږئ</item>
+    <item quantity="one">%1$d پیغام ولیږئ</item>
     <item quantity="other">%1$d پیغامونه ولیږئ</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">پیغام ولیږل شو</item>
-    <item quantity="other">پی</item>
+    <item quantity="other">پیغامونه ولیږل شول</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">پیغام و نه لیږل شو</item>
-    <item quantity="other">پیغام و نه لیږل شو </item>
+    <item quantity="other">پیغامونه و نه لیږل شو </item>
   </plurals>
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
-    <item quantity="one">پیغامونه فاروارډ نشول ځکه چې هغوی نور نشته.</item>
+    <item quantity="one">پیغام فاروارډ نشو ځکه چې هغه نور نشته.</item>
     <item quantity="other">پیغامونه فاروارډ نشول ځکه چې هغوی نور نشته.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">اندازه ډکه شوه</string>
@@ -3151,6 +3226,9 @@
   <string name="MediaReviewFragment__add_a_reply">ځواب اضافه کول</string>
   <string name="MediaReviewFragment__send_to">ته لیږل</string>
   <string name="MediaReviewFragment__view_once_message">یو ځل لیدونکی پیغام</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">یو یا دوه توکي ډېر ستر و</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">یو یا دوه توکي ناسم و</string>
+  <string name="MediaReviewFragment__too_many_items_selected">زیات شمېر توکي ټاکل شوي دي</string>
   <string name="ImageEditorHud__cancel">لغوه کول</string>
   <string name="ImageEditorHud__draw">رسامي کول</string>
   <string name="ImageEditorHud__write_text">د متن لیکل</string>
@@ -3180,5 +3258,45 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">د پروفایل اپډیټ تر سره نشو</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">یو ساتونکی شئ</string>
   <string name="ImageView__badge">بج</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ستاسې په څیر خلکو له خوا ځواکمن شوی دی.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">هغې تکنالوژي څخه ملاتړ کوي کوم چې ستاسې لپاره جوړه شوې ده - نه ستاسې د ډیټا لپاره - د هغو خلکو له ټولنې سره په یو ځای کېدو کوم چې ساتنه او پالنه یې کوي.</string>
+  <string name="SubscribeFragment__donation_amount">د مرستې مقدار</string>
+  <string name="SubscribeFragment__more_payment_options">د زیاتو پرداختونو غوراوي</string>
+  <string name="SubscribeFragment__cancel_subscription">ګډون لغوه کړئ</string>
+  <string name="SubscribeFragment__confirm_cancellation">غواړئ لغوه کول تایید کړئ؟</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">پر تاسې بیا لګښت نه راځي. ستاسې بج به ستاسې له پروفایل څخه ستاسې د بیلنګ د دورې په پای کې ایسته شي.</string>
+  <string name="SubscribeFragment__not_now">اوس نه</string>
+  <string name="SubscribeFragment__confirm">تایید</string>
+  <string name="SubscribeFragment__update_subscription">ګډون اپډیټ کړئ</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">ستاسې ګډون لغوه شوی دی.</string>
+  <string name="Subscription__s_per_month">%s په میاشت کې</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s په میاشت کې. %2$s کې نوی کېږي</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal یو غیرانتفاعي پروګرام دی چې هېڅ اعلان ورکوونکی یا پانګه وال نه لري او یوازې د هغو کسانو له خوا چې کاروي یې او ورته ارزښت ورکوي، ساتل کېږي. هره میاشت خپله مرسته وکړئ او د خپل ملاتړ د ښودلو په خاطر د پروفایل بج تر لاسه کړئ.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ولې مرسته وکړئ؟</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">د Signal ټیم د ازادي سرچینې د محرمیت تکنالوژۍ د جوړولو ماموریت ته ژمن دی کوم چې ازاده څرګندونه خوندي کوي او په نړیواله کچه مکالمې خوندي ساتي. ستاسې مرسته له دې ماموریت سره مرسته کولای شي. د اعلانونو نشتوالی. د تعقیب کوونکو نشتوالی. د ساعتیري نشتوالی.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">ستاسې مالي مرسته موږ سره مرسته کوي تر څو د هغه اپلیکیشن د پراختیا، سرورونو او بانډویټ لپاره چې په میلیونونو کسان یې په نړۍ کې د شخصي او همزمان محاورو لپاره کاروي، پرداخت وکړو.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ستاسې له مرستې څخه مننه!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">له پیاوړتیا څخه مننه!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">تاسې %s بج تر لاسه کړل! ستاسې د بج ښودل به هغو خلکو ته چې تاسې چټ ورسره کوئ دا وښیې چې تاسې له Signal سره مرسته کوئ.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">پر پروفایل ښودل</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ځانګړی بج جوړول</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تر سره شو</string>
+  <string name="ManageDonationsFragment__my_support">زما  ملاتړ</string>
+  <string name="ManageDonationsFragment__manage_subscription">د ګډون مدیریت</string>
+  <string name="ManageDonationsFragment__badges">بجونه</string>
+  <string name="ManageDonationsFragment__subscription_faq">د ګډون په اړه زیاتره پوښتل شوې پوښتنې</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">د ګډون په تر لاسه کولو کې تیروتنه شوې ده.</string>
+  <string name="BoostFragment__give_signal_a_boost">د Signal پیاوړتیا ورکړئ</string>
+  <string name="BoostFragment__say_thanks_and_earn"> \"مننه!\" ووایاست او د %1$d ورځو لپاره د پیاوړتیا بج تر لاسه کړئ.</string>
+  <string name="Boost__enter_custom_amount">سفارشي مقدار دننه کړئ</string>
+  <string name="Boost__one_time_contribution">پر وخت مرسته</string>
+  <string name="MySupportPreference__add_a_signal_boost">د Signal پیاوړی کوونکی اضافه کړئ</string>
+  <string name="MySupportPreference__s_per_month">%1$s په میاشت کې</string>
+  <string name="MySupportPreference__renews_s">%1$s کې نوی کېږي</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ستاسې بج منقضي شوی دی</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">ستاسې %1$s بج منقضي شوی دی او نور به ستاسې پر پروفایل باندې نورو ته د لیدو وړ نه وي. </string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">که غواړئ چې له هغې تکنالوژۍ سره خپلې مرستې ته ادامه ورکړئ کوم چې ستاسې لپاره جوړه شوې ده - نه ستاسې د ډیټا لپاره - نو بیا د میاشتني ګډون وال کېدو په اړه غور وکړئ.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">یو ګډون وال واوسئ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">اوس نه</string>
   <!--EOF-->
 </resources>

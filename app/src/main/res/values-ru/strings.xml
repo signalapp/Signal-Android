@@ -3203,6 +3203,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Авторские права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лицензировано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Отправление медиа в высоком качестве использует больше данных.</string>
+  <string name="DataAndStorageSettingsFragment__high">Высокое</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандартное</string>
   <string name="DataAndStorageSettingsFragment__calls">Звонки</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Авто</string>
@@ -3332,7 +3335,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Остановить воспроизведение голосового сообщения</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Изменить скорость воспроизведения голосового сообщения</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Приостановить воспроизведение голосового сообщения</string>
@@ -3424,5 +3427,13 @@
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Вы должны выбрать значок</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не удалось обновить профиль</string>
   <string name="ImageView__badge">Значок</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
+  <string name="SubscribeFragment__donation_amount">Сумма пожертвования</string>
+  <string name="SubscribeFragment__not_now">Не сейчас</string>
+  <string name="SubscribeFragment__confirm">Подтвердить</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ManageDonationsFragment__badges">Значки</string>
+  <string name="Boost__enter_custom_amount">Ввести сумму</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
   <!--EOF-->
 </resources>

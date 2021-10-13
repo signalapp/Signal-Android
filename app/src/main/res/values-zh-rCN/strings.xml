@@ -2874,6 +2874,8 @@
   <string name="HelpFragment__copyright_signal_messenger">版权所有 Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">根据 GPLv3 授权许可</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">高</string>
+  <string name="DataAndStorageSettingsFragment__standard">标准</string>
   <string name="DataAndStorageSettingsFragment__calls">通话</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">自动</string>
@@ -2991,7 +2993,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">搜索名字或号码</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">相机</string>
   <string name="AvatarPickerFragment__photo">图片</string>
@@ -3017,5 +3019,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">点击选择</string>
   <string name="MediaReviewImagePageFragment__discard">放弃</string>
   <string name="SelectFeaturedBadgeFragment__preview">预览</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由如您一样的用户提供动力。</string>
+  <string name="SubscribeFragment__donation_amount">捐赠金额</string>
+  <string name="SubscribeFragment__not_now">稍后再说</string>
+  <string name="SubscribeFragment__confirm">确认</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
+  <string name="Boost__enter_custom_amount">输入自定义金额</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍后再说</string>
   <!--EOF-->
 </resources>

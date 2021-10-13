@@ -2971,6 +2971,9 @@
   <string name="HelpFragment__copyright_signal_messenger">പകർപ്പവകാശ Signal സന്ദേശകന്‍</string>
   <string name="HelpFragment__licenced_under_the_gplv3">ജിപിഎൽവി3 കീഴിൽ ലൈസൻസ്</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ഉയർന്ന നിലവാരമുള്ള മീഡിയ അയയ്ക്കുന്നത് കൂടുതൽ ഡാറ്റ ഉപയോഗിക്കും.</string>
+  <string name="DataAndStorageSettingsFragment__high">ഉയർന്ന</string>
+  <string name="DataAndStorageSettingsFragment__standard">സ്റ്റാൻഡേർഡ്</string>
   <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">ഓട്ടോ</string>
@@ -3095,7 +3098,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">പേര് അല്ലെങ്കിൽ നമ്പർ തിരയുക</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">ശബ്ദ സന്ദേശം നിർത്തുക</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">ശബ്ദ സന്ദേശം വേഗത മാറ്റുക</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ശബ്ദ സന്ദേശം താൽക്കാലികമായി നിർത്തുക</string>
@@ -3149,5 +3152,13 @@
   <string name="MediaReviewSelectedItem__tap_to_select">തിരഞ്ഞെടുക്കാൻ ടാപ്പുചെയ്യുക</string>
   <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
+  <string name="SubscribeFragment__donation_amount">സംഭാവന തുക</string>
+  <string name="SubscribeFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <string name="SubscribeFragment__confirm">സ്ഥിരീകരിക്കുക</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ചെയ്‌തു</string>
+  <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
+  <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--EOF-->
 </resources>

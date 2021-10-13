@@ -1999,6 +1999,8 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__help">Hjælp</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__donate_to_signal">Donér til Signal</string>
+  <string name="preferences__subscription">Abonnement</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Privatliv</string>
   <string name="preferences__mms_user_agent">MMS-brugeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-indstillinger</string>
@@ -3037,6 +3039,11 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__copyright_signal_messenger">Ophavsret Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenseret under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Indstil mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Afsendelse af medier i høj kvalitet bruger mere data.</string>
+  <string name="DataAndStorageSettingsFragment__high">Høj</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Opkald</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3162,7 +3169,7 @@ nummer (%s) er ugyldigt</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Søg navn eller nummer</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s - %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Stop talebesked</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Ændr hastighed på talebesked</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sæt talebesked på pause</string>
@@ -3218,6 +3225,9 @@ nummer (%s) er ugyldigt</string>
   <string name="MediaReviewFragment__add_a_reply">Tilføj et svar</string>
   <string name="MediaReviewFragment__send_to">Send til</string>
   <string name="MediaReviewFragment__view_once_message">Vis besked én gang</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Et eller flere emner var for store</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Et eller flere emner var ugyldige</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Der er valgt for mange emner</string>
   <string name="ImageEditorHud__cancel">Annullér</string>
   <string name="ImageEditorHud__draw">Tegn</string>
   <string name="ImageEditorHud__write_text">Skriv tekst</string>
@@ -3245,7 +3255,47 @@ nummer (%s) er ugyldigt</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Vælg et emblem</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du skal vælge et emblem</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Opdatering af profil mislykkedes</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv støttemedlem</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
   <string name="ImageView__badge">Emblem</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drevet af personer som dig.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - og ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der understøtte den.</string>
+  <string name="SubscribeFragment__donation_amount">Donationsbeløb</string>
+  <string name="SubscribeFragment__more_payment_options">Flere betalingsmuligheder</string>
+  <string name="SubscribeFragment__cancel_subscription">Opsig abonnement</string>
+  <string name="SubscribeFragment__confirm_cancellation">Bekræft opsigelse?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Du vil ikke blive opkrævet igen. Dit emblem bliver fjernet fra din profil ved udgangen af din faktureringsperiode.</string>
+  <string name="SubscribeFragment__not_now">Ikke nu</string>
+  <string name="SubscribeFragment__confirm">Bekræft</string>
+  <string name="SubscribeFragment__update_subscription">Opdater abonnement</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dit abonnement er blevet opsagt.</string>
+  <string name="Subscription__s_per_month">%s/måned</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/måned · Fornyes %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Hvorfor bidrage?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Teamet hos Signal er dedikeret til missionen om at udvikle open source privatlivsteknologi, der beskytter ytringsfriheden og gør sikker global kommunikation mulig. Dit bidrag støtter denne sag. Ingen annoncer. Ingen trackere. Ikke for sjov.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dit bidrag er med til at betale for udvikling, servere og båndbredde for en app, der bruges af millioner af mennesker rundt om i verden til privat og hurtig kommunikation.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tak for din støtte!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for boostet!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har gjort dig fortjent til et %s-emblem! Når du viser dit emblem, viser du de personer du chatter med, at du støtter Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gør til fremhævet emblem</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Udført</string>
+  <string name="ManageDonationsFragment__my_support">Min støtte</string>
+  <string name="ManageDonationsFragment__manage_subscription">Administrer abonnement</string>
+  <string name="ManageDonationsFragment__badges">Emblemer</string>
+  <string name="ManageDonationsFragment__subscription_faq">Abonnement OSS</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Fejl ved oprettelse af abonnement.</string>
+  <string name="BoostFragment__give_signal_a_boost">Giv Signal et boost</string>
+  <string name="BoostFragment__say_thanks_and_earn">Sig \"Tak!\", og gør dig fortjent til Boost-emblemet i %1$d dage.</string>
+  <string name="Boost__enter_custom_amount">Angiv tilpasset beløb</string>
+  <string name="Boost__one_time_contribution">Engangsbidrag</string>
+  <string name="MySupportPreference__add_a_signal_boost">Tilføj et Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/måned</string>
+  <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dit %1$s-emblem er udløbet og er ikke længere synligt for andre på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Overvej at tegne et månedsabonnement for forsat at støtte op om teknologi, der er udviklet til dig - ikke for at høste dine data.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bliv abonnent</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
   <!--EOF-->
 </resources>

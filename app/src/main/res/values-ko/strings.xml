@@ -2889,6 +2889,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 저작권</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3에 따라 라이선스가 부여됨</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">높음</string>
+  <string name="DataAndStorageSettingsFragment__standard">기본</string>
   <string name="DataAndStorageSettingsFragment__calls">전화</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">자동</string>
@@ -3011,7 +3013,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">이름 또는 번호 검색</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s, %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">아바타 미리 보기</string>
   <string name="AvatarPickerFragment__camera">카메라</string>
@@ -3044,5 +3046,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">탭하여 선택</string>
   <string name="MediaReviewImagePageFragment__discard">파기</string>
   <string name="SelectFeaturedBadgeFragment__preview">미리보기</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal은 귀하와 같은 분들이 만들어나갑니다.</string>
+  <string name="SubscribeFragment__donation_amount">기부 금액</string>
+  <string name="SubscribeFragment__not_now">나중에</string>
+  <string name="SubscribeFragment__confirm">확인</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">확인</string>
+  <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
   <!--EOF-->
 </resources>

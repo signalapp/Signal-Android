@@ -2661,6 +2661,8 @@
   <string name="HelpSettingsFragment__debug_log">డీబగ్ సంఘటన లేకరి</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">నిబంధనలు &amp; గోప్యతా విధానం</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">అధికం</string>
+  <string name="DataAndStorageSettingsFragment__standard">ప్రామాణికం</string>
   <string name="DataAndStorageSettingsFragment__calls">కాల్స్</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">మాటామంతీ రంగు </string>
@@ -2742,7 +2744,7 @@
   <string name="NewConversationActivity__new_message">కొత్త సందేశం</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">కెమెరా</string>
   <string name="AvatarPickerFragment__photo">ఛాయాచిత్రం</string>
@@ -2779,5 +2781,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">ఎంచుకోవడానికి నొక్కండి</string>
   <string name="MediaReviewImagePageFragment__discard">తీసివేయు</string>
   <string name="SelectFeaturedBadgeFragment__preview">పూర్వప్రదర్శన</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal మీలాంటి వ్యక్తులచే ఆధారితం.</string>
+  <string name="SubscribeFragment__donation_amount">విరాళం మొత్తం</string>
+  <string name="SubscribeFragment__not_now">ఇప్పుడు కాదు</string>
+  <string name="SubscribeFragment__confirm">నిర్ధారించండి</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">పూర్తయింది</string>
+  <string name="Boost__enter_custom_amount">అనుకూల మొత్తాన్ని నమోదు చేయండి</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ఇప్పుడు కాదు</string>
   <!--EOF-->
 </resources>

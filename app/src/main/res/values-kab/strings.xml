@@ -2682,6 +2682,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpSettingsFragment__version">Lqem</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Tiwtilin &amp; Tsertit n Tbaḍnit</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Meqqer</string>
   <string name="DataAndStorageSettingsFragment__calls">Isawalen</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">Ini n udiwenni</string>
@@ -2741,7 +2742,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="NewConversationActivity__new_message">Izen amaynut</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Amḍiq n taɣdeft</string>
   <string name="AvatarPickerFragment__photo">Tawlaft</string>
@@ -2761,5 +2761,9 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Sit i wakken ad tferneḍ</string>
   <string name="MediaReviewImagePageFragment__discard">Agi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Taskant</string>
+  <string name="SubscribeFragment__not_now">Mačči tura</string>
+  <string name="SubscribeFragment__confirm">Sentem</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Yemmed</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mačči tura</string>
   <!--EOF-->
 </resources>

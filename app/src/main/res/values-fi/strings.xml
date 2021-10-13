@@ -2997,6 +2997,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensoitu GPLv3-lisenssillä</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Korkealaatuiden median lähetys kuluttaa enemmän dataa.</string>
+  <string name="DataAndStorageSettingsFragment__high">Korkea</string>
+  <string name="DataAndStorageSettingsFragment__standard">Vakio</string>
   <string name="DataAndStorageSettingsFragment__calls">Puhelut</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3121,7 +3124,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Etsi nimellä tai numerolla</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">%1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Pysäytä ääniviesti</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Muuta ääniviestin nopeutta</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Tauota ääniviesti</string>
@@ -3187,5 +3190,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
   <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
   <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Kaltaisesti ihmiset pitävät Signalin tehokkaana.</string>
+  <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string>
+  <string name="SubscribeFragment__not_now">Ei nyt</string>
+  <string name="SubscribeFragment__confirm">Vahvista</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
+  <string name="Boost__enter_custom_amount">Syöltä muu summa</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
   <!--EOF-->
 </resources>

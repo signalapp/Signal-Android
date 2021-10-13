@@ -2881,6 +2881,9 @@
   <string name="HelpFragment__copyright_signal_messenger">ลิขสิทธิ์ Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">อนุญาตให้ใช้ภายใต้ GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">การส่งสื่อคุณภาพสูงจะใช้ข้อมูลมากขึ้น</string>
+  <string name="DataAndStorageSettingsFragment__high">สูง</string>
+  <string name="DataAndStorageSettingsFragment__standard">มาตรฐาน</string>
   <string name="DataAndStorageSettingsFragment__calls">การโทร</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">อัตโนมัติ</string>
@@ -3003,7 +3006,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">ค้นหาชื่อหรือหมายเลข</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">หยุดข้อความเสียง</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">เปลี่ยนความเร็วข้อความเสียง</string>
   <string name="VoiceNotePlayerView__pause_voice_message">หยุดข้อความเสียงชั่วคราว</string>
@@ -3041,5 +3044,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">แตะเพื่อเลือก</string>
   <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
   <string name="SelectFeaturedBadgeFragment__preview">ภาพตัวอย่าง</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ขับเคลื่อนโดยผู้คนเช่นคุณ</string>
+  <string name="SubscribeFragment__donation_amount">จำนวนการบริจาค</string>
+  <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
+  <string name="SubscribeFragment__confirm">ยืนยัน</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">เสร็จสิ้น</string>
+  <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ไม่ใช่ตอนนี้</string>
   <!--EOF-->
 </resources>

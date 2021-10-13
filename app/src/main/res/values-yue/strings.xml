@@ -1924,6 +1924,7 @@
   <string name="preferences__help">說明</string>
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">課金 Signal</string>
+  <string name="preferences__signal_boost">幫 Signal 買支旗</string>
   <string name="preferences__privacy">私隱</string>
   <string name="preferences__mms_user_agent">MMS 使用者代理</string>
   <string name="preferences__advanced_mms_access_point_names">手動 MMS 設定</string>
@@ -2952,6 +2953,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
   <string name="HelpFragment__licenced_under_the_gplv3">根據 GPLv3 嘅協議授權</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">多媒體檔案嘅畫質</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">發送多媒體檔案嘅畫質</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">發送高畫質嘅多媒體檔案會用多啲數據。</string>
+  <string name="DataAndStorageSettingsFragment__high">高</string>
+  <string name="DataAndStorageSettingsFragment__standard">標準</string>
   <string name="DataAndStorageSettingsFragment__calls">通話</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">自動</string>
@@ -3075,7 +3081,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">查名或者冧把</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">調整語音訊息速度</string>
   <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>
@@ -3127,6 +3133,9 @@
   <string name="MediaReviewFragment__add_a_reply">寫返句回覆</string>
   <string name="MediaReviewFragment__send_to">傳畀</string>
   <string name="MediaReviewFragment__view_once_message">流聲掠影訊息</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">有啲項目大得滯</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">有啲項目無效</string>
+  <string name="MediaReviewFragment__too_many_items_selected">揀選嘅項目多得滯</string>
   <string name="ImageEditorHud__cancel">取消</string>
   <string name="ImageEditorHud__draw">畫畫</string>
   <string name="ImageEditorHud__write_text">題字</string>
@@ -3156,5 +3165,16 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新唔到個人資料</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
   <string name="ImageView__badge">襟章</string>
+  <string name="SubscribeFragment__donation_amount">捐款金額</string>
+  <string name="SubscribeFragment__more_payment_options">其他付款方式</string>
+  <string name="SubscribeFragment__not_now">遲啲先啦</string>
+  <string name="SubscribeFragment__confirm">確認</string>
+  <string name="Subscription__s_per_month">每月 %s</string>
+  <string name="Subscription__s_per_month_dot_renews_s">每月 %1$s · 到 %2$s 續期</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">搞掂</string>
+  <string name="ManageDonationsFragment__badges">襟章</string>
+  <string name="MySupportPreference__s_per_month">每月 %1$s</string>
+  <string name="MySupportPreference__renews_s">到 %1$s 續期</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
   <!--EOF-->
 </resources>

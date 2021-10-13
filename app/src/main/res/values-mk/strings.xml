@@ -2975,6 +2975,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Авторски права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Високо</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандардно</string>
   <string name="DataAndStorageSettingsFragment__calls">Повици</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Автоматски</string>
@@ -3100,7 +3102,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Пребарај име или број</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Стопирај гласовна порака</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Промени ја брзината на гласовната порака</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Паузирај гласовна порака</string>
@@ -3181,5 +3183,10 @@
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Морате да изберете беџ</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не успеав да го ажурирам профилот</string>
   <string name="ImageView__badge">Беџ</string>
+  <string name="SubscribeFragment__not_now">Не сега</string>
+  <string name="SubscribeFragment__confirm">Потврди</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ManageDonationsFragment__badges">Беџови</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--EOF-->
 </resources>

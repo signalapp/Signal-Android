@@ -3042,6 +3042,9 @@ broj telefona</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 licenca</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Slanje visokokvalitetnih medija zahtjeva veću potrošnju mobilnih podataka.</string>
+  <string name="DataAndStorageSettingsFragment__high">Visoko</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standardno</string>
   <string name="DataAndStorageSettingsFragment__calls">Pozivi</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3166,7 +3169,7 @@ broj telefona</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Pretraži ime ili broj</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Zaustavi glasovnu poruku</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Promijeni brzinu glasovne poruke</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pauziraj glasovnu poruku</string>
@@ -3211,5 +3214,12 @@ broj telefona</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pritisni za odabir slike profila</string>
   <string name="MediaReviewImagePageFragment__discard">Poništi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pregled</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal napajaju ljudi poput vas.</string>
+  <string name="SubscribeFragment__donation_amount">Iznos donacije</string>
+  <string name="SubscribeFragment__not_now">Ne sada</string>
+  <string name="SubscribeFragment__confirm">Potvrdi</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotovo</string>
+  <string name="Boost__enter_custom_amount">Unesi prilagođeni iznos</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <!--EOF-->
 </resources>

@@ -3210,6 +3210,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Autorių teisės Signal pokalbių programėlė</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licencijuota pagal GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Aukštos kokybės medijos siuntimas naudos daugiau tinklo duomenų.</string>
+  <string name="DataAndStorageSettingsFragment__high">Aukšta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standartinė</string>
   <string name="DataAndStorageSettingsFragment__calls">Skambučiai</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3339,7 +3342,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Ieškoti vardo ar numerio</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Stabdyti balso žinutę</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Keisti balso žinutės greitį</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pristabdyti balso žinutę</string>
@@ -3430,5 +3433,13 @@
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Privalote pasirinkti ženkliuką</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nepavyko atnaujinti profilio</string>
   <string name="ImageView__badge">Ženkliukas</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal veikia dėka tokių žmonių kaip jūs.</string>
+  <string name="SubscribeFragment__donation_amount">Paaukojimo suma</string>
+  <string name="SubscribeFragment__not_now">Ne dabar</string>
+  <string name="SubscribeFragment__confirm">Patvirtinkite</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Atlikta</string>
+  <string name="ManageDonationsFragment__badges">Ženkliukai</string>
+  <string name="Boost__enter_custom_amount">Įveskite tinkintą sumą</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <!--EOF-->
 </resources>

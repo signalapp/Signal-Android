@@ -2948,6 +2948,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
   <string name="HelpFragment__licenced_under_the_gplv3">根據 GPLv3 授權</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">傳送高畫質的媒體檔將會使用較多數據。</string>
+  <string name="DataAndStorageSettingsFragment__high">高</string>
+  <string name="DataAndStorageSettingsFragment__standard">標準</string>
   <string name="DataAndStorageSettingsFragment__calls">通話</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">自動</string>
@@ -3071,7 +3074,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">搜尋姓名或電話號碼</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">變更語音訊息速度</string>
   <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>
@@ -3152,5 +3155,13 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">無法更新個人資料</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
   <string name="ImageView__badge">徽章</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由像你這樣的人提供動力。</string>
+  <string name="SubscribeFragment__donation_amount">捐款金額</string>
+  <string name="SubscribeFragment__not_now">稍後</string>
+  <string name="SubscribeFragment__confirm">確認</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
+  <string name="ManageDonationsFragment__badges">徽章</string>
+  <string name="Boost__enter_custom_amount">輸入自定義金額</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <!--EOF-->
 </resources>

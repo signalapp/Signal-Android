@@ -3031,6 +3031,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenserad under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Att skicka högkvalitativa medier kommer att använda mer data.</string>
+  <string name="DataAndStorageSettingsFragment__high">Hög</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Samtal</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automatiskt</string>
@@ -3155,7 +3158,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Sök namn eller nummer</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Stoppa röstmeddelandet</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Ändra röstmeddelandets hastighet</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausa röstmeddelandet</string>
@@ -3240,5 +3243,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
   <string name="ImageView__badge">Märke</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drivs av människor som du.</string>
+  <string name="SubscribeFragment__donation_amount">Donationsbelopp</string>
+  <string name="SubscribeFragment__not_now">Inte nu</string>
+  <string name="SubscribeFragment__confirm">Bekräfta</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klar</string>
+  <string name="ManageDonationsFragment__badges">Märken</string>
+  <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
   <!--EOF-->
 </resources>

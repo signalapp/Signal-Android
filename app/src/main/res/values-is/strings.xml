@@ -3036,6 +3036,9 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="HelpFragment__copyright_signal_messenger">Höfundarréttur Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Gefið út með GPLv3-notkunarleyfi</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending hágæða-myndefnis mun nota meira gagnamagn.</string>
+  <string name="DataAndStorageSettingsFragment__high">Mikil</string>
+  <string name="DataAndStorageSettingsFragment__standard">Staðlað</string>
   <string name="DataAndStorageSettingsFragment__calls">Símtöl</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Sjálfvirkt</string>
@@ -3161,7 +3164,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Leita eftir nafni eða símanúmeri</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Stöðva talskilaboð</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Breyta hraða talskilaboða</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Setja talskilaboð á bið</string>
@@ -3236,5 +3239,12 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Þú munt tapa öllum breytingum sem þú hefur gert á þessari mynd.</string>
   <string name="CameraFragment__failed_to_open_camera">Mistókst að opna myndavél</string>
   <string name="SelectFeaturedBadgeFragment__preview">Forskoða</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drifið áfram af fólki eins og þér.</string>
+  <string name="SubscribeFragment__donation_amount">Upphæð styrks</string>
+  <string name="SubscribeFragment__not_now">Ekki núna</string>
+  <string name="SubscribeFragment__confirm">Staðfesta</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Lokið</string>
+  <string name="Boost__enter_custom_amount">Settu inn sérsniðna upphæð</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
   <!--EOF-->
 </resources>

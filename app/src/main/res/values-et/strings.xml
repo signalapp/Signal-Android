@@ -2872,6 +2872,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Autoriõigus Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Litsentsitud GPLv3 litsentsiga</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Kõrge kvaliteediga meedia saatmine kasutab rohkem andmesidet.</string>
+  <string name="DataAndStorageSettingsFragment__high">Kõrge</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standardne</string>
   <string name="DataAndStorageSettingsFragment__calls">Kõned</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automaatne</string>
@@ -2996,7 +2999,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Otsi nime või numbri järgi</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Lõpeta häälsõnum</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Muuda häälsõnumi kiirust</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pane häälsõnum pausile</string>
@@ -3071,5 +3074,12 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Sa kaotad kõik sellele fotole tehtud muudatused</string>
   <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
   <string name="SelectFeaturedBadgeFragment__preview">Eelvaade</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalit loovad sinusugused inimesed.</string>
+  <string name="SubscribeFragment__donation_amount">Annetuse summa</string>
+  <string name="SubscribeFragment__not_now">Mitte praegu</string>
+  <string name="SubscribeFragment__confirm">Kinnita</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
+  <string name="Boost__enter_custom_amount">Sisesta kohandatud summa</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <!--EOF-->
 </resources>

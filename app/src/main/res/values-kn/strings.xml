@@ -2962,6 +2962,8 @@
   <string name="HelpFragment__copyright_signal_messenger">ಹಕ್ಕುಸ್ವಾಮ್ಯ Signal ಮೆಸೆಂಜರ್</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ಅಡಿಯಲ್ಲಿ ಲೈಸೆನ್ಸ್‌ ಪಡೆದಿದೆ</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">ಹೆಚ್ಚು</string>
+  <string name="DataAndStorageSettingsFragment__standard">ಪ್ರಮಾಣಿತ</string>
   <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">ಸ್ವಯಂಚಾಲಿತ</string>
@@ -3086,7 +3088,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ ನಡೆಸಿ</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ನಿಲ್ಲಿಸಿ</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">ಧ್ವನಿ ಸಂದೇಶದ ವೇಗವನ್ನು ಬದಲಿಸಿ</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ಸದ್ಯಕ್ಕೆ ನಿಲ್ಲಿಸಿ</string>
@@ -3124,5 +3126,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">ಆಯ್ಕೆ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="MediaReviewImagePageFragment__discard">ತ್ಯಜಿಸಿ</string>
   <string name="SelectFeaturedBadgeFragment__preview">ಪ್ರಿವ್ಯೂ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ಅನ್ನು ನಿಮ್ಮಂಥ ಜನರೇ ನಡೆಸುತ್ತಿದ್ದಾರೆ.</string>
+  <string name="SubscribeFragment__donation_amount">ಕೊಡುಗೆಯ ಮೊತ್ತ</string>
+  <string name="SubscribeFragment__not_now">ಈಗಲ್ಲ</string>
+  <string name="SubscribeFragment__confirm">ದೃಢೀಕರಿಸಿ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ಮುಗಿದಿದೆ</string>
+  <string name="Boost__enter_custom_amount">ಕಸ್ಟಮ್‌ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ಈಗಲ್ಲ</string>
   <!--EOF-->
 </resources>

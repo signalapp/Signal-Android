@@ -2951,6 +2951,8 @@
   <string name="HelpFragment__copyright_signal_messenger">کاپی رائٹ Signal میسنجر</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 کے تحت لائسنس یافتہ</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">اونچا</string>
+  <string name="DataAndStorageSettingsFragment__standard">معیار</string>
   <string name="DataAndStorageSettingsFragment__calls">کالز</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">آٹو</string>
@@ -3073,7 +3075,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">نام یا نمبر تلاش کریں</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">اوتار پیش نظارہ</string>
   <string name="AvatarPickerFragment__camera">کیمرہ</string>
@@ -3105,5 +3107,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">منتخب کرنے کے لیے ٹیپ کریں</string>
   <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
   <string name="SelectFeaturedBadgeFragment__preview">پیش نظارہ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal آپ جیسے لوگوں کے ذریعہ تقویت یافتہ ہے۔</string>
+  <string name="SubscribeFragment__donation_amount">عطیہ کی رقم۔</string>
+  <string name="SubscribeFragment__not_now">ابھی نہیں</string>
+  <string name="SubscribeFragment__confirm">تصدیق</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ہو گیا</string>
+  <string name="Boost__enter_custom_amount">اپنی مرضی کی رقم درج کریں۔</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ابھی نہیں</string>
   <!--EOF-->
 </resources>

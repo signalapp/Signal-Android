@@ -2151,6 +2151,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__help">Pomocník</string>
   <string name="preferences__advanced">Rozšírené</string>
   <string name="preferences__donate_to_signal">Prispieť na Signal</string>
+  <string name="preferences__subscription">Predplatné</string>
   <string name="preferences__privacy">Súkromie</string>
   <string name="preferences__mms_user_agent">MMS používateľský agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuálne MMS nastavenia</string>
@@ -3209,6 +3210,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Pod licenciou GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kvalita médií</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalita odoslaných médií</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Odosielanie médií vo vysokej kvalite využije viac dát.</string>
+  <string name="DataAndStorageSettingsFragment__high">Vysoká</string>
+  <string name="DataAndStorageSettingsFragment__standard">Štandardná</string>
   <string name="DataAndStorageSettingsFragment__calls">Volania</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automatická</string>
@@ -3338,7 +3344,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Vyhľadajte meno, alebo číslo</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Zastaviť hlasovú správu</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Zmeniť rýchlosť hlasových správ</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pozastaviť hlasovú správu</string>
@@ -3402,6 +3408,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MediaReviewFragment__add_a_reply">Pridať odpoveď</string>
   <string name="MediaReviewFragment__send_to">Poslať</string>
   <string name="MediaReviewFragment__view_once_message">Zobraziť správu raz</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jedna, alebo viac položiek bolo príliš veľkých</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jedna, alebo viac položiek je neplatných</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Je vybratých príliš veľa položiek</string>
   <string name="ImageEditorHud__cancel">Zrušiť</string>
   <string name="ImageEditorHud__draw">Nakreslite</string>
   <string name="ImageEditorHud__write_text">Napíšte text</string>
@@ -3431,5 +3440,23 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Aktualizácia profilu zlyhala</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte sa udržovateľom</string>
   <string name="ImageView__badge">Odznak</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal používajú ľudia ako vy.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podporte technológiu, ktorá je vytvorená pre vás, nie pre vaše údaje, pripojením sa ku komunite ľudí, ktorí ju udržujú.</string>
+  <string name="SubscribeFragment__donation_amount">Výška daru</string>
+  <string name="SubscribeFragment__more_payment_options">Viac platobných možností</string>
+  <string name="SubscribeFragment__cancel_subscription">Zrušiť predplatné</string>
+  <string name="SubscribeFragment__confirm_cancellation">Potvrdiť zrušenie?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Už vám nebudeme účtovať žiadne poplatky. Na konci fakturačného obdobia bude váš odznak odstránený z vášho profilu.</string>
+  <string name="SubscribeFragment__not_now">Teraz nie</string>
+  <string name="SubscribeFragment__confirm">Potvrdiť</string>
+  <string name="SubscribeFragment__update_subscription">Aktualizovať predplatné</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše predplatné bolo zrušené.</string>
+  <string name="Subscription__s_per_month">%s/mesiac</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesiac · Obnovenie %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizácia bez žiadnych inzerentov, alebo investorov a udržiava ju iba ľudia, ktorí ju používajú a vážia si ju. Prispievajte opakovane mesačne a získajte odznak profilu, aby ste sa mohli podeliť o svoju podporu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
+  <string name="ManageDonationsFragment__badges">Odznaky</string>
+  <string name="Boost__enter_custom_amount">Zadajte vlastnú čiastku</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
   <!--EOF-->
 </resources>

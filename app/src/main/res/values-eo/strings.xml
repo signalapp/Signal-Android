@@ -2882,6 +2882,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__copyright_signal_messenger">Kopirajto Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Laŭ la permisilo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Defaŭlta</string>
   <string name="DataAndStorageSettingsFragment__calls">Alvokoj</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Aŭto.</string>
@@ -2996,7 +2998,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NewConversationActivity__new_message">Nova mesaĝo</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Fotilo</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
@@ -3019,5 +3020,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaReviewSelectedItem__tap_to_select">Tuŝeto por elekti</string>
   <string name="MediaReviewImagePageFragment__discard">Ne konservi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Antaŭrigardo</string>
+  <string name="SubscribeFragment__not_now">Ne nun</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Farita</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
   <!--EOF-->
 </resources>

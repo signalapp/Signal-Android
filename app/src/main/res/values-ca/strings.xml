@@ -3032,6 +3032,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Amb llicència de GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">L’enviament de mitjans d’alta qualitat usarà més dades.</string>
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Estàndard</string>
   <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automàtic</string>
@@ -3157,7 +3160,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cerqueu un nom o un número</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Atura el missatge de veu</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Canvia la velocitat del missatge de veu</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Interromp el missatge de veu</string>
@@ -3242,5 +3245,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
   <string name="ImageView__badge">Insígnia</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">El Signal és alimentat per persones com vosaltres.</string>
+  <string name="SubscribeFragment__donation_amount">Quantitat de la donació</string>
+  <string name="SubscribeFragment__not_now">Ara no</string>
+  <string name="SubscribeFragment__confirm">Confirmació</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fet</string>
+  <string name="ManageDonationsFragment__badges">Insígnies</string>
+  <string name="Boost__enter_custom_amount">Introduïu la quantitat personalitzada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
   <!--EOF-->
 </resources>

@@ -2848,6 +2848,8 @@
   <string name="HelpSettingsFragment__debug_log">Отчет за грешки</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Условия и Политика за поверителност</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Високо</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандартно</string>
   <string name="DataAndStorageSettingsFragment__calls">Обаждания</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Автоматично</string>
@@ -2961,7 +2963,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Търси по име или номер</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Преглед на аватар</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
@@ -2993,5 +2995,9 @@
   <string name="MediaReviewSelectedItem__tap_to_select">Натиснете, за да изберете</string>
   <string name="MediaReviewImagePageFragment__discard">Откажи</string>
   <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>
+  <string name="SubscribeFragment__not_now">Не сега</string>
+  <string name="SubscribeFragment__confirm">Потвърждение</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--EOF-->
 </resources>

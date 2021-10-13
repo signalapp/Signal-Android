@@ -2957,6 +2957,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger এর কপিরাইট</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 লাইসেন্সে নথিভুক্ত</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">উচ্চ</string>
+  <string name="DataAndStorageSettingsFragment__standard">স্ট্যান্ডার্ড</string>
   <string name="DataAndStorageSettingsFragment__calls">কল সমূহ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">স্বয়ংক্রিয়</string>
@@ -3081,7 +3083,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">নাম বা নাম্বার খুঁজুন</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">মৌখিক বার্তা থামাও</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">মৌখিক বার্তার গতি পাল্টাও</string>
   <string name="VoiceNotePlayerView__pause_voice_message">মৌখিক বার্তা থামাও</string>
@@ -3119,5 +3121,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">নির্বাচন করতে চাপুন</string>
   <string name="MediaReviewImagePageFragment__discard">বাতিল করুন</string>
   <string name="SelectFeaturedBadgeFragment__preview">প্রিভিউ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal আপনার মতো ব্যক্তির সহায়তায় পরিচালিত হয়।</string>
+  <string name="SubscribeFragment__donation_amount">অনুদানের পরিমাণ</string>
+  <string name="SubscribeFragment__not_now">এখন না</string>
+  <string name="SubscribeFragment__confirm">নিশ্চিত করুন</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">শেষ</string>
+  <string name="Boost__enter_custom_amount">কাস্টম পরিমাণ লিখুন</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
   <!--EOF-->
 </resources>

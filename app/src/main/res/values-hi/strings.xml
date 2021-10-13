@@ -2957,6 +2957,9 @@
   <string name="HelpFragment__copyright_signal_messenger">कॉपीराइट Signal मेसेंजर</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 के तहत लायसेंसीकृत</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">हाई क्वालिटी मीडिया भेजने के लिए अधिक डेटा खर्च होगा।</string>
+  <string name="DataAndStorageSettingsFragment__high">उच्च</string>
+  <string name="DataAndStorageSettingsFragment__standard">मानक</string>
   <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">स्वतः</string>
@@ -3081,7 +3084,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">नाम या नंबर खोजें</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">वॉइस संदेश बंद करें</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">वॉइस संदेश की स्पीड बदलें</string>
   <string name="VoiceNotePlayerView__pause_voice_message">वॉइस संदेश रोकें</string>
@@ -3119,5 +3122,12 @@
   <string name="MediaReviewSelectedItem__tap_to_select">चयन के लिए टैप करें</string>
   <string name="MediaReviewImagePageFragment__discard">रद्द करें</string>
   <string name="SelectFeaturedBadgeFragment__preview">प्रीव्यू</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आप जैसे लोगों से ही चल रहा है।</string>
+  <string name="SubscribeFragment__donation_amount">दान राशि</string>
+  <string name="SubscribeFragment__not_now">अभी नहीं</string>
+  <string name="SubscribeFragment__confirm">पुष्टि करें</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">पूर्ण</string>
+  <string name="Boost__enter_custom_amount">कस्टम राशि दर्ज करें</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
   <!--EOF-->
 </resources>

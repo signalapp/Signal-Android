@@ -3035,6 +3035,9 @@
   <string name="HelpFragment__copyright_signal_messenger">حق تکثیر پیام‌رسان سیگنال</string>
   <string name="HelpFragment__licenced_under_the_gplv3">پروانهٔ GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ارسال رسانه با کیفیت بالا از داده‌های بیشتری استفاده خواهد کرد.</string>
+  <string name="DataAndStorageSettingsFragment__high">عالی</string>
+  <string name="DataAndStorageSettingsFragment__standard">استاندارد</string>
   <string name="DataAndStorageSettingsFragment__calls">تماس‌ها</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">خودکار</string>
@@ -3160,7 +3163,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">%1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">توقف پیام صوتی</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">تغییر سرعت پیام صوتی</string>
   <string name="VoiceNotePlayerView__pause_voice_message">توقف موقت پیام صوتی</string>
@@ -3243,5 +3246,13 @@
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">شما باید یک نشان انتخاب کنید</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
   <string name="ImageView__badge">نشان</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">سیگنال با کمک افرادی همانند شما پشتیبانی می‌شود.</string>
+  <string name="SubscribeFragment__donation_amount">مبلغ کمک اهدایی</string>
+  <string name="SubscribeFragment__not_now">حالا نه</string>
+  <string name="SubscribeFragment__confirm">تأیید کنید</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمام</string>
+  <string name="ManageDonationsFragment__badges">نشان‌ها</string>
+  <string name="Boost__enter_custom_amount">مبلغ دلخواه را وارد کنید</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
   <!--EOF-->
 </resources>

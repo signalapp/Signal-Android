@@ -3049,6 +3049,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="HelpFragment__copyright_signal_messenger">Autortiesības Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licencēta saskaņā ar GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sūtot augstas kvalitātes multivides saturu, tiks izmantots vairāk datu.</string>
+  <string name="DataAndStorageSettingsFragment__high">Augsta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standarta</string>
   <string name="DataAndStorageSettingsFragment__calls">Zvani</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automātiski</string>
@@ -3175,7 +3178,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Meklēt vārdu vai numuru</string>
   <!--VoiceNotePlayerView-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string> -->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Pārtraukt atskaņot balss ziņu</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Mainīt balss ziņas atskaņošanas ātrumu</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Apturēt balss ziņu</string>
@@ -3217,5 +3220,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MediaReviewSelectedItem__tap_to_select">Pieskarieties, lai izvēlētos</string>
   <string name="MediaReviewImagePageFragment__discard">Atmest</string>
   <string name="SelectFeaturedBadgeFragment__preview">Priekšskatīt</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal attīsta un uzlabo tādi cilvēki kā jūs.</string>
+  <string name="SubscribeFragment__donation_amount">Ziedojuma summa</string>
+  <string name="SubscribeFragment__not_now">Ne tagad</string>
+  <string name="SubscribeFragment__confirm">Apstiprināt</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Darīts</string>
+  <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne tagad</string>
   <!--EOF-->
 </resources>
