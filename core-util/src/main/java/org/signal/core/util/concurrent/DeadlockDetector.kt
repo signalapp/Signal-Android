@@ -1,9 +1,7 @@
 package org.signal.core.util.concurrent
 
 import android.os.Handler
-import android.os.SystemClock
 import org.signal.core.util.logging.Log
-import java.util.concurrent.TimeUnit
 
 /**
  * A class that polls active threads at a set interval and logs when multiple threads are BLOCKED.
@@ -11,6 +9,7 @@ import java.util.concurrent.TimeUnit
 class DeadlockDetector(private val handler: Handler, private val pollingInterval: Long) {
 
   private var running = false
+  private val previouslyBlocked: MutableSet<Long> = mutableSetOf()
 
   fun start() {
     Log.d(TAG, "Beginning deadlock monitoring.");
@@ -25,12 +24,35 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
   }
 
   private fun poll() {
-    val threads = Thread.getAllStackTraces()
-    val blocked = threads.filterKeys { thread -> thread.state == Thread.State.BLOCKED }
+    val threads: Map<Thread, Array<StackTraceElement>> = Thread.getAllStackTraces()
+    val blocked: Map<Thread, Array<StackTraceElement>> = threads.filter { entry ->
+      val thread: Thread = entry.key
+      val stack: Array<StackTraceElement> = entry.value
+
+      thread.state == Thread.State.BLOCKED || (thread.state == Thread.State.WAITING && stack.any { it.methodName.startsWith("lock") })
+    }
+    val blockedIds: Set<Long> = blocked.keys.map(Thread::getId).toSet()
 
     if (blocked.size > 1) {
-      Log.w(TAG, buildLogString(blocked))
+      Log.w(TAG, buildLogString("Found multiple blocked threads! Possible deadlock.", blocked))
+    } else {
+      val stillBlocked: Set<Long> = blockedIds.intersect(previouslyBlocked)
+
+      if (stillBlocked.isNotEmpty()) {
+        val stillBlockedMap: Map<Thread, Array<StackTraceElement>> = stillBlocked
+          .map { blockedId ->
+            val key: Thread = blocked.keys.first { it.id == blockedId }
+            val value: Array<StackTraceElement> = blocked[key]!!
+            Pair(key, value)
+          }
+          .toMap()
+
+        Log.w(TAG, buildLogString("Found a long block! Blocked for at least $pollingInterval ms.", stillBlockedMap))
+      }
     }
+
+    previouslyBlocked.clear()
+    previouslyBlocked.addAll(blockedIds)
 
     if (running) {
       handler.postDelayed(this::poll, pollingInterval)
@@ -40,9 +62,9 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
   companion object {
     private val TAG = Log.tag(DeadlockDetector::class.java)
 
-    private fun buildLogString(blocked: Map<Thread, Array<StackTraceElement>>): String {
+    private fun buildLogString(description: String, blocked: Map<Thread, Array<StackTraceElement>>): String {
       val stringBuilder = StringBuilder()
-      stringBuilder.append("Found multiple blocked threads! Possible deadlock.\n")
+      stringBuilder.append(description).append("\n")
 
       for (entry in blocked) {
         stringBuilder.append("-- [${entry.key.id}] ${entry.key.name}\n")
