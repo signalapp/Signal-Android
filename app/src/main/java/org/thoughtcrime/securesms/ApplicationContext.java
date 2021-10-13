@@ -54,11 +54,8 @@ import org.thoughtcrime.securesms.crypto.KeyPairUtilities;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.database.Storage;
-import org.thoughtcrime.securesms.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.dependencies.DatabaseModule;
-import org.thoughtcrime.securesms.groups.OpenGroupManager;
-import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.groups.OpenGroupManager;
 import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -148,6 +145,9 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
     }
 
     public Handler getConversationListNotificationHandler() {
+        if (this.conversationListNotificationHandler == null) {
+            conversationListNotificationHandler = new Handler(Looper.getMainLooper());
+        }
         return this.conversationListNotificationHandler;
     }
 
@@ -155,7 +155,7 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
         return this.persistentLogger;
     }
 
-@Override
+    @Override
     public void onCreate() {
         DatabaseModule.init(this);
         super.onCreate();
@@ -169,7 +169,6 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
         AppContext.INSTANCE.configureKovenant();
         messageNotifier = new OptimizedMessageNotifier(new DefaultMessageNotifier());
         broadcaster = new Broadcaster(this);
-        conversationListNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = getDatabaseComponent().lokiAPIDatabase();
         MessagingModuleConfiguration.Companion.configure(this,
                 storage,
