@@ -1914,6 +1914,7 @@
   <string name="preferences__help">ヘルプ</string>
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__donate_to_signal">Signalへの寄付</string>
+  <string name="preferences__subscription">サブスクリプション</string>
   <string name="preferences__signal_boost">Signalブースト</string>
   <string name="preferences__privacy">プライバシー</string>
   <string name="preferences__mms_user_agent">MMSユーザーエージェント</string>
@@ -3125,6 +3126,7 @@
   <string name="MediaReviewFragment__view_once_message">使い捨てメッセージ</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">1つ以上のアイテムのサイズが大きすぎます</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">1つ以上のアイテムが不正です</string>
+  <string name="MediaReviewFragment__too_many_items_selected">選択されたアイテムが多すぎます</string>
   <string name="ImageEditorHud__cancel">キャンセル</string>
   <string name="ImageEditorHud__draw">描く</string>
   <string name="ImageEditorHud__write_text">テキストを記入</string>
@@ -3155,12 +3157,31 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
   <string name="ImageView__badge">バッジ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalはユーザーの皆様によって支えられています。</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">データのためではなく、あなたのために作られた技術を支える人々のコミュニティに参加して、ご支援をお願いします。</string>
   <string name="SubscribeFragment__donation_amount">寄付額</string>
+  <string name="SubscribeFragment__more_payment_options">ほかの支払い方法</string>
+  <string name="SubscribeFragment__confirm_cancellation">キャンセルしますか？</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">再度課金されることはありません。バッジは課金期間が終了すると、プロフィールから削除されます。</string>
   <string name="SubscribeFragment__not_now">あとで</string>
   <string name="SubscribeFragment__confirm">確認</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">あなたのサブスクリプションはキャンセルされました。</string>
+  <string name="Subscription__s_per_month">%s/月</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · 更新 %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、Signalを利用し、評価くださる方々によって支えられています。毎月の定期的な寄付をいただき、あなたの支援を示すプロフィールバッジを受け取ってください。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援ありがとうございます！</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
+  <string name="ManageDonationsFragment__my_support">私の支援</string>
   <string name="ManageDonationsFragment__badges">バッジ</string>
+  <string name="ManageDonationsFragment__subscription_faq">サブスクリプションのよくある質問</string>
+  <string name="BoostFragment__say_thanks_and_earn">「ありがとう！」と言って、%1$d日間のBoostバッジを獲得してください。 </string>
   <string name="Boost__enter_custom_amount">金額を入力してください</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加</string>
+  <string name="MySupportPreference__s_per_month">%1$s/月</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">バッジの有効期限が切れました</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$sバッジは有効期限が切れ、プロフィールには表示されません。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">データのためではなく、あなたのために作られた技術を継続的に支援するため、毎月のサブスクリプションをご検討ください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <!--EOF-->
 </resources>

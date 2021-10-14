@@ -1999,6 +1999,8 @@
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__donate_to_signal">Doar ao Signal</string>
+  <string name="preferences__subscription">Assinatura</string>
+  <string name="preferences__signal_boost">Melhoria Signal</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente do utilizador de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Definições manuais de MMS</string>
@@ -3037,6 +3039,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Distribuição guiada pela licença GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Qualidade média</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualidade da multimédia enviada</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Enviar multimédia com alta qualidade utilizará mais dados de internet.</string>
   <string name="DataAndStorageSettingsFragment__high">Elevada</string>
   <string name="DataAndStorageSettingsFragment__standard">Normal</string>
@@ -3221,6 +3225,9 @@
   <string name="MediaReviewFragment__add_a_reply">Adicionar uma resposta</string>
   <string name="MediaReviewFragment__send_to">Enviar para</string>
   <string name="MediaReviewFragment__view_once_message">Mensagem de visualização única</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Um ou mais itens são demasiado grandes</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Um ou mais itens são inválidos</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Demasiados itens selecionados</string>
   <string name="ImageEditorHud__cancel">Cancelar</string>
   <string name="ImageEditorHud__draw">Desenhar</string>
   <string name="ImageEditorHud__write_text">Escrever texto</string>
@@ -3251,12 +3258,32 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num apoiante</string>
   <string name="ImageView__badge">Crachá</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é feito por pessoas como você.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
   <string name="SubscribeFragment__donation_amount">Montante doado</string>
+  <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
+  <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
+  <string name="SubscribeFragment__confirm_cancellation">Confirma o concelamento?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Você não será cobrado novamente. O seu crachá será removido do seu perfil no final do seu período de faturação</string>
   <string name="SubscribeFragment__not_now">Agora não</string>
   <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeFragment__update_subscription">Atualizar assinatura</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">A sua assinatura foi cancelada.</string>
+  <string name="Subscription__s_per_month">%s/mês</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/mês · Renovações %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma contribuição mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Obrigado pelo seu Apoio!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Você ganhou um crachá %s! Exibir o seu crachá mostrará às pessoas com quem conversa que você apoia o Signal. </string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Concluído</string>
   <string name="ManageDonationsFragment__badges">Crachás</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Ocorreu um erro ao tentar obter a assinatura.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Diga \"Obrigado\" e ganhe o crachá de melhorias durante %1$d dias.</string>
   <string name="Boost__enter_custom_amount">Introduzir montante personalizado</string>
+  <string name="Boost__one_time_contribution">Contribuição única</string>
+  <string name="MySupportPreference__s_per_month">%1$s/mês</string>
+  <string name="MySupportPreference__renews_s">Renovações %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">O seu crachá %1$s expirou, e deixou de estar visível para outras pessoas no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <!--EOF-->
 </resources>

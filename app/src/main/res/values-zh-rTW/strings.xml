@@ -1920,6 +1920,8 @@
   <string name="preferences__help">幫助</string>
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">捐贈 Signal</string>
+  <string name="preferences__subscription">訂閱</string>
+  <string name="preferences__signal_boost">Signal 加速</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">手動多媒體設定</string>
@@ -2948,6 +2950,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
   <string name="HelpFragment__licenced_under_the_gplv3">根據 GPLv3 授權</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">媒體檔品質</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">已傳送媒體檔品質</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">傳送高畫質的媒體檔將會使用較多數據。</string>
   <string name="DataAndStorageSettingsFragment__high">高</string>
   <string name="DataAndStorageSettingsFragment__standard">標準</string>
@@ -3126,6 +3130,9 @@
   <string name="MediaReviewFragment__add_a_reply">新增回覆</string>
   <string name="MediaReviewFragment__send_to">傳送給</string>
   <string name="MediaReviewFragment__view_once_message">查看一次訊息</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">一件或多件項目容量太大</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">一項或多項無效</string>
+  <string name="MediaReviewFragment__too_many_items_selected">選擇的項目太多</string>
   <string name="ImageEditorHud__cancel">取消</string>
   <string name="ImageEditorHud__draw">繪圖</string>
   <string name="ImageEditorHud__write_text">書寫文字</string>
@@ -3156,12 +3163,44 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
   <string name="ImageView__badge">徽章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由像你這樣的人提供動力。</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">加入支援技術的眾人共同維持的社群，是為了支援你打造的技術—而不是為你的資訊—打造。</string>
   <string name="SubscribeFragment__donation_amount">捐款金額</string>
+  <string name="SubscribeFragment__more_payment_options">更多付款方式</string>
+  <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
+  <string name="SubscribeFragment__confirm_cancellation">確認取消?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">不會再向你收費。 在結算週期結束時，你的徽章將從你的個人資料中刪除。</string>
   <string name="SubscribeFragment__not_now">稍後</string>
   <string name="SubscribeFragment__confirm">確認</string>
+  <string name="SubscribeFragment__update_subscription">更新訂閱</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">你的訂閱已取消。</string>
+  <string name="Subscription__s_per_month">%s/月</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · 續約 %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是一個沒有廣告商或投資者的非營利組織，只有使用和珍惜它的人才能維持。 每月定期捐款可獲得個人資料徽章，以與他人分享你的支持。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。你的貢獻推動了這一事業。 無廣告。 沒有追踪。這不是開玩笑的。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">你的捐款協助於支付全球數百萬人用於私密和即時通訊程式的開發、伺服器維護和網路頻寬。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的加油!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">你贏得了一枚 %s 徽章！ 展示你的徽章將讓與你聊天的人知道你支援了 Signal。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資訊中展示</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為特色徽章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
+  <string name="ManageDonationsFragment__my_support">我的支援</string>
+  <string name="ManageDonationsFragment__manage_subscription">管理訂閱</string>
   <string name="ManageDonationsFragment__badges">徽章</string>
+  <string name="ManageDonationsFragment__subscription_faq">訂閱 問與答</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤</string>
+  <string name="BoostFragment__give_signal_a_boost">給 Signal 加油</string>
+  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得加油徽章並展示在個人資料中 %1$d 天。</string>
   <string name="Boost__enter_custom_amount">輸入自定義金額</string>
+  <string name="Boost__one_time_contribution">一次性捐款</string>
+  <string name="MySupportPreference__add_a_signal_boost">新增 Signal 加油</string>
+  <string name="MySupportPreference__s_per_month">%1$s/月</string>
+  <string name="MySupportPreference__renews_s">續約 %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">你的 %1$s 徽章已過期，在你的個人資料中徽章無法再被看見。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">要繼續支援專為你打造的技術—而非為你的資料—請考慮成為月訂閱者。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <!--EOF-->
 </resources>

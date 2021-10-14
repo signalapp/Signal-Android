@@ -2152,6 +2152,7 @@
   <string name="preferences__help">Pagalba</string>
   <string name="preferences__advanced">Išplėstiniai</string>
   <string name="preferences__donate_to_signal">Paaukokite Signal programėlei</string>
+  <string name="preferences__subscription">Prenumerata</string>
   <string name="preferences__privacy">Privatumas</string>
   <string name="preferences__mms_user_agent">MMS naudotojo agentas</string>
   <string name="preferences__advanced_mms_access_point_names">Rankiniai MMS nustatymai</string>
@@ -3210,6 +3211,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Autorių teisės Signal pokalbių programėlė</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licencijuota pagal GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Medijos kokybė</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Siunčiamos medijos kokybė</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Aukštos kokybės medijos siuntimas naudos daugiau tinklo duomenų.</string>
   <string name="DataAndStorageSettingsFragment__high">Aukšta</string>
   <string name="DataAndStorageSettingsFragment__standard">Standartinė</string>
@@ -3435,11 +3438,16 @@
   <string name="ImageView__badge">Ženkliukas</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal veikia dėka tokių žmonių kaip jūs.</string>
   <string name="SubscribeFragment__donation_amount">Paaukojimo suma</string>
+  <string name="SubscribeFragment__more_payment_options">Daugiau mokėjimo parinkčių</string>
   <string name="SubscribeFragment__not_now">Ne dabar</string>
   <string name="SubscribeFragment__confirm">Patvirtinkite</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dėkojame už jūsų palaikymą!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Rodyti profilyje</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Atlikta</string>
   <string name="ManageDonationsFragment__badges">Ženkliukai</string>
   <string name="Boost__enter_custom_amount">Įveskite tinkintą sumą</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Jūsų %1$s ženkliukas nebegalioja ir daugiau nebematomas jūsų profilyje kitiems asmenims.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <!--EOF-->
 </resources>

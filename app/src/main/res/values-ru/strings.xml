@@ -2145,6 +2145,8 @@
   <string name="preferences__help">Помощь</string>
   <string name="preferences__advanced">Расширенные</string>
   <string name="preferences__donate_to_signal">Поддержать Signal</string>
+  <string name="preferences__subscription">Подписка</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">User Agent для MMS </string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
@@ -3203,6 +3205,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Авторские права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лицензировано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Качество медиа</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Качество отправляемого медиа</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Отправление медиа в высоком качестве использует больше данных.</string>
   <string name="DataAndStorageSettingsFragment__high">Высокое</string>
   <string name="DataAndStorageSettingsFragment__standard">Стандартное</string>
@@ -3399,6 +3403,9 @@
   <string name="MediaReviewFragment__add_a_reply">Добавьте ответ</string>
   <string name="MediaReviewFragment__send_to">Отправить</string>
   <string name="MediaReviewFragment__view_once_message">Одноразовое сообщение</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Один или несколько элементов были слишком большими</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один или несколько элементов были недействительными</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Выбрано слишком много элементов</string>
   <string name="ImageEditorHud__cancel">Отменить</string>
   <string name="ImageEditorHud__draw">Нарисовать</string>
   <string name="ImageEditorHud__write_text">Написать текст</string>
@@ -3426,14 +3433,47 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Выберите значок</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Вы должны выбрать значок</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не удалось обновить профиль</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Стать поддерживающим</string>
   <string name="ImageView__badge">Значок</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу людей, поддерживающих её.</string>
   <string name="SubscribeFragment__donation_amount">Сумма пожертвования</string>
+  <string name="SubscribeFragment__more_payment_options">Больше способов оплаты</string>
+  <string name="SubscribeFragment__cancel_subscription">Отменить подписку</string>
+  <string name="SubscribeFragment__confirm_cancellation">Подтверждаете отмену?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">С вас больше не будет взиматься плата. Ваш значок будет удалён из профиля в конце вашего расчётного периода.</string>
   <string name="SubscribeFragment__not_now">Не сейчас</string>
   <string name="SubscribeFragment__confirm">Подтвердить</string>
+  <string name="SubscribeFragment__update_subscription">Обновить подписку</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша подписка была отменена.</string>
+  <string name="Subscription__s_per_month">%s/месяц</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Возобновится %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят её. Делая пожертвование ежемесячно, вы получите значок для профиля, чтобы поделиться с другими тем, что вы поддерживаете Signal.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Команда Signal предана миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру. Ваш вклад поддерживает эту миссию. Без рекламы. Без трекеров. Без шуток.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваше пожертвование помогает оплачивать разработку, серверы и пропускную способность приложения, которое используется миллионами людей по всему миру для конфиденциального и мгновенного общения.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Спасибо за вашу поддержку!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Спасибо за Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Вы получили значок «%s»! Если вы будете показывать значок в своём профиле, то люди, с которыми вы общаетесь, увидят, что вы поддерживаете Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показывать в профиле</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Сделать главным значком</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
+  <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
   <string name="ManageDonationsFragment__badges">Значки</string>
+  <string name="ManageDonationsFragment__subscription_faq">ЧаВО по подписке</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Не удалось получить информацию о подписке.</string>
+  <string name="BoostFragment__give_signal_a_boost">Дайте «Boost» приложению Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Скажите «Спасибо!» и получите значок «Boost» на %1$d дней.</string>
   <string name="Boost__enter_custom_amount">Ввести сумму</string>
+  <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
+  <string name="MySupportPreference__add_a_signal_boost">Добавить Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
+  <string name="MySupportPreference__renews_s">Возобновится %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваш значок «%1$s» истёк и больше не виден другим людям в вашем профиле.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным подписчиком.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стать подписчиком</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
   <!--EOF-->
 </resources>

@@ -3290,7 +3290,7 @@
   <string name="BoostFragment__say_thanks_and_earn">Di\' \"Grazie!\" e guadagna il badge Boost per %1$d giorni.</string>
   <string name="Boost__enter_custom_amount">Inserisci un importo personalizzato</string>
   <string name="Boost__one_time_contribution">Contributo unico</string>
-  <string name="MySupportPreference__add_a_signal_boost">Aggiungi un boost di Signal</string>
+  <string name="MySupportPreference__add_a_signal_boost">Aggiungi un Boost di Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/mese</string>
   <string name="MySupportPreference__renews_s">Rinnovo %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
