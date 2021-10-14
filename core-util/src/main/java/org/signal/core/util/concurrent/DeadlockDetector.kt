@@ -67,7 +67,7 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
       stringBuilder.append(description).append("\n")
 
       for (entry in blocked) {
-        stringBuilder.append("-- [${entry.key.id}] ${entry.key.name}\n")
+        stringBuilder.append("-- [${entry.key.id}] ${entry.key.name} | ${entry.key.state}\n")
 
         for (element in entry.value) {
           stringBuilder.append("$element\n")
