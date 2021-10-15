@@ -98,6 +98,7 @@
     <color name="conversation_scroll_to_bottom_foreground_color">@color/core_white</color>
 
     <color name="conversation_list_camera_button_background">@color/core_grey_85</color>
+    <color name="conversation_list_selected_color">#4c6191f3</color>
 
     <color name="camera_icon_background_tint">@color/core_grey_75</color>
 

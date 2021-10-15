@@ -17,12 +17,8 @@
 package org.thoughtcrime.securesms.conversationlist;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -46,7 +42,6 @@ import androidx.lifecycle.Transformations;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.signal.core.util.DimensionUnit;
@@ -122,6 +117,9 @@ public final class ConversationListItem extends ConstraintLayout
   private Locale              locale;
   private String              highlightSubstring;
   private BadgeImageView      badge;
+  private View                checkContainer;
+  private View                uncheckedView;
+  private View                checkedView;
 
   private int             unreadCount;
   private AvatarImageView contactPhotoImage;
@@ -151,6 +149,11 @@ public final class ConversationListItem extends ConstraintLayout
     this.archivedView            = findViewById(R.id.conversation_list_item_archived);
     this.unreadIndicator         = findViewById(R.id.conversation_list_item_unread_indicator);
     this.badge                   = findViewById(R.id.conversation_list_item_badge);
+    this.checkContainer          = findViewById(R.id.conversation_list_item_check_container);
+    this.uncheckedView           = findViewById(R.id.conversation_list_item_unchecked);
+    this.checkedView             = findViewById(R.id.conversation_list_item_checked);
+
+    getLayoutTransition().setDuration(150);
   }
 
   @Override
@@ -161,16 +164,16 @@ public final class ConversationListItem extends ConstraintLayout
                    @NonNull Set<Long> selectedThreads,
                    boolean batchMode)
   {
-    bind(thread, glideRequests, locale, typingThreads, selectedThreads, batchMode, null);
+    bindThread(thread, glideRequests, locale, typingThreads, selectedThreads, batchMode, null);
   }
 
-  public void bind(@NonNull ThreadRecord thread,
-                   @NonNull GlideRequests glideRequests,
-                   @NonNull Locale locale,
-                   @NonNull Set<Long> typingThreads,
-                   @NonNull Set<Long> selectedThreads,
-                   boolean batchMode,
-                   @Nullable String highlightSubstring)
+  public void bindThread(@NonNull ThreadRecord thread,
+                         @NonNull GlideRequests glideRequests,
+                         @NonNull Locale locale,
+                         @NonNull Set<Long> typingThreads,
+                         @NonNull Set<Long> selectedThreads,
+                         boolean batchMode,
+                         @Nullable String highlightSubstring)
   {
     observeRecipient(thread.getRecipient().live());
     observeDisplayBody(null);
@@ -214,16 +217,15 @@ public final class ConversationListItem extends ConstraintLayout
 
     setStatusIcons(thread);
     setBatchMode(batchMode);
-    setRippleColor(recipient.get());
     badge.setBadgeFromRecipient(recipient.get());
     setUnreadIndicator(thread);
     this.contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
-  public void bind(@NonNull  Recipient     contact,
-                   @NonNull  GlideRequests glideRequests,
-                   @NonNull  Locale        locale,
-                   @Nullable String        highlightSubstring)
+  public void bindContact(@NonNull  Recipient     contact,
+                          @NonNull  GlideRequests glideRequests,
+                          @NonNull  Locale        locale,
+                          @Nullable String        highlightSubstring)
   {
     observeRecipient(contact.live());
     observeDisplayBody(null);
@@ -243,15 +245,14 @@ public final class ConversationListItem extends ConstraintLayout
     alertView.setNone();
 
     setBatchMode(false);
-    setRippleColor(contact);
     badge.setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
-  public void bind(@NonNull  MessageResult messageResult,
-                   @NonNull  GlideRequests glideRequests,
-                   @NonNull  Locale        locale,
-                   @Nullable String        highlightSubstring)
+  public void bindMessage(@NonNull  MessageResult messageResult,
+                          @NonNull  GlideRequests glideRequests,
+                          @NonNull  Locale        locale,
+                          @Nullable String        highlightSubstring)
   {
     observeRecipient(messageResult.getConversationRecipient().live());
     observeDisplayBody(null);
@@ -271,7 +272,6 @@ public final class ConversationListItem extends ConstraintLayout
     alertView.setNone();
 
     setBatchMode(false);
-    setRippleColor(recipient.get());
     badge.setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
@@ -290,7 +290,23 @@ public final class ConversationListItem extends ConstraintLayout
   @Override
   public void setBatchMode(boolean batchMode) {
     this.batchMode = batchMode;
-    setSelected(batchMode && selectedThreads.contains(thread.getThreadId()));
+
+    boolean selected = batchMode && selectedThreads.contains(thread.getThreadId());
+    setSelected(selected);
+
+    if (batchMode && selected) {
+      checkContainer.setVisibility(VISIBLE);
+      uncheckedView.setVisibility(GONE);
+      checkedView.setVisibility(VISIBLE);
+    } else if (batchMode) {
+      checkContainer.setVisibility(VISIBLE);
+      uncheckedView.setVisibility(VISIBLE);
+      checkedView.setVisibility(GONE);
+    } else {
+      checkContainer.setVisibility(GONE);
+      uncheckedView.setVisibility(GONE);
+      checkedView.setVisibility(GONE);
+    }
   }
 
   @Override
@@ -402,13 +418,6 @@ public final class ConversationListItem extends ConstraintLayout
     }
   }
 
-  private void setRippleColor(Recipient recipient) {
-    if (Build.VERSION.SDK_INT >= 21) {
-      ((RippleDrawable)(getBackground()).mutate())
-          .setColor(ColorStateList.valueOf(recipient.getChatColors().asSingleColor()));
-    }
-  }
-
   private void setUnreadIndicator(ThreadRecord thread) {
     if ((thread.isOutgoing() && !thread.isForcedUnread()) || thread.isRead()) {
       unreadIndicator.setVisibility(View.GONE);
@@ -433,7 +442,6 @@ public final class ConversationListItem extends ConstraintLayout
       fromView.setText(recipient, false);
     }
     contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
-    setRippleColor(recipient);
     badge.setBadgeFromRecipient(recipient);
   }
 

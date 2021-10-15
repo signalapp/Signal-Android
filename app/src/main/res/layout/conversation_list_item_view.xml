@@ -10,17 +10,48 @@
     android:nextFocusLeft="@+id/container"
     android:nextFocusRight="@+id/fab"
     android:paddingStart="@dimen/dsl_settings_gutter"
-    android:paddingEnd="@dimen/dsl_settings_gutter">
+    android:paddingEnd="@dimen/dsl_settings_gutter"
+    android:animateLayoutChanges="true">
+
+    <FrameLayout
+        android:id="@+id/conversation_list_item_check_container"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/conversation_list_item_unchecked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/multiselect_empty_ring"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/conversation_list_item_checked"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_check_circle_solid_24"
+            app:tint="@color/signal_accent_primary"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </FrameLayout>
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/conversation_list_item_avatar"
         android:layout_width="@dimen/conversation_list_avatar_size"
         android:layout_height="@dimen/conversation_list_avatar_size"
         android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
         android:foreground="@drawable/contact_photo_background"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/conversation_list_item_check_container"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="0dp"
         tools:src="@drawable/ic_contact_picture" />
 
     <org.thoughtcrime.securesms.components.FromTextView
