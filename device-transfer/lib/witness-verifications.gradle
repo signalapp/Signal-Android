@@ -93,7 +93,7 @@ dependencyVerification {
         ['org.jetbrains:annotations:13.0',
          'ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478'],
 
-        ['org.whispersystems:signal-client-java:0.9.6',
-         'f64aeb071eae2e1e2413902da6554c03e22f66d7a59ffdd79f3beeb0248ea054'],
+        ['org.whispersystems:signal-client-java:0.9.7',
+         'b9c141324db38e940e910c71d3c8474679a9f6f46c4d4f3116ec63a1e1368ffc'],
     ]
 }
