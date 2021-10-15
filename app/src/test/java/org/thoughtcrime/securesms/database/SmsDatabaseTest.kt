@@ -44,7 +44,7 @@ class SmsDatabaseTest {
 
   @Test
   fun `getThreadIdForMessage when message present for id, return thread id`() {
-    TestSms.insertSmsMessage(db)
+    TestSms.insert(db)
     assertThat(smsDatabase.getThreadIdForMessage(1), isEqual(1))
   }
 
@@ -55,13 +55,13 @@ class SmsDatabaseTest {
 
   @Test
   fun `hasMeaningfulMessage when normal message, return true`() {
-    TestSms.insertSmsMessage(db)
+    TestSms.insert(db)
     assertTrue(smsDatabase.hasMeaningfulMessage(1))
   }
 
   @Test
   fun `hasMeaningfulMessage when GV2 create message only, return true`() {
-    TestSms.insertSmsMessage(db, type = MmsSmsColumns.Types.BASE_INBOX_TYPE or MmsSmsColumns.Types.SECURE_MESSAGE_BIT or MmsSmsColumns.Types.GROUP_V2_BIT or MmsSmsColumns.Types.GROUP_UPDATE_BIT)
+    TestSms.insert(db, type = MmsSmsColumns.Types.BASE_INBOX_TYPE or MmsSmsColumns.Types.SECURE_MESSAGE_BIT or MmsSmsColumns.Types.GROUP_V2_BIT or MmsSmsColumns.Types.GROUP_UPDATE_BIT)
     assertTrue(smsDatabase.hasMeaningfulMessage(1))
   }
 
@@ -69,16 +69,16 @@ class SmsDatabaseTest {
   fun `hasMeaningfulMessage when empty and then with ignored types, always return false`() {
     assertFalse(smsDatabase.hasMeaningfulMessage(1))
 
-    TestSms.insertSmsMessage(db, type = SmsDatabase.IGNORABLE_TYPESMASK_WHEN_COUNTING)
+    TestSms.insert(db, type = SmsDatabase.IGNORABLE_TYPESMASK_WHEN_COUNTING)
     assertFalse(smsDatabase.hasMeaningfulMessage(1))
 
-    TestSms.insertSmsMessage(db, type = MmsSmsColumns.Types.PROFILE_CHANGE_TYPE)
+    TestSms.insert(db, type = MmsSmsColumns.Types.PROFILE_CHANGE_TYPE)
     assertFalse(smsDatabase.hasMeaningfulMessage(1))
 
-    TestSms.insertSmsMessage(db, type = MmsSmsColumns.Types.CHANGE_NUMBER_TYPE)
+    TestSms.insert(db, type = MmsSmsColumns.Types.CHANGE_NUMBER_TYPE)
     assertFalse(smsDatabase.hasMeaningfulMessage(1))
 
-    TestSms.insertSmsMessage(db, type = MmsSmsColumns.Types.BASE_INBOX_TYPE or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
+    TestSms.insert(db, type = MmsSmsColumns.Types.BASE_INBOX_TYPE or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
     assertFalse(smsDatabase.hasMeaningfulMessage(1))
   }
 }
