@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
+import java.lang.IllegalArgumentException
 
 private val TAG = Log.tag(BadgeImageView::class.java)
 
@@ -42,22 +43,21 @@ class BadgeImageView @JvmOverloads constructor(
   fun setBadge(badge: Badge?) {
     visible = badge != null
 
-    val lifecycle = ViewUtil.getActivityLifecycle(this)
-    if (lifecycle?.currentState == Lifecycle.State.DESTROYED) {
-      return
-    }
-
-    if (badge != null) {
-      GlideApp
-        .with(this)
-        .load(badge)
-        .downsample(DownsampleStrategy.NONE)
-        .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
-        .into(this)
-    } else {
-      GlideApp
-        .with(this)
-        .clear(this)
+    try {
+      if (badge != null) {
+        GlideApp
+          .with(this)
+          .load(badge)
+          .downsample(DownsampleStrategy.NONE)
+          .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
+          .into(this)
+      } else {
+        GlideApp
+          .with(this)
+          .clear(this)
+      }
+    } catch (e: IllegalArgumentException) {
+      // Do nothing. Activity was destroyed.
     }
   }
 }
