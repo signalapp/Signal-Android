@@ -224,7 +224,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         const val INVITE_CONTACTS = 124
 
         //flag
-        const val IS_UNSEND_REQUESTS_ENABLED = false
+        const val IS_UNSEND_REQUESTS_ENABLED = true
     }
     // endregion
 
