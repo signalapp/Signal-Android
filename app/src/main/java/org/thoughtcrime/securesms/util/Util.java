@@ -54,6 +54,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -534,5 +535,11 @@ public class Util {
     primary.setStackTrace(combined);
 
     return primary;
+  }
+
+  public static @NonNull String convertThrowableToString(@NonNull Throwable throwable) {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    throwable.printStackTrace(new PrintStream(outputStream));
+    return outputStream.toString();
   }
 }
