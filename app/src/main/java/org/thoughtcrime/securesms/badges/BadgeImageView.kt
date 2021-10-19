@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
-import androidx.lifecycle.Lifecycle
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -13,7 +12,6 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ThemeUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.lang.IllegalArgumentException
 

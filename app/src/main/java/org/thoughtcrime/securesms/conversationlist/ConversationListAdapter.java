@@ -90,7 +90,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         int position = holder.getAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
-          return onConversationClickListener.onConversationLongClick(getItem(position));
+          return onConversationClickListener.onConversationLongClick(getItem(position), v);
         }
 
         return false;
@@ -302,8 +302,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   }
 
   interface OnConversationClickListener {
-    void onConversationClick(Conversation conversation);
-    boolean onConversationLongClick(Conversation conversation);
+    void onConversationClick(@NonNull Conversation conversation);
+    boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view);
     void onShowArchiveClick();
   }
 }

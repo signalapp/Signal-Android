@@ -367,6 +367,16 @@
         <item quantity="one">Moved conversation to inbox</item>
         <item quantity="other">Moved %d conversations to inbox</item>
     </plurals>
+    <string name="ConversationListFragment_read">Read</string>
+    <string name="ConversationListFragment_unread">Unread</string>
+    <string name="ConversationListFragment_pin">Pin</string>
+    <string name="ConversationListFragment_unpin">Unpin</string>
+    <string name="ConversationListFragment_mute">Mute</string>
+    <string name="ConversationListFragment_unmute">Unmute</string>
+    <string name="ConversationListFragment_select">Select</string>
+    <string name="ConversationListFragment_archive">Archive</string>
+    <string name="ConversationListFragment_unarchive">Unarchive</string>
+    <string name="ConversationListFragment_delete">Delete</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message</string>

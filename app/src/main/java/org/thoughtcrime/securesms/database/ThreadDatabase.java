@@ -867,7 +867,7 @@ public class ThreadDatabase extends Database {
     StorageSyncHelper.scheduleSyncForDataChange();
   }
 
-  public void unpinConversations(@NonNull Set<Long> threadIds) {
+  public void unpinConversations(@NonNull Collection<Long> threadIds) {
     SQLiteDatabase db            = databaseHelper.getSignalWritableDatabase();
     ContentValues  contentValues = new ContentValues(1);
     String         placeholders  = StringUtil.join(Stream.of(threadIds).map(unused -> "?").toList(), ",");
