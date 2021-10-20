@@ -100,7 +100,8 @@ public class ConversationAdapter
   private static final int MESSAGE_TYPE_FOOTER              = 6;
   private static final int MESSAGE_TYPE_PLACEHOLDER         = 7;
 
-  private static final int PAYLOAD_TIMESTAMP = 0;
+  private static final int PAYLOAD_TIMESTAMP   = 0;
+  public  static final int PAYLOAD_NAME_COLORS = 1;
 
   private final ItemClickListener clickListener;
   private final Context           context;
@@ -227,8 +228,13 @@ public class ConversationAdapter
     }
   }
 
-  @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
-    if (payloads.contains(PAYLOAD_TIMESTAMP)) {
+  private boolean containsValidPayload(@NonNull List<Object> payloads) {
+    return payloads.contains(PAYLOAD_TIMESTAMP) || payloads.contains(PAYLOAD_NAME_COLORS);
+  }
+
+  @Override
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+    if (containsValidPayload(payloads)) {
       switch (getItemViewType(position)) {
         case MESSAGE_TYPE_INCOMING_TEXT:
         case MESSAGE_TYPE_INCOMING_MULTIMEDIA:
@@ -236,7 +242,14 @@ public class ConversationAdapter
         case MESSAGE_TYPE_OUTGOING_MULTIMEDIA:
         case MESSAGE_TYPE_UPDATE:
           ConversationViewHolder conversationViewHolder = (ConversationViewHolder) holder;
-          conversationViewHolder.getBindable().updateTimestamps();
+          if (payloads.contains(PAYLOAD_TIMESTAMP)) {
+            conversationViewHolder.getBindable().updateTimestamps();
+          }
+
+          if (payloads.contains(PAYLOAD_NAME_COLORS)) {
+            conversationViewHolder.getBindable().updateContactNameColor();
+          }
+
         default:
           return;
       }

@@ -105,6 +105,10 @@ public final class Projection {
     return new Projection(x + xTranslation, y, width, height, corners);
   }
 
+  public @NonNull Projection translateY(float yTranslation) {
+    return new Projection(x, y + yTranslation, width, height, corners);
+  }
+
   public @NonNull Projection withDimensions(int width, int height) {
     return new Projection(x, y, width, height, corners);
   }

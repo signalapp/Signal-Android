@@ -32,7 +32,6 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
-import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
@@ -330,6 +329,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public void updateTimestamps() {
     getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale);
+  }
+
+  @Override
+  public void updateContactNameColor() {
+    setGroupAuthorColor(messageRecord, hasWallpaper, colorizer);
   }
 
   @Override
@@ -1751,7 +1755,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       projections.add(quoteView.getProjection(coordinateRoot).translateX(bodyBubble.getTranslationX() + this.getTranslationX()));
     }
 
-    return projections;
+    return projections.stream().map(p -> p.translateY(this.getTranslationY())).collect(Collectors.toList());
   }
 
   @Override

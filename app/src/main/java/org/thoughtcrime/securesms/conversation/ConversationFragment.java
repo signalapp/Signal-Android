@@ -223,6 +223,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private ConversationUpdateTick     conversationUpdateTick;
   private MultiselectItemDecoration  multiselectItemDecoration;
 
+  private int listSubmissionCount = 0;
+
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
@@ -256,8 +258,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
     reactionsShade        = view.findViewById(R.id.reactions_shade);
 
-    ConversationIntents.Args args = ConversationIntents.Args.from(requireActivity().getIntent());
-
     final LinearLayoutManager     layoutManager           = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     final MultiselectItemAnimator multiselectItemAnimator = new MultiselectItemAnimator(() -> {
       ConversationAdapter adapter = getListAdapter();
@@ -266,18 +266,18 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       } else {
         return Util.hasItems(adapter.getSelectedItems());
       }
-    }, multiselectPart -> {
+    }, () -> listSubmissionCount < 2, multiselectPart -> {
       ConversationAdapter adapter = getListAdapter();
       if (adapter == null) {
         return false;
       } else {
         return adapter.getSelectedItems().contains(multiselectPart);
       }
-    });
+    }, () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
     multiselectItemDecoration = new MultiselectItemDecoration(requireContext(),
                                                               () -> conversationViewModel.getWallpaper().getValue(),
                                                               multiselectItemAnimator::getSelectedProgressForPart,
-                                                              multiselectItemAnimator::isInitialAnimation);
+                                                              multiselectItemAnimator::isInitialMultiSelectAnimation);
 
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
@@ -321,7 +321,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     conversationViewModel.getMessages().observe(getViewLifecycleOwner(), messages -> {
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
-        getListAdapter().submitList(messages);
+        getListAdapter().submitList(messages, () -> {
+          listSubmissionCount++;
+        });
       }
     });
 
@@ -354,7 +356,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
-        adapter.notifyDataSetChanged();
+        adapter.notifyItemRangeChanged(0, adapter.getItemCount(), ConversationAdapter.PAYLOAD_NAME_COLORS);
       }
     });
 
