@@ -17,6 +17,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -354,47 +355,7 @@ public class RetrieveProfileJob extends BaseJob {
 
     DatabaseFactory.getRecipientDatabase(context)
                    .setBadges(recipient.getId(),
-                              badges.stream().map(RetrieveProfileJob::adaptFromServiceBadge).collect(java.util.stream.Collectors.toList()));
-  }
-
-  private static Badge adaptFromServiceBadge(@NonNull SignalServiceProfile.Badge serviceBadge) {
-    Pair<Uri, String> uriAndDensity = RetrieveProfileJob.getBestBadgeImageUriForDevice(serviceBadge);
-    return new Badge(
-        serviceBadge.getId(),
-        Badge.Category.Companion.fromCode(serviceBadge.getCategory()),
-        serviceBadge.getName(),
-        serviceBadge.getDescription(),
-        uriAndDensity.first(),
-        uriAndDensity.second(),
-        0L,
-        true
-    );
-  }
-
-
-  public static @NonNull Pair<Uri, String> getBestBadgeImageUriForDevice(@NonNull SignalServiceProfile.Badge serviceBadge) {
-    String bestDensity = ScreenDensity.getBestDensityBucketForDevice();
-
-    switch (bestDensity) {
-      case "ldpi":
-        return new Pair<>(getBadgeImageUri(serviceBadge.getLdpiUri()), "ldpi");
-      case "mdpi":
-        return new Pair<>(getBadgeImageUri(serviceBadge.getMdpiUri()), "mdpi");
-      case "hdpi":
-        return new Pair<>(getBadgeImageUri(serviceBadge.getHdpiUri()), "hdpi");
-      case "xxhdpi":
-        return new Pair<>(getBadgeImageUri(serviceBadge.getXxhdpiUri()), "xxhdpi");
-      case "xxxhdpi":
-        return new Pair<>(getBadgeImageUri(serviceBadge.getXxxhdpiUri()), "xxxhdpi");
-      default:
-        return new Pair<>(getBadgeImageUri(serviceBadge.getXhdpiUri()), "xdpi");
-    }
-  }
-
-  private static @NonNull Uri getBadgeImageUri(@NonNull String densityPath) {
-    return Uri.parse(BuildConfig.BADGE_STATIC_ROOT).buildUpon()
-              .appendPath(densityPath)
-              .build();
+                              badges.stream().map(Badges::fromServiceBadge).collect(java.util.stream.Collectors.toList()));
   }
 
   private void setProfileKeyCredential(@NonNull Recipient recipient,

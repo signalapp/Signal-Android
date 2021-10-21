@@ -51,7 +51,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    Badge.register(adapter) { badge, isSelected ->
+    Badge.register(adapter) { badge, isSelected, _ ->
       if (!isSelected) {
         viewModel.setSelectedBadge(badge)
       }
@@ -69,8 +69,16 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
       }
     }
 
+    var hasBoundPreview = false
     viewModel.state.observe(viewLifecycleOwner) { state ->
       save.isEnabled = state.stage == SelectFeaturedBadgeState.Stage.READY
+
+      if (hasBoundPreview) {
+        previewViewHolder.setPayload(listOf(Unit))
+      } else {
+        hasBoundPreview = true
+      }
+
       previewViewHolder.bind(BadgePreview.Model(state.selectedBadge))
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }

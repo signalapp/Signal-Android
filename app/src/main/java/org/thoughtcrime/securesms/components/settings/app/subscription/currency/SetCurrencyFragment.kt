@@ -13,7 +13,11 @@ import java.util.Locale
  */
 class SetCurrencyFragment : DSLSettingsBottomSheetFragment() {
 
-  private val viewModel: SetCurrencyViewModel by viewModels()
+  private val viewModel: SetCurrencyViewModel by viewModels(
+    factoryProducer = {
+      SetCurrencyViewModel.Factory(SetCurrencyFragmentArgs.fromBundle(requireArguments()).isBoost)
+    }
+  )
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     viewModel.state.observe(viewLifecycleOwner) { state ->

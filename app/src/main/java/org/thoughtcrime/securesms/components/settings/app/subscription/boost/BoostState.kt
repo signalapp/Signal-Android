@@ -14,11 +14,12 @@ data class BoostState(
   val selectedBoost: Boost? = null,
   val customAmount: FiatMoney = FiatMoney(BigDecimal.ZERO, Currency.getInstance(currencySelection.selectedCurrencyCode)),
   val isCustomAmountFocused: Boolean = false,
-  val stage: Stage = Stage.INIT
+  val stage: Stage = Stage.INIT,
 ) {
   enum class Stage {
     INIT,
     READY,
+    TOKEN_REQUEST,
     PAYMENT_PIPELINE,
   }
 }

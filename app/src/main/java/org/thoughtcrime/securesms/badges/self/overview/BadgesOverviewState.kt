@@ -7,6 +7,7 @@ data class BadgesOverviewState(
   val allUnlockedBadges: List<Badge> = listOf(),
   val featuredBadge: Badge? = null,
   val displayBadgesOnProfile: Boolean = false,
+  val fadedBadgeId: String? = null
 ) {
 
   val hasUnexpiredBadges = allUnlockedBadges.any { it.expirationTimestamp > System.currentTimeMillis() }

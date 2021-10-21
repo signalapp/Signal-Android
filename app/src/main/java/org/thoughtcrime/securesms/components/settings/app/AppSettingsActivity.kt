@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.Subscript
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.BoostRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.BoostViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.subscribe.SubscribeViewModel
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -32,7 +33,7 @@ class AppSettingsActivity : DSLSettingsActivity() {
   private val donationRepository: DonationPaymentRepository by lazy { DonationPaymentRepository(this) }
   private val subscribeViewModel: SubscribeViewModel by viewModels(
     factoryProducer = {
-      SubscribeViewModel.Factory(SubscriptionsRepository(), donationRepository, FETCH_SUBSCRIPTION_TOKEN_REQUEST_CODE)
+      SubscribeViewModel.Factory(SubscriptionsRepository(ApplicationDependencies.getDonationsService()), donationRepository, FETCH_SUBSCRIPTION_TOKEN_REQUEST_CODE)
     }
   )
 
@@ -43,7 +44,6 @@ class AppSettingsActivity : DSLSettingsActivity() {
   )
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-
     warmDonationViewModels()
 
     if (intent?.hasExtra(ARG_NAV_GRAPH) != true) {
@@ -63,6 +63,7 @@ class AppSettingsActivity : DSLSettingsActivity() {
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
         StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
+        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions()
       }
     }
 
@@ -134,6 +135,9 @@ class AppSettingsActivity : DSLSettingsActivity() {
     @JvmStatic
     fun changeNumber(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CHANGE_NUMBER)
 
+    @JvmStatic
+    fun subscriptions(context: Context): Intent = getIntentForStartLocation(context, StartLocation.SUBSCRIPTIONS)
+
     private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings)
@@ -154,7 +158,8 @@ class AppSettingsActivity : DSLSettingsActivity() {
     HELP(2),
     PROXY(3),
     NOTIFICATIONS(4),
-    CHANGE_NUMBER(5);
+    CHANGE_NUMBER(5),
+    SUBSCRIPTIONS(6);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

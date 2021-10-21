@@ -23,9 +23,8 @@ data class Subscription(
   val title: String,
   val badge: Badge,
   val price: FiatMoney,
+  val level: Int,
 ) {
-
-  val renewalTimestamp = badge.expirationTimestamp
 
   companion object {
     fun register(adapter: MappingAdapter) {
@@ -37,8 +36,10 @@ data class Subscription(
     val subscription: Subscription,
     val isSelected: Boolean,
     val isActive: Boolean,
+    val willRenew: Boolean,
     override val isEnabled: Boolean,
-    val onClick: () -> Unit
+    val onClick: () -> Unit,
+    val renewalTimestamp: Long
   ) : PreferenceModel<Model>(isEnabled = isEnabled) {
 
     override fun areItemsTheSame(newItem: Model): Boolean {
@@ -49,7 +50,17 @@ data class Subscription(
       return super.areContentsTheSame(newItem) &&
         newItem.subscription == subscription &&
         newItem.isSelected == isSelected &&
-        newItem.isActive == isActive
+        newItem.isActive == isActive &&
+        newItem.renewalTimestamp == renewalTimestamp &&
+        newItem.willRenew == willRenew
+    }
+
+    override fun getChangePayload(newItem: Model): Any? {
+      return if (newItem.subscription.badge == subscription.badge) {
+        Unit
+      } else {
+        null
+      }
     }
   }
 
@@ -65,9 +76,13 @@ data class Subscription(
       itemView.isEnabled = model.isEnabled
       itemView.setOnClickListener { model.onClick() }
       itemView.isSelected = model.isSelected
-      badge.setBadge(model.subscription.badge)
+
+      if (payload.isEmpty()) {
+        badge.setBadge(model.subscription.badge)
+      }
+
       title.text = model.subscription.title
-      tagline.text = model.subscription.id
+      tagline.text = context.getString(R.string.Subscription__earn_a_s_badge, model.subscription.badge.name)
 
       val formattedPrice = FiatMoneyUtil.format(
         context.resources,
@@ -75,11 +90,17 @@ data class Subscription(
         FiatMoneyUtil.formatOptions()
       )
 
-      if (model.isActive) {
+      if (model.isActive && model.willRenew) {
         price.text = context.getString(
           R.string.Subscription__s_per_month_dot_renews_s,
           formattedPrice,
-          DateUtils.formatDate(Locale.getDefault(), model.subscription.renewalTimestamp)
+          DateUtils.formatDateWithYear(Locale.getDefault(), model.renewalTimestamp)
+        )
+      } else if (model.isActive) {
+        price.text = context.getString(
+          R.string.Subscription__s_per_month_dot_expires_s,
+          formattedPrice,
+          DateUtils.formatDateWithYear(Locale.getDefault(), model.renewalTimestamp)
         )
       } else {
         price.text = context.getString(

@@ -67,7 +67,13 @@
         android:id="@+id/setDonationCurrencyFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.subscription.currency.SetCurrencyFragment"
         android:label="set_currency_fragment"
-        tools:layout="@layout/dsl_settings_fragment" />
+        tools:layout="@layout/dsl_settings_fragment" >
+
+        <argument
+            android:name="isBoost"
+            app:argType="boolean" />
+
+    </dialog>
 
     <dialog
         android:id="@+id/subscribeLearnMoreBottomSheetDialog"

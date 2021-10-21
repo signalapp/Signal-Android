@@ -194,7 +194,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
     val recipientId = args.recipientId
     if (recipientId != null) {
-      Badge.register(adapter) { badge, _ ->
+      Badge.register(adapter) { badge, _, _ ->
         ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, recipientId, badge)
       }
     }

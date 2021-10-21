@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -14,8 +13,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.visible
 import java.lang.IllegalArgumentException
-
-private val TAG = Log.tag(BadgeImageView::class.java)
 
 class BadgeImageView @JvmOverloads constructor(
   context: Context,

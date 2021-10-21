@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.wallet.PaymentData;
+import com.google.android.gms.wallet.WalletConstants;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements GooglePayApi.Paym
     donateButton.setVisibility(View.GONE);
     donateButton.setOnClickListener(v -> requestPayment());
 
-    payApi = new GooglePayApi(this, TestUtil.INSTANCE);
+    payApi = new GooglePayApi(this, TestUtil.INSTANCE, new GooglePayApi.Configuration(WalletConstants.ENVIRONMENT_TEST));
 
     isReadyToPayDisposable = payApi.queryIsReadyToPay().subscribe(this::presentGooglePayButton, this::presentException);
   }

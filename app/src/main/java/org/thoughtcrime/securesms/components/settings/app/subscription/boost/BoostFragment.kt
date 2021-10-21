@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.boost
 
 import android.text.SpannableStringBuilder
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -15,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFrag
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationExceptions
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
@@ -24,10 +28,14 @@ import org.thoughtcrime.securesms.util.SpanUtil
 /**
  * UX to allow users to donate ephemerally.
  */
-class BoostFragment : DSLSettingsBottomSheetFragment() {
+class BoostFragment : DSLSettingsBottomSheetFragment(
+  layoutId = R.layout.boost_bottom_sheet
+) {
 
   private val viewModel: BoostViewModel by viewModels(ownerProducer = { requireActivity() })
   private val lifecycleDisposable = LifecycleDisposable()
+
+  private lateinit var processingDonationPaymentDialog: AlertDialog
 
   private val sayThanks: CharSequence by lazy {
     SpannableStringBuilder(requireContext().getString(R.string.BoostFragment__say_thanks_and_earn, 30))
@@ -45,6 +53,11 @@ class BoostFragment : DSLSettingsBottomSheetFragment() {
     Boost.register(adapter)
     GooglePayButton.register(adapter)
 
+    processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
+      .setView(R.layout.processing_payment_dialog)
+      .setCancelable(false)
+      .create()
+
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
@@ -52,17 +65,24 @@ class BoostFragment : DSLSettingsBottomSheetFragment() {
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe { event: DonationEvent ->
       when (event) {
-        is DonationEvent.GooglePayUnavailableError -> Log.w(TAG, "Google Pay error", event.throwable)
-        is DonationEvent.PaymentConfirmationError -> Log.w(TAG, "Payment confirmation error", event.throwable)
+        is DonationEvent.GooglePayUnavailableError -> onGooglePayUnavailable(event.throwable)
+        is DonationEvent.PaymentConfirmationError -> onPaymentError(event.throwable)
         is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed(event.badge)
-        DonationEvent.RequestTokenError -> Log.w(TAG, "Request token could not be fetched")
-        DonationEvent.RequestTokenSuccess -> Log.w(TAG, "Successfully got request token from Google Pay")
+        DonationEvent.RequestTokenError -> onPaymentError(null)
+        DonationEvent.RequestTokenSuccess -> Log.i(TAG, "Successfully got request token from Google Pay")
         DonationEvent.SubscriptionCancelled -> Unit
+        is DonationEvent.SubscriptionCancellationFailed -> Unit
       }
     }
   }
 
   private fun getConfiguration(state: BoostState): DSLConfiguration {
+    if (state.stage == BoostState.Stage.PAYMENT_PIPELINE) {
+      processingDonationPaymentDialog.show()
+    } else {
+      processingDonationPaymentDialog.hide()
+    }
+
     return configure {
       customPref(BadgePreview.SubscriptionModel(state.boostBadge))
 
@@ -87,7 +107,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment() {
           currencySelection = state.currencySelection,
           isEnabled = state.stage == BoostState.Stage.READY,
           onClick = {
-            findNavController().navigate(BoostFragmentDirections.actionBoostFragmentToSetDonationCurrencyFragment())
+            findNavController().navigate(BoostFragmentDirections.actionBoostFragmentToSetDonationCurrencyFragment(true))
           }
         )
       )
@@ -137,7 +157,43 @@ class BoostFragment : DSLSettingsBottomSheetFragment() {
   }
 
   private fun onPaymentConfirmed(boostBadge: Badge) {
-    findNavController().navigate(BoostFragmentDirections.actionBoostFragmentToBoostThanksForYourSupportBottomSheetDialog(boostBadge).setIsBoost(true))
+    findNavController().navigate(
+      BoostFragmentDirections.actionBoostFragmentToBoostThanksForYourSupportBottomSheetDialog(boostBadge).setIsBoost(true),
+      NavOptions.Builder().setPopUpTo(R.id.boostFragment, true).build()
+    )
+  }
+
+  private fun onPaymentError(throwable: Throwable?) {
+    if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
+      Log.w(TAG, "Error occurred while redeeming token", throwable)
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.DonationsErrors__redemption_still_pending)
+        .setMessage(R.string.DonationsErrors__you_might_not_see_your_badge_right_away)
+        .setPositiveButton(android.R.string.ok) { dialog, _ ->
+          dialog.dismiss()
+          findNavController().popBackStack()
+        }
+    } else {
+      Log.w(TAG, "Error occurred while processing payment", throwable)
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.DonationsErrors__payment_failed)
+        .setMessage(R.string.DonationsErrors__your_payment)
+        .setPositiveButton(android.R.string.ok) { dialog, _ ->
+          dialog.dismiss()
+          findNavController().popBackStack()
+        }
+    }
+  }
+
+  private fun onGooglePayUnavailable(throwable: Throwable?) {
+    Log.w(TAG, "Google Pay error", throwable)
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.DonationsErrors__google_pay_unavailable)
+      .setMessage(R.string.DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app)
+      .setPositiveButton(android.R.string.ok) { dialog, _ ->
+        dialog.dismiss()
+        findNavController().popBackStack()
+      }
   }
 
   companion object {

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -320,6 +321,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     HandlerThread handlerThread = new HandlerThread("signal-DeadlockDetector");
     handlerThread.start();
     return new DeadlockDetector(new Handler(handlerThread.getLooper()), TimeUnit.SECONDS.toMillis(5));
+  }
+
+  @Override
+  public @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations() {
+    return provideClientZkOperations().getReceiptOperations();
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

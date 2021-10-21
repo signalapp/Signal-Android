@@ -14,13 +14,41 @@ import java.io.IOException
 import java.math.BigDecimal
 import java.util.Locale
 
-class StripeApi(private val configuration: Configuration, private val paymentIntentFetcher: PaymentIntentFetcher, private val okHttpClient: OkHttpClient) {
+class StripeApi(
+  private val configuration: Configuration,
+  private val paymentIntentFetcher: PaymentIntentFetcher,
+  private val setupIntentHelper: SetupIntentHelper,
+  private val okHttpClient: OkHttpClient
+) {
 
   sealed class CreatePaymentIntentResult {
     data class AmountIsTooSmall(val amount: FiatMoney) : CreatePaymentIntentResult()
     data class AmountIsTooLarge(val amount: FiatMoney) : CreatePaymentIntentResult()
     data class CurrencyIsNotSupported(val currencyCode: String) : CreatePaymentIntentResult()
     data class Success(val paymentIntent: PaymentIntent) : CreatePaymentIntentResult()
+  }
+
+  data class CreateSetupIntentResult(val setupIntent: SetupIntent)
+
+  fun createSetupIntent(): Single<CreateSetupIntentResult> {
+    return setupIntentHelper
+      .fetchSetupIntent()
+      .map { CreateSetupIntentResult(it) }
+      .subscribeOn(Schedulers.io())
+  }
+
+  fun confirmSetupIntent(paymentSource: PaymentSource, setupIntent: SetupIntent): Completable = Single.fromCallable {
+    val paymentMethodId = createPaymentMethodAndParseId(paymentSource)
+
+    val parameters = mapOf(
+      "client_secret" to setupIntent.clientSecret,
+      "payment_method" to paymentMethodId
+    )
+
+    postForm("setup_intents/${setupIntent.id}/confirm", parameters)
+    paymentMethodId
+  }.flatMapCompletable {
+    setupIntentHelper.setDefaultPaymentMethod(it)
   }
 
   fun createPaymentIntent(price: FiatMoney, description: String? = null): Single<CreatePaymentIntentResult> {
@@ -39,15 +67,7 @@ class StripeApi(private val configuration: Configuration, private val paymentInt
   }
 
   fun confirmPaymentIntent(paymentSource: PaymentSource, paymentIntent: PaymentIntent): Completable = Completable.fromAction {
-    val paymentMethodId = createPaymentMethod(paymentSource).use { response ->
-      val body = response.body()
-      if (body != null) {
-        val paymentMethodObject = body.string().replace("\n", "").let { JSONObject(it) }
-        paymentMethodObject.getString("id")
-      } else {
-        throw IOException("Failed to parse payment method response")
-      }
-    }
+    val paymentMethodId = createPaymentMethodAndParseId(paymentSource)
 
     val parameters = mapOf(
       "client_secret" to paymentIntent.clientSecret,
@@ -56,6 +76,18 @@ class StripeApi(private val configuration: Configuration, private val paymentInt
 
     postForm("payment_intents/${paymentIntent.id}/confirm", parameters)
   }.subscribeOn(Schedulers.io())
+
+  private fun createPaymentMethodAndParseId(paymentSource: PaymentSource): String {
+    return createPaymentMethod(paymentSource).use { response ->
+      val body = response.body()
+      if (body != null) {
+        val paymentMethodObject = body.string().replace("\n", "").let { JSONObject(it) }
+        paymentMethodObject.getString("id")
+      } else {
+        throw IOException("Failed to parse payment method response")
+      }
+    }
+  }
 
   private fun createPaymentMethod(paymentSource: PaymentSource): Response {
     val tokenizationData = paymentSource.parameterize()
@@ -92,11 +124,11 @@ class StripeApi(private val configuration: Configuration, private val paymentInt
     private val MAX_AMOUNT = BigDecimal(99_999_999)
 
     fun isAmountTooLarge(fiatMoney: FiatMoney): Boolean {
-      return fiatMoney.amount > MAX_AMOUNT
+      return fiatMoney.minimumUnitPrecisionString.toBigDecimal() > MAX_AMOUNT
     }
 
     fun isAmountTooSmall(fiatMoney: FiatMoney): Boolean {
-      return fiatMoney.amount < BigDecimal(minimumIntegralChargePerCurrencyCode[fiatMoney.currency.currencyCode] ?: 50)
+      return fiatMoney.minimumUnitPrecisionString.toBigDecimal() < BigDecimal(minimumIntegralChargePerCurrencyCode[fiatMoney.currency.currencyCode] ?: 50)
     }
 
     private val minimumIntegralChargePerCurrencyCode: Map<String, Int> = mapOf(
@@ -295,7 +327,17 @@ class StripeApi(private val configuration: Configuration, private val paymentInt
     ): Single<PaymentIntent>
   }
 
+  interface SetupIntentHelper {
+    fun fetchSetupIntent(): Single<SetupIntent>
+    fun setDefaultPaymentMethod(paymentMethodId: String): Completable
+  }
+
   data class PaymentIntent(
+    val id: String,
+    val clientSecret: String
+  )
+
+  data class SetupIntent(
     val id: String,
     val clientSecret: String
   )

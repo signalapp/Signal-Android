@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.signal.zkgroup.receipts.ReceiptCredentialPresentation;
-import org.whispersystems.libsignal.util.guava.Preconditions;
 
 /**
  * POST /v1/donation/redeem-receipt
@@ -13,7 +12,7 @@ import org.whispersystems.libsignal.util.guava.Preconditions;
  */
 class RedeemReceiptRequest {
 
-  private final byte[] receiptCredentialPresentation;
+  private final String  receiptCredentialPresentation;
   private final boolean visible;
   private final boolean primary;
 
@@ -24,18 +23,16 @@ class RedeemReceiptRequest {
    */
   @JsonCreator
   RedeemReceiptRequest(
-      @JsonProperty("receiptCredentialPresentation") byte[] receiptCredentialPresentation,
+      @JsonProperty("receiptCredentialPresentation") String receiptCredentialPresentation,
       @JsonProperty("visible") boolean visible,
       @JsonProperty("primary") boolean primary) {
-
-    Preconditions.checkArgument(receiptCredentialPresentation.length == ReceiptCredentialPresentation.SIZE);
 
     this.receiptCredentialPresentation = receiptCredentialPresentation;
     this.visible = visible;
     this.primary = primary;
   }
 
-  public byte[] getReceiptCredentialPresentation() {
+  public String getReceiptCredentialPresentation() {
     return receiptCredentialPresentation;
   }
 

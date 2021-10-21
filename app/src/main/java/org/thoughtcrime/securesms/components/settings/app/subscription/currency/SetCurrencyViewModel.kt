@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.currency
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -10,14 +11,14 @@ import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Currency
 import java.util.Locale
 
-class SetCurrencyViewModel : ViewModel() {
+class SetCurrencyViewModel(val isBoost: Boolean) : ViewModel() {
 
   private val store = Store(SetCurrencyState())
 
   val state: LiveData<SetCurrencyState> = store.stateLiveData
 
   init {
-    val defaultCurrency = SignalStore.donationsValues().getCurrency()
+    val defaultCurrency = SignalStore.donationsValues().getSubscriptionCurrency()
 
     store.update { state ->
       val platformCurrencies = Currency.getAvailableCurrencies()
@@ -34,7 +35,12 @@ class SetCurrencyViewModel : ViewModel() {
 
   fun setSelectedCurrency(selectedCurrencyCode: String) {
     store.update { it.copy(selectedCurrencyCode = selectedCurrencyCode) }
-    SignalStore.donationsValues().setCurrency(Currency.getInstance(selectedCurrencyCode))
+
+    if (isBoost) {
+      SignalStore.donationsValues().setBoostCurrency(Currency.getInstance(selectedCurrencyCode))
+    } else {
+      SignalStore.donationsValues().setSubscriptionCurrency(Currency.getInstance(selectedCurrencyCode))
+    }
   }
 
   @VisibleForTesting
@@ -63,6 +69,12 @@ class SetCurrencyViewModel : ViewModel() {
       } else {
         o1.getDisplayName(Locale.getDefault()).compareTo(o2.getDisplayName(Locale.getDefault()))
       }
+    }
+  }
+
+  class Factory(private val isBoost: Boolean) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+      return modelClass.cast(SetCurrencyViewModel(isBoost))!!
     }
   }
 }

@@ -16,6 +16,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -67,7 +68,7 @@ public class UsernameUtil {
 
     try {
       Log.d(TAG, "No local user with this username. Searching remotely.");
-      SignalServiceProfile profile = ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfileByUsername(username, Optional.absent());
+      SignalServiceProfile profile = ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfileByUsername(username, Optional.absent(), Locale.getDefault());
       return Optional.fromNullable(profile.getUuid());
     } catch (IOException e) {
       return Optional.absent();

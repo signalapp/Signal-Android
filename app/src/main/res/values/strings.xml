@@ -2251,14 +2251,15 @@
     <string name="HelpFragment__debug_log">Debug Log:</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
-    <string-array name="HelpFragment__categories">
+    <string-array name="HelpFragment__categories_2">
         <item>-- Please select an option --</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
         <item>Question</item>
         <item>Feedback</item>
         <item>Other</item>
-        <item>Payments</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations (Sustainers &amp; Signal Boost)</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -3893,9 +3894,13 @@
     <string name="SubscribeFragment__confirm">Confirm</string>
     <string name="SubscribeFragment__update_subscription">Update Subscription</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Your subscription has been cancelled.</string>
+    <string name="SubscribeFragment__update_subscription_question">Update subscription?</string>
+    <string name="SubscribeFragment__update">Update</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount">You will be charged the full amount of the new subscription price today. Your subscription will renew %1$s.</string>
 
     <string name="Subscription__s_per_month">%s/month</string>
     <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Renews %2$s</string>
+    <string name="Subscription__s_per_month_dot_expires_s">%1$s/month · Expires %2$s</string>
 
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is a non-profit with no advertisers or investors, sustained only by the people who use and value it. Make a recurring monthly contribution and receive a profile badge to share your support.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Why Contribute?</string>
@@ -3908,6 +3913,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Display on Profile</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make featured badge</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Done</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">When you have more than one badge, you can choose one to feature for others to see on your profile.</string>
 
     <string name="ManageDonationsFragment__my_support">My support</string>
     <string name="ManageDonationsFragment__manage_subscription">Manage subscription</string>
@@ -3930,6 +3936,21 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">To continue supporting technology that is built for you—not for your data—please consider becoming a monthly subscriber.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Become a subscriber</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Not now</string>
+
+    <string name="Subscription__verification_failed">Subscription Verification Failed</string>
+    <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
+    <string name="Subscription__contact_support">Contact Support</string>
+    <string name="Subscription__earn_a_s_badge">Earn a %1$s badge</string>
+
+    <string name="SubscribeFragment__processing_payment">Processing payment...</string>
+    <string name="DonationsErrors__payment_failed">Payment failed</string>
+    <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__redemption_still_pending">Redemption still pending</string>
+    <string name="DonationsErrors__you_might_not_see_your_badge_right_away">You may not see your badge right away, but we\'re working on it!</string>
+    <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Subscription cancellation requires an internet connection.</string>
 
     <!-- EOF -->
 

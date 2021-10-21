@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.wallet.PaymentData
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -18,7 +19,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Cu
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.libsignal.util.guava.Optional
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import java.util.Currency
 
 class SubscribeViewModel(
   private val subscriptionsRepository: SubscriptionsRepository,
@@ -31,31 +33,35 @@ class SubscribeViewModel(
   private val disposables = CompositeDisposable()
 
   val state: LiveData<SubscribeState> = store.stateLiveData
-  val events: Observable<DonationEvent> = eventPublisher
+  val events: Observable<DonationEvent> = eventPublisher.observeOn(AndroidSchedulers.mainThread())
 
   private var subscriptionToPurchase: Subscription? = null
+  private val activeSubscriptionSubject = PublishSubject.create<ActiveSubscription>()
 
   override fun onCleared() {
     disposables.clear()
   }
 
-  fun refresh() {
-    disposables.clear()
+  init {
+    val currency: Observable<Currency> = SignalStore.donationsValues().observableSubscriptionCurrency
+    val allSubscriptions: Observable<List<Subscription>> = currency.switchMapSingle { subscriptionsRepository.getSubscriptions(it) }
+    refreshActiveSubscription()
 
-    val currency = SignalStore.donationsValues().getCurrency()
+    disposables += SignalStore.donationsValues().levelUpdateOperationObservable.subscribeBy {
+      store.update { state ->
+        state.copy(
+          hasInProgressSubscriptionTransaction = it.isPresent
+        )
+      }
+    }
 
-    val allSubscriptions = subscriptionsRepository.getSubscriptions(currency)
-    val activeSubscription = subscriptionsRepository.getActiveSubscription(currency)
-      .map { Optional.of(it) }
-      .defaultIfEmpty(Optional.absent())
-
-    disposables += allSubscriptions.zipWith(activeSubscription, ::Pair).subscribe { (subs, active) ->
+    disposables += Observable.combineLatest(allSubscriptions, activeSubscriptionSubject, ::Pair).subscribe { (subs, active) ->
       store.update {
         it.copy(
           subscriptions = subs,
-          selectedSubscription = it.selectedSubscription ?: active.orNull() ?: subs.firstOrNull(),
-          activeSubscription = active.orNull(),
-          stage = SubscribeState.Stage.READY
+          selectedSubscription = it.selectedSubscription ?: resolveSelectedSubscription(active, subs),
+          activeSubscription = active,
+          stage = if (it.stage == SubscribeState.Stage.INIT) SubscribeState.Stage.READY else it.stage,
         )
       }
     }
@@ -65,11 +71,39 @@ class SubscribeViewModel(
       onError = { eventPublisher.onNext(DonationEvent.GooglePayUnavailableError(it)) }
     )
 
-    store.update { it.copy(currencySelection = CurrencySelection(SignalStore.donationsValues().getCurrency().currencyCode)) }
+    disposables += currency.map { CurrencySelection(it.currencyCode) }.subscribe { selection ->
+      store.update { it.copy(currencySelection = selection) }
+    }
   }
+
+  fun refreshActiveSubscription() {
+    subscriptionsRepository
+      .getActiveSubscription()
+      .subscribeBy { activeSubscriptionSubject.onNext(it) }
+  }
+
+  private fun resolveSelectedSubscription(activeSubscription: ActiveSubscription, subscriptions: List<Subscription>): Subscription? {
+    return if (activeSubscription.isActive) {
+      subscriptions.firstOrNull { it.level == activeSubscription.activeSubscription.level }
+    } else {
+      subscriptions.firstOrNull()
+    }
+  }
+
   fun cancel() {
     store.update { it.copy(stage = SubscribeState.Stage.CANCELLING) }
-    // TODO [alex] -- cancel api call
+    disposables += donationPaymentRepository.cancelActiveSubscription().subscribeBy(
+      onComplete = {
+        eventPublisher.onNext(DonationEvent.SubscriptionCancelled)
+        SignalStore.donationsValues().setLastEndOfPeriod(0L)
+        refreshActiveSubscription()
+        store.update { it.copy(stage = SubscribeState.Stage.READY) }
+      },
+      onError = { throwable ->
+        eventPublisher.onNext(DonationEvent.SubscriptionCancellationFailed(throwable))
+        store.update { it.copy(stage = SubscribeState.Stage.READY) }
+      }
+    )
   }
 
   fun onActivityResult(
@@ -77,35 +111,63 @@ class SubscribeViewModel(
     resultCode: Int,
     data: Intent?
   ) {
+    val subscription = subscriptionToPurchase
+    subscriptionToPurchase = null
+
     donationPaymentRepository.onActivityResult(
       requestCode, resultCode, data, this.fetchTokenRequestCode,
       object : GooglePayApi.PaymentRequestCallback {
         override fun onSuccess(paymentData: PaymentData) {
-          val subscription = subscriptionToPurchase
-          subscriptionToPurchase = null
-
           if (subscription != null) {
             eventPublisher.onNext(DonationEvent.RequestTokenSuccess)
-            donationPaymentRepository.continuePayment(subscription.price, paymentData).subscribeBy(
-              onError = { eventPublisher.onNext(DonationEvent.PaymentConfirmationError(it)) },
+
+            val ensureSubscriberId = donationPaymentRepository.ensureSubscriberId()
+            val continueSetup = donationPaymentRepository.continueSubscriptionSetup(paymentData)
+            val setLevel = donationPaymentRepository.setSubscriptionLevel(subscription.level.toString())
+
+            store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
+
+            ensureSubscriberId.andThen(continueSetup).andThen(setLevel).subscribeBy(
+              onError = { throwable ->
+                refreshActiveSubscription()
+                store.update { it.copy(stage = SubscribeState.Stage.READY) }
+                eventPublisher.onNext(DonationEvent.PaymentConfirmationError(throwable))
+              },
               onComplete = {
-                // Now we need to do the whole query for a token, submit token rigamarole
+                store.update { it.copy(stage = SubscribeState.Stage.READY) }
                 eventPublisher.onNext(DonationEvent.PaymentConfirmationSuccess(subscription.badge))
               }
             )
+          } else {
+            store.update { it.copy(stage = SubscribeState.Stage.READY) }
           }
         }
 
         override fun onError() {
-          store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
+          store.update { it.copy(stage = SubscribeState.Stage.READY) }
           eventPublisher.onNext(DonationEvent.RequestTokenError)
         }
 
         override fun onCancelled() {
-          store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
+          store.update { it.copy(stage = SubscribeState.Stage.READY) }
         }
       }
     )
+  }
+
+  fun updateSubscription() {
+    store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
+    donationPaymentRepository.setSubscriptionLevel(store.state.selectedSubscription!!.level.toString())
+      .subscribeBy(
+        onComplete = {
+          store.update { it.copy(stage = SubscribeState.Stage.READY) }
+          eventPublisher.onNext(DonationEvent.PaymentConfirmationSuccess(store.state.selectedSubscription!!.badge))
+        },
+        onError = { throwable ->
+          store.update { it.copy(stage = SubscribeState.Stage.READY) }
+          eventPublisher.onNext(DonationEvent.PaymentConfirmationError(throwable))
+        }
+      )
   }
 
   fun requestTokenFromGooglePay() {
@@ -114,7 +176,7 @@ class SubscribeViewModel(
       return
     }
 
-    store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
+    store.update { it.copy(stage = SubscribeState.Stage.TOKEN_REQUEST) }
 
     subscriptionToPurchase = snapshot.selectedSubscription
     donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedSubscription.price, snapshot.selectedSubscription.title, fetchTokenRequestCode)

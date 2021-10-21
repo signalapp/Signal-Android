@@ -55,6 +55,16 @@
         app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_subhead"
         tools:src="@drawable/test_gradient" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/thanks_bottom_sheet_lottie"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_badge"
+        app:layout_constraintEnd_toEndOf="@id/thanks_bottom_sheet_badge"
+        app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_badge"
+        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_badge"
+        app:lottie_rawRes="@raw/lottie_rocket" />
+
     <TextView
         android:id="@+id/thanks_bottom_sheet_badge_name"
         android:layout_width="0dp"
@@ -74,13 +84,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/rounded_outline"
-        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_display_on_profile"
+        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_control_text"
         app:layout_constraintEnd_toEndOf="@id/thanks_bottom_sheet_switch"
-        app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_display_on_profile"
-        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_display_on_profile" />
+        app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_control_text"
+        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_control_text" />
 
     <TextView
-        android:id="@+id/thanks_bottom_sheet_display_on_profile"
+        android:id="@+id/thanks_bottom_sheet_control_text"
         android:layout_width="0dp"
         android:layout_height="48sp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
@@ -103,10 +113,24 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_display_on_profile"
+        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_control_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/thanks_bottom_sheet_display_on_profile"
-        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_display_on_profile" />
+        app:layout_constraintStart_toEndOf="@id/thanks_bottom_sheet_control_text"
+        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_control_text" />
+
+    <TextView
+        android:id="@+id/thanks_bottom_sheet_featured_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/ThanksForYourSupportBottomSheetFragment__when_you_have_more"
+        android:textAppearance="@style/Signal.Text.Caption"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_control_outline"
+        tools:visibility="visible" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/thanks_bottom_sheet_done"
@@ -114,11 +138,12 @@
         android:layout_width="0dp"
         android:layout_height="48sp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_display_on_profile" />
+        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_featured_note"
+        app:layout_goneMarginTop="36dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

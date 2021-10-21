@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.badges.glide
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
-import androidx.annotation.VisibleForTesting
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
-import java.lang.IllegalArgumentException
 import java.security.MessageDigest
 
 /**
@@ -19,7 +17,7 @@ class BadgeSpriteTransformation(
 ) : BitmapTransformation() {
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
-    messageDigest.update("BadgeSpriteTransformation(${size.code},$density,$isDarkTheme)".toByteArray(CHARSET))
+    messageDigest.update("BadgeSpriteTransformation(${size.code},$density,$isDarkTheme).$VERSION".toByteArray(CHARSET))
   }
 
   override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
@@ -33,11 +31,51 @@ class BadgeSpriteTransformation(
     return outBitmap
   }
 
-  enum class Size(val code: String) {
-    SMALL("small"),
-    MEDIUM("medium"),
-    LARGE("large"),
-    XLARGE("xlarge");
+  enum class Size(val code: String, val frameMap: Map<Density, FrameSet>) {
+    SMALL(
+      "small",
+      mapOf(
+        Density.LDPI to FrameSet(Frame(124, 1, 13, 13), Frame(145, 31, 13, 13)),
+        Density.MDPI to FrameSet(Frame(163, 1, 16, 16), Frame(189, 39, 16, 16)),
+        Density.HDPI to FrameSet(Frame(244, 1, 25, 25), Frame(283, 58, 25, 25)),
+        Density.XHDPI to FrameSet(Frame(323, 1, 32, 32), Frame(373, 75, 32, 32)),
+        Density.XXHDPI to FrameSet(Frame(483, 1, 48, 48), Frame(557, 111, 48, 48)),
+        Density.XXXHDPI to FrameSet(Frame(643, 1, 64, 64), Frame(741, 147, 64, 64))
+      )
+    ),
+    MEDIUM(
+      "medium",
+      mapOf(
+        Density.LDPI to FrameSet(Frame(124, 16, 19, 19), Frame(160, 31, 19, 19)),
+        Density.MDPI to FrameSet(Frame(163, 19, 24, 24), Frame(207, 39, 24, 24)),
+        Density.HDPI to FrameSet(Frame(244, 28, 37, 37), Frame(310, 58, 37, 37)),
+        Density.XHDPI to FrameSet(Frame(323, 35, 48, 48), Frame(407, 75, 48, 48)),
+        Density.XXHDPI to FrameSet(Frame(483, 51, 72, 72), Frame(607, 111, 72, 72)),
+        Density.XXXHDPI to FrameSet(Frame(643, 67, 96, 96), Frame(807, 147, 96, 96))
+      )
+    ),
+    LARGE(
+      "large",
+      mapOf(
+        Density.LDPI to FrameSet(Frame(145, 1, 28, 28), Frame(124, 46, 28, 28)),
+        Density.MDPI to FrameSet(Frame(189, 1, 36, 36), Frame(163, 57, 36, 36)),
+        Density.HDPI to FrameSet(Frame(283, 1, 55, 55), Frame(244, 85, 55, 55)),
+        Density.XHDPI to FrameSet(Frame(373, 1, 72, 72), Frame(323, 109, 72, 72)),
+        Density.XXHDPI to FrameSet(Frame(557, 1, 108, 108), Frame(483, 161, 108, 108)),
+        Density.XXXHDPI to FrameSet(Frame(741, 1, 144, 144), Frame(643, 213, 144, 144))
+      )
+    ),
+    XLARGE(
+      "xlarge",
+      mapOf(
+        Density.LDPI to FrameSet(Frame(1, 1, 121, 121), Frame(1, 1, 121, 121)),
+        Density.MDPI to FrameSet(Frame(1, 1, 160, 160), Frame(1, 1, 160, 160)),
+        Density.HDPI to FrameSet(Frame(1, 1, 241, 241), Frame(1, 1, 241, 241)),
+        Density.XHDPI to FrameSet(Frame(1, 1, 320, 320), Frame(1, 1, 320, 320)),
+        Density.XXHDPI to FrameSet(Frame(1, 1, 480, 480), Frame(1, 1, 480, 480)),
+        Density.XXXHDPI to FrameSet(Frame(1, 1, 640, 640), Frame(1, 1, 640, 640))
+      )
+    );
 
     companion object {
       fun fromInteger(integer: Int): Size {
@@ -52,55 +90,42 @@ class BadgeSpriteTransformation(
     }
   }
 
+  enum class Density(val density: String) {
+    LDPI("ldpi"),
+    MDPI("mdpi"),
+    HDPI("hdpi"),
+    XHDPI("xhdpi"),
+    XXHDPI("xxhdpi"),
+    XXXHDPI("xxxhdpi")
+  }
+
+  data class FrameSet(val light: Frame, val dark: Frame)
+
+  data class Frame(
+    val x: Int,
+    val y: Int,
+    val width: Int,
+    val height: Int
+  ) {
+    fun toBounds(): Rect {
+      return Rect(x, y, x + width, y + height)
+    }
+  }
+
   companion object {
-    private const val PADDING = 1
+    private const val VERSION = 1
 
-    @VisibleForTesting
-    fun getInBounds(density: String, size: Size, isDarkTheme: Boolean): Rect {
-      val scaleFactor: Int = when (density) {
-        "ldpi" -> 75
-        "mdpi" -> 100
-        "hdpi" -> 150
-        "xhdpi" -> 200
-        "xxhdpi" -> 300
-        "xxxhdpi" -> 400
-        else -> throw IllegalArgumentException("Unexpected density $density")
-      }
+    private fun getDensity(density: String): Density {
+      return Density.values().first { it.density == density }
+    }
 
-      val smallLength = 8 * scaleFactor / 100
-      val mediumLength = 12 * scaleFactor / 100
-      val largeLength = 18 * scaleFactor / 100
-      val xlargeLength = 80 * scaleFactor / 100
+    private fun getFrame(size: Size, density: Density, isDarkTheme: Boolean): Frame {
+      val frameSet: FrameSet = size.frameMap[density]!!
+      return if (isDarkTheme) frameSet.dark else frameSet.light
+    }
 
-      val sideLength: Int = when (size) {
-        Size.SMALL -> smallLength
-        Size.MEDIUM -> mediumLength
-        Size.LARGE -> largeLength
-        Size.XLARGE -> xlargeLength
-      }
-
-      val lightOffset: Int = when (size) {
-        Size.LARGE -> PADDING
-        Size.MEDIUM -> (largeLength + PADDING * 2) * 2 + PADDING
-        Size.SMALL -> (largeLength + PADDING * 2) * 2 + (mediumLength + PADDING * 2) * 2 + PADDING
-        Size.XLARGE -> (largeLength + PADDING * 2) * 2 + (mediumLength + PADDING * 2) * 2 + (smallLength + PADDING * 2) * 2 + PADDING
-      }
-
-      val darkOffset = if (isDarkTheme) {
-        when (size) {
-          Size.XLARGE -> 0
-          else -> sideLength + PADDING * 2
-        }
-      } else {
-        0
-      }
-
-      return Rect(
-        lightOffset + darkOffset,
-        PADDING,
-        lightOffset + darkOffset + sideLength,
-        sideLength + PADDING
-      )
+    private fun getInBounds(density: String, size: Size, isDarkTheme: Boolean): Rect {
+      return getFrame(size, getDensity(density), isDarkTheme).toBounds()
     }
   }
 }

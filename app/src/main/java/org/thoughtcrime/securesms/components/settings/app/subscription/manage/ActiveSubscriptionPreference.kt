@@ -21,14 +21,17 @@ object ActiveSubscriptionPreference {
 
   class Model(
     val subscription: Subscription,
-    val onAddBoostClick: () -> Unit
+    val onAddBoostClick: () -> Unit,
+    val renewalTimestamp: Long = -1L
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return subscription.id == newItem.subscription.id
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return super.areContentsTheSame(newItem) && subscription == newItem.subscription
+      return super.areContentsTheSame(newItem) &&
+        subscription == newItem.subscription &&
+        renewalTimestamp == newItem.renewalTimestamp
     }
   }
 
@@ -57,7 +60,7 @@ object ActiveSubscriptionPreference {
         R.string.MySupportPreference__renews_s,
         DateUtils.formatDate(
           Locale.getDefault(),
-          model.subscription.renewalTimestamp
+          model.renewalTimestamp
         )
       )
 

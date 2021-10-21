@@ -11,5 +11,6 @@ sealed class DonationEvent {
   object RequestTokenError : DonationEvent()
   class PaymentConfirmationError(val throwable: Throwable) : DonationEvent()
   class PaymentConfirmationSuccess(val badge: Badge) : DonationEvent()
+  class SubscriptionCancellationFailed(val throwable: Throwable) : DonationEvent()
   object SubscriptionCancelled : DonationEvent()
 }

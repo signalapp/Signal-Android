@@ -135,22 +135,7 @@ public class SignalServiceProfile {
     private String description;
 
     @JsonProperty
-    private String ldpi;
-
-    @JsonProperty
-    private String mdpi;
-
-    @JsonProperty
-    private String hdpi;
-
-    @JsonProperty
-    private String xhdpi;
-
-    @JsonProperty
-    private String xxhdpi;
-
-    @JsonProperty
-    private String xxxhdpi;
+    private List<String> sprites6;
 
     @JsonProperty
     private BigDecimal expiration;
@@ -174,28 +159,8 @@ public class SignalServiceProfile {
       return description;
     }
 
-    public String getLdpiUri() {
-      return ldpi;
-    }
-
-    public String getMdpiUri() {
-      return mdpi;
-    }
-
-    public String getHdpiUri() {
-      return hdpi;
-    }
-
-    public String getXhdpiUri() {
-      return xhdpi;
-    }
-
-    public String getXxhdpiUri() {
-      return xxhdpi;
-    }
-
-    public String getXxxhdpiUri() {
-      return xxxhdpi;
+    public List<String> getSprites6() {
+      return sprites6;
     }
 
     public BigDecimal getExpiration() {

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.wallet.PaymentData
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -31,7 +32,7 @@ class BoostViewModel(
   private val disposables = CompositeDisposable()
 
   val state: LiveData<BoostState> = store.stateLiveData
-  val events: Observable<DonationEvent> = eventPublisher
+  val events: Observable<DonationEvent> = eventPublisher.observeOn(AndroidSchedulers.mainThread())
 
   private var boostToPurchase: Boost? = null
 
@@ -40,7 +41,7 @@ class BoostViewModel(
   }
 
   init {
-    val currencyObservable = SignalStore.donationsValues().observableCurrency
+    val currencyObservable = SignalStore.donationsValues().observableBoostCurrency
     val boosts = currencyObservable.flatMapSingle { boostRepository.getBoosts(it) }
     val boostBadge = boostRepository.getBoostBadge()
 
@@ -91,22 +92,28 @@ class BoostViewModel(
           if (boost != null) {
             eventPublisher.onNext(DonationEvent.RequestTokenSuccess)
             donationPaymentRepository.continuePayment(boost.price, paymentData).subscribeBy(
-              onError = { eventPublisher.onNext(DonationEvent.PaymentConfirmationError(it)) },
+              onError = { throwable ->
+                store.update { it.copy(stage = BoostState.Stage.READY) }
+                eventPublisher.onNext(DonationEvent.PaymentConfirmationError(throwable))
+              },
               onComplete = {
-                // Now we need to do the whole query for a token, submit token rigamarole
+                // TODO [alex] Now we need to do the whole query for a token, submit token rigamarole
+                store.update { it.copy(stage = BoostState.Stage.READY) }
                 eventPublisher.onNext(DonationEvent.PaymentConfirmationSuccess(store.state.boostBadge!!))
               }
             )
+          } else {
+            store.update { it.copy(stage = BoostState.Stage.READY) }
           }
         }
 
         override fun onError() {
-          store.update { it.copy(stage = BoostState.Stage.PAYMENT_PIPELINE) }
+          store.update { it.copy(stage = BoostState.Stage.READY) }
           eventPublisher.onNext(DonationEvent.RequestTokenError)
         }
 
         override fun onCancelled() {
-          store.update { it.copy(stage = BoostState.Stage.PAYMENT_PIPELINE) }
+          store.update { it.copy(stage = BoostState.Stage.READY) }
         }
       }
     )

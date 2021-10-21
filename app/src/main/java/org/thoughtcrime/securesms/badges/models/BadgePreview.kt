@@ -22,21 +22,29 @@ object BadgePreview {
 
   data class Model(override val badge: Badge?) : BadgeModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {
-      return newItem.badge?.id == badge?.id
+      return true
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
       return super.areContentsTheSame(newItem) && badge == newItem.badge
     }
+
+    override fun getChangePayload(newItem: Model): Any? {
+      return Unit
+    }
   }
 
   data class SubscriptionModel(override val badge: Badge?) : BadgeModel<SubscriptionModel>() {
     override fun areItemsTheSame(newItem: SubscriptionModel): Boolean {
-      return newItem.badge?.id == badge?.id
+      return true
     }
 
     override fun areContentsTheSame(newItem: SubscriptionModel): Boolean {
       return super.areContentsTheSame(newItem) && badge == newItem.badge
+    }
+
+    override fun getChangePayload(newItem: SubscriptionModel): Any? {
+      return Unit
     }
   }
 
@@ -46,8 +54,11 @@ object BadgePreview {
     private val badge: BadgeImageView = itemView.findViewById(R.id.badge)
 
     override fun bind(model: T) {
-      avatar.setRecipient(Recipient.self())
-      avatar.disableQuickContact()
+      if (payload.isEmpty()) {
+        avatar.setRecipient(Recipient.self())
+        avatar.disableQuickContact()
+      }
+
       badge.setBadge(model.badge)
     }
   }
