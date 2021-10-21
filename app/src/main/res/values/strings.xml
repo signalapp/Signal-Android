@@ -3942,7 +3942,7 @@
     <string name="Subscription__contact_support">Contact Support</string>
     <string name="Subscription__earn_a_s_badge">Earn a %1$s badge</string>
 
-    <string name="SubscribeFragment__processing_payment">Processing payment...</string>
+    <string name="SubscribeFragment__processing_payment">Processing payment…</string>
     <string name="DonationsErrors__payment_failed">Payment failed</string>
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__redemption_still_pending">Redemption still pending</string>

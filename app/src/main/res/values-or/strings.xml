@@ -181,9 +181,9 @@
   <string name="ConversationItem_this_message_was_deleted">ଏହି ବାର୍ତ୍ତା ବିଲୋପ କରାଯାଇଛି।</string>
   <string name="ConversationItem_you_deleted_this_message">ଆପଣ ଏହି ବାର୍ତ୍ତା ବିଲୋପ କଲେ।</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">ସୁରକ୍ଷିତ ଅଧିବେଶନ ପୁନଃସେଟ୍ କରିବେ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ଯଦି ଆପଣ ଏହି ବାର୍ତ୍ତାଳାପରେ ଏନକ୍ରିପସନ୍ ସମସ୍ୟା କରୁଛନ୍ତି ତେବେ ଏହା ସାହାଯ୍ୟ କରିପାରେ | ଆପଣଙ୍କର ବାର୍ତ୍ତାଗୁଡିକ ରଖାଯିବ</string>
-  <string name="ConversationActivity_reset">ରିସେଟ୍ କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ସୁରକ୍ଷିତ ଅଧିବେଶନ ପୁନଃସେଟ୍ କରିବେ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ଯଦି ଆପଣ ଏହି ବାର୍ତ୍ତାଳାପରେ ଏନକ୍ରିପସନ୍ ସମସ୍ୟା କରୁଛନ୍ତି ତେବେ ଏହା ସାହାଯ୍ୟ କରିପାରେ | ଆପଣଙ୍କର ବାର୍ତ୍ତାଗୁଡିକ ରଖାଯିବ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">ରିସେଟ୍ କରନ୍ତୁ</string> -->
   <string name="ConversationActivity_add_attachment">ସଂଲଗ୍ନକ ଯୋଗ କରନ୍ତୁ</string>
   <string name="ConversationActivity_select_contact_info">ଯୋଗାଯୋଗ ସୂଚନା ଚୟନ କରନ୍ତୁ</string>
   <string name="ConversationActivity_compose_message">Compose message</string>
@@ -783,14 +783,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">ଗ୍ରୀଡ଼୍ ଭିଉ</string>
   <string name="MediaOverviewActivity_List_view_description">ତାଲିକା ଭିଉ</string>
   <string name="MediaOverviewActivity_Selected_description">ମନୋନୀତ</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">ମନୋନୀତ %1$dଟିଏ, ଆକାର %2$s</item>
     <item quantity="other">ମନୋନୀତ %1$dଟି, ଆକାର %2$s </item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$dଟେ ଆଇଟମ୍</item>
     <item quantity="other">%1$dଟି ଆଇଟମ୍</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ଫାଇଲ୍</string>
   <string name="MediaOverviewActivity_audio">ଅଡ଼ିଓ</string>
   <string name="MediaOverviewActivity_video">ଭିଡ଼ିଓ</string>

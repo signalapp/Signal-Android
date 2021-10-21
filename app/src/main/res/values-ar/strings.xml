@@ -188,9 +188,9 @@
   <string name="ConversationItem_this_message_was_deleted">حُذفَت هذه الرسالة.</string>
   <string name="ConversationItem_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سيُحتفَظ برسائلك. قد يساعد ذلك في حال وجود مشاكل في تعمية هذه المحادثة.</string>
-  <string name="ConversationActivity_reset">إعادة ضبط</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سيُحتفَظ برسائلك. قد يساعد ذلك في حال وجود مشاكل في تعمية هذه المحادثة.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">إعادة ضبط</string> -->
   <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
   <string name="ConversationActivity_select_contact_info">أختر بيانات جهة الاتصال</string>
   <string name="ConversationActivity_compose_message">إنشاء رسالة</string>
@@ -959,22 +959,22 @@
   <string name="MediaOverviewActivity_Grid_view_description">عرض شبكي</string>
   <string name="MediaOverviewActivity_List_view_description">عرض القائمة</string>
   <string name="MediaOverviewActivity_Selected_description">مختار</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="zero">%1$d عنصر %2$s</item>
     <item quantity="one">%1$d عنصر %2$s</item>
     <item quantity="two">%1$d عنصر %2$s</item>
     <item quantity="few">%1$d عناصر %2$s</item>
     <item quantity="many">%1$d عنصر %2$s</item>
     <item quantity="other">%1$d عنصر%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="zero">%1$d عنصر</item>
     <item quantity="one">%1$d عنصر</item>
     <item quantity="two">%1$d عنصر</item>
     <item quantity="few">%1$d عناصر</item>
     <item quantity="many">%1$d عنصر</item>
     <item quantity="other">%1$d عنصر</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ملف</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">فيديو</string>
@@ -2190,15 +2190,6 @@
   <string name="HelpFragment__debug_log">سِجل التصحيح :</string>
   <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- يُرجى تحديد أحد الخيارات --</item>
-    <item>هناك شيء لا يعمل</item>
-    <item>طلب ميزات جديدة</item>
-    <item>أسئلة</item>
-    <item>ملاحظات</item>
-    <item>أشياء أخرى</item>
-    <item>الدفوعات</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
@@ -3504,7 +3495,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">‎½ ×‎</string>
   <string name="PlaybackSpeedToggleTextView__1x">‎1 ×‎</string>
-  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">‎1½ ×‎</string>
   <string name="PlaybackSpeedToggleTextView__2x">‎2 ×‎</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">دفع جديد</string>

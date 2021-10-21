@@ -183,9 +183,9 @@
   <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <string name="ConversationItem_you_deleted_this_message">คุณได้ลบข้อความนี้</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">ต้องการรีเซ็ตเซสชันที่ปลอดภัยหรือไม่?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">นี่อาจจะช่วยได้ หากคุณมีปัญหากับการเข้ารหัสลับข้อความในการสนทนานี้ ข้อความของคุณจะถูกเก็บไว้</string>
-  <string name="ConversationActivity_reset">รีเซ็ต</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ต้องการรีเซ็ตเซสชันที่ปลอดภัยหรือไม่?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">นี่อาจจะช่วยได้ หากคุณมีปัญหากับการเข้ารหัสลับข้อความในการสนทนานี้ ข้อความของคุณจะถูกเก็บไว้</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">รีเซ็ต</string> -->
   <string name="ConversationActivity_add_attachment">เพิ่มแฟ้มแนบ</string>
   <string name="ConversationActivity_select_contact_info">เลือกข้อมูลผู้ติดต่อ</string>
   <string name="ConversationActivity_compose_message">เขียนข้อความ</string>
@@ -756,12 +756,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">แสดงข้อมูลแบบตาราง</string>
   <string name="MediaOverviewActivity_List_view_description">แสดงข้อมูลแบบแถว</string>
   <string name="MediaOverviewActivity_Selected_description">ถูกเลือก</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d รายการ %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d รายการ</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">แฟ้ม</string>
   <string name="MediaOverviewActivity_audio">เสียง</string>
   <string name="MediaOverviewActivity_video">วิดีโอ</string>
@@ -1777,15 +1777,6 @@
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- กรุณาเลือกตัวเลือก --</item>
-    <item>บางสิ่งไม่ทำงาน</item>
-    <item>ขอความสามารถใหม่</item>
-    <item>มีคำถาม</item>
-    <item>มีข้อเสนอแนะ</item>
-    <item>อื่นๆ</item>
-    <item>การชำระเงิน</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>

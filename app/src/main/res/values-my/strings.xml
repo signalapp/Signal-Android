@@ -181,9 +181,9 @@
   <string name="ConversationItem_this_message_was_deleted">ဒီစာကိုဖျက်လိုက်သည်။</string>
   <string name="ConversationItem_you_deleted_this_message">သင်ဒီစာကိုဖျက်လိုက်သည်။</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">လုံခြုံသောဆက်ရှင်ကို ပြန်ချိန်မည်လား</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">အကယ်၍ သင့်စကားများကို encrypt လုပ်ရန်အခက်အခဲရှိပါက ဤနည်းက အသုံးဝင်သည်။ သင့်မက်ဆေ့ချ်ကို သိမ်းထားပါမည်။ </string>
-  <string name="ConversationActivity_reset">မူလအတိုင်းပြန်လုပ်မည် </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">လုံခြုံသောဆက်ရှင်ကို ပြန်ချိန်မည်လား</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">အကယ်၍ သင့်စကားများကို encrypt လုပ်ရန်အခက်အခဲရှိပါက ဤနည်းက အသုံးဝင်သည်။ သင့်မက်ဆေ့ချ်ကို သိမ်းထားပါမည်။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">မူလအတိုင်းပြန်လုပ်မည် </string> -->
   <string name="ConversationActivity_add_attachment">ပူးတွဲဖိုင် ထည့်ရန်</string>
   <string name="ConversationActivity_select_contact_info">ဆက်သွယ်မည့်သူအချက်အလက်ရွေးချယ်ပါ </string>
   <string name="ConversationActivity_compose_message">စာရေးသားမည် </string>
@@ -740,12 +740,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">အကွက်လိုက် ကြည့်ရန်</string>
   <string name="MediaOverviewActivity_List_view_description">စာရင်းလိုက်ကြည့်ရန်</string>
   <string name="MediaOverviewActivity_Selected_description">ရွေးချယ်ထားသော</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d အရာများ %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d အရာများ</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ဖိုင်</string>
   <string name="MediaOverviewActivity_audio">အသံ</string>
   <string name="MediaOverviewActivity_video">ဗီဒီယို</string>
@@ -2818,6 +2818,10 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">စာအသစ်</string>

@@ -185,9 +185,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ziņa ir izdzēsts.</string>
   <string name="ConversationItem_you_deleted_this_message">Jūs izdzēsāt ziņu.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Atstatīt šifrēto sarakstes sesiju?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tas var palīdzēt, ja sarakstē saskaraties ar šifrēšanas problēmām. Jūsu ziņas tiks saglabātas.</string>
-  <string name="ConversationActivity_reset">Atstatīt</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atstatīt šifrēto sarakstes sesiju?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tas var palīdzēt, ja sarakstē saskaraties ar šifrēšanas problēmām. Jūsu ziņas tiks saglabātas.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atstatīt</string> -->
   <string name="ConversationActivity_add_attachment">Pievienot pielikumu</string>
   <string name="ConversationActivity_select_contact_info">Izvēlēties/atzīmēt kontaktinformāciju</string>
   <string name="ConversationActivity_compose_message">Rakstīt ziņu</string>
@@ -836,16 +836,16 @@
   <string name="MediaOverviewActivity_Grid_view_description">Režģa skats</string>
   <string name="MediaOverviewActivity_List_view_description">Saraksta skats</string>
   <string name="MediaOverviewActivity_Selected_description">Izvēlētais</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="zero">%1$d vienums %2$s</item>
     <item quantity="one">%1$d vienums%2$s</item>
     <item quantity="other">%1$d vienumi %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="zero">%1$d vienums</item>
     <item quantity="one">%1$d vienums</item>
     <item quantity="other">%1$d vienumi</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Fails</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1920,15 +1920,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="HelpFragment__debug_log">Atkļūdošanas žurnāls:</string>
   <string name="HelpFragment__could_not_upload_logs">Nebija iespējams augšuplādēt žurnālus</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lūdzu, esiet pēc iespējas aprakstošāks, lai palīdzētu mums izprast problēmu.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Atlasiet opciju --</item>
-    <item>Kaut kas nedarbojas</item>
-    <item>Funkcijas pieprasījums</item>
-    <item>Jautājums</item>
-    <item>Atsauksmes</item>
-    <item>Cits</item>
-    <item>Maksājumi</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Šī ziņa</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nesen lietotie</string>

@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé.</string>
   <string name="ConversationItem_you_deleted_this_message">Vous avez supprimé ce message.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string>
-  <string name="ConversationActivity_reset">Réinitialiser</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Réinitialiser</string> -->
   <string name="ConversationActivity_add_attachment">Ajouter un fichier joint</string>
   <string name="ConversationActivity_select_contact_info">Sélectionner les renseignements du contact</string>
   <string name="ConversationActivity_compose_message">Rédiger un message</string>
@@ -799,14 +799,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vue en grille</string>
   <string name="MediaOverviewActivity_List_view_description">Vue en liste</string>
   <string name="MediaOverviewActivity_Selected_description">Sélectionné</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d élément %2$s</item>
     <item quantity="other">%1$d éléments %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d élément</item>
     <item quantity="other">%1$d éléments</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Fichier</string>
   <string name="MediaOverviewActivity_audio">Son</string>
   <string name="MediaOverviewActivity_video">Vidéo</string>
@@ -1886,15 +1886,6 @@
   <string name="HelpFragment__debug_log">Journal de débogage :</string>
   <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Veuillez sélectionner une option --</item>
-    <item>Quelque chose ne fonctionne pas</item>
-    <item>Proposition de fonction</item>
-    <item>Question</item>
-    <item>Rétroaction</item>
-    <item>Autre</item>
-    <item>Paiments</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilisés récemment</string>
@@ -3035,8 +3026,8 @@ Nouvelle tentative…</string>
   <string name="HelpFragment__copyright_signal_messenger">Tous droits réservés Messagerie Signal</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Sous licence GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
-  <string name="DataAndStorageSettingsFragment__media_quality">Qualité des média</string>
-  <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualité de médias envoyés</string>
+  <string name="DataAndStorageSettingsFragment__media_quality">Qualité des médias</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualité des médias envoyés</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Envoyer des médias de haute qualité demande plus de données.</string>
   <string name="DataAndStorageSettingsFragment__high">Élevée</string>
   <string name="DataAndStorageSettingsFragment__standard">Standard</string>

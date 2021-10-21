@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ujumbe huu ulifutwa.</string>
   <string name="ConversationItem_you_deleted_this_message">Umefuta ujumbe huu.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Seti upya kipindi salama?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hii inaweza kusaidia kama una matatizo ya usimbuaji fiche kwenye gumzo hili. Jumbe zako zitahifadhiwa.</string>
-  <string name="ConversationActivity_reset">Seti upya tena</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Seti upya kipindi salama?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hii inaweza kusaidia kama una matatizo ya usimbuaji fiche kwenye gumzo hili. Jumbe zako zitahifadhiwa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Seti upya tena</string> -->
   <string name="ConversationActivity_add_attachment">Ongeza Kiambatanisho</string>
   <string name="ConversationActivity_select_contact_info">Chagua taarifa za mawasiliano</string>
   <string name="ConversationActivity_compose_message">Tunga ujumbe</string>
@@ -796,14 +796,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Mtazamo wa kigridi</string>
   <string name="MediaOverviewActivity_List_view_description">Mtazamo wa kiorodha</string>
   <string name="MediaOverviewActivity_Selected_description">Iliyochaguliwa</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$dkitu%2$s</item>
     <item quantity="other">%1$dvitu%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$dkitu</item>
     <item quantity="other">%1$dvitu</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Faili</string>
   <string name="MediaOverviewActivity_audio">Sauti</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1844,15 +1844,6 @@ nambari yako ya simu</string>
   <string name="HelpFragment__debug_log">Kumbukumbu ya Utatuzi:</string>
   <string name="HelpFragment__could_not_upload_logs">Hukuweza kupakia kumbukumbu</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Tafadhali toa maelezo ya kina iwezekanavyo utusaidie kuelewa suala hili.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Tafadhali teua chaguo --</item>
-    <item>Kuna hitilafu</item>
-    <item>Ombi la Kipengele</item>
-    <item>Swali</item>
-    <item>Majibu</item>
-    <item>Nyingine</item>
-    <item>Malipo</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ujumbe huu</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Iliyotumiwa hivi majuzi</string>

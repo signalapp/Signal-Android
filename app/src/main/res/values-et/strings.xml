@@ -181,9 +181,9 @@
   <string name="ConversationItem_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="ConversationItem_you_deleted_this_message">Sina kustutasid selle teate.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string>
-  <string name="ConversationActivity_reset">Lähtesta</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Lähtesta</string> -->
   <string name="ConversationActivity_add_attachment">Lisa manus</string>
   <string name="ConversationActivity_select_contact_info">Vali kontaktandmed</string>
   <string name="ConversationActivity_compose_message">Koosta sõnum</string>
@@ -791,14 +791,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudustikvaade</string>
   <string name="MediaOverviewActivity_List_view_description">Nimekirjavaade</string>
   <string name="MediaOverviewActivity_Selected_description">Valitud</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d üksus %2$s</item>
     <item quantity="other">%1$d üksust %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d üksus</item>
     <item quantity="other">%1$d üksust</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -2991,6 +2991,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Uus makse</string>

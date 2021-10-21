@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">हा संदेश हटविला गेला.</string>
   <string name="ConversationItem_you_deleted_this_message">आपण हा संदेश हटविला.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करायचे?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">जर या संभाषणात आपल्याला एन्क्रिप्शन समस्या येत असतील तर हे मदत करू शकते. आपले संदेश ठेवले जातील.</string>
-  <string name="ConversationActivity_reset">रीसेट करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करायचे?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">जर या संभाषणात आपल्याला एन्क्रिप्शन समस्या येत असतील तर हे मदत करू शकते. आपले संदेश ठेवले जातील.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">रीसेट करा</string> -->
   <string name="ConversationActivity_add_attachment">संलग्न जोडा</string>
   <string name="ConversationActivity_select_contact_info">संपर्क माहिती जोडा</string>
   <string name="ConversationActivity_compose_message">संदेश लिहा</string>
@@ -796,14 +796,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">ग्रिड दृश्य</string>
   <string name="MediaOverviewActivity_List_view_description">यादी दृश्य</string>
   <string name="MediaOverviewActivity_Selected_description">निवडलेले</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d आयटम %2$s</item>
     <item quantity="other">%1$d आयटम %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d आयटम</item>
     <item quantity="other">%1$d आयटम</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">फाईल</string>
   <string name="MediaOverviewActivity_audio">ऑडिओ</string>
   <string name="MediaOverviewActivity_video">व्हिडिओ</string>
@@ -1016,7 +1016,7 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s ने गट लिंक द्वारा आपण गटात सामील झाला आहात.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">आपण गटात सामील होण्यासाठी विनंती पाठविली.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$sने गट दुव्याद्वारे सामील होण्यासाठी विनंती केली.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने गट लिंक द्वारे सामिल होण्यासाठी विनंती केली.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ने गटामध्ये सामील होण्याची आपली विनंती मान्य केली.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%2$s मधील गटात सामील होण्याच्या विनंतीस %1$s ने मान्यता दिली.</string>
@@ -1845,15 +1845,6 @@
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- कृपया एक पर्याय निवडा --</item>
-    <item>काहीतरी काम करत नाही</item>
-    <item>वैशिष्ट्य विनंती</item>
-    <item>प्रश्न</item>
-    <item>अभिप्राय</item>
-    <item>इतर</item>
-    <item>पेमेंट</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">हा संदेश</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">अलीकडील वापरलेले</string>
@@ -3076,9 +3067,10 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">आलीकडे वापरलेले</string>
   <!--PlaybackSpeedToggleTextView-->
-  <string name="PlaybackSpeedToggleTextView__p5x">.5एक्स</string>
-  <string name="PlaybackSpeedToggleTextView__1x">1एक्स</string>
-  <string name="PlaybackSpeedToggleTextView__2x">2एक्स</string>
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">नवीन पेमेंट</string>
   <!--NewConversationActivity-->

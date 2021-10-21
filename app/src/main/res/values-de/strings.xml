@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="ConversationItem_you_deleted_this_message">Du hast diese Nachricht gelöscht.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Sichere Sitzung zurücksetzen?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
-  <string name="ConversationActivity_reset">Neu starten</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Sichere Sitzung zurücksetzen?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Neu starten</string> -->
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -799,14 +799,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d Element %2$s</item>
     <item quantity="other">%1$d Elemente %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d Element</item>
     <item quantity="other">%1$d Elemente</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Datei</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1884,15 +1884,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Bitte wähle eine Option --</item>
-    <item>Etwas funktioniert nicht</item>
-    <item>Erweiterungswunsch</item>
-    <item>Frage</item>
-    <item>Rückmeldung</item>
-    <item>Sonstiges</item>
-    <item>Zahlungen</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -1990,6 +1981,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
   <string name="preferences__subscription">Abonnement</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-Einstellungen</string>
@@ -3215,7 +3207,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaReviewFragment__send_to">Senden an</string>
   <string name="MediaReviewFragment__view_once_message">Einmalig anzeigbare Nachricht</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ein oder mehrere Elemente waren zu groß</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Eine oder mehrere Elemente waren ungültig</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ein oder mehrere Elemente waren ungültig</string>
   <string name="MediaReviewFragment__too_many_items_selected">Zu viele Elemente ausgewählt</string>
   <string name="ImageEditorHud__cancel">Abbrechen</string>
   <string name="ImageEditorHud__draw">Zeichnen</string>
@@ -3256,12 +3248,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__update_subscription">Abonnement aktualisieren</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dein Abonnement wurde gekündigt.</string>
   <string name="Subscription__s_per_month">%s/Monat</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s Abzeichen verdient! Durch die Anzeige deines Abzeichens zeigst du den Personen, mit denen du chattest, dass du Signal unterstützt.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
   <string name="ManageDonationsFragment__badges">Abzeichen</string>
+  <string name="BoostFragment__give_signal_a_boost">Gib Signal einen Boost</string>
   <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
   <string name="Boost__one_time_contribution">Einmaliger Betrag</string>
   <string name="MySupportPreference__s_per_month">%1$s/Monat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
   <!--EOF-->
 </resources>

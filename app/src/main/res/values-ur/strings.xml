@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
   <string name="ConversationItem_you_deleted_this_message">آپ نے یہ پیغام حذف کردیا۔</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن دوبارہ بحال کریں؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر اس گفتگو کی اینکرپشن میں کوئی مسئلہ ہے تو اس سے آپ کو مدد مل سکتی ہے۔ آپ کا پیغام اسی میں رہے گا۔</string>
-  <string name="ConversationActivity_reset">دوبارہ بحال کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن دوبارہ بحال کریں؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر اس گفتگو کی اینکرپشن میں کوئی مسئلہ ہے تو اس سے آپ کو مدد مل سکتی ہے۔ آپ کا پیغام اسی میں رہے گا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">دوبارہ بحال کریں</string> -->
   <string name="ConversationActivity_add_attachment">اٹیچمنٹ شامل کریں</string>
   <string name="ConversationActivity_select_contact_info">رابطے کی معلومات منتخب کریں</string>
   <string name="ConversationActivity_compose_message">پیغام تحریر کریں</string>
@@ -796,14 +796,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">جالی دار نظارہ</string>
   <string name="MediaOverviewActivity_List_view_description">فہرست دیکھیں</string>
   <string name="MediaOverviewActivity_Selected_description">منتخب شدہ</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$dآئٹم%2$s</item>
     <item quantity="other">%2$s آئٹم %1$d</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$dآئٹم</item>
     <item quantity="other">%1$dآئٹم</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">فائل</string>
   <string name="MediaOverviewActivity_audio">آڈیو</string>
   <string name="MediaOverviewActivity_video">وڈیو</string>
@@ -1836,7 +1836,7 @@
   <string name="HelpFragment__debug_log">ڈیبگ لاگ:</string>
   <string name="HelpFragment__could_not_upload_logs">لوگز اپ لوڈ نہیں کیا جاسکا</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">براہ کرم اس مسئلے کو سمجھنے میں ہماری مدد کرنے کے لئے زیادہ سے زیادہ وضاحتی بیان کریں۔</string>
-  <string-array name="HelpFragment__categories">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories">
     <item>- براہ کرم کوئی آپشن منتخب کریں۔</item>
     <item>کچھ کام نہیں کررہا ہے</item>
     <item>خصوصیت کی درخواست</item>
@@ -1844,7 +1844,7 @@
     <item>آراء</item>
     <item>دیگر</item>
     <item>ادائیگی</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">یہ پیغام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">حالیہ استعمال شدہ</string>

@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <string name="ConversationItem_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন। </string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string>
-  <string name="ConversationActivity_reset">রিসেট </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">রিসেট </string> -->
   <string name="ConversationActivity_add_attachment">সংযুক্তি যোগ করুন</string>
   <string name="ConversationActivity_select_contact_info">পরিচিতির তথ্য নির্বাচন করুন</string>
   <string name="ConversationActivity_compose_message">বার্তা তৈরি করুন</string>
@@ -796,14 +796,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">গার্ড ভিউ</string>
   <string name="MediaOverviewActivity_List_view_description">লিস্ট ভিউ</string>
   <string name="MediaOverviewActivity_Selected_description">নির্বাচিত</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d আইটেম %2$s</item>
     <item quantity="other">%1$d আইটেমগুলি %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d আইটেম</item>
     <item quantity="other">%1$d আইটেমগুলি</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ফাইল</string>
   <string name="MediaOverviewActivity_audio">শব্দ</string>
   <string name="MediaOverviewActivity_video">ভিডিও</string>
@@ -1842,15 +1842,6 @@
   <string name="HelpFragment__debug_log">ডিবাগ লগ:</string>
   <string name="HelpFragment__could_not_upload_logs">লগসমূহ আপলোড করা যায়নি</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">আমরা যাতে সমস্যাটি বুঝতে পারি সেজন্য যতটা সম্ভব বিস্তারিত বলুন।</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- অনুগ্রহ করে একটি অপশন বেছে নিন --</item>
-    <item>কিছু একটা কাজ করছে না</item>
-    <item>ফিচারের জন্য অনুরোধ</item>
-    <item>প্রশ্ন</item>
-    <item>মতামত</item>
-    <item>অন্যান্য</item>
-    <item>পেমেন্ট</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">এই মেসেজ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">সম্প্রতি ব্যাবহৃত হয়েছে</string>
@@ -3075,6 +3066,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">নতুন পেমেন্ট</string>

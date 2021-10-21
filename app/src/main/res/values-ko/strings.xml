@@ -183,9 +183,9 @@
   <string name="ConversationItem_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
   <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string>
-  <string name="ConversationActivity_reset">초기화</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">초기화</string> -->
   <string name="ConversationActivity_add_attachment">파일 첨부</string>
   <string name="ConversationActivity_select_contact_info">연락처 정보 선택</string>
   <string name="ConversationActivity_compose_message">메시지 작성</string>
@@ -758,12 +758,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">눈금 보기</string>
   <string name="MediaOverviewActivity_List_view_description">목록 보기</string>
   <string name="MediaOverviewActivity_Selected_description">선택됨</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d개 항목 %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d개 항목</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">파일</string>
   <string name="MediaOverviewActivity_audio">오디오</string>
   <string name="MediaOverviewActivity_video">동영상</string>
@@ -1785,15 +1785,6 @@
   <string name="HelpFragment__debug_log">디버그 로그:</string>
   <string name="HelpFragment__could_not_upload_logs">로그를 업로드할 수 없습니다.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">저희가 문제를 해결할 수 있도록 최대한으로 설명해 주세요.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- 옵션을 선택하세요 --</item>
-    <item>일부가 작동하지 않음</item>
-    <item>기능 요청</item>
-    <item>문의 사항</item>
-    <item>피드백</item>
-    <item>기타</item>
-    <item>지불</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">이 메시지</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">최근 사용함</string>

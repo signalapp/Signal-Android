@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="ConversationItem_you_deleted_this_message">നിങ്ങൾ ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">സുരക്ഷിത സെഷൻ പുനഃസജ്ജമാക്കണോ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്ക് എൻ‌ക്രിപ്ഷൻ പ്രശ്‌നങ്ങളുണ്ടെങ്കിൽ ഇത് സഹായിച്ചേക്കാം. നിങ്ങളുടെ സന്ദേശങ്ങൾ സൂക്ഷിക്കും.</string>
-  <string name="ConversationActivity_reset">പുനഃസജ്ജമാക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">സുരക്ഷിത സെഷൻ പുനഃസജ്ജമാക്കണോ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്ക് എൻ‌ക്രിപ്ഷൻ പ്രശ്‌നങ്ങളുണ്ടെങ്കിൽ ഇത് സഹായിച്ചേക്കാം. നിങ്ങളുടെ സന്ദേശങ്ങൾ സൂക്ഷിക്കും.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">പുനഃസജ്ജമാക്കുക</string> -->
   <string name="ConversationActivity_add_attachment">അറ്റാച്മെന്റ്‌  ചേർക്കുക</string>
   <string name="ConversationActivity_select_contact_info">കോൺ‌ടാക്റ്റ് വിവരം തിരഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_compose_message">സന്ദേശം രചിക്കുക</string>
@@ -797,14 +797,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">ഗ്രിഡ് കാഴ്ച</string>
   <string name="MediaOverviewActivity_List_view_description">ലിസ്റ്റ് കാഴ്ച</string>
   <string name="MediaOverviewActivity_Selected_description">തിരഞ്ഞെടുത്തു</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$dഇനം%2$s</item>
     <item quantity="other">%1$d ഇനങ്ങൾ %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d ഇനം</item>
     <item quantity="other">%1$d ഇനങ്ങൾ</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ഫയൽ</string>
   <string name="MediaOverviewActivity_audio">ഓഡിയോ</string>
   <string name="MediaOverviewActivity_video">വീഡിയോ</string>
@@ -1844,15 +1844,6 @@
   <string name="HelpFragment__debug_log">ഡീബഗ് ലോഗ്:</string>
   <string name="HelpFragment__could_not_upload_logs">ലോഗുകൾ അപ്‌ലോഡുചെയ്യാനായില്ല</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- ദയവായി ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക --</item>
-    <item>എന്തോ പ്രവർത്തിക്കുന്നില്ല</item>
-    <item>ഫീച്ചർ അഭ്യർത്ഥന</item>
-    <item>ചോദ്യം</item>
-    <item>ഫീഡ്ബാക്ക്</item>
-    <item>മറ്റ് </item>
-    <item>പേയ്മെന്റുകൾ</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>

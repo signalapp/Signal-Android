@@ -186,9 +186,9 @@
   <string name="ConversationItem_this_message_was_deleted">Це повідомлення було видалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Ви видалили це повідомлення.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Скинути безпечний сеанс?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Це може допомогти, якщо у вас проблеми із шифруванням у цій розмові. Ваші повідомлення буде збережено.</string>
-  <string name="ConversationActivity_reset">Скинути</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Скинути безпечний сеанс?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Це може допомогти, якщо у вас проблеми із шифруванням у цій розмові. Ваші повідомлення буде збережено.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Скинути</string> -->
   <string name="ConversationActivity_add_attachment">Додати вкладення</string>
   <string name="ConversationActivity_select_contact_info">Оберіть інформацію контакту</string>
   <string name="ConversationActivity_compose_message">Написати повідомлення</string>
@@ -874,18 +874,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Сітка</string>
   <string name="MediaOverviewActivity_List_view_description">Список</string>
   <string name="MediaOverviewActivity_Selected_description">Обрані</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d елемент %2$s</item>
     <item quantity="few">%1$d елемент %2$s</item>
     <item quantity="many">%1$d елементів %2$s</item>
     <item quantity="other">%1$d елементів %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d елемент</item>
     <item quantity="few">%1$d елемент</item>
     <item quantity="many">%1$d елементи</item>
     <item quantity="other">%1$d елементи</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудіо</string>
   <string name="MediaOverviewActivity_video">Відео</string>
@@ -1981,15 +1981,6 @@
   <string name="HelpFragment__debug_log">Журнал відладки:</string>
   <string name="HelpFragment__could_not_upload_logs">Не вдалося вивантажити логи</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будь ласка, пишіть якомога детальніше, щоб допомогти нам зрозуміти проблему. </string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Будь ласка, виберіть варіант-- </item>
-    <item>Щось не працює</item>
-    <item>Запросити нові функції </item>
-    <item>Питання</item>
-    <item>Зворотній зв\'язок</item>
-    <item>інше</item>
-    <item>Платежі</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Це Повідомлення</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Нещодавно Використані </string>

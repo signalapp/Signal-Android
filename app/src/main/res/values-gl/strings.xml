@@ -180,9 +180,9 @@
   <string name="ConversationItem_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <string name="ConversationItem_you_deleted_this_message">Eliminaches esta mensaxe.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Restablecer sesión segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode resultar de axuda en caso de haber problemas de cifraxe nesta conversa. As mensaxes manteranse.</string>
-  <string name="ConversationActivity_reset">Restablecer</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Restablecer sesión segura?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode resultar de axuda en caso de haber problemas de cifraxe nesta conversa. As mensaxes manteranse.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Restablecer</string> -->
   <string name="ConversationActivity_add_attachment">Engadir anexo</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Redactar mensaxe</string>
@@ -784,14 +784,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de grella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de lista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionado</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d elemento %2$s</item>
     <item quantity="other">%1$d elementos %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d elemento</item>
     <item quantity="other">%1$d elementos</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Ficheiro</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -2791,6 +2791,10 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalizar notificacións</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nova mensaxe</string>

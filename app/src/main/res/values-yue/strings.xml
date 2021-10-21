@@ -183,9 +183,9 @@
   <string name="ConversationItem_this_message_was_deleted">呢個訊息已被刪除。</string>
   <string name="ConversationItem_you_deleted_this_message">您已刪除呢個訊息。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">係咪要重設安全對話？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">假如呢個對話出現加密問題，可以試下咁做。啲訊息唔會受影響。</string>
-  <string name="ConversationActivity_reset">重設</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">係咪要重設安全對話？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">假如呢個對話出現加密問題，可以試下咁做。啲訊息唔會受影響。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">重設</string> -->
   <string name="ConversationActivity_add_attachment">加附件</string>
   <string name="ConversationActivity_select_contact_info">揀選聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">寫訊息</string>
@@ -759,12 +759,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">一格格顯示</string>
   <string name="MediaOverviewActivity_List_view_description">一行行顯示</string>
   <string name="MediaOverviewActivity_Selected_description">已揀選</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d 個項目 %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d 個項目</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">檔案</string>
   <string name="MediaOverviewActivity_audio">聲音</string>
   <string name="MediaOverviewActivity_video">影片</string>
@@ -1820,15 +1820,6 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">上載唔到記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請您儘可能具體說明，幫我哋了解個問題。</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- 請揀選一項 --</item>
-    <item>有嘢軭咗</item>
-    <item>有某個功能就好嘞</item>
-    <item>有問題想問</item>
-    <item>想反映一下淺見</item>
-    <item>其他</item>
-    <item>付款功能嘅事宜</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">呢個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近用過</string>
@@ -1946,7 +1937,7 @@
   <string name="preferences__linked_devices">連結咗嘅機</string>
   <string name="preferences__light_theme">淺色</string>
   <string name="preferences__dark_theme">深色</string>
-  <string name="preferences__appearance">外觀</string>
+  <string name="preferences__appearance">版面</string>
   <string name="preferences__theme">佈景主題</string>
   <string name="preferences__chat_wallpaper">傾偈背景</string>
   <string name="preferences__chat_color_and_wallpaper">傾偈顏色同背景</string>
@@ -3166,6 +3157,7 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新唔到個人資料</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
   <string name="ImageView__badge">襟章</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 應援靠團伙。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">力撐為您而設、而非為求您嘅資料而打造嘅科技；「惜爐」有團伙，Signal 不懼風吹日曬。</string>
   <string name="SubscribeFragment__donation_amount">捐款金額</string>
   <string name="SubscribeFragment__more_payment_options">其他付款方式</string>

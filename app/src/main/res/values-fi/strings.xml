@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">Viesti poistettiin.</string>
   <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Alustetaanko suojattu istunto?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa ratkaista keskusteluun salaukseen liittyviä ongelmia. Viestejä ei poisteta.</string>
-  <string name="ConversationActivity_reset">Alusta</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Alustetaanko suojattu istunto?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa ratkaista keskusteluun salaukseen liittyviä ongelmia. Viestejä ei poisteta.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Alusta</string> -->
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
@@ -798,14 +798,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudukkonäkymä</string>
   <string name="MediaOverviewActivity_List_view_description">Listanäkymä</string>
   <string name="MediaOverviewActivity_Selected_description">Valittu</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d kappale %2$s</item>
     <item quantity="other">%1$d kappaletta %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d kappale</item>
     <item quantity="other">%1$d kappaletta</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Tiedosto</string>
   <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1860,15 +1860,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Valitse jokin näistä --</item>
-    <item>Jokin ei toimi</item>
-    <item>Parannusehdotus</item>
-    <item>Kysymys</item>
-    <item>Palaute</item>
-    <item>Muu</item>
-    <item>Maksut</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -3116,6 +3107,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Uusi maksu</string>

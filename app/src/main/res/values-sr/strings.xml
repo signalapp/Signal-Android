@@ -185,9 +185,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ова порука је избрисана.</string>
   <string name="ConversationItem_you_deleted_this_message">Избрисали сте ову поруку.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ресетовати безбедну сесију?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Може да помогне ако имате проблема са шифровањем у овој преписци. Поруке ће остати.</string>
-  <string name="ConversationActivity_reset">Ресетуј</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ресетовати безбедну сесију?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Може да помогне ако имате проблема са шифровањем у овој преписци. Поруке ће остати.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Ресетуј</string> -->
   <string name="ConversationActivity_add_attachment">Додај прилог</string>
   <string name="ConversationActivity_select_contact_info">Изаберите податке о контакту</string>
   <string name="ConversationActivity_compose_message">Састави поруку</string>
@@ -839,16 +839,16 @@
   <string name="MediaOverviewActivity_Grid_view_description">Изглед решетка</string>
   <string name="MediaOverviewActivity_List_view_description">Изглед листа</string>
   <string name="MediaOverviewActivity_Selected_description">Одабрано</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d ставка %2$s</item>
     <item quantity="few">%1$d ставке %2$s</item>
     <item quantity="other">%1$d ставке %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d ставка</item>
     <item quantity="few">%1$d ставке</item>
     <item quantity="other">%1$d ставке</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Фајл</string>
   <string name="MediaOverviewActivity_audio">Звук</string>
   <string name="MediaOverviewActivity_video">Видео</string>
@@ -1969,15 +1969,6 @@
   <string name="HelpFragment__debug_log">Извештај о грешкама:</string>
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Молимо, изаберите опцију --</item>
-    <item>Нешто не ради</item>
-    <item>Захтев за функцију</item>
-    <item>Питање</item>
-    <item>Повратне информације</item>
-    <item>Друго</item>
-    <item>Плаћања</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ова порука</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно коришћено</string>
@@ -2075,6 +2066,8 @@
   <string name="preferences__help">Помоћ</string>
   <string name="preferences__advanced">Напредно</string>
   <string name="preferences__donate_to_signal">Донирајте услузи Signal</string>
+  <string name="preferences__subscription">Претплата</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Приватност</string>
   <string name="preferences__mms_user_agent">ММС кориснички агент</string>
   <string name="preferences__advanced_mms_access_point_names">Ручне ММС поставке</string>
@@ -3124,6 +3117,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Ауторска права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Квалитет медија</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Квалитет сланог медија</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Слање висококвалитетних медија користиће више података.</string>
   <string name="DataAndStorageSettingsFragment__high">Висок</string>
   <string name="DataAndStorageSettingsFragment__standard">Стандардно</string>
@@ -3314,6 +3309,9 @@
   <string name="MediaReviewFragment__add_a_reply">Додај одговор</string>
   <string name="MediaReviewFragment__send_to">Пошаљи у</string>
   <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Макар један елеменат је превелики</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Макар један елеменат је неважећи</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Превише одабраних елемената</string>
   <string name="ImageEditorHud__cancel">Поништи</string>
   <string name="ImageEditorHud__draw">Нацртај</string>
   <string name="ImageEditorHud__write_text">Пиши текст</string>
@@ -3344,12 +3342,37 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
   <string name="ImageView__badge">Значка</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal покрећу особе попут Вас.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Подржите технологију која је изграђена за вас -не за ваше податке- придруживањем заједници људи који је издржавају.</string>
   <string name="SubscribeFragment__donation_amount">Износ донације</string>
+  <string name="SubscribeFragment__more_payment_options">Више опција плаћања</string>
+  <string name="SubscribeFragment__cancel_subscription">Отказати претплату</string>
+  <string name="SubscribeFragment__confirm_cancellation">Потврдити отказивање?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Неће вам се поново наплаћивати. Ваша значка ће бити уклоњена са вашег профила на крају вашег обрачунског периода.</string>
   <string name="SubscribeFragment__not_now">Не сада</string>
   <string name="SubscribeFragment__confirm">Потврди</string>
+  <string name="SubscribeFragment__update_subscription">Надоградити претплату</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша претплата је поништена.</string>
+  <string name="Subscription__s_per_month">%s/месечно</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месечно · Обнова %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зашто доприносити?</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Хвала вам на подршци!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Хвала вам на Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показати на профил</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Направити истакнуту значку</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ManageDonationsFragment__my_support">Моја подршка</string>
+  <string name="ManageDonationsFragment__manage_subscription">Управљање претплатом</string>
   <string name="ManageDonationsFragment__badges">Значке</string>
+  <string name="ManageDonationsFragment__subscription_faq">FAQ претплате</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Грешка приликом добијања претплате.</string>
+  <string name="BoostFragment__give_signal_a_boost">Додај Signal-у подстицај</string>
   <string name="Boost__enter_custom_amount">Унети износ</string>
+  <string name="Boost__one_time_contribution">Једнократни допринос</string>
+  <string name="MySupportPreference__s_per_month">%1$s/месечно</string>
+  <string name="MySupportPreference__renews_s">Обнова %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваша значка је истекла</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваша значка %1$s је истекла, и не може више де се види на вашем профилу.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Постаните претплатник</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>
   <!--EOF-->
 </resources>

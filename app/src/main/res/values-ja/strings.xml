@@ -183,9 +183,9 @@
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">このチャットの暗号化に問題がある場合、改善する可能性があります。メッセージは削除されません。</string>
-  <string name="ConversationActivity_reset">リセットする</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">このチャットの暗号化に問題がある場合、改善する可能性があります。メッセージは削除されません。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">リセットする</string> -->
   <string name="ConversationActivity_add_attachment">添付ファイルを追加</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
   <string name="ConversationActivity_compose_message">メッセージ作成</string>
@@ -759,12 +759,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">グリッド表示</string>
   <string name="MediaOverviewActivity_List_view_description">リスト表示</string>
   <string name="MediaOverviewActivity_Selected_description">選択済み</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d個, 計%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d個</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ファイル</string>
   <string name="MediaOverviewActivity_audio">音声</string>
   <string name="MediaOverviewActivity_video">動画</string>
@@ -1810,15 +1810,6 @@
   <string name="HelpFragment__debug_log">デバッグログ:</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- 選択してください --</item>
-    <item>機能の不具合</item>
-    <item>機能のリクエスト</item>
-    <item>質問</item>
-    <item>フィードバック</item>
-    <item>その他</item>
-    <item>支払い機能</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
@@ -2054,8 +2045,8 @@
   <string name="PaymentsHomeFragment__see_all">すべて表示</string>
   <string name="PaymentsHomeFragment__add_funds">入金</string>
   <string name="PaymentsHomeFragment__send">送信する</string>
-  <string name="PaymentsHomeFragment__sent_s">%1$s を送付しました</string>
-  <string name="PaymentsHomeFragment__received_s">%1$s を受け取りました</string>
+  <string name="PaymentsHomeFragment__sent_s">送金 %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">受取 %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">取引所に送付</string>
   <string name="PaymentsHomeFragment__currency_conversion">通貨換算</string>
   <string name="PaymentsHomeFragment__deactivate_payments">支払い機能を停止</string>
@@ -2944,8 +2935,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
-  <string name="DataAndStorageSettingsFragment__media_quality">メディアの品質</string>
-  <string name="DataAndStorageSettingsFragment__sent_media_quality">送信済みメディアの品質</string>
+  <string name="DataAndStorageSettingsFragment__media_quality">メディアの画質</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">送信済みメディアの画質</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">高画質なメディアの送信には、より多くのデータ量を使用します。</string>
   <string name="DataAndStorageSettingsFragment__high">高画質</string>
   <string name="DataAndStorageSettingsFragment__standard">標準</string>
@@ -3159,29 +3150,42 @@
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalはユーザーの皆様によって支えられています。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">データのためではなく、あなたのために作られた技術を支える人々のコミュニティに参加して、ご支援をお願いします。</string>
   <string name="SubscribeFragment__donation_amount">寄付額</string>
-  <string name="SubscribeFragment__more_payment_options">ほかの支払い方法</string>
-  <string name="SubscribeFragment__confirm_cancellation">キャンセルしますか？</string>
-  <string name="SubscribeFragment__you_wont_be_charged_again">再度課金されることはありません。バッジは課金期間が終了すると、プロフィールから削除されます。</string>
+  <string name="SubscribeFragment__more_payment_options">その他の支払い方法</string>
+  <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除</string>
+  <string name="SubscribeFragment__confirm_cancellation">解除しますか？</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">再度課金されることはありません。課金期間が終了すると、バッジがプロフィールから削除されます。</string>
   <string name="SubscribeFragment__not_now">あとで</string>
-  <string name="SubscribeFragment__confirm">確認</string>
-  <string name="SubscribeFragment__your_subscription_has_been_cancelled">あなたのサブスクリプションはキャンセルされました。</string>
+  <string name="SubscribeFragment__confirm">解除する</string>
+  <string name="SubscribeFragment__update_subscription">サブスクリプションを更新</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">あなたのサブスクリプションは解除されました。</string>
   <string name="Subscription__s_per_month">%s/月</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · 更新 %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、Signalを利用し、評価くださる方々によって支えられています。毎月の定期的な寄付をいただき、あなたの支援を示すプロフィールバッジを受け取ってください。</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援ありがとうございます！</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、Signalを利用し、評価くださる方々によって支えられています。毎月の定期的なご寄付をいただき、あなたのご支援を示すプロフィールバッジを受け取ってください。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">寄付をお願いする理由</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signalのチームは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー技術を開発するというミッションに取り組んでいます。あなたの寄付がこの目的を後押しします。広告はありません。トラッカーもいません。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">あなたの寄付は、世界中の何百万人もの人々がプライベートでリアルタイムなコミュニケーションをとるために使用している、アプリの開発、サーバー、通信の費用に充てられます。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援をありがとうございます！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%sバッジを獲得しました！バッジを表示すると、あなたのSignalへのご支援がチャット相手に伝わります。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">注目のバッジにする</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
-  <string name="ManageDonationsFragment__my_support">私の支援</string>
+  <string name="ManageDonationsFragment__my_support">マイサポート</string>
+  <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
   <string name="ManageDonationsFragment__badges">バッジ</string>
   <string name="ManageDonationsFragment__subscription_faq">サブスクリプションのよくある質問</string>
-  <string name="BoostFragment__say_thanks_and_earn">「ありがとう！」と言って、%1$d日間のBoostバッジを獲得してください。 </string>
+  <string name="ManageDonationsFragment__error_getting_subscription">サブスクリプションを取得できませんでした。</string>
+  <string name="BoostFragment__give_signal_a_boost">Signalをブーストしましょう</string>
+  <string name="BoostFragment__say_thanks_and_earn">「ありがとう！」と言って、%1$d日間のブーストバッジを獲得してください。 </string>
   <string name="Boost__enter_custom_amount">金額を入力してください</string>
+  <string name="Boost__one_time_contribution">1回限りの寄付</string>
   <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
+  <string name="MySupportPreference__renews_s">更新 %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">バッジの有効期限が切れました</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$sバッジは有効期限が切れ、プロフィールには表示されません。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$sバッジは有効期限が切れたため、プロフィールには表示されません。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">データのためではなく、あなたのために作られた技術を継続的に支援するため、毎月のサブスクリプションをご検討ください。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">サブスクリプションを行う</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <!--EOF-->
 </resources>

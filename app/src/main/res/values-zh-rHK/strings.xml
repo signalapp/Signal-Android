@@ -46,12 +46,12 @@
     <item quantity="other">%d 分鐘</item>
   </plurals>
   <!--DraftDatabase-->
-  <string name="DraftDatabase_Draft_image_snippet">(影像)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(音訊)</string>
-  <string name="DraftDatabase_Draft_video_snippet">(視訊)</string>
-  <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
-  <string name="DraftDatabase_Draft_quote_snippet">(回覆)</string>
-  <string name="DraftDatabase_Draft_voice_note">(語音訊息)</string>
+  <string name="DraftDatabase_Draft_image_snippet">（影像）</string>
+  <string name="DraftDatabase_Draft_audio_snippet">（音訊）</string>
+  <string name="DraftDatabase_Draft_video_snippet">（視訊）</string>
+  <string name="DraftDatabase_Draft_location_snippet">（位置）</string>
+  <string name="DraftDatabase_Draft_quote_snippet">（回覆）</string>
+  <string name="DraftDatabase_Draft_voice_note">（語音訊息）</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">圖片庫</string>
   <string name="AttachmentKeyboard_file">檔案</string>
@@ -62,9 +62,9 @@
   <string name="AttachmentKeyboard_payment">付款</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到應用程式以選取媒體。</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要儲存裝置權限才可附加照片、影片或音訊，但已被永久拒絕。請前往應用程式設定功能表，選擇 [權限]，然後啟用 [儲存裝置]。</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要聯絡人權限才可附加聯絡人資訊，但已被永久拒絕。請前往應用程式設定功能表，選擇 [權限]，然後啟用 [聯絡人]。</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要位置權限才可附加位置，但已被永久拒絕。請前往應用程式設定功能表，選擇 [權限]，然後啟用 [位置]。</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要儲存裝置權限才可附加照片、影片或音訊，但已被永久拒絕。請前往應用程式設定功能表，選擇 「權限」，然後啟用 「儲存裝置」。</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要聯絡人權限才可附加聯絡人資訊，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用 「聯絡人」。</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要位置權限才可附加位置，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用 「位置」。</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">正在上載媒體…</string>
   <string name="AttachmentUploadJob_compressing_video_start">正在壓縮視訊…</string>
@@ -123,11 +123,11 @@
   <string name="ClearProfileActivity_remove_group_photo">要移除群組照片嗎？</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">更新 Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">此版本的應用程式已不再支援。若要繼續傳送和接收訊息，請更新至最新版本。</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">此版本的應用程式已不再被支援。若要繼續傳送和接收訊息，請更新至最新版本。</string>
   <string name="ClientDeprecatedActivity_update">更新</string>
   <string name="ClientDeprecatedActivity_dont_update">不要更新</string>
   <string name="ClientDeprecatedActivity_warning">警告</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">您的 Signal 版本已過期。您可查看您的訊息歷程，惟無法傳送或接收訊息，直到您更新為止。</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">您的 Signal 版本已過期。您可查看您的訊息歷程記錄，惟無法傳送或接收訊息，直到您更新為止。</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">找不到網頁瀏覽器</string>
   <string name="CommunicationActions_send_email">傳送電子郵件</string>
@@ -183,9 +183,9 @@
   <string name="ConversationItem_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="ConversationItem_you_deleted_this_message">您已刪除此訊息。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">要重設安全工作階段嗎？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">如果您在此對話中遇到加密問題，這或有助解決。您的訊息將會保留。</string>
-  <string name="ConversationActivity_reset">重設</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">要重設安全工作階段嗎？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">如果您在此對話中遇到加密問題，這或有助解決。您的訊息將會保留。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">重設</string> -->
   <string name="ConversationActivity_add_attachment">新增附件</string>
   <string name="ConversationActivity_select_contact_info">請選擇聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">撰寫訊息</string>
@@ -221,9 +221,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要拍照或錄影，請允許Signal存取相機。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal需要存取相機來拍照或錄影，但您已經永久拒絕。請前往應用程式設定功能表，按「權限」，然後開啟「相機」。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要「相機」權限以拍攝照片或影片</string>
-  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">請啟用麥克風權限以擷取現場收音的影片。</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal 需要「麥克風」權限以錄製影片，但已被拒絕。請前往應用程式設定，選擇「權限」，然後啟用「麥克風」和「相機」。</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal 需要麥克風權限以錄製影片。</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">請啟用咪高峰權限以擷取現場收音的影片。</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal 需要「咪高峰」權限以錄製影片，但已被拒絕。請前往應用程式設定，選擇「權限」，然後啟用「咪高峰」和「相機」。</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal 需要咪高峰權限以錄製影片。</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 並非您的預設短訊應用程式，因此無法傳送短訊/多媒體短訊。您要在您的 Android 設定中變更嗎？</string>
   <string name="ConversationActivity_yes">是</string>
@@ -239,7 +239,7 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">您將退出此群組，並從您所有的裝置上刪除此群組。</string>
   <string name="ConversationActivity_delete">刪除</string>
   <string name="ConversationActivity_delete_and_leave">刪除並退出</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal 需要存取您的麥克風，以便與 %1$s 通話。</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal 需要存取您的咪高峰，以便與 %1$s 通話。</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">更多選項現已歸納於「群組設定」</string>
   <string name="ConversationActivity_join">加入</string>
   <string name="ConversationActivity_full">已滿</string>
@@ -292,7 +292,7 @@
   <string name="ConversationFragment_verify">驗證</string>
   <string name="ConversationFragment_not_now">現在不要</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">您與 %s 之間的安全碼已變更</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">您與 %s 之間的安全碼已變更，通常是對方已重新安裝 Signal 或更換了裝置。輕觸 [驗證] 以確認新的安全碼，惟不一定要這樣做。</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">您與 %s 之間的安全碼已變更，通常是對方已重新安裝 Signal 或更換了裝置。輕觸「驗證」以確認新的安全碼，惟不一定要這樣做。</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">要刪除選取的對話嗎？</item>
   </plurals>
@@ -325,12 +325,12 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">設定個人資料照片時發生錯誤</string>
   <string name="CreateProfileActivity_problem_setting_profile">設定個人資料時發生問題</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定您的個人資料</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的個人資料經端對端加密。您的個人資料 (連同您其後所作的變更) 將會供您的聯絡人看見，亦會在您開展或接受新的對話，又或加入新的群組時，向別人展示。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的個人資料經端對端加密。您的個人資料（連同您其後所作的變更）將會供您的聯絡人看見，亦會在您開展或接受新的對話，又或加入新的群組時，向別人展示。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">要從備份還原嗎？</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">從本機備份還原您的訊息和媒體。若您現在不還原，之後將無法還原。</string>
-  <string name="ChooseBackupFragment__icon_content_description">[從備份還原] 圖示</string>
+  <string name="ChooseBackupFragment__icon_content_description">「從備份還原」圖示</string>
   <string name="ChooseBackupFragment__choose_backup">請選擇備份</string>
   <string name="ChooseBackupFragment__learn_more">了解更多</string>
   <string name="ChooseBackupFragment__no_file_browser_available">無任何檔案瀏覽器可用</string>
@@ -349,11 +349,11 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">測試您的備份密碼並驗證是否相符</string>
   <string name="BackupsPreferenceFragment__turn_on">開啟</string>
   <string name="BackupsPreferenceFragment__turn_off">關閉</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">如要還原備份，在全新安裝 Signal 後，請開啟應用程式並輕觸 [還原備份]，然後找出備份檔案位置。%1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">如要還原備份，在全新安裝 Signal 後，請開啟應用程式並輕觸「還原備份」，然後找出備份檔案位置。%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
   <string name="BackupsPreferenceFragment__in_progress">進行中…</string>
   <string name="BackupsPreferenceFragment__d_so_far">目前進度 %1$d…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需要外部儲存空間權限才可建立備份，但已被永久拒絕。請前往應用程式設定，選擇 [權限]，然後啟用 [儲存裝置]。</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需要外部儲存空間權限才可建立備份，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「儲存裝置」。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用自訂：%s</string>
   <string name="CustomDefaultPreference_using_default">使用預設值：%s</string>
@@ -413,7 +413,7 @@
   <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">您無權限傳送給此群組</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永久性 Signal 通訊失敗！</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法與 Google Play 服務註冊。Signal 訊息和通話已被停用，請到 [設定] &gt; [進階] 嘗試重新註冊。</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法與 Google Play 服務註冊。Signal 訊息和通話已被停用，請到「設定」&gt;「進階」嘗試重新註冊。</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">擷取完整解析度 GIF 時發生錯誤</string>
   <!--GiphyFragmentPageAdapter-->
@@ -759,12 +759,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">網格檢視</string>
   <string name="MediaOverviewActivity_List_view_description">清單檢視</string>
   <string name="MediaOverviewActivity_Selected_description">已選取</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d 個項目 %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d 個項目</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">檔案</string>
   <string name="MediaOverviewActivity_audio">音訊</string>
   <string name="MediaOverviewActivity_video">影片</string>
@@ -820,7 +820,7 @@
   <string name="MediaSendActivity_message">訊息</string>
   <string name="MediaSendActivity_select_recipients">選擇收件人</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal 需要存取您的聯絡人以便為您顯示。</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人權限才可顯示您的聯絡人，但已被永久拒絕。請前往應用程式設定，選擇 [權限]，然後啟用 [聯絡人]。</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人權限才可顯示您的聯絡人，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「聯絡人」。</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">您不得分享超過 %d 個項目。</item>
   </plurals>
@@ -1061,7 +1061,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，這並非有效的裝置連結二維碼。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">要連結 Signal 裝置嗎？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">您似乎正嘗試使用第三方掃描程式連結 Signal 裝置。為保護您的安全，請在 Signal 中再次掃描二維碼。</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機權限才可掃描二維碼，但已被永久拒絕。請前往應用程式設定，選擇 [權限]，然後啟用 [相機]。</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機權限才可掃描二維碼，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「相機」。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">缺少「相機」權限下無法掃描二維碼</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">立即更新</string>
@@ -1406,7 +1406,7 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">我們的 Signal 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">您似乎未有任何應用程式可作分享。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">在剪貼簿中找不到安全碼以作比對</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機權限才可掃描二維碼，但已被永久拒絕。請前往應用程式設定，選擇 [權限]，然後啟用 [相機]。</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機權限才可掃描二維碼，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「相機」。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">缺少「相機」權限下無法掃描二維碼</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">您必須先交換訊息，以便檢視 %1$s 的安全碼。</string>
   <!--ViewOnceMessageActivity-->
@@ -1431,7 +1431,7 @@
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">未支援的媒體類型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存裝置權限才可儲存到外部儲存空間，但已被永久拒絕。請前往應用程式設定，選擇 [權限]，然後啟用 [儲存裝置]。</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存裝置權限才可儲存到外部儲存空間，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「儲存裝置」。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">缺少權限下無法儲存到外部儲存空間</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">要刪除訊息嗎？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">這將會永久刪除此訊息。</string>
@@ -1468,7 +1468,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您的閱後即焚媒體表達了 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">對您的貼圖表達了 %1$s 心情。</string>
   <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">要關閉聯絡人加入 Signal 的通知嗎？您可在 Signal &gt; [設定] &gt; [通知] 中再次啟用。</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">要關閉聯絡人加入 Signal 的通知嗎？您可在 Signal &gt;「設定」&gt;「通知」中再次啟用。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">訊息</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -1510,8 +1510,8 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">裝置已不再註冊</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">通常是因為您已在另一台裝置上使用 Signal 註冊您的電話號碼。輕觸以重新註冊。</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">若要接聽來自 %s 的通話，請授予 Signal 存取您的麥克風。</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要麥克風和相機權限才可致電或接聽通話，但已被永久拒絕。請前往應用程式設定，選擇 [權限]，然後啟用 [麥克風] 和 [相機]。</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">若要接聽來自 %s 的通話，請授予 Signal 存取您的咪高峰。</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要咪高峰和相機權限才可致電或接聽通話，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「咪高峰」和「相機」。</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">已在連結的裝置上接聽。</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">已在連結的裝置上拒接。</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">在連結的裝置上繁忙中。</string>
@@ -1547,7 +1547,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">聯絡人照片</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要聯絡人權限才可顯示您的聯絡人，但已被永久拒絕。請前往應用程式設定功能表，選擇 [權限]，然後啟用 [聯絡人]。</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要聯絡人權限才可顯示您的聯絡人，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用「聯絡人」。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">提取聯絡人時發生錯誤，請檢查您的網絡連線</string>
   <string name="ContactSelectionListFragment_username_not_found">找不到使用者名稱</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」並非 Signal 使用者。請檢查使用者名稱，然後再試一次。</string>
@@ -1641,9 +1641,9 @@
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">若要接收通話通知，輕觸此處並開啟通知，同時確定已啟用聲音和彈出式視窗。</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">若要接收通話通知，輕觸此處並在「電量」設定中啟用背景活動。</string>
   <string name="EnableCallNotificationSettingsDialog__settings">設定</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">若要接收通話通知，輕觸 [設定] 並開啟「顯示通知」。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">若要接收通話通知，輕觸 [設定] 並開啟通知，同時確定已啟用聲音和彈出式視窗。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">若要接收通話通知，輕觸 [設定] 並在「電量」設定中啟用背景活動。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">若要接收通話通知，輕觸「設定」並開啟「顯示通知」。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">若要接收通話通知，輕觸「設定」並開啟通知，同時確定已啟用聲音和彈出式視窗。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">若要接收通話通知，輕觸「設定」並在「電量」設定中啟用背景活動。</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在載入國家…</string>
   <string name="country_selection_fragment__search">搜尋</string>
@@ -1719,7 +1719,7 @@
   <string name="prompt_passphrase_activity__unlock">解除鎖定</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal 需要 MMS 設定以透過您的無線通訊業者傳遞媒體和群組訊息。您的裝置未有提供此資訊，某些已鎖定裝置或其他限制式組態設定偶爾會出現此情況。</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">輕觸 [確定] 並完成所要求的設定，以便發送媒體和群組訊息。適用於您的電信業者的 MMS 設定，通常可搜尋「您的電信業者 APN」而找到。您只需為此設定一次。</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">輕觸「確定」並完成所要求的設定，以便發送媒體和群組訊息。適用於您的電信業者的 MMS 設定，通常可搜尋「您的電信業者 APN」而找到。您只需為此設定一次。</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">送遞問題</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">來自 %s 的一則訊息、貼圖、心情或已讀標記無法向您送達。未知是直接發送給您，還是發送到某個群組中。</string>
@@ -1819,15 +1819,6 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">無法上載記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請儘可能具體描述，以協助我們瞭解箇中問題。</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- 請選下列其中一項 --</item>
-    <item>運作異常</item>
-    <item>功能請求</item>
-    <item>發問</item>
-    <item>意見回饋</item>
-    <item>其他</item>
-    <item>付款</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -1890,7 +1881,7 @@
   <string name="preferences__enable_passphrase">啟用密碼畫面鎖定</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密碼鎖定畫面與通知</string>
   <string name="preferences__screen_security">畫面安全性</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">封鎖 [最近使用應用程式] 清單以及此應用程式中的畫面擷取</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">封鎖「最近使用應用程式」清單以及此應用程式中的畫面擷取</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在閒置指定的時間間距後自動鎖定 Signal</string>
   <string name="preferences__inactivity_timeout_passphrase">閒置逾時密碼</string>
   <string name="preferences__inactivity_timeout_interval">閒置逾時間距</string>
@@ -1945,7 +1936,7 @@
   <string name="preferences__linked_devices">已連結的裝置</string>
   <string name="preferences__light_theme">淺色</string>
   <string name="preferences__dark_theme">深色</string>
-  <string name="preferences__appearance">外觀</string>
+  <string name="preferences__appearance">介面</string>
   <string name="preferences__theme">佈景主題</string>
   <string name="preferences__chat_wallpaper">聊天背景</string>
   <string name="preferences__chat_color_and_wallpaper">聊天色彩與背景</string>
@@ -2129,7 +2120,7 @@
   <string name="PaymentsTransferFragment__check_the_wallet_address">請檢查您嘗試轉移至該處的錢包位址，然後再試一次。</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">您不能轉移至您自己的 Signal 錢包位址。請輸入您在支援的交易平台上所屬帳戶的錢包位址。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal 需要存取相機，以便掃描二維碼。</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal 需要相機權限才可擷取二維碼。請前往設定，選擇 [權限]，然後啟用 [相機]。</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal 需要相機權限才可擷取二維碼。請前往設定，選擇「權限」，然後啟用「相機」。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal 需要存取相機，以便掃描二維碼。</string>
   <string name="PaymentsTransferFragment__settings">設定</string>
   <!--PaymentsTransferQrScanFragment-->
@@ -2394,7 +2385,7 @@
   <string name="ConversationListFragment_loading">正在載入…</string>
   <string name="CallNotificationBuilder_connecting">正在連線……</string>
   <string name="Permissions_permission_required">須要權限</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要短訊權限才可發送短訊，但已被永久拒絕。請前往應用程式設定，選擇 [權限]，然後啟用 [短訊]。</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要短訊權限才可發送短訊，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「短訊」。</string>
   <string name="Permissions_continue">繼續</string>
   <string name="Permissions_not_now">現在不要</string>
   <string name="conversation_activity__enable_signal_messages">啟用 SIGNAL 訊息</string>
@@ -2552,8 +2543,8 @@
   <string name="DeviceTransferSetup__go_to_support_page">前往支援頁面</string>
   <string name="DeviceTransferSetup__try_again">再試一次</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">正在等候另一台裝置</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">在您的另一台裝置上輕觸 [繼續] 以開始轉移。</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">在您的另一台裝置上輕觸 [繼續]…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">在您的另一台裝置上輕觸「繼續」以開始轉移。</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">在您的另一台裝置上輕觸「繼續」…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">無法從較新版本的 Signal 轉移</string>
   <!--DeviceTransferFragment-->
@@ -2918,7 +2909,7 @@
   <string name="PrivacySettingsFragment__messaging">傳訊</string>
   <string name="PrivacySettingsFragment__disappearing_messages">限時訊息</string>
   <string name="PrivacySettingsFragment__app_security">應用程式安全性</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">封鎖 [最近使用應用程式] 清單以及此應用程式中的畫面擷取</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">封鎖「最近使用應用程式」清單以及此應用程式中的畫面擷取</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息與通話、一律轉送通話和密封寄件人</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的預設計時器</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為您開展的所有新對話，預設一個限時訊息計時器。</string>

@@ -186,9 +186,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="ConversationItem_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string>
-  <string name="ConversationActivity_reset">Atstatyti</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atstatyti</string> -->
   <string name="ConversationActivity_add_attachment">Pridėti priedą</string>
   <string name="ConversationActivity_select_contact_info">Pasirinkti adresato informaciją</string>
   <string name="ConversationActivity_compose_message">Rašyti žinutę</string>
@@ -879,18 +879,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tinklelio rodinys</string>
   <string name="MediaOverviewActivity_List_view_description">Sąrašo rodinys</string>
   <string name="MediaOverviewActivity_Selected_description">Pasirinkta</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d elementas %2$s</item>
     <item quantity="few">%1$d elementai %2$s</item>
     <item quantity="many">%1$d elementų %2$s</item>
     <item quantity="other">%1$d elementas %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d elementas</item>
     <item quantity="few">%1$d elementai</item>
     <item quantity="many">%1$d elementų</item>
     <item quantity="other">%1$d elementas</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Failas</string>
   <string name="MediaOverviewActivity_audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_video">Vaizdo įrašai</string>
@@ -2045,15 +2045,6 @@
   <string name="HelpFragment__debug_log">Derinimo žurnalas:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Pasirinkite parinktį --</item>
-    <item>Kažkas neveikia</item>
-    <item>Prašymas pridėti naują ypatybę</item>
-    <item>Klausimas</item>
-    <item>Atsiliepimas</item>
-    <item>Kita</item>
-    <item>Mokėjimai</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Paskiausi</string>
@@ -3441,11 +3432,15 @@
   <string name="SubscribeFragment__more_payment_options">Daugiau mokėjimo parinkčių</string>
   <string name="SubscribeFragment__not_now">Ne dabar</string>
   <string name="SubscribeFragment__confirm">Patvirtinkite</string>
+  <string name="Subscription__s_per_month">%s/mėnesį</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/mėnesį · Atsinaujina %2$s</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dėkojame už jūsų palaikymą!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Rodyti profilyje</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Atlikta</string>
   <string name="ManageDonationsFragment__badges">Ženkliukai</string>
   <string name="Boost__enter_custom_amount">Įveskite tinkintą sumą</string>
+  <string name="MySupportPreference__s_per_month">%1$s/mėnesį</string>
+  <string name="MySupportPreference__renews_s">Atsinaujina %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Jūsų %1$s ženkliukas nebegalioja ir daugiau nebematomas jūsų profilyje kitiems asmenims.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>

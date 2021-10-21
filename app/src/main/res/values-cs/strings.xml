@@ -186,9 +186,9 @@
   <string name="ConversationItem_this_message_was_deleted">Tato zpráva byla smazána.</string>
   <string name="ConversationItem_you_deleted_this_message">Smazali jste tuto zprávu.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Resetovat zabezpečenou konverzaci?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Může to pomoct, pokud máte problém s šifrováním této konverzace. Vaše zprávy zůstanou zachovány.</string>
-  <string name="ConversationActivity_reset">Reset</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetovat zabezpečenou konverzaci?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Může to pomoct, pokud máte problém s šifrováním této konverzace. Vaše zprávy zůstanou zachovány.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reset</string> -->
   <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
   <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napište zprávu</string>
@@ -879,18 +879,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Zobrazení v mřížce</string>
   <string name="MediaOverviewActivity_List_view_description">Zobrazení seznamu</string>
   <string name="MediaOverviewActivity_Selected_description">Vybrané</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$dpoložka %2$s</item>
     <item quantity="few">%1$dpoložek%2$s</item>
     <item quantity="many">%1$dpoložek%2$sp</item>
     <item quantity="other">%1$d položek %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$dpoložka</item>
     <item quantity="few">%1$dpoložek</item>
     <item quantity="many">%1$dpoložek</item>
     <item quantity="other">%1$d položek</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Soubor</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -2044,15 +2044,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Vyberte prosím možnost --</item>
-    <item>Něco nefunguje</item>
-    <item>Požadavek na funkci</item>
-    <item>Dotaz</item>
-    <item>Zpětná vazba</item>
-    <item>Ostatní</item>
-    <item>Platby</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>

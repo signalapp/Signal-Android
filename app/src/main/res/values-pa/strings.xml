@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਹਟਾਇਆ ਸੀ।</string>
   <string name="ConversationItem_you_deleted_this_message">ਤੁਸੀਂ ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਹਟਾਇਆ ਹੈ।</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">ਸੁਰੱਖਿਅਤ ਸੈਸ਼ਨ ਰੀਸੈੱਟ ਕਰਨਾ ਹੈ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗੱਲਬਾਤ ਵਿੱਚ ਇਨਕ੍ਰਿਪਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਆ ਰਹੀਆਂ ਹਨ ਤਾਂ ਇਸ ਨਾਲ ਸ਼ਾਇਦ ਸਹਾਇਤਾ ਮਿਲ ਸਕਦੀ ਹੈ। ਤੁਹਾਡੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਰੱਖਿਆ ਜਾਵੇਗਾ।</string>
-  <string name="ConversationActivity_reset">ਰੀਸੈੱਟ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ਸੁਰੱਖਿਅਤ ਸੈਸ਼ਨ ਰੀਸੈੱਟ ਕਰਨਾ ਹੈ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗੱਲਬਾਤ ਵਿੱਚ ਇਨਕ੍ਰਿਪਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਆ ਰਹੀਆਂ ਹਨ ਤਾਂ ਇਸ ਨਾਲ ਸ਼ਾਇਦ ਸਹਾਇਤਾ ਮਿਲ ਸਕਦੀ ਹੈ। ਤੁਹਾਡੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਰੱਖਿਆ ਜਾਵੇਗਾ।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">ਰੀਸੈੱਟ ਕਰੋ</string> -->
   <string name="ConversationActivity_add_attachment">ਅਟੈਚਮੈਂਟ ਨੂੰ ਜੋੜੋ</string>
   <string name="ConversationActivity_select_contact_info">ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਨੂੰ ਚੁਣੋ</string>
   <string name="ConversationActivity_compose_message">ਸੁਨੇਹਾ ਲਿਖੋ</string>
@@ -799,14 +799,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">ਗਰਿੱਡ ਝਲਕ</string>
   <string name="MediaOverviewActivity_List_view_description">ਸੂਚੀ ਦ੍ਰਿਸ਼</string>
   <string name="MediaOverviewActivity_Selected_description">ਚੁਣਿਆ ਹੋਇਆ</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d ਚੀਜਾਂ %2$s</item>
     <item quantity="other">%1$d ਚੀਜ਼ਾਂ %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d ਚੀਜਾਂ</item>
     <item quantity="other">%1$d ਚੀਜ਼ਾਂ</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ਫ਼ਾਈਲ</string>
   <string name="MediaOverviewActivity_audio">ਆਡੀਓ</string>
   <string name="MediaOverviewActivity_video">ਵੀਡੀਓ</string>
@@ -1864,15 +1864,6 @@
   <string name="HelpFragment__debug_log">ਡੀਬੱਗ ਲਾਗ:</string>
   <string name="HelpFragment__could_not_upload_logs">ਲੌਗ ਅੱਪਲੋਡ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕੇ</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ਮਸਲੇ ਬਾਰੇ ਸਾਨੂੰ ਸਮਝਾਉਣ ਲਈ ਮਦਦ ਵਾਸਤੇ ਜਿੰਨਾ ਵੀ ਹੋ ਸਕੇ ਵੇਰਵਾ ਦਿਓ।</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵਿਕਲਪ ਚੁਣੋ --</item>
-    <item>ਕੋਈ ਚੀਜ਼ ਕੰਮ ਨਹੀਂ ਕਰ ਰਹੀ ਹੈ</item>
-    <item>ਵਿਸ਼ੇਸ਼ਤਾ ਬੇਨਤੀ</item>
-    <item>ਸਵਾਲ</item>
-    <item>ਪ੍ਰਤਿਕਿਰਿਆ</item>
-    <item>ਹੋਰ</item>
-    <item>ਭੁਗਤਾਨ</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ਇਹ ਸੁਨੇਹਾ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ਤਾਜ਼ਾ ਵਰਤੇ</string>

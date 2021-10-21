@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">دغه پیغام پاک شو.</string>
   <string name="ConversationItem_you_deleted_this_message">دا پیغام تاسې پاک کړ.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">خوندي ناسته بیرته تنظیمول غواړئ؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">که چیرته په محاوره کې ستونزې لری نو دا کېدای شي تاسې سره مرسته وکړي. ستاسې پیغامونه به خوندي وساتل شي.</string>
-  <string name="ConversationActivity_reset">له سره تنظیمول</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">خوندي ناسته بیرته تنظیمول غواړئ؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">که چیرته په محاوره کې ستونزې لری نو دا کېدای شي تاسې سره مرسته وکړي. ستاسې پیغامونه به خوندي وساتل شي.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">له سره تنظیمول</string> -->
   <string name="ConversationActivity_add_attachment">د ضمیمې اضافه کول</string>
   <string name="ConversationActivity_select_contact_info">د مخاطب معلومات وټاکئ</string>
   <string name="ConversationActivity_compose_message">پیغام ترتیب کړئ</string>
@@ -799,14 +799,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">شبکه اې ډول لیدل</string>
   <string name="MediaOverviewActivity_List_view_description">د لیست په ډول لیدل</string>
   <string name="MediaOverviewActivity_Selected_description">ټاکل شوي</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">د %1$d توکی %2$s</item>
     <item quantity="other">د %1$d توکي %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d توکی</item>
     <item quantity="other">%1$d توکي</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">اډیو</string>
   <string name="MediaOverviewActivity_video">ویډیو</string>
@@ -1895,7 +1895,7 @@
   <string name="HelpFragment__debug_log">د ستونزې د هواري رپوټ:</string>
   <string name="HelpFragment__could_not_upload_logs">رپوټونه یې اپلوډ نشو کړای</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">د ستونزې په اړه د پوهیدو لپاره مهرباني وکړئ د امکان تر بریده پورې سهي تشریح راکړئ.</string>
-  <string-array name="HelpFragment__categories">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories">
     <item>-مهرباني وکړئ یو غوراوئ وټاکئ -</item>
     <item>کوم شی کار نه ورکوي</item>
     <item>د فیچر غوښتنه</item>
@@ -1903,7 +1903,7 @@
     <item>فیډبک</item>
     <item>نور</item>
     <item>پرداختونه</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">دغه پیغام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تازه کارول شوي</string>

@@ -181,9 +181,9 @@
   <string name="ConversationItem_this_message_was_deleted">Izen-agi yettwakkes.</string>
   <string name="ConversationItem_you_deleted_this_message">Tekkseḍ izen-agi.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Wennez tiɣimit taɣellsant?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Aya yezmer ad iεawen ma yella tesεiḍ uguren n uwgelhen deg usqerdec-a. Iznan-ik·im ad ttwaḥerzen.</string>
-  <string name="ConversationActivity_reset">Wennez</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Wennez tiɣimit taɣellsant?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Aya yezmer ad iεawen ma yella tesεiḍ uguren n uwgelhen deg usqerdec-a. Iznan-ik·im ad ttwaḥerzen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Wennez</string> -->
   <string name="ConversationActivity_add_attachment">Rnu afaylu</string>
   <string name="ConversationActivity_select_contact_info">Fren talɣut n unermis</string>
   <string name="ConversationActivity_compose_message">Aru izen</string>
@@ -780,14 +780,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tamuɣli s tracca</string>
   <string name="MediaOverviewActivity_List_view_description">Timeẓri n tebdart</string>
   <string name="MediaOverviewActivity_Selected_description">Yettwafren</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d n uferdis n %2$s</item>
     <item quantity="other">%1$d n yiferdisen n %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d n uferdis</item>
     <item quantity="other">%1$d n yiferdisen</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Afaylu</string>
   <string name="MediaOverviewActivity_audio">Ameslaw</string>
   <string name="MediaOverviewActivity_video">Avidyu</string>

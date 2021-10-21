@@ -181,9 +181,9 @@
   <string name="ConversationItem_this_message_was_deleted">Това съобщение беше изтрито.</string>
   <string name="ConversationItem_you_deleted_this_message">Изтрихте това съобщение.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Рестартирай сигурната сесия?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Това може да помогне ако имате проблеми с екрипцията в този разговор. Вашите съобщения ще бъдат запазени.</string>
-  <string name="ConversationActivity_reset">Рестартирай</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Рестартирай сигурната сесия?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Това може да помогне ако имате проблеми с екрипцията в този разговор. Вашите съобщения ще бъдат запазени.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Рестартирай</string> -->
   <string name="ConversationActivity_add_attachment">Прикачване на файл</string>
   <string name="ConversationActivity_select_contact_info">Посочи информация за контакта</string>
   <string name="ConversationActivity_compose_message">Ново съобщение</string>
@@ -795,14 +795,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Изглед на мрежа</string>
   <string name="MediaOverviewActivity_List_view_description">Изглед на списък</string>
   <string name="MediaOverviewActivity_Selected_description">Избрани</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d нещо %2$s</item>
     <item quantity="other">%1$d неща %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$dнещо</item>
     <item quantity="other">%1$dнеща</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>
@@ -1867,15 +1867,6 @@
   <string name="HelpFragment__debug_log">Дневник за отстраняване на грешки:</string>
   <string name="HelpFragment__could_not_upload_logs">Дневниците не можаха да се качат</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Моля, бъдете възможно най-описателни, за да ни помогнете да разберем проблема.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Моля, изберете опция --</item>
-    <item>Нещо не работи</item>
-    <item>Заявка за подобрения</item>
-    <item>Въпрос</item>
-    <item>Обратна връзка</item>
-    <item>Друго</item>
-    <item>Плащания</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Това съобщение</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Наскоро използвани</string>
@@ -2955,6 +2946,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Ново плащане</string>

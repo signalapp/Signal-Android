@@ -185,9 +185,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="ConversationItem_you_deleted_this_message">Izbrisali ste ovu poruku.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ponoviti zaštićenu sesiju?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ovo može biti korisno ukoliko imate problema sa šifriranjem konverzacija. Vaše će poruke ostati sačuvane.</string>
-  <string name="ConversationActivity_reset">Ponovi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ponoviti zaštićenu sesiju?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ovo može biti korisno ukoliko imate problema sa šifriranjem konverzacija. Vaše će poruke ostati sačuvane.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Ponovi</string> -->
   <string name="ConversationActivity_add_attachment">Dodajte prilog</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napiši poruku</string>
@@ -839,16 +839,16 @@
   <string name="MediaOverviewActivity_Grid_view_description">Sličice</string>
   <string name="MediaOverviewActivity_List_view_description">Popis</string>
   <string name="MediaOverviewActivity_Selected_description">Označeno</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d stavka %2$s</item>
     <item quantity="few">%1$d stavke %2$s</item>
     <item quantity="other">%1$d stavki %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d stavka</item>
     <item quantity="few">%1$d stavke</item>
     <item quantity="other">%1$d stavki</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Datoteka</string>
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1970,15 +1970,6 @@
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Izaberite stavku --</item>
-    <item>Nešto ne funkcioniše</item>
-    <item>Zahtjev za novim funkcijama</item>
-    <item>Pitanje</item>
-    <item>Povratna informacija</item>
-    <item>Drugo</item>
-    <item>Plaćanja</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>

@@ -163,7 +163,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن نوں ری سیٹ کردئی اے ؟</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">جے ایس گل بات اچ تہانوں خفیہ کاری دا مسئلہ اے تاں ایہہ تہاڈی مدد کر سکدا اے۔ تہاڈے سنیہے رکھے جان گے۔</string> -->
-  <string name="ConversationActivity_reset">ری سیٹ کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">ری سیٹ کرو</string> -->
   <string name="ConversationActivity_add_attachment"> اٹیچمنٹ شامل کرو</string>
   <string name="ConversationActivity_select_contact_info"> رابطے دی معلومات منتخب کرو</string>
   <string name="ConversationActivity_compose_message">سنیہا مرتب کرو</string>
@@ -464,14 +464,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">گریڈ منظر</string>
   <string name="MediaOverviewActivity_List_view_description">فہرست منظر</string>
   <string name="MediaOverviewActivity_Selected_description">منتخب کیتا</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d آئٹم %2$s</item>
     <item quantity="other">%1$d آئٹمز %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d آئٹم</item>
     <item quantity="other">%1$d آئٹمز</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">فائل</string>
   <string name="MediaOverviewActivity_audio">آڈیو</string>
   <string name="MediaOverviewActivity_video">ویڈیو</string>

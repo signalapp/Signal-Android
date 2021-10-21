@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <string name="ConversationItem_you_deleted_this_message">మీరు ఈ సందేశాన్ని తొలగించారు.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question"> సురక్షిత  సెషన్ పునరుద్ధరించు ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">మీకు ఈ సంభాషణ లో ఎన్క్రిప్షన్ సమస్యలు ఉన్నట్లయితే ఇది సహాయపడవచ్చు. మీ సందేశాలు ఉంచబడతాయి.</string>
-  <string name="ConversationActivity_reset">పునరుద్ధరించు</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question"> సురక్షిత  సెషన్ పునరుద్ధరించు ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">మీకు ఈ సంభాషణ లో ఎన్క్రిప్షన్ సమస్యలు ఉన్నట్లయితే ఇది సహాయపడవచ్చు. మీ సందేశాలు ఉంచబడతాయి.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">పునరుద్ధరించు</string> -->
   <string name="ConversationActivity_add_attachment">అటాచ్మెంట్ జోడించండి</string>
   <string name="ConversationActivity_select_contact_info">సంప్రదింపు సమాచారం ఎంచుకొండి</string>
   <string name="ConversationActivity_compose_message">సందేశాన్ని కంపోజ్చెయ్</string>
@@ -801,14 +801,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">సమాంతరరేఖాచట్ర దృశ్యము</string>
   <string name="MediaOverviewActivity_List_view_description">జాబితా వీక్షణ</string>
   <string name="MediaOverviewActivity_Selected_description">ఎంచుకున్న</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$dఅంశం%2$s</item>
     <item quantity="other">%1$dఅంశాలను%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$dఅంశం</item>
     <item quantity="other">%1$dఅంశాలను</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">పత్రం</string>
   <string name="MediaOverviewActivity_audio">ఆడియో</string>
   <string name="MediaOverviewActivity_video">వీడియో</string>

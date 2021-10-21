@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">Оваа порака беше избришана.</string>
   <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Да ја ресетирам безбедносната сесија?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ова може да помогне ако имате проблеми со шифрирање во овој разговор. Вашите пораки ќе бидат зачувани.</string>
-  <string name="ConversationActivity_reset">Ресетираj</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Да ја ресетирам безбедносната сесија?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ова може да помогне ако имате проблеми со шифрирање во овој разговор. Вашите пораки ќе бидат зачувани.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Ресетираj</string> -->
   <string name="ConversationActivity_add_attachment">Прикачи датотека</string>
   <string name="ConversationActivity_select_contact_info">Изберете контакт инфо</string>
   <string name="ConversationActivity_compose_message">Напишете порака</string>
@@ -799,14 +799,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Поглед како мрежа</string>
   <string name="MediaOverviewActivity_List_view_description">Поглед како листа</string>
   <string name="MediaOverviewActivity_Selected_description">Избрано</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d предмет %2$s</item>
     <item quantity="other">%1$d предмети %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d предмет</item>
     <item quantity="other">%1$d предмети</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Датотека</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>
@@ -1891,15 +1891,6 @@
   <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Изберете опција --</item>
-    <item>Нешто не функционира</item>
-    <item>Барање за функција</item>
-    <item>Прашање</item>
-    <item>Повратни информации</item>
-    <item>Друго</item>
-    <item>Плаќања</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Оваа порака</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Скорешни</string>

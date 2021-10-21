@@ -177,9 +177,9 @@
   <string name="ConversationItem_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <string name="ConversationItem_you_deleted_this_message">Mezu hau ezabatu duzu.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Saio segurua berrabiarazi?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Agian honek lagunduko du enkriptatzeko arazorik baldin baduzu. Zure mezuak mantenduko dira.</string>
-  <string name="ConversationActivity_reset">Berrabiarazi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Saio segurua berrabiarazi?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Agian honek lagunduko du enkriptatzeko arazorik baldin baduzu. Zure mezuak mantenduko dira.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Berrabiarazi</string> -->
   <string name="ConversationActivity_add_attachment">Eranskina gehitu</string>
   <string name="ConversationActivity_select_contact_info">Kontaktuaren informazioa aukeratu</string>
   <string name="ConversationActivity_compose_message">Mezua idatzi</string>
@@ -774,14 +774,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Sareta ikuspegia</string>
   <string name="MediaOverviewActivity_List_view_description">Zerrenda ikuspegia</string>
   <string name="MediaOverviewActivity_Selected_description">Hautatua</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">Elementu %1$d %2$s</item>
     <item quantity="other">%1$d elementu %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">Elementu %1$d</item>
     <item quantity="other">%1$d elementu</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Artxiboa</string>
   <string name="MediaOverviewActivity_audio">Audioa</string>
   <string name="MediaOverviewActivity_video">Bideoa</string>

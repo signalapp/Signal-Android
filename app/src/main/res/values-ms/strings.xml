@@ -183,9 +183,9 @@
   <string name="ConversationItem_this_message_was_deleted">Mesej ini telah dipadam.</string>
   <string name="ConversationItem_you_deleted_this_message">Anda memadam mesej ini.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Tetapkan semula sesi selamat?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ini boleh membantu jika anda menghadapi masalah penyulitan dalam perbualan ini. Mesej anda akan disimpan.</string>
-  <string name="ConversationActivity_reset">Tetap semula</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Tetapkan semula sesi selamat?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ini boleh membantu jika anda menghadapi masalah penyulitan dalam perbualan ini. Mesej anda akan disimpan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Tetap semula</string> -->
   <string name="ConversationActivity_add_attachment">Tambah lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pilih maklumat kenalan</string>
   <string name="ConversationActivity_compose_message">Karang mesej</string>
@@ -757,12 +757,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Pandangan grid</string>
   <string name="MediaOverviewActivity_List_view_description">Pandangan senarai</string>
   <string name="MediaOverviewActivity_Selected_description">Dipilih</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d item %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d item</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1770,7 +1770,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="HelpFragment__debug_log">Log Nyahpepijat:</string>
   <string name="HelpFragment__could_not_upload_logs">Tidak dapat memuat naik log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Tolong terangkan dengan sejelas mungkin untuk bantu kami memahami isu tersebut.</string>
-  <string-array name="HelpFragment__categories">
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories">
     <item>- Sila pilih satu pilihan -</item>
     <item>Sesuatu Tidak Berfungsi</item>
     <item>Permintaan Ciri</item>
@@ -1778,7 +1778,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
     <item>Maklum balas</item>
     <item>Lain-lain</item>
     <item>Pembayaran</item>
-  </string-array>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mesej Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Digunakan Baru-baru Ini</string>

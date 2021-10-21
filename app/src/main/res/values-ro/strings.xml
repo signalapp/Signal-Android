@@ -185,9 +185,9 @@
   <string name="ConversationItem_this_message_was_deleted">Acest mesaj a fost șters.</string>
   <string name="ConversationItem_you_deleted_this_message">Ați șters acest mesaj.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string>
-  <string name="ConversationActivity_reset">Resetare</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Resetare</string> -->
   <string name="ConversationActivity_add_attachment">Adăugați atașament</string>
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
   <string name="ConversationActivity_compose_message">Compuneți mesaj</string>
@@ -839,16 +839,16 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vizualizare grilă</string>
   <string name="MediaOverviewActivity_List_view_description">Vizualizare listă</string>
   <string name="MediaOverviewActivity_Selected_description">Selectat</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d element %2$s</item>
     <item quantity="few">%1$d elemente %2$s</item>
     <item quantity="other">%1$d de elemente %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d element</item>
     <item quantity="few">%1$d elemente</item>
     <item quantity="other">%1$d de elemente</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Fișier</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1966,15 +1966,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Vă rugăm selectați o opțiune --</item>
-    <item>Ceva nu funcționează</item>
-    <item>Solicitare funcționalitate nouă</item>
-    <item>Întrebare</item>
-    <item>Opinie</item>
-    <item>Altceva</item>
-    <item>Plăți</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -2072,6 +2063,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__help">Ajutor</string>
   <string name="preferences__advanced">Avansat</string>
   <string name="preferences__donate_to_signal">Donați pentru Signal</string>
+  <string name="preferences__subscription">Abonament</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Confidențialitate</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Setări MMS manuale</string>
@@ -3346,12 +3339,43 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Deveniți un susținător</string>
   <string name="ImageView__badge">Insignă</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal este susținut de oameni ca tine.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Sprijiniți tehnologia construită pentru dvs.—nu pentru datele dvs— alăturându-vă comunității de oameni care o susțin.</string>
   <string name="SubscribeFragment__donation_amount">Sumă donație</string>
+  <string name="SubscribeFragment__more_payment_options">Mai multe opțiuni de plată</string>
+  <string name="SubscribeFragment__cancel_subscription">Anulare abonament</string>
+  <string name="SubscribeFragment__confirm_cancellation">Confirmați anularea?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Nu veți fi taxat din nou. Insigna dvs. va fi eliminată din profilul dvs. la sfârșitul perioadei de facturare.</string>
   <string name="SubscribeFragment__not_now">Nu acum</string>
   <string name="SubscribeFragment__confirm">Confirmă</string>
+  <string name="SubscribeFragment__update_subscription">Actualizare abonament</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonamentul dvs. a fost anulat.</string>
+  <string name="Subscription__s_per_month">%s/lună</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/lună · Se reînnoiește %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal este o organizație non-profit, fără agenți de publicitate sau investitori, susținută doar de oamenii care o folosesc și o apreciază. Faceți o contribuție lunară recurentă și primiți o insignă de profil pentru a vă împărtăși sprijinul.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">De ce să contribuiți?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Echipa de la Signal este dedicată misiunii de a dezvolta o tehnologie de confidențialitate open source care protejează libertatea de exprimare și permite o comunicare globală securizată. Contribuția dumneavoastră susține această cauză. Fără reclame. Fără elemente de urmărire. Pe bune.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Contribuția dumneavoastră ajută la plata dezvoltării, a serverelor și a lățimii de bandă a unei aplicații folosite de milioane de oameni din întreaga lume pentru comunicare privată și instantanee.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Vă mulțumim pentru sprijinul dvs!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Vă mulțumim pentru Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Ați dobândit o insignă %s! Afișarea insignei va arăta persoanelor cu care discutați că susțineți Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afișați la profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gata</string>
+  <string name="ManageDonationsFragment__my_support">Sprijinul meu</string>
+  <string name="ManageDonationsFragment__manage_subscription">Gestionare abonament</string>
   <string name="ManageDonationsFragment__badges">Insigne</string>
+  <string name="ManageDonationsFragment__subscription_faq">FAQ Abonament</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Eroare la obținerea abonamentului.</string>
+  <string name="BoostFragment__give_signal_a_boost">Dați un Boost la Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Spuneți \"Mulțumesc!\" și câștigați insigna Boost pentru %1$d zile.</string>
   <string name="Boost__enter_custom_amount">Introduceți o sumă specifică</string>
+  <string name="Boost__one_time_contribution">Contribuție unică</string>
+  <string name="MySupportPreference__add_a_signal_boost">Adăugați un Boost la Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/lună</string>
+  <string name="MySupportPreference__renews_s">Se reînnoiește %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Insigna dvs. a expirat</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Insigna dvs. %1$s a expirat și nu mai este vizibilă pentru ceilalți pe profilul dvs.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Pentru a continua să sprijiniți o tehnologie construită pentru dvs, —nu pentru datele dvs.—, vă rugăm să luați în considerare posibilitatea de a deveni un abonat lunar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Deveniți un abonat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <!--EOF-->
 </resources>
