@@ -28,6 +28,7 @@
 
     <color name="signal_icon_tint_primary">@color/core_grey_15</color>
     <color name="signal_icon_tint_secondary">@color/core_grey_25</color>
+    <color name="signal_icon_tint_action">@color/signal_icon_tint_primary</color>
 
     <color name="signal_icon_tint_tab_selected">@color/core_white</color>
     <color name="signal_icon_tint_tab_unselected">@color/core_grey_25</color>

@@ -374,6 +374,11 @@
     <string name="ConversationListFragment_archive">Archive</string>
     <string name="ConversationListFragment_unarchive">Unarchive</string>
     <string name="ConversationListFragment_delete">Delete</string>
+    <string name="ConversationListFragment_select_all">Select all</string>
+    <plurals name="ConversationListFragment_s_selected">
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message</string>
@@ -1579,6 +1584,9 @@
     <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
     <string name="SharedContactView_invite_to_signal">Invite to Signal</string>
     <string name="SharedContactView_message">Signal Message</string>
+
+    <!-- SignalBottomActionBar -->
+    <string name="SignalBottomActionBar_more">More</string>
 
     <!-- SignalPinReminders -->
     <string name="SignalPinReminders_well_remind_you_again_later">We\'ll remind you again later.</string>

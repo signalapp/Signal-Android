@@ -384,8 +384,10 @@
     </style>
 
     <style name="TextSecure.ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
-        <item name="titleTextStyle">@style/Signal.DayNight.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/TextAppearance.Signal.Title.ActionMode</item>
+        <item name="closeItemLayout">@layout/action_mode_close_layout</item>
         <item name="theme">@style/Signal.ActionModeTheme</item>
+        <item name="android:paddingStart">10dp</item>
     </style>
 
     <style name="Signal.ActionModeTheme" parent="ThemeOverlay.AppCompat">

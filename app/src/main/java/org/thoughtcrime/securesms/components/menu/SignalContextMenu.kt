@@ -1,6 +1,7 @@
-package org.thoughtcrime.securesms.components
+package org.thoughtcrime.securesms.components.menu
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +16,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingModel
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * A custom context menu that will show next to an anchor view and display several options. Basically a PopupMenu with custom UI and positioning rules.
@@ -27,10 +27,11 @@ import org.thoughtcrime.securesms.util.MappingViewHolder
  */
 class SignalContextMenu private constructor(
   val anchor: View,
-  val container: View,
-  val items: List<Item>,
+  val container: ViewGroup,
+  val items: List<ActionItem>,
   val baseOffsetX: Int = 0,
   val baseOffsetY: Int = 0,
+  val horizontalPosition: HorizontalPosition = HorizontalPosition.START,
   val onDismiss: Runnable? = null
 ) : PopupWindow(
   LayoutInflater.from(anchor.context).inflate(R.layout.signal_context_menu, null),
@@ -77,8 +78,14 @@ class SignalContextMenu private constructor(
       View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
     )
 
-    val menuBottomBound = anchor.y + anchor.height + contentView.measuredHeight + baseOffsetY
-    val menuTopBound = anchor.y - contentView.measuredHeight - baseOffsetY
+    val anchorRect = Rect(anchor.left, anchor.top, anchor.right, anchor.bottom).also {
+      if (anchor.parent != container) {
+        container.offsetDescendantRectToMyCoords(anchor, it)
+      }
+    }
+
+    val menuBottomBound = anchorRect.bottom + contentView.measuredHeight + baseOffsetY
+    val menuTopBound = anchorRect.top - contentView.measuredHeight - baseOffsetY
 
     val screenBottomBound = container.height
     val screenTopBound = container.y
@@ -88,16 +95,33 @@ class SignalContextMenu private constructor(
     if (menuBottomBound < screenBottomBound) {
       offsetY = baseOffsetY
     } else if (menuTopBound > screenTopBound) {
-      offsetY = -(anchor.height + contentView.measuredHeight + baseOffsetY)
+      offsetY = -(anchorRect.height() + contentView.measuredHeight + baseOffsetY)
       mappingAdapter.submitList(items.reversed().toAdapterItems())
     } else {
-      offsetY = -((anchor.height / 2) + (contentView.measuredHeight / 2) + baseOffsetY)
+      offsetY = -((anchorRect.height() / 2) + (contentView.measuredHeight / 2) + baseOffsetY)
     }
 
-    showAsDropDown(anchor, baseOffsetX, offsetY)
+    val offsetX: Int = when (horizontalPosition) {
+      HorizontalPosition.START -> {
+        if (ViewUtil.isLtr(context)) {
+          baseOffsetX
+        } else {
+          -(baseOffsetX + contentView.measuredWidth)
+        }
+      }
+      HorizontalPosition.END -> {
+        if (ViewUtil.isLtr(context)) {
+          -(baseOffsetX + contentView.measuredWidth - anchorRect.width())
+        } else {
+          baseOffsetX - anchorRect.width()
+        }
+      }
+    }
+
+    showAsDropDown(anchor, offsetX, offsetY)
   }
 
-  private fun List<Item>.toAdapterItems(): List<DisplayItem> {
+  private fun List<ActionItem>.toAdapterItems(): List<DisplayItem> {
     return this.mapIndexed { index, item ->
       val displayType: DisplayType = when {
         this.size == 1 -> DisplayType.ONLY
@@ -110,14 +134,8 @@ class SignalContextMenu private constructor(
     }
   }
 
-  data class Item(
-    @DrawableRes val iconRes: Int,
-    @StringRes val titleRes: Int,
-    val action: Runnable
-  )
-
   private data class DisplayItem(
-    val item: Item,
+    val item: ActionItem,
     val displayType: DisplayType
   ) : MappingModel<DisplayItem> {
     override fun areItemsTheSame(newItem: DisplayItem): Boolean {
@@ -129,7 +147,7 @@ class SignalContextMenu private constructor(
     }
   }
 
-  enum class DisplayType {
+  private enum class DisplayType {
     TOP, BOTTOM, MIDDLE, ONLY
   }
 
@@ -162,18 +180,23 @@ class SignalContextMenu private constructor(
     }
   }
 
+  enum class HorizontalPosition {
+    START, END
+  }
+
   /**
    * @param anchor The view to put the pop-up on
    * @param container A parent of [anchor] that represents the acceptable boundaries of the popup
    */
   class Builder(
     val anchor: View,
-    val container: View
+    val container: ViewGroup
   ) {
 
     var onDismiss: Runnable? = null
-    var offsetX: Int = 0
-    var offsetY: Int = 0
+    var offsetX = 0
+    var offsetY = 0
+    var horizontalPosition = HorizontalPosition.START
 
     fun onDismiss(onDismiss: Runnable): Builder {
       this.onDismiss = onDismiss
@@ -190,13 +213,19 @@ class SignalContextMenu private constructor(
       return this
     }
 
-    fun show(items: List<Item>) {
+    fun preferredHorizontalPosition(horizontalPosition: HorizontalPosition): Builder {
+      this.horizontalPosition = horizontalPosition
+      return this
+    }
+
+    fun show(items: List<ActionItem>) {
       SignalContextMenu(
         anchor = anchor,
         container = container,
         items = items,
         baseOffsetX = offsetX,
         baseOffsetY = offsetY,
+        horizontalPosition = horizontalPosition,
         onDismiss = onDismiss
       ).show()
     }
