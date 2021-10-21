@@ -944,14 +944,13 @@
     <string name="MediaOverviewActivity_Grid_view_description">Grid view</string>
     <string name="MediaOverviewActivity_List_view_description">List view</string>
     <string name="MediaOverviewActivity_Selected_description">Selected</string>
+    <string name="MediaOverviewActivity_save">Save</string>
+    <string name="MediaOverviewActivity_select_all">Select all</string>
+    <string name="MediaOverviewActivity_delete">Delete</string>
 
-    <plurals name="MediaOverviewActivity_d_items_s">
-        <item quantity="one">%1$d item %2$s</item>
-        <item quantity="other">%1$d items %2$s</item>
-    </plurals>
-    <plurals name="MediaOverviewActivity_d_items">
-        <item quantity="one">%1$d item</item>
-        <item quantity="other">%1$d items</item>
+    <plurals name="MediaOverviewActivity_d_selected_s">
+        <item quantity="one">%1$d selected (%2$s)</item>
+        <item quantity="other">%1$d selected (%2$s)</item>
     </plurals>
     <string name="MediaOverviewActivity_file">File</string>
     <string name="MediaOverviewActivity_audio">Audio</string>
