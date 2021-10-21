@@ -14,14 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 class MultiselectItemAnimator(
   private val isInMultiSelectMode: () -> Boolean,
   private val isLoadingInitialContent: () -> Boolean,
-  private val isPartSelected: (MultiselectPart) -> Boolean,
   private val isParentFilled: () -> Boolean
 ) : RecyclerView.ItemAnimator() {
-
-  private data class Selection(
-    val multiselectPart: MultiselectPart,
-    val viewHolder: RecyclerView.ViewHolder
-  )
 
   private data class SlideInfo(
     val viewHolder: RecyclerView.ViewHolder,
@@ -33,24 +27,9 @@ class MultiselectItemAnimator(
     CHANGE
   }
 
-  var isInitialMultiSelectAnimation: Boolean = true
-    private set
-
-  private val selected: MutableSet<MultiselectPart> = mutableSetOf()
-
-  private val pendingSelectedAnimations: MutableSet<Selection> = mutableSetOf()
   private val pendingSlideAnimations: MutableSet<SlideInfo> = mutableSetOf()
 
-  private val selectedAnimations: MutableMap<Selection, ValueAnimator> = mutableMapOf()
   private val slideAnimations: MutableMap<SlideInfo, ValueAnimator> = mutableMapOf()
-
-  fun getSelectedProgressForPart(multiselectPart: MultiselectPart): Float {
-    return if (pendingSelectedAnimations.any { it.multiselectPart == multiselectPart }) {
-      0f
-    } else {
-      selectedAnimations.filter { it.key.multiselectPart == multiselectPart }.values.firstOrNull()?.animatedFraction ?: 1f
-    }
-  }
 
   override fun animateDisappearance(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo?): Boolean {
     dispatchAnimationFinished(viewHolder)
@@ -102,52 +81,20 @@ class MultiselectItemAnimator(
     }
 
     val isInMultiSelectMode = isInMultiSelectMode()
-    if (!isInMultiSelectMode) {
-      selected.clear()
-      isInitialMultiSelectAnimation = true
-      return if (preLayoutInfo.top == postLayoutInfo.top) {
+    return if (!isInMultiSelectMode) {
+      if (preLayoutInfo.top == postLayoutInfo.top) {
         dispatchAnimationFinished(newHolder)
         false
       } else {
         animateSlide(newHolder, preLayoutInfo, postLayoutInfo, Operation.CHANGE)
       }
-    }
-
-    var isAnimationStarted = false
-    val parts: MultiselectCollection? = (newHolder.itemView as? Multiselectable)?.conversationMessage?.multiselectCollection
-
-    if (parts == null || parts.isExpired()) {
-      dispatchAnimationFinished(newHolder)
-      return false
-    }
-
-    parts.toSet().forEach { part ->
-      val partIsSelected = isPartSelected(part)
-      if (selected.contains(part) && !partIsSelected) {
-        pendingSelectedAnimations.add(Selection(part, newHolder))
-        selected.remove(part)
-        isAnimationStarted = true
-      } else if (!selected.contains(part) && partIsSelected) {
-        pendingSelectedAnimations.add(Selection(part, newHolder))
-        selected.add(part)
-        isAnimationStarted = true
-      } else if (isInitialMultiSelectAnimation) {
-        pendingSelectedAnimations.add(Selection(part, newHolder))
-        isAnimationStarted = true
-      }
-    }
-
-    if (isAnimationStarted) {
-      dispatchAnimationStarted(newHolder)
     } else {
       dispatchAnimationFinished(newHolder)
+      false
     }
-
-    return isAnimationStarted
   }
 
   override fun runPendingAnimations() {
-    runPendingSelectedAnimations()
     runPendingSlideAnimations()
   }
 
@@ -157,7 +104,7 @@ class MultiselectItemAnimator(
       slideAnimations[slideInfo] = animator
       animator.duration = 150L
       animator.addUpdateListener {
-        (slideInfo.viewHolder.itemView.parent as RecyclerView?)?.invalidateItemDecorations()
+        (slideInfo.viewHolder.itemView.parent as RecyclerView?)?.invalidate()
       }
       animator.doOnEnd {
         dispatchAnimationFinished(slideInfo.viewHolder)
@@ -169,51 +116,22 @@ class MultiselectItemAnimator(
     pendingSlideAnimations.clear()
   }
 
-  private fun runPendingSelectedAnimations() {
-    for (selection in pendingSelectedAnimations) {
-      val animator = ValueAnimator.ofFloat(0f, 1f)
-      selectedAnimations[selection] = animator
-      animator.duration = 150L
-      animator.addUpdateListener {
-        (selection.viewHolder.itemView.parent as RecyclerView?)?.invalidateItemDecorations()
-      }
-      animator.doOnEnd {
-        dispatchAnimationFinished(selection.viewHolder)
-        selectedAnimations.remove(selection)
-        isInitialMultiSelectAnimation = false
-      }
-      animator.start()
-    }
-
-    pendingSelectedAnimations.clear()
-  }
-
   override fun endAnimation(item: RecyclerView.ViewHolder) {
-    endSelectedAnimation(item)
     endSlideAnimation(item)
   }
 
   override fun endAnimations() {
-    endSelectedAnimations()
     endSlideAnimations()
     dispatchAnimationsFinished()
   }
 
   override fun isRunning(): Boolean {
-    return (selectedAnimations.values + slideAnimations.values).any { it.isRunning }
+    return slideAnimations.values.any { it.isRunning }
   }
 
   override fun onAnimationFinished(viewHolder: RecyclerView.ViewHolder) {
     val parent = (viewHolder.itemView.parent as? RecyclerView)
-    parent?.post { parent.invalidateItemDecorations() }
-  }
-
-  private fun endSelectedAnimation(item: RecyclerView.ViewHolder) {
-    val selections = selectedAnimations.filter { (k, _) -> k.viewHolder == item }
-    selections.forEach { (k, v) ->
-      v.end()
-      selectedAnimations.remove(k)
-    }
+    parent?.post { parent.invalidate() }
   }
 
   private fun endSlideAnimation(item: RecyclerView.ViewHolder) {
@@ -222,11 +140,6 @@ class MultiselectItemAnimator(
       v.end()
       slideAnimations.remove(k)
     }
-  }
-
-  fun endSelectedAnimations() {
-    selectedAnimations.values.forEach { it.end() }
-    selectedAnimations.clear()
   }
 
   fun endSlideAnimations() {

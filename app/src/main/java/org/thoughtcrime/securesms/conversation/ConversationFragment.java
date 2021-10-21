@@ -266,18 +266,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       } else {
         return Util.hasItems(adapter.getSelectedItems());
       }
-    }, () -> listSubmissionCount < 2, multiselectPart -> {
-      ConversationAdapter adapter = getListAdapter();
-      if (adapter == null) {
-        return false;
-      } else {
-        return adapter.getSelectedItems().contains(multiselectPart);
-      }
-    }, () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
+    }, () -> listSubmissionCount < 2, () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
     multiselectItemDecoration = new MultiselectItemDecoration(requireContext(),
-                                                              () -> conversationViewModel.getWallpaper().getValue(),
-                                                              multiselectItemAnimator::getSelectedProgressForPart,
-                                                              multiselectItemAnimator::isInitialMultiSelectAnimation);
+                                                              () -> conversationViewModel.getWallpaper().getValue());
 
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);

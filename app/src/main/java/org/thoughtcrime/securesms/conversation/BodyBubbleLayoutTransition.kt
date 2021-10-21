@@ -23,7 +23,7 @@ class BodyBubbleLayoutTransition(bodyBubble: ConversationItemBodyBubble) : Layou
       val parentRecycler: RecyclerView? = bodyBubble.parent.parent as? RecyclerView
 
       try {
-        parentRecycler?.invalidateItemDecorations()
+        parentRecycler?.invalidate()
       } catch (e: IllegalStateException) {
         // In scroll or layout. Skip this frame.
       }
