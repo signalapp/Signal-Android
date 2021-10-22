@@ -249,13 +249,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
-    unselectAllThreads();
-  }
-
-  private void unselectAllThreads() {
     batchSet.clear();
-
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
+    notifyDataSetChanged();
   }
 
   static final class ConversationViewHolder extends RecyclerView.ViewHolder {
