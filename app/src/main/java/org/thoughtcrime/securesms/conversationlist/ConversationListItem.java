@@ -83,6 +83,8 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import static org.thoughtcrime.securesms.database.model.LiveUpdateMessage.recipientToStringAsync;
 
@@ -554,7 +556,7 @@ public final class ConversationListItem extends ConstraintLayout
                                               new CenterCrop()
                                           )
                                           .submit()
-                                          .get();
+                                          .get(3, TimeUnit.SECONDS);
 
         RoundedDrawable drawable = RoundedDrawable.fromBitmap(thumb);
         drawable.setBounds(0, 0, thumbSize, thumbSize);
@@ -586,6 +588,9 @@ public final class ConversationListItem extends ConstraintLayout
         }
 
       } catch (ExecutionException | InterruptedException e) {
+        return new SpannableString(body);
+      } catch (TimeoutException e) {
+        Log.w(TAG, "Hit a timeout when generating a thumbnail!");
         return new SpannableString(body);
       }
     } else {
