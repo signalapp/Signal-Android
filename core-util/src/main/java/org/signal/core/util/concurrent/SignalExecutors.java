@@ -19,7 +19,7 @@ public final class SignalExecutors {
   public static final ExecutorService UNBOUNDED  = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
   public static final ExecutorService BOUNDED    = Executors.newFixedThreadPool(getIdealThreadCount(), new NumberedThreadFactory("signal-bounded"));
   public static final ExecutorService SERIAL     = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
-  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-bounded-io", 1, 32);
+  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-io-bounded", 1, 32);
 
   private SignalExecutors() {}
 

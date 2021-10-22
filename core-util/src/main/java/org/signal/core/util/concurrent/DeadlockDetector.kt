@@ -81,7 +81,7 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
 
     private val EXECUTORS: Set<ExecutorInfo> = setOf(
       ExecutorInfo(SignalExecutors.BOUNDED, "signal-bounded-"),
-      ExecutorInfo(SignalExecutors.BOUNDED_IO, "signal-bounded-io-")
+      ExecutorInfo(SignalExecutors.BOUNDED_IO, "signal-io-bounded")
     )
 
     private const val CONCERNING_QUEUE_THRESHOLD = 4
