@@ -2555,8 +2555,8 @@
     <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
     <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
     <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">User Details</string>
-    <string name="preferences__internal_user_details_description" translatable="false">See more information about a user when viewing conversation settings.</string>
+    <string name="preferences__internal_user_details" translatable="false">\'Internal Details\' button</string>
+    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
     <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
     <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
     <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
