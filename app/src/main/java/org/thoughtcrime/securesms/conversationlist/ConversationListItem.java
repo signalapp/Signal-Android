@@ -556,7 +556,7 @@ public final class ConversationListItem extends ConstraintLayout
                                               new CenterCrop()
                                           )
                                           .submit()
-                                          .get(3, TimeUnit.SECONDS);
+                                          .get(1, TimeUnit.SECONDS);
 
         RoundedDrawable drawable = RoundedDrawable.fromBitmap(thumb);
         drawable.setBounds(0, 0, thumbSize, thumbSize);
