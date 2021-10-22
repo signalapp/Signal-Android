@@ -74,6 +74,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
+import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RatingManager;
@@ -143,6 +144,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
@@ -158,6 +160,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -923,6 +926,33 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
+  private void handleMute(@NonNull Collection<Conversation> conversations) {
+    MuteDialog.show(requireContext(), until -> {
+      updateMute(conversations, until);
+    });
+  }
+
+  private void handleUnmute(@NonNull Collection<Conversation> conversations) {
+    updateMute(conversations, 0);
+  }
+
+  private void updateMute(@NonNull Collection<Conversation> conversations, long until) {
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(requireContext(), 250, 250);
+
+    SimpleTask.run(SignalExecutors.BOUNDED, () -> {
+      List<RecipientId> recipientIds = conversations.stream()
+                                                    .map(conversation -> conversation.getThreadRecord().getRecipient().live().get())
+                                                    .filter(r -> r.getMuteUntil() != until)
+                                                    .map(Recipient::getId)
+                                                    .collect(Collectors.toList());
+      DatabaseFactory.getRecipientDatabase(requireContext()).setMuted(recipientIds, until);
+      return null;
+    }, unused -> {
+      endActionModeIfActive();
+      dialog.dismiss();
+    });
+  }
+
   private void handleSelectAllThreads() {
     defaultAdapter.selectAllThreads();
     updateMultiSelectState();
@@ -1053,6 +1083,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       } else {
         items.add(new ActionItem(R.drawable.ic_pin_24, R.string.ConversationListFragment_pin, () -> handlePin(Collections.singleton(conversation))));
       }
+
+      if (conversation.getThreadRecord().getRecipient().live().get().isMuted()) {
+        items.add(new ActionItem(R.drawable.ic_unmute_24, R.string.ConversationListFragment_unmute, () -> handleUnmute(Collections.singleton(conversation))));
+      } else {
+        items.add(new ActionItem(R.drawable.ic_mute_24, R.string.ConversationListFragment_mute, () -> handleMute(Collections.singleton(conversation))));
+      }
     }
 
     items.add(new ActionItem(R.drawable.ic_select_24, R.string.ConversationListFragment_select, () -> {
@@ -1134,6 +1170,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     int     count       = defaultAdapter.getBatchSelectionIds().size();
     boolean hasUnread   = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
     boolean hasUnpinned = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
+    boolean hasUnmuted  = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
     boolean canPin      = viewModel.getPinnedCount() < MAXIMUM_PINNED_CONVERSATIONS;
 
     if (actionMode != null) {
@@ -1161,6 +1198,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     items.add(new ActionItem(R.drawable.ic_delete_24, R.string.ConversationListFragment_delete, () -> handleDelete(defaultAdapter.getBatchSelectionIds())));
+
+
+    if (hasUnmuted) {
+      items.add(new ActionItem(R.drawable.ic_mute_24, R.string.ConversationListFragment_mute, () -> handleMute(defaultAdapter.getBatchSelection())));
+    } else {
+      items.add(new ActionItem(R.drawable.ic_unmute_24, R.string.ConversationListFragment_unmute, () -> handleUnmute(defaultAdapter.getBatchSelection())));
+    }
 
     items.add(new ActionItem(R.drawable.ic_select_24, R.string.ConversationListFragment_select_all, this::handleSelectAllThreads));
 

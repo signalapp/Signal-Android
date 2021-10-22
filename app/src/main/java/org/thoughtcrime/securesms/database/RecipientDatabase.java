@@ -1614,6 +1614,33 @@ public class RecipientDatabase extends Database {
     StorageSyncHelper.scheduleSyncForDataChange();
   }
 
+  public void setMuted(@NonNull Collection<RecipientId> ids, long until) {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      ContentValues values = new ContentValues();
+      values.put(MUTE_UNTIL, until);
+
+      SqlUtil.Query query = SqlUtil.buildCollectionQuery(ID, ids);
+      db.update(TABLE_NAME, values, query.getWhere(), query.getWhereArgs());
+
+      for (RecipientId id : ids) {
+        rotateStorageId(id);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    for (RecipientId id : ids) {
+      Recipient.live(id).refresh();
+    }
+
+    StorageSyncHelper.scheduleSyncForDataChange();
+  }
+
   public void setSeenFirstInviteReminder(@NonNull RecipientId id) {
     setInsightsBannerTier(id, InsightsBannerTier.TIER_ONE);
   }
