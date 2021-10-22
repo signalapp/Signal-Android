@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Вы удалили это сообщение.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Сбросить</string> -->
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контактную информацию</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
@@ -341,6 +338,17 @@
     <item quantity="many">%d разговоров перемещено во Входящие</item>
     <item quantity="other">%d разговоров перемещено во Входящие</item>
   </plurals>
+  <string name="ConversationListFragment_read">Отметить как прочитанное</string>
+  <string name="ConversationListFragment_unread">Отметить как непрочитанное</string>
+  <string name="ConversationListFragment_pin">Прикрепить чат</string>
+  <string name="ConversationListFragment_unpin">Открепить чат</string>
+  <string name="ConversationListFragment_mute">Откл. микрофон</string>
+  <string name="ConversationListFragment_unmute">Включить звуки</string>
+  <string name="ConversationListFragment_select">Выбрать</string>
+  <string name="ConversationListFragment_archive">Архивировать</string>
+  <string name="ConversationListFragment_unarchive">Разархивировать</string>
+  <string name="ConversationListFragment_delete">Удалить</string>
+  <string name="ConversationListFragment_select_all">Выбрать все</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
   <!--ConversationListItemAction-->
@@ -879,18 +887,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Вид: сетка</string>
   <string name="MediaOverviewActivity_List_view_description">Вид: список</string>
   <string name="MediaOverviewActivity_Selected_description">Выбрано</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d элемент %2$s</item>
-    <item quantity="few">%1$d элемента %2$s</item>
-    <item quantity="many">%1$d элементов %2$s</item>
-    <item quantity="other">%1$d элементов %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d элемент</item>
-    <item quantity="few">%1$d элемента</item>
-    <item quantity="many">%1$d элементов</item>
-    <item quantity="other">%1$d элементов</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Сохранить</string>
+  <string name="MediaOverviewActivity_select_all">Выбрать все</string>
+  <string name="MediaOverviewActivity_delete">Удалить</string>
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>
@@ -1467,6 +1466,8 @@
   <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить в Signal</string>
   <string name="SharedContactView_message">Сообщение Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Больше</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Мы напомним вам позже.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Мы напомним вам завтра.</string>
@@ -3437,6 +3438,7 @@
   <string name="SubscribeFragment__confirm">Подтвердить</string>
   <string name="SubscribeFragment__update_subscription">Обновить подписку</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша подписка была отменена.</string>
+  <string name="SubscribeFragment__update">Обновить</string>
   <string name="Subscription__s_per_month">%s/месяц</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Возобновится %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят её. Делая пожертвование ежемесячно, вы получите значок для профиля, чтобы поделиться с другими тем, что вы поддерживаете Signal.</string>
@@ -3466,5 +3468,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным подписчиком.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стать подписчиком</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
+  <string name="Subscription__contact_support">Связаться с поддержкой</string>
+  <string name="SubscribeFragment__processing_payment">Обрабатываем платёж…</string>
+  <string name="DonationsErrors__payment_failed">Платёж не удался</string>
   <!--EOF-->
 </resources>

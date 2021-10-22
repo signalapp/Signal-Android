@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">بۇ ئۇچۇر ئۆچۈرۈلگەن</string>
   <string name="ConversationItem_you_deleted_this_message">بۇ ئۇچۇرنى ئۆچۈردىڭىز</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">بىخەتەر كۆرۈشۈشنى ئەسلىگە قايتۇرامسىز؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ئەگەر بۇ سۆھبەتتە شىفىرلاش مەسىلىسىگە يولۇققان بولسىڭىز، ئەسلىگە قايتۇرۇشنىڭ ياردىمى بولۇشى مۇمكىن. ئۇچۇرلىرىڭىز ساقلىنىدۇ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">ئەسلىگە قايتۇر</string> -->
   <string name="ConversationActivity_add_attachment">قوشۇمچە قوش</string>
   <string name="ConversationActivity_select_contact_info">ئالاقەداش ئۇچۇرىنى تاللا</string>
   <string name="ConversationActivity_compose_message">ئۇچۇر ياز</string>
@@ -319,6 +316,17 @@
     <item quantity="one">سۆھبەتنى كەلگەن خەت قۇتىسىغا يۆتكەش</item>
     <item quantity="other">%d سۆھبەتلەرنى كەلگەن خەت قۇتىسىغا يۆتكەش</item>
   </plurals>
+  <string name="ConversationListFragment_read">ئوقۇش</string>
+  <string name="ConversationListFragment_unread">ئوقۇلمىدى قىلىڭ</string>
+  <string name="ConversationListFragment_pin">مىخلاش</string>
+  <string name="ConversationListFragment_unpin">قوندۇرما</string>
+  <string name="ConversationListFragment_mute">ئۈنسىز</string>
+  <string name="ConversationListFragment_unmute">ئۈنلۈك</string>
+  <string name="ConversationListFragment_select">تاللا</string>
+  <string name="ConversationListFragment_archive">ئارخىپ</string>
+  <string name="ConversationListFragment_unarchive">ئارخىپلىما</string>
+  <string name="ConversationListFragment_delete">ئۆچۈر</string>
+  <string name="ConversationListFragment_select_all">ھەممىنى تاللا</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ئاچقۇچ ئالماشتۇرۇش ئۇچۇرى</string>
   <!--ConversationListItemAction-->
@@ -800,14 +808,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">سېتكا كۆرۈنۈش</string>
   <string name="MediaOverviewActivity_List_view_description">تىزىم كۆرۈنۈش</string>
   <string name="MediaOverviewActivity_Selected_description">تاللانغان</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d تۈر%2$s</item>
-    <item quantity="other">%1$d تۈر %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d تۈر</item>
-    <item quantity="other">%1$d تۈر</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">ساقلا</string>
+  <string name="MediaOverviewActivity_select_all">ھەممىنى تاللا</string>
+  <string name="MediaOverviewActivity_delete">ئۆچۈر</string>
   <string name="MediaOverviewActivity_file">ھۆججەت</string>
   <string name="MediaOverviewActivity_audio">ئۈن</string>
   <string name="MediaOverviewActivity_video">سىن</string>
@@ -1346,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">ئالاقەداشلارغا قوش</string>
   <string name="SharedContactView_invite_to_signal">Signal ئىشلىتىش تەكلىپى</string>
   <string name="SharedContactView_message">Signal ئۇچۇرى</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">تېخىمۇ كۆپ</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">سەل تۇرۇپ سىزنى قايتا ئەسكەرتىمىز.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">ئەتە سىزنى قايتا ئەسكەرتىمىز.</string>
@@ -1894,15 +1899,6 @@
   <string name="HelpFragment__debug_log">سازلاش خاتىرىسى:</string>
   <string name="HelpFragment__could_not_upload_logs">خاتىرىنى يۈكلىيەلمىدى</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ئامالنىڭ بارىچە ئەتراپلىق بايان قىلىپ ۋەقەنى چۈشىنىشىمىزگە ياردەم بېرىڭ.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories">
-    <item>-بىر تاللانما تاللاڭ-</item>
-    <item>كاشىلا كۆرۈلدى</item>
-    <item>ئىقتىدار ئىلتىماسى</item>
-    <item>سوئال</item>
-    <item>ئىنكاس</item>
-    <item>باشقىلار</item>
-    <item>چىقىملار</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">بۇ ئۇچۇر</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">يېقىندا ئىشلىتىلدى</string>
@@ -3254,9 +3250,13 @@
   <string name="SubscribeFragment__donation_amount">ئىئانە سوممىسى</string>
   <string name="SubscribeFragment__not_now">ھازىر ئەمەس</string>
   <string name="SubscribeFragment__confirm">جەزملە</string>
+  <string name="SubscribeFragment__update">يېڭىلا</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">بولدى</string>
   <string name="ManageDonationsFragment__badges">ئىزناكلار</string>
   <string name="Boost__enter_custom_amount">ئىختىيارىچە سومما كىرگۈزۈڭ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ھازىر ئەمەس</string>
+  <string name="Subscription__contact_support">قوللىغۇچىلار  بىلەن ئالاقىلىشىڭ</string>
+  <string name="SubscribeFragment__processing_payment">چىقىمنى بېجىرىۋاتىدۇ…</string>
+  <string name="DonationsErrors__payment_failed">چىقىم قىلالمىدى</string>
   <!--EOF-->
 </resources>

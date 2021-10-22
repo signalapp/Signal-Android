@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Este mensaje ha sido eliminado.</string>
   <string name="ConversationItem_you_deleted_this_message">Mensaje eliminado</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar sesión segura?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes no se eliminarán.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reiniciar</string> -->
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Redactar mensaje</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Chat devuelto al buzón de entrada</item>
     <item quantity="other">%d chats devueltos al buzón de entrada</item>
   </plurals>
+  <string name="ConversationListFragment_read">Leído</string>
+  <string name="ConversationListFragment_unread">No leído</string>
+  <string name="ConversationListFragment_pin">Fijar</string>
+  <string name="ConversationListFragment_unpin">No fijar</string>
+  <string name="ConversationListFragment_mute">Silenciar</string>
+  <string name="ConversationListFragment_unmute">No silenciar</string>
+  <string name="ConversationListFragment_select">selecciona</string>
+  <string name="ConversationListFragment_archive">Archivar</string>
+  <string name="ConversationListFragment_unarchive">Desarchivar</string>
+  <string name="ConversationListFragment_delete">Eliminar</string>
+  <string name="ConversationListFragment_select_all">Seleccionar todo</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista en cuadrícula</string>
   <string name="MediaOverviewActivity_List_view_description">Vista en lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selección</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d elemento %2$s</item>
-    <item quantity="other">%1$d elementos %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d elemento</item>
-    <item quantity="other">%1$d elementos</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Guardar</string>
+  <string name="MediaOverviewActivity_select_all">Seleccionar todo</string>
+  <string name="MediaOverviewActivity_delete">Eliminar</string>
   <string name="MediaOverviewActivity_file">Archivo</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -1346,6 +1349,8 @@ número de teléfono
   <string name="SharedContactView_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactView_invite_to_signal">Invitar a Signal</string>
   <string name="SharedContactView_message">Mensaje de Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Más</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Te lo recordaremos de nuevo más tarde.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Te lo recordaremos de nuevo mañana.</string>
@@ -3260,6 +3265,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeFragment__confirm">Confirmar</string>
   <string name="SubscribeFragment__update_subscription">Actualizar suscripción</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Se ha cancelado tu suscripción.</string>
+  <string name="SubscribeFragment__update">Actualizar</string>
   <string name="Subscription__s_per_month">%s al mes</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s al mes · Se renueva el %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal es una organización sin ánimo de lucro, sin anunciantes ni inversores, sólo sostenida por la gente que  usa y valora la aplicación. Haz una contribución mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo</string>
@@ -3289,5 +3295,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar apoyando la tecnología construída para ti (y no para tus datos) considera una suscripción mensual.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Suscribirme</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
+  <string name="Subscription__contact_support">Contactar con el soporte técnico</string>
+  <string name="SubscribeFragment__processing_payment">Procesando pago …</string>
+  <string name="DonationsErrors__payment_failed">Fallo en el pago</string>
   <!--EOF-->
 </resources>

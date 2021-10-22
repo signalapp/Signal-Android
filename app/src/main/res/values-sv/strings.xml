@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Återställ säker session?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i denna konversation. Dina meddelanden bevaras.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Återställ</string> -->
   <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Flyttade konversation till inkorgen</item>
     <item quantity="other">Flyttade %d konversationer till inkorgen</item>
   </plurals>
+  <string name="ConversationListFragment_read">Läst</string>
+  <string name="ConversationListFragment_unread">Oläst</string>
+  <string name="ConversationListFragment_pin">Fäst</string>
+  <string name="ConversationListFragment_unpin">Lossa</string>
+  <string name="ConversationListFragment_mute">Tysta</string>
+  <string name="ConversationListFragment_unmute">Ljud på</string>
+  <string name="ConversationListFragment_select">Välj</string>
+  <string name="ConversationListFragment_archive">Arkivera</string>
+  <string name="ConversationListFragment_unarchive">Avarkivera</string>
+  <string name="ConversationListFragment_delete">Ta bort</string>
+  <string name="ConversationListFragment_select_all">Markera alla</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rutnätsvy</string>
   <string name="MediaOverviewActivity_List_view_description">Listvy</string>
   <string name="MediaOverviewActivity_Selected_description">Valda</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d objekt %2$s</item>
-    <item quantity="other">%1$d objekt %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d objekt</item>
-    <item quantity="other">%1$d objekt</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Spara</string>
+  <string name="MediaOverviewActivity_select_all">Markera alla</string>
+  <string name="MediaOverviewActivity_delete">Ta bort</string>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Ljud</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1341,6 +1344,8 @@ angav (%s) är ogiltigt.</string>
   <string name="SharedContactView_add_to_contacts">Lägg till i kontakter</string>
   <string name="SharedContactView_invite_to_signal">Bjud in till Signal</string>
   <string name="SharedContactView_message">Signal-meddelande</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mer</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vi påminner dig igen senare.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi påminner dig igen imorgon.</string>
@@ -3252,6 +3257,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubscribeFragment__confirm">Bekräfta</string>
   <string name="SubscribeFragment__update_subscription">Uppdatera prenumeration</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Din prenumeration har avslutats.</string>
+  <string name="SubscribeFragment__update">Uppdatera</string>
   <string name="Subscription__s_per_month">%s/månad</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Förnyar %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal är en ideell organisation utan annonsörer eller investerare, som endast upprätthålls av de personer som använder och värdesätter den. Ge ett återkommande månadsbidrag och få ett profilmärke för att dela ditt stöd.</string>
@@ -3281,5 +3287,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Om du vill fortsätta stöda teknik som är byggd för dig—inte för dina data—vänligen överväg att bli en månadsabonnent.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli prenumerant</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
+  <string name="Subscription__contact_support">Kontakta support</string>
+  <string name="SubscribeFragment__processing_payment">Bearbetar betalning…</string>
+  <string name="DonationsErrors__payment_failed">Betalning misslyckades</string>
   <!--EOF-->
 </resources>

@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ta wiadomość została usunięta.</string>
   <string name="ConversationItem_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości zostaną zachowane.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reset</string> -->
   <string name="ConversationActivity_add_attachment">Dodaj załącznik</string>
   <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
   <string name="ConversationActivity_compose_message">Nowa wiadomość</string>
@@ -340,6 +337,23 @@
     <item quantity="few">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
     <item quantity="many">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
     <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
+  </plurals>
+  <string name="ConversationListFragment_read">Odczytano</string>
+  <string name="ConversationListFragment_unread">Nieprzeczytane</string>
+  <string name="ConversationListFragment_pin">Przypnij</string>
+  <string name="ConversationListFragment_unpin">Odepnij</string>
+  <string name="ConversationListFragment_mute">Wycisz</string>
+  <string name="ConversationListFragment_unmute">Cofnij wyciszenie</string>
+  <string name="ConversationListFragment_select">Zaznacz</string>
+  <string name="ConversationListFragment_archive">Archiwizuj</string>
+  <string name="ConversationListFragment_unarchive">Przywróć z archiwum</string>
+  <string name="ConversationListFragment_delete">Usuń</string>
+  <string name="ConversationListFragment_select_all">Zaznacz wszystko</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d wybrany</item>
+    <item quantity="few">%d wybrane</item>
+    <item quantity="many">%d wybranych</item>
+    <item quantity="other">%d wybrane</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
@@ -879,18 +893,15 @@
   <string name="MediaOverviewActivity_Grid_view_description">Widok siatki</string>
   <string name="MediaOverviewActivity_List_view_description">Widok listy</string>
   <string name="MediaOverviewActivity_Selected_description">Zaznaczono</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element %2$s</item>
-    <item quantity="few">%1$d elementy %2$s</item>
-    <item quantity="many">%1$d elementów %2$s</item>
-    <item quantity="other">%1$d elementy %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="few">%1$d elementy</item>
-    <item quantity="many">%1$d elementów</item>
-    <item quantity="other">%1$d elementy</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Zapisz</string>
+  <string name="MediaOverviewActivity_select_all">Zaznacz wszystko</string>
+  <string name="MediaOverviewActivity_delete">Usuń</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d wybrany (%2$s)</item>
+    <item quantity="few">%1$d wybrane (%2$s)</item>
+    <item quantity="many">%1$d wybranych (%2$s)</item>
+    <item quantity="other">%1$d wybrane (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Plik</string>
   <string name="MediaOverviewActivity_audio">Dźwięk</string>
   <string name="MediaOverviewActivity_video">Wideo</string>
@@ -1469,6 +1480,8 @@
   <string name="SharedContactView_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactView_invite_to_signal">Zaproś do używania Signal</string>
   <string name="SharedContactView_message">Wiadomość Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Więcej</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Przypomnimy Ci o tym ponownie później.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Przypomnimy Ci o tym ponownie jutro.</string>
@@ -2037,6 +2050,16 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__debug_log">Logi debugowania:</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Wybierz opcję --</item>
+    <item>Coś nie działa</item>
+    <item>Prośba o dodanie funkcji</item>
+    <item>Pytanie</item>
+    <item>Opinia</item>
+    <item>Inne</item>
+    <item>Płatności (MobileCoin)</item>
+    <item>Datki (wspierający i wsparcie Signal)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ta wiadomość</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Ostatnio używane</string>
@@ -3436,8 +3459,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubscribeFragment__confirm">Potwierdź</string>
   <string name="SubscribeFragment__update_subscription">Uaktualnij subskrypcję</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Twoja subskrypcja została anulowana.</string>
+  <string name="SubscribeFragment__update_subscription_question">Uaktualnić subskrypcję?</string>
+  <string name="SubscribeFragment__update">Uaktualnij</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dziś z Twojego konta zostanie pobrana pełna kwota za nową subskrypcję. Twoja subskrypcja odnowi %1$s.</string>
   <string name="Subscription__s_per_month">%s/miesiąc</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/miesiąc · Przedłużane %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/miesiąc · Wygasa %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi, którzy używają i cenią naszą aplikację. Rozpocznij subskrypcję z comiesięczną opłatą, aby otrzymać odznakę profilową, dzięki której pochwalisz się swoim wsparciem.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Po co składać datek?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Zespół Signal jest oddany misji rozwoju otwartoźródłowej, zapewniającej prywatność technologii, która chroni wolność słowa i umożliwia bezpieczną, globalną komunikację. Twój datek pomaga tej sprawie. Bez reklam. Bez śledzenia. Bez ściemy.</string>
@@ -3448,6 +3475,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pokaż w profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ustaw wyświetlaną odznakę</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotowe</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiedy masz więcej, niż jedną odznakę, możesz zdecydować, którą z nich pokazać na swoim profilu.</string>
   <string name="ManageDonationsFragment__my_support">Moje wsparcie</string>
   <string name="ManageDonationsFragment__manage_subscription">Zarządzaj subskrypcją</string>
   <string name="ManageDonationsFragment__badges">Odznaki</string>
@@ -3466,5 +3494,18 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
 danych — rozważ miesięczną subskrypcję.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Zostań subskrybentem</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>
+  <string name="Subscription__verification_failed">Weryfikacja subskrypcji nie powiodła się</string>
+  <string name="Subscription__please_contact_support_for_more_information">Skontaktuj się z pomocą techniczną, aby uzyskać więcej informacji.</string>
+  <string name="Subscription__contact_support">Kontakt z pomocą techniczną</string>
+  <string name="Subscription__earn_a_s_badge">Zdobądź odznakę %1$s</string>
+  <string name="SubscribeFragment__processing_payment">Przetwarzanie płatności…</string>
+  <string name="DonationsErrors__payment_failed">Płatność nie powiodła się</string>
+  <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
+  <string name="DonationsErrors__redemption_still_pending">Wpłata wciąż oczekuje</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Możesz nie zobaczyć swojej odznaki natychmiast, ale pracujemy nad tym!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Aplikacja Google Pay nie jest dostępna</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musisz skonfigurować Google Pay, aby móc płacić w aplikacji.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Nie udało się anulować subskrypcji</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anulowanie subskrypcji wymaga połączenia z internetem.</string>
   <!--EOF-->
 </resources>

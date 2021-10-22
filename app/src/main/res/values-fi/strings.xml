@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Viesti poistettiin.</string>
   <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Alustetaanko suojattu istunto?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa ratkaista keskusteluun salaukseen liittyviä ongelmia. Viestejä ei poisteta.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Alusta</string> -->
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
   </plurals>
+  <string name="ConversationListFragment_read">Luettu</string>
+  <string name="ConversationListFragment_unread">Lukematon</string>
+  <string name="ConversationListFragment_pin">Kiinnitä</string>
+  <string name="ConversationListFragment_unpin">Irrota</string>
+  <string name="ConversationListFragment_mute">Mykistä</string>
+  <string name="ConversationListFragment_unmute">Poista mykistys</string>
+  <string name="ConversationListFragment_select">Valitse</string>
+  <string name="ConversationListFragment_archive">Arkistoi</string>
+  <string name="ConversationListFragment_unarchive">Palauta arkistosta</string>
+  <string name="ConversationListFragment_delete">Poista</string>
+  <string name="ConversationListFragment_select_all">Valitse kaikki</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
   <!--ConversationListItemAction-->
@@ -798,14 +806,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudukkonäkymä</string>
   <string name="MediaOverviewActivity_List_view_description">Listanäkymä</string>
   <string name="MediaOverviewActivity_Selected_description">Valittu</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d kappale %2$s</item>
-    <item quantity="other">%1$d kappaletta %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d kappale</item>
-    <item quantity="other">%1$d kappaletta</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Tallenna</string>
+  <string name="MediaOverviewActivity_select_all">Valitse kaikki</string>
+  <string name="MediaOverviewActivity_delete">Poista</string>
   <string name="MediaOverviewActivity_file">Tiedosto</string>
   <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1315,6 +1318,8 @@ puhelinnumero</string>
   <string name="SharedContactView_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactView_invite_to_signal">Kutsu Signaliin</string>
   <string name="SharedContactView_message">Signal-viesti</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Lisää</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Muistutamme sinua myöhemmin uudelleen.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Muistutamme sinua jälleen huomenna.</string>
@@ -3186,8 +3191,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string>
   <string name="SubscribeFragment__not_now">Ei nyt</string>
   <string name="SubscribeFragment__confirm">Vahvista</string>
+  <string name="SubscribeFragment__update">Päivitä</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
   <string name="Boost__enter_custom_amount">Syöltä muu summa</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
+  <string name="Subscription__contact_support">Ota yhteyttä tukeen</string>
+  <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
+  <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string>
   <!--EOF-->
 </resources>

@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
   <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">بازنشانی نشست امن؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر در این مکالمه با مشکلات رمزگذاری روبرو هستید این گزینه ممکن است کمک کند. پیام‌های شما حفظ خواهند شد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">بازنشانی</string> -->
   <string name="ConversationActivity_add_attachment">افزودن پیوست</string>
   <string name="ConversationActivity_select_contact_info">انتخاب اطلاعات مخاطب</string>
   <string name="ConversationActivity_compose_message">نگارش پیام</string>
@@ -319,6 +316,17 @@
     <item quantity="one">مکالمه به صندوق ورودی انتقال یافت</item>
     <item quantity="other">%d مکالمه به صندوق ورودی انتقال یافت</item>
   </plurals>
+  <string name="ConversationListFragment_read">خوانده شد</string>
+  <string name="ConversationListFragment_unread">خوانده نشده</string>
+  <string name="ConversationListFragment_pin">پین</string>
+  <string name="ConversationListFragment_unpin">برداشتن سنجاق</string>
+  <string name="ConversationListFragment_mute">بستن</string>
+  <string name="ConversationListFragment_unmute">باز کردن</string>
+  <string name="ConversationListFragment_select">انتخاب کنید</string>
+  <string name="ConversationListFragment_archive">بایگانی</string>
+  <string name="ConversationListFragment_unarchive">خارج‌کردن از بایگانی</string>
+  <string name="ConversationListFragment_delete">حذف</string>
+  <string name="ConversationListFragment_select_all">انتخاب همه</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">نمای مشبک</string>
   <string name="MediaOverviewActivity_List_view_description">نمای فهرستی</string>
   <string name="MediaOverviewActivity_Selected_description">انتخاب شده</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d مورد %2$s</item>
-    <item quantity="other">%1$d مورد %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d مورد</item>
-    <item quantity="other">%1$d مورد</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">ذخیره</string>
+  <string name="MediaOverviewActivity_select_all">انتخاب همه</string>
+  <string name="MediaOverviewActivity_delete">حذف</string>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">ویدئو</string>
@@ -1345,6 +1348,8 @@
   <string name="SharedContactView_add_to_contacts">افزودن به مخاطبین</string>
   <string name="SharedContactView_invite_to_signal">دعوت به سیگنال</string>
   <string name="SharedContactView_message">پیام سیگنال</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">بیشتر</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">بعداً دوباره به شما یادآوری خواهیم کرد.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">فردا دوباره به شما یادآوری خواهیم کرد.</string>
@@ -3253,6 +3258,7 @@
   <string name="SubscribeFragment__not_now">حالا نه</string>
   <string name="SubscribeFragment__confirm">تأیید کنید</string>
   <string name="SubscribeFragment__update_subscription">به‌روزرسانی اشتراک</string>
+  <string name="SubscribeFragment__update">به‌روزرسانی</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ممنون بابت تقویت!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">شما یک نشان %s بدست آوردید! نمایش نشان شما به کسانی که با آن‌ها گفتگو می‌کنید نشان می‌دهد که شما از سیگنال حمایت می‌کنید.</string>
@@ -3272,5 +3278,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">برای ادامهٔ حمایت از فناوری که برای شما ساخته شده است—نه برای داده‌های شما—لطفاً در نظر بگیرید که یک مشترک ماهانهٔ ما شوید.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">مشترک شوید</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
+  <string name="Subscription__contact_support">تماس با پشتیبانی</string>
+  <string name="SubscribeFragment__processing_payment">در حال پردازش پرداخت…</string>
+  <string name="DonationsErrors__payment_failed">پرداخت ناموفق بود</string>
   <!--EOF-->
 </resources>

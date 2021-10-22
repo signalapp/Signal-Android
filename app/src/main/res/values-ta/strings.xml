@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி நீக்கப்பட்டது.</string>
   <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">இந்த உரையாடலில் குறியாக்க சிக்கல்கள் இருந்தால் இது உதவக்கூடும். உங்கள் செய்திகள் வைக்கப்படும்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">மீட்டமைக்க</string> -->
   <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
   <string name="ConversationActivity_compose_message">செய்தியை இயற்று</string>
@@ -319,6 +316,17 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
+  <string name="ConversationListFragment_read">படி</string>
+  <string name="ConversationListFragment_unread">படிக்காதது</string>
+  <string name="ConversationListFragment_pin">மேலே பொருத்தப்பட்ட செய்திகள்</string>
+  <string name="ConversationListFragment_unpin">அகற்று</string>
+  <string name="ConversationListFragment_mute">முடக்கு</string>
+  <string name="ConversationListFragment_unmute">ஒலியடக்கை நீக்கு</string>
+  <string name="ConversationListFragment_select">தேர்வு</string>
+  <string name="ConversationListFragment_archive">காப்பகம்</string>
+  <string name="ConversationListFragment_unarchive">வெளிப்படுத்து</string>
+  <string name="ConversationListFragment_delete">நீக்கு</string>
+  <string name="ConversationListFragment_select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
   <!--ConversationListItemAction-->
@@ -797,14 +805,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">கட்டம் காட்சி</string>
   <string name="MediaOverviewActivity_List_view_description">பட்டியல் காட்சி</string>
   <string name="MediaOverviewActivity_Selected_description">தேர்ந்தெடுக்கப்பட்ட</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d உருப்படியை%2$s</item>
-    <item quantity="other">%1$d  பொருட்களை%2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d பொருட்களை</item>
-    <item quantity="other">%1$d உருப்படியை</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">சேமி</string>
+  <string name="MediaOverviewActivity_select_all">அனைத்தையும்  தேர்வுசெய்</string>
+  <string name="MediaOverviewActivity_delete">நீக்கு</string>
   <string name="MediaOverviewActivity_file">கோப்பு</string>
   <string name="MediaOverviewActivity_audio">ஒலி</string>
   <string name="MediaOverviewActivity_video">காணொளி</string>
@@ -1311,6 +1314,8 @@
   <string name="SharedContactView_add_to_contacts">தொடர்பு பட்டியலில் சேர்க்க</string>
   <string name="SharedContactView_invite_to_signal">Signalக்கு அழை</string>
   <string name="SharedContactView_message">Signal செய்தி</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">மேலும்</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">பின்னர் உங்களுக்கு நினைவூட்டுவோம்.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">நாளை மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
@@ -3142,8 +3147,12 @@
   <string name="SubscribeFragment__donation_amount">நன்கொடை தொகை</string>
   <string name="SubscribeFragment__not_now">இப்போது இல்லை</string>
   <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
+  <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">முடிந்தது</string>
   <string name="Boost__enter_custom_amount">உள்ளிடவும் தனிப்பயன் தொகை</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">இப்போது இல்லை</string>
+  <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
+  <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
+  <string name="DonationsErrors__payment_failed">கட்டணம் தோல்வியடைந்தது</string>
   <!--EOF-->
 </resources>

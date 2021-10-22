@@ -180,9 +180,6 @@
   <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Επανεκκίνηση ασφαλούς συνεδρίας;</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή τη συνομιλία. Τα μηνύματα δε θα σβηστούν.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Επαναφορά</string> -->
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
   <string name="ConversationActivity_compose_message">Νέο μήνυμα</string>
@@ -315,6 +312,17 @@
     <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
+  <string name="ConversationListFragment_read">Διαβάστηκε</string>
+  <string name="ConversationListFragment_unread">Μη αναγνωσμένο</string>
+  <string name="ConversationListFragment_pin">Καρφίτσωμα</string>
+  <string name="ConversationListFragment_unpin">Ξεκαρφίτσωμα</string>
+  <string name="ConversationListFragment_mute">Σίγαση</string>
+  <string name="ConversationListFragment_unmute">Αναίρεση σίγασης</string>
+  <string name="ConversationListFragment_select">Επιλογή</string>
+  <string name="ConversationListFragment_archive">Αρχείο</string>
+  <string name="ConversationListFragment_unarchive">Μεταφορά στα εισερχόμενα</string>
+  <string name="ConversationListFragment_delete">Διαγραφή</string>
+  <string name="ConversationListFragment_select_all">Επιλογή όλων</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιού</string>
   <!--ConversationListItemAction-->
@@ -795,14 +803,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Προβολή σε πλέγμα</string>
   <string name="MediaOverviewActivity_List_view_description">Προβολή σε λίστα</string>
   <string name="MediaOverviewActivity_Selected_description">Επιλεγμένα</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d αντικείμενο %2$s</item>
-    <item quantity="other">%1$d αντικείμενα %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d αντικείμενο</item>
-    <item quantity="other">%1$d αντικείμενα</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Αποθήκευση</string>
+  <string name="MediaOverviewActivity_select_all">Επιλογή όλων</string>
+  <string name="MediaOverviewActivity_delete">Διαγραφή</string>
   <string name="MediaOverviewActivity_file">Αρχείο</string>
   <string name="MediaOverviewActivity_audio">Ήχος</string>
   <string name="MediaOverviewActivity_video">Βίντεο</string>
@@ -1337,6 +1340,8 @@
   <string name="SharedContactView_add_to_contacts">Προσθήκη στις επαφές</string>
   <string name="SharedContactView_invite_to_signal">Πρόσκληση στο Signal</string>
   <string name="SharedContactView_message">Μήνυμα Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Περισσότερα</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Θα σ\' το ξαναθυμήσουμε αργότερα.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Θα σ\' το ξαναθυμήσουμε αύριο.</string>
@@ -3110,6 +3115,7 @@
   <string name="SubscribeFragment__confirm">Επιβεβαίωση</string>
   <string name="SubscribeFragment__update_subscription">Ανανέωση συνδρομής</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Η συνδρομή σου ακυρώθηκε.</string>
+  <string name="SubscribeFragment__update">Ενημέρωση</string>
   <string name="Subscription__s_per_month">%s/μήνα</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/μήνα · Ανανεώνεται %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Το Signal είναι μια ΜΚΟ χωρις διαφημίσεις και επενδυτές, που συντηρείται μόνο από τα άτομα που το χρησιμοποιούν και το θεωρούν σημαντικό. Με μια επαναλαμβανόμενη μηνιαία συνεισφορά παίρνεις ένα έμβλημα για το προφίλ σου, για να δείξεις την υποστήριξή σου.</string>
@@ -3138,5 +3144,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα και όχι για τα δεδομένα σου, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Γίνε υποστηρικτής</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
+  <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
+  <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
+  <string name="DonationsErrors__payment_failed">Η πληρωμή απέτυχε</string>
   <!--EOF-->
 </resources>

@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="ConversationItem_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atstatyti</string> -->
   <string name="ConversationActivity_add_attachment">Pridėti priedą</string>
   <string name="ConversationActivity_select_contact_info">Pasirinkti adresato informaciją</string>
   <string name="ConversationActivity_compose_message">Rašyti žinutę</string>
@@ -341,6 +338,17 @@
     <item quantity="many">%d pokalbių perkelta į gautųjų aplanką</item>
     <item quantity="other">%d pokalbių perkelta į gautųjų aplanką</item>
   </plurals>
+  <string name="ConversationListFragment_read">Perskaityta</string>
+  <string name="ConversationListFragment_unread">Neskaityta</string>
+  <string name="ConversationListFragment_pin">Prisegti</string>
+  <string name="ConversationListFragment_unpin">Atsegti</string>
+  <string name="ConversationListFragment_mute">Be garso</string>
+  <string name="ConversationListFragment_unmute">Įjungti pranešimus</string>
+  <string name="ConversationListFragment_select">Pasirinkti</string>
+  <string name="ConversationListFragment_archive">Archyvuoti</string>
+  <string name="ConversationListFragment_unarchive">Nebearchyvuoti</string>
+  <string name="ConversationListFragment_delete">Ištrinti</string>
+  <string name="ConversationListFragment_select_all">Žymėti visus</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
   <!--ConversationListItemAction-->
@@ -879,18 +887,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tinklelio rodinys</string>
   <string name="MediaOverviewActivity_List_view_description">Sąrašo rodinys</string>
   <string name="MediaOverviewActivity_Selected_description">Pasirinkta</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d elementas %2$s</item>
-    <item quantity="few">%1$d elementai %2$s</item>
-    <item quantity="many">%1$d elementų %2$s</item>
-    <item quantity="other">%1$d elementas %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d elementas</item>
-    <item quantity="few">%1$d elementai</item>
-    <item quantity="many">%1$d elementų</item>
-    <item quantity="other">%1$d elementas</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Įrašyti</string>
+  <string name="MediaOverviewActivity_select_all">Žymėti visus</string>
+  <string name="MediaOverviewActivity_delete">Ištrinti</string>
   <string name="MediaOverviewActivity_file">Failas</string>
   <string name="MediaOverviewActivity_audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_video">Vaizdo įrašai</string>
@@ -1474,6 +1473,8 @@
   <string name="SharedContactView_add_to_contacts">Pridėti į adresatus</string>
   <string name="SharedContactView_invite_to_signal">Pakviesti į Signal</string>
   <string name="SharedContactView_message">Signal žinutė</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Daugiau</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vėliau priminsime jums dar kartą.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Rytoj priminsime jums dar kartą.</string>
@@ -3432,6 +3433,7 @@
   <string name="SubscribeFragment__more_payment_options">Daugiau mokėjimo parinkčių</string>
   <string name="SubscribeFragment__not_now">Ne dabar</string>
   <string name="SubscribeFragment__confirm">Patvirtinkite</string>
+  <string name="SubscribeFragment__update">Atnaujinti</string>
   <string name="Subscription__s_per_month">%s/mėnesį</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mėnesį · Atsinaujina %2$s</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dėkojame už jūsų palaikymą!</string>
@@ -3444,5 +3446,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Jūsų %1$s ženkliukas nebegalioja ir daugiau nebematomas jūsų profilyje kitiems asmenims.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
+  <string name="Subscription__contact_support">Susisiekti su palaikymu</string>
+  <string name="SubscribeFragment__processing_payment">Apdorojamas mokėjimas…</string>
+  <string name="DonationsErrors__payment_failed">Mokėjimas patyrė nesėkmę</string>
   <!--EOF-->
 </resources>

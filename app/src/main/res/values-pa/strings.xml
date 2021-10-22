@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਹਟਾਇਆ ਸੀ।</string>
   <string name="ConversationItem_you_deleted_this_message">ਤੁਸੀਂ ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਹਟਾਇਆ ਹੈ।</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ਸੁਰੱਖਿਅਤ ਸੈਸ਼ਨ ਰੀਸੈੱਟ ਕਰਨਾ ਹੈ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗੱਲਬਾਤ ਵਿੱਚ ਇਨਕ੍ਰਿਪਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਆ ਰਹੀਆਂ ਹਨ ਤਾਂ ਇਸ ਨਾਲ ਸ਼ਾਇਦ ਸਹਾਇਤਾ ਮਿਲ ਸਕਦੀ ਹੈ। ਤੁਹਾਡੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਰੱਖਿਆ ਜਾਵੇਗਾ।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">ਰੀਸੈੱਟ ਕਰੋ</string> -->
   <string name="ConversationActivity_add_attachment">ਅਟੈਚਮੈਂਟ ਨੂੰ ਜੋੜੋ</string>
   <string name="ConversationActivity_select_contact_info">ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਨੂੰ ਚੁਣੋ</string>
   <string name="ConversationActivity_compose_message">ਸੁਨੇਹਾ ਲਿਖੋ</string>
@@ -319,6 +316,17 @@
     <item quantity="one"> ਗੱਲਾਬਾਤਾਂ ਨੂੰ ਇਨਬਾਕਸ ਵਿੱਚ ਮੂਵ ਕੀਤਾ </item>
     <item quantity="other">%d ਗੱਲਬਾਤਾਂ ਨੂੰ ਇਨਬਾਕਸ ਵਿੱਚ ਭੇਜਿਆ</item>
   </plurals>
+  <string name="ConversationListFragment_read">ਪੜ੍ਹਿਆ ਗਿਆ</string>
+  <string name="ConversationListFragment_unread">ਨਾ-ਪੜ੍ਹੇ</string>
+  <string name="ConversationListFragment_pin">ਟੰਗੋ</string>
+  <string name="ConversationListFragment_unpin">ਲਾਹੋ</string>
+  <string name="ConversationListFragment_mute">ਚੁੱਪ</string>
+  <string name="ConversationListFragment_unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
+  <string name="ConversationListFragment_select">ਚੁਣੋ</string>
+  <string name="ConversationListFragment_archive">ਆਰਕਾਈਵ ਕਰੋ</string>
+  <string name="ConversationListFragment_unarchive">ਅਨਆਰਕਾਈਵ ਕਰੋ</string>
+  <string name="ConversationListFragment_delete">ਹਟਾਓ</string>
+  <string name="ConversationListFragment_select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ਮੁੱਖ ਐਕਸਚੇਂਜ ਸੁਨੇਹਾ</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">ਗਰਿੱਡ ਝਲਕ</string>
   <string name="MediaOverviewActivity_List_view_description">ਸੂਚੀ ਦ੍ਰਿਸ਼</string>
   <string name="MediaOverviewActivity_Selected_description">ਚੁਣਿਆ ਹੋਇਆ</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d ਚੀਜਾਂ %2$s</item>
-    <item quantity="other">%1$d ਚੀਜ਼ਾਂ %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d ਚੀਜਾਂ</item>
-    <item quantity="other">%1$d ਚੀਜ਼ਾਂ</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">ਸੰਭਾਲੋ</string>
+  <string name="MediaOverviewActivity_select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
+  <string name="MediaOverviewActivity_delete">ਹਟਾਓ</string>
   <string name="MediaOverviewActivity_file">ਫ਼ਾਈਲ</string>
   <string name="MediaOverviewActivity_audio">ਆਡੀਓ</string>
   <string name="MediaOverviewActivity_video">ਵੀਡੀਓ</string>
@@ -1320,6 +1323,8 @@
   <string name="SharedContactView_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="SharedContactView_invite_to_signal">Signal ਲਈ ਸੱਦਾ ਦਿਓ</string>
   <string name="SharedContactView_message">Signal ਸੁਨੇਹਾ</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">ਹੋਰ</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">ਅਸੀਂ ਤੁਹਾਨੂੰ ਬਾਅਦ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">ਅਸੀਂ ਤੁਹਾਨੂੰ ਭਲਕੇ ਫੇਰ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
@@ -3197,9 +3202,13 @@
   <string name="SubscribeFragment__donation_amount">ਦਾਨ ਦੀ ਰਕਮ</string>
   <string name="SubscribeFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <string name="SubscribeFragment__confirm">ਪੁਸ਼ਟੀ ਕਰੋ</string>
+  <string name="SubscribeFragment__update">ਅੱਪਡੇਟ ਕਰੋ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ਮੁਕੰਮਲ</string>
   <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
   <string name="Boost__enter_custom_amount">ਪਸੰਦੀਦਾ ਰਕਮ ਦਿਓ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
+  <string name="Subscription__contact_support">ਸਹਾਇਤਾ ਦੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
+  <string name="SubscribeFragment__processing_payment">ਭੁਗਤਾਨ ਕਾਰਵਾਈ ਅਧੀਨ ਹੈ…</string>
+  <string name="DonationsErrors__payment_failed">ਭੁਗਤਾਨ ਅਸਫ਼ਲ ਹੈ</string>
   <!--EOF-->
 </resources>

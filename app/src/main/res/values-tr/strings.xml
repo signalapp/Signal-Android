@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Bu ileti silindi.</string>
   <string name="ConversationItem_you_deleted_this_message">Bu iletiyi sildiniz.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Güvenli oturumu sıfırla?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu konuşmada şifreleme sorunları yaşıyorsanız bu işlem yardımcı olabilir. İletileriniz saklanacaktır.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Sıfırla</string> -->
   <string name="ConversationActivity_add_attachment">Eklenti ekle</string>
   <string name="ConversationActivity_select_contact_info">Kişi bilgisi seç</string>
   <string name="ConversationActivity_compose_message">İleti oluştur</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Konuşma gelen kutusuna taşındı</item>
     <item quantity="other">%d konuşma gelen kutusuna taşındı</item>
   </plurals>
+  <string name="ConversationListFragment_read">Okundu</string>
+  <string name="ConversationListFragment_unread">Okunmamış</string>
+  <string name="ConversationListFragment_pin">Sabitle</string>
+  <string name="ConversationListFragment_unpin">Sabitlenenlerden kaldır</string>
+  <string name="ConversationListFragment_mute">Sessiz</string>
+  <string name="ConversationListFragment_unmute">Sesi aç</string>
+  <string name="ConversationListFragment_select">Seç</string>
+  <string name="ConversationListFragment_archive">Arşivle</string>
+  <string name="ConversationListFragment_unarchive">Arşivden çıkart</string>
+  <string name="ConversationListFragment_delete">Sil</string>
+  <string name="ConversationListFragment_select_all">Hepsini seç</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Izgara görünümü</string>
   <string name="MediaOverviewActivity_List_view_description">Liste görünümü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçilen</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d öğe %2$s</item>
-    <item quantity="other">%1$d öğe %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d öğe</item>
-    <item quantity="other">%1$d öğe</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Kaydet</string>
+  <string name="MediaOverviewActivity_select_all">Hepsini seç</string>
+  <string name="MediaOverviewActivity_delete">Sil</string>
   <string name="MediaOverviewActivity_file">Dosya</string>
   <string name="MediaOverviewActivity_audio">Ses</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1346,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">Kişilere Ekle</string>
   <string name="SharedContactView_invite_to_signal">Signal\'e davet et</string>
   <string name="SharedContactView_message">Signal İletisi</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Daha fazla</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Size daha sonra hatırlatacağız</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Size yarın hatırlatacağız.</string>
@@ -3244,9 +3249,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubscribeFragment__donation_amount">Bağış miktarı</string>
   <string name="SubscribeFragment__not_now">Şimdi değil</string>
   <string name="SubscribeFragment__confirm">Onayla</string>
+  <string name="SubscribeFragment__update">Güncelle</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tamam</string>
   <string name="ManageDonationsFragment__badges">Rozetler</string>
   <string name="Boost__enter_custom_amount">Farklı Miktar Gir</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
+  <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
+  <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
+  <string name="DonationsErrors__payment_failed">Ödeme başarısız oldu</string>
   <!--EOF-->
 </resources>

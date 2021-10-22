@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Denne besked blev slettet.</string>
   <string name="ConversationItem_you_deleted_this_message">Du slettede denne besked.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Nulstil sikker session?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjælpe, hvis du har krypteringsproblemer i denne samtale. Dine beskeder vil blive bevaret.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Nulstil</string> -->
   <string name="ConversationActivity_add_attachment">Vedhæft fil</string>
   <string name="ConversationActivity_select_contact_info">Vælg kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Opret besked</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Samtale flyttet til inbox</item>
     <item quantity="other">Flyttet %d samtaler til indbakke</item>
   </plurals>
+  <string name="ConversationListFragment_read">Læst</string>
+  <string name="ConversationListFragment_unread">Ulæst</string>
+  <string name="ConversationListFragment_pin">Fastgør</string>
+  <string name="ConversationListFragment_unpin">Frigør</string>
+  <string name="ConversationListFragment_mute">Ignorer</string>
+  <string name="ConversationListFragment_unmute">Ignorer ikke længere</string>
+  <string name="ConversationListFragment_select">Vælg</string>
+  <string name="ConversationListFragment_archive">Arkivér</string>
+  <string name="ConversationListFragment_unarchive">Ophæv arkivering</string>
+  <string name="ConversationListFragment_delete">Slet</string>
+  <string name="ConversationListFragment_select_all">Vælg alle</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøgleudvekslingsbesked</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Gittervisning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgte</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d emne %2$s</item>
-    <item quantity="other">%1$d emner %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d emne</item>
-    <item quantity="other">%1$d emner</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Gem</string>
+  <string name="MediaOverviewActivity_select_all">Vælg alle</string>
+  <string name="MediaOverviewActivity_delete">Slet</string>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1345,6 +1348,8 @@ nummer (%s) er ugyldigt</string>
   <string name="SharedContactView_add_to_contacts">Føj til kontakter</string>
   <string name="SharedContactView_invite_to_signal">Invitér til Signal</string>
   <string name="SharedContactView_message">Signal-besked</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mere</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vi vil minde dig om det igen senere.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi vil minde dig om det igen i morgen.</string>
@@ -3259,6 +3264,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeFragment__confirm">Bekræft</string>
   <string name="SubscribeFragment__update_subscription">Opdater abonnement</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dit abonnement er blevet opsagt.</string>
+  <string name="SubscribeFragment__update">Opdatér</string>
   <string name="Subscription__s_per_month">%s/måned</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/måned · Fornyes %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string>
@@ -3288,5 +3294,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Overvej at tegne et månedsabonnement for forsat at støtte op om teknologi, der er udviklet til dig - ikke for at høste dine data.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bliv abonnent</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
+  <string name="Subscription__contact_support">Kontakt Support</string>
+  <string name="SubscribeFragment__processing_payment">Bearbejder betaling…</string>
+  <string name="DonationsErrors__payment_failed">Betaling fejlede</string>
   <!--EOF-->
 </resources>

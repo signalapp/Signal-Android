@@ -185,9 +185,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ziņa ir izdzēsts.</string>
   <string name="ConversationItem_you_deleted_this_message">Jūs izdzēsāt ziņu.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atstatīt šifrēto sarakstes sesiju?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tas var palīdzēt, ja sarakstē saskaraties ar šifrēšanas problēmām. Jūsu ziņas tiks saglabātas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atstatīt</string> -->
   <string name="ConversationActivity_add_attachment">Pievienot pielikumu</string>
   <string name="ConversationActivity_select_contact_info">Izvēlēties/atzīmēt kontaktinformāciju</string>
   <string name="ConversationActivity_compose_message">Rakstīt ziņu</string>
@@ -330,6 +327,17 @@
     <item quantity="one">Pārvietoja sarunu uz iesūtni </item>
     <item quantity="other">Pārvietoja %d sarunas uz iesūtni</item>
   </plurals>
+  <string name="ConversationListFragment_read">Lasīta</string>
+  <string name="ConversationListFragment_unread">Nelasītie</string>
+  <string name="ConversationListFragment_pin">Piespraust</string>
+  <string name="ConversationListFragment_unpin">Atspraust</string>
+  <string name="ConversationListFragment_mute">Atspējot ziņas</string>
+  <string name="ConversationListFragment_unmute">Ieslēgt ziņas</string>
+  <string name="ConversationListFragment_select">Atlasīt</string>
+  <string name="ConversationListFragment_archive">Arhīvs</string>
+  <string name="ConversationListFragment_unarchive">Izņemt no arhīva</string>
+  <string name="ConversationListFragment_delete">Dzēst</string>
+  <string name="ConversationListFragment_select_all">Atzīmēt visus</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Atslēgapmaiņas ziņa</string>
   <!--ConversationListItemAction-->
@@ -836,16 +844,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Režģa skats</string>
   <string name="MediaOverviewActivity_List_view_description">Saraksta skats</string>
   <string name="MediaOverviewActivity_Selected_description">Izvēlētais</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="zero">%1$d vienums %2$s</item>
-    <item quantity="one">%1$d vienums%2$s</item>
-    <item quantity="other">%1$d vienumi %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="zero">%1$d vienums</item>
-    <item quantity="one">%1$d vienums</item>
-    <item quantity="other">%1$d vienumi</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Saglabāt</string>
+  <string name="MediaOverviewActivity_select_all">Atzīmēt visus</string>
+  <string name="MediaOverviewActivity_delete">Dzēst</string>
   <string name="MediaOverviewActivity_file">Fails</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1369,6 +1370,8 @@ tālruņa numurs
   <string name="SharedContactView_add_to_contacts">Pievienot kontaktiem</string>
   <string name="SharedContactView_invite_to_signal">Uzaicināt uz Signal</string>
   <string name="SharedContactView_message">Signal ziņa</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Vēl</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vēlāk atgādināsim vēlreiz.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Atkārtoti atgādināsim rīt.</string>
@@ -3215,8 +3218,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="SubscribeFragment__donation_amount">Ziedojuma summa</string>
   <string name="SubscribeFragment__not_now">Ne tagad</string>
   <string name="SubscribeFragment__confirm">Apstiprināt</string>
+  <string name="SubscribeFragment__update">Aktualizēt</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Darīts</string>
   <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne tagad</string>
+  <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
+  <string name="SubscribeFragment__processing_payment">Maksājums tiek apstrādāts…</string>
+  <string name="DonationsErrors__payment_failed">Maksājums neizdevās</string>
   <!--EOF-->
 </resources>

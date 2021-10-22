@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <string name="ConversationItem_you_deleted_this_message">คุณได้ลบข้อความนี้</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ต้องการรีเซ็ตเซสชันที่ปลอดภัยหรือไม่?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">นี่อาจจะช่วยได้ หากคุณมีปัญหากับการเข้ารหัสลับข้อความในการสนทนานี้ ข้อความของคุณจะถูกเก็บไว้</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">รีเซ็ต</string> -->
   <string name="ConversationActivity_add_attachment">เพิ่มแฟ้มแนบ</string>
   <string name="ConversationActivity_select_contact_info">เลือกข้อมูลผู้ติดต่อ</string>
   <string name="ConversationActivity_compose_message">เขียนข้อความ</string>
@@ -308,6 +305,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ย้าย %d การสนทนาไปยังกล่องขาเข้า</item>
   </plurals>
+  <string name="ConversationListFragment_read">อ่านแล้ว</string>
+  <string name="ConversationListFragment_unread">ตั้งเป็นยังไม่อ่าน</string>
+  <string name="ConversationListFragment_pin">ปักหมุด</string>
+  <string name="ConversationListFragment_unpin">เลิกปักหมุด</string>
+  <string name="ConversationListFragment_mute">ปิดเสียง</string>
+  <string name="ConversationListFragment_unmute">เปิดเสียง</string>
+  <string name="ConversationListFragment_select">เลือก</string>
+  <string name="ConversationListFragment_archive">ที่เก็บถาวร</string>
+  <string name="ConversationListFragment_unarchive">นำออกจากที่เก็บถาวร</string>
+  <string name="ConversationListFragment_delete">ลบ</string>
+  <string name="ConversationListFragment_select_all">เลือกทั้งหมด</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนกุญแจ</string>
   <!--ConversationListItemAction-->
@@ -756,12 +764,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">แสดงข้อมูลแบบตาราง</string>
   <string name="MediaOverviewActivity_List_view_description">แสดงข้อมูลแบบแถว</string>
   <string name="MediaOverviewActivity_Selected_description">ถูกเลือก</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d รายการ %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d รายการ</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">บันทึก</string>
+  <string name="MediaOverviewActivity_select_all">เลือกทั้งหมด</string>
+  <string name="MediaOverviewActivity_delete">ลบ</string>
   <string name="MediaOverviewActivity_file">แฟ้ม</string>
   <string name="MediaOverviewActivity_audio">เสียง</string>
   <string name="MediaOverviewActivity_video">วิดีโอ</string>
@@ -1248,6 +1253,8 @@
   <string name="SharedContactView_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
   <string name="SharedContactView_invite_to_signal">เชิญมาใช้ Signal</string>
   <string name="SharedContactView_message">ข้อความ Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">ดูเพิ่ม</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">เราจะเตือนคุณอีกครั้งในภายหลัง</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">เราจะเตือนคุณอีกครั้งพรุ่งนี้</string>
@@ -3039,8 +3046,12 @@
   <string name="SubscribeFragment__donation_amount">จำนวนการบริจาค</string>
   <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="SubscribeFragment__confirm">ยืนยัน</string>
+  <string name="SubscribeFragment__update">ปรับรุ่น</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">เสร็จสิ้น</string>
   <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ไม่ใช่ตอนนี้</string>
+  <string name="Subscription__contact_support">ติดต่อการสนับสนุน</string>
+  <string name="SubscribeFragment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
+  <string name="DonationsErrors__payment_failed">การชำระเงินล้มเหลว</string>
   <!--EOF-->
 </resources>

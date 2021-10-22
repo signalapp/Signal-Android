@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">Mesej ini telah dipadam.</string>
   <string name="ConversationItem_you_deleted_this_message">Anda memadam mesej ini.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Tetapkan semula sesi selamat?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ini boleh membantu jika anda menghadapi masalah penyulitan dalam perbualan ini. Mesej anda akan disimpan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Tetap semula</string> -->
   <string name="ConversationActivity_add_attachment">Tambah lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pilih maklumat kenalan</string>
   <string name="ConversationActivity_compose_message">Karang mesej</string>
@@ -308,6 +305,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%dperbualan dialihkan ke peti masuk</item>
   </plurals>
+  <string name="ConversationListFragment_read">Baca</string>
+  <string name="ConversationListFragment_unread">Belum dibaca</string>
+  <string name="ConversationListFragment_pin">Pin</string>
+  <string name="ConversationListFragment_unpin">Nyahpin</string>
+  <string name="ConversationListFragment_mute">Bisukan</string>
+  <string name="ConversationListFragment_unmute">Nyahbisukan</string>
+  <string name="ConversationListFragment_select">Pilih</string>
+  <string name="ConversationListFragment_archive">Arkib</string>
+  <string name="ConversationListFragment_unarchive">Nyaharkib</string>
+  <string name="ConversationListFragment_delete">Padam</string>
+  <string name="ConversationListFragment_select_all">Pilih semua</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesej pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -757,12 +765,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Pandangan grid</string>
   <string name="MediaOverviewActivity_List_view_description">Pandangan senarai</string>
   <string name="MediaOverviewActivity_Selected_description">Dipilih</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d item %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d item</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Simpan</string>
+  <string name="MediaOverviewActivity_select_all">Pilih semua</string>
+  <string name="MediaOverviewActivity_delete">Padam</string>
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1244,6 +1249,8 @@
   <string name="SharedContactView_add_to_contacts">Tambah kepada Kenalan</string>
   <string name="SharedContactView_invite_to_signal">Jemput ke Signal</string>
   <string name="SharedContactView_message">Mesej Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Lagi</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Kami akan mengingatkan anda lagi kemudian.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Kami akan mengingatkan anda lagi esok.</string>
@@ -1770,15 +1777,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="HelpFragment__debug_log">Log Nyahpepijat:</string>
   <string name="HelpFragment__could_not_upload_logs">Tidak dapat memuat naik log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Tolong terangkan dengan sejelas mungkin untuk bantu kami memahami isu tersebut.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories">
-    <item>- Sila pilih satu pilihan -</item>
-    <item>Sesuatu Tidak Berfungsi</item>
-    <item>Permintaan Ciri</item>
-    <item>Soalan</item>
-    <item>Maklum balas</item>
-    <item>Lain-lain</item>
-    <item>Pembayaran</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mesej Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Digunakan Baru-baru Ini</string>
@@ -3041,8 +3039,12 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="SubscribeFragment__donation_amount">Jumlah derma</string>
   <string name="SubscribeFragment__not_now">Bukan sekarang</string>
   <string name="SubscribeFragment__confirm">Sahkan</string>
+  <string name="SubscribeFragment__update">Kemas Kini</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Tersuai</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
+  <string name="Subscription__contact_support">Hubungi Sokongan</string>
+  <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
+  <string name="DonationsErrors__payment_failed">Pembayaran telah gagal</string>
   <!--EOF-->
 </resources>

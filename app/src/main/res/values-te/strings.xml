@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <string name="ConversationItem_you_deleted_this_message">మీరు ఈ సందేశాన్ని తొలగించారు.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question"> సురక్షిత  సెషన్ పునరుద్ధరించు ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">మీకు ఈ సంభాషణ లో ఎన్క్రిప్షన్ సమస్యలు ఉన్నట్లయితే ఇది సహాయపడవచ్చు. మీ సందేశాలు ఉంచబడతాయి.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">పునరుద్ధరించు</string> -->
   <string name="ConversationActivity_add_attachment">అటాచ్మెంట్ జోడించండి</string>
   <string name="ConversationActivity_select_contact_info">సంప్రదింపు సమాచారం ఎంచుకొండి</string>
   <string name="ConversationActivity_compose_message">సందేశాన్ని కంపోజ్చెయ్</string>
@@ -323,6 +320,17 @@
     <item quantity="one">సంభాషణ ఇన్బాక్స్కు తరలించబడినది</item>
     <item quantity="other">%d సంభాషణలు ఇన్బాక్స్కు తరలించబడినవి</item>
   </plurals>
+  <string name="ConversationListFragment_read">చదవండి</string>
+  <string name="ConversationListFragment_unread">చదవనిది</string>
+  <string name="ConversationListFragment_pin">పిన్</string>
+  <string name="ConversationListFragment_unpin">అన్పిన్ చేయండి</string>
+  <string name="ConversationListFragment_mute">నిశబ్ధం</string>
+  <string name="ConversationListFragment_unmute">మ్యూట్ తీసివేయి</string>
+  <string name="ConversationListFragment_select">ఎంచుకోండి</string>
+  <string name="ConversationListFragment_archive">భద్రపరచు</string>
+  <string name="ConversationListFragment_unarchive">బయటపెట్టు</string>
+  <string name="ConversationListFragment_delete">తొలగించండి</string>
+  <string name="ConversationListFragment_select_all">అన్నీ ఎంచుకో</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">కీ  సందేశం మార్పిడి</string>
   <!--ConversationListItemAction-->
@@ -801,14 +809,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">సమాంతరరేఖాచట్ర దృశ్యము</string>
   <string name="MediaOverviewActivity_List_view_description">జాబితా వీక్షణ</string>
   <string name="MediaOverviewActivity_Selected_description">ఎంచుకున్న</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$dఅంశం%2$s</item>
-    <item quantity="other">%1$dఅంశాలను%2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$dఅంశం</item>
-    <item quantity="other">%1$dఅంశాలను</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">భద్రపరుచు</string>
+  <string name="MediaOverviewActivity_select_all">అన్నీ ఎంచుకో</string>
+  <string name="MediaOverviewActivity_delete">తొలగించండి</string>
   <string name="MediaOverviewActivity_file">పత్రం</string>
   <string name="MediaOverviewActivity_audio">ఆడియో</string>
   <string name="MediaOverviewActivity_video">వీడియో</string>
@@ -1299,6 +1302,8 @@
   <string name="SharedContactView_add_to_contacts">పరిచయాలకు జోడించు</string>
   <string name="SharedContactView_invite_to_signal">Signal కు ఆహ్వానించండి</string>
   <string name="SharedContactView_message">Signal సందేశం</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">మరింత</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">మేము తరువాత మీకు మళ్ళీ గుర్తు చేస్తాము.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">మేము రేపు మీకు మళ్ళీ గుర్తు చేస్తాము.</string>
@@ -2785,8 +2790,10 @@
   <string name="SubscribeFragment__donation_amount">విరాళం మొత్తం</string>
   <string name="SubscribeFragment__not_now">ఇప్పుడు కాదు</string>
   <string name="SubscribeFragment__confirm">నిర్ధారించండి</string>
+  <string name="SubscribeFragment__update">నవీకరణ </string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">పూర్తయింది</string>
   <string name="Boost__enter_custom_amount">అనుకూల మొత్తాన్ని నమోదు చేయండి</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ఇప్పుడు కాదు</string>
+  <string name="Subscription__contact_support">మద్దతును సంప్రదించండి</string>
   <!--EOF-->
 </resources>

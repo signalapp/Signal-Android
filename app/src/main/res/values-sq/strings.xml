@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="ConversationItem_you_deleted_this_message">E fshitë këtë mesazh.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Riktheje</string> -->
   <string name="ConversationActivity_add_attachment">Shtoni bashkëngjitje</string>
   <string name="ConversationActivity_select_contact_info">Përzgjidhni të dhëna kontakti</string>
   <string name="ConversationActivity_compose_message">Hartoni mesazh</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Biseda u shpu te të marrat</item>
     <item quantity="other">%d biseda u shpunë te të marrat</item>
   </plurals>
+  <string name="ConversationListFragment_read">U lexua</string>
+  <string name="ConversationListFragment_unread">I palexuar</string>
+  <string name="ConversationListFragment_pin">Fiksoje</string>
+  <string name="ConversationListFragment_unpin">Hiqja fiksimin</string>
+  <string name="ConversationListFragment_mute">Heshtoje</string>
+  <string name="ConversationListFragment_unmute">Çheshtoji</string>
+  <string name="ConversationListFragment_select">Përzgjidhni</string>
+  <string name="ConversationListFragment_archive">Arkiv</string>
+  <string name="ConversationListFragment_unarchive">Çarkivoje</string>
+  <string name="ConversationListFragment_delete">Fshije</string>
+  <string name="ConversationListFragment_select_all">Përzgjidhi krejt</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesazh shkëmbimi kyçesh</string>
   <!--ConversationListItemAction-->
@@ -803,14 +811,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MediaOverviewActivity_Grid_view_description">Pamje rrjetë</string>
   <string name="MediaOverviewActivity_List_view_description">Pamje listë</string>
   <string name="MediaOverviewActivity_Selected_description">Të përzgjedhura</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d objekt %2$s</item>
-    <item quantity="other">%1$d objekte %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d objekt</item>
-    <item quantity="other">%1$d objekte</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Ruaje</string>
+  <string name="MediaOverviewActivity_select_all">Përzgjidhi krejt</string>
+  <string name="MediaOverviewActivity_delete">Fshije</string>
   <string name="MediaOverviewActivity_file">Kartelë</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1348,6 +1351,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SharedContactView_add_to_contacts">Shtoje te Kontakte</string>
   <string name="SharedContactView_invite_to_signal">Ftoje në Signal</string>
   <string name="SharedContactView_message">Mesazhe Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Më tepër</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Do t’jua kujtojmë më vonë.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Do t’jua kujtojmë prapë nesër.</string>
@@ -3263,6 +3268,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SubscribeFragment__confirm">Ripohojeni</string>
   <string name="SubscribeFragment__update_subscription">Përditësojeni Pajtimin</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Pajtimi juaj është anuluar.</string>
+  <string name="SubscribeFragment__update">Përditësoje</string>
   <string name="Subscription__s_per_month">%s/muaj</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/muaj · Rinovohet më %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal-i është një ent jofitimprurës, pa reklamues për të apo investues, i bazuar vetëm te njerëzit që e përdorin dhe vlerësojnë. Bëni një dhurim mujor ripërsëritës dhe merrni një stemë profili për t’u treguar të tjerëve përkrahjen tuaj.</string>
@@ -3292,5 +3298,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Që të vazhdon përkrahjen e teknologjisë që është ngritur për ju—jo për të dhënat tuaja—ju lutemi, shihni mundësinë e bërjes së një pajtimtari të përmuajshëm.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bëhuni një pajtimtar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
+  <string name="Subscription__contact_support">Lidhuni Me Asistencën</string>
+  <string name="SubscribeFragment__processing_payment">Po kryhet pagesa…</string>
+  <string name="DonationsErrors__payment_failed">Pagesa dështoi</string>
   <!--EOF-->
 </resources>

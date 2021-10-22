@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <string name="ConversationItem_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন। </string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">রিসেট </string> -->
   <string name="ConversationActivity_add_attachment">সংযুক্তি যোগ করুন</string>
   <string name="ConversationActivity_select_contact_info">পরিচিতির তথ্য নির্বাচন করুন</string>
   <string name="ConversationActivity_compose_message">বার্তা তৈরি করুন</string>
@@ -319,6 +316,17 @@
     <item quantity="one"> টি আলাপন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
   </plurals>
+  <string name="ConversationListFragment_read">পড়ুন</string>
+  <string name="ConversationListFragment_unread">অপঠিত করুন</string>
+  <string name="ConversationListFragment_pin">পিন</string>
+  <string name="ConversationListFragment_unpin">আনপিন করুন</string>
+  <string name="ConversationListFragment_mute">নিরব</string>
+  <string name="ConversationListFragment_unmute">আনমিউট করুন</string>
+  <string name="ConversationListFragment_select">নির্বাচন</string>
+  <string name="ConversationListFragment_archive">আর্কাইভ</string>
+  <string name="ConversationListFragment_unarchive">আর্কাইভ মুক্ত করুন</string>
+  <string name="ConversationListFragment_delete">মুছুন</string>
+  <string name="ConversationListFragment_select_all">সবগুলো নির্বাচন করুন</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key বিনিময় বার্তা</string>
   <!--ConversationListItemAction-->
@@ -796,14 +804,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">গার্ড ভিউ</string>
   <string name="MediaOverviewActivity_List_view_description">লিস্ট ভিউ</string>
   <string name="MediaOverviewActivity_Selected_description">নির্বাচিত</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d আইটেম %2$s</item>
-    <item quantity="other">%1$d আইটেমগুলি %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d আইটেম</item>
-    <item quantity="other">%1$d আইটেমগুলি</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">সংরক্ষণ</string>
+  <string name="MediaOverviewActivity_select_all">সবগুলো নির্বাচন করুন</string>
+  <string name="MediaOverviewActivity_delete">মুছুন</string>
   <string name="MediaOverviewActivity_file">ফাইল</string>
   <string name="MediaOverviewActivity_audio">শব্দ</string>
   <string name="MediaOverviewActivity_video">ভিডিও</string>
@@ -1304,6 +1307,8 @@
   <string name="SharedContactView_add_to_contacts">পরিচিতিতে যুক্ত করুন</string>
   <string name="SharedContactView_invite_to_signal">Signal এ আমন্ত্রণ জানান</string>
   <string name="SharedContactView_message">Signal বার্তা</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">আরও</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">আমরা আপনাকে পরে আবারও মনে করিয়ে দেব।</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">আমরা আগামীকাল আপনাকে আবারও স্মরণ করিয়ে দেব।</string>
@@ -3117,8 +3122,12 @@
   <string name="SubscribeFragment__donation_amount">অনুদানের পরিমাণ</string>
   <string name="SubscribeFragment__not_now">এখন না</string>
   <string name="SubscribeFragment__confirm">নিশ্চিত করুন</string>
+  <string name="SubscribeFragment__update">আপডেট করুন</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">শেষ</string>
   <string name="Boost__enter_custom_amount">কাস্টম পরিমাণ লিখুন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
+  <string name="Subscription__contact_support">সহায়তায় যোগাযোগ করুন</string>
+  <string name="SubscribeFragment__processing_payment">পেমেন্ট প্রক্রিয়া করা হচ্ছে…</string>
+  <string name="DonationsErrors__payment_failed">পেমেন্ট ব্যর্থ হয়েছে</string>
   <!--EOF-->
 </resources>

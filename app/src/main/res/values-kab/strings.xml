@@ -181,9 +181,6 @@
   <string name="ConversationItem_this_message_was_deleted">Izen-agi yettwakkes.</string>
   <string name="ConversationItem_you_deleted_this_message">Tekkseḍ izen-agi.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Wennez tiɣimit taɣellsant?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Aya yezmer ad iεawen ma yella tesεiḍ uguren n uwgelhen deg usqerdec-a. Iznan-ik·im ad ttwaḥerzen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Wennez</string> -->
   <string name="ConversationActivity_add_attachment">Rnu afaylu</string>
   <string name="ConversationActivity_select_contact_info">Fren talɣut n unermis</string>
   <string name="ConversationActivity_compose_message">Aru izen</string>
@@ -310,6 +307,17 @@
     <item quantity="one">Senkez adiwenni ɣer tbewwaḍt n urmas</item>
     <item quantity="other">Senkez %d n yidiwenniyen ɣer tnaka n urmas</item>
   </plurals>
+  <string name="ConversationListFragment_read">Γaṛ</string>
+  <string name="ConversationListFragment_unread">Ur ittwaγṛi ara</string>
+  <string name="ConversationListFragment_pin">Amessak</string>
+  <string name="ConversationListFragment_unpin">Fsi</string>
+  <string name="ConversationListFragment_mute">Kkes imesli</string>
+  <string name="ConversationListFragment_unmute">Err imesli</string>
+  <string name="ConversationListFragment_select">Fren</string>
+  <string name="ConversationListFragment_archive">Tarcivt</string>
+  <string name="ConversationListFragment_unarchive">Kkes aɣbar</string>
+  <string name="ConversationListFragment_delete">Kkes</string>
+  <string name="ConversationListFragment_select_all">Fren akk</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Izen n umyibdel n tsura</string>
   <!--ConversationListItemAction-->
@@ -780,14 +788,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tamuɣli s tracca</string>
   <string name="MediaOverviewActivity_List_view_description">Timeẓri n tebdart</string>
   <string name="MediaOverviewActivity_Selected_description">Yettwafren</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d n uferdis n %2$s</item>
-    <item quantity="other">%1$d n yiferdisen n %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d n uferdis</item>
-    <item quantity="other">%1$d n yiferdisen</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Sekles</string>
+  <string name="MediaOverviewActivity_select_all">Fren akk</string>
+  <string name="MediaOverviewActivity_delete">Kkes</string>
   <string name="MediaOverviewActivity_file">Afaylu</string>
   <string name="MediaOverviewActivity_audio">Ameslaw</string>
   <string name="MediaOverviewActivity_video">Avidyu</string>
@@ -1269,6 +1272,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SharedContactView_add_to_contacts">Rnu ɣer yinermisen</string>
   <string name="SharedContactView_invite_to_signal">Snubget-d ɣer Signal</string>
   <string name="SharedContactView_message">Izen n Signal</string>
+  <!--SignalBottomActionBar-->
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ad ak·akem-id-yesmekti tikkelt-nniḍen ticki.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ad ak·akem-id-yesmekti tikkelt-nniḍen azekka.</string>
@@ -2763,7 +2767,10 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SelectFeaturedBadgeFragment__preview">Taskant</string>
   <string name="SubscribeFragment__not_now">Mačči tura</string>
   <string name="SubscribeFragment__confirm">Sentem</string>
+  <string name="SubscribeFragment__update">Leqqem</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Yemmed</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mačči tura</string>
+  <string name="Subscription__contact_support">Tallalt n unermis</string>
+  <string name="DonationsErrors__payment_failed">Axelles yecceḍ</string>
   <!--EOF-->
 </resources>

@@ -181,9 +181,6 @@
   <string name="ConversationItem_this_message_was_deleted">ଏହି ବାର୍ତ୍ତା ବିଲୋପ କରାଯାଇଛି।</string>
   <string name="ConversationItem_you_deleted_this_message">ଆପଣ ଏହି ବାର୍ତ୍ତା ବିଲୋପ କଲେ।</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ସୁରକ୍ଷିତ ଅଧିବେଶନ ପୁନଃସେଟ୍ କରିବେ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ଯଦି ଆପଣ ଏହି ବାର୍ତ୍ତାଳାପରେ ଏନକ୍ରିପସନ୍ ସମସ୍ୟା କରୁଛନ୍ତି ତେବେ ଏହା ସାହାଯ୍ୟ କରିପାରେ | ଆପଣଙ୍କର ବାର୍ତ୍ତାଗୁଡିକ ରଖାଯିବ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">ରିସେଟ୍ କରନ୍ତୁ</string> -->
   <string name="ConversationActivity_add_attachment">ସଂଲଗ୍ନକ ଯୋଗ କରନ୍ତୁ</string>
   <string name="ConversationActivity_select_contact_info">ଯୋଗାଯୋଗ ସୂଚନା ଚୟନ କରନ୍ତୁ</string>
   <string name="ConversationActivity_compose_message">Compose message</string>
@@ -311,6 +308,11 @@
     <item quantity="one">ବାର୍ତ୍ତାଳାପକୁ ଇନବକ୍ସକୁ ଘୁଞ୍ଚାଇଲା</item>
     <item quantity="other">%dଟି ବାର୍ତ୍ତାଳାପକୁ ଇନବକ୍ସକୁ ଘୁଞ୍ଚାଇଲା</item>
   </plurals>
+  <string name="ConversationListFragment_read">ପଢ଼ା ଗଲା</string>
+  <string name="ConversationListFragment_mute">ନୀରବ</string>
+  <string name="ConversationListFragment_unmute">ନୀରବତା ଭାଙ୍ଗନ୍ତୁ</string>
+  <string name="ConversationListFragment_delete">ବିଲୋପ କରନ୍ତୁ</string>
+  <string name="ConversationListFragment_select_all">ସବୁକିଛି ମନୋନୟନ କରନ୍ତୁ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ମୁଖ୍ୟ ବିନିମୟ ବାର୍ତ୍ତା</string>
   <!--ConversationListItemAction-->
@@ -783,14 +785,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">ଗ୍ରୀଡ଼୍ ଭିଉ</string>
   <string name="MediaOverviewActivity_List_view_description">ତାଲିକା ଭିଉ</string>
   <string name="MediaOverviewActivity_Selected_description">ମନୋନୀତ</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">ମନୋନୀତ %1$dଟିଏ, ଆକାର %2$s</item>
-    <item quantity="other">ମନୋନୀତ %1$dଟି, ଆକାର %2$s </item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$dଟେ ଆଇଟମ୍</item>
-    <item quantity="other">%1$dଟି ଆଇଟମ୍</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+  <string name="MediaOverviewActivity_select_all">ସବୁକିଛି ମନୋନୟନ କରନ୍ତୁ</string>
+  <string name="MediaOverviewActivity_delete">ବିଲୋପ କରନ୍ତୁ</string>
   <string name="MediaOverviewActivity_file">ଫାଇଲ୍</string>
   <string name="MediaOverviewActivity_audio">ଅଡ଼ିଓ</string>
   <string name="MediaOverviewActivity_video">ଭିଡ଼ିଓ</string>
@@ -1272,6 +1269,7 @@
   <string name="SharedContactView_add_to_contacts">ସମ୍ପର୍କଗୁଡିକରେ ଯୋଡନ୍ତୁ</string>
   <string name="SharedContactView_invite_to_signal">Signal କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
   <string name="SharedContactView_message">Signal ବାର୍ତ୍ତା</string>
+  <!--SignalBottomActionBar-->
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">ଆମେ ପରେ ଆପଣଙ୍କୁ ପୁଣି ମନେ ପକାଇବୁ</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">ଆମେ କାଲି ଆପଣଙ୍କୁ ପୁଣି ମନେ ପକାଇବୁ</string>
@@ -2760,7 +2758,11 @@
   <string name="MediaReviewSelectedItem__tap_to_select">ମନୋନୟନ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
   <string name="SelectFeaturedBadgeFragment__preview">ପୂର୍ବାବଲୋକନ</string>
   <string name="SubscribeFragment__not_now">ଏବେ ନୁହେଁ</string>
+  <string name="SubscribeFragment__update">ଅଦ୍ୟତନ କରନ୍ତୁ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ହେଇଗଲା</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ଏବେ ନୁହେଁ</string>
+  <string name="Subscription__contact_support">ସମର୍ଥନ କୁ ଯୋଗାଯୋଗ କରନ୍ତୁ</string>
+  <string name="SubscribeFragment__processing_payment">ପଇସା ଦେୟ ପ୍ରକ୍ରିୟାକରଣ ଚାଲୁଛି</string>
+  <string name="DonationsErrors__payment_failed">ପଇସା ଦେୟ ବିଫଳ ହେଲା</string>
   <!--EOF-->
 </resources>

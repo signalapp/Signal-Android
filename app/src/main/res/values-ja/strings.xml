@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">このチャットの暗号化に問題がある場合、改善する可能性があります。メッセージは削除されません。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">リセットする</string> -->
   <string name="ConversationActivity_add_attachment">添付ファイルを追加</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
   <string name="ConversationActivity_compose_message">メッセージ作成</string>
@@ -308,6 +305,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d件のチャットを受信ボックスに移動しました</item>
   </plurals>
+  <string name="ConversationListFragment_read">既読にする</string>
+  <string name="ConversationListFragment_unread">未読にする</string>
+  <string name="ConversationListFragment_pin">ピン留めする</string>
+  <string name="ConversationListFragment_unpin">ピン留め解除</string>
+  <string name="ConversationListFragment_mute">ミュート</string>
+  <string name="ConversationListFragment_unmute">ミュートを解除</string>
+  <string name="ConversationListFragment_select">選択</string>
+  <string name="ConversationListFragment_archive">アーカイブする</string>
+  <string name="ConversationListFragment_unarchive">受信箱に戻す</string>
+  <string name="ConversationListFragment_delete">削除</string>
+  <string name="ConversationListFragment_select_all">すべて選択</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
@@ -759,12 +767,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">グリッド表示</string>
   <string name="MediaOverviewActivity_List_view_description">リスト表示</string>
   <string name="MediaOverviewActivity_Selected_description">選択済み</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d個, 計%2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d個</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">保存</string>
+  <string name="MediaOverviewActivity_select_all">すべて選択</string>
+  <string name="MediaOverviewActivity_delete">削除</string>
   <string name="MediaOverviewActivity_file">ファイル</string>
   <string name="MediaOverviewActivity_audio">音声</string>
   <string name="MediaOverviewActivity_video">動画</string>
@@ -1275,6 +1280,8 @@
   <string name="SharedContactView_add_to_contacts">連絡先に追加</string>
   <string name="SharedContactView_invite_to_signal">Signalに招待する</string>
   <string name="SharedContactView_message">Signalメッセージ</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">さらに</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">あとで再度お知らせします。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">明日、再度お知らせします。</string>
@@ -3158,6 +3165,7 @@
   <string name="SubscribeFragment__confirm">解除する</string>
   <string name="SubscribeFragment__update_subscription">サブスクリプションを更新</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">あなたのサブスクリプションは解除されました。</string>
+  <string name="SubscribeFragment__update">アップデートする</string>
   <string name="Subscription__s_per_month">%s/月</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · 更新 %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、Signalを利用し、評価くださる方々によって支えられています。毎月の定期的なご寄付をいただき、あなたのご支援を示すプロフィールバッジを受け取ってください。</string>
@@ -3187,5 +3195,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">データのためではなく、あなたのために作られた技術を継続的に支援するため、毎月のサブスクリプションをご検討ください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">サブスクリプションを行う</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
+  <string name="Subscription__contact_support">サポートに問い合わせる</string>
+  <string name="SubscribeFragment__processing_payment">支払いを処理しています…</string>
+  <string name="DonationsErrors__payment_failed">支払いに失敗しました。</string>
   <!--EOF-->
 </resources>

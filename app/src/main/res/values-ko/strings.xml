@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
   <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">초기화</string> -->
   <string name="ConversationActivity_add_attachment">파일 첨부</string>
   <string name="ConversationActivity_select_contact_info">연락처 정보 선택</string>
   <string name="ConversationActivity_compose_message">메시지 작성</string>
@@ -308,6 +305,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">대화 %d개가 받은 메시지함으로 이동됨</item>
   </plurals>
+  <string name="ConversationListFragment_read">읽음</string>
+  <string name="ConversationListFragment_unread">읽지 않음</string>
+  <string name="ConversationListFragment_pin">고정</string>
+  <string name="ConversationListFragment_unpin">고정 취소</string>
+  <string name="ConversationListFragment_mute">알림 끄기</string>
+  <string name="ConversationListFragment_unmute">알림 켜기</string>
+  <string name="ConversationListFragment_select">선택</string>
+  <string name="ConversationListFragment_archive">보관</string>
+  <string name="ConversationListFragment_unarchive">보관 해제</string>
+  <string name="ConversationListFragment_delete">삭제</string>
+  <string name="ConversationListFragment_select_all">모두 선택</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">핵심 교환 메시지</string>
   <!--ConversationListItemAction-->
@@ -758,12 +766,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">눈금 보기</string>
   <string name="MediaOverviewActivity_List_view_description">목록 보기</string>
   <string name="MediaOverviewActivity_Selected_description">선택됨</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d개 항목 %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d개 항목</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">저장</string>
+  <string name="MediaOverviewActivity_select_all">모두 선택</string>
+  <string name="MediaOverviewActivity_delete">삭제</string>
   <string name="MediaOverviewActivity_file">파일</string>
   <string name="MediaOverviewActivity_audio">오디오</string>
   <string name="MediaOverviewActivity_video">동영상</string>
@@ -1256,6 +1261,8 @@
   <string name="SharedContactView_add_to_contacts">연락처에 추가</string>
   <string name="SharedContactView_invite_to_signal">Signal로 초대</string>
   <string name="SharedContactView_message">Signal 메시지</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">더 보기</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">나중에 다시 알려드리겠습니다.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">내일 다시 알려드리겠습니다.</string>
@@ -3041,8 +3048,12 @@
   <string name="SubscribeFragment__donation_amount">기부 금액</string>
   <string name="SubscribeFragment__not_now">나중에</string>
   <string name="SubscribeFragment__confirm">확인</string>
+  <string name="SubscribeFragment__update">업데이트</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">확인</string>
   <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
+  <string name="Subscription__contact_support">지원에 문의</string>
+  <string name="SubscribeFragment__processing_payment">결제 처리 중…</string>
+  <string name="DonationsErrors__payment_failed">결제 실패</string>
   <!--EOF-->
 </resources>

@@ -185,9 +185,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="ConversationItem_you_deleted_this_message">Izbrisali ste ovu poruku.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ponoviti zaštićenu sesiju?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ovo može biti korisno ukoliko imate problema sa šifriranjem konverzacija. Vaše će poruke ostati sačuvane.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Ponovi</string> -->
   <string name="ConversationActivity_add_attachment">Dodajte prilog</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napiši poruku</string>
@@ -330,6 +327,13 @@
     <item quantity="few">%d konverzacije premještene u inbox</item>
     <item quantity="other">%d konverzacija premješteno u inbox</item>
   </plurals>
+  <string name="ConversationListFragment_read">Pročitano</string>
+  <string name="ConversationListFragment_mute">Stišaj</string>
+  <string name="ConversationListFragment_unmute">Isključi stišavanje</string>
+  <string name="ConversationListFragment_archive">Arhiviraj</string>
+  <string name="ConversationListFragment_unarchive">Dearhiviraj</string>
+  <string name="ConversationListFragment_delete">Izbriši</string>
+  <string name="ConversationListFragment_select_all">Odaberi sve</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
   <!--ConversationListItemAction-->
@@ -839,16 +843,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Sličice</string>
   <string name="MediaOverviewActivity_List_view_description">Popis</string>
   <string name="MediaOverviewActivity_Selected_description">Označeno</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d stavka %2$s</item>
-    <item quantity="few">%1$d stavke %2$s</item>
-    <item quantity="other">%1$d stavki %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d stavka</item>
-    <item quantity="few">%1$d stavke</item>
-    <item quantity="other">%1$d stavki</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Pohrani</string>
+  <string name="MediaOverviewActivity_select_all">Odaberi sve</string>
+  <string name="MediaOverviewActivity_delete">Izbriši</string>
   <string name="MediaOverviewActivity_file">Datoteka</string>
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1410,6 +1407,7 @@
   <string name="SharedContactView_add_to_contacts">Dodaj među kontakte</string>
   <string name="SharedContactView_invite_to_signal">Pozovite na Signal</string>
   <string name="SharedContactView_message">Signal poruka</string>
+  <!--SignalBottomActionBar-->
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Podsjetit ćemo Vas kasnije.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Podsjetit ćemo Vas sutra.</string>
@@ -3357,6 +3355,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SubscribeFragment__confirm">Potvrdi</string>
   <string name="SubscribeFragment__update_subscription">Ažuriraj pretplatu</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaša je pretplata otkazana.</string>
+  <string name="SubscribeFragment__update">Ažuriraj</string>
   <string name="Subscription__s_per_month">%s/mjesecu</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mjesecu · obnavlja se %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija koja se ne finansira reklamama i investicijama, već je održavaju osobe koje koriste aplikaciju i cijene je. Dajte mjesečni doprinos i primite značku za svoj profil koja pokazuje Vašu podršku.</string>
@@ -3386,5 +3385,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Da nastavite podržavati tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – razmislite o tome da postanete mjesečni pretplatnik.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite pretplatnik</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
+  <string name="Subscription__contact_support">Kontaktirajte podršku</string>
+  <string name="SubscribeFragment__processing_payment">Obrađujem…</string>
+  <string name="DonationsErrors__payment_failed">Plaćanje nije uspjelo</string>
   <!--EOF-->
 </resources>

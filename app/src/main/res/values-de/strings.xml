@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="ConversationItem_you_deleted_this_message">Du hast diese Nachricht gelöscht.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Sichere Sitzung zurücksetzen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Neu starten</string> -->
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Unterhaltung in Eingang verschoben</item>
     <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
   </plurals>
+  <string name="ConversationListFragment_read">Gelesen</string>
+  <string name="ConversationListFragment_unread">Ungelesen</string>
+  <string name="ConversationListFragment_pin">Anheften</string>
+  <string name="ConversationListFragment_unpin">Lösen</string>
+  <string name="ConversationListFragment_mute">Stumm</string>
+  <string name="ConversationListFragment_unmute">Stummschaltung aufheben</string>
+  <string name="ConversationListFragment_select">Auswählen</string>
+  <string name="ConversationListFragment_archive">Archivieren</string>
+  <string name="ConversationListFragment_unarchive">In Eingang verschieben</string>
+  <string name="ConversationListFragment_delete">Löschen</string>
+  <string name="ConversationListFragment_select_all">Alle auswählen</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d Element %2$s</item>
-    <item quantity="other">%1$d Elemente %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d Element</item>
-    <item quantity="other">%1$d Elemente</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Speichern</string>
+  <string name="MediaOverviewActivity_select_all">Alle auswählen</string>
+  <string name="MediaOverviewActivity_delete">Löschen</string>
   <string name="MediaOverviewActivity_file">Datei</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1338,6 +1341,8 @@
   <string name="SharedContactView_add_to_contacts">Zu Kontakten hinzufügen</string>
   <string name="SharedContactView_invite_to_signal">Zu Signal einladen</string>
   <string name="SharedContactView_message">Signal-Nachricht</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mehr</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Wir erinnern dich später.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Wir erinnern dich morgen.</string>
@@ -3247,6 +3252,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__confirm">Bestätigen</string>
   <string name="SubscribeFragment__update_subscription">Abonnement aktualisieren</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dein Abonnement wurde gekündigt.</string>
+  <string name="SubscribeFragment__update">Aktualisieren</string>
   <string name="Subscription__s_per_month">%s/Monat</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
@@ -3261,5 +3267,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
+  <string name="Subscription__contact_support">Support kontaktieren</string>
+  <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
+  <string name="DonationsErrors__payment_failed">Zahlung gescheitert</string>
   <!--EOF-->
 </resources>

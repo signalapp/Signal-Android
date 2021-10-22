@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">呢個訊息已被刪除。</string>
   <string name="ConversationItem_you_deleted_this_message">您已刪除呢個訊息。</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">係咪要重設安全對話？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">假如呢個對話出現加密問題，可以試下咁做。啲訊息唔會受影響。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">重設</string> -->
   <string name="ConversationActivity_add_attachment">加附件</string>
   <string name="ConversationActivity_select_contact_info">揀選聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">寫訊息</string>
@@ -308,6 +305,11 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 個對話已經搬返去收件匣</item>
   </plurals>
+  <string name="ConversationListFragment_read">睇咗</string>
+  <string name="ConversationListFragment_mute">靜音</string>
+  <string name="ConversationListFragment_unmute">解除沈默</string>
+  <string name="ConversationListFragment_delete">刪除</string>
+  <string name="ConversationListFragment_select_all">全部揀選</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
@@ -759,12 +761,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">一格格顯示</string>
   <string name="MediaOverviewActivity_List_view_description">一行行顯示</string>
   <string name="MediaOverviewActivity_Selected_description">已揀選</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d 個項目 %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d 個項目</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">儲存</string>
+  <string name="MediaOverviewActivity_select_all">全部揀選</string>
+  <string name="MediaOverviewActivity_delete">刪除</string>
   <string name="MediaOverviewActivity_file">檔案</string>
   <string name="MediaOverviewActivity_audio">聲音</string>
   <string name="MediaOverviewActivity_video">影片</string>
@@ -1282,6 +1281,7 @@
   <string name="SharedContactView_add_to_contacts">加入去聯絡人</string>
   <string name="SharedContactView_invite_to_signal">拉隊嚟 Signal</string>
   <string name="SharedContactView_message">Signal 訊息</string>
+  <!--SignalBottomActionBar-->
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">我哋遲啲再提您。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">我哋聽日再提您。</string>
@@ -3168,6 +3168,7 @@
   <string name="SubscribeFragment__confirm">確認</string>
   <string name="SubscribeFragment__update_subscription">更新課金計劃</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">您嘅課金計劃已經取消。</string>
+  <string name="SubscribeFragment__update">更新</string>
   <string name="Subscription__s_per_month">每月 %s</string>
   <string name="Subscription__s_per_month_dot_renews_s">每月 %1$s · 到 %2$s 續期</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉硬碰加軟撼，全靠位位用呢個爐、錫呢個爐嘅「惜爐」團伙，燃亮最光的星斗，至能夠廢鉄到足金。希望您做我哋月供計劃嘅金主，同時可換取一枚襟章掛喺個人資料度，同好友分享您做力撐派嘅喜悅。</string>
@@ -3197,5 +3198,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">如果您想繼續力撐為您而設、而非為求您嘅資料而打造嘅科技，請考慮做我哋月供課金計劃嘅金主。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">擔當課金計劃金主</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
+  <string name="Subscription__contact_support">聯絡支援</string>
+  <string name="SubscribeFragment__processing_payment">處理緊付款…</string>
+  <string name="DonationsErrors__payment_failed">付款失敗</string>
   <!--EOF-->
 </resources>

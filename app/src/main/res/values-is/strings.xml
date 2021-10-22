@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Þessum skilaboðum var eytt.</string>
   <string name="ConversationItem_you_deleted_this_message">Þú eyddir þessum skilaboðum.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Endurstilla örugga setu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Þetta gæti hjálpað er þú ert í vandræðum með dulritun í þessu samtali. Skilaboðunum þínum verður haldið.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Endurstilla</string> -->
   <string name="ConversationActivity_add_attachment">Bæta við viðhengi</string>
   <string name="ConversationActivity_select_contact_info">Velja upplýsingar um tengilið</string>
   <string name="ConversationActivity_compose_message">Skrifa skilaboð</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Færði samtal í innhólf</item>
     <item quantity="other">Færði %d samtöl í innhólf</item>
   </plurals>
+  <string name="ConversationListFragment_read">Lesa</string>
+  <string name="ConversationListFragment_unread">Ólesið</string>
+  <string name="ConversationListFragment_pin">Festa</string>
+  <string name="ConversationListFragment_unpin">Losa</string>
+  <string name="ConversationListFragment_mute">Hljóð af</string>
+  <string name="ConversationListFragment_unmute">Hljóð á</string>
+  <string name="ConversationListFragment_select">Velja</string>
+  <string name="ConversationListFragment_archive">Safn</string>
+  <string name="ConversationListFragment_unarchive">Taka úr geymslu</string>
+  <string name="ConversationListFragment_delete">Eyða</string>
+  <string name="ConversationListFragment_select_all">Velja allt</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Skilaboð fyrir lyklaskipti</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Reitasýn</string>
   <string name="MediaOverviewActivity_List_view_description">Listasýn</string>
   <string name="MediaOverviewActivity_Selected_description">Valið</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d atriði %2$s</item>
-    <item quantity="other">%1$d atriði %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d atriði</item>
-    <item quantity="other">%1$d atriði</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Vista</string>
+  <string name="MediaOverviewActivity_select_all">Velja allt</string>
+  <string name="MediaOverviewActivity_delete">Eyða</string>
   <string name="MediaOverviewActivity_file">Skrá</string>
   <string name="MediaOverviewActivity_audio">Hljóð</string>
   <string name="MediaOverviewActivity_video">Myndskeið</string>
@@ -1346,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">Bæta í tengiliði</string>
   <string name="SharedContactView_invite_to_signal">Bjóða á Signal</string>
   <string name="SharedContactView_message">Signal-skilaboð</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Meira</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Við munum minna þig á aftur síðar.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Við munum minna þig á aftur á morgun.</string>
@@ -3256,6 +3261,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SubscribeFragment__confirm">Staðfesta</string>
   <string name="SubscribeFragment__update_subscription">Uppfæra áskrift</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Áskriftinni þinni hefur verið sagt upp</string>
+  <string name="SubscribeFragment__update">Uppfæra</string>
   <string name="Subscription__s_per_month">%s/mánuði</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mánuði · Endurnýjast %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Af hverju styrkja?</string>
@@ -3278,5 +3284,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s merkið þitt er útrunnið og er því ekki lengur sýnilegt öðrum á sniðinu þínu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Gerstu áskrifandi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
+  <string name="Subscription__contact_support">Hafa samband við hjálparteymi</string>
+  <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>
+  <string name="DonationsErrors__payment_failed">Greiðsla mistókst</string>
   <!--EOF-->
 </resources>

@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Meldinga er sletta.</string>
   <string name="ConversationItem_you_deleted_this_message">Du har sletta denne meldinga.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestilla sikker økt?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpa viss du har krypteringsproblem med samtalen. Meldingane dine vert ikkje fjerna.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Tilbakestill</string> -->
   <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
   <string name="ConversationActivity_select_contact_info">Vel kontaktinformasjon</string>
   <string name="ConversationActivity_compose_message">Skriv melding</string>
@@ -320,6 +317,13 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
     <item quantity="one">Flytta samtalen til innboks</item>
     <item quantity="other">Flytta %d samtalar til innboks</item>
   </plurals>
+  <string name="ConversationListFragment_read">Lese</string>
+  <string name="ConversationListFragment_mute">Demp</string>
+  <string name="ConversationListFragment_unmute">Vis varsel</string>
+  <string name="ConversationListFragment_archive">Arkiver</string>
+  <string name="ConversationListFragment_unarchive">Angra arkivering</string>
+  <string name="ConversationListFragment_delete">Slett</string>
+  <string name="ConversationListFragment_select_all">Vel alle</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <!--ConversationListItemAction-->
@@ -804,14 +808,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MediaOverviewActivity_Grid_view_description">Gittervisning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valde</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element %2$s</item>
-    <item quantity="other">%1$d element %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d element</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Lagra</string>
+  <string name="MediaOverviewActivity_select_all">Vel alle</string>
+  <string name="MediaOverviewActivity_delete">Slett</string>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1352,6 +1351,8 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="SharedContactView_add_to_contacts">Legg til i kontaktar</string>
   <string name="SharedContactView_invite_to_signal">Inviter til Signal</string>
   <string name="SharedContactView_message">Signal-melding</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Meir</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Me minner deg på dette igjen seinare.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Me minner deg på dette igjen i morgon.</string>
@@ -3274,6 +3275,7 @@ Sjekkar igjen no …</string>
   <string name="SubscribeFragment__confirm">Stadfest</string>
   <string name="SubscribeFragment__update_subscription">Oppdater abonnement</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonnementet ditt er avslutta.</string>
+  <string name="SubscribeFragment__update">Oppdater</string>
   <string name="Subscription__s_per_month">%s/månad</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Fornyar %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er ein ideell organisasjon utan reklame eller investorar, berre finansiert av dei som bruker og verdset det. Gje eit månadleg bidrag og få eit profilmerke som viser at du støtter Signal.</string>
@@ -3303,5 +3305,8 @@ Sjekkar igjen no …</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Vurder eit månadleg bidrag for å fortsetja å støtta teknologi som er bygd for deg – og ikkje berre for dine data.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli abonnent</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
+  <string name="Subscription__contact_support">Kontakt brukarstøtte</string>
+  <string name="SubscribeFragment__processing_payment">Behandlar betaling …</string>
+  <string name="DonationsErrors__payment_failed">Feil ved betaling</string>
   <!--EOF-->
 </resources>

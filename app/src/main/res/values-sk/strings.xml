@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">Táto správa bola zmazaná.</string>
   <string name="ConversationItem_you_deleted_this_message">Vymazali ste túto správu.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetovať zabezpečenú reláciu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Toto vám môže pomôcť pri problémoch so šifrovaním v tejto konverzácii. Vaše správy budú zachované.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Resetovať</string> -->
   <string name="ConversationActivity_add_attachment">Pridať prílohu</string>
   <string name="ConversationActivity_select_contact_info">Vyberte kontaktné informácie </string>
   <string name="ConversationActivity_compose_message">Vytvoriť správu</string>
@@ -341,6 +338,17 @@
     <item quantity="many">%d konverzácií presunutých do doručených</item>
     <item quantity="other">%d konverzácií presunutých do doručených</item>
   </plurals>
+  <string name="ConversationListFragment_read">Prečítaná</string>
+  <string name="ConversationListFragment_unread">Neprečítané</string>
+  <string name="ConversationListFragment_pin">Pripnúť</string>
+  <string name="ConversationListFragment_unpin">Odopnúť</string>
+  <string name="ConversationListFragment_mute">Stlmiť</string>
+  <string name="ConversationListFragment_unmute">Zrušiť stlmenie</string>
+  <string name="ConversationListFragment_select">Vybrať</string>
+  <string name="ConversationListFragment_archive">Archív</string>
+  <string name="ConversationListFragment_unarchive">Vybrať z archívu</string>
+  <string name="ConversationListFragment_delete">Vymazať</string>
+  <string name="ConversationListFragment_select_all">Označiť všetko</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
   <!--ConversationListItemAction-->
@@ -879,18 +887,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Zobrazenie mriežky</string>
   <string name="MediaOverviewActivity_List_view_description">Zobrazenie zoznamu</string>
   <string name="MediaOverviewActivity_Selected_description">Vybrané</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d položka %2$s</item>
-    <item quantity="few">%1$d položky %2$s</item>
-    <item quantity="many">%1$d položky %2$s</item>
-    <item quantity="other">%1$d položky %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d položka</item>
-    <item quantity="few">%1$d položky</item>
-    <item quantity="many">%1$d položiek</item>
-    <item quantity="other">%1$d položiek</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Uložiť</string>
+  <string name="MediaOverviewActivity_select_all">Označiť všetko</string>
+  <string name="MediaOverviewActivity_delete">Vymazať</string>
   <string name="MediaOverviewActivity_file">Súbor</string>
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1473,6 +1472,8 @@ telefónne číslo
   <string name="SharedContactView_add_to_contacts">Pridať medzi kontakty</string>
   <string name="SharedContactView_invite_to_signal">Pozvať do Signalu</string>
   <string name="SharedContactView_message">Signal správa</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Viac</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Pripomenieme vám to opäť neskôr.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Pripomenieme vám to opäť zajtra.</string>
@@ -3443,6 +3444,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubscribeFragment__confirm">Potvrdiť</string>
   <string name="SubscribeFragment__update_subscription">Aktualizovať predplatné</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše predplatné bolo zrušené.</string>
+  <string name="SubscribeFragment__update">Aktualizovať</string>
   <string name="Subscription__s_per_month">%s/mesiac</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesiac · Obnovenie %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizácia bez žiadnych inzerentov, alebo investorov a udržiava ju iba ľudia, ktorí ju používajú a vážia si ju. Prispievajte opakovane mesačne a získajte odznak profilu, aby ste sa mohli podeliť o svoju podporu.</string>
@@ -3472,5 +3474,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás -nie pre vaše údaje-, zvážte možnosť stať sa mesačným predplatiteľom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Staňte sa predplatiteľmi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
+  <string name="Subscription__contact_support">Kontaktovať zákaznícku podporu</string>
+  <string name="SubscribeFragment__processing_payment">Spracovanie platby…</string>
+  <string name="DonationsErrors__payment_failed">Platba zlyhala</string>
   <!--EOF-->
 </resources>

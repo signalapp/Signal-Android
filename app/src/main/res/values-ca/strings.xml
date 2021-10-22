@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="ConversationItem_you_deleted_this_message">Heu suprimit aquest missatge.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Restableix</string> -->
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
   <string name="ConversationActivity_select_contact_info">Seleccioneu informació del contacte</string>
   <string name="ConversationActivity_compose_message">Escriviu un missatge</string>
@@ -319,6 +316,17 @@
     <item quantity="one">S\'ha mogut la conversa a la safata d\'entrada</item>
     <item quantity="other">S\'han mogut %d converses a la safata d\'entrada</item>
   </plurals>
+  <string name="ConversationListFragment_read">Llegit</string>
+  <string name="ConversationListFragment_unread">Per llegir</string>
+  <string name="ConversationListFragment_pin">Fixa</string>
+  <string name="ConversationListFragment_unpin">No ho fixis</string>
+  <string name="ConversationListFragment_mute">Silenci</string>
+  <string name="ConversationListFragment_unmute">No la silenciïs</string>
+  <string name="ConversationListFragment_select">Selecció</string>
+  <string name="ConversationListFragment_archive">Arxiva</string>
+  <string name="ConversationListFragment_unarchive">Restaura</string>
+  <string name="ConversationListFragment_delete">Suprimeix</string>
+  <string name="ConversationListFragment_select_all">Selecciona-ho tot</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de graella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de llista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element: %2$s</item>
-    <item quantity="other">%1$d elements: %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d elements</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Desa</string>
+  <string name="MediaOverviewActivity_select_all">Selecciona-ho tot</string>
+  <string name="MediaOverviewActivity_delete">Suprimeix</string>
   <string name="MediaOverviewActivity_file">Fitxer</string>
   <string name="MediaOverviewActivity_audio">Àudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -1342,6 +1345,8 @@ especificat (%s) no és vàlid.</string>
   <string name="SharedContactView_add_to_contacts">Afegeix als contactes</string>
   <string name="SharedContactView_invite_to_signal">Convida al Signal</string>
   <string name="SharedContactView_message">Missatge del Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Més</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Us ho recordarem més tard.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Us ho recordarem demà.</string>
@@ -3254,6 +3259,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubscribeFragment__confirm">Confirmació</string>
   <string name="SubscribeFragment__update_subscription">Actualitza la subscripció</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">S\'ha cancel·lat la subscripció.</string>
+  <string name="SubscribeFragment__update">Actualitza-la</string>
   <string name="Subscription__s_per_month">%s/ mes</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ mes · Renovacions %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, sostinguda només per les persones que l’usen i valoren. Feu-hi una contribució mensual periòdica i rebeu una insígnia de perfil per compartir el vostre suport.</string>
@@ -3283,5 +3289,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuar donant suport a la tecnologia dissenyada per a vosaltres (no per a les vostres dades), penseu a convertir-vos en subscriptor mensual.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Fes-me\'n subscriptor</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
+  <string name="Subscription__contact_support">Contacteu amb l\'Assistència</string>
+  <string name="SubscribeFragment__processing_payment">Es processa el pagament…</string>
+  <string name="DonationsErrors__payment_failed">Ha fallat el pagament.</string>
   <!--EOF-->
 </resources>

@@ -181,9 +181,6 @@
   <string name="ConversationItem_this_message_was_deleted">Това съобщение беше изтрито.</string>
   <string name="ConversationItem_you_deleted_this_message">Изтрихте това съобщение.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Рестартирай сигурната сесия?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Това може да помогне ако имате проблеми с екрипцията в този разговор. Вашите съобщения ще бъдат запазени.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Рестартирай</string> -->
   <string name="ConversationActivity_add_attachment">Прикачване на файл</string>
   <string name="ConversationActivity_select_contact_info">Посочи информация за контакта</string>
   <string name="ConversationActivity_compose_message">Ново съобщение</string>
@@ -316,6 +313,14 @@
     <item quantity="one">Преместен разговор във входяща кутия</item>
     <item quantity="other">Преместени %d разговора във входящата кутия</item>
   </plurals>
+  <string name="ConversationListFragment_read">Прочетено</string>
+  <string name="ConversationListFragment_mute">Заглуши</string>
+  <string name="ConversationListFragment_unmute">Изключи тих режим</string>
+  <string name="ConversationListFragment_select">Изберете</string>
+  <string name="ConversationListFragment_archive">Архив</string>
+  <string name="ConversationListFragment_unarchive">Разархивиране</string>
+  <string name="ConversationListFragment_delete">Изтрий</string>
+  <string name="ConversationListFragment_select_all">Избери всичко</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за Изменя на ключожете</string>
   <!--ConversationListItemAction-->
@@ -795,14 +800,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Изглед на мрежа</string>
   <string name="MediaOverviewActivity_List_view_description">Изглед на списък</string>
   <string name="MediaOverviewActivity_Selected_description">Избрани</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d нещо %2$s</item>
-    <item quantity="other">%1$d неща %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$dнещо</item>
-    <item quantity="other">%1$dнеща</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Запази</string>
+  <string name="MediaOverviewActivity_select_all">Избери всичко</string>
+  <string name="MediaOverviewActivity_delete">Изтрий</string>
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>
@@ -1337,6 +1337,8 @@
   <string name="SharedContactView_add_to_contacts">Добавяне към контакти</string>
   <string name="SharedContactView_invite_to_signal">Покани в Signal</string>
   <string name="SharedContactView_message">Съобщение в Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Още</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ще ви напомним отново по-късно.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ще ви припомним отново утре.</string>
@@ -2989,7 +2991,10 @@
   <string name="SelectFeaturedBadgeFragment__preview">Преглед</string>
   <string name="SubscribeFragment__not_now">Не сега</string>
   <string name="SubscribeFragment__confirm">Потвърждение</string>
+  <string name="SubscribeFragment__update">Обновяване</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
+  <string name="Subscription__contact_support">Връзка с отдела за поддръжка</string>
+  <string name="DonationsErrors__payment_failed">Грешка при плащане</string>
   <!--EOF-->
 </resources>

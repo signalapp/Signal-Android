@@ -185,9 +185,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ова порука је избрисана.</string>
   <string name="ConversationItem_you_deleted_this_message">Избрисали сте ову поруку.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ресетовати безбедну сесију?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Може да помогне ако имате проблема са шифровањем у овој преписци. Поруке ће остати.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Ресетуј</string> -->
   <string name="ConversationActivity_add_attachment">Додај прилог</string>
   <string name="ConversationActivity_select_contact_info">Изаберите податке о контакту</string>
   <string name="ConversationActivity_compose_message">Састави поруку</string>
@@ -330,6 +327,17 @@
     <item quantity="few">%d преписке премештене у пријем</item>
     <item quantity="other">%d преписки премештено у пријем</item>
   </plurals>
+  <string name="ConversationListFragment_read">Прочитано</string>
+  <string name="ConversationListFragment_unread">Непрочитано</string>
+  <string name="ConversationListFragment_pin">Закачити</string>
+  <string name="ConversationListFragment_unpin">Одкачити</string>
+  <string name="ConversationListFragment_mute">Утишај</string>
+  <string name="ConversationListFragment_unmute">Укључи обавештења</string>
+  <string name="ConversationListFragment_select">Изабери више</string>
+  <string name="ConversationListFragment_archive">Архивирај</string>
+  <string name="ConversationListFragment_unarchive">Распакуј</string>
+  <string name="ConversationListFragment_delete">Избриши</string>
+  <string name="ConversationListFragment_select_all">Изабери све</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порука размене кључева</string>
   <!--ConversationListItemAction-->
@@ -839,16 +847,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Изглед решетка</string>
   <string name="MediaOverviewActivity_List_view_description">Изглед листа</string>
   <string name="MediaOverviewActivity_Selected_description">Одабрано</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d ставка %2$s</item>
-    <item quantity="few">%1$d ставке %2$s</item>
-    <item quantity="other">%1$d ставке %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d ставка</item>
-    <item quantity="few">%1$d ставке</item>
-    <item quantity="other">%1$d ставке</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Сачувај</string>
+  <string name="MediaOverviewActivity_select_all">Изабери све</string>
+  <string name="MediaOverviewActivity_delete">Избриши</string>
   <string name="MediaOverviewActivity_file">Фајл</string>
   <string name="MediaOverviewActivity_audio">Звук</string>
   <string name="MediaOverviewActivity_video">Видео</string>
@@ -1410,6 +1411,8 @@
   <string name="SharedContactView_add_to_contacts">Додај у контакте</string>
   <string name="SharedContactView_invite_to_signal">Слање позивнице за Signal</string>
   <string name="SharedContactView_message">Порука на Signalу</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Више</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Подсетићемо вас поново касније.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Подсетићемо вас поново сутра.</string>
@@ -3352,6 +3355,7 @@
   <string name="SubscribeFragment__confirm">Потврди</string>
   <string name="SubscribeFragment__update_subscription">Надоградити претплату</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша претплата је поништена.</string>
+  <string name="SubscribeFragment__update">Сачувај</string>
   <string name="Subscription__s_per_month">%s/месечно</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месечно · Обнова %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зашто доприносити?</string>
@@ -3374,5 +3378,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваша значка %1$s је истекла, и не може више де се види на вашем профилу.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Постаните претплатник</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>
+  <string name="Subscription__contact_support">Контактирајте подршку</string>
+  <string name="SubscribeFragment__processing_payment">Обрађујем уплату…</string>
+  <string name="DonationsErrors__payment_failed">Неуспешна уплата</string>
   <!--EOF-->
 </resources>

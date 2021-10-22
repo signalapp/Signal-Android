@@ -188,9 +188,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationItem_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="ConversationItem_you_deleted_this_message">Chi wnaeth ddileu\'r neges hon.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ail-osod sesiwn ddiogel?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Gall hyn helpu os ydych chi’n cael problemau amgryptio yn y sgwrs hon. Bydd eich negeseuon yn cael eu cadw.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Ailosod</string> -->
   <string name="ConversationActivity_add_attachment">Ychwanegu atodiad</string>
   <string name="ConversationActivity_select_contact_info">Dewis manylion cyswllt</string>
   <string name="ConversationActivity_compose_message">Ysgrifennu neges</string>
@@ -343,6 +340,17 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Symudwyd %d sgwrs i\'r blwch derbyn</item>
     <item quantity="other">Symudwyd %d sgwrs i\'r blwch derbyn</item>
   </plurals>
+  <string name="ConversationListFragment_read">Darllen</string>
+  <string name="ConversationListFragment_unread">Dad-ddarllen</string>
+  <string name="ConversationListFragment_pin">Pinio</string>
+  <string name="ConversationListFragment_unpin">Dadbinio</string>
+  <string name="ConversationListFragment_mute">Tewi</string>
+  <string name="ConversationListFragment_unmute">Dad-dewi</string>
+  <string name="ConversationListFragment_select">Dewis</string>
+  <string name="ConversationListFragment_archive">Archif</string>
+  <string name="ConversationListFragment_unarchive">Dad-archifo</string>
+  <string name="ConversationListFragment_delete">Dileu</string>
+  <string name="ConversationListFragment_select_all">Dewis popeth</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Neges cyfnewid allwedd</string>
   <!--ConversationListItemAction-->
@@ -881,18 +889,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaOverviewActivity_Grid_view_description">Golwg grid</string>
   <string name="MediaOverviewActivity_List_view_description">Golwg rhestr</string>
   <string name="MediaOverviewActivity_Selected_description">Dewiswyd</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d eitem %2$s</item>
-    <item quantity="two">%1$d eitem %2$s</item>
-    <item quantity="many">%1$d eitem %2$s</item>
-    <item quantity="other">%1$d eitem %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d eitem</item>
-    <item quantity="two">%1$d eitem</item>
-    <item quantity="many">%1$d eitem</item>
-    <item quantity="other">%1$d eitem</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Cadw</string>
+  <string name="MediaOverviewActivity_select_all">Dewis popeth</string>
+  <string name="MediaOverviewActivity_delete">Dileu</string>
   <string name="MediaOverviewActivity_file">Ffeil</string>
   <string name="MediaOverviewActivity_audio">Sain</string>
   <string name="MediaOverviewActivity_video">Fideo</string>
@@ -1476,6 +1475,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="SharedContactView_add_to_contacts">Ychwanegu at Cysylltiadau</string>
   <string name="SharedContactView_invite_to_signal">Gwahodd i Signal</string>
   <string name="SharedContactView_message">Neges Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Rhagor</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Byddwn yn eich atgoffa\'n hwyrach.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Byddwn yn eich atgoffa yfory.</string>
@@ -3446,6 +3447,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubscribeFragment__confirm">Cadarnhau</string>
   <string name="SubscribeFragment__update_subscription">Diweddaru\'r Tanysgrifiad</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Mae eich tanysgrifiad wedi\'i ddiddymu.</string>
+  <string name="SubscribeFragment__update">Diweddaru</string>
   <string name="Subscription__s_per_month">%s/month</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Adnewyddu ar %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Mae Signal yn gorff ddim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gynnal dim ond gan y bobl sy\'n ei ddefnyddio a\'i werthfawrogi. Gwnewch gyfraniad misol cylchol a derbyn bathodyn proffil i rannu\'ch cefnogaeth.</string>
@@ -3475,5 +3477,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Er mwyn parhau i gefnogi technoleg sydd wedi\'i hadeiladu ar eich cyfer chi - nid ar gyfer eich data - ystyriwch ddod yn danysgrifiwr misol.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Dewch yn danysgrifiwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
+  <string name="Subscription__contact_support">Cysylltu â Chymorth Signal</string>
+  <string name="SubscribeFragment__processing_payment">Yn prosesu taliad</string>
+  <string name="DonationsErrors__payment_failed">Methodd y taliad</string>
   <!--EOF-->
 </resources>

@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hal ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atur ulang</string> -->
   <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
   <string name="ConversationActivity_compose_message">Tulis pesan</string>
@@ -308,6 +305,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Memindahkan %d percakapan ke kotak masuk</item>
   </plurals>
+  <string name="ConversationListFragment_read">Terbaca</string>
+  <string name="ConversationListFragment_unread">Belum dibaca</string>
+  <string name="ConversationListFragment_pin">Pin</string>
+  <string name="ConversationListFragment_unpin">Cabut Pin</string>
+  <string name="ConversationListFragment_mute">Senyap</string>
+  <string name="ConversationListFragment_unmute">Tidak Senyap</string>
+  <string name="ConversationListFragment_select">Pilih</string>
+  <string name="ConversationListFragment_archive">Arsip</string>
+  <string name="ConversationListFragment_unarchive">Buka Arsip</string>
+  <string name="ConversationListFragment_delete">Hapus</string>
+  <string name="ConversationListFragment_select_all">Pilih semua</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -758,12 +766,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tampilan grid</string>
   <string name="MediaOverviewActivity_List_view_description">Tampilan urutan</string>
   <string name="MediaOverviewActivity_Selected_description">Terpilih</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$ditem %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d item</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Simpan</string>
+  <string name="MediaOverviewActivity_select_all">Pilih semua</string>
+  <string name="MediaOverviewActivity_delete">Hapus</string>
   <string name="MediaOverviewActivity_file">Berkas</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1281,6 +1286,8 @@ isikan (%s) tidak valid.
   <string name="SharedContactView_add_to_contacts">Tambahkan ke Kontak</string>
   <string name="SharedContactView_invite_to_signal">Undang ke Signal</string>
   <string name="SharedContactView_message">Pesan Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Selanjutnya</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Kami akan mengingatkan Anda lagi nanti.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Kami akan mengingatkan Anda lagi besok.</string>
@@ -3121,8 +3128,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubscribeFragment__donation_amount">Jumlah donasi</string>
   <string name="SubscribeFragment__not_now">Nanti saja</string>
   <string name="SubscribeFragment__confirm">Konfirmasi</string>
+  <string name="SubscribeFragment__update">Perbarui</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
+  <string name="Subscription__contact_support">Hubungi Bantuan</string>
+  <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
+  <string name="DonationsErrors__payment_failed">Pembayaran gagal</string>
   <!--EOF-->
 </resources>

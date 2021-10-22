@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Bu mesaj silindi.</string>
   <string name="ConversationItem_you_deleted_this_message">Bu mesajı sildiniz.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Güvənli seans sıfırlansın?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu danışıqda şifrələmə problemi yaşayırsınızsa, bu kömək edə bilər. Mesajlarınız saxlanılacaq.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Sıfırla</string> -->
   <string name="ConversationActivity_add_attachment">Qoşma əlavə et</string>
   <string name="ConversationActivity_select_contact_info">Əlaqə məlumatını seçin</string>
   <string name="ConversationActivity_compose_message">Mesaj yarat</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Söhbət gələnlər qutusuna köçürüldü</item>
     <item quantity="other">%d danışıq gələn qutusuna köçürüldü</item>
   </plurals>
+  <string name="ConversationListFragment_read">Oxundu</string>
+  <string name="ConversationListFragment_unread">Oxunmadı</string>
+  <string name="ConversationListFragment_pin">Sancaqla</string>
+  <string name="ConversationListFragment_unpin">Sancağı götür</string>
+  <string name="ConversationListFragment_mute">Səssizə al</string>
+  <string name="ConversationListFragment_unmute">Səsi aç</string>
+  <string name="ConversationListFragment_select">Seçin</string>
+  <string name="ConversationListFragment_archive">Arxivlənmiş</string>
+  <string name="ConversationListFragment_unarchive">Arxivdən çıxart</string>
+  <string name="ConversationListFragment_delete">Sil</string>
+  <string name="ConversationListFragment_select_all">Hamısını seç</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Açar mübadilə mesajı</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tor görünüşü</string>
   <string name="MediaOverviewActivity_List_view_description">Siyahı görünüşü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçildi</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element %2$s</item>
-    <item quantity="other">%1$d element %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d element</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Saxla</string>
+  <string name="MediaOverviewActivity_select_all">Hamısını seç</string>
+  <string name="MediaOverviewActivity_delete">Sil</string>
   <string name="MediaOverviewActivity_file">Fayl</string>
   <string name="MediaOverviewActivity_audio">Səs</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1346,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">Əlaqələrə əlavə et</string>
   <string name="SharedContactView_invite_to_signal">Signal-a dəvət edin</string>
   <string name="SharedContactView_message">Signal Mesajı</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Daha çox</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Daha sonra yenidən xatırladacağıq.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Sabah yenidən xatırladacağıq.</string>
@@ -3260,6 +3265,7 @@
   <string name="SubscribeFragment__confirm">Təsdiqlə</string>
   <string name="SubscribeFragment__update_subscription">Abunəliyi yenilə</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abunəlikdən imtina edildi.</string>
+  <string name="SubscribeFragment__update">Yenilə</string>
   <string name="Subscription__s_per_month">%s/ay</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ay · Yenilənir %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklam verəni və ya investoru olmayan, yalnız onu istifadə edən və ona dəyər verən insanlar tərəfindən dəstəklənən qeyri-kommersiya təşkilatıdır. Hər ay müntəzəm olaraq töhfə verin və dəstəyinizi paylaşmaq üçün bir profil nişanı alın.</string>
@@ -3289,5 +3295,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq abunəçi olmağı düşünün.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abunəçi olun</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
+  <string name="Subscription__contact_support">Dəstək ilə əlaqə</string>
+  <string name="SubscribeFragment__processing_payment">Ödəniş emal olunur…</string>
+  <string name="DonationsErrors__payment_failed">Ödəniş edilmədi</string>
   <!--EOF-->
 </resources>

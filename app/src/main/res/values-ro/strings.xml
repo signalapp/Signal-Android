@@ -185,9 +185,6 @@
   <string name="ConversationItem_this_message_was_deleted">Acest mesaj a fost șters.</string>
   <string name="ConversationItem_you_deleted_this_message">Ați șters acest mesaj.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Resetare</string> -->
   <string name="ConversationActivity_add_attachment">Adăugați atașament</string>
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
   <string name="ConversationActivity_compose_message">Compuneți mesaj</string>
@@ -330,6 +327,17 @@
     <item quantity="few">%d conversații au fost mutate în inbox</item>
     <item quantity="other">%d conversații au fost mutate în inbox</item>
   </plurals>
+  <string name="ConversationListFragment_read">Citit</string>
+  <string name="ConversationListFragment_unread">Necitit</string>
+  <string name="ConversationListFragment_pin">Fixare</string>
+  <string name="ConversationListFragment_unpin">Anulați fixarea</string>
+  <string name="ConversationListFragment_mute">Silențios</string>
+  <string name="ConversationListFragment_unmute">Activare sunet notificări</string>
+  <string name="ConversationListFragment_select">Selectează</string>
+  <string name="ConversationListFragment_archive">Arhivează</string>
+  <string name="ConversationListFragment_unarchive">Dezarhivează</string>
+  <string name="ConversationListFragment_delete">Șterge</string>
+  <string name="ConversationListFragment_select_all">Selectează tot</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimbul de chei</string>
   <!--ConversationListItemAction-->
@@ -839,16 +847,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vizualizare grilă</string>
   <string name="MediaOverviewActivity_List_view_description">Vizualizare listă</string>
   <string name="MediaOverviewActivity_Selected_description">Selectat</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element %2$s</item>
-    <item quantity="few">%1$d elemente %2$s</item>
-    <item quantity="other">%1$d de elemente %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="few">%1$d elemente</item>
-    <item quantity="other">%1$d de elemente</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Salvează</string>
+  <string name="MediaOverviewActivity_select_all">Selectează tot</string>
+  <string name="MediaOverviewActivity_delete">Șterge</string>
   <string name="MediaOverviewActivity_file">Fișier</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1407,6 +1408,8 @@ furnizat (%s) este invalid.</string>
   <string name="SharedContactView_add_to_contacts">Adăugați la contacte</string>
   <string name="SharedContactView_invite_to_signal">Invitați la Signal</string>
   <string name="SharedContactView_message">Mesaj Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mai multe</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vă reamintim mai târziu.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vă reamintim mâine.</string>
@@ -3349,6 +3352,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SubscribeFragment__confirm">Confirmă</string>
   <string name="SubscribeFragment__update_subscription">Actualizare abonament</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonamentul dvs. a fost anulat.</string>
+  <string name="SubscribeFragment__update">Actualizează</string>
   <string name="Subscription__s_per_month">%s/lună</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/lună · Se reînnoiește %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal este o organizație non-profit, fără agenți de publicitate sau investitori, susținută doar de oamenii care o folosesc și o apreciază. Faceți o contribuție lunară recurentă și primiți o insignă de profil pentru a vă împărtăși sprijinul.</string>
@@ -3377,5 +3381,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Pentru a continua să sprijiniți o tehnologie construită pentru dvs, —nu pentru datele dvs.—, vă rugăm să luați în considerare posibilitatea de a deveni un abonat lunar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Deveniți un abonat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
+  <string name="Subscription__contact_support">Contactează suportul</string>
+  <string name="SubscribeFragment__processing_payment">Se procesează plata…</string>
+  <string name="DonationsErrors__payment_failed">Plata a eșuat</string>
   <!--EOF-->
 </resources>

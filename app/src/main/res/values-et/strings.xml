@@ -181,9 +181,6 @@
   <string name="ConversationItem_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="ConversationItem_you_deleted_this_message">Sina kustutasid selle teate.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Lähtesta</string> -->
   <string name="ConversationActivity_add_attachment">Lisa manus</string>
   <string name="ConversationActivity_select_contact_info">Vali kontaktandmed</string>
   <string name="ConversationActivity_compose_message">Koosta sõnum</string>
@@ -316,6 +313,17 @@
     <item quantity="one">Vestlus postkasti liigutatud</item>
     <item quantity="other">%d vestlust postkasti liigutatud</item>
   </plurals>
+  <string name="ConversationListFragment_read">Loetud</string>
+  <string name="ConversationListFragment_unread">Mitteloetud</string>
+  <string name="ConversationListFragment_pin">Kinnita</string>
+  <string name="ConversationListFragment_unpin">Eemalda kinnitus</string>
+  <string name="ConversationListFragment_mute">Vaigista</string>
+  <string name="ConversationListFragment_unmute">Eemalda vaigistus</string>
+  <string name="ConversationListFragment_select">Vali</string>
+  <string name="ConversationListFragment_archive">Arhiiv</string>
+  <string name="ConversationListFragment_unarchive">Eemalda arhiivist</string>
+  <string name="ConversationListFragment_delete">Kustuta</string>
+  <string name="ConversationListFragment_select_all">Vali kõik</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
@@ -791,14 +799,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudustikvaade</string>
   <string name="MediaOverviewActivity_List_view_description">Nimekirjavaade</string>
   <string name="MediaOverviewActivity_Selected_description">Valitud</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d üksus %2$s</item>
-    <item quantity="other">%1$d üksust %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d üksus</item>
-    <item quantity="other">%1$d üksust</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Salvesta</string>
+  <string name="MediaOverviewActivity_select_all">Vali kõik</string>
+  <string name="MediaOverviewActivity_delete">Kustuta</string>
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1308,6 +1311,8 @@
   <string name="SharedContactView_add_to_contacts">Lisa kontaktidesse</string>
   <string name="SharedContactView_invite_to_signal">Kutsu Signalisse</string>
   <string name="SharedContactView_message">Signali sõnum</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Rohkem</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Me tuletame sulle hiljem uuesti meelde.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Me tuletame sulle homme uuesti meelde.</string>
@@ -3079,8 +3084,11 @@
   <string name="SubscribeFragment__donation_amount">Annetuse summa</string>
   <string name="SubscribeFragment__not_now">Mitte praegu</string>
   <string name="SubscribeFragment__confirm">Kinnita</string>
+  <string name="SubscribeFragment__update">Uuenda</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
   <string name="Boost__enter_custom_amount">Sisesta kohandatud summa</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
+  <string name="Subscription__contact_support">Võta ühendust kasutajatoega</string>
+  <string name="DonationsErrors__payment_failed">Makse ei õnnestunud</string>
   <!--EOF-->
 </resources>

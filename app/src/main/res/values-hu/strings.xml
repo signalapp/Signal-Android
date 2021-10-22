@@ -185,9 +185,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="ConversationItem_you_deleted_this_message">Általad törölt üzenet.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Újraindítod a biztonsági munkamenetet?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ez akkor segíthet, ha titkosítással kapcsolatos problémák léptek fel ebben a beszélgetésben. Az üzeneteid meg lesznek tartva.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Alaphelyzetbe állítás</string> -->
   <string name="ConversationActivity_add_attachment">Melléklet csatolása</string>
   <string name="ConversationActivity_select_contact_info">Válassz kontakt infót</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
@@ -320,6 +317,17 @@
     <item quantity="one">Beszélgetés áthelyezve a bejövőbe</item>
     <item quantity="other">%d db beszélgetés áthelyezve a bejövő üzenetek közé</item>
   </plurals>
+  <string name="ConversationListFragment_read">Elolvasva</string>
+  <string name="ConversationListFragment_unread">Olvasatlan</string>
+  <string name="ConversationListFragment_pin">Rögzít</string>
+  <string name="ConversationListFragment_unpin">Felold</string>
+  <string name="ConversationListFragment_mute">Némítás</string>
+  <string name="ConversationListFragment_unmute">Némítás feloldása</string>
+  <string name="ConversationListFragment_select">Kiválasztás</string>
+  <string name="ConversationListFragment_archive">Archiválás</string>
+  <string name="ConversationListFragment_unarchive">Archívumból visszahelyezés</string>
+  <string name="ConversationListFragment_delete">Törlés</string>
+  <string name="ConversationListFragment_select_all">Összes kiválasztása</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
   <!--ConversationListItemAction-->
@@ -800,14 +808,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rácsos nézet</string>
   <string name="MediaOverviewActivity_List_view_description">Listanézet</string>
   <string name="MediaOverviewActivity_Selected_description">Kiválasztott</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d db elem %2$s</item>
-    <item quantity="other">%1$d db elem %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d db elem</item>
-    <item quantity="other">%1$d db elem</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Mentés</string>
+  <string name="MediaOverviewActivity_select_all">Összes kiválasztása</string>
+  <string name="MediaOverviewActivity_delete">Törlés</string>
   <string name="MediaOverviewActivity_file">Fájl</string>
   <string name="MediaOverviewActivity_audio">Hang</string>
   <string name="MediaOverviewActivity_video">Videó</string>
@@ -1340,6 +1343,8 @@ szám (%s) érvénytelen.
   <string name="SharedContactView_add_to_contacts">Hozzáadás a névjegyzékhez</string>
   <string name="SharedContactView_invite_to_signal">Meghívás a Signal-ba</string>
   <string name="SharedContactView_message">Signal üzenet</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Továbbiak</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Később újra emlékeztetünk.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Holnap újra emlékeztetni fogunk.</string>
@@ -3214,9 +3219,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubscribeFragment__donation_amount">Adomány összege</string>
   <string name="SubscribeFragment__not_now">Később</string>
   <string name="SubscribeFragment__confirm">Megerősítés</string>
+  <string name="SubscribeFragment__update">Frissítés</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Befejezés</string>
   <string name="ManageDonationsFragment__badges">Jelvények</string>
   <string name="Boost__enter_custom_amount">Egyedi összeg</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
+  <string name="Subscription__contact_support">Kapcsolatfelvétel a támogatással</string>
+  <string name="SubscribeFragment__processing_payment">Fizetés feldolgozása…</string>
+  <string name="DonationsErrors__payment_failed">Fizetés sikertelen</string>
   <!--EOF-->
 </resources>

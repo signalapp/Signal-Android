@@ -181,9 +181,6 @@
   <string name="ConversationItem_this_message_was_deleted">ဒီစာကိုဖျက်လိုက်သည်။</string>
   <string name="ConversationItem_you_deleted_this_message">သင်ဒီစာကိုဖျက်လိုက်သည်။</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">လုံခြုံသောဆက်ရှင်ကို ပြန်ချိန်မည်လား</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">အကယ်၍ သင့်စကားများကို encrypt လုပ်ရန်အခက်အခဲရှိပါက ဤနည်းက အသုံးဝင်သည်။ သင့်မက်ဆေ့ချ်ကို သိမ်းထားပါမည်။ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">မူလအတိုင်းပြန်လုပ်မည် </string> -->
   <string name="ConversationActivity_add_attachment">ပူးတွဲဖိုင် ထည့်ရန်</string>
   <string name="ConversationActivity_select_contact_info">ဆက်သွယ်မည့်သူအချက်အလက်ရွေးချယ်ပါ </string>
   <string name="ConversationActivity_compose_message">စာရေးသားမည် </string>
@@ -300,6 +297,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ပြောစကား %d ကို စာပုံးထဲသို့ရွေ့သည်</item>
   </plurals>
+  <string name="ConversationListFragment_read">ဖတ်ပြီး</string>
+  <string name="ConversationListFragment_unread">မဖတ်ရသေး</string>
+  <string name="ConversationListFragment_pin">မှတ်ထားမယ်</string>
+  <string name="ConversationListFragment_unpin">ဖြုတ်မယ်</string>
+  <string name="ConversationListFragment_mute">အသံတိတ်ထားမည်</string>
+  <string name="ConversationListFragment_unmute">အသံပြန်ဖွင့်မယ်</string>
+  <string name="ConversationListFragment_select">ရွေးမယ်</string>
+  <string name="ConversationListFragment_archive">မှတ်တမ်း </string>
+  <string name="ConversationListFragment_unarchive">မှတ်တမ်းထဲမှ ပြန်ထုတ်ပါ</string>
+  <string name="ConversationListFragment_delete">ဖျက်မယ်</string>
+  <string name="ConversationListFragment_select_all">အားလုံးကို ရွေးမယ်</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ကီးအလဲအလှယ် စာသား</string>
   <!--ConversationListItemAction-->
@@ -740,12 +748,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">အကွက်လိုက် ကြည့်ရန်</string>
   <string name="MediaOverviewActivity_List_view_description">စာရင်းလိုက်ကြည့်ရန်</string>
   <string name="MediaOverviewActivity_Selected_description">ရွေးချယ်ထားသော</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d အရာများ %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d အရာများ</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">သိမ်းမယ်</string>
+  <string name="MediaOverviewActivity_select_all">အားလုံးကို ရွေးမယ်</string>
+  <string name="MediaOverviewActivity_delete">ဖျက်မယ်</string>
   <string name="MediaOverviewActivity_file">ဖိုင်</string>
   <string name="MediaOverviewActivity_audio">အသံ</string>
   <string name="MediaOverviewActivity_video">ဗီဒီယို</string>
@@ -1207,6 +1212,7 @@
   <string name="SharedContactView_add_to_contacts">အဆက်အသွယ်များထဲသို့ ထည့်မည်</string>
   <string name="SharedContactView_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
   <string name="SharedContactView_message">Signal မက်ဆေ့ချ်</string>
+  <!--SignalBottomActionBar-->
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">နောက်မှ သင့်ကို ပြန်သတိပေးမည်။</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">မနက်ဖြန်မှ သင့်ကို ပြန်သတိပေးမည်။</string>
@@ -2848,7 +2854,11 @@
   <string name="SelectFeaturedBadgeFragment__preview">ကြိုတင်ကြည့်မယ်</string>
   <string name="SubscribeFragment__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <string name="SubscribeFragment__confirm">အတည်ပြုသည် </string>
+  <string name="SubscribeFragment__update">အပ်ဒိတ်မယ်</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ပြီးပါပြီ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+  <string name="Subscription__contact_support">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
+  <string name="SubscribeFragment__processing_payment">ငွေပေးချေမှု လုပ်ဆောင်နေသည်…</string>
+  <string name="DonationsErrors__payment_failed">ငွေပေးချေမှု မအောင်မြင်ပါ</string>
   <!--EOF-->
 </resources>

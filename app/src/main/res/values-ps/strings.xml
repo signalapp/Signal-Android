@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">دغه پیغام پاک شو.</string>
   <string name="ConversationItem_you_deleted_this_message">دا پیغام تاسې پاک کړ.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">خوندي ناسته بیرته تنظیمول غواړئ؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">که چیرته په محاوره کې ستونزې لری نو دا کېدای شي تاسې سره مرسته وکړي. ستاسې پیغامونه به خوندي وساتل شي.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">له سره تنظیمول</string> -->
   <string name="ConversationActivity_add_attachment">د ضمیمې اضافه کول</string>
   <string name="ConversationActivity_select_contact_info">د مخاطب معلومات وټاکئ</string>
   <string name="ConversationActivity_compose_message">پیغام ترتیب کړئ</string>
@@ -319,6 +316,17 @@
     <item quantity="one">محاوره انباکس ته ولیږدول شوه</item>
     <item quantity="other">محاورې انباکس ته %dولیږدول شوې</item>
   </plurals>
+  <string name="ConversationListFragment_read">لوستل</string>
+  <string name="ConversationListFragment_unread">نالوستل شوي</string>
+  <string name="ConversationListFragment_pin">Pin</string>
+  <string name="ConversationListFragment_unpin">له سنجاق څخه ایستل</string>
+  <string name="ConversationListFragment_mute">صامت</string>
+  <string name="ConversationListFragment_unmute">بیرته خلاصول</string>
+  <string name="ConversationListFragment_select">ټاکل</string>
+  <string name="ConversationListFragment_archive">ارشیف</string>
+  <string name="ConversationListFragment_unarchive">له ارشیف څخه ایستل</string>
+  <string name="ConversationListFragment_delete">پاکول</string>
+  <string name="ConversationListFragment_select_all">ټول وټاکئ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">د کلید د تبادلې پیغام</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">شبکه اې ډول لیدل</string>
   <string name="MediaOverviewActivity_List_view_description">د لیست په ډول لیدل</string>
   <string name="MediaOverviewActivity_Selected_description">ټاکل شوي</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">د %1$d توکی %2$s</item>
-    <item quantity="other">د %1$d توکي %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d توکی</item>
-    <item quantity="other">%1$d توکي</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">ثبت</string>
+  <string name="MediaOverviewActivity_select_all">ټول وټاکئ</string>
+  <string name="MediaOverviewActivity_delete">پاکول</string>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">اډیو</string>
   <string name="MediaOverviewActivity_video">ویډیو</string>
@@ -1346,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">مخاطبینو کې اضافه کول</string>
   <string name="SharedContactView_invite_to_signal">Signal ته رابلل</string>
   <string name="SharedContactView_message">د Signal پیغام</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">زیات</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">موږ به تاسې ته وروسته بیرته در په یاد کړو.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">موږ به تاسې ته سبا بیرته در په یاد کړو.</string>
@@ -1895,15 +1900,6 @@
   <string name="HelpFragment__debug_log">د ستونزې د هواري رپوټ:</string>
   <string name="HelpFragment__could_not_upload_logs">رپوټونه یې اپلوډ نشو کړای</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">د ستونزې په اړه د پوهیدو لپاره مهرباني وکړئ د امکان تر بریده پورې سهي تشریح راکړئ.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories">
-    <item>-مهرباني وکړئ یو غوراوئ وټاکئ -</item>
-    <item>کوم شی کار نه ورکوي</item>
-    <item>د فیچر غوښتنه</item>
-    <item>پوښتنه</item>
-    <item>فیډبک</item>
-    <item>نور</item>
-    <item>پرداختونه</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">دغه پیغام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تازه کارول شوي</string>
@@ -3269,6 +3265,7 @@
   <string name="SubscribeFragment__confirm">تایید</string>
   <string name="SubscribeFragment__update_subscription">ګډون اپډیټ کړئ</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">ستاسې ګډون لغوه شوی دی.</string>
+  <string name="SubscribeFragment__update">اپډیټ کول</string>
   <string name="Subscription__s_per_month">%s په میاشت کې</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s په میاشت کې. %2$s کې نوی کېږي</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal یو غیرانتفاعي پروګرام دی چې هېڅ اعلان ورکوونکی یا پانګه وال نه لري او یوازې د هغو کسانو له خوا چې کاروي یې او ورته ارزښت ورکوي، ساتل کېږي. هره میاشت خپله مرسته وکړئ او د خپل ملاتړ د ښودلو په خاطر د پروفایل بج تر لاسه کړئ.</string>
@@ -3298,5 +3295,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">که غواړئ چې له هغې تکنالوژۍ سره خپلې مرستې ته ادامه ورکړئ کوم چې ستاسې لپاره جوړه شوې ده - نه ستاسې د ډیټا لپاره - نو بیا د میاشتني ګډون وال کېدو په اړه غور وکړئ.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">یو ګډون وال واوسئ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">اوس نه</string>
+  <string name="Subscription__contact_support">مرستې سره اړیکه ونیسئ</string>
+  <string name="SubscribeFragment__processing_payment">پرداخت د پروسیس په حال کې دی…</string>
+  <string name="DonationsErrors__payment_failed">پرداخت تر سره نشو</string>
   <!--EOF-->
 </resources>

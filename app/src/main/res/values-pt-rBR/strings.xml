@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
   <string name="ConversationItem_you_deleted_this_message">Você apagou esta mensagem.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reiniciar</string> -->
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
   <string name="ConversationActivity_compose_message">Escrever mensagem</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
+  <string name="ConversationListFragment_read">Lida</string>
+  <string name="ConversationListFragment_unread">Não lida</string>
+  <string name="ConversationListFragment_pin">Fixar</string>
+  <string name="ConversationListFragment_unpin">Desafixar</string>
+  <string name="ConversationListFragment_mute">Silenciar</string>
+  <string name="ConversationListFragment_unmute">Reativar notificações</string>
+  <string name="ConversationListFragment_select">Selecionar</string>
+  <string name="ConversationListFragment_archive">Arquivar</string>
+  <string name="ConversationListFragment_unarchive">Desarquivar</string>
+  <string name="ConversationListFragment_delete">Remover</string>
+  <string name="ConversationListFragment_select_all">Selecionar tudo</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Visualização em tabela</string>
   <string name="MediaOverviewActivity_List_view_description">Visualização em lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selecionado</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d item %2$s</item>
-    <item quantity="other">%1$d itens %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d item</item>
-    <item quantity="other">%1$d itens</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Salvar</string>
+  <string name="MediaOverviewActivity_select_all">Selecionar tudo</string>
+  <string name="MediaOverviewActivity_delete">Remover</string>
   <string name="MediaOverviewActivity_file">Arquivo</string>
   <string name="MediaOverviewActivity_audio">Áudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -1346,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">Adicionar a Contatos</string>
   <string name="SharedContactView_invite_to_signal">Convidar para o Signal</string>
   <string name="SharedContactView_message">Mensagem no Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mais</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Nós te lembraremos outra vez mais tarde.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Nós te lembraremos outra vez amanhã.</string>
@@ -3246,9 +3251,13 @@
   <string name="SubscribeFragment__donation_amount">Valor da doação</string>
   <string name="SubscribeFragment__not_now">Agora não</string>
   <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeFragment__update">Atualizar</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Pronto</string>
   <string name="ManageDonationsFragment__badges">Selos</string>
   <string name="Boost__enter_custom_amount">Insira o valor</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
+  <string name="Subscription__contact_support">Entre em contato com o suporte</string>
+  <string name="SubscribeFragment__processing_payment">Processando o pagamento…</string>
+  <string name="DonationsErrors__payment_failed">Falha ao pagar</string>
   <!--EOF-->
 </resources>

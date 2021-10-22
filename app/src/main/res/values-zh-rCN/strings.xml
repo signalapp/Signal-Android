@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">消息已删除。</string>
   <string name="ConversationItem_you_deleted_this_message">您删除了此消息。</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">对话出现加密问题时，可尝试重置。重置不会删除你的消息。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">重置</string> -->
   <string name="ConversationActivity_add_attachment">添加附件</string>
   <string name="ConversationActivity_select_contact_info">选择联系人信息</string>
   <string name="ConversationActivity_compose_message">撰写消息</string>
@@ -305,6 +302,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已将 %d 个对话移至收件箱</item>
   </plurals>
+  <string name="ConversationListFragment_read">已读</string>
+  <string name="ConversationListFragment_unread">标为未读</string>
+  <string name="ConversationListFragment_pin">置顶</string>
+  <string name="ConversationListFragment_unpin">取消置顶</string>
+  <string name="ConversationListFragment_mute">静音</string>
+  <string name="ConversationListFragment_unmute">取消静音</string>
+  <string name="ConversationListFragment_select">选择</string>
+  <string name="ConversationListFragment_archive">存档</string>
+  <string name="ConversationListFragment_unarchive">取消存档</string>
+  <string name="ConversationListFragment_delete">删除</string>
+  <string name="ConversationListFragment_select_all">选择全部</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
   <!--ConversationListItemAction-->
@@ -749,12 +757,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">网格视图</string>
   <string name="MediaOverviewActivity_List_view_description">列表视图</string>
   <string name="MediaOverviewActivity_Selected_description">选中</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d 个条目 %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d 条目</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">保存</string>
+  <string name="MediaOverviewActivity_select_all">选择全部</string>
+  <string name="MediaOverviewActivity_delete">删除</string>
   <string name="MediaOverviewActivity_file">文件</string>
   <string name="MediaOverviewActivity_audio">音频</string>
   <string name="MediaOverviewActivity_video">视频</string>
@@ -1238,6 +1243,8 @@
   <string name="SharedContactView_add_to_contacts">添加到联系人</string>
   <string name="SharedContactView_invite_to_signal">邀请使用 Signal</string>
   <string name="SharedContactView_message">Signal 消息</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">更多</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">稍后提示。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">明天提示。</string>
@@ -3015,8 +3022,12 @@
   <string name="SubscribeFragment__donation_amount">捐赠金额</string>
   <string name="SubscribeFragment__not_now">稍后再说</string>
   <string name="SubscribeFragment__confirm">确认</string>
+  <string name="SubscribeFragment__update">更新</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
   <string name="Boost__enter_custom_amount">输入自定义金额</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍后再说</string>
+  <string name="Subscription__contact_support">联系支持</string>
+  <string name="SubscribeFragment__processing_payment">正在处理付款…</string>
+  <string name="DonationsErrors__payment_failed">付款失败</string>
   <!--EOF-->
 </resources>

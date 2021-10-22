@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">הודעה זו נמחקה.</string>
   <string name="ConversationItem_you_deleted_this_message">מחקת הודעה זו.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">לאפס שיח מאובטח?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ייתכן שזה יעזור אם אתה חווה בעיות הצפנה בשיחה זו. ההודעות שלך יישמרו.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">אפס</string> -->
   <string name="ConversationActivity_add_attachment">הוסף צרופה</string>
   <string name="ConversationActivity_select_contact_info">בחר מידע של איש קשר</string>
   <string name="ConversationActivity_compose_message">חבר הודעה</string>
@@ -341,6 +338,17 @@
     <item quantity="many">%d שיחות הועברו לתיבה הנכנסת</item>
     <item quantity="other">%d שיחות הועברו לתיבה הנכנסת</item>
   </plurals>
+  <string name="ConversationListFragment_read">נקרא</string>
+  <string name="ConversationListFragment_unread">לא נקרא</string>
+  <string name="ConversationListFragment_pin">הצמד</string>
+  <string name="ConversationListFragment_unpin">בטל הצמדה</string>
+  <string name="ConversationListFragment_mute">השתק</string>
+  <string name="ConversationListFragment_unmute">בטל השתקה</string>
+  <string name="ConversationListFragment_select">בחר</string>
+  <string name="ConversationListFragment_archive">ארכב</string>
+  <string name="ConversationListFragment_unarchive">הוצא מארכיון</string>
+  <string name="ConversationListFragment_delete">מחק</string>
+  <string name="ConversationListFragment_select_all">בחר הכל</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתחות</string>
   <!--ConversationListItemAction-->
@@ -879,18 +887,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">תצוגת סורג</string>
   <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
   <string name="MediaOverviewActivity_Selected_description">נבחר</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">פריט %1$d %2$s</item>
-    <item quantity="two">%1$d פריטים %2$s</item>
-    <item quantity="many">%1$d פריטים %2$s</item>
-    <item quantity="other">%1$d פריטים %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">פריט %1$d</item>
-    <item quantity="two">%1$d פריטים</item>
-    <item quantity="many">%1$d פריטים</item>
-    <item quantity="other">%1$d פריטים</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">שמור</string>
+  <string name="MediaOverviewActivity_select_all">בחר הכל</string>
+  <string name="MediaOverviewActivity_delete">מחק</string>
   <string name="MediaOverviewActivity_file">קובץ</string>
   <string name="MediaOverviewActivity_audio">שמע</string>
   <string name="MediaOverviewActivity_video">סרטון</string>
@@ -1474,6 +1473,8 @@
   <string name="SharedContactView_add_to_contacts">הוסף לאנשי קשר</string>
   <string name="SharedContactView_invite_to_signal">הזמן אל Signal</string>
   <string name="SharedContactView_message">הודעת Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">עוד</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">נזכיר לך שוב מאוחר יותר.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">נזכיר לך שוב מחר.</string>
@@ -3440,6 +3441,7 @@
   <string name="SubscribeFragment__confirm">אשר</string>
   <string name="SubscribeFragment__update_subscription">עדכן מינוי</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">המינוי שלך בוטל.</string>
+  <string name="SubscribeFragment__update">עדכן</string>
   <string name="Subscription__s_per_month">%s/חודש</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/חודש · מתחדש %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">למה לתרום?</string>
@@ -3457,5 +3459,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">התג שלך פג</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">הייה מנוי</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
+  <string name="Subscription__contact_support">צור קשר עם תמיכה</string>
+  <string name="SubscribeFragment__processing_payment">מעבד תשלום…</string>
+  <string name="DonationsErrors__payment_failed">תשלום נכשל</string>
   <!--EOF-->
 </resources>

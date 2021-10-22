@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <string name="ConversationItem_you_deleted_this_message">Izbrisali ste to sporočilo.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Ponastavi</string> -->
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o uporabniku/ci</string>
   <string name="ConversationActivity_compose_message">Sestavi sporočilo</string>
@@ -338,6 +335,15 @@
     <item quantity="few">%d pogovori premaknjeni v nabiralnik</item>
     <item quantity="other">%d pogovorov premaknjenih v nabiralnik</item>
   </plurals>
+  <string name="ConversationListFragment_read">Prebrano</string>
+  <string name="ConversationListFragment_unread">Neprebrano</string>
+  <string name="ConversationListFragment_mute">Utišaj</string>
+  <string name="ConversationListFragment_unmute">Prekini utišanje</string>
+  <string name="ConversationListFragment_select">Izberi</string>
+  <string name="ConversationListFragment_archive">Premakni v arhiv</string>
+  <string name="ConversationListFragment_unarchive">Od-arhiviraj</string>
+  <string name="ConversationListFragment_delete">Izbriši</string>
+  <string name="ConversationListFragment_select_all">Označi vse</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev</string>
   <!--ConversationListItemAction-->
@@ -876,18 +882,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Mrežni pogled</string>
   <string name="MediaOverviewActivity_List_view_description">Seznam</string>
   <string name="MediaOverviewActivity_Selected_description">Izbrano</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d predmet %2$s</item>
-    <item quantity="two">%1$d predmeta %2$s</item>
-    <item quantity="few">%1$d predmeti %2$s</item>
-    <item quantity="other">%1$d predmetov %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d predmet</item>
-    <item quantity="two">%1$d predmeta</item>
-    <item quantity="few">%1$d predmeti</item>
-    <item quantity="other">%1$d predmetov</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Shrani</string>
+  <string name="MediaOverviewActivity_select_all">Označi vse</string>
+  <string name="MediaOverviewActivity_delete">Izbriši</string>
   <string name="MediaOverviewActivity_file">Datoteka</string>
   <string name="MediaOverviewActivity_audio">Zvok</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1464,6 +1461,8 @@
   <string name="SharedContactView_add_to_contacts">Dodaj med stike</string>
   <string name="SharedContactView_invite_to_signal">Povabi k uporabi</string>
   <string name="SharedContactView_message">Sporočilo Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Več</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Čez nekaj časa vas bomo znova opozorili.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Jutri vas bomo znova opozorili.</string>
@@ -3300,8 +3299,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ImageView__badge">Značka</string>
   <string name="SubscribeFragment__not_now">Ne zdaj</string>
   <string name="SubscribeFragment__confirm">Potrdi</string>
+  <string name="SubscribeFragment__update">Posodobitev</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">OK</string>
   <string name="ManageDonationsFragment__badges">Značke</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
+  <string name="Subscription__contact_support">Kontaktiraj center za podporo</string>
   <!--EOF-->
 </resources>

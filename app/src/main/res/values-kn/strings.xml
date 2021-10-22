@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationItem_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಮರು ಪ್ರಾರಂಭಿಸಿ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ನೀವು ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಸಮಸ್ಯೆಗಳನ್ನು ಹೊಂದಿದ್ದಲ್ಲಿ ಇದು ಸಹಾಯ ಮಾಡಬಹುದು. ನಿಮ್ಮ ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲಾಗುವುದು.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">ಮರುಹೊಂದಿಸಿ</string> -->
   <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="ConversationActivity_select_contact_info">ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="ConversationActivity_compose_message">ಸಂದೇಶ ರಚಿಸಿ</string>
@@ -321,6 +318,17 @@
     <item quantity="one">ಸಂಭಾಷಣೆಯನ್ನು ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಸರಿಸಲಾಗಿದೆ</item>
     <item quantity="other"> %d  ಸಂಭಾಷಣೆಗಳನ್ನು ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಸರಿಸಲಾಗಿದೆ</item>
   </plurals>
+  <string name="ConversationListFragment_read">ಓದಿ</string>
+  <string name="ConversationListFragment_unread">ಓದದಿರುವುದು</string>
+  <string name="ConversationListFragment_pin">ಪಿನ್</string>
+  <string name="ConversationListFragment_unpin">ಅನ್‌ಪಿನ್ ಮಾಡು</string>
+  <string name="ConversationListFragment_mute">ಮ್ಯೂಟ್ ಮಾಡಿ</string>
+  <string name="ConversationListFragment_unmute">ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ</string>
+  <string name="ConversationListFragment_select">ಆಯ್ಕೆ ಮಾಡಿ</string>
+  <string name="ConversationListFragment_archive">ಆರ್ಕೈವ್ ಮಾಡಿ</string>
+  <string name="ConversationListFragment_unarchive">ಆರ್ಕೈವ್ ತೆಗೆಯಿರಿ</string>
+  <string name="ConversationListFragment_delete">ಅಳಿಸು</string>
+  <string name="ConversationListFragment_select_all">ಎಲ್ಲಾ ಆಯ್ಕೆಮಾಡಿ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ಕೀ ವಿನಿಮಯ ಸಂದೇಶ</string>
   <!--ConversationListItemAction-->
@@ -798,14 +806,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">ಗ್ರಿಡ್ ವ್ಯೂ</string>
   <string name="MediaOverviewActivity_List_view_description">ಲಿಸ್ಟ್ ವ್ಯೂ</string>
   <string name="MediaOverviewActivity_Selected_description">ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d ಐಟಂ %2$s</item>
-    <item quantity="other">%1$d  ವಸ್ತುಗಳು %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d ಐಟಂ</item>
-    <item quantity="other">%1$d ಐಟಂಗಳು</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">ಉಳಿಸಿ</string>
+  <string name="MediaOverviewActivity_select_all">ಎಲ್ಲಾ ಆಯ್ಕೆಮಾಡಿ</string>
+  <string name="MediaOverviewActivity_delete">ಅಳಿಸು</string>
   <string name="MediaOverviewActivity_file">ಫೈಲ್</string>
   <string name="MediaOverviewActivity_audio">ಆಡಿಯೊ</string>
   <string name="MediaOverviewActivity_video">ವೀಡಿಯೊ</string>
@@ -1309,6 +1312,8 @@
   <string name="SharedContactView_add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸಿ</string>
   <string name="SharedContactView_invite_to_signal">Signalಗೆ ಆಮಂತ್ರಿಸಿ</string>
   <string name="SharedContactView_message">Signal ಸಂದೇಶ</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">ಇನ್ನಷ್ಟು</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">ನಾವು ನಂತರ ಮತ್ತೊಮ್ಮೆ ನಿಮಗೆ ಇದನ್ನು ನೆನಪಿಸುತ್ತೇವೆ.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">ನಾಳೆ ಮತ್ತೊಮ್ಮೆ ಇದನ್ನು ನಾವು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
@@ -3121,8 +3126,12 @@
   <string name="SubscribeFragment__donation_amount">ಕೊಡುಗೆಯ ಮೊತ್ತ</string>
   <string name="SubscribeFragment__not_now">ಈಗಲ್ಲ</string>
   <string name="SubscribeFragment__confirm">ದೃಢೀಕರಿಸಿ</string>
+  <string name="SubscribeFragment__update">ನವೀಕರಿಸಿ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ಮುಗಿದಿದೆ</string>
   <string name="Boost__enter_custom_amount">ಕಸ್ಟಮ್‌ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ಈಗಲ್ಲ</string>
+  <string name="Subscription__contact_support">ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
+  <string name="SubscribeFragment__processing_payment">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+  <string name="DonationsErrors__payment_failed">ಪೇಮೆಂಟ್ ವಿಫಲವಾಗಿದೆ</string>
   <!--EOF-->
 </resources>

@@ -185,9 +185,6 @@
   <string name="ConversationItem_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ConversationItem_you_deleted_this_message">Je hebt dit bericht gewist.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie vernieuwen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Opnieuw opzetten</string> -->
   <string name="ConversationActivity_add_attachment">Bijlage toevoegen</string>
   <string name="ConversationActivity_select_contact_info">Tik op contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
@@ -320,6 +317,17 @@
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
     <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
   </plurals>
+  <string name="ConversationListFragment_read">Gelezen</string>
+  <string name="ConversationListFragment_unread">Voor mij markeren als ongelezen</string>
+  <string name="ConversationListFragment_pin">Vastprikken</string>
+  <string name="ConversationListFragment_unpin">Maak los</string>
+  <string name="ConversationListFragment_mute">Dempen</string>
+  <string name="ConversationListFragment_unmute">Niet langer dempen</string>
+  <string name="ConversationListFragment_select">Selecteren</string>
+  <string name="ConversationListFragment_archive">Gesprek archiveren</string>
+  <string name="ConversationListFragment_unarchive">Dearchiveren</string>
+  <string name="ConversationListFragment_delete">Gesprek wissen</string>
+  <string name="ConversationListFragment_select_all">Alles selecteren</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
   <!--ConversationListItemAction-->
@@ -801,14 +809,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasterweergave</string>
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d item %2$s</item>
-    <item quantity="other">%1$d items %2$s</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d item</item>
-    <item quantity="other">%1$d items</item>
-  </plurals> -->
+  <string name="MediaOverviewActivity_save">Opslaan</string>
+  <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
+  <string name="MediaOverviewActivity_delete">Gesprek wissen</string>
   <string name="MediaOverviewActivity_file">Bestand</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1350,6 +1353,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SharedContactView_add_to_contacts">Aan contactenlijst toevoegen</string>
   <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
   <string name="SharedContactView_message">Signal-gesprek openen</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Meer reacties weergeven</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Correct! Signal zal je later opnieuw vragen of je je pincode nog weet.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Correct! Signal zal je morgen opnieuw vragen of je je pincode nog weet.</string>
@@ -3264,6 +3269,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubscribeFragment__confirm">Bevestigen</string>
   <string name="SubscribeFragment__update_subscription">Maandelijkse donatie bijwerken</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donatie is geannuleerd.</string>
+  <string name="SubscribeFragment__update">Bijwerken</string>
   <string name="Subscription__s_per_month">%s/maand</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakts door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge om—als je dat wilt—te laten zien dat je Signal ondersteunt.</string>
@@ -3293,5 +3299,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Als je door wilt gaan met het ondersteunen van technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—overweeg dan om maandelijks te doneren.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Wordt een maandelijkse ondersteuner</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
+  <string name="Subscription__contact_support">Neem contact op met ondersteuning</string>
+  <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
+  <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string>
   <!--EOF-->
 </resources>
