@@ -327,6 +327,10 @@
   <string name="ConversationListFragment_unarchive">Ophæv arkivering</string>
   <string name="ConversationListFragment_delete">Slet</string>
   <string name="ConversationListFragment_select_all">Vælg alle</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d valgt</item>
+    <item quantity="other">%d valgte</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøgleudvekslingsbesked</string>
   <!--ConversationListItemAction-->
@@ -810,6 +814,10 @@
   <string name="MediaOverviewActivity_save">Gem</string>
   <string name="MediaOverviewActivity_select_all">Vælg alle</string>
   <string name="MediaOverviewActivity_delete">Slet</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d valgt (%2$s)</item>
+    <item quantity="other">%1$d valgte (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1899,6 +1907,16 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Vælg en mulighed --</item>
+    <item>Noget virker ikke</item>
+    <item>Anmodning om funktion</item>
+    <item>Spørgsmål</item>
+    <item>Feedback</item>
+    <item>Andet</item>
+    <item>Betalinger (MobileCoin)</item>
+    <item>Donationer (Bidragsydere &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -2038,7 +2056,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__read_receipts">Læsekvitteringer</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læsekvitteringer er deaktiveret, vil du heller ikke kunne se læsekvitteringer fra andre.</string>
   <string name="preferences__typing_indicators">Skriveindikatorer</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktiveret, er det heller ikke muligt at se når andre skriver.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktiveret, vil du heller ikke kunne se når andre skriver.</string>
   <string name="preferences__request_keyboard_to_disable">Anmod tastatur om at deaktivere personlig læring.</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Denne indstilling er ikke en garanti, og dit tastatur ignorerer den muligvis.</string>
   <string name="preferences_app_protection__blocked_users">Blokerede brugere</string>
@@ -3264,9 +3282,12 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeFragment__confirm">Bekræft</string>
   <string name="SubscribeFragment__update_subscription">Opdater abonnement</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dit abonnement er blevet opsagt.</string>
+  <string name="SubscribeFragment__update_subscription_question">Opdater abonnement?</string>
   <string name="SubscribeFragment__update">Opdatér</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du vil blive opkrævet det fulde beløb for det nye abonnement i dag. Dit abonnement fornyes %1$s.</string>
   <string name="Subscription__s_per_month">%s/måned</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/måned · Fornyes %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/måned · Udløber %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Hvorfor bidrage?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Teamet hos Signal er dedikeret til missionen om at udvikle open source privatlivsteknologi, der beskytter ytringsfriheden og gør sikker global kommunikation mulig. Dit bidrag støtter denne sag. Ingen annoncer. Ingen trackere. Ikke for sjov.</string>
@@ -3277,6 +3298,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gør til fremhævet emblem</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Udført</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mere end ét emblem, kan du udvælge ét af dem til at blive vist på din profil.</string>
   <string name="ManageDonationsFragment__my_support">Min støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Administrer abonnement</string>
   <string name="ManageDonationsFragment__badges">Emblemer</string>
@@ -3294,8 +3316,18 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Overvej at tegne et månedsabonnement for forsat at støtte op om teknologi, der er udviklet til dig - ikke for at høste dine data.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bliv abonnent</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
+  <string name="Subscription__verification_failed">Bekræftelse af abonnement mislykkedes</string>
+  <string name="Subscription__please_contact_support_for_more_information">Kontakt venligst support for at få mere information.</string>
   <string name="Subscription__contact_support">Kontakt Support</string>
+  <string name="Subscription__earn_a_s_badge">Opnå ret til et %1$s-emblem </string>
   <string name="SubscribeFragment__processing_payment">Bearbejder betaling…</string>
   <string name="DonationsErrors__payment_failed">Betaling fejlede</string>
+  <string name="DonationsErrors__your_payment">Din betaling kunne ikke gennemføres, og du er ikke blevet opkrævet. Prøv venligst igen.</string>
+  <string name="DonationsErrors__redemption_still_pending">Indløsning afventer stadig</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kan måske ikke se dit emblem med det samme, men vi arbejder på det!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ikke tilgængelig</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du skal konfigurere Google Pay for at kunne donere i appen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Opsigelse af abonnementet mislykkedes</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Opsigelse af abonnement kræver en internetforbindelse.</string>
   <!--EOF-->
 </resources>

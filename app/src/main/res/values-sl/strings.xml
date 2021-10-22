@@ -337,6 +337,8 @@
   </plurals>
   <string name="ConversationListFragment_read">Prebrano</string>
   <string name="ConversationListFragment_unread">Neprebrano</string>
+  <string name="ConversationListFragment_pin">Pripni</string>
+  <string name="ConversationListFragment_unpin">Odpni</string>
   <string name="ConversationListFragment_mute">Utišaj</string>
   <string name="ConversationListFragment_unmute">Prekini utišanje</string>
   <string name="ConversationListFragment_select">Izberi</string>
@@ -344,6 +346,12 @@
   <string name="ConversationListFragment_unarchive">Od-arhiviraj</string>
   <string name="ConversationListFragment_delete">Izbriši</string>
   <string name="ConversationListFragment_select_all">Označi vse</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d izbran</item>
+    <item quantity="two">%d izbrana</item>
+    <item quantity="few">%d izbrani</item>
+    <item quantity="other">%d izbranih</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev</string>
   <!--ConversationListItemAction-->
@@ -885,6 +893,12 @@
   <string name="MediaOverviewActivity_save">Shrani</string>
   <string name="MediaOverviewActivity_select_all">Označi vse</string>
   <string name="MediaOverviewActivity_delete">Izbriši</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d izbran (%2$s)</item>
+    <item quantity="two">%1$d izbrana (%2$s)</item>
+    <item quantity="few">%1$d izbrani (%2$s)</item>
+    <item quantity="other">%1$d izbranih (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Datoteka</string>
   <string name="MediaOverviewActivity_audio">Zvok</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -2032,6 +2046,16 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Prosimo izberite eno možnost --</item>
+    <item>Nekaj ne deluje</item>
+    <item>Predlog za novo funkcijo</item>
+    <item>Vprašanje</item>
+    <item>Odziv</item>
+    <item>Druigo</item>
+    <item>Plačila (MobileCoin)</item>
+    <item>Donacije (Sustainers &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -2130,6 +2154,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__help">Pomoč</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Podprite Signal</string>
+  <string name="preferences__subscription">Naročnina</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Zasebnost</string>
   <string name="preferences__mms_user_agent">Uporabniški posrednik MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Ročne nastavitve MMS</string>
@@ -2283,6 +2309,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Plačila v vaši regiji niso na voljo.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Plačil ni bilo mogoče vključiti. Poskusite znova kasneje.</string>
   <string name="PaymentsHomeFragment__continue">Nadaljuj</string>
+  <string name="PaymentsHomeFragment__payment_failed">Plačilo ni uspelo</string>
   <string name="PaymentsHomeFragment__details">Podrobnosti</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Dodaj sredstva</string>
@@ -2291,6 +2318,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Obdelava plačila …</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Plačilo ni uspelo</string>
   <string name="PaymentsDetailsFragment__to">Naslovnik</string>
   <string name="PaymentsDetailsFragment__from">Pošiljatelj</string>
   <string name="PaymentsDetailsFragment__sent_payment">Poslano plačilo</string>
@@ -2316,6 +2345,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Naslovnik</string>
+  <string name="ConfirmPayment__processing_payment">Obdelava plačila …</string>
+  <string name="ConfirmPayment__payment_failed">Plačilo ni uspelo</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <!--****************************************-->
@@ -3073,6 +3104,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__copyright_signal_messenger">Vse pravice Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Pod licenco GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kvaliteta medisjkih datotek</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvaliteta poslanih medijskih datotek</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Pošiljanje medijskih datotek boljše kvalitete porabi več podatkov.</string>
   <string name="DataAndStorageSettingsFragment__high">Visoka</string>
   <string name="DataAndStorageSettingsFragment__standard">Standardna</string>
   <string name="DataAndStorageSettingsFragment__calls">Klici</string>
@@ -3268,6 +3302,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MediaReviewFragment__add_a_reply">Dodaj odgovor</string>
   <string name="MediaReviewFragment__send_to">Poslano uporabniku/ci</string>
   <string name="MediaReviewFragment__view_once_message">Enkratni ogled sporočila</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">En ali več predmetov je bilo prevelikih</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">En ali več predmetov je bilo neveljavnih</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Preveč izbranih predmetov</string>
   <string name="ImageEditorHud__cancel">Prekliči</string>
   <string name="ImageEditorHud__draw">Riši</string>
   <string name="ImageEditorHud__write_text">Dodaj tekst</string>
@@ -3297,12 +3334,63 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Posodobitev profila ni uspela</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postani podpornik</string>
   <string name="ImageView__badge">Značka</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal podpirajo ljudje kot ste vi.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podprite tehnologijo, ki je bila izdelana za vas -- ne za vaše osebne podatke -- in se pridružite skupnosti podpornikov.</string>
+  <string name="SubscribeFragment__donation_amount">Znesek podpore</string>
+  <string name="SubscribeFragment__more_payment_options">Več opcij za plačilo</string>
+  <string name="SubscribeFragment__cancel_subscription">Prekini naročnino</string>
+  <string name="SubscribeFragment__confirm_cancellation">Res želite prekiniti svojo naročnino?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Nova naročnina vam ne bo zaračunana. Bedž bo izginil z vašega profila ob koncu naročniškega obdobja.</string>
   <string name="SubscribeFragment__not_now">Ne zdaj</string>
   <string name="SubscribeFragment__confirm">Potrdi</string>
+  <string name="SubscribeFragment__update_subscription">Posodobitev naročnine</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaša naročnina je bila prekinjena.</string>
+  <string name="SubscribeFragment__update_subscription_question">Želite posodobiti naročnino?</string>
   <string name="SubscribeFragment__update">Posodobitev</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Zaračunan vam bo celoten znesek nove naročnine. Vaša naročnina bo obnovoljena %1$s.</string>
+  <string name="Subscription__s_per_month">%s/mesečno</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesečno · Obnovitev: %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mesec · Poteče %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija, brez podpore oglaševalcev ali vlagateljev, financirajo jo zgolj običajni ljudje, ki jo cenijo. Odločite se za mesečno podporo Signalu in prejmite bedž podpornika, ki bo viden na vašem profilu.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zakaj prispevati?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Ekipa Signala je predana razvoju odprtokodne tehnologije s poudarkom na zasebnosti, ki ščiti svobodo izražanja in omogoča varne globalne komunikacije. Vaš doprinos bo namenjen k temu cilju. Nič reklam. Nič sledenja. Brez heca!</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">S svojim prispevkom nam boste pomagali pri razvoju, najemu strežnikov in pasovne širine za aplikacijo, ki jo uporabljajo milijoni po svetu za zasebno in hipno komunikacijo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala za vašo podporo!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Prislužili ste sibedž %s! Vaš bedž bo kazal ljudem s katerimi komunicirate, da podpirate Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikazuj na profilu</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Izpostavi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">OK</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Če imate več kot en bedž, lahko enega izberete za prikaz na vašem profilu.</string>
+  <string name="ManageDonationsFragment__my_support">Moja podpora</string>
+  <string name="ManageDonationsFragment__manage_subscription">Upravljanje naročnine</string>
   <string name="ManageDonationsFragment__badges">Značke</string>
+  <string name="ManageDonationsFragment__subscription_faq">Pogosta vprašanja o naročnini</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Napaka pri uveljavitvi naročnine.</string>
+  <string name="BoostFragment__give_signal_a_boost">Daj Signalu spodbudo</string>
+  <string name="BoostFragment__say_thanks_and_earn">Recite \"Hvala!\" in si za %1$d dni prislužite bedž podpornika.</string>
+  <string name="Boost__enter_custom_amount">Vnesite znesek po vašem izboru</string>
+  <string name="Boost__one_time_contribution">Enkratna podpora</string>
+  <string name="MySupportPreference__add_a_signal_boost">Dodaj Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/mesečno</string>
+  <string name="MySupportPreference__renews_s">Obnovitev naročnine: %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaš bedž je potekel</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Vaš bedž %1$s je potekel in ni več viden drugim na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Za nadaljno podporo tehnologiji, ki je bila izdelana za vas -- ne za vaše osebne podatke --, premislite o morebitnem mesečnem prispevku.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite podpornik</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
+  <string name="Subscription__verification_failed">Preverjanje naročnine ni bilo uspešno</string>
+  <string name="Subscription__please_contact_support_for_more_information">Za več informacij se obrnite na podporo uporabnikom.</string>
   <string name="Subscription__contact_support">Kontaktiraj center za podporo</string>
+  <string name="Subscription__earn_a_s_badge">Prisluži si bedž %1$s</string>
+  <string name="SubscribeFragment__processing_payment">Obdelava plačila …</string>
+  <string name="DonationsErrors__payment_failed">Plačilo ni uspelo</string>
+  <string name="DonationsErrors__your_payment">Vaše plačilo ni moglo biti obdelano, zato vam znesek ni bil zaračunan. Prosimo poskusite znova.</string>
+  <string name="DonationsErrors__redemption_still_pending">Vnovčenje v teku</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Mogoče takoj še ne boste videli svojega bedža, a delamo na tem!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ni na voljo</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Če želite donirati znotraj aplikacije, si morate najprej nastaviti Google Pay.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Prekinitev naročnine ni bila uspešna</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Prekinitev naročnine zahteva povezavo z internetom.</string>
   <!--EOF-->
 </resources>

@@ -305,8 +305,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 個對話已移動到收件匣</item>
   </plurals>
-  <string name="ConversationListFragment_read">已讀取</string>
-  <string name="ConversationListFragment_unread">標記為未讀</string>
+  <string name="ConversationListFragment_read">已讀</string>
+  <string name="ConversationListFragment_unread">未讀</string>
   <string name="ConversationListFragment_pin">釘選</string>
   <string name="ConversationListFragment_unpin">取消釘選</string>
   <string name="ConversationListFragment_mute">靜音</string>

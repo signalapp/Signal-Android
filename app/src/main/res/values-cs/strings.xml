@@ -349,6 +349,12 @@
   <string name="ConversationListFragment_unarchive">Zrušit archivaci</string>
   <string name="ConversationListFragment_delete">Smazat</string>
   <string name="ConversationListFragment_select_all">Vybrat vše</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d vybrán</item>
+    <item quantity="few">%d vybráno</item>
+    <item quantity="many">%d vybráno</item>
+    <item quantity="other">%d vybráno</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Zpráva o výměně klíčů</string>
   <!--ConversationListItemAction-->

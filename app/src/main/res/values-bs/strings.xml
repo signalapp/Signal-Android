@@ -328,12 +328,21 @@
     <item quantity="other">%d konverzacija premješteno u inbox</item>
   </plurals>
   <string name="ConversationListFragment_read">Pročitano</string>
+  <string name="ConversationListFragment_unread">Nepročitano</string>
+  <string name="ConversationListFragment_pin">Istakni</string>
+  <string name="ConversationListFragment_unpin">Prestani isticati</string>
   <string name="ConversationListFragment_mute">Stišaj</string>
   <string name="ConversationListFragment_unmute">Isključi stišavanje</string>
+  <string name="ConversationListFragment_select">Odaberi</string>
   <string name="ConversationListFragment_archive">Arhiviraj</string>
   <string name="ConversationListFragment_unarchive">Dearhiviraj</string>
   <string name="ConversationListFragment_delete">Izbriši</string>
   <string name="ConversationListFragment_select_all">Odaberi sve</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d odabrana</item>
+    <item quantity="few">%d odabrane</item>
+    <item quantity="other">%d odabrano</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
   <!--ConversationListItemAction-->
@@ -846,6 +855,11 @@
   <string name="MediaOverviewActivity_save">Pohrani</string>
   <string name="MediaOverviewActivity_select_all">Odaberi sve</string>
   <string name="MediaOverviewActivity_delete">Izbriši</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d odabrana (%2$s)</item>
+    <item quantity="few">%1$d odabrane (%2$s)</item>
+    <item quantity="other">%1$d odabrano (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Datoteka</string>
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1408,6 +1422,7 @@
   <string name="SharedContactView_invite_to_signal">Pozovite na Signal</string>
   <string name="SharedContactView_message">Signal poruka</string>
   <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Više</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Podsjetit ćemo Vas kasnije.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Podsjetit ćemo Vas sutra.</string>
@@ -1968,6 +1983,16 @@
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Izaberite stavku --</item>
+    <item>Nešto ne funkcioniše</item>
+    <item>Zahtjev za novim funkcijama</item>
+    <item>Pitanje</item>
+    <item>Povratna informacija</item>
+    <item>Drugo</item>
+    <item>Plaćanja (MobileCoin)</item>
+    <item>Donacije (održavatelji i pojačivači Signala)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
@@ -3355,9 +3380,12 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SubscribeFragment__confirm">Potvrdi</string>
   <string name="SubscribeFragment__update_subscription">Ažuriraj pretplatu</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaša je pretplata otkazana.</string>
+  <string name="SubscribeFragment__update_subscription_question">Ažurirati pretplatu?</string>
   <string name="SubscribeFragment__update">Ažuriraj</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Puni iznos cijene Vaše nove pretplate bit će naplaćen danas. Vaša pretplata obnavlja se %1$s.</string>
   <string name="Subscription__s_per_month">%s/mjesecu</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mjesecu · obnavlja se %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mjesecu · Ističe %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija koja se ne finansira reklamama i investicijama, već je održavaju osobe koje koriste aplikaciju i cijene je. Dajte mjesečni doprinos i primite značku za svoj profil koja pokazuje Vašu podršku.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zašto se pretplatiti?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim koji stoji iza Signala predan je misiji razvoja tehnologije otvorenog kōda koja štiti privatnost i slobodu izražavanja i koja omogućava sigurnu globalnu komunikaciju. Vaš doprinos održava tu misiju. Bez reklama. Bez uhođenja. Bez zezanja.</string>
@@ -3368,6 +3396,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži na profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Odredi za odabranu značku</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Uredu</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kad posjedujete više od jedne značke, možete birati koju od njih želite prezentovati drugima na svom profilu.</string>
   <string name="ManageDonationsFragment__my_support">Moja podrška</string>
   <string name="ManageDonationsFragment__manage_subscription">Upravljaj pretplatom</string>
   <string name="ManageDonationsFragment__badges">Značke</string>
@@ -3385,8 +3414,17 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Da nastavite podržavati tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – razmislite o tome da postanete mjesečni pretplatnik.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite pretplatnik</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
+  <string name="Subscription__verification_failed">Ovjera pretplate nije uspjela</string>
+  <string name="Subscription__please_contact_support_for_more_information">Molimo kontaktirajte podršku za više informacija.</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
+  <string name="Subscription__earn_a_s_badge">Zaslužite %1$s značku</string>
   <string name="SubscribeFragment__processing_payment">Obrađujem…</string>
   <string name="DonationsErrors__payment_failed">Plaćanje nije uspjelo</string>
+  <string name="DonationsErrors__your_payment">Vašu uplatu nije bilo moguće obraditi i iznos nije naplaćen. Molimo, pokušajte ponovo.</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možda nećete odmah vidjeti svoju značku, ali radimo na tome!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay nedostupan</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Morate podesiti Google Pay da biste donirali kroz aplikaciju.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Neuspjelo otkazivanje pretplate</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Otkazivanje pretplate traži internet-konekciju.</string>
   <!--EOF-->
 </resources>

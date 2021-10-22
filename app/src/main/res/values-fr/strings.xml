@@ -327,6 +327,10 @@
   <string name="ConversationListFragment_unarchive">Désarchiver</string>
   <string name="ConversationListFragment_delete">Supprimer</string>
   <string name="ConversationListFragment_select_all">Tout sélectionner</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%dsélectionnée</item>
+    <item quantity="other">%d sélectionnées</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Message d’échange de clés</string>
   <!--ConversationListItemAction-->

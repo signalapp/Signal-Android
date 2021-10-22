@@ -318,12 +318,20 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
     <item quantity="other">Flytta %d samtalar til innboks</item>
   </plurals>
   <string name="ConversationListFragment_read">Lese</string>
+  <string name="ConversationListFragment_unread">Ulese</string>
+  <string name="ConversationListFragment_pin">Fest</string>
+  <string name="ConversationListFragment_unpin">Ikkje fest</string>
   <string name="ConversationListFragment_mute">Demp</string>
   <string name="ConversationListFragment_unmute">Vis varsel</string>
+  <string name="ConversationListFragment_select">Vel</string>
   <string name="ConversationListFragment_archive">Arkiver</string>
   <string name="ConversationListFragment_unarchive">Angra arkivering</string>
   <string name="ConversationListFragment_delete">Slett</string>
   <string name="ConversationListFragment_select_all">Vel alle</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d vald</item>
+    <item quantity="other">%d valde</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <!--ConversationListItemAction-->
@@ -811,6 +819,10 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MediaOverviewActivity_save">Lagra</string>
   <string name="MediaOverviewActivity_select_all">Vel alle</string>
   <string name="MediaOverviewActivity_delete">Slett</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d vald (%2$s)</item>
+    <item quantity="other">%1$d valde (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1900,6 +1912,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Klarte ikkje lasta opp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Vel eit alternativ --</item>
+    <item>Noko fungerer ikkje</item>
+    <item>Forslag til funksjonalitet</item>
+    <item>Spørsmål</item>
+    <item>Tilbakemelding</item>
+    <item>Anna</item>
+    <item>Betalingar (MobileCoin) </item>
+    <item>Donasjonar (Bidragsytarar &amp; Signal-auke) </item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldinga</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyleg brukt</string>
@@ -3275,9 +3297,12 @@ Sjekkar igjen no …</string>
   <string name="SubscribeFragment__confirm">Stadfest</string>
   <string name="SubscribeFragment__update_subscription">Oppdater abonnement</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonnementet ditt er avslutta.</string>
+  <string name="SubscribeFragment__update_subscription_question">Oppdater abonnement?</string>
   <string name="SubscribeFragment__update">Oppdater</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Heile beløpet for det nye abonnementet blir trekt i dag. Abonnementet blir fornya %1$s.</string>
   <string name="Subscription__s_per_month">%s/månad</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Fornyar %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Går ut %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er ein ideell organisasjon utan reklame eller investorar, berre finansiert av dei som bruker og verdset det. Gje eit månadleg bidrag og få eit profilmerke som viser at du støtter Signal.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kvifor bidra?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Utviklarane av Signal er dedikerte til å laga personvernteknologi med open kjelde som vernar om ytringsfridom og støttar trygg, global kommunikasjon. Ditt bidrag går mot dette formålet. Ingen reklame. Ingen sporing. Ikkje noko tull.</string>
@@ -3288,6 +3313,7 @@ Sjekkar igjen no …</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profilen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Lag eit merke å visa fram</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har meir enn eitt merke, kan du velja kva for eitt som skal visast på profilen.</string>
   <string name="ManageDonationsFragment__my_support">Mi støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Handter abonnement</string>
   <string name="ManageDonationsFragment__badges">Merke</string>
@@ -3305,8 +3331,18 @@ Sjekkar igjen no …</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Vurder eit månadleg bidrag for å fortsetja å støtta teknologi som er bygd for deg – og ikkje berre for dine data.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli abonnent</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
+  <string name="Subscription__verification_failed">Klarte ikkje stadfesta abonnementet</string>
+  <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med brukarstøtte for meir informasjon.</string>
   <string name="Subscription__contact_support">Kontakt brukarstøtte</string>
+  <string name="Subscription__earn_a_s_badge">Få eit %1$s-merke</string>
   <string name="SubscribeFragment__processing_payment">Behandlar betaling …</string>
   <string name="DonationsErrors__payment_failed">Feil ved betaling</string>
+  <string name="DonationsErrors__your_payment">Klarte ikkje prosessera betalinga di og beløpet har ikkje blitt trekt. Prøv igjen.</string>
+  <string name="DonationsErrors__redemption_still_pending">Tilbakebetaling på veg</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du ser kanskje ikkje merket umiddelbart, men me jobbar med det!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay er utilgjengeleg</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du må setja opp Google Pay for å donera frå appen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Klarte ikkje avslutta abonnementet</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Du må vera på nett for å avslutta abonnementet.</string>
   <!--EOF-->
 </resources>

@@ -349,6 +349,12 @@
   <string name="ConversationListFragment_unarchive">Vybrať z archívu</string>
   <string name="ConversationListFragment_delete">Vymazať</string>
   <string name="ConversationListFragment_select_all">Označiť všetko</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d vybrané</item>
+    <item quantity="few">%d vybraných</item>
+    <item quantity="many">%d vybraných</item>
+    <item quantity="other">%d vybraných</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
   <!--ConversationListItemAction-->
@@ -890,6 +896,12 @@
   <string name="MediaOverviewActivity_save">Uložiť</string>
   <string name="MediaOverviewActivity_select_all">Označiť všetko</string>
   <string name="MediaOverviewActivity_delete">Vymazať</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d vybrané (%2$s)</item>
+    <item quantity="few">%1$d vybraných (%2$s)</item>
+    <item quantity="many">%1$d vybraných (%2$s)</item>
+    <item quantity="other">%1$d vybraných (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Súbor</string>
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>

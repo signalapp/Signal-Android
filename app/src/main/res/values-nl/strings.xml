@@ -328,6 +328,10 @@
   <string name="ConversationListFragment_unarchive">Dearchiveren</string>
   <string name="ConversationListFragment_delete">Gesprek wissen</string>
   <string name="ConversationListFragment_select_all">Alles selecteren</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d geselecteerd</item>
+    <item quantity="other">%d geselecteerd</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
   <!--ConversationListItemAction-->
@@ -812,6 +816,10 @@
   <string name="MediaOverviewActivity_save">Opslaan</string>
   <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
   <string name="MediaOverviewActivity_delete">Gesprek wissen</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d geselecteerd (%2$s)</item>
+    <item quantity="other">%1$d geselecteerd (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Bestand</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1354,7 +1362,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
   <string name="SharedContactView_message">Signal-gesprek openen</string>
   <!--SignalBottomActionBar-->
-  <string name="SignalBottomActionBar_more">Meer reacties weergeven</string>
+  <string name="SignalBottomActionBar_more">Meer opties weergeven</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Correct! Signal zal je later opnieuw vragen of je je pincode nog weet.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Correct! Signal zal je morgen opnieuw vragen of je je pincode nog weet.</string>
@@ -1904,6 +1912,16 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Maak een keuze --</item>
+    <item>Er werkt iets niet zoals het hoort</item>
+    <item>Verzoek voor nieuwe functionaliteit</item>
+    <item>Vraag</item>
+    <item>Terugkoppeling</item>
+    <item>Iets anders</item>
+    <item>Overschrijvingen (MobileCoin)</item>
+    <item>Donaties (maandelijks of eenmalig)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -3269,9 +3287,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubscribeFragment__confirm">Bevestigen</string>
   <string name="SubscribeFragment__update_subscription">Maandelijkse donatie bijwerken</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donatie is geannuleerd.</string>
+  <string name="SubscribeFragment__update_subscription_question">Maandelijkse donatie aanpassen?</string>
   <string name="SubscribeFragment__update">Bijwerken</string>
   <string name="Subscription__s_per_month">%s/maand</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakts door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge om—als je dat wilt—te laten zien dat je Signal ondersteunt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Het Signal team heeft zich toegewijd tot het ontwikkelen van technologieën met open broncode waarmee de vrijheid van meningsuiting en wereldwijde beveiligde communicatie mogelijk worden gemaakt. Jou bijdrage helpt dat mogelijk te maken. We doen dit zonder advertenties en zonder volgers die je gegevens verzamelen.</string>
@@ -3300,6 +3320,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Wordt een maandelijkse ondersteuner</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
   <string name="Subscription__contact_support">Neem contact op met ondersteuning</string>
+  <string name="Subscription__earn_a_s_badge">Verdien een %1$s badge</string>
   <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
   <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string>
   <!--EOF-->
