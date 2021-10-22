@@ -304,19 +304,7 @@ public final class MediaOverviewPageFragment extends Fragment
     actionMode = ((AppCompatActivity) activity).startSupportActionMode(actionModeCallback);
     ((MediaOverviewActivity) activity).onEnterMultiSelect();
     ViewUtil.fadeIn(bottomActionBar, 250);
-
-    bottomActionBar.setItems(Arrays.asList(
-        new ActionItem(R.drawable.ic_save_24, R.string.MediaOverviewActivity_save, () -> {
-          MediaActions.handleSaveMedia(MediaOverviewPageFragment.this,
-                                       getListAdapter().getSelectedMedia(),
-                                       this::exitMultiSelect);
-        }),
-        new ActionItem(R.drawable.ic_select_24, R.string.MediaOverviewActivity_select_all, this::handleSelectAllMedia),
-        new ActionItem(R.drawable.ic_delete_24, R.string.MediaOverviewActivity_delete, () -> {
-          MediaActions.handleDeleteMedia(requireContext(), getListAdapter().getSelectedMedia());
-          exitMultiSelect();
-        })
-    ));
+    updateMultiSelect();
   }
 
   private void exitMultiSelect() {
@@ -328,6 +316,21 @@ public final class MediaOverviewPageFragment extends Fragment
   private void updateMultiSelect() {
     if (actionMode != null) {
       actionMode.setTitle(getActionModeTitle());
+
+      int selectionCount = getListAdapter().getSectionCount();
+
+      bottomActionBar.setItems(Arrays.asList(
+          new ActionItem(R.drawable.ic_save_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_save, selectionCount), () -> {
+            MediaActions.handleSaveMedia(MediaOverviewPageFragment.this,
+                                         getListAdapter().getSelectedMedia(),
+                                         this::exitMultiSelect);
+          }),
+          new ActionItem(R.drawable.ic_select_24, getString(R.string.MediaOverviewActivity_select_all), this::handleSelectAllMedia),
+          new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete, selectionCount), () -> {
+            MediaActions.handleDeleteMedia(requireContext(), getListAdapter().getSelectedMedia());
+            exitMultiSelect();
+          })
+      ));
     }
   }
 

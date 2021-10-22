@@ -8,6 +8,6 @@ import androidx.annotation.StringRes
  */
 data class ActionItem(
   @DrawableRes val iconRes: Int,
-  @StringRes val titleRes: Int,
+  val title: CharSequence,
   val action: Runnable
 )

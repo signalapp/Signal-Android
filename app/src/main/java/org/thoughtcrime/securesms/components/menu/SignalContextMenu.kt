@@ -157,7 +157,7 @@ class SignalContextMenu private constructor(
 
     override fun bind(model: DisplayItem) {
       icon.setImageResource(model.item.iconRes)
-      title.setText(model.item.titleRes)
+      title.text = model.item.title
       itemView.setOnClickListener {
         model.item.action.run()
         dismiss()

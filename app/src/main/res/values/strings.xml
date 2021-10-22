@@ -365,15 +365,43 @@
         <item quantity="other">Moved %d conversations to inbox</item>
     </plurals>
     <string name="ConversationListFragment_read">Read</string>
-    <string name="ConversationListFragment_unread">Unread</string>
-    <string name="ConversationListFragment_pin">Pin</string>
-    <string name="ConversationListFragment_unpin">Unpin</string>
-    <string name="ConversationListFragment_mute">Mute</string>
-    <string name="ConversationListFragment_unmute">Unmute</string>
+    <plurals name="ConversationListFragment_read">
+        <item quantity="one">Read</item>
+        <item quantity="other">Read</item>
+    </plurals>
+    <plurals name="ConversationListFragment_unread">
+        <item quantity="one">Unread</item>
+        <item quantity="other">Unread</item>
+    </plurals>
+    <plurals name="ConversationListFragment_pin">
+        <item quantity="one">Pin</item>
+        <item quantity="other">Pin</item>
+    </plurals>
+    <plurals name="ConversationListFragment_unpin">
+        <item quantity="one">Unpin</item>
+        <item quantity="other">Unpin</item>
+    </plurals>
+    <plurals name="ConversationListFragment_mute">
+        <item quantity="one">Mute</item>
+        <item quantity="other">Mute</item>
+    </plurals>
+    <plurals name="ConversationListFragment_unmute">
+        <item quantity="one">Unmute</item>
+        <item quantity="other">Unmute</item>
+    </plurals>
     <string name="ConversationListFragment_select">Select</string>
-    <string name="ConversationListFragment_archive">Archive</string>
-    <string name="ConversationListFragment_unarchive">Unarchive</string>
-    <string name="ConversationListFragment_delete">Delete</string>
+    <plurals name="ConversationListFragment_archive">
+        <item quantity="one">Archive</item>
+        <item quantity="other">Archive</item>
+    </plurals>
+    <plurals name="ConversationListFragment_unarchive">
+        <item quantity="one">Unarchive</item>
+        <item quantity="other">Unarchive</item>
+    </plurals>
+    <plurals name="ConversationListFragment_delete">
+        <item quantity="one">Delete</item>
+        <item quantity="other">Delete</item>
+    </plurals>
     <string name="ConversationListFragment_select_all">Select all</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%d selected</item>
@@ -944,9 +972,15 @@
     <string name="MediaOverviewActivity_Grid_view_description">Grid view</string>
     <string name="MediaOverviewActivity_List_view_description">List view</string>
     <string name="MediaOverviewActivity_Selected_description">Selected</string>
-    <string name="MediaOverviewActivity_save">Save</string>
     <string name="MediaOverviewActivity_select_all">Select all</string>
-    <string name="MediaOverviewActivity_delete">Delete</string>
+    <plurals name="MediaOverviewActivity_save">
+        <item quantity="one">Save</item>
+        <item quantity="other">Save</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_delete">
+        <item quantity="one">Delete</item>
+        <item quantity="other">Delete</item>
+    </plurals>
 
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="one">%1$d selected (%2$s)</item>

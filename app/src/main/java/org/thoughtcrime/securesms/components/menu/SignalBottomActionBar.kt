@@ -69,7 +69,7 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet) : Line
         view,
         ActionItem(
           iconRes = R.drawable.ic_more_horiz_24,
-          titleRes = R.string.SignalBottomActionBar_more,
+          title = context.getString(R.string.SignalBottomActionBar_more),
           action = {
             SignalContextMenu.Builder(view, parent as ViewGroup)
               .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.END)
@@ -86,7 +86,7 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet) : Line
     val title: TextView = view.findViewById(R.id.signal_bottom_action_bar_item_title)
 
     icon.setImageResource(item.iconRes)
-    title.setText(item.titleRes)
+    title.text = item.title
     view.setOnClickListener { item.action.run() }
   }
 }
