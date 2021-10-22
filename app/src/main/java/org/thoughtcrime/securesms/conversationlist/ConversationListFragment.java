@@ -967,6 +967,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     ViewUtil.fadeIn(bottomActionBar, 250);
     ViewUtil.fadeOut(fab, 250);
     ViewUtil.fadeOut(cameraFab, 250);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeOut(megaphoneContainer.get(), 250);
+    }
   }
 
   private void endActionModeIfActive() {
@@ -981,6 +984,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     ViewUtil.fadeOut(bottomActionBar, 250);
     ViewUtil.fadeIn(fab, 250);
     ViewUtil.fadeIn(cameraFab, 250);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeIn(megaphoneContainer.get(), 250);
+    }
   }
 
   private void onSubmitList(@NonNull List<Conversation> conversationList) {
