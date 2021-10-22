@@ -67,7 +67,7 @@
         android:fontFamily="sans-serif-medium"
         android:maxLines="1"
         android:textColor="@color/signal_text_primary"
-        app:layout_constraintEnd_toStartOf="@id/conversation_list_item_name_barrier"
+        app:layout_constraintEnd_toStartOf="@id/conversation_list_item_date"
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_avatar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -96,7 +96,7 @@
         android:lines="2"
         android:maxLines="2"
         android:textColor="@color/signal_text_secondary"
-        app:layout_constraintEnd_toStartOf="@id/conversation_list_item_summary_barrier"
+        app:layout_constraintEnd_toStartOf="@id/conversation_list_item_status_container"
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_alert"
         app:layout_constraintTop_toBottomOf="@id/conversation_list_item_name"
         tools:text="I'll send those photos over to the Bugle ASAP." />
@@ -173,22 +173,6 @@
             tools:visibility="gone" />
 
     </LinearLayout>
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/conversation_list_item_summary_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:barrierAllowsGoneWidgets="false"
-        app:barrierDirection="start"
-        app:constraint_referenced_ids="conversation_list_item_status_container" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/conversation_list_item_name_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:barrierAllowsGoneWidgets="false"
-        app:barrierDirection="start"
-        app:constraint_referenced_ids="conversation_list_item_date" />
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/conversation_list_item_badge"
