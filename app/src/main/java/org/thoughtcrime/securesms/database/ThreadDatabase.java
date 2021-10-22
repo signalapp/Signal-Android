@@ -226,6 +226,14 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public void  updateSnippetUriSilently(long threadId, @Nullable Uri attachment) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(SNIPPET_URI, attachment != null ? attachment.toString() : null);
+
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
+  }
+
   public void updateSnippet(long threadId, String snippet, @Nullable Uri attachment, long date, long type, boolean unarchive) {
     if (isSilentType(type)) {
       return;
@@ -242,7 +250,7 @@ public class ThreadDatabase extends Database {
     }
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
+    db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
     notifyConversationListListeners();
   }
 
