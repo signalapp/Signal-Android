@@ -963,7 +963,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void startActionMode() {
     actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(ConversationListFragment.this);
-    ViewUtil.fadeIn(bottomActionBar, 250);
+    ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
     ViewUtil.fadeOut(fab, 250);
     ViewUtil.fadeOut(cameraFab, 250);
     if (megaphoneContainer.resolved()) {
@@ -980,7 +980,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void endActionMode() {
     actionMode.finish();
     actionMode = null;
-    ViewUtil.fadeOut(bottomActionBar, 250);
+    ViewUtil.animateOut(bottomActionBar, bottomActionBar.getExitAnimation());
     ViewUtil.fadeIn(fab, 250);
     ViewUtil.fadeIn(cameraFab, 250);
     if (megaphoneContainer.resolved()) {

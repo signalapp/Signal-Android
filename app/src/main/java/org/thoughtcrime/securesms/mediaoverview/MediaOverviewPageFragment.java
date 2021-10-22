@@ -303,14 +303,14 @@ public final class MediaOverviewPageFragment extends Fragment
     FragmentActivity activity = requireActivity();
     actionMode = ((AppCompatActivity) activity).startSupportActionMode(actionModeCallback);
     ((MediaOverviewActivity) activity).onEnterMultiSelect();
-    ViewUtil.fadeIn(bottomActionBar, 250);
+    ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
     updateMultiSelect();
   }
 
   private void exitMultiSelect() {
     actionMode.finish();
     actionMode = null;
-    ViewUtil.fadeOut(bottomActionBar, 250);
+    ViewUtil.animateOut(bottomActionBar, bottomActionBar.getExitAnimation());
   }
 
   private void updateMultiSelect() {
