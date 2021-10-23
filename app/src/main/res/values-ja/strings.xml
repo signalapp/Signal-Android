@@ -3196,7 +3196,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">サブスクリプションを行う</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <string name="Subscription__contact_support">サポートに問い合わせる</string>
+  <string name="Subscription__earn_a_s_badge">%1$sバッジを獲得しましょう</string>
   <string name="SubscribeFragment__processing_payment">支払いを処理しています…</string>
   <string name="DonationsErrors__payment_failed">支払いに失敗しました。</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">サブスクリプションを解除できませんでした</string>
   <!--EOF-->
 </resources>

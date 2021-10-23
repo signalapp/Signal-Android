@@ -313,9 +313,12 @@
   <string name="ConversationListFragment_unmute">取消靜音</string>
   <string name="ConversationListFragment_select">選取</string>
   <string name="ConversationListFragment_archive">封存</string>
-  <string name="ConversationListFragment_unarchive">將通話紀錄由存檔攞返出嚟</string>
+  <string name="ConversationListFragment_unarchive">解除封存</string>
   <string name="ConversationListFragment_delete">刪除</string>
   <string name="ConversationListFragment_select_all">全選</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="other">%d 個已選取</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
@@ -770,6 +773,9 @@
   <string name="MediaOverviewActivity_save">儲存</string>
   <string name="MediaOverviewActivity_select_all">全選</string>
   <string name="MediaOverviewActivity_delete">刪除</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">%1$d 個已選取 (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">檔案</string>
   <string name="MediaOverviewActivity_audio">音訊</string>
   <string name="MediaOverviewActivity_video">影片</string>
@@ -1288,6 +1294,7 @@
   <string name="SharedContactView_invite_to_signal">邀請加入 Signal</string>
   <string name="SharedContactView_message">Signal 訊息</string>
   <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">更多</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">遲些我們將會再提醒您。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">明天我們將會再提醒您。</string>
@@ -1825,6 +1832,16 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">無法上載記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請儘可能具體描述，以協助我們瞭解箇中問題。</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- 請選下列其中一項 --</item>
+    <item>運作異常</item>
+    <item>功能請求</item>
+    <item>發問</item>
+    <item>意見回饋</item>
+    <item>其他</item>
+    <item>付款 (MobileCoin)</item>
+    <item>捐款 (力撐派及 Signal 集氣)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -3160,7 +3177,7 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">請選擇一個徽章</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">您必須選取一個徽章</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新個人資料失敗</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為好心人</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為力撐派</string>
   <string name="ImageView__badge">徽章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由您這樣的人提供動力。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">支持為您而設—而非為您的資料而造—的科技，擔起力撐派，成為延續爐火的一分子。</string>
@@ -3173,9 +3190,12 @@
   <string name="SubscribeFragment__confirm">確認</string>
   <string name="SubscribeFragment__update_subscription">更新訂閱</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">您的訂閱經已取消。</string>
+  <string name="SubscribeFragment__update_subscription_question">要更新訂閱嗎？</string>
   <string name="SubscribeFragment__update">更新</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">是日將向您收取新的訂閱價格全額。您的訂閱將於 %1$s 續期。</string>
   <string name="Subscription__s_per_month">%s/月</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · %2$s 續期</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · %2$s 屆滿</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴使用並珍重 Signal 的人維持。祈盼樂善好施，力所能及作月供捐款，奉贈一枚個人資料徽章，與人分享您的支持。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款？</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊肩負使命，致力開發開放原始碼的私隱技術，保護自由表達並讓全球通訊變得安全。您的捐款，驅動這因由。無廣告、無追蹤、無戲言。</string>
@@ -3186,6 +3206,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資料中展現</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為別注徽章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若您有多於一枚徽章，您可選取一枚作為別注徽章，在個人資料中供其他人看見。</string>
   <string name="ManageDonationsFragment__my_support">我的支持</string>
   <string name="ManageDonationsFragment__manage_subscription">管理訂閱</string>
   <string name="ManageDonationsFragment__badges">徽章</string>
@@ -3203,8 +3224,18 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">如欲繼續支持為您而設—而非為您的資料而造—的科技，請考慮成為月供訂閱者。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">現在不要</string>
+  <string name="Subscription__verification_failed">訂閱驗證失敗</string>
+  <string name="Subscription__please_contact_support_for_more_information">請聯絡支援團隊以取得更多資訊。</string>
   <string name="Subscription__contact_support">聯絡支援</string>
+  <string name="Subscription__earn_a_s_badge">獲取一枚 %1$s 徽章</string>
   <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
+  <string name="DonationsErrors__your_payment">您的付款未能處理，沒有向您扣帳。請再試一次。</string>
+  <string name="DonationsErrors__redemption_still_pending">換領進行中</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">您的徽章仍在處理，未必即時看到，但我們很快會補上！</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">您必需先設置 Google Pay 才可在應用程式中捐款。</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">需要互聯網連線才可取消訂閱。</string>
   <!--EOF-->
 </resources>

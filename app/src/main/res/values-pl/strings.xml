@@ -338,7 +338,7 @@
     <item quantity="many">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
     <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
   </plurals>
-  <string name="ConversationListFragment_read">Odczytano</string>
+  <string name="ConversationListFragment_read">Przeczytane</string>
   <string name="ConversationListFragment_unread">Nieprzeczytane</string>
   <string name="ConversationListFragment_pin">Przypnij</string>
   <string name="ConversationListFragment_unpin">Odepnij</string>

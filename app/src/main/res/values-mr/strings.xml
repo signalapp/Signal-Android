@@ -1199,6 +1199,7 @@
   <string name="WebRtcCallActivity__calling">कॉलिंग…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal कॉल</string>
+  <string name="WebRtcCallView__signal_video_call">Signal व्हिडिओ कॉल</string>
   <string name="WebRtcCallView__start_call">कॉल चालू करा</string>
   <string name="WebRtcCallView__join_call">कॉलमध्ये सामील व्हा</string>
   <string name="WebRtcCallView__call_is_full">कॉल पूर्ण आहे</string>

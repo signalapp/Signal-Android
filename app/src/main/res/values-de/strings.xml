@@ -327,6 +327,10 @@
   <string name="ConversationListFragment_unarchive">In Eingang verschieben</string>
   <string name="ConversationListFragment_delete">Löschen</string>
   <string name="ConversationListFragment_select_all">Alle auswählen</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d ausgewählt</item>
+    <item quantity="other">%d ausgewählt</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
   <!--ConversationListItemAction-->
@@ -810,6 +814,10 @@
   <string name="MediaOverviewActivity_save">Speichern</string>
   <string name="MediaOverviewActivity_select_all">Alle auswählen</string>
   <string name="MediaOverviewActivity_delete">Löschen</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d ausgewählt (%2$s)</item>
+    <item quantity="other">%1$d ausgewählt (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Datei</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1889,6 +1897,16 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Bitte wähle eine Option --</item>
+    <item>Etwas funktioniert nicht</item>
+    <item>Erweiterungswunsch</item>
+    <item>Frage</item>
+    <item>Rückmeldung</item>
+    <item>Sonstiges</item>
+    <item>Zahlungen (MobileCoin)</item>
+    <item>Spenden (Unterstützer &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -3252,14 +3270,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__confirm">Bestätigen</string>
   <string name="SubscribeFragment__update_subscription">Abonnement aktualisieren</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dein Abonnement wurde gekündigt.</string>
+  <string name="SubscribeFragment__update_subscription_question">Abonnement aktualisieren?</string>
   <string name="SubscribeFragment__update">Aktualisieren</string>
   <string name="Subscription__s_per_month">%s/Monat</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s Abzeichen verdient! Durch die Anzeige deines Abzeichens zeigst du den Personen, mit denen du chattest, dass du Signal unterstützt.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du den Personen, mit denen du chattest, dass du Signal unterstützt.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Wenn du mehrere Abzeichen hast, kannst du eines davon auswählen, um es bei deinem Profil anzuzeigen.</string>
   <string name="ManageDonationsFragment__badges">Abzeichen</string>
+  <string name="ManageDonationsFragment__subscription_faq">Abonnement FAQ</string>
   <string name="BoostFragment__give_signal_a_boost">Gib Signal einen Boost</string>
   <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
   <string name="Boost__one_time_contribution">Einmaliger Betrag</string>
@@ -3267,8 +3289,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
+  <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere den Support für weitere Informationen.</string>
   <string name="Subscription__contact_support">Support kontaktieren</string>
+  <string name="Subscription__earn_a_s_badge">Erhalte ein %1$s Abzeichen</string>
   <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
   <string name="DonationsErrors__payment_failed">Zahlung gescheitert</string>
+  <string name="DonationsErrors__redemption_still_pending">Einlösung noch ausstehend</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay nicht verfügbar</string>
   <!--EOF-->
 </resources>

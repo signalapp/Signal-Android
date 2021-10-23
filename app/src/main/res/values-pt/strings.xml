@@ -3268,9 +3268,12 @@
   <string name="SubscribeFragment__confirm">Confirmar</string>
   <string name="SubscribeFragment__update_subscription">Atualizar assinatura</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">A sua assinatura foi cancelada.</string>
+  <string name="SubscribeFragment__update_subscription_question">Atualizar assinatura?</string>
   <string name="SubscribeFragment__update">Atualizar</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ser-lhe-á cobrado o valor total do novo preço da assinatura aos dias de hoje. A sua assinatura será renovada %1$s. </string>
   <string name="Subscription__s_per_month">%s/mês</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mês · Renovações %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mês · Expira %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma contribuição mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Porque contribuir?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipa do Signal está comprometida com a missão de desenvolver uma tecnologia de privacidade de código aberto que proteja a liberdade de expressão e permita a comunicação global segura. A sua contribuição alimenta essa causa. Sem anúncios. Sem rastreadores. Sem brincadeiras. </string>
@@ -3281,6 +3284,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Fazer crachá de funcionalidade</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Concluído</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando tem mais do que um crachá, você pode escolher apresentar um para para que outras pessoas o vejam no seu perfil.</string>
   <string name="ManageDonationsFragment__my_support">O meu apoio</string>
   <string name="ManageDonationsFragment__manage_subscription">Gerir assinatura</string>
   <string name="ManageDonationsFragment__badges">Crachás</string>

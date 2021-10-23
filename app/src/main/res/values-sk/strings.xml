@@ -3456,6 +3456,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubscribeFragment__confirm">Potvrdiť</string>
   <string name="SubscribeFragment__update_subscription">Aktualizovať predplatné</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše predplatné bolo zrušené.</string>
+  <string name="SubscribeFragment__update_subscription_question">Aktualizovať odber?</string>
   <string name="SubscribeFragment__update">Aktualizovať</string>
   <string name="Subscription__s_per_month">%s/mesiac</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesiac · Obnovenie %2$s</string>
@@ -3489,5 +3490,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="Subscription__contact_support">Kontaktovať zákaznícku podporu</string>
   <string name="SubscribeFragment__processing_payment">Spracovanie platby…</string>
   <string name="DonationsErrors__payment_failed">Platba zlyhala</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Predplatné sa nepodarilo zrušiť</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušenie predplatného vyžaduje internetové pripojenie.</string>
   <!--EOF-->
 </resources>

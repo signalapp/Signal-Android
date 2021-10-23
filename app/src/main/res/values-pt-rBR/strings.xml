@@ -325,8 +325,12 @@
   <string name="ConversationListFragment_select">Selecionar</string>
   <string name="ConversationListFragment_archive">Arquivar</string>
   <string name="ConversationListFragment_unarchive">Desarquivar</string>
-  <string name="ConversationListFragment_delete">Remover</string>
-  <string name="ConversationListFragment_select_all">Selecionar tudo</string>
+  <string name="ConversationListFragment_delete">Excluir</string>
+  <string name="ConversationListFragment_select_all">Selecionar todas</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d selecionada</item>
+    <item quantity="other">%d selecionadas</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
   <!--ConversationListItemAction-->
@@ -809,7 +813,11 @@
   <string name="MediaOverviewActivity_Selected_description">Selecionado</string>
   <string name="MediaOverviewActivity_save">Salvar</string>
   <string name="MediaOverviewActivity_select_all">Selecionar tudo</string>
-  <string name="MediaOverviewActivity_delete">Remover</string>
+  <string name="MediaOverviewActivity_delete">Excluir</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d selecionada (%2$s)</item>
+    <item quantity="other">%1$d selecionadas (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Arquivo</string>
   <string name="MediaOverviewActivity_audio">Áudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -1900,6 +1908,16 @@
   <string name="HelpFragment__debug_log">Registro de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não foi possível enviar o registro</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais detalhista possível para nos ajudar a entender o problema.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Por favor, selecione uma opção --</item>
+    <item>Algo não está funcionando</item>
+    <item>Pedido de nova funcionalidade</item>
+    <item>Pergunta</item>
+    <item>Comentário</item>
+    <item>Outro</item>
+    <item>Pagamentos (MobileCoin)</item>
+    <item>Doações (Regulares ou únicas)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizado recentemente</string>
@@ -1996,6 +2014,8 @@
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançadas</string>
   <string name="preferences__donate_to_signal">Doar para o Signal</string>
+  <string name="preferences__subscription">Doação mensal</string>
+  <string name="preferences__signal_boost">Doação única</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente de usuário MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configurações de MMS manuais</string>
@@ -3034,6 +3054,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Direitos autorais Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenciado nos termos da GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Qualidade das fotos</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualidade da mídia enviada</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Enviar mídia com alta qualidade usará mais dados de internet.</string>
   <string name="DataAndStorageSettingsFragment__high">Alta</string>
   <string name="DataAndStorageSettingsFragment__standard">Padrão</string>
@@ -3218,6 +3240,9 @@
   <string name="MediaReviewFragment__add_a_reply">Responder</string>
   <string name="MediaReviewFragment__send_to">Enviar para</string>
   <string name="MediaReviewFragment__view_once_message">Mensagem efêmera</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Um ou mais itens são muito grandes</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Um ou mais itens são inválidos</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Muitos itens foram selecionados</string>
   <string name="ImageEditorHud__cancel">Cancelar</string>
   <string name="ImageEditorHud__draw">Desenhar</string>
   <string name="ImageEditorHud__write_text">Escrever texto</string>
@@ -3238,7 +3263,7 @@
   <string name="CameraFragment__failed_to_open_camera">Falha ao abrir a câmera</string>
   <string name="BadgesOverviewFragment__my_badges">Meus selos</string>
   <string name="BadgesOverviewFragment__featured_badge">Selo em destaque</string>
-  <string name="BadgesOverviewFragment__display_badges_on_profile">Mostrar emblemas no perfil</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Mostrar selos no perfil</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
   <string name="BadgeSelectionFragment__select_badges">Escolher selos</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pré-visualização</string>
@@ -3248,16 +3273,35 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
   <string name="ImageView__badge">Selo</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é mantido por pessoas como você.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Em vez de apoiar tecnologias desenvolvidas para terceiros lucrarem com seus dados privados, apoie tecnologias desenvolvidas para você, juntando-se à comunidade de pessoas que as sustentam financeiramente.</string>
   <string name="SubscribeFragment__donation_amount">Valor da doação</string>
+  <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
+  <string name="SubscribeFragment__cancel_subscription">Cancelar doação</string>
+  <string name="SubscribeFragment__confirm_cancellation">Cancelar a doação mensal?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Você não será cobrado novamente. O seu selo será removido do seu perfil ao final do período do seu faturamento.</string>
   <string name="SubscribeFragment__not_now">Agora não</string>
   <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">A sua doação foi cancelada.</string>
   <string name="SubscribeFragment__update">Atualizar</string>
+  <string name="Subscription__s_per_month">%s/mês</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Por que contribuir?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipe do Signal está comprometida com a missão de desenvolver tecnologias de código aberto focadas em privacidade que protegem a liberdade de expressão e permitem haver segurança na comunicação global. Sua contribuição alimenta essa causa. Nosso app é divulgado sem anúncios. Sem rastreadores. Sem brincadeiras.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Sua contribuição ajudará a pagar pelo desenvolvimento, servidores e transmissão de dados. Signal é um aplicativo usado por milhões de pessoas em todo o mundo para se comunicarem de modo privado e instantâneo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Agradecemos por seu apoio!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Agradecemos por sua doação única!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Definir como selo em destaque</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Pronto</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando você tiver mais de um selo, você poderá escolher qual deles será apresentado em seu perfil para as outras pessoas verem.</string>
+  <string name="ManageDonationsFragment__my_support">Meu apoio</string>
   <string name="ManageDonationsFragment__badges">Selos</string>
   <string name="Boost__enter_custom_amount">Insira o valor</string>
+  <string name="MySupportPreference__s_per_month">%1$s/mês</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="Subscription__contact_support">Entre em contato com o suporte</string>
   <string name="SubscribeFragment__processing_payment">Processando o pagamento…</string>
   <string name="DonationsErrors__payment_failed">Falha ao pagar</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Você precisa configurar o Google Pay para doar dentro do aplicativo.</string>
   <!--EOF-->
 </resources>

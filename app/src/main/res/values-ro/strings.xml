@@ -338,6 +338,11 @@
   <string name="ConversationListFragment_unarchive">Dezarhivează</string>
   <string name="ConversationListFragment_delete">Șterge</string>
   <string name="ConversationListFragment_select_all">Selectează tot</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d selectată</item>
+    <item quantity="few">%d selectate</item>
+    <item quantity="other">%d selectate</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimbul de chei</string>
   <!--ConversationListItemAction-->

@@ -225,7 +225,7 @@
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikia mikrofono leidimo, tačiau jis buvo uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikalingas mikrofono leidimas.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal negali siųsti SMS/MMS žinučių, nes ji nėra jūsų numatytoji SMS programėlė. Ar norėtumėte tai pakeisti savo Android nustatymuose?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal negali siųsti SMS/MMS žinučių, nes ji nėra jūsų numatytoji SMS programėlė. Ar norėtumėte tai pakeisti savo „Android“ nustatymuose?</string>
   <string name="ConversationActivity_yes">Taip</string>
   <string name="ConversationActivity_no">Ne</string>
   <string name="ConversationActivity_search_position">%1$d iš %2$d</string>
@@ -349,6 +349,12 @@
   <string name="ConversationListFragment_unarchive">Nebearchyvuoti</string>
   <string name="ConversationListFragment_delete">Ištrinti</string>
   <string name="ConversationListFragment_select_all">Žymėti visus</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">Pažymėta: %d</item>
+    <item quantity="few">Pažymėta: %d</item>
+    <item quantity="many">Pažymėta: %d</item>
+    <item quantity="other">Pažymėta: %d</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
   <!--ConversationListItemAction-->
@@ -1242,7 +1248,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Pateikti slaptafrazę</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neteisinga slaptafrazė!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Atrakinti Signal</string>
-  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Ekrano užraktas</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal „Android“ - Ekrano užraktas</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Žemėlapis</string>
   <string name="PlacePickerActivity_drop_pin">Įsmeigti smeigtuką</string>
@@ -1265,7 +1271,7 @@
     <item quantity="many">Jums liko %1$d bandymų. Jei išnaudosite visus bandymus, galėsite susikurti naują PIN kodą. Galėsite registruotis ir naudotis savo paskyra, bet prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, profilio informaciją.</item>
     <item quantity="other">Jums liko %1$d bandymas. Jei išnaudosite visus bandymus, galėsite susikurti naują PIN kodą. Galėsite registruotis ir naudotis savo paskyra, bet prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, profilio informaciją.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registracija - Reikia pagalbos su PIN kodu Android įrenginyje</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registracija - Reikia pagalbos su PIN kodu „Android“ įrenginyje</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Įvesti tekstinį PIN kodą</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Įvesti skaitinį PIN kodą</string>
   <!--PinRestoreLockedFragment-->
@@ -1419,7 +1425,7 @@
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Ar jūsų telefono numeris aukščiau yra teisingas?</string>
   <string name="RegistrationActivity_edit_number">Taisyti numerį</string>
   <string name="RegistrationActivity_missing_google_play_services">Trūksta „Google Play“ paslaugų</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Šiame įrenginyje nėra „Google Play“ paslaugų. Jūs vis tiek galite naudoti Signal, tačiau tokia konfigūracija gali sąlygoti mažesnį patikimumą ir našumą.\n\nJeigu jūs nesate pažengęs naudotojas, nenaudojate atsarginių dalių Android ROM ar manote, jog matote tai per klaidą, tuomet pagalbai ir nesklandumų šalinimui susisiekite su support@signal.org.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Šiame įrenginyje nėra „Google Play“ paslaugų. Jūs vis tiek galite naudoti Signal, tačiau tokia konfigūracija gali sąlygoti mažesnį patikimumą ir našumą.\n\nJeigu jūs nesate pažengęs naudotojas, nenaudojate atsarginių dalių „Android“ ROM ar manote, jog matote tai per klaidą, tuomet pagalbai ir nesklandumų šalinimui susisiekite su support@signal.org.</string>
   <string name="RegistrationActivity_i_understand">Aš suprantu</string>
   <string name="RegistrationActivity_play_services_error">„Play“ paslaugų klaida</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">„Google Play“ paslaugos yra atnaujinamos arba laikinai neprieinamos. Prašome bandyti dar kartą.</string>
@@ -1530,7 +1536,7 @@
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtras:</string>
   <string name="SupportEmailUtil_device_info">Įrenginio informacija:</string>
-  <string name="SupportEmailUtil_android_version">Android versija:</string>
+  <string name="SupportEmailUtil_android_version">„Android“ versija:</string>
   <string name="SupportEmailUtil_signal_version">Signal versija:</string>
   <string name="SupportEmailUtil_signal_package">Signal paketas:</string>
   <string name="SupportEmailUtil_registration_lock">Registracijos užraktas:</string>
@@ -2042,7 +2048,7 @@
   <string name="HelpFragment__how_do_you_feel">Kaip jaučiatės? (Nebūtina)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Papasakokite, kodėl su mumis susisiekėte.</string>
   <string name="HelpFragment__support_info">Palaikymo informacija</string>
-  <string name="HelpFragment__signal_android_support_request">Signal Android palaikymo užklausa</string>
+  <string name="HelpFragment__signal_android_support_request">Signal „Android“ palaikymo užklausa</string>
   <string name="HelpFragment__debug_log">Derinimo žurnalas:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
@@ -2582,8 +2588,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">Neteisingas PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Užmiršote savo PIN kodą?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Liko tik keli bandymai!</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal registracija - Reikia pagalbos su PIN kodu Android įrenginyje (v1 PIN)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal registracija - Reikia pagalbos su PIN kodu Android įrenginyje (v2 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal registracija - Reikia pagalbos su PIN kodu „Android“ įrenginyje (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal registracija - Reikia pagalbos su PIN kodu „Android“ įrenginyje (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienos neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
     <item quantity="few">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienų neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
@@ -2689,7 +2695,7 @@
   <string name="RegistrationActivity_wrong_number">Neteisingas numeris</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Vietoj to, man paskambinkite \n (Prieinama po %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Susisiekti su Signal palaikymu</string>
-  <string name="RegistrationActivity_code_support_subject">Signal registracija - Patvirtinimo kodas, skirtas Android</string>
+  <string name="RegistrationActivity_code_support_subject">Signal registracija - Patvirtinimo kodas, skirtas „Android“</string>
   <string name="RegistrationActivity_incorrect_code">Neteisingas kodas</string>
   <string name="BackupUtil_never">Niekada</string>
   <string name="BackupUtil_unknown">Nežinoma</string>
@@ -2701,7 +2707,7 @@
   <string name="PhoneNumberPrivacy_everyone_see_description">Jūsų telefono numeris bus matomas visiems žmonėms, kuriems rašysite žinutes ir grupėms, kuriose rašysite žinutes.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">Bet kuris žmogus, turintis jūsų telefono numerį savo adresatuose, matys jus kaip Signal adresatą. Kiti žmonės galės rasti jus paieškoje.</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant Android ekrano užraktą ar piršto atspaudą</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant „Android“ ekrano užraktą ar piršto atspaudą</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užraktas suveiks po</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN kodas</string>
   <string name="preferences_app_protection__create_a_pin">Sukurti PIN kodą</string>
@@ -3171,7 +3177,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokuoti ekrano kopijas paskiausiųjų sąraše ir programėlės viduje</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal žinutės ir skambučiai, visada retransliuoti skambučius ir užantspauduotas siuntėjas</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Numatytasis laikmatis naujuose pokalbiuose</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nustatyti numatytąjį išnykstančių žinučių laikmatį visiems jūsų pradėtiems naujiems pokalbiams.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nustatyti numatytąjį išnykstančių žinučių laikmatį visiems jūsų pradedamiems naujiems pokalbiams.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Rodyti būsenos piktogramą</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Išsamesnėje žinučių informacijoje rodyti piktogramą tais atvejais, kai jos buvo pristatytos naudojant užantspauduotą siuntėją.</string>
@@ -3401,6 +3407,7 @@
   <string name="MediaReviewFragment__add_a_reply">Pridėti atsakymą</string>
   <string name="MediaReviewFragment__send_to">Kam siųsti</string>
   <string name="MediaReviewFragment__view_once_message">Vienkartinės peržiūros žinutė</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Pažymėta per daug elementų</string>
   <string name="ImageEditorHud__cancel">Atsisakyti</string>
   <string name="ImageEditorHud__draw">Piešti</string>
   <string name="ImageEditorHud__write_text">Rašyti tekstą</string>
