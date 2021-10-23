@@ -16,6 +16,8 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -34,9 +36,9 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
+import org.thoughtcrime.securesms.util.ScreenDensity;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -353,19 +355,7 @@ public class RetrieveProfileJob extends BaseJob {
 
     DatabaseFactory.getRecipientDatabase(context)
                    .setBadges(recipient.getId(),
-                              badges.stream().map(RetrieveProfileJob::adaptFromServiceBadge).collect(java.util.stream.Collectors.toList()));
-  }
-
-  private static Badge adaptFromServiceBadge(@NonNull SignalServiceProfile.Badge serviceBadge) {
-    return new Badge(
-        serviceBadge.getId(),
-        Badge.Category.Companion.fromCode(serviceBadge.getCategory()),
-        Uri.parse(serviceBadge.getImageUrl()),
-        serviceBadge.getName(),
-        serviceBadge.getDescription(),
-        0L,
-        true
-    );
+                              badges.stream().map(Badges::fromServiceBadge).collect(java.util.stream.Collectors.toList()));
   }
 
   private void setProfileKeyCredential(@NonNull Recipient recipient,

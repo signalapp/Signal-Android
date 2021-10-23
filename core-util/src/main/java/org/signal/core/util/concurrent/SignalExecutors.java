@@ -17,9 +17,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class SignalExecutors {
 
   public static final ExecutorService UNBOUNDED  = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
-  public static final ExecutorService BOUNDED    = Executors.newFixedThreadPool(getIdealThreadCount(), new NumberedThreadFactory("signal-bounded"));
+  public static final ExecutorService BOUNDED    = new ThreadPoolExecutor(4, 12, 5, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new NumberedThreadFactory("signal-bounded"));
   public static final ExecutorService SERIAL     = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
-  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-bounded-io", 1, 32);
+  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-io-bounded", 1, 32);
 
   private SignalExecutors() {}
 
@@ -79,13 +79,6 @@ public final class SignalExecutors {
     HandlerThread handlerThread = new HandlerThread(name);
     handlerThread.start();
     return handlerThread;
-  }
-
-  /**
-   * Returns an 'ideal' thread count based on the number of available processors.
-   */
-  public static int getIdealThreadCount() {
-    return Math.max(2, Math.min(Runtime.getRuntime().availableProcessors() - 1, 4));
   }
 
   private static class NumberedThreadFactory implements ThreadFactory {

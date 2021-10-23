@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/signal_button_primary_ripple">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/black" />
+            <corners
+                android:topLeftRadius="@dimen/signal_context_menu_corner_radius"
+                android:topRightRadius="@dimen/signal_context_menu_corner_radius"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+</ripple>

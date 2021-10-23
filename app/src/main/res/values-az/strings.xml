@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Bu mesaj silindi.</string>
   <string name="ConversationItem_you_deleted_this_message">Bu mesajı sildiniz.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Güvənli seans sıfırlansın?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu danışıqda şifrələmə problemi yaşayırsınızsa, bu kömək edə bilər. Mesajlarınız saxlanılacaq.</string>
-  <string name="ConversationActivity_reset">Sıfırla</string>
   <string name="ConversationActivity_add_attachment">Qoşma əlavə et</string>
   <string name="ConversationActivity_select_contact_info">Əlaqə məlumatını seçin</string>
   <string name="ConversationActivity_compose_message">Mesaj yarat</string>
@@ -318,6 +315,21 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Söhbət gələnlər qutusuna köçürüldü</item>
     <item quantity="other">%d danışıq gələn qutusuna köçürüldü</item>
+  </plurals>
+  <string name="ConversationListFragment_read">Oxundu</string>
+  <string name="ConversationListFragment_unread">Oxunmadı</string>
+  <string name="ConversationListFragment_pin">Sancaqla</string>
+  <string name="ConversationListFragment_unpin">Sancağı götür</string>
+  <string name="ConversationListFragment_mute">Səssizə al</string>
+  <string name="ConversationListFragment_unmute">Səsi aç</string>
+  <string name="ConversationListFragment_select">Seçin</string>
+  <string name="ConversationListFragment_archive">Arxivlə</string>
+  <string name="ConversationListFragment_unarchive">Arxivdən çıxart</string>
+  <string name="ConversationListFragment_delete">Sil</string>
+  <string name="ConversationListFragment_select_all">Hamısını seç</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d seçildi</item>
+    <item quantity="other">%d seçildi</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Açar mübadilə mesajı</string>
@@ -799,13 +811,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tor görünüşü</string>
   <string name="MediaOverviewActivity_List_view_description">Siyahı görünüşü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçildi</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element %2$s</item>
-    <item quantity="other">%1$d element %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d element</item>
+  <string name="MediaOverviewActivity_save">Saxla</string>
+  <string name="MediaOverviewActivity_select_all">Hamısını seç</string>
+  <string name="MediaOverviewActivity_delete">Sil</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d seçildi (%2$s)</item>
+    <item quantity="other">%1$d seçildi (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fayl</string>
   <string name="MediaOverviewActivity_audio">Səs</string>
@@ -1346,6 +1357,8 @@
   <string name="SharedContactView_add_to_contacts">Əlaqələrə əlavə et</string>
   <string name="SharedContactView_invite_to_signal">Signal-a dəvət edin</string>
   <string name="SharedContactView_message">Signal Mesajı</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Daha çox</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Daha sonra yenidən xatırladacağıq.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Sabah yenidən xatırladacağıq.</string>
@@ -1895,14 +1908,15 @@
   <string name="HelpFragment__debug_log">Sazlama jurnalı:</string>
   <string name="HelpFragment__could_not_upload_logs">Jurnal yüklənilə bilmədi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Zəhmət olmasa anlamağımıza kömək etmək üçün problemi daha aydın təsvir edin.</string>
-  <string-array name="HelpFragment__categories">
+  <string-array name="HelpFragment__categories_2">
     <item>-- Zəhmət olmasa seçim edin --</item>
     <item>Nəsə işləmir</item>
     <item>Özəllik tələb et</item>
     <item>Sual</item>
     <item>Əks əlaqə</item>
     <item>Digər</item>
-    <item>Ödənişlər</item>
+    <item>Ödənişlər (MobileCoin)</item>
+    <item>İanələr (Dəstəkçilər və Signal gücləndirməsi)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu mesaj</string>
@@ -2000,6 +2014,8 @@
   <string name="preferences__help">Kömək</string>
   <string name="preferences__advanced">Qabaqcıl</string>
   <string name="preferences__donate_to_signal">Signal-a ianə verin</string>
+  <string name="preferences__subscription">Abunəlik</string>
+  <string name="preferences__signal_boost">Signal gücləndirmə</string>
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS İstifadəçi Agenti</string>
   <string name="preferences__advanced_mms_access_point_names">Manual MMS tənzimləmələri</string>
@@ -3038,6 +3054,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger müəllif hüquqları</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 altında lisenziyalaşdırılıb</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Media keyfiyyəti</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Göndərilən media keyfiyyəti</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Yüksək keyfiyyətli media göndərərkən, daha çox verilənlər istifadə ediləcək.</string>
+  <string name="DataAndStorageSettingsFragment__high">Yüksək</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Zənglər</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Avto</string>
@@ -3163,7 +3184,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Ad və ya nömrə axtarın</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Səsli mesajı dayandır</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Səsli mesaj sürətini dəyişdir</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Səsli mesaja fasilə ver</string>
@@ -3219,6 +3240,9 @@
   <string name="MediaReviewFragment__add_a_reply">Bir cavab əlavə et</string>
   <string name="MediaReviewFragment__send_to">Göndər</string>
   <string name="MediaReviewFragment__view_once_message">Bir dəfə baxıla bilən mesaj</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Bir və ya daha çox element çox böyük idi</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Bir və ya daha çox element etibarsız idi</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Həddindən çox element seçildi</string>
   <string name="ImageEditorHud__cancel">İmtina</string>
   <string name="ImageEditorHud__draw">Çək</string>
   <string name="ImageEditorHud__write_text">Mətn yaz</string>
@@ -3248,5 +3272,63 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil yenilənmədi</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi ol</string>
   <string name="ImageView__badge">Nişan</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal, sizin kimi insanların sayəsində güclüdür.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya, onu davam etdirən insan cəmiyyətinə qoşularaq dəstək verin.</string>
+  <string name="SubscribeFragment__donation_amount">İanə məbləği</string>
+  <string name="SubscribeFragment__more_payment_options">Daha çox ödəniş seçimləri</string>
+  <string name="SubscribeFragment__cancel_subscription">Abunəlikdən imtina</string>
+  <string name="SubscribeFragment__confirm_cancellation">İmtinanı təsdiqləyirsiniz?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Təkrar ödəniş alınmayacaq. Nişanınız, faktura dövrünün sonunda profilinizdən çıxarılacaq.</string>
+  <string name="SubscribeFragment__not_now">İndi yox</string>
+  <string name="SubscribeFragment__confirm">Təsdiqlə</string>
+  <string name="SubscribeFragment__update_subscription">Abunəliyi yenilə</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abunəlikdən imtina edildi.</string>
+  <string name="SubscribeFragment__update_subscription_question">Abunəlik yenilənsin?</string>
+  <string name="SubscribeFragment__update">Yenilə</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bu gün yeni abunəlik haqqı sizdən tutulacaq. Abunəlik %1$s yenilənəcək.</string>
+  <string name="Subscription__s_per_month">%s/ay</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/ay · Yenilənir %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · %2$s bitir</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklam verəni və ya investoru olmayan, yalnız onu istifadə edən və ona dəyər verən insanlar tərəfindən dəstəklənən qeyri-kommersiya təşkilatıdır. Hər ay müntəzəm olaraq töhfə verin və dəstəyinizi paylaşmaq üçün bir profil nişanı alın.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Niyə töhfə verməliyəm?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal-dakı komanda, azad ifadəni qoruyan və güvənli qlobal ünsiyyəti təmin edən açıq mənbəli gizlilik texnologiyasını təkmilləşdirmə missiyasına sadiqdir. Sizin töhfəniz də, bu məqsədə xidmət edir. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Töhfəniz, özəl və ani ünsiyyət üçün dünyada milyonlarla insan tərəfindən istifadə edilən bir tətbiqin inkişafı və serverləri üçün ödənişlərin edilməsinə kömək edir.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gücləndirmə üçün təşəkkürlər!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%s nişanını qazandınız! Nişanın görüntülənməsi, söhbət etdiyiniz şəxslərə Signal-ı dəstəklədiyinizi göstərəcəkdir.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profildə görüntülə</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Xüsusi nişan hazırla</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Bitdi</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bir neçə nişana sahib olanda, profilinizdə başqalarının görməsi üçün birini seçə bilərsiniz.</string>
+  <string name="ManageDonationsFragment__my_support">Dəstəyim</string>
+  <string name="ManageDonationsFragment__manage_subscription">Abunəliyi idarə et</string>
+  <string name="ManageDonationsFragment__badges">Nişanlar</string>
+  <string name="ManageDonationsFragment__subscription_faq">Abunəlik üçün TSS</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Abunəlik alma xətası.</string>
+  <string name="BoostFragment__give_signal_a_boost">Signal-ı gücləndirin</string>
+  <string name="BoostFragment__say_thanks_and_earn">\"Təşəkkür et\" və %1$d gün ərzində Gücləndirmə nişanını qazan.</string>
+  <string name="Boost__enter_custom_amount">Özəl məbləğ daxil edin</string>
+  <string name="Boost__one_time_contribution">Birdəfəlik töhfə</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signal gücləndirməsi əlavə et</string>
+  <string name="MySupportPreference__s_per_month">%1$s/ay</string>
+  <string name="MySupportPreference__renews_s">Yenilənir %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Nişanınızın müddəti bitdi</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq abunəçi olmağı düşünün.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abunəçi olun</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
+  <string name="Subscription__verification_failed">Abunəlik Təsdiqlənmədi</string>
+  <string name="Subscription__please_contact_support_for_more_information">Daha çox məlumat üçün zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
+  <string name="Subscription__contact_support">Dəstək ilə əlaqə</string>
+  <string name="Subscription__earn_a_s_badge">%1$s nişan qazanın.</string>
+  <string name="SubscribeFragment__processing_payment">Ödəniş emal olunur…</string>
+  <string name="DonationsErrors__payment_failed">Ödəniş edilmədi</string>
+  <string name="DonationsErrors__your_payment">Ödənişiniz emal edilə bilmədi və sizdən ödəniş alınmadı. Zəhmət olmasa yenidən sınayın.</string>
+  <string name="DonationsErrors__redemption_still_pending">Geri ödəmə hələ də gözləmədədir</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Nişanınızı dərhal görməyə bilərsiniz, ancaq üzərində işləyirik!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay əlçatmazdır</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Tətbiq daxilində ianə etmək üçün \"Google Pay\"i quraşdırmalısınız.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Abunəlik ləğv edilmədi</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abunəlik ləğvi üçün internet bağlantısı tələb olunur.</string>
   <!--EOF-->
 </resources>

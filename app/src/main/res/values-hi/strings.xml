@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
   <string name="ConversationItem_you_deleted_this_message">आपने यह मेसेज हटाया है</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करें?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">अगर आपको इस संवाद में एन्क्रिप्शन समस्याएं आ रही हैं तो इससे मदद मिल सकती है। आपके मेसेज रखे जाएंगे।</string>
-  <string name="ConversationActivity_reset">फिर से स्थापित करना</string>
   <string name="ConversationActivity_add_attachment">अटैचमेंट जोड़ें</string>
   <string name="ConversationActivity_select_contact_info">संपर्क जानकारी का चयन करें</string>
   <string name="ConversationActivity_compose_message">मेसेज लिखें</string>
@@ -319,6 +316,17 @@
     <item quantity="one">बातचीत को इनबॉक्स में ले जाया गया</item>
     <item quantity="other">%d बातचीत को इनबॉक्स में ले जाया गया</item>
   </plurals>
+  <string name="ConversationListFragment_read">पठित</string>
+  <string name="ConversationListFragment_unread">अनपढ़ा करें</string>
+  <string name="ConversationListFragment_pin">पिन</string>
+  <string name="ConversationListFragment_unpin">अनपिन करें</string>
+  <string name="ConversationListFragment_mute">म्युट</string>
+  <string name="ConversationListFragment_unmute">अनम्यूट</string>
+  <string name="ConversationListFragment_select">चुनिए</string>
+  <string name="ConversationListFragment_archive">संग्रहित करें</string>
+  <string name="ConversationListFragment_unarchive">अनारक्षित करें</string>
+  <string name="ConversationListFragment_delete">हटाए </string>
+  <string name="ConversationListFragment_select_all">सभी को चुन लो</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय मेसेज</string>
   <!--ConversationListItemAction-->
@@ -796,14 +804,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">ग्रिड व्यु</string>
   <string name="MediaOverviewActivity_List_view_description">लिस्ट व्यु</string>
   <string name="MediaOverviewActivity_Selected_description">चयनित</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$dआइटम %2$s</item>
-    <item quantity="other">%1$dआइटम %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d आइटम</item>
-    <item quantity="other">%1$d आइटम</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">सेव</string>
+  <string name="MediaOverviewActivity_select_all">सभी को चुन लो</string>
+  <string name="MediaOverviewActivity_delete">हटाए </string>
   <string name="MediaOverviewActivity_file">फ़ाइल</string>
   <string name="MediaOverviewActivity_audio">ऑडियो</string>
   <string name="MediaOverviewActivity_video">वीडियो</string>
@@ -1304,6 +1307,8 @@
   <string name="SharedContactView_add_to_contacts">संपर्क के खाते में जोड़ दे</string>
   <string name="SharedContactView_invite_to_signal">Signal को आमंत्रित करें</string>
   <string name="SharedContactView_message">Signal मेसेज</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">अधिक</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">हम आपको बाद में फिर याद दिलाऐंगे।</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">हम आपको कल फिर याद दिलाऐंगे।</string>
@@ -1842,15 +1847,6 @@
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड नहीं किए जा सके</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया यथासंभव विस्तृत रूप से बताएँ ताकि हमें समस्या को समझने में मदद मिले।</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- कृपया एक विकल्प चुनें --</item>
-    <item>कुछ काम नहीं कर रहा</item>
-    <item>फ़ीचर अनुरोध</item>
-    <item>सवाल</item>
-    <item>फीडबैक</item>
-    <item>अन्य</item>
-    <item>भुगतान</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">यह मेसेज</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">हाल ही में इस्तेमाल किया</string>
@@ -2957,6 +2953,9 @@
   <string name="HelpFragment__copyright_signal_messenger">कॉपीराइट Signal मेसेंजर</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 के तहत लायसेंसीकृत</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">हाई क्वालिटी मीडिया भेजने के लिए अधिक डेटा खर्च होगा।</string>
+  <string name="DataAndStorageSettingsFragment__high">उच्च</string>
+  <string name="DataAndStorageSettingsFragment__standard">मानक</string>
   <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">स्वतः</string>
@@ -3073,6 +3072,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">नया भुगतान</string>
@@ -3081,7 +3081,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">नाम या नंबर खोजें</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">वॉइस संदेश बंद करें</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">वॉइस संदेश की स्पीड बदलें</string>
   <string name="VoiceNotePlayerView__pause_voice_message">वॉइस संदेश रोकें</string>
@@ -3119,5 +3119,16 @@
   <string name="MediaReviewSelectedItem__tap_to_select">चयन के लिए टैप करें</string>
   <string name="MediaReviewImagePageFragment__discard">रद्द करें</string>
   <string name="SelectFeaturedBadgeFragment__preview">प्रीव्यू</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आप जैसे लोगों से ही चल रहा है।</string>
+  <string name="SubscribeFragment__donation_amount">दान राशि</string>
+  <string name="SubscribeFragment__not_now">अभी नहीं</string>
+  <string name="SubscribeFragment__confirm">पुष्टि करें</string>
+  <string name="SubscribeFragment__update">अपडेट</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">पूर्ण</string>
+  <string name="Boost__enter_custom_amount">कस्टम राशि दर्ज करें</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
+  <string name="Subscription__contact_support">समर्थन से संपर्क करें</string>
+  <string name="SubscribeFragment__processing_payment">भुगतान प्रोसेस किया जा रहा है…</string>
+  <string name="DonationsErrors__payment_failed">भुगतान विफल रहा</string>
   <!--EOF-->
 </resources>

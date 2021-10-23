@@ -785,11 +785,11 @@ public class SignalServiceAccountManager {
                                                                              profileAvatarData);
   }
 
-  public Optional<ProfileKeyCredential> resolveProfileKeyCredential(UUID uuid, ProfileKey profileKey)
+  public Optional<ProfileKeyCredential> resolveProfileKeyCredential(UUID uuid, ProfileKey profileKey, Locale locale)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     try {
-      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(uuid, profileKey, Optional.absent()).get(10, TimeUnit.SECONDS);
+      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(uuid, profileKey, Optional.absent(), locale).get(10, TimeUnit.SECONDS);
       return credential.getProfileKeyCredential();
     } catch (InterruptedException | TimeoutException e) {
       throw new PushNetworkException(e);

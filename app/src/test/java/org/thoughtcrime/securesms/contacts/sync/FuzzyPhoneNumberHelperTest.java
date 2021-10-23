@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.contacts.sync;
 import org.junit.Test;
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.InputResult;
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputResult;
-import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputResultV2;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
@@ -33,7 +32,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(2, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, US_B)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -42,7 +41,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertEquals(MX_A, result.getFuzzies().get(MX_A_1));
+    assertEquals(MX_A, result.getMapOfOriginalToVariant().get(MX_A_1));
   }
 
   @Test
@@ -51,7 +50,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(2, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -60,7 +59,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertEquals(MX_A_1, result.getFuzzies().get(MX_A));
+    assertEquals(MX_A_1, result.getMapOfOriginalToVariant().get(MX_A));
   }
 
   @Test
@@ -69,7 +68,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(2, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -78,7 +77,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -87,7 +86,7 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
@@ -96,75 +95,12 @@ public class FuzzyPhoneNumberHelperTest {
 
     assertEquals(3, result.getNumbers().size());
     assertTrue(result.getNumbers().containsAll(setOf(US_A, MX_A_1, MX_A)));
-    assertTrue(result.getFuzzies().isEmpty());
+    assertTrue(result.getMapOfOriginalToVariant().isEmpty());
   }
 
   @Test
   public void generateOutput_noMxNumbers() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(US_A, US_B), new InputResult(setOf(US_A, US_B), Collections.emptyMap()));
-
-    assertEquals(2, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(US_A, US_B)));
-    assertTrue(result.getRewrites().isEmpty());
-  }
-
-  @Test
-  public void generateOutput_bothMatch_no1To1() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(MX_A, MX_A_1), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
-
-    assertEquals(1, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(MX_A)));
-    assertTrue(result.getRewrites().isEmpty());
-  }
-
-  @Test
-  public void generateOutput_bothMatch_1toNo1() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(MX_A, MX_A_1), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
-
-    assertEquals(1, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(MX_A)));
-    assertEquals(MX_A, result.getRewrites().get(MX_A_1));
-  }
-
-  @Test
-  public void generateOutput_no1Match_no1To1() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(MX_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
-
-    assertEquals(1, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(MX_A)));
-    assertTrue(result.getRewrites().isEmpty());
-  }
-
-  @Test
-  public void generateOutput_no1Match_1ToNo1() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(MX_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
-
-    assertEquals(1, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(MX_A)));
-    assertEquals(MX_A, result.getRewrites().get(MX_A_1));
-  }
-
-  @Test
-  public void generateOutput_1Match_1ToNo1() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(MX_A_1), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
-
-    assertEquals(1, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(MX_A_1)));
-    assertTrue(result.getRewrites().isEmpty());
-  }
-
-  @Test
-  public void generateOutput_1Match_no1To1() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(MX_A_1), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
-
-    assertEquals(1, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(MX_A_1)));
-    assertEquals(MX_A_1, result.getRewrites().get(MX_A));
-  }
-
-  @Test
-  public void generateOutputV2_noMxNumbers() {
-    OutputResultV2 result = FuzzyPhoneNumberHelper.generateOutputV2(mapOf(US_A, UUID_A, US_B, UUID_B), new InputResult(setOf(US_A, US_B), Collections.emptyMap()));
+    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(mapOf(US_A, UUID_A, US_B, UUID_B), new InputResult(setOf(US_A, US_B), Collections.emptyMap()));
 
     assertEquals(2, result.getNumbers().size());
     assertEquals(UUID_A, result.getNumbers().get(US_A));
@@ -173,8 +109,8 @@ public class FuzzyPhoneNumberHelperTest {
   }
 
   @Test
-  public void generateOutputV2_bothMatch_no1To1() {
-    OutputResultV2 result = FuzzyPhoneNumberHelper.generateOutputV2(mapOf(MX_A, UUID_A, MX_A_1, UUID_B), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
+  public void generateOutput_bothMatch_no1To1() {
+    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(mapOf(MX_A, UUID_A, MX_A_1, UUID_B), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
 
     assertEquals(1, result.getNumbers().size());
     assertEquals(UUID_A, result.getNumbers().get(MX_A));
@@ -182,8 +118,8 @@ public class FuzzyPhoneNumberHelperTest {
   }
 
   @Test
-  public void generateOutputV2_bothMatch_1toNo1() {
-    OutputResultV2 result = FuzzyPhoneNumberHelper.generateOutputV2(mapOf(MX_A, UUID_A, MX_A_1, UUID_B), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
+  public void generateOutput_bothMatch_1toNo1() {
+    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(mapOf(MX_A, UUID_A, MX_A_1, UUID_B), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
 
     assertEquals(1, result.getNumbers().size());
     assertEquals(UUID_A, result.getNumbers().get(MX_A));
@@ -191,8 +127,8 @@ public class FuzzyPhoneNumberHelperTest {
   }
 
   @Test
-  public void generateOutputV2_no1Match_no1To1() {
-    OutputResultV2 result = FuzzyPhoneNumberHelper.generateOutputV2(mapOf(MX_A, UUID_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
+  public void generateOutput_no1Match_no1To1() {
+    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(mapOf(MX_A, UUID_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
 
     assertEquals(1, result.getNumbers().size());
     assertEquals(UUID_A, result.getNumbers().get(MX_A));
@@ -200,8 +136,8 @@ public class FuzzyPhoneNumberHelperTest {
   }
 
   @Test
-  public void generateOutputV2_no1Match_1ToNo1() {
-    OutputResultV2 result = FuzzyPhoneNumberHelper.generateOutputV2(mapOf(MX_A, UUID_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
+  public void generateOutput_no1Match_1ToNo1() {
+    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(mapOf(MX_A, UUID_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
 
     assertEquals(1, result.getNumbers().size());
     assertEquals(UUID_A, result.getNumbers().get(MX_A));
@@ -209,8 +145,8 @@ public class FuzzyPhoneNumberHelperTest {
   }
 
   @Test
-  public void generateOutputV2_1Match_1ToNo1() {
-    OutputResultV2 result = FuzzyPhoneNumberHelper.generateOutputV2(mapOf(MX_A_1, UUID_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
+  public void generateOutput_1Match_1ToNo1() {
+    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(mapOf(MX_A_1, UUID_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A_1, MX_A)));
 
     assertEquals(1, result.getNumbers().size());
     assertEquals(UUID_A, result.getNumbers().get(MX_A_1));
@@ -218,11 +154,11 @@ public class FuzzyPhoneNumberHelperTest {
   }
 
   @Test
-  public void generateOutputV2_1Match_no1To1() {
-    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(setOf(MX_A_1), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
+  public void generateOutput_1Match_no1To1() {
+    OutputResult result = FuzzyPhoneNumberHelper.generateOutput(mapOf(MX_A_1, UUID_A), new InputResult(setOf(MX_A, MX_A_1), Collections.singletonMap(MX_A, MX_A_1)));
 
     assertEquals(1, result.getNumbers().size());
-    assertTrue(result.getNumbers().containsAll(setOf(MX_A_1)));
+    assertEquals(UUID_A, result.getNumbers().get(MX_A_1));
     assertEquals(MX_A_1, result.getRewrites().get(MX_A));
   }
 

@@ -170,7 +170,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">I-reset ang secure na sesyon?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Maaari itong makatulong kung ika\'y nagkakaproblema sa encryption ng pag-uusap na ito. Ang iyong mga mensahe ay pananatilihin.</string> -->
-  <string name="ConversationActivity_reset">I-reset</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">I-reset</string> -->
   <string name="ConversationActivity_add_attachment">Magdagdag ng kalakip</string>
   <string name="ConversationActivity_select_contact_info">Pumili ng impormasyon ng kontak</string>
   <string name="ConversationActivity_compose_message">Magsulat ng mensahe</string>
@@ -484,14 +484,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Grid na view</string>
   <string name="MediaOverviewActivity_List_view_description">List na view</string>
   <string name="MediaOverviewActivity_Selected_description">Pinili</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d item %2$s</item>
     <item quantity="other">%1$d item %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d item</item>
     <item quantity="other">%1$d item</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">File</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>

@@ -120,7 +120,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Kutin wakaychishpa kallarinayanchu</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Pakashka rimaywan llaki apakukpika kayka yanapayta ushanmi. Kikinpa chaski mana picharinkachu.</string> -->
-  <string name="ConversationActivity_reset">Kutin kallaripay</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Kutin kallaripay</string> -->
   <string name="ConversationActivity_add_attachment">Shuk imaykunata kimichipay</string>
   <string name="ConversationActivity_select_contact_info">Yupaymashipa willayta akllapay</string>
   <string name="ConversationActivity_compose_message">Chaskita killkapay</string>

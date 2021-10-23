@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Viesti poistettiin.</string>
   <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Alustetaanko suojattu istunto?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa ratkaista keskusteluun salaukseen liittyviä ongelmia. Viestejä ei poisteta.</string>
-  <string name="ConversationActivity_reset">Alusta</string>
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
   </plurals>
+  <string name="ConversationListFragment_read">Luettu</string>
+  <string name="ConversationListFragment_unread">Lukematon</string>
+  <string name="ConversationListFragment_pin">Kiinnitä</string>
+  <string name="ConversationListFragment_unpin">Irrota</string>
+  <string name="ConversationListFragment_mute">Mykistä</string>
+  <string name="ConversationListFragment_unmute">Poista mykistys</string>
+  <string name="ConversationListFragment_select">Valitse</string>
+  <string name="ConversationListFragment_archive">Arkistoi</string>
+  <string name="ConversationListFragment_unarchive">Palauta arkistosta</string>
+  <string name="ConversationListFragment_delete">Poista</string>
+  <string name="ConversationListFragment_select_all">Valitse kaikki</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
   <!--ConversationListItemAction-->
@@ -798,14 +806,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudukkonäkymä</string>
   <string name="MediaOverviewActivity_List_view_description">Listanäkymä</string>
   <string name="MediaOverviewActivity_Selected_description">Valittu</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d kappale %2$s</item>
-    <item quantity="other">%1$d kappaletta %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d kappale</item>
-    <item quantity="other">%1$d kappaletta</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">Tallenna</string>
+  <string name="MediaOverviewActivity_select_all">Valitse kaikki</string>
+  <string name="MediaOverviewActivity_delete">Poista</string>
   <string name="MediaOverviewActivity_file">Tiedosto</string>
   <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1315,6 +1318,8 @@ puhelinnumero</string>
   <string name="SharedContactView_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactView_invite_to_signal">Kutsu Signaliin</string>
   <string name="SharedContactView_message">Signal-viesti</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Lisää</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Muistutamme sinua myöhemmin uudelleen.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Muistutamme sinua jälleen huomenna.</string>
@@ -1860,15 +1865,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Valitse jokin näistä --</item>
-    <item>Jokin ei toimi</item>
-    <item>Parannusehdotus</item>
-    <item>Kysymys</item>
-    <item>Palaute</item>
-    <item>Muu</item>
-    <item>Maksut</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -2997,6 +2993,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensoitu GPLv3-lisenssillä</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Korkealaatuiden median lähetys kuluttaa enemmän dataa.</string>
+  <string name="DataAndStorageSettingsFragment__high">Korkea</string>
+  <string name="DataAndStorageSettingsFragment__standard">Vakio</string>
   <string name="DataAndStorageSettingsFragment__calls">Puhelut</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3113,6 +3112,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Uusi maksu</string>
@@ -3121,7 +3121,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Etsi nimellä tai numerolla</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">%1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Pysäytä ääniviesti</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Muuta ääniviestin nopeutta</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Tauota ääniviesti</string>
@@ -3187,5 +3187,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
   <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
   <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Kaltaisesti ihmiset pitävät Signalin tehokkaana.</string>
+  <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string>
+  <string name="SubscribeFragment__not_now">Ei nyt</string>
+  <string name="SubscribeFragment__confirm">Vahvista</string>
+  <string name="SubscribeFragment__update">Päivitä</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
+  <string name="Boost__enter_custom_amount">Syöltä muu summa</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
+  <string name="Subscription__contact_support">Ota yhteyttä tukeen</string>
+  <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
+  <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string>
   <!--EOF-->
 </resources>

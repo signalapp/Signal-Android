@@ -29,7 +29,7 @@ import androidx.annotation.VisibleForTesting;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 
-import net.sqlcipher.database.SQLiteStatement;
+import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -202,6 +202,7 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(id, false));
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   @Override

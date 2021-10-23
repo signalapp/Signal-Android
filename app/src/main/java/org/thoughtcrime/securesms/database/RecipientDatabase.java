@@ -14,7 +14,7 @@ import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.sqlcipher.database.SQLiteConstraintException;
+import net.zetetic.database.sqlcipher.SQLiteConstraintException;
 
 import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
@@ -1373,9 +1373,10 @@ public class RecipientDatabase extends Database {
         badges.add(new Badge(
             protoBadge.getId(),
             Badge.Category.Companion.fromCode(protoBadge.getCategory()),
-            Uri.parse(protoBadge.getImageUrl()),
             protoBadge.getName(),
             protoBadge.getDescription(),
+            Uri.parse(protoBadge.getImageUrl()),
+            protoBadge.getImageDensity(),
             protoBadge.getExpiration(),
             protoBadge.getVisible()
         ));
@@ -1613,6 +1614,33 @@ public class RecipientDatabase extends Database {
     StorageSyncHelper.scheduleSyncForDataChange();
   }
 
+  public void setMuted(@NonNull Collection<RecipientId> ids, long until) {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      ContentValues values = new ContentValues();
+      values.put(MUTE_UNTIL, until);
+
+      SqlUtil.Query query = SqlUtil.buildCollectionQuery(ID, ids);
+      db.update(TABLE_NAME, values, query.getWhere(), query.getWhereArgs());
+
+      for (RecipientId id : ids) {
+        rotateStorageId(id);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    for (RecipientId id : ids) {
+      Recipient.live(id).refresh();
+    }
+
+    StorageSyncHelper.scheduleSyncForDataChange();
+  }
+
   public void setSeenFirstInviteReminder(@NonNull RecipientId id) {
     setInsightsBannerTier(id, InsightsBannerTier.TIER_ONE);
   }
@@ -1691,7 +1719,8 @@ public class RecipientDatabase extends Database {
                                                 .setExpiration(badge.getExpirationTimestamp())
                                                 .setVisible(badge.getVisible())
                                                 .setName(badge.getName())
-                                                .setImageUrl(badge.getImageUrl().toString()));
+                                                .setImageUrl(badge.getImageUrl().toString())
+                                                .setImageDensity(badge.getImageDensity()));
     }
 
     ContentValues values = new ContentValues(1);
@@ -3108,6 +3137,9 @@ public class RecipientDatabase extends Database {
     } else {
       Log.w(TAG, "Had no sessions. No action necessary.", true);
     }
+
+    // MSL
+    DatabaseFactory.getMessageLogDatabase(context).remapRecipient(byE164, byUuid);
 
     // Mentions
     ContentValues mentionRecipientValues = new ContentValues();

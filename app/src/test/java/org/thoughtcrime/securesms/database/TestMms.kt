@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
  */
 object TestMms {
 
-  fun insertMmsMessage(
+  fun insert(
     db: SQLiteDatabase,
     recipient: Recipient = Recipient.UNKNOWN,
     body: String = "body",
@@ -42,7 +42,7 @@ object TestMms {
       emptySet()
     )
 
-    return insertMmsMessage(
+    return insert(
       db = db,
       message = message,
       body = body,
@@ -53,7 +53,7 @@ object TestMms {
     )
   }
 
-  fun insertMmsMessage(
+  fun insert(
     db: SQLiteDatabase,
     message: OutgoingMediaMessage,
     body: String = message.body,
@@ -62,24 +62,25 @@ object TestMms {
     threadId: Long = 1,
     receivedTimestampMillis: Long = System.currentTimeMillis(),
   ): Long {
-    val contentValues = ContentValues()
-    contentValues.put(MmsDatabase.DATE_SENT, message.sentTimeMillis)
-    contentValues.put(MmsDatabase.MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
+    val contentValues = ContentValues().apply {
+      put(MmsDatabase.DATE_SENT, message.sentTimeMillis)
+      put(MmsDatabase.MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
 
-    contentValues.put(MmsDatabase.MESSAGE_BOX, type)
-    contentValues.put(MmsSmsColumns.THREAD_ID, threadId)
-    contentValues.put(MmsSmsColumns.READ, if (unread) 0 else 1)
-    contentValues.put(MmsDatabase.DATE_RECEIVED, receivedTimestampMillis)
-    contentValues.put(MmsSmsColumns.SUBSCRIPTION_ID, message.subscriptionId)
-    contentValues.put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
-    contentValues.put(MmsDatabase.VIEW_ONCE, message.isViewOnce)
-    contentValues.put(MmsSmsColumns.RECIPIENT_ID, message.recipient.id.serialize())
-    contentValues.put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
-    contentValues.put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
+      put(MmsDatabase.MESSAGE_BOX, type)
+      put(MmsSmsColumns.THREAD_ID, threadId)
+      put(MmsSmsColumns.READ, if (unread) 0 else 1)
+      put(MmsDatabase.DATE_RECEIVED, receivedTimestampMillis)
+      put(MmsSmsColumns.SUBSCRIPTION_ID, message.subscriptionId)
+      put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
+      put(MmsDatabase.VIEW_ONCE, message.isViewOnce)
+      put(MmsSmsColumns.RECIPIENT_ID, message.recipient.id.serialize())
+      put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
+      put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
 
-    contentValues.put(MmsSmsColumns.BODY, body)
-    contentValues.put(MmsDatabase.PART_COUNT, 0)
-    contentValues.put(MmsDatabase.MENTIONS_SELF, 0)
+      put(MmsSmsColumns.BODY, body)
+      put(MmsDatabase.PART_COUNT, 0)
+      put(MmsDatabase.MENTIONS_SELF, 0)
+    }
 
     return db.insert(MmsDatabase.TABLE_NAME, null, contentValues)
   }

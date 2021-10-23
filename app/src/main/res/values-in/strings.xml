@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hal ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string>
-  <string name="ConversationActivity_reset">Atur ulang</string>
   <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
   <string name="ConversationActivity_compose_message">Tulis pesan</string>
@@ -307,6 +304,20 @@
   <string name="ConversationListFragment_undo">BATALKAN</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Memindahkan %d percakapan ke kotak masuk</item>
+  </plurals>
+  <string name="ConversationListFragment_read">Terbaca</string>
+  <string name="ConversationListFragment_unread">Belum dibaca</string>
+  <string name="ConversationListFragment_pin">Pin</string>
+  <string name="ConversationListFragment_unpin">Cabut Pin</string>
+  <string name="ConversationListFragment_mute">Senyap</string>
+  <string name="ConversationListFragment_unmute">Tidak Senyap</string>
+  <string name="ConversationListFragment_select">Pilih</string>
+  <string name="ConversationListFragment_archive">Arsip</string>
+  <string name="ConversationListFragment_unarchive">Buka Arsip</string>
+  <string name="ConversationListFragment_delete">Hapus</string>
+  <string name="ConversationListFragment_select_all">Pilih semua</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="other">%d dipilih</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci</string>
@@ -758,11 +769,11 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tampilan grid</string>
   <string name="MediaOverviewActivity_List_view_description">Tampilan urutan</string>
   <string name="MediaOverviewActivity_Selected_description">Terpilih</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$ditem %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d item</item>
+  <string name="MediaOverviewActivity_save">Simpan</string>
+  <string name="MediaOverviewActivity_select_all">Pilih semua</string>
+  <string name="MediaOverviewActivity_delete">Hapus</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">%1$d dipilih (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Berkas</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -1281,6 +1292,8 @@ isikan (%s) tidak valid.
   <string name="SharedContactView_add_to_contacts">Tambahkan ke Kontak</string>
   <string name="SharedContactView_invite_to_signal">Undang ke Signal</string>
   <string name="SharedContactView_message">Pesan Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Selanjutnya</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Kami akan mengingatkan Anda lagi nanti.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Kami akan mengingatkan Anda lagi besok.</string>
@@ -1760,6 +1773,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Untuk memverifikasi keamanan enkripsi end-to-end Anda dengan %s, bandingkan nomor di atas dengan yang ada di perangkat mereka. Anda juga dapat memindai kodenya di ponsel mereka. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
+  <string name="verify_display_fragment__successful_match">Pencocokan berhasil</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Gagal memverifikasi nomor keamanan</string>
   <string name="verify_display_fragment__loading">Memuat…</string>
   <string name="verify_display_fragment__mark_as_verified">Tandai terverifikasi</string>
@@ -1818,14 +1832,15 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__debug_log">Catatan debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Mohon pilih sebuah opsi --</item>
-    <item>Sesuatu Tidak Bekerja</item>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Mohon pilih --</item>
+    <item>Sesuatu Tidak Berfungsi</item>
     <item>Permintaan Fitur</item>
     <item>Pertanyaan</item>
     <item>Umpan balik</item>
     <item>Lainnya</item>
-    <item>Pembayaran</item>
+    <item>Pembayaran (MobileCoin)</item>
+    <item>Donasi (Pemelihara &amp; Signal Boost)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
@@ -1922,6 +1937,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__help">Bantuan</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__donate_to_signal">Berdonasi ke Signal</string>
+  <string name="preferences__subscription">Berlangganan</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Pengaturan Manual MMS</string>
@@ -2067,6 +2084,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="PaymentsHomeFragment__deactivate_payments">Nonaktifkan pembayaran</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frasa pemulihan</string>
   <string name="PaymentsHomeFragment__help">Bantuan</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Biaya coin cleanup</string>
   <string name="PaymentsHomeFragment__sent_payment">Pembayaran terkirim</string>
   <string name="PaymentsHomeFragment__received_payment">Pembauaran diterima</string>
   <string name="PaymentsHomeFragment__processing_payment">Memproses pembayaran</string>
@@ -2108,6 +2126,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="PaymentsDetailsFragment__to">Kepada</string>
   <string name="PaymentsDetailsFragment__from">Dari</string>
   <string name="PaymentsDetailsFragment__information">Detil transaksi termasuk jumlah pembayaran dan waktu dari transaksi adalah bagian dari Ledger MobileCoin.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Biaya coin cleanup</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Biaya coin cleanup\" dibebankan saat koin dalam kepemilikan Anda tidak dapat digabungkan untuk menyelesaikan sebuah transaksi. Cleanup memungkinkan Anda untuk melanjutkan pembayaran.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Tidak ada detail lebih untuk transaksi ini</string>
   <string name="PaymentsDetailsFragment__sent_payment">Kirim pembayaran</string>
   <string name="PaymentsDetailsFragment__received_payment">Pembayaran diterima</string>
@@ -2146,6 +2166,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Hapus</string>
   <string name="CreatePaymentFragment__add_note">Tambah catatan</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">Konversi hanyalah perkiraan dan mungkin tidak akurat.</string>
   <!--EditNoteFragment-->
@@ -2856,6 +2877,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AccountSettingsFragment__require_your_signal_pin">Memerlukan PIN Signal untuk mendaftarkan nomor telepon Anda lagi di Signal</string>
   <string name="AccountSettingsFragment__change_phone_number">Ganti nomor telepon</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gunakan ini untuk mengubah nomor telepon Anda saat ini ke nomor telepon yang baru. Anda tidak dapat membatalkannya.\n\nSebelum melanjutkan, pastikan nomor baru Anda dapat menerima SMS atau panggilan telepon.</string>
   <string name="ChangeNumberFragment__continue">Lanjut</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">Nomor telepon Anda telah diganti</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2866,6 +2888,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nomor baru</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Nomor telepon yang kamu masukan tidak cocok dengan akun manapun.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Anda harus memasukkan kode negara nomor Anda yang lama</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Anda harus menentukan nomor telepon lama Anda</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Anda harus memasukkan kode negara nomor Anda yang baru</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Anda harus memasukkan nomor telepon Anda yang baru</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2874,8 +2897,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha dibutuhkan</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Ganti nomor</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Anda akan mengubah nomor telepon dari %1$s ke %2$s.\n\nSebelum melanjutkan, mohon verifikasi bahwa nomor di bawah sudah benar.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Sunting nomor</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Penggantian Nomor Signal - Butuh bantuan mengenai PIN untuk Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN tidak cocok</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Simpan PIN lama</string>
@@ -2936,6 +2961,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__copyright_signal_messenger">Hak Cipta Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Berlisensi dibawah GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Mengirimkan media dengan kualitas tinggi akan menggunakan lebih banyak data.</string>
+  <string name="DataAndStorageSettingsFragment__high">Tinggi</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standar</string>
   <string name="DataAndStorageSettingsFragment__calls">Panggilan</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -2986,6 +3014,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KeyboardPagerFragment_open_sticker_search">Buka pencarian stiker</string>
   <string name="KeyboardPagerFragment_open_gif_search">Buka pencarian gif</string>
   <string name="KeyboardPagerFragment_stickers">Stiker</string>
+  <string name="KeyboardPagerFragment_backspace">Hapus</string>
   <string name="KeyboardPagerFragment_gifs">Gif</string>
   <string name="KeyboardPagerFragment_search_emoji">Cari emoji</string>
   <string name="KeyboardPagerfragment_back_to_emoji">Kembali ke emoji</string>
@@ -3049,6 +3078,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Pembayaran baru</string>
@@ -3057,7 +3087,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cari nama atau nomor</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Hentikan pesan suara</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Ubah kecepatan pesan suara</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Jeda pesan suara</string>
@@ -3122,5 +3152,16 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MediaReviewImagePageFragment__discard">Batalkan</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Anda akan kehilangan perubahan yang telah dibuat terhadap foto ini.</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pratinjau</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
+  <string name="SubscribeFragment__donation_amount">Jumlah donasi</string>
+  <string name="SubscribeFragment__not_now">Nanti saja</string>
+  <string name="SubscribeFragment__confirm">Konfirmasi</string>
+  <string name="SubscribeFragment__update">Perbarui</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
+  <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
+  <string name="Subscription__contact_support">Hubungi Bantuan</string>
+  <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
+  <string name="DonationsErrors__payment_failed">Pembayaran gagal</string>
   <!--EOF-->
 </resources>

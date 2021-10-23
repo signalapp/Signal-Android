@@ -145,7 +145,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Athshocraigh rith teachtaireachta slán?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">B\'fhéidir go gcabhraíonn sé seo má bhíonn fadhbanna criptiú sa chomhrá seo. Ní chaillítear do theachtaireachtaí.</string> -->
-  <string name="ConversationActivity_reset">Athshocraigh</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Athshocraigh</string> -->
   <string name="ConversationActivity_add_attachment">Cuir ceangaltán leis</string>
   <string name="ConversationActivity_select_contact_info">Roghnaigh eolas teagmhála</string>
   <string name="ConversationActivity_compose_message">Cum teachtaireacht</string>

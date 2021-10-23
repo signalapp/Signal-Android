@@ -32,7 +32,6 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
-import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
@@ -333,6 +332,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
+  public void updateContactNameColor() {
+    setGroupAuthorColor(messageRecord, hasWallpaper, colorizer);
+  }
+
+  @Override
   public boolean onInterceptTouchEvent(MotionEvent ev) {
     if (ev.getAction() == MotionEvent.ACTION_DOWN) {
       lastYDownRelativeToThis = ev.getY();
@@ -403,7 +407,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       int      availableWidth     = getAvailableMessageBubbleWidth(bodyText);
       int      collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
 
-      if (bodyText.isSingleLine()) {
+      if (bodyText.isSingleLine() && !messageRecord.isFailed()) {
         int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
         int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
         int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
@@ -423,7 +427,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         }
       }
 
-      if (!updatingFooter && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
+      if (!updatingFooter && !messageRecord.isFailed() && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
         ViewUtil.setTopMargin(footer, collapsedTopMargin);
         ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
         updatingFooter = true;
@@ -1751,7 +1755,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       projections.add(quoteView.getProjection(coordinateRoot).translateX(bodyBubble.getTranslationX() + this.getTranslationX()));
     }
 
-    return projections;
+    return projections.stream().map(p -> p.translateY(this.getTranslationY())).collect(Collectors.toList());
   }
 
   @Override

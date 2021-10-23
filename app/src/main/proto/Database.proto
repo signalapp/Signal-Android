@@ -25,13 +25,14 @@ message ReactionList {
 
 message BadgeList {
     message Badge {
-        string id          = 1;
-        string category    = 2;
-        string name        = 3;
-        string description = 4;
-        string imageUrl    = 5;
-        uint64 expiration  = 6;
-        bool   visible     = 7;
+        string   id           = 1;
+        string   category     = 2;
+        string   name         = 3;
+        string   description  = 4;
+        string   imageUrl     = 5;
+        uint64   expiration   = 6;
+        bool     visible      = 7;
+        string   imageDensity = 8;
     }
 
     repeated Badge badges = 1;

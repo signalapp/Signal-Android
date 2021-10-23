@@ -160,7 +160,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Kara saitin mahajin bayanai masu tsaro?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Wannan zai iya taimakawa idan akasamu matsala da tsaro a wannan hiran. Ba zaka/ki rasa sakwanninka ba.</string> -->
-  <string name="ConversationActivity_reset">Maimaita saiti</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Maimaita saiti</string> -->
   <string name="ConversationActivity_add_attachment">Kara abun makallawa</string>
   <string name="ConversationActivity_select_contact_info">Zabi lambar sadarwa.</string>
   <string name="ConversationActivity_compose_message">Rubuta sako</string>
@@ -453,14 +453,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Kallon jerin hotuna</string>
   <string name="MediaOverviewActivity_List_view_description">Kallon jeri kalamai</string>
   <string name="MediaOverviewActivity_Selected_description">Zababbe</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d item %2$s</item>
     <item quantity="other">%1$d abubuwa%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d item</item>
     <item quantity="other">%1$d abubuwa</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Fayil</string>
   <string name="MediaOverviewActivity_audio">Odiyo</string>
   <string name="MediaOverviewActivity_video">Bidiyo</string>

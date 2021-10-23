@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registration.fragments.EnterCodeFragment">
+    tools:context=".registration.fragments.EnterSmsCodeFragment">
 
     <ScrollView
         android:id="@+id/scroll_view"
@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".registration.fragments.EnterCodeFragment">
+            tools:context=".registration.fragments.EnterSmsCodeFragment">
 
             <Button
                 android:id="@+id/wrong_number"

@@ -19,6 +19,20 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/circle_ultramarine" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:background="@drawable/circle_tintable"
+        android:elevation="4dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/v2_media_check"
+        tools:alpha="1" />
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"

@@ -50,5 +50,5 @@ Describe here the issue that you are experiencing.
 **Signal version:** 0.0.0
 
 ### Link to debug log
-<!-- immediately after the bug has happened capture a debug log via Signal's advanced settings and paste the link below -->
+<!-- immediately after the bug has happened capture a debug log via Signal's settings (Help -> Debug log) and paste the link below -->
 

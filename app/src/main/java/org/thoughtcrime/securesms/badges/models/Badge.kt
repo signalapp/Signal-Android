@@ -1,66 +1,47 @@
 package org.thoughtcrime.securesms.badges.models
 
-import android.graphics.drawable.Drawable
+import android.animation.ObjectAnimator
 import android.net.Uri
-import android.os.Parcel
 import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.Key
-import com.bumptech.glide.request.target.CustomViewTarget
-import com.bumptech.glide.request.transition.Transition
-import org.signal.core.util.DimensionUnit
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
+import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.Badges.selectable
+import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.ThemeUtil
 import java.security.MessageDigest
 
-typealias OnBadgeClicked = (Badge, Boolean) -> Unit
+typealias OnBadgeClicked = (Badge, Boolean, Boolean) -> Unit
 
 /**
  * A Badge that can be collected and displayed by a user.
  */
+@Parcelize
 data class Badge(
   val id: String,
   val category: Category,
-  val imageUrl: Uri,
   val name: String,
   val description: String,
+  val imageUrl: Uri,
+  val imageDensity: String,
   val expirationTimestamp: Long,
-  val visible: Boolean
+  val visible: Boolean,
 ) : Parcelable, Key {
 
-  constructor(parcel: Parcel) : this(
-    requireNotNull(parcel.readString()),
-    Category.fromCode(requireNotNull(parcel.readString())),
-    requireNotNull(parcel.readParcelable(Uri::class.java.classLoader)),
-    requireNotNull(parcel.readString()),
-    requireNotNull(parcel.readString()),
-    parcel.readLong(),
-    parcel.readByte() == 1.toByte()
-  )
-
-  override fun describeContents(): Int {
-    return 0
-  }
-
-  override fun writeToParcel(parcel: Parcel, flags: Int) {
-    parcel.writeString(id)
-    parcel.writeString(category.code)
-    parcel.writeParcelable(imageUrl, flags)
-    parcel.writeString(name)
-    parcel.writeString(description)
-    parcel.writeLong(expirationTimestamp)
-    parcel.writeByte(if (visible) 1 else 0)
-  }
+  fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis()
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(id.toByteArray(Key.CHARSET))
+    messageDigest.update(imageUrl.toString().toByteArray(Key.CHARSET))
+    messageDigest.update(imageDensity.toByteArray(Key.CHARSET))
   }
 
   fun resolveDescription(shortName: String): String {
@@ -89,14 +70,18 @@ data class Badge(
 
   class Model(
     val badge: Badge,
-    val isSelected: Boolean = false
+    val isSelected: Boolean = false,
+    val isFaded: Boolean = false
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return newItem.badge.id == badge.id
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return super.areContentsTheSame(newItem) && badge == newItem.badge && isSelected == newItem.isSelected
+      return super.areContentsTheSame(newItem) &&
+        badge == newItem.badge &&
+        isSelected == newItem.isSelected &&
+        isFaded == newItem.isFaded
     }
 
     override fun getChangePayload(newItem: Model): Any? {
@@ -110,32 +95,47 @@ data class Badge(
 
   class ViewHolder(itemView: View, private val onBadgeClicked: OnBadgeClicked) : MappingViewHolder<Model>(itemView) {
 
+    private val check: ImageView = itemView.findViewById(R.id.checkmark)
     private val badge: ImageView = itemView.findViewById(R.id.badge)
     private val name: TextView = itemView.findViewById(R.id.name)
-    private val target = Target(badge)
+
+    private var checkAnimator: ObjectAnimator? = null
+
+    init {
+      check.isSelected = true
+    }
 
     override fun bind(model: Model) {
       itemView.setOnClickListener {
-        onBadgeClicked(model.badge, model.isSelected)
+        onBadgeClicked(model.badge, model.isSelected, model.isFaded)
       }
 
+      checkAnimator?.cancel()
       if (payload.isNotEmpty()) {
-        if (model.isSelected) {
-          target.animateToStart()
+        checkAnimator = if (model.isSelected) {
+          ObjectAnimator.ofFloat(check, "alpha", 1f)
         } else {
-          target.animateToEnd()
+          ObjectAnimator.ofFloat(check, "alpha", 0f)
         }
+        checkAnimator?.start()
         return
       }
 
+      badge.alpha = if (model.badge.isExpired() || model.isFaded) 0.5f else 1f
+
       GlideApp.with(badge)
         .load(model.badge)
-        .into(target)
+        .downsample(DownsampleStrategy.NONE)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .transform(
+          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.XLARGE, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
+        )
+        .into(badge)
 
       if (model.isSelected) {
-        target.setAnimationToStart()
+        check.alpha = 1f
       } else {
-        target.setAnimationToEnd()
+        check.alpha = 0f
       }
 
       name.text = model.badge.name
@@ -158,60 +158,8 @@ data class Badge(
     }
   }
 
-  private class Target(view: ImageView) : CustomViewTarget<ImageView, Drawable>(view) {
-
-    private val animator: BadgeAnimator = BadgeAnimator()
-
-    override fun onLoadFailed(errorDrawable: Drawable?) {
-      view.setImageDrawable(errorDrawable)
-    }
-
-    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-      val drawable = resource.selectable(
-        DimensionUnit.DP.toPixels(2.5f),
-        ContextCompat.getColor(view.context, R.color.signal_inverse_primary),
-        ContextCompat.getColor(view.context, R.color.signal_background_primary),
-        animator
-      )
-
-      view.setImageDrawable(drawable)
-    }
-
-    override fun onResourceCleared(placeholder: Drawable?) {
-      view.setImageDrawable(placeholder)
-    }
-
-    fun setAnimationToStart() {
-      animator.setState(BadgeAnimator.State.START)
-      view.drawable?.invalidateSelf()
-    }
-
-    fun setAnimationToEnd() {
-      animator.setState(BadgeAnimator.State.END)
-      view.drawable?.invalidateSelf()
-    }
-
-    fun animateToStart() {
-      animator.setState(BadgeAnimator.State.REVERSE)
-      view.drawable?.invalidateSelf()
-    }
-
-    fun animateToEnd() {
-      animator.setState(BadgeAnimator.State.FORWARD)
-      view.drawable?.invalidateSelf()
-    }
-  }
-
-  companion object CREATOR : Parcelable.Creator<Badge> {
+  companion object {
     private val SELECTION_CHANGED = Any()
-
-    override fun createFromParcel(parcel: Parcel): Badge {
-      return Badge(parcel)
-    }
-
-    override fun newArray(size: Int): Array<Badge?> {
-      return arrayOfNulls(size)
-    }
 
     fun register(mappingAdapter: MappingAdapter, onBadgeClicked: OnBadgeClicked) {
       mappingAdapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it, onBadgeClicked) }, R.layout.badge_preference_view))

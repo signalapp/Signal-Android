@@ -50,11 +50,13 @@ public class SignalServiceNetworkAccess {
 
   public static final Dns DNS = new SequentialDns(Dns.SYSTEM, new CustomDns("1.1.1.1"));
 
-  private static final String COUNTRY_CODE_EGYPT = "+20";
-  private static final String COUNTRY_CODE_UAE   = "+971";
-  private static final String COUNTRY_CODE_OMAN  = "+968";
-  private static final String COUNTRY_CODE_QATAR = "+974";
-  private static final String COUNTRY_CODE_IRAN  = "+98";
+  private static final String COUNTRY_CODE_EGYPT      = "+20";
+  private static final String COUNTRY_CODE_UAE        = "+971";
+  private static final String COUNTRY_CODE_OMAN       = "+968";
+  private static final String COUNTRY_CODE_QATAR      = "+974";
+  private static final String COUNTRY_CODE_IRAN       = "+98";
+  private static final String COUNTRY_CODE_CUBA       = "+53";
+  private static final String COUNTRY_CODE_UZBEKISTAN = "+998";
 
   private static final String SERVICE_REFLECTOR_HOST = "europe-west1-signal-cdn-reflector.cloudfunctions.net";
   private static final String SERVICE_FASTLY_HOST    = "textsecure-service.whispersystems.org.global.prod.fastly.net";
@@ -129,6 +131,7 @@ public class SignalServiceNetworkAccess {
     final SignalServiceUrl          uaeGoogleService        = new SignalServiceUrl("https://www.google.ae/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalServiceUrl          omanGoogleService       = new SignalServiceUrl("https://www.google.com.om/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalServiceUrl          qatarGoogleService      = new SignalServiceUrl("https://www.google.com.qa/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalServiceUrl          uzbekistanGoogleService = new SignalServiceUrl("https://www.google.co.uz/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
     final SignalCdnUrl              baseGoogleCdn           = new SignalCdnUrl("https://www.google.com/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalCdnUrl              baseAndroidCdn          = new SignalCdnUrl("https://android.clients.google.com/cdn", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
@@ -139,6 +142,7 @@ public class SignalServiceNetworkAccess {
     final SignalCdnUrl              uaeGoogleCdn            = new SignalCdnUrl("https://www.google.ae/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalCdnUrl              omanGoogleCdn           = new SignalCdnUrl("https://www.google.com.om/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalCdnUrl              qatarGoogleCdn          = new SignalCdnUrl("https://www.google.com.qa/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              uzbekistanGoogleCdn     = new SignalCdnUrl("https://www.google.co.uz/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
     final SignalCdnUrl              baseGoogleCdn2          = new SignalCdnUrl("https://www.google.com/cdn2", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalCdnUrl              baseAndroidCdn2         = new SignalCdnUrl("https://android.clients.google.com/cdn2", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
@@ -149,36 +153,40 @@ public class SignalServiceNetworkAccess {
     final SignalCdnUrl              uaeGoogleCdn2           = new SignalCdnUrl("https://www.google.ae/cdn2", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalCdnUrl              omanGoogleCdn2          = new SignalCdnUrl("https://www.google.com.om/cdn2", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalCdnUrl              qatarGoogleCdn2         = new SignalCdnUrl("https://www.google.com.qa/cdn2", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              uzbekistanGoogleCdn2    = new SignalCdnUrl("https://www.google.co.uz/cdn2", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
-    final SignalContactDiscoveryUrl baseGoogleDiscovery     = new SignalContactDiscoveryUrl("https://www.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl baseAndroidDiscovery    = new SignalContactDiscoveryUrl("https://android.clients.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl mapsOneAndroidDiscovery = new SignalContactDiscoveryUrl("https://clients3.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl mapsTwoAndroidDiscovery = new SignalContactDiscoveryUrl("https://clients4.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl mailAndroidDiscovery    = new SignalContactDiscoveryUrl("https://inbox.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl egyptGoogleDiscovery    = new SignalContactDiscoveryUrl("https://www.google.com.eg/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl uaeGoogleDiscovery      = new SignalContactDiscoveryUrl("https://www.google.ae/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl omanGoogleDiscovery     = new SignalContactDiscoveryUrl("https://www.google.com.om/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl qatarGoogleDiscovery    = new SignalContactDiscoveryUrl("https://www.google.com.qa/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl baseGoogleDiscovery       = new SignalContactDiscoveryUrl("https://www.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl baseAndroidDiscovery      = new SignalContactDiscoveryUrl("https://android.clients.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl mapsOneAndroidDiscovery   = new SignalContactDiscoveryUrl("https://clients3.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl mapsTwoAndroidDiscovery   = new SignalContactDiscoveryUrl("https://clients4.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl mailAndroidDiscovery      = new SignalContactDiscoveryUrl("https://inbox.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl egyptGoogleDiscovery      = new SignalContactDiscoveryUrl("https://www.google.com.eg/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl uaeGoogleDiscovery        = new SignalContactDiscoveryUrl("https://www.google.ae/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl omanGoogleDiscovery       = new SignalContactDiscoveryUrl("https://www.google.com.om/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl qatarGoogleDiscovery      = new SignalContactDiscoveryUrl("https://www.google.com.qa/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl uzbekistanGoogleDiscovery = new SignalContactDiscoveryUrl("https://www.google.co.uz/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
-    final SignalKeyBackupServiceUrl baseGoogleKbs     = new SignalKeyBackupServiceUrl("https://www.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl baseAndroidKbs    = new SignalKeyBackupServiceUrl("https://android.clients.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl mapsOneAndroidKbs = new SignalKeyBackupServiceUrl("https://clients3.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl mapsTwoAndroidKbs = new SignalKeyBackupServiceUrl("https://clients4.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl mailAndroidKbs    = new SignalKeyBackupServiceUrl("https://inbox.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl egyptGoogleKbs    = new SignalKeyBackupServiceUrl("https://www.google.com.eg/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl uaeGoogleKbs      = new SignalKeyBackupServiceUrl("https://www.google.ae/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl omanGoogleKbs     = new SignalKeyBackupServiceUrl("https://www.google.com.om/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalKeyBackupServiceUrl qatarGoogleKbs    = new SignalKeyBackupServiceUrl("https://www.google.com.qa/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl baseGoogleKbs       = new SignalKeyBackupServiceUrl("https://www.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl baseAndroidKbs      = new SignalKeyBackupServiceUrl("https://android.clients.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl mapsOneAndroidKbs   = new SignalKeyBackupServiceUrl("https://clients3.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl mapsTwoAndroidKbs   = new SignalKeyBackupServiceUrl("https://clients4.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl mailAndroidKbs      = new SignalKeyBackupServiceUrl("https://inbox.google.com/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl egyptGoogleKbs      = new SignalKeyBackupServiceUrl("https://www.google.com.eg/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl uaeGoogleKbs        = new SignalKeyBackupServiceUrl("https://www.google.ae/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl omanGoogleKbs       = new SignalKeyBackupServiceUrl("https://www.google.com.om/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl qatarGoogleKbs      = new SignalKeyBackupServiceUrl("https://www.google.com.qa/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalKeyBackupServiceUrl uzbekistanGoogleKbs = new SignalKeyBackupServiceUrl("https://www.google.com.qa/backup", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
-    final SignalStorageUrl baseGoogleStorage     = new SignalStorageUrl("https://www.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalStorageUrl baseAndroidStorage    = new SignalStorageUrl("https://android.clients.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
-    final SignalStorageUrl mapsOneAndroidStorage = new SignalStorageUrl("https://clients3.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalStorageUrl mapsTwoAndroidStorage = new SignalStorageUrl("https://clients4.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalStorageUrl mailAndroidStorage    = new SignalStorageUrl("https://inbox.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalStorageUrl egyptGoogleStorage    = new SignalStorageUrl("https://www.google.com.eg/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalStorageUrl uaeGoogleStorage      = new SignalStorageUrl("https://www.google.ae/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalStorageUrl omanGoogleStorage     = new SignalStorageUrl("https://www.google.com.om/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalStorageUrl qatarGoogleStorage    = new SignalStorageUrl("https://www.google.com.qa/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalStorageUrl baseGoogleStorage       = new SignalStorageUrl("https://www.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalStorageUrl baseAndroidStorage      = new SignalStorageUrl("https://android.clients.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
+    final SignalStorageUrl mapsOneAndroidStorage   = new SignalStorageUrl("https://clients3.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalStorageUrl mapsTwoAndroidStorage   = new SignalStorageUrl("https://clients4.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalStorageUrl mailAndroidStorage      = new SignalStorageUrl("https://inbox.google.com/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalStorageUrl egyptGoogleStorage      = new SignalStorageUrl("https://www.google.com.eg/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalStorageUrl uaeGoogleStorage        = new SignalStorageUrl("https://www.google.ae/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalStorageUrl omanGoogleStorage       = new SignalStorageUrl("https://www.google.com.om/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalStorageUrl qatarGoogleStorage      = new SignalStorageUrl("https://www.google.com.qa/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalStorageUrl uzbekistanGoogleStorage = new SignalStorageUrl("https://www.google.com.qa/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
     final String[] fastUrls = {"https://cdn.sstatic.net", "https://github.githubassets.com", "https://pinterest.com", "https://open.scdn.co", "https://www.redditstatic.com"};
 
@@ -258,6 +266,30 @@ public class SignalServiceNetworkAccess {
                                                             dns,
                                                             Optional.absent(),
                                                             zkGroupServerPublicParams));
+
+      put(COUNTRY_CODE_CUBA, new SignalServiceConfiguration(Stream.of(fastUrls).map(url -> new SignalServiceUrl(url, SERVICE_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalServiceUrl[]::new),
+                                                            makeSignalCdnUrlMapFor(Stream.of(fastUrls).map(url -> new SignalCdnUrl(url, CDN_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalCdnUrl[]::new),
+                                                                                   Stream.of(fastUrls).map(url -> new SignalCdnUrl(url, CDN2_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalCdnUrl[]::new)),
+                                                            Stream.of(fastUrls).map(url -> new SignalContactDiscoveryUrl(url, DIRECTORY_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalContactDiscoveryUrl[]::new),
+                                                            Stream.of(fastUrls).map(url -> new SignalKeyBackupServiceUrl(url, KBS_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalKeyBackupServiceUrl[]::new),
+                                                            Stream.of(fastUrls).map(url -> new SignalStorageUrl(url, STORAGE_FASTLY_HOST, new DomainFrontingDigicertTrustStore(context), APP_CONNECTION_SPEC)).toArray(SignalStorageUrl[]::new),
+                                                            new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
+                                                            interceptors,
+                                                            dns,
+                                                            Optional.absent(),
+                                                            zkGroupServerPublicParams));
+
+      put(COUNTRY_CODE_UZBEKISTAN, new SignalServiceConfiguration(new SignalServiceUrl[] {uzbekistanGoogleService, baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
+                                                                  makeSignalCdnUrlMapFor(new SignalCdnUrl[] {uzbekistanGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn},
+                                                                                         new SignalCdnUrl[] {uzbekistanGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2}),
+                                                                  new SignalContactDiscoveryUrl[] {uzbekistanGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
+                                                                  new SignalKeyBackupServiceUrl[] {uzbekistanGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
+                                                                  new SignalStorageUrl[] {uzbekistanGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
+                                                                  new SignalCdshUrl[] {new SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, new SignalServiceTrustStore(context))},
+                                                                  interceptors,
+                                                                  dns,
+                                                                  Optional.absent(),
+                                                                  zkGroupServerPublicParams));
     }};
 
     this.uncensoredConfiguration = new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))},

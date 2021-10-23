@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Bu ileti silindi.</string>
   <string name="ConversationItem_you_deleted_this_message">Bu iletiyi sildiniz.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Güvenli oturumu sıfırla?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu konuşmada şifreleme sorunları yaşıyorsanız bu işlem yardımcı olabilir. İletileriniz saklanacaktır.</string>
-  <string name="ConversationActivity_reset">Sıfırla</string>
   <string name="ConversationActivity_add_attachment">Eklenti ekle</string>
   <string name="ConversationActivity_select_contact_info">Kişi bilgisi seç</string>
   <string name="ConversationActivity_compose_message">İleti oluştur</string>
@@ -319,6 +316,17 @@
     <item quantity="one">Konuşma gelen kutusuna taşındı</item>
     <item quantity="other">%d konuşma gelen kutusuna taşındı</item>
   </plurals>
+  <string name="ConversationListFragment_read">Okundu</string>
+  <string name="ConversationListFragment_unread">Okunmamış</string>
+  <string name="ConversationListFragment_pin">Sabitle</string>
+  <string name="ConversationListFragment_unpin">Sabitlenenlerden kaldır</string>
+  <string name="ConversationListFragment_mute">Sessiz</string>
+  <string name="ConversationListFragment_unmute">Sesi aç</string>
+  <string name="ConversationListFragment_select">Seç</string>
+  <string name="ConversationListFragment_archive">Arşivle</string>
+  <string name="ConversationListFragment_unarchive">Arşivden çıkart</string>
+  <string name="ConversationListFragment_delete">Sil</string>
+  <string name="ConversationListFragment_select_all">Hepsini seç</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Izgara görünümü</string>
   <string name="MediaOverviewActivity_List_view_description">Liste görünümü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçilen</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d öğe %2$s</item>
-    <item quantity="other">%1$d öğe %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d öğe</item>
-    <item quantity="other">%1$d öğe</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">Kaydet</string>
+  <string name="MediaOverviewActivity_select_all">Hepsini seç</string>
+  <string name="MediaOverviewActivity_delete">Sil</string>
   <string name="MediaOverviewActivity_file">Dosya</string>
   <string name="MediaOverviewActivity_audio">Ses</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1346,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">Kişilere Ekle</string>
   <string name="SharedContactView_invite_to_signal">Signal\'e davet et</string>
   <string name="SharedContactView_message">Signal İletisi</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Daha fazla</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Size daha sonra hatırlatacağız</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Size yarın hatırlatacağız.</string>
@@ -1893,15 +1898,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__debug_log">Hata Ayıklama Günlüğü:</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Lütfen bir seçenek seçin --</item>
-    <item>Bir şey çalışmıyor</item>
-    <item>Özellik isteği</item>
-    <item>Soru</item>
-    <item>Geribildirim</item>
-    <item>Diğer</item>
-    <item>Ödemeler</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
@@ -3036,6 +3032,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__copyright_signal_messenger">Telif hakkı Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3\'e göre lisanslanmıştır</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Yüksek kalitede içerik göndermek daha fazla veri kullanacaktır.</string>
+  <string name="DataAndStorageSettingsFragment__high">Yüksek</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standart</string>
   <string name="DataAndStorageSettingsFragment__calls">Aramalar</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Otomatik</string>
@@ -3161,7 +3160,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">İsim veya numara bul</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Sesli iletiyi durdur</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Sesli ileti hızını değiştir</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sesli iletiyi duraklat</string>
@@ -3246,5 +3245,17 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil güncellenemedi</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Destekleyin</string>
   <string name="ImageView__badge">Rozet</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal sizin gibi bireyler sayesinde var.</string>
+  <string name="SubscribeFragment__donation_amount">Bağış miktarı</string>
+  <string name="SubscribeFragment__not_now">Şimdi değil</string>
+  <string name="SubscribeFragment__confirm">Onayla</string>
+  <string name="SubscribeFragment__update">Güncelle</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tamam</string>
+  <string name="ManageDonationsFragment__badges">Rozetler</string>
+  <string name="Boost__enter_custom_amount">Farklı Miktar Gir</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
+  <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
+  <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
+  <string name="DonationsErrors__payment_failed">Ödeme başarısız oldu</string>
   <!--EOF-->
 </resources>

@@ -29,10 +29,11 @@ class SelectFeaturedBadgeViewModel(private val repository: BadgeRepository) : Vi
 
   init {
     store.update(Recipient.live(Recipient.self().id).liveDataResolved) { recipient, state ->
+      val unexpiredBadges = recipient.badges.filterNot { it.isExpired() }
       state.copy(
         stage = if (state.stage == SelectFeaturedBadgeState.Stage.INIT) SelectFeaturedBadgeState.Stage.READY else state.stage,
-        selectedBadge = recipient.badges.firstOrNull(),
-        allUnlockedBadges = recipient.badges
+        selectedBadge = unexpiredBadges.firstOrNull(),
+        allUnlockedBadges = unexpiredBadges
       )
     }
   }

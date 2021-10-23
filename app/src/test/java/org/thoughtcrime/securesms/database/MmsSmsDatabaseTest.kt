@@ -40,7 +40,7 @@ class MmsSmsDatabaseTest {
 
   @Test
   fun `getConversationSnippet when single normal SMS, return SMS message id and transport as false`() {
-    TestSms.insertSmsMessage(db)
+    TestSms.insert(db)
     mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
@@ -50,7 +50,7 @@ class MmsSmsDatabaseTest {
 
   @Test
   fun `getConversationSnippet when single normal MMS, return MMS message id and transport as true`() {
-    TestMms.insertMmsMessage(db)
+    TestMms.insert(db)
     mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
@@ -62,14 +62,14 @@ class MmsSmsDatabaseTest {
   fun `getConversationSnippet when single normal MMS then GV2 leave update message, return MMS message id and transport as true both times`() {
     val timestamp = System.currentTimeMillis()
 
-    TestMms.insertMmsMessage(db, receivedTimestampMillis = timestamp + 2)
+    TestMms.insert(db, receivedTimestampMillis = timestamp + 2)
     mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
       assertTrue(CursorUtil.requireBoolean(cursor, MmsSmsDatabase.TRANSPORT))
     }
 
-    TestSms.insertSmsMessage(db, receivedTimestampMillis = timestamp + 3, type = MmsSmsColumns.Types.BASE_SENDING_TYPE or MmsSmsColumns.Types.SECURE_MESSAGE_BIT or MmsSmsColumns.Types.PUSH_MESSAGE_BIT or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
+    TestSms.insert(db, receivedTimestampMillis = timestamp + 3, type = MmsSmsColumns.Types.BASE_SENDING_TYPE or MmsSmsColumns.Types.SECURE_MESSAGE_BIT or MmsSmsColumns.Types.PUSH_MESSAGE_BIT or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
     mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))

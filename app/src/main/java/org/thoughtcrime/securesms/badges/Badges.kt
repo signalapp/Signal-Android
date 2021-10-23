@@ -1,82 +1,42 @@
 package org.thoughtcrime.securesms.badges
 
 import android.content.Context
-import android.graphics.drawable.Drawable
-import androidx.annotation.ColorInt
-import androidx.annotation.Px
-import androidx.core.graphics.withScale
+import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import org.thoughtcrime.securesms.BuildConfig
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.badges.models.BadgeAnimator
+import org.thoughtcrime.securesms.badges.models.Badge.Category.Companion.fromCode
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.util.customizeOnDraw
+import org.thoughtcrime.securesms.util.ScreenDensity
+import org.whispersystems.libsignal.util.Pair
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
+import java.math.BigDecimal
+import java.sql.Timestamp
 
 object Badges {
-  fun Drawable.insetWithOutline(
-    @Px outlineWidth: Float,
-    @ColorInt outlineColor: Int
-  ): Drawable {
-    val clone = mutate().constantState?.newDrawable()?.mutate()
-    clone?.colorFilter = SimpleColorFilter(outlineColor)
-
-    return customizeOnDraw { wrapped, canvas ->
-      clone?.bounds = wrapped.bounds
-      clone?.draw(canvas)
-
-      val scale = 1 - ((outlineWidth * 2) / canvas.width)
-
-      canvas.withScale(x = scale, y = scale, canvas.width / 2f, canvas.height / 2f) {
-        wrapped.draw(canvas)
-      }
-    }
-  }
-
-  fun Drawable.selectable(
-    @Px outlineWidth: Float,
-    @ColorInt outlineColor: Int,
-    @ColorInt gapColor: Int,
-    animator: BadgeAnimator
-  ): Drawable {
-    val outline = mutate().constantState?.newDrawable()?.mutate()
-    outline?.colorFilter = SimpleColorFilter(outlineColor)
-
-    val gap = mutate().constantState?.newDrawable()?.mutate()
-    gap?.colorFilter = SimpleColorFilter(gapColor)
-
-    return customizeOnDraw { wrapped, canvas ->
-      outline?.bounds = wrapped.bounds
-      gap?.bounds = wrapped.bounds
-
-      outline?.draw(canvas)
-
-      val scale = 1 - ((outlineWidth * 2) / wrapped.bounds.width())
-      val interpolatedScale = scale + (1f - scale) * animator.getFraction()
-
-      canvas.withScale(x = interpolatedScale, y = interpolatedScale, wrapped.bounds.width() / 2f, wrapped.bounds.height() / 2f) {
-        gap?.draw(canvas)
-
-        canvas.withScale(x = interpolatedScale, y = interpolatedScale, wrapped.bounds.width() / 2f, wrapped.bounds.height() / 2f) {
-          wrapped.draw(canvas)
-        }
-      }
-
-      if (animator.shouldInvalidate()) {
-        invalidateSelf()
-      }
-    }
-  }
-
-  fun DSLConfiguration.displayBadges(badges: List<Badge>, selectedBadge: Badge? = null) {
+  fun DSLConfiguration.displayBadges(
+    context: Context,
+    badges: List<Badge>,
+    selectedBadge: Badge? = null,
+    fadedBadgeId: String? = null
+  ) {
     badges
-      .map { Badge.Model(it, it == selectedBadge) }
+      .map {
+        Badge.Model(
+          badge = it,
+          isSelected = it == selectedBadge,
+          isFaded = it.id == fadedBadgeId
+        )
+      }
       .forEach { customPref(it) }
 
-    val empties = (4 - (badges.size % 4)) % 4
+    val perRow = context.resources.getInteger(R.integer.badge_columns)
+    val empties = (perRow - (badges.size % perRow)) % perRow
     repeat(empties) {
       customPref(Badge.EmptyModel())
     }
@@ -90,5 +50,42 @@ object Badges {
     layoutManager.justifyContent = JustifyContent.CENTER
 
     return layoutManager
+  }
+
+  private fun getBadgeImageUri(densityPath: String): Uri {
+    return Uri.parse(BuildConfig.BADGE_STATIC_ROOT).buildUpon()
+      .appendPath(densityPath)
+      .build()
+  }
+
+  private fun getBestBadgeImageUriForDevice(serviceBadge: SignalServiceProfile.Badge): Pair<Uri, String> {
+    val bestDensity = ScreenDensity.getBestDensityBucketForDevice()
+    return when (bestDensity) {
+      "ldpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[0]), "ldpi")
+      "mdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[1]), "mdpi")
+      "hdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[2]), "hdpi")
+      "xxhdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[4]), "xxhdpi")
+      "xxxhdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[5]), "xxxhdpi")
+      else -> Pair(getBadgeImageUri(serviceBadge.sprites6[3]), "xdpi")
+    }
+  }
+
+  private fun getTimestamp(bigDecimal: BigDecimal): Long {
+    return Timestamp(bigDecimal.toLong() * 1000).time
+  }
+
+  @JvmStatic
+  fun fromServiceBadge(serviceBadge: SignalServiceProfile.Badge): Badge {
+    val uriAndDensity: Pair<Uri, String> = getBestBadgeImageUriForDevice(serviceBadge)
+    return Badge(
+      serviceBadge.id,
+      fromCode(serviceBadge.category),
+      serviceBadge.name,
+      serviceBadge.description,
+      uriAndDensity.first(),
+      uriAndDensity.second(),
+      serviceBadge.expiration?.let { getTimestamp(it) } ?: 0,
+      serviceBadge.isVisible
+    )
   }
 }

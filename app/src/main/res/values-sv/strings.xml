@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Återställ säker session?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i denna konversation. Dina meddelanden bevaras.</string>
-  <string name="ConversationActivity_reset">Återställ</string>
   <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
@@ -318,6 +315,21 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Flyttade konversation till inkorgen</item>
     <item quantity="other">Flyttade %d konversationer till inkorgen</item>
+  </plurals>
+  <string name="ConversationListFragment_read">Läst</string>
+  <string name="ConversationListFragment_unread">Oläst</string>
+  <string name="ConversationListFragment_pin">Fäst</string>
+  <string name="ConversationListFragment_unpin">Lossa</string>
+  <string name="ConversationListFragment_mute">Tysta</string>
+  <string name="ConversationListFragment_unmute">Ljud på</string>
+  <string name="ConversationListFragment_select">Välj</string>
+  <string name="ConversationListFragment_archive">Arkivera</string>
+  <string name="ConversationListFragment_unarchive">Avarkivera</string>
+  <string name="ConversationListFragment_delete">Ta bort</string>
+  <string name="ConversationListFragment_select_all">Markera alla</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d vald</item>
+    <item quantity="other">%d valda</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
@@ -799,13 +811,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rutnätsvy</string>
   <string name="MediaOverviewActivity_List_view_description">Listvy</string>
   <string name="MediaOverviewActivity_Selected_description">Valda</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d objekt %2$s</item>
-    <item quantity="other">%1$d objekt %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d objekt</item>
-    <item quantity="other">%1$d objekt</item>
+  <string name="MediaOverviewActivity_save">Spara</string>
+  <string name="MediaOverviewActivity_select_all">Markera alla</string>
+  <string name="MediaOverviewActivity_delete">Ta bort</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d vald (%2$s)</item>
+    <item quantity="other">%1$d valda (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Ljud</string>
@@ -1341,6 +1352,8 @@ angav (%s) är ogiltigt.</string>
   <string name="SharedContactView_add_to_contacts">Lägg till i kontakter</string>
   <string name="SharedContactView_invite_to_signal">Bjud in till Signal</string>
   <string name="SharedContactView_message">Signal-meddelande</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mer</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vi påminner dig igen senare.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi påminner dig igen imorgon.</string>
@@ -1888,14 +1901,15 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
-  <string-array name="HelpFragment__categories">
+  <string-array name="HelpFragment__categories_2">
     <item>-- Vänligen välj ett alternativ --</item>
     <item>Något fungerar inte</item>
     <item>Funktionsbegäran</item>
     <item>Fråga</item>
     <item>Återkoppling</item>
     <item>Annat</item>
-    <item>Betalningar</item>
+    <item>Betalningar (MobileCoin)</item>
+    <item>Donationer (Underhållare &amp; Signal Boost)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
@@ -1993,6 +2007,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__help">Hjälp</string>
   <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__donate_to_signal">Donera till Signal</string>
+  <string name="preferences__subscription">Prenumeration</string>
+  <string name="preferences__signal_boost">Signal-boost</string>
   <string name="preferences__privacy">Integritet</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
@@ -2522,7 +2538,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
   <string name="RegistrationActivity_wrong_number">Fel nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring mig istället \n (Tillgänglig om %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Kontakta Signal-supporten</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontakta Signal-support</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registrering - Verifieringskod för Android</string>
   <string name="RegistrationActivity_incorrect_code">Felaktig kod</string>
   <string name="BackupUtil_never">Aldrig</string>
@@ -3031,6 +3047,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenserad under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Skickade mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Om du skickar högkvalitativa medier kommer du att använda mera data.</string>
+  <string name="DataAndStorageSettingsFragment__high">Hög</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Samtal</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automatiskt</string>
@@ -3155,7 +3176,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Sök namn eller nummer</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Stoppa röstmeddelandet</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Ändra röstmeddelandets hastighet</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausa röstmeddelandet</string>
@@ -3211,6 +3232,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaReviewFragment__add_a_reply">Lägg till ett svar</string>
   <string name="MediaReviewFragment__send_to">Skicka till</string>
   <string name="MediaReviewFragment__view_once_message">Visa engångsmeddelande</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ett eller flera objekt var för stora</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ett eller flera objekt var ogiltiga</string>
+  <string name="MediaReviewFragment__too_many_items_selected">För många objekt valda</string>
   <string name="ImageEditorHud__cancel">Avbryt</string>
   <string name="ImageEditorHud__draw">Dra</string>
   <string name="ImageEditorHud__write_text">Skriv text</string>
@@ -3240,5 +3264,63 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
   <string name="ImageView__badge">Märke</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drivs av personer som du.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Stöda teknik som är byggd för dig—inte för dina data—genom att gå med i gruppen av personer som upprätthåller den.</string>
+  <string name="SubscribeFragment__donation_amount">Donationsbelopp</string>
+  <string name="SubscribeFragment__more_payment_options">Fler betalningsalternativ</string>
+  <string name="SubscribeFragment__cancel_subscription">Avbryt prenumeration</string>
+  <string name="SubscribeFragment__confirm_cancellation">Bekräfta annullering?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Du kommer inte att debiteras igen. Ditt märke tas bort från din profil i slutet av din faktureringsperiod.</string>
+  <string name="SubscribeFragment__not_now">Inte nu</string>
+  <string name="SubscribeFragment__confirm">Bekräfta</string>
+  <string name="SubscribeFragment__update_subscription">Uppdatera prenumeration</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Din prenumeration har avslutats.</string>
+  <string name="SubscribeFragment__update_subscription_question">Uppdatera prenumeration?</string>
+  <string name="SubscribeFragment__update">Uppdatera</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du kommer att debiteras hela beloppet för det nya prenumerationspriset idag. Din prenumeration förnyas %1$s.</string>
+  <string name="Subscription__s_per_month">%s/månad</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Förnyar %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Upphör %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal är en ideell organisation utan annonsörer eller investerare, som endast upprätthålls av de personer som använder och värdesätter den. Ge ett återkommande månadsbidrag och få ett profilmärke för att dela ditt stöd.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Varför bidra?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Teamet på Signal är engagerade i uppdraget att utveckla teknik för öppen källkod som skyddar det fria uttrycket och möjliggör säker global kommunikation. Ditt bidrag ger näring åt denna orsak. Inga annonser. Inga spårare. Inget påhitt.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ditt bidrag hjälper till att betala för utvecklingen, servrarna och bandbredden för en app som används av miljoner runt om i världen för privat och omedelbar kommunikation.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tack för ditt stöd!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tack för boosten!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har förtjänat ett %s-märke! Om du visar ditt märke visas personer du chattar med att du stöder Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Visa på profilen</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gör ett märke</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klar</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">När du har mer än ett märke kan du välja ett för att visa andra i din profil.</string>
+  <string name="ManageDonationsFragment__my_support">Mitt stöd</string>
+  <string name="ManageDonationsFragment__manage_subscription">Hantera prenumeration</string>
+  <string name="ManageDonationsFragment__badges">Märken</string>
+  <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om prenumeration</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få prenumeration.</string>
+  <string name="BoostFragment__give_signal_a_boost">Ge Signal ett lyft</string>
+  <string name="BoostFragment__say_thanks_and_earn">Säg \"Tack!\" och förtjäna boost-märket i %1$d dagar.</string>
+  <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
+  <string name="Boost__one_time_contribution">Engångsbidrag</string>
+  <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal-boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/månad</string>
+  <string name="MySupportPreference__renews_s">Förnyar %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har löpt ut</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ditt %1$s-märke har löpt ut och är inte längre synligt för andra i din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Om du vill fortsätta stöda teknik som är byggd för dig—inte för dina data—vänligen överväg att bli en månadsabonnent.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli prenumerant</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
+  <string name="Subscription__verification_failed">Prenumerationsverifiering misslyckades</string>
+  <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
+  <string name="Subscription__contact_support">Kontakta support</string>
+  <string name="Subscription__earn_a_s_badge">Tjäna ett %1$s-märke</string>
+  <string name="SubscribeFragment__processing_payment">Bearbetar betalning…</string>
+  <string name="DonationsErrors__payment_failed">Betalning misslyckades</string>
+  <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Vänligen försök igen.</string>
+  <string name="DonationsErrors__redemption_still_pending">Inlösen väntar fortfarande</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kanske inte ser ditt märke direkt, men vi jobbar på det!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay är inte tillgängligt</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du måste konfigurera Google Pay för att donera i appen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Det gick inte att säga upp prenumerationen</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Avbokning av prenumeration kräver en internetanslutning.</string>
   <!--EOF-->
 </resources>

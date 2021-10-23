@@ -31,16 +31,15 @@
 
         <org.thoughtcrime.securesms.badges.BadgeImageView
             android:id="@+id/badge"
-            android:layout_width="@dimen/badge_size_small"
-            android:layout_height="@dimen/badge_size_small"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_alignStart="@id/contact_photo_image"
             android:layout_alignTop="@id/contact_photo_image"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="22dp"
             android:contentDescription="@string/ImageView__badge"
             android:visibility="gone"
-            app:badge_outline_color="@color/signal_background_primary"
-            app:badge_outline_width="1dp"
+            app:badge_size="small"
             tools:visibility="visible" />
     </RelativeLayout>
 

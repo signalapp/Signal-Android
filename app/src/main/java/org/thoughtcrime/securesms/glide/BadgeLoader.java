@@ -29,7 +29,7 @@ import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 
 /**
- * A simple model loader for fetching media over http/https using OkHttp.
+ * A loader which will load a sprite sheet for a particular badge at the correct dpi for this device.
  */
 public class BadgeLoader implements ModelLoader<Badge, InputStream> {
 
@@ -40,12 +40,12 @@ public class BadgeLoader implements ModelLoader<Badge, InputStream> {
   }
 
   @Override
-  public @Nullable LoadData<InputStream> buildLoadData(@NonNull Badge badge, int width, int height, @NonNull Options options) {
-    return new LoadData<>(badge, new OkHttpStreamFetcher(client, new GlideUrl(badge.getImageUrl().toString())));
+  public @Nullable LoadData<InputStream> buildLoadData(@NonNull Badge request, int width, int height, @NonNull Options options) {
+    return new LoadData<>(request, new OkHttpStreamFetcher(client, new GlideUrl(request.getImageUrl().toString())));
   }
 
   @Override
-  public boolean handles(@NonNull Badge badge) {
+  public boolean handles(@NonNull Badge badgeSpriteSheetRequest) {
     return true;
   }
 

@@ -33,4 +33,6 @@
     <dimen name="toolbar_avatar_margin">34dp</dimen>
 
     <dimen name="verify_identity_vertical_margin">32dp</dimen>
+
+    <integer name="badge_columns">4</integer>
 </resources>

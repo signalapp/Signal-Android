@@ -195,7 +195,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
     val recipientId = args.recipientId
     if (recipientId != null) {
-      Badge.register(adapter) { badge, _ ->
+      Badge.register(adapter) { badge, _, _ ->
         ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, recipientId, badge)
       }
     }
@@ -315,18 +315,16 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
       }
 
-      state.withRecipientSettingsState { recipientState ->
-        if (recipientState.displayInternalRecipientDetails) {
-          customPref(
-            InternalPreference.Model(
-              recipient = state.recipient,
-              onInternalDetailsClicked = {
-                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
-                navController.navigate(action)
-              }
-            )
+      if (state.displayInternalRecipientDetails) {
+        customPref(
+          InternalPreference.Model(
+            recipient = state.recipient,
+            onInternalDetailsClicked = {
+              val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
+              navController.navigate(action)
+            }
           )
-        }
+        )
       }
 
       customPref(
@@ -498,7 +496,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
           sectionHeaderPref(R.string.ManageProfileFragment_badges)
 
-          displayBadges(state.recipient.badges)
+          displayBadges(requireContext(), state.recipient.badges)
         }
 
         if (recipientSettingsState.selfHasGroups) {
@@ -671,7 +669,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         val blockUnblockIcon = if (isBlocked) unblockIcon else blockIcon
 
         clickPref(
-          title = DSLSettingsText.from(title, titleTint),
+          title = if (titleTint != null) DSLSettingsText.from(title, titleTint) else DSLSettingsText.from(title),
           icon = DSLSettingsIcon.from(blockUnblockIcon),
           onClick = {
             if (state.recipient.isBlocked) {

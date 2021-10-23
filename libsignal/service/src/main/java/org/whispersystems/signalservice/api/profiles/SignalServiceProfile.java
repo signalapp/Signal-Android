@@ -129,13 +129,13 @@ public class SignalServiceProfile {
     private String category;
 
     @JsonProperty
-    private String imageUrl;
-
-    @JsonProperty
     private String name;
 
     @JsonProperty
     private String description;
+
+    @JsonProperty
+    private List<String> sprites6;
 
     @JsonProperty
     private BigDecimal expiration;
@@ -159,12 +159,12 @@ public class SignalServiceProfile {
       return description;
     }
 
-    public BigDecimal getExpiration() {
-      return expiration;
+    public List<String> getSprites6() {
+      return sprites6;
     }
 
-    public String getImageUrl() {
-      return imageUrl;
+    public BigDecimal getExpiration() {
+      return expiration;
     }
 
     public boolean isVisible() {

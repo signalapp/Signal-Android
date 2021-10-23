@@ -68,6 +68,8 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
         dismissAllowingStateLoss()
       }
 
+      tabs.visible = state.allBadgesVisibleOnProfile.size > 1
+
       adapter.submitList(
         state.allBadgesVisibleOnProfile.map {
           LargeBadge.Model(LargeBadge(it), state.recipient.getShortDisplayName(requireContext()))

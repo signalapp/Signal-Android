@@ -90,7 +90,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         int position = holder.getAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
-          return onConversationClickListener.onConversationLongClick(getItem(position));
+          return onConversationClickListener.onConversationLongClick(getItem(position), v);
         }
 
         return false;
@@ -249,13 +249,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
-    unselectAllThreads();
-  }
-
-  private void unselectAllThreads() {
     batchSet.clear();
-
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
+    notifyDataSetChanged();
   }
 
   static final class ConversationViewHolder extends RecyclerView.ViewHolder {
@@ -302,8 +297,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   }
 
   interface OnConversationClickListener {
-    void onConversationClick(Conversation conversation);
-    boolean onConversationLongClick(Conversation conversation);
+    void onConversationClick(@NonNull Conversation conversation);
+    boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view);
     void onShowArchiveClick();
   }
 }

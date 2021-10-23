@@ -1,10 +1,9 @@
 package org.thoughtcrime.securesms.badges.models
 
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingModel
 import org.thoughtcrime.securesms.util.MappingViewHolder
@@ -35,14 +34,12 @@ data class LargeBadge(
 
   class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
 
-    private val badge: ImageView = itemView.findViewById(R.id.badge)
+    private val badge: BadgeImageView = itemView.findViewById(R.id.badge)
     private val name: TextView = itemView.findViewById(R.id.name)
     private val description: TextView = itemView.findViewById(R.id.description)
 
     override fun bind(model: Model) {
-      GlideApp.with(badge)
-        .load(model.largeBadge.badge)
-        .into(badge)
+      badge.setBadge(model.largeBadge.badge)
 
       name.text = model.largeBadge.badge.name
       description.text = model.largeBadge.badge.resolveDescription(model.shortName)

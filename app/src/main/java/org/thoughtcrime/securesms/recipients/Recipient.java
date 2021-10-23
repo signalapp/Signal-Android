@@ -1028,14 +1028,14 @@ public class Recipient {
   }
 
   public @NonNull List<Badge> getBadges() {
-    return badges;
+    return FeatureFlags.donorBadges() ? badges : Collections.emptyList();
   }
 
   public @Nullable Badge getFeaturedBadge() {
-    if (badges.isEmpty()) {
+    if (getBadges().isEmpty()) {
       return null;
     } else {
-      return badges.get(0);
+      return getBadges().get(0);
     }
   }
 

@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
+import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
@@ -66,6 +67,8 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   }
 
   private void initViews(@NonNull View root) {
+    RegistrationViewDelegate.setDebugLogSubmitMultiTapView(root.findViewById(R.id.pin_restore_pin_title));
+
     pinEntry       = root.findViewById(R.id.pin_restore_pin_input);
     pinButton      = root.findViewById(R.id.pin_restore_pin_confirm);
     errorLabel     = root.findViewById(R.id.pin_restore_pin_input_label);

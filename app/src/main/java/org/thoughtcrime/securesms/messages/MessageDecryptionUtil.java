@@ -106,19 +106,19 @@ public final class MessageDecryptionUtil {
 
         return DecryptionResult.forNoop(jobs);
       } catch (ProtocolLegacyMessageException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forError(MessageState.LEGACY_MESSAGE, toExceptionMetadata(e), jobs);
       } catch (ProtocolDuplicateMessageException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forError(MessageState.DUPLICATE_MESSAGE, toExceptionMetadata(e), jobs);
       } catch (InvalidMetadataVersionException | InvalidMetadataMessageException | InvalidMessageStructureException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forNoop(jobs);
       } catch (SelfSendException e) {
         Log.i(TAG, "Dropping UD message from self.");
         return DecryptionResult.forNoop(jobs);
       } catch (UnsupportedDataMessageException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forError(MessageState.UNSUPPORTED_DATA_MESSAGE, toExceptionMetadata(e), jobs);
       }
     } catch (NoSenderException e) {

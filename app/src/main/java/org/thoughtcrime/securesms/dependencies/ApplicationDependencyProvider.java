@@ -2,10 +2,14 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
+import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -68,6 +72,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
@@ -75,6 +80,7 @@ import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -299,6 +305,27 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull AudioManagerCompat provideAndroidCallAudioManager() {
     return AudioManagerCompat.create(context);
+  }
+
+  @Override
+  public @NonNull DonationsService provideDonationsService() {
+    return new DonationsService(provideSignalServiceNetworkAccess().getConfiguration(context),
+                                new DynamicCredentialsProvider(context),
+                                BuildConfig.SIGNAL_AGENT,
+                                provideGroupsV2Operations(),
+                                FeatureFlags.okHttpAutomaticRetry());
+  }
+
+  @Override
+  public @NonNull DeadlockDetector provideDeadlockDetector() {
+    HandlerThread handlerThread = new HandlerThread("signal-DeadlockDetector");
+    handlerThread.start();
+    return new DeadlockDetector(new Handler(handlerThread.getLooper()), TimeUnit.SECONDS.toMillis(5));
+  }
+
+  @Override
+  public @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations() {
+    return provideClientZkOperations().getReceiptOperations();
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

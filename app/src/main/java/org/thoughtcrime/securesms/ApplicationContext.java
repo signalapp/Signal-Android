@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
+import org.thoughtcrime.securesms.service.SubscriberIdKeepAliveListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
@@ -82,8 +83,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
-import org.webrtc.voiceengine.WebRtcAudioManager;
-import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 
 import java.security.Security;
@@ -191,8 +190,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     long startTime = System.currentTimeMillis();
     Log.i(TAG, "App is now visible.");
 
-    ApplicationDependencies.getFrameRateTracker().begin();
+    ApplicationDependencies.getFrameRateTracker().start();
     ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
+    ApplicationDependencies.getDeadlockDetector().start();
 
     SignalExecutors.BOUNDED.execute(() -> {
       FeatureFlags.refreshIfNecessary();
@@ -213,8 +213,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
     ApplicationDependencies.getMessageNotifier().clearVisibleThread();
-    ApplicationDependencies.getFrameRateTracker().end();
+    ApplicationDependencies.getFrameRateTracker().stop();
     ApplicationDependencies.getShakeToReport().disable();
+    ApplicationDependencies.getDeadlockDetector().stop();
   }
 
   public PersistentLogger getPersistentLogger() {
@@ -258,7 +259,10 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
 
-    SignalExecutors.UNBOUNDED.execute(() -> LogDatabase.getInstance(this).trimToSize());
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      Log.blockUntilAllWritesFinished();
+      LogDatabase.getInstance(this).trimToSize();
+    });
   }
 
   private void initializeCrashHandling() {
@@ -330,6 +334,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
     MessageProcessReceiver.startOrUpdateAlarm(this);
+    SubscriberIdKeepAliveListener.schedule(this);
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
@@ -338,14 +343,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   private void initializeRingRtc() {
     try {
-      if (RtcDeviceLists.hardwareAECBlocked()) {
-        WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
-      }
-
-      if (!RtcDeviceLists.openSLESAllowed()) {
-        WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
-      }
-
       CallManager.initialize(this, new RingRtcLogger());
     } catch (UnsatisfiedLinkError e) {
       throw new AssertionError("Unable to load ringrtc library", e);

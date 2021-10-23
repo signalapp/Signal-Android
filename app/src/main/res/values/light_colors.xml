@@ -28,6 +28,7 @@
 
     <color name="signal_icon_tint_primary">@color/core_grey_75</color>
     <color name="signal_icon_tint_secondary">@color/core_grey_60</color>
+    <color name="signal_icon_tint_action">@color/core_black</color>
 
     <color name="signal_icon_tint_tab_selected">@color/core_grey_75</color>
     <color name="signal_icon_tint_tab_unselected">@color/core_grey_45</color>
@@ -98,6 +99,7 @@
     <color name="conversation_scroll_to_bottom_foreground_color">@color/grey_600</color>
 
     <color name="conversation_list_camera_button_background">@color/core_white</color>
+    <color name="conversation_list_selected_color">#222c6bed</color>
 
     <color name="camera_icon_background_tint">@color/core_grey_02</color>
 
@@ -164,4 +166,6 @@
 
     <color name="voice_note_player_view_background">@color/core_grey_02</color>
     <color name="voice_note_player_speed_background_tint">@color/transparent_black_08</color>
+
+    <color name="signal_accent_primary_transparent_15">#262c6bed</color>
 </resources>

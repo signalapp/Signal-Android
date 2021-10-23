@@ -56,6 +56,10 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     // Intentionally Blank.
   }
 
+  default void updateContactNameColor() {
+    // Intentionally Blank.
+  }
+
   interface EventListener {
     void onQuoteClicked(MmsMessageRecord messageRecord);
     void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);

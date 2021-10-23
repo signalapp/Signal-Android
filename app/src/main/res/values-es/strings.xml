@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Este mensaje ha sido eliminado.</string>
   <string name="ConversationItem_you_deleted_this_message">Mensaje eliminado</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar sesión segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes no se eliminarán.</string>
-  <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Redactar mensaje</string>
@@ -318,6 +315,21 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Chat devuelto al buzón de entrada</item>
     <item quantity="other">%d chats devueltos al buzón de entrada</item>
+  </plurals>
+  <string name="ConversationListFragment_read">Leído</string>
+  <string name="ConversationListFragment_unread">No leído</string>
+  <string name="ConversationListFragment_pin">Fijar</string>
+  <string name="ConversationListFragment_unpin">No fijar</string>
+  <string name="ConversationListFragment_mute">Silenciar</string>
+  <string name="ConversationListFragment_unmute">No silenciar</string>
+  <string name="ConversationListFragment_select">selecciona</string>
+  <string name="ConversationListFragment_archive">Archivar</string>
+  <string name="ConversationListFragment_unarchive">Desarchivar</string>
+  <string name="ConversationListFragment_delete">Eliminar</string>
+  <string name="ConversationListFragment_select_all">Seleccionar todo</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d seleccionado</item>
+    <item quantity="other">%d seleccionados</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
@@ -799,13 +811,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista en cuadrícula</string>
   <string name="MediaOverviewActivity_List_view_description">Vista en lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selección</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d objeto %2$s</item>
-    <item quantity="other">%1$d objetos %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d objeto</item>
-    <item quantity="other">%1$d objetos</item>
+  <string name="MediaOverviewActivity_save">Guardar</string>
+  <string name="MediaOverviewActivity_select_all">Seleccionar todo</string>
+  <string name="MediaOverviewActivity_delete">Eliminar</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d seleccionado (%2$s)</item>
+    <item quantity="other">%1$d seleccionados (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Archivo</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -854,9 +865,9 @@
   <string name="MediaPickerActivity__menu_open_camera">Abrir cámara</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Añade un subtítulo …</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Se eliminó un objeto ya que excedía el límite de tamaño</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Se ha eliminado un objeto al ser de tipo desconocido</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Se ha eliminado un objeto al exceder el límite de tamaño o al ser de tipo desconocido</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Se eliminó un elemento ya que excedía el límite de tamaño</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Se ha eliminado un elemento al ser de tipo desconocido</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Se ha eliminado un elemento al exceder el límite de tamaño o al ser de tipo desconocido</string>
   <string name="MediaSendActivity_camera_unavailable">Cámara no disponible.</string>
   <string name="MediaSendActivity_message_to_s">Mensaje para %s</string>
   <string name="MediaSendActivity_message">Mensaje</string>
@@ -864,8 +875,8 @@
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal necesita acceso a tus contactos para poder mostrarlos.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal necesita acceso a tus contactos para poder mostrarlos. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones»  y en «Permisos» activa «Contactos».</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="one">No se puede compartir más de %d objeto.</item>
-    <item quantity="other">No se pueden compartir más de %d objetos.</item>
+    <item quantity="one">No se puede compartir más de %d elemento.</item>
+    <item quantity="other">No se pueden compartir más de %d elementos.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Seleccionar destinatari@s</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Toca aquí para hacer desaparecer este mensaje tras ser visto.</string>
@@ -1041,7 +1052,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Has marcado tus cifras de seguridad con %s como verificadas desde otro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Has retirado la marca de verificación de tus cifras de seguridad con %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Has retirado la marca de verificación de tus cifras de seguridad con %s desde otro dispositivo</string>
-  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No se pudo entregar un mensaje de %s</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No se pudo recibir un mensaje de %s</string>
   <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ha cambiado su número de teléfono en Signal.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciado una llamada en grupo · %2$s</string>
@@ -1346,6 +1357,8 @@ número de teléfono
   <string name="SharedContactView_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactView_invite_to_signal">Invitar a Signal</string>
   <string name="SharedContactView_message">Mensaje de Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Más</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Te lo recordaremos de nuevo más tarde.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Te lo recordaremos de nuevo mañana.</string>
@@ -1570,8 +1583,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThumbnailView_Has_a_caption_description">Contiene una explicación</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
-    <item quantity="one">%d objeto</item>
-    <item quantity="other">%d objetos</item>
+    <item quantity="one">%d elemento</item>
+    <item quantity="other">%d elementos</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">El dispositivo ya no está registrado</string>
@@ -1798,8 +1811,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensajes multimedia y de grupo, toca «Aceptar» y completa las configuraciones solicitadas. Las configuraciones de MMS para tu proveedor generalmente se pueden localizar buscando por «APN de proveedor». Solo necesitarás hacer esto una vez.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Fallo en la entrega</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">No se ha podido entregar un mensaje, sticker, adjunto, reacción o notificación de lectura de %s. Lo ha enviado en un chat o en un grupo común.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se ha podido entregar un mensaje, sticker, adjunto, reacción o notificación de lectura de %s.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">No se ha podido recibir un mensaje, sticker, adjunto, reacción o notificación de lectura de %s. Lo ha enviado en un chat o en un grupo común.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se ha podido recibir un mensaje, sticker, adjunto, reacción o notificación de lectura de %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nombre (necesario)</string>
   <string name="CreateProfileActivity_last_name_optional">Apellido(s) (opcional)</string>
@@ -1895,14 +1908,15 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__debug_log">Registro de depuración:</string>
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
-  <string-array name="HelpFragment__categories">
+  <string-array name="HelpFragment__categories_2">
     <item> -- Selecciona una opción --</item>
     <item>Algo no funciona</item>
     <item>Solicitar una nueva función</item>
     <item>Pregunta</item>
     <item>Crítica/opinión</item>
     <item>Otras</item>
-    <item>Pagos</item>
+    <item>Pagos (MobileCoin)</item>
+    <item>Donaciones (Patron@s e Impulso a Signal)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
@@ -2000,6 +2014,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__help">Ayuda</string>
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__donate_to_signal">Donar a Signal</string>
+  <string name="preferences__subscription">Suscripción</string>
+  <string name="preferences__signal_boost">Impulsa Signal</string>
   <string name="preferences__privacy">Privacidad</string>
   <string name="preferences__mms_user_agent">Agente de usuari@ de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
@@ -3038,6 +3054,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__copyright_signal_messenger">Derechos de Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">App liberada bajo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Calidad de fotos y vídeos</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Calidad de envío de fotos y vídeos</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Se usarán más datos al seleccionar la opción de alta calidad.</string>
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Normal</string>
   <string name="DataAndStorageSettingsFragment__calls">Llamadas</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3163,7 +3184,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Buscar por nombre o número</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Detener nota de voz</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Modificar velocidad de reproducción</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausar nota de voz</string>
@@ -3219,6 +3240,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaReviewFragment__add_a_reply">Añadir respuesta</string>
   <string name="MediaReviewFragment__send_to">Enviar a</string>
   <string name="MediaReviewFragment__view_once_message">Mensaje para ver una vez</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Uno o más elementos son demasiado grandes</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Uno o más elementos no son válidos</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Demasiados elementos seleccionados</string>
   <string name="ImageEditorHud__cancel">Cancelar</string>
   <string name="ImageEditorHud__draw">Dibujar</string>
   <string name="ImageEditorHud__write_text">Texto</string>
@@ -3248,5 +3272,63 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Fallo al actualizar el perfil</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
   <string name="ImageView__badge">Distintivo</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal depende de gente como tú.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Incentiva la tecnología que desarrollamos para ti (no para tus datos) y únete a la comunidad que la sostiene.</string>
+  <string name="SubscribeFragment__donation_amount">Cantidad de donación</string>
+  <string name="SubscribeFragment__more_payment_options">Más opciones de pago</string>
+  <string name="SubscribeFragment__cancel_subscription">Cancelar suscripción</string>
+  <string name="SubscribeFragment__confirm_cancellation">¿Confirmar cancelación?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">No te haremos el cargo de nuevo. Se eliminará el distintivo de tu perfil al final del periodo de suscripción.</string>
+  <string name="SubscribeFragment__not_now">Ahora no</string>
+  <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeFragment__update_subscription">Actualizar suscripción</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Se ha cancelado tu suscripción.</string>
+  <string name="SubscribeFragment__update_subscription_question">¿Actualizar la suscripción?</string>
+  <string name="SubscribeFragment__update">Actualizar</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Te haremos el cargo completo de la suscripción hoy. Tu suscripción se renovará el %1$s.</string>
+  <string name="Subscription__s_per_month">%s al mes</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s al mes · Se renueva el %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s al mes · Se renueva el %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal es una organización sin ánimo de lucro, sin anunciantes ni inversores, sólo sostenida por la gente que  usa y valora la aplicación. Haz una contribución mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">¿Por qué contribuir?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">El equipo de Signal está comprometido con la misión de desarrollar tecnología de código abierto que protege la libre expresión y permite comunicaciones globales seguras y privadas. Tu apoyo alimenta la causa. Sin anuncios. Sin seguimiento. Sin bromas.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Tu apoyo contribuye a pagar el desarrollo, uso de servidores y ancho de banda de una aplicación usada por millones de personas a lo largo de todo el mundo para comunicarse de forma privada e instantánea.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">¡Gracias por tu apoyo!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">¡Gracias por el impulso!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">¡Has conseguido el distintivo %s! Si decides mostrar el distintivo en tu perfil la gente con la que chateas verá que apoyas Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Hacer distintivo especial</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hecho</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de un distintivo, puedes seleccionar cuál mostrar en tu perfil a otras personas.</string>
+  <string name="ManageDonationsFragment__my_support">Mi apoyo</string>
+  <string name="ManageDonationsFragment__manage_subscription">Gestionar suscripción</string>
+  <string name="ManageDonationsFragment__badges">Distintivos</string>
+  <string name="ManageDonationsFragment__subscription_faq">Preguntas y respuestas sobre la suscripción</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Fallo al comprobar la suscripción.</string>
+  <string name="BoostFragment__give_signal_a_boost">Da un impulso a Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Di «¡Gracias!» y consigue el distintivo de impulso durante %1$d días.</string>
+  <string name="Boost__enter_custom_amount">Introduce una cantidad personalizada</string>
+  <string name="Boost__one_time_contribution">Contribuir sólo una vez</string>
+  <string name="MySupportPreference__add_a_signal_boost">Dale un Impulso a Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s al mes</string>
+  <string name="MySupportPreference__renews_s">Se renueva el %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Tu distintivo %1$s ha caducado y ya no es visible para otr@s en tu perfil</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar apoyando la tecnología construída para ti (y no para tus datos) considera una suscripción mensual.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Suscribirme</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
+  <string name="Subscription__verification_failed">Fallo al verificar la suscripción</string>
+  <string name="Subscription__please_contact_support_for_more_information">Por favor, contacta con el soporte técnico para más información.</string>
+  <string name="Subscription__contact_support">Contactar con el soporte técnico</string>
+  <string name="Subscription__earn_a_s_badge">%1$s ha conseguido un distintivo</string>
+  <string name="SubscribeFragment__processing_payment">Procesando pago …</string>
+  <string name="DonationsErrors__payment_failed">Fallo en el pago</string>
+  <string name="DonationsErrors__your_payment">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
+  <string name="DonationsErrors__redemption_still_pending">Reembolso pendiente</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Tal vez no veas tu distintivo inmediatamente ¡estamos trabajando en ello!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Debes activar Google Pay para poder hacer una donación en la aplicación.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Fallo al cancelar la suscripción</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas una conexión a internet para cancelar la suscripción.</string>
   <!--EOF-->
 </resources>

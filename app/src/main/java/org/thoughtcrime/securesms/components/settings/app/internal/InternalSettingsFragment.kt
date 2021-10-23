@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -231,6 +232,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.useBuiltInEmojiSet,
         onClick = {
           viewModel.setUseBuiltInEmoji(!state.useBuiltInEmojiSet)
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_force_emoji_download),
+        summary = DSLSettingsText.from(R.string.preferences__internal_force_emoji_download_description),
+        onClick = {
+          ApplicationDependencies.getJobManager().add(DownloadLatestEmojiDataJob(true))
         }
       )
 

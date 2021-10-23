@@ -113,7 +113,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       bucket = targetVersion.getDensity();
     }
 
-    Log.d(TAG, "LocalVersion: " + localVersion + ", SeverVersion: " + serverVersion + ", Bucket: " + bucket);
+    Log.d(TAG, "LocalVersion: " + localVersion + ", ServerVersion: " + serverVersion + ", Bucket: " + bucket);
 
     if (bucket == null) {
       Log.d(TAG, "This device has too low a display density to download remote emoji.");

@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -21,8 +23,10 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ProfileUtil;
+import org.thoughtcrime.securesms.util.ScreenDensity;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -173,23 +177,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
     DatabaseFactory.getRecipientDatabase(context)
                    .setBadges(Recipient.self().getId(),
-                              badges.stream().map(RefreshOwnProfileJob::adaptFromServiceBadge).collect(Collectors.toList()));
-  }
-
-  private static Badge adaptFromServiceBadge(@NonNull SignalServiceProfile.Badge serviceBadge) {
-    return new Badge(
-        serviceBadge.getId(),
-        Badge.Category.Companion.fromCode(serviceBadge.getCategory()),
-        Uri.parse(serviceBadge.getImageUrl()),
-        serviceBadge.getName(),
-        serviceBadge.getDescription(),
-        getTimestamp(serviceBadge.getExpiration()),
-        serviceBadge.isVisible()
-    );
-  }
-
-  private static long getTimestamp(@NonNull BigDecimal bigDecimal) {
-    return new Timestamp(bigDecimal.longValue() * 1000).getTime();
+                              badges.stream().map(Badges::fromServiceBadge).collect(Collectors.toList()));
   }
 
   public static final class Factory implements Job.Factory<RefreshOwnProfileJob> {

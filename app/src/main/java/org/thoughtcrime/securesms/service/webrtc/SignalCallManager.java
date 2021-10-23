@@ -788,6 +788,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                            .updateNotification(context, messageAndThreadId.second(), signal);
   }
 
+  public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean signal, boolean isVideoOffer) {
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(context)
+                                                         .insertReceivedCall(remotePeer.getId(), isVideoOffer);
+
+    ApplicationDependencies.getMessageNotifier()
+                           .updateNotification(context, messageAndThreadId.second(), signal);
+  }
+
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
     networkExecutor.execute(() -> {
       try {

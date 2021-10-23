@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
   <string name="ConversationItem_you_deleted_this_message">Bạn đã xóa tin nhắn này.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Đặt lại phiên bảo mật?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Thao tác này có thể giúp bạn khi đang có vấn đề về mã hoá cuộc trò chuyện. Các tin nhắn sẽ được giữ lại.</string>
-  <string name="ConversationActivity_reset">Đặt lại</string>
   <string name="ConversationActivity_add_attachment">Thêm tệp đính kèm</string>
   <string name="ConversationActivity_select_contact_info">Chọn thông tin liên lạc</string>
   <string name="ConversationActivity_compose_message">Soạn tin nhắn</string>
@@ -305,6 +302,17 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Đã chuyển %d cuộc trò chuyện vào hộp thư đến</item>
   </plurals>
+  <string name="ConversationListFragment_read">Đã đọc</string>
+  <string name="ConversationListFragment_unread">Chưa đọc</string>
+  <string name="ConversationListFragment_pin">Ghim</string>
+  <string name="ConversationListFragment_unpin">Gỡ ghim</string>
+  <string name="ConversationListFragment_mute">Im lặng</string>
+  <string name="ConversationListFragment_unmute">Tắt tạm im</string>
+  <string name="ConversationListFragment_select">Chọn</string>
+  <string name="ConversationListFragment_archive">Lưu trữ</string>
+  <string name="ConversationListFragment_unarchive">Bỏ lưu trữ</string>
+  <string name="ConversationListFragment_delete">Xóa</string>
+  <string name="ConversationListFragment_select_all">Chọn tất cả</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Tin nhắn trao đổi mã khóa</string>
   <!--ConversationListItemAction-->
@@ -749,12 +757,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Hiển thị theo ô</string>
   <string name="MediaOverviewActivity_List_view_description">Hiển thị theo danh sách</string>
   <string name="MediaOverviewActivity_Selected_description">Đã chọn</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d mục %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d mục</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">Lưu</string>
+  <string name="MediaOverviewActivity_select_all">Chọn tất cả</string>
+  <string name="MediaOverviewActivity_delete">Xóa</string>
   <string name="MediaOverviewActivity_file">Tệp</string>
   <string name="MediaOverviewActivity_audio">Âm thanh</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1234,6 +1239,8 @@ mã quốc gia bạn</string>
   <string name="SharedContactView_add_to_contacts">Thêm vào danh bạ</string>
   <string name="SharedContactView_invite_to_signal">Mời dùng Signal</string>
   <string name="SharedContactView_message">Tin nhắn Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Thêm</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Chúng tôi sẽ lại nhắc bạn sau.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Chúng tôi sẽ lại nhắc bạn vào ngày mai.</string>
@@ -1760,15 +1767,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpFragment__debug_log">Nhật kí lỗi:</string>
   <string name="HelpFragment__could_not_upload_logs">Không thể tải lên nhật kí lỗi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vui lòng miêu tả càng chi tiết càng tốt để giúp chúng tôi hiểu về vấn đề.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Xin chọn một lựa chọn --</item>
-    <item>Có điều gì đó đang không hoạt động</item>
-    <item>Yêu cầu Tính năng</item>
-    <item>Câu hỏi</item>
-    <item>Góp ý</item>
-    <item>Khác</item>
-    <item>Thanh toán</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tin nhắn này</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Sử dụng gần đây</string>
@@ -2864,6 +2862,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpFragment__copyright_signal_messenger">Bản quyền Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Cấp phép dưới GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Cao</string>
+  <string name="DataAndStorageSettingsFragment__standard">Tiêu chuẩn</string>
   <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Tự động</string>
@@ -2981,7 +2981,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Tìm kiếm tên hoặc số điện thoại</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Máy ảnh</string>
   <string name="AvatarPickerFragment__photo">Ảnh</string>
@@ -3006,5 +3006,16 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MediaReviewSelectedItem__tap_to_select">Nhấn để chọn</string>
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
   <string name="SelectFeaturedBadgeFragment__preview">Xem trước</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal được hỗ trợ bởi những cá nhân như bạn.</string>
+  <string name="SubscribeFragment__donation_amount">Số tiền đóng góp</string>
+  <string name="SubscribeFragment__not_now">Để sau</string>
+  <string name="SubscribeFragment__confirm">Xác nhận</string>
+  <string name="SubscribeFragment__update">Cập nhật</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Xong</string>
+  <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
+  <string name="Subscription__contact_support">Liên lạc Hỗ trợ</string>
+  <string name="SubscribeFragment__processing_payment">Đang xử lý thanh toán…</string>
+  <string name="DonationsErrors__payment_failed">Thanh toán không thành công</string>
   <!--EOF-->
 </resources>

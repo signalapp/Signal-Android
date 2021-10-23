@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
@@ -100,7 +101,7 @@ public final class ProfileUtil {
     Optional<ProfileKey>         profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 
     return Single.fromCallable(() -> toSignalServiceAddress(context, recipient))
-                 .flatMap(address -> profileService.getProfile(address, profileKey, unidentifiedAccess, requestType).map(p -> new Pair<>(recipient, p)))
+                 .flatMap(address -> profileService.getProfile(address, profileKey, unidentifiedAccess, requestType, Locale.getDefault()).map(p -> new Pair<>(recipient, p)))
                  .onErrorReturn(t -> new Pair<>(recipient, ServiceResponse.forUnknownError(t)));
   }
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.LifecycleOwner;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class MappingViewHolder<Model extends MappingModel<Model>> extends LifecycleViewHolder implements LifecycleOwner {
+public abstract class MappingViewHolder<Model> extends LifecycleViewHolder implements LifecycleOwner {
 
   protected final Context      context;
   protected final List<Object> payload;
@@ -36,7 +36,7 @@ public abstract class MappingViewHolder<Model extends MappingModel<Model>> exten
     this.payload.addAll(payload);
   }
 
-  public static final class SimpleViewHolder<Model extends MappingModel<Model>> extends MappingViewHolder<Model> {
+  public static final class SimpleViewHolder<Model> extends MappingViewHolder<Model> {
     public SimpleViewHolder(@NonNull View itemView) {
       super(itemView);
     }

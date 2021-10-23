@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.badges.models.FeaturedBadgePreview
+import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
 import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -51,14 +51,14 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    Badge.register(adapter) { badge, isSelected ->
+    Badge.register(adapter) { badge, isSelected, _ ->
       if (!isSelected) {
         viewModel.setSelectedBadge(badge)
       }
     }
 
     val previewView: View = requireView().findViewById(R.id.preview)
-    val previewViewHolder = FeaturedBadgePreview.ViewHolder(previewView)
+    val previewViewHolder = BadgePreview.ViewHolder<BadgePreview.Model>(previewView)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe { event: SelectFeaturedBadgeEvent ->
@@ -69,9 +69,17 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
       }
     }
 
+    var hasBoundPreview = false
     viewModel.state.observe(viewLifecycleOwner) { state ->
       save.isEnabled = state.stage == SelectFeaturedBadgeState.Stage.READY
-      previewViewHolder.bind(FeaturedBadgePreview.Model(state.selectedBadge))
+
+      if (hasBoundPreview) {
+        previewViewHolder.setPayload(listOf(Unit))
+      } else {
+        hasBoundPreview = true
+      }
+
+      previewViewHolder.bind(BadgePreview.Model(state.selectedBadge))
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
   }
@@ -79,7 +87,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   private fun getConfiguration(state: SelectFeaturedBadgeState): DSLConfiguration {
     return configure {
       sectionHeaderPref(R.string.SelectFeaturedBadgeFragment__select_a_badge)
-      displayBadges(state.allUnlockedBadges, state.selectedBadge)
+      displayBadges(requireContext(), state.allUnlockedBadges, state.selectedBadge)
     }
   }
 }

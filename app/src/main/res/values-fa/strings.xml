@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
   <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">بازنشانی نشست امن؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر در این مکالمه با مشکلات رمزگذاری روبرو هستید این گزینه ممکن است کمک کند. پیام‌های شما حفظ خواهند شد.</string>
-  <string name="ConversationActivity_reset">بازنشانی</string>
   <string name="ConversationActivity_add_attachment">افزودن پیوست</string>
   <string name="ConversationActivity_select_contact_info">انتخاب اطلاعات مخاطب</string>
   <string name="ConversationActivity_compose_message">نگارش پیام</string>
@@ -319,6 +316,17 @@
     <item quantity="one">مکالمه به صندوق ورودی انتقال یافت</item>
     <item quantity="other">%d مکالمه به صندوق ورودی انتقال یافت</item>
   </plurals>
+  <string name="ConversationListFragment_read">خوانده شد</string>
+  <string name="ConversationListFragment_unread">خوانده نشده</string>
+  <string name="ConversationListFragment_pin">پین</string>
+  <string name="ConversationListFragment_unpin">برداشتن سنجاق</string>
+  <string name="ConversationListFragment_mute">بستن</string>
+  <string name="ConversationListFragment_unmute">باز کردن</string>
+  <string name="ConversationListFragment_select">انتخاب کنید</string>
+  <string name="ConversationListFragment_archive">بایگانی</string>
+  <string name="ConversationListFragment_unarchive">خارج‌کردن از بایگانی</string>
+  <string name="ConversationListFragment_delete">حذف</string>
+  <string name="ConversationListFragment_select_all">انتخاب همه</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
   <!--ConversationListItemAction-->
@@ -799,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">نمای مشبک</string>
   <string name="MediaOverviewActivity_List_view_description">نمای فهرستی</string>
   <string name="MediaOverviewActivity_Selected_description">انتخاب شده</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d مورد %2$s</item>
-    <item quantity="other">%1$d مورد %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d مورد</item>
-    <item quantity="other">%1$d مورد</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">ذخیره</string>
+  <string name="MediaOverviewActivity_select_all">انتخاب همه</string>
+  <string name="MediaOverviewActivity_delete">حذف</string>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">ویدئو</string>
@@ -1345,6 +1348,8 @@
   <string name="SharedContactView_add_to_contacts">افزودن به مخاطبین</string>
   <string name="SharedContactView_invite_to_signal">دعوت به سیگنال</string>
   <string name="SharedContactView_message">پیام سیگنال</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">بیشتر</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">بعداً دوباره به شما یادآوری خواهیم کرد.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">فردا دوباره به شما یادآوری خواهیم کرد.</string>
@@ -1526,6 +1531,7 @@
   <string name="MessageNotifier_reacted_s_to_s">%1$s به «%2$s» واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">%1$s به ویدئوی شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s به تصویر شما واکنش نشان داد.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">به گیف شما واکنش %1$s داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s به فایل شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s به فایل صوتی شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s به رسانه‌ٔ یکبار مصرف شما واکنش نشان داد.</string>
@@ -1892,15 +1898,6 @@
   <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- لطفاً گزینه‌ای را انتخاب کنید --</item>
-    <item>چیزی خراب شده است</item>
-    <item>درخواست قابلیت جدید</item>
-    <item>سؤال</item>
-    <item>بازخورد</item>
-    <item>سایر</item>
-    <item>پرداخت‌ها</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
@@ -1997,6 +1994,8 @@
   <string name="preferences__help">راهنمایی</string>
   <string name="preferences__advanced">پیشرفته</string>
   <string name="preferences__donate_to_signal">حمایت از سیگنال</string>
+  <string name="preferences__subscription">اشتراک</string>
+  <string name="preferences__signal_boost">تقویت سیگنال</string>
   <string name="preferences__privacy">حریم خصوصی</string>
   <string name="preferences__mms_user_agent">عامل کاربر فراپیام</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات دستی فراپیام</string>
@@ -3035,6 +3034,11 @@
   <string name="HelpFragment__copyright_signal_messenger">حق تکثیر پیام‌رسان سیگنال</string>
   <string name="HelpFragment__licenced_under_the_gplv3">پروانهٔ GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">کیفیت رسانه</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">کیفیت ارسال رسانه</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ارسال رسانه با کیفیت بالا از داده‌های بیشتری استفاده خواهد کرد.</string>
+  <string name="DataAndStorageSettingsFragment__high">عالی</string>
+  <string name="DataAndStorageSettingsFragment__standard">استاندارد</string>
   <string name="DataAndStorageSettingsFragment__calls">تماس‌ها</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">خودکار</string>
@@ -3160,7 +3164,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">%1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">توقف پیام صوتی</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">تغییر سرعت پیام صوتی</string>
   <string name="VoiceNotePlayerView__pause_voice_message">توقف موقت پیام صوتی</string>
@@ -3216,6 +3220,9 @@
   <string name="MediaReviewFragment__add_a_reply">یک پاسخ اضافه کنید</string>
   <string name="MediaReviewFragment__send_to">ارسال به</string>
   <string name="MediaReviewFragment__view_once_message">پیام یکبار مصرف</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">یک یا چند مورد بسیار بزرگ بودند</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">یک یا چند مورد نامعتبر بودند</string>
+  <string name="MediaReviewFragment__too_many_items_selected">موارد بسیار زیادی انتخاب شده است</string>
   <string name="ImageEditorHud__cancel">لغو</string>
   <string name="ImageEditorHud__draw">کشیدن</string>
   <string name="ImageEditorHud__write_text">نوشتن متن</string>
@@ -3243,5 +3250,36 @@
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">شما باید یک نشان انتخاب کنید</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
   <string name="ImageView__badge">نشان</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">سیگنال با کمک افرادی همانند شما پشتیبانی می‌شود.</string>
+  <string name="SubscribeFragment__donation_amount">مبلغ کمک اهدایی</string>
+  <string name="SubscribeFragment__more_payment_options">گزینه‌ها‌ی پرداخت بیشتر</string>
+  <string name="SubscribeFragment__cancel_subscription">لغو اشتراک</string>
+  <string name="SubscribeFragment__confirm_cancellation">تأیید لغو اشتراک؟</string>
+  <string name="SubscribeFragment__not_now">حالا نه</string>
+  <string name="SubscribeFragment__confirm">تأیید کنید</string>
+  <string name="SubscribeFragment__update_subscription">به‌روزرسانی اشتراک</string>
+  <string name="SubscribeFragment__update">به‌روزرسانی</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ممنون بابت تقویت!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">شما یک نشان %s بدست آوردید! نمایش نشان شما به کسانی که با آن‌ها گفتگو می‌کنید نشان می‌دهد که شما از سیگنال حمایت می‌کنید.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">نمایش روی پروفایل</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمام</string>
+  <string name="ManageDonationsFragment__my_support">پشتیبانی من</string>
+  <string name="ManageDonationsFragment__manage_subscription">مدیریت اشتراک</string>
+  <string name="ManageDonationsFragment__badges">نشان‌ها</string>
+  <string name="ManageDonationsFragment__subscription_faq">پرسش‌های متداول اشتراک</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">خطا در دریافت اشتراک.</string>
+  <string name="BoostFragment__give_signal_a_boost">سیگنال را تقویت کنید</string>
+  <string name="Boost__enter_custom_amount">مبلغ دلخواه را وارد کنید</string>
+  <string name="MySupportPreference__s_per_month">%1$s/ماه</string>
+  <string name="MySupportPreference__renews_s">در %1$s تمدید می‌شود</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">نشان شما منقضی شده است</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">نشان %1$s شما منقضی شده است، و دیگر روی پروفایل شما برای دیگران قابل رؤیت نیست.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">برای ادامهٔ حمایت از فناوری که برای شما ساخته شده است—نه برای داده‌های شما—لطفاً در نظر بگیرید که یک مشترک ماهانهٔ ما شوید.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">مشترک شوید</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
+  <string name="Subscription__contact_support">تماس با پشتیبانی</string>
+  <string name="SubscribeFragment__processing_payment">در حال پردازش پرداخت…</string>
+  <string name="DonationsErrors__payment_failed">پرداخت ناموفق بود</string>
   <!--EOF-->
 </resources>

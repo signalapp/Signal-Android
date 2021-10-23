@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Вы удалили это сообщение.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string>
-  <string name="ConversationActivity_reset">Сбросить</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контактную информацию</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
@@ -340,6 +337,23 @@
     <item quantity="few">%d разговора перемещено во Входящие</item>
     <item quantity="many">%d разговоров перемещено во Входящие</item>
     <item quantity="other">%d разговоров перемещено во Входящие</item>
+  </plurals>
+  <string name="ConversationListFragment_read">Прочитано</string>
+  <string name="ConversationListFragment_unread">Непрочитано</string>
+  <string name="ConversationListFragment_pin">Прикрепить</string>
+  <string name="ConversationListFragment_unpin">Открепить</string>
+  <string name="ConversationListFragment_mute">Откл. звук</string>
+  <string name="ConversationListFragment_unmute">Вкл. звук</string>
+  <string name="ConversationListFragment_select">Выбрать</string>
+  <string name="ConversationListFragment_archive">Архивировать</string>
+  <string name="ConversationListFragment_unarchive">Разархивировать</string>
+  <string name="ConversationListFragment_delete">Удалить</string>
+  <string name="ConversationListFragment_select_all">Выбрать все</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d выбран</item>
+    <item quantity="few">%d выбрано</item>
+    <item quantity="many">%d выбрано</item>
+    <item quantity="other">%d выбрано</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
@@ -879,17 +893,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Вид: сетка</string>
   <string name="MediaOverviewActivity_List_view_description">Вид: список</string>
   <string name="MediaOverviewActivity_Selected_description">Выбрано</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d элемент %2$s</item>
-    <item quantity="few">%1$d элемента %2$s</item>
-    <item quantity="many">%1$d элементов %2$s</item>
-    <item quantity="other">%1$d элементов %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d элемент</item>
-    <item quantity="few">%1$d элемента</item>
-    <item quantity="many">%1$d элементов</item>
-    <item quantity="other">%1$d элементов</item>
+  <string name="MediaOverviewActivity_save">Сохранить</string>
+  <string name="MediaOverviewActivity_select_all">Выбрать все</string>
+  <string name="MediaOverviewActivity_delete">Удалить</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d выбран (%2$s)</item>
+    <item quantity="few">%1$d выбрано (%2$s)</item>
+    <item quantity="many">%1$d выбрано (%2$s)</item>
+    <item quantity="other">%1$d выбрано (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
@@ -1467,6 +1478,8 @@
   <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить в Signal</string>
   <string name="SharedContactView_message">Сообщение Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Больше</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Мы напомним вам позже.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Мы напомним вам завтра.</string>
@@ -2038,14 +2051,15 @@
   <string name="HelpFragment__debug_log">Журнал отладки:</string>
   <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
-  <string-array name="HelpFragment__categories">
+  <string-array name="HelpFragment__categories_2">
     <item>-- Пожалуйста, выберите вариант --</item>
     <item>Что-то не работает</item>
     <item>Запросить новые функции</item>
     <item>Вопрос</item>
     <item>Обратная связь</item>
     <item>Другое</item>
-    <item>Платежи</item>
+    <item>Платежи (MobileCoin)</item>
+    <item>Пожертвования (поддержка и Ускорение Signal)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Это сообщение</string>
@@ -2145,6 +2159,8 @@
   <string name="preferences__help">Помощь</string>
   <string name="preferences__advanced">Расширенные</string>
   <string name="preferences__donate_to_signal">Поддержать Signal</string>
+  <string name="preferences__subscription">Подписка</string>
+  <string name="preferences__signal_boost">Ускорение Signal</string>
   <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">User Agent для MMS </string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
@@ -3203,6 +3219,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Авторские права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лицензировано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Качество медиа</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Качество отправляемого медиа</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Отправление медиа в высоком качестве использует больше данных.</string>
+  <string name="DataAndStorageSettingsFragment__high">Высокое</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандартное</string>
   <string name="DataAndStorageSettingsFragment__calls">Звонки</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Авто</string>
@@ -3332,7 +3353,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Остановить воспроизведение голосового сообщения</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Изменить скорость воспроизведения голосового сообщения</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Приостановить воспроизведение голосового сообщения</string>
@@ -3396,6 +3417,9 @@
   <string name="MediaReviewFragment__add_a_reply">Добавьте ответ</string>
   <string name="MediaReviewFragment__send_to">Отправить</string>
   <string name="MediaReviewFragment__view_once_message">Одноразовое сообщение</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Один или несколько элементов были слишком большими</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один или несколько элементов были недействительными</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Выбрано слишком много элементов</string>
   <string name="ImageEditorHud__cancel">Отменить</string>
   <string name="ImageEditorHud__draw">Нарисовать</string>
   <string name="ImageEditorHud__write_text">Написать текст</string>
@@ -3423,6 +3447,65 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Выберите значок</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Вы должны выбрать значок</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не удалось обновить профиль</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Стать поддерживающим</string>
   <string name="ImageView__badge">Значок</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу людей, поддерживающих её.</string>
+  <string name="SubscribeFragment__donation_amount">Сумма пожертвования</string>
+  <string name="SubscribeFragment__more_payment_options">Больше способов оплаты</string>
+  <string name="SubscribeFragment__cancel_subscription">Отменить подписку</string>
+  <string name="SubscribeFragment__confirm_cancellation">Подтверждаете отмену?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">С вас больше не будет взиматься плата. Ваш значок будет удалён из профиля в конце вашего расчётного периода.</string>
+  <string name="SubscribeFragment__not_now">Не сейчас</string>
+  <string name="SubscribeFragment__confirm">Подтвердить</string>
+  <string name="SubscribeFragment__update_subscription">Обновить подписку</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша подписка была отменена.</string>
+  <string name="SubscribeFragment__update_subscription_question">Обновить подписку?</string>
+  <string name="SubscribeFragment__update">Обновить</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Полная сумма новой подписки будет взята с вас сегодня. Ваша подписка продлится %1$s.</string>
+  <string name="Subscription__s_per_month">%s/месяц</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Возобновится %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/месяц · Истекает %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят её. Делая пожертвование ежемесячно, вы получите значок для профиля, чтобы поделиться с другими тем, что вы поддерживаете Signal.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Команда Signal предана миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру. Ваш вклад поддерживает эту миссию. Без рекламы. Без трекеров. Без шуток.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваше пожертвование помогает оплачивать разработку, серверы и пропускную способность приложения, которое используется миллионами людей по всему миру для конфиденциального и мгновенного общения.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Спасибо за вашу поддержку!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Спасибо за Ускорение!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Вы получили значок «%s»! Если вы будете показывать значок в своём профиле, то люди, с которыми вы общаетесь, увидят, что вы поддерживаете Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показывать в профиле</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Сделать главным значком</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Когда у вас больше одного значка, вы можете выбрать главный значок, который другие люди будут видеть в вашем профиле.</string>
+  <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
+  <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
+  <string name="ManageDonationsFragment__badges">Значки</string>
+  <string name="ManageDonationsFragment__subscription_faq">ЧаВО по подписке</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Не удалось получить информацию о подписке.</string>
+  <string name="BoostFragment__give_signal_a_boost">Дайте «Ускорение» приложению Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Скажите «Спасибо!» и получите значок «Ускорение» на %1$d дней.</string>
+  <string name="Boost__enter_custom_amount">Ввести сумму</string>
+  <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
+  <string name="MySupportPreference__add_a_signal_boost">Добавить Ускорение Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
+  <string name="MySupportPreference__renews_s">Возобновится %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваш значок «%1$s» истёк и больше не виден другим людям в вашем профиле.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным подписчиком.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стать подписчиком</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
+  <string name="Subscription__verification_failed">Не удалось проверить подписку</string>
+  <string name="Subscription__please_contact_support_for_more_information">Пожалуйста, свяжитесь с поддержкой, чтобы получить больше информации.</string>
+  <string name="Subscription__contact_support">Связаться с поддержкой</string>
+  <string name="Subscription__earn_a_s_badge">Заработайте значок «%1$s»</string>
+  <string name="SubscribeFragment__processing_payment">Обрабатываем платёж…</string>
+  <string name="DonationsErrors__payment_failed">Платёж не удался</string>
+  <string name="DonationsErrors__your_payment">Не удалось обработать ваш платёж; с вас не была взята плата. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="DonationsErrors__redemption_still_pending">Получение значка всё ещё в процессе</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Возможно, вы не сразу увидите свой значок, но мы работаем над этим!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступен</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Вам необходимо настроить Google Pay, чтобы пожертвовать в приложении.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Не удалось отменить подписку</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для отмены подписки требуется соединение с интернетом.</string>
   <!--EOF-->
 </resources>

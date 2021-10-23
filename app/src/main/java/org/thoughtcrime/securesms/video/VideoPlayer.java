@@ -93,6 +93,7 @@ public class VideoPlayer extends FrameLayout {
         if (playerCallback != null) {
           switch (playbackState) {
             case Player.STATE_READY:
+              playerCallback.onReady();
               if (playWhenReady) playerCallback.onPlaying();
               break;
             case Player.STATE_ENDED:
@@ -135,6 +136,14 @@ public class VideoPlayer extends FrameLayout {
 
   public void setResizeMode(@AspectRatioFrameLayout.ResizeMode int resizeMode) {
     exoView.setResizeMode(resizeMode);
+  }
+
+  public boolean isPlaying() {
+    if (this.exoPlayer != null) {
+      return this.exoPlayer.isPlaying();
+    } else {
+      return false;
+    }
   }
 
   public void pause() {
@@ -331,6 +340,8 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public interface PlayerCallback {
+
+    default void onReady() {}
 
     void onPlaying();
 

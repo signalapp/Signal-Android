@@ -166,6 +166,12 @@
     <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">
     </style>
 
+    <style name="TextAppearance.Signal.Title.ActionMode" parent="">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
     <style name="Signal.Text.MessageRequest.Title" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/signal_text_primary</item>

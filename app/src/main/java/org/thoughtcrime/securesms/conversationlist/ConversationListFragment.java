@@ -45,12 +45,10 @@ import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
-import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.WorkerThread;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
@@ -66,6 +64,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -75,10 +74,14 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
+import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
+import org.thoughtcrime.securesms.components.menu.ActionItem;
+import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
+import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
@@ -141,10 +144,13 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -153,6 +159,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -196,6 +203,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private VoiceNoteMediaControllerOwner     mediaControllerOwner;
   private Stub<FrameLayout>                 voiceNotePlayerViewStub;
   private VoiceNotePlayerView               voiceNotePlayerView;
+  private SignalBottomActionBar             bottomActionBar;
 
 
   private Stopwatch startupStopwatch;
@@ -238,6 +246,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     toolbarShadow           = view.findViewById(R.id.conversation_list_toolbar_shadow);
     proxyStatus             = view.findViewById(R.id.conversation_list_proxy_status);
     unreadPaymentsDot       = view.findViewById(R.id.unread_payments_indicator);
+    bottomActionBar         = view.findViewById(R.id.conversation_list_bottom_action_bar);
     reminderView            = new Stub<>(view.findViewById(R.id.reminder));
     emptyState              = new Stub<>(view.findViewById(R.id.empty_state));
     searchToolbar           = new Stub<>(view.findViewById(R.id.search_toolbar));
@@ -762,38 +771,30 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
-  private void handleMarkSelectedAsRead() {
-    Context   context               = requireContext();
-    Set<Long> selectedConversations = new HashSet<>(defaultAdapter.getBatchSelectionIds());
+  private void handleMarkAsRead(@NonNull Collection<Long> ids) {
+    Context context = requireContext();
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(selectedConversations, false);
+      List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(ids, false);
 
       ApplicationDependencies.getMessageNotifier().updateNotification(context);
       MarkReadReceiver.process(context, messageIds);
 
       return null;
     }, none -> {
-      if (actionMode != null) {
-        actionMode.finish();
-        actionMode = null;
-      }
+      endActionModeIfActive();
     });
   }
 
-  private void handleMarkSelectedAsUnread() {
-    Context   context               = requireContext();
-    Set<Long> selectedConversations = new HashSet<>(defaultAdapter.getBatchSelectionIds());
+  private void handleMarkAsUnread(@NonNull Collection<Long> ids) {
+    Context context = requireContext();
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      DatabaseFactory.getThreadDatabase(context).setForcedUnread(selectedConversations);
+      DatabaseFactory.getThreadDatabase(context).setForcedUnread(ids);
       StorageSyncHelper.scheduleSyncForDataChange();
       return null;
     }, none -> {
-      if (actionMode != null) {
-        actionMode.finish();
-        actionMode = null;
-      }
+      endActionModeIfActive();
     });
   }
 
@@ -806,8 +807,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void handleArchiveAllSelected() {
-    Set<Long> selectedConversations = new HashSet<>(defaultAdapter.getBatchSelectionIds());
+  private void handleArchive(@NonNull Collection<Long> ids, boolean showProgress) {
+    Set<Long> selectedConversations = new HashSet<>(ids);
     int       count                 = selectedConversations.size();
     String    snackBarTitle         = getResources().getQuantityString(getArchivedSnackbarTitleRes(), count, count);
 
@@ -816,17 +817,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                 snackBarTitle,
                                 getString(R.string.ConversationListFragment_undo),
                                 getResources().getColor(R.color.amber_500),
-                                Snackbar.LENGTH_LONG, true)
+                                Snackbar.LENGTH_LONG,
+                                showProgress)
     {
 
       @Override
       protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-
-        if (actionMode != null) {
-          actionMode.finish();
-          actionMode = null;
-        }
+        endActionModeIfActive();
       }
 
       @Override
@@ -838,22 +836,23 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       protected void reverseAction(@Nullable Void parameter) {
         reverseArchiveThreads(selectedConversations);
       }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }.executeOnExecutor(SignalExecutors.BOUNDED);
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void handleDeleteAllSelected() {
-    int                 conversationsCount = defaultAdapter.getBatchSelectionIds().size();
-    AlertDialog.Builder alert              = new AlertDialog.Builder(getActivity());
-    alert.setIcon(R.drawable.ic_warning);
-    alert.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
-                                                                  conversationsCount, conversationsCount));
-    alert.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
-                                                                    conversationsCount, conversationsCount));
+  private void handleDelete(@NonNull Collection<Long> ids) {
+    int                        conversationsCount = ids.size();
+    MaterialAlertDialogBuilder alert              = new MaterialAlertDialogBuilder(requireActivity());
+    Context                    context            = requireContext();
+
+    alert.setTitle(context.getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
+                                                            conversationsCount, conversationsCount));
+    alert.setMessage(context.getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
+                                                              conversationsCount, conversationsCount));
     alert.setCancelable(true);
 
     alert.setPositiveButton(R.string.delete, (dialog, which) -> {
-      final Set<Long> selectedConversations = new HashSet<>(defaultAdapter.getBatchSelectionIds());
+      final Set<Long> selectedConversations = new HashSet<>(ids);
 
       if (!selectedConversations.isEmpty()) {
         new AsyncTask<Void, Void, Void>() {
@@ -861,28 +860,25 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
           @Override
           protected void onPreExecute() {
-            dialog = ProgressDialog.show(getActivity(),
-                                         getActivity().getString(R.string.ConversationListFragment_deleting),
-                                         getActivity().getString(R.string.ConversationListFragment_deleting_selected_conversations),
+            dialog = ProgressDialog.show(requireActivity(),
+                                         context.getString(R.string.ConversationListFragment_deleting),
+                                         context.getString(R.string.ConversationListFragment_deleting_selected_conversations),
                                          true, false);
           }
 
           @Override
           protected Void doInBackground(Void... params) {
             DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-            ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
+            ApplicationDependencies.getMessageNotifier().updateNotification(requireActivity());
             return null;
           }
 
           @Override
           protected void onPostExecute(Void result) {
             dialog.dismiss();
-            if (actionMode != null) {
-              actionMode.finish();
-              actionMode = null;
-            }
+            endActionModeIfActive();
           }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }.executeOnExecutor(SignalExecutors.BOUNDED);
       }
     });
 
@@ -890,8 +886,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     alert.show();
   }
 
-  private void handlePinAllSelected() {
-    final Set<Long> toPin = new LinkedHashSet<>(Stream.of(defaultAdapter.getBatchSelection())
+  private void handlePin(@NonNull Collection<Conversation> conversations) {
+    final Set<Long> toPin = new LinkedHashSet<>(Stream.of(conversations)
                                                       .filterNot(conversation -> conversation.getThreadRecord().isPinned())
                                                       .map(conversation -> conversation.getThreadRecord().getThreadId())
                                                       .toList());
@@ -902,7 +898,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                     Snackbar.LENGTH_LONG)
               .setTextColor(Color.WHITE)
               .show();
-      actionMode.finish();
+      endActionModeIfActive();
       return;
     }
 
@@ -913,35 +909,83 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
       return null;
     }, unused -> {
-      if (actionMode != null) {
-        actionMode.finish();
-      }
+      endActionModeIfActive();
     });
   }
 
-  private void handleUnpinAllSelected() {
-    final Set<Long> toPin = new HashSet<>(defaultAdapter.getBatchSelectionIds());
-
+  private void handleUnpin(@NonNull Collection<Long> ids) {
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       ThreadDatabase db = DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication());
 
-      db.unpinConversations(toPin);
+      db.unpinConversations(ids);
 
       return null;
     }, unused -> {
-      if (actionMode != null) {
-        actionMode.finish();
-      }
+      endActionModeIfActive();
+    });
+  }
+
+  private void handleMute(@NonNull Collection<Conversation> conversations) {
+    MuteDialog.show(requireContext(), until -> {
+      updateMute(conversations, until);
+    });
+  }
+
+  private void handleUnmute(@NonNull Collection<Conversation> conversations) {
+    updateMute(conversations, 0);
+  }
+
+  private void updateMute(@NonNull Collection<Conversation> conversations, long until) {
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(requireContext(), 250, 250);
+
+    SimpleTask.run(SignalExecutors.BOUNDED, () -> {
+      List<RecipientId> recipientIds = conversations.stream()
+                                                    .map(conversation -> conversation.getThreadRecord().getRecipient().live().get())
+                                                    .filter(r -> r.getMuteUntil() != until)
+                                                    .map(Recipient::getId)
+                                                    .collect(Collectors.toList());
+      DatabaseFactory.getRecipientDatabase(requireContext()).setMuted(recipientIds, until);
+      return null;
+    }, unused -> {
+      endActionModeIfActive();
+      dialog.dismiss();
     });
   }
 
   private void handleSelectAllThreads() {
     defaultAdapter.selectAllThreads();
-    actionMode.setTitle(String.valueOf(defaultAdapter.getBatchSelectionIds().size()));
+    updateMultiSelectState();
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType) {
     getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
+  }
+
+  private void startActionMode() {
+    actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(ConversationListFragment.this);
+    ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
+    ViewUtil.fadeOut(fab, 250);
+    ViewUtil.fadeOut(cameraFab, 250);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeOut(megaphoneContainer.get(), 250);
+    }
+  }
+
+  private void endActionModeIfActive() {
+    if (actionMode != null) {
+      endActionMode();
+    }
+  }
+
+  private void endActionMode() {
+    actionMode.finish();
+    actionMode = null;
+    ViewUtil.animateOut(bottomActionBar, bottomActionBar.getExitAnimation());
+    ViewUtil.fadeIn(fab, 250);
+    ViewUtil.fadeIn(cameraFab, 250);
+    if (megaphoneContainer.resolved()) {
+      ViewUtil.fadeIn(megaphoneContainer.get(), 250);
+    }
   }
 
   private void onSubmitList(@NonNull List<Conversation> conversationList) {
@@ -1005,77 +1049,98 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   @Override
-  public void onConversationClick(Conversation conversation) {
+  public void onConversationClick(@NonNull Conversation conversation) {
     if (actionMode == null) {
       handleCreateConversation(conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient(), conversation.getThreadRecord().getDistributionType());
     } else {
       defaultAdapter.toggleConversationInBatchSet(conversation);
 
       if (defaultAdapter.getBatchSelectionIds().size() == 0) {
-        actionMode.finish();
+        endActionModeIfActive();
       } else {
-        actionMode.setTitle(String.valueOf(defaultAdapter.getBatchSelectionIds().size()));
-        setCorrectMenuVisibility(actionMode.getMenu());
+        updateMultiSelectState();
       }
     }
   }
 
   @Override
-  public boolean onConversationLongClick(Conversation conversation) {
+  public boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view) {
     if (actionMode != null) {
       onConversationClick(conversation);
       return true;
     }
 
-    defaultAdapter.initializeBatchMode(true);
-    defaultAdapter.toggleConversationInBatchSet(conversation);
+    view.setSelected(true);
 
-    actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(ConversationListFragment.this);
+    Collection<Long> id = Collections.singleton(conversation.getThreadRecord().getThreadId());
+
+    List<ActionItem> items = new ArrayList<>();
+
+    if (!conversation.getThreadRecord().isArchived()) {
+      if (conversation.getThreadRecord().isRead()) {
+        items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread, 1), () -> handleMarkAsUnread(id)));
+      } else {
+        items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read, 1), () -> handleMarkAsRead(id)));
+      }
+
+      if (conversation.getThreadRecord().isPinned()) {
+        items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin, 1), () -> handleUnpin(id)));
+      } else {
+        items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin, 1), () -> handlePin(Collections.singleton(conversation))));
+      }
+
+      if (conversation.getThreadRecord().getRecipient().live().get().isMuted()) {
+        items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute, 1), () -> handleUnmute(Collections.singleton(conversation))));
+      } else {
+        items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute, 1), () -> handleMute(Collections.singleton(conversation))));
+      }
+    }
+
+    items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select), () -> {
+      defaultAdapter.initializeBatchMode(true);
+      defaultAdapter.toggleConversationInBatchSet(conversation);
+      startActionMode();
+    }));
+
+    if (conversation.getThreadRecord().isArchived()) {
+      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive, 1), () -> handleArchive(id, false)));
+    } else {
+      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive, 1), () -> handleArchive(id, false)));
+    }
+
+    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete, 1), () -> handleDelete(id)));
+
+    new SignalContextMenu.Builder(view, list)
+        .offsetX(ViewUtil.dpToPx(12))
+        .offsetY(ViewUtil.dpToPx(12))
+        .onDismiss(() -> view.setSelected(false))
+        .show(items);
 
     return true;
   }
 
   @Override
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-    MenuInflater inflater = getActivity().getMenuInflater();
-
-    inflater.inflate(R.menu.conversation_list_batch_pin, menu);
-    inflater.inflate(getActionModeMenuRes(), menu);
-    inflater.inflate(R.menu.conversation_list_batch, menu);
-
-    mode.setTitle("1");
-
-    WindowUtil.setStatusBarColor(requireActivity().getWindow(), getResources().getColor(R.color.action_mode_status_bar));
-
+    mode.setTitle(requireContext().getResources().getQuantityString(R.plurals.ConversationListFragment_s_selected, 1, 1));
     return true;
   }
 
   @Override
   public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-    setCorrectMenuVisibility(menu);
+    updateMultiSelectState();
     return false;
   }
 
   @Override
   public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.menu_select_all:       handleSelectAllThreads();     return true;
-      case R.id.menu_delete_selected:  handleDeleteAllSelected();    return true;
-      case R.id.menu_pin_selected:     handlePinAllSelected();       return true;
-      case R.id.menu_unpin_selected:   handleUnpinAllSelected();     return true;
-      case R.id.menu_archive_selected: handleArchiveAllSelected();   return true;
-      case R.id.menu_mark_as_read:     handleMarkSelectedAsRead();   return true;
-      case R.id.menu_mark_as_unread:   handleMarkSelectedAsUnread(); return true;
-    }
-
-    return false;
+    return true;
   }
 
   @Override
   public void onDestroyActionMode(ActionMode mode) {
     defaultAdapter.initializeBatchMode(false);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (Build.VERSION.SDK_INT >= 21) {
       TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
       WindowUtil.setStatusBarColor(getActivity().getWindow(), color.getColor(0, Color.BLACK));
       color.recycle();
@@ -1092,7 +1157,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       lightStatusBarAttr.recycle();
     }
 
-    actionMode = null;
+    endActionModeIfActive();
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
@@ -1106,29 +1171,49 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     closeSearchIfOpen();
   }
 
-  private void setCorrectMenuVisibility(@NonNull Menu menu) {
+  private void updateMultiSelectState() {
+    int     count       = defaultAdapter.getBatchSelectionIds().size();
     boolean hasUnread   = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
     boolean hasUnpinned = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
+    boolean hasUnmuted  = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
     boolean canPin      = viewModel.getPinnedCount() < MAXIMUM_PINNED_CONVERSATIONS;
 
+    if (actionMode != null) {
+      actionMode.setTitle(requireContext().getResources().getQuantityString(R.plurals.ConversationListFragment_s_selected, count, count));
+    }
+
+    List<ActionItem> items = new ArrayList<>();
+
     if (hasUnread) {
-      menu.findItem(R.id.menu_mark_as_unread).setVisible(false);
-      menu.findItem(R.id.menu_mark_as_read).setVisible(true);
+      items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read, count), () -> handleMarkAsRead(defaultAdapter.getBatchSelectionIds())));
     } else {
-      menu.findItem(R.id.menu_mark_as_unread).setVisible(true);
-      menu.findItem(R.id.menu_mark_as_read).setVisible(false);
+      items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread, count), () -> handleMarkAsUnread(defaultAdapter.getBatchSelectionIds())));
     }
 
     if (!isArchived() && hasUnpinned && canPin) {
-      menu.findItem(R.id.menu_pin_selected).setVisible(true);
-      menu.findItem(R.id.menu_unpin_selected).setVisible(false);
+      items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin, count), () -> handlePin(defaultAdapter.getBatchSelection())));
     } else if (!isArchived() && !hasUnpinned) {
-      menu.findItem(R.id.menu_pin_selected).setVisible(false);
-      menu.findItem(R.id.menu_unpin_selected).setVisible(true);
-    } else {
-      menu.findItem(R.id.menu_pin_selected).setVisible(false);
-      menu.findItem(R.id.menu_unpin_selected).setVisible(false);
+      items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin, count), () -> handleUnpin(defaultAdapter.getBatchSelectionIds())));
     }
+
+    if (isArchived()) {
+      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+    } else {
+      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+    }
+
+    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete, count), () -> handleDelete(defaultAdapter.getBatchSelectionIds())));
+
+
+    if (hasUnmuted) {
+      items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute, count), () -> handleMute(defaultAdapter.getBatchSelection())));
+    } else {
+      items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute, count), () -> handleUnmute(defaultAdapter.getBatchSelection())));
+    }
+
+    items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), this::handleSelectAllThreads));
+
+    bottomActionBar.setItems(items);
   }
 
   protected Toolbar getToolbar(@NonNull View rootView) {
@@ -1137,10 +1222,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   protected @PluralsRes int getArchivedSnackbarTitleRes() {
     return R.plurals.ConversationListFragment_conversations_archived;
-  }
-
-  protected @MenuRes int getActionModeMenuRes() {
-    return R.menu.conversation_list_batch_archive;
   }
 
   protected @DrawableRes int getArchiveIconRes() {

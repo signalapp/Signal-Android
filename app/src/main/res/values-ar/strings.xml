@@ -188,9 +188,6 @@
   <string name="ConversationItem_this_message_was_deleted">حُذفَت هذه الرسالة.</string>
   <string name="ConversationItem_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سيُحتفَظ برسائلك. قد يساعد ذلك في حال وجود مشاكل في تعمية هذه المحادثة.</string>
-  <string name="ConversationActivity_reset">إعادة ضبط</string>
   <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
   <string name="ConversationActivity_select_contact_info">أختر بيانات جهة الاتصال</string>
   <string name="ConversationActivity_compose_message">إنشاء رسالة</string>
@@ -364,6 +361,17 @@
     <item quantity="many">تم نقل %d رسالة إلى الوارد</item>
     <item quantity="other">تم نقل %d رسالة إلى الوارد</item>
   </plurals>
+  <string name="ConversationListFragment_read">مقروء</string>
+  <string name="ConversationListFragment_unread">غير مقروءة</string>
+  <string name="ConversationListFragment_pin">تثبيت</string>
+  <string name="ConversationListFragment_unpin">فَكّ التَّثبيت</string>
+  <string name="ConversationListFragment_mute">كتم</string>
+  <string name="ConversationListFragment_unmute">شغِّل الصوت</string>
+  <string name="ConversationListFragment_select">حَدِّد</string>
+  <string name="ConversationListFragment_archive">أرشفة</string>
+  <string name="ConversationListFragment_unarchive">الإخراج من اﻷرشيف</string>
+  <string name="ConversationListFragment_delete">حذف  </string>
+  <string name="ConversationListFragment_select_all">اختيار الجميع</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListItemAction-->
@@ -959,22 +967,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">عرض شبكي</string>
   <string name="MediaOverviewActivity_List_view_description">عرض القائمة</string>
   <string name="MediaOverviewActivity_Selected_description">مختار</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="zero">%1$d عنصر %2$s</item>
-    <item quantity="one">%1$d عنصر %2$s</item>
-    <item quantity="two">%1$d عنصر %2$s</item>
-    <item quantity="few">%1$d عناصر %2$s</item>
-    <item quantity="many">%1$d عنصر %2$s</item>
-    <item quantity="other">%1$d عنصر%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="zero">%1$d عنصر</item>
-    <item quantity="one">%1$d عنصر</item>
-    <item quantity="two">%1$d عنصر</item>
-    <item quantity="few">%1$d عناصر</item>
-    <item quantity="many">%1$d عنصر</item>
-    <item quantity="other">%1$d عنصر</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">حفظ</string>
+  <string name="MediaOverviewActivity_select_all">اختيار الجميع</string>
+  <string name="MediaOverviewActivity_delete">حذف  </string>
   <string name="MediaOverviewActivity_file">ملف</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">فيديو</string>
@@ -1601,6 +1596,8 @@
   <string name="SharedContactView_add_to_contacts">الإضافة إلى جهات الاتصال</string>
   <string name="SharedContactView_invite_to_signal">الدعوة إلى Signal</string>
   <string name="SharedContactView_message">‫رسالة Signal‬</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">المزيد</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">سنعيد تذكيرك لاحقاً.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">سنعيد تذكيرك غداً.</string>
@@ -2190,15 +2187,6 @@
   <string name="HelpFragment__debug_log">سِجل التصحيح :</string>
   <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- يُرجى تحديد أحد الخيارات --</item>
-    <item>هناك شيء لا يعمل</item>
-    <item>طلب ميزات جديدة</item>
-    <item>أسئلة</item>
-    <item>ملاحظات</item>
-    <item>أشياء أخرى</item>
-    <item>الدفوعات</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
@@ -3377,6 +3365,9 @@
   <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال Signal‬</string>
   <string name="HelpFragment__licenced_under_the_gplv3">بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">إن إرسال وسائط بجودة عالية سوف يستخدم كما أكبر من البيانات.</string>
+  <string name="DataAndStorageSettingsFragment__high">بالغ الأهميّة </string>
+  <string name="DataAndStorageSettingsFragment__standard">قياسي</string>
   <string name="DataAndStorageSettingsFragment__calls">المكالمات</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">تلقائي</string>
@@ -3501,7 +3492,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">‎½ ×‎</string>
   <string name="PlaybackSpeedToggleTextView__1x">‎1 ×‎</string>
-  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">‎1½ ×‎</string>
   <string name="PlaybackSpeedToggleTextView__2x">‎2 ×‎</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">دفع جديد</string>
@@ -3510,7 +3501,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">البحث باستخدام الاسم أو الرقم</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">إيقاف الرسالة الصوتية</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">تغيير سرعة الرسالة الصوتية</string>
   <string name="VoiceNotePlayerView__pause_voice_message">إيقاف الرسالة الصوتية مؤقتا</string>
@@ -3601,5 +3592,16 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تضيع كل تغييرات قمت بها على هذه الصورة.</string>
   <string name="CameraFragment__failed_to_open_camera">فشل تشغيل الكاميرا</string>
   <string name="SelectFeaturedBadgeFragment__preview">مُعاينة</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">يُشغَّل Signal بِواسِطَة أشخاص مِثلَك.</string>
+  <string name="SubscribeFragment__donation_amount">مَبلَغ التَّبَرُّع</string>
+  <string name="SubscribeFragment__not_now">ليس الآن</string>
+  <string name="SubscribeFragment__confirm">تأكيد</string>
+  <string name="SubscribeFragment__update">تحديث التطبيق</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمّ</string>
+  <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
+  <string name="Subscription__contact_support">الاتصال بالدعم</string>
+  <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
+  <string name="DonationsErrors__payment_failed">فشلت الدفوعات</string>
   <!--EOF-->
 </resources>
