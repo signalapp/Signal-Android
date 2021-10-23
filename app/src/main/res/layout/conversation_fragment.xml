@@ -26,12 +26,14 @@
     <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:cacheColorHint="@color/signal_background_primary"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingBottom="2dp"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/scroll_date_header"

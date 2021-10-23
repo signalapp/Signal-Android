@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.RecyclerView
+import org.thoughtcrime.securesms.conversation.ConversationAdapter
 
 /**
  * Class for managing the triggering of item animations (here in the form of decoration redraws) whenever
@@ -17,26 +18,33 @@ class MultiselectItemAnimator(
   private val isParentFilled: () -> Boolean
 ) : RecyclerView.ItemAnimator() {
 
-  private data class SlideInfo(
-    val viewHolder: RecyclerView.ViewHolder,
-    val operation: Operation
-  )
-
   private enum class Operation {
     ADD,
     CHANGE
   }
 
-  private val pendingSlideAnimations: MutableSet<SlideInfo> = mutableSetOf()
+  private val pendingSlideAnimations: MutableSet<RecyclerView.ViewHolder> = mutableSetOf()
+  private var pendingTypingViewSlideOut: RecyclerView.ViewHolder? = null
 
-  private val slideAnimations: MutableMap<SlideInfo, ValueAnimator> = mutableMapOf()
+  private val slideAnimations: MutableMap<RecyclerView.ViewHolder, ValueAnimator> = mutableMapOf()
 
   override fun animateDisappearance(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo?): Boolean {
+    if (viewHolder is ConversationAdapter.HeaderViewHolder && pendingTypingViewSlideOut == null) {
+      pendingTypingViewSlideOut = viewHolder
+      dispatchAnimationStarted(viewHolder)
+      return true
+    }
+
     dispatchAnimationFinished(viewHolder)
     return false
   }
 
   override fun animateAppearance(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo?, postLayoutInfo: ItemHolderInfo): Boolean {
+    if (viewHolder.absoluteAdapterPosition > 1) {
+      dispatchAnimationFinished(viewHolder)
+      return false
+    }
+
     return animateSlide(viewHolder, preLayoutInfo, postLayoutInfo, Operation.ADD)
   }
 
@@ -46,7 +54,12 @@ class MultiselectItemAnimator(
       return false
     }
 
-    if (operation == Operation.CHANGE && !isParentFilled()) {
+    if (operation == Operation.CHANGE && !isParentFilled() || slideAnimations.containsKey(viewHolder)) {
+      dispatchAnimationFinished(viewHolder)
+      return false
+    }
+
+    if (slideAnimations.containsKey(viewHolder)) {
       dispatchAnimationFinished(viewHolder)
       return false
     }
@@ -57,22 +70,31 @@ class MultiselectItemAnimator(
       preLayoutInfo.top - postLayoutInfo.top
     }.toFloat()
 
-    viewHolder.itemView.translationY = translationY
-    val slideInfo = SlideInfo(viewHolder, operation)
-
-    if (slideAnimations.filterKeys { slideInfo.viewHolder == viewHolder }.isNotEmpty()) {
+    if (translationY == 0f) {
       dispatchAnimationFinished(viewHolder)
       return false
     }
 
-    pendingSlideAnimations.add(slideInfo)
+    viewHolder.itemView.translationY = translationY
+
+    pendingSlideAnimations.add(viewHolder)
     dispatchAnimationStarted(viewHolder)
     return true
   }
 
   override fun animatePersistence(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo): Boolean {
-    dispatchAnimationFinished(viewHolder)
-    return false
+    val isInMultiSelectMode = isInMultiSelectMode()
+    return if (!isInMultiSelectMode) {
+      if (pendingSlideAnimations.contains(viewHolder) || slideAnimations.containsKey(viewHolder)) {
+        dispatchAnimationFinished(viewHolder)
+        false
+      } else {
+        animateSlide(viewHolder, preLayoutInfo, postLayoutInfo, Operation.CHANGE)
+      }
+    } else {
+      dispatchAnimationFinished(viewHolder)
+      false
+    }
   }
 
   override fun animateChange(oldHolder: RecyclerView.ViewHolder, newHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo): Boolean {
@@ -80,40 +102,56 @@ class MultiselectItemAnimator(
       dispatchAnimationFinished(oldHolder)
     }
 
-    val isInMultiSelectMode = isInMultiSelectMode()
-    return if (!isInMultiSelectMode) {
-      if (preLayoutInfo.top == postLayoutInfo.top) {
-        dispatchAnimationFinished(newHolder)
-        false
-      } else {
-        animateSlide(newHolder, preLayoutInfo, postLayoutInfo, Operation.CHANGE)
-      }
-    } else {
-      dispatchAnimationFinished(newHolder)
-      false
-    }
+    return animatePersistence(newHolder, preLayoutInfo, postLayoutInfo)
   }
 
   override fun runPendingAnimations() {
     runPendingSlideAnimations()
+    runPendingSlideOutAnimation()
   }
 
   private fun runPendingSlideAnimations() {
-    for (slideInfo in pendingSlideAnimations) {
-      val animator = ObjectAnimator.ofFloat(slideInfo.viewHolder.itemView, "translationY", 0f)
-      slideAnimations[slideInfo] = animator
+    for (viewHolder in pendingSlideAnimations) {
+      val animator = ObjectAnimator.ofFloat(viewHolder.itemView, "translationY", 0f)
+      slideAnimations[viewHolder]?.cancel()
+      slideAnimations[viewHolder] = animator
       animator.duration = 150L
       animator.addUpdateListener {
-        (slideInfo.viewHolder.itemView.parent as RecyclerView?)?.invalidate()
+        (viewHolder.itemView.parent as RecyclerView?)?.invalidate()
       }
       animator.doOnEnd {
-        dispatchAnimationFinished(slideInfo.viewHolder)
-        slideAnimations.remove(slideInfo)
+        viewHolder.itemView.translationY = 0f
+        slideAnimations.remove(viewHolder)
+        dispatchAnimationFinished(viewHolder)
+        dispatchFinishedWhenDone()
       }
       animator.start()
     }
 
     pendingSlideAnimations.clear()
+  }
+
+  private fun runPendingSlideOutAnimation() {
+    val viewHolder = pendingTypingViewSlideOut
+    if (viewHolder != null) {
+      pendingTypingViewSlideOut = null
+      slideAnimations[viewHolder]?.cancel()
+
+      val animator = ObjectAnimator.ofFloat(viewHolder.itemView, "translationY", viewHolder.itemView.height.toFloat())
+
+      slideAnimations[viewHolder] = animator
+      animator.duration = 150L
+      animator.addUpdateListener {
+        (viewHolder.itemView.parent as RecyclerView?)?.invalidate()
+      }
+      animator.doOnEnd {
+        viewHolder.itemView.translationY = 0f
+        slideAnimations.remove(viewHolder)
+        dispatchAnimationFinished(viewHolder)
+        dispatchFinishedWhenDone()
+      }
+      animator.start()
+    }
   }
 
   override fun endAnimation(item: RecyclerView.ViewHolder) {
@@ -135,15 +173,16 @@ class MultiselectItemAnimator(
   }
 
   private fun endSlideAnimation(item: RecyclerView.ViewHolder) {
-    val selections = slideAnimations.filter { (k, _) -> k.viewHolder == item }
-    selections.forEach { (k, v) ->
-      v.end()
-      slideAnimations.remove(k)
-    }
+    slideAnimations[item]?.cancel()
   }
 
   fun endSlideAnimations() {
-    slideAnimations.values.forEach { it.end() }
-    slideAnimations.clear()
+    slideAnimations.values.forEach { it.cancel() }
+  }
+
+  private fun dispatchFinishedWhenDone() {
+    if (!isRunning) {
+      dispatchAnimationsFinished()
+    }
   }
 }
