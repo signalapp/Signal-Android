@@ -59,7 +59,7 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
           .toMap()
 
         val executor: ThreadPoolExecutor = executorInfo.executor as ThreadPoolExecutor
-        Log.w(TAG, buildLogString("Found a full executor! ${executor.activeCount}/${executor.corePoolSize} threads active with ${executor.queue.size} tasks queued.", fullMap))
+        Log.w(TAG, buildLogString("Found a full executor! ${executor.activeCount}/${executor.maximumPoolSize} threads active with ${executor.queue.size} tasks queued.", fullMap))
 
         val runnableStringBuilder = StringBuilder()
         executor.queue.forEach { runnable ->
