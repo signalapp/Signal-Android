@@ -17,9 +17,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class SignalExecutors {
 
   public static final ExecutorService UNBOUNDED  = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
-  public static final ExecutorService BOUNDED    = new ThreadPoolExecutor(4, 12, 5, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new NumberedThreadFactory("signal-bounded"));
+  public static final ExecutorService BOUNDED    = newCachedBoundedExecutor("signal-bounded", 4, 12, 5);
   public static final ExecutorService SERIAL     = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
-  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-io-bounded", 1, 32);
+  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-io-bounded", 1, 32, 30);
 
   private SignalExecutors() {}
 
@@ -40,10 +40,10 @@ public final class SignalExecutors {
    * So we make a queue that will always return false if it's non-empty to ensure new threads get
    * created. Then, if a task gets rejected, we simply add it to the queue.
    */
-  public static ExecutorService newCachedBoundedExecutor(final String name, int minThreads, int maxThreads) {
+  public static ExecutorService newCachedBoundedExecutor(final String name, int minThreads, int maxThreads, int timeoutSeconds) {
     ThreadPoolExecutor threadPool = new ThreadPoolExecutor(minThreads,
                                                            maxThreads,
-                                                           30,
+                                                           timeoutSeconds,
                                                            TimeUnit.SECONDS,
                                                            new LinkedBlockingQueue<Runnable>() {
                                                              @Override

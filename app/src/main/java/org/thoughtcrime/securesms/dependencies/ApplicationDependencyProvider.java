@@ -121,7 +121,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             signalWebSocket,
                                             Optional.of(new SecurityEventListener(context)),
                                             provideClientZkOperations().getProfileOperations(),
-                                            SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16),
+                                            SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(512),
                                             FeatureFlags.okHttpAutomaticRetry());
   }
