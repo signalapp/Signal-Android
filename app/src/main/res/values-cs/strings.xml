@@ -896,6 +896,12 @@
   <string name="MediaOverviewActivity_save">Uložit</string>
   <string name="MediaOverviewActivity_select_all">Vybrat vše</string>
   <string name="MediaOverviewActivity_delete">Smazat</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d vybraný (%2$s)</item>
+    <item quantity="few">%1$d vybrané (%2$s)</item>
+    <item quantity="many">%1$d vybraných (%2$s)</item>
+    <item quantity="other">%1$d vybraných (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Soubor</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -2051,6 +2057,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Vyberte prosím možnost --</item>
+    <item>Něco nefunguje</item>
+    <item>Požadavek na funkci</item>
+    <item>Dotaz</item>
+    <item>Zpětná vazba</item>
+    <item>Jiné</item>
+    <item>Platby (MobileCoin)</item>
+    <item>Příspěvky</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -3450,9 +3466,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubscribeFragment__confirm">Potvrdit</string>
   <string name="SubscribeFragment__update_subscription">Aktualizovat předplatné</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše předplatné bylo zrušeno.</string>
+  <string name="SubscribeFragment__update_subscription_question">Aktualizovat předplatné?</string>
   <string name="SubscribeFragment__update">Aktualizovat</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dnes vám bude účtována plná částka nového předplatného. Vaše předplatné bude obnoveno %1$s.</string>
   <string name="Subscription__s_per_month">%s/měsíc</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/měsíc · Obnovení %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/měsíčně · Exspiruje %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Proč podpořit?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tým společnosti Signal se zavázal k vývoji open source technologie ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci. Váš příspěvek je pro tento cíl přínosem. Žádné reklamy. Žádné trackery. Bez legrace.</string>
@@ -3463,6 +3482,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvořit doporučený odznak</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pokud máte více odznaků, můžete si jeden z nich vybrat, aby ho ostatní viděli na vašem profilu.</string>
   <string name="ManageDonationsFragment__my_support">Má podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
@@ -3480,8 +3500,18 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás - ne pro vaše data - zvažte možnost stát se měsíčním předplatitelem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Stát se předplatitelem</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
+  <string name="Subscription__verification_failed">Ověření předplatného selhalo</string>
+  <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>
   <string name="Subscription__contact_support">Kontaktovat podporu</string>
+  <string name="Subscription__earn_a_s_badge">Získat odznak %1$s</string>
   <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
   <string name="DonationsErrors__payment_failed">Platba selhala</string>
+  <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
+  <string name="DonationsErrors__redemption_still_pending">Na vykoupení se stále čeká</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možná svůj odznak neuvidíte hned, ale pracujeme na tom!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musíte si nastavit Google Pay, abyste mohli přispět v rámci aplikace.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného selhalo</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušení předplatného vyžaduje aktivní připojení k internetu.</string>
   <!--EOF-->
 </resources>

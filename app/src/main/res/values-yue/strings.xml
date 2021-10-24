@@ -32,7 +32,7 @@
   <string name="ApplicationPreferencesActivity_Off">唔用</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">%1$s短訊，%2$s多媒體短訊</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">%1$s畫面鎖，%2$s註冊鎖</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">佈景主題：%1$s，語言：%2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">色系：%1$s，語言：%2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">註冊鎖需要用到 PIN 碼。停用 PIN 碼嘅話，就要先停用註冊鎖。</string>
   <string name="ApplicationPreferencesActivity_pin_created">整好咗 PIN 碼。</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">停用咗 PIN 碼。</string>
@@ -180,8 +180,8 @@
   <string name="ConversationItem_read_more">  睇埋佢</string>
   <string name="ConversationItem_download_more">  下載埋佢</string>
   <string name="ConversationItem_pending">  仲要等等</string>
-  <string name="ConversationItem_this_message_was_deleted">呢個訊息已被刪除。</string>
-  <string name="ConversationItem_you_deleted_this_message">您已刪除呢個訊息。</string>
+  <string name="ConversationItem_this_message_was_deleted">呢個訊息已被扠走。</string>
+  <string name="ConversationItem_you_deleted_this_message">您已扠走呢個訊息。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_add_attachment">加附件</string>
   <string name="ConversationActivity_select_contact_info">揀選聯絡人資訊</string>
@@ -270,8 +270,8 @@
   <string name="ConversationFragment_sms">短訊</string>
   <string name="ConversationFragment_deleting">刪除緊</string>
   <string name="ConversationFragment_deleting_messages">刪除緊啲訊息…</string>
-  <string name="ConversationFragment_delete_for_me">淨係扠走我自己嘅記錄</string>
-  <string name="ConversationFragment_delete_for_everyone">全世界都要扠走</string>
+  <string name="ConversationFragment_delete_for_me">刪走我自己嘅紀錄</string>
+  <string name="ConversationFragment_delete_for_everyone">全世界扠咗佢</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">呢個訊息會喺對話中用緊最近版本嘅 Signal 嘅所有人度扠走。佢哋會見到您刪除咗一個訊息囉。</string>
   <string name="ConversationFragment_quoted_message_not_found">搵唔到原來嘅訊息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原來嘅訊息已經無咗</string>
@@ -281,7 +281,7 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">發出去嘅流聲掠影多媒體檔案喺送出之後就會自動剷走</string>
   <string name="ConversationFragment_you_already_viewed_this_message">呢個訊息您已經睇過</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">喺呢度，您可以札低一啲提示畀自己。\n如果您嘅帳戶有其他連結咗嘅機，新嘅筆記會自動同步處理。</string>
-  <string name="ConversationFragment__d_group_members_have_the_same_name">個谷有 %1$d 個成員撞名。</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">個谷有 %1$d 位成員撞名。</string>
   <string name="ConversationFragment__tap_to_review">撳一下細閱</string>
   <string name="ConversationFragment__review_requests_carefully">請求要金睛火眼睇清楚</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal 搵到另一位聯絡人，都係同一個名。</string>
@@ -315,7 +315,7 @@
   <string name="ConversationListFragment_archive">封印</string>
   <string name="ConversationListFragment_unarchive">解除封印</string>
   <string name="ConversationListFragment_delete">刪除</string>
-  <string name="ConversationListFragment_select_all">全部揀選</string>
+  <string name="ConversationListFragment_select_all">全部揀晒</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">揀選咗 %d 個</item>
   </plurals>
@@ -482,7 +482,7 @@
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="other">%1$d 個成員冇辦法重新加入去個新版谷度。您而家要唔要加返佢哋？</item>
+    <item quantity="other">%1$d 位成員冇辦法重新加入去個新版谷度。您而家要唔要加返佢哋？</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">加成員</item>
@@ -521,7 +521,7 @@
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
-    <item quantity="other">%1$d 個成員</item>
+    <item quantity="other">%1$d 位成員</item>
   </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_pending_group_invites">仲等緊嘅入谷邀請</string>
@@ -531,7 +531,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">您無仲等緊嘅邀請。</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">個谷其他成員發出嘅邀請</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">個谷其他成員無仲等緊嘅邀請。</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">谷嘅其他成員邀請咗邊位，唔會喺呢度詳細顯示出嚟。獲邀請嘅人若然選擇加入，佢哋嘅資訊到時就會同呢個谷分享。佢哋入谷之前，唔會見到呢個谷嘅任何訊息。</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">個谷其他成員邀請咗邊位，唔會詳細顯示出嚟。獲邀請嘅人若然選擇加入，佢哋嘅資訊到時就會同呢個谷分享。佢哋入谷之前，唔會見到呢個谷嘅任何訊息。</string>
   <string name="PendingMembersActivity_revoke_invite">撤回邀請</string>
   <string name="PendingMembersActivity_revoke_invites">撤回呢啲邀請</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -551,7 +551,7 @@
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">舊版嘅谷加唔到呢個人。</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">佈告谷加唔到呢個人。</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="other">係咪要加 %3$d 個成員入去「%2$s」度？</item>
+    <item quantity="other">係咪要加 %3$d 位成員入去「%2$s」度？</item>
   </plurals>
   <string name="AddMembersActivity__add">加入去</string>
   <string name="AddMembersActivity__add_members">加成員</string>
@@ -572,19 +572,19 @@
   <string name="AddGroupDetailsFragment__sms_contact">短訊聯絡人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">係咪要踼 %1$s 出呢個谷？</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="other">%d 個成員唔支援新版谷，因此呢個谷將會係舊版谷。</item>
+    <item quantity="other">%d 位成員唔支援新版谷，因此呢個谷將會係舊版谷。</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="other">%d 個成員唔支援新版谷，因此呢個谷就開唔成嘞。</item>
+    <item quantity="other">%d 位成員唔支援新版谷，因此呢個谷就開唔成嘞。</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">將會開一個舊版谷，因為「%1$s」用緊舊版本嘅 Signal。您可以等佢更新咗 Signal 之後先開一個新版谷，又或者踼走佢先開新谷。</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="other">將會開一個舊版谷，因為 %1$d 個成員用緊舊版本嘅 Signal。您可以等佢哋更新咗 Signal 之後先開一個新版谷，又或者踼走佢哋先開新谷。</item>
+    <item quantity="other">將會開一個舊版谷，因為 %1$d 位成員用緊舊版本嘅 Signal。您可以等佢哋更新咗 Signal 之後先開一個新版谷，又或者踼走佢哋先開新谷。</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">開唔成呢個谷，因為「%1$s」用緊舊版本嘅 Signal。您要踼走佢先開得成呢個谷。</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="other">開唔成呢個谷，因為 %1$d 個成員用緊舊版本嘅 Signal。您要踼走佢哋先開得成呢個谷。</item>
+    <item quantity="other">開唔成呢個谷，因為 %1$d 位成員用緊舊版本嘅 Signal。您要踼走佢哋先開得成呢個谷。</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">成員請求同邀請</string>
@@ -607,7 +607,7 @@
   <string name="ManageGroupActivity_view_all_members">睇晒所有成員</string>
   <string name="ManageGroupActivity_see_all">全部睇晒</string>
   <plurals name="ManageGroupActivity_added">
-    <item quantity="other">%d 個成員已加咗入嚟。</item>
+    <item quantity="other">%d 位成員已加咗入嚟。</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">只有話事人先可以啟用或停用可分享嘅谷拎。</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">只有話事人先可以啟用或停用係咪審批新成員。</string>
@@ -693,7 +693,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">係咪要加入呢個谷，並且向所有成員分享您嘅名同埋相？</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">呢個谷嘅話事人要先審批您嘅請求，先可以畀您加入呢個谷。當您請求加入嘅時候，您嘅名同埋相將會向呢個谷嘅成員分享。</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
-    <item quantity="other">谷 · %1$d 個成員</item>
+    <item quantity="other">谷 · %1$d 位成員</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新 Signal 以使用谷拎</string>
@@ -760,7 +760,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">刪除緊</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">刪除緊啲訊息…</string>
-  <string name="MediaOverviewActivity_Select_all">全部揀選</string>
+  <string name="MediaOverviewActivity_Select_all">全部揀晒</string>
   <string name="MediaOverviewActivity_collecting_attachments">啲附件執返齊埋欄先…</string>
   <string name="MediaOverviewActivity_Sort_by">排序方法</string>
   <string name="MediaOverviewActivity_Newest">最新到最舊</string>
@@ -771,7 +771,7 @@
   <string name="MediaOverviewActivity_List_view_description">一行行顯示</string>
   <string name="MediaOverviewActivity_Selected_description">已揀選</string>
   <string name="MediaOverviewActivity_save">儲存</string>
-  <string name="MediaOverviewActivity_select_all">全部揀選</string>
+  <string name="MediaOverviewActivity_select_all">全部揀晒</string>
   <string name="MediaOverviewActivity_delete">刪除</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="other">揀選咗 %1$d 個 (%2$s)</item>
@@ -864,10 +864,10 @@
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">加唔到您入新版谷度，已經邀請咗您加入。</string>
   <string name="MessageRecord_chat_session_refreshed">傾偈階段已經重新整理</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="other">加唔到 %1$s 個成員入新版谷度，已經邀請咗佢哋加入。</item>
+    <item quantity="other">加唔到 %1$s 位成員入新版谷度，已經邀請咗佢哋加入。</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-    <item quantity="other">加唔到 %1$s 個成員入新版谷度，已經剷走咗佢哋。</item>
+    <item quantity="other">加唔到 %1$s 位成員入新版谷度，已經剷走咗佢哋。</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s 將佢個人資料嘅名轉咗做 %2$s。</string>
@@ -1028,27 +1028,27 @@
   <string name="MessageRequestBottomView_delete">刪除</string>
   <string name="MessageRequestBottomView_block">封鎖</string>
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">您肯唔肯俾 %1$s 發訊息畀您，並同佢分享您嘅名同相？您話制之前，佢都唔會知您睇過佢個訊息嘅。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">您肯唔肯俾 %1$s 發訊息畀您，並同佢分享您嘅名同相？您話䎺之前，佢都唔會知您睇過佢個訊息嘅。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">您肯唔肯俾 %1$s 發訊息畀您，並同佢分享您嘅名同相？您解除封鎖佢之前，您都唔會收到佢任何嘅訊息。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">係咪要繼續同呢個谷對話，並向個谷嘅所有成員分享您嘅名同相？</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升級呢個谷以啟用新功能，例如 @點名講 同埋個谷嘅話事人功能。呢個谷入面未有分享佢嘅名或相嘅成員將會獲邀加入。</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">呢個舊版谷冇得繼續用，因為太大喇。谷嘅人數上限係 %1$d 人。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">係咪要繼續同 %1$s 對話，並同佢分享您嘅名同相？</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">係咪要加入呢個谷，並同個谷嘅所有成員分享您嘅名同相？您話制之前，佢哋都唔會知您睇過個訊息嘅。</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">係咪要加入呢個谷？您話制之前，佢哋都唔會知您睇過個訊息嘅。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">係咪要加入呢個谷，並同個谷嘅所有成員分享您嘅名同相？您話䎺之前，佢哋都唔會知您睇過個訊息嘅。</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">係咪要加入呢個谷？您話䎺之前，佢哋都唔會知您睇過個訊息嘅。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">係咪要解除封鎖呢個谷，並同個谷嘅所有成員分享您嘅名同相？您解除封鎖之前，都唔會收到佢哋任何嘅訊息。</string>
   <string name="MessageRequestProfileView_view">睇下</string>
   <string name="MessageRequestProfileView_member_of_one_group">係 %1$s 嘅成員</string>
   <string name="MessageRequestProfileView_member_of_two_groups">係 %1$s 同 %2$s 嘅成員</string>
   <string name="MessageRequestProfileView_member_of_many_groups">係 %1$s、%2$s 同 %3$s 嘅成員</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="other">%1$d 個成員</item>
+    <item quantity="other">%1$d 位成員</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">%1$d 個成員 (+%2$d 個邀請)</item>
+    <item quantity="other">%1$d 位成員 (+%2$d 位獲邀)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="other">%d 個額外嘅谷</item>
+    <item quantity="other">其餘 %d 個谷</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">兩次所打嘅密碼有出入噃！</string>
@@ -1143,7 +1143,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">接聽緊…</string>
   <string name="RedPhone_ending_call">收緊線…</string>
-  <string name="RedPhone_ringing">喺對面冷緊鐘…</string>
+  <string name="RedPhone_ringing">喺對面唥緊鐘…</string>
   <string name="RedPhone_busy">佔線</string>
   <string name="RedPhone_recipient_unavailable">對方未能接聽</string>
   <string name="RedPhone_network_failed">網絡唔得掂！</string>
@@ -1340,7 +1340,7 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">有嘢改</string>
   <string name="SubmitDebugLogActivity_done">搞掂</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">撳一下就會剷走個一行</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">撳一下就會剷走嗰一行</string>
   <string name="SubmitDebugLogActivity_submit">提交</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">提交唔到記錄檔</string>
   <string name="SubmitDebugLogActivity_success">成功！</string>
@@ -1567,18 +1567,18 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」唔係 Signal 使用者。請檢查使用者名稱，然後再試下啦。</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">您唔使加自己入個谷度</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">谷嘅人數已經到頂</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 嘅谷最多可以有 %1$d 個成員。</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 嘅谷最多可以有 %1$d 位成員。</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">夠晒建議嘅成員人數喇</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal 谷頂櫳 %1$d 個成員就弗到漏油嘞。再加多啲成員嘅話，收發訊息就可能會有延遲。</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal 谷頂櫳 %1$d 位成員就佮佮冚㗎嘞。再加多啲成員嘅話，收發訊息就可能會有延遲。</string>
   <plurals name="ContactSelectionListFragment_d_members">
-    <item quantity="other">%1$d 個成員</item>
+    <item quantity="other">%1$d 位成員</item>
   </plurals>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 要存取您嘅聯絡人，先可以顯示畀您睇。</string>
   <string name="contact_selection_list_fragment__show_contacts">顯示聯絡人</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
-    <item quantity="other">%1$d 個成員</item>
+    <item quantity="other">%1$d 位成員</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal 訊息</string>
@@ -1961,7 +1961,7 @@
   <string name="preferences__light_theme">淺色</string>
   <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">版面</string>
-  <string name="preferences__theme">佈景主題</string>
+  <string name="preferences__theme">色系</string>
   <string name="preferences__chat_wallpaper">傾偈背景</string>
   <string name="preferences__chat_color_and_wallpaper">傾偈顏色同背景</string>
   <string name="preferences__disable_pin">停用 PIN 碼</string>
@@ -2225,7 +2225,7 @@
   <string name="conversation_list_batch__menu_delete_selected">揀咗嗰啲將佢刪除</string>
   <string name="conversation_list_batch__menu_pin_selected">揀咗嗰啲將佢置頂</string>
   <string name="conversation_list_batch__menu_unpin_selected">揀咗嗰啲唔使置頂</string>
-  <string name="conversation_list_batch__menu_select_all">全部揀選</string>
+  <string name="conversation_list_batch__menu_select_all">全部揀晒</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">揀咗嗰啲將佢封印</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">揀咗嗰啲解除封印</string>
   <string name="conversation_list_batch__menu_mark_as_read">剔低話睇咗</string>
@@ -2671,7 +2671,7 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">批閱成員</string>
   <string name="ReviewCardDialogFragment__review_request">批閱請求</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d 個谷嘅成員撞名，請批閱下列嘅成員並視乎情況做要做嘅嘢。</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">個谷嘅 %1$d 位成員撞名，請批閱下列成員並視乎情況做要做嘅嘢。</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">假如您唔肯定係邊個發出請求，請批閱下列嘅聯絡人並去做要做嘅嘢。</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">無其他有緣相遇嘅谷。</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">無有緣相遇嘅谷。</string>
@@ -2725,7 +2725,7 @@
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">飛過</string>
   <plurals name="CreateGroupActivity__d_members">
-    <item quantity="other">%1$d 個成員</item>
+    <item quantity="other">%1$d 位成員</item>
   </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
@@ -2956,7 +2956,7 @@
   <string name="ExpireTimerSettingsFragment__save">儲存</string>
   <string name="CustomExpireTimerSelectorView__seconds">秒</string>
   <string name="CustomExpireTimerSelectorView__minutes">分鐘</string>
-  <string name="CustomExpireTimerSelectorView__hours">鐘頭</string>
+  <string name="CustomExpireTimerSelectorView__hours">個鐘</string>
   <string name="CustomExpireTimerSelectorView__days">日</string>
   <string name="CustomExpireTimerSelectorView__weeks">星期</string>
   <!--HelpSettingsFragment-->
@@ -3207,7 +3207,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">掛上去個人資料度展示</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">揀選為賣飛佛襟章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">搞掂</string>
-  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若果您有多過一枚襟章，您可揀選一枚做賣飛佛襟章，掛上去個人資料度畀其他人睇到。</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若您有唔止一枚襟章，您可揀一枚做賣飛佛襟章，掛上去個人資料度畀其他人睇到。</string>
   <string name="ManageDonationsFragment__my_support">我擔當後援</string>
   <string name="ManageDonationsFragment__manage_subscription">管理課金計劃</string>
   <string name="ManageDonationsFragment__badges">襟章</string>

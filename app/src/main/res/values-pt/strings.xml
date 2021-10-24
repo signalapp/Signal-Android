@@ -814,6 +814,10 @@
   <string name="MediaOverviewActivity_save">Guardar</string>
   <string name="MediaOverviewActivity_select_all">Selecionar tudo</string>
   <string name="MediaOverviewActivity_delete">Eliminar</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d selecionado(a) (%2$s)</item>
+    <item quantity="other">%1$d selecionados(as) (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Ficheiro</string>
   <string name="MediaOverviewActivity_audio">Áudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -1903,6 +1907,16 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Por favor, selecione uma opção --</item>
+    <item>Algo não está a funcionar</item>
+    <item>Pedido de funcionalidade</item>
+    <item>Questão</item>
+    <item>Feedback</item>
+    <item>Outro(a)</item>
+    <item>Pagamentos (MobileCoin)</item>
+    <item>Doações (Sustainers &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -3302,8 +3316,18 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar a suportar a tecnologia que foi construída para si (não para os seus dados), considere fazer uma assinatura mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Torne-se um assinante</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
+  <string name="Subscription__verification_failed">Falha na verificação da assinatura</string>
+  <string name="Subscription__please_contact_support_for_more_information">Por favor, contacte o \'Suporte\' para mais informações.</string>
   <string name="Subscription__contact_support">Contactar o Suporte</string>
+  <string name="Subscription__earn_a_s_badge">Ganhe um crachá %1$s</string>
   <string name="SubscribeFragment__processing_payment">A processar pagamento…</string>
   <string name="DonationsErrors__payment_failed">Falha de pagamento</string>
+  <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Por favor, tente novamente. </string>
+  <string name="DonationsErrors__redemption_still_pending">Resgate ainda pendente</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Poderá ainda não ver o seu crachá, mas estamos a trabalhar nisso!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Definiu o Google Pay para as doações in-app.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Ocorreu um erro ao tentar cancelar a assinatura</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">O cancelamento da sua assinatura exige que esteja disponível uma ligação à internet.</string>
   <!--EOF-->
 </resources>

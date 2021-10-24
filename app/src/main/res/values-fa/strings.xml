@@ -327,6 +327,10 @@
   <string name="ConversationListFragment_unarchive">خارج‌کردن از بایگانی</string>
   <string name="ConversationListFragment_delete">حذف</string>
   <string name="ConversationListFragment_select_all">انتخاب همه</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d انتخاب شد</item>
+    <item quantity="other">%d انتخاب شد</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
   <!--ConversationListItemAction-->

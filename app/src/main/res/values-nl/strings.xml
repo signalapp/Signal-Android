@@ -3289,6 +3289,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donatie is geannuleerd.</string>
   <string name="SubscribeFragment__update_subscription_question">Maandelijkse donatie aanpassen?</string>
   <string name="SubscribeFragment__update">Bijwerken</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Vandaag wordt het volledige bedrag voor de maandelijkse donatie afgeschreven. Je donatie wordt vernieuwd op %1$s.</string>
   <string name="Subscription__s_per_month">%s/maand</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
@@ -3302,6 +3303,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op je profiel weergeven</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klaar</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Als je meerdere badges hebt dan kun je er één kiezen om voor anderen op je profiel weer te geven.</string>
   <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string>
   <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donatie beheren</string>
   <string name="ManageDonationsFragment__badges">Badges</string>
@@ -3319,9 +3321,18 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Als je door wilt gaan met het ondersteunen van technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—overweeg dan om maandelijks te doneren.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Wordt een maandelijkse ondersteuner</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
+  <string name="Subscription__verification_failed">Bevestiging van maandelijkse donatie is mislukt</string>
+  <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
   <string name="Subscription__contact_support">Neem contact op met ondersteuning</string>
   <string name="Subscription__earn_a_s_badge">Verdien een %1$s badge</string>
   <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
   <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string>
+  <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
+  <string name="DonationsErrors__redemption_still_pending">Terugbetaling nog in afwachting</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Het kan zijn dat je de badge niet gelijk ziet maar we werken er aan.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal app donaties te kunnen doen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donatie is mislukt</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie te annuleren moet je toegang hebben tot internet.</string>
   <!--EOF-->
 </resources>

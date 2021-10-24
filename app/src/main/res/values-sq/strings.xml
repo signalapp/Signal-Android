@@ -3327,6 +3327,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SubscribeFragment__processing_payment">Po kryhet pagesa…</string>
   <string name="DonationsErrors__payment_failed">Pagesa dështoi</string>
   <string name="DonationsErrors__your_payment">Pagesa juaj s’u përpunuar do dhe nuk ju është faturuar. Ju lutemi, riprovoni.</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Stemën tuaj mund të mos e shihni menjëherë, por po merremi me të!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay i Pakapshëm</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Duhet të ujdisni Google Pay, që të dhuroni që nga brenda aplikacionit.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">S’u arrit të anulohej pajtimi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anulimi i pajtimit lyp lidhje në Internet.</string>
   <!--EOF-->

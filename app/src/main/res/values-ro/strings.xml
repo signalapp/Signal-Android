@@ -855,6 +855,11 @@
   <string name="MediaOverviewActivity_save">Salvează</string>
   <string name="MediaOverviewActivity_select_all">Selectează tot</string>
   <string name="MediaOverviewActivity_delete">Șterge</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d selectat (%2$s)</item>
+    <item quantity="few">%1$d selectate (%2$s)</item>
+    <item quantity="other">%1$d selectate (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fișier</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1974,6 +1979,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Vă rugăm selectați o opțiune --</item>
+    <item>Ceva nu funcționează</item>
+    <item>Solicitare funcționalitate nouă</item>
+    <item>Întrebare</item>
+    <item>Opinie</item>
+    <item>Altceva</item>
+    <item>Plăți (MobileCoin)</item>
+    <item>Donații (Susținători &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -3336,7 +3351,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veți pierde toate modificările făcute acestei fotografii.</string>
   <string name="CameraFragment__failed_to_open_camera">Camera nu a putut fi deschisă</string>
   <string name="BadgesOverviewFragment__my_badges">Insignele mele</string>
-  <string name="BadgesOverviewFragment__featured_badge">Insignă evidențiată</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Afișați insignele pe profil</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Actualizarea profilului a eșuat</string>
   <string name="BadgeSelectionFragment__select_badges">Selectați insigne</string>
@@ -3357,9 +3371,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SubscribeFragment__confirm">Confirmă</string>
   <string name="SubscribeFragment__update_subscription">Actualizare abonament</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonamentul dvs. a fost anulat.</string>
+  <string name="SubscribeFragment__update_subscription_question">Actualizați abonamentul?</string>
   <string name="SubscribeFragment__update">Actualizează</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Veți fi taxat cu prețul integral al noului abonament astăzi. Abonamentul dvs. se va reînnoi %1$s.</string>
   <string name="Subscription__s_per_month">%s/lună</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/lună · Se reînnoiește %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/lună · Expiră %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal este o organizație non-profit, fără agenți de publicitate sau investitori, susținută doar de oamenii care o folosesc și o apreciază. Faceți o contribuție lunară recurentă și primiți o insignă de profil pentru a vă împărtăși sprijinul.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">De ce să contribuiți?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Echipa de la Signal este dedicată misiunii de a dezvolta o tehnologie de confidențialitate open source care protejează libertatea de exprimare și permite o comunicare globală securizată. Contribuția dumneavoastră susține această cauză. Fără reclame. Fără elemente de urmărire. Pe bune.</string>
@@ -3369,6 +3386,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Ați dobândit o insignă %s! Afișarea insignei va arăta persoanelor cu care discutați că susțineți Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afișați la profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gata</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Atunci când aveți mai mult de o insignă, puteți alege una pe care să o afișați pentru ca ceilalți să o vadă pe profilul dvs.</string>
   <string name="ManageDonationsFragment__my_support">Sprijinul meu</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestionare abonament</string>
   <string name="ManageDonationsFragment__badges">Insigne</string>
@@ -3386,8 +3404,18 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Pentru a continua să sprijiniți o tehnologie construită pentru dvs, —nu pentru datele dvs.—, vă rugăm să luați în considerare posibilitatea de a deveni un abonat lunar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Deveniți un abonat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
+  <string name="Subscription__verification_failed">Verificarea abonamentului a eșuat</string>
+  <string name="Subscription__please_contact_support_for_more_information">Vă rugăm contactați suportul pentru mai multe informații.</string>
   <string name="Subscription__contact_support">Contactează suportul</string>
+  <string name="Subscription__earn_a_s_badge">Obțineți o insignă %1$s</string>
   <string name="SubscribeFragment__processing_payment">Se procesează plata…</string>
   <string name="DonationsErrors__payment_failed">Plata a eșuat</string>
+  <string name="DonationsErrors__your_payment">Plata dvs. nu a putut fi procesată iar dvs. nu ați fost taxat. Vă rugăm încercați din nou.</string>
+  <string name="DonationsErrors__redemption_still_pending">Atribuire în curs</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Este posibil să nu vedeți insigna dvs. imediat, dar ne ocupăm de asta!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay nu este disponibil</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Trebuie să configurați Google Pay pentru a face donații în aplicație.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Nu s-a reușit anularea abonamentul</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anularea abonamentului necesită o conexiune la internet.</string>
   <!--EOF-->
 </resources>

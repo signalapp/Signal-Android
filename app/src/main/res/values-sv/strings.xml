@@ -320,13 +320,13 @@
   <string name="ConversationListFragment_unread">Oläst</string>
   <string name="ConversationListFragment_pin">Fäst</string>
   <string name="ConversationListFragment_unpin">Lossa</string>
-  <string name="ConversationListFragment_mute">Tysta</string>
+  <string name="ConversationListFragment_mute">Ljud av</string>
   <string name="ConversationListFragment_unmute">Ljud på</string>
   <string name="ConversationListFragment_select">Välj</string>
   <string name="ConversationListFragment_archive">Arkivera</string>
   <string name="ConversationListFragment_unarchive">Avarkivera</string>
   <string name="ConversationListFragment_delete">Ta bort</string>
-  <string name="ConversationListFragment_select_all">Markera alla</string>
+  <string name="ConversationListFragment_select_all">Välj alla</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d vald</item>
     <item quantity="other">%d valda</item>
@@ -812,7 +812,7 @@
   <string name="MediaOverviewActivity_List_view_description">Listvy</string>
   <string name="MediaOverviewActivity_Selected_description">Valda</string>
   <string name="MediaOverviewActivity_save">Spara</string>
-  <string name="MediaOverviewActivity_select_all">Markera alla</string>
+  <string name="MediaOverviewActivity_select_all">Välj alla</string>
   <string name="MediaOverviewActivity_delete">Ta bort</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d vald (%2$s)</item>
@@ -1261,7 +1261,7 @@
   <string name="WebRtcCallView__flip">Vänd</string>
   <string name="WebRtcCallView__speaker">Högtalare</string>
   <string name="WebRtcCallView__camera">Kamera</string>
-  <string name="WebRtcCallView__mute">Tysta</string>
+  <string name="WebRtcCallView__mute">Ljud av</string>
   <string name="WebRtcCallView__end_call">Avsluta samtal</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1927,10 +1927,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
-  <string name="arrays__mute_for_one_hour">Tysta i 1 timme</string>
-  <string name="arrays__mute_for_eight_hours">Tysta i 8 timmar</string>
-  <string name="arrays__mute_for_one_day">Tysta i 1 dag</string>
-  <string name="arrays__mute_for_seven_days">Tysta i 7 dagar</string>
+  <string name="arrays__mute_for_one_hour">Ljud av i 1 timme</string>
+  <string name="arrays__mute_for_eight_hours">Ljud av i 8 timmar</string>
+  <string name="arrays__mute_for_one_day">Ljud av i 1 dag</string>
+  <string name="arrays__mute_for_seven_days">Ljud av i 7 dagar</string>
   <string name="arrays__always">Alltid</string>
   <string name="arrays__settings_default">Inställningars standardvärden</string>
   <string name="arrays__enabled">Aktiverad</string>
@@ -3123,8 +3123,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationSettingsFragment__video">Video</string>
   <string name="ConversationSettingsFragment__audio">Ljud</string>
   <string name="ConversationSettingsFragment__call">Ring</string>
-  <string name="ConversationSettingsFragment__mute">Tysta</string>
-  <string name="ConversationSettingsFragment__muted">Tystad</string>
+  <string name="ConversationSettingsFragment__mute">Ljud av</string>
+  <string name="ConversationSettingsFragment__muted">Ljudet av</string>
   <string name="ConversationSettingsFragment__search">Sök</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Försvinnande meddelanden</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Ljud &amp; aviseringar</string>
@@ -3156,9 +3156,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Vem kan redigera denna grupps information?</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">Vem kan skicka meddelanden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
-  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tysta aviseringar</string>
-  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Inte tystad</string>
-  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Tystad till %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stäng av ljudet för aviseringar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ljud på</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Ljudet är avstängt till %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Omnämnanden</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Meddela alltid</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Meddela inte</string>
@@ -3192,7 +3192,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AvatarPickerFragment__save">Spara</string>
   <string name="AvatarPickerFragment__select_an_avatar">Välj en avatar</string>
   <string name="AvatarPickerFragment__clear_avatar">Ta bort avatar</string>
-  <string name="AvatarPickerFragment__edit">Ändra</string>
+  <string name="AvatarPickerFragment__edit">Redigera</string>
   <string name="AvatarPickerRepository__failed_to_save_avatar">Det gick inte att spara avataren</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Förhandsgranskning</string>
@@ -3313,8 +3313,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
   <string name="Subscription__contact_support">Kontakta support</string>
   <string name="Subscription__earn_a_s_badge">Tjäna ett %1$s-märke</string>
-  <string name="SubscribeFragment__processing_payment">Bearbetar betalning…</string>
-  <string name="DonationsErrors__payment_failed">Betalning misslyckades</string>
+  <string name="SubscribeFragment__processing_payment">Bearbetar betalningen…</string>
+  <string name="DonationsErrors__payment_failed">Betalningen misslyckades</string>
   <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Vänligen försök igen.</string>
   <string name="DonationsErrors__redemption_still_pending">Inlösen väntar fortfarande</string>
   <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kanske inte ser ditt märke direkt, men vi jobbar på det!</string>

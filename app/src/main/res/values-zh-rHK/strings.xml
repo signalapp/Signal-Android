@@ -1048,7 +1048,7 @@
     <item quantity="other">%1$d 個成員 (+%2$d 個邀請)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="other">%d 個額外群組</item>
+    <item quantity="other">另 %d 個群組</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">密碼不匹配！</string>
