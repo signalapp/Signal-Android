@@ -105,6 +105,8 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     }
 
     holder.setCorners(projection.getCorners());
+
+    projection.release();
   }
 
   private void startPlayback(@NonNull RecyclerView parent, @NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {

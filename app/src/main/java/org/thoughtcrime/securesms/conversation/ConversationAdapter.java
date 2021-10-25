@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -704,7 +705,7 @@ public class ConversationAdapter
     }
 
     @Override
-    public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
+    public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
       return getBindable().getColorizerProjections(coordinateRoot);
     }
   }

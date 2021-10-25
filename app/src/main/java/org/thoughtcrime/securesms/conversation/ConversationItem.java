@@ -122,6 +122,7 @@ import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -221,6 +222,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private Colorizer          colorizer;
   private boolean            hasWallpaper;
   private float              lastYDownRelativeToThis;
+  private ProjectionList     colorizerProjections = new ProjectionList(3);
 
   public ConversationItem(Context context) {
     this(context, null);
@@ -530,6 +532,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (conversationRecipient != null) {
       conversationRecipient.removeForeverObserver(this);
     }
+
+    bodyBubble.setVideoPlayerProjection(null);
+    bodyBubble.setQuoteViewProjection(null);
+
     cancelPulseOutlinerAnimation();
   }
 
@@ -588,12 +594,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private static int getProjectionTop(@NonNull View child) {
-    return (int) Projection.relativeToViewRoot(child, null).getY();
+    Projection projection = Projection.relativeToViewRoot(child, null);
+    int y = (int) projection.getY();
+    projection.release();
+    return y;
   }
 
   private static int getProjectionBottom(@NonNull View child) {
     Projection projection = Projection.relativeToViewRoot(child, null);
-    return (int) projection.getY() + projection.getHeight();
+    int bottom = (int) projection.getY() + projection.getHeight();
+    projection.release();
+    return bottom;
   }
 
   @Override
@@ -1719,8 +1730,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
-  public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
-    List<Projection> projections = new LinkedList<>();
+  public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
+    colorizerProjections.clear();
 
     if (messageRecord.isOutgoing()      &&
         !hasNoBubble(messageRecord)     &&
@@ -1731,9 +1742,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       Projection videoToBubble    = bodyBubble.getVideoPlayerProjection();
       if (videoToBubble != null) {
         Projection videoToRoot = Projection.translateFromDescendantToParentCoords(videoToBubble, bodyBubble, coordinateRoot);
-        projections.addAll(Projection.getCapAndTail(bodyBubbleToRoot, videoToRoot));
+        colorizerProjections.addAll(Projection.getCapAndTail(bodyBubbleToRoot, videoToRoot));
       } else {
-        projections.add(bodyBubbleToRoot);
+        colorizerProjections.add(bodyBubbleToRoot);
       }
     }
 
@@ -1743,7 +1754,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     {
       Projection footerProjection = getActiveFooter(messageRecord).getProjection(coordinateRoot);
       if (footerProjection != null) {
-        projections.add(footerProjection.translateX(bodyBubble.getTranslationX()));
+        colorizerProjections.add(footerProjection.translateX(bodyBubble.getTranslationX()));
       }
     }
 
@@ -1752,10 +1763,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         quoteView != null)
     {
       bodyBubble.setQuoteViewProjection(quoteView.getProjection(bodyBubble));
-      projections.add(quoteView.getProjection(coordinateRoot).translateX(bodyBubble.getTranslationX() + this.getTranslationX()));
+      colorizerProjections.add(quoteView.getProjection(coordinateRoot).translateX(bodyBubble.getTranslationX() + this.getTranslationX()));
     }
 
-    return projections.stream().map(p -> p.translateY(this.getTranslationY())).collect(Collectors.toList());
+    for (int i = 0; i < colorizerProjections.size(); i++) {
+      colorizerProjections.get(i).translateY(getTranslationY());
+    }
+
+    return colorizerProjections;
   }
 
   @Override

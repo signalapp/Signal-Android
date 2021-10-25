@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.SimpleColorFilter
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
-import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.SetUtil
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -157,9 +156,17 @@ class MultiselectItemDecoration(
 
       val parts: MultiselectCollection = child.conversationMessage.multiselectCollection
 
-      val projections: List<Projection> = child.getColorizerProjections(parent) + if (child.canPlayContent()) listOf(child.getGiphyMp4PlayableProjection(parent)) else emptyList()
+      val projections = child.getColorizerProjections(parent)
+      if (child.canPlayContent()) {
+        projections.add(child.getGiphyMp4PlayableProjection(parent))
+      }
+
       path.reset()
-      projections.forEach { it.applyToPath(path) }
+      projections.use { list ->
+        list.forEach {
+          it.applyToPath(path)
+        }
+      }
 
       canvas.save()
       canvas.clipPath(path, Region.Op.DIFFERENCE)
@@ -341,13 +348,16 @@ class MultiselectItemDecoration(
       parent.forEach { child ->
         if (child is Multiselectable && child.conversationMessage == inFocus.conversationMessage) {
           path.addRect(child.left.toFloat(), child.top.toFloat(), child.right.toFloat(), child.bottom.toFloat(), Path.Direction.CW)
-          child.getColorizerProjections(parent).forEach {
-            path.op(it.path, Path.Op.DIFFERENCE)
+          child.getColorizerProjections(parent).use { list ->
+            list.forEach {
+              path.op(it.path, Path.Op.DIFFERENCE)
+            }
           }
 
           if (child.canPlayContent()) {
             val mp4GifProjection = child.getGiphyMp4PlayableProjection(child.rootView as ViewGroup)
             path.op(mp4GifProjection.path, Path.Op.DIFFERENCE)
+            mp4GifProjection.release()
           }
         }
       }

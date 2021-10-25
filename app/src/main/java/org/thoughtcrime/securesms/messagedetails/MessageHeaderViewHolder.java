@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.ProjectionList;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.sql.Date;
@@ -250,7 +251,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
-  public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
+  public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
     return conversationItem.getColorizerProjections(coordinateRoot);
   }
 
