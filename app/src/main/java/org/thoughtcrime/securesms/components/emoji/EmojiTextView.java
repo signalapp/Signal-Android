@@ -5,9 +5,13 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.text.Annotation;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextDirectionHeuristic;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
+import android.text.method.TransformationMethod;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -33,19 +37,24 @@ import java.util.List;
 public class EmojiTextView extends AppCompatTextView {
 
   private final boolean scaleEmojis;
-  private final boolean forceCustom;
 
   private static final char ELLIPSIS = '…';
 
-  private CharSequence previousText;
-  private BufferType   previousBufferType;
-  private float        originalFontSize;
-  private boolean      useSystemEmoji;
-  private boolean      sizeChangeInProgress;
-  private int          maxLength;
-  private CharSequence overflowText;
-  private CharSequence previousOverflowText;
-  private boolean      renderMentions;
+  private boolean                forceCustom;
+  private CharSequence           previousText;
+  private BufferType             previousBufferType;
+  private TransformationMethod   previousTransformationMethod;
+  private float                  originalFontSize;
+  private boolean                useSystemEmoji;
+  private boolean                sizeChangeInProgress;
+  private int                    maxLength;
+  private CharSequence           overflowText;
+  private CharSequence           previousOverflowText;
+  private boolean                renderMentions;
+  private boolean                measureLastLine;
+  private int                    lastLineWidth = -1;
+  private TextDirectionHeuristic textDirection;
+  private boolean                isJumbomoji;
 
   private MentionRendererDelegate mentionRendererDelegate;
 
@@ -61,10 +70,11 @@ public class EmojiTextView extends AppCompatTextView {
     super(context, attrs, defStyleAttr);
 
     TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
-    scaleEmojis    = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
-    maxLength      = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
-    forceCustom    = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
-    renderMentions = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
+    scaleEmojis     = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
+    maxLength       = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
+    forceCustom     = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
+    renderMentions  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
+    measureLastLine = a.getBoolean(R.styleable.EmojiTextView_measureLastLine, false);
     a.recycle();
 
     a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
@@ -74,6 +84,8 @@ public class EmojiTextView extends AppCompatTextView {
     if (renderMentions) {
       mentionRendererDelegate = new MentionRendererDelegate(getContext(), ContextCompat.getColor(getContext(), R.color.transparent_black_20));
     }
+
+    textDirection = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? TextDirectionHeuristics.FIRSTSTRONG_RTL : TextDirectionHeuristics.ANYRTL_LTR;
   }
 
   @Override
@@ -103,8 +115,10 @@ public class EmojiTextView extends AppCompatTextView {
       if (emojis <= 4) scale += 0.25f;
       if (emojis <= 2) scale += 0.25f;
 
+      isJumbomoji = scale > 1.0f;
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize * scale);
     } else if (scaleEmojis) {
+      isJumbomoji = false;
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
     }
 
@@ -112,13 +126,14 @@ public class EmojiTextView extends AppCompatTextView {
       return;
     }
 
-    previousText         = text;
-    previousOverflowText = overflowText;
-    previousBufferType   = type;
-    useSystemEmoji       = useSystemEmoji();
+    previousText                 = text;
+    previousOverflowText         = overflowText;
+    previousBufferType           = type;
+    useSystemEmoji               = useSystemEmoji();
+    previousTransformationMethod = getTransformationMethod();
 
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
-      super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.NORMAL);
+      super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.SPANNABLE);
     } else {
       CharSequence emojified = EmojiProvider.emojify(candidates, text, this);
       super.setText(new SpannableStringBuilder(emojified), BufferType.SPANNABLE);
@@ -139,9 +154,49 @@ public class EmojiTextView extends AppCompatTextView {
     }
   }
 
+  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    CharSequence text = getText();
+    if (getLayout() == null || !measureLastLine || text == null || text.length() == 0) {
+      lastLineWidth = -1;
+    } else {
+      Layout layout = getLayout();
+      text = layout.getText();
+
+      int lines = layout.getLineCount();
+      int start = layout.getLineStart(lines - 1);
+
+      if ((getLayoutDirection() == LAYOUT_DIRECTION_LTR && textDirection.isRtl(text, 0, text.length())) ||
+          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, 0, text.length()))) {
+        lastLineWidth = getMeasuredWidth();
+      } else {
+        lastLineWidth = (int) getPaint().measureText(text, start, text.length());
+      }
+    }
+  }
+
+  public int getLastLineWidth() {
+    return lastLineWidth;
+  }
+
+  public boolean isSingleLine() {
+    return getLayout() != null && getLayout().getLineCount() == 1;
+  }
+
+  public boolean isJumbomoji() {
+    return isJumbomoji;
+  }
+
   public void setOverflowText(@Nullable CharSequence overflowText) {
     this.overflowText = overflowText;
     setText(previousText, BufferType.SPANNABLE);
+  }
+
+  public void setForceCustomEmoji(boolean forceCustom) {
+    if (this.forceCustom != forceCustom) {
+      this.forceCustom = forceCustom;
+      setText(previousText, BufferType.SPANNABLE);
+    }
   }
 
   private void ellipsizeAnyTextForMaxLength() {
@@ -164,7 +219,7 @@ public class EmojiTextView extends AppCompatTextView {
       EmojiParser.CandidateList newCandidates = isInEditMode() ? null : EmojiProvider.getCandidates(newContent);
 
       if (useSystemEmoji || newCandidates == null || newCandidates.size() == 0) {
-        super.setText(newContent, BufferType.NORMAL);
+        super.setText(newContent, BufferType.SPANNABLE);
       } else {
         CharSequence emojified = EmojiProvider.emojify(newCandidates, newContent, this);
         super.setText(emojified, BufferType.SPANNABLE);
@@ -209,7 +264,8 @@ public class EmojiTextView extends AppCompatTextView {
            Util.equals(previousOverflowText, overflowText) &&
            Util.equals(previousBufferType, bufferType)     &&
            useSystemEmoji == useSystemEmoji()              &&
-           !sizeChangeInProgress;
+           !sizeChangeInProgress                           &&
+           previousTransformationMethod == getTransformationMethod();
   }
 
   private boolean useSystemEmoji() {

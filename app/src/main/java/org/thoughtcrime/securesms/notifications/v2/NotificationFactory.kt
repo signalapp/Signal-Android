@@ -188,6 +188,7 @@ object NotificationFactory {
       setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
       addPerson(conversation.recipient)
       setShortcutId(ConversationUtil.getShortcutId(conversation.recipient))
+      setLocusId(ConversationUtil.getShortcutId(conversation.recipient))
       setContentInfo(conversation.messageCount.toString())
       setNumber(conversation.messageCount)
       setContentText(conversation.getContentText(context))
@@ -368,6 +369,7 @@ object NotificationFactory {
       setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
       addPerson(conversation.recipient)
       setShortcutId(ConversationUtil.getShortcutId(conversation.recipient))
+      setLocusId(ConversationUtil.getShortcutId(conversation.recipient))
       addMessages(conversation)
       setBubbleMetadata(conversation, BubbleUtil.BubbleState.SHOWN)
     }

@@ -34,6 +34,7 @@ class CustomExpireTimerSelectDialog : DialogFragment() {
       .create()
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProvider(NavHostFragment.findNavController(this).getViewModelStoreOwner(R.id.app_settings_expire_timer))

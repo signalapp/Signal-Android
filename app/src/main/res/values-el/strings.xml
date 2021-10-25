@@ -3,7 +3,7 @@
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
-  <string name="please_wait">Παρακαλώ περίμενε…</string>
+  <string name="please_wait">Παρακαλώ περιμένετε…</string>
   <string name="save">Αποθήκευση</string>
   <string name="note_to_self">Μήνυμα σε μένα</string>
   <!--AbstractNotificationBuilder-->
@@ -57,7 +57,6 @@
   <string name="AttachmentKeyboard_location">Τοποθεσία</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Το Signal χρειάζεται άδεια για να εμφανίσει τις φωτογραφίες και τα βίντεό σου.</string>
   <string name="AttachmentKeyboard_give_access">Να δοθεί πρόσβαση</string>
-  <string name="AttachmentKeyboard_payment">Πληρωμή</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δεν μπορεί να βρεθεί εφαρμογή για επιλογή πολυμέσων.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio"> Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για την επισύναψη φωτογραφιών, βίντεο ή κομματιών ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\". </string>
@@ -181,9 +180,6 @@
   <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Επανεκκίνηση ασφαλούς συνεδρίας;</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή τη συνομιλία. Τα μηνύματα δε θα σβηστούν.</string>
-  <string name="ConversationActivity_reset">Επαναφορά</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
   <string name="ConversationActivity_compose_message">Νέο μήνυμα</string>
@@ -205,6 +201,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συνημμένο υπερβαίνει τα όρια μεγέθους για τον τύπο μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Δεν μπορείς να στείλεις μηνύματα σε αυτή την ομάδα γιατί δεν είσαι πια μέλος.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Μόνο %1$s μπορούν να στέλνουν μηνύματα.</string>
+  <string name="ConversationActivity_admins">διαχειριστές</string>
+  <string name="ConversationActivity_message_an_admin">Αποστολή μηνύματος σε διαχειριστή</string>
+  <string name="ConversationActivity_cant_start_group_call">Αδυναμία πραγματοποίησης ομαδικής κλήσης</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Μόνο οι διαχειριστές της ομάδας μπορούν να ξεκινήσουν κλήσεις.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν έχεις κάποια εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Το αίτημά σου για να μπεις στην ομάδα στάλθηκε στον διαχειριστή/τρια της ομάδας. Θα ενημερωθείς όταν λάβει απόφαση.</string>
   <string name="ConversationActivity_cancel_request">Ακύρωση αιτήματος</string>
@@ -311,6 +312,21 @@
     <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
+  <string name="ConversationListFragment_read">Διαβάστηκε</string>
+  <string name="ConversationListFragment_unread">Μη αναγνωσμένο</string>
+  <string name="ConversationListFragment_pin">Καρφίτσωμα</string>
+  <string name="ConversationListFragment_unpin">Ξεκαρφίτσωμα</string>
+  <string name="ConversationListFragment_mute">Σίγαση</string>
+  <string name="ConversationListFragment_unmute">Αναίρεση σίγασης</string>
+  <string name="ConversationListFragment_select">Επιλογή</string>
+  <string name="ConversationListFragment_archive">Αρχειοθέτηση</string>
+  <string name="ConversationListFragment_unarchive">Μεταφορά στα εισερχόμενα</string>
+  <string name="ConversationListFragment_delete">Διαγραφή</string>
+  <string name="ConversationListFragment_select_all">Επιλογή όλων</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d επιλεγμένο</item>
+    <item quantity="other">%d επιλεγμένα</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιού</string>
   <!--ConversationListItemAction-->
@@ -336,6 +352,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Εικονίδιο ανάκτησης από αντίγραφο ασφαλείας</string>
   <string name="ChooseBackupFragment__choose_backup">Επιλογή αντιγράφου ασφαλείας</string>
   <string name="ChooseBackupFragment__learn_more">Μάθε περισσότερα</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Δεν υπάρχει διαθέσιμη εφαρμογή περιήγησης αρχείων</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Η ανάκτηση ολοκληρώθηκε</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας, παρακαλώ επέλεξε ένα φάκελο. Τα νέα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
@@ -413,6 +430,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Μοιράσου με</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Τα πολλαπλά συνημμένα υποστηρίζονται μόνο για εικόνες και βίντεο</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Δεν έχεις άδεια να στείλεις σε αυτή την ομάδα</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Το Signal δεν μπόρεσε να εγγραφτεί στις Υπηρεσίες Google Play. Τα μηνύματα και οι κλήσεις του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να επανεγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
@@ -555,6 +573,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Τέλος</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Αυτό το άτομο δεν μπορεί να προστεθεί σε ομάδες παλαιού τύπου.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Αυτό το άτομο δεν μπορεί να προστεθεί στην ομάδα ανακοινώσεων.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Προσθήκη του/της \"%1$s\" στο \"%2$s\";</item>
     <item quantity="other">Προσθήκη %3$d μελών στο \"%2$s\";</item>
@@ -622,9 +641,10 @@
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν τον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν την επιλογή της έγκρισης νέων μελών.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν σον σύνδεσμο της ομάδας.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν τον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Κάποιος που πρόσθεσες δεν έχει υποστήριξη για ομάδες ανακοινώσεων και θα πρέπει να αναβαθμίσει το Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Δεν είσαι μέλος της ομάδας</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Αποτυχία ανανέωσης της ομάδας, παρακαλώ προσπάθησε ξανά αργότερα</string>
@@ -638,6 +658,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Αυτή είναι μια ομάδα με μη ασφαλή MMS. Για προστατευμένες ιδιωτικές συνομιλίες, προσκάλεσε τις επαφές σου στο Signal.</string>
   <string name="ManageGroupActivity_invite_now">Πρόσκληση τώρα</string>
   <string name="ManageGroupActivity_more">περισσότερα</string>
+  <string name="ManageGroupActivity_add_group_description">Εισαγωγή περιγραφής της ομάδας…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Να ειδοποιούμαι για αναφορές</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Θέλεις να λαμβάνεις ειδοποιήσεις όταν σε αναφέρουν σε σιγασμένες συνομιλίες;</string>
@@ -651,6 +672,7 @@
   <string name="ManageProfileFragment_your_name">Το όνομά σας</string>
   <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
+  <string name="ManageProfileFragment_badges">Εμβλήματα</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Καμία κοινή ομάδα</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -672,6 +694,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ενεργοποιημένο</string>
   <string name="CustomNotificationsDialogFragment__disabled">Απενεργοποιημένο</string>
   <string name="CustomNotificationsDialogFragment__default">Προκαθορισμένη</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Άγνωστο</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Σύνδεσμος για είσοδο στην ομάδα</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Διαχείριση &amp; διαμοιρασμός</string>
@@ -736,22 +759,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Μοιράσου</string>
   <string name="InviteActivity_share_with_contacts">Μοιράσου με επαφές</string>
-  <string name="InviteActivity_choose_how_to_share">Διάλεξε πως να το μοιραστείς</string>
+  <string name="InviteActivity_share_via">Διαμοιρασμός μέσω…</string>
   <string name="InviteActivity_cancel">Ακύρωση</string>
   <string name="InviteActivity_sending">Στέλνεται…</string>
   <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ SMS ΣΕ %d ΦΙΛΟ/Η</item>
-    <item quantity="other">ΑΠΟΣΤΟΛΗ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Αποστολή SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Αποστολή %d πρόσκλησης με SMS;</item>
     <item quantity="other">Αποστολή %d προσκλήσεων με SMS;</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Έλα να χρησιμοποιήσουμε το Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Φαίνεται πως δεν έχεις κάποια εφαρμογή στην οποία μπορείς να μοιραστείς.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Οι φίλοι δεν αφήνουν τους φίλους να συνομιλούν χωρίς κρυπτογράφηση.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Μάθε περισσότερα</string>
   <!--LongMessageActivity-->
@@ -788,13 +807,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Προβολή σε πλέγμα</string>
   <string name="MediaOverviewActivity_List_view_description">Προβολή σε λίστα</string>
   <string name="MediaOverviewActivity_Selected_description">Επιλεγμένα</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d αντικείμενο %2$s</item>
-    <item quantity="other">%1$d αντικείμενα %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d αντικείμενο</item>
-    <item quantity="other">%1$d αντικείμενα</item>
+  <string name="MediaOverviewActivity_save">Αποθήκευση</string>
+  <string name="MediaOverviewActivity_select_all">Επιλογή όλων</string>
+  <string name="MediaOverviewActivity_delete">Διαγραφή</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d επιλεγμένο (%2$s)</item>
+    <item quantity="other">%1$d επιλεγμένα (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Αρχείο</string>
   <string name="MediaOverviewActivity_audio">Ήχος</string>
@@ -817,15 +835,18 @@
   <string name="Megaphones_invite_friends">Πρόσκληση φίλων</string>
   <string name="Megaphones_use_sms">Χρήση SMS</string>
   <string name="Megaphones_appearance">Εμφάνιση</string>
+  <string name="Megaphones_add_photo">Προσθήκη φωτογραφίας</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal σε εξέλιξη</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Εισερχόμενη ομαδική κλήση Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Η υπηρεσία κλήσεων του Signal σταματάει</string>
-  <string name="NotificationBarManager__deny_call">Απόρριψη κλήσης</string>
+  <string name="NotificationBarManager__decline_call">Απόρριψη κλήσης</string>
   <string name="NotificationBarManager__answer_call">Απάντηση</string>
   <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>
   <string name="NotificationBarManager__cancel_call">Ακύρωση κλήσης</string>
+  <string name="NotificationBarManager__join_call">Είσοδος στην κλήση</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Ενεργοποίηση Ειδοποιήσεων;</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Μην χάσεις κανένα μήνυμα από τις επαφές και τις ομάδες σου.</string>
@@ -962,6 +983,8 @@
   <string name="MessageRecord_the_group_name_has_changed_to_s">Το όνομα της ομάδας άλλαξε σε \"%1$s\".</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">Άλλαξες την περιγραφή της ομάδας.</string>
+  <string name="MessageRecord_s_changed_the_group_description">Ο/Η %1$s άλλαξε την περιγραφή της ομάδας.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Η περιγραφή της ομάδας άλλαξε.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Άλλαξες το εικονίδιο της ομάδας.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Ο/Η %1$s άλλαξε το εικονίδιο της ομάδας.</string>
@@ -974,6 +997,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Άλλαξες το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Ο/Η %1$s άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Άλλαξες τις ρυθμίσεις της ομάδας για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Άλλαξες τις ρυθμίσεις της ομάδας για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">Ο/Η %1$s άλλαξε τις ρυθμίσεις της ομάδας για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">O/H %1$s άλλαξε τις ρυθμίσεις της ομάδας για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Οι ρυθμίσεις της ομάδας άλλαξαν για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Οι ρυθμίσεις της ομάδας άλλαξαν για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ενεργοποίησες το σύνδεσμο της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ενεργοποίησες το σύνδεσμο της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.</string>
@@ -1019,6 +1049,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο από άλλη συσκευή</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -1176,27 +1207,59 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στην κάμερά σου</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Καλεί…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Η ομάδα είναι πολύ μεγάλη ώστε να χρησιμοποιηθεί κουδούνισμα κλήσης για τους συμμετέχοντες.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Κλήση φωνής Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
+  <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
   <string name="WebRtcCallView__join_call">Είσοδος στην κλήση</string>
   <string name="WebRtcCallView__call_is_full">Η κλήση είναι γεμάτη</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Έχει συμπληρωθεί ο μέγιστος αριθμός %1$d συμμετεχόντων για αυτή την κλήση. Δοκίμασε ξανά αργότερα.</string>
-  <string name="WebRtcCallView__s_group_call">Ομαδική κλήση \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Προβολή συμμετέχοντων</string>
   <string name="WebRtcCallView__your_video_is_off">Το βίντεό σου είναι απενεργοποιημένο</string>
   <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
   <string name="WebRtcCallView__joining">Εισέρχεσαι…</string>
   <string name="WebRtcCallView__disconnected">Αποσυνδέθηκε</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Το Signal θα καλέσει με κουδόυνισμα τον/την %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Το Signal θα καλέσει με κουδόυνισμα τους %1$s και %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Το Signal θα καλέσει με κουδόυνισμα τους %1$s, %2$s και %3$d ακόμα</item>
+    <item quantity="other">Το Signal θα καλέσει με κουδόυνισμα τους %1$s, %2$s και %3$d ακόμα</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">Ο/Η %1$s θα ειδοποιηθεί</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">Οι %1$s και %2$s θα ειδοποιηθούν</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα θα ειδοποιηθούν</item>
+    <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα θα ειδοποιηθούν</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Ο/Η %1$s καλείται με κουδούνισμα</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Οι %1$s και %2$s καλούνται με κουδούνισμα</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα καλούνται με κουδούνισμα</item>
+    <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα καλούνται με κουδούνισμα</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">Ο/Η %1$s σε καλεί</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">Ο/Η %1$s καλεί εσένα και τον/την%2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">Ο/Η %1$s καλεί εσένα και τους %2$s και %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">Ο/Η %1$s καλεί εσένα, τους %2$s, %3$s και %4$d ακόμα</item>
+    <item quantity="other">Ο/Η %1$s καλεί εσένα, τους %2$s, %3$s και %4$d ακόμα </item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Δεν είναι κανένας άλλος εδώ</string>
   <string name="WebRtcCallView__s_is_in_this_call">Ο/Η %1$s είναι στην κλήση</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s είσαι στη κλήση</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Οι %1$s και %2$s είναι στην κλήση</string>
   <string name="WebRtcCallView__s_is_presenting">Ο/Η %1$s παρουσιάζει</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
     <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Εναλλαγή</string>
+  <string name="WebRtcCallView__speaker">Μεγάφωνο</string>
+  <string name="WebRtcCallView__camera">Κάμερα</string>
+  <string name="WebRtcCallView__mute">Σίγαση</string>
+  <string name="WebRtcCallView__ring">Κουδούνισμα</string>
+  <string name="WebRtcCallView__end_call">Τερματισμός κλήσης</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Σε αυτή τη κλήση · %1$d άτομο</item>
@@ -1242,6 +1305,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να ανταλλάξεις μηνύματα και να κάνεις ασφαλείς κλήσεις</string>
   <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
+  <string name="RegistrationActivity_call_requested">Ζητήθηκε κλήση</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Είσαι %d βήμα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
     <item quantity="other">Είσαι %d βήματα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
@@ -1284,6 +1348,8 @@
   <string name="SharedContactView_add_to_contacts">Προσθήκη στις επαφές</string>
   <string name="SharedContactView_invite_to_signal">Πρόσκληση στο Signal</string>
   <string name="SharedContactView_message">Μήνυμα Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Περισσότερα</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Θα σ\' το ξαναθυμήσουμε αργότερα.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Θα σ\' το ξαναθυμήσουμε αύριο.</string>
@@ -1334,6 +1400,7 @@
   <string name="SubmitDebugLogActivity_success">Επιτυχία!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Διαμοιρασμός</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Αυτό το αρχείο καταγραφής συμβάντων θα αναρτηθεί δημόσια στο διαδίκτυο για προβολή από τους συνεισφέροντες. Μπορείς να το εξετάσεις πριν το υποβάλλεις.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Φίλτρο:</string>
   <string name="SupportEmailUtil_device_info">Πληροφορίες συσκευής:</string>
@@ -1603,6 +1670,7 @@
   <string name="ConversationUpdateItem_call_is_full">Η κλήση είναι γεμάτη</string>
   <string name="ConversationUpdateItem_invite_friends">Πρόσκληση φίλων</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Ενεργοποίηση ειδοποιήσεων κλήσεων</string>
+  <string name="ConversationUpdateItem_update_contact">Ανανέωση επαφής</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Χωρίς κοινές ομάδες. Εξέτασε τα αιτήματα προσεκτικά.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ομάδα με καμία γνωστή επαφή. Εξέτασε τα αιτήματα προσεκτικά.</string>
   <string name="ConversationUpdateItem_view">Εμφάνιση</string>
@@ -1614,6 +1682,7 @@
   <string name="QuoteView_audio">Ήχος</string>
   <string name="QuoteView_video">Βίντεο</string>
   <string name="QuoteView_photo">Φωτογραφία</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Πολυμέσο μιας μόνο προβολής</string>
   <string name="QuoteView_sticker">Αυτοκόλλητο</string>
   <string name="QuoteView_you">Εσύ</string>
@@ -1764,21 +1833,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Εισαγωγή ονόματος ή αριθμού</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογράφησης με τον/την %s, σύγκρινε τον παραπάνω αριθμό με τον αριθμό στη συσκευή του/της. Εναλλακτικά, μπορεις να σκανάρεις τον κωδικο στο τηλέφωνό του/της, ή να του/της ζητήσεις να σκανάρει τον κωδικό σου. <a href="https://signal.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Για να επιβεβαιώσεις την ασφάλεια της κρυπτογράφησης από άκρο σε άκρο με τον/την %s, σύγκρινε τον παραπάνω αριθμό με αυτόν στη συσκευή του/της. Μπορείς επίσης να σκανάρεις τον κωδικό στο τηλέφωνό του/της. <a href="https://signal.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
+  <string name="verify_display_fragment__successful_match">Επιτυχής σύγκριση</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Αποτυχία επιβεβαίωσης αριθμού ασφαλείας</string>
   <string name="verify_display_fragment__loading">Φόρτωση…</string>
-  <string name="verify_display_fragment__verified">Επιβεβαιωμένο</string>
+  <string name="verify_display_fragment__mark_as_verified">Σημείωση ως επιβεβαιωμένο</string>
+  <string name="verify_display_fragment__clear_verification">Αφαίρεση επιβεβαίωσης</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Μοιράσου τον αριθμό ασφαλείας</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Σκάναρε τον κωδικό QR στη συσκευή του άλλου χρήστη.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Σύρε προς τα πάνω για απάντηση</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Σύρε προς τα κάτω για απόρριψη</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ορισμένα ζητήματα χρειάζονται την προσοχή σου.</string>
-  <string name="message_details_header__sent">Στάλθηκε στις</string>
-  <string name="message_details_header__received">Ελήφθη στις</string>
-  <string name="message_details_header__disappears">Εξαφανίζεται</string>
-  <string name="message_details_header__via">Μέσω</string>
+  <string name="message_details_header__sent">Στάλθηκε:</string>
+  <string name="message_details_header__received">Ελήφθη:</string>
+  <string name="message_details_header__disappears">Εξαφανίζεται:</string>
+  <string name="message_details_header__via">Μέσω:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Εκκρεμεί</string>
   <string name="message_details_recipient_header__sent_to">Στάλθηκε σε</string>
@@ -1820,6 +1894,16 @@
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Παρακαλώ διάλεξε ένα από τα παρακάτω --</item>
+    <item>Κάτι δεν δουλεύει</item>
+    <item>Αίτημα για νέες δυνατότητες</item>
+    <item>Ερώτηση</item>
+    <item>Σχόλια</item>
+    <item>Άλλο</item>
+    <item>Πληρωμές (MobileCoin)</item>
+    <item>Δωρεές (Συντηρητές &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -1917,6 +2001,8 @@
   <string name="preferences__help">Βοήθεια</string>
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__donate_to_signal">Κάνε μια δωρεά στο Signal</string>
+  <string name="preferences__subscription">Συνδρομή</string>
+  <string name="preferences__signal_boost">Ενίσχυση Signal</string>
   <string name="preferences__privacy">Ιδιωτικότητα</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ρυθμίσεις MMS</string>
@@ -1929,7 +2015,6 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
   <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
-  <string name="preferences__payments">Πληρωμές</string>
   <string name="preferences__payments_beta">Πληρωμή (Beta)</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2026,6 +2111,7 @@
   <string name="preferences_off">Ανενεργό</string>
   <string name="preferences_on">Ενεργό</string>
   <string name="preferences_proxy_address">Διεύθυνση proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Χρησιμοποίησε proxy μόνο αν δεν μπορείς να συνδεθείς στο Signal από δεδομένα κινητής ή Wi-Fi.</string>
   <string name="preferences_share">Μοιράσου</string>
   <string name="preferences_save">Αποθήκευση</string>
   <string name="preferences_connecting_to_proxy">Συνδεόμαστε στο proxy…</string>
@@ -2040,12 +2126,9 @@
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Όλη η δραστηριότητα</string>
-  <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
   <string name="PaymentsAllActivityFragment__sent">Στάλθηκε στις</string>
-  <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
   <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
   <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
-  <string name="PaymentsHomeFragment__see_all">Προβολή όλων</string>
   <string name="PaymentsHomeFragment__send">Αποστολή</string>
   <string name="PaymentsHomeFragment__currency_conversion">Μετατροπή νομίσματος</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Απενεργοποίηση πληρωμών</string>
@@ -2070,17 +2153,13 @@
   <string name="PaymentsDetailsFragment__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="PaymentsDetailsFragment__network_fee">Χρέωση δικτύου</string>
   <string name="PaymentsDetailsFragment__to">Προς</string>
-  <string name="PaymentsDetailsFragment__from">Από</string>
   <string name="PaymentsDetailsFragment__block_number">Φραγή αριθμού</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Μεταφορά</string>
-  <string name="PaymentsTransferFragment__scan_qr_code">Σκανάρισμα κωδικού QR</string>
   <string name="PaymentsTransferFragment__next">Επόμενο</string>
   <string name="PaymentsTransferFragment__settings">Ρυθμίσεις</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
-  <string name="CreatePaymentFragment__request">Αίτημα</string>
-  <string name="CreatePaymentFragment__pay">Πληρωμή</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2093,7 +2172,6 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
-  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Προσθήκη σημείωσης</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Σημείωση</string>
@@ -2389,6 +2467,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
   <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επαλήθευσης για Android</string>
+  <string name="RegistrationActivity_incorrect_code">Λάθος κωδικός</string>
   <string name="BackupUtil_never">Ποτέ</string>
   <string name="BackupUtil_unknown">Άγνωστο</string>
   <string name="preferences_app_protection__see_my_phone_number">Να δουν τον αριθμό τηλεφώνου μου</string>
@@ -2468,7 +2547,7 @@
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Αδυναμία ανοίγματος ρυθμίσεων τοποθεσίας.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Ενεργοποίηση Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Σφάλμα σύνδεσης</string>
-  <string name="DeviceTransferSetup__retry">Ξαναδοκίμασε</string>
+  <string name="DeviceTransferSetup__retry">Επανάληψη</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Αποστολή αρχείων συμβάντων αποσφαλμάτωσης</string>
   <string name="DeviceTransferSetup__verify_code">Επιβεβαίωση κωδικού</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Επιβεβαίωσε πως ο παρακάτω κωδικός είναι ίδιος και στις δύο συσκευές. Μετά πάτα συνέχεια.</string>
@@ -2581,8 +2660,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Αποτυχία αναπαραγωγής μηνύματος φωνής</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Μήνυμα φωνής · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s προς %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Μήνυμα φωνής · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s προς %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Ο/Η \"%1$s\" έχει φραγεί</string>
@@ -2702,19 +2781,16 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Σχετικά με το MobileCoin</string>
   <string name="payment_info_card_hide">Απόκρυψη</string>
-  <string name="payment_info_card_update_pin">Ανανέωση PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate">Απενεργοποίηση</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Φράση ανάκτησης</string>
-  <string name="PaymentsRecoveryStartFragment__start">Εκκίνηση</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Φράση ανάκτησης</string>
   <string name="PaymentsRecoveryPasteFragment__next">Επόμενο</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Επόμενο</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Eπεξεργασία</string>
-  <string name="PaymentsRecoveryPhraseFragment__previous">Προηγούμενο</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Αντιγραφή</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Λέξη %1$d</string>
@@ -2728,7 +2804,6 @@
   <string name="PaymentNotificationsView__view">Εμφάνιση</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
-  <string name="CanNotSendPaymentDialog__send_a_message">Στείλε ένα μήνυμα</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Δεν είσαι σε κοινές ομάδες με αυτό το άτομο. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Καμία από τις επαφές σου ή τα άτομα με τα οποία συνομιλείς δεν είναι σε αυτή την ομάδα. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
@@ -2750,6 +2825,47 @@
   <string name="AccountSettingsFragment__account">Λογαριασμός</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Θα στο ζητάμε όχι τόσο συχνά όσο περνάει ο καιρός</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Να απαιτείται το PIN Signal σου για να εγγράψεις ξανά τον αριθμό τηλεφώνου σου στο Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Αλλαγή αριθμού τηλεφώνου</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Με αυτό μπορείς να αλλάξεις τον τωρινό αριθμό τηλεφώνου σου σε κάποιον καινούργιο. Δεν μπορείς να αναιρέσεις αυτή την αλλαγή.\n\nΠριν συνεχίσεις, επιβεβαίωσε πως μπορείς να λάβεις SMS ή κλήσεις στο νέο αριθμό.</string>
+  <string name="ChangeNumberFragment__continue">Συνέχεια</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ο αριθμός τηλεφώνου σου άλλαξε.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Αλλαγή αριθμού</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ο παλιός σου αριθμός</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Παλιός αριθμός τηλεφώνου</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ο νέος σου αριθμός</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Νέος αριθμός τηλεφώνου</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Πρέπει να προσδιορίσεις τον κωδικό χώρας του παλιού σου αριθμού</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Πρέπει να προσδιορίσεις τον παλιό σου αριθμό</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Πρέπει να προσδιορίσεις τον κωδικό χώρας του νέου σου αριθμού</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Πρέπει να προσδιορίσεις το νέο σου αριθμό</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Αλλαγή αριθμού</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Επιβεβαίωση του %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Απαιτείται Captcha</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Αλλαγή αριθμού</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Πρόκειται να αλλάξεις τον αριθμό σου από τον %1$s στον %2$s.\n\nΠριν συνεχίσεις, παρακαλώ επιβεβαίωσε πως ο παρακάτω αριθμός είναι σωστός.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Επεξεργασία αριθμού</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Αλλαγή Αριθμού - Βοήθεια με το PIN για Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Τα PIN δεν ταιριάζουν</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Το PIN που χρησιμοποιείται με το νέο σου αριθμό είναι διαφορετικό από το PIN που χρησιμοποιείται με τον παλιό σου αριθμό. Θέλεις να κρατήσεις το παλιό PIN ή να το ανανεώσεις;</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Διατήρηση παλιού PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Ανανέωση PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Διατήρηση παλιού PIN;</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Φαίνεται πως προσπάθησες να αλλάξεις τον αριθμό σου αλλά δεν μπορέσαμε να επαληθεύσουμε ότι η αλλαγή ήταν επιτυχημένη.\n\nΕλέγχουμε ξανά…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Αλλαγή κατάστασης επαληθευμένη</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ο αριθμός σου επαληθεύτηκε ως %1$s. Αν αυτός δεν είναι ο νέος σου αριθμός, παρακαλώ ακολούθησε ξανά τη διαδικασία της αλλαγής αριθμού.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Αλλαγή κατάστασης μη επαληθευμένη</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Δεν μπορέσαμε να προσδιορίσουμε την κατάσταση του αιτήματός σου για αλλαγή αριθμού.n\n(Σφάλμα: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Επανάληψη</string>
+  <string name="ChangeNumberLockActivity__leave">Αποχώρηση</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Πληκτρολόγιο</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Το Enter στέλνει</string>
@@ -2801,6 +2917,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Υπό τους όρους της άδειας GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Ποιότητα πολυμέσων</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Ποιότητα απεσταλμένων πολυμέσων</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Η αποστολή πολυμέσων υψηλής ποιότητας θα καταναλώνει περισσότερα δεδομένα.</string>
+  <string name="DataAndStorageSettingsFragment__high">Υψηλή</string>
+  <string name="DataAndStorageSettingsFragment__standard">Κανονική</string>
   <string name="DataAndStorageSettingsFragment__calls">Κλήσεις</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Αυτόματο</string>
@@ -2843,7 +2964,10 @@
   <string name="ChatColorsMegaphone__appearance">Εμφάνιση</string>
   <string name="ChatColorsMegaphone__not_now">Όχι τώρα</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Προσθήκη φωτογραφίας πρφίλ</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Επέλεξε ένα στυλ και χρώμα, ή επεξεργάσου τα αρχικά σου.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Όχι τώρα</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Προσθήκη φωτογραφίας</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Άνοιγμα αναζήτησης emoji</string>
@@ -2890,24 +3014,31 @@
   <string name="ConversationSettingsFragment__unmute">Αναίρεση σίγασης</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Η συνομιλία είναι σε σίγαση έως %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία είνα σε σίγαση για πάντα</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Ο αριθμός τηλεφώνου αντιγράφτηκε στο πρόχειρο.</string>
   <string name="ConversationSettingsFragment__phone_number">Αριθμός τηλεφώνου</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
+  <string name="PermissionsSettingsFragment__send_messages">Αποστολή μηνυμάτων</string>
   <string name="PermissionsSettingsFragment__all_members">Όλα τα μέλη</string>
   <string name="PermissionsSettingsFragment__only_admins">Μόνο διαχειριστές</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Ποιοί μπορούν να προσθέσουν νέα μέλη;</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας;</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Ποιοί μπορούν να στέλνουν μηνύματα;</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Μη σιγασμένο</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Σε σίγαση έως %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Αναφορές</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Πάντα να ειδοποιούμαι</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Να μην ειδοποιούμαι</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Πρόσφατα χρησιμοποιημένα</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
@@ -2915,18 +3046,139 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Αναζήτηση ονόματος ή άριθμού</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Διακοπή αναπαραγωγής μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Αλλαγή ταχύτητας μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Παύση μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Αναπαραγωγή μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Πλοήγηση στο μήνυμα φωνής</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Προεπισκόπηση εικόνας προφίλ</string>
   <string name="AvatarPickerFragment__camera">Κάμερα</string>
+  <string name="AvatarPickerFragment__take_a_picture">Λήψη φωτογραφίας</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Επιλογή φωτογραφίας</string>
   <string name="AvatarPickerFragment__photo">Φωτογραφία</string>
   <string name="AvatarPickerFragment__text">Κείμενο</string>
   <string name="AvatarPickerFragment__save">Αποθήκευση</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Επιλογή εικόνας προφίλ</string>
+  <string name="AvatarPickerFragment__clear_avatar">Εκκαθάριση εικόνας προφίλ</string>
+  <string name="AvatarPickerFragment__edit">Eπεξεργασία</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Αποτυχία αποθήκευσης της εικόνας προφίλ</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Προεπισκόπηση</string>
   <string name="TextAvatarCreationFragment__done">Τέλος</string>
   <string name="TextAvatarCreationFragment__text">Κείμενο</string>
   <string name="TextAvatarCreationFragment__color">Χρώμα</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Επιλογή χρώματος</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__edit">Eπεξεργασία</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Μετάβαση προς τα πάνω</string>
+  <string name="MultiselectForwardFragment__forward_to">Προώθηση σε</string>
+  <string name="MultiselectForwardFragment__add_a_message">Προσθήκη μηνύματος</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Γρηγορότερες προωθήσεις</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Πλέον τα προωθημένα μηνύματα στέλνονται αμέσως.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Αποστολή %1$d μηνύματος</item>
+    <item quantity="other">Αποστολή %1$d μηνυμάτων</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Το μήνυμα στάλθηκε</item>
+    <item quantity="other">Τα μηνύματα στάλθηκαν</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Αποτυχία αποστολής μηνύματος</item>
+    <item quantity="other">Αποτυχία αποστολής μηνυμάτων</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Αδυναμία προώθησης μηνύματος επειδή δεν είναι πλέον διαθέσιμο.</item>
+    <item quantity="other">Αδυναμία προώθησης μηνυμάτων επειδή δεν είναι πλέον διαθέσιμα.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Το όριο ξεπεράστηκε</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Προσθήκη μηνύματος</string>
+  <string name="MediaReviewFragment__add_a_reply">Προσθήκη απάντησης</string>
+  <string name="MediaReviewFragment__send_to">Αποστολή σε</string>
+  <string name="MediaReviewFragment__view_once_message">Μήνυμα μιας μόνο προβολής</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ένα ή περισσότερα αντικείμενα ήταν πολύ μεγάλα</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ένα ή περισσότερα αντικείμενα δεν ήταν έγκυρα</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Επιλέχθηκαν πάρα πολλά αντικείμενα</string>
+  <string name="ImageEditorHud__cancel">Ακύρωση</string>
+  <string name="ImageEditorHud__draw">Σχεδίαση</string>
+  <string name="ImageEditorHud__write_text">Σύνταξη κειμένου</string>
+  <string name="ImageEditorHud__add_a_sticker">Προσθήκη αυτοκολλήτου</string>
+  <string name="ImageEditorHud__blur">Θόλωμα</string>
+  <string name="ImageEditorHud__done_editing">Τέλος επεξεργασίας</string>
+  <string name="ImageEditorHud__clear_all">Εκκαθάριση όλων</string>
+  <string name="ImageEditorHud__undo">Αναίρεση</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Εναλλαγή μεταξύ μαρκαδόρου και υπογραμμιστικού</string>
+  <string name="ImageEditorHud__delete">Διαγραφή</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Εναλλαγή μεταξύ στυλ κειμένου</string>
+  <string name="MediaCountIndicatorButton__send">Αποστολή</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Πάτα για αφαίρεση</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Πάτα για επιλογή</string>
+  <string name="MediaReviewImagePageFragment__discard">Απόρριψη</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Απόρριψη αλλαγών;</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Θα χάσεις όλες τις αλλαγές που έχεις κάνει σε αυτή τη φωτογραφία.</string>
+  <string name="CameraFragment__failed_to_open_camera">Αποτυχία ενεργοποίησης κάμερας</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Προεπισκόπηση</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Το Signal στηρίζεται σε άτομα σαν κι εσένα.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
+  <string name="SubscribeFragment__donation_amount">Ποσό δωρεάς</string>
+  <string name="SubscribeFragment__cancel_subscription">Ακύρωση συνδρομής</string>
+  <string name="SubscribeFragment__confirm_cancellation">Επιβεβαίωση ακύρωσης;</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Δεν θα χρεωθείς ξανά. Το έμβλημά σου θα αφαιρεθεί από το προφίλ σου στο τέλος της περιόδου για την οποία έχεις χρεωθεί.</string>
+  <string name="SubscribeFragment__not_now">Όχι τώρα</string>
+  <string name="SubscribeFragment__confirm">Επιβεβαίωση</string>
+  <string name="SubscribeFragment__update_subscription">Ανανέωση συνδρομής</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Η συνδρομή σου ακυρώθηκε.</string>
+  <string name="SubscribeFragment__update_subscription_question">Ανανέωση συνδρομής;</string>
+  <string name="SubscribeFragment__update">Ενημέρωση</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Θα χρεωθείς ολόκληρο το ποσό της νέας συνδρομής σήμερα. Η συνδρομή σου θα ανανεωθεί %1$s.</string>
+  <string name="Subscription__s_per_month">%s/μήνα</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/μήνα · Ανανεώνεται %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/μήνα · Λήγει %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Το Signal είναι μια ΜΚΟ χωρις διαφημίσεις και επενδυτές, που συντηρείται μόνο από τα άτομα που το χρησιμοποιούν και το θεωρούν σημαντικό. Με μια επαναλαμβανόμενη μηνιαία συνεισφορά παίρνεις ένα έμβλημα για το προφίλ σου, για να δείξεις την υποστήριξή σου.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Γιατι να συνεισφέρω;</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Η ομάδα του Signal είναι προσηλωμένη στην αποστολή της ανάπτυξης τεχνολογίας ιδιωτικότητας ανοιχτού κώδικα, που προστατεύει την ελευθερία της έκφρασης και δίνει τη δυνατότητα για ασφαλείς παγκόσμιες επικοινωνίες. Η συνεισφορά σου μας βοηθά σε αυτή την αποστολή. Χωρίς διαφημίσεις. Χωρίς παρακολούθηση. Σοβαρά.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Η συνεισφορά σου βοηθά με τα έξοδα ανάπτυξης, server, και συνδεσιμότητας μιας εφαρμογής που χρησιμοποιείται από εκατομμύρια άνθρώπους σε όλο το κόσμο για ασφαλή και άμεση επικοινωνία.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Ευχαριστούμε για την ενίσχυση!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Κέρδισες ένα έμβλημα %s! Δείξε στα άτομα που συνομιλείς πως υποστηρίζεις το Signal, βάζοντας το έμβλημά σου στο προφίλ σου.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου</string>
+  <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
+  <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
+  <string name="ManageDonationsFragment__badges">Εμβλήματα</string>
+  <string name="ManageDonationsFragment__subscription_faq">Συχνές ερωτήσεις συνδρομών</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Σφάλμα λήψης συνδρομής</string>
+  <string name="BoostFragment__give_signal_a_boost">Δώσε Ενίσχυση στο Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Πες \"ευχαριστώ!\" και κέρδισε το έμβλημα Eνίσχυσης για %1$d ημέρες.</string>
+  <string name="Boost__enter_custom_amount">Εισαγωγή προσαρμοσμένου ποσού</string>
+  <string name="Boost__one_time_contribution">Υποστήριξη μια φορά</string>
+  <string name="MySupportPreference__add_a_signal_boost">Προσθήκη Ενίσχυσης Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/μήνα</string>
+  <string name="MySupportPreference__renews_s">Ανανεώνεται %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Το έμβλημά σου έληξε</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Το έμβλημα %1$s έληξε, και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα και όχι για τα δεδομένα σου, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Γίνε υποστηρικτής</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
+  <string name="Subscription__verification_failed">Αποτυχία επιβεβαίωσης συνδρομής</string>
+  <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>
+  <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
+  <string name="Subscription__earn_a_s_badge">Κέρδισε ένα έμβλημα %1$s</string>
+  <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
+  <string name="DonationsErrors__payment_failed">Η πληρωμή απέτυχε</string>
+  <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
+  <string name="DonationsErrors__redemption_still_pending">Εκκρεμεί η εξαργύρωση</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Μπορεί να μην δεις το έμβλημά σου κατ\' ευθείαν, αλλά το ετοιμάζουμε!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay μη διαθέσιμο</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Πρέπει να ενεργοποιήσεις το Google Pay για να κάνεις δωρεά μέσω της εφαρμογής.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Αποτυχία ακύρωσης συνδρομής</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Πρέπει να υπάρχει σύνδεση στο διαδίκτυο για την ακύρωση της συνδρομής.</string>
   <!--EOF-->
 </resources>

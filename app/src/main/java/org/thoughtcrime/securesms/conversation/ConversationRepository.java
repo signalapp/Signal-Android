@@ -100,7 +100,7 @@ class ConversationRepository {
     }
 
     if (SignalStore.settings().getUniversalExpireTimer() != 0 &&
-        conversationRecipient.getExpireMessages() == 0 &&
+        conversationRecipient.getExpiresInSeconds() == 0 &&
         !conversationRecipient.isGroup() &&
         conversationRecipient.isRegistered() &&
         (threadId == -1 || !DatabaseFactory.getMmsSmsDatabase(context).hasMeaningfulMessage(threadId)))

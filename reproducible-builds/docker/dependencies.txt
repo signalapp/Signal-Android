@@ -4,5 +4,6 @@ libstdc++6:i386=10.2.0-3
 lib32z1=1:1.2.11.dfsg-2
 wget=1.20.3-1+b3
 openjdk-8-jdk=8u252-b09-1
+openjdk-11-jdk=11.0.8+10-1
 git=1:2.28.0-1
 unzip=6.0-25

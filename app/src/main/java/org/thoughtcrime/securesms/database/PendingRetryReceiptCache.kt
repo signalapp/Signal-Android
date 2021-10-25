@@ -23,7 +23,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   private var populated: Boolean = false
 
   fun insert(author: RecipientId, authorDevice: Int, sentTimestamp: Long, receivedTimestamp: Long, threadId: Long) {
-    if (!FeatureFlags.senderKey()) return
+    if (!FeatureFlags.retryReceipts()) return
     ensurePopulated()
 
     synchronized(pendingRetries) {
@@ -33,7 +33,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   }
 
   fun get(author: RecipientId, sentTimestamp: Long): PendingRetryReceiptModel? {
-    if (!FeatureFlags.senderKey()) return null
+    if (!FeatureFlags.retryReceipts()) return null
     ensurePopulated()
 
     synchronized(pendingRetries) {
@@ -42,7 +42,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   }
 
   fun getOldest(): PendingRetryReceiptModel? {
-    if (!FeatureFlags.senderKey()) return null
+    if (!FeatureFlags.retryReceipts()) return null
     ensurePopulated()
 
     synchronized(pendingRetries) {
@@ -51,7 +51,7 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
   }
 
   fun delete(model: PendingRetryReceiptModel) {
-    if (!FeatureFlags.senderKey()) return
+    if (!FeatureFlags.retryReceipts()) return
     ensurePopulated()
 
     synchronized(pendingRetries) {

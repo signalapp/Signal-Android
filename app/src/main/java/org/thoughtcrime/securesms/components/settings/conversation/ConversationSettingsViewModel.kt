@@ -71,7 +71,8 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           sharedMedia = cursor.orNull(),
           sharedMediaIds = ids,
-          sharedMediaLoaded = true
+          sharedMediaLoaded = true,
+          displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
         )
       } else {
         cursor.orNull().ensureClosed()
@@ -114,10 +115,6 @@ sealed class ConversationSettingsViewModel(
     }
   }
 
-  open fun disableProfileSharing(): Unit = error("This ViewModel does not support this interaction")
-
-  open fun deleteSession(): Unit = error("This ViewModel does not support this interaction")
-
   open fun initiateGroupUpgrade(): Unit = error("This ViewModel does not support this interaction")
 
   private class RecipientSettingsViewModel(
@@ -125,9 +122,7 @@ sealed class ConversationSettingsViewModel(
     private val repository: ConversationSettingsRepository
   ) : ConversationSettingsViewModel(
     repository,
-    SpecificSettingsState.RecipientSettingsState(
-      displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
-    )
+    SpecificSettingsState.RecipientSettingsState()
   ) {
 
     private val liveRecipient = Recipient.live(recipientId)
@@ -144,7 +139,7 @@ sealed class ConversationSettingsViewModel(
             isMuteAvailable = !recipient.isSelf,
             isSearchAvailable = true
           ),
-          disappearingMessagesLifespan = recipient.expireMessages,
+          disappearingMessagesLifespan = recipient.expiresInSeconds,
           canModifyBlockedState = !recipient.isSelf,
           specificSettingsState = state.requireRecipientSettingsState().copy(
             contactLinkState = when {
@@ -237,14 +232,6 @@ sealed class ConversationSettingsViewModel(
     override fun unblock() {
       repository.unblock(recipientId)
     }
-
-    override fun disableProfileSharing() {
-      repository.disableProfileSharingForInternalUser(recipientId)
-    }
-
-    override fun deleteSession() {
-      repository.deleteSessionForInternalUser(recipientId)
-    }
   }
 
   private class GroupSettingsViewModel(
@@ -322,6 +309,14 @@ sealed class ConversationSettingsViewModel(
         )
       }
 
+      store.update(liveGroup.isAnnouncementGroup) { announcementGroup, state ->
+        state.copy(
+          specificSettingsState = state.requireGroupSettingsState().copy(
+            isAnnouncementGroup = announcementGroup
+          )
+        )
+      }
+
       val isMessageRequestAccepted: LiveData<Boolean> = LiveDataUtil.mapAsync(liveGroup.groupRecipient) { r -> repository.isMessageRequestAccepted(r) }
       val descriptionState: LiveData<DescriptionState> = LiveDataUtil.combineLatest(liveGroup.description, isMessageRequestAccepted, ::DescriptionState)
 
@@ -386,11 +381,13 @@ sealed class ConversationSettingsViewModel(
     override fun onAddToGroup() {
       repository.getGroupCapacity(groupId) { capacityResult ->
         if (capacityResult.getRemainingCapacity() > 0) {
+
           internalEvents.postValue(
             ConversationSettingsEvent.AddMembersToGroup(
               groupId,
               capacityResult.getSelectionWarning(),
               capacityResult.getSelectionLimit(),
+              capacityResult.isAnnouncementGroup,
               capacityResult.getMembersWithoutSelf()
             )
           )

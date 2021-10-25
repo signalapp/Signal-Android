@@ -5,29 +5,30 @@
     android:id="@+id/group_media_card"
     style="@style/Widget.Signal.CardView.PreferenceRow"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="12dp">
+    android:layout_height="wrap_content">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="4dp">
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingTop="24dp"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:paddingBottom="12dp">
 
         <TextView
             android:id="@+id/recipient_header_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+            android:textStyle="bold"
             tools:text="Read by" />
 
         <org.thoughtcrime.securesms.components.DeliveryStatusView
             android:id="@+id/recipient_header_delivery_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconColor="@color/signal_text_secondary"
+            app:iconColor="@color/signal_inverse_primary"
             android:layout_gravity="end|center_vertical" />
 
     </FrameLayout>

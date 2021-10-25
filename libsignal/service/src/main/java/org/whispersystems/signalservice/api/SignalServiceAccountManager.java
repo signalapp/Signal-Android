@@ -19,6 +19,7 @@ import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
@@ -28,6 +29,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -36,6 +38,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.services.CdshService;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageModels;
@@ -45,6 +48,7 @@ import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.contacts.crypto.ContactDiscoveryCipher;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
@@ -54,15 +58,15 @@ import org.whispersystems.signalservice.internal.contacts.crypto.Unauthenticated
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
-import org.whispersystems.signalservice.api.account.AccountAttributes;
-import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
+import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
+import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation;
@@ -94,6 +98,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import io.reactivex.rxjava3.core.Single;
+
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionMessage;
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisioningVersion;
 
@@ -107,10 +113,11 @@ public class SignalServiceAccountManager {
 
   private static final String TAG = SignalServiceAccountManager.class.getSimpleName();
 
-  private final PushServiceSocket   pushServiceSocket;
-  private final CredentialsProvider credentials;
-  private final String              userAgent;
-  private final GroupsV2Operations  groupsV2Operations;
+  private final PushServiceSocket          pushServiceSocket;
+  private final CredentialsProvider        credentials;
+  private final String                     userAgent;
+  private final GroupsV2Operations         groupsV2Operations;
+  private final SignalServiceConfiguration configuration;
 
   /**
    * Construct a SignalServiceAccountManager.
@@ -142,6 +149,7 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket  = new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry);
     this.credentials        = credentialsProvider;
     this.userAgent          = signalAgent;
+    this.configuration      = configuration;
   }
 
   public byte[] getSenderCertificate() throws IOException {
@@ -165,6 +173,10 @@ public class SignalServiceAccountManager {
 
   public UUID getOwnUuid() throws IOException {
     return this.pushServiceSocket.getOwnUuid();
+  }
+
+  public WhoAmIResponse getWhoAmI() throws IOException {
+    return this.pushServiceSocket.getWhoAmI();
   }
 
   public KeyBackupService getKeyBackupService(KeyStore iasKeyStore,
@@ -209,10 +221,14 @@ public class SignalServiceAccountManager {
    * @param androidSmsRetrieverSupported
    * @param captchaToken                 If the user has done a CAPTCHA, include this.
    * @param challenge                    If present, it can bypass the CAPTCHA.
-   * @throws IOException
    */
-  public void requestSmsVerificationCode(boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    this.pushServiceSocket.requestSmsVerificationCode(androidSmsRetrieverSupported, captchaToken, challenge);
+  public ServiceResponse<RequestVerificationCodeResponse> requestSmsVerificationCode(boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
+    try {
+      this.pushServiceSocket.requestSmsVerificationCode(androidSmsRetrieverSupported, captchaToken, challenge);
+      return ServiceResponse.forResult(new RequestVerificationCodeResponse(fcmToken), 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
   }
 
   /**
@@ -222,10 +238,14 @@ public class SignalServiceAccountManager {
    * @param locale
    * @param captchaToken If the user has done a CAPTCHA, include this.
    * @param challenge    If present, it can bypass the CAPTCHA.
-   * @throws IOException
    */
-  public void requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    this.pushServiceSocket.requestVoiceVerificationCode(locale, captchaToken, challenge);
+  public ServiceResponse<RequestVerificationCodeResponse> requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
+    try {
+      this.pushServiceSocket.requestVoiceVerificationCode(locale, captchaToken, challenge);
+      return ServiceResponse.forResult(new RequestVerificationCodeResponse(fcmToken), 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
   }
 
   /**
@@ -234,32 +254,85 @@ public class SignalServiceAccountManager {
    * @param verificationCode The verification code received via SMS or Voice
    *                         (see {@link #requestSmsVerificationCode} and
    *                         {@link #requestVoiceVerificationCode}).
-   * @param signalingKey 52 random bytes.  A 32 byte AES key and a 20 byte Hmac256 key,
-   *                     concatenated.
    * @param signalProtocolRegistrationId A random 14-bit number that identifies this Signal install.
    *                                     This value should remain consistent across registrations for the
    *                                     same install, but probabilistically differ across registrations
    *                                     for separate installs.
-   * @param pin Deprecated, only supply the pin if you did not find a registrationLock on KBS.
+   * @return The UUID of the user that was registered.
+   * @throws IOException for various HTTP and networking errors
+   */
+  public ServiceResponse<VerifyAccountResponse> verifyAccount(String verificationCode,
+                                                              int signalProtocolRegistrationId,
+                                                              boolean fetchesMessages,
+                                                              byte[] unidentifiedAccessKey,
+                                                              boolean unrestrictedUnidentifiedAccess,
+                                                              AccountAttributes.Capabilities capabilities,
+                                                              boolean discoverableByPhoneNumber)
+  {
+    try {
+      VerifyAccountResponse response = this.pushServiceSocket.verifyAccountCode(verificationCode,
+                                                                                null,
+                                                                                signalProtocolRegistrationId,
+                                                                                fetchesMessages,
+                                                                                null,
+                                                                                null,
+                                                                                unidentifiedAccessKey,
+                                                                                unrestrictedUnidentifiedAccess,
+                                                                                capabilities,
+                                                                                discoverableByPhoneNumber);
+      return ServiceResponse.forResult(response, 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
+  }
+
+  /**
+   * Verify a Signal Service account with a received SMS or voice verification code with
+   * registration lock.
+   *
+   * @param verificationCode The verification code received via SMS or Voice
+   *                         (see {@link #requestSmsVerificationCode} and
+   *                         {@link #requestVoiceVerificationCode}).
+   * @param signalProtocolRegistrationId A random 14-bit number that identifies this Signal install.
+   *                                     This value should remain consistent across registrations for the
+   *                                     same install, but probabilistically differ across registrations
+   *                                     for separate installs.
    * @param registrationLock Only supply if found on KBS.
    * @return The UUID of the user that was registered.
-   * @throws IOException
    */
-  public VerifyAccountResponse verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
-                                                     String pin, String registrationLock,
-                                                     byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                                     AccountAttributes.Capabilities capabilities,
-                                                     boolean discoverableByPhoneNumber)
-      throws IOException
+  public ServiceResponse<VerifyAccountResponse> verifyAccountWithRegistrationLockPin(String verificationCode,
+                                                                                     int signalProtocolRegistrationId,
+                                                                                     boolean fetchesMessages,
+                                                                                     String registrationLock,
+                                                                                     byte[] unidentifiedAccessKey,
+                                                                                     boolean unrestrictedUnidentifiedAccess,
+                                                                                     AccountAttributes.Capabilities capabilities,
+                                                                                     boolean discoverableByPhoneNumber)
   {
-    return this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,
-                                                    signalProtocolRegistrationId,
-                                                    fetchesMessages,
-                                                    pin, registrationLock,
-                                                    unidentifiedAccessKey,
-                                                    unrestrictedUnidentifiedAccess,
-                                                    capabilities,
-                                                    discoverableByPhoneNumber);
+    try {
+      VerifyAccountResponse response = this.pushServiceSocket.verifyAccountCode(verificationCode,
+                                                                                null,
+                                                                                signalProtocolRegistrationId,
+                                                                                fetchesMessages,
+                                                                                null,
+                                                                                registrationLock,
+                                                                                unidentifiedAccessKey,
+                                                                                unrestrictedUnidentifiedAccess,
+                                                                                capabilities,
+                                                                                discoverableByPhoneNumber);
+      return ServiceResponse.forResult(response, 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
+  }
+
+  public ServiceResponse<VerifyAccountResponse> changeNumber(String code, String e164NewNumber, String registrationLock) {
+    try {
+      VerifyAccountResponse response = this.pushServiceSocket.changeNumber(code, e164NewNumber, registrationLock);
+      return ServiceResponse.forResult(response, 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
   }
 
   /**
@@ -369,6 +442,7 @@ public class SignalServiceAccountManager {
     return activeTokens;
   }
 
+  @SuppressWarnings("SameParameterValue")
   public Map<String, UUID> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String mrenclave)
       throws IOException, Quote.InvalidQuoteFormatException, UnauthenticatedQuoteException, SignatureException, UnauthenticatedResponseException, InvalidKeyException
   {
@@ -412,6 +486,31 @@ public class SignalServiceAccountManager {
       throw new UnauthenticatedResponseException(e);
     }
   }
+
+  public Map<String, UUID> getRegisteredUsersWithCdsh(Set<String> e164numbers, String hexPublicKey, String hexCodeHash)
+      throws IOException
+  {
+    CdshService                                service = new CdshService(configuration, hexPublicKey, hexCodeHash);
+    Single<ServiceResponse<Map<String, UUID>>> result  = service.getRegisteredUsers(e164numbers);
+
+    ServiceResponse<Map<String, UUID>> response;
+    try {
+      response = result.blockingGet();
+    } catch (Exception e) {
+      throw new RuntimeException("Unexpected exception when retrieving registered users!", e);
+    }
+
+    if (response.getResult().isPresent()) {
+      return response.getResult().get();
+    } else if (response.getApplicationError().isPresent()) {
+      throw new IOException(response.getApplicationError().get());
+    } else if (response.getExecutionError().isPresent()) {
+      throw new IOException(response.getExecutionError().get());
+    } else {
+      throw new IOException("Missing result!");
+    }
+  }
+
 
   public Optional<SignalStorageManifest> getStorageManifest(StorageKey storageKey) throws IOException {
     try {
@@ -654,7 +753,8 @@ public class SignalServiceAccountManager {
                                               String about,
                                               String aboutEmoji,
                                               Optional<SignalServiceProtos.PaymentAddress> paymentsAddress,
-                                              StreamDetails avatar)
+                                              StreamDetails avatar,
+                                              List<String> visibleBadgeIds)
       throws IOException
   {
     if (name == null) name = "";
@@ -680,15 +780,16 @@ public class SignalServiceAccountManager {
                                                                              ciphertextEmoji,
                                                                              ciphertextMobileCoinAddress,
                                                                              hasAvatar,
-                                                                             profileKey.getCommitment(uuid).serialize()),
+                                                                             profileKey.getCommitment(uuid).serialize(),
+                                                                             visibleBadgeIds),
                                                                              profileAvatarData);
   }
 
-  public Optional<ProfileKeyCredential> resolveProfileKeyCredential(UUID uuid, ProfileKey profileKey)
+  public Optional<ProfileKeyCredential> resolveProfileKeyCredential(UUID uuid, ProfileKey profileKey, Locale locale)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     try {
-      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(uuid, profileKey, Optional.absent()).get(10, TimeUnit.SECONDS);
+      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(uuid, profileKey, Optional.absent(), locale).get(10, TimeUnit.SECONDS);
       return credential.getProfileKeyCredential();
     } catch (InterruptedException | TimeoutException e) {
       throw new PushNetworkException(e);

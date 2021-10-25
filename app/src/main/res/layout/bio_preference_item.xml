@@ -19,6 +19,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/badge"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/ImageView__badge"
+        android:visibility="gone"
+        app:badge_size="medium"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/icon"
+        tools:visibility="visible" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -30,11 +43,12 @@
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Signal.Text.Title.SettingsBio"
+            android:textAlignment="viewStart"
             tools:text="Peter Parker" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -44,13 +58,15 @@
             style="@style/Signal.Text.Preview.Secondary"
             android:maxLines="1"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             tools:text="Crusin' the web" />
 
-        <TextView
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Signal.Text.Preview.Secondary"
+            android:textAlignment="viewStart"
             tools:text="+1 (999) 555-1234" />
 
     </LinearLayout>

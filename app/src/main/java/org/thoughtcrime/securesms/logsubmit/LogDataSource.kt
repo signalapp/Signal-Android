@@ -4,6 +4,7 @@ import android.app.Application
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber
+import java.lang.UnsupportedOperationException
 
 /**
  * Retrieves logs to show in the [SubmitDebugLogActivity].
@@ -16,7 +17,7 @@ class LogDataSource(
   private val prefixLines: List<LogLine>,
   private val untilTime: Long
 ) :
-  PagedDataSource<LogLine> {
+  PagedDataSource<Long, LogLine> {
 
   val logDatabase = LogDatabase.getInstance(application)
 
@@ -33,6 +34,14 @@ class LogDataSource(
     } else {
       return logDatabase.getRangeBeforeTime(start - prefixLines.size, length, untilTime).map { convertToLogLine(it) }
     }
+  }
+
+  override fun load(key: Long?): LogLine? {
+    throw UnsupportedOperationException("Not implemented!")
+  }
+
+  override fun getKey(data: LogLine): Long {
+    return data.id
   }
 
   private fun convertToLogLine(raw: String): LogLine {

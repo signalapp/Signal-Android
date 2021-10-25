@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="ConversationItem_you_deleted_this_message">Heu suprimit aquest missatge.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
-  <string name="ConversationActivity_reset">Restableix</string>
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
   <string name="ConversationActivity_select_contact_info">Seleccioneu informació del contacte</string>
   <string name="ConversationActivity_compose_message">Escriviu un missatge</string>
@@ -208,6 +205,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">El fitxer adjunt excedeix la mida màxima per a aquest tipus de missatges.</string>
   <string name="ConversationActivity_unable_to_record_audio">No s\'ha pogut enregistrar l\'àudio.</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">No podeu enviar missatges a aquest grup perquè ja no en sou membre.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Només els %1$s poden enviar missatges. </string>
+  <string name="ConversationActivity_admins">administradors</string>
+  <string name="ConversationActivity_message_an_admin">Envia un missatge a un administrador</string>
+  <string name="ConversationActivity_cant_start_group_call">No es pot iniciar la trucada de grup.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Només els administradors d\'aquest grup poden iniciar una trucada.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hi ha cap aplicació que pugui obrir aquest enllaç.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">La sol·licitud per afegir-vos-hi s\'ha enviat a l\'administrador/a del grup. Rebreu una notificació quan la resolguin.</string>
   <string name="ConversationActivity_cancel_request">Cancel·la la sol·licitud</string>
@@ -314,6 +316,17 @@
     <item quantity="one">S\'ha mogut la conversa a la safata d\'entrada</item>
     <item quantity="other">S\'han mogut %d converses a la safata d\'entrada</item>
   </plurals>
+  <string name="ConversationListFragment_read">Llegit</string>
+  <string name="ConversationListFragment_unread">Per llegir</string>
+  <string name="ConversationListFragment_pin">Fixa</string>
+  <string name="ConversationListFragment_unpin">No ho fixis</string>
+  <string name="ConversationListFragment_mute">Silenci</string>
+  <string name="ConversationListFragment_unmute">No la silenciïs</string>
+  <string name="ConversationListFragment_select">Selecció</string>
+  <string name="ConversationListFragment_archive">Arxiva</string>
+  <string name="ConversationListFragment_unarchive">Restaura</string>
+  <string name="ConversationListFragment_delete">Suprimeix</string>
+  <string name="ConversationListFragment_select_all">Selecciona-ho tot</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
   <!--ConversationListItemAction-->
@@ -339,6 +352,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Restaura des de la icona de còpia de seguretat</string>
   <string name="ChooseBackupFragment__choose_backup">Trieu la còpia de seguretat</string>
   <string name="ChooseBackupFragment__learn_more">Més informació</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">No hi ha gestor de fitxers disponible.</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restauració completa</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Per continuar usant les còpies de seguretat, trieu una carpeta. S\'hi desaran les còpies noves.</string>
@@ -416,6 +430,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comparteix amb</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Els adjunts múltiples només s\'admeten per a imatges i vídeos.</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">No teniu permís per enviar a aquest grup.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">La comunicació del Signal falla contínuament!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">El Signal no s\'ha pogut registrar al Google Play Services. Els missatges i les trucades del Signal s\'han desactivat, registreu-vos de nou a Configuració &gt; Avançada.</string>
@@ -558,6 +573,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Fet</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Aquesta persona no es pot afegir a grups de llegat.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Aquesta persona no es pot afegir als anuncis dels grups.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Voleu afegir %1$s a \"%2$s\"?</item>
     <item quantity="other">Voleu afegir %3$d membres a \"%2$s\"?</item>
@@ -628,6 +644,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Només els administradors poden restablir l\'enllaç de grup que es pot compartir.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No teniu permís per fer això.</string>
   <string name="ManageGroupActivity_not_capable">Algú que heu afegit no admet grups nous i cal que actualitzi el Signal.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Algú que heu afegit no admet els anuncis de grups i cal que actualitzi el Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ha fallat actualitzar el grup.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">No sou membre del grup.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ha fallat actualitzar el grup. Torneu-ho a provar més tard.</string>
@@ -655,6 +672,7 @@
   <string name="ManageProfileFragment_your_name">El nom</string>
   <string name="ManageProfileFragment_your_username">El nom d\'usuari</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
+  <string name="ManageProfileFragment_badges">Insígnies</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">No hi ha grups en comú.</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -676,6 +694,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activat</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desactivat</string>
   <string name="CustomNotificationsDialogFragment__default">Per defecte</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Desconegut</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Enllaç de grup que es pot compartir</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestió i compartició</string>
@@ -740,22 +759,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Comparteix</string>
   <string name="InviteActivity_share_with_contacts">Comparteix amb els contactes</string>
-  <string name="InviteActivity_choose_how_to_share">Trieu com compartir-ho</string>
+  <string name="InviteActivity_share_via">Comparteix via…</string>
   <string name="InviteActivity_cancel">Cancel·la</string>
   <string name="InviteActivity_sending">S\'envia…</string>
   <string name="InviteActivity_invitations_sent">Invitacions enviades!</string>
   <string name="InviteActivity_invite_to_signal">Convida al Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIA L\'SMS A %d AMISTAT</item>
-    <item quantity="other">ENVIA L\'SMS A %d AMISTATS</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Envia SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Voleu enviar %d invitació SMS?</item>
     <item quantity="other">Voleu enviar %d invitacions SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Canviem al Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembla que no teniu cap aplicació on compartir-ho.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amistats no deixen que les seves amistats xerrin sense encriptació.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Més informació</string>
   <!--LongMessageActivity-->
@@ -792,14 +807,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de graella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de llista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element: %2$s</item>
-    <item quantity="other">%1$d elements: %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d elements</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">Desa</string>
+  <string name="MediaOverviewActivity_select_all">Selecciona-ho tot</string>
+  <string name="MediaOverviewActivity_delete">Suprimeix</string>
   <string name="MediaOverviewActivity_file">Fitxer</string>
   <string name="MediaOverviewActivity_audio">Àudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -821,15 +831,18 @@
   <string name="Megaphones_invite_friends">Convideu-hi amistats</string>
   <string name="Megaphones_use_sms">Usa SMS</string>
   <string name="Megaphones_appearance">Aparença</string>
+  <string name="Megaphones_add_photo">Afegiu-hi una fotografia</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Trucada del Signal rebuda</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Trucada de grup de Signal rebuda</string>
   <string name="NotificationBarManager__stopping_signal_call_service">S\'atura el servei de trucades del Signal</string>
-  <string name="NotificationBarManager__deny_call">Rebutja la trucada</string>
+  <string name="NotificationBarManager__decline_call">Rebutja la trucada</string>
   <string name="NotificationBarManager__answer_call">Respon la trucada</string>
   <string name="NotificationBarManager__end_call">Acaba la trucada</string>
   <string name="NotificationBarManager__cancel_call">Cancel·la la trucada</string>
+  <string name="NotificationBarManager__join_call">Afegeix-me a la trucada</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Voleu activar les notificacions?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">No us perdeu mai cap missatge dels contactes i dels grups.</string>
@@ -980,6 +993,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Heu canviat qui pot editar els membres del grup a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha canviat qui pot editar els membres del grup a \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">S\'ha canviat qui pot editar els membres del grup a \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Heu canviat la configuració del grup per permetre enviar missatges a tots els membres.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Heu canviat la configuració del grup per permetre enviar missatges només als administradors.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ha canviat la configuració del grup per permetre enviar missatges a tots els membres.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ha canviat la configuració del grup per permetre enviar missatges només als administradors.</string>
+  <string name="MessageRecord_allow_all_members_to_send">La configuració del grup s\'ha canviat per permetre enviar missatges a tots els membres.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">La configuració del grup s\'ha canviat per permetre enviar missatges només als administradors.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Heu activat l\'enllaç de grup amb l\'aprovació de l\'administrador desactivada.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Heu activat l\'enllaç de grup amb l\'aprovació de l\'administrador activada.</string>
@@ -1025,6 +1045,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Heu tret la verificació del número de seguretat amb %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Heu tret la verificació del número de seguretat amb %s des d\'un altre dispositiu</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No s\'ha pogut lliurar un missatge de %s.</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ha canviat el número.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciat una trucada de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s és a la trucada de grup · %2$s</string>
@@ -1182,27 +1203,59 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Per trucar a %1$s, el Signal necessita accés a la càmera.</string>
   <string name="WebRtcCallActivity__signal_s">Trucada del Signal: %1$s</string>
   <string name="WebRtcCallActivity__calling">Es truca…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">El grup és massa gran per a trucar als participants.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Trucada de veu del Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal…</string>
+  <string name="WebRtcCallView__signal_call">Trucada del Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal</string>
   <string name="WebRtcCallView__start_call">Inicia una trucada</string>
   <string name="WebRtcCallView__join_call">Afegeix-me a la trucada</string>
   <string name="WebRtcCallView__call_is_full">La trucada és plena</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">S\'ha assolit el nombre màxim de %1$d participants per a aquesta trucada. Torneu-ho a provar més tard.</string>
-  <string name="WebRtcCallView__s_group_call">Trucada de grup \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Mostra els participants</string>
   <string name="WebRtcCallView__your_video_is_off">El vídeo està desactivat.</string>
   <string name="WebRtcCallView__reconnecting">Es torna a connectar…</string>
   <string name="WebRtcCallView__joining">S\'afegeix…</string>
   <string name="WebRtcCallView__disconnected">Desconnectat</string>
+  <string name="WebRtcCallView__signal_will_ring_s">El Signal trucarà a %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">El Signal trucarà a %1$s i %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">El Signal trucarà a %1$s, %2$s i %3$d més </item>
+    <item quantity="other">El Signal trucarà a %1$s, %2$s i %3$d més </item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s rebrà una notificació</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s i %2$s rebran una notificació</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s i %3$d més rebran una notificació</item>
+    <item quantity="other">%1$s, %2$s i %3$d més rebran una notificació</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">S\'està trucant a %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">S\'està trucant a %1$s i %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">S\'està trucant a %1$s, %2$s i %3$d més</item>
+    <item quantity="other">S\'està trucant a %1$s, %2$s i %3$d més</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s us està trucant</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$sus està trucat a vós i a %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s us està trucant a vòs, %2$s i %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s us està trucant a vós, a %2$s, a %3$s i a %4$d més</item>
+    <item quantity="other">%1$s us està trucant a vós, a %2$s, a %3$s i a %4$d més</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Aquí no hi ha ningú més.</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s és en aquesta trucada.</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s és en aquesta trucada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s i %2$s són en aquesta trucada.</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s fa la presentació</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
     <item quantity="other">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Canvia</string>
+  <string name="WebRtcCallView__speaker">Altaveu</string>
+  <string name="WebRtcCallView__camera">Càmera</string>
+  <string name="WebRtcCallView__mute">Silenci</string>
+  <string name="WebRtcCallView__ring">Truca</string>
+  <string name="WebRtcCallView__end_call">Penja</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">En aquesta trucada · %1$d persona</item>
@@ -1249,6 +1302,7 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">El Signal necessita accés als contactes per tal de connectar amb amistats, intercanviar-hi missatges i fer trucades amb seguretat.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Heu fet massa intents per registrar aquest número. Si us plau, torneu-ho a provar més tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
+  <string name="RegistrationActivity_call_requested">Trucada sol·licitada</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ara us queda %d pas per enviar un informe de depuració.</item>
     <item quantity="other">Ara us queden %d passos per enviar un informe de depuració.</item>
@@ -1291,6 +1345,8 @@ especificat (%s) no és vàlid.</string>
   <string name="SharedContactView_add_to_contacts">Afegeix als contactes</string>
   <string name="SharedContactView_invite_to_signal">Convida al Signal</string>
   <string name="SharedContactView_message">Missatge del Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Més</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Us ho recordarem més tard.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Us ho recordarem demà.</string>
@@ -1340,6 +1396,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubmitDebugLogActivity_success">Acabat!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Aquest registre es penjarà públicament en línia perquè els col·laboradors el vegin. Podeu examinar-lo abans de penjar-lo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Informació del dispositiu:</string>
@@ -1470,6 +1527,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_reacted_s_to_s">%1$s ha reaccionat a : \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">%1$s ha reaccionat al vostre vídeo.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s ha reaccionat al vostre missatge.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">%1$s ha reaccionat al vostre GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s ha reaccionat al vostre fitxer.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s ha reaccionat al vostre contingut d\'una visualització.</string>
@@ -1612,6 +1670,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_call_is_full">La trucada és plena</string>
   <string name="ConversationUpdateItem_invite_friends">Convideu-hi amistats</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activa les notificacions de trucada</string>
+  <string name="ConversationUpdateItem_update_contact">Actualitza el contacte</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Cap grup en comú. Reviseu les sol·licituds amb atenció.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Cap contacte en aquest grup. Reviseu les sol·licituds amb atenció.</string>
   <string name="ConversationUpdateItem_view">Vista</string>
@@ -1623,6 +1682,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QuoteView_audio">Àudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Contingut d\'una sola visualització</string>
   <string name="QuoteView_sticker">Adhesiu</string>
   <string name="QuoteView_you">Jo</string>
@@ -1773,21 +1833,26 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Escriviu un nom o un número</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si voleu verificar la seguretat de l\'encriptació amb %s, compareu el número anterior amb el del seu dispositiu. Altrament, podeu escanejar el codi al seu telèfon o demanar-los que escanegin el vostre. <a href="https://signal.org/redirect/safety-numbers">Més informació.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Per verificar la seguretat de l\'encriptació d\'extrem a extrem amb %s, compareu els números anteriors amb el seu dispositiu. També podeu escanejar el codi del telèfon. <a href="https://signal.org/redirect/safety-numbers">Més informació.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Feu un toc per escanejar</string>
+  <string name="verify_display_fragment__successful_match">Coincidència correcta</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Ha fallat verificar el número de seguretat.</string>
   <string name="verify_display_fragment__loading">Es carrega…</string>
-  <string name="verify_display_fragment__verified">Verificat</string>
+  <string name="verify_display_fragment__mark_as_verified">Marca com a verificat</string>
+  <string name="verify_display_fragment__clear_verification">Neteja la verificació</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comparteix el número de seguretat</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanegeu el codi QR del dispositiu del contacte.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per respondre</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per rebutjar-la</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Certs problemes necessiten la vostra atenció.</string>
-  <string name="message_details_header__sent">Enviat</string>
-  <string name="message_details_header__received">Rebut</string>
-  <string name="message_details_header__disappears">Desapareix</string>
-  <string name="message_details_header__via">Per</string>
+  <string name="message_details_header__sent">Enviat:</string>
+  <string name="message_details_header__received">Rebut:</string>
+  <string name="message_details_header__disappears">Desapareix:</string>
+  <string name="message_details_header__via">Mitjà:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pendent</string>
   <string name="message_details_recipient_header__sent_to">Enviat a</string>
@@ -1829,15 +1894,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Seleccioneu una opció --</item>
-    <item>Alguna cosa no funciona.</item>
-    <item>Petició de funció</item>
-    <item>Pregunta</item>
-    <item>Retroacció</item>
-    <item>Altres</item>
-    <item>Pagaments</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
@@ -1935,6 +1991,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançat</string>
   <string name="preferences__donate_to_signal">Feu una donació a Signal</string>
+  <string name="preferences__subscription">Subscripció</string>
+  <string name="preferences__signal_boost">Empenta del Signal</string>
   <string name="preferences__privacy">Privadesa</string>
   <string name="preferences__mms_user_agent">Agent usuari dels MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuració manual dels MMS</string>
@@ -2291,7 +2349,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="Insights__title">Interior</string>
   <string name="InsightsDashboardFragment__title">Interior</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de cap a cap.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Impuls de Signal</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Empenta del Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comenceu una conversa</string>
@@ -2305,7 +2363,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="InsightsModalFragment__view_insights">Mostra l\'Interior</string>
   <string name="FirstInviteReminder__title">Convida al Signal</string>
   <string name="FirstInviteReminder__description">Podeu augmentar el nombre de missatges encriptats que envieu gràcies a %1$d%%</string>
-  <string name="SecondInviteReminder__title">Impulseu el Signal</string>
+  <string name="SecondInviteReminder__title">Doneu una empenta al Signal</string>
   <string name="SecondInviteReminder__description">Convida %1$s</string>
   <string name="InsightsReminder__view_insights">Mostra l\'Interior</string>
   <string name="InsightsReminder__invite">Convida</string>
@@ -2466,6 +2524,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_call_me_instead_available_in">Millor que em truquis.\n (Disponible d\'aquí a %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contacteu amb el suport de Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registre del Signal - Codi de verificació per a Android</string>
+  <string name="RegistrationActivity_incorrect_code">Codi incorrecte</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Desconegut</string>
   <string name="preferences_app_protection__see_my_phone_number">Mostra el meu número de telèfon</string>
@@ -2662,8 +2721,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Ha fallat reproduir el missatge de veu.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Missatge de veu · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s a %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Missatge de veu · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s a %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">S\'ha blocat %1$s.</string>
@@ -2880,6 +2939,47 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AccountSettingsFragment__account">Compte</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Amb el temps se us demanarà amb menys freqüència</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Sol·licita el PIN del Signal per tornar-hi a registrar el número de telèfon</string>
+  <string name="AccountSettingsFragment__change_phone_number">Canvia el número de telèfon</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Useu-ho per canviar el número de telèfon actual per un número nou. No podeu desfer aquest canvi. \n\nAbans de continuar, assegureu-vos que el número nou pugui rebre SMS o trucades.</string>
+  <string name="ChangeNumberFragment__continue">Continua</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">S\'ha canviat el número de telèfon.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Canvia el número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">El número antic</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Número de telèfon antic</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">El número de telèfon nou</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Número de telèfon nou</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">El número de telèfon marcat no coincideix amb el del compte.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Heu d\'especificar el codi de país del número antic.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Heu d\'especificar el número de telèfon antic.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Heu d\'especificar el codi de país del número nou.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Heu d\'especificar el número de telèfon nou.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Canvia el número</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Es verifica %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Cal CAPTCHA</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Canvia el número</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Esteu a punt de canviar el número de telèfon de %1$s a %2$s. \n\n Abans de continuar, verifiqueu que el número següent sigui correcte.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Edita el número</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Canvi de número del Signal. Cal ajuda amb el PIN per a Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Els números PIN no coincideixen.</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">El PIN associat al número nou és diferent del PIN associat al número anterior. Voleu conservar el PIN anterior o actualitzar-lo?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Conserva l\'antic</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Actualitza el PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Voleu conservar el PIN antic?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Sembla que heu intentat canviar el número però no hem pogut determinar si s\'ha fet correctament.\n\nEs torna a comprovar ara…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Canvi d\'estat confirmat</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">El número s\'ha confirmat com a %1$s. Si aquest no és el vostre número nou, reinicieu el procés de canvi de número.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Canvi d\'estat no confirmat</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">No hem pogut determinar l\'estat de la vostra sol·licitud de canvi de número. \n\n(Error: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Torneu a provar-ho</string>
+  <string name="ChangeNumberLockActivity__leave">Surt</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Envia un registre de depuració</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Teclat</string>
   <string name="ChatsSettingsFragment__enter_key_sends">S\'envia amb la tecla de Retorn</string>
@@ -2931,6 +3031,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Amb llicència de GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Qualitat dels mitjans</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualitat dels mitjans enviats</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">L’enviament de mitjans d’alta qualitat usarà més dades.</string>
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Estàndard</string>
   <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automàtic</string>
@@ -2973,7 +3078,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatColorsMegaphone__appearance">Aparença</string>
   <string name="ChatColorsMegaphone__not_now">Ara no</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Afegiu una fotografia de perfil</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Trieu un aspecte i un color o personalitzeu les vostres inicials.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ara no</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Afegiu-hi una fotografia</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoticones</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Obre la cerca d\'emoticones</string>
@@ -3025,10 +3133,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Afegeix-hi membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edita la informació del grup</string>
+  <string name="PermissionsSettingsFragment__send_messages">Enviament de missatges</string>
   <string name="PermissionsSettingsFragment__all_members">Tots els membres</string>
   <string name="PermissionsSettingsFragment__only_admins">Només els administradors</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui pot afegir membres nous?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui pot editar la informació del grup?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Qui pot enviar missatges?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silencia les notificacions</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">No silenciat</string>
@@ -3042,6 +3152,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Pagament nou</string>
@@ -3050,18 +3161,137 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cerqueu un nom o un número</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Atura el missatge de veu</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Canvia la velocitat del missatge de veu</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Interromp el missatge de veu</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Reprodueix el missatge de veu</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Navega fins al missatge de veu</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Previsualització de l\'avatar</string>
   <string name="AvatarPickerFragment__camera">Càmera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Fes una fotografia</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Trieu una fotografia</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">Desa</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Seleccioneu un avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Neteja l\'avatar</string>
+  <string name="AvatarPickerFragment__edit">Edita</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Ha fallat desar l\'avatar.</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Previsualitza</string>
   <string name="TextAvatarCreationFragment__done">Fet</string>
   <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Color</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Seleccioneu un color</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__edit">Edita</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Amunt</string>
+  <string name="MultiselectForwardFragment__forward_to">Reenvia a</string>
+  <string name="MultiselectForwardFragment__add_a_message">Afegiu-hi un missatge</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Reenviaments més ràpids</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Ara els missatges reenviats s\'envien immediatament.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Envia %1$d missatge</item>
+    <item quantity="other">Envia %1$d missatges</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Missatge enviat</item>
+    <item quantity="other">Missatges enviats</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Ha fallat enviar el missatge.</item>
+    <item quantity="other">Ha fallat enviar els missatges.</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">No s\'ha pogut reenviar el missatge perquè ja no està disponible.</item>
+    <item quantity="other">No s\'han pogut reenviar els missatges perquè ja no estan disponibles.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">S\'ha arribat al límit.</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Afegiu-hi un missatge</string>
+  <string name="MediaReviewFragment__add_a_reply">Afegiu-hi una resposta</string>
+  <string name="MediaReviewFragment__send_to">Envia a</string>
+  <string name="MediaReviewFragment__view_once_message">Mostra el missatge un cop</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un o més elements eren massa grossos.</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un o més elements no eren vàlids.</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Massa elements seleccionats</string>
+  <string name="ImageEditorHud__cancel">Cancel·la</string>
+  <string name="ImageEditorHud__draw">Dibuix</string>
+  <string name="ImageEditorHud__write_text">Escriptura de text</string>
+  <string name="ImageEditorHud__add_a_sticker">Afegiu-hi un adhesiu</string>
+  <string name="ImageEditorHud__blur">Difumina</string>
+  <string name="ImageEditorHud__done_editing">Edició feta</string>
+  <string name="ImageEditorHud__clear_all">Neteja-ho tot</string>
+  <string name="ImageEditorHud__undo">Desfés</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Canvia entre el marcador i el ressaltador</string>
+  <string name="ImageEditorHud__delete">Suprimeix</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Canvia entre estils de text</string>
+  <string name="MediaCountIndicatorButton__send">Envia</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Toqueu per suprimir</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Feu un toc per seleccionar-ho</string>
+  <string name="MediaReviewImagePageFragment__discard">Descarta</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Voleu descartar-ne els canvis?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perdreu qualsevol canvi que hàgiu fet en aquesta fotografia.</string>
+  <string name="CameraFragment__failed_to_open_camera">Ha fallat obrir la càmera.</string>
+  <string name="BadgesOverviewFragment__my_badges">Les meves insígnies</string>
+  <string name="BadgesOverviewFragment__featured_badge">Insígnia inclosa</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Mostra les insígnies en el perfil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
+  <string name="BadgeSelectionFragment__select_badges">Selecciona insígnies</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Previsualitza</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecciona una insígnia</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Heu de seleccionar una insígnia</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
+  <string name="ImageView__badge">Insígnia</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">El Signal és alimentat per persones com vosaltres.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ajudeu la tecnologia creada per a vosaltres —no per a les vostres dades— afegint-vos a la comunitat de persones que la sustenten.</string>
+  <string name="SubscribeFragment__donation_amount">Quantitat de la donació</string>
+  <string name="SubscribeFragment__more_payment_options">Més opcions de pagament</string>
+  <string name="SubscribeFragment__cancel_subscription">Cancel·la la subscripció</string>
+  <string name="SubscribeFragment__confirm_cancellation">En confirmeu la cancel·lació?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">No se us tornarà a cobrar. La insígnia se suprimirà del perfil al final del període de facturació.</string>
+  <string name="SubscribeFragment__not_now">Ara no</string>
+  <string name="SubscribeFragment__confirm">Confirmació</string>
+  <string name="SubscribeFragment__update_subscription">Actualitza la subscripció</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">S\'ha cancel·lat la subscripció.</string>
+  <string name="SubscribeFragment__update">Actualitza-la</string>
+  <string name="Subscription__s_per_month">%s/ mes</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/ mes · Renovacions %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, sostinguda només per les persones que l’usen i valoren. Feu-hi una contribució mensual periòdica i rebeu una insígnia de perfil per compartir el vostre suport.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Per què contribuir-hi?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">L’equip del Signal està compromès amb la missió de desenvolupar tecnologia de privadesa de codi obert que protegeixi la llibertat d\'expressió i permeti una comunicació global segura. La vostra contribució alimenta aquesta causa. Sense anuncis. Sense rastrejadors. No és broma.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">La vostra contribució ajuda a pagar el desenvolupament, els servidors i l’amplada de banda d’una aplicació que fan servir milions de persones a tot el món per a la comunicació privada i instantània.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Gràcies pel vostre suport!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gràcies per l\'empenta!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Heu obtingut una insígnia de %s. Si la mostreu, es mostrarà a les persones amb qui converseu que doneu suport al Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra-ho al perfil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Feu una insígnia inclosa</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fet</string>
+  <string name="ManageDonationsFragment__my_support">Suport</string>
+  <string name="ManageDonationsFragment__manage_subscription">Gestioneu la subscripció</string>
+  <string name="ManageDonationsFragment__badges">Insígnies</string>
+  <string name="ManageDonationsFragment__subscription_faq">PMF de la subscripció</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Error en obtenir una subscripció</string>
+  <string name="BoostFragment__give_signal_a_boost">Doneu una empenta al Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Digueu \"Gràcies!\" i obtingueu la insígnia Boost durant %1$d dies.</string>
+  <string name="Boost__enter_custom_amount">Introduïu la quantitat personalitzada</string>
+  <string name="Boost__one_time_contribution">Contribució d\'un cop</string>
+  <string name="MySupportPreference__add_a_signal_boost">Afegiu una empenta al Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/ mes</string>
+  <string name="MySupportPreference__renews_s">Renovacions %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">La vostra insígnia %1$s ha caducat i ja no és visible al perfil per a altres usuaris.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuar donant suport a la tecnologia dissenyada per a vosaltres (no per a les vostres dades), penseu a convertir-vos en subscriptor mensual.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Fes-me\'n subscriptor</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
+  <string name="Subscription__contact_support">Contacteu amb l\'Assistència</string>
+  <string name="SubscribeFragment__processing_payment">Es processa el pagament…</string>
+  <string name="DonationsErrors__payment_failed">Ha fallat el pagament.</string>
   <!--EOF-->
 </resources>

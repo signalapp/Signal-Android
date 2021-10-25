@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.internal;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
 
 import java.util.concurrent.ExecutionException;
@@ -92,8 +93,17 @@ public final class ServiceResponse<Result> {
       return forUnknownError(throwable.getCause());
     } else if (throwable instanceof NonSuccessfulResponseCodeException) {
       return forApplicationError(throwable, ((NonSuccessfulResponseCodeException) throwable).getCode(), null);
+    } else if (throwable instanceof PushNetworkException && throwable.getCause() != null) {
+      return forUnknownError(throwable.getCause());
     } else {
       return forExecutionError(throwable);
     }
+  }
+
+  public static <T, I> ServiceResponse<T> coerceError(ServiceResponse<I> response) {
+    if (response.applicationError.isPresent()) {
+      return ServiceResponse.forApplicationError(response.applicationError.get(), response.status, response.body.orNull());
+    }
+    return ServiceResponse.forExecutionError(response.executionError.orNull());
   }
 }

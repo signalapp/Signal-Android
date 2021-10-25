@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
-import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
@@ -32,7 +32,6 @@ public class WebRtcInteractor {
   @NonNull private final Context                        context;
   @NonNull private final SignalCallManager              signalCallManager;
   @NonNull private final LockManager                    lockManager;
-  @NonNull private final SignalAudioManager             audioManager;
   @NonNull private final CameraEventListener            cameraEventListener;
   @NonNull private final GroupCall.Observer             groupCallObserver;
   @NonNull private final AppForegroundObserver.Listener foregroundListener;
@@ -40,15 +39,13 @@ public class WebRtcInteractor {
   public WebRtcInteractor(@NonNull Context context,
                           @NonNull SignalCallManager signalCallManager,
                           @NonNull LockManager lockManager,
-                          @NonNull SignalAudioManager audioManager,
                           @NonNull CameraEventListener cameraEventListener,
                           @NonNull GroupCall.Observer groupCallObserver,
                           @NonNull AppForegroundObserver.Listener foregroundListener)
   {
-    this.context           = context;
-    this.signalCallManager = signalCallManager;
-    this.lockManager       = lockManager;
-    this.audioManager        = audioManager;
+    this.context             = context;
+    this.signalCallManager   = signalCallManager;
+    this.lockManager         = lockManager;
     this.cameraEventListener = cameraEventListener;
     this.groupCallObserver   = groupCallObserver;
     this.foregroundListener  = foregroundListener;
@@ -72,10 +69,6 @@ public class WebRtcInteractor {
 
   @NonNull AppForegroundObserver.Listener getForegroundListener() {
     return foregroundListener;
-  }
-
-  void setWantsBluetoothConnection(boolean enabled) {
-    WebRtcCallService.setWantsBluetoothConnection(context, enabled);
   }
 
   void updatePhoneState(@NonNull LockManager.PhoneState phoneState) {
@@ -118,6 +111,10 @@ public class WebRtcInteractor {
     signalCallManager.insertMissedCall(remotePeer, true, timestamp, isVideoOffer);
   }
 
+  void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean isVideoOffer) {
+    signalCallManager.insertReceivedCall(remotePeer, true, isVideoOffer);
+  }
+
   boolean startWebRtcCallActivityIfPossible() {
     return signalCallManager.startCallCardActivityIfPossible();
   }
@@ -131,30 +128,38 @@ public class WebRtcInteractor {
   }
 
   void silenceIncomingRinger() {
-    audioManager.silenceIncomingRinger();
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SilenceIncomingRinger());
   }
 
   void initializeAudioForCall() {
-    audioManager.initializeAudioForCall();
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Initialize());
   }
 
   void startIncomingRinger(@Nullable Uri ringtoneUri, boolean vibrate) {
-    audioManager.startIncomingRinger(ringtoneUri, vibrate);
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.StartIncomingRinger(ringtoneUri, vibrate));
   }
 
   void startOutgoingRinger() {
-    audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.StartOutgoingRinger());
   }
 
   void stopAudio(boolean playDisconnect) {
-    audioManager.stop(playDisconnect);
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Stop(playDisconnect));
   }
 
-  void startAudioCommunication(boolean preserveSpeakerphone) {
-    audioManager.startCommunication(preserveSpeakerphone);
+  void startAudioCommunication() {
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Start());
   }
 
-  void peekGroupCall(@NonNull RecipientId recipientId) {
-    signalCallManager.peekGroupCall(recipientId);
+  public void setUserAudioDevice(@NonNull SignalAudioManager.AudioDevice userDevice) {
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(userDevice));
+  }
+
+  public void setDefaultAudioDevice(@NonNull SignalAudioManager.AudioDevice userDevice, boolean clearUserEarpieceSelection) {
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetDefaultDevice(userDevice, clearUserEarpieceSelection));
+  }
+
+  void peekGroupCallForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo) {
+    signalCallManager.peekGroupCallForRingingCheck(groupCallRingCheckInfo);
   }
 }

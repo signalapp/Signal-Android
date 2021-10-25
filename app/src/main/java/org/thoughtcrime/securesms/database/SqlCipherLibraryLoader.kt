@@ -1,8 +1,5 @@
 package org.thoughtcrime.securesms.database
 
-import android.content.Context
-import net.sqlcipher.database.SQLiteDatabase
-
 /**
  * A simple wrapper to load SQLCipher libs exactly once. The exact entry point of database access is non-deterministic because content providers run before
  * Application#onCreate().
@@ -15,11 +12,11 @@ class SqlCipherLibraryLoader {
     private val LOCK = Object()
 
     @JvmStatic
-    fun load(context: Context) {
+    fun load() {
       if (!loaded) {
         synchronized(LOCK) {
           if (!loaded) {
-            SQLiteDatabase.loadLibs(context)
+            System.loadLibrary("sqlcipher")
             loaded = true
           }
         }

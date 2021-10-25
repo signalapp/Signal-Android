@@ -60,6 +60,10 @@ public class DeliveryStatusView extends FrameLayout {
     this.setVisibility(View.GONE);
   }
 
+  public boolean isPending() {
+    return pendingIndicator.getVisibility() == View.VISIBLE;
+  }
+
   public void setPending() {
     this.setVisibility(View.VISIBLE);
     pendingIndicator.setVisibility(View.VISIBLE);

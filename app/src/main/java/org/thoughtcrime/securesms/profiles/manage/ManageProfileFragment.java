@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarState;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.NameUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -51,6 +52,7 @@ public class ManageProfileFragment extends LoggingFragment {
   private AlertDialog            avatarProgress;
   private TextView               avatarInitials;
   private ImageView              avatarBackground;
+  private View                   badgesContainer;
 
   private ManageProfileViewModel viewModel;
 
@@ -73,6 +75,7 @@ public class ManageProfileFragment extends LoggingFragment {
     this.aboutEmojiView        = view.findViewById(R.id.manage_profile_about_icon);
     this.avatarInitials        = view.findViewById(R.id.manage_profile_avatar_initials);
     this.avatarBackground      = view.findViewById(R.id.manage_profile_avatar_background);
+    this.badgesContainer       = view.findViewById(R.id.manage_profile_badges_container);
 
     initializeViewModel();
 
@@ -105,6 +108,14 @@ public class ManageProfileFragment extends LoggingFragment {
         updateInitials(avatarInitials.getText().toString());
       }
     });
+
+    if (FeatureFlags.donorBadges()) {
+      badgesContainer.setOnClickListener(v -> {
+        Navigation.findNavController(v).navigate(ManageProfileFragmentDirections.actionManageProfileFragmentToBadgeManageFragment());
+      });
+    } else {
+      badgesContainer.setVisibility(View.GONE);
+    }
   }
 
   private void initializeViewModel() {

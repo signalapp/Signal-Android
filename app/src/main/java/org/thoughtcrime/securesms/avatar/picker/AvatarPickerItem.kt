@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.avatar.picker
 
 import android.util.TypedValue
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
@@ -57,14 +58,17 @@ object AvatarPickerItem {
     init {
       textView.typeface = AvatarRenderer.getTypeface(context)
       textView.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-        updateAndApplyText(textView.text.toString())
+        updateFontSize(textView.text.toString())
       }
     }
 
-    private fun updateAndApplyText(text: String) {
+    private fun updateFontSize(text: String) {
       val textSize = Avatars.getTextSizeForLength(context, text, textView.measuredWidth * 0.8f, textView.measuredHeight * 0.45f)
       textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
-      textView.text = text
+
+      if (textView !is EditText) {
+        textView.text = text
+      }
     }
 
     override fun bind(model: Model) {
@@ -76,12 +80,8 @@ object AvatarPickerItem {
       selectedOverlay?.animate()?.cancel()
       selectedFader?.animate()?.cancel()
 
-      if (model.isSelected) {
-        itemView.setOnLongClickListener {
-          onAvatarLongClickListener?.invoke(itemView, model.avatar) ?: false
-        }
-      } else {
-        itemView.setOnLongClickListener(null)
+      itemView.setOnLongClickListener {
+        onAvatarLongClickListener?.invoke(itemView, model.avatar) ?: false
       }
 
       itemView.setOnClickListener { onAvatarClickListener?.invoke(model.avatar, model.isSelected) }
@@ -108,7 +108,10 @@ object AvatarPickerItem {
         is Avatar.Text -> {
           textView.visible = true
 
-          updateAndApplyText(model.avatar.text)
+          updateFontSize(model.avatar.text)
+          if (textView.text.toString() != model.avatar.text) {
+            textView.text = model.avatar.text
+          }
 
           imageView.setImageDrawable(null)
           imageView.background.colorFilter = SimpleColorFilter(model.avatar.color.backgroundColor)

@@ -8,12 +8,12 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MappingModel;
 
-class ShareSelectionMappingModel implements MappingModel<ShareSelectionMappingModel> {
+public class ShareSelectionMappingModel implements MappingModel<ShareSelectionMappingModel> {
 
   private final ShareContact shareContact;
   private final boolean      isFirst;
 
-  ShareSelectionMappingModel(@NonNull ShareContact shareContact, boolean isFirst) {
+  public ShareSelectionMappingModel(@NonNull ShareContact shareContact, boolean isFirst) {
     this.shareContact = shareContact;
     this.isFirst      = isFirst;
   }
@@ -23,7 +23,7 @@ class ShareSelectionMappingModel implements MappingModel<ShareSelectionMappingMo
                               .transform(Recipient::resolved)
                               .transform(recipient -> recipient.isSelf() ? context.getString(R.string.note_to_self)
                                                                          : recipient.getShortDisplayNameIncludingUsername(context))
-                              .or(shareContact.getNumber());
+                              .or(shareContact::getNumber);
 
     return isFirst ? name : context.getString(R.string.ShareActivity__comma_s, name);
   }

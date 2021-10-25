@@ -8,11 +8,13 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
+import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -23,7 +25,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   private final SubmitDebugLogRepository        repo;
   private final MutableLiveData<Mode>           mode;
-  private final ProxyPagingController           pagingController;
+  private final ProxyPagingController<Long>     pagingController;
   private final List<LogLine>                   staticLines;
   private final MediatorLiveData<List<LogLine>> lines;
   private final long                            firstViewTime;
@@ -34,7 +36,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
     this.repo             = new SubmitDebugLogRepository();
     this.mode             = new MutableLiveData<>();
     this.trace            = Tracer.getInstance().serialize();
-    this.pagingController = new ProxyPagingController();
+    this.pagingController = new ProxyPagingController<>();
     this.firstViewTime    = System.currentTimeMillis();
     this.staticLines      = new ArrayList<>();
     this.lines            = new MediatorLiveData<>();
@@ -42,13 +44,16 @@ public class SubmitDebugLogViewModel extends ViewModel {
     repo.getPrefixLogLines(staticLines -> {
       this.staticLines.addAll(staticLines);
 
+      Log.blockUntilAllWritesFinished();
+      LogDatabase.getInstance(ApplicationDependencies.getApplication()).trimToSize();
+
       LogDataSource dataSource = new LogDataSource(ApplicationDependencies.getApplication(), staticLines, firstViewTime);
       PagingConfig  config     = new PagingConfig.Builder().setPageSize(100)
                                                            .setBufferPages(3)
                                                            .setStartIndex(0)
                                                            .build();
 
-      PagedData<LogLine> pagedData = PagedData.create(dataSource, config);
+      PagedData<Long, LogLine> pagedData = PagedData.create(dataSource, config);
 
       ThreadUtil.runOnMain(() -> {
         pagingController.set(pagedData.getController());

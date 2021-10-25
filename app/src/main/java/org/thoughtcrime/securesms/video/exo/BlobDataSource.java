@@ -20,12 +20,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class BlobDataSource implements DataSource {
+class BlobDataSource implements DataSource {
 
   private final @NonNull  Context          context;
   private final @Nullable TransferListener listener;
 
-  private Uri         uri;
+  private DataSpec    dataSpec;
   private InputStream inputStream;
 
   BlobDataSource(@NonNull Context context, @Nullable TransferListener listener) {
@@ -34,21 +34,21 @@ public class BlobDataSource implements DataSource {
   }
 
   @Override
-  public void addTransferListener(TransferListener transferListener) {
+  public void addTransferListener(@NonNull TransferListener transferListener) {
   }
 
   @Override
   public long open(DataSpec dataSpec) throws IOException {
-    this.uri         = dataSpec.uri;
-    this.inputStream = BlobProvider.getInstance().getStream(context, uri, dataSpec.position);
+    this.dataSpec = dataSpec;
+    this.inputStream = BlobProvider.getInstance().getStream(context, dataSpec.uri, dataSpec.position);
 
     if (listener != null) {
       listener.onTransferStart(this, dataSpec, false);
     }
 
-    long size = unwrapLong(BlobProvider.getFileSize(uri));
+    long size = unwrapLong(BlobProvider.getFileSize(dataSpec.uri));
     if (size == 0) {
-      size = BlobProvider.getInstance().calculateFileSize(context, uri);
+      size = BlobProvider.getInstance().calculateFileSize(context, dataSpec.uri);
     }
 
     if (size - dataSpec.position <= 0) throw new EOFException("No more data");
@@ -61,11 +61,11 @@ public class BlobDataSource implements DataSource {
   }
 
   @Override
-  public int read(byte[] buffer, int offset, int readLength) throws IOException {
+  public int read(@NonNull byte[] buffer, int offset, int readLength) throws IOException {
     int read = inputStream.read(buffer, offset, readLength);
 
     if (read > 0 && listener != null) {
-      listener.onBytesTransferred(this, null, false, read);
+      listener.onBytesTransferred(this, dataSpec, false, read);
     }
 
     return read;
@@ -73,11 +73,11 @@ public class BlobDataSource implements DataSource {
 
   @Override
   public Uri getUri() {
-    return uri;
+    return dataSpec.uri;
   }
 
   @Override
-  public Map<String, List<String>> getResponseHeaders() {
+  public @NonNull Map<String, List<String>> getResponseHeaders() {
     return Collections.emptyMap();
   }
 

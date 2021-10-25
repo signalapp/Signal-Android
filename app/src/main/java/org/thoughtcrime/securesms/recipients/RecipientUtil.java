@@ -28,10 +28,12 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecipientUtil {
 
@@ -40,23 +42,7 @@ public class RecipientUtil {
   /**
    * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
    * the provided recipient. This includes performing a possible network request if no UUID is
-   * available. If the request to get a UUID fails, the exception is swallowed an an E164-only
-   * recipient is returned.
-   */
-  @WorkerThread
-  public static @NonNull SignalServiceAddress toSignalServiceAddressBestEffort(@NonNull Context context, @NonNull Recipient recipient) {
-    try {
-      return toSignalServiceAddress(context, recipient);
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to populate address!", e);
-      return new SignalServiceAddress(recipient.getUuid().orNull(), recipient.getE164().orNull());
-    }
-  }
-
-  /**
-   * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
-   * the provided recipient. This includes performing a possible network request if no UUID is
-   * available. If the request to get a UUID fails, an IOException is thrown.
+   * available. If the request to get a UUID fails or the user is not registered, an IOException is thrown.
    */
   @WorkerThread
   public static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient)
@@ -76,7 +62,11 @@ public class RecipientUtil {
       Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
     }
 
-    return new SignalServiceAddress(Optional.fromNullable(recipient.getUuid().orNull()), Optional.fromNullable(recipient.resolve().getE164().orNull()));
+    if (recipient.hasUuid()) {
+      return new SignalServiceAddress(recipient.requireUuid(), Optional.fromNullable(recipient.resolve().getE164().orNull()));
+    } else {
+      throw new NotFoundException(recipient.getId() + " is not registered!");
+    }
   }
 
   public static @NonNull List<SignalServiceAddress> toSignalServiceAddresses(@NonNull Context context, @NonNull List<RecipientId> recipients)
@@ -92,10 +82,13 @@ public class RecipientUtil {
 
     return Stream.of(recipients)
                  .map(Recipient::resolve)
-                 .map(r -> new SignalServiceAddress(r.getUuid().orNull(), r.getE164().orNull()))
+                 .map(r -> new SignalServiceAddress(r.requireUuid(), r.getE164().orNull()))
                  .toList();
   }
 
+  /**
+   * Ensures that UUIDs are available. If a UUID cannot be retrieved or a user is found to be unregistered, an exception is thrown.
+   */
   public static boolean ensureUuidsAreAvailable(@NonNull Context context, @NonNull Collection<Recipient> recipients)
       throws IOException
   {
@@ -106,6 +99,11 @@ public class RecipientUtil {
 
     if (recipientsWithoutUuids.size() > 0) {
       DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false);
+
+      if (recipients.stream().map(Recipient::resolve).anyMatch(Recipient::isUnregistered)) {
+        throw new NotFoundException("1 or more recipients are not registered!");
+      }
+
       return true;
     } else {
       return false;
@@ -218,7 +216,7 @@ public class RecipientUtil {
       return true;
     }
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient);
+    Long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient.getId());
     return isMessageRequestAccepted(context, threadId, threadRecipient);
   }
 
@@ -232,7 +230,7 @@ public class RecipientUtil {
       return true;
     }
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient);
+    Long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient.getId());
     return isCallRequestAccepted(context, threadId, threadRecipient);
   }
 
@@ -240,13 +238,17 @@ public class RecipientUtil {
    * @return True if a conversation existed before we enabled message requests, otherwise false.
    */
   @WorkerThread
-  public static boolean isPreMessageRequestThread(@NonNull Context context, long threadId) {
+  public static boolean isPreMessageRequestThread(@NonNull Context context, @Nullable Long threadId) {
     long beforeTime = SignalStore.misc().getMessageRequestEnableTime();
-    return DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId, beforeTime) > 0;
+    return threadId != null && DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId, beforeTime) > 0;
   }
 
   @WorkerThread
   public static void shareProfileIfFirstSecureMessage(@NonNull Context context, @NonNull Recipient recipient) {
+    if (recipient.isProfileSharing()) {
+      return;
+    }
+
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient.getId());
 
     if (isPreMessageRequestThread(context, threadId)) {
@@ -294,22 +296,23 @@ public class RecipientUtil {
   @WorkerThread
   public static boolean setAndSendUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, long threadId) {
     int defaultTimer = SignalStore.settings().getUniversalExpireTimer();
-    if (defaultTimer == 0 || recipient.isGroup() || recipient.getExpireMessages() != 0 || !recipient.isRegistered()) {
+    if (defaultTimer == 0 || recipient.isGroup() || recipient.getExpiresInSeconds() != 0 || !recipient.isRegistered()) {
       return false;
     }
 
     if (threadId == -1 || !DatabaseFactory.getMmsSmsDatabase(context).hasMeaningfulMessage(threadId)) {
       DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient.getId(), defaultTimer);
       OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(recipient, System.currentTimeMillis(), defaultTimer * 1000L);
-      MessageSender.send(context, outgoingMessage, DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient), false, null);
+      MessageSender.send(context, outgoingMessage, DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient), false, null, null);
       return true;
     }
     return false;
   }
 
   @WorkerThread
-  private static boolean isMessageRequestAccepted(@NonNull Context context, long threadId, @NonNull Recipient threadRecipient) {
-    return threadRecipient.isSelf()                              ||
+  public static boolean isMessageRequestAccepted(@NonNull Context context, @Nullable Long threadId, @Nullable Recipient threadRecipient) {
+    return threadRecipient == null                               ||
+           threadRecipient.isSelf()                              ||
            threadRecipient.isProfileSharing()                    ||
            threadRecipient.isSystemContact()                     ||
            threadRecipient.isForceSmsSelection()                 ||
@@ -320,7 +323,7 @@ public class RecipientUtil {
   }
 
   @WorkerThread
-  private static boolean isCallRequestAccepted(@NonNull Context context, long threadId, @NonNull Recipient threadRecipient) {
+  private static boolean isCallRequestAccepted(@NonNull Context context, @Nullable Long threadId, @NonNull Recipient threadRecipient) {
     return threadRecipient.isProfileSharing()            ||
            threadRecipient.isSystemContact()             ||
            hasSentMessageInThread(context, threadId)     ||
@@ -328,12 +331,16 @@ public class RecipientUtil {
   }
 
   @WorkerThread
-  public static boolean hasSentMessageInThread(@NonNull Context context, long threadId) {
-    return DatabaseFactory.getMmsSmsDatabase(context).getOutgoingSecureConversationCount(threadId) != 0;
+  public static boolean hasSentMessageInThread(@NonNull Context context, @Nullable Long threadId) {
+    return threadId != null && DatabaseFactory.getMmsSmsDatabase(context).getOutgoingSecureConversationCount(threadId) != 0;
   }
 
   @WorkerThread
-  private static boolean noSecureMessagesAndNoCallsInThread(@NonNull Context context, long threadId) {
+  private static boolean noSecureMessagesAndNoCallsInThread(@NonNull Context context, @Nullable Long threadId) {
+    if (threadId == null) {
+      return true;
+    }
+
     return DatabaseFactory.getMmsSmsDatabase(context).getSecureConversationCount(threadId) == 0 &&
            !DatabaseFactory.getThreadDatabase(context).hasReceivedAnyCallsSince(threadId, 0);
   }

@@ -11,7 +11,7 @@ import android.util.Pair;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.Conversions;
@@ -162,9 +162,8 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processAttachment(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Attachment attachment, BackupRecordInputStream inputStream)
       throws IOException
   {
-    File                       partsDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE);
-    File                       dataFile       = File.createTempFile("part", ".mms", partsDirectory);
-    Pair<byte[], OutputStream> output         = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
+    File                       dataFile = AttachmentDatabase.newFile(context);
+    Pair<byte[], OutputStream> output   = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
 
     ContentValues contentValues = new ContentValues();
 

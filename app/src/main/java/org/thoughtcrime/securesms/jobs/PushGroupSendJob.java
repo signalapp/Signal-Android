@@ -12,7 +12,6 @@ import com.google.protobuf.ByteString;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -42,33 +41,26 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Quote;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public final class PushGroupSendJob extends PushSendJob {
@@ -156,11 +148,13 @@ public final class PushGroupSendJob extends PushSendJob {
   public void onPushSend()
       throws IOException, MmsException, NoSuchMessageException, RetryLaterException
   {
-    MessageDatabase           database                   = DatabaseFactory.getMmsDatabase(context);
-    OutgoingMediaMessage      message                    = database.getOutgoingMessage(messageId);
-    long                      threadId                   = database.getMessageRecord(messageId).getThreadId();
-    List<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
-    List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
+    SignalLocalMetrics.GroupMessageSend.onJobStarted(messageId);
+
+    MessageDatabase          database                   = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage     message                    = database.getOutgoingMessage(messageId);
+    long                     threadId                   = database.getMessageRecord(messageId).getThreadId();
+    Set<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
+    Set<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
     ApplicationDependencies.getJobManager().cancelAllInQueue(TypingSendJob.getQueue(threadId));
 
@@ -169,7 +163,7 @@ public final class PushGroupSendJob extends PushSendJob {
       return;
     }
 
-    Recipient groupRecipient = message.getRecipient().fresh();
+    Recipient groupRecipient = message.getRecipient().resolve();
 
     if (!groupRecipient.isPushGroup()) {
       throw new MmsException("Message recipient isn't a group!");
@@ -189,12 +183,12 @@ public final class PushGroupSendJob extends PushSendJob {
       List<Recipient> target;
 
       if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient));
-      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> Recipient.resolved(nf.getRecipientId(context))).toList();
-      else                                         target = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
+      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
+      else                                         target = Stream.of(getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId)).distinctBy(Recipient::getId).toList();
 
       RecipientAccessList accessList = new RecipientAccessList(target);
 
-      List<SendMessageResult>   results = deliver(message, groupRecipient, target);
+      List<SendMessageResult> results = deliver(message, groupRecipient, target);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
       List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();
@@ -212,23 +206,11 @@ public final class PushGroupSendJob extends PushSendJob {
         recipientDatabase.markUnregistered(unregistered.getId());
       }
 
-      for (NetworkFailure resolvedFailure : resolvedNetworkFailures) {
-        database.removeFailure(messageId, resolvedFailure);
-        existingNetworkFailures.remove(resolvedFailure);
-      }
+      existingNetworkFailures.removeAll(resolvedNetworkFailures);
+      database.setNetworkFailures(messageId, existingNetworkFailures);
 
-      for (IdentityKeyMismatch resolvedIdentity : resolvedIdentityFailures) {
-        database.removeMismatchedIdentity(messageId, resolvedIdentity.getRecipientId(context), resolvedIdentity.getIdentityKey());
-        existingIdentityMismatches.remove(resolvedIdentity);
-      }
-
-      if (!networkFailures.isEmpty()) {
-        database.addFailures(messageId, networkFailures);
-      }
-
-      for (IdentityKeyMismatch mismatch : identityMismatches) {
-        database.addMismatchedIdentity(messageId, mismatch.getRecipientId(context), mismatch.getIdentityKey());
-      }
+      existingIdentityMismatches.removeAll(resolvedIdentityFailures);
+      database.setMismatchedIdentities(messageId, existingIdentityMismatches);
 
       DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(successUnidentifiedStatus, messageId);
 
@@ -250,9 +232,8 @@ public final class PushGroupSendJob extends PushSendJob {
         if (message.isViewOnce()) {
           DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForViewOnceMessage(messageId);
         }
-      } else if (!networkFailures.isEmpty()) {
-        throw new RetryLaterException();
       } else if (!identityMismatches.isEmpty()) {
+        Log.w(TAG, "Failing because there were " + identityMismatches.size() + " identity mismatches.");
         database.markAsSentFailed(messageId);
         notifyMediaMessageDeliveryFailed(context, messageId);
 
@@ -261,12 +242,23 @@ public final class PushGroupSendJob extends PushSendJob {
                                                       .collect(Collectors.toSet());
 
         RetrieveProfileJob.enqueue(mismatchRecipientIds);
+      } else if (!networkFailures.isEmpty()) {
+        Log.w(TAG, "Retrying because there were " + networkFailures.size() + " network failures.");
+        throw new RetryLaterException();
       }
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     }
+
+    SignalLocalMetrics.GroupMessageSend.onJobFinished(messageId);
+  }
+
+  @Override
+  public void onRetry() {
+    SignalLocalMetrics.GroupMessageSend.cancel(messageId);
+    super.onRetry();
   }
 
   @Override
@@ -309,7 +301,7 @@ public final class PushGroupSendJob extends PushSendJob {
           SignalServiceGroupV2     group            = builder.build();
           SignalServiceDataMessage groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                               .withTimestamp(message.getSentTimeMillis())
-                                                                              .withExpiration(groupRecipient.getExpireMessages())
+                                                                              .withExpiration(groupRecipient.getExpiresInSeconds())
                                                                               .asGroupMessage(group)
                                                                               .build();
           return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId, true), groupDataMessage);
@@ -317,6 +309,12 @@ public final class PushGroupSendJob extends PushSendJob {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
         }
       } else {
+        Optional<GroupDatabase.GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupRecipient.requireGroupId());
+
+        if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
+          throw new UndeliverableMessageException("Non-admins cannot send messages in announcement groups!");
+        }
+
         SignalServiceDataMessage.Builder builder = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis());
 

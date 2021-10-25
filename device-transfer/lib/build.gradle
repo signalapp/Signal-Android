@@ -26,18 +26,18 @@ dependencyVerification {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation libs.androidx.appcompat
     implementation project(':core-util')
-    implementation 'org.whispersystems:signal-client-java:0.8.3'
-    api 'org.greenrobot:eventbus:3.0.0'
+    implementation libs.signal.client.java
+    api libs.greenrobot.eventbus
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'androidx.test:core:1.2.0'
-    testImplementation ('org.robolectric:robolectric:4.4') {
+    testImplementation testLibs.junit.junit
+    testImplementation testLibs.androidx.test.core
+    testImplementation (testLibs.robolectric.robolectric) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
-    testImplementation 'org.robolectric:shadows-multidex:4.4'
-    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation testLibs.robolectric.shadows.multidex
+    testImplementation testLibs.hamcrest.hamcrest
 
     testImplementation(testFixtures(project(":libsignal-service")))
 }

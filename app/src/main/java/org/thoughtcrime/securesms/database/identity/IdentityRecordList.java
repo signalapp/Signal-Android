@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database.identity;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public final class IdentityRecordList {
+
+  public static final IdentityRecordList EMPTY = new IdentityRecordList(Collections.emptyList());
 
   private final List<IdentityRecord> identityRecords;
   private final boolean              isVerified;

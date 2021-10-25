@@ -181,9 +181,6 @@
   <string name="ConversationItem_this_message_was_deleted">Izen-agi yettwakkes.</string>
   <string name="ConversationItem_you_deleted_this_message">Tekkseḍ izen-agi.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Wennez tiɣimit taɣellsant?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Aya yezmer ad iεawen ma yella tesεiḍ uguren n uwgelhen deg usqerdec-a. Iznan-ik·im ad ttwaḥerzen.</string>
-  <string name="ConversationActivity_reset">Wennez</string>
   <string name="ConversationActivity_add_attachment">Rnu afaylu</string>
   <string name="ConversationActivity_select_contact_info">Fren talɣut n unermis</string>
   <string name="ConversationActivity_compose_message">Aru izen</string>
@@ -310,6 +307,17 @@
     <item quantity="one">Senkez adiwenni ɣer tbewwaḍt n urmas</item>
     <item quantity="other">Senkez %d n yidiwenniyen ɣer tnaka n urmas</item>
   </plurals>
+  <string name="ConversationListFragment_read">Γaṛ</string>
+  <string name="ConversationListFragment_unread">Ur ittwaγṛi ara</string>
+  <string name="ConversationListFragment_pin">Amessak</string>
+  <string name="ConversationListFragment_unpin">Fsi</string>
+  <string name="ConversationListFragment_mute">Kkes imesli</string>
+  <string name="ConversationListFragment_unmute">Err imesli</string>
+  <string name="ConversationListFragment_select">Fren</string>
+  <string name="ConversationListFragment_archive">Tarcivt</string>
+  <string name="ConversationListFragment_unarchive">Kkes aɣbar</string>
+  <string name="ConversationListFragment_delete">Kkes</string>
+  <string name="ConversationListFragment_select_all">Fren akk</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Izen n umyibdel n tsura</string>
   <!--ConversationListItemAction-->
@@ -669,6 +677,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Irmed</string>
   <string name="CustomNotificationsDialogFragment__disabled">Yensa</string>
   <string name="CustomNotificationsDialogFragment__default">Amezwer</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Arussin</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Aseɣwen n ugraw yettwabḍayen</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Sefrek &amp; bḍu</string>
@@ -733,22 +742,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Bḍu</string>
   <string name="InviteActivity_share_with_contacts">Bḍu akked yinermisen</string>
-  <string name="InviteActivity_choose_how_to_share">Fren amek ara tebḍuḍ</string>
   <string name="InviteActivity_cancel">Sefsex</string>
   <string name="InviteActivity_sending">Tuzna…</string>
   <string name="InviteActivity_invitations_sent">Tinubgiwin ttwaznent!</string>
   <string name="InviteActivity_invite_to_signal">Snubget-d ɣer Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">AZEN SMS I %d UMDAKKEL</item>
-    <item quantity="other">AZEN SMS I %d IMDUKKAL</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Yuzen %d n tinubga s SMS?</item>
     <item quantity="other">Yuzen %d n tunbgiwin s SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Rǧu ad nuɣal ɣer Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Akka i d-yettban ur tesεiḍ ula yiwen n usnas ara tebḍuḍ.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Imeddukkal ur ttaǧǧan ara imeddukkal-nsen ad ttmeslayen s war awgelhen.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Issin ugar</string>
   <!--LongMessageActivity-->
@@ -785,14 +788,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tamuɣli s tracca</string>
   <string name="MediaOverviewActivity_List_view_description">Timeẓri n tebdart</string>
   <string name="MediaOverviewActivity_Selected_description">Yettwafren</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d n uferdis n %2$s</item>
-    <item quantity="other">%1$d n yiferdisen n %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d n uferdis</item>
-    <item quantity="other">%1$d n yiferdisen</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">Sekles</string>
+  <string name="MediaOverviewActivity_select_all">Fren akk</string>
+  <string name="MediaOverviewActivity_delete">Kkes</string>
   <string name="MediaOverviewActivity_file">Afaylu</string>
   <string name="MediaOverviewActivity_audio">Ameslaw</string>
   <string name="MediaOverviewActivity_video">Avidyu</string>
@@ -819,10 +817,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Aqεad n usiwel n Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Asiwel n Signal i d-iteddun</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Asens n umeẓlu n usiwel n Signal</string>
-  <string name="NotificationBarManager__deny_call">Agi asiwel</string>
   <string name="NotificationBarManager__answer_call">Err ɣef usiwel</string>
   <string name="NotificationBarManager__end_call">Fakk asiwel</string>
   <string name="NotificationBarManager__cancel_call">Sefsex asiwel</string>
+  <string name="NotificationBarManager__join_call">Kcem ɣer usiwel</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Rmed ilɣa?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Ur sṛuḥu ula d yiwen yizen seg yinermisen d yigrawen ine·inem.</string>
@@ -909,7 +907,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s yerra %2$s d anedbal.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s yerra-k·m d anedbal.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Tesfesxeḍ ibaɣuren n unedbal seg %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s isefsex ibaɣuren-ik·im n unedbal.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s isefsex ibaɣuren n unedbal seg %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s tura d anedbal.</string>
   <string name="MessageRecord_you_are_now_an_admin">Aqli-k·kem tura d t·anedbal·t.</string>
@@ -966,6 +963,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Tbeddleḍ d anwa i izemren ad yeẓreg attekki ɣer ugraw ɣer \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ibeddel d anwa i izemren ad yeẓreg attekki ɣer ugraw ɣer \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Win i izemren ad yeẓreg attekki ɣer ugraw yettubeddel ɣer \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Tremdeḍ aseɣwen n ugraw s usensi n uqbal n unedbal.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Tremdeḍ aseɣwen n ugraw s urmad n uqbal n unedbal.</string>
@@ -1166,13 +1164,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Asiwel…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Asiwel s taɣect n Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Asiwel s tvidyut n Signal…</string>
+  <string name="WebRtcCallView__signal_call">Asiwel Signal</string>
   <string name="WebRtcCallView__start_call">Bdu asiwel</string>
   <string name="WebRtcCallView__join_call">Rnu ɣer usiwel</string>
   <string name="WebRtcCallView__call_is_full">Asiwel yeččur</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Amḍan afellay n %1$d yimttekkiyen yewweḍ ɣer talast i usiwel-a Ɛreḍ tikkelt-nniḍen ticki.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" n usiwel n ugraw</string>
   <string name="WebRtcCallView__view_participants_list">Wali imttekkiyen</string>
   <string name="WebRtcCallView__your_video_is_off">Tavidyut-ik·im tensa</string>
   <string name="WebRtcCallView__reconnecting">Tulsa n tuqqna…</string>
@@ -1185,6 +1181,10 @@
     <item quantity="one">%1$s, %2$s d %3$d wiyaḍ ha-ten-an deg usiwel-a</item>
     <item quantity="other">%1$s, %2$s d %3$d wiyaḍ ha-ten-an deg usiwel-a</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Imsiwel</string>
+  <string name="WebRtcCallView__camera">Amḍiq n taɣdeft</string>
+  <string name="WebRtcCallView__mute">Kkes imesli</string>
+  <string name="WebRtcCallView__end_call">Fakk asiwel</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Deg usiwel-a · %1$d n umdan</item>
@@ -1272,6 +1272,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SharedContactView_add_to_contacts">Rnu ɣer yinermisen</string>
   <string name="SharedContactView_invite_to_signal">Snubget-d ɣer Signal</string>
   <string name="SharedContactView_message">Izen n Signal</string>
+  <!--SignalBottomActionBar-->
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ad ak·akem-id-yesmekti tikkelt-nniḍen ticki.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ad ak·akem-id-yesmekti tikkelt-nniḍen azekka.</string>
@@ -1591,6 +1592,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="ConversationUpdateItem_call_is_full">Asiwel yeččur</string>
   <string name="ConversationUpdateItem_invite_friends">Snubget-d imdukkal</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Rmed tilɣa n usiwel</string>
+  <string name="ConversationUpdateItem_update_contact">Leqqem Anermis</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ulac igrawen i ken-icerken, Senqed isutar s leɛqel kan.</string>
   <string name="ConversationUpdateItem_view">Askan</string>
   <!--audio_view-->
@@ -1600,6 +1602,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="QuoteView_audio">Ameslaw</string>
   <string name="QuoteView_video">Avidyu</string>
   <string name="QuoteView_photo">Tawlaft</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Amidyat n tɣuri tasuft</string>
   <string name="QuoteView_sticker">Astiker</string>
   <string name="QuoteView_you">Kečč.Kemm</string>
@@ -1739,21 +1742,17 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Sekcem isem neɣ uṭṭun</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Ma yella tebɣiḍ ad tesneqdeḍ taɣellist n uwgelhen-ik·im s %s, serwes gar wuṭṭun nnig d wuṭṭun ɣef yibenk-nsen. Γas akken, tzemreḍ ad tesmiḍneḍ tangalt ɣef tiliɣri-nsen neɣ suter-asen ad smiḍnen tangalt-ik·im. <a href="https://signal.org/redirect/safety-numbers">Issin ugar.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Sit i usmiḍen</string>
   <string name="verify_display_fragment__loading">Asali…</string>
-  <string name="verify_display_fragment__verified">Yettwasefqed</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bḍu uṭṭun aɣellsan</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Smiḍen tangalt QR ɣef yibenk n yinermisen-ik·im.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Zuɣer d asawen i wakken ad terreḍ</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Zuɣer d akessar i wakken ad tagiḍ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Kra n wuguren sran lwelha-inek·inem.</string>
-  <string name="message_details_header__sent">Ttwazanen</string>
-  <string name="message_details_header__received">Yettwarmes</string>
-  <string name="message_details_header__disappears">Yettruḥ</string>
-  <string name="message_details_header__via">S</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Ittraǧu</string>
   <string name="message_details_recipient_header__sent_to">Azen i</string>
@@ -2511,8 +2510,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Asaɣ ur ermid ara akka tura</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Izen ameslaw. %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ɣer %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Izen ameslaw. %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ɣer %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" yettusewḥel.</string>
@@ -2653,6 +2652,20 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Amiḍan</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Kemmel</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Uṭṭun n tilifun i teskecmeḍ ur yemṣada ara d wuṭṭun n umiḍan-ik·im.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Ẓreg uṭṭun</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Snifel PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Ɛreḍ tikelt nniḍen</string>
+  <string name="ChangeNumberLockActivity__leave">Eǧǧ</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Azen aɣmis n temseɣtayt</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Sekcem tasarut yuzen</string>
   <!--SmsSettingsFragment-->
@@ -2674,6 +2687,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpSettingsFragment__version">Lqem</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Tiwtilin &amp; Tsertit n Tbaḍnit</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Meqqer</string>
   <string name="DataAndStorageSettingsFragment__calls">Isawalen</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">Ini n udiwenni</string>
@@ -2733,14 +2747,31 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="NewConversationActivity__new_message">Izen amaynut</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Amḍiq n taɣdeft</string>
   <string name="AvatarPickerFragment__photo">Tawlaft</string>
   <string name="AvatarPickerFragment__save">Sekles</string>
+  <string name="AvatarPickerFragment__edit">Ẓreg</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Taskant</string>
   <string name="TextAvatarCreationFragment__done">Yemmed</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Ẓreg</string>
+  <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">Annuler</string>
+  <string name="ImageEditorHud__delete">Kkes</string>
+  <string name="MediaCountIndicatorButton__send">Azen</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Sit i wakken ad tferneḍ</string>
+  <string name="MediaReviewImagePageFragment__discard">Agi</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Taskant</string>
+  <string name="SubscribeFragment__not_now">Mačči tura</string>
+  <string name="SubscribeFragment__confirm">Sentem</string>
+  <string name="SubscribeFragment__update">Leqqem</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Yemmed</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mačči tura</string>
+  <string name="Subscription__contact_support">Tallalt n unermis</string>
+  <string name="DonationsErrors__payment_failed">Axelles yecceḍ</string>
   <!--EOF-->
 </resources>

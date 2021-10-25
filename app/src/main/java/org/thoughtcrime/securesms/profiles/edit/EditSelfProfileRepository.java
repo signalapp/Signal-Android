@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -145,6 +146,10 @@ public class EditSelfProfileRepository implements EditProfileRepository {
                              .enqueue();
 
       RegistrationUtil.maybeMarkRegistrationComplete(context);
+
+      if (avatar != null) {
+        SignalStore.misc().markHasEverHadAnAvatar();
+      }
 
       return UploadResult.SUCCESS;
     }, uploadResultConsumer::accept);

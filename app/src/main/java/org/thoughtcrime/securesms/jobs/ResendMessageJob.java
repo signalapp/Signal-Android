@@ -125,8 +125,14 @@ public class ResendMessageJob extends BaseJob {
       ThreadUtil.sleep(10000);
     }
 
-    SignalServiceMessageSender       messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    Recipient                        recipient     = Recipient.resolved(recipientId);
+    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
+    Recipient                  recipient     = Recipient.resolved(recipientId);
+
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " is unregistered!");
+      return;
+    }
+
     SignalServiceAddress             address       = RecipientUtil.toSignalServiceAddress(context, recipient);
     Optional<UnidentifiedAccessPair> access        = UnidentifiedAccessUtil.getAccessFor(context, recipient);
     Content                          contentToSend = content;
@@ -157,7 +163,7 @@ public class ResendMessageJob extends BaseJob {
                                                     .map(device -> new SignalProtocolAddress(recipient.requireServiceId(), device))
                                                     .collect(Collectors.toList());
 
-      new SignalSenderKeyStore(context).markSenderKeySharedWith(distributionId, addresses);
+      ApplicationDependencies.getSenderKeyStore().markSenderKeySharedWith(distributionId, addresses);
     }
   }
 

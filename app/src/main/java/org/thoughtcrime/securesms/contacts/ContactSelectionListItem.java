@@ -5,14 +5,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -25,7 +26,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
+public class ContactSelectionListItem extends ConstraintLayout implements RecipientForeverObserver {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(ContactSelectionListItem.class);
@@ -36,16 +37,17 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   private TextView        labelView;
   private CheckBox        checkBox;
   private View            smsTag;
+  private BadgeImageView  badge;
 
-  private String        number;
-  private String        chipName;
-  private int           contactType;
-  private String        contactName;
-  private String        contactNumber;
-  private String        contactLabel;
-  private String        contactAbout;
-  private LiveRecipient recipient;
-  private GlideRequests glideRequests;
+  private String           number;
+  private String           chipName;
+  private int              contactType;
+  private String           contactName;
+  private String           contactNumber;
+  private String           contactLabel;
+  private String           contactAbout;
+  private LiveRecipient    recipient;
+  private GlideRequests    glideRequests;
 
   public ContactSelectionListItem(Context context) {
     super(context);
@@ -64,6 +66,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.nameView          = findViewById(R.id.name);
     this.checkBox          = findViewById(R.id.check_box);
     this.smsTag            = findViewById(R.id.sms_tag);
+    this.badge             = findViewById(R.id.contact_badge);
 
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
@@ -117,6 +120,8 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     }
 
     this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
+
+    badge.setBadgeFromRecipient(recipientSnapshot);
   }
 
   public void setChecked(boolean selected, boolean animate) {
@@ -216,11 +221,19 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     if (this.recipient != null && this.recipient.getId().equals(recipient.getId())) {
       contactName   = recipient.getDisplayName(getContext());
       contactAbout  = recipient.getCombinedAboutAndEmoji();
-      contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+
+      if (recipient.isGroup() && recipient.getGroupId().isPresent()) {
+        contactNumber = recipient.getGroupId().get().toString();
+      } else if (recipient.hasE164()) {
+        contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+      } else {
+        contactNumber = recipient.getEmail().or("");
+      }
 
       contactPhotoImage.setAvatar(glideRequests, recipient, false);
       setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
       smsTag.setVisibility(recipient.isRegistered() ? GONE : VISIBLE);
+      badge.setBadgeFromRecipient(recipient);
     } else {
       Log.w(TAG, "Bad change! Local recipient doesn't match. Ignoring. Local: " + (this.recipient == null ? "null" : this.recipient.getId()) + ", Changed: " + recipient.getId());
     }

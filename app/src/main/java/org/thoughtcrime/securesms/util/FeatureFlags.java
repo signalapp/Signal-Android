@@ -74,12 +74,17 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
-  private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport.2";
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
-  private static final String SENDER_KEY                        = "android.senderKey.3";
+  private static final String SENDER_KEY                        = "android.senderKey.5";
+  private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
+  private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
+  private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
+  private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
+  private static final String DONOR_BADGES                      = "android.donorBadges";
+  private static final String CDSH                              = "android.cdsh";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -108,17 +113,22 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
       SENDER_KEY,
-      SUGGEST_SMS_BLACKLIST
+      RETRY_RECEIPTS,
+      SUGGEST_SMS_BLACKLIST,
+      MAX_GROUP_CALL_RING_SIZE,
+      GROUP_CALL_RINGING,
+      CDSH
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY_VERSION
+      PHONE_NUMBER_PRIVACY_VERSION,
+      CHANGE_NUMBER_ENABLED,
+      DONOR_BADGES
   );
 
   /**
@@ -156,11 +166,15 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
-      SUGGEST_SMS_BLACKLIST
+      SUGGEST_SMS_BLACKLIST,
+      RETRY_RECEIPTS,
+      SENDER_KEY,
+      MAX_GROUP_CALL_RING_SIZE,
+      GROUP_CALL_RINGING,
+      CDSH
   );
 
   /**
@@ -339,12 +353,13 @@ public final class FeatureFlags {
     return getInteger(ANIMATED_STICKER_MIN_TOTAL_MEMORY, (int) ByteUnit.GIGABYTES.toMegabytes(3));
   }
 
-  public static boolean mp4GifSendSupport() {
-    return getBoolean(MP4_GIF_SEND_SUPPORT, false);
-  }
-
   public static @NonNull String getMediaQualityLevels() {
     return getString(MEDIA_QUALITY_LEVELS, "");
+  }
+
+  /** Whether or not sending or responding to retry receipts is enabled. */
+  public static boolean retryReceipts() {
+    return getBoolean(RETRY_RECEIPTS, true);
   }
 
   /** How long to wait before considering a retry to be a failure. */
@@ -354,17 +369,50 @@ public final class FeatureFlags {
 
   /** How old a message is allowed to be while still resending in response to a retry receipt . */
   public static long retryRespondMaxAge() {
-    return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(1));
+    return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(14));
   }
 
   /** Whether or not sending using sender key is enabled. */
   public static boolean senderKey() {
-    return getBoolean(SENDER_KEY, false);
+    return getBoolean(SENDER_KEY, true);
   }
 
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
   public static @NonNull String suggestSmsBlacklist() {
     return getString(SUGGEST_SMS_BLACKLIST, "");
+  }
+
+  /** Max group size that can be use group call ringing. */
+  public static long maxGroupCallRingSize() {
+    return getLong(MAX_GROUP_CALL_RING_SIZE, 16);
+  }
+
+  /** Whether or not to show the group call ring toggle in the UI. */
+  public static boolean groupCallRinging() {
+    return getBoolean(GROUP_CALL_RINGING, false);
+  }
+
+  /** Whether or not to show change number in the UI. */
+  public static boolean changeNumber() {
+    return getBoolean(CHANGE_NUMBER_ENABLED, false);
+  }
+
+  /** Whether or not to show donor badges in the UI.
+   *
+   * WARNING: Donor Badges is an unfinished feature and should not be enabled in production builds.
+   *    Enabling this flag in a custom build can result in crashes and could result in your Google Pay
+   *    account being charged real money.
+   */
+  public static boolean donorBadges() {
+    if (Environment.IS_STAGING) {
+      return  true;
+    } else {
+      return getBoolean(DONOR_BADGES, false ) || SignalStore.donationsValues().getSubscriber() != null;
+    }
+  }
+
+  public static boolean cdsh() {
+    return Environment.IS_STAGING && getBoolean(CDSH, false);
   }
 
   /** Only for rendering debug info. */

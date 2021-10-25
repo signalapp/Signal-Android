@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.net.Uri
 import org.signal.zkgroup.profiles.ProfileKeyCredential
+import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.groups.GroupId
@@ -75,7 +76,8 @@ object RecipientDatabaseTestUtils {
       false
     ),
     extras: Recipient.Extras? = null,
-    hasGroupsInCommon: Boolean = false
+    hasGroupsInCommon: Boolean = false,
+    badges: List<Badge> = emptyList()
   ): Recipient = Recipient(
     recipientId,
     RecipientDetails(
@@ -128,7 +130,8 @@ object RecipientDatabaseTestUtils {
         aboutEmoji,
         syncExtras,
         extras,
-        hasGroupsInCommon
+        hasGroupsInCommon,
+        badges
       ),
       participants
     ),

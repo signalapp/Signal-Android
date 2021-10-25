@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Вы удалили это сообщение.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string>
-  <string name="ConversationActivity_reset">Сбросить</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контактную информацию</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
@@ -210,6 +207,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает предельный размер для того типа сообщения, которое вы отправляете.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не удалось записать аудио!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что уже не являетесь её участником.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Только %1$s могут отправлять сообщения.</string>
+  <string name="ConversationActivity_admins">администраторы</string>
+  <string name="ConversationActivity_message_an_admin">Написать сообщение администратору</string>
+  <string name="ConversationActivity_cant_start_group_call">Невозможно начать групповой звонок</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Только администраторы этой группы могут начать звонок.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве нет приложения для открытия этой ссылки.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запрос на присоединение был отправлен администратору группы. Вы будете уведомлены, когда он примет решение.</string>
   <string name="ConversationActivity_cancel_request">Отменить запрос</string>
@@ -336,6 +338,23 @@
     <item quantity="many">%d разговоров перемещено во Входящие</item>
     <item quantity="other">%d разговоров перемещено во Входящие</item>
   </plurals>
+  <string name="ConversationListFragment_read">Прочитано</string>
+  <string name="ConversationListFragment_unread">Непрочитано</string>
+  <string name="ConversationListFragment_pin">Прикрепить</string>
+  <string name="ConversationListFragment_unpin">Открепить</string>
+  <string name="ConversationListFragment_mute">Откл. звук</string>
+  <string name="ConversationListFragment_unmute">Вкл. звук</string>
+  <string name="ConversationListFragment_select">Выбрать</string>
+  <string name="ConversationListFragment_archive">Архивировать</string>
+  <string name="ConversationListFragment_unarchive">Разархивировать</string>
+  <string name="ConversationListFragment_delete">Удалить</string>
+  <string name="ConversationListFragment_select_all">Выбрать все</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d выбран</item>
+    <item quantity="few">%d выбрано</item>
+    <item quantity="many">%d выбрано</item>
+    <item quantity="other">%d выбрано</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
   <!--ConversationListItemAction-->
@@ -361,6 +380,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Значок восстановления из резервной копии</string>
   <string name="ChooseBackupFragment__choose_backup">Выбрать резервную копию</string>
   <string name="ChooseBackupFragment__learn_more">Узнать больше</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Нет менеджера файлов</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Восстановление завершено</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Чтобы продолжить резервное копирование, пожалуйста, выберите папку. Новые резервные копии будут сохраняться в ней.</string>
@@ -440,6 +460,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Несколько вложений поддерживаются только для изображений и видео</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Вы не можете отправлять сообщения в эту группу</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в Службах Google Play. Сообщения и звонки через Signal отключены, пожалуйста, попробуйте зарегистрироваться снова через Наcтройки &gt; Расширенные.</string>
@@ -612,6 +633,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Этот человек не может быть добавлен в группы для объявлений.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Добавить «%1$s» в «%2$s»?</item>
     <item quantity="few">Добавить %3$d участника в «%2$s»?</item>
@@ -694,6 +716,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Только администраторы могут сбрасывать ссылку на группу.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
   <string name="ManageGroupActivity_not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Кто-то из тех, кого вы добавили, не поддерживает группы для объявлений и должен(-на) обновить Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Не удалось обновить группу</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Вы не являетесь участником этой группы</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Не удалось обновить группу, пожалуйста, попробуйте позже</string>
@@ -721,6 +744,7 @@
   <string name="ManageProfileFragment_your_name">Ваше имя</string>
   <string name="ManageProfileFragment_your_username">Ваше имя пользователя</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Не удалось установить аватар</string>
+  <string name="ManageProfileFragment_badges">Значки</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Нет общих групп</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -746,6 +770,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Включено</string>
   <string name="CustomNotificationsDialogFragment__disabled">Отключено</string>
   <string name="CustomNotificationsDialogFragment__default">По умолчанию</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Неизвестная</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Ссылка на группу</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управлять и поделиться</string>
@@ -814,17 +839,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поделиться</string>
   <string name="InviteActivity_share_with_contacts">Поделиться с контактами</string>
-  <string name="InviteActivity_choose_how_to_share">Выбрать, как поделиться</string>
+  <string name="InviteActivity_share_via">Поделиться через…</string>
   <string name="InviteActivity_cancel">Отмена</string>
   <string name="InviteActivity_sending">Отправляется…</string>
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
   <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ОТПРАВИТЬ SMS %d ДРУГУ</item>
-    <item quantity="few">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-    <item quantity="many">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-    <item quantity="other">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Отправить SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Отправить %d SMS-приглашение?</item>
     <item quantity="few">Отправить %d SMS-приглашения?</item>
@@ -833,7 +853,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Давайте перейдем на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзья не позволяют друзьям общаться без шифрования.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Узнать больше</string>
   <!--LongMessageActivity-->
@@ -874,17 +893,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Вид: сетка</string>
   <string name="MediaOverviewActivity_List_view_description">Вид: список</string>
   <string name="MediaOverviewActivity_Selected_description">Выбрано</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d элемент %2$s</item>
-    <item quantity="few">%1$d элемента %2$s</item>
-    <item quantity="many">%1$d элементов %2$s</item>
-    <item quantity="other">%1$d элементов %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d элемент</item>
-    <item quantity="few">%1$d элемента</item>
-    <item quantity="many">%1$d элементов</item>
-    <item quantity="other">%1$d элементов</item>
+  <string name="MediaOverviewActivity_save">Сохранить</string>
+  <string name="MediaOverviewActivity_select_all">Выбрать все</string>
+  <string name="MediaOverviewActivity_delete">Удалить</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d выбран (%2$s)</item>
+    <item quantity="few">%1$d выбрано (%2$s)</item>
+    <item quantity="many">%1$d выбрано (%2$s)</item>
+    <item quantity="other">%1$d выбрано (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
@@ -907,15 +923,18 @@
   <string name="Megaphones_invite_friends">Пригласить друзей</string>
   <string name="Megaphones_use_sms">Использовать SMS</string>
   <string name="Megaphones_appearance">Внешний вид</string>
+  <string name="Megaphones_add_photo">Добавить фото</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящий звонок Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Входящий групповой звонок Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Останавливаем сервис звонков Signal</string>
-  <string name="NotificationBarManager__deny_call">Отклонить</string>
+  <string name="NotificationBarManager__decline_call">Отклонить звонок</string>
   <string name="NotificationBarManager__answer_call">Ответить</string>
   <string name="NotificationBarManager__end_call">Завершить</string>
   <string name="NotificationBarManager__cancel_call">Отменить</string>
+  <string name="NotificationBarManager__join_call">Присоединиться к звонку</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Включить уведомления?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Чтобы не пропускать сообщения от ваших контактов и групп.</string>
@@ -1082,6 +1101,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Вы изменили, кто может редактировать членство в группе, на «%1$s».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s изменил(-а), кто может редактировать членство в группе, на «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кто может редактировать членство в группе было изменено на «%1$s».</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Вы изменили настройки группы, чтобы отправлять сообщения могли все участники.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Вы изменили настройки группы, чтобы отправлять сообщения могли только администраторы.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s изменил(-а) настройки группы, чтобы отправлять сообщения могли все участники.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s изменил(-а) настройки группы, чтобы отправлять сообщения могли только администраторы.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Настройки группы были изменены, чтобы отправлять сообщения могли все участники.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Настройки группы были изменены, чтобы отправлять сообщения могли только администраторы.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Вы включили ссылку на группу с отключённым одобрением администратора.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Вы включили ссылку на группу с включённым одобрением администратора.</string>
@@ -1127,6 +1153,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили код безопасности с %s как неподтверждённый</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтверждённый с другого устройства</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Не удалось доставить сообщение от %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s изменил(-а) свой номер телефона.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
@@ -1298,21 +1325,55 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Чтобы позвонить %1$s, Signal необходим доступ к вашей камере</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Подключаемся…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Невозможно звонить участникам: группа слишком большая.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Голосовой звонок Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal…</string>
+  <string name="WebRtcCallView__signal_call">Звонок Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal</string>
   <string name="WebRtcCallView__start_call">Начать звонок</string>
   <string name="WebRtcCallView__join_call">Присоединиться к звонку</string>
   <string name="WebRtcCallView__call_is_full">Звонок заполнен</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Для этого звонка было достигнуто максимальное количество участников — %1$d. Попробуйте ещё раз позже.</string>
-  <string name="WebRtcCallView__s_group_call">Групповой звонок «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">Просмотреть участников</string>
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
   <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
   <string name="WebRtcCallView__joining">Присоединяемся…</string>
   <string name="WebRtcCallView__disconnected">Отключено</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal будет звонить у %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal будет звонить у %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal будет звонить у %1$s, %2$s и ещё %3$d человека</item>
+    <item quantity="few">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+    <item quantity="many">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+    <item quantity="other">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s будет уведомлен(-а)</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s будут уведомлены</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
+    <item quantity="few">%1$s, %2$s и ещё %3$d человека будут уведомлены</item>
+    <item quantity="many">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
+    <item quantity="other">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Звоним %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Звоним %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Звоним %1$s, %2$s и ещё %3$d человеку</item>
+    <item quantity="few">Звоним %1$s, %2$s и ещё %3$d людям</item>
+    <item quantity="many">Звоним %1$s, %2$s и ещё %3$d людям</item>
+    <item quantity="other">Звоним %1$s, %2$s и ещё %3$d людям</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s звонит вам</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s звонит вам и %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s звонит вам, %2$s и %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s звонит вам, %2$s, %3$s и ещё %4$d человеку</item>
+    <item quantity="few">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
+    <item quantity="many">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
+    <item quantity="other">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s в этом звонке</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s в этом звонке</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s в этом звонке</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s показывает</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1321,6 +1382,12 @@
     <item quantity="many">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
     <item quantity="other">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Перекл. камеру</string>
+  <string name="WebRtcCallView__speaker">Громкая связь</string>
+  <string name="WebRtcCallView__camera">Камера</string>
+  <string name="WebRtcCallView__mute">Откл. микрофон</string>
+  <string name="WebRtcCallView__ring">Звонить</string>
+  <string name="WebRtcCallView__end_call">Завершить звонок</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">В этом звонке · %1$d человек</item>
@@ -1366,6 +1433,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам, чтобы вы могли связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
   <string name="RegistrationActivity_rate_limited_to_service">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз позже.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
+  <string name="RegistrationActivity_call_requested">Звонок запрошен</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Вы в %d шаге от отправки журнала отладки.</item>
     <item quantity="few">Вы в %d шагах от отправки журнала отладки.</item>
@@ -1410,6 +1478,8 @@
   <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить в Signal</string>
   <string name="SharedContactView_message">Сообщение Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Больше</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Мы напомним вам позже.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Мы напомним вам завтра.</string>
@@ -1461,6 +1531,7 @@
   <string name="SubmitDebugLogActivity_success">Успех!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Скопируйте этот URL-адрес и добавьте его в отчет о проблеме или в письмо в службу поддержки:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Поделиться</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Этот журнал будет опубликован в интернете, чтобы разработчики смогли его просмотреть. Вы можете изучить его перед отправкой.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Фильтр:</string>
   <string name="SupportEmailUtil_device_info">Информация об устройстве:</string>
@@ -1593,6 +1664,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Отреагировал(-а) %1$s на: «%2$s».</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Отреагировал(-а) %1$s на ваше видео.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Отреагировал(-а) %1$s на ваше изображение.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Отреагировал(-а) %1$s на вашу GIF-анимацию.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Отреагировал(-а) %1$s на ваш файл.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Отреагировал(-а) %1$s на ваше аудио.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Отреагировал(-а) %1$s на ваше одноразовое медиа.</string>
@@ -1741,6 +1813,7 @@
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
   <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Включить уведомления о звонках</string>
+  <string name="ConversationUpdateItem_update_contact">Обновить контакт</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нет общих групп. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">В этой группе нет ваших контактов. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_view">Просмотреть</string>
@@ -1752,6 +1825,7 @@
   <string name="QuoteView_audio">Аудио</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Фото</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Одноразовое медиа</string>
   <string name="QuoteView_sticker">Стикер</string>
   <string name="QuoteView_you">Вы</string>
@@ -1916,21 +1990,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Подробнее</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Чтобы убедиться в безопасности сквозного шифрования с %s, сравните числа выше с устройством вашего собеседника. Вы также можете отсканировать код на его устройстве. <a href="https://signal.org/redirect/safety-numbers">Узнать больше.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
+  <string name="verify_display_fragment__successful_match">Успешное совпадение</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Не удалось подтвердить код безопасности</string>
   <string name="verify_display_fragment__loading">Загружаем…</string>
-  <string name="verify_display_fragment__verified">Подтверждён</string>
+  <string name="verify_display_fragment__mark_as_verified">Отметить как подтверждённый</string>
+  <string name="verify_display_fragment__clear_verification">Сбросить подтверждение</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Просканируйте QR-код на устройстве собеседника.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Проведите пальцем вверх, чтобы ответить</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Проведите пальцем вниз, чтобы отклонить</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Есть проблемы, требующие вашего внимания.</string>
-  <string name="message_details_header__sent">Отправлено</string>
-  <string name="message_details_header__received">Получено</string>
-  <string name="message_details_header__disappears">Исчезнет</string>
-  <string name="message_details_header__via">Через</string>
+  <string name="message_details_header__sent">Отправлено:</string>
+  <string name="message_details_header__received">Получено:</string>
+  <string name="message_details_header__disappears">Исчезнет:</string>
+  <string name="message_details_header__via">Через:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">В ожидании</string>
   <string name="message_details_recipient_header__sent_to">Отправлено</string>
@@ -1972,14 +2051,15 @@
   <string name="HelpFragment__debug_log">Журнал отладки:</string>
   <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
-  <string-array name="HelpFragment__categories">
+  <string-array name="HelpFragment__categories_2">
     <item>-- Пожалуйста, выберите вариант --</item>
     <item>Что-то не работает</item>
     <item>Запросить новые функции</item>
     <item>Вопрос</item>
     <item>Обратная связь</item>
     <item>Другое</item>
-    <item>Платежи</item>
+    <item>Платежи (MobileCoin)</item>
+    <item>Пожертвования (поддержка и Ускорение Signal)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Это сообщение</string>
@@ -2080,6 +2160,8 @@
   <string name="preferences__help">Помощь</string>
   <string name="preferences__advanced">Расширенные</string>
   <string name="preferences__donate_to_signal">Поддержать Signal</string>
+  <string name="preferences__subscription">Подписка</string>
+  <string name="preferences__signal_boost">Ускорение Signal</string>
   <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">User Agent для MMS </string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
@@ -2625,6 +2707,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Позвоните мне вместо SMS \n (доступно через %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Связаться с поддержкой Signal</string>
   <string name="RegistrationActivity_code_support_subject">Регистрация в Signal - код подтверждения для Android</string>
+  <string name="RegistrationActivity_incorrect_code">Неверный код</string>
   <string name="BackupUtil_never">Никогда</string>
   <string name="BackupUtil_unknown">Неизвестно</string>
   <string name="preferences_app_protection__see_my_phone_number">Видеть мой номер телефона</string>
@@ -2821,8 +2904,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не удалось воспроизвести голосовое сообщение</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Голосовое сообщение · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s в %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Голосовое сообщение · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s в %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» заблокирован(-а).</string>
@@ -3045,6 +3128,47 @@
   <string name="AccountSettingsFragment__account">Учётная запись</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Напоминания будут появляться реже со временем</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Требовать вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Изменить номер телефона</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Используйте эту функцию, чтобы изменить свой текущий номер телефона на новый. Это изменение нельзя отменить.\n\nПеред тем как продолжить, убедитесь, что ваш новый номер может принимать SMS или звонки.</string>
+  <string name="ChangeNumberFragment__continue">Продолжить</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш номер телефона был изменён.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ваш старый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Старый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ваш новый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Новый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Вы должны указать код страны вашего старого номера</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Вы должны указать свой старый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Вы должны указать код страны вашего нового номера</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Вы должны указать свой новый номер телефона</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Проверка %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Требуется CAPTCHA</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Вы собираетесь изменить свой номер телефона с %1$s на %2$s.\n\nПеред тем как продолжить, пожалуйста, проверьте, что номер ниже правильный.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Редактировать номер</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Изменение номера Signal - Нужна помощь с PIN-кодом для Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-коды не совпадают</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-код, связанный с вашим новым номером, отличается от PIN-кода, связанного со старым номером. Вы хотите оставить свой старый PIN-код или обновить его?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Оставить старый PIN-код</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Обновить PIN-код</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Оставить старый PIN-код?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Похоже, что вы пытались изменить свой номер, но нам не удалось проверить, было ли успешным это изменение.\n\nПроверяем заново сейчас…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Статус изменения подтверждён</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ваш номер был подтверждён: %1$s. Если это не ваш новый номер, пожалуйста, заново пройдите процесс изменения номера.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Статус изменения неподтверждён</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Нам не удалось проверить статус вашего запроса на изменение номера.\n\n(Ошибка: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Повторить попытку</string>
+  <string name="ChangeNumberLockActivity__leave">Покинуть</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Отправить журнал отладки</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Клавиатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Отправка клавишей «Ввод»</string>
@@ -3096,6 +3220,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Авторские права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лицензировано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Качество медиа</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Качество отправляемого медиа</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Отправление медиа в высоком качестве использует больше данных.</string>
+  <string name="DataAndStorageSettingsFragment__high">Высокое</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандартное</string>
   <string name="DataAndStorageSettingsFragment__calls">Звонки</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Авто</string>
@@ -3142,7 +3271,10 @@
   <string name="ChatColorsMegaphone__appearance">Внешний вид</string>
   <string name="ChatColorsMegaphone__not_now">Не сейчас</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Добавьте фото профиля</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Выберите вид и цвет или настройте свои инициалы.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сейчас</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Добавить фото</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Эмодзи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Открыть поиск эмодзи</string>
@@ -3194,10 +3326,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>
+  <string name="PermissionsSettingsFragment__send_messages">Отправлять сообщения</string>
   <string name="PermissionsSettingsFragment__all_members">Все участники</string>
   <string name="PermissionsSettingsFragment__only_admins">Только администраторы</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Кто может добавлять новых участников?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Кто может редактировать информацию группы?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Кто может отправлять сообщения?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Отключить уведомления</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Звуки включены</string>
@@ -3211,6 +3345,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">0.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Новый платёж</string>
@@ -3219,18 +3354,159 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Остановить воспроизведение голосового сообщения</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Изменить скорость воспроизведения голосового сообщения</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Приостановить воспроизведение голосового сообщения</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Воспроизвести голосовое сообщение</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Перейти к голосовому сообщению</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Предпросмотр аватара</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
+  <string name="AvatarPickerFragment__take_a_picture">Сделать снимок</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Выбрать фото</string>
   <string name="AvatarPickerFragment__photo">Фото</string>
   <string name="AvatarPickerFragment__text">Текст</string>
   <string name="AvatarPickerFragment__save">Сохранить</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Выберите аватар</string>
+  <string name="AvatarPickerFragment__clear_avatar">Удалить аватар</string>
+  <string name="AvatarPickerFragment__edit">Изменить</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Не удалось сохранить аватар</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Предпросмотр</string>
   <string name="TextAvatarCreationFragment__done">Готово</string>
   <string name="TextAvatarCreationFragment__text">Текст</string>
   <string name="TextAvatarCreationFragment__color">Цвет</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Выберите цвет</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__edit">Изменить</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Перейти назад</string>
+  <string name="MultiselectForwardFragment__forward_to">Переслать</string>
+  <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Более быстрая пересылка</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Пересылаемые сообщения теперь отправляются сразу.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Отправить %1$d сообщение</item>
+    <item quantity="few">Отправить %1$d сообщения</item>
+    <item quantity="many">Отправить %1$d сообщений</item>
+    <item quantity="other">Отправить %1$d сообщений</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Сообщение отправлено</item>
+    <item quantity="few">Сообщения отправлены</item>
+    <item quantity="many">Сообщения отправлены</item>
+    <item quantity="other">Сообщения отправлены</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Не удалось отправить сообщение</item>
+    <item quantity="few">Не удалось отправить сообщения</item>
+    <item quantity="many">Не удалось отправить сообщения</item>
+    <item quantity="other">Не удалось отправить сообщения</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Не удалось переслать сообщение, потому что оно больше не доступно.</item>
+    <item quantity="few">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+    <item quantity="many">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+    <item quantity="other">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Достигнут предел</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Добавьте сообщение</string>
+  <string name="MediaReviewFragment__add_a_reply">Добавьте ответ</string>
+  <string name="MediaReviewFragment__send_to">Отправить</string>
+  <string name="MediaReviewFragment__view_once_message">Одноразовое сообщение</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Один или несколько элементов были слишком большими</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один или несколько элементов были недействительными</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Выбрано слишком много элементов</string>
+  <string name="ImageEditorHud__cancel">Отменить</string>
+  <string name="ImageEditorHud__draw">Нарисовать</string>
+  <string name="ImageEditorHud__write_text">Написать текст</string>
+  <string name="ImageEditorHud__add_a_sticker">Добавить стикер</string>
+  <string name="ImageEditorHud__blur">Размыть</string>
+  <string name="ImageEditorHud__done_editing">Готово</string>
+  <string name="ImageEditorHud__clear_all">Очистить всё</string>
+  <string name="ImageEditorHud__undo">Отменить</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Переключиться между маркером и выделителем</string>
+  <string name="ImageEditorHud__delete">Удалить</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Переключиться между стилями текста</string>
+  <string name="MediaCountIndicatorButton__send">Отправить</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Нажмите, чтобы убрать</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Нажмите, чтобы выбрать</string>
+  <string name="MediaReviewImagePageFragment__discard">Сбросить</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Сбросить изменения?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Вы потеряете все изменения, которые вы сделали в этой фотографии.</string>
+  <string name="CameraFragment__failed_to_open_camera">Не удалось открыть камеру</string>
+  <string name="BadgesOverviewFragment__my_badges">Мои значки</string>
+  <string name="BadgesOverviewFragment__featured_badge">Главный значок</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Показывать значки в профиле</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Не удалось обновить профиль</string>
+  <string name="BadgeSelectionFragment__select_badges">Выберите значки</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Предпросмотр</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Выберите значок</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Вы должны выбрать значок</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не удалось обновить профиль</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Стать поддерживающим</string>
+  <string name="ImageView__badge">Значок</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу людей, поддерживающих её.</string>
+  <string name="SubscribeFragment__donation_amount">Сумма пожертвования</string>
+  <string name="SubscribeFragment__more_payment_options">Больше способов оплаты</string>
+  <string name="SubscribeFragment__cancel_subscription">Отменить подписку</string>
+  <string name="SubscribeFragment__confirm_cancellation">Подтверждаете отмену?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">С вас больше не будет взиматься плата. Ваш значок будет удалён из профиля в конце вашего расчётного периода.</string>
+  <string name="SubscribeFragment__not_now">Не сейчас</string>
+  <string name="SubscribeFragment__confirm">Подтвердить</string>
+  <string name="SubscribeFragment__update_subscription">Обновить подписку</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша подписка была отменена.</string>
+  <string name="SubscribeFragment__update_subscription_question">Обновить подписку?</string>
+  <string name="SubscribeFragment__update">Обновить</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Полная сумма новой подписки будет взята с вас сегодня. Ваша подписка продлится %1$s.</string>
+  <string name="Subscription__s_per_month">%s/месяц</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Возобновится %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/месяц · Истекает %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят её. Делая пожертвование ежемесячно, вы получите значок для профиля, чтобы поделиться с другими тем, что вы поддерживаете Signal.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Команда Signal предана миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру. Ваш вклад поддерживает эту миссию. Без рекламы. Без трекеров. Без шуток.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваше пожертвование помогает оплачивать разработку, серверы и пропускную способность приложения, которое используется миллионами людей по всему миру для конфиденциального и мгновенного общения.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Спасибо за вашу поддержку!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Спасибо за Ускорение!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Вы получили значок «%s»! Если вы будете показывать значок в своём профиле, то люди, с которыми вы общаетесь, увидят, что вы поддерживаете Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показывать в профиле</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Сделать главным значком</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Когда у вас больше одного значка, вы можете выбрать главный значок, который другие люди будут видеть в вашем профиле.</string>
+  <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
+  <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
+  <string name="ManageDonationsFragment__badges">Значки</string>
+  <string name="ManageDonationsFragment__subscription_faq">ЧаВО по подписке</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Не удалось получить информацию о подписке.</string>
+  <string name="BoostFragment__give_signal_a_boost">Дайте «Ускорение» приложению Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Скажите «Спасибо!» и получите значок «Ускорение» на %1$d дней.</string>
+  <string name="Boost__enter_custom_amount">Ввести сумму</string>
+  <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
+  <string name="MySupportPreference__add_a_signal_boost">Добавить Ускорение Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
+  <string name="MySupportPreference__renews_s">Возобновится %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваш значок «%1$s» истёк и больше не виден другим людям в вашем профиле.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным подписчиком.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стать подписчиком</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
+  <string name="Subscription__verification_failed">Не удалось проверить подписку</string>
+  <string name="Subscription__please_contact_support_for_more_information">Пожалуйста, свяжитесь с поддержкой, чтобы получить больше информации.</string>
+  <string name="Subscription__contact_support">Связаться с поддержкой</string>
+  <string name="Subscription__earn_a_s_badge">Заработайте значок «%1$s»</string>
+  <string name="SubscribeFragment__processing_payment">Обрабатываем платёж…</string>
+  <string name="DonationsErrors__payment_failed">Платёж не удался</string>
+  <string name="DonationsErrors__your_payment">Не удалось обработать ваш платёж; с вас не была взята плата. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="DonationsErrors__redemption_still_pending">Получение значка всё ещё в процессе</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Возможно, вы не сразу увидите свой значок, но мы работаем над этим!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступен</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Вам необходимо настроить Google Pay, чтобы пожертвовать в приложении.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Не удалось отменить подписку</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для отмены подписки требуется соединение с интернетом.</string>
   <!--EOF-->
 </resources>

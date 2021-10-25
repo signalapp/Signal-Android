@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_crop"
+        android:icon="@drawable/ic_crop_black_24dp"
+        android:title="@string/crop"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_done"
+        android:icon="@drawable/ic_check_black_24dp"
+        android:title="@string/done"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_undo"
+        android:icon="@drawable/ic_undo_black_24dp"
+        android:title="@string/undo"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_redo"
+        android:icon="@drawable/ic_redo_black_24dp"
+        android:title="@string/redo"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_save"
+        android:icon="@drawable/ic_save_black_24dp"
+        android:title="@string/save"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_draw"
+        android:title="@string/draw"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_rotate_left_90"
+        android:icon="@drawable/ic_rotate_left_black_24dp"
+        android:title="@string/rotate_90_left"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_flip_horizontal"
+        android:icon="@drawable/ic_flip_black_24dp"
+        android:title="@string/flip_horizontal"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_edit_text"
+        android:title="@string/edit_text"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_lock_crop_aspect"
+        android:title="@string/lock_crop_aspect"
+        app:showAsAction="ifRoom" />
+
+</menu>

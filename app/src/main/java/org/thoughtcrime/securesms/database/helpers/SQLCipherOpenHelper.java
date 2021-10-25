@@ -18,8 +18,8 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteOpenHelper;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.ChatColorsDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.EmojiSearchDatabase;
+import org.thoughtcrime.securesms.database.GroupCallRingDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -209,18 +210,30 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int MMS_AUTOINCREMENT                = 109;
   private static final int ABANDONED_ATTACHMENT_CLEANUP     = 110;
   private static final int AVATAR_PICKER                    = 111;
+  private static final int THREAD_CLEANUP                   = 112;
+  private static final int SESSION_MIGRATION                = 113;
+  private static final int IDENTITY_MIGRATION               = 114;
+  private static final int GROUP_CALL_RING_TABLE            = 115;
+  private static final int CLEANUP_SESSION_MIGRATION        = 116;
+  private static final int RECEIPT_TIMESTAMP                = 117;
+  private static final int BADGES                           = 118;
+  private static final int SENDER_KEY_UUID                  = 119;
 
-  private static final int    DATABASE_VERSION = 111;
+  private static final int    DATABASE_VERSION = 119;
   private static final String DATABASE_NAME    = "signal.db";
 
-  private final Context        context;
-  private final DatabaseSecret databaseSecret;
+  private final Context context;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
-    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
+    super(context, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
-    this.context        = context.getApplicationContext();
-    this.databaseSecret = databaseSecret;
+    this.context = context.getApplicationContext();
+  }
+
+  @Override
+  public void onOpen(SQLiteDatabase db) {
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
   }
 
   @Override
@@ -248,6 +261,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(ChatColorsDatabase.CREATE_TABLE);
     db.execSQL(EmojiSearchDatabase.CREATE_TABLE);
     db.execSQL(AvatarPickerDatabase.CREATE_TABLE);
+    db.execSQL(GroupCallRingDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
     executeStatements(db, MessageSendLogDatabase.CREATE_TABLE);
@@ -265,6 +279,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     executeStatements(db, MentionDatabase.CREATE_INDEXES);
     executeStatements(db, PaymentDatabase.CREATE_INDEXES);
     executeStatements(db, MessageSendLogDatabase.CREATE_INDEXES);
+    executeStatements(db, GroupCallRingDatabase.CREATE_INDEXES);
 
     executeStatements(db, MessageSendLogDatabase.CREATE_TRIGGERS);
 
@@ -1360,12 +1375,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
         String selectIdsToUpdateProfileSharing = "SELECT r._id FROM recipient AS r INNER JOIN thread AS t ON r._id = t.recipient_ids WHERE profile_sharing = 0 AND (" + secureOutgoingSms + " OR " + secureOutgoingMms + ")";
 
-        db.rawExecSQL("UPDATE recipient SET profile_sharing = 1 WHERE _id IN (" + selectIdsToUpdateProfileSharing + ")");
+        db.execSQL("UPDATE recipient SET profile_sharing = 1 WHERE _id IN (" + selectIdsToUpdateProfileSharing + ")");
 
         String selectIdsWithGroupsInCommon = "SELECT r._id FROM recipient AS r WHERE EXISTS("
                                              + "SELECT 1 FROM groups AS g INNER JOIN recipient AS gr ON (g.recipient_id = gr._id AND gr.profile_sharing = 1) WHERE g.active = 1 AND (g.members LIKE r._id || ',%' OR g.members LIKE '%,' || r._id || ',%' OR g.members LIKE '%,' || r._id)"
                                              + ")";
-        db.rawExecSQL("UPDATE recipient SET groups_in_common = 1 WHERE _id IN (" + selectIdsWithGroupsInCommon + ")");
+        db.execSQL("UPDATE recipient SET groups_in_common = 1 WHERE _id IN (" + selectIdsWithGroupsInCommon + ")");
       }
 
       if (oldVersion < CLEAN_STORAGE_IDS_WITHOUT_INFO) {
@@ -1955,6 +1970,111 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         }
       }
 
+      if (oldVersion < THREAD_CLEANUP) {
+        db.delete("mms", "thread_id NOT IN (SELECT _id FROM thread)", null);
+        db.delete("part", "mid != -8675309 AND mid NOT IN (SELECT _id FROM mms)", null);
+      }
+
+      if (oldVersion < SESSION_MIGRATION) {
+        long start = System.currentTimeMillis();
+
+        db.execSQL("CREATE TABLE sessions_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                               "address TEXT NOT NULL, " +
+                                               "device INTEGER NOT NULL, " +
+                                               "record BLOB NOT NULL, " +
+                                               "UNIQUE(address, device))");
+
+        db.execSQL("INSERT INTO sessions_tmp (address, device, record) "  +
+                   "SELECT COALESCE(recipient.uuid, recipient.phone) AS new_address, " +
+                           "sessions.device, " +
+                           "sessions.record " +
+                   "FROM sessions INNER JOIN recipient ON sessions.address = recipient._id " +
+                   "WHERE new_address NOT NULL");
+
+        db.execSQL("DROP TABLE sessions");
+        db.execSQL("ALTER TABLE sessions_tmp RENAME TO sessions");
+
+        Log.d(TAG, "Session migration took " + (System.currentTimeMillis() - start) + " ms");
+      }
+
+      if (oldVersion < IDENTITY_MIGRATION) {
+        long start = System.currentTimeMillis();
+
+        db.execSQL("CREATE TABLE identities_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                "address TEXT UNIQUE NOT NULL, " +
+                                                "identity_key TEXT, " +
+                                                "first_use INTEGER DEFAULT 0, " +
+                                                "timestamp INTEGER DEFAULT 0, " +
+                                                "verified INTEGER DEFAULT 0, " +
+                                                "nonblocking_approval INTEGER DEFAULT 0)");
+
+        db.execSQL("INSERT INTO identities_tmp (address, identity_key, first_use, timestamp, verified, nonblocking_approval) "  +
+                   "SELECT COALESCE(recipient.uuid, recipient.phone) AS new_address, " +
+                   "identities.key, " +
+                   "identities.first_use, " +
+                   "identities.timestamp, " +
+                   "identities.verified, " +
+                   "identities.nonblocking_approval " +
+                   "FROM identities INNER JOIN recipient ON identities.address = recipient._id " +
+                   "WHERE new_address NOT NULL");
+
+        db.execSQL("DROP TABLE identities");
+        db.execSQL("ALTER TABLE identities_tmp RENAME TO identities");
+
+        Log.d(TAG, "Identity migration took " + (System.currentTimeMillis() - start) + " ms");
+      }
+
+      if (oldVersion < GROUP_CALL_RING_TABLE) {
+        db.execSQL("CREATE TABLE group_call_ring (_id INTEGER PRIMARY KEY, ring_id INTEGER UNIQUE, date_received INTEGER, ring_state INTEGER)");
+        db.execSQL("CREATE INDEX date_received_index on group_call_ring (date_received)");
+      }
+
+      if (oldVersion < CLEANUP_SESSION_MIGRATION) {
+        int sessionCount = db.delete("sessions", "address LIKE '+%'", null);
+        Log.i(TAG, "Cleaned up " + sessionCount + " sessions.");
+
+        ContentValues storageValues = new ContentValues();
+        storageValues.putNull("storage_service_key");
+
+        int storageCount = db.update("recipient", storageValues, "storage_service_key NOT NULL AND group_id IS NULL AND uuid IS NULL", null);
+        Log.i(TAG, "Cleaned up " + storageCount + " storageIds.");
+      }
+
+      if (oldVersion < RECEIPT_TIMESTAMP) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN receipt_timestamp INTEGER DEFAULT -1");
+        db.execSQL("ALTER TABLE mms ADD COLUMN receipt_timestamp INTEGER DEFAULT -1");
+      }
+
+      if (oldVersion < BADGES) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN badges BLOB DEFAULT NULL");
+      }
+
+      if (oldVersion < SENDER_KEY_UUID) {
+        long start = System.currentTimeMillis();
+
+        db.execSQL("CREATE TABLE sender_keys_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                   "address TEXT NOT NULL, " +
+                   "device INTEGER NOT NULL, " +
+                   "distribution_id TEXT NOT NULL, " +
+                   "record BLOB NOT NULL, " +
+                   "created_at INTEGER NOT NULL, " +
+                   "UNIQUE(address, device, distribution_id) ON CONFLICT REPLACE)");
+
+        db.execSQL("INSERT INTO sender_keys_tmp (address, device, distribution_id, record, created_at) "  +
+                   "SELECT recipient.uuid AS new_address, " +
+                   "sender_keys.device, " +
+                   "sender_keys.distribution_id, " +
+                   "sender_keys.record, " +
+                   "sender_keys.created_at " +
+                   "FROM sender_keys INNER JOIN recipient ON sender_keys.recipient_id = recipient._id " +
+                   "WHERE new_address NOT NULL");
+
+        db.execSQL("DROP TABLE sender_keys");
+        db.execSQL("ALTER TABLE sender_keys_tmp RENAME TO sender_keys");
+
+        Log.d(TAG, "Sender key migration took " + (System.currentTimeMillis() - start) + " ms");
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -1967,17 +2087,35 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
   }
 
-  public org.thoughtcrime.securesms.database.SQLiteDatabase getReadableDatabase() {
-    return new org.thoughtcrime.securesms.database.SQLiteDatabase(getReadableDatabase(databaseSecret.asString()));
-  }
-
-  public org.thoughtcrime.securesms.database.SQLiteDatabase getWritableDatabase() {
-    return new org.thoughtcrime.securesms.database.SQLiteDatabase(getWritableDatabase(databaseSecret.asString()));
+  @Override
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getReadableDatabase() {
+    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
   }
 
   @Override
-  public @NonNull SQLiteDatabase getSqlCipherDatabase() {
-    return getWritableDatabase().getSqlCipherDatabase();
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getWritableDatabase() {
+    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
+  }
+
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawReadableDatabase() {
+    return super.getReadableDatabase();
+  }
+
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawWritableDatabase() {
+    return super.getWritableDatabase();
+  }
+
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalReadableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getReadableDatabase());
+  }
+
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalWritableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getWritableDatabase());
+  }
+
+  @Override
+  public @NonNull net.zetetic.database.sqlcipher.SQLiteDatabase getSqlCipherDatabase() {
+    return super.getWritableDatabase();
   }
 
   public void markCurrent(SQLiteDatabase db) {

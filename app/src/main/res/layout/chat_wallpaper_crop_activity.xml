@@ -24,7 +24,7 @@
         android:orientation="horizontal"
         tools:layout_constraintGuide_end="48dp" />
 
-    <org.thoughtcrime.securesms.imageeditor.ImageEditorView
+    <org.signal.imageeditor.core.ImageEditorView
         android:id="@+id/image_editor"
         android:layout_width="0dp"
         android:layout_height="0dp"

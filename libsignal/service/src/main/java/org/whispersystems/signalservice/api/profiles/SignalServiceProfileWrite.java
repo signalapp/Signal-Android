@@ -3,6 +3,8 @@ package org.whispersystems.signalservice.api.profiles;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class SignalServiceProfileWrite {
 
   @JsonProperty
@@ -26,11 +28,14 @@ public class SignalServiceProfileWrite {
   @JsonProperty
   private byte[] commitment;
 
+  @JsonProperty
+  private List<String> badgeIds;
+
   @JsonCreator
   public SignalServiceProfileWrite(){
   }
 
-  public SignalServiceProfileWrite(String version, byte[] name, byte[] about, byte[] aboutEmoji, byte[] paymentAddress, boolean avatar, byte[] commitment) {
+  public SignalServiceProfileWrite(String version, byte[] name, byte[] about, byte[] aboutEmoji, byte[] paymentAddress, boolean avatar, byte[] commitment, List<String> badgeIds) {
     this.version        = version;
     this.name           = name;
     this.about          = about;
@@ -38,6 +43,7 @@ public class SignalServiceProfileWrite {
     this.paymentAddress = paymentAddress;
     this.avatar         = avatar;
     this.commitment     = commitment;
+    this.badgeIds       = badgeIds;
   }
 
   public boolean hasAvatar() {

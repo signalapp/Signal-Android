@@ -28,7 +28,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
-import org.thoughtcrime.securesms.components.MaskView;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -40,7 +39,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -60,6 +58,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private Recipient     conversationRecipient;
   private MessageRecord messageRecord;
   private OverlayState  overlayState = OverlayState.HIDDEN;
+  private boolean       isNonAdminInAnnouncementGroup;
 
   private boolean downIsOurs;
   private boolean isToolbarTouch;
@@ -71,7 +70,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private ConstraintLayout foregroundView;
   private View             selectedView;
   private EmojiImageView[] emojiViews;
-  private MaskView         maskView;
   private Toolbar          toolbar;
 
   private float touchDownDeadZoneSize;
@@ -111,7 +109,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     backgroundView = findViewById(R.id.conversation_reaction_scrubber_background);
     foregroundView = findViewById(R.id.conversation_reaction_scrubber_foreground);
     selectedView   = findViewById(R.id.conversation_reaction_current_selection_indicator);
-    maskView       = findViewById(R.id.conversation_reaction_mask);
     toolbar        = findViewById(R.id.conversation_reaction_toolbar);
 
     toolbar.setOnMenuItemClickListener(this::handleToolbarItemClicked);
@@ -143,28 +140,23 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     initAnimators();
   }
 
-  public void setListVerticalTranslation(float translationY) {
-    maskView.setTargetParentTranslationY(translationY);
-  }
-
   public void show(@NonNull Activity activity,
-                   @NonNull MaskView.MaskTarget maskTarget,
                    @NonNull Recipient conversationRecipient,
-                   @NonNull MessageRecord messageRecord,
-                   int maskPaddingBottom,
-                   @NonNull PointF lastSeenDownPoint)
+                   @NonNull ConversationMessage conversationMessage,
+                   @NonNull PointF lastSeenDownPoint,
+                   boolean isNonAdminInAnnouncementGroup)
   {
-
     if (overlayState != OverlayState.HIDDEN) {
       return;
     }
 
-    this.messageRecord         = messageRecord;
-    this.conversationRecipient = conversationRecipient;
-    overlayState               = OverlayState.UNINITAILIZED;
-    selected                   = -1;
+    this.messageRecord                 = conversationMessage.getMessageRecord();
+    this.conversationRecipient         = conversationRecipient;
+    this.isNonAdminInAnnouncementGroup = isNonAdminInAnnouncementGroup;
+    overlayState                       = OverlayState.UNINITAILIZED;
+    selected                           = -1;
 
-    setupToolbarMenuItems();
+    setupToolbarMenuItems(conversationMessage);
     setupSelectedEmoji();
 
     if (Build.VERSION.SDK_INT >= 21) {
@@ -193,9 +185,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     verticalScrubBoundary.update(lastSeenDownPoint.y - distanceFromTouchDownPointToTopOfScrubberDeadZone,
                                  lastSeenDownPoint.y + distanceFromTouchDownPointToBottomOfScrubberDeadZone);
 
-    maskView.setPadding(0, 0, 0, maskPaddingBottom);
-    maskView.setTarget(maskTarget);
-
     hideAnimatorSet.end();
     toolbar.setVisibility(VISIBLE);
     setVisibility(View.VISIBLE);
@@ -212,31 +201,12 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     }
   }
 
-  public void showMask(@NonNull MaskView.MaskTarget maskTarget, int maskPaddingTop, int maskPaddingBottom) {
-    maskView.setPadding(0, maskPaddingTop, 0, maskPaddingBottom);
-    maskView.setTarget(maskTarget);
-
-    hideAnimatorSet.end();
-    toolbar.setVisibility(GONE);
-    setVisibility(VISIBLE);
-    revealMaskAnimatorSet.start();
-  }
-
   public void hide() {
-    maskView.setTarget(null);
     hideInternal(hideAnimatorSet, onHideListener);
   }
 
   public void hideForReactWithAny() {
     hideInternal(hideAnimatorSet, null);
-  }
-
-  public void hideMask() {
-    hideMaskAnimatorSet.start();
-
-    if (onHideListener != null) {
-      onHideListener.onHide();
-    }
   }
 
   private void hideInternal(@NonNull AnimatorSet hideAnimatorSet, @Nullable OnHideListener onHideListener) {
@@ -504,8 +474,8 @@ public final class ConversationReactionOverlay extends RelativeLayout {
                  .orElse(null);
   }
 
-  private void setupToolbarMenuItems() {
-    MenuState menuState = MenuState.getMenuState(conversationRecipient, Collections.singleton(messageRecord), false);
+  private void setupToolbarMenuItems(@NonNull ConversationMessage conversationMessage) {
+    MenuState menuState = MenuState.getMenuState(conversationRecipient, conversationMessage.getMultiselectCollection().toSet(), false, isNonAdminInAnnouncementGroup);
 
     toolbar.getMenu().findItem(R.id.action_copy).setVisible(menuState.shouldShowCopyAction());
     toolbar.getMenu().findItem(R.id.action_download).setVisible(menuState.shouldShowSaveAttachmentAction());
@@ -538,7 +508,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         .toList();
 
     Animator overlayRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
-    overlayRevealAnim.setTarget(maskView);
     overlayRevealAnim.setDuration(duration);
     reveals.add(overlayRevealAnim);
 
@@ -573,7 +542,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         .toList();
 
     Animator overlayHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
-    overlayHideAnim.setTarget(maskView);
     overlayHideAnim.setDuration(duration);
 
     Animator backgroundHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);

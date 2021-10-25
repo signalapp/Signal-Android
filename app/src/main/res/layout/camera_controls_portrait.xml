@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,35 +11,38 @@
         android:layout_height="128dp"
         android:layout_marginBottom="6dp"
         android:contentDescription="@string/CameraXFragment_capture_description"
-        app:imageCaptureSize="60dp"
-        app:recordSize="42dp"
+        app:imageCaptureSize="72dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:recordSize="54dp" />
 
     <org.thoughtcrime.securesms.mediasend.camerax.CameraXFlashToggleView
         android:id="@+id/camera_flash_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/circle_transparent_black_40"
+        android:padding="6dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/camerax_flash_toggle"
-        app:layout_constraintEnd_toStartOf="@+id/camera_flip_button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/camera_flip_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginTop="14dp"
-        android:src="@drawable/ic_switch_camera_32"
-        android:scaleType="fitCenter"
-        android:background="?selectableItemBackgroundBorderless"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circle_transparent_black_40"
         android:contentDescription="@string/CameraXFragment_change_camera_description"
+        android:scaleType="centerInside"
         android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/camera_flash_button"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_switch_camera_24"
         tools:visibility="visible" />
 
     <com.makeramen.roundedimageview.RoundedImageView
@@ -50,26 +52,23 @@
         android:layout_marginStart="32dp"
         android:contentDescription="@string/CameraXFragment_open_gallery_description"
         android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
         app:layout_constraintBottom_toBottomOf="@id/camera_capture_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:riv_corner_radius="4dp"
+        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
         app:riv_border_color="@color/core_white"
-        app:riv_border_width="2dp"/>
+        app:riv_border_width="1.5dp"
+        app:riv_corner_radius="10dp" />
 
-    <include
-        android:id="@+id/camera_count_button"
-        layout="@layout/mediasend_count_button"
+    <org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton
+        android:id="@+id/camera_review_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="14dp"
         android:layout_marginEnd="32dp"
-        android:layout_gravity="bottom|end"
+        android:background="@drawable/v2_media_count_indicator_background"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
         app:layout_constraintBottom_toBottomOf="@id/camera_capture_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
         tools:visibility="visible" />
 
     <View
@@ -77,11 +76,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/white" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

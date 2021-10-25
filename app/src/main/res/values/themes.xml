@@ -3,6 +3,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Signal.Transparent" parent="Theme.AppCompat">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -88,7 +89,13 @@
         <item name="contact_filter_toolbar_icon_tint">@color/signal_text_toolbar_subtitle</item>
     </style>
 
-    <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/login_top_background</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -96,9 +103,16 @@
 
         <item name="android:textColorHint">#cc000000</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/login_top_background</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -126,6 +140,7 @@
 
     <style name="TextSecure.BaseLightTheme" parent="@style/Theme.MaterialComponents.Light.Bridge">
         <item name="theme_type">light</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
 
@@ -133,7 +148,7 @@
 
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
-        <item name="actionModeBackground">@color/signal_background_secondary</item>
+        <item name="actionModeBackground">@color/signal_background_primary</item>
         <item name="actionModeCloseDrawable">@drawable/ic_x_tinted</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_light_theme</item>
@@ -180,6 +195,7 @@
 
     <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
         <item name="theme_type">dark</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
 
@@ -188,7 +204,7 @@
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="actionModeBackground">@color/signal_background_secondary</item>
+        <item name="actionModeBackground">@color/signal_background_primary</item>
         <item name="actionModeCloseDrawable">@drawable/ic_x_tinted</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
@@ -311,6 +327,7 @@
     </style>
 
     <style name="TextSecure.DarkTheme.WebRTCCall">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
@@ -383,6 +400,17 @@
         <item name="backgroundTint">@color/react_with_any_background</item>
     </style>
 
+    <style name="Widget.Signal.FixedRoundedCorners" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet</item>
+    </style>
+
+    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/signal_background_dialog</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">18dp</item>
@@ -397,6 +425,14 @@
         <item name="cornerSizeTopLeft">12dp</item>
         <item name="cornerSizeBottomLeft">12dp</item>
         <item name="cornerSizeBottomRight">12dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.MediaSelection" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.Circle" parent="">

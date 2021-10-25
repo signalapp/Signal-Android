@@ -13,16 +13,21 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MentionDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +37,7 @@ import java.util.stream.Collectors;
 /**
  * Core data source for loading an individual conversation.
  */
-class ConversationDataSource implements PagedDataSource<ConversationMessage> {
+class ConversationDataSource implements PagedDataSource<MessageId, ConversationMessage> {
 
   private static final String TAG = Log.tag(ConversationDataSource.class);
 
@@ -107,6 +112,48 @@ class ConversationDataSource implements PagedDataSource<ConversationMessage> {
     stopwatch.stop(TAG);
 
     return messages;
+  }
+
+  @Override
+  public @Nullable ConversationMessage load(@NonNull MessageId messageId) {
+    Stopwatch       stopwatch = new Stopwatch("load(" + messageId + "), thread " + threadId);
+    MessageDatabase database  = messageId.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+    MessageRecord   record    = database.getMessageRecordOrNull(messageId.getId());
+
+    stopwatch.split("message");
+
+    try {
+      if (record != null) {
+        List<Mention> mentions;
+        if (messageId.isMms()) {
+          mentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessage(messageId.getId());
+        } else {
+          mentions = Collections.emptyList();
+        }
+
+        stopwatch.split("mentions");
+
+        if (messageId.isMms()) {
+          List<DatabaseAttachment> attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId.getId());
+          if (attachments.size() > 0) {
+            record = ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
+          }
+        }
+
+        stopwatch.split("attachments");
+
+        return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record, mentions);
+      } else {
+        return null;
+      }
+    } finally {
+      stopwatch.stop(TAG);
+    }
+  }
+
+  @Override
+  public @NonNull MessageId getKey(@NonNull ConversationMessage conversationMessage) {
+    return new MessageId(conversationMessage.getMessageRecord().getId(), conversationMessage.getMessageRecord().isMms());
   }
 
   private static class MentionHelper {

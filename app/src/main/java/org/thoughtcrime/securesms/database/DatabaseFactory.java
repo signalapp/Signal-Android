@@ -20,7 +20,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -35,6 +35,9 @@ import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.io.Closeable;
+import java.io.IOException;
 
 public class DatabaseFactory {
 
@@ -72,6 +75,7 @@ public class DatabaseFactory {
   private final EmojiSearchDatabase         emojiSearchDatabase;
   private final MessageSendLogDatabase      messageSendLogDatabase;
   private final AvatarPickerDatabase        avatarPickerDatabase;
+  private final GroupCallRingDatabase       groupCallRingDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     if (instance == null) {
@@ -206,8 +210,12 @@ public class DatabaseFactory {
     return getInstance(context).avatarPickerDatabase;
   }
 
-  public static SQLiteDatabase getBackupDatabase(Context context) {
-    return getInstance(context).databaseHelper.getReadableDatabase().getSqlCipherDatabase();
+  public static GroupCallRingDatabase getGroupCallRingDatabase(Context context) {
+    return getInstance(context).groupCallRingDatabase;
+  }
+
+  public static net.zetetic.database.sqlcipher.SQLiteDatabase getBackupDatabase(Context context) {
+    return getInstance(context).databaseHelper.getRawReadableDatabase();
   }
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){
@@ -217,23 +225,20 @@ public class DatabaseFactory {
       getInstance(context).sms.deleteAbandonedMessages();
       getInstance(context).mms.deleteAbandonedMessages();
       getInstance(context).mms.trimEntriesForExpiredMessages();
-      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS key_value");
-      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS megaphone");
-      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS job_spec");
-      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS constraint_spec");
-      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS dependency_spec");
-
-      instance.databaseHelper.close();
-      instance = null;
+      getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS key_value");
+      getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS megaphone");
+      getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS job_spec");
+      getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS constraint_spec");
+      getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS dependency_spec");
     }
   }
 
   public static boolean inTransaction(Context context) {
-    return getInstance(context).databaseHelper.getWritableDatabase().inTransaction();
+    return getInstance(context).databaseHelper.getSignalWritableDatabase().inTransaction();
   }
 
   private DatabaseFactory(@NonNull Context context) {
-    SqlCipherLibraryLoader.load(context);
+    SqlCipherLibraryLoader.load();
 
     DatabaseSecret   databaseSecret   = DatabaseSecretProvider.getOrCreateDatabaseSecret(context);
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
@@ -268,12 +273,13 @@ public class DatabaseFactory {
     this.emojiSearchDatabase         = new EmojiSearchDatabase(context, databaseHelper);
     this.messageSendLogDatabase      = new MessageSendLogDatabase(context, databaseHelper);
     this.avatarPickerDatabase        = new AvatarPickerDatabase(context, databaseHelper);
+    this.groupCallRingDatabase       = new GroupCallRingDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
                                         int fromVersion, LegacyMigrationJob.DatabaseUpgradeListener listener)
   {
-    databaseHelper.getWritableDatabase();
+    databaseHelper.getSignalWritableDatabase();
 
     ClassicOpenHelper legacyOpenHelper = null;
 
@@ -289,20 +295,33 @@ public class DatabaseFactory {
 
       SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret,
                                                  legacyOpenHelper.getWritableDatabase(),
-                                                 databaseHelper.getWritableDatabase().getSqlCipherDatabase(),
+                                                 databaseHelper.getRawWritableDatabase(),
                                                  listener);
     }
   }
 
   public void triggerDatabaseAccess() {
-    databaseHelper.getWritableDatabase();
+    databaseHelper.getSignalWritableDatabase();
   }
 
-  public SQLiteDatabase getRawDatabase() {
-    return databaseHelper.getWritableDatabase().getSqlCipherDatabase();
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawDatabase() {
+    return databaseHelper.getRawWritableDatabase();
   }
 
   public boolean hasTable(String table) {
-    return SqlUtil.tableExists(databaseHelper.getReadableDatabase().getSqlCipherDatabase(), table);
+    return SqlUtil.tableExists(databaseHelper.getRawReadableDatabase(), table);
+  }
+
+  public @NonNull Transaction transaction() {
+    getRawDatabase().beginTransaction();
+    return () -> {
+      getRawDatabase().setTransactionSuccessful();
+      getRawDatabase().endTransaction();
+    };
+  }
+
+  public interface Transaction extends Closeable {
+    @Override
+    void close();
   }
 }

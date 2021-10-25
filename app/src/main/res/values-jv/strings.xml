@@ -158,7 +158,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atur malih sesi aman?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tumindak niki bakal mbiantu menawi sampeyan gadhah masalah enkripsi ing obrolan niki. Pesen sampeyan bakal disimpen.</string> -->
-  <string name="ConversationActivity_reset">Atur malih</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atur malih</string> -->
   <string name="ConversationActivity_add_attachment">Minggahaken lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pileh informasi kontak</string>
   <string name="ConversationActivity_compose_message">Serat pesen</string>
@@ -395,21 +395,21 @@
   <string name="InviteActivity_share">Unjukaken</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Pileh kontak</string> -->
   <string name="InviteActivity_share_with_contacts">Unjukaken kaliyan kontak</string>
-  <string name="InviteActivity_choose_how_to_share">Pileh cara kangge ngunjukaken</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Pileh cara kangge ngunjukaken</string> -->
   <string name="InviteActivity_cancel">Batalaken</string>
   <string name="InviteActivity_sending">Taksih ngirimaken…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Manah</string> -->
   <string name="InviteActivity_invitations_sent">Ulem-ulem dipunkirimaken!</string>
   <string name="InviteActivity_invite_to_signal">Ajak ngginakaken Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">KIRIMAKEN SMS DHATENG %d KANCA</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirimaken SMS ulem-ulem dhateng %d?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mangga ngginakaken Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kadosipun sampeyan mboten gadhah aplikasi kangge ngunjukaken.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kanca sejatos mboten bakal kersa kanca-kancanipun ngobrol tanpa enkripsi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kanca sejatos mboten bakal kersa kanca-kancanipun ngobrol tanpa enkripsi.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Mlampah ing latar wingking…</string> -->
   <!--LearnMoreTextView-->
@@ -446,12 +446,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tampilan kisi-kisi</string>
   <string name="MediaOverviewActivity_List_view_description">Tampilan daftar</string>
   <string name="MediaOverviewActivity_Selected_description">Dipunpileh</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d prakawis %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d prakawis</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">File</string>
   <string name="MediaOverviewActivity_audio">Suwanten</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -469,7 +469,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Telepon Signal taksih dipuntumindakaken</string>
   <string name="NotificationBarManager__establishing_signal_call">Netapaken telepon Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Telepon Signal ingkang mlebet</string>
-  <string name="NotificationBarManager__deny_call">Tolak telepon</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tolak telepon</string> -->
   <string name="NotificationBarManager__answer_call">Angkat telepon</string>
   <string name="NotificationBarManager__end_call">Rampungaken telepon</string>
   <string name="NotificationBarManager__cancel_call">Batalaken telepon</string>
@@ -1154,10 +1154,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">MINGGAHAKEN DHATENG KONTAK</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">AMPUN MINGGAHAKEN, NANGING SAGEDAKEN PROFIL KULA DITINGALI</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Menawi sampeyan kersa ngeverifikasi keamanan enkripsi sampeyan kaliyan %s, gathukaken nomer ing inggil kaliyan nomer ingkang enten ing pirantos piyambakipun. Sampeyan ugi saged ngescan kode ing telepon piyambakipun utawi tedhakaken supados piyambakipun ngescan kode sampeyan. <a href="https://signal.org/redirect/safety-numbers">Sapepakipun.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Menawi sampeyan kersa ngeverifikasi keamanan enkripsi sampeyan kaliyan %s, gathukaken nomer ing inggil kaliyan nomer ingkang enten ing pirantos piyambakipun. Sampeyan ugi saged ngescan kode ing telepon piyambakipun utawi tedhakaken supados piyambakipun ngescan kode sampeyan. <a href="https://signal.org/redirect/safety-numbers">Sapepakipun.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tutul kangge ngescan</string>
   <string name="verify_display_fragment__loading">Taksih ngunggahi…</string>
-  <string name="verify_display_fragment__verified">Dipunverifikasi</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Dipunverifikasi</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Unjukaken nomer keamanan</string>
   <!--webrtc_answer_decline_button-->

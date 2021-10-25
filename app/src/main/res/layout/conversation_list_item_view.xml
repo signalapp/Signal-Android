@@ -1,168 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.conversationlist.ConversationListItem
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.conversationlist.ConversationListItem xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/conversation_list_item_background"
     android:focusable="true"
+    android:minHeight="78dp"
     android:nextFocusLeft="@+id/container"
     android:nextFocusRight="@+id/fab"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp">
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingEnd="@dimen/dsl_settings_gutter"
+    android:animateLayoutChanges="true">
 
-  <org.thoughtcrime.securesms.components.AvatarImageView
-      android:id="@+id/conversation_list_item_avatar"
-      android:layout_width="52dp"
-      android:layout_height="52dp"
-      android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
-      android:foreground="@drawable/contact_photo_background"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"
-      tools:src="@drawable/ic_contact_picture" />
+    <FrameLayout
+        android:id="@+id/conversation_list_item_check_container"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-  <TextView
-      android:id="@+id/conversation_list_item_unread_indicator"
-      style="@style/Signal.Text.Caption"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@drawable/unread_count_background"
-      android:fontFamily="sans-serif-medium"
-      android:gravity="center"
-      android:minWidth="@dimen/unread_count_bubble_diameter"
-      android:padding="5sp"
-      android:textColor="@color/core_white"
-      app:layout_constraintEnd_toEndOf="@id/conversation_list_item_avatar"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar"
-      tools:text="1" />
+        <ImageView
+            android:id="@+id/conversation_list_item_unchecked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/multiselect_empty_ring"
+            android:visibility="gone"/>
 
-  <org.thoughtcrime.securesms.components.FromTextView
-      android:id="@+id/conversation_list_item_name"
-      style="@style/Signal.Text.Body"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="2dp"
-      android:layout_marginStart="8dp"
-      android:drawablePadding="5dp"
-      android:ellipsize="end"
-      android:fontFamily="sans-serif-medium"
-      android:maxLines="1"
-      android:textColor="@color/signal_text_primary"
-      app:layout_constraintStart_toEndOf="@id/conversation_list_item_avatar"
-      app:layout_constraintEnd_toStartOf="@id/conversation_list_item_thumbnail"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar"
-      app:layout_constraintBottom_toTopOf="@id/conversation_list_item_summary"
-      app:layout_constraintVertical_chainStyle="packed"
-      tools:text="Peter Parker" />
+        <ImageView
+            android:id="@+id/conversation_list_item_checked"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_check_circle_solid_24"
+            app:tint="@color/signal_accent_primary"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
-  <org.thoughtcrime.securesms.components.AlertView
-      android:id="@+id/conversation_list_item_alert"
-      android:layout_width="18dp"
-      android:layout_height="18dp"
-      android:layout_marginEnd="2dp"
-      android:paddingTop="2dp"
-      android:visibility="gone"
-      app:useSmallIcon="true"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_summary"
-      app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_summary"
-      app:layout_constraintStart_toStartOf="@id/conversation_list_item_name"
-      tools:visibility="visible" />
+    </FrameLayout>
 
-  <org.thoughtcrime.securesms.components.emoji.SingleLineEmojiTextView
-      android:id="@+id/conversation_list_item_summary"
-      style="@style/Signal.Text.Preview"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:ellipsize="end"
-      android:maxLines="1"
-      android:textColor="@color/signal_text_secondary"
-      tools:text="I'll send those photos over to the Bugle ASAP."
-      app:layout_constraintTop_toBottomOf="@id/conversation_list_item_name"
-      app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_avatar"
-      app:layout_constraintStart_toEndOf="@id/conversation_list_item_alert"
-      app:layout_constraintEnd_toStartOf="@id/conversation_list_item_status_barrier"/>
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/conversation_list_item_avatar"
+        android:layout_width="@dimen/conversation_list_avatar_size"
+        android:layout_height="@dimen/conversation_list_avatar_size"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="24dp"
+        android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
+        android:foreground="@drawable/contact_photo_background"
+        app:layout_constraintStart_toEndOf="@id/conversation_list_item_check_container"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="0dp"
+        tools:src="@drawable/ic_contact_picture" />
 
-  <org.thoughtcrime.securesms.components.TypingIndicatorView
-      android:id="@+id/conversation_list_item_typing_indicator"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="4dp"
-      android:visibility="gone"
-      tools:visibility="visible"
-      app:typingIndicator_tint="@color/signal_icon_tint_secondary"
-      app:layout_constraintStart_toStartOf="@id/conversation_list_item_summary"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_summary"/>
+    <org.thoughtcrime.securesms.components.FromTextView
+        android:id="@+id/conversation_list_item_name"
+        style="@style/Signal.Text.Body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:drawablePadding="5dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintEnd_toStartOf="@id/conversation_list_item_date"
+        app:layout_constraintStart_toEndOf="@id/conversation_list_item_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Long Chat name for testing purposes" />
 
-  <org.thoughtcrime.securesms.components.ThumbnailView
-      android:id="@+id/conversation_list_item_thumbnail"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:layout_marginStart="5dp"
-      android:layout_marginTop="5dp"
-      android:layout_marginEnd="5dp"
-      android:layout_toStartOf="@+id/conversation_list_item_date"
-      android:contentDescription="@string/conversation_activity__attachment_thumbnail"
-      android:visibility="gone"
-      tools:visibility="visible"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar"
-      app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_avatar"
-      app:layout_constraintEnd_toStartOf="@id/conversation_list_item_metadata_barrier"/>
+    <org.thoughtcrime.securesms.components.AlertView
+        android:id="@+id/conversation_list_item_alert"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="2dp"
+        android:paddingTop="2dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/conversation_list_item_name"
+        app:layout_constraintTop_toBottomOf="@id/conversation_list_item_name"
+        app:useSmallIcon="true"
+        tools:visibility="visible" />
 
-  <TextView
-      android:id="@id/conversation_list_item_date"
-      style="@style/Signal.Text.Caption"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:singleLine="true"
-      android:textColor="@color/signal_icon_tint_secondary"
-      tools:text="Now"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_name"
-      app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_name"/>
+    <org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView
+        android:id="@+id/conversation_list_item_summary"
+        style="@style/Signal.Text.Preview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        android:lines="2"
+        android:maxLines="2"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintEnd_toStartOf="@id/conversation_list_item_status_container"
+        app:layout_constraintStart_toEndOf="@id/conversation_list_item_alert"
+        app:layout_constraintTop_toBottomOf="@id/conversation_list_item_name"
+        tools:text="I'll send those photos over to the Bugle ASAP." />
 
-  <TextView
-      android:id="@+id/conversation_list_item_archived"
-      style="@style/Signal.Text.Caption"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@drawable/archived_indicator_background"
-      android:paddingStart="6dp"
-      android:paddingTop="2dp"
-      android:paddingEnd="6dp"
-      android:paddingBottom="2dp"
-      android:text="@string/conversation_list_item_view__archived"
-      android:textColor="@color/core_white"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_status"
-      app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_status"
-      app:layout_constraintEnd_toEndOf="parent"/>
+    <org.thoughtcrime.securesms.components.TypingIndicatorView
+        android:id="@+id/conversation_list_item_typing_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/conversation_list_item_summary"
+        app:layout_constraintTop_toTopOf="@id/conversation_list_item_summary"
+        app:typingIndicator_tint="@color/signal_icon_tint_secondary"
+        tools:visibility="visible" />
 
-  <org.thoughtcrime.securesms.components.DeliveryStatusView
-      android:id="@+id/conversation_list_item_status"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_vertical"
-      android:layout_marginEnd="5dp"
-      app:layout_goneMarginEnd="0dp"
-      app:iconColor="@color/signal_icon_tint_secondary"
-      app:layout_constraintEnd_toStartOf="@+id/conversation_list_item_archived"
-      app:layout_constraintTop_toTopOf="@id/conversation_list_item_summary"
-      app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_summary"/>
+    <TextView
+        android:id="@+id/conversation_list_item_date"
+        style="@style/Signal.Text.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:singleLine="true"
+        android:textColor="@color/signal_icon_tint_secondary"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/conversation_list_item_name"
+        tools:text="10:00 am" />
 
-  <androidx.constraintlayout.widget.Barrier
-      android:id="@+id/conversation_list_item_metadata_barrier"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:barrierDirection="start"
-      app:constraint_referenced_ids="conversation_list_item_status,conversation_list_item_archived,conversation_list_item_date"/>
+    <LinearLayout
+        android:id="@+id/conversation_list_item_status_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/conversation_list_item_date">
 
-  <androidx.constraintlayout.widget.Barrier
-      android:id="@+id/conversation_list_item_status_barrier"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:barrierDirection="start"
-      app:constraint_referenced_ids="conversation_list_item_status,conversation_list_item_thumbnail"/>
+        <org.thoughtcrime.securesms.components.DeliveryStatusView
+            android:id="@+id/conversation_list_item_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:iconColor="@color/signal_icon_tint_secondary" />
 
+        <TextView
+            android:id="@+id/conversation_list_item_unread_indicator"
+            style="@style/Signal.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:minWidth="18dp"
+            android:background="@drawable/unread_count_background_new"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/core_white"
+            tools:text="99+" />
+
+        <TextView
+            android:id="@+id/conversation_list_item_archived"
+            style="@style/Signal.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/archived_indicator_background"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="@string/conversation_list_item_view__archived"
+            android:textColor="@color/core_white"
+            tools:visibility="gone" />
+
+    </LinearLayout>
+
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/conversation_list_item_badge"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="26dp"
+        android:contentDescription="@string/ImageView__badge"
+        android:visibility="gone"
+        app:badge_size="medium"
+        app:layout_constraintStart_toStartOf="@id/conversation_list_item_avatar"
+        app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar"
+        tools:visibility="visible" />
 
 </org.thoughtcrime.securesms.conversationlist.ConversationListItem>

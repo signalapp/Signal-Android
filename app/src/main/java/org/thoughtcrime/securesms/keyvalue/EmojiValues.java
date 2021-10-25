@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -68,16 +69,39 @@ public class EmojiValues extends SignalStoreValues {
     return getString(PREFIX + canonical, emoji);
   }
 
+  /**
+   * Returns a list usable emoji that the user has selected as their defaults. If any stored reactions are unreadable, it will provide a default.
+   * For raw access to the unfiltered list of reactions, see {@link #getRawReactions()}.
+   */
   public @NonNull List<String> getReactions() {
+    List<String> raw = getRawReactions();
+    List<String> out = new ArrayList<>(DEFAULT_REACTIONS_LIST.size());
+
+    for (int i = 0; i < DEFAULT_REACTIONS_LIST.size(); i++) {
+      if (raw.size() > i && EmojiUtil.isEmoji(raw.get(i))) {
+        out.add(raw.get(i));
+      } else {
+        out.add(DEFAULT_REACTIONS_LIST.get(i));
+      }
+    }
+
+    return out;
+  }
+
+  /**
+   * A raw list of the default reactions the user has selected. It will be empty if there hasn't been any custom ones set. It may contain unrenderable emoji.
+   * This is primarily here for syncing to storage service. You probably want {@link #getReactions()} for everything else.
+   */
+  public @NonNull List<String> getRawReactions() {
     String list = getString(REACTIONS_LIST, "");
     if (TextUtils.isEmpty(list)) {
-      return DEFAULT_REACTIONS_LIST;
+      return Collections.emptyList();
     } else {
       return Arrays.asList(list.split(","));
     }
   }
 
-  public void setReactions(List<String> reactions) {
+  public void setReactions(@NonNull List<String> reactions) {
     putString(REACTIONS_LIST, Util.join(reactions, ","));
   }
 

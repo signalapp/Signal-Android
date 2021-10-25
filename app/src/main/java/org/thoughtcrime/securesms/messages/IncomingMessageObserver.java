@@ -14,10 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.PushDecryptDrainedJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -50,6 +52,7 @@ public class IncomingMessageObserver {
   private final Application                context;
   private final SignalServiceNetworkAccess networkAccess;
   private final List<Runnable>             decryptionDrainedListeners;
+  private final BroadcastReceiver          connectionReceiver;
 
   private boolean appVisible;
 
@@ -84,7 +87,7 @@ public class IncomingMessageObserver {
       }
     });
 
-    context.registerReceiver(new BroadcastReceiver() {
+    connectionReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
         synchronized (IncomingMessageObserver.this) {
@@ -92,12 +95,14 @@ public class IncomingMessageObserver {
             Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.");
             networkDrained    = false;
             decryptionDrained = false;
-            shutdown();
+            disconnect();
           }
           IncomingMessageObserver.this.notifyAll();
         }
       }
-    }, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    };
+
+    context.registerReceiver(connectionReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
   }
 
   public synchronized void notifyRegistrationChanged() {
@@ -169,14 +174,16 @@ public class IncomingMessageObserver {
   public void terminateAsync() {
     INSTANCE_COUNT.decrementAndGet();
 
+    context.unregisterReceiver(connectionReceiver);
+
     SignalExecutors.BOUNDED.execute(() -> {
       Log.w(TAG, "Beginning termination.");
       terminated = true;
-      shutdown();
+      disconnect();
     });
   }
 
-  private void shutdown() {
+  private void disconnect() {
     ApplicationDependencies.getSignalWebSocket().disconnect();
   }
 
@@ -190,8 +197,15 @@ public class IncomingMessageObserver {
 
     @Override
     public void run() {
+      int attempts = 0;
+
       while (!terminated) {
         Log.i(TAG, "Waiting for websocket state change....");
+        if (attempts > 1) {
+          long backoff = BackoffUtil.exponentialBackoff(attempts, TimeUnit.SECONDS.toMillis(30));
+          Log.w(TAG, "Too many failed connection attempts,  attempts: " + attempts + " backing off: " + backoff);
+          ThreadUtil.sleep(backoff);
+        }
         waitForConnectionNecessary();
 
         Log.i(TAG, "Making websocket connection....");
@@ -208,6 +222,7 @@ public class IncomingMessageObserver {
                   processor.processEnvelope(envelope);
                 }
               });
+              attempts = 0;
 
               if (!result.isPresent() && !networkDrained) {
                 Log.i(TAG, "Network was newly-drained. Enqueuing a job to listen for decryption draining.");
@@ -219,13 +234,15 @@ public class IncomingMessageObserver {
               signalWebSocket.connect();
             } catch (TimeoutException e) {
               Log.w(TAG, "Application level read timeout...");
+              attempts = 0;
             }
           }
         } catch (Throwable e) {
+          attempts++;
           Log.w(TAG, e);
         } finally {
           Log.w(TAG, "Shutting down pipe...");
-          shutdown();
+          disconnect();
         }
 
         Log.i(TAG, "Looping...");

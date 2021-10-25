@@ -10,6 +10,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +26,6 @@ import com.airbnb.lottie.LottieProperty;
 import com.airbnb.lottie.model.KeyPath;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -33,15 +33,18 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class ConversationItemFooter extends ConstraintLayout {
@@ -62,6 +65,8 @@ public class ConversationItemFooter extends ConstraintLayout {
 
   private final Rect speedToggleHitRect = new Rect();
   private final int  touchTargetSize    = ViewUtil.dpToPx(48);
+
+  private long previousMessageId;
 
   public ConversationItemFooter(Context context) {
     super(context);
@@ -146,7 +151,7 @@ public class ConversationItemFooter extends ConstraintLayout {
   }
 
   public void setAudioDuration(long totalDurationMillis, long currentPostionMillis) {
-    long remainingSecs = TimeUnit.MILLISECONDS.toSeconds(totalDurationMillis - currentPostionMillis);
+    long remainingSecs = Math.max(0, TimeUnit.MILLISECONDS.toSeconds(totalDurationMillis - currentPostionMillis));
     audioDuration.setText(getResources().getString(R.string.AudioView_duration, remainingSecs / 60, remainingSecs % 60));
   }
 
@@ -203,12 +208,16 @@ public class ConversationItemFooter extends ConstraintLayout {
     setBackground(null);
   }
 
-  public @Nullable Projection getProjection() {
+  public @Nullable Projection getProjection(@NonNull ViewGroup coordinateRoot) {
     if (getVisibility() == VISIBLE) {
-      return Projection.relativeToViewRoot(this, new Projection.Corners(ViewUtil.dpToPx(11)));
+      return Projection.relativeToParent(coordinateRoot, this, new Projection.Corners(ViewUtil.dpToPx(11)));
     } else {
       return null;
     }
+  }
+
+  public TextView getDateView() {
+    return dateView;
   }
 
   private void notifyTouchDelegateChanged(@NonNull Rect rect, @NonNull View touchDelegate) {
@@ -307,7 +316,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     } else if (messageRecord.isRateLimited()) {
       dateView.setText(R.string.ConversationItem_send_paused);
     } else {
-      dateView.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
+      dateView.setText(DateUtils.getSimpleRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
     }
   }
 
@@ -367,6 +376,19 @@ public class ConversationItemFooter extends ConstraintLayout {
   }
 
   private void presentDeliveryStatus(@NonNull MessageRecord messageRecord) {
+    long newMessageId = buildMessageId(messageRecord);
+
+    if (previousMessageId == newMessageId && deliveryStatusView.isPending() && !messageRecord.isPending()) {
+      if (messageRecord.getRecipient().isGroup()) {
+        SignalLocalMetrics.GroupMessageSend.onUiUpdated(messageRecord.getId());
+      } else {
+        SignalLocalMetrics.IndividualMessageSend.onUiUpdated(messageRecord.getId());
+      }
+    }
+
+    previousMessageId = newMessageId;
+
+
     if (messageRecord.isFailed() || messageRecord.isPendingInsecureSmsFallback()) {
       deliveryStatusView.setNone();
       return;
@@ -400,7 +422,7 @@ public class ConversationItemFooter extends ConstraintLayout {
       if (mmsMessageRecord.getSlideDeck().getAudioSlide() != null) {
         showAudioDurationViews();
 
-        if (messageRecord.getViewedReceiptCount() > 0) {
+        if (messageRecord.getViewedReceiptCount() > 0 || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getRecipient(), Recipient.self()))) {
           revealDot.setProgress(1f);
         } else {
           revealDot.setProgress(0f);
@@ -423,6 +445,10 @@ public class ConversationItemFooter extends ConstraintLayout {
     audioDuration.setVisibility(View.GONE);
     revealDot.setVisibility(View.GONE);
     playbackSpeedToggleTextView.setVisibility(View.GONE);
+  }
+
+  private long buildMessageId(@NonNull MessageRecord record) {
+    return record.isMms() ? -record.getId() : record.getId();
   }
 
   public interface OnTouchDelegateChangedListener {

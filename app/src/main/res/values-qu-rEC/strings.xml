@@ -120,7 +120,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Kutin wakaychishpa kallarinayanchu</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Pakashka rimaywan llaki apakukpika kayka yanapayta ushanmi. Kikinpa chaski mana picharinkachu.</string> -->
-  <string name="ConversationActivity_reset">Kutin kallaripay</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Kutin kallaripay</string> -->
   <string name="ConversationActivity_add_attachment">Shuk imaykunata kimichipay</string>
   <string name="ConversationActivity_select_contact_info">Yupaymashipa willayta akllapay</string>
   <string name="ConversationActivity_compose_message">Chaskita killkapay</string>
@@ -323,17 +323,17 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Shunku</string> -->
   <string name="InviteActivity_invitations_sent">¡Kumpitaykunata kachashka!</string>
   <string name="InviteActivity_invite_to_signal">Signal ukuman kayachiy</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">MASHIMAN %d KILLKANA SMS</item>
     <item quantity="other">MASHIKUNAMAN %d  SMS KACHAY</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Kayachita SMS %d kachanayanchu</item>
     <item quantity="other">%d SMS kayachikunata kachanayanchu</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signalman yallipashun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaykunata yallichirinkapakka nima aplicación illanmi yarin.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kikinpa alli mashikunaka, mana shinalla rimarichun sakinchu </string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kikinpa alli mashikunaka, mana shinalla rimarichun sakinchu </string> -->
   <!--Job-->
   <!--MessageDetailsRecipient-->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Mana kacharirkachu</string> -->
@@ -358,7 +358,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Kay pachapi Signal kayachikun</string>
   <string name="NotificationBarManager__establishing_signal_call">Signalpi kayachita rurarikun</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal ukuman kayachimukun</string>
-  <string name="NotificationBarManager__deny_call">Kayachita mana chaskina</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Kayachita mana chaskina</string> -->
   <string name="NotificationBarManager__answer_call">Kayachita kutichipay</string>
   <string name="NotificationBarManager__end_call">Kayachita illachipay</string>
   <string name="NotificationBarManager__cancel_call">Kayachita mana kutichina</string>
@@ -888,10 +888,10 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">YUPAY MASHIKUMAN KIMICHINA</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">MANA ALLICHINI , SHINAPASH TUKUYLLA ÑUKAPA KALLARI WILLAYTA RIKUCHUN MUNANI </string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Wakaychishka pakalla  yupayta kaywan %s rikunkapak munashpaka, hawapi yupayta kay antanikipi llukshishka yupaywan chimpapurapay kikinpa kayachirikuk mashiwan. Mana kashpaka, rantimanta unanchata  shuyurikchashpa ushankichik. <a href="https://signal.org/redirect/safety-numbers">Ashtawan yachana.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Wakaychishka pakalla  yupayta kaywan %s rikunkapak munashpaka, hawapi yupayta kay antanikipi llukshishka yupaywan chimpapurapay kikinpa kayachirikuk mashiwan. Mana kashpaka, rantimanta unanchata  shuyurikchashpa ushankichik. <a href="https://signal.org/redirect/safety-numbers">Ashtawan yachana.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Shuyurikchankapak llapipay.</string>
   <string name="verify_display_fragment__loading">Paskakun…</string>
-  <string name="verify_display_fragment__verified">Shinapachami</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Shinapachami</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Kikinpa wakaychishka yupayta riksichiy</string>
   <!--webrtc_answer_decline_button-->

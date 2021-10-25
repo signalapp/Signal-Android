@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.CursorUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -175,7 +176,7 @@ public class DirectoryHelper {
           recipient = Recipient.resolved(recipientDatabase.getByUuid(uuid).get());
         }
       } else {
-        recipientDatabase.markRegistered(recipient.getId());
+        Log.w(TAG, "Registered number set had a null UUID!");
       }
     } else if (recipient.hasUuid() && recipient.isRegistered() && hasCommunicatedWith(context, recipient)) {
       if (isUuidRegistered(context, recipient)) {
@@ -230,7 +231,12 @@ public class DirectoryHelper {
 
     Stopwatch stopwatch = new Stopwatch("refresh");
 
-    DirectoryResult result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
+    DirectoryResult result;
+    if (FeatureFlags.cdsh()) {
+      result = ContactDiscoveryV3.getDirectoryResult(databaseNumbers, systemNumbers);
+    } else {
+      result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
+    }
 
     stopwatch.split("network");
 
@@ -469,8 +475,8 @@ public class DirectoryHelper {
 
     for (RecipientId newUser: newUsers) {
       Recipient recipient = Recipient.resolved(newUser);
-      if (!SessionUtil.hasSession(context, recipient.getId()) &&
-          !recipient.isSelf()                                 &&
+      if (!SessionUtil.hasSession(recipient.getId()) &&
+          !recipient.isSelf()                        &&
           recipient.hasAUserSetDisplayName(context))
       {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(recipient.getId());
@@ -543,8 +549,9 @@ public class DirectoryHelper {
   }
 
   private static boolean hasCommunicatedWith(@NonNull Context context, @NonNull Recipient recipient) {
-    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId()) ||
-           DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.getId());
+    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId())                                                ||
+           (recipient.hasUuid() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireUuid().toString())) ||
+           (recipient.hasE164() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireE164()));
   }
 
   static class DirectoryResult {

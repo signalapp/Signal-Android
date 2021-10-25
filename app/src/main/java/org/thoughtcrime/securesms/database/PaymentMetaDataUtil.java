@@ -23,11 +23,11 @@ public final class PaymentMetaDataUtil {
     try {
       return PaymentMetaData.parseFrom(requireBlob);
     } catch (InvalidProtocolBufferException e) {
-      throw new AssertionError(e);
+      throw new IllegalStateException(e);
     }
   }
 
-  public static @NonNull PaymentMetaData fromReceipt(@Nullable byte[] receipt) {
+  public static @NonNull PaymentMetaData fromReceipt(@Nullable byte[] receipt) throws SerializationException {
     PaymentMetaData.MobileCoinTxoIdentification.Builder builder = PaymentMetaData.MobileCoinTxoIdentification.newBuilder();
 
     if (receipt != null) {
@@ -46,7 +46,7 @@ public final class PaymentMetaDataUtil {
     return PaymentMetaData.newBuilder().setMobileCoinTxoIdentification(builder).build();
   }
 
-  public static @NonNull PaymentMetaData fromReceiptAndTransaction(@Nullable byte[] receipt, @Nullable byte[] transaction) {
+  public static @NonNull PaymentMetaData fromReceiptAndTransaction(@Nullable byte[] receipt, @Nullable byte[] transaction) throws SerializationException {
     PaymentMetaData.MobileCoinTxoIdentification.Builder builder = PaymentMetaData.MobileCoinTxoIdentification.newBuilder();
 
     if (transaction != null) {
@@ -58,27 +58,19 @@ public final class PaymentMetaDataUtil {
     return PaymentMetaData.newBuilder().setMobileCoinTxoIdentification(builder).build();
   }
 
-  private static void addReceiptData(@NonNull byte[] receipt, PaymentMetaData.MobileCoinTxoIdentification.Builder builder) {
-    try {
-      RistrettoPublic publicKey = Receipt.fromBytes(receipt).getPublicKey();
-      addPublicKey(builder, publicKey);
-    } catch (SerializationException e) {
-      throw new AssertionError(e);
-    }
+  private static void addReceiptData(@NonNull byte[] receipt, PaymentMetaData.MobileCoinTxoIdentification.Builder builder) throws SerializationException {
+    RistrettoPublic publicKey = Receipt.fromBytes(receipt).getPublicKey();
+    addPublicKey(builder, publicKey);
   }
 
-  private static void addTransactionData(@NonNull byte[] transactionBytes, PaymentMetaData.MobileCoinTxoIdentification.Builder builder) {
-    try {
-      Transaction   transaction = Transaction.fromBytes(transactionBytes);
-      Set<KeyImage> keyImages   = transaction.getKeyImages();
-      for (KeyImage keyImage : keyImages) {
-        builder.addKeyImages(ByteString.copyFrom(keyImage.getData()));
-      }
-      for (RistrettoPublic publicKey : transaction.getOutputPublicKeys()) {
-        addPublicKey(builder, publicKey);
-      }
-    } catch (SerializationException e) {
-      throw new AssertionError(e);
+  private static void addTransactionData(@NonNull byte[] transactionBytes, PaymentMetaData.MobileCoinTxoIdentification.Builder builder) throws SerializationException {
+    Transaction   transaction = Transaction.fromBytes(transactionBytes);
+    Set<KeyImage> keyImages   = transaction.getKeyImages();
+    for (KeyImage keyImage : keyImages) {
+      builder.addKeyImages(ByteString.copyFrom(keyImage.getData()));
+    }
+    for (RistrettoPublic publicKey : transaction.getOutputPublicKeys()) {
+      addPublicKey(builder, publicKey);
     }
   }
 

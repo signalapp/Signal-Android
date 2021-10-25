@@ -48,8 +48,9 @@ object AvatarRenderer {
     avatar: Avatar.Text,
     inverted: Boolean = false,
     size: Int = DIMENSIONS,
+    synchronous: Boolean = false
   ): Drawable {
-    return TextAvatarDrawable(context, avatar, inverted, size)
+    return TextAvatarDrawable(context, avatar, inverted, size, synchronous)
   }
 
   private fun renderVector(context: Context, avatar: Avatar.Vector, onAvatarRendered: (Media) -> Unit, onRenderFailed: (Throwable?) -> Unit) {
@@ -66,7 +67,7 @@ object AvatarRenderer {
 
   private fun renderText(context: Context, avatar: Avatar.Text, onAvatarRendered: (Media) -> Unit, onRenderFailed: (Throwable?) -> Unit) {
     renderInBackground(context, onAvatarRendered, onRenderFailed) { canvas ->
-      val textDrawable = createTextDrawable(context, avatar)
+      val textDrawable = createTextDrawable(context, avatar, synchronous = true)
 
       canvas.drawColor(avatar.color.backgroundColor)
       textDrawable.draw(canvas)

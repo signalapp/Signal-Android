@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.database.helpers;
 import android.content.ContentValues;
 import android.content.Context;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
@@ -73,7 +73,7 @@ class SessionStoreMigrationHelper {
 
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(SessionDatabase.RECIPIENT_ID, address);
+            contentValues.put(SessionDatabase.ADDRESS, address);
             contentValues.put(SessionDatabase.DEVICE, deviceId);
             contentValues.put(SessionDatabase.RECORD, sessionRecord.serialize());
 

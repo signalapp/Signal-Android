@@ -86,7 +86,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
     try {
       webRtcInteractor.getCallManager().proceed(activePeer.getCallId(),
                                                 context,
-                                                videoState.requireEglBase(),
+                                                videoState.getLockableEglBase().require(),
                                                 videoState.requireLocalSink(),
                                                 callParticipant.getVideoSink(),
                                                 videoState.requireCamera(),

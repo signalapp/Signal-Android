@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -62,9 +63,9 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     fragment.show(fragmentManager, SAFETY_NUMBER_DIALOG);
   }
 
-  public static void show(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityDatabase.IdentityRecord> identityRecords) {
+  public static void show(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityRecord> identityRecords) {
     List<String> ids = Stream.of(identityRecords)
-                             .filterNot(IdentityDatabase.IdentityRecord::isFirstUse)
+                             .filterNot(IdentityRecord::isFirstUse)
                              .map(record -> record.getRecipientId().serialize())
                              .distinct()
                              .toList();
@@ -102,9 +103,9 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     fragment.show(fragmentManager, SAFETY_NUMBER_DIALOG);
   }
 
-  public static void showForGroupCall(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityDatabase.IdentityRecord> identityRecords) {
+  public static void showForGroupCall(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityRecord> identityRecords) {
     List<String> ids = Stream.of(identityRecords)
-                             .filterNot(IdentityDatabase.IdentityRecord::isFirstUse)
+                             .filterNot(IdentityRecord::isFirstUse)
                              .map(record -> record.getRecipientId().serialize())
                              .distinct()
                              .toList();
@@ -214,7 +215,12 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     if (activity instanceof Callback && !skipCallbacks) {
       callback = (Callback) activity;
     } else {
-      callback = null;
+      Fragment parent = getParentFragment();
+      if (parent instanceof Callback && !skipCallbacks) {
+        callback = (Callback) parent;
+      } else {
+        callback = null;
+      }
     }
 
     LiveData<TrustAndVerifyResult> trustOrVerifyResultLiveData = viewModel.trustOrVerifyChangedRecipients();
@@ -244,11 +250,13 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   private void handleCancel(@NonNull DialogInterface dialogInterface, int which) {
     if (getActivity() instanceof Callback) {
       ((Callback) getActivity()).onCanceled();
+    } else if (getParentFragment() instanceof Callback) {
+      ((Callback) getParentFragment()).onCanceled();
     }
   }
 
   @Override
-  public void onViewIdentityRecord(@NonNull IdentityDatabase.IdentityRecord identityRecord) {
+  public void onViewIdentityRecord(@NonNull IdentityRecord identityRecord) {
     startActivity(VerifyIdentityActivity.newIntent(requireContext(), identityRecord));
   }
 

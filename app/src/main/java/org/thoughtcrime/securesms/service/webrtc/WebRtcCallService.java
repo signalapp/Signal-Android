@@ -6,10 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -25,16 +23,18 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.UncaughtExceptionHandlerManager;
-import org.thoughtcrime.securesms.webrtc.audio.BluetoothStateManager;
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Provide a foreground service for {@link SignalCallManager} to leverage to run in the background when necessary. Also
  * provides devices listeners needed for during a call (i.e., bluetooth, power button).
  */
-public final class WebRtcCallService extends Service implements BluetoothStateManager.BluetoothStateListener {
+public final class WebRtcCallService extends Service implements SignalAudioManager.EventListener {
 
   private static final String TAG = Log.tag(WebRtcCallService.class);
 
@@ -42,23 +42,23 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
   private static final String ACTION_STOP                = "STOP";
   private static final String ACTION_DENY_CALL           = "DENY_CALL";
   private static final String ACTION_LOCAL_HANGUP        = "LOCAL_HANGUP";
-  private static final String ACTION_WANTS_BLUETOOTH     = "WANTS_BLUETOOTH";
   private static final String ACTION_CHANGE_POWER_BUTTON = "CHANGE_POWER_BUTTON";
+  private static final String ACTION_SEND_AUDIO_COMMAND  = "SEND_AUDIO_COMMAND";
 
-  private static final String EXTRA_UPDATE_TYPE  = "UPDATE_TYPE";
-  private static final String EXTRA_RECIPIENT_ID = "RECIPIENT_ID";
-  private static final String EXTRA_ENABLED      = "ENABLED";
+  private static final String EXTRA_UPDATE_TYPE   = "UPDATE_TYPE";
+  private static final String EXTRA_RECIPIENT_ID  = "RECIPIENT_ID";
+  private static final String EXTRA_ENABLED       = "ENABLED";
+  private static final String EXTRA_AUDIO_COMMAND = "AUDIO_COMMAND";
 
   private static final int INVALID_NOTIFICATION_ID = -1;
 
   private SignalCallManager callManager;
 
-  private WiredHeadsetStateReceiver       wiredHeadsetStateReceiver;
   private NetworkReceiver                 networkReceiver;
   private PowerButtonReceiver             powerButtonReceiver;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
   private PhoneStateListener              hangUpRtcOnDeviceCallAnswered;
-  private BluetoothStateManager           bluetoothStateManager;
+  private SignalAudioManager              signalAudioManager;
   private int                             lastNotificationId;
   private Notification                    lastNotification;
 
@@ -86,11 +86,10 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     return new Intent(context, WebRtcCallService.class).setAction(ACTION_LOCAL_HANGUP);
   }
 
-  public static void setWantsBluetoothConnection(@NonNull Context context, boolean enabled) {
+  public static void sendAudioManagerCommand(@NonNull Context context, @NonNull AudioManagerCommand command) {
     Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(ACTION_WANTS_BLUETOOTH)
-          .putExtra(EXTRA_ENABLED, enabled);
-
+    intent.setAction(ACTION_SEND_AUDIO_COMMAND)
+          .putExtra(EXTRA_AUDIO_COMMAND, command);
     ContextCompat.startForegroundService(context, intent);
   }
 
@@ -107,12 +106,11 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     Log.v(TAG, "onCreate");
     super.onCreate();
     this.callManager                   = ApplicationDependencies.getSignalCallManager();
-    this.bluetoothStateManager         = new BluetoothStateManager(this, this);
+    this.signalAudioManager            = new SignalAudioManager(this, this);
     this.hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
     this.lastNotificationId            = INVALID_NOTIFICATION_ID;
 
     registerUncaughtExceptionHandler();
-    registerWiredHeadsetStateReceiver();
     registerNetworkReceiver();
 
     TelephonyUtil.getManager(this)
@@ -128,13 +126,8 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
       uncaughtExceptionHandlerManager.unregister();
     }
 
-    if (bluetoothStateManager != null) {
-      bluetoothStateManager.onDestroy();
-    }
-
-    if (wiredHeadsetStateReceiver != null) {
-      unregisterReceiver(wiredHeadsetStateReceiver);
-      wiredHeadsetStateReceiver = null;
+    if (signalAudioManager != null) {
+      signalAudioManager.shutdown();
     }
 
     unregisterNetworkReceiver();
@@ -157,11 +150,9 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
         setCallInProgressNotification(intent.getIntExtra(EXTRA_UPDATE_TYPE, 0),
                                       Objects.requireNonNull(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)));
         return START_STICKY;
-      case ACTION_WANTS_BLUETOOTH:
+      case ACTION_SEND_AUDIO_COMMAND:
         setCallNotification();
-        if (bluetoothStateManager != null) {
-          bluetoothStateManager.setWantsConnection(intent.getBooleanExtra(EXTRA_ENABLED, false));
-        }
+        signalAudioManager.handleCommand(Objects.requireNonNull(intent.getParcelableExtra(EXTRA_AUDIO_COMMAND)));
         return START_STICKY;
       case ACTION_CHANGE_POWER_BUTTON:
         setCallNotification();
@@ -215,20 +206,6 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     uncaughtExceptionHandlerManager.registerHandler(new ProximityLockRelease(callManager.getLockManager()));
   }
 
-  private void registerWiredHeadsetStateReceiver() {
-    wiredHeadsetStateReceiver = new WiredHeadsetStateReceiver();
-
-    String action;
-
-    if (Build.VERSION.SDK_INT >= 21) {
-      action = AudioManager.ACTION_HEADSET_PLUG;
-    } else {
-      action = Intent.ACTION_HEADSET_PLUG;
-    }
-
-    registerReceiver(wiredHeadsetStateReceiver, new IntentFilter(action));
-  }
-
   private void registerNetworkReceiver() {
     if (networkReceiver == null) {
       networkReceiver = new NetworkReceiver();
@@ -267,8 +244,8 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
   }
 
   @Override
-  public void onBluetoothStateChanged(boolean isAvailable) {
-    callManager.bluetoothChange(isAvailable);
+  public void onAudioDeviceChanged(@NonNull SignalAudioManager.AudioDevice activeDevice, @NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
+    callManager.onAudioDeviceChanged(activeDevice, availableDevices);
   }
 
   private class HangUpRtcOnPstnCallAnsweredListener extends PhoneStateListener {
@@ -283,15 +260,6 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
 
     private void hangup() {
       callManager.localHangup();
-    }
-  }
-
-  private static class WiredHeadsetStateReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(@NonNull Context context, @NonNull Intent intent) {
-      int state = intent.getIntExtra("state", -1);
-
-      ApplicationDependencies.getSignalCallManager().wiredHeadsetChange(state != 0);
     }
   }
 

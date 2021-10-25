@@ -11,42 +11,41 @@ class CompoundLogger extends Log.Logger {
   private final Log.Logger[] loggers;
 
   CompoundLogger(@NonNull Log.Logger... loggers) {
-    super(0);
     this.loggers = loggers;
   }
 
   @Override
-  public void v(String tag, String message, Throwable t, long duration) {
+  public void v(String tag, String message, Throwable t, boolean keepLonger) {
     for (Log.Logger logger : loggers) {
-      logger.v(tag, message, t, duration);
+      logger.v(tag, message, t, keepLonger);
     }
   }
 
   @Override
-  public void d(String tag, String message, Throwable t, long duration) {
+  public void d(String tag, String message, Throwable t, boolean keepLonger) {
     for (Log.Logger logger : loggers) {
-      logger.d(tag, message, t, duration);
+      logger.d(tag, message, t, keepLonger);
     }
   }
 
   @Override
-  public void i(String tag, String message, Throwable t, long duration) {
+  public void i(String tag, String message, Throwable t, boolean keepLonger) {
     for (Log.Logger logger : loggers) {
-      logger.i(tag, message, t, duration);
+      logger.i(tag, message, t, keepLonger);
     }
   }
 
   @Override
-  public void w(String tag, String message, Throwable t, long duration) {
+  public void w(String tag, String message, Throwable t, boolean keepLonger) {
     for (Log.Logger logger : loggers) {
-      logger.w(tag, message, t, duration);
+      logger.w(tag, message, t, keepLonger);
     }
   }
 
   @Override
-  public void e(String tag, String message, Throwable t, long duration) {
+  public void e(String tag, String message, Throwable t, boolean keepLonger) {
     for (Log.Logger logger : loggers) {
-      logger.e(tag, message, t, duration);
+      logger.e(tag, message, t, keepLonger);
     }
   }
 

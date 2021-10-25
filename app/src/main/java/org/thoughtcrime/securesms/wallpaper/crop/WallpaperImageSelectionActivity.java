@@ -13,14 +13,11 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mediasend.MediaFolder;
-import org.thoughtcrime.securesms.mediasend.MediaPickerFolderFragment;
-import org.thoughtcrime.securesms.mediasend.MediaPickerItemFragment;
+import org.thoughtcrime.securesms.mediasend.v2.gallery.MediaGalleryFragment;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 public final class WallpaperImageSelectionActivity extends AppCompatActivity
-        implements MediaPickerFolderFragment.Controller,
-        MediaPickerItemFragment.Controller
+        implements MediaGalleryFragment.Callbacks
 {
   private static final String EXTRA_RECIPIENT_ID = "RECIPIENT_ID";
   private static final int    CROP               = 901;
@@ -46,21 +43,8 @@ public final class WallpaperImageSelectionActivity extends AppCompatActivity
     setContentView(R.layout.wallpaper_image_selection_activity);
 
     getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.fragment_container, MediaPickerFolderFragment.newInstance(getString(R.string.WallpaperImageSelectionActivity__choose_wallpaper_image), true))
+                               .replace(R.id.fragment_container, new MediaGalleryFragment())
                                .commit();
-  }
-
-  @Override
-  public void onFolderSelected(@NonNull MediaFolder folder) {
-    getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.fragment_container, MediaPickerItemFragment.newInstance(folder.getBucketId(), folder.getTitle(), 1, false, true))
-                               .addToBackStack(null)
-                               .commit();
-  }
-
-  @Override
-  public void onCameraSelected() {
-    throw new AssertionError("Unexpected, Camera disabled");
   }
 
   @Override
@@ -79,5 +63,41 @@ public final class WallpaperImageSelectionActivity extends AppCompatActivity
       setResult(RESULT_OK, data);
       finish();
     }
+  }
+
+  @Override
+  public boolean isMultiselectEnabled() {
+    return false;
+  }
+
+  @Override
+  public void onMediaUnselected(@NonNull Media media) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void onSelectedMediaClicked(@NonNull Media media) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void onNavigateToCamera() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void onSubmit() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void onToolbarNavigationClicked() {
+    setResult(RESULT_CANCELED);
+    finish();
+  }
+
+  @Override
+  public boolean isCameraEnabled() {
+    return false;
   }
 }

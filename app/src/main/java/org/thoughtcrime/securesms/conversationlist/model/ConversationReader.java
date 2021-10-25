@@ -47,7 +47,7 @@ public class ConversationReader extends ThreadDatabase.StaticReader {
                            .setBody(type.toString())
                            .setDate(100)
                            .setRecipient(Recipient.UNKNOWN)
-                           .setCount(count)
+                           .setUnreadCount(count)
                            .build();
   }
 }

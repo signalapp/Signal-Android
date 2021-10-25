@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
 import android.content.Context;
-import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,14 +8,18 @@ import androidx.annotation.Nullable;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 
 /**
  * Calling specific helpers.
@@ -31,7 +34,7 @@ public final class WebRtcUtil {
   }
 
   public static @NonNull LockManager.PhoneState getInCallPhoneState(@NonNull Context context) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManagerCompat audioManager = ApplicationDependencies.getAndroidCallAudioManager();
     if (audioManager.isSpeakerphoneOn() || audioManager.isBluetoothScoOn() || audioManager.isWiredHeadsetOn()) {
       return LockManager.PhoneState.IN_HANDS_FREE_CALL;
     } else {
@@ -64,17 +67,22 @@ public final class WebRtcUtil {
     }
   }
 
-  public static void enableSpeakerPhoneIfNeeded(@NonNull Context context, boolean enable) {
-    if (!enable) {
+  public static OpaqueMessage.Urgency getUrgencyFromCallUrgency(@NonNull CallManager.CallMessageUrgency urgency) {
+    if (urgency == CallManager.CallMessageUrgency.HANDLE_IMMEDIATELY) {
+      return OpaqueMessage.Urgency.HANDLE_IMMEDIATELY;
+    }
+    return OpaqueMessage.Urgency.DROPPABLE;
+  }
+
+  public static void enableSpeakerPhoneIfNeeded(@NonNull WebRtcInteractor webRtcInteractor, WebRtcServiceState currentState) {
+    if (!currentState.getLocalDeviceState().getCameraState().isEnabled()) {
       return;
     }
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
-    //noinspection deprecation
-    boolean shouldEnable = !(androidAudioManager.isSpeakerphoneOn() || androidAudioManager.isBluetoothScoOn() || androidAudioManager.isWiredHeadsetOn());
-
-    if (shouldEnable) {
-      androidAudioManager.setSpeakerphoneOn(true);
+    if (currentState.getLocalDeviceState().getActiveDevice() == SignalAudioManager.AudioDevice.EARPIECE ||
+        currentState.getLocalDeviceState().getActiveDevice() == SignalAudioManager.AudioDevice.NONE)
+    {
+      webRtcInteractor.setDefaultAudioDevice(SignalAudioManager.AudioDevice.SPEAKER_PHONE, true);
     }
   }
 

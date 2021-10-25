@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 import com.facebook.flipper.plugins.databases.DatabaseDescriptor;
 import com.facebook.flipper.plugins.databases.DatabaseDriver;
 
-import net.sqlcipher.DatabaseUtils;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteStatement;
+import net.zetetic.database.DatabaseUtils;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -50,11 +50,13 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
       SignalDatabase keyValueOpenHelper   = KeyValueDatabase.getInstance((Application) getContext());
       SignalDatabase megaphoneOpenHelper  = MegaphoneDatabase.getInstance((Application) getContext());
       SignalDatabase jobManagerOpenHelper = JobDatabase.getInstance((Application) getContext());
+      SignalDatabase metricsOpenHelper    = LocalMetricsDatabase.getInstance((Application) getContext());
 
       return Arrays.asList(new Descriptor(mainOpenHelper),
                            new Descriptor(keyValueOpenHelper),
                            new Descriptor(megaphoneOpenHelper),
-                           new Descriptor(jobManagerOpenHelper));
+                           new Descriptor(jobManagerOpenHelper),
+                           new Descriptor(metricsOpenHelper));
     } catch (Exception e) {
       Log.i(TAG, "Unable to use reflection to access raw database.", e);
     }

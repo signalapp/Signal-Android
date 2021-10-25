@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import android.media.AudioManager;
-
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
@@ -13,7 +11,6 @@ import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_CONNECTING;
@@ -45,7 +42,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                CallParticipant.createRemote(new CallParticipantId(remotePeer.getRecipient()),
                                                                             remotePeer.getRecipient(),
                                                                             null,
-                                                                            new BroadcastVideoSink(currentState.getVideoState().getEglBase(),
+                                                                            new BroadcastVideoSink(currentState.getVideoState().getLockableEglBase(),
                                                                                                    false,
                                                                                                    true,
                                                                                                    currentState.getLocalDeviceState().getOrientation().getDegrees()),
@@ -76,9 +73,6 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
 
     Log.i(tag, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
-    androidAudioManager.setSpeakerphoneOn(false);
-
     webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, remotePeer);
     webRtcInteractor.retrieveTurnServers(remotePeer);
 
@@ -92,7 +86,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                        CallParticipant.createRemote(new CallParticipantId(remotePeer.getRecipient()),
                                                                     remotePeer.getRecipient(),
                                                                     null,
-                                                                    new BroadcastVideoSink(currentState.getVideoState().getEglBase(),
+                                                                    new BroadcastVideoSink(currentState.getVideoState().getLockableEglBase(),
                                                                                            false,
                                                                                            true,
                                                                                            currentState.getLocalDeviceState().getOrientation().getDegrees()),

@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="ConversationItem_you_deleted_this_message">你已刪除此訊息。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">重設安全對話？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">這會幫助你，如果你在對話當中有加密的問題。你的訊息將會被保留。</string>
-  <string name="ConversationActivity_reset">重設</string>
   <string name="ConversationActivity_add_attachment">新增附檔</string>
   <string name="ConversationActivity_select_contact_info">選擇聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">撰寫訊息</string>
@@ -207,6 +204,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附檔類型已經超越大小限制。</string>
   <string name="ConversationActivity_unable_to_record_audio">無法錄製音訊！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">你不再是該成員，因此無法向該群組傳送訊息。</string>
+  <string name="ConversationActivity_only_s_can_send_messages">只有%1$s能傳送訊息。</string>
+  <string name="ConversationActivity_admins">管理員</string>
+  <string name="ConversationActivity_message_an_admin">給管理員留言</string>
+  <string name="ConversationActivity_cant_start_group_call">無法發起群組通話</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">只有該群組的管理員才能通話。</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的裝置上沒有應用程式可以處理這個連結</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">你的加入要求已傳送到群組管理員。 他們採取行動時會通知你。</string>
   <string name="ConversationActivity_cancel_request">取消要求</string>
@@ -303,6 +305,20 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已移動 %d 個對話到收件匣</item>
   </plurals>
+  <string name="ConversationListFragment_read">已讀</string>
+  <string name="ConversationListFragment_unread">未讀</string>
+  <string name="ConversationListFragment_pin">釘選</string>
+  <string name="ConversationListFragment_unpin">取消釘選</string>
+  <string name="ConversationListFragment_mute">靜音對話</string>
+  <string name="ConversationListFragment_unmute">取消靜音</string>
+  <string name="ConversationListFragment_select">選擇</string>
+  <string name="ConversationListFragment_archive">封存</string>
+  <string name="ConversationListFragment_unarchive">解除封存</string>
+  <string name="ConversationListFragment_delete">刪除</string>
+  <string name="ConversationListFragment_select_all">全選</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="other">%d 已選擇</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
@@ -328,6 +344,7 @@
   <string name="ChooseBackupFragment__icon_content_description">從備份還原圖示</string>
   <string name="ChooseBackupFragment__choose_backup">選擇備份</string>
   <string name="ChooseBackupFragment__learn_more">了解更多</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">沒有可用的檔案瀏覽器</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">回復完成</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">要繼續使用備份，請選擇一個資料夾。 新備份將保存到該位置。</string>
@@ -404,6 +421,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">僅圖片和影片支援多個附檔</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">你無權傳送到此群組</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持續發生傳輸異常！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利與 Google Play Services 註冊，Signal 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
@@ -531,6 +549,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完成</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">無法將此人新增到舊群組中。</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">無法將此人新增到公告群組。</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">新增 %3$d 個成員到「%2$s」嗎？</item>
   </plurals>
@@ -595,6 +614,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有管理員可以重設可共享的群組連結。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">你沒有權限來做此事</string>
   <string name="ManageGroupActivity_not_capable">你新增的人不支援新群組，需要更新Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">你新增的人不支援公告群組，其須要更新 Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">更新群組失敗</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">你不是群組組員</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">無法更新群組，請稍後重試</string>
@@ -622,6 +642,7 @@
   <string name="ManageProfileFragment_your_name">你的名字</string>
   <string name="ManageProfileFragment_your_username">你的使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
+  <string name="ManageProfileFragment_badges">徽章</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">沒有共同的群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -641,6 +662,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">啟動</string>
   <string name="CustomNotificationsDialogFragment__disabled">關閉</string>
   <string name="CustomNotificationsDialogFragment__default">預設</string>
+  <string name="CustomNotificationsDialogFragment__unknown">未知</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">可分享的群組連結</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理與分享</string>
@@ -703,20 +725,17 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_share_with_contacts">與聯絡人分享</string>
-  <string name="InviteActivity_choose_how_to_share">選擇要如何分享</string>
+  <string name="InviteActivity_share_via">透過…分享</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">傳送中…</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
   <string name="InviteActivity_invite_to_signal">邀請至 Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">傳送簡訊給 %d 位朋友</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">傳送 SMS(%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">傳送 %d 則簡訊邀請？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">讓我們切換到 Signal：%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">好友的話，不加密不好說。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
   <!--LongMessageActivity-->
@@ -751,11 +770,11 @@
   <string name="MediaOverviewActivity_Grid_view_description">網格檢視</string>
   <string name="MediaOverviewActivity_List_view_description">清單檢視</string>
   <string name="MediaOverviewActivity_Selected_description">已選取</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d 個項目%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d 個項目</item>
+  <string name="MediaOverviewActivity_save">儲存</string>
+  <string name="MediaOverviewActivity_select_all">全選</string>
+  <string name="MediaOverviewActivity_delete">刪除</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">%1$d 已選擇 (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">檔案</string>
   <string name="MediaOverviewActivity_audio">音訊</string>
@@ -778,15 +797,18 @@
   <string name="Megaphones_invite_friends">邀請好友</string>
   <string name="Megaphones_use_sms">使用 SMS</string>
   <string name="Megaphones_appearance">介面設定</string>
+  <string name="Megaphones_add_photo">新增照片</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signal 群組來電</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal 來電服務停止中</string>
-  <string name="NotificationBarManager__deny_call">拒絕接聽</string>
+  <string name="NotificationBarManager__decline_call">拒接來電</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>
   <string name="NotificationBarManager__cancel_call">取消通話</string>
+  <string name="NotificationBarManager__join_call">加入通話</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">要開啟通知嗎？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">永遠不會錯過來自你的聯絡人和群組的訊息。</string>
@@ -929,6 +951,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">你變更了誰可以編輯群組成員資格為\"%1$s\"。</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s變更了誰可以編輯群駔成員資格為\"%2$s\"。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">誰可以編輯群成員已變更為\"%1$s\"。</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">你變更了群組設定以允許所有成員傳送訊息。</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">你將群組設定變更為僅允許管理員傳送訊息。</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s 變更群組設定以允許所有成員傳送訊息。</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s 將群組設定更改為僅允許管理員傳送訊息。</string>
+  <string name="MessageRecord_allow_all_members_to_send">群組設定已更改為允許所有成員傳送訊息。</string>
+  <string name="MessageRecord_allow_only_admins_to_send">群組設定已變更為僅允許管理員傳送訊息。</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">你已啟用群組連結（毋需管理員批准）。</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已啟用群組連結（需經管理員批准）。</string>
@@ -974,6 +1003,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 將他們變更了新的電話號碼。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
@@ -1124,26 +1154,54 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">如要撥電話給 %1$s，Signal 需要存取你的相機</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">撥號中…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">群組太大，無法給參與者打電話。</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal 語音電話…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal 視訊電話…</string>
+  <string name="WebRtcCallView__signal_call">Signal 語音通話</string>
+  <string name="WebRtcCallView__signal_video_call">Signal 視訊電話</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
   <string name="WebRtcCallView__call_is_full">通話人數已滿</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">此通話已達到最大參加人數%1$d 人。 稍後再試。</string>
-  <string name="WebRtcCallView__s_group_call">「%1$s」群組通話</string>
   <string name="WebRtcCallView__view_participants_list">查看參與者</string>
   <string name="WebRtcCallView__your_video_is_off">你的視訊已關閉</string>
   <string name="WebRtcCallView__reconnecting">重新連接中…</string>
   <string name="WebRtcCallView__joining">加入中…</string>
   <string name="WebRtcCallView__disconnected">已斷線</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal 將去電給 %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal 將去電給 %1$s 及 %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signal 將去電給 %1$s、%2$s，和 %3$d 及其他人</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s 將被通知</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s 和 %2$s 將被通知</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s、%2$s，和%3$d 及其他人將被通知</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">去電給 %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">去電給 %1$s 及 %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">去電給 %1$s、%2$s，和 %3$d及其他人</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s 正撥電話給你</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s 正撥電話給你和 %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s 正撥電話給你、%2$s，及 %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s 正撥電話給你、%2$s、%3$s，和 %4$d 及其他人</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">沒有人在這裡</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s正在此通話中</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s 正在通話中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 及 %2$s 正在此通話中</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s 正在展示</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, 及 %3$d 其他人正在通話中</item>
   </plurals>
+  <string name="WebRtcCallView__flip">翻轉</string>
+  <string name="WebRtcCallView__speaker">喇叭</string>
+  <string name="WebRtcCallView__camera">相機</string>
+  <string name="WebRtcCallView__mute">靜音對話</string>
+  <string name="WebRtcCallView__ring">撥電話</string>
+  <string name="WebRtcCallView__end_call">掛斷</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">在此通話中·%1$d個人</item>
@@ -1190,6 +1248,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal需要連結你的聯絡人才能與朋友聯繫，交換訊息並進行安全通話</string>
   <string name="RegistrationActivity_rate_limited_to_service">你已嘗試過多註冊此號碼。 請稍後再試。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連接服務。請檢查網路連線並再試一次。</string>
+  <string name="RegistrationActivity_call_requested">請求通話</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">你現在距離提交偵錯日誌只有%d步之遙。</item>
   </plurals>
@@ -1231,6 +1290,8 @@
   <string name="SharedContactView_add_to_contacts">新增至連絡人</string>
   <string name="SharedContactView_invite_to_signal">邀請至 Signal</string>
   <string name="SharedContactView_message">Signal 訊息</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">更多</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">我們稍後會再次提醒你。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">我們明天再提醒你。</string>
@@ -1411,6 +1472,7 @@
   <string name="MessageNotifier_reacted_s_to_s">對「%2$s」作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_video">對你的影片作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_image">對你的影像作出了 %1$s 反應。</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">對你的 GIF 做出 %1$s 的反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">對你的檔案作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">對你的語音作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的一次觀看的媒體做出%1$s反應。</string>
@@ -1550,6 +1612,7 @@
   <string name="ConversationUpdateItem_call_is_full">通話人數已滿</string>
   <string name="ConversationUpdateItem_invite_friends">邀請好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
+  <string name="ConversationUpdateItem_update_contact">更新聯絡人</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">沒有共同的群組。 請仔細檢查請求。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">這個群組中沒有聯絡人。請仔細檢查請求。</string>
   <string name="ConversationUpdateItem_view">檢視</string>
@@ -1561,6 +1624,7 @@
   <string name="QuoteView_audio">音訊</string>
   <string name="QuoteView_video">影片</string>
   <string name="QuoteView_photo">照片</string>
+  <string name="QuoteView_gif">動態圖檔</string>
   <string name="QuoteView_view_once_media">一次性多媒體檔案</string>
   <string name="QuoteView_sticker">貼圖</string>
   <string name="QuoteView_you">你</string>
@@ -1704,21 +1768,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>輸入名稱或手機號碼</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若你希望驗證你與 %s 之間的加密安全性，請比對上面的號碼與他們裝置上的號碼。又或者，你可以掃描在他們手機上的 QR 碼，或讓他們掃描你的 QR 碼。<a href="https://signal.org/redirect/safety-numbers">瞭解更多</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ 要與%s 驗證點對點加密的安全性，請將上面的數字與其裝置進行比對。你也可以掃描他們手機上的代碼。<a href="https://signal.org/redirect/safety-numbers">了解更多。</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
+  <string name="verify_display_fragment__successful_match">成功匹配</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">驗證安全碼失敗</string>
   <string name="verify_display_fragment__loading">載入中…</string>
-  <string name="verify_display_fragment__verified">已驗證</string>
+  <string name="verify_display_fragment__mark_as_verified">標記為已驗證</string>
+  <string name="verify_display_fragment__clear_verification">清除驗證碼</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">掃描聯絡人裝置上的 QR code</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">往上滑動來接聽</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">往下滑動來拒接</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些問題需要您的注意。</string>
-  <string name="message_details_header__sent">傳送時間</string>
-  <string name="message_details_header__received">接收時間</string>
-  <string name="message_details_header__disappears">銷毀期限</string>
-  <string name="message_details_header__via">經由</string>
+  <string name="message_details_header__sent">傳送：</string>
+  <string name="message_details_header__received">已收到：</string>
+  <string name="message_details_header__disappears">消毀：</string>
+  <string name="message_details_header__via">透過：</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">等候中</string>
   <string name="message_details_recipient_header__sent_to">傳送給</string>
@@ -1760,14 +1829,15 @@
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
-  <string-array name="HelpFragment__categories">
+  <string-array name="HelpFragment__categories_2">
     <item>-- 請選擇一個選項 --</item>
-    <item>某功能無法運作</item>
+    <item>出了點問題</item>
     <item>功能要求</item>
     <item>問題</item>
-    <item>回饋</item>
+    <item>反應</item>
     <item>其他</item>
-    <item>付款</item>
+    <item>支付 (行動貨幣)</item>
+    <item>捐贈 (維護員和 Signal增強器)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
@@ -1865,6 +1935,8 @@
   <string name="preferences__help">幫助</string>
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">捐贈 Signal</string>
+  <string name="preferences__subscription">訂閱</string>
+  <string name="preferences__signal_boost">Signal 加速</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">手動多媒體設定</string>
@@ -2389,6 +2461,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">改為致電給我 \n (請稍候 %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
   <string name="RegistrationActivity_code_support_subject">Signal 註冊 - Android驗證碼</string>
+  <string name="RegistrationActivity_incorrect_code">註冊碼錯誤</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__see_my_phone_number">查看我的電話號碼</string>
@@ -2585,8 +2658,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">無法播放語音留言</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">語音訊息 · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s 傳送給 %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">語音訊息 · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s 傳送給 %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\"已經被封鎖。</string>
@@ -2800,6 +2873,47 @@
   <string name="AccountSettingsFragment__account">帳號</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">詢問您的次數將會隨著時間減少</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">要求你的 Signal PIN 碼才能在 Signal 再次註冊你的電話號碼</string>
+  <string name="AccountSettingsFragment__change_phone_number">變更電話號碼</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">使用此可將你現在的電話號碼變更為新的電話號碼。你無法取消此變更。\n\n在繼續之前，請確保你的新電話號碼可以接收簡訊或電話。</string>
+  <string name="ChangeNumberFragment__continue">繼續</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">你的電話號碼已經變更。</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">更改號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">你的舊電話號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">舊電話號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">你的新電話號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">新電話號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">你輸入的電話號碼與你的帳號不符合。</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">你必須指定舊電話號碼的國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">你必須指定你的舊電話號碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">你必須指定你新電話號碼的國碼</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">你必須指定你新的電話號碼</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">更改號碼</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">驗證 %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">需要驗證圖</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">變更電話號碼</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">你即將把你的電話號碼從 %1$s 更改為 %2$s。\in\在繼續之前，請驗證以下電話號碼是否正確。</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">輸入號碼</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal變更電話號碼 - 需要 Android PIN碼(v2 PIN)的協助 </string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN碼不相符</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">與新電話號碼有關的 PIN碼和舊電話號碼的 PIN碼不同。你想保留舊 PIN 碼還是要更新PIN碼？</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">保留舊PIN碼</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">要保留舊PIN碼嗎？</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">你似乎試著變更你的電話號碼，但我們無法確定是否成功。\n\n正在重新檢查…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">更改狀態已確認</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">你的電話號碼已確認為 %1$s。 如果這不是你的新電話號碼，請重新開始變更電話號碼的流程。</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">更改狀態未確認</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">我們無法確定你的變更電話號碼要求的狀態。\n\n（錯誤：%1$s）</string>
+  <string name="ChangeNumberLockActivity__retry">重試</string>
+  <string name="ChangeNumberLockActivity__leave">離開</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">送出偵錯日誌</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
   <string name="ChatsSettingsFragment__enter_key_sends">按下輸入鍵發送</string>
@@ -2851,6 +2965,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
   <string name="HelpFragment__licenced_under_the_gplv3">根據 GPLv3 授權</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">媒體檔品質</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">已傳送媒體檔品質</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">傳送高畫質的媒體檔將會使用較多數據。</string>
+  <string name="DataAndStorageSettingsFragment__high">高</string>
+  <string name="DataAndStorageSettingsFragment__standard">標準</string>
   <string name="DataAndStorageSettingsFragment__calls">通話</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">自動</string>
@@ -2946,10 +3065,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">新增成員</string>
   <string name="PermissionsSettingsFragment__edit_group_info">編輯群組資訊</string>
+  <string name="PermissionsSettingsFragment__send_messages">傳送訊息</string>
   <string name="PermissionsSettingsFragment__all_members">所有成員</string>
   <string name="PermissionsSettingsFragment__only_admins">僅限管理員</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">誰可以新增新成員？</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">誰可以編輯此群組資訊?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">誰能傳送訊息？</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">將通知調整為靜音</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">對話未靜音</string>
@@ -2963,6 +3084,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">新的付款</string>
@@ -2971,7 +3093,13 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">搜尋姓名或電話號碼</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">變更語音訊息速度</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>
+  <string name="VoiceNotePlayerView__play_voice_message">播放語音訊息</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">導覽至語音訊息</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>
   <string name="AvatarPickerFragment__take_a_picture">拍照</string>
@@ -2980,15 +3108,132 @@
   <string name="AvatarPickerFragment__text">文字</string>
   <string name="AvatarPickerFragment__save">儲存</string>
   <string name="AvatarPickerFragment__select_an_avatar">選擇頭像</string>
+  <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
+  <string name="AvatarPickerFragment__edit">編輯</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">預覽</string>
   <string name="TextAvatarCreationFragment__done">完成</string>
   <string name="TextAvatarCreationFragment__text">文字</string>
   <string name="TextAvatarCreationFragment__color">顏色</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">選擇一種顏色</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">簡訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
-  <string name="AvatarPickerFragment__edit">編輯</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">向上導覽</string>
+  <string name="MultiselectForwardFragment__forward_to">轉寄給</string>
+  <string name="MultiselectForwardFragment__add_a_message">新增訊息</string>
+  <string name="MultiselectForwardFragment__faster_forwards">快速轉寄</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">轉寄的訊息現在會立即傳送。</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">傳訊息給 %1$d</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">訊息已傳送</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">訊息傳送失敗</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">無法轉寄訊息，因為它們不可再使用。</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">已達上限</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">新增訊息</string>
+  <string name="MediaReviewFragment__add_a_reply">新增回覆</string>
+  <string name="MediaReviewFragment__send_to">傳送給</string>
+  <string name="MediaReviewFragment__view_once_message">查看一次訊息</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">一件或多件項目容量太大</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">一項或多項無效</string>
+  <string name="MediaReviewFragment__too_many_items_selected">選擇的項目太多</string>
+  <string name="ImageEditorHud__cancel">取消</string>
+  <string name="ImageEditorHud__draw">繪圖</string>
+  <string name="ImageEditorHud__write_text">書寫文字</string>
+  <string name="ImageEditorHud__add_a_sticker">新增貼圖</string>
+  <string name="ImageEditorHud__blur">模糊</string>
+  <string name="ImageEditorHud__done_editing">完成編輯</string>
+  <string name="ImageEditorHud__clear_all">清除全部</string>
+  <string name="ImageEditorHud__undo">復原</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">在標記和馬克筆之間切換</string>
+  <string name="ImageEditorHud__delete">刪除</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">在文字樣式之間切換</string>
+  <string name="MediaCountIndicatorButton__send">傳送</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">點擊以移除</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">點取以選擇</string>
+  <string name="MediaReviewImagePageFragment__discard">放棄</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">放棄更改？</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">你將遺失對此照片所做的任何更改。</string>
+  <string name="CameraFragment__failed_to_open_camera">無法開啟相機</string>
+  <string name="BadgesOverviewFragment__my_badges">我的徽章</string>
+  <string name="BadgesOverviewFragment__featured_badge">特色徽章</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">在個人資料上顯示徽章</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">無法更新個人資料</string>
+  <string name="BadgeSelectionFragment__select_badges">選擇徽章</string>
+  <string name="SelectFeaturedBadgeFragment__preview">預覽</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">選擇徽章</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">你必須選擇一個徽章</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">無法更新個人資料</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
+  <string name="ImageView__badge">徽章</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由像你這樣的人提供動力。</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">加入支援技術的眾人共同維持的社群，是為了支援你打造的技術—而不是為你的資訊—打造。</string>
+  <string name="SubscribeFragment__donation_amount">捐款金額</string>
+  <string name="SubscribeFragment__more_payment_options">更多付款方式</string>
+  <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
+  <string name="SubscribeFragment__confirm_cancellation">確認取消?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">不會再向你收費。 在結算週期結束時，你的徽章將從你的個人資料中刪除。</string>
+  <string name="SubscribeFragment__not_now">稍後</string>
+  <string name="SubscribeFragment__confirm">確認</string>
+  <string name="SubscribeFragment__update_subscription">更新訂閱</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">你的訂閱已取消。</string>
+  <string name="SubscribeFragment__update_subscription_question">要更新訂閱嗎？</string>
+  <string name="SubscribeFragment__update">更新</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">今天將向你收取新訂閱價格的全額費用。妳的訂閱將續約 %1$s。</string>
+  <string name="Subscription__s_per_month">%s/月</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · 續約 %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · 過期了 %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是一個沒有廣告商或投資者的非營利組織，只有使用和珍惜它的人才能維持。 每月定期捐款可獲得個人資料徽章，以與他人分享你的支持。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。你的貢獻推動了這一事業。 無廣告。 沒有追踪。這不是開玩笑的。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">你的捐款協助於支付全球數百萬人用於私密和即時通訊程式的開發、伺服器維護和網路頻寬。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的加油!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">你贏得了一枚 %s 徽章！ 展示你的徽章將讓與你聊天的人知道你支援了 Signal。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資訊中展示</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為特色徽章</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">當你擁有多個徽章時，你可以選擇一個讓其他人在你的個人資料中看到。</string>
+  <string name="ManageDonationsFragment__my_support">我的支援</string>
+  <string name="ManageDonationsFragment__manage_subscription">管理訂閱</string>
+  <string name="ManageDonationsFragment__badges">徽章</string>
+  <string name="ManageDonationsFragment__subscription_faq">訂閱 問與答</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤</string>
+  <string name="BoostFragment__give_signal_a_boost">給 Signal 加油</string>
+  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得加油徽章並展示在個人資料中 %1$d 天。</string>
+  <string name="Boost__enter_custom_amount">輸入自定義金額</string>
+  <string name="Boost__one_time_contribution">一次性捐款</string>
+  <string name="MySupportPreference__add_a_signal_boost">新增 Signal 加油</string>
+  <string name="MySupportPreference__s_per_month">%1$s/月</string>
+  <string name="MySupportPreference__renews_s">續約 %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">你的 %1$s 徽章已過期，在你的個人資料中徽章無法再被看見。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">要繼續支援專為你打造的技術—而非為你的資料—請考慮成為月訂閱者。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
+  <string name="Subscription__verification_failed">訂閱驗證失敗</string>
+  <string name="Subscription__please_contact_support_for_more_information">請聯絡支援部門以了解更多資訊。</string>
+  <string name="Subscription__contact_support">聯絡支援</string>
+  <string name="Subscription__earn_a_s_badge">贏得一個 %1$s 徽章</string>
+  <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
+  <string name="DonationsErrors__payment_failed">付款失敗</string>
+  <string name="DonationsErrors__your_payment">你的付款無法處理，所以也未向你收費。 請再試一次。</string>
+  <string name="DonationsErrors__redemption_still_pending">加值仍在待定中</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">你可能不會立即看到你的徽章，但我們正在解決這個問題！</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必須設定 Google Pay 才能在程式中捐款。</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">取消訂閱需要連接網路。</string>
   <!--EOF-->
 </resources>

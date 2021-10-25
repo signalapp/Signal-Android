@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.app.Application;
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,9 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.badges.Badges;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -34,6 +38,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
+import org.thoughtcrime.securesms.util.ScreenDensity;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -203,7 +208,7 @@ public class RetrieveProfileJob extends BaseJob {
     });
   }
 
-  private RetrieveProfileJob(@NonNull Set<RecipientId> recipientIds) {
+  public RetrieveProfileJob(@NonNull Set<RecipientId> recipientIds) {
     this(new Job.Parameters.Builder().addConstraint(NetworkConstraint.KEY)
                                      .setMaxAttempts(3)
                                      .build(),
@@ -329,6 +334,7 @@ public class RetrieveProfileJob extends BaseJob {
     setProfileName(recipient, profile.getName());
     setProfileAbout(recipient, profile.getAbout(), profile.getAboutEmoji());
     setProfileAvatar(recipient, profile.getAvatar());
+    setProfileBadges(recipient, profile.getBadges());
     clearUsername(recipient);
     setProfileCapabilities(recipient, profile.getCapabilities());
     setIdentityKey(recipient, profile.getIdentityKey());
@@ -340,6 +346,16 @@ public class RetrieveProfileJob extends BaseJob {
         setProfileKeyCredential(recipient, recipientProfileKey, profileKeyCredential.get());
       }
     }
+  }
+
+  private void setProfileBadges(@NonNull Recipient recipient, @Nullable List<SignalServiceProfile.Badge> badges) {
+    if (badges == null) {
+      return;
+    }
+
+    DatabaseFactory.getRecipientDatabase(context)
+                   .setBadges(recipient.getId(),
+                              badges.stream().map(Badges::fromServiceBadge).collect(java.util.stream.Collectors.toList()));
   }
 
   private void setProfileKeyCredential(@NonNull Recipient recipient,
@@ -365,15 +381,12 @@ public class RetrieveProfileJob extends BaseJob {
 
       IdentityKey identityKey = new IdentityKey(Base64.decode(identityKeyValue), 0);
 
-      if (!DatabaseFactory.getIdentityDatabase(context)
-                          .getIdentity(recipient.getId())
-                          .isPresent())
-      {
+      if (!ApplicationDependencies.getIdentityStore().getIdentityRecord(recipient.getId()).isPresent()) {
         Log.w(TAG, "Still first use...");
         return;
       }
 
-      IdentityUtil.saveIdentity(context, recipient.requireServiceId(), identityKey);
+      IdentityUtil.saveIdentity(recipient.requireServiceId(), identityKey);
     } catch (InvalidKeyException | IOException e) {
       Log.w(TAG, e);
     }

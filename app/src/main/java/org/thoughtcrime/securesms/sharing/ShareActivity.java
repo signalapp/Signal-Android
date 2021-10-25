@@ -32,6 +32,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,15 +49,18 @@ import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -68,6 +73,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Entry point for sharing content into the app.
@@ -104,6 +112,8 @@ public class ShareActivity extends PassphraseRequiredActivity
   private ShareIntents.Args args;
   private ShareViewModel    viewModel;
 
+  private final LifecycleDisposable disposables = new LifecycleDisposable();
+
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -114,6 +124,8 @@ public class ShareActivity extends PassphraseRequiredActivity
   protected void onCreate(Bundle icicle, boolean ready) {
     setContentView(R.layout.share_activity);
 
+    disposables.bindTo(getLifecycle());
+
     initializeArgs();
     initializeViewModel();
     initializeMedia();
@@ -121,7 +133,6 @@ public class ShareActivity extends PassphraseRequiredActivity
     initializeToolbar();
     initializeResources();
     initializeSearch();
-    handleDestination();
   }
 
   @Override
@@ -130,6 +141,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    handleDirectShare();
   }
 
   @Override
@@ -176,12 +188,28 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, java.util.function.Consumer<Boolean> callback) {
     if (disallowMultiShare) {
       Toast.makeText(this, R.string.ShareActivity__sharing_to_multiple_chats_is, Toast.LENGTH_LONG).show();
-      return false;
+      callback.accept(false);
     } else {
-      return viewModel.onContactSelected(new ShareContact(recipientId, number));
+      disposables.add(viewModel.onContactSelected(new ShareContact(recipientId, number))
+                               .subscribeOn(Schedulers.io())
+                               .observeOn(AndroidSchedulers.mainThread())
+                               .subscribe(result -> {
+                                 switch (result) {
+                                   case TRUE:
+                                     callback.accept(true);
+                                     break;
+                                   case FALSE:
+                                     callback.accept(false);
+                                     break;
+                                   case FALSE_AND_SHOW_PERMISSION_TOAST:
+                                     Toast.makeText(this, R.string.ShareActivity_you_do_not_have_permission_to_send_to_this_group, Toast.LENGTH_SHORT).show();
+                                     callback.accept(false);
+                                     break;
+                                 }
+                               }));
     }
   }
 
@@ -233,6 +261,86 @@ public class ShareActivity extends PassphraseRequiredActivity
     getIntent().putExtra(ContactSelectionListFragment.CAN_SELECT_SELF, true);
     getIntent().putExtra(ContactSelectionListFragment.RV_CLIP, false);
     getIntent().putExtra(ContactSelectionListFragment.RV_PADDING_BOTTOM, ViewUtil.dpToPx(48));
+  }
+
+  private void handleDirectShare() {
+    boolean isDirectShare      = getIntent().hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+    boolean intentHasRecipient = getIntent().hasExtra(EXTRA_RECIPIENT_ID);
+
+    if (intentHasRecipient) {
+      handleDestination();
+    } else if (isDirectShare) {
+      String  extraShortcutId = getIntent().getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+      SimpleTask.run(getLifecycle(),
+          () -> getDirectShareExtras(extraShortcutId),
+          extras -> {
+            if (extras != null) {
+              addShortcutExtrasToIntent(extras);
+              handleDestination();
+            }
+          }
+      );
+    }
+  }
+
+  /**
+   * @param extraShortcutId EXTRA_SHORTCUT_ID String as included in direct share intent
+   * @return shortcutExtras or null
+   */
+  @WorkerThread
+  private @Nullable Bundle getDirectShareExtras(@NonNull String extraShortcutId) {
+    Bundle shortcutExtras = getShortcutExtrasFor(extraShortcutId);
+    if (shortcutExtras == null) {
+      shortcutExtras = createExtrasFromExtraShortcutId(extraShortcutId);
+    }
+    return shortcutExtras;
+  }
+
+  /**
+   * Search for dynamic shortcut originally declared in {@link ConversationUtil} and return extras
+   *
+   * @param extraShortcutId EXTRA_SHORTCUT_ID String as included in direct share intent
+   * @return shortcutExtras or null
+   */
+  @WorkerThread
+  private @Nullable Bundle getShortcutExtrasFor(@NonNull String extraShortcutId) {
+    List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
+    for (ShortcutInfoCompat shortcutInfo : shortcuts) {
+      if (extraShortcutId.equals(shortcutInfo.getId())) {
+        return shortcutInfo.getIntent().getExtras();
+      }
+    }
+    return null;
+  }
+
+  /**
+   * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
+   */
+  @WorkerThread
+  private @Nullable Bundle createExtrasFromExtraShortcutId(@NonNull String extraShortcutId) {
+    Bundle      extras           = new Bundle();
+    RecipientId recipientId      = ConversationUtil.getRecipientId(extraShortcutId);
+    Long        threadId         = null;
+    int         distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
+
+    if (recipientId != null) {
+      threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId);
+      extras.putString(EXTRA_RECIPIENT_ID, recipientId.serialize());
+      extras.putLong(EXTRA_THREAD_ID, threadId != null ? threadId : -1);
+      extras.putInt(EXTRA_DISTRIBUTION_TYPE, distributionType);
+      return extras;
+    }
+    return null;
+  }
+
+  /**
+   * @param shortcutExtras as found by {@link ShareActivity#getShortcutExtrasFor)} or
+   *                       {@link ShareActivity#createExtrasFromExtraShortcutId)}
+   */
+  private void addShortcutExtrasToIntent(@NonNull Bundle shortcutExtras) {
+    getIntent().putExtra(EXTRA_RECIPIENT_ID, shortcutExtras.getString(EXTRA_RECIPIENT_ID, null));
+    getIntent().putExtra(EXTRA_THREAD_ID, shortcutExtras.getLong(EXTRA_THREAD_ID, -1));
+    getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, shortcutExtras.getInt(EXTRA_DISTRIBUTION_TYPE, -1));
   }
 
   private void initializeToolbar() {
@@ -376,13 +484,9 @@ public class ShareActivity extends PassphraseRequiredActivity
     Intent      intent           = getIntent();
     long        threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
     int         distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
-    RecipientId recipientId      = null;
+    RecipientId recipientId      = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
 
-    if (intent.hasExtra(EXTRA_RECIPIENT_ID)) {
-      recipientId = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
-    }
-
-    boolean hasPreexistingDestination = threadId != -1 && recipientId != null && distributionType != -1;
+    boolean hasPreexistingDestination = threadId != -1 && distributionType != -1;
 
     if (hasPreexistingDestination) {
       if (contactsFragment.getView() != null) {
@@ -568,12 +672,12 @@ public class ShareActivity extends PassphraseRequiredActivity
                               Optional.absent()));
         }
 
-        startActivityForResult(MediaSendActivity.buildShareIntent(this,
-                                                                  media,
-                                                                  Stream.of(multiShareArgs.getShareContactAndThreads()).map(ShareContactAndThread::getRecipientId).toList(),
-                                                                  multiShareArgs.getDraftText(),
-                                                                  MultiShareSender.getWorstTransportOption(this, multiShareArgs.getShareContactAndThreads())),
-            RESULT_MEDIA_CONFIRMATION);
+        Intent intent = MediaSelectionActivity.share(this,
+                                                     MultiShareSender.getWorstTransportOption(this, multiShareArgs.getShareContactAndThreads()),
+                                                     media,
+                                                     Stream.of(multiShareArgs.getShareContactAndThreads()).map(ShareContactAndThread::getRecipientId).toList(),
+                                                     multiShareArgs.getDraftText());
+        startActivityForResult(intent, RESULT_MEDIA_CONFIRMATION);
         break;
       default:
         //noinspection CodeBlock2Expr

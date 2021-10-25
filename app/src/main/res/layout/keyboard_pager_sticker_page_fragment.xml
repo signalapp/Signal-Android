@@ -88,13 +88,13 @@
         android:layout_height="2dp"
         android:background="@drawable/toolbar_shadow"
         app:app_bar_layout_id="@+id/sticker_keyboard_search_appbar"
-        app:layout_behavior=".keyboard.TopShadowBehavior" />
+        app:layout_behavior="org.thoughtcrime.securesms.keyboard.TopShadowBehavior" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@drawable/bottom_toolbar_shadow"
         app:bottom_bar_id="@+id/sticker_keyboard_packs_background"
-        app:layout_behavior=".keyboard.BottomShadowBehavior" />
+        app:layout_behavior="org.thoughtcrime.securesms.keyboard.BottomShadowBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

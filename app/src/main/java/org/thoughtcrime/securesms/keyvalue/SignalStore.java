@@ -34,9 +34,11 @@ public final class SignalStore {
   private final OnboardingValues         onboardingValues;
   private final WallpaperValues          wallpaperValues;
   private final PaymentsValues           paymentsValues;
+  private final DonationsValues          donationsValues;
   private final ProxyValues              proxyValues;
   private final RateLimitValues          rateLimitValues;
   private final ChatColorsValues         chatColorsValues;
+  private final ImageEditorValues        imageEditorValues;
 
   private SignalStore() {
     this.store                    = new KeyValueStore(ApplicationDependencies.getApplication());
@@ -56,9 +58,11 @@ public final class SignalStore {
     this.onboardingValues         = new OnboardingValues(store);
     this.wallpaperValues          = new WallpaperValues(store);
     this.paymentsValues           = new PaymentsValues(store);
+    this.donationsValues          = new DonationsValues(store);
     this.proxyValues              = new ProxyValues(store);
     this.rateLimitValues          = new RateLimitValues(store);
     this.chatColorsValues         = new ChatColorsValues(store);
+    this.imageEditorValues        = new ImageEditorValues(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -78,9 +82,11 @@ public final class SignalStore {
     onboarding().onFirstEverAppLaunch();
     wallpaper().onFirstEverAppLaunch();
     paymentsValues().onFirstEverAppLaunch();
+    donationsValues().onFirstEverAppLaunch();
     proxy().onFirstEverAppLaunch();
     rateLimit().onFirstEverAppLaunch();
     chatColorsValues().onFirstEverAppLaunch();
+    imageEditorValues().onFirstEverAppLaunch();
   }
 
   public static List<String> getKeysToIncludeInBackup() {
@@ -101,9 +107,11 @@ public final class SignalStore {
     keys.addAll(onboarding().getKeysToIncludeInBackup());
     keys.addAll(wallpaper().getKeysToIncludeInBackup());
     keys.addAll(paymentsValues().getKeysToIncludeInBackup());
+    keys.addAll(donationsValues().getKeysToIncludeInBackup());
     keys.addAll(proxy().getKeysToIncludeInBackup());
     keys.addAll(rateLimit().getKeysToIncludeInBackup());
     keys.addAll(chatColorsValues().getKeysToIncludeInBackup());
+    keys.addAll(imageEditorValues().getKeysToIncludeInBackup());
     return keys;
   }
 
@@ -180,6 +188,10 @@ public final class SignalStore {
     return INSTANCE.paymentsValues;
   }
 
+  public static @NonNull DonationsValues donationsValues() {
+    return INSTANCE.donationsValues;
+  }
+
   public static @NonNull ProxyValues proxy() {
     return INSTANCE.proxyValues;
   }
@@ -190,6 +202,10 @@ public final class SignalStore {
 
   public static @NonNull ChatColorsValues chatColorsValues() {
     return INSTANCE.chatColorsValues;
+  }
+
+  public static @NonNull ImageEditorValues imageEditorValues() {
+    return INSTANCE.imageEditorValues;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {

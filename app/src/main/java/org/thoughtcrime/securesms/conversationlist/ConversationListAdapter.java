@@ -90,7 +90,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         int position = holder.getAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
-          return onConversationClickListener.onConversationLongClick(getItem(position));
+          return onConversationClickListener.onConversationLongClick(getItem(position), v);
         }
 
         return false;
@@ -101,7 +101,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
       v.setLayoutParams(new FrameLayout.LayoutParams(1, ViewUtil.dpToPx(100)));
       return new PlaceholderViewHolder(v);
     } else if (viewType == TYPE_HEADER) {
-      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_item_header, parent, false);
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dsl_section_header, parent, false);
       return new HeaderViewHolder(v);
     } else {
       throw new IllegalStateException("Unknown type! " + viewType);
@@ -249,13 +249,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
-    unselectAllThreads();
-  }
-
-  private void unselectAllThreads() {
     batchSet.clear();
-
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
+    notifyDataSetChanged();
   }
 
   static final class ConversationViewHolder extends RecyclerView.ViewHolder {
@@ -297,13 +292,13 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
     public HeaderViewHolder(@NonNull View itemView) {
       super(itemView);
-      headerText = (TextView) itemView;
+      headerText = itemView.findViewById(R.id.section_header);
     }
   }
 
   interface OnConversationClickListener {
-    void onConversationClick(Conversation conversation);
-    boolean onConversationLongClick(Conversation conversation);
+    void onConversationClick(@NonNull Conversation conversation);
+    boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view);
     void onShowArchiveClick();
   }
 }

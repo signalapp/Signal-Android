@@ -124,7 +124,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Gruppenfoto entfernen?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signal aktualisieren</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Signal-Version wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf neueste Version.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Signal-Version wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf die neueste Version.</string>
   <string name="ClientDeprecatedActivity_update">Aktualisieren</string>
   <string name="ClientDeprecatedActivity_dont_update">Nicht aktualisieren</string>
   <string name="ClientDeprecatedActivity_warning">Warnung</string>
@@ -137,7 +137,7 @@
   <string name="CommunicationActions_cancel">Abbrechen</string>
   <string name="CommunicationActions_call">Anrufen</string>
   <string name="CommunicationActions_insecure_call">Unverschlüsselter Anruf</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter anstatt über das Internet erfolgen.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter und nicht über das Internet erfolgen.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Möglicherweise möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="ConversationItem_you_deleted_this_message">Du hast diese Nachricht gelöscht.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Sichere Sitzung zurücksetzen?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
-  <string name="ConversationActivity_reset">Neu starten</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -208,6 +205,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die zu sendende Nachrichtenart.</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kannst keine Nachrichten an diese Gruppe senden, da du kein Gruppenmitglied mehr bist.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Nur %1$s dürfen Nachrichten senden.</string>
+  <string name="ConversationActivity_admins">Admins</string>
+  <string name="ConversationActivity_message_an_admin">Schreib einem Admin</string>
+  <string name="ConversationActivity_cant_start_group_call">Starten eines Gruppenanrufs nicht möglich</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Nur Admins können in dieser Gruppe Anrufe starten.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Auf deinem Gerät ist derzeit keine App installiert, die mit diesem Link umgehen kann.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Deine Beitrittsanfrage wurde an den Gruppen-Admin gesendet. Du wirst benachrichtigt, sobald er über sie entschieden hat.</string>
   <string name="ConversationActivity_cancel_request">Anfrage abbrechen</string>
@@ -314,6 +316,21 @@
     <item quantity="one">Unterhaltung in Eingang verschoben</item>
     <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
   </plurals>
+  <string name="ConversationListFragment_read">Gelesen</string>
+  <string name="ConversationListFragment_unread">Ungelesen</string>
+  <string name="ConversationListFragment_pin">Anheften</string>
+  <string name="ConversationListFragment_unpin">Lösen</string>
+  <string name="ConversationListFragment_mute">Stumm</string>
+  <string name="ConversationListFragment_unmute">Stummschaltung aufheben</string>
+  <string name="ConversationListFragment_select">Auswählen</string>
+  <string name="ConversationListFragment_archive">Archivieren</string>
+  <string name="ConversationListFragment_unarchive">In Eingang verschieben</string>
+  <string name="ConversationListFragment_delete">Löschen</string>
+  <string name="ConversationListFragment_select_all">Alle auswählen</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d ausgewählt</item>
+    <item quantity="other">%d ausgewählt</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
   <!--ConversationListItemAction-->
@@ -339,6 +356,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Symbol: Aus Datensicherung wiederherstellen</string>
   <string name="ChooseBackupFragment__choose_backup">Datensicherung wählen</string>
   <string name="ChooseBackupFragment__learn_more">Mehr erfahren</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Kein Dateimanager verfügbar</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Wiederherstellung abgeschlossen</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Um weiterhin Datensicherungen zu verwenden, wähle bitte einen Ordner. Neue Sicherungen werden dort gespeichert.</string>
@@ -416,6 +434,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Mehrere Anhänge werden nur für Bilder und Videos unterstützt</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du hast in dieser Gruppe keine Berechtigung zum Senden</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google-Play-Dienste registriert werden. Signal-Nachrichten und ‑Anrufe wurden daher deaktiviert. Bitte registriere Signal erneut in Signal → Einstellungen → Datenschutz → Erweiterte Einstellungen.</string>
@@ -558,6 +577,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Fertig</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Diese Person kann nicht zu Gruppen alten Typs hinzugefügt werden.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Diese Person kann nicht zu Bekanntgabegruppen hinzugefügt werden.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one"> %1$s zu »%2$s« hinzufügen?</item>
     <item quantity="other">%3$d Mitglieder zu »%2$s« hinzufügen?</item>
@@ -627,7 +647,8 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Nur Admins können die Option zur Bestätigung neuer Mitglieder aktivieren oder deaktivieren.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Nur Admins können den Gruppen-Link zurücksetzen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Dir fehlen die hierfür erforderlichen Rechte</string>
-  <string name="ManageGroupActivity_not_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt nicht die neueste Version von Gruppenunterhaltungen und muss daher aktualisiert werden</string>
+  <string name="ManageGroupActivity_not_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt keine Gruppen neuen Typs und muss daher aktualisiert werden</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt keine Bekanntgabegruppen und muss daher aktualisiert werden</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Gruppe konnte nicht aktualisiert werden</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du bist kein Mitglied der Gruppe</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gruppe konnte nicht aktualisiert werden, bitte versuche es später erneut</string>
@@ -655,6 +676,7 @@
   <string name="ManageProfileFragment_your_name">Dein Name</string>
   <string name="ManageProfileFragment_your_username">Dein Nutzername</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar konnte nicht festgelegt werden</string>
+  <string name="ManageProfileFragment_badges">Abzeichen</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Keine gemeinsamen Gruppen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -676,6 +698,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Aktiviert</string>
   <string name="CustomNotificationsDialogFragment__disabled">Deaktiviert</string>
   <string name="CustomNotificationsDialogFragment__default">Standard</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Unbekannt</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Teilbarer Gruppen-Link</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Verwalten &amp; teilen</string>
@@ -740,22 +763,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen (SMS)</string>
-  <string name="InviteActivity_choose_how_to_share">Mit anderer App teilen</string>
+  <string name="InviteActivity_share_via">Teilen über …</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Wird versendet …</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SMS AN %d FREUND SENDEN</item>
-    <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">SMS senden (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mehr erfahren</string>
   <!--LongMessageActivity-->
@@ -792,13 +811,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d Element %2$s</item>
-    <item quantity="other">%1$d Elemente %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d Element</item>
-    <item quantity="other">%1$d Elemente</item>
+  <string name="MediaOverviewActivity_save">Speichern</string>
+  <string name="MediaOverviewActivity_select_all">Alle auswählen</string>
+  <string name="MediaOverviewActivity_delete">Löschen</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d ausgewählt (%2$s)</item>
+    <item quantity="other">%1$d ausgewählt (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Datei</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -821,15 +839,18 @@
   <string name="Megaphones_invite_friends">Freunde einladen</string>
   <string name="Megaphones_use_sms">SMS verwenden</string>
   <string name="Megaphones_appearance">Darstellung</string>
+  <string name="Megaphones_add_photo">Foto hinzufügen</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
   <string name="NotificationBarManager__incoming_signal_call">Eingehender Signal-Anruf</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Eingehender Signal-Gruppenanruf</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signals Anrufdienst wird gestoppt</string>
-  <string name="NotificationBarManager__deny_call">Anruf ablehnen</string>
+  <string name="NotificationBarManager__decline_call">Anruf ablehnen</string>
   <string name="NotificationBarManager__answer_call">Anruf annehmen</string>
   <string name="NotificationBarManager__end_call">Anruf beenden</string>
   <string name="NotificationBarManager__cancel_call">Anruf abbrechen</string>
+  <string name="NotificationBarManager__join_call">Anruf beitreten</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Benachrichtigungen einschalten?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Versäume nie eine Nachricht deiner Kontakte und Gruppen.</string>
@@ -980,6 +1001,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du hast die Bearbeitungsberechtigten für die Gruppenmitgliedschaft zu »%1$s« geändert.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s hat die Bearbeitungsberechtigten für die Gruppenmitgliedschaft zu »%2$s« geändert.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Die Bearbeitungsberechtigten für die Gruppenmitgliedschaft wurden zu »%1$s« geändert.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Du hast die Gruppen-Einstellungen geändert, um allen Mitgliedern das Senden von Nachrichten zu erlauben.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Du hast die Gruppen-Einstellungen geändert, um nur Admins das Senden von Nachrichten zu erlauben.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s hat die Gruppen-Einstellungen geändert, um allen Mitgliedern das Senden von Nachrichten zu erlauben.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s hat die Gruppen-Einstellungen geändert, um nur Admins das Senden von Nachrichten zu erlauben.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Die Gruppen-Einstellungen wurden geändert, um allen Mitgliedern das Senden von Nachrichten zu erlauben.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Die Gruppen-Einstellungen wurden geändert, um nur Admins das Senden von Nachrichten zu erlauben.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du hast den Gruppen-Link mit ausgeschalteter Admin-Bestätigung aktiviert.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du hast den Gruppen-Link mit eingeschalteter Admin-Bestätigung aktiviert.</string>
@@ -1025,6 +1053,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Eine Nachricht von %s konnte nicht zugestellt werden</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Die Rufnummer von %1$s hat sich geändert.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hat einen Gruppenanruf begonnen · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s nimmt am Gruppenanruf teil · %2$s</string>
@@ -1038,12 +1067,12 @@
   <string name="MessageRecord_group_call">Gruppenanruf</string>
   <string name="MessageRecord_you">Du</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen am Gruppenanruf teil · %4$s</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen am Gruppenanruf teil · %4$s</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen am Gruppenanruf teil · %4$s</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen am Gruppenanruf teil · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen am Gruppenanruf teil</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen am Gruppenanruf teil</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen am Gruppenanruf teil</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen am Gruppenanruf teil</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Annehmen</string>
@@ -1181,27 +1210,59 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Um %1$s anzurufen, benötigt Signal Zugriff auf deine Kamera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Anrufen …</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe ist zu groß, um bei den Teilnehmern zu klingeln.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal-Sprachanruf …</string>
-  <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf …</string>
+  <string name="WebRtcCallView__signal_call">Signal-Anruf</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf</string>
   <string name="WebRtcCallView__start_call">Anruf starten</string>
   <string name="WebRtcCallView__join_call">Anruf beitreten</string>
   <string name="WebRtcCallView__call_is_full">Anruf ist voll</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Für diesen Anruf wurde die maximale Anzahl von %1$d Teilnehmern erreicht. Bitte versuche es später erneut.</string>
-  <string name="WebRtcCallView__s_group_call">»%1$s« Gruppenanruf</string>
   <string name="WebRtcCallView__view_participants_list">Teilnehmer anzeigen</string>
-  <string name="WebRtcCallView__your_video_is_off">Dein Video ist aus</string>
+  <string name="WebRtcCallView__your_video_is_off">Deine Kamera ist ausgeschaltet</string>
   <string name="WebRtcCallView__reconnecting">Verbindung wird neu hergestellt …</string>
   <string name="WebRtcCallView__joining">Beitreten …</string>
   <string name="WebRtcCallView__disconnected">Verbindung getrennt</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal wird bei %1$s klingeln</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal wird bei %1$s und %2$s klingeln</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal wird bei %1$s, %2$s und %3$d weiteren Person klingeln</item>
+    <item quantity="other">Signal wird bei %1$s, %2$s und %3$d weiteren Personen klingeln</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s wird benachrichtigt werden</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s und %2$s werden benachrichtigt werden</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person werden benachrichtigt werden</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt werden</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Klingelt gerade bei %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Klingelt gerade bei %1$s und %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Klingelt gerade bei %1$s, %2$s und %3$d weiteren Person</item>
+    <item quantity="other">Klingelt gerade bei %1$s, %2$s und %3$d weiteren Personen</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ruft dich gerade an</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ruft dich und %2$s gerade an</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ruft dich, %2$s und %3$s gerade an</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s ruft dich, %2$s, %3$s und %4$d weitere Person gerade an</item>
+    <item quantity="other">%1$s ruft dich, %2$s, %3$s und %4$d weitere Personen gerade an</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s nimmst an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen an diesem Anruf teil</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen an diesem Anruf teil</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Drehen</string>
+  <string name="WebRtcCallView__speaker">Ltspr.</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Stumm</string>
+  <string name="WebRtcCallView__ring">Klingeln</string>
+  <string name="WebRtcCallView__end_call">Auflegen</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">In diesem Anruf · %1$d Person</item>
@@ -1245,6 +1306,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte, damit du Freunde kontaktieren und sichere Anrufe tätigen kannst.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du hast zu oft versucht, diese Rufnummer zu registrieren. Bitte versuche es später erneut.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
+  <string name="RegistrationActivity_call_requested">Anruf angefragt</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Nur noch %d Schritt, und du kannst ein Diagnoseprotokoll übermitteln.</item>
     <item quantity="other">Nur noch %d Schritte, und du kannst ein Diagnoseprotokoll übermitteln.</item>
@@ -1287,6 +1349,8 @@
   <string name="SharedContactView_add_to_contacts">Zu Kontakten hinzufügen</string>
   <string name="SharedContactView_invite_to_signal">Zu Signal einladen</string>
   <string name="SharedContactView_message">Signal-Nachricht</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mehr</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Wir erinnern dich später.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Wir erinnern dich morgen.</string>
@@ -1335,6 +1399,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Teilen</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, sodass Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
@@ -1465,6 +1530,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_reacted_s_to_s">Hat mit %1$s reagiert auf: »%2$s«.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Hat mit %1$s auf dein Video reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Hat mit %1$s auf dein Bild reagiert.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Hat mit %1$s auf dein GIF reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Hat mit %1$s auf deine Datei reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Hat mit %1$s auf dein Audio reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf deine einmalig anzeigbaren Medieninhalte reagiert.</string>
@@ -1607,6 +1673,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationUpdateItem_call_is_full">Anruf ist voll</string>
   <string name="ConversationUpdateItem_invite_friends">Freunde einladen</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Benachrichtigungen für Anrufe aktivieren</string>
+  <string name="ConversationUpdateItem_update_contact">Kontakt aktualisieren</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Keine gemeinsamen Gruppen. Prüfe Anfragen sorgfältig.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Keine Kontakte in dieser Gruppe. Prüfe Anfragen sorgfältig.</string>
   <string name="ConversationUpdateItem_view">Anzeigen</string>
@@ -1618,6 +1685,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Einmalig anzeigbare Medieninhalte</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_you">Du</string>
@@ -1768,21 +1836,26 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Vergleiche die oben dargestellten Zahlen mit denen auf dem Gerät deines Kontakts, um die Sicherheit deiner Ende-zu-Ende-Verschlüsselung mit %s zu verifizieren. Alternativ kannst du auch den auf dem Telefon deines Kontakts dargestellten Code einscannen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
+  <string name="verify_display_fragment__successful_match">Vergleich erfolgreich</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Sicherheitsnummer konnte nicht verifiziert werden</string>
   <string name="verify_display_fragment__loading">Wird geladen …</string>
-  <string name="verify_display_fragment__verified">Verifiziert</string>
+  <string name="verify_display_fragment__mark_as_verified">Als verifiziert markieren</string>
+  <string name="verify_display_fragment__clear_verification">Verifikation entfernen</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scanne den QR-Code deines Kontakts ein.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Zum Annehmen nach oben wischen</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Zum Ablehnen nach unten wischen</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Einige Vorgänge benötigen deine Aufmerksamkeit.</string>
-  <string name="message_details_header__sent">Gesendet</string>
-  <string name="message_details_header__received">Empfangen</string>
-  <string name="message_details_header__disappears">Verschwindet in</string>
-  <string name="message_details_header__via">Über</string>
+  <string name="message_details_header__sent">Gesendet:</string>
+  <string name="message_details_header__received">Empfangen:</string>
+  <string name="message_details_header__disappears">Verschwindet in:</string>
+  <string name="message_details_header__via">Über:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Ausstehend</string>
   <string name="message_details_recipient_header__sent_to">Gesendet an</string>
@@ -1824,14 +1897,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
-  <string-array name="HelpFragment__categories">
+  <string-array name="HelpFragment__categories_2">
     <item>-- Bitte wähle eine Option --</item>
     <item>Etwas funktioniert nicht</item>
     <item>Erweiterungswunsch</item>
     <item>Frage</item>
     <item>Rückmeldung</item>
     <item>Sonstiges</item>
-    <item>Zahlungen</item>
+    <item>Zahlungen (MobileCoin)</item>
+    <item>Spenden</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
@@ -1930,6 +2004,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__help">Hilfe</string>
   <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
+  <string name="preferences__subscription">Dauerspende</string>
+  <string name="preferences__signal_boost">Einmalige Spende</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-Einstellungen</string>
@@ -1978,7 +2054,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
-  <string name="preferences_chats__media_auto_download">Medieninhalte autom. herunterladen</string>
+  <string name="preferences_chats__media_auto_download">Medieninhalte automatisch herunterladen</string>
   <string name="preferences_chats__message_history">Nachrichtenverlauf</string>
   <string name="preferences_storage__storage_usage">Speicherbelegung</string>
   <string name="preferences_storage__photos">Bilder</string>
@@ -2005,7 +2081,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Dies verringert die Anrufqualität.</string>
   <string name="preferences_advanced__always_relay_calls">Anrufe immer indirekt</string>
-  <string name="preferences_app_protection__who_can">Wer kann …</string>
+  <string name="preferences_app_protection__who_can">Wer darf …</string>
   <string name="preferences_app_protection__app_access">App-Zugriff</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Unterhaltungen</string>
@@ -2058,7 +2134,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsAllActivityFragment__sent">Gesendet</string>
   <string name="PaymentsAllActivityFragment__received">Empfangen</string>
   <string name="PaymentsHomeFragment__introducing_payments">Neu: Zahlungen (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Nutze Signal für das Senden und Empfangen von MobileCoin, einer neuen und auf Datenschutz ausgerichteten digitalen Währung. Aktivieren, um loszulegen.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Nutze Signal für das Senden und Empfangen von MobileCoin, einer neuen, auf Datenschutz ausgerichteten digitalen Währung.</string>
   <string name="PaymentsHomeFragment__activate_payments">Zahlungen aktivieren</string>
   <string name="PaymentsHomeFragment__activating_payments">Zahlungen werden aktiviert …</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Zahlungskonto wiederherstellen </string>
@@ -2092,7 +2168,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsHomeFragment__payments_deactivated">Zahlungen deaktiviert.</string>
   <string name="PaymentsHomeFragment__payment_failed">Zahlung gescheitert</string>
   <string name="PaymentsHomeFragment__details">Details</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kannst Signal verwenden, um MobileCoin zu senden und zu empfangen. Alle Zahlungen unterliegen den Nutzungsbedingungen für MobileCoins und die MobileCoin-Wallet. Dies ist eine Beta-Funktion, daher können einige Probleme auftreten und eventuell verlorene Zahlungen oder Kontostände nicht wiederhergestellt werden.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kannst Signal verwenden, um MobileCoin zu senden und zu empfangen. Alle Zahlungen unterliegen den Nutzungsbedingungen für MobileCoins und der MobileCoin-Wallet. Dies ist eine Beta-Funktion, daher können einige Probleme auftreten und eventuell verlorene Zahlungen oder Kontostände nicht wiederhergestellt werden.</string>
   <string name="PaymentsHomeFragment__activate">Aktivieren</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-Bedingungen anzeigen</string>
   <string name="PaymentsHomeFragment__payments_not_available">Zahlungen in Signal sind nicht mehr verfügbar. Du kannst weiterhin Guthaben an eine Handelsplattform überweisen, aber keine Zahlungen senden und empfangen oder Guthaben hinzufügen.</string>
@@ -2445,7 +2521,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Um Datensicherungen zu aktivieren, wähle einen Ordner. Sicherungen werden dort gespeichert.</string>
   <string name="BackupDialog_choose_folder">Ordner wählen</string>
   <string name="BackupDialog_copied_to_clipboard">In Zwischenablage kopiert</string>
-  <string name="BackupDialog_no_file_picker_available">Keine Dateiauswahl verfügbar.</string>
+  <string name="BackupDialog_no_file_picker_available">Keine Dateimanager verfügbar.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Gib deine Sicherungspassphrase ein</string>
   <string name="BackupDialog_verify">Bestätigen</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Sicherungspassphrase richtig eingegeben</string>
@@ -2461,6 +2537,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_call_me_instead_available_in">Mich stattdessen anrufen \n (Verfügbar in %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal-Support kontaktieren</string>
   <string name="RegistrationActivity_code_support_subject">Signal-Registrierung – Verifikationscode für Android</string>
+  <string name="RegistrationActivity_incorrect_code">Falscher Code</string>
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>
   <string name="preferences_app_protection__see_my_phone_number">meine Rufnummer sehen</string>
@@ -2657,8 +2734,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Sprachnachricht konnte nicht wiedergegeben werden</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Sprachnachricht · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s an %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Sprachnachricht · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s an %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">%1$s wurde blockiert.</string>
@@ -2695,11 +2772,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ist beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s und %2$s sind beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s und %3$s sind beigetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s und %3$d Weitere sind beigetreten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s und %3$d weitere Personen sind beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left"> %1$s ist ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s und %2$s sind ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s und %3$s sind ausgetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d Weitere sind ausgetreten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d weitere Personen sind ausgetreten</string>
   <string name="CallParticipant__you">Du</string>
   <string name="CallParticipant__you_on_another_device">Du (auf einem anderen Gerät)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (auf einem anderen Gerät)</string>
@@ -2875,6 +2952,47 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen aktivieren. Diese werden seltener angezeigt, wenn du die PIN regelmäßig korrekt eingibst.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst</string>
+  <string name="AccountSettingsFragment__change_phone_number">Rufnummer ändern</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Verwende diese Funktion, um deine aktuelle Rufnummer auf eine neue Rufnummer zu ändern. Du kannst diese Änderung nicht rückgängig machen.\n\nBevor du fortfährst, vergewissere dich, dass deine neue Rufnummer SMS oder Anrufe empfangen kann.</string>
+  <string name="ChangeNumberFragment__continue">Fortfahren</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Deine Rufnummer wurde geändert.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Rufnummer ändern</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Deine alte Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Alte Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Deine neue Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Neue Rufnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Die eingegebene Rufnummer entspricht nicht der deines Kontos.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du musst die Ländervorwahl deiner alten Rufnummer angeben</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du musst deine alte Rufnummer angeben</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du musst die Ländervorwahl deiner neuen Rufnummer angeben</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du musst deine neue Rufnummer angeben</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Rufnummern ändern</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s wird verifiziert</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha erforderlich</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Rufnummer ändern</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Du bist dabei, deine Rufnummer von %1$s zu %2$s zu ändern.\n\nÜberprüfe vor dem Fortfahren, ob die folgende Nummer korrekt ist.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Rufnummer bearbeiten</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Änderung der Signal-Rufnummer – Hilfe benötigt für PIN für Android (v2-PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PINs stimmen nicht überein.</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Die mit deiner neuen Rufnummer verknüpfte PIN unterscheidet sich von der PIN deiner alten Rufnummer. Möchtest du deine alte PIN beibehalten oder sie aktualisieren?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Alte PIN beibehalten</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN aktualisieren</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Alte PIN beibehalten?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Offenbar hast du versucht, deine Rufnummer zu ändern, und wir konnten nicht feststellen, ob dies erfolgreich war.\n\nWird erneut überprüft …</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Änderungsstatus bestätigt</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Deine Rufnummer wurde als %1$s bestätigt. Wenn dies nicht deine neue Rufnummer ist, beginne bitte den Prozess der Rufnummernänderung erneut.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Änderungsstatus unbestätigt</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Wir konnten den Status deiner Anfrage auf Rufnummernänderung nicht feststellen.\n\n(Fehler: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Erneut versuchen</string>
+  <string name="ChangeNumberLockActivity__leave">Verlassen</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Diagnoseprotokoll übermitteln</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Eingabetaste sendet</string>
@@ -2926,6 +3044,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__copyright_signal_messenger">Urheberrecht Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lizenziert unter GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Medienqualität</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Medienqualität für Versand</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Das Senden von Medieninhalten hoher Qualität verbraucht mehr Datenvolumen.</string>
+  <string name="DataAndStorageSettingsFragment__high">Hoch</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Anrufe</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -2968,7 +3091,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatColorsMegaphone__appearance">Darstellung</string>
   <string name="ChatColorsMegaphone__not_now">Jetzt nicht</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Füg ein Profilfoto hinzu</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Wähle Aussehen und Farbe oder passe deine Initialen an.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Jetzt nicht</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Foto hinzufügen</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-Suche öffnen</string>
@@ -3020,10 +3146,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Mitglieder hinzufügen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Gruppendetails bearbeiten</string>
+  <string name="PermissionsSettingsFragment__send_messages">Nachrichten senden</string>
   <string name="PermissionsSettingsFragment__all_members">Alle Mitglieder</string>
   <string name="PermissionsSettingsFragment__only_admins">Nur Admins</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Wer darf neue Mitglieder hinzufügen?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wer darf die Gruppendetails bearbeiten?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Wer darf Nachrichten senden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Benachrichtigungen stummschalten</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nicht stumm</string>
@@ -3035,8 +3163,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Zuletzt verwendet</string>
   <!--PlaybackSpeedToggleTextView-->
-  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1,5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Neue Zahlung</string>
@@ -3045,18 +3174,151 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Sprachnachricht stoppen</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Geschwindigkeit der Sprachnachricht ändern</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Sprachnachricht pausieren</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Sprachnachricht abspielen</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Zu Sprachnachricht navigieren</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Avatar-Vorschau</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Nimm ein Foto auf</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Wähle ein Foto</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">Speichern</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Wähle einen Avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Avatar löschen</string>
+  <string name="AvatarPickerFragment__edit">Bearbeiten</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Avatar konnte nicht gespeichert werden</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Vorschau</string>
   <string name="TextAvatarCreationFragment__done">Fertig</string>
   <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Farbe</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Wähle eine Farbe</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__edit">Bearbeiten</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Aufwärts navigieren</string>
+  <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
+  <string name="MultiselectForwardFragment__add_a_message">Füg eine Nachricht hinzu</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Schnellere Weiterleitungen</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Weitergeleitete Nachrichten werden nun sofort gesendet.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d Nachricht senden</item>
+    <item quantity="other">%1$d Nachrichten senden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Nachricht gesendet</item>
+    <item quantity="other">Nachrichten gesendet</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Nachricht konnte nicht gesendet werden</item>
+    <item quantity="other">Nachrichten konnten nicht gesendet werden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nachricht konnte nicht weitergeleitet werden, da sie nicht mehr verfügbar ist.</item>
+    <item quantity="other">Nachrichten konnten nicht weitergeleitet werden, da sie nicht mehr verfügbar sind.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Höchstzahl erreicht</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Füg eine Nachricht hinzu</string>
+  <string name="MediaReviewFragment__add_a_reply">Antwort hinzufügen</string>
+  <string name="MediaReviewFragment__send_to">Senden an</string>
+  <string name="MediaReviewFragment__view_once_message">Einmalig anzeigbare Nachricht</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ein oder mehrere Elemente waren zu groß</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ein oder mehrere Elemente waren ungültig</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Zu viele Elemente ausgewählt</string>
+  <string name="ImageEditorHud__cancel">Abbrechen</string>
+  <string name="ImageEditorHud__draw">Zeichnen</string>
+  <string name="ImageEditorHud__write_text">Text schreiben</string>
+  <string name="ImageEditorHud__add_a_sticker">Sticker hinzufügen</string>
+  <string name="ImageEditorHud__blur">Verwischen</string>
+  <string name="ImageEditorHud__done_editing">Bearbeiten abgeschlossen</string>
+  <string name="ImageEditorHud__clear_all">Alles entfernen</string>
+  <string name="ImageEditorHud__undo">Rückgängig</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Zwischen Stift und Textmarker umschalten</string>
+  <string name="ImageEditorHud__delete">Löschen</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Textstil umschalten</string>
+  <string name="MediaCountIndicatorButton__send">Senden</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Zum Entfernen antippen</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Zum Auswählen antippen</string>
+  <string name="MediaReviewImagePageFragment__discard">Verwerfen</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Änderungen verwerfen?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du wirst alle an diesem Foto vorgenommenen Änderungen verlieren.</string>
+  <string name="CameraFragment__failed_to_open_camera">Kamera konnte nicht geöffnet werden</string>
+  <string name="BadgesOverviewFragment__my_badges">Meine Abzeichen</string>
+  <string name="BadgesOverviewFragment__featured_badge">Ausgewähltes Abzeichen</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Abzeichen im Profil anzeigen</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profil konnte nicht aktualisiert werden</string>
+  <string name="BadgeSelectionFragment__select_badges">Abzeichen auswählen</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Vorschau</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Wähle ein Abzeichen</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du musst ein Abzeichen auswählen</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil konnte nicht aktualisiert werden</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
+  <string name="ImageView__badge">Abzeichen</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze Technologie, die für Dich entwickelt wurde – nicht für deine Daten –, indem du dich der Gemeinschaft von Menschen anschließt, die sie unterstützen. </string>
+  <string name="SubscribeFragment__donation_amount">Spendenbetrag</string>
+  <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
+  <string name="SubscribeFragment__cancel_subscription">Dauerspende kündigen</string>
+  <string name="SubscribeFragment__confirm_cancellation">Kündigung bestätigen?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Es werden keine weiteren Gebühren erhoben. Dein Abzeichen wird am Ende deines Abrechnungszeitraums aus deinem Profil entfernt.</string>
+  <string name="SubscribeFragment__not_now">Jetzt nicht</string>
+  <string name="SubscribeFragment__confirm">Bestätigen</string>
+  <string name="SubscribeFragment__update_subscription">Dauerspende aktualisieren</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Deine Dauerspende wurde gekündigt.</string>
+  <string name="SubscribeFragment__update_subscription_question">Dauerspende aktualisieren?</string>
+  <string name="SubscribeFragment__update">Aktualisieren</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dir wird heute der volle Betrag des neuen Spendenbeitrags in Rechnung gestellt. Deine Dauerspende wird verlängert %1$s.</string>
+  <string name="Subscription__s_per_month">%s/Monat</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/Monat · Verlängert %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat  · Läuft ab %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ist eine Non-Profit-Organisation ohne Werbetreibende oder Investoren, die von den Menschen unterstützt wird, die es nutzen und schätzen. Leiste eine wiederkehrenden monatlichen Beitrag und erhalte ein Profil-Abzeichen, um deine Unterstützung zu teilen. </string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat sich der Mission verschrieben, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag unterstützt diese Sache. Keine Werbung. Keine Tracker. Im Ernst.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu bezahlen, die von Millionen auf der ganzen Welt für die private und sofortige Kommunikation verwendet wird.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für den Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du den Personen, mit denen du chattest, dass du Signal unterstützt.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Wenn du mehrere Abzeichen hast, kannst du eines davon auswählen, um es bei deinem Profil anzuzeigen.</string>
+  <string name="ManageDonationsFragment__my_support">Meine Unterstützung</string>
+  <string name="ManageDonationsFragment__manage_subscription">Dauerspende verwalten</string>
+  <string name="ManageDonationsFragment__badges">Abzeichen</string>
+  <string name="ManageDonationsFragment__subscription_faq">Dauerspende FAQ</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Fehler beim Abrufen der Dauerspende.</string>
+  <string name="BoostFragment__give_signal_a_boost">Gib Signal einen Boost</string>
+  <string name="BoostFragment__say_thanks_and_earn">Sag \"Danke!\" und erhalte ein Boost-Abzeichen für %1$dTage.</string>
+  <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
+  <string name="Boost__one_time_contribution">Einmaliger Betrag</string>
+  <string name="MySupportPreference__add_a_signal_boost">Eine einmalige Spende tätigen</string>
+  <string name="MySupportPreference__s_per_month">%1$s/Monat</string>
+  <string name="MySupportPreference__renews_s">Verlängert %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Um auch weiterhin eine Technologie zu unterstützen, die für Dich und nicht für deine Daten entwickelt wurde, erwäge eine Dauerspende abzuschließen.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Werde Dauerspende</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
+  <string name="Subscription__verification_failed">Verifikation der Dauerspende gescheitert</string>
+  <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere den Support für weitere Informationen.</string>
+  <string name="Subscription__contact_support">Support kontaktieren</string>
+  <string name="Subscription__earn_a_s_badge">Erhalte ein %1$s Abzeichen</string>
+  <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
+  <string name="DonationsErrors__payment_failed">Zahlung gescheitert</string>
+  <string name="DonationsErrors__your_payment">Ihre Zahlung konnte nicht verarbeitet werden und wurde Ihnen nicht abgebucht. Bitte versuchen Sie es erneut.</string>
+  <string name="DonationsErrors__redemption_still_pending">Einlösung noch ausstehend</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Eventuell ist das Abzeichen nicht direkt sichtbar, aber wir arbeiten daran!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay nicht verfügbar</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du musst Google Pay einrichten, um in der App zu spenden.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Die Kündigung der Dauerspende ist fehlgeschlagen</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung der Dauerspende benötigt eine Internetverbindung.</string>
   <!--EOF-->
 </resources>

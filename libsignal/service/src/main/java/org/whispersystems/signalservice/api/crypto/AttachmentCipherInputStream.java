@@ -162,10 +162,12 @@ public class AttachmentCipherInputStream extends FilterInputStream {
 
   private int readFinal(byte[] buffer, int offset, int length) throws IOException {
     try {
-      int flourish = cipher.doFinal(buffer, offset);
+      byte[] internal = new byte[buffer.length];
+      int actualLength = Math.min(length, cipher.doFinal(internal, 0));
+      System.arraycopy(internal, 0, buffer, offset, actualLength);
 
       done = true;
-      return flourish;
+      return actualLength;
     } catch (IllegalBlockSizeException | BadPaddingException | ShortBufferException e) {
       throw new IOException(e);
     }

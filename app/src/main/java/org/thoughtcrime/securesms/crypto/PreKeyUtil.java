@@ -21,6 +21,7 @@ import android.content.Context;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -43,7 +44,7 @@ public class PreKeyUtil {
   private static final int BATCH_SIZE = 100;
 
   public synchronized static List<PreKeyRecord> generatePreKeys(Context context) {
-    PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context);
+    PreKeyStore        preKeyStore    = ApplicationDependencies.getPreKeyStore();
     List<PreKeyRecord> records        = new LinkedList<>();
     int                preKeyIdOffset = TextSecurePreferences.getNextPreKeyId(context);
 
@@ -63,7 +64,7 @@ public class PreKeyUtil {
 
   public synchronized static SignedPreKeyRecord generateSignedPreKey(Context context, IdentityKeyPair identityKeyPair, boolean active) {
     try {
-      SignedPreKeyStore  signedPreKeyStore = new TextSecurePreKeyStore(context);
+      SignedPreKeyStore  signedPreKeyStore = ApplicationDependencies.getPreKeyStore();
       int                signedPreKeyId    = TextSecurePreferences.getNextSignedPreKeyId(context);
       ECKeyPair          keyPair           = Curve.generateKeyPair();
       byte[]             signature         = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());

@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.sms;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -71,6 +73,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
@@ -82,6 +85,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MessageSender {
 
@@ -99,6 +103,7 @@ public class MessageSender {
                           final OutgoingTextMessage message,
                           final long threadId,
                           final boolean forceSms,
+                          @Nullable final String metricId,
                           final SmsDatabase.InsertListener insertListener)
   {
     Log.i(TAG, "Sending text message to " + message.getRecipient().getId() + ", thread: " + threadId);
@@ -113,8 +118,11 @@ public class MessageSender {
                                                           System.currentTimeMillis(),
                                                           insertListener);
 
+    SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
+
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     onMessageSent();
+    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
     return allocatedThreadId;
   }
@@ -123,6 +131,7 @@ public class MessageSender {
                           final OutgoingMediaMessage message,
                           final long threadId,
                           final boolean forceSms,
+                          @Nullable final String metricId,
                           final SmsDatabase.InsertListener insertListener)
   {
     Log.i(TAG, "Sending media message to " + message.getRecipient().getId() + ", thread: " + threadId);
@@ -134,8 +143,15 @@ public class MessageSender {
       Recipient recipient         = message.getRecipient();
       long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, forceSms, insertListener);
 
+      if (message.getRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
+        SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
+      } else {
+        SignalLocalMetrics.GroupMessageSend.cancel(metricId);
+      }
+
       sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
       onMessageSent();
+      threadDatabase.update(threadId, true);
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -143,7 +159,6 @@ public class MessageSender {
       return threadId;
     }
   }
-
 
   public static long sendPushWithPreUploadedMedia(final Context context,
                                                   final OutgoingMediaMessage message,
@@ -162,7 +177,7 @@ public class MessageSender {
       long allocatedThreadId;
 
       if (threadId == -1) {
-        allocatedThreadId = threadDatabase.getThreadIdFor(message.getRecipient(), message.getDistributionType());
+        allocatedThreadId = threadDatabase.getOrCreateThreadIdFor(message.getRecipient(), message.getDistributionType());
       } else {
         allocatedThreadId = threadId;
       }
@@ -180,6 +195,7 @@ public class MessageSender {
 
       sendMediaMessage(context, recipient, false, messageId, jobIds);
       onMessageSent();
+      threadDatabase.update(threadId, true);
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -205,7 +221,7 @@ public class MessageSender {
     mmsDatabase.beginTransaction();
     try {
       OutgoingSecureMediaMessage primaryMessage   = messages.get(0);
-      long                       primaryThreadId  = threadDatabase.getThreadIdFor(primaryMessage.getRecipient(), primaryMessage.getDistributionType());
+      long                       primaryThreadId  = threadDatabase.getOrCreateThreadIdFor(primaryMessage.getRecipient(), primaryMessage.getDistributionType());
       long                       primaryMessageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, primaryMessage.getRecipient(), primaryMessage, primaryThreadId),
                                                                                     primaryThreadId,
                                                                                     false,
@@ -226,7 +242,7 @@ public class MessageSender {
         }
 
         for (OutgoingSecureMediaMessage secondaryMessage : secondaryMessages) {
-          long               allocatedThreadId = threadDatabase.getThreadIdFor(secondaryMessage.getRecipient(), secondaryMessage.getDistributionType());
+          long               allocatedThreadId = threadDatabase.getOrCreateThreadIdFor(secondaryMessage.getRecipient(), secondaryMessage.getDistributionType());
           long               messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, secondaryMessage.getRecipient(), secondaryMessage, allocatedThreadId),
                                                                                  allocatedThreadId,
                                                                                  false,
@@ -371,14 +387,14 @@ public class MessageSender {
 
   private static @NonNull OutgoingTextMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingTextMessage outgoingTextMessage, long threadId) {
     if (outgoingTextMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return new OutgoingTextMessage(outgoingTextMessage, SignalStore.settings().getUniversalExpireTimer() * 1000L);
+      return outgoingTextMessage.withExpiry(TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
     }
     return outgoingTextMessage;
   }
 
   private static @NonNull OutgoingMediaMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingMediaMessage outgoingMediaMessage, long threadId) {
     if (!outgoingMediaMessage.isExpirationUpdate() && outgoingMediaMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return new OutgoingMediaMessage(outgoingMediaMessage, SignalStore.settings().getUniversalExpireTimer() * 1000L);
+      return outgoingMediaMessage.withExpiry(TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
     }
     return outgoingMediaMessage;
   }
@@ -410,8 +426,7 @@ public class MessageSender {
   }
 
   private static void sendTextPush(Recipient recipient, long messageId) {
-    JobManager jobManager = ApplicationDependencies.getJobManager();
-    jobManager.add(new PushTextSendJob(messageId, recipient));
+    ApplicationDependencies.getJobManager().add(new PushTextSendJob(messageId, recipient));
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId, @NonNull Collection<String> uploadJobIds) {

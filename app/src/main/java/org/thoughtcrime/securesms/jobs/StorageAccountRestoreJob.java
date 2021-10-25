@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -103,7 +104,13 @@ public class StorageAccountRestoreJob extends BaseJob {
 
 
     Log.i(TAG, "Applying changes locally...");
-    StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self(), accountRecord, false);
+    DatabaseFactory.getInstance(context).getRawDatabase().beginTransaction();
+    try {
+      StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self(), accountRecord, false);
+      DatabaseFactory.getInstance(context).getRawDatabase().setTransactionSuccessful();
+    } finally {
+      DatabaseFactory.getInstance(context).getRawDatabase().endTransaction();
+    }
 
     JobManager jobManager = ApplicationDependencies.getJobManager();
 

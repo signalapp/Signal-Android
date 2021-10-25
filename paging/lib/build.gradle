@@ -22,8 +22,8 @@ dependencyVerification {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation libs.androidx.appcompat
+    implementation libs.material.material
     implementation project(':core-util')
-    testImplementation 'junit:junit:4.12'
+    testImplementation testLibs.junit.junit
 }

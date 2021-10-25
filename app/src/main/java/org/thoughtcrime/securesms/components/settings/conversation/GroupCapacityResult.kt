@@ -7,7 +7,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 class GroupCapacityResult(
   private val selfId: RecipientId,
   private val members: List<RecipientId>,
-  private val selectionLimits: SelectionLimits
+  private val selectionLimits: SelectionLimits,
+  val isAnnouncementGroup: Boolean
 ) {
   fun getMembers(): List<RecipientId?> {
     return members

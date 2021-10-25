@@ -187,8 +187,6 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
     setMeasuredDimension(size.x, size.y);
 
-    Log.d(TAG, "onMeasure(). New size: " + size.x + "x" + size.y);
-
     if (attachedVideoSink != null) {
       attachedVideoSink.putRequestingSize(this, size);
     }

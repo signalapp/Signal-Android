@@ -1,6 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.google.protobuf'
-apply plugin: 'witness'
+plugins {
+    id 'com.android.library'
+    id 'com.google.protobuf'
+    id 'witness'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 apply from: 'witness-verifications.gradle'
 
 android {
@@ -17,6 +21,9 @@ android {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -42,12 +49,13 @@ protobuf {
 dependencies {
     lintChecks project(':lintchecks')
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring libs.android.tools.desugar
 
-    api 'androidx.annotation:annotation:1.1.0'
+    api libs.androidx.annotation
 
-    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+    implementation libs.androidx.core.ktx
+    implementation libs.google.protobuf.javalite
 
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:2.23.4'
+    testImplementation testLibs.junit.junit
+    testImplementation testLibs.mockito.core
 }

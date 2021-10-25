@@ -99,15 +99,16 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
       while ((record = reader.getNext()) != null) {
         if (record.isV1Group()) {
-          List<SignalServiceAddress> members = new LinkedList<>();
+          List<SignalServiceAddress> members           = new LinkedList<>();
+          List<Recipient>            registeredMembers = RecipientUtil.getEligibleForSending(Recipient.resolvedList(record.getMembers()));
 
-          for (RecipientId member : record.getMembers()) {
-            members.add(RecipientUtil.toSignalServiceAddress(context, Recipient.resolved(member)));
+          for (Recipient member : registeredMembers) {
+            members.add(RecipientUtil.toSignalServiceAddress(context, member));
           }
 
           RecipientId               recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(record.getId());
           Recipient                 recipient       = Recipient.resolved(recipientId);
-          Optional<Integer>         expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
+          Optional<Integer>         expirationTimer = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.absent();
           Map<RecipientId, Integer> inboxPositions  = DatabaseFactory.getThreadDatabase(context).getInboxPositions();
           Set<RecipientId>          archived        = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
 

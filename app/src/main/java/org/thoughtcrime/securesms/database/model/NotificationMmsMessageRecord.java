@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
@@ -52,13 +53,13 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
                                       long threadId, byte[] contentLocation, long messageSize,
                                       long expiry, int status, byte[] transactionId, long mailbox,
                                       int subscriptionId, SlideDeck slideDeck, int readReceiptCount,
-                                      int viewedReceiptCount)
+                                      int viewedReceiptCount, long receiptTimestamp)
   {
     super(id, "", conversationRecipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, -1, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
-          new LinkedList<>(), new LinkedList<>(), subscriptionId,
+          new HashSet<>(), new HashSet<>(), subscriptionId,
           0, 0, false, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false,
-          Collections.emptyList(), false, 0, viewedReceiptCount);
+          Collections.emptyList(), false, 0, viewedReceiptCount, receiptTimestamp);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

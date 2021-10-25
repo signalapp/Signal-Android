@@ -1,10 +1,8 @@
 package org.thoughtcrime.securesms.database.documents;
 
-import java.util.List;
+import java.util.Set;
 
 public interface Document<T> {
-
-  public int size();
-  public List<T> getList();
-
+  int size();
+  Set<T> getItems();
 }

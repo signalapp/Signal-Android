@@ -297,6 +297,17 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void applyAnnouncementGroupChange(@NonNull Context context,
+                                                  @NonNull GroupId.V2 groupId,
+                                                  @NonNull boolean isAnnouncementGroup)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.updateAnnouncementGroup(isAnnouncementGroup);
+    }
+  }
+
+  @WorkerThread
   public static void cycleGroupLinkPassword(@NonNull Context context,
                                             @NonNull GroupId.V2 groupId)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException

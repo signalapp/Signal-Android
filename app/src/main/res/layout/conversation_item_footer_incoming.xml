@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:background="@color/green"
+    tools:layout_width="wrap_content"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -54,7 +55,7 @@
             app:layout_constraintEnd_toStartOf="@id/footer_expiration_timer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="3m" />
+            tools:text="13:14pm" />
 
         <org.thoughtcrime.securesms.components.ExpirationTimerView
             android:id="@+id/footer_expiration_timer"
@@ -84,11 +85,11 @@
         android:maxWidth="140dp"
         android:maxLines="1"
         android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@id/date_and_expiry_wrapper"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/footer_insecure_indicator"
+        app:layout_constraintStart_toEndOf="@id/date_and_expiry_wrapper"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Sim Op" />
+        tools:text="Sim Op"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/footer_insecure_indicator"
@@ -113,7 +114,8 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <org.thoughtcrime.securesms.components.PlaybackSpeedToggleTextView
         android:id="@+id/footer_audio_playback_speed_toggle"
@@ -125,12 +127,14 @@
         android:background="@drawable/round_background"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:lineSpacingExtra="1sp"
         android:minWidth="30dp"
         android:minHeight="20dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle"
         android:textColor="@color/signal_text_secondary"
         android:visibility="gone"
-        android:lineSpacingExtra="1sp"
         app:backgroundTint="@color/transparent_black_08"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

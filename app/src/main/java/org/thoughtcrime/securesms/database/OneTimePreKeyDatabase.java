@@ -40,7 +40,7 @@ public class OneTimePreKeyDatabase extends Database {
   }
 
   public @Nullable PreKeyRecord getPreKey(int keyId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?",
                                         new String[] {String.valueOf(keyId)},
@@ -62,7 +62,7 @@ public class OneTimePreKeyDatabase extends Database {
   }
 
   public void insertPreKey(int keyId, PreKeyRecord record) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(KEY_ID, keyId);
@@ -73,7 +73,7 @@ public class OneTimePreKeyDatabase extends Database {
   }
 
   public void removePreKey(int keyId) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, KEY_ID + " = ?", new String[] {String.valueOf(keyId)});
   }
 

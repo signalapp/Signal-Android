@@ -13,8 +13,10 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class OutgoingMediaMessage {
 
@@ -28,11 +30,11 @@ public class OutgoingMediaMessage {
   private   final boolean                   viewOnce;
   private   final QuoteModel                outgoingQuote;
 
-  private   final List<NetworkFailure>      networkFailures       = new LinkedList<>();
-  private   final List<IdentityKeyMismatch> identityKeyMismatches = new LinkedList<>();
-  private   final List<Contact>             contacts              = new LinkedList<>();
-  private   final List<LinkPreview>         linkPreviews          = new LinkedList<>();
-  private   final List<Mention>             mentions              = new LinkedList<>();
+  private   final Set<NetworkFailure>      networkFailures       = new HashSet<>();
+  private   final Set<IdentityKeyMismatch> identityKeyMismatches = new HashSet<>();
+  private   final List<Contact>            contacts              = new LinkedList<>();
+  private   final List<LinkPreview>        linkPreviews          = new LinkedList<>();
+  private   final List<Mention>            mentions              = new LinkedList<>();
 
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
@@ -42,8 +44,8 @@ public class OutgoingMediaMessage {
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
                               @NonNull List<Mention> mentions,
-                              @NonNull List<NetworkFailure> networkFailures,
-                              @NonNull List<IdentityKeyMismatch> identityKeyMismatches)
+                              @NonNull Set<NetworkFailure> networkFailures,
+                              @NonNull Set<IdentityKeyMismatch> identityKeyMismatches)
   {
     this.recipient             = recipient;
     this.body                  = message;
@@ -75,24 +77,7 @@ public class OutgoingMediaMessage {
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
          expiresIn, viewOnce, distributionType, outgoingQuote,
-         contacts, linkPreviews, mentions, new LinkedList<>(), new LinkedList<>());
-  }
-
-  public OutgoingMediaMessage(OutgoingMediaMessage that, long expiresIn) {
-    this(that.getRecipient(),
-         that.body,
-         that.attachments,
-         that.sentTimeMillis,
-         that.subscriptionId,
-         expiresIn,
-         that.viewOnce,
-         that.distributionType,
-         that.outgoingQuote,
-         that.contacts,
-         that.linkPreviews,
-         that.mentions,
-         that.networkFailures,
-         that.identityKeyMismatches);
+         contacts, linkPreviews, mentions, new HashSet<>(), new HashSet<>());
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
@@ -111,6 +96,25 @@ public class OutgoingMediaMessage {
     this.contacts.addAll(that.contacts);
     this.linkPreviews.addAll(that.linkPreviews);
     this.mentions.addAll(that.mentions);
+  }
+
+  public @NonNull OutgoingMediaMessage withExpiry(long expiresIn) {
+    return new OutgoingMediaMessage(
+        getRecipient(),
+        body,
+        attachments,
+        sentTimeMillis,
+        subscriptionId,
+        expiresIn,
+        viewOnce,
+        distributionType,
+        outgoingQuote,
+        contacts,
+        linkPreviews,
+        mentions,
+        networkFailures,
+        identityKeyMismatches
+    );
   }
 
   public Recipient getRecipient() {
@@ -173,11 +177,11 @@ public class OutgoingMediaMessage {
     return mentions;
   }
 
-  public @NonNull List<NetworkFailure> getNetworkFailures() {
+  public @NonNull Set<NetworkFailure> getNetworkFailures() {
     return networkFailures;
   }
 
-  public @NonNull List<IdentityKeyMismatch> getIdentityKeyMismatches() {
+  public @NonNull Set<IdentityKeyMismatch> getIdentityKeyMismatches() {
     return identityKeyMismatches;
   }
 

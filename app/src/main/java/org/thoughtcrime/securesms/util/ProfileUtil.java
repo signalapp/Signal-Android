@@ -9,6 +9,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
@@ -42,6 +43,9 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -61,11 +65,21 @@ public final class ProfileUtil {
                                                                   @NonNull SignalServiceProfile.RequestType requestType)
       throws IOException
   {
+    return retrieveProfileSync(context, recipient, requestType, true);
+  }
+
+  @WorkerThread
+  public static @NonNull ProfileAndCredential retrieveProfileSync(@NonNull Context context,
+                                                                  @NonNull Recipient recipient,
+                                                                  @NonNull SignalServiceProfile.RequestType requestType,
+                                                                  boolean allowUnidentifiedAccess)
+      throws IOException
+  {
     ProfileService profileService = new ProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
                                                        ApplicationDependencies.getSignalServiceMessageReceiver(),
                                                        ApplicationDependencies.getSignalWebSocket());
 
-    Pair<Recipient, ServiceResponse<ProfileAndCredential>> response = retrieveProfile(context, recipient, requestType, profileService).blockingGet();
+    Pair<Recipient, ServiceResponse<ProfileAndCredential>> response = retrieveProfile(context, recipient, requestType, profileService, allowUnidentifiedAccess).blockingGet();
     return new ProfileService.ProfileResponseProcessor(response.second()).getResultOrThrow();
   }
 
@@ -74,13 +88,21 @@ public final class ProfileUtil {
                                                                                                @NonNull SignalServiceProfile.RequestType requestType,
                                                                                                @NonNull ProfileService profileService)
   {
-    SignalServiceAddress         address            = toSignalServiceAddress(context, recipient);
-    Optional<UnidentifiedAccess> unidentifiedAccess = getUnidentifiedAccess(context, recipient);
+    return retrieveProfile(context, recipient, requestType, profileService, true);
+  }
+
+  private static Single<Pair<Recipient, ServiceResponse<ProfileAndCredential>>> retrieveProfile(@NonNull Context context,
+                                                                                                @NonNull Recipient recipient,
+                                                                                                @NonNull SignalServiceProfile.RequestType requestType,
+                                                                                                @NonNull ProfileService profileService,
+                                                                                                boolean allowUnidentifiedAccess)
+  {
+    Optional<UnidentifiedAccess> unidentifiedAccess = allowUnidentifiedAccess ? getUnidentifiedAccess(context, recipient) : Optional.absent();
     Optional<ProfileKey>         profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 
-    return profileService.getProfile(address, profileKey, unidentifiedAccess, requestType)
-                         .map(p -> new Pair<>(recipient, p))
-                         .onErrorReturn(t -> new Pair<>(recipient, ServiceResponse.forUnknownError(t)));
+    return Single.fromCallable(() -> toSignalServiceAddress(context, recipient))
+                 .flatMap(address -> profileService.getProfile(address, profileKey, unidentifiedAccess, requestType, Locale.getDefault()).map(p -> new Pair<>(recipient, p)))
+                 .onErrorReturn(t -> new Pair<>(recipient, ServiceResponse.forUnknownError(t)));
   }
 
   public static @Nullable String decryptString(@NonNull ProfileKey profileKey, @Nullable byte[] encryptedString)
@@ -166,6 +188,23 @@ public final class ProfileUtil {
 
   /**
    * Uploads the profile based on all state that's written to disk, except we'll use the provided
+   * list of badges instead. This is useful when you want to ensure that the profile has been uploaded
+   * successfully before persisting the change to disk.
+   */
+  public static void uploadProfileWithBadges(@NonNull Context context, @NonNull List<Badge> badges) throws IOException {
+    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
+      uploadProfile(context,
+                    Recipient.self().getProfileName(),
+                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                    getSelfPaymentsAddressProtobuf(),
+                    avatar,
+                    badges);
+    }
+  }
+
+  /**
+   * Uploads the profile based on all state that's written to disk, except we'll use the provided
    * profile name instead. This is useful when you want to ensure that the profile has been uploaded
    * successfully before persisting the change to disk.
    */
@@ -176,7 +215,8 @@ public final class ProfileUtil {
                     Optional.fromNullable(Recipient.self().getAbout()).or(""),
                     Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
                     getSelfPaymentsAddressProtobuf(),
-                    avatar);
+                    avatar,
+                    Recipient.self().getBadges());
     }
   }
 
@@ -192,7 +232,8 @@ public final class ProfileUtil {
                     about,
                     emoji,
                     getSelfPaymentsAddressProtobuf(),
-                    avatar);
+                    avatar,
+                    Recipient.self().getBadges());
     }
   }
 
@@ -216,7 +257,8 @@ public final class ProfileUtil {
                     Optional.fromNullable(Recipient.self().getAbout()).or(""),
                     Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
                     getSelfPaymentsAddressProtobuf(),
-                    avatar);
+                    avatar,
+                    Recipient.self().getBadges());
   }
 
   private static void uploadProfile(@NonNull Context context,
@@ -224,12 +266,21 @@ public final class ProfileUtil {
                                     @Nullable String about,
                                     @Nullable String aboutEmoji,
                                     @Nullable SignalServiceProtos.PaymentAddress paymentsAddress,
-                                    @Nullable StreamDetails avatar)
+                                    @Nullable StreamDetails avatar,
+                                    @NonNull List<Badge> badges)
       throws IOException
   {
+
+    List<String> badgeIds = badges.stream()
+                                  .filter(Badge::getVisible)
+                                  .map(Badge::getId)
+                                  .collect(Collectors.toList());
+
     Log.d(TAG, "Uploading " + (!Util.isEmpty(about) ? "non-" : "") + "empty about.");
     Log.d(TAG, "Uploading " + (!Util.isEmpty(aboutEmoji) ? "non-" : "") + "empty emoji.");
     Log.d(TAG, "Uploading " + (paymentsAddress != null ? "non-" : "") + "empty payments address.");
+    Log.d(TAG, "Uploading " + (avatar != null && avatar.getLength() != 0 ? "non-" : "") + "empty avatar.");
+    Log.d(TAG, "Uploading " + ((!badgeIds.isEmpty()) ? "non-" : "") + "empty badge list");
 
     ProfileKey                  profileKey     = ProfileKeyUtil.getSelfProfileKey();
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
@@ -239,7 +290,8 @@ public final class ProfileUtil {
                                                                                     about,
                                                                                     aboutEmoji,
                                                                                     Optional.fromNullable(paymentsAddress),
-                                                                                    avatar).orNull();
+                                                                                    avatar,
+                                                                                    badgeIds).orNull();
 
     DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
   }
@@ -267,11 +319,15 @@ public final class ProfileUtil {
     return Optional.absent();
   }
 
-  private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) {
+  private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
     if (recipient.getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
-      return new SignalServiceAddress(recipient.getUuid().orNull(), recipient.getE164().orNull());
+      if (recipient.hasUuid()) {
+        return new SignalServiceAddress(recipient.requireUuid(), recipient.getE164().orNull());
+      } else {
+        throw new IOException(recipient.getId() + " not registered!");
+      }
     } else {
-      return RecipientUtil.toSignalServiceAddressBestEffort(context, recipient);
+      return RecipientUtil.toSignalServiceAddress(context, recipient);
     }
   }
 }

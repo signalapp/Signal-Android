@@ -13,7 +13,7 @@ public final class CompositeMediaTransform implements MediaTransform {
 
   private final MediaTransform[] transforms;
 
-  CompositeMediaTransform(MediaTransform ...transforms) {
+  public CompositeMediaTransform(MediaTransform ...transforms) {
     this.transforms = transforms;
   }
 

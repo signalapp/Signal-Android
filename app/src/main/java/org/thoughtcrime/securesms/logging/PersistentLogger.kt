@@ -6,6 +6,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.model.LogEntry
+import org.thoughtcrime.securesms.logsubmit.util.Scrubber
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.text.SimpleDateFormat
@@ -23,9 +24,8 @@ import java.util.Locale
  * - The [WriteThread] constantly pulls from that queue, formats the logs, and writes them to the database.
  */
 class PersistentLogger(
-  application: Application,
-  defaultLifespan: Long
-) : Log.Logger(defaultLifespan) {
+  application: Application
+) : Log.Logger() {
 
   companion object {
     private const val LOG_V = "V"
@@ -33,7 +33,6 @@ class PersistentLogger(
     private const val LOG_I = "I"
     private const val LOG_W = "W"
     private const val LOG_E = "E"
-    private const val LOG_WTF = "A"
   }
 
   private val logEntries = LogRequests()
@@ -46,32 +45,32 @@ class PersistentLogger(
     }.start()
   }
 
-  override fun v(tag: String?, message: String?, t: Throwable?, duration: Long) {
-    write(LOG_V, tag, message, t, duration)
+  override fun v(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) {
+    write(LOG_V, tag, message, t, keepLonger)
   }
 
-  override fun d(tag: String?, message: String?, t: Throwable?, duration: Long) {
-    write(LOG_D, tag, message, t, duration)
+  override fun d(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) {
+    write(LOG_D, tag, message, t, keepLonger)
   }
 
-  override fun i(tag: String?, message: String?, t: Throwable?, duration: Long) {
-    write(LOG_I, tag, message, t, duration)
+  override fun i(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) {
+    write(LOG_I, tag, message, t, keepLonger)
   }
 
-  override fun w(tag: String?, message: String?, t: Throwable?, duration: Long) {
-    write(LOG_W, tag, message, t, duration)
+  override fun w(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) {
+    write(LOG_W, tag, message, t, keepLonger)
   }
 
-  override fun e(tag: String?, message: String?, t: Throwable?, duration: Long) {
-    write(LOG_E, tag, message, t, duration)
+  override fun e(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) {
+    write(LOG_E, tag, message, t, keepLonger)
   }
 
   override fun flush() {
     logEntries.blockForFlushed()
   }
 
-  private fun write(level: String, tag: String?, message: String?, t: Throwable?, lifespan: Long) {
-    logEntries.add(LogRequest(level, tag ?: "null", message, Date(), getThreadString(), t, lifespan))
+  private fun write(level: String, tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) {
+    logEntries.add(LogRequest(level, tag ?: "null", message, Date(), getThreadString(), t, keepLonger))
   }
 
   private fun getThreadString(): String {
@@ -97,7 +96,7 @@ class PersistentLogger(
     val date: Date,
     val threadString: String,
     val throwable: Throwable?,
-    val lifespan: Long
+    val keepLonger: Boolean
   )
 
   private class WriteThread(
@@ -123,7 +122,7 @@ class PersistentLogger(
       out.add(
         LogEntry(
           createdAt = request.date.time,
-          lifespan = request.lifespan,
+          keepLonger = request.keepLonger,
           body = formatBody(request.threadString, request.date, request.level, request.tag, request.message)
         )
       )
@@ -138,7 +137,7 @@ class PersistentLogger(
         val entries = lines.map { line ->
           LogEntry(
             createdAt = request.date.time,
-            lifespan = request.lifespan,
+            keepLonger = request.keepLonger,
             body = formatBody(request.threadString, request.date, request.level, request.tag, line)
           )
         }
@@ -150,7 +149,7 @@ class PersistentLogger(
     }
 
     fun formatBody(threadString: String, date: Date, level: String, tag: String, message: String?): String {
-      return "[${BuildConfig.VERSION_NAME}] [$threadString] ${dateFormat.format(date)} $level $tag: $message"
+      return "[${BuildConfig.VERSION_NAME}] [$threadString] ${dateFormat.format(date)} $level $tag: ${Scrubber.scrub(message ?: "")}"
     }
   }
 

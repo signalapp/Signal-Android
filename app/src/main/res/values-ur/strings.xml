@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN غیر فعال ہے۔</string>
   <string name="ApplicationPreferencesActivity_hide">پوشیدہ کریں</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">یاددہانی چھپائیں؟</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ریکارڈ ادائیگیوں کی وصولی کا جملہ</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">ریکارڈ جملہ</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">اپنے پن کو غیر فعال کرنے سے پہلے ، آپ کو اپنے ادائیگیوں کے کھاتے کی وصولی کو یقینی بنانے کے لئے اپنے ادائیگیوں کی بازیابی کے جملہ کو ریکارڈ کرنا ہوگا۔</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dمنٹس</item>
@@ -49,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(وڈیو)</string>
   <string name="DraftDatabase_Draft_location_snippet">(مقام)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(جواب )</string>
+  <string name="DraftDatabase_Draft_voice_note">(صوتی پیغام)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">گیلری</string>
   <string name="AttachmentKeyboard_file">فائل</string>
@@ -56,6 +60,7 @@
   <string name="AttachmentKeyboard_location">مقام</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal کو آپ کی تصاویر اور ویڈیوز دکھانے کیلئے اجازت درکار ہے۔</string>
   <string name="AttachmentKeyboard_give_access">رسائی دیں</string>
+  <string name="AttachmentKeyboard_payment">ادائیگی</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">میڈیا کے انتخاب کیلئے کوئی ایپ نہیں مل سکتی۔</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal کو آڈیو، ویڈیو، تصاویر وغیرہ منسلک کرنے کیلئے سٹوریج اجازت کی ضرورت ہوتی ہے، لیکن اس کی مستقل طور پر نفی کر دی گئی ہے ۔ برائے مہربانی ایپ ترتیبات کی فہرست میں جائیں، \"منظوری\" منتخب کریں، اور \"اسٹوریج\" فعال کریں۔</string>
@@ -88,6 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s کو غیر مسدود کریں؟</string>
   <string name="BlockUnblockDialog_block">بلاک</string>
   <string name="BlockUnblockDialog_block_and_leave">مسدود اور چھوڑو</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">بطور اسپام نشان لگائیں ، اور اسے مسدود کردیں</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">آج</string>
   <string name="BucketedThreadMedia_Yesterday">کل</string>
@@ -163,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">بھیجنے میں ناکام</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">key کا تبادلہ کرنے کا پیغام موصول ہوا، اگلی کارروائی کے لیے ٹیپ کریں۔ </string>
   <string name="ConversationItem_group_action_left">%1$sنے گروپ چھوڑ دیا ہے</string>
+  <string name="ConversationItem_send_paused">بھیجنا رک گیا ہے</string>
   <string name="ConversationItem_click_to_approve_unencrypted">بھیجنے میں ناکامی، غیر محفوظ متبادل کے لیے کلک کریں</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">غیر خفیہ کردہ ایس ایم ایس کو متبادل دینا ہے؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">غیر خفیہ کردہ ایم ایم ایس کو متبادل دینا ہے؟</string>
@@ -177,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
   <string name="ConversationItem_you_deleted_this_message">آپ نے یہ پیغام حذف کردیا۔</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن دوبارہ بحال کریں؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر اس گفتگو کی اینکرپشن میں کوئی مسئلہ ہے تو اس سے آپ کو مدد مل سکتی ہے۔ آپ کا پیغام اسی میں رہے گا۔</string>
-  <string name="ConversationActivity_reset">دوبارہ بحال کریں</string>
   <string name="ConversationActivity_add_attachment">اٹیچمنٹ شامل کریں</string>
   <string name="ConversationActivity_select_contact_info">رابطے کی معلومات منتخب کریں</string>
   <string name="ConversationActivity_compose_message">پیغام تحریر کریں</string>
@@ -202,6 +206,11 @@
   <string name="ConversationActivity_unable_to_record_audio">آڈیو ریکارڈ کرنے کے قابل نہیں ہے!
 ؐ</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">آپ اس گروپ کو پیغامات نہیں بھیج سکتے کیونکہ آپ اب ممبر نہیں رہیں۔</string>
+  <string name="ConversationActivity_only_s_can_send_messages">صرف %1$s ہی پیغامات بھیج سکتے ہیں.</string>
+  <string name="ConversationActivity_admins">منتظمین</string>
+  <string name="ConversationActivity_message_an_admin">کسی ایڈمن کو پیغام دیں</string>
+  <string name="ConversationActivity_cant_start_group_call">گروپ کال شروع نہیں کی جا سکتی۔</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">صرف اس گروپ کے ایڈمن کال شروع کرسکتے ہیں۔</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ایسی کوئی ایپ موجود نہیں ہے جو آپ کی اس ڈیوائس پر اس لنک کو استعمال کر سکے۔</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">آپ کی شمولیت کی درخواست گروپ منتظم کو بھیج دی گئی ہے۔ جب وہ کارروائی کریں گے تو آپ کو مطلع کیا جائے گا۔</string>
   <string name="ConversationActivity_cancel_request">درخواست منسوخ</string>
@@ -233,6 +242,8 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">\"گروپ سیٹنگ\" میں اب مزید اختیارات</string>
   <string name="ConversationActivity_join">شامل ہوں</string>
   <string name="ConversationActivity_full">بھرا ہوا</string>
+  <string name="ConversationActivity_error_sending_media">میڈیا بھیجنے میں خامی</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">اسپام کے بطور اطلاع دی گئی اور مسدود ہے۔</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%dنہ پڑھے ہوئے پیغامات</item>
@@ -306,6 +317,17 @@
     <item quantity="one">گفتگو ان باکس میں چلی گئی</item>
     <item quantity="other">%dگفتگو ان باکس میں چلی گئی</item>
   </plurals>
+  <string name="ConversationListFragment_read">پڑھ لیا</string>
+  <string name="ConversationListFragment_unread">غیر پڑھے ہوئے</string>
+  <string name="ConversationListFragment_pin">Pin</string>
+  <string name="ConversationListFragment_unpin">Unpin</string>
+  <string name="ConversationListFragment_mute">خاموش</string>
+  <string name="ConversationListFragment_unmute">غیر خاموش</string>
+  <string name="ConversationListFragment_select">منتخب کریں</string>
+  <string name="ConversationListFragment_archive">پوشیدہ خانہ</string>
+  <string name="ConversationListFragment_unarchive">غیر پس پردہ</string>
+  <string name="ConversationListFragment_delete">حذف کریں</string>
+  <string name="ConversationListFragment_select_all">تمام منتخب کریں</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key تبادلہ کا پیغام</string>
   <!--ConversationListItemAction-->
@@ -317,6 +339,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">کچھ رابطے میراثی گروپوں میں نہیں ہوسکتے ہیں۔</string>
+  <string name="CreateGroupActivity__select_members">ممبران کو منتخب کریں</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفائل </string>
   <string name="CreateProfileActivity_error_setting_profile_photo">پروفائل تصویر کو ترتیب دینے میں خرابی </string>
@@ -330,6 +353,7 @@
   <string name="ChooseBackupFragment__icon_content_description">بیک اپ آئیکن سے بحال کریں</string>
   <string name="ChooseBackupFragment__choose_backup">بیک اپ کا انتخاب کریں</string>
   <string name="ChooseBackupFragment__learn_more">مزید پڑھیں</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">کوئی فائل براؤزر دستیاب نہیں ہے</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">بحالی مکمل</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">بیک اپ کا استعمال جاری رکھنے کیلئے ، براہ کرم ایک فولڈر منتخب کریں۔ اس جگہ پر نئے بیک اپ محفوظ ہوجائیں گے۔</string>
@@ -407,6 +431,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">کے ساتھ اشتراک کریں</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">متعدد منسلکات صرف تصاویر اور ویڈیوز کیلئے معاون ہیں</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">آپ کو اس گروپ میں بھیجنے کی اجازت نہیں ہے۔</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal مواصلات مستقل ہونے میں ناکامی!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal گوگل پلے سروسز کے ساتھ رجسٹر ہونے کے قابل نہیں تھا۔Signal پیغامات اور کالیں غیر فعال ہو چکے ہیں،براہ کرم ترتیبات میں دوبارہ رجسٹر کرنے کی کوشش کریں اور ایڈوانس میں جائیں۔</string>
@@ -549,6 +574,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ہو گیا</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">اس شخص کو میراثی گروپوں میں شامل نہیں کیا جاسکتا۔</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">اس شخص کو اعلانیا گروپوں میں شامل نہیں کیا جا سکتا۔</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%1$s\" ممبر کو \"%2$s\" میں شامل کریں؟</item>
     <item quantity="other">\"%2$s\" میں\"%3$d\" ممبروں کو شامل کریں؟</item>
@@ -603,7 +629,9 @@
   <string name="ManageGroupActivity_mute_notifications">خاموش اطلاعات</string>
   <string name="ManageGroupActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <string name="ManageGroupActivity_mentions">ذکر</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">چیٹ کا رنگ &amp; وال پیپر</string>
   <string name="ManageGroupActivity_until_s">جب تک %1$s</string>
+  <string name="ManageGroupActivity_always">ہمیشہ</string>
   <string name="ManageGroupActivity_off">بند کریں</string>
   <string name="ManageGroupActivity_on">چلائیں</string>
   <string name="ManageGroupActivity_view_all_members">تمام ممبروں کو دیکھیں</string>
@@ -629,6 +657,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">اس گروپ کو اپ گریڈ کریں۔</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">یہ ایک غیر محفوظ ایم ایم ایس گروپ ہے۔ نجی طور پر بات چیت کرنے کے لیئے اپنے روابط کو Signal پر مدعو کریں۔</string>
   <string name="ManageGroupActivity_invite_now">ابھی مدعو کریں</string>
+  <string name="ManageGroupActivity_more">مزید</string>
+  <string name="ManageGroupActivity_add_group_description">گروپ کی تفصیل شامل کریں…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">جب مجھے کوئی ذکر کرتا ہے تو مجھے مطلع کریں</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">خاموش چیٹس میں آپ کا ذکر ہونے پر اطلاعات موصول کریں؟</string>
@@ -663,6 +693,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">فعال ہونا</string>
   <string name="CustomNotificationsDialogFragment__disabled">غیر فعال ہونا</string>
   <string name="CustomNotificationsDialogFragment__default">پہلے سے طے شدہ</string>
+  <string name="CustomNotificationsDialogFragment__unknown">نامعلوم</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">قابل اشتراک گروپ لنک</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share"> انتظام کریں؛&amp;amp بانٹیں</string>
@@ -727,22 +758,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک کریں</string>
   <string name="InviteActivity_share_with_contacts">رابطوں کے ساتھ شیئر کریں</string>
-  <string name="InviteActivity_choose_how_to_share">اشتراک کرنے کا طریقہ منتخب کریں</string>
   <string name="InviteActivity_cancel">منسوخ کریں</string>
   <string name="InviteActivity_sending">بھیج رہا ہے۔۔۔</string>
   <string name="InviteActivity_invitations_sent">دعوت نامے بھیجے گئے ہیں!</string>
   <string name="InviteActivity_invite_to_signal">Signal میں مدعو کریں</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d دوست کو ایس ایم ایس بھیجے</item>
-    <item quantity="other">%d دوستوں کو ایس ایم ایس بھیجے </item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d ایس ایم ایس دعوت نامہ بھیجے؟</item>
     <item quantity="other">%d ایس ایم ایس دعوت نامے بھیجے؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal میں سو ئچ کریں:%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ایسا لگتا ہے جیسے آپ کے پاس اشتراک کرنے کیلئے کوئی ایپ نہیں ہے۔</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوست کو بغیر خفیہ گفتگو نہیں کرنے دیتے ہیں۔</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">مزید پڑھیں</string>
   <!--LongMessageActivity-->
@@ -779,14 +804,9 @@
   <string name="MediaOverviewActivity_Grid_view_description">جالی دار نظارہ</string>
   <string name="MediaOverviewActivity_List_view_description">فہرست دیکھیں</string>
   <string name="MediaOverviewActivity_Selected_description">منتخب شدہ</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$dآئٹم%2$s</item>
-    <item quantity="other">%2$s آئٹم %1$d</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$dآئٹم</item>
-    <item quantity="other">%1$dآئٹم</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">محفوظ کریں</string>
+  <string name="MediaOverviewActivity_select_all">تمام منتخب کریں</string>
+  <string name="MediaOverviewActivity_delete">حذف کریں</string>
   <string name="MediaOverviewActivity_file">فائل</string>
   <string name="MediaOverviewActivity_audio">آڈیو</string>
   <string name="MediaOverviewActivity_video">وڈیو</string>
@@ -808,14 +828,16 @@
   <string name="Megaphones_invite_friends">دوستوں کو مدعو کریں</string>
   <string name="Megaphones_use_sms">ایس ایم ایس کا استعمال کریں</string>
   <string name="Megaphones_appearance">ظہور ہونا</string>
+  <string name="Megaphones_add_photo">تصویر لگاو</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">signal کال پروگریس میں ہے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
   <string name="NotificationBarManager__incoming_signal_call">signal کال آ رہی ہے</string>
-  <string name="NotificationBarManager__deny_call">کال رد کریں</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal کال سروس روکنا</string>
   <string name="NotificationBarManager__answer_call">کال کا جواب دیں</string>
   <string name="NotificationBarManager__end_call">کال ختم کریں</string>
   <string name="NotificationBarManager__cancel_call">کال منسوخ کریں</string>
+  <string name="NotificationBarManager__join_call">کال میں شامل ہوں</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">اطلاعات آن کریں؟</string>
   <string name="NotificationsMegaphone_never_miss_a_message">اپنے رابطوں اور گروپس کا پیغام کبھی بھی مت چھوڑیں۔</string>
@@ -831,6 +853,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">عنوان جمح کریں۔۔۔</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ایک آئٹم کو ہٹا دیا ہے کیونکہ اس نے سائز کی حد سے تجاوز کیا</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">ایک آئٹم کو ہٹا دیا گیا تھا کیونکہ اس کی قسم نامعلوم تھی</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">کسی آئٹم کو ہٹا دیا گیا تھا کیونکہ اس کی حد سائز کی حد سے تجاوز کر گیا تھی یا نامعلوم قسم کی تھی</string>
   <string name="MediaSendActivity_camera_unavailable">کیمرہ دستیاب نہیں ہے</string>
   <string name="MediaSendActivity_message_to_s">%sکو پیغام </string>
   <string name="MediaSendActivity_message">پیغام</string>
@@ -847,6 +871,8 @@
   <string name="MediaRepository_all_media">تمام میڈیا</string>
   <string name="MediaRepository__camera">کیمرہ</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">پیغام کو خفیہ کرنے میں ناکام</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">ڈیبگ لاگ بھیجنے کیلئے ٹیپ کریں</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">نامعلوم</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal کے پرانے ورژن کا استعمال کرتے ہوئے خفیہ کردہ ایک پیغام موصول ہوا جو اب تعاون یافتہ نہیں ہے۔ براہ کرم بھیجنے والے کو حالیہ ورژن میں اپ گریڈ کرنے کو کہے اور پیغام کو دوبارہ بھیجیں۔</string>
@@ -902,7 +928,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s نے %2$s کو ایڈمن بنایا۔</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s نے آپ کو ایڈمن بنایا۔</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">آپ نے%1$sکے ایڈمنسٹریٹو مراعات کو منسوخ کردیا۔</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s نے آپ کے منتظم کے مراعات کو منسوخ کردیا۔ \"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s نے %2$s سے منتظم کے استحقاق کو منسوخ کردیا۔</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s اب ایک ایڈمن ہے۔</string>
   <string name="MessageRecord_you_are_now_an_admin">اب آپ ایڈمن ہیں۔</string>
@@ -947,6 +972,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s نے گروپ کا نام تبدیل کرکے \"%2$s\" کردیا۔</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">گروپ کا نام تبدیل کر کے \"%1$s\" کر دیا گیا ہے۔</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">آپ نے گروپ کی تفصیل تبدیل کردی۔</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s نے گروپ کی تفصیل کو تبدیل کردیا۔</string>
+  <string name="MessageRecord_the_group_description_has_changed">گروپ کی تفصیل بدل گئی ہے۔</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">آپ نے گروپ کا اوتار بدلا۔</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s نے گروپ کا اوتار بدلا۔</string>
@@ -959,6 +987,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">آپ نے تبدیل کردیا کہ کون کون سے گروپ کی ممبرشپ کو \"%1$s\" میں ترمیم کرسکتا ہے؟</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s نے تبدیل کردیا کہ کون کون سے گروپ کی ممبرشپ کو \"%2$s\" میں ترمیم کرسکتا ہے؟</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">گروپ ممبرشپ کون ترمیم کرسکتا ہے اسے تبدیل کر کے \"%1$s\" کردیا گیا ہے۔</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">آپ نے تمام ممبروں کو پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات کو تبدیل کردیا۔</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">آپ نے منتظمین کو صرف پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات کو تبدیل کردیا۔</string>
+  <string name="MessageRecord_allow_all_members_to_send">تمام ممبروں کو پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات تبدیل کردی گئیں۔</string>
+  <string name="MessageRecord_allow_only_admins_to_send">گروپ کی ترتیبات کو تبدیل کیا گیا تھا تاکہ صرف منتظمین کو پیغامات بھیج سکیں۔</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">آپ نے منتظم کی منظوری کے ساتھ گروپ لنک آن کردیا۔</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">آپ نے منتظم کی منظوری کے ساتھ گروپ لنک آن کردیا۔</string>
@@ -1003,6 +1036,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">آپ نے دوسری ڈیوائس سے تصدیق شدہ اپنے حفاظتی نمبر کو %sکے ساتھ نشان لگایا۔</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">آپ نے غیر تصدیق شدہ اپنے حفاظتی نمبر کو %s کے ساتھ نشان لگایا</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">آپ نے دوسری ڈیوائس سے غیر تصدیق شدہ اپنے حفاظتی نمبر کو %sکے ساتھ نشان لگایا</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s کا پیغام نہیں پہنچایا جاسکا</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s نے ایک گروپ کال شروع کی.%2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s گروپ کال میں ہے ·%2$s</string>
@@ -1135,6 +1169,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">آپ</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">پیغام رسانی جاری رکھنے کے لئے تصدیق کریں</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal پر اسپام کو روکنے میں مدد کے لئے ، براہ کرم تصدیق کریں۔</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">تصدیق کرنے کے بعد ، آپ پیغام رسانی جاری رکھ سکتے ہیں۔ کوئی موقوف پیغامات خودبخود بھیجے جائیں گے۔</string>
   <!--Recipient-->
   <string name="Recipient_you">آپ</string>
   <!--RecipientPreferencesActivity-->
@@ -1158,13 +1195,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">کالنگ…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal آڈیو کال…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal ویڈیو کال…</string>
+  <string name="WebRtcCallView__signal_call">Signal  کال</string>
   <string name="WebRtcCallView__start_call">کال شروع کریں</string>
   <string name="WebRtcCallView__join_call">کال میں شامل ہوں</string>
   <string name="WebRtcCallView__call_is_full">کال پوری ہے</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">اس کال کے لئے شرکاء کی زیادہ سے زیادہ تعداد%1$d پہنچ چکی ہے۔ بعد میں دوبارہ کوشش کریں۔</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" گروپ کال</string>
   <string name="WebRtcCallView__view_participants_list">شرکاء کو دیکھیں</string>
   <string name="WebRtcCallView__your_video_is_off">آپ کا ویڈیو آف ہے</string>
   <string name="WebRtcCallView__reconnecting">دوبارہ رابطہ ہو رہا ہے۔۔۔</string>
@@ -1173,10 +1208,15 @@
   <string name="WebRtcCallView__no_one_else_is_here">یہاں کوئی اور نہیں ہے</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s اس کال میں ہے</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s اور %2$s اس کال میں ہیں</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s پیش کر رہا ہے</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s،%2$s ، اور %3$d دیگر اس کال میں ہیں</item>
     <item quantity="other">%1$s،%2$s ، اور%3$d دیگر اس کال میں ہیں</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">سپیکر</string>
+  <string name="WebRtcCallView__camera">کیمرہ</string>
+  <string name="WebRtcCallView__mute">خاموش</string>
+  <string name="WebRtcCallView__end_call">کال ختم کریں</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">اس کال میں · %1$d شخص</item>
@@ -1190,6 +1230,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s سے آڈیو اور ویڈیو موصول نہیں ہوسکتی ہے</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">اس کی وجہ یہ ہوسکتی ہے کہ انہوں نے آپ کے حفاظتی نمبر میں تبدیلی کی توثیق نہیں کی ہے ، ان کے آلے میں کوئی مسئلہ ہے یا انہوں نے آپ کو مسدود کردیا ہے۔</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">اسکرین شیئر دیکھنے کیلئے سوائپ کریں</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">پراکسی سرور</string>
   <string name="ProxyBottomSheetFragment_proxy_address">پراکسی ایڈریس</string>
@@ -1197,6 +1238,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">پروکسی استعمال کرو</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">پراکسی سے کامیابی کے ساتھ منسلک ہوا۔</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">پیش کرنے میں ناکام</string>
+  <string name="RecaptchaProofActivity_complete_verification">مکمل تصدیق</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">اپنے ملک کا انتخاب کریں</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">آپ لازمی ملک کا کوڈ واضع کریں</string>
@@ -1259,6 +1302,8 @@
   <string name="SharedContactView_add_to_contacts">رابطوں میں شامل کریں</string>
   <string name="SharedContactView_invite_to_signal">Signal میں مدعو کریں</string>
   <string name="SharedContactView_message">Signal پیغام</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">مزید</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">ہم آپ کو بعد میں ایک بار پھر یاد دلائیں گے۔</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">ہم کل آپ کو دوبارہ یاد دلائیں گے۔</string>
@@ -1307,6 +1352,7 @@
   <string name="SubmitDebugLogActivity_success">کامیابی</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">اس یو آر ایل کو کاپی کریں اور اسے اپنی ایشو رپورٹ یا سپورٹ ای میل میں شامل کریں:. n \ n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">اشتراک کریں</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">اس لاگ کو دیکھنے والوں کے دیکھنے کے لئے عوامی سطح پر آن لائن پوسٹ کیا جائے گا۔ اپ لوڈ کرنے سے پہلے آپ اس کی جانچ کرسکتے ہیں۔</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">فلٹر:</string>
   <string name="SupportEmailUtil_device_info">Device کی معلومات:</string>
@@ -1339,6 +1385,7 @@
   <string name="ThreadRecord_you_marked_verified">آپ تصدیق کے طور پر نشان لگائیں</string>
   <string name="ThreadRecord_you_marked_unverified">آپ نے غیر تصدیق شدہ پر نشان لگایا ہے</string>
   <string name="ThreadRecord_message_could_not_be_processed">پیغام آگے نہیں بڑھ سکتا</string>
+  <string name="ThreadRecord_delivery_issue">ترسیل کا مسئلہ</string>
   <string name="ThreadRecord_message_request">پیغام کی درخواست</string>
   <string name="ThreadRecord_photo">تصویر</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1419,6 +1466,8 @@
   <string name="MessageNotifier_message_delivery_failed">پیغام کی فراہمی ناکام ہو گئی۔</string>
   <string name="MessageNotifier_failed_to_deliver_message">پیغام بھیجنے میں ناکامی۔</string>
   <string name="MessageNotifier_error_delivering_message">پیغام کی فراہمی میں خرابی ہو رہی ہے۔</string>
+  <string name="MessageNotifier_message_delivery_paused">پیغام کی فراہمی رک گئی۔</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal پر پیغام رسانی جاری رکھنے کے لئے توثیق کریں۔</string>
   <string name="MessageNotifier_mark_all_as_read">تمام پڑھنے کے طور پر نشان لگائیں</string>
   <string name="MessageNotifier_mark_read">پڑھے ہوئے پر نشان لگائیں</string>
   <string name="MessageNotifier_turn_off_these_notifications">ان اطلاعات کو آف کریں</string>
@@ -1452,6 +1501,7 @@
   <string name="NotificationChannel_missing_display_name">نامعلوم</string>
   <string name="NotificationChannel_voice_notes">آڈیو نوٹز</string>
   <string name="NotificationChannel_contact_joined_signal">رابطہ Signal میں شامل ہو گیا</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">نوٹیفکیشن چینل کی ترتیبات کو کھولنے کے لئے کوئی سرگرمی دستیاب نہیں ہے۔</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">جب Signal  لاک ہو فوری جواب دستیاب نہیں!</string>
@@ -1467,6 +1517,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">نيا پیغام</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">پیغام کی درخواست</string>
   <string name="SingleRecipientNotificationBuilder_you">آپ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">ویڈیو چلائیں</string>
@@ -1573,7 +1624,12 @@
   <string name="ConversationUpdateItem_return_to_call">کال پر واپس جائیں</string>
   <string name="ConversationUpdateItem_call_is_full">کال پوری ہے</string>
   <string name="ConversationUpdateItem_invite_friends">دوستوں کو مدعو کریں</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">کال اطلاعات کو فعال کریں</string>
+  <string name="ConversationUpdateItem_update_contact">رابطہ اپ ڈیٹ کریں</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">مشترکہ طور پر کوئی گروپ نہیں۔ درخواستوں کا بغور جائزہ لیں۔</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">اس گروپ میں کوئی رابطہ نہیں ہے۔ درخواستوں کا بغور جائزہ لیں۔</string>
   <string name="ConversationUpdateItem_view">دیکھیں</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">غائب ہونے والے میسج ٹائم کا وقت%1$s پر رکھا جائے گا جب آپ انہیں میسج کریں گے۔</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">چلائیں ۔۔۔ روکیں</string>
   <string name="audio_view__download_accessibility_description">ڈاؤن لوڈ کریں</string>
@@ -1581,6 +1637,7 @@
   <string name="QuoteView_audio">آڈیو</string>
   <string name="QuoteView_video">ویڈیو</string>
   <string name="QuoteView_photo">تصویر</string>
+  <string name="QuoteView_gif">گِف</string>
   <string name="QuoteView_view_once_media">صرف ایک بار دیکھنے کے قابل میڈیا</string>
   <string name="QuoteView_sticker">اسٹیکر</string>
   <string name="QuoteView_you">تم</string>
@@ -1599,7 +1656,17 @@
   <string name="safety_number_change_dialog__view">دیکھیں</string>
   <string name="safety_number_change_dialog__previous_verified">پچھلی تصدیق شدہ</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">کال کی اطلاعات فعال ہیں۔</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">کال کی اطلاعات کو فعال کریں</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">پس منظر کی سرگرمی کو فعال کریں</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">اب ہر چیز اچھی لگ رہی ہے!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">کال کی اطلاعات موصول کرنے کے لئے ، یہاں پر ٹیپ کریں اور \"اطلاعات دکھائیں\" کو آن کریں۔</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">کال کی اطلاعات موصول کرنے کے لئے ، یہاں پر ٹیپ کریں اور اطلاعات کو آن کریں اور یقینی بنائیں کہ آواز اور pop-up قابل ہیں۔</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">کال کی اطلاعات موصول کرنے کے لئے ، یہاں پر ٹیپ کریں اور \"بیٹری\" کی ترتیبات میں پس منظر کی سرگرمی کو فعال کریں۔</string>
   <string name="EnableCallNotificationSettingsDialog__settings">ترتیبات</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">کال کی اطلاعات موصول کرنے کیلئے ، ترتیبات کو ٹیپ کریں اور \"اطلاعات دکھائیں\" کو آن کریں۔</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">کال کی اطلاعات موصول کرنے کیلئے ، ترتیبات کو ٹیپ کریں اور اطلاعات کو آن کریں اور یقینی بنائیں کہ آواز اور pop-up قابل ہے۔</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">کال کی اطلاعات موصول کرنے کیلئے ، ترتیبات کو ٹیپ کریں اور \"بیٹری\" کی ترتیبات میں پس منظر کی سرگرمی کو فعال کریں۔</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ملک لوڈ ہو رہے ہیں۔۔۔</string>
   <string name="country_selection_fragment__search">تلا ‎ش کر یں</string>
@@ -1654,6 +1721,7 @@
     <item quantity="other">%dدوسرے</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">GIFs تلاش کریں</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">کچھ نہیں ملا</string>
   <!--database_migration_activity-->
@@ -1683,6 +1751,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal کیلئے ایم ایم ایس کی  ترتیبات کی ضرورت ہوتی ہے تاکہ آپ کے وائرلیس کیریئر کے ذریعہ میڈیا اور گروپ پیغامات کی فراہمی ہوسکے۔ آپ کی ڈیوائس اس معلومات کو دستیاب نہیں کرتا ہے ، جو کبھی کبھار لاک ڈیوائسز اور دیگر پابندی والی تشکیلات کے لئے درست ہوتا ہے۔</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">میڈیا اور گروپ پیغامات بھیجنے کے لئے ، \'OK\' پر ٹیپ کریں اور مطلوبہ ترتیبات کو مکمل کریں۔ آپ کے کیریئر کے لئے ایم ایم ایس کی ترتیبات عام طور پر \'آپ کے کیریئر اے پی این\' کی تلاش کرکے حاصل کی جاسکتی ہیں۔ آپ کو صرف ایک بار ایسا کرنے کی ضرورت ہوگی۔</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">فراہمی کا مسئلہ</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">کوئی پیغام ، اسٹیکر ، رد عمل ، یا پڑھی ہوئی رسید آپ کو %s سے نہیں پہنچا ہے۔ ہوسکتا ہے کہ انہوں نے یہ آپ کو براہ راست یا کسی گروپ میں بھیجنے کی کوشش کی ہو۔</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">کوئی پیغام ، اسٹیکر ، رد عمل ، یا پڑھی ہوئی رسید آپ کو %s سے نہیں پہنچا سکتی ہے۔</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">پہلا نام (ضروری)</string>
   <string name="CreateProfileActivity_last_name_optional">آخری نام (اختیاری)</string>
@@ -1690,6 +1761,7 @@
   <string name="CreateProfileActivity__username">صارف کا نام</string>
   <string name="CreateProfileActivity__create_a_username">صارف نام بنائیں</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">کسٹم MMS گروپ کے نام اور تصاویر صرف آپ کو نظر آئیں گی۔</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">گروپ کی تفصیل اس گروپ کے ممبروں اور ان لوگوںکو دکھائی جائے گی جن کو مدعو کیا گیا ہے۔</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">متعلق</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">اپنے بارے میں کچھ الفاظ لکھیں…</string>
@@ -1704,6 +1776,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">گروپ میں ترمیم کریں</string>
   <string name="EditProfileFragment__group_name">گروپ کا نام</string>
+  <string name="EditProfileFragment__group_description">گروپ کی تفصیل</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">آپ کا نام</string>
   <string name="EditProfileNameFragment_first_name">پہلا نام</string>
@@ -1715,21 +1788,18 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>نام یا نمبر داخل کریں</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر آپ اپنی خفیہ کاری کی حفاظت کی تصدیق کرنا چاہتے ہیں تو %s ، مندرجہ بالا نمبر کو ان کے آلے کے نمبر سے موازنہ کریں۔ متبادل کے طور پر ، آپ ان کے فون پر کوڈ اسکین کرسکتے ہیں ، یا ان سے اپنا کوڈ اسکین کرنے کے لئے کہہ سکتے ہیں۔ <a href="https://signal.org/redirect/safety-numbers">مزید معلومات حاصل کریں۔</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">اسکین کرنے کے لیے کلک کریں</string>
   <string name="verify_display_fragment__loading">لوڈ ہو رہا ہے۔۔۔</string>
-  <string name="verify_display_fragment__verified">تصدیق شدہ</string>
+  <string name="verify_display_fragment__mark_as_verified">تصدیق کے طور پر نشان لگائیں</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">حفاظتی نمبر اشتراک کریں</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">اپنی رابطہ ڈیوائس پر QR کوڈ سکین کریں۔</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">جواب دینے کے لیے اوپر سوائپ کریں</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">مسترد کرنے کے لیے نیچے سوائپ کریں</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">کچھ مسائل کو آپ کی توجہ کی ضرورت ہے۔</string>
-  <string name="message_details_header__sent">بھیجا</string>
-  <string name="message_details_header__received">وصول ہو گیا ہے</string>
-  <string name="message_details_header__disappears">غائب ہونا</string>
-  <string name="message_details_header__via">کے ذریعے</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">زیر التواء</string>
   <string name="message_details_recipient_header__sent_to">کو بھیجا</string>
@@ -1737,6 +1807,7 @@
   <string name="message_details_recipient_header__delivered_to">کو پہنچایا گیا</string>
   <string name="message_details_recipient_header__read_by">پڑھ کر</string>
   <string name="message_details_recipient_header__not_sent">نہیں بھیجا گیا</string>
+  <string name="message_details_recipient_header__viewed">کے ذریعہ دیکھا گیا</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">بھیجنے میں ناکام</string>
   <string name="message_details_recipient__new_safety_number">نیا حفاظتی نمبر</string>
@@ -1764,6 +1835,7 @@
   <string name="HelpFragment__include_debug_log">ڈیبگ لاگ شامل کریں۔</string>
   <string name="HelpFragment__whats_this">یہ کیا ہے؟</string>
   <string name="HelpFragment__how_do_you_feel">اپ کیسا محسوس کر رہے ہیں؟ (اختیاری)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">ہمیں بتائیں کہ آپ کیوں رابطہ کر رہے ہیں</string>
   <string name="HelpFragment__support_info">مدد کی معلومات</string>
   <string name="HelpFragment__signal_android_support_request">Signalا Android کی مدد کی درخواست</string>
   <string name="HelpFragment__debug_log">ڈیبگ لاگ:</string>
@@ -1781,12 +1853,15 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">علامتیں</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">جھنڈے</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ایموجیس</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">کوئی نتیجہ نہیں</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">پہلے سے طے شدہ استعمال کریں</string>
   <string name="arrays__use_custom">اپنی مرضی سے استعمال کریں</string>
   <string name="arrays__mute_for_one_hour">1 گھنٹے کیلئے خاموش</string>
+  <string name="arrays__mute_for_eight_hours">8 گھنٹے خاموش رہیں</string>
   <string name="arrays__mute_for_one_day">1 دن کیلئے خاموش</string>
   <string name="arrays__mute_for_seven_days">7 دنوں کیلئے خاموش</string>
+  <string name="arrays__always">ہمیشہ</string>
   <string name="arrays__settings_default">پہلے سے موجود ترتیبات</string>
   <string name="arrays__enabled">فعال ہونا</string>
   <string name="arrays__disabled">معطل ہونا</string>
@@ -1810,6 +1885,7 @@
     <item quantity="other">%dایچ</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">بیٹا</string>
   <string name="preferences__sms_mms">ایس ایم ایس اور ایم ایم ایس</string>
   <string name="preferences__pref_all_sms_title">تمام ایس ایم ایس وصول کریں</string>
   <string name="preferences__pref_all_mms_title">تمام ایم ایم ایس وصول کریں</string>
@@ -1874,6 +1950,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">اپنے بھیجنے والے ہر ایس ایم ایس پیغام کے لئے ڈیلیوری رپورٹ کی درخواست کریں</string>
   <string name="preferences__data_and_storage">ڈیٹا اور اسٹوریج</string>
   <string name="preferences__storage">اسٹوریج </string>
+  <string name="preferences__payments">ادائیگی</string>
+  <string name="preferences__payments_beta">ادائیگی (بیٹا)</string>
   <string name="preferences__conversation_length_limit">گفتگو کی لمبائی کی حد</string>
   <string name="preferences__keep_messages">پیغامات رکھیں</string>
   <string name="preferences__clear_message_history">پیغام کی تاریخ صاف کریں</string>
@@ -1883,6 +1961,7 @@
   <string name="preferences__appearance">ظہور ہونا</string>
   <string name="preferences__theme">موضوع</string>
   <string name="preferences__chat_wallpaper">چیٹ وال پیپر</string>
+  <string name="preferences__chat_color_and_wallpaper">چیٹ کا رنگ &amp; وال پیپر</string>
   <string name="preferences__disable_pin">PIN کو غیر فعال کریں</string>
   <string name="preferences__enable_pin">PIN کو فعال کریں</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر آپ PIN کو غیر فعال کردیتے ہیں تو ، آپ جب تک دستی طور پر بیک اپ اور بحالی نہیں کرتے ہیں تب تک آپ تمام اعداد و شمار کو کھو دیں گے۔ جب PIN غیر فعال ہو تو آپ رجسٹریشن لاک آن نہیں کرسکتے ہیں۔</string>
@@ -1901,6 +1980,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر پڑھنے کی رسیدیں غیر فعال کردی گئی ہیں تو ، آپ دوسروں کی پڑھی ہوئی رسیدیں نہیں دیکھ پائیں گے۔</string>
   <string name="preferences__typing_indicators">ٹائپنگ انڈیکیٹرز</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر ٹائپنگ اندیکیٹرز غیر فعال ہیں، آپ دوسروں سے ٹائپنگ انڈیکیٹرز دیکھنے کے قابل نہیں ہیں۔</string>
+  <string name="preferences__request_keyboard_to_disable">ذاتی سیکھنے کو غیر فعال کرنے کے لئے کی بورڈ سے درخواست کریں۔</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">یہ ترتیب ضمانت نہیں ہے ، اور آپ کا کی بورڈ اسے نظرانداز کرسکتا ہے۔</string>
   <string name="preferences_app_protection__blocked_users">مسدود صارفین</string>
   <string name="preferences_chats__when_using_mobile_data">جب موبائل ڈیٹا استعمال کریں</string>
   <string name="preferences_chats__when_using_wifi">جب وائی فائی استعمال کریں</string>
@@ -1940,6 +2021,8 @@
   <string name="preferences_data_and_storage__calls">کالز</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">کالوں کے لئے کم ڈیٹا استعمال کریں</string>
   <string name="preferences_data_and_storage__never">کبھی نہیں</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi اور موبائل ڈیٹا</string>
+  <string name="preferences_data_and_storage__mobile_data_only">صرف موبائل ڈیٹا</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">کم ڈیٹا کا استعمال خراب نیٹ ورکس پر کالوں کو بہتر بنا سکتا ہے</string>
   <string name="preferences_notifications__messages">پیغامات</string>
   <string name="preferences_notifications__events">تقریبات</string>
@@ -1964,6 +2047,7 @@
   <string name="preferences_off">بند کریں</string>
   <string name="preferences_on">چلائیں</string>
   <string name="preferences_proxy_address">پراکسی ایڈریس</string>
+  <string name="preferences_only_use_a_proxy_if">صرف اس صورت میں ایک پراکسی استعمال کریں جب آپ موبائل ڈیٹا یا Wi-Fi پر Signal سے مربوط نہیں ہوسکتے ہیں۔</string>
   <string name="preferences_share">اشتراک کریں</string>
   <string name="preferences_save">محفوظ کریں</string>
   <string name="preferences_connecting_to_proxy">پراکسی سے منسلک ہو رہا ہے…</string>
@@ -1977,34 +2061,136 @@
   <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">تمام سرگرمی</string>
   <string name="PaymentsAllActivityFragment__all">تمام</string>
   <string name="PaymentsAllActivityFragment__sent">بھیجا گیا</string>
   <string name="PaymentsAllActivityFragment__received">وصول ہو گیا ہے</string>
+  <string name="PaymentsHomeFragment__introducing_payments">متعارف کررہے ہیں \'ادائیگی (بیٹا)\'</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">موبائل کوائن بھیجنے اور وصول کرنے کیلئے Signal کا استعمال کریں ، ایک نئی رازداری پر مبنی ڈیجیٹل کرنسی۔ شروع کرنے کے لئے چالو کریں۔</string>
+  <string name="PaymentsHomeFragment__activate_payments">ادائیگی چالو کریں</string>
+  <string name="PaymentsHomeFragment__activating_payments">فعال ادائیگی…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">ادائیگیوں کا اکاؤنٹ بحال کریں</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">ابھی کوئی حالیہ سرگرمی نہیں ہے</string>
+  <string name="PaymentsHomeFragment__pending_requests">زیر التوا درخواستیں</string>
+  <string name="PaymentsHomeFragment__recent_activity">حالیہ سرگرمی</string>
   <string name="PaymentsHomeFragment__see_all">تمام دیکھیں</string>
+  <string name="PaymentsHomeFragment__add_funds">فنڈز شامل کریں</string>
   <string name="PaymentsHomeFragment__send">بھیجیں</string>
+  <string name="PaymentsHomeFragment__sent_s">%1$s بھیجا</string>
+  <string name="PaymentsHomeFragment__received_s">%1$s موصول ہوئے</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">تبادلے میں تبادلہ کریں</string>
+  <string name="PaymentsHomeFragment__currency_conversion">کرنسی کا تبادلہ</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">ادائیگی غیر فعال کریں</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">بازیافت جملہ</string>
   <string name="PaymentsHomeFragment__help">مدد کریں</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Coin cleanup فیس</string>
+  <string name="PaymentsHomeFragment__sent_payment">ادائیگی بھیجی گئی</string>
+  <string name="PaymentsHomeFragment__received_payment">ادائیگی موصول ہوئی</string>
+  <string name="PaymentsHomeFragment__processing_payment">ادائیگی پر کارروائی</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">کرنسی کا تبادلہ دستیاب نہیں ہے</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">کرنسی کے تبادلوں کو ظاہر نہیں کرسکتے ہیں۔ اپنے فون کا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">آپ کے علاقے میں ادائیگی دستیاب نہیں ہے۔</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">ادائیگیوں کو اہل نہیں کرسکے۔ بعد میں دوبارہ کوشش کریں۔</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">ادائیگیوں کو غیر فعال کریں؟</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">اگر آپ ادائیگی غیر فعال کردیتے ہیں تو آپ Signal میں موبائل کوائن بھیجنے یا وصول کرنے کے اہل نہیں ہوں گے۔</string>
+  <string name="PaymentsHomeFragment__deactivate">غیر فعال کریں</string>
   <string name="PaymentsHomeFragment__continue">جاری رکھیں</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">بیلنس فی الحال دستیاب نہیں ہے۔</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">ادائیگی غیر فعال ہوگئی۔</string>
+  <string name="PaymentsHomeFragment__payment_failed">ادائیگی ناکام ہوگئی</string>
   <string name="PaymentsHomeFragment__details">تفصیلات</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">آپ موبائل کوائن بھیجنے اور وصول کرنے کے لئے Signal کا استعمال کرسکتے ہیں۔ تمام ادائیگیاں موبائل کوائنز اور موبائل کوائن والیٹ کیلئے استعمال کی شرائط سے مشروط ہیں۔ یہ ایک بیٹا خصوصیت ہے لہذا آپ کو کچھ مسائل اور ادائیگیوں یا بیلنس کا سامنا کرنا پڑ سکتا ہے جو آپ کھو سکتے ہیں بازیافت نہیں ہوسکتے ہیں۔</string>
+  <string name="PaymentsHomeFragment__activate">فعال</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">موبائل کوائن کی شرائط دیکھیں</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal میں ادائیگی اب دستیاب نہیں ہے۔ آپ اب بھی ایکسچینج میں فنڈز کی منتقلی کرسکتے ہیں لیکن آپ اب ادائیگی بھیجنے اور وصول کرنے یا فنڈز شامل نہیں کرسکتے ہیں۔</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">فنڈز شامل کریں</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">آپ کا Wallet کا پتہ</string>
   <string name="PaymentsAddMoneyFragment__copy">کاپی کریں</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">فنڈز شامل کرنے کے لئے ، اپنے Wallet کے پتے پر موبائل کوائن بھیجیں۔ اپنے تبادلے سے اپنے اکاؤنٹ سے لین دین شروع کریں جو موبائل کوائن کو سپورٹ کرتا ہے ، پھر کیو آر کوڈ اسکین کریں یا اپنے Wallet کے پتے کو کاپی کریں۔</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">تفصیلات</string>
   <string name="PaymentsDetailsFragment__status">صورتحال</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">ادائیگی جمع کرائی جارہی ہے…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">ادائیگی پر کارروائی ہو رہی ہے…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">ادائیگی مکمل</string>
+  <string name="PaymentsDetailsFragment__payment_failed">ادائیگی ناکام ہوگئی</string>
+  <string name="PaymentsDetailsFragment__network_fee">نیٹ ورک کی فیس</string>
+  <string name="PaymentsDetailsFragment__sent_by">کی طرف سے بھیجا</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">%1$s کو بھیجا</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">آپ پر %1$s پر%2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$sپر%2$sپر%3$s</string>
   <string name="PaymentsDetailsFragment__to">کے لئے</string>
   <string name="PaymentsDetailsFragment__from">کی طرف سے</string>
+  <string name="PaymentsDetailsFragment__information">ٹرانزیکشن کی تفصیلات بشمول ادائیگی کی رقم اور لین دین کا وقت ، موبائل کوائن لیجر کا حصہ ہیں۔</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin Cleanup فیس</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">جب آپ کے پاس موجود سکے کو ٹرانزیکشن کو مکمل کرنے کے لئے جوڑ نہیں کیا جاسکتا ہے تو \"Coin cleanup fee\" وصول کی جاتی ہے۔ Cleanup آپ کو ادائیگی بھیجنا جاری رکھنے کی اجازت دے گی۔</string>
+  <string name="PaymentsDetailsFragment__no_details_available">اس لین دین کے لئے مزید کوئی تفصیلات دستیاب نہیں ہیں</string>
+  <string name="PaymentsDetailsFragment__sent_payment">ادائیگی بھیجی گئی</string>
+  <string name="PaymentsDetailsFragment__received_payment">ادائیگی موصول ہوئی</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">ادائیگی مکمل ہوگئی%1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">بلاک نمبر</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">منتقلی</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR کوڈ سکین کریں</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">To: Wallet کا پتہ سکین کریں یا درج کریں</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">آپ ایکسچینج کے ذریعہ فراہم کردہ پرس ایڈریس پر منتقلی مکمل کرکے موبائل کوائن منتقل کرسکتے ہیں۔ Wallet کا پتہ QR کوڈ کے نیچے عام طور پر نمبروں اور حروف کی تار ہوتا ہے۔</string>
   <string name="PaymentsTransferFragment__next">اگلا</string>
+  <string name="PaymentsTransferFragment__invalid_address">غلط پتہ</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">وہ پرس پتہ چیک کریں جس کی منتقلی کرنے کی آپ کوشش کر رہے ہیں اور دوبارہ کوشش کریں</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">آپ اپنے Signal Wallet ایڈریس پر منتقل نہیں کرسکتے ہیں۔ معاون تبادلے میں اپنے اکاؤنٹ سے Wallet کا پتہ درج کریں۔</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR کوڈ اسکین کرنے کے لئے ، Signal کو کیمرہ تک رسائی کی ضرورت ہے۔</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal کو QR کوڈ پر قبضہ کرنے کے لئے کیمرے کی اجازت کی ضرورت ہے۔ ترتیبات پر جائیں ، \"اجازت\" کو منتخب کریں ، اور \"کیمرہ\" کو فعال کریں۔</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR کوڈ اسکین کرنے کے لئے ، Signal کو کیمرہ تک رسائی کی ضرورت ہے۔</string>
   <string name="PaymentsTransferFragment__settings">ترتیبات</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ایڈریس QR کوڈ کو اسکین کریں</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">وصول کنندہ کا پتہ QR کوڈ اسکین کریں</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">درخواست </string>
+  <string name="CreatePaymentFragment__pay">ادا کرنا</string>
+  <string name="CreatePaymentFragment__available_balance_s">دستیاب بیلنس: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">ٹوگل کریں</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">بیک اسپیس</string>
+  <string name="CreatePaymentFragment__add_note">نوٹ شامل کریں</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">تبادلوں کا صرف اندازہ ہے اور ہوسکتا ہے کہ یہ درست نہ ہوں۔</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">نوٹ</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">ادائیگی کی تصدیق کریں</string>
+  <string name="ConfirmPayment__network_fee">نیٹ ورک کی فیس</string>
+  <string name="ConfirmPayment__error_getting_fee">فیس لینے میں خرابی</string>
+  <string name="ConfirmPayment__estimated_s">تخمینہ %1$s</string>
   <string name="ConfirmPayment__to">کے لئے</string>
+  <string name="ConfirmPayment__total_amount">کل رقم</string>
+  <string name="ConfirmPayment__balance_s">بقیہ: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">ادائیگی جمع کرائی جارہی ہے…</string>
+  <string name="ConfirmPayment__processing_payment">ادائیگی پر کارروائی ہو رہی ہے…</string>
+  <string name="ConfirmPayment__payment_complete">ادائیگی مکمل</string>
+  <string name="ConfirmPayment__payment_failed">ادائیگی ناکام ہوگئی</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">ادائیگی پر کارروائی جاری رہے گی</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">غلط وصول کنندہ</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">اس شخص نے ادائیگی فعال نہیں کی ہے</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">نیٹ ورک فیس کی درخواست کرنے سے قاصر۔ اس ادائیگی کو جاری رکھنے کے لئے دوبارہ کوشش کرنے کے لئے ٹھیک ہے پر ٹیپ کریں۔</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s پر %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">کرنسی مقرر کریں</string>
+  <string name="SetCurrencyFragment__all_currencies">تمام کرنسیوں</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2241,9 +2427,13 @@
   <string name="backup_enable_dialog__folder">فولڈر</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">میں نے یہ پاسفریز نیچے لکھا ہے۔اس کے بغیر، یہ بیک اپ بحال کرنے کے قابل نہیں گا۔</string>
   <string name="registration_activity__restore_backup">بیک اپ بحال کریں</string>
+  <string name="registration_activity__transfer_or_restore_account">اکاؤنٹ کو منتقل یا بحال کریں</string>
+  <string name="registration_activity__transfer_account">اکاؤنٹ منتقل کریں</string>
   <string name="registration_activity__skip">چھوڑ دو</string>
   <string name="preferences_chats__chat_backups">گفتگو کا بیک اپ</string>
   <string name="preferences_chats__backup_chats_to_external_storage"> بیرونی اسٹوریج میں گفتگو کو بیک اپ کریں</string>
+  <string name="preferences_chats__transfer_account">اکاؤنٹ منتقل کریں</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">اکاؤنٹ کو کسی نئے Android ڈیوائس میں منتقل کریں</string>
   <string name="RegistrationActivity_enter_backup_passphrase">بیک اپ فاسفریز داخل کریں</string>
   <string name="RegistrationActivity_restore">بحال کریں</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal کے نئے ورژن سے بیک اپ درآمد نہیں ہو سکتا</string>
@@ -2318,29 +2508,122 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">لاک کھولنے کے لیے ٹیپ کریں</string>
   <string name="Recipient_unknown">نامعلوم</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">اکاؤنٹ کو منتقل یا بحال کریں</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">اگر آپ پہلے Signal اکاؤنٹ رجسٹرڈ کر چکے ہیں تو ، آپ اپنا اکاؤنٹ اور پیغامات منتقل یا بحال کرسکتے ہیں</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android آلہ سے منتقل کریں</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">اپنے پرانے Android آلہ سے اپنا اکاؤنٹ اور پیغامات منتقل کریں۔ آپ کو اپنے پرانے آلے تک رسائی کی ضرورت ہے۔</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">آپ کو اپنے پرانے آلے تک رسائی کی ضرورت ہے۔</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">بیک اپ سے بحال کریں</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">اپنے پیغامات کو مقامی بیک اپ سے بحال کریں۔ اگر آپ ابھی بحال نہیں کرتے ہیں تو ، آپ بعد میں بحال نہیں کرسکیں گے۔</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">اپنے پرانے Android فون پر Signal کھولیں</string>
   <string name="NewDeviceTransferInstructions__continue">جاری رکھیں</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ترتیبات کو کھولنے کے لئے بائیں طرف اوپر اپنے پروفائل فوٹو پر ٹیپ کریں</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">\'اکاؤنٹ\' پر ٹیپ کریں</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">\"ٹرانسفر اکاؤنٹ\" پر ٹیپ کریں اور پھر دونوں ڈیوائسز پر \"جاری رکھیں\"</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">پرانے Android آلہ سے مربوط ہونے کی تیاری…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ایک لمحے کے بعد ، جلد ہی تیار ہونا چاہئے</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">پرانے Android آلہ سے رابطہ قائم ہونے کا انتظار ہے…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal کو آپ کے پرانے Android آلہ کو دریافت کرنے اور ان سے مربوط ہونے کے لئے مقام کی اجازت درکار ہے۔</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal کو آپ کے پرانے Android آلہ کو دریافت کرنے اور ان سے مربوط ہونے کے لئے مقام کی خدمات کو فعال کرنے کی ضرورت ہے۔</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal کو آپ کے پرانے Android آلہ کو دریافت کرنے اور ان سے مربوط ہونے کیلئے Wi-Fi کی ضرورت ہے۔ Wi-Fi کو چلانے کی ضرورت ہے لیکن اسے Wi-Fi نیٹ ورک سے متصل ہونا ضروری نہیں ہے۔</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">معذرت ، ایسا لگتا ہے کہ یہ آلہ Wi-Fi Direct کی حمایت نہیں کرتا ہے۔ Signal آپ کے پرانے Android آلہ کو دریافت کرنے اور ان سے مربوط ہونے کیلئے Wi-Fi Direct کا استعمال کرتا ہے۔ آپ اب بھی اپنے پرانے Android آلہ سے اپنے اکاؤنٹ کو بحال کرنے کے لئے بیک اپ بحال کرسکتے ہیں۔</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">بیک اپ بحال کریں</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">آپ کے پرانے Android آلہ سے رابطہ قائم کرنے کی کوشش کے دوران ایک غیر متوقع خرابی پیش آگئی۔</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">نئے Android آلہ کی تلاش ہو رہی ہے…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">آپ کے نئے Android آلہ کو دریافت کرنے اور ان سے رابطہ کرنے کیلئے Signal کو مقام کی اجازت درکار ہے۔</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">آپ کے نئے Android آلہ کو دریافت کرنے اور ان سے مربوط ہونے کے لئے Signal کو مقام کی خدمات کی ضرورت ہوتی ہے۔</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal کو آپ کے نئے Android آلہ کو دریافت کرنے اور ان سے مربوط ہونے کے لئے Wi-Fi کی ضرورت ہے۔ Wi-Fi کو چلانے کی ضرورت ہے لیکن اسے Wi-Fi نیٹ ورک سے متصل ہونا ضروری نہیں ہے۔</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">معذرت ، ایسا لگتا ہے کہ یہ آلہ Wi-Fi Direct کی حمایت نہیں کرتا ہے۔ Signal آپ کے نئے Android آلہ کو دریافت کرنے اور ان سے مربوط ہونے کیلئے Wi-Fi Direct کا استعمال کرتا ہے۔ آپ اب بھی اپنے نئے Android آلہ پر اپنے اکاؤنٹ کو بحال کرنے کے لئے بیک اپ تشکیل دے سکتے ہیں۔</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">بیک اپ بنائیں</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">آپ کے نئے Android آلہ سے رابطہ قائم کرنے کی کوشش کے دوران ایک غیر متوقع نقص پیش آگیا۔</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi ترتیبات کو کھولنے سے قاصر ہے۔ براہ کرم دستی طور پر Wi-Fi آن کریں۔</string>
+  <string name="DeviceTransferSetup__grant_location_permission">\'Location\' تک رسائی فراہم کریں</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">مقام کی خدمات کو آن کریں</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">مقام کی ترتیبات کو کھولنے سے قاصر۔</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi آن کریں</string>
+  <string name="DeviceTransferSetup__error_connecting">رابطہ قائم کرنے میں خرابی</string>
   <string name="DeviceTransferSetup__retry">دوبارہ کوشش کریں</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">ڈیبگ لاگز جمع کروائیں</string>
+  <string name="DeviceTransferSetup__verify_code">کوڈ کی تصدیق کریں</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">تصدیق کریں کہ نیچے دیے گئے کوڈ آپ کے دونوں ڈیوائسز پر ملتے ہیں۔ پھر جاری رکھیں پر ٹیپ کریں۔</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">نمبر مماثل نہیں ہیں</string>
   <string name="DeviceTransferSetup__continue">جاری رکھیں</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">نمبر ایک جیسی نہیں ہے</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">اگر آپ کے آلات پر نمبر مماثل نہیں ہیں تو ، یہ ممکن ہے کہ آپ غلط آلے سے جڑے ہوں۔ اس کو ٹھیک کرنے کے لئے ٹرانسفر کو روکیں اور دوبارہ کوشش کریں ، اور اپنے دونوں آلات کو قریب رکھیں۔</string>
+  <string name="DeviceTransferSetup__stop_transfer">منتقلی بند کرو</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">پرانا آلہ دریافت کرنے سے قاصر ہے</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">نیا آلہ دریافت کرنے سے قاصر ہے</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">یقینی بنائیں کہ درج ذیل اجازتیں اور خدمات اہل ہیں:</string>
+  <string name="DeviceTransferSetup__location_permission">location کی اجازت</string>
+  <string name="DeviceTransferSetup__location_services">Location services</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Wi-Fi ڈائریکٹ اسکرین پر ، یاد کردہ تمام گروپس کو ہٹا دیں اور کسی بھی مدعو یا منسلک آلات کو لنک سے جوڑ دیں۔</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Wi-Fi ڈائریکٹ اسکرین</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">دونوں آلات پر ، Wi-Fi کو آف اور آن کرنے کی کوشش کریں۔</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">یہ یقینی بنائیں کہ دونوں ڈیوائسز ٹرانسفر موڈ میں ہیں</string>
+  <string name="DeviceTransferSetup__go_to_support_page">سپورٹ پیج پر جائیں</string>
   <string name="DeviceTransferSetup__try_again">دوبارہ کوشش کریں</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">دوسرے آلہ کا انتظار ہے</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">منتقلی شروع کرنے کے لئے اپنے دوسرے آلے پر جاری رکھیں پر ٹیپ کریں۔</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">اپنے دوسرے آلے پر \'جاری رکھیں\' ٹیپ کریں…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal کے نئے ورژن سے منتقل نہیں ہوسکتا ہے</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">ڈیٹا کی منتقلی</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">دونوں آلات ایک دوسرے کے قریب رکھیں۔ آلات بند نہ کریں اور Signal کو کھلا رکھیں۔ منتقلی اختتام سے آخر تک انکرپٹ ہوتی ہیں۔</string>
+  <string name="DeviceTransfer__d_messages_so_far">اب تک %1$d پیغامات…</string>
   <string name="DeviceTransfer__cancel">منسوخ کریں</string>
   <string name="DeviceTransfer__try_again">دوبارہ کوشش کریں</string>
+  <string name="DeviceTransfer__stop_transfer_question">منتقلی بند کرو؟</string>
+  <string name="DeviceTransfer__stop_transfer">منتقلی بند کرو</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">تمام منتقلی کی پیشرفت ختم ہوجائے گی۔</string>
+  <string name="DeviceTransfer__transfer_failed">منتقلی ناکام ہوگئی</string>
+  <string name="DeviceTransfer__unable_to_transfer">منتقلی کرنے سے قاصر ہے</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">اکاؤنٹ کی منتقلی</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">جب آپ کسی نئے Android ڈیوائس پر Signal ترتیب دیتے ہیں تو آپ اپنا Signal اکاؤنٹ منتقل کر سکتے ہیں۔ جاری رکھنے سے پہلے:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">اپنے نئے Android آلہ پر Signal ڈاؤن لوڈ کریں</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"اکاؤنٹ کی منتقلی یا بحالی\" پر ٹیپ کریں</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">اشارہ کرنے پر \"Android ڈیوائس سے ٹرانسفر\" منتخب کریں اور پھر \"جاری رکھیں\"۔ دونوں آلات قریب رکھیں۔</string>
   <string name="OldDeviceTransferInstructions__continue">جاری رکھیں</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">منتقلی مکمل</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">اپنے نئے آلے پر جائیں</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">آپ کا Signal ڈیٹا آپ کے نئے آلے میں منتقل کردیا گیا ہے۔ منتقلی کے عمل کو مکمل کرنے کے لئے ، آپ کو اپنے نئے آلے پر اندراج جاری رکھنا ہوگا۔</string>
   <string name="OldDeviceTransferComplete__close">بند کریں</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">منتقلی کامیاب</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">منتقلی مکمل</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">منتقلی کے عمل کو مکمل کرنے کے لئے آپ کو اندراج جاری رکھنا ہوگا۔</string>
+  <string name="NewDeviceTransferComplete__continue_registration">رجسٹریشن جاری رکھیں</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">اکاؤنٹ کی منتقلی</string>
+  <string name="DeviceToDeviceTransferService_status_ready">اپنے دوسرے Android آلہ سے مربوط ہونے کی تیاری کر رہا ہے…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">اپنے دوسرے Android آلہ سے مربوط ہونے کی تیاری کر رہا ہے…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">آپ کے دوسرے Android آلہ کی تلاش ہو رہی ہے…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">اپنے دوسرے Android آلہ سے مربوط ہو رہا ہے…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">تصدیق ضروری ہے</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">اکاؤنٹ کی منتقلی…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">اپنے نئے آلے پر مکمل رجسٹریشن کریں</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">آپ کا Signal اکاؤنٹ آپ کے نئے آلے میں منتقل کردیا گیا ہے ، لیکن جاری رکھنے کے لئے آپ کو اس پر اندراج مکمل کرنا ہوگا۔ Signal اس آلہ پر غیر فعال ہوگا۔</string>
   <string name="OldDeviceTransferLockedDialog__done">ہو گیا</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">اس آلہ کو منسوخ اور چالو کریں</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB بیلنس کی منتقلی؟</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">آپ کے پاس %1$s کا بیلنس ہے۔ اگر آپ اپنا اکاؤنٹ حذف کرنے سے قبل اپنے فنڈز کو دوسرے بٹوے کے پتے پر منتقل نہیں کرتے ہیں تو ، آپ اسے ہمیشہ کے لئے کھو دیں گے۔</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">منتقلی نہ کریں</string>
+  <string name="AdvancedPreferenceFragment__transfer">منتقلی</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">بلاک</string>
   <string name="RecipientBottomSheet_unblock">ان بلاک</string>
@@ -2371,6 +2654,8 @@
   <string name="GroupsLearnMore_paragraph_2">لیگیسی گروپس کو ابھی نئے گروپس میں اپ گریڈ نہیں کیا جاسکتا ، لیکن اگر آپ Signal کے تازہ ترین ورژن پر ہوں تو آپ ان ہی ممبروں کے ساتھ نیا گروپ تشکیل دے سکتے ہیں۔</string>
   <string name="GroupsLearnMore_paragraph_3">Signal مستقبل میں لیگیسی گروپس کو اپ گریڈ کرنے کا ایک طریقہ پیش کرے گا۔</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">اس لنک کے ساتھ کوئی بھی گروپ کا نام اور تصویر دیکھ سکتا ہے اور اس میں شامل ہونے کی درخواست کرسکتا ہے۔ اس پر اپنے اعتماد والے لوگوں کے ساتھ اشتراک کریں۔</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">اس لنک کے ساتھ کوئی بھی گروپ کا نام اور تصویر دیکھ سکتا ہے اور گروپ میں شامل ہوسکتا ہے۔ اس پر اپنے اعتماد والے لوگوں کے ساتھ اشتراک کریں۔</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal کے ذریعے شیئر کریں</string>
   <string name="GroupLinkBottomSheet_copy">کاپی کریں</string>
   <string name="GroupLinkBottomSheet_qr_code">QR کوڈ</string>
@@ -2378,9 +2663,10 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">لنک فی الحال فعال نہیں ہے</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">آڈیو پیغام چلانے میں ناکام</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">آڈیو پیغام · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sسے%2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">آڈیو پیغام · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sسے%2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" کو مسدود کردیا گیا ہے۔</string>
@@ -2431,6 +2717,7 @@
   <string name="DeleteAccountFragment__delete_account">اکاؤنٹ حذف کریں</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اپنے اکاؤنٹ کی معلومات اور پروفائل فوٹو حذف کریں</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">اپنے تمام پیغامات کو حذف کریں</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">اپنے ادائیگیوں کے اکاؤنٹ میں %1$s کو حذف کریں</string>
   <string name="DeleteAccountFragment__no_country_code">ملک کا کوئی کوڈ بتایا نہیں ہے</string>
   <string name="DeleteAccountFragment__no_number">کوئی نمبر نہیں بتایا گیا</string>
   <string name="DeleteAccountFragment__the_phone_number">آپ نے جو فون نمبر داخل کیا ہے وہ آپ کے اکاؤنٹ کے مماثل نہیں ہے۔</string>
@@ -2443,9 +2730,14 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">ممالک تلاش کریں</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">چھوڑ دو</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d رکن</item>
+    <item quantity="other">%1$dممبران</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">اشتراک کریں</string>
   <string name="ShareActivity__send">بھیجیں</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">متعدد چیٹس پر اشتراک صرف Signal پیغامات کیلئے معاون ہے</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">کچھ صارفین کو بھیجنے میں ناکام</string>
@@ -2456,12 +2748,24 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">چیٹ وال پیپر</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">چیٹ کا رنگ</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">چیٹ کے رنگوں کو دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">چیٹ کا رنگ دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">چیٹ کا رنگ دوبارہ ترتیب دیں؟</string>
   <string name="ChatWallpaperFragment__set_wallpaper">وال پیپر سیٹ کریں</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Dark موڈ وال پیپر کو مدھم کرتا ہے</string>
   <string name="ChatWallpaperFragment__contact_name">رابطے کا نام</string>
   <string name="ChatWallpaperFragment__reset">دوبارہ بحال کریں</string>
   <string name="ChatWallpaperFragment__clear">صاف</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">وال پیپر پیش نظارہ</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">کیا آپ چیٹ کے تمام رنگوں کو اوور رائڈ کرنا چاہتے ہیں؟</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">کیا آپ تمام وال پیپروں کو اوور رائڈ کرنا چاہیں گے؟</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">پہلے سے طے شدہ رنگوں کو دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">تمام رنگوں کو دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">پہلے سے طے شدہ وال پیپر کو دوبارہ ترتیب دیں</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">تمام وال پیپر کو دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">وال پیپر کو دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">وال پیپر کو دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">وال پیپر کو دوبارہ ترتیب دیں؟</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">فوٹو میں سے انتخاب کریں</string>
   <string name="ChatWallpaperSelectionFragment__presets">پریسیٹس</string>
@@ -2481,83 +2785,238 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">وال پیپر کی ترتیب میں خامی۔</string>
   <string name="WallpaperCropActivity__blur_photo">تصویر کو دھندلا کرو</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">موبائل کوائن کے بارے میں</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">موبائل کوائن ایک نئی رازداری پر مبنی ڈیجیٹل کرنسی ہے۔</string>
+  <string name="payment_info_card_adding_funds">فنڈز کا اضافہ</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">آپ اپنے Wallet کے پتے پر موبائل کوائن بھیج کر Signal میں استعمال کے لئے فنڈز شامل کرسکتے ہیں۔</string>
+  <string name="payment_info_card_cashing_out">کیش آؤٹ</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">آپ کبھی بھی ایسے تبادلے پر موبائل کوائن کیش کر سکتے ہیں جو موبائل کوائن کو سپورٹ کرتا ہے۔ اس تبادلے میں صرف اپنے اکاؤنٹ میں ٹرانسفر کریں۔</string>
+  <string name="payment_info_card_hide_this_card">یہ کارڈ چھپائیں؟</string>
   <string name="payment_info_card_hide">پوشیدہ کریں</string>
+  <string name="payment_info_card_record_recovery_phrase">ریکارڈ کی بازیابی کا جملہ</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">آپ کی بازیابی کا جملہ آپ کو اپنے ادائیگیوں کے اکاؤنٹ کو بحال کرنے کا ایک اور طریقہ فراہم کرتا ہے۔</string>
+  <string name="payment_info_card_record_your_phrase">اپنا جملہ ریکارڈ کرو</string>
+  <string name="payment_info_card_update_your_pin">اپنا پن اپ ڈیٹ کریں</string>
+  <string name="payment_info_card_with_a_high_balance">اعلی بیلنس کے ساتھ ، آپ اپنے اکاؤنٹ میں مزید تحفظ شامل کرنے کے لئے کسی حرفی نمبر کو اپ ڈیٹ کرنا چاہتے ہو۔</string>
   <string name="payment_info_card_update_pin">پن کو اپ ڈیٹ کریں</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Wallet کو غیر فعال کریں</string>
+  <string name="DeactivateWalletFragment__your_balance">آپ کا بیلنس</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">یہ تجویز کی جاتی ہے کہ ادائیگی غیر فعال کرنے سے پہلے آپ اپنے فنڈز کو دوسرے بٹوے کے پتے پر منتقل کریں۔ اگر آپ ابھی اپنے فنڈز کی منتقلی نہ کرنا چاہتے ہیں تو ، اگر آپ ادائیگیوں کو دوبارہ متحرک کرتے ہیں تو وہ Signal سے منسلک آپ کے پرس میں رہیں گے۔</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">باقی بیلنس منتقل کریں</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">منتقلی کے بغیر غیر فعال کریں</string>
+  <string name="DeactivateWalletFragment__deactivate">غیر فعال کریں</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">منتقلی کے بغیر غیر فعال کریں؟</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">اگر آپ ادائیگیوں کو دوبارہ فعال کرنے کا انتخاب کرتے ہیں تو آپ کا بیلنس Signal سے منسلک آپ کے Wallet میں رہے گا۔</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Wallet کو غیر فعال کرنے میں خرابی۔</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">بازیافت جملہ</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">بازیابی کا جملہ دیکھیں</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">بازیابی کا جملہ درج کریں</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">جب آپ اپنے Signal پن کی تصدیق کرتے ہیں تو آپ Signal کو دوبارہ انسٹال کرتے وقت آپ کا بیلنس خود بخود بحال ہوجائے گا۔ آپ بازیافت والے فقرے کا استعمال کرتے ہوئے اپنے بیلنس کو بھی بحال کرسکتے ہیں ، جو آپ کے لئے ایک %1$dلفظی جملہ ہے۔ اسے لکھ کر محفوظ جگہ پر محفوظ کریں۔</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">آپ کی بازیابی کا جملہ آپ کے لئے انوکھا %1$dجملہ ہے۔ اپنا بیلنس بحال کرنے کے لئے اس جملے کا استعمال کریں۔</string>
+  <string name="PaymentsRecoveryStartFragment__start">شروع کریں</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">دستی طور پر داخل کریں</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">کلپ بورڈ سے پیسٹ کریں</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">بازیابی کا جملہ پیسٹ کریں</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">بازیافت جملہ</string>
   <string name="PaymentsRecoveryPasteFragment__next">اگلا</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">بازیافت کا غلط جملہ</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">یقینی بنائیں کہ آپ نے %1$d الفاظ داخل کیے ہیں اور دوبارہ کوشش کریں۔</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">اگلا</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">ترتیب دیں</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">پچھلا</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">آپ کی بازیابی کا جملہ</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">ترتیب میں درج ذیل %1$d الفاظ لکھیں۔ اپنی فہرست کو محفوظ جگہ پر اسٹور کریں۔</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">یقینی بنائیں کہ آپ نے اپنے جملے کو صحیح طریقے سے داخل کیا ہے۔</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">اسکرین شاٹ نہ ای میل کے ذریعے بھیجیں۔</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">ادائیگیوں کا اکاؤنٹ بحال ہوگیا۔</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">بازیافت کا غلط جملہ</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">یقینی بنائیں کہ آپ نے اپنے جملے کو صحیح طریقے سے داخل کیا ہے اور دوبارہ کوشش کریں۔</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">کلپ بورڈ میں کاپی کریں؟</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">اگر آپ اپنے بازیافت کے فقرے کو ڈیجیٹل طور پر ذخیرہ کرنے کا انتخاب کرتے ہیں تو ، یقینی بنائیں کہ یہ آپ کے اعتماد کے مقام پر محفوظ طریقے سے محفوظ ہے۔</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">کاپی کریں</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">بازیابی کے فقرے کی تصدیق کریں</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">اپنے بازیافت کے فقرے سے درج ذیل الفاظ درج کریں۔</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">لفظ%1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">ایک بار پھر جملہ ملاحظہ کریں</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">ہو گیا</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">بازیابی کے فقرے کی تصدیق ہوگئی</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">بازیابی کا جملہ درج کریں</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">لفظ داخل کریں%1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">لفظ%1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">اگلا</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">غلط لفظ</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">کلپ بورڈ صاف ہوگیا۔</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">دیکھیں</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s نے آپ کو %2$s بھیجا</string>
+  <string name="UnreadPayments__d_new_payment_notifications">ادائیگی کی %1$d نئی اطلاعات</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">ادائیگی نہیں بھیج سکتے</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">اس صارف کو ادائیگی بھیجنے کے لئے انہیں آپ کی طرف سے میسج کی درخواست قبول کرنے کی ضرورت ہے۔ میسج ریکوئسٹ بنانے کیلئے انہیں میسج بھیجیں۔</string>
   <string name="CanNotSendPaymentDialog__send_a_message">پیغام بھیجیں</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">اس شخص کے ساتھ آپ کے کوئی گروپ مشترک نہیں ہیں۔ ناپسندیدہ پیغامات سے بچنے کے لئے قبول کرنے سے پہلے درخواستوں کا بغور جائزہ لیں۔</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">آپ کے رابطوں یا لوگوں میں سے کوئی بھی آپ اس چیٹ میں نہیں ہے۔ ناپسندیدہ پیغامات سے بچنے کے لئے قبول کرنے سے پہلے درخواستوں کا بغور جائزہ لیں۔</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">پیغام کی درخواستوں کے بارے میں</string>
   <string name="GroupsInCommonMessageRequest__okay">ٹھیک ہے</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">یہاں چیٹ کے رنگ کا پیش نظارہ ہے۔</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">رنگ صرف آپ کو نظر آتا ہے۔</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">گروپ کی تفصیل</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">معیار</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">تیز ، کم ڈیٹا</string>
   <string name="QualitySelectorBottomSheetDialog__high">اونچا</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">آہستہ ، زیادہ ڈیٹا</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">تصویر کا معیار</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">اپنے دوستوں کو بلاؤ</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">اکاؤنٹ</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">وقت کے ساتھ آپ سے کم پوچھا جائے گا</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">اپنے فون نمبر کو دوبارہ Signal کے ساتھ رجسٹر کرنے کیلئے اپنے Signal پن کی ضرورت ہے</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">جاری رکھیں</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">آپ نے جو فون نمبر داخل کیا ہے وہ آپ کے اکاؤنٹ کے مماثل نہیں ہے۔</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">نمبر ترتیب کرے</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">پن کو اپ ڈیٹ کریں</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">دوبارہ کوشش کریں</string>
+  <string name="ChangeNumberLockActivity__leave">چھوڑ دیں</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ڈی بَگ لاگ پیش کریں</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">کی بورڈ</string>
   <string name="ChatsSettingsFragment__enter_key_sends">بھیجے گئے key داخل کریں</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">پیغامات</string>
   <string name="NotificationsSettingsFragment__calls">کالز</string>
+  <string name="NotificationsSettingsFragment__notify_when">مطلع کریں جب…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">رابطہ Signal میں شامل ہوتا ہے</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">بلاک ہوگیا</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$dرابطے</string>
   <string name="PrivacySettingsFragment__messaging">پیغام رسانی</string>
   <string name="PrivacySettingsFragment__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <string name="PrivacySettingsFragment__app_security">ایپ سیکیورٹی</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">حالیہ فہرست میں سکرین شاٹ بلاک کریں اور ایپ کے اندر</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal میسجز اور کالز ، ہمیشہ ریلے کالز اور مہر بند مرسل کو</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">نئی چیٹس کیلئے ڈیفالٹ ٹائمر</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">آپ کے ذریعہ شروع کردہ تمام نئی چیٹس کے لئے ڈیفالٹ غائب میسیج ٹائمر مرتب کریں۔</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">حیثیت کا آئیکن دکھائیں</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">جب مہر بند مرسل کا استعمال کرکے پیغام پہنچایا گیا تو پیغام کی تفصیلات میں ایک آئکن دکھائیں۔</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">فعال ہونے پر ، آپ کے ذریعہ شروع کردہ نئے چیٹس میں بھیجے اور موصول ہونے والے نئے پیغامات دیکھنے کے بعد غائب ہوجائیں گے۔</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">فعال ہونے پر ، اس چیٹ میں بھیجے اور موصول ہونے والے نئے پیغامات دیکھنے کے بعد ختم ہوجائیں گے۔</string>
   <string name="ExpireTimerSettingsFragment__off">بند کریں</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 ہفتے</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 ہفتہ</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 دن </string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 گھنٹے</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 گھنٹا</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 منٹس</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 سیکنڈز</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">کسٹم ٹائم</string>
   <string name="ExpireTimerSettingsFragment__set">سیٹ کریں</string>
   <string name="ExpireTimerSettingsFragment__save">محفوظ کریں</string>
+  <string name="CustomExpireTimerSelectorView__seconds">سیکنڈز</string>
+  <string name="CustomExpireTimerSelectorView__minutes">منٹیسس</string>
+  <string name="CustomExpireTimerSelectorView__hours">گھنٹے</string>
+  <string name="CustomExpireTimerSelectorView__days">دن</string>
+  <string name="CustomExpireTimerSelectorView__weeks">ہفتوں</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">سپورٹ سینٹر</string>
   <string name="HelpSettingsFragment__contact_us">ہم سے رابطہ کریں</string>
   <string name="HelpSettingsFragment__version">ورژن</string>
   <string name="HelpSettingsFragment__debug_log">ڈی بگ لاگ</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">شرائط &amp;amp:رازداری کی پالیسی</string>
+  <string name="HelpFragment__copyright_signal_messenger">کاپی رائٹ Signal میسنجر</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 کے تحت لائسنس یافتہ</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">اونچا</string>
+  <string name="DataAndStorageSettingsFragment__standard">معیار</string>
   <string name="DataAndStorageSettingsFragment__calls">کالز</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">آٹو</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">حسب ضرورت رنگ استعمال کریں</string>
   <string name="ChatColorSelectionFragment__chat_color">چیٹ کا رنگ</string>
   <string name="ChatColorSelectionFragment__edit">ترتیب دیں</string>
+  <string name="ChatColorSelectionFragment__duplicate">ڈپلیکیٹ</string>
   <string name="ChatColorSelectionFragment__delete">حذف کریں</string>
+  <string name="ChatColorSelectionFragment__delete_color">رنگ حذف کریں</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">یہ کسٹم رنگ %1$d چیٹ میں استعمال ہوتا ہے۔ کیا آپ اسے تمام چیٹس کیلئے حذف کرنا چاہتے ہیں؟</item>
+    <item quantity="other">یہ کسٹم رنگ %1$d چیٹس میں استعمال ہوتا ہے۔ کیا آپ اسے تمام چیٹس کیلئے حذف کرنا چاہتے ہیں؟</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">چیٹ کا رنگ حذف کریں؟</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">ٹھوس</string>
+  <string name="CustomChatColorCreatorFragment__gradient">تدریجی</string>
+  <string name="CustomChatColorCreatorFragment__hue">ہیو</string>
+  <string name="CustomChatColorCreatorFragment__saturation">سنترپتی</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">محفوظ کریں</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">رنگ میں ترمیم کریں</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">یہ رنگ %1$d چیٹ میں استعمال ہوتا ہے۔ کیا آپ تمام چیٹس کیلئے تبدیلیاں بچانا چاہتے ہیں؟</item>
+    <item quantity="other">یہ رنگ %1$d چیٹس میں استعمال ہوتا ہے۔ کیا آپ تمام چیٹس کیلئے تبدیلیاں بچانا چاہتے ہیں؟</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">اوپر والا انتخاب کنندہ</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">نیچے کنارے سلیکٹر</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">رد عمل کو اپنی مرضی کے مطابق بنائیں</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">ایموجی کو تبدیل کرنے کے لئے ٹیپ کریں</string>
   <string name="EditReactionsFragment__reset">دوبارہ بحال کریں</string>
   <string name="EditReactionsFragment_save">محفوظ کریں</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">خود بخود رنگ وال پیپر سے ملتا ہے</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">میلان کی سمت تبدیل کرنے کیلئے گھسیٹیں</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">نیا چیٹ رنگ</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">آپ کو مزید اختیارات دینے اور چیٹس کو پڑھنے کو آسان بنانے کے لئے ہم نے چیٹ کے رنگ تبدیل کردیئے۔</string>
   <string name="ChatColorsMegaphone__appearance">ظہور ہونا</string>
   <string name="ChatColorsMegaphone__not_now">ابھی نہیں</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">پروفائل فوٹو شامل کریں</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ایک شکل اور رنگ منتخب کریں یا اپنے initials کو اپنی مرضی کے مطابق بنائیں۔</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ابھی نہیں</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">تصویر لگاو</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ایموجی</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">ایموجی تلاش کھولیں</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">اسٹیکر تلاش کھولیں</string>
+  <string name="KeyboardPagerFragment_open_gif_search">GIF تلاش کھولیں</string>
   <string name="KeyboardPagerFragment_stickers">اسٹیکرز</string>
+  <string name="KeyboardPagerFragment_backspace">بیک اسپیس</string>
+  <string name="KeyboardPagerFragment_gifs">Gifs</string>
+  <string name="KeyboardPagerFragment_search_emoji">ایموجی تلاش کریں</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">واپس ایموجی پر</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">صاف اندراج صاف کریں</string>
+  <string name="KeyboardPagerFragment_search_giphy">GIPHY تلاش کریں</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">اسٹیکرز تلاش کریں</string>
+  <string name="StickerSearchDialogFragment_no_results_found">کوئی نتیجہ نہیں</string>
+  <string name="EmojiSearchFragment__no_results_found">کوئی نتیجہ نہیں</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">نامعلوم رنگ ٹون</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">پیغام بھیجیں</string>
+  <string name="ConversationSettingsFragment__start_video_call">ویڈیو کال شروع کریں</string>
+  <string name="ConversationSettingsFragment__start_audio_call">آڈیو کال شروع کریں</string>
   <string name="ConversationSettingsFragment__message">پیغام</string>
   <string name="ConversationSettingsFragment__video">وڈیو</string>
   <string name="ConversationSettingsFragment__audio">آڈیو</string>
@@ -2566,6 +3025,8 @@
   <string name="ConversationSettingsFragment__muted">خاموش</string>
   <string name="ConversationSettingsFragment__search">تلاش کریں</string>
   <string name="ConversationSettingsFragment__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">آواز &amp; amp؛ اطلاعات</string>
+  <string name="ConversationSettingsFragment__contact_details">رابطہ کی تفصیلات</string>
   <string name="ConversationSettingsFragment__view_safety_number">حفاظتی نمبر دیکھیں</string>
   <string name="ConversationSettingsFragment__block">بلاک</string>
   <string name="ConversationSettingsFragment__block_group">مسدود گروپ</string>
@@ -2575,8 +3036,13 @@
   <string name="ConversationSettingsFragment__see_all">تمام دیکھیں</string>
   <string name="ConversationSettingsFragment__add_members">ممبران شامل کریں</string>
   <string name="ConversationSettingsFragment__permissions">اجازت</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">درخواستیں &amp; amp؛ دعوت دیتا ہے</string>
   <string name="ConversationSettingsFragment__group_link">گروپ لنک</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">بطور رابطہ شامل کریں</string>
   <string name="ConversationSettingsFragment__unmute">غیر خاموش</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">گفتگو %1$s تک خاموش رہی</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">گفتگو ہمیشہ کیلئے خاموش کردی گئی</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">کلپ بورڈ پر فون نمبر کاپی کیا گیا۔</string>
   <string name="ConversationSettingsFragment__phone_number">فون نمبر</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ممبران شامل کریں</string>
@@ -2588,24 +3054,66 @@
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">خاموش اطلاعات</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">غیر خاموش</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s تک خاموش </string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ذکر</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">ہمیشہ مطلع کریں</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">مطلع نہ کریں</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">حال ہی میں استعمال شدہ</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">نئی ادائیگی</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">نيا پیغام</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">نام یا نمبر تلاش کریں</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">اوتار پیش نظارہ</string>
   <string name="AvatarPickerFragment__camera">کیمرہ</string>
+  <string name="AvatarPickerFragment__take_a_picture">تصویر کھینچنا</string>
+  <string name="AvatarPickerFragment__choose_a_photo">تصویر منتخب کریں</string>
   <string name="AvatarPickerFragment__photo">تصویر</string>
+  <string name="AvatarPickerFragment__text">متن</string>
   <string name="AvatarPickerFragment__save">محفوظ کریں</string>
+  <string name="AvatarPickerFragment__select_an_avatar">اوتار کا انتخاب کریں</string>
+  <string name="AvatarPickerFragment__clear_avatar">واضح اوتار</string>
+  <string name="AvatarPickerFragment__edit">ترتیب دیں</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">اوتار کو بچانے میں ناکام</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">پیش نظارہ</string>
   <string name="TextAvatarCreationFragment__done">ہو گیا</string>
+  <string name="TextAvatarCreationFragment__text">متن</string>
   <string name="TextAvatarCreationFragment__color">رنگ</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">ایک رنگ منتخب کریں</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ایس ایم ایس</string>
-  <string name="AvatarPickerFragment__edit">ترتیب دیں</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">منسوخ کریں</string>
+  <string name="ImageEditorHud__undo">کالعدم کریں</string>
+  <string name="ImageEditorHud__delete">حذف کریں</string>
+  <string name="MediaCountIndicatorButton__send">بھیجیں</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">منتخب کرنے کے لیے ٹیپ کریں</string>
+  <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
+  <string name="SelectFeaturedBadgeFragment__preview">پیش نظارہ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal آپ جیسے لوگوں کے ذریعہ تقویت یافتہ ہے۔</string>
+  <string name="SubscribeFragment__donation_amount">عطیہ کی رقم۔</string>
+  <string name="SubscribeFragment__not_now">ابھی نہیں</string>
+  <string name="SubscribeFragment__confirm">تصدیق</string>
+  <string name="SubscribeFragment__update">اَپ ڈیٹ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ہو گیا</string>
+  <string name="Boost__enter_custom_amount">اپنی مرضی کی رقم درج کریں۔</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ابھی نہیں</string>
+  <string name="Subscription__contact_support">سپورٹ سے رابطہ کریں</string>
+  <string name="SubscribeFragment__processing_payment">ادائیگی پر کارروائی ہو رہی ہے…</string>
+  <string name="DonationsErrors__payment_failed">ادائیگی ناکام ہوگئی</string>
   <!--EOF-->
 </resources>

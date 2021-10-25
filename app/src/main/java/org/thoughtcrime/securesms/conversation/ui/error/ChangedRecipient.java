@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.conversation.ui.error;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**

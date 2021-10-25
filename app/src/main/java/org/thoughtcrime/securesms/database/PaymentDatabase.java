@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.mobilecoin.lib.exceptions.SerializationException;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.util.Arrays;
@@ -105,7 +107,7 @@ public final class PaymentDatabase extends Database {
                                     @NonNull Money amount,
                                     @NonNull Money fee,
                                     @NonNull byte[] receipt)
-      throws PublicKeyConflictException
+      throws PublicKeyConflictException, SerializationException
   {
     create(uuid, fromRecipient, null, timestamp, 0, note, Direction.RECEIVED, State.SUBMITTED, amount, fee, null, receipt, null, false);
   }
@@ -122,7 +124,9 @@ public final class PaymentDatabase extends Database {
       create(uuid, toRecipient, publicAddress, timestamp, 0, note, Direction.SENT, State.INITIAL, amount, amount.toZero(), null, null, null, true);
     } catch (PublicKeyConflictException e) {
       Log.w(TAG, "Tried to create payment but the public key appears already in the database", e);
-      throw new AssertionError(e);
+      throw new IllegalArgumentException(e);
+    } catch (SerializationException e) {
+      throw new IllegalArgumentException(e);
     }
   }
 
@@ -142,6 +146,7 @@ public final class PaymentDatabase extends Database {
                                       @NonNull Money fee,
                                       @NonNull byte[] receipt,
                                       @NonNull PaymentMetaData metaData)
+    throws SerializationException
   {
     try {
       create(uuid, toRecipient, publicAddress, timestamp, blockIndex, note, Direction.SENT, State.SUCCESSFUL, amount, fee, null, receipt, metaData, true);
@@ -165,6 +170,8 @@ public final class PaymentDatabase extends Database {
     } catch (PublicKeyConflictException e) {
       Log.w(TAG, "Tried to create payment but the public key appears already in the database", e);
       throw new AssertionError(e);
+    } catch (SerializationException e) {
+      throw new IllegalArgumentException(e);
     }
   }
 
@@ -183,7 +190,7 @@ public final class PaymentDatabase extends Database {
                       @Nullable byte[] receipt,
                       @Nullable PaymentMetaData metaData,
                       boolean seen)
-      throws PublicKeyConflictException
+      throws PublicKeyConflictException, SerializationException
   {
     if (recipientId == null && publicAddress == null) {
       throw new AssertionError();
@@ -197,7 +204,7 @@ public final class PaymentDatabase extends Database {
       throw new AssertionError();
     }
 
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     ContentValues  values   = new ContentValues(15);
 
     values.put(PAYMENT_UUID, uuid.toString());
@@ -247,14 +254,14 @@ public final class PaymentDatabase extends Database {
   }
 
   public void deleteAll() {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, null, null);
     Log.i(TAG, "Deleted all records");
   }
 
   @WorkerThread
   public boolean delete(@NonNull UUID uuid) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     String         where    = PAYMENT_UUID + " = ?";
     String[]       args     = {uuid.toString()};
     int            deleted;
@@ -281,7 +288,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public @NonNull List<PaymentTransaction> getAll() {
-    SQLiteDatabase           database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase           database = databaseHelper.getSignalReadableDatabase();
     List<PaymentTransaction> result   = new LinkedList<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, TIMESTAMP + " DESC")) {
@@ -295,7 +302,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public void markAllSeen() {
-    SQLiteDatabase database         = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database         = databaseHelper.getSignalWritableDatabase();
     ContentValues  values           = new ContentValues(1);
     List<UUID>     unseenIds        = new LinkedList<>();
     String[]       unseenProjection = SqlUtil.buildArgs(PAYMENT_UUID);
@@ -334,7 +341,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public void markPaymentSeen(@NonNull UUID uuid) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     ContentValues  values   = new ContentValues(1);
     String         where    = PAYMENT_UUID + " = ?";
     String[]       args     = {uuid.toString()};
@@ -349,7 +356,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public @NonNull List<PaymentTransaction> getUnseenPayments() {
-    SQLiteDatabase           db      = databaseHelper.getReadableDatabase();
+    SQLiteDatabase           db      = databaseHelper.getSignalReadableDatabase();
     String                   query   = SEEN + " = 0 AND " + STATE + " = " + State.SUCCESSFUL.serialize();
     List<PaymentTransaction> results = new LinkedList<>();
 
@@ -364,7 +371,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public @Nullable PaymentTransaction getPayment(@NonNull UUID uuid) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         select   = PAYMENT_UUID + " = ?";
     String[]       args     = {uuid.toString()};
 
@@ -394,7 +401,7 @@ public final class PaymentDatabase extends Database {
                                       @NonNull Money fee)
       throws PublicKeyConflictException
   {
-    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database  = databaseHelper.getSignalWritableDatabase();
     String         where     = PAYMENT_UUID + " = ?";
     String[]       whereArgs = {uuid.toString()};
     int            updated;
@@ -403,8 +410,12 @@ public final class PaymentDatabase extends Database {
     values.put(STATE, State.SUBMITTED.serialize());
     values.put(TRANSACTION, transaction);
     values.put(RECEIPT, receipt);
-    values.put(PUBLIC_KEY, Base64.encodeBytes(PaymentMetaDataUtil.receiptPublic(PaymentMetaDataUtil.fromReceipt(receipt))));
-    values.put(META_DATA, PaymentMetaDataUtil.fromReceiptAndTransaction(receipt, transaction).toByteArray());
+    try {
+      values.put(PUBLIC_KEY, Base64.encodeBytes(PaymentMetaDataUtil.receiptPublic(PaymentMetaDataUtil.fromReceipt(receipt))));
+      values.put(META_DATA, PaymentMetaDataUtil.fromReceiptAndTransaction(receipt, transaction).toByteArray());
+    } catch (SerializationException e) {
+      throw new IllegalArgumentException(e);
+    }
     values.put(FEE, CryptoValueUtil.moneyToCryptoValue(fee).toByteArray());
 
     database.beginTransaction();
@@ -449,7 +460,7 @@ public final class PaymentDatabase extends Database {
                               @Nullable FailureReason failureReason,
                               @Nullable Long blockIndex)
   {
-    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database  = databaseHelper.getSignalWritableDatabase();
     String         where     = PAYMENT_UUID + " = ?";
     String[]       whereArgs = {uuid.toString()};
     int            updated;
@@ -499,7 +510,7 @@ public final class PaymentDatabase extends Database {
                                     long blockIndex,
                                     long blockTimestamp)
   {
-    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database  = databaseHelper.getSignalWritableDatabase();
     String         where     = PAYMENT_UUID + " = ?";
     String[]       whereArgs = {uuid.toString()};
     int            updated;

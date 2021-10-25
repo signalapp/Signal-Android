@@ -32,6 +32,7 @@ public class AudioCodec {
   private final AudioRecord audioRecord;
 
   private boolean running  = true;
+  private boolean failed   = false;
   private boolean finished = false;
 
   public AudioCodec() throws IOException {
@@ -76,10 +77,25 @@ public class AudioCodec {
         } catch (IOException e) {
           Log.w(TAG, e);
         } finally {
-          mediaCodec.stop();
-          audioRecord.stop();
 
-          mediaCodec.release();
+          try {
+            mediaCodec.stop();
+          } catch (IllegalStateException ise) {
+            Log.w(TAG, "mediaCodec stop failed.", ise);
+          }
+
+          try {
+            audioRecord.stop();
+          } catch (IllegalStateException ise) {
+            Log.w(TAG, "audioRecord stop failed.", ise);
+          }
+
+          try {
+            mediaCodec.release();
+          } catch (IllegalStateException ise) {
+            Log.w(TAG, "mediaCodec release failed. Probably already released.", ise);
+          }
+
           audioRecord.release();
 
           StreamUtil.close(outputStream);

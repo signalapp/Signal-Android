@@ -7,6 +7,7 @@ import com.google.protobuf.UnknownFieldSetLite;
 
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.ByteUtil;
+import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -60,25 +61,23 @@ public final class ProtoUtil {
    * acknowledged.
    */
   @SuppressWarnings({"rawtypes", "unchecked"})
-  public static <Proto extends GeneratedMessageLite> Proto combineWithUnknownFields(Proto proto, byte[] serializedWithUnknownFields) {
+  public static <Proto extends GeneratedMessageLite> Proto combineWithUnknownFields(Proto proto, byte[] serializedWithUnknownFields)
+      throws InvalidProtocolBufferException
+  {
     if (serializedWithUnknownFields == null) {
       return proto;
     }
 
-    try {
-      Proto  protoWithUnknownFields = (Proto) proto.getParserForType().parseFrom(serializedWithUnknownFields);
-      byte[] unknownFields          = getUnknownFields(protoWithUnknownFields);
+    Proto  protoWithUnknownFields = (Proto) proto.getParserForType().parseFrom(serializedWithUnknownFields);
+    byte[] unknownFields          = getUnknownFields(protoWithUnknownFields);
 
-      if (unknownFields == null) {
-        return proto;
-      }
-
-      byte[] combined = ByteUtil.combine(proto.toByteArray(), unknownFields);
-
-      return (Proto) proto.getParserForType().parseFrom(combined);
-    } catch (InvalidProtocolBufferException e) {
-      throw new IllegalArgumentException();
+    if (unknownFields == null) {
+      return proto;
     }
+
+    byte[] combined = ByteUtil.combine(proto.toByteArray(), unknownFields);
+
+    return (Proto) proto.getParserForType().parseFrom(combined);
   }
 
   @SuppressWarnings("rawtypes")

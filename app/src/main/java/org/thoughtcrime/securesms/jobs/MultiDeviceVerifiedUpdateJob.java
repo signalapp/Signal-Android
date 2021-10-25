@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -103,11 +104,17 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
         return;
       }
 
-      SignalServiceMessageSender    messageSender        = ApplicationDependencies.getSignalServiceMessageSender();
-      Recipient                     recipient            = Recipient.resolved(destination);
-      VerifiedMessage.VerifiedState verifiedState        = getVerifiedState(verifiedStatus);
-      SignalServiceAddress          verifiedAddress      = RecipientUtil.toSignalServiceAddress(context, recipient);
-      VerifiedMessage               verifiedMessage      = new VerifiedMessage(verifiedAddress, new IdentityKey(identityKey, 0), verifiedState, timestamp);
+      SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
+      Recipient                  recipient     = Recipient.resolved(destination);
+
+      if (recipient.isUnregistered()) {
+        Log.w(TAG, recipient.getId() + " not registered!");
+        return;
+      }
+
+      VerifiedMessage.VerifiedState verifiedState   = getVerifiedState(verifiedStatus);
+      SignalServiceAddress          verifiedAddress = RecipientUtil.toSignalServiceAddress(context, recipient);
+      VerifiedMessage               verifiedMessage = new VerifiedMessage(verifiedAddress, new IdentityKey(identityKey, 0), verifiedState, timestamp);
 
       messageSender.sendSyncMessage(SignalServiceSyncMessage.forVerified(verifiedMessage),
                                     UnidentifiedAccessUtil.getAccessFor(context, recipient));

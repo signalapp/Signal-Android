@@ -1,7 +1,3 @@
-import org.signal.signing.ApkSignerUtil
-
-import java.security.MessageDigest
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -13,18 +9,19 @@ apply from: 'translations.gradle'
 apply from: 'witness-verifications.gradle'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'app.cash.exhaustive'
+apply plugin: 'kotlin-parcelize'
 
 repositories {
-    maven {
-        url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
-        content {
-            includeGroupByRegex "com\\.github\\.chrisbanes.*"
-        }
-    }
     maven {
         url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
         content {
             includeGroupByRegex "com\\.github\\.dmytrodanylyk\\.circular-progress-button\\.*"
+        }
+    }
+    maven {
+        url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
+        content {
+            includeGroupByRegex "org\\.signal.*"
         }
     }
     maven { // textdrawable
@@ -33,12 +30,25 @@ repositories {
             includeGroupByRegex "com\\.amulyakhare.*"
         }
     }
+    maven {
+        url "https://www.jitpack.io"
+    }
+
     google()
     mavenCentral()
-    jcenter()
     mavenLocal()
     maven {
         url "https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/"
+    }
+    jcenter {
+        content {
+            includeVersion "mobi.upod", "time-duration-picker", "1.1.3"
+            includeVersion "cn.carbswang.android", "NumberPickerView", "1.0.9"
+            includeVersion "com.takisoft.fix", "colorpicker", "0.9.1"
+            includeVersion "com.codewaves.stickyheadergrid", "stickyheadergrid", "0.9.4"
+            includeVersion "com.amulyakhare", "com.amulyakhare.textdrawable", "1.0.1"
+            includeVersion "com.google.android", "flexbox", "0.3.0"
+        }
     }
 }
 
@@ -57,8 +67,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 883
-def canonicalVersionName = "5.18.1"
+def canonicalVersionCode = 942
+def canonicalVersionName = "5.25.4"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -68,6 +78,31 @@ def abiPostFix = ['universal'   : 0,
                   'x86_64'      : 4]
 
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
+
+def selectableVariants = [
+        'internalProdFlipper',
+        'internalProdPerf',
+        'internalProdRelease',
+        'internalStagingFlipper',
+        'internalStagingPerf',
+        'internalStagingRelease',
+        'nightlyProdFlipper',
+        'nightlyProdPerf',
+        'nightlyProdRelease',
+        'nightlyStagingPerf',
+        'playProdDebug',
+        'playProdFlipper',
+        'playProdPerf',
+        'playProdRelease',
+        'playStagingDebug',
+        'playStagingFlipper',
+        'playStagingPerf',
+        'playStagingRelease',
+        'studyProdMock',
+        'studyProdPerf',
+        'websiteProdFlipper',
+        'websiteProdRelease',
+]
 
 android {
     buildToolsVersion BUILD_TOOL_VERSION
@@ -115,6 +150,7 @@ android {
         buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
         buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2.signal.org\""
         buildConfigField "String", "SIGNAL_CONTACT_DISCOVERY_URL", "\"https://api.directory.signal.org\""
+        buildConfigField "String", "SIGNAL_CDSH_URL", "\"https://cdsh.staging.signal.org\""
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
         buildConfigField "String", "SIGNAL_SFU_URL", "\"https://sfu.voip.signal.org\""
@@ -123,23 +159,27 @@ android {
         buildConfigField "String", "CONTENT_PROXY_HOST", "\"contentproxy.signal.org\""
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
+        buildConfigField "String", "CDSH_PUBLIC_KEY", "\"2fe57da347cd62431528daac5fbb290730fff684afc4cfc2ed90995f58cb3b74\""
+        buildConfigField "String", "CDSH_CODE_HASH", "\"ec31a51880d19a5e9e0fed404740c1a3ff53a553125564b745acce475f0fded8\""
         buildConfigField "String", "CDS_MRENCLAVE", "\"c98e00a4e3ff977a56afefe7362a27e4961e4f19e211febfbb19b897e6b80b15\""
-        buildConfigField "KbsEnclave", "KBS_ENCLAVE", "new KbsEnclave(\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\"," +
-                                                                     "\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\", " +
-                                                                     "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\")";
-        buildConfigField "KbsEnclave[]", "KBS_FALLBACKS", "new KbsEnclave[0]"
+        buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\"," +
+                                                                                                "\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\", " +
+                                                                                                "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\")";
+        buildConfigField "org.thoughtcrime.securesms.KbsEnclave[]", "KBS_FALLBACKS", "new org.thoughtcrime.securesms.KbsEnclave[0]"
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
-        buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X0=\""
+        buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X36nOoGPs54XsEGzPdEV+itQNGUFEjY6X9Uv+Acuks7NpyGvCoKxGwgKgE5XyJ+nNKlyHHOLb6N1NuHyBrZrgtY\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
         buildConfigField "String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\""
-        buildConfigField "int[]", "MOBILE_COIN_REGIONS", "new int[]{44}"
+        buildConfigField "int[]", "MOBILE_COIN_REGIONS", "new int[]{44,49,33,41}"
         buildConfigField "String", "GIPHY_API_KEY", "\"3o6ZsYH6U6Eri53TXy\""
         buildConfigField "String", "RECAPTCHA_PROOF_URL", "\"https://signalcaptchas.org/challenge/generate.html\""
 
         buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"unset\""
         buildConfigField "String", "BUILD_ENVIRONMENT_TYPE", "\"unset\""
         buildConfigField "String", "BUILD_VARIANT_TYPE", "\"unset\""
+        buildConfigField "String", "BADGE_STATIC_ROOT", "\"https://updates2.signal.org/static/badges/\""
+        buildConfigField "String", "STRIPE_PUBLISHABLE_KEY", "\"pk_live_6cmGZopuTsV8novGgJJW9JpC00vLIgtQ1D\""
 
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -157,6 +197,11 @@ android {
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+    }
+
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
 
     compileOptions {
@@ -268,7 +313,7 @@ android {
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
-            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"internal\""
+            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\""
         }
 
         study {
@@ -302,16 +347,17 @@ android {
             buildConfigField "String", "SIGNAL_CONTACT_DISCOVERY_URL", "\"https://api-staging.directory.signal.org\""
             buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api-staging.backup.signal.org\""
             buildConfigField "String", "CDS_MRENCLAVE", "\"c98e00a4e3ff977a56afefe7362a27e4961e4f19e211febfbb19b897e6b80b15\""
-            buildConfigField "KbsEnclave", "KBS_ENCLAVE", "new KbsEnclave(\"823a3b2c037ff0cbe305cc48928cfcc97c9ed4a8ca6d49af6f7d6981fb60a4e9\", " +
-                                                                         "\"51a56084c0b21c6b8f62b1bc792ec9bedac4c7c3964bb08ddcab868158c09982\", " +
-                                                                         "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\")"
-            buildConfigField "KbsEnclave[]", "KBS_FALLBACKS", "new KbsEnclave[0]"
+            buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"823a3b2c037ff0cbe305cc48928cfcc97c9ed4a8ca6d49af6f7d6981fb60a4e9\", " +
+                                                                                                    "\"16b94ac6d2b7f7b9d72928f36d798dbb35ed32e7bb14c42b4301ad0344b46f29\", " +
+                                                                                                    "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\")"
+            buildConfigField "org.thoughtcrime.securesms.KbsEnclave[]", "KBS_FALLBACKS", "new org.thoughtcrime.securesms.KbsEnclave[0]"
             buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BbqY1DzohE4NUZoVF+L18oUPrK3kILllLEJh2UnPSsEx\""
-            buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdls=\""
+            buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdlukrpzzsCIvEwjwQlJYVPOQPj4V0F4UXXBdHSLK05uoPBCQG8G9rYIGedYsClJXnbrgGYG3eMTG5hnx4X4ntARB\""
             buildConfigField "String", "MOBILE_COIN_ENVIRONMENT", "\"testnet\""
             buildConfigField "String", "RECAPTCHA_PROOF_URL", "\"https://signalcaptchas.org/staging/challenge/generate.html\""
 
             buildConfigField "String", "BUILD_ENVIRONMENT_TYPE", "\"Staging\""
+            buildConfigField "String", "STRIPE_PUBLISHABLE_KEY", "\"pk_test_sngOd8FnXNkpce9nPXawKrJD00kIDngZkD\""
         }
     }
 
@@ -339,16 +385,9 @@ android {
         def distribution = variant.getFlavors().get(0).name
         def environment  = variant.getFlavors().get(1).name
         def buildType    = variant.buildType.name
+        def fullName     = distribution + environment.capitalize() + buildType.capitalize()
 
-        if (distribution == 'study' && buildType != 'perf' && buildType != 'mock') {
-            variant.setIgnore(true)
-        } else if (distribution != 'study' && buildType == 'mock') {
-            variant.setIgnore(true)
-        } else if (distribution == 'internal' && buildType != 'flipper' && buildType != 'perf' && buildType != 'release') {
-            variant.setIgnore(true)
-        } else if (distribution == 'nightly' && environment != 'prod') {
-            variant.setIgnore(true)
-        } else if (distribution == 'nightly' && buildType != 'flipper' && buildType != 'perf' && buildType != 'release') {
+        if (!selectableVariants.contains(fullName)) {
             variant.setIgnore(true)
         }
     }
@@ -367,216 +406,168 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.5'
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.fragment.ktx
     lintChecks project(':lintchecks')
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring libs.android.tools.desugar
 
-    implementation ('androidx.appcompat:appcompat:1.2.0') {
-        force = true
+    implementation (libs.androidx.appcompat) {
+        version {
+            strictly '1.2.0'
+        }
     }
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.preference:preference:1.0.0'
-    implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
-    implementation 'androidx.gridlayout:gridlayout:1.0.0'
-    implementation 'androidx.exifinterface:exifinterface:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.navigation:navigation-fragment:2.1.0'
-    implementation 'androidx.navigation:navigation-ui:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha05'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
-    implementation "androidx.camera:camera-core:1.0.0-beta11"
-    implementation "androidx.camera:camera-camera2:1.0.0-beta11"
-    implementation "androidx.camera:camera-lifecycle:1.0.0-beta11"
-    implementation "androidx.camera:camera-view:1.0.0-alpha18"
-    implementation "androidx.concurrent:concurrent-futures:1.0.0"
-    implementation "androidx.autofill:autofill:1.0.0"
-    implementation "androidx.biometric:biometric:1.1.0"
-    implementation "androidx.sharetarget:sharetarget:1.1.0"
+    implementation libs.androidx.window
+    implementation libs.androidx.recyclerview
+    implementation libs.material.material
+    implementation libs.androidx.legacy.support
+    implementation libs.androidx.cardview
+    implementation libs.androidx.preference
+    implementation libs.androidx.legacy.preference
+    implementation libs.androidx.gridlayout
+    implementation libs.androidx.exifinterface
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.multidex
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+    implementation libs.androidx.lifecycle.extensions
+    implementation libs.androidx.lifecycle.viewmodel.savedstate
+    implementation libs.androidx.lifecycle.common.java8
+    implementation libs.androidx.lifecycle.reactivestreams.ktx
+    implementation libs.androidx.camera.core
+    implementation libs.androidx.camera.camera2
+    implementation libs.androidx.camera.lifecycle
+    implementation libs.androidx.camera.view
+    implementation libs.androidx.concurrent.futures
+    implementation libs.androidx.autofill
+    implementation libs.androidx.biometric
+    implementation libs.androidx.sharetarget
 
-    implementation ('com.google.firebase:firebase-messaging:22.0.0') {
+    implementation (libs.firebase.messaging) {
         exclude group: 'com.google.firebase', module: 'firebase-core'
         exclude group: 'com.google.firebase', module: 'firebase-analytics'
         exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
     }
 
-    implementation 'com.google.android.gms:play-services-maps:16.1.0'
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation libs.google.play.services.maps
+    implementation libs.google.play.services.auth
 
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
-    implementation 'com.google.android.exoplayer:extension-mediasession:2.9.1'
+    implementation libs.bundles.exoplayer
 
-    implementation 'org.conscrypt:conscrypt-android:2.0.0'
-    implementation 'org.signal:aesgcmprovider:0.0.3'
+    implementation libs.conscrypt.android
+    implementation libs.signal.aesgcmprovider
 
     implementation project(':libsignal-service')
     implementation project(':paging')
     implementation project(':core-util')
     implementation project(':video')
     implementation project(':device-transfer')
+    implementation project(':image-editor')
+    implementation project(':donations')
 
-    implementation 'org.signal:zkgroup-android:0.7.0'
-    implementation 'org.whispersystems:signal-client-android:0.8.3'
-    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+    implementation libs.signal.zkgroup.android
+    implementation libs.signal.client.android
+    implementation libs.google.protobuf.javalite
 
-    implementation('com.mobilecoin:android-sdk:1.1.0') {
+    implementation(libs.mobilecoin) {
         exclude group: 'com.google.protobuf'
     }
 
-    implementation 'org.signal:argon2:13.1@aar'
+    implementation(libs.signal.argon2) {
+        artifact {
+            type = "aar"
+        }
+    }
 
-    implementation 'org.signal:ringrtc-android:2.10.6'
+    implementation libs.signal.ringrtc
 
-    implementation "me.leolin:ShortcutBadger:1.1.22"
-    implementation 'se.emilsjolander:stickylistheaders:2.7.0'
-    implementation 'com.jpardogo.materialtabstrip:library:1.0.9'
-    implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
-    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    kapt 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.makeramen:roundedimageview:2.1.0'
-    implementation 'com.pnikosis:materialish-progress:1.5'
-    implementation 'org.greenrobot:eventbus:3.0.0'
-    implementation 'pl.tajchert:waitingdots:0.1.0'
-    implementation 'com.melnykov:floatingactionbutton:1.3.0'
-    implementation 'com.google.zxing:android-integration:3.1.0'
-    implementation 'mobi.upod:time-duration-picker:1.1.3'
-    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    implementation 'com.google.zxing:core:3.2.1'
-    implementation ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
+    implementation libs.leolin.shortcutbadger
+    implementation libs.emilsjolander.stickylistheaders
+    implementation libs.jpardogo.materialtabstrip
+    implementation libs.apache.httpclient.android
+    implementation libs.photoview
+    implementation libs.glide.glide
+    kapt libs.glide.compiler
+    kapt libs.androidx.annotation
+    implementation libs.roundedimageview
+    implementation libs.materialish.progress
+    implementation libs.greenrobot.eventbus
+    implementation libs.waitingdots
+    implementation libs.floatingactionbutton
+    implementation libs.google.zxing.android.integration
+    implementation libs.time.duration.picker
+    implementation libs.textdrawable
+    implementation libs.google.zxing.core
+    implementation (libs.subsampling.scale.image.view) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    implementation ('cn.carbswang.android:NumberPickerView:1.0.9') {
+    implementation (libs.numberpickerview) {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    implementation ('com.tomergoldst.android:tooltips:1.0.6') {
+    implementation (libs.android.tooltips) {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    implementation ('com.klinkerapps:android-smsmms:4.0.1') {
+    implementation (libs.android.smsmms) {
         exclude group: 'com.squareup.okhttp', module: 'okhttp'
         exclude group: 'com.squareup.okhttp', module: 'okhttp-urlconnection'
     }
-    implementation 'com.annimon:stream:1.1.8'
-    implementation ('com.takisoft.fix:colorpicker:0.9.1') {
+    implementation libs.stream
+    implementation (libs.colorpicker) {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
 
-    implementation 'com.airbnb.android:lottie:3.6.0'
+    implementation libs.lottie
 
-    implementation 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
-    implementation 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
+    implementation libs.stickyheadergrid
+    implementation libs.circular.progress.button
 
-    implementation "net.zetetic:android-database-sqlcipher:4.4.3"
-    implementation "androidx.sqlite:sqlite:2.1.0"
+    implementation libs.signal.android.database.sqlcipher
+    implementation libs.androidx.sqlite
 
-    implementation ('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
+    implementation (libs.google.ez.vcard) {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
     }
-    implementation 'dnsjava:dnsjava:2.1.9'
+    implementation libs.dnsjava
 
-    flipperImplementation 'com.facebook.flipper:flipper:0.91.0'
-    flipperImplementation 'com.facebook.soloader:soloader:0.10.1'
+    flipperImplementation libs.facebook.flipper
+    flipperImplementation libs.facebook.soloader
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.assertj:assertj-core:3.11.1'
-    testImplementation 'org.mockito:mockito-core:2.8.9'
-    testImplementation 'org.powermock:powermock-api-mockito2:1.7.4'
-    testImplementation 'org.powermock:powermock-module-junit4:1.7.4'
-    testImplementation 'org.powermock:powermock-module-junit4-rule:1.7.4'
-    testImplementation 'org.powermock:powermock-classloading-xstream:1.7.4'
+    testImplementation testLibs.junit.junit
+    testImplementation testLibs.assertj.core
+    testImplementation testLibs.mockito.core
+    testImplementation testLibs.powermock.api.mockito
+    testImplementation testLibs.powermock.module.junit4.core
+    testImplementation testLibs.powermock.module.junit4.rule
+    testImplementation testLibs.powermock.classloading.xstream
 
-    testImplementation 'androidx.test:core:1.2.0'
-    testImplementation ('org.robolectric:robolectric:4.4') {
+    testImplementation testLibs.androidx.test.core
+    testImplementation (testLibs.robolectric.robolectric) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
-    testImplementation 'org.robolectric:shadows-multidex:4.4'
-    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation testLibs.robolectric.shadows.multidex
+    testImplementation testLibs.hamcrest.hamcrest
 
     testImplementation(testFixtures(project(":libsignal-service")))
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation testLibs.androidx.test.ext.junit
+    androidTestImplementation testLibs.espresso.core
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0"
+    testImplementation testLibs.espresso.core
 
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
+    implementation libs.kotlin.stdlib.jdk8
+    implementation libs.kotlin.reflect
+    implementation libs.jackson.module.kotlin
+
+    implementation libs.rxjava3.rxandroid
+    implementation libs.rxjava3.rxkotlin
+
+    androidTestUtil 'androidx.test:orchestrator:1.4.0'
 }
 
 dependencyVerification {
     configuration = '(play|website)(Prod|Staging)(Debug|Release)RuntimeClasspath'
-}
-
-def assembleWebsiteDescriptor = { variant, file ->
-    if (file.exists()) {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        file.eachByte 4096, {bytes, size ->
-            md.update(bytes, 0, size);
-        }
-
-        String digest  = md.digest().collect {String.format "%02x", it}.join();
-        String url     = variant.productFlavors.get(0).ext.websiteUpdateUrl
-        String apkName = file.getName()
-
-        String descriptor = "{" +
-                "\"versionCode\" : ${canonicalVersionCode * postFixSize + abiPostFix['universal']}," +
-                "\"versionName\" : \"$canonicalVersionName\"," +
-                "\"sha256sum\" : \"$digest\"," +
-                "\"url\" : \"$url/$apkName\"" +
-                "}"
-
-        File descriptorFile = new File(file.getParent(), apkName.replace(".apk", ".json"))
-
-        descriptorFile.write(descriptor)
-    }
-}
-
-def signProductionRelease = { variant ->
-    variant.outputs.collect { output ->
-        String apkName    = output.outputFile.name
-        File   inputFile  = new File(output.outputFile.path)
-        File   outputFile = new File(output.outputFile.parent, apkName.replace('-unsigned', ''))
-
-        new ApkSignerUtil('sun.security.pkcs11.SunPKCS11',
-                          'pkcs11.config',
-                          'PKCS11',
-                          'file:pkcs11.password').calculateSignature(inputFile.getAbsolutePath(),
-                                                                     outputFile.getAbsolutePath())
-
-        inputFile.delete()
-        outputFile
-    }
-}
-
-task signProductionPlayRelease {
-    doLast {
-        signProductionRelease(android.applicationVariants.find { (it.name == 'playProdRelease') })
-    }
-}
-
-task signProductionInternalRelease {
-    doLast {
-        signProductionRelease(android.applicationVariants.find { (it.name == 'internalProdRelease') })
-    }
-}
-
-task signProductionWebsiteRelease {
-    doLast {
-        def  variant       = android.applicationVariants.find { (it.name == 'websiteProdRelease') }
-        File signedRelease = signProductionRelease(variant).find { it.name.contains('universal') }
-        assembleWebsiteDescriptor(variant, signedRelease)
-    }
 }
 
 def getLastCommitTimestamp() {

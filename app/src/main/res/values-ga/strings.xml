@@ -145,7 +145,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Athshocraigh rith teachtaireachta slán?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">B\'fhéidir go gcabhraíonn sé seo má bhíonn fadhbanna criptiú sa chomhrá seo. Ní chaillítear do theachtaireachtaí.</string> -->
-  <string name="ConversationActivity_reset">Athshocraigh</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Athshocraigh</string> -->
   <string name="ConversationActivity_add_attachment">Cuir ceangaltán leis</string>
   <string name="ConversationActivity_select_contact_info">Roghnaigh eolas teagmhála</string>
   <string name="ConversationActivity_compose_message">Cum teachtaireacht</string>
@@ -339,7 +339,7 @@
   <string name="InviteActivity_invite_to_signal">Tabhair cuireadh chuig Signal</string>
   <string name="InviteActivity_lets_switch_to_signal">Téimís i muinín Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tá an dealramh air nach bhfuil aon fheidhmchláirín agat lena roinnt leis.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Ní ligeann do chairde dá gcairde comhráite gan chriptiú a bheith acu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Ní ligeann do chairde dá gcairde comhráite gan chriptiú a bheith acu.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Ag obair sa chúlra…</string> -->
   <!--MessageDetailsRecipient-->
@@ -370,7 +370,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Glao Signal ar siúl</string>
   <string name="NotificationBarManager__establishing_signal_call">Ag cruthú glao Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Glao Signal isteach</string>
-  <string name="NotificationBarManager__deny_call">Diúltaigh an glao</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Diúltaigh an glao</string> -->
   <string name="NotificationBarManager__answer_call">Freagair an glao</string>
   <string name="NotificationBarManager__end_call">Críochnaigh an glao</string>
   <string name="NotificationBarManager__cancel_call">Cealaigh an glao</string>
@@ -860,7 +860,7 @@ a shonrú</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Cnag le scanadh</string>
   <string name="verify_display_fragment__loading">Ag luchtú…</string>
-  <string name="verify_display_fragment__verified">Fíordheimhnithe</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Fíordheimhnithe</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comhroinn an uimhir shábháilteachta</string>
   <!--webrtc_answer_decline_button-->

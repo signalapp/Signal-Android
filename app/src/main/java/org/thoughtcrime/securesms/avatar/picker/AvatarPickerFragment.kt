@@ -15,6 +15,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarBundler
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
-import java.util.Objects
 
 /**
  * Primary Avatar picker fragment, displays current user avatar and a list of recently used avatars and defaults.
@@ -47,6 +47,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   private val viewModel: AvatarPickerViewModel by viewModels(factoryProducer = this::createFactory)
 
+  private lateinit var recycler: RecyclerView
+
   private fun createFactory(): AvatarPickerViewModel.Factory {
     val args = AvatarPickerFragmentArgs.fromBundle(requireArguments())
     val groupId = ParcelableGroupId.get(args.groupId)
@@ -56,13 +58,13 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val toolbar: Toolbar = view.findViewById(R.id.avatar_picker_toolbar)
-    val recycler: RecyclerView = view.findViewById(R.id.avatar_picker_recycler)
     val cameraButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_camera)
     val photoButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_photo)
     val textButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_text)
     val saveButton: View = view.findViewById(R.id.avatar_picker_save)
     val clearButton: View = view.findViewById(R.id.avatar_picker_clear)
 
+    recycler = view.findViewById(R.id.avatar_picker_recycler)
     recycler.addItemDecoration(GridDividerDecoration(4, ViewUtil.dpToPx(16)))
 
     val adapter = MappingAdapter()
@@ -87,7 +89,13 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
         saveButton.animate().alpha(alpha)
       }
 
-      adapter.submitList(state.selectableAvatars.map { AvatarPickerItem.Model(it, it == state.currentAvatar) })
+      val items = state.selectableAvatars.map { AvatarPickerItem.Model(it, it == state.currentAvatar) }
+      val selectedPosition = items.indexOfFirst { it.isSelected }
+
+      adapter.submitList(items) {
+        if (selectedPosition > -1)
+          recycler.smoothScrollToPosition(selectedPosition)
+      }
     }
 
     toolbar.setNavigationOnClickListener { Navigation.findNavController(it).popBackStack() }
@@ -103,7 +111,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
               putParcelable(SELECT_AVATAR_MEDIA, it)
             }
           )
-          Navigation.findNavController(v).popBackStack()
+          ThreadUtil.runOnMain { Navigation.findNavController(v).popBackStack() }
         },
         {
           setFragmentResult(
@@ -112,7 +120,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
               putBoolean(SELECT_AVATAR_CLEAR, true)
             }
           )
-          Navigation.findNavController(v).popBackStack()
+          ThreadUtil.runOnMain { Navigation.findNavController(v).popBackStack() }
         }
       )
     }
@@ -139,9 +147,10 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     ViewUtil.hideKeyboard(requireContext(), requireView())
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == REQUEST_CODE_SELECT_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
-      val media: Media = Objects.requireNonNull(data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA))
+      val media: Media = requireNotNull(data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA))
       viewModel.onAvatarPhotoSelectionCompleted(media)
     } else {
       super.onActivityResult(requestCode, resultCode, data)
@@ -160,8 +169,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     val menuRes = when (avatar) {
       is Avatar.Photo -> R.menu.avatar_picker_context
       is Avatar.Text -> R.menu.avatar_picker_context
-      is Avatar.Vector -> return false
-      is Avatar.Resource -> return false
+      is Avatar.Vector -> return true
+      is Avatar.Resource -> return true
     }
 
     val popup = PopupMenu(context, anchorView, Gravity.TOP)
@@ -187,23 +196,24 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     }
   }
 
-  fun openPhotoEditor(photo: Avatar.Photo) {
+  private fun openPhotoEditor(photo: Avatar.Photo) {
     Navigation.findNavController(requireView())
       .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToAvatarPhotoEditorFragment(AvatarBundler.bundlePhoto(photo)))
   }
 
-  fun openVectorEditor(vector: Avatar.Vector) {
+  private fun openVectorEditor(vector: Avatar.Vector) {
     Navigation.findNavController(requireView())
       .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToVectorAvatarCreationFragment(AvatarBundler.bundleVector(vector)))
   }
 
-  fun openTextEditor(text: Avatar.Text?) {
+  private fun openTextEditor(text: Avatar.Text?) {
     val bundle = if (text != null) AvatarBundler.bundleText(text) else null
     Navigation.findNavController(requireView())
       .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToTextAvatarCreationFragment(bundle))
   }
 
-  fun openCameraCapture() {
+  @Suppress("DEPRECATION")
+  private fun openCameraCapture() {
     Permissions.with(this)
       .request(Manifest.permission.CAMERA)
       .ifNecessary()
@@ -218,7 +228,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       .execute()
   }
 
-  fun openGallery() {
+  @Suppress("DEPRECATION")
+  private fun openGallery() {
     Permissions.with(this)
       .request(Manifest.permission.READ_EXTERNAL_STORAGE)
       .ifNecessary()

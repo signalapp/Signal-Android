@@ -82,7 +82,7 @@ public class IncomingMessageProcessor {
      *         one was created. Otherwise null.
      */
     public @Nullable String processEnvelope(@NonNull SignalServiceEnvelope envelope) {
-      if (envelope.hasSource()) {
+      if (envelope.hasSourceUuid()) {
         Recipient.externalHighTrustPush(context, envelope.getSourceAddress());
       }
 

@@ -38,7 +38,7 @@ class ExpireTimerSettingsRepository(val context: Context) {
       } else {
         DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipientId, newExpirationTime)
         val outgoingMessage = OutgoingExpirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L)
-        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), false, null)
+        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), false, null, null)
         consumer.invoke(Result.success(newExpirationTime))
       }
     }
@@ -48,6 +48,6 @@ class ExpireTimerSettingsRepository(val context: Context) {
   private fun getThreadId(recipientId: RecipientId): Long {
     val threadDatabase: ThreadDatabase = DatabaseFactory.getThreadDatabase(context)
     val recipient: Recipient = Recipient.resolved(recipientId)
-    return threadDatabase.getThreadIdFor(recipient)
+    return threadDatabase.getOrCreateThreadIdFor(recipient)
   }
 }

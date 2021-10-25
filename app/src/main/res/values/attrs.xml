@@ -109,9 +109,14 @@
         <attr name="pickerBorderColor" format="color" />
         <attr name="pickerBorderWidth" format="dimension" />
         <attr name="pickerColors" format="reference" />
+        <attr name="pickerOrientation" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="EmojiTextView">
+        <attr name="measureLastLine" format="boolean" />
         <attr name="scaleEmojis" format="boolean" />
         <attr name="emoji_maxLength" format="integer" />
         <attr name="emoji_forceCustom" format="boolean" />
@@ -203,8 +208,11 @@
     </declare-styleable>
 
     <declare-styleable name="ViewOnceMessageView">
-        <attr name="revealable_unopenedForegroundColor" format="color" />
-        <attr name="revealable_openedForegroundColor" format="color" />
+        <attr name="revealable_textColor" format="color" />
+        <attr name="revealable_openedIconColor" format="color" />
+        <attr name="revealable_unopenedIconColor" format="color" />
+        <attr name="revealable_circleColor" format="color" />
+        <attr name="revealable_circleColorWithWallpaper" format="color" />
     </declare-styleable>
 
     <declare-styleable name="MediaKeyboard">
@@ -223,6 +231,8 @@
     <declare-styleable name="ContactFilterToolbar">
         <attr name="searchTextStyle" format="reference" />
         <attr name="showDialpad" format="boolean" />
+        <attr name="cfv_autoFocus" format="boolean" />
+        <attr name="cfv_background" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="SquareImageView">
@@ -315,5 +325,14 @@
         <attr name="bsiv_icon" format="reference" />
         <attr name="bsiv_label" format="string" />
         <attr name="bsiv_icon_contentDescription" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="BadgeImageView">
+        <attr name="badge_size" format="enum">
+            <enum name="small" value="0" />
+            <enum name="medium" value="1" />
+            <enum name="large" value="2" />
+            <enum name="xlarge" value="3" />
+        </attr>
     </declare-styleable>
 </resources>

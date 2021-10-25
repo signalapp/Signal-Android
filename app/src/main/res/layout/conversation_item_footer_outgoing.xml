@@ -46,6 +46,8 @@
         android:lineSpacingExtra="1sp"
         android:minWidth="30dp"
         android:minHeight="20dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle"
         android:textColor="@color/core_white"
         android:visibility="gone"

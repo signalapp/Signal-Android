@@ -21,7 +21,7 @@
     </style>
 
     <style name="Button.Borderless.Registration">
-        <item name="android:textColor">@color/core_grey_60</item>
+        <item name="android:textColor">@color/signal_text_secondary</item>
     </style>
 
 </resources>

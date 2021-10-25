@@ -46,6 +46,7 @@ import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.core.util.Consumer;
 import androidx.core.util.Preconditions;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -123,7 +124,9 @@ final class SignalCameraXModule {
   @Nullable
   ProcessCameraProvider mCameraProvider;
 
-  SignalCameraXModule(SignalCameraView view) {
+  // BEGIN Custom Signal Code Block
+  SignalCameraXModule(SignalCameraView view, Consumer<Throwable> errorConsumer) {
+    // END Custom Signal Code Block
     mCameraView = view;
 
     Futures.addCallback(ProcessCameraProvider.getInstance(view.getContext()),
@@ -141,7 +144,9 @@ final class SignalCameraXModule {
 
           @Override
           public void onFailure(Throwable t) {
-            throw new RuntimeException("CameraX failed to initialize.", t);
+            // BEGIN Custom Signal Code Block
+            errorConsumer.accept(t);
+            // END Custom Signal Code Block
           }
         }, CameraXExecutors.mainThreadExecutor());
 
@@ -222,17 +227,10 @@ final class SignalCameraXModule {
     // End Signal Custom Code Block
 
     Rational targetAspectRatio;
-    if (getCaptureMode() == SignalCameraView.CaptureMode.IMAGE) {
-      // Begin Signal Custom Code Block
-      mImageCaptureBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_4_3, isDisplayPortrait));
-      // End Signal Custom Code Block
-      targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_3_4 : ASPECT_RATIO_4_3;
-    } else {
-      // Begin Signal Custom Code Block
-      mImageCaptureBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_16_9, isDisplayPortrait));
-      // End Signal Custom Code Block
-      targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_9_16 : ASPECT_RATIO_16_9;
-    }
+    // Begin Signal Custom Code Block
+    mImageCaptureBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_16_9, isDisplayPortrait));
+    targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_9_16 : ASPECT_RATIO_16_9;
+    // End Signal Custom Code Block
 
     // Begin Signal Custom Code Block
     mImageCaptureBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());

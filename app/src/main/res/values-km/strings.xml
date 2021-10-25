@@ -195,9 +195,9 @@
   <string name="ConversationItem_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <string name="ConversationItem_you_deleted_this_message">អ្នកបានលុបសារនេះ។</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string>
-  <string name="ConversationActivity_reset">កំណត់ឡើងវិញ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">កំណត់ឡើងវិញ</string> -->
   <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ</string>
   <string name="ConversationActivity_select_contact_info">ជ្រើសរើសព័ត៌មានលេខទំនាក់ទំនង</string>
   <string name="ConversationActivity_compose_message">បង្កើតសារថ្មី</string>
@@ -608,21 +608,21 @@
   <string name="InviteActivity_share">ចែករំលែក</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">ជ្រើសរើសលេខទំនាក់ទំនង</string> -->
   <string name="InviteActivity_share_with_contacts">ចែករំលែកជាមួយបញ្ជីទំនាក់ទំនង</string>
-  <string name="InviteActivity_choose_how_to_share">ជ្រើសរើសរបៀបចែករំលែក</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">ជ្រើសរើសរបៀបចែករំលែក</string> -->
   <string name="InviteActivity_cancel">បោះបង់</string>
   <string name="InviteActivity_sending">កំពុងផ្ញើ…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">បេះដូង</string> -->
   <string name="InviteActivity_invitations_sent">លិខិតអញ្ជើញបានផ្ញើ!</string>
   <string name="InviteActivity_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">ផ្ញើ SMS ទៅកាន់មិត្តភក្តិ​ %d</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">ផ្ញើសារ SMS អញ្ជើញ %d ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">តោះដូរទៅប្រើSignal ៖ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">វាហាក់ដូចជាមិនមានកម្មវិធីណាមួយដើម្បីចែករំលែក។</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">មិត្តភក្តិមិនអោយមិត្តភក្តិជជែកដោយមិនកាណាល់កូដសម្ងាត់។</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">មិត្តភក្តិមិនអោយមិត្តភក្តិជជែកដោយមិនកាណាល់កូដសម្ងាត់។</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">កំពុងដំណើរការសកម្មភាពខាងក្នុង…</string> -->
   <!--LearnMoreTextView-->
@@ -659,12 +659,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">ទិដ្ឋភាពក្រឡាចត្រង្គ</string>
   <string name="MediaOverviewActivity_List_view_description">ទិដ្ឋភាពបញ្ជី</string>
   <string name="MediaOverviewActivity_Selected_description">បានជ្រើសរើស</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d ធាតុ%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d ធាតុ</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ឯកសារ</string>
   <string name="MediaOverviewActivity_audio">សំឡេង</string>
   <string name="MediaOverviewActivity_video">វីដេអូ</string>
@@ -687,7 +687,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញSignal កំពុងដំណើរការ</string>
   <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមSignal</string>
   <string name="NotificationBarManager__incoming_signal_call">ការហៅចូលតាម Signal </string>
-  <string name="NotificationBarManager__deny_call">បដិសេធការហៅ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">បដិសេធការហៅ</string> -->
   <string name="NotificationBarManager__answer_call">ទទួលការហៅ</string>
   <string name="NotificationBarManager__end_call">បិទការហៅ</string>
   <string name="NotificationBarManager__cancel_call">បោះបង់ការហៅ</string>
@@ -919,7 +919,7 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">កំពុងហៅ…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal ហៅជាសំឡេង…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal ហៅជាសំឡេង…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal ហៅជាវីដេអូ…</string>
   <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__connecting">កំពុងតភ្ជាប់…</string> -->
   <string name="WebRtcCallView__reconnecting">កំពុងតភ្ជាប់ម្តងទៀត…</string>
@@ -1468,10 +1468,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">បន្ថែមទៅក្នុងបញ្ជីទំនាក់ទំនង</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">កុំបន្ថែម, ប៉ុន្តែបង្ហាញប្រវត្តិរូបរបស់ខ្ញុំ</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពកូដនីយកម្មរបស់អ្នកជាមួយ %s ប្រៀបធៀបលេខខាងលើជាមួយលេខនៅលើឧបករណ៍របស់ពួកគេ។ ផ្សេងពីនេះទៀត អ្នកអាចស្កេនកូដលើទូរស័ព្ទរបស់ពួកគេ ឬសុំពួកគេឲ្យស្កេនកូដលើទូរស័ព្ទរបស់អ្នក។ <a href="https://signal.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពកូដនីយកម្មរបស់អ្នកជាមួយ %s ប្រៀបធៀបលេខខាងលើជាមួយលេខនៅលើឧបករណ៍របស់ពួកគេ។ ផ្សេងពីនេះទៀត អ្នកអាចស្កេនកូដលើទូរស័ព្ទរបស់ពួកគេ ឬសុំពួកគេឲ្យស្កេនកូដលើទូរស័ព្ទរបស់អ្នក។ <a href="https://signal.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
   <string name="verify_display_fragment__loading">កំពុងផ្ទុក…</string>
-  <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
   <!--webrtc_answer_decline_button-->
@@ -2048,7 +2048,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ទៅ%2$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ទៅ%2$s</string>
   <!--StorageUtil-->
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__remove">លុបចេញ</string>

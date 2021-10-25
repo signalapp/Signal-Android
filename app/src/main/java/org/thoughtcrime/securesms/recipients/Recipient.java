@@ -15,6 +15,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
-import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor;
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -59,7 +60,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -111,6 +111,8 @@ public class Recipient {
   private final Capability             groupsV2Capability;
   private final Capability             groupsV1MigrationCapability;
   private final Capability             senderKeyCapability;
+  private final Capability             announcementGroupCapability;
+  private final Capability             changeNumberCapability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
@@ -123,6 +125,7 @@ public class Recipient {
   private final String                 systemContactName;
   private final Optional<Extras>       extras;
   private final boolean                hasGroupsInCommon;
+  private final List<Badge>            badges;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -173,7 +176,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), false);
+    return externalPush(context, signalServiceAddress.getUuid(), signalServiceAddress.getNumber().orNull(), false);
   }
 
   /**
@@ -186,7 +189,7 @@ public class Recipient {
     if (address.getNumber().isPresent()) {
       return externalPush(context, null, address.getNumber().get(), false);
     } else {
-      return externalPush(context, address.getUuid().orNull(), null, false);
+      return externalPush(context, address.getUuid(), null, false);
     }
   }
 
@@ -201,7 +204,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalHighTrustPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), true);
+    return externalPush(context, signalServiceAddress.getUuid(), signalServiceAddress.getNumber().orNull(), true);
   }
 
   /**
@@ -227,9 +230,11 @@ public class Recipient {
 
     Recipient resolved = resolved(recipientId);
 
-    if (highTrust && !resolved.isRegistered()) {
+    if (highTrust && !resolved.isRegistered() && uuid != null) {
       Log.w(TAG, "External high-trust push was locally marked unregistered. Marking as registered.");
-      db.markRegistered(recipientId);
+      db.markRegistered(recipientId, uuid);
+    } else if (highTrust && !resolved.isRegistered()) {
+      Log.w(TAG, "External high-trust push was locally marked unregistered, but we don't have a UUID, so we can't do anything.", new Throwable());
     }
 
     return resolved;
@@ -360,6 +365,8 @@ public class Recipient {
     this.groupsV2Capability          = Capability.UNKNOWN;
     this.groupsV1MigrationCapability = Capability.UNKNOWN;
     this.senderKeyCapability         = Capability.UNKNOWN;
+    this.announcementGroupCapability = Capability.UNKNOWN;
+    this.changeNumberCapability      = Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
@@ -371,6 +378,7 @@ public class Recipient {
     this.systemContactName           = null;
     this.extras                      = Optional.absent();
     this.hasGroupsInCommon           = false;
+    this.badges                      = Collections.emptyList();
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -411,6 +419,8 @@ public class Recipient {
     this.groupsV2Capability          = details.groupsV2Capability;
     this.groupsV1MigrationCapability = details.groupsV1MigrationCapability;
     this.senderKeyCapability         = details.senderKeyCapability;
+    this.announcementGroupCapability = details.announcementGroupCapability;
+    this.changeNumberCapability      = details.changeNumberCapability;
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
@@ -422,6 +432,7 @@ public class Recipient {
     this.systemContactName           = details.systemContactName;
     this.extras                      = details.extras;
     this.hasGroupsInCommon           = details.hasGroupsInCommon;
+    this.badges                      = details.badges;
   }
 
   public @NonNull RecipientId getId() {
@@ -624,7 +635,7 @@ public class Recipient {
     UUID resolved = resolving ? resolve().uuid : uuid;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -635,7 +646,7 @@ public class Recipient {
     String resolved = resolving ? resolve().e164 : e164;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -645,7 +656,7 @@ public class Recipient {
     String resolved = resolving ? resolve().email : email;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -659,7 +670,7 @@ public class Recipient {
     } else if (recipient.getEmail().isPresent()) {
       return recipient.getEmail().get();
     } else {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
   }
 
@@ -683,7 +694,7 @@ public class Recipient {
     GroupId resolved = resolving ? resolve().groupId : groupId;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -785,19 +796,23 @@ public class Recipient {
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
+    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER, AvatarUtil.UNDEFINED_SIZE);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted) {
     return getSmallFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
   }
 
-  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, avatarColor, inverted);
+  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER), targetSize).asDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, avatarColor, inverted);
+    return getSmallFallbackContactPhotoDrawable(context, inverted, fallbackPhotoProvider, AvatarUtil.UNDEFINED_SIZE);
+  }
+
+  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER), targetSize).asSmallDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto() {
@@ -805,13 +820,17 @@ public class Recipient {
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
+    return getFallbackContactPhoto(fallbackPhotoProvider, AvatarUtil.UNDEFINED_SIZE);
+  }
+
+  public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
     if      (isSelf)                                return fallbackPhotoProvider.getPhotoForLocalNumber();
     else if (isResolving())                         return fallbackPhotoProvider.getPhotoForResolvingRecipient();
     else if (isGroupInternal())                     return fallbackPhotoProvider.getPhotoForGroup();
     else if (isGroup())                             return fallbackPhotoProvider.getPhotoForGroup();
-    else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName);
-    else if (!TextUtils.isEmpty(systemContactName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(systemContactName);
-    else if (!signalProfileName.isEmpty())          return fallbackPhotoProvider.getPhotoForRecipientWithName(signalProfileName.toString());
+    else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName, targetSize);
+    else if (!TextUtils.isEmpty(systemContactName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(systemContactName, targetSize);
+    else if (!signalProfileName.isEmpty())          return fallbackPhotoProvider.getPhotoForRecipientWithName(signalProfileName.toString(), targetSize);
     else                                            return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
   }
 
@@ -860,7 +879,7 @@ public class Recipient {
     return callVibrate;
   }
 
-  public int getExpireMessages() {
+  public int getExpiresInSeconds() {
     return expireMessages;
   }
 
@@ -883,6 +902,14 @@ public class Recipient {
     return registered == RegisteredState.REGISTERED || isPushGroup();
   }
 
+  public boolean isMaybeRegistered() {
+    return registered != RegisteredState.NOT_REGISTERED || isPushGroup();
+  }
+
+  public boolean isUnregistered() {
+    return registered == RegisteredState.NOT_REGISTERED && !isPushGroup();
+  }
+
   public @Nullable String getNotificationChannel() {
     return !NotificationChannels.supported() ? null : notificationChannel;
   }
@@ -901,6 +928,14 @@ public class Recipient {
 
   public @NonNull Capability getSenderKeyCapability() {
     return senderKeyCapability;
+  }
+
+  public @NonNull Capability getAnnouncementGroupCapability() {
+    return announcementGroupCapability;
+  }
+
+  public @NonNull Capability getChangeNumberCapability() {
+    return changeNumberCapability;
   }
 
   /**
@@ -990,6 +1025,18 @@ public class Recipient {
 
   public @Nullable String getAboutEmoji() {
     return aboutEmoji;
+  }
+
+  public @NonNull List<Badge> getBadges() {
+    return FeatureFlags.donorBadges() ? badges : Collections.emptyList();
+  }
+
+  public @Nullable Badge getFeaturedBadge() {
+    if (getBadges().isEmpty()) {
+      return null;
+    } else {
+      return getBadges().get(0);
+    }
   }
 
   public @Nullable String getCombinedAboutAndEmoji() {
@@ -1170,7 +1217,9 @@ public class Recipient {
            Objects.equals(avatarColor, other.avatarColor) &&
            Objects.equals(about, other.about) &&
            Objects.equals(aboutEmoji, other.aboutEmoji) &&
-           Objects.equals(extras, other.extras);
+           Objects.equals(extras, other.extras) &&
+           hasGroupsInCommon == other.hasGroupsInCommon &&
+           Objects.equals(badges, other.badges);
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {
@@ -1201,8 +1250,8 @@ public class Recipient {
       return new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20, R.drawable.ic_group_outline_48);
     }
 
-    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name) {
-      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40);
+    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name, int targetSize) {
+      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize);
     }
 
     public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
@@ -1211,5 +1260,8 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
+    MissingAddressError(@NonNull RecipientId recipientId) {
+      super("Missing address for " + recipientId.serialize());
+    }
   }
 }

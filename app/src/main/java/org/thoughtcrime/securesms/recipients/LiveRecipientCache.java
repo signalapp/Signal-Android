@@ -7,7 +7,7 @@ import android.database.Cursor;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -59,7 +59,7 @@ public final class LiveRecipientCache {
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
     this.db                = DatabaseFactory.getInstance(context).getRawDatabase();
-    this.resolveExecutor   = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.isDbLockedByCurrentThread());
+    this.resolveExecutor   = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction());
   }
 
   @AnyThread
@@ -95,6 +95,19 @@ public final class LiveRecipientCache {
     }
 
     return live;
+  }
+
+  /**
+   * Handles remapping cache entries when recipients are merged.
+   */
+  public void remap(@NonNull RecipientId oldId, @NonNull RecipientId newId) {
+    synchronized (recipients) {
+      if (recipients.containsKey(newId)) {
+        recipients.put(oldId, recipients.get(newId));
+      } else {
+        recipients.remove(oldId);
+      }
+    }
   }
 
   /**

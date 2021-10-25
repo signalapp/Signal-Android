@@ -128,6 +128,11 @@ final class DecryptedGroupChangeActionsBuilderChangeSetModifier implements Chang
     result.clearNewDescription();
   }
 
+  @Override
+  public void clearModifyAnnouncementsOnly() {
+    result.clearNewIsAnnouncementGroup();
+  }
+
   private static List<ByteString> removeIndexFromByteStringList(List<ByteString> byteStrings, int i) {
     List<ByteString> modifiedList = new ArrayList<>(byteStrings);
 

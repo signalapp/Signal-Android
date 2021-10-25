@@ -6,15 +6,13 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
-    <org.thoughtcrime.securesms.conversation.colors.ColorizerView
-        android:id="@+id/conversation_colorizer_view"
-        android:background="@drawable/test_gradient"
-        android:layout_width="0dp"
+    <View
+        android:id="@+id/reactions_shade"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@android:id/list"
-        app:layout_constraintEnd_toEndOf="@android:id/list"
-        app:layout_constraintStart_toStartOf="@android:id/list"
-        app:layout_constraintTop_toTopOf="@android:id/list" />
+        android:background="@color/reactions_screen_shade_color"
+        app:layout_constraintTop_toBottomOf="@android:id/list"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/video_container"
@@ -25,15 +23,17 @@
         app:layout_constraintStart_toStartOf="@android:id/list"
         app:layout_constraintTop_toTopOf="@android:id/list" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:cacheColorHint="@color/signal_background_primary"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingBottom="2dp"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/scroll_date_header"

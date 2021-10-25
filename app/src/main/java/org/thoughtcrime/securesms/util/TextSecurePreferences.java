@@ -15,8 +15,11 @@ import androidx.core.app.NotificationCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupProtos;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
@@ -473,6 +476,10 @@ public class TextSecurePreferences {
     if (previous != value) {
       Recipient.self().live().refresh();
     }
+
+    if (value) {
+      clearLocalCredentials(context);
+    }
   }
 
   public static boolean isUnauthorizedRecieved(Context context) {
@@ -928,6 +935,10 @@ public class TextSecurePreferences {
     if (previous != registered) {
       Recipient.self().live().refresh();
     }
+
+    if (previous && !registered) {
+      clearLocalCredentials(context);
+    }
   }
 
   public static boolean isShowInviteReminders(Context context) {
@@ -1294,6 +1305,16 @@ public class TextSecurePreferences {
     } else {
       return defaultValues;
     }
+  }
+
+  private static void clearLocalCredentials(Context context) {
+    TextSecurePreferences.setPushServerPassword(context, Util.getSecret(18));
+
+    ProfileKey newProfileKey = ProfileKeyUtil.createNew();
+    Recipient  self          = Recipient.self();
+    DatabaseFactory.getRecipientDatabase(context).setProfileKey(self.getId(), newProfileKey);
+
+    ApplicationDependencies.getGroupsV2Authorization().clear();
   }
 
   // NEVER rename these -- they're persisted by name

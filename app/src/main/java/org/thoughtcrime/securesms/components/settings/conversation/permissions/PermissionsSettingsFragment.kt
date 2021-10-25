@@ -72,6 +72,20 @@ class PermissionsSettingsFragment : DSLSettingsFragment(
           viewModel.setNonAdminCanEditGroupInfo(it == 1)
         }
       )
+
+      if (state.announcementGroupPermissionEnabled) {
+        radioListPref(
+          title = DSLSettingsText.from(R.string.PermissionsSettingsFragment__send_messages),
+          isEnabled = state.selfCanEditSettings,
+          listItems = permissionsOptions,
+          dialogTitle = DSLSettingsText.from(R.string.PermissionsSettingsFragment__who_can_send_messages),
+          selected = getSelected(!state.announcementGroup),
+          confirmAction = true,
+          onSelected = {
+            viewModel.setAnnouncementGroup(it == 0)
+          }
+        )
+      }
     }
   }
 

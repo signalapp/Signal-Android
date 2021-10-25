@@ -1,5 +1,7 @@
 package org.signal.core.util;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -9,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -26,10 +30,15 @@ public final class EditTextUtil {
     text.setFilters(filters.toArray(new InputFilter[0]));
   }
 
-  public static void setCursorColor(EditText text, @ColorInt int colorInt) {
+  public static void setCursorColor(@NonNull EditText text, @ColorInt int colorInt) {
     if (Build.VERSION.SDK_INT >= 29) {
-      Drawable cursorDrawable = text.getTextCursorDrawable().mutate();
+      Drawable drawable = text.getTextCursorDrawable();
 
+      if (drawable == null) {
+        return;
+      }
+
+      Drawable cursorDrawable = drawable.mutate();
       cursorDrawable.setColorFilter(new PorterDuffColorFilter(colorInt, PorterDuff.Mode.SRC_IN));
       text.setTextCursorDrawable(cursorDrawable);
     } else {
@@ -37,6 +46,10 @@ public final class EditTextUtil {
     }
   }
 
+  /**
+   * Note: This is only ever called in API 28 and less.
+   */
+  @SuppressLint("SoonBlockedPrivateApi")
   private static void setCursorColorViaReflection(EditText editText, int color) {
     try {
       Field fCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");

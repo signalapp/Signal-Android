@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.Person;
+import androidx.core.content.LocusIdCompat;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 
@@ -38,6 +39,8 @@ public final class ConversationUtil {
   public static final int CONVERSATION_SUPPORT_VERSION = 30;
 
   private static final String TAG = Log.tag(ConversationUtil.class);
+
+  private static final String CATEGORY_SHARE_TARGET = "org.thoughtcrime.securesms.sharing.CATEGORY_SHARE_TARGET";
 
   private ConversationUtil() {}
 
@@ -191,22 +194,24 @@ public final class ConversationUtil {
                                                                @NonNull Recipient recipient,
                                                                int rank)
   {
-    Recipient resolved  = recipient.resolve();
-    Person[]  persons   = buildPersons(context, resolved);
-    long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(resolved);
-    String    shortName = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getShortDisplayName(context);
-    String    longName  = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getDisplayName(context);
-
-    return new ShortcutInfoCompat.Builder(context, getShortcutId(resolved))
+    Recipient resolved   = recipient.resolve();
+    Person[]  persons    = buildPersons(context, resolved);
+    Long      threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(resolved.getId());
+    String    shortName  = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getShortDisplayName(context);
+    String    longName   = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getDisplayName(context);
+    String    shortcutId = getShortcutId(resolved);
+    
+    return new ShortcutInfoCompat.Builder(context, shortcutId)
                                  .setLongLived(true)
-                                 .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId).build())
+                                 .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId != null ? threadId : -1).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
                                  .setPersons(persons)
-                                 .setCategories(Collections.singleton("android.shortcut.conversation"))
+                                 .setCategories(Collections.singleton(CATEGORY_SHARE_TARGET))
                                  .setActivity(new ComponentName(context, "org.thoughtcrime.securesms.RoutingActivity"))
                                  .setRank(rank)
+                                 .setLocusId(new LocusIdCompat(shortcutId))
                                  .build();
   }
 

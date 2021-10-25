@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util.storage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.StreamUtil;
@@ -33,8 +34,8 @@ public final class FileStorage {
                                      @NonNull InputStream inputStream,
                                      @NonNull String directoryName,
                                      @NonNull String fileNameBase,
-                                     @NonNull String extension
-  ) throws IOException
+                                     @NonNull String extension)
+      throws IOException
   {
     File directory = context.getDir(directoryName, Context.MODE_PRIVATE);
     File file      = File.createTempFile(fileNameBase, "." + extension, directory);
@@ -47,7 +48,8 @@ public final class FileStorage {
   @WorkerThread
   public static @NonNull InputStream read(@NonNull Context context,
                                           @NonNull String directoryName,
-                                          @NonNull String filename) throws IOException
+                                          @NonNull String filename)
+      throws IOException
   {
     File directory = context.getDir(directoryName, Context.MODE_PRIVATE);
     File file      = new File(directory, filename);
@@ -78,6 +80,17 @@ public final class FileStorage {
     } else {
       return Collections.emptyList();
     }
+  }
+
+  /**
+   * Note that you will always get a file back, but that file may not exist on disk.
+   */
+  @WorkerThread
+  public static @NonNull File getFile(@NonNull Context context,
+                                      @NonNull String directoryName,
+                                      @NonNull String filename)
+  {
+    return new File(context.getDir(directoryName, Context.MODE_PRIVATE), filename);
   }
 
   private static @NonNull OutputStream getOutputStream(@NonNull Context context, File outputFile) throws IOException {

@@ -33,14 +33,17 @@ public class ConversationItemBodyBubble extends LinearLayout {
 
   public ConversationItemBodyBubble(Context context) {
     super(context);
+    setLayoutTransition(new BodyBubbleLayoutTransition(this));
   }
 
   public ConversationItemBodyBubble(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
+    setLayoutTransition(new BodyBubbleLayoutTransition(this));
   }
 
   public ConversationItemBodyBubble(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+    setLayoutTransition(new BodyBubbleLayoutTransition(this));
   }
 
   public void setOutliners(@NonNull List<Outliner> outliners) {
@@ -67,6 +70,10 @@ public class ConversationItemBodyBubble extends LinearLayout {
   public void setVideoPlayerProjection(@Nullable Projection videoPlayerProjection) {
     this.videoPlayerProjection = videoPlayerProjection;
     clipProjectionDrawable.setProjections(getProjections());
+  }
+
+  public @Nullable Projection getVideoPlayerProjection() {
+    return videoPlayerProjection;
   }
 
   public @NonNull Set<Projection> getProjections() {

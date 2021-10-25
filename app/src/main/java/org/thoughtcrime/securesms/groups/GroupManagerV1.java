@@ -80,7 +80,7 @@ final class GroupManagerV1 {
       }
       groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
 
-      long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+      long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId, memberIds.size() - 1, Collections.emptyList());
     }
   }
@@ -112,7 +112,7 @@ final class GroupManagerV1 {
       return sendGroupUpdate(context, groupIdV1, memberAddresses, name, avatarBytes, newMemberCount);
     } else {
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
-      long        threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      long        threadId         = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
       return new GroupActionResult(groupRecipient, threadId, newMemberCount, Collections.emptyList());
     }
   }
@@ -125,7 +125,7 @@ final class GroupManagerV1 {
     GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
     RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
     Recipient     groupRecipient   = Recipient.resolved(groupRecipientId);
-    long          threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    long          threadId         = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
 
     groupDatabase.updateTitle(groupId, name);
     groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
@@ -177,7 +177,7 @@ final class GroupManagerV1 {
     }
 
     OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-    long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
+    long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null, null);
 
     return new GroupActionResult(groupRecipient, threadId, newMemberCount, Collections.emptyList());
   }
@@ -197,11 +197,11 @@ final class GroupManagerV1 {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     ThreadDatabase    threadDatabase    = DatabaseFactory.getThreadDatabase(context);
     Recipient         recipient         = Recipient.externalGroupExact(context, groupId);
-    long              threadId          = threadDatabase.getThreadIdFor(recipient);
+    long              threadId          = threadDatabase.getOrCreateThreadIdFor(recipient);
 
     recipientDatabase.setExpireMessages(recipient.getId(), expirationTime);
     OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(recipient, System.currentTimeMillis(), expirationTime * 1000L);
-    MessageSender.send(context, outgoingMessage, threadId, false, null);
+    MessageSender.send(context, outgoingMessage, threadId, false, null, null);
   }
 
   @WorkerThread

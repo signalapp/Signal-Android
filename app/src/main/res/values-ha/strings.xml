@@ -160,7 +160,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Kara saitin mahajin bayanai masu tsaro?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Wannan zai iya taimakawa idan akasamu matsala da tsaro a wannan hiran. Ba zaka/ki rasa sakwanninka ba.</string> -->
-  <string name="ConversationActivity_reset">Maimaita saiti</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Maimaita saiti</string> -->
   <string name="ConversationActivity_add_attachment">Kara abun makallawa</string>
   <string name="ConversationActivity_select_contact_info">Zabi lambar sadarwa.</string>
   <string name="ConversationActivity_compose_message">Rubuta sako</string>
@@ -398,23 +398,23 @@
   <string name="InviteActivity_share">Tura</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Zabi lambobi</string> -->
   <string name="InviteActivity_share_with_contacts">Ka/ki turawa lambobin sadarwarka/ki.</string>
-  <string name="InviteActivity_choose_how_to_share">Zabi yadda zaka/ki tura.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Zabi yadda zaka/ki tura.</string> -->
   <string name="InviteActivity_cancel">Katse</string>
   <string name="InviteActivity_sending">Ana turawa……</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Zuciya</string> -->
   <string name="InviteActivity_invitations_sent">An tura gayyata!</string>
   <string name="InviteActivity_invite_to_signal">Gayyace shi/ta Signal.</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">TURA SMS ZUWA %d ABOKI/KAWA</item>
     <item quantity="other">SEND SMS TO %d FRIENDS</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Tura %d gayyatar SMS</item>
     <item quantity="other">Tura gayyata ta hanyar %d SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mu koma Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kamar babu manhajar da zaka/ki tura zuwa</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Abokai basu barin abokai suyi hira ba tsaro.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Abokai basu barin abokai suyi hira ba tsaro.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Ana karasa aiki a bango…</string> -->
   <!--LearnMoreTextView-->
@@ -453,14 +453,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Kallon jerin hotuna</string>
   <string name="MediaOverviewActivity_List_view_description">Kallon jeri kalamai</string>
   <string name="MediaOverviewActivity_Selected_description">Zababbe</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d item %2$s</item>
     <item quantity="other">%1$d abubuwa%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d item</item>
     <item quantity="other">%1$d abubuwa</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Fayil</string>
   <string name="MediaOverviewActivity_audio">Odiyo</string>
   <string name="MediaOverviewActivity_video">Bidiyo</string>
@@ -478,7 +478,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Ana cikin kira na Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Farawar kiran Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Shigowar kiran Signal</string>
-  <string name="NotificationBarManager__deny_call">Hana kira</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Hana kira</string> -->
   <string name="NotificationBarManager__answer_call">Amsa kira.</string>
   <string name="NotificationBarManager__end_call">Kashe kira</string>
   <string name="NotificationBarManager__cancel_call">Katse kira</string>
@@ -1170,10 +1170,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">KARA WANNAN CIKIN LAMBOBIN SADARWAK KI/KA</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">KADDA A SAKA, AMMA BARI A GA FUROFAYIL DINA</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Idan ka/kina son tabbatar da tsarinka/ki da %s hada lambar samada lambar da yake na\'urarsu. Ko kuma, zaka/ki iya yin sikanin din lambar sirrin da yake wayarsu , ko kuma ce musu suyi sikanin lambar sirrinka/ki. 1Learn<a href="https://signal.org/redirect/safety-numbers">Domin karin bayani.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Idan ka/kina son tabbatar da tsarinka/ki da %s hada lambar samada lambar da yake na\'urarsu. Ko kuma, zaka/ki iya yin sikanin din lambar sirrin da yake wayarsu , ko kuma ce musu suyi sikanin lambar sirrinka/ki. 1Learn<a href="https://signal.org/redirect/safety-numbers">Domin karin bayani.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Taba domin yin sikani</string>
   <string name="verify_display_fragment__loading">Yana lodi</string>
-  <string name="verify_display_fragment__verified">Tabbatacce</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Tabbatacce</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Tura lambar tsari</string>
   <!--webrtc_answer_decline_button-->

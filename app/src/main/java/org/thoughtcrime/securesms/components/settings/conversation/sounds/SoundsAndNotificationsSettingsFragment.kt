@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.conversation.sounds
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.R
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment
 
 class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
   titleId = R.string.ConversationSettingsFragment__sounds_and_notifications
@@ -110,7 +110,8 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
         icon = DSLSettingsIcon.from(R.drawable.ic_speaker_24),
         summary = DSLSettingsText.from(customSoundSummary),
         onClick = {
-          CustomNotificationsDialogFragment.create(state.recipientId).show(parentFragmentManager, null)
+          val action = SoundsAndNotificationsSettingsFragmentDirections.actionSoundsAndNotificationsSettingsFragmentToCustomNotificationsSettingsFragment(state.recipientId)
+          Navigation.findNavController(requireView()).navigate(action)
         }
       )
     }

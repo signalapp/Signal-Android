@@ -55,7 +55,7 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     }
 
-    WebRtcUtil.enableSpeakerPhoneIfNeeded(context, currentState.getLocalDeviceState().getCameraState().isEnabled());
+    WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
     return currentState;
   }

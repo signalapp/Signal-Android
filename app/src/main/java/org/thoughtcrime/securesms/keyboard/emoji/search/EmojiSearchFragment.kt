@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
@@ -33,7 +33,7 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
     val repository = EmojiSearchRepository(requireContext())
     val factory = EmojiSearchViewModel.Factory(repository)
 
-    viewModel = ViewModelProviders.of(this, factory)[EmojiSearchViewModel::class.java]
+    viewModel = ViewModelProvider(this, factory)[EmojiSearchViewModel::class.java]
 
     val keyboardAwareLinearLayout: KeyboardAwareLinearLayout = view.findViewById(R.id.kb_aware_layout)
     val eventListener: EmojiEventListener = requireNotNull(findListener())

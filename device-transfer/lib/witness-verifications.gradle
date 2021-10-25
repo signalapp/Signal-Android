@@ -6,8 +6,8 @@ dependencyVerification {
         ['androidx.activity:activity:1.0.0',
          'd1bc9842455c2e534415d88c44df4d52413b478db9093a1ba36324f705f44c3d'],
 
-        ['androidx.annotation:annotation:1.1.0',
-         'd38d63edb30f1467818d50aaf05f8a692dea8b31392a049bfa991b159ad5b692'],
+        ['androidx.annotation:annotation:1.2.0',
+         '9029262bddce116e6d02be499e4afdba21f24c239087b76b3b57d7e98b490a36'],
 
         ['androidx.appcompat:appcompat-resources:1.2.0',
          'c470297c03ff3de1c3d15dacf0be0cae63abc10b52f021dd07ae28daa3100fe5'],
@@ -24,8 +24,11 @@ dependencyVerification {
         ['androidx.collection:collection:1.1.0',
          '632a0e5407461de774409352940e292a291037724207a787820c77daf7d33b72'],
 
-        ['androidx.core:core:1.3.0',
-         '1c6b6626f15185d8f4bc7caac759412a1ab6e851ecf7526387d9b9fadcabdb63'],
+        ['androidx.core:core-ktx:1.5.0',
+         '5964cfe7a4882da2a00fb6ca3d3a072d04139208186f7bc4b3cb66022764fc42'],
+
+        ['androidx.core:core:1.5.0',
+         '2b279712795689069cfb63e48b3ab63c32a5649bdda44c482eb8f81ca1a72161'],
 
         ['androidx.cursoradapter:cursoradapter:1.0.0',
          'a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564'],
@@ -69,8 +72,8 @@ dependencyVerification {
         ['androidx.vectordrawable:vectordrawable:1.1.0',
          '46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26'],
 
-        ['androidx.versionedparcelable:versionedparcelable:1.1.0',
-         '9a1d77140ac222b7866b5054ee7d159bc1800987ed2d46dd6afdd145abb710c1'],
+        ['androidx.versionedparcelable:versionedparcelable:1.1.1',
+         '57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4'],
 
         ['androidx.viewpager:viewpager:1.0.0',
          '147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682'],
@@ -81,7 +84,16 @@ dependencyVerification {
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
 
-        ['org.whispersystems:signal-client-java:0.8.3',
-         'e3a1269c512e39d130550bb3f5b1fccbe1cde65a572c16c9021e303cf7be5372'],
+        ['org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32',
+         'e1ff6f55ee9e7591dcc633f7757bac25a7edb1cc7f738b37ec652f10f66a4145'],
+
+        ['org.jetbrains.kotlin:kotlin-stdlib:1.4.32',
+         '13e9fd3e69dc7230ce0fc873a92a4e5d521d179bcf1bef75a6705baac3bfecba'],
+
+        ['org.jetbrains:annotations:13.0',
+         'ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478'],
+
+        ['org.whispersystems:signal-client-java:0.9.7',
+         'b9c141324db38e940e910c71d3c8474679a9f6f46c4d4f3116ec63a1e1368ffc'],
     ]
 }

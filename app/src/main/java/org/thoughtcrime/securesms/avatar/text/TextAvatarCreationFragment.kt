@@ -13,6 +13,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.tabs.TabLayout
 import org.signal.core.util.EditTextUtil
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerItem
 import org.thoughtcrime.securesms.components.BoldSelectionTabItem
 import org.thoughtcrime.securesms.components.ControllableTabLayout
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -31,12 +33,13 @@ import org.thoughtcrime.securesms.util.ViewUtil
 /**
  * Fragment to create an avatar based off of a Vector or Text (via a pager)
  */
-class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragment_hidden_recycler) {
+class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragment) {
 
   private val viewModel: TextAvatarCreationViewModel by viewModels(factoryProducer = this::createFactory)
 
   private lateinit var textInput: EditText
   private lateinit var recycler: RecyclerView
+  private lateinit var content: ConstraintLayout
 
   private val withRecyclerSet = ConstraintSet()
   private val withoutRecyclerSet = ConstraintSet()
@@ -59,10 +62,12 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
     val toolbar: Toolbar = view.findViewById(R.id.text_avatar_creation_toolbar)
     val tabLayout: ControllableTabLayout = view.findViewById(R.id.text_avatar_creation_tabs)
     val doneButton: View = view.findViewById(R.id.text_avatar_creation_done)
+    val keyboardAwareLayout: KeyboardAwareLinearLayout = view.findViewById(R.id.keyboard_aware_layout)
 
-    withRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment)
-    withoutRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment_hidden_recycler)
+    withRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment_content)
+    withoutRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment_content_hidden_recycler)
 
+    content = view.findViewById(R.id.content)
     recycler = view.findViewById(R.id.text_avatar_creation_recycler)
     textInput = view.findViewById(R.id.avatar_picker_item_text)
 
@@ -83,19 +88,7 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
     val viewHolder = AvatarPickerItem.ViewHolder(view)
     viewModel.state.observe(viewLifecycleOwner) { state ->
       EditTextUtil.setCursorColor(textInput, state.currentAvatar.color.foregroundColor)
-
-      val hadText = textInput.length() > 0
-      val selectionStart = textInput.selectionStart
-      val selectionEnd = textInput.selectionEnd
-
       viewHolder.bind(AvatarPickerItem.Model(state.currentAvatar, false))
-      textInput.post {
-        if (!hadText) {
-          textInput.setSelection(textInput.length())
-        } else {
-          textInput.setSelection(selectionStart, selectionEnd)
-        }
-      }
 
       adapter.submitList(state.colors().map { AvatarColorItem.Model(it) })
       hasBoundFromViewModel = true
@@ -113,12 +106,21 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
       Navigation.findNavController(v).popBackStack()
     }
 
-    textInput.setOnEditorActionListener { v, actionId, event ->
-      if (actionId == EditorInfo.IME_ACTION_DONE) {
-        doneButton.performClick()
+    textInput.setOnEditorActionListener { _, actionId, _ ->
+      if (actionId == EditorInfo.IME_ACTION_NEXT) {
+        tabLayout.getTabAt(1)?.select()
         true
       } else {
         false
+      }
+    }
+
+    keyboardAwareLayout.addOnKeyboardHiddenListener {
+      if (tabLayout.selectedTabPosition == 1) {
+        val transition = AutoTransition().setStartDelay(250L)
+        TransitionManager.endTransitions(content)
+        withRecyclerSet.applyTo(content)
+        TransitionManager.beginDelayedTransition(content, transition)
       }
     }
   }
@@ -130,20 +132,12 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
           textInput.isEnabled = true
           ViewUtil.focusAndShowKeyboard(textInput)
 
-          val constraintLayout = requireView() as ConstraintLayout
-          TransitionManager.endTransitions(constraintLayout)
-          withoutRecyclerSet.applyTo(constraintLayout)
-          TransitionManager.beginDelayedTransition(constraintLayout)
+          withoutRecyclerSet.applyTo(content)
           textInput.setSelection(textInput.length())
         }
         1 -> {
           textInput.isEnabled = false
           ViewUtil.hideKeyboard(requireContext(), textInput)
-
-          val constraintLayout = requireView() as ConstraintLayout
-          TransitionManager.endTransitions(constraintLayout)
-          withRecyclerSet.applyTo(constraintLayout)
-          TransitionManager.beginDelayedTransition(constraintLayout)
         }
       }
     }

@@ -24,13 +24,11 @@ dependencyVerification {
 dependencies {
     lintChecks project(':lintchecks')
 
-    api 'androidx.annotation:annotation:1.1.0'
+    api libs.androidx.annotation
 
     implementation project(':core-util')
 
-    implementation 'org.mp4parser:isoparser:1.9.39'
-    implementation 'org.mp4parser:streaming:1.9.39'
-    implementation('org.mp4parser:muxer:1.9.39') {
+    implementation(libs.bundles.mp4parser) {
         exclude group: 'junit', module: 'junit'
     }
 }

@@ -177,9 +177,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ev peyam hat jêbirin.</string>
   <string name="ConversationItem_you_deleted_this_message">Te ev peyam jê bir.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Rûniştina parastî reset bike?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Heke tu di vê axiftinê de li rastî pirsgirêkên şîfrekirinê tê, dibe ku ev alîkariya te bike. Ew ê peyamên te bên hilanîn.</string>
-  <string name="ConversationActivity_reset">Reset bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Rûniştina parastî reset bike?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Heke tu di vê axiftinê de li rastî pirsgirêkên şîfrekirinê tê, dibe ku ev alîkariya te bike. Ew ê peyamên te bên hilanîn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reset bike</string> -->
   <string name="ConversationActivity_add_attachment">Pêvekê tevlî bike</string>
   <string name="ConversationActivity_select_contact_info">Agahiya kesî hilbijêre</string>
   <string name="ConversationActivity_compose_message">Peyamê binivîse</string>
@@ -706,22 +706,22 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Parve bike</string>
   <string name="InviteActivity_share_with_contacts">Bi navnivîskê re parve bike</string>
-  <string name="InviteActivity_choose_how_to_share">Tu yê çawa parve bikî</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Tu yê çawa parve bikî</string> -->
   <string name="InviteActivity_cancel">Betal bike</string>
   <string name="InviteActivity_sending">Tê şandin…</string>
   <string name="InviteActivity_invitations_sent">Vexwendname hatin şandin!</string>
   <string name="InviteActivity_invite_to_signal">Vexwîne Signalê</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">JI %d HEVALÊ XWE RE SMS BIŞÎNE</item>
     <item quantity="other">JI %d HEVALÊN XWE RE SMS BIŞÎNE</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d vexwendnameya SMS\'ê bişîne?</item>
     <item quantity="other">%d vexwendnameyên SMS\'ê bişîne?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ka em derbasî Signalê bibin: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Xuya ye ji bo parvekirinê ti sepanên te tune ye.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Heval nahêlin, hevalên wan neşîfrekirî biaxivin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Heval nahêlin, hevalên wan neşîfrekirî biaxivin.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Zêdetir bizane</string>
   <!--LongMessageActivity-->
@@ -754,14 +754,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Xuyanga grîdî</string>
   <string name="MediaOverviewActivity_List_view_description">Xuyanga lîsteyî</string>
   <string name="MediaOverviewActivity_Selected_description">Bijartî</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d hêman %2$s</item>
     <item quantity="other">%1$d hêman %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d hêman</item>
     <item quantity="other">%1$d hêman</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Dosye</string>
   <string name="MediaOverviewActivity_audio">Deng</string>
   <string name="MediaOverviewActivity_video">Vîdyo</string>
@@ -784,7 +784,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Gerîna Signalê dewam dike</string>
   <string name="NotificationBarManager__establishing_signal_call">Gerîna Signalê tê sazkirin</string>
   <string name="NotificationBarManager__incoming_signal_call">Gerîna tê ya Signalê</string>
-  <string name="NotificationBarManager__deny_call">Red bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Red bike</string> -->
   <string name="NotificationBarManager__answer_call">Bibersivîne</string>
   <string name="NotificationBarManager__end_call">Gerînê bi dawî bike</string>
   <string name="NotificationBarManager__cancel_call">Gerînê betal bike</string>
@@ -1089,13 +1089,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Tê gerîn…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Gerîna dengî ya Signalê…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Gerîna dengî ya Signalê…</string> -->
   <string name="WebRtcCallView__signal_video_call">Gerîna vîdoyî ya Signalê…</string>
   <string name="WebRtcCallView__start_call">Aniha bigere</string>
   <string name="WebRtcCallView__join_call">Tevlî gerînê bibe</string>
   <string name="WebRtcCallView__call_is_full">Gerîn tije ye</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Ji bo vê gerînê gihîşte hejmara herî zêde ya %1$d beşdaran. Paşê dîsa biceribîne.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Gerîna Komî</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Gerîna Komî</string> -->
   <string name="WebRtcCallView__view_participants_list">Beşdaran bibîne</string>
   <string name="WebRtcCallView__your_video_is_off">Vîdyoya te girtî ye</string>
   <string name="WebRtcCallView__reconnecting">Dîsa tê girêdan…</string>
@@ -1636,10 +1636,10 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Nav an jî nimreyekê binivîse</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Eger tu bixwazî ewlehiya şîfreya xwe bi %s bipejirînî, nimreya li jor bi nimreya ser amûra xwe re bide ber hev. Wek alternatîv, tu dikarî koda li ser telefona wan bivenerînî, an jî ji wan bixwazî ku koda te bivenerin. <a href="https://signal.org/redirect/safety-numbers">Zêdetir hîn bibe.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Eger tu bixwazî ewlehiya şîfreya xwe bi %s bipejirînî, nimreya li jor bi nimreya ser amûra xwe re bide ber hev. Wek alternatîv, tu dikarî koda li ser telefona wan bivenerînî, an jî ji wan bixwazî ku koda te bivenerin. <a href="https://signal.org/redirect/safety-numbers">Zêdetir hîn bibe.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Ji bo venêrînê, lê bitikîne</string>
   <string name="verify_display_fragment__loading">Tê barkirin…</string>
-  <string name="verify_display_fragment__verified">Piştrastkirî</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Piştrastkirî</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Nimreya ewlehiyê parve bike</string>
   <!--webrtc_answer_decline_button-->
@@ -2268,8 +2268,8 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Ev girêdan niha ne çalak e</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Peyama dengî · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s --&gt; %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Peyama dengî · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s --&gt; %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" hat astengkirin.</string>

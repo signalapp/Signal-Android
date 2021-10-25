@@ -22,7 +22,8 @@
         android:layout_height="match_parent"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        tools:text="AF" />
+        tools:text="AF"
+        app:emoji_forceCustom="true"/>
 
     <View
         android:id="@+id/avatar_picker_item_fader"

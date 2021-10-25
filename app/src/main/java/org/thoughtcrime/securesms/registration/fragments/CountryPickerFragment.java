@@ -14,9 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.loaders.CountryListLoader;
@@ -27,8 +28,12 @@ import java.util.Map;
 
 public final class CountryPickerFragment extends ListFragment implements LoaderManager.LoaderCallbacks<ArrayList<Map<String, String>>> {
 
+  public static final String KEY_COUNTRY      = "country";
+  public static final String KEY_COUNTRY_CODE = "country_code";
+
   private EditText              countryFilter;
   private RegistrationViewModel model;
+  private String                resultKey;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -39,7 +44,14 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    model = BaseRegistrationFragment.getRegistrationViewModel(requireActivity());
+    if (getArguments() != null) {
+      CountryPickerFragmentArgs arguments = CountryPickerFragmentArgs.fromBundle(requireArguments());
+      resultKey = arguments.getResultKey();
+    }
+
+    if (resultKey == null) {
+      model = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
+    }
 
     countryFilter = view.findViewById(R.id.country_search);
 
@@ -54,14 +66,21 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
     int    countryCode = Integer.parseInt(item.get("country_code").replace("+", ""));
     String countryName = item.get("country_name");
 
-    model.onCountrySelected(countryName, countryCode);
+    if (resultKey == null) {
+      model.onCountrySelected(countryName, countryCode);
+    } else {
+      Bundle result = new Bundle();
+      result.putString(KEY_COUNTRY, countryName);
+      result.putInt(KEY_COUNTRY_CODE, countryCode);
+      getParentFragmentManager().setFragmentResult(resultKey, result);
+    }
 
-    Navigation.findNavController(view).navigate(CountryPickerFragmentDirections.actionCountrySelected());
+    NavHostFragment.findNavController(this).navigateUp();
   }
 
   @Override
   public @NonNull Loader<ArrayList<Map<String, String>>> onCreateLoader(int id, @Nullable Bundle args) {
-   return new CountryListLoader(getActivity());
+    return new CountryListLoader(getActivity());
   }
 
   @Override
@@ -69,7 +88,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
                              @NonNull ArrayList<Map<String, String>> results)
   {
     ((TextView) getListView().getEmptyView()).setText(
-            R.string.country_selection_fragment__no_matching_countries);
+        R.string.country_selection_fragment__no_matching_countries);
     String[] from = { "country_name", "country_code" };
     int[]    to   = { R.id.country_name, R.id.country_code };
 

@@ -2,7 +2,6 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@color/voice_note_player_view_background"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -10,6 +9,7 @@
         android:layout_width="36dp"
         android:layout_height="0dp"
         android:layout_marginStart="6dp"
+        android:contentDescription="@string/VoiceNotePlayerView__pause_voice_message"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="@id/voice_note_player_info"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,30 +20,51 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/voice_note_player_info"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
         android:marqueeRepeatLimit="marquee_forever"
         android:minHeight="36dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="13dp"
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_icon_tint_primary"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/voice_note_player_speed_touch_target"
+        app:layout_constraintEnd_toStartOf="@id/voice_note_player_duration"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/voice_note_player_play_pause_toggle"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Miles Morales in Some strange spider-man group · 5:20" />
+        tools:text="Miles Morales Admiration Station" />
+
+    <TextView
+        android:id="@+id/voice_note_player_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="36dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="13dp"
+        android:singleLine="true"
+        android:textColor="@color/signal_icon_tint_primary"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/voice_note_player_speed_touch_target"
+        app:layout_constraintStart_toEndOf="@id/voice_note_player_info"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="· 1:00" />
 
     <FrameLayout
         android:id="@+id/voice_note_player_speed_touch_target"
-        android:layout_width="36dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
         android:background="?selectableItemBackground"
+        android:contentDescription="@string/VoiceNotePlayerView__change_voice_message_speed"
+        android:minWidth="36dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/voice_note_player_close"
         app:layout_constraintTop_toTopOf="parent">
@@ -59,6 +80,8 @@
             android:lineSpacingExtra="1sp"
             android:minWidth="30dp"
             android:minHeight="20dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle"
             android:textColor="@color/signal_text_secondary"
             app:backgroundTint="@color/voice_note_player_speed_background_tint"
@@ -70,6 +93,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginEnd="4dp"
+        android:contentDescription="@string/VoiceNotePlayerView__stop_voice_message"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@id/voice_note_player_info"
         app:layout_constraintEnd_toEndOf="parent"

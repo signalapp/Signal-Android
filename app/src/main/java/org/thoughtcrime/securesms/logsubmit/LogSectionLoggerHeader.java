@@ -18,4 +18,9 @@ public class LogSectionLoggerHeader implements LogSection {
   public @NonNull CharSequence getContent(@NonNull Context context) {
     return "";
   }
+
+  @Override
+  public boolean hasContent() {
+    return false;
+  }
 }

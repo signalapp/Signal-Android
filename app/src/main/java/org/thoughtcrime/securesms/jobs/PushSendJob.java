@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -125,7 +126,6 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   public void onRetry() {
-    super.onRetry();
     Log.i(TAG, "onRetry()");
 
     if (getRunAttempt() > 1) {
@@ -347,7 +347,7 @@ public abstract class PushSendJob extends SendJob {
           thumbnail = builder.build();
         }
 
-        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.getContentType(),
+        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.isVideoGif() ? MediaUtil.IMAGE_GIF : attachment.getContentType(),
                                                                                  attachment.getFileName(),
                                                                                  thumbnail));
       } catch (BitmapDecodingException e) {
@@ -355,9 +355,14 @@ public abstract class PushSendJob extends SendJob {
       }
     }
 
-    Recipient            quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
-    SignalServiceAddress quoteAddress         = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
-    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
+    Recipient quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
+
+    if (quoteAuthorRecipient.isMaybeRegistered()) {
+      SignalServiceAddress quoteAddress = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
+      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
+    } else {
+      return Optional.absent();
+    }
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {
@@ -462,6 +467,8 @@ public abstract class PushSendJob extends SendJob {
   protected void handleProofRequiredException(@NonNull ProofRequiredException proofRequired, @Nullable Recipient recipient, long threadId, long messageId, boolean isMms)
       throws ProofRequiredException, RetryLaterException
   {
+    Log.w(TAG, "[Proof Required] Options: " + proofRequired.getOptions());
+
     try {
       if (proofRequired.getOptions().contains(ProofRequiredException.Option.PUSH_CHALLENGE)) {
         ApplicationDependencies.getSignalServiceAccountManager().requestRateLimitPushChallenge();

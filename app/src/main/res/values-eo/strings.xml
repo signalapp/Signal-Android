@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(videaĵo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(loko)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(respondo)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Voĉmesaĝo)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerio</string>
   <string name="AttachmentKeyboard_file">Dosiero</string>
@@ -183,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Tiu ĉi mesaĝo estis forviŝita.</string>
   <string name="ConversationItem_you_deleted_this_message">Vi forviŝis tiun mesaĝon.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ĉu restarigi sekuran seancon?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ĉi tio eble helpos, se vi havas ĉifrajn problemojn en ĉi tiu interparolo. Viaj mesaĝoj konserviĝos.</string>
-  <string name="ConversationActivity_reset">Restarigi</string>
   <string name="ConversationActivity_add_attachment">Aldoni kunsendaĵon</string>
   <string name="ConversationActivity_select_contact_info">Elekti kontaktinformon</string>
   <string name="ConversationActivity_compose_message">Krei mesaĝon</string>
@@ -207,6 +205,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Kunsendaĵo transpasas la grandlimon por tia mesaĝo, kian vi sendas.</string>
   <string name="ConversationActivity_unable_to_record_audio">Ne eblas registri sonaĵon!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vi ne povas sendi mesaĝojn al tiu grupo, ĉar vi ne plu partoprenas en ĝi.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Nur %1$s povas sendi mesaĝojn.</string>
+  <string name="ConversationActivity_admins">administrantoj</string>
+  <string name="ConversationActivity_message_an_admin">Mesaĝi administranton</string>
+  <string name="ConversationActivity_cant_start_group_call">Ne sukcesis ekigi grupalvokon</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Nur administrantojn de tiu ĉi grupo povas ekigi alvokon.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Estas neniu aplikaĵo disponebla por trakti ĉi tiun ligilon ĉe via aparato.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Via peto por aniĝi sendiĝis al la grupadministranto. Oni diras al vi per sciigo, kiam ŝi aŭ ĝi respondas.</string>
   <string name="ConversationActivity_cancel_request">Nuligi la peton</string>
@@ -313,6 +316,13 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
+  <string name="ConversationListFragment_read">Legita</string>
+  <string name="ConversationListFragment_mute">Silentigi</string>
+  <string name="ConversationListFragment_unmute">Malsilentigi</string>
+  <string name="ConversationListFragment_archive">Enarĥivigi</string>
+  <string name="ConversationListFragment_unarchive">Elarĥivigi</string>
+  <string name="ConversationListFragment_delete">Forigi</string>
+  <string name="ConversationListFragment_select_all">Elekti ĉiujn</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -324,6 +334,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kelkaj kontaktoj ne povas esti en malnovtipaj grupoj.</string>
+  <string name="CreateGroupActivity__select_members">Elekti anojn</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eraro dum agordo de profila foto</string>
@@ -337,6 +348,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Piktogramo pri restaŭro el savkopio</string>
   <string name="ChooseBackupFragment__choose_backup">Elekti savkopion</string>
   <string name="ChooseBackupFragment__learn_more">Scii pli</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Neniu dosierelektilo disponebla</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restaŭro plenumita</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Por plu fari savkopiojn, elektu dosierujon. Estontaj savkopioj konserviĝos en ĉi tiun ejon.</string>
@@ -414,6 +426,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Kunhavigi kun</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Pluraj kunsendaĵoj nur eblas kun bildoj kaj videaĵoj</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Vi ne rajtas sendi al tiu ĉi grupo</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Daŭra miso ĉe Signal-a komunikado!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ne eblis registri kun „Play Services“ de Google. Signal-aj mesaĝoj kaj alvokoj malŝaltiĝis, bonvolu provi re-registriĝi en Agordoj → Speciala.</string>
@@ -556,6 +569,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Farita</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tiu persono ne aldoneblas al malnovtipaj grupoj.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Tiu persono ne aldoneblas al avizgrupoj.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Ĉu aldoni „%1$s“ al „%2$s“?</item>
     <item quantity="other">Ĉu aldoni %3$d anojn al „%2$s“?</item>
@@ -626,6 +640,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Nur administrantoj povas restarigi kunhaveblan grupligilon.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vi ne rajtas fari tion</string>
   <string name="ManageGroupActivity_not_capable">Iu, kiun vi aldonis ne subtenas novajn grupojn kaj bezonas ĝisdatigi sian Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Iu, kiun vi aldonis ne subtenas avizgrupojn kaj bezonas ĝisdatigi sian Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Malsukceso ĝisdatigi la grupon</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vi ne estas ano de tiu grupo</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Malsukceso ĝisdatigi la grupon. Reprovu poste.</string>
@@ -674,6 +689,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ŝaltita</string>
   <string name="CustomNotificationsDialogFragment__disabled">Malŝaltita</string>
   <string name="CustomNotificationsDialogFragment__default">Defaŭlta</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Nekonata</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kunhavebla grupligilo</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administri kaj kunhavigi</string>
@@ -738,22 +754,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Kunhavigi</string>
   <string name="InviteActivity_share_with_contacts">Kunhavigi kun kontaktoj</string>
-  <string name="InviteActivity_choose_how_to_share">Elekti kiel plusendi</string>
   <string name="InviteActivity_cancel">Nuligi</string>
   <string name="InviteActivity_sending">Sendo…</string>
   <string name="InviteActivity_invitations_sent">Invitoj senditaj!</string>
   <string name="InviteActivity_invite_to_signal">Inviti al Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SENDI SMS AL %d AMIKO</item>
-    <item quantity="other">SENDI SMS AL %d AMIKOJ</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Ĉu sendi %d SMS-inviton?</item>
     <item quantity="other">Ĉu sendi %d SMS-invitojn?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ni transiru al Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Ŝajnas, ke vi ne havas aplikaĵojn, al kiu kunhavigi.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amikoj ne lasas amikojn babili neĉifrite.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scii pli</string>
   <!--LongMessageActivity-->
@@ -790,18 +800,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Krada vido</string>
   <string name="MediaOverviewActivity_List_view_description">Lista vido</string>
   <string name="MediaOverviewActivity_Selected_description">Elektita</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d ero %2$s</item>
-    <item quantity="other">%1$d eroj %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d ero</item>
-    <item quantity="other">%1$d eroj</item>
-  </plurals>
+  <string name="MediaOverviewActivity_save">Konservi</string>
+  <string name="MediaOverviewActivity_select_all">Elekti ĉiujn</string>
+  <string name="MediaOverviewActivity_delete">Forigi</string>
   <string name="MediaOverviewActivity_file">Dosiero</string>
   <string name="MediaOverviewActivity_audio">Sonaĵo</string>
   <string name="MediaOverviewActivity_video">Videaĵo</string>
   <string name="MediaOverviewActivity_image">Bildo</string>
+  <string name="MediaOverviewActivity_voice_message">Voĉmesaĝo</string>
   <string name="MediaOverviewActivity_sent_by_s">Sendita de %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sendita de vi</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendita de %1$s al %2$s</string>
@@ -818,15 +824,16 @@
   <string name="Megaphones_invite_friends">Inviti amikojn</string>
   <string name="Megaphones_use_sms">Uzi SMS</string>
   <string name="Megaphones_appearance">Aspekto</string>
+  <string name="Megaphones_add_photo">Aldoni foton</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
   <string name="NotificationBarManager__incoming_signal_call">Envena Signal-alvoko</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Haltigo de la alvokoservo de Signal</string>
-  <string name="NotificationBarManager__deny_call">Rifuzi alvokon</string>
   <string name="NotificationBarManager__answer_call">Respondi alvokon</string>
   <string name="NotificationBarManager__end_call">Fini alvokon</string>
   <string name="NotificationBarManager__cancel_call">Nuligi alvokon</string>
+  <string name="NotificationBarManager__join_call">Eniri la alvokon</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Ĉu ŝalti sciigojn?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Neniam preterlasu mesaĝon el viaj kontaktoj kaj grupoj.</string>
@@ -860,6 +867,8 @@
   <string name="MediaRepository_all_media">Ĉiuj aŭvidaĵoj</string>
   <string name="MediaRepository__camera">Fotilo</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Malsukcesis malĉifri la mesaĝon.</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tuŝetu por sendi sencimigan protokolon</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Nekonata</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vi ricevis mesaĝon ĉifrita per malnova Signal-a versio, kiu ne plu estas subtenata. Bonvolu peti la sendinton ĝisdatigi al la plej nova versio, kaj resendi la mesaĝon.</string>
@@ -975,6 +984,14 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vi ŝanĝis, kiu povas modifi la grupan membrecon al „%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ŝanĝis, kiu povas modifi la grupan membrecon al „%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Tiuj, kiuj povas modifi la grupan membrecon ŝanĝiĝis al „%1$s“.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Vi ŝanĝis la grupagordojn por permesi al ĉiuj grupanoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Vi ŝanĝis la grupagordojn por permesi nur al grupadministrantoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ŝanĝis la grupagordojn por permesi al ĉiuj grupanoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ŝanĝis la grupagordojn por permesi nur al grupadministrantoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_allow_all_members_to_send">La grupagordoj ŝanĝiĝis por permesi al ĉiuj grupanoj sendi mesaĝojn.
+</string>
+  <string name="MessageRecord_allow_only_admins_to_send">La grupagordoj ŝanĝiĝis por permesi nur al grupadministrantoj sendi mesaĝojn.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vi ŝaltis la grupligilon sen bezono de administranto-aprobo.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vi ŝaltis la grupligilon kun administranto-aprobo.</string>
@@ -1179,13 +1196,12 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Konektado…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal-voĉalvoko…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko…</string>
+  <string name="WebRtcCallView__signal_call">Signal-alvoko</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko</string>
   <string name="WebRtcCallView__start_call">Ekalvoki</string>
   <string name="WebRtcCallView__join_call">Eniri la alvokon</string>
   <string name="WebRtcCallView__call_is_full">La alvoko plenas</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">La maksimuma nombro de partoprenantoj (%1$d) estas atingita en tiu alvoko. Reprovu poste.</string>
-  <string name="WebRtcCallView__s_group_call">Grupalvoko „%1$s“</string>
   <string name="WebRtcCallView__view_participants_list">Vidi partoprenantojn</string>
   <string name="WebRtcCallView__your_video_is_off">Via fotilo estas malŝaltita</string>
   <string name="WebRtcCallView__reconnecting">Rekonektado…</string>
@@ -1199,6 +1215,11 @@
     <item quantity="one">%1$s, %2$s kaj %3$d alia estas en tiu alvoko</item>
     <item quantity="other">%1$s, %2$s kaj %3$d aliaj estas en tiu alvoko</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Baskuli</string>
+  <string name="WebRtcCallView__speaker">Laŭtparolilo</string>
+  <string name="WebRtcCallView__camera">Fotilo</string>
+  <string name="WebRtcCallView__mute">Silentigi</string>
+  <string name="WebRtcCallView__end_call">Fini alvokon</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">En tiu ĉi alvoko ⋅ %1$d homo</item>
@@ -1290,6 +1311,8 @@
   <string name="SharedContactView_add_to_contacts">Aldoni al kontaktaro</string>
   <string name="SharedContactView_invite_to_signal">Inviti al Signal</string>
   <string name="SharedContactView_message">Signal-mesaĝo</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Pli</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ni memorigos vin poste.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ni memorigos vin morgaŭ.</string>
@@ -1612,6 +1635,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationUpdateItem_call_is_full">La alvoko plenas</string>
   <string name="ConversationUpdateItem_invite_friends">Inviti amikojn</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
+  <string name="ConversationUpdateItem_update_contact">Ĝisdatigi kontakton</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Neniu komuna grupo. Kontroli la petojn zorgeme.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Neniu kontakto en tiu grupo. Kontroli la petojn zorgeme.</string>
   <string name="ConversationUpdateItem_view">Montri pli</string>
@@ -1623,6 +1647,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_audio">Sonaĵo</string>
   <string name="QuoteView_video">Videaĵo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Nurunufoje videbla aŭdvidaĵo</string>
   <string name="QuoteView_sticker">Glumarko</string>
   <string name="QuoteView_you">Vi</string>
@@ -1773,21 +1798,17 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Bonvolu enigi nomon aŭ numeron</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se vi volas kontroli la ĉifran sekurecon kun %s, komparu la supran numeron kun la numero en lia aŭ ŝia aparato. Aliokaze, skanu la kodon el lia aŭ ŝia poŝtelefono, aŭ inverse. <a href="https://signal.org/redirect/safety-numbers">Lernu pli.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tuŝetu por skani</string>
   <string name="verify_display_fragment__loading">Ŝargado…</string>
-  <string name="verify_display_fragment__verified">Konfirmita</string>
+  <string name="verify_display_fragment__mark_as_verified">Marki kiel konfirmitan</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Kunhavigi sekurigan numeron</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Ŝovumi supren por respondi</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Ŝovumi malsupren por rifuzi</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemoj bezonas vian atenton.</string>
-  <string name="message_details_header__sent">Sendita</string>
-  <string name="message_details_header__received">Ricevita</string>
-  <string name="message_details_header__disappears">Malaperos je</string>
-  <string name="message_details_header__via">Per</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pritraktota</string>
   <string name="message_details_recipient_header__sent_to">Sendita al</string>
@@ -1829,15 +1850,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__debug_log">Sencimiga protokolo:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
-  <string-array name="HelpFragment__categories">
-    <item>— Elekti opcion —</item>
-    <item>Io ne funkcias</item>
-    <item>Peto por nova funkcio</item>
-    <item>Demando</item>
-    <item>Prikomento</item>
-    <item>Alia</item>
-    <item>Pagoj</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
@@ -2639,8 +2651,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">La ligilo nun ne estas aktiva</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Voĉa mesaĝo · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s al %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Voĉa mesaĝo · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s al %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ estis blokita.</string>
@@ -2798,6 +2810,20 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Oni demandos al vi malpli ofte iom post iom.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Via Signal-PIN estu deviga por reregistri vian telefonnumeron al Signal</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Daŭrigi</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">La telefonnumero, kiu vi entajpis ne kongruas kun tiu de via konto.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Modifi numeron</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Ĝisdatigi PIN-on</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Reprovi</string>
+  <string name="ChangeNumberLockActivity__leave">Forlasi</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Sendi sencimigan protokolon</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klavaro</string>
   <string name="ChatsSettingsFragment__enter_key_sends">La Eniga klavo kaŭzas sendon</string>
@@ -2849,6 +2875,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__copyright_signal_messenger">Kopirajto Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Laŭ la permisilo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Defaŭlta</string>
   <string name="DataAndStorageSettingsFragment__calls">Alvokoj</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Aŭto.</string>
@@ -2891,6 +2919,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ChatColorsMegaphone__not_now">Ne nun</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Ne nun</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Aldoni foton</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Malfermi la serĉon de emoĝioj</string>
@@ -2957,20 +2986,43 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Lastatempe uzitaj</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nova mesaĝo</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Fotilo</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__save">Konservi</string>
+  <string name="AvatarPickerFragment__edit">Modifi</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Antaŭrigardo</string>
   <string name="TextAvatarCreationFragment__done">Farita</string>
   <string name="TextAvatarCreationFragment__color">Koloro</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Modifi</string>
+  <!--DSLSettingsToolbar-->
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">Nuligi</string>
+  <string name="ImageEditorHud__blur">Malklarigi</string>
+  <string name="ImageEditorHud__undo">Malfari</string>
+  <string name="ImageEditorHud__delete">Forigi</string>
+  <string name="MediaCountIndicatorButton__send">Sendi</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Tuŝeto por elekti</string>
+  <string name="MediaReviewImagePageFragment__discard">Ne konservi</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Antaŭrigardo</string>
+  <string name="SubscribeFragment__not_now">Ne nun</string>
+  <string name="SubscribeFragment__update">Ĝisdatigi</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Farita</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
+  <string name="Subscription__contact_support">Kontakti subtenon</string>
+  <string name="SubscribeFragment__processing_payment">Traktado de pago…</string>
+  <string name="DonationsErrors__payment_failed">Pago malsukcesa</string>
   <!--EOF-->
 </resources>

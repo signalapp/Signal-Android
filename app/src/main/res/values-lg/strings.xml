@@ -70,7 +70,7 @@
   <string name="ConversationItem_to_s">okutuka %s</string>
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Damu ekitundu ekikumibwa?</string> -->
-  <string name="ConversationActivity_reset">Reset</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reset</string> -->
   <string name="ConversationActivity_add_attachment">Gatako ekigatiddwako</string>
   <string name="ConversationActivity_select_contact_info">Londako obuubaka bwa kontakiti</string>
   <string name="ConversationActivity_compose_message">Wandika obubaka</string>
@@ -218,7 +218,7 @@ a</string>
   <string name="InviteActivity_invite_to_signal">Muyite ku Signal</string>
   <string name="InviteActivity_lets_switch_to_signal">Katudde ku Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kirabika toyina app za ku gabanya ne.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Emikwaano tejibuzbuza mboozi yamikwaano</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Emikwaano tejibuzbuza mboozi yamikwaano</string> -->
   <!--Job-->
   <!--MessageDetailsRecipient-->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Eremereddwa okuwerezwa</string> -->
@@ -235,7 +235,7 @@ a</string>
   <string name="NotificationBarManager_signal_call_in_progress">Essimu eya Signal egenda mumaaso</string>
   <string name="NotificationBarManager__establishing_signal_call">tutekateeka kuba ssimu ya Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">essimu ya Signal eyingirawo</string>
-  <string name="NotificationBarManager__deny_call">Gaana essimu</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Gaana essimu</string> -->
   <string name="NotificationBarManager__answer_call">Ddamu essimu</string>
   <string name="NotificationBarManager__end_call">komya esimu</string>
   <string name="NotificationBarManager__cancel_call">Sazaamu essimu</string>

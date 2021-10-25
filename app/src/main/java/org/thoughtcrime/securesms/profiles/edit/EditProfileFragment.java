@@ -253,7 +253,10 @@ public class EditProfileFragment extends LoggingFragment {
 
   private void initializeProfileAvatar() {
     viewModel.avatar().observe(getViewLifecycleOwner(), bytes -> {
-      if (bytes == null) return;
+      if (bytes == null) {
+        GlideApp.with(this).clear(avatar);
+        return;
+      }
 
       GlideApp.with(this)
               .load(bytes)
@@ -340,7 +343,9 @@ public class EditProfileFragment extends LoggingFragment {
       @Override
       public void onAnimationEnd(Animator animation) {
         finishButton.setProgress(0);
-        if (nextIntent != null)  startActivity(nextIntent);
+        if (nextIntent != null && getActivity() != null) {
+          startActivity(nextIntent);
+        }
 
         controller.onProfileNameUploadCompleted();
       }

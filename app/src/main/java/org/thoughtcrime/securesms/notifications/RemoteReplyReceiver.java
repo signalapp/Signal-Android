@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
@@ -73,7 +74,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
         Recipient recipient      = Recipient.resolved(recipientId);
         int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-        long      expiresIn      = recipient.getExpireMessages() * 1000L;
+        long      expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
 
         switch (replyMethod) {
           case GroupMessage: {
@@ -89,19 +90,19 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                                   Collections.emptyList(),
                                                                   Collections.emptyList(),
                                                                   Collections.emptyList(),
-                                                                  Collections.emptyList(),
-                                                                  Collections.emptyList());
-            threadId = MessageSender.send(context, reply, -1, false, null);
+                                                                  Collections.emptySet(),
+                                                                  Collections.emptySet());
+            threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case SecureMessage: {
             OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
-            threadId = MessageSender.send(context, reply, -1, false, null);
+            threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case UnsecuredSmsMessage: {
             OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
-            threadId = MessageSender.send(context, reply, -1, true, null);
+            threadId = MessageSender.send(context, reply, -1, true, null, null);
             break;
           }
           default:

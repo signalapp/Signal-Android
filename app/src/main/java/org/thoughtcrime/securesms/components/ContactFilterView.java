@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.widget.TextViewCompat;
 
@@ -101,7 +102,6 @@ public final class ContactFilterView extends FrameLayout {
 
     expandTapArea(toggleContainer, dialpadToggle);
     applyAttributes(searchText, context, attrs, defStyleAttr);
-    searchText.requestFocus();
   }
 
   private void applyAttributes(@NonNull EditText searchText,
@@ -121,6 +121,16 @@ public final class ContactFilterView extends FrameLayout {
     if (!attributes.getBoolean(R.styleable.ContactFilterToolbar_showDialpad, true)) {
       dialpadToggle.setVisibility(GONE);
     }
+
+    if (attributes.getBoolean(R.styleable.ContactFilterToolbar_cfv_autoFocus, true)) {
+      searchText.requestFocus();
+    }
+
+    int backgroundRes = attributes.getResourceId(R.styleable.ContactFilterToolbar_cfv_background, -1);
+    if (backgroundRes != -1) {
+      findViewById(R.id.background_holder).setBackgroundResource(backgroundRes);
+    }
+
     attributes.recycle();
   }
 
@@ -135,6 +145,10 @@ public final class ContactFilterView extends FrameLayout {
 
   public void setOnFilterChangedListener(OnFilterChangedListener listener) {
     this.listener = listener;
+  }
+
+  public void setOnSearchInputFocusChangedListener(@Nullable OnFocusChangeListener listener) {
+    searchText.setOnFocusChangeListener(listener);
   }
 
   public void setHint(@StringRes int hint) {

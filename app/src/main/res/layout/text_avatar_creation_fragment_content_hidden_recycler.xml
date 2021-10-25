@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/avatar_picker_image_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/avatar_picker_item_image"
+            android:layout_width="@dimen/avatar_picker_image_width"
+            android:layout_height="@dimen/avatar_picker_image_width"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/circle_tintable"
+            android:contentDescription="@string/AvatarPickerFragment__avatar_preview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="#DEE3FF" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+            android:id="@+id/avatar_picker_item_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:inputType="textCapCharacters"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_picker_item_image"
+            app:layout_constraintEnd_toEndOf="@id/avatar_picker_item_image"
+            app:layout_constraintStart_toStartOf="@id/avatar_picker_item_image"
+            app:layout_constraintTop_toTopOf="@id/avatar_picker_item_image"
+            app:emoji_forceCustom="true"
+            tools:ignore="SpUsage"
+            tools:text="AF" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/text_avatar_creation_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="80dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="326dp"
+        app:layout_constraintHeight_min="160dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatar_picker_image_wrapper"
+        app:spanCount="4"
+        tools:itemCount="12"
+        tools:listitem="@layout/avatar_picker_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

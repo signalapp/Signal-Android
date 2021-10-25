@@ -31,6 +31,8 @@ class ChatColors private constructor(
   private val singleColor: Int?
 ) {
 
+  fun isGradient(): Boolean = Build.VERSION.SDK_INT >= 21 && linearGradient != null
+
   /**
    * Returns the Drawable to render the linear gradient, or null if this ChatColors is a single color.
    */

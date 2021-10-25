@@ -14,7 +14,6 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.annotation.RequiresApi
-import org.thoughtcrime.securesms.components.AvatarImageView
 
 private const val POSITION_ON_SCREEN = "signal.circleavatartransition.positiononscreen"
 private const val WIDTH = "signal.circleavatartransition.width"
@@ -36,7 +35,7 @@ class CircleAvatarTransition(context: Context, attrs: AttributeSet?) : Transitio
   private fun captureValues(transitionValues: TransitionValues) {
     val view: View = transitionValues.view
 
-    if (view is AvatarImageView) {
+    if (view.transitionName == "avatar") {
       val topLeft = intArrayOf(0, 0)
       view.getLocationOnScreen(topLeft)
       transitionValues.values[POSITION_ON_SCREEN] = topLeft
@@ -51,7 +50,7 @@ class CircleAvatarTransition(context: Context, attrs: AttributeSet?) : Transitio
     }
 
     val view: View = endValues.view
-    if (view !is AvatarImageView || view.transitionName != "avatar") {
+    if (view.transitionName != "avatar") {
       return null
     }
 

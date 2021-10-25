@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -65,6 +66,10 @@ public class NullMessageSendJob extends BaseJob {
     if (recipient.isGroup()) {
       Log.w(TAG, "Groups are not supported!");
       return;
+    }
+
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " not registered!");
     }
 
     SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();

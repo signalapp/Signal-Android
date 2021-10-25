@@ -26,8 +26,8 @@
             android:layout_marginStart="12dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:background="@color/white"
-            android:textColor="@color/core_ultramarine"
+            android:background="@color/signal_background_primary"
+            android:textColor="@color/signal_text_primary_dialog"
             style="@style/Signal.Text.Caption"
             tools:text="Profile Name"/>
 

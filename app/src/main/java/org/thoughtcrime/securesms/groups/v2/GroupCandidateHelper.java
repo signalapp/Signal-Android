@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupCandidate;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 
@@ -60,7 +61,7 @@ public final class GroupCandidateHelper {
       if (profileKey != null) {
         Log.i(TAG, String.format("No profile key credential on recipient %s, fetching", recipient.getId()));
 
-        Optional<ProfileKeyCredential> profileKeyCredentialOptional = signalServiceAccountManager.resolveProfileKeyCredential(uuid, profileKey);
+        Optional<ProfileKeyCredential> profileKeyCredentialOptional = signalServiceAccountManager.resolveProfileKeyCredential(uuid, profileKey, Locale.getDefault());
 
         if (profileKeyCredentialOptional.isPresent()) {
           boolean updatedProfileKey = recipientDatabase.setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());

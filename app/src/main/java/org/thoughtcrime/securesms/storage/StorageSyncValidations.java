@@ -145,7 +145,7 @@ public final class StorageSyncValidations {
 
       if (insert.getContact().isPresent()) {
         SignalServiceAddress address = insert.getContact().get().getAddress();
-        if (self.getE164().get().equals(address.getNumber().or("")) || self.getUuid().get().equals(address.getUuid().orNull())) {
+        if (self.getE164().get().equals(address.getNumber().or("")) || self.getUuid().get().equals(address.getUuid())) {
           throw new SelfAddedAsContactError();
         }
       }

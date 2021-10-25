@@ -103,12 +103,12 @@ public class StickerDatabase extends Database {
     contentValues.put(FILE_LENGTH, fileInfo.getLength());
     contentValues.put(FILE_RANDOM, fileInfo.getRandom());
 
-    long id = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
+    long id = databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, contentValues);
     if (id == -1) {
       String   selection = PACK_ID + " = ? AND " + STICKER_ID + " = ? AND " + COVER + " = ?";
       String[] args      = SqlUtil.buildArgs(sticker.getPackId(), sticker.getStickerId(), (sticker.isCover() ? 1 : 0));
 
-      id = databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, selection, args);
+      id = databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues, selection, args);
     }
 
     if (id > 0) {
@@ -128,7 +128,7 @@ public class StickerDatabase extends Database {
     String   selection = PACK_ID + " = ? AND " + STICKER_ID + " = ? AND " + COVER + " = ?";
     String[] args      = new String[] { packId, String.valueOf(stickerId), String.valueOf(isCover ? 1 : 0) };
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, "1")) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, "1")) {
       return new StickerRecordReader(cursor).getNext();
     }
   }
@@ -137,7 +137,7 @@ public class StickerDatabase extends Database {
     String   query = PACK_ID + " = ? AND " + COVER + " = ?";
     String[] args  = new String[] { packId, "1" };
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null, "1")) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null, "1")) {
       return new StickerPackRecordReader(cursor).getNext();
     }
   }
@@ -145,7 +145,7 @@ public class StickerDatabase extends Database {
   public @Nullable Cursor getInstalledStickerPacks() {
     String   selection = COVER + " = ? AND " + INSTALLED + " = ?";
     String[] args      = new String[] { "1", "1" };
-    Cursor   cursor    = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, PACK_ORDER + " ASC");
+    Cursor   cursor    = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, PACK_ORDER + " ASC");
 
     setNotifyStickerPackListeners(cursor);
     return cursor;
@@ -155,7 +155,7 @@ public class StickerDatabase extends Database {
     String   selection = EMOJI + " LIKE ? AND " + COVER + " = ?";
     String[] args      = new String[] { "%"+emoji+"%", "0" };
 
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null);
+    Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null);
     setNotifyStickerListeners(cursor);
 
     return cursor;
@@ -168,14 +168,14 @@ public class StickerDatabase extends Database {
   public @Nullable Cursor getAllStickerPacks(@Nullable String limit) {
     String   query  = COVER + " = ?";
     String[] args   = new String[] { "1" };
-    Cursor   cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC", limit);
+    Cursor   cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC", limit);
     setNotifyStickerPackListeners(cursor);
 
     return cursor;
   }
 
   public @Nullable Cursor getStickersForPack(@NonNull String packId) {
-    SQLiteDatabase db        = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String         selection = PACK_ID + " = ? AND " + COVER + " = ?";
     String[]       args      = new String[] { packId, "0" };
 
@@ -186,7 +186,7 @@ public class StickerDatabase extends Database {
   }
 
   public @Nullable Cursor getRecentlyUsedStickers(int limit) {
-    SQLiteDatabase db        = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String         selection = LAST_USED + " > ? AND " + COVER + " = ?";
     String[]       args      = new String[] { "0", "0" };
 
@@ -197,7 +197,7 @@ public class StickerDatabase extends Database {
   }
 
   public @NonNull Set<String> getAllStickerFiles() {
-    SQLiteDatabase db        = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
 
     Set<String> files = new HashSet<>();
     try (Cursor cursor = db.query(TABLE_NAME, new String[] { FILE_PATH }, null, null, null, null, null)) {
@@ -213,7 +213,7 @@ public class StickerDatabase extends Database {
     String   selection = _ID + " = ?";
     String[] args      = new String[] { String.valueOf(rowId) };
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null)) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null)) {
       if (cursor != null && cursor.moveToNext()) {
         String path   = cursor.getString(cursor.getColumnIndexOrThrow(FILE_PATH));
         byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(FILE_RANDOM));
@@ -248,19 +248,19 @@ public class StickerDatabase extends Database {
 
     values.put(LAST_USED, lastUsed);
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, values, selection, args);
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, values, selection, args);
 
     notifyStickerListeners();
     notifyStickerPackListeners();
   }
 
   public void markPackAsInstalled(@NonNull String packKey, boolean notify) {
-    updatePackInstalled(databaseHelper.getWritableDatabase(), packKey, true, notify);
+    updatePackInstalled(databaseHelper.getSignalWritableDatabase(), packKey, true, notify);
     notifyStickerPackListeners();
   }
 
   public void deleteOrphanedPacks() {
-    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db    = databaseHelper.getSignalWritableDatabase();
     String         query = "SELECT " + PACK_ID + " FROM " + TABLE_NAME + " WHERE " + INSTALLED + " = ? AND " +
                            PACK_ID + " NOT IN (" +
                              "SELECT DISTINCT " + AttachmentDatabase.STICKER_PACK_ID + " FROM " + AttachmentDatabase.TABLE_NAME + " " +
@@ -296,7 +296,7 @@ public class StickerDatabase extends Database {
   }
 
   public void uninstallPack(@NonNull String packId) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     db.beginTransaction();
     try {
@@ -312,7 +312,7 @@ public class StickerDatabase extends Database {
   }
 
   public void updatePackOrder(@NonNull List<StickerPackRecord> packsInOrder) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     db.beginTransaction();
     try {

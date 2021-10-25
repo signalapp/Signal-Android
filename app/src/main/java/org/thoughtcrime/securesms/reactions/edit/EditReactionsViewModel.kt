@@ -2,8 +2,13 @@ package org.thoughtcrime.securesms.reactions.edit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import org.signal.core.util.concurrent.SignalExecutors
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.EmojiValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -37,6 +42,11 @@ class EditReactionsViewModel : ViewModel() {
 
   fun save() {
     emojiValues.reactions = store.state.reactions
+
+    SignalExecutors.BOUNDED.execute {
+      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
   }
 
   companion object {

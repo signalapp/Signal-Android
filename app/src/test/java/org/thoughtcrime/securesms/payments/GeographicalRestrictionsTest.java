@@ -34,12 +34,6 @@ public final class GeographicalRestrictionsTest {
   }
 
   @Test
-  public void us_allowed_in_debug() {
-    assumeTrue(BuildConfig.DEBUG);
-    assertTrue(GeographicalRestrictions.e164Allowed("+15407011234"));
-  }
-
-  @Test
   public void us_not_allowed_in_release() {
     assumeFalse(BuildConfig.DEBUG);
     assertFalse(GeographicalRestrictions.e164Allowed("+15407011234"));
