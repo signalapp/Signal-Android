@@ -8,7 +8,9 @@
     android:layout_weight="1"
     android:paddingTop="12dp"
     android:paddingBottom="12dp"
-    android:gravity="center"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp"
+    android:gravity="center_horizontal"
     android:background="?selectableItemBackgroundBorderless">
 
     <ImageView
@@ -23,6 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:ellipsize="end"
         tools:text="Archive"/>
 
 
