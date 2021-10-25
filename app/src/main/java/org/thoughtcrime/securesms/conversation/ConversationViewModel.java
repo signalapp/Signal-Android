@@ -188,7 +188,13 @@ public class ConversationViewModel extends ViewModel {
   void onMessagesCommitted(@NonNull List<ConversationMessage> conversationMessages) {
     if (Util.hasItems(conversationMessages)) {
       threadAnimationStateStore.update(state -> {
-        if (state.getThreadId() == conversationMessages.get(0).getMessageRecord().getThreadId()) {
+        long threadId = conversationMessages.stream()
+                                            .filter(Objects::nonNull)
+                                            .findFirst()
+                                            .map(c -> c.getMessageRecord().getThreadId())
+                                            .orElse(-2L);
+
+        if (state.getThreadId() == threadId) {
           return state.copy(state.getThreadId(), state.getThreadMetadata(), true);
         } else {
           return state;
