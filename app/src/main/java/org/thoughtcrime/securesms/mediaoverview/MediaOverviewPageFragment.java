@@ -320,13 +320,13 @@ public final class MediaOverviewPageFragment extends Fragment
       int selectionCount = getListAdapter().getSectionCount();
 
       bottomActionBar.setItems(Arrays.asList(
-          new ActionItem(R.drawable.ic_save_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_save, selectionCount), () -> {
+          new ActionItem(R.drawable.ic_save_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_save_plural, selectionCount), () -> {
             MediaActions.handleSaveMedia(MediaOverviewPageFragment.this,
                                          getListAdapter().getSelectedMedia(),
                                          this::exitMultiSelect);
           }),
           new ActionItem(R.drawable.ic_select_24, getString(R.string.MediaOverviewActivity_select_all), this::handleSelectAllMedia),
-          new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete, selectionCount), () -> {
+          new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete_plural, selectionCount), () -> {
             MediaActions.handleDeleteMedia(requireContext(), getListAdapter().getSelectedMedia());
             exitMultiSelect();
           })
