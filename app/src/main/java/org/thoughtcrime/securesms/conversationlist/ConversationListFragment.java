@@ -1338,6 +1338,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       if (viewHolder.itemView instanceof ConversationListItemAction      ||
           viewHolder instanceof ConversationListAdapter.HeaderViewHolder ||
           actionMode != null                                             ||
+          viewHolder.itemView.isSelected()                               ||
           activeAdapter == searchAdapter)
       {
         return 0;
