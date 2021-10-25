@@ -338,16 +338,7 @@
     <item quantity="many">%d שיחות הועברו לתיבה הנכנסת</item>
     <item quantity="other">%d שיחות הועברו לתיבה הנכנסת</item>
   </plurals>
-  <string name="ConversationListFragment_read">נקרא</string>
-  <string name="ConversationListFragment_unread">לא נקרא</string>
-  <string name="ConversationListFragment_pin">הצמד</string>
-  <string name="ConversationListFragment_unpin">בטל הצמדה</string>
-  <string name="ConversationListFragment_mute">השתק</string>
-  <string name="ConversationListFragment_unmute">בטל השתקה</string>
   <string name="ConversationListFragment_select">בחר</string>
-  <string name="ConversationListFragment_archive">ארכב</string>
-  <string name="ConversationListFragment_unarchive">הוצא מארכיון</string>
-  <string name="ConversationListFragment_delete">מחק</string>
   <string name="ConversationListFragment_select_all">בחר הכל</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתחות</string>
@@ -887,9 +878,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">תצוגת סורג</string>
   <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
   <string name="MediaOverviewActivity_Selected_description">נבחר</string>
-  <string name="MediaOverviewActivity_save">שמור</string>
   <string name="MediaOverviewActivity_select_all">בחר הכל</string>
-  <string name="MediaOverviewActivity_delete">מחק</string>
   <string name="MediaOverviewActivity_file">קובץ</string>
   <string name="MediaOverviewActivity_audio">שמע</string>
   <string name="MediaOverviewActivity_video">סרטון</string>

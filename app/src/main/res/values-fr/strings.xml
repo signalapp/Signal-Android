@@ -316,16 +316,35 @@
     <item quantity="one">La conversation a été déplacée vers la boîte de réception</item>
     <item quantity="other">%d conversations ont été déplacées vers la boîte de réception</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lu</string>
-  <string name="ConversationListFragment_unread">Non lu</string>
-  <string name="ConversationListFragment_pin">Épingler</string>
-  <string name="ConversationListFragment_unpin">Désépingler</string>
-  <string name="ConversationListFragment_mute">Sourdine</string>
-  <string name="ConversationListFragment_unmute">Réactiver les notifications</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Lu</item>
+    <item quantity="other">Lus</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Non lu</item>
+    <item quantity="other">Non lus</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Épinglé</item>
+    <item quantity="other">Épinglés</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Désépinglé</item>
+    <item quantity="other">Désépinglés</item>
+  </plurals>
   <string name="ConversationListFragment_select">Sélectionner</string>
-  <string name="ConversationListFragment_archive">Archiver</string>
-  <string name="ConversationListFragment_unarchive">Désarchiver</string>
-  <string name="ConversationListFragment_delete">Supprimer</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archivé</item>
+    <item quantity="other">Archivés</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Désarchivé</item>
+    <item quantity="other">Désarchivés</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Supprimé</item>
+    <item quantity="other">Supprimés</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Tout sélectionner</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d sélectionnée</item>
@@ -811,9 +830,15 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vue en grille</string>
   <string name="MediaOverviewActivity_List_view_description">Vue en liste</string>
   <string name="MediaOverviewActivity_Selected_description">Sélectionné</string>
-  <string name="MediaOverviewActivity_save">Enregistrer</string>
   <string name="MediaOverviewActivity_select_all">Tout sélectionner</string>
-  <string name="MediaOverviewActivity_delete">Supprimer</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Enregistré</item>
+    <item quantity="other">Enregistrés</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Supprimé</item>
+    <item quantity="other">Supprimés</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fichier</string>
   <string name="MediaOverviewActivity_audio">Son</string>
   <string name="MediaOverviewActivity_video">Vidéo</string>

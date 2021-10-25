@@ -307,16 +307,7 @@
     <item quantity="one">Senkez adiwenni ɣer tbewwaḍt n urmas</item>
     <item quantity="other">Senkez %d n yidiwenniyen ɣer tnaka n urmas</item>
   </plurals>
-  <string name="ConversationListFragment_read">Γaṛ</string>
-  <string name="ConversationListFragment_unread">Ur ittwaγṛi ara</string>
-  <string name="ConversationListFragment_pin">Amessak</string>
-  <string name="ConversationListFragment_unpin">Fsi</string>
-  <string name="ConversationListFragment_mute">Kkes imesli</string>
-  <string name="ConversationListFragment_unmute">Err imesli</string>
   <string name="ConversationListFragment_select">Fren</string>
-  <string name="ConversationListFragment_archive">Tarcivt</string>
-  <string name="ConversationListFragment_unarchive">Kkes aɣbar</string>
-  <string name="ConversationListFragment_delete">Kkes</string>
   <string name="ConversationListFragment_select_all">Fren akk</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Izen n umyibdel n tsura</string>
@@ -788,9 +779,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tamuɣli s tracca</string>
   <string name="MediaOverviewActivity_List_view_description">Timeẓri n tebdart</string>
   <string name="MediaOverviewActivity_Selected_description">Yettwafren</string>
-  <string name="MediaOverviewActivity_save">Sekles</string>
   <string name="MediaOverviewActivity_select_all">Fren akk</string>
-  <string name="MediaOverviewActivity_delete">Kkes</string>
   <string name="MediaOverviewActivity_file">Afaylu</string>
   <string name="MediaOverviewActivity_audio">Ameslaw</string>
   <string name="MediaOverviewActivity_video">Avidyu</string>

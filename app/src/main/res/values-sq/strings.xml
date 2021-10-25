@@ -316,16 +316,7 @@
     <item quantity="one">Biseda u shpu te të marrat</item>
     <item quantity="other">%d biseda u shpunë te të marrat</item>
   </plurals>
-  <string name="ConversationListFragment_read">U lexua</string>
-  <string name="ConversationListFragment_unread">I palexuar</string>
-  <string name="ConversationListFragment_pin">Fiksoje</string>
-  <string name="ConversationListFragment_unpin">Hiqja fiksimin</string>
-  <string name="ConversationListFragment_mute">Heshtoje</string>
-  <string name="ConversationListFragment_unmute">Çheshtoji</string>
   <string name="ConversationListFragment_select">Përzgjidhni</string>
-  <string name="ConversationListFragment_archive">Arkiv</string>
-  <string name="ConversationListFragment_unarchive">Çarkivoje</string>
-  <string name="ConversationListFragment_delete">Fshije</string>
   <string name="ConversationListFragment_select_all">Përzgjidhi krejt</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d i përzgjedhur</item>
@@ -815,9 +806,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MediaOverviewActivity_Grid_view_description">Pamje rrjetë</string>
   <string name="MediaOverviewActivity_List_view_description">Pamje listë</string>
   <string name="MediaOverviewActivity_Selected_description">Të përzgjedhura</string>
-  <string name="MediaOverviewActivity_save">Ruaje</string>
   <string name="MediaOverviewActivity_select_all">Përzgjidhi krejt</string>
-  <string name="MediaOverviewActivity_delete">Fshije</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d i përzgjedhur (%2$s)</item>
     <item quantity="other">%1$d të përzgjedhur (%2$s)</item>

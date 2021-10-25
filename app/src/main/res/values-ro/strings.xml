@@ -327,16 +327,52 @@
     <item quantity="few">%d conversații au fost mutate în inbox</item>
     <item quantity="other">%d conversații au fost mutate în inbox</item>
   </plurals>
-  <string name="ConversationListFragment_read">Citit</string>
-  <string name="ConversationListFragment_unread">Necitit</string>
-  <string name="ConversationListFragment_pin">Fixare</string>
-  <string name="ConversationListFragment_unpin">Anulați fixarea</string>
-  <string name="ConversationListFragment_mute">Silențios</string>
-  <string name="ConversationListFragment_unmute">Activare sunet notificări</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Citit</item>
+    <item quantity="few">Citite</item>
+    <item quantity="other">Citite</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Necitit</item>
+    <item quantity="few">Necitite</item>
+    <item quantity="other">Necitite</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fixare</item>
+    <item quantity="few">Fixare</item>
+    <item quantity="other">Fixare</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Anulați fixarea</item>
+    <item quantity="few">Anulați fixarea</item>
+    <item quantity="other">Anulați fixarea</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Silențios</item>
+    <item quantity="few">Silențios</item>
+    <item quantity="other">Silențios</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Activare notificări</item>
+    <item quantity="few">Activare notificări</item>
+    <item quantity="other">Activare notificări</item>
+  </plurals>
   <string name="ConversationListFragment_select">Selectează</string>
-  <string name="ConversationListFragment_archive">Arhivează</string>
-  <string name="ConversationListFragment_unarchive">Dezarhivează</string>
-  <string name="ConversationListFragment_delete">Șterge</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arhivează</item>
+    <item quantity="few">Arhivează</item>
+    <item quantity="other">Arhivează</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Dezarhivează</item>
+    <item quantity="few">Dezarhivează</item>
+    <item quantity="other">Dezarhivează</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Șterge</item>
+    <item quantity="few">Șterge</item>
+    <item quantity="other">Șterge</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Selectează tot</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d selectată</item>
@@ -852,9 +888,17 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vizualizare grilă</string>
   <string name="MediaOverviewActivity_List_view_description">Vizualizare listă</string>
   <string name="MediaOverviewActivity_Selected_description">Selectat</string>
-  <string name="MediaOverviewActivity_save">Salvează</string>
   <string name="MediaOverviewActivity_select_all">Selectează tot</string>
-  <string name="MediaOverviewActivity_delete">Șterge</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Salvează</item>
+    <item quantity="few">Salvează</item>
+    <item quantity="other">Salvează</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Șterge</item>
+    <item quantity="few">Șterge</item>
+    <item quantity="other">Șterge</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d selectat (%2$s)</item>
     <item quantity="few">%1$d selectate (%2$s)</item>

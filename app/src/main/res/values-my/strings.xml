@@ -297,16 +297,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ပြောစကား %d ကို စာပုံးထဲသို့ရွေ့သည်</item>
   </plurals>
-  <string name="ConversationListFragment_read">ဖတ်ပြီး</string>
-  <string name="ConversationListFragment_unread">မဖတ်ရသေး</string>
-  <string name="ConversationListFragment_pin">မှတ်ထားမယ်</string>
-  <string name="ConversationListFragment_unpin">ဖြုတ်မယ်</string>
-  <string name="ConversationListFragment_mute">အသံတိတ်ထားမည်</string>
-  <string name="ConversationListFragment_unmute">အသံပြန်ဖွင့်မယ်</string>
   <string name="ConversationListFragment_select">ရွေးမယ်</string>
-  <string name="ConversationListFragment_archive">မှတ်တမ်း </string>
-  <string name="ConversationListFragment_unarchive">မှတ်တမ်းထဲမှ ပြန်ထုတ်ပါ</string>
-  <string name="ConversationListFragment_delete">ဖျက်မယ်</string>
   <string name="ConversationListFragment_select_all">အားလုံးကို ရွေးမယ်</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ကီးအလဲအလှယ် စာသား</string>
@@ -748,9 +739,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">အကွက်လိုက် ကြည့်ရန်</string>
   <string name="MediaOverviewActivity_List_view_description">စာရင်းလိုက်ကြည့်ရန်</string>
   <string name="MediaOverviewActivity_Selected_description">ရွေးချယ်ထားသော</string>
-  <string name="MediaOverviewActivity_save">သိမ်းမယ်</string>
   <string name="MediaOverviewActivity_select_all">အားလုံးကို ရွေးမယ်</string>
-  <string name="MediaOverviewActivity_delete">ဖျက်မယ်</string>
   <string name="MediaOverviewActivity_file">ဖိုင်</string>
   <string name="MediaOverviewActivity_audio">အသံ</string>
   <string name="MediaOverviewActivity_video">ဗီဒီယို</string>

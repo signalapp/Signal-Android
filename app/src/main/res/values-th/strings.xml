@@ -305,16 +305,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ย้าย %d การสนทนาไปยังกล่องขาเข้า</item>
   </plurals>
-  <string name="ConversationListFragment_read">อ่านแล้ว</string>
-  <string name="ConversationListFragment_unread">ตั้งเป็นยังไม่อ่าน</string>
-  <string name="ConversationListFragment_pin">ปักหมุด</string>
-  <string name="ConversationListFragment_unpin">เลิกปักหมุด</string>
-  <string name="ConversationListFragment_mute">ปิดเสียง</string>
-  <string name="ConversationListFragment_unmute">เปิดเสียง</string>
   <string name="ConversationListFragment_select">เลือก</string>
-  <string name="ConversationListFragment_archive">ที่เก็บถาวร</string>
-  <string name="ConversationListFragment_unarchive">นำออกจากที่เก็บถาวร</string>
-  <string name="ConversationListFragment_delete">ลบ</string>
   <string name="ConversationListFragment_select_all">เลือกทั้งหมด</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนกุญแจ</string>
@@ -764,9 +755,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">แสดงข้อมูลแบบตาราง</string>
   <string name="MediaOverviewActivity_List_view_description">แสดงข้อมูลแบบแถว</string>
   <string name="MediaOverviewActivity_Selected_description">ถูกเลือก</string>
-  <string name="MediaOverviewActivity_save">บันทึก</string>
   <string name="MediaOverviewActivity_select_all">เลือกทั้งหมด</string>
-  <string name="MediaOverviewActivity_delete">ลบ</string>
   <string name="MediaOverviewActivity_file">แฟ้ม</string>
   <string name="MediaOverviewActivity_audio">เสียง</string>
   <string name="MediaOverviewActivity_video">วิดีโอ</string>

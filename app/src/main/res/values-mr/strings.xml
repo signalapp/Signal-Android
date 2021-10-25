@@ -316,16 +316,7 @@
     <item quantity="one">संभाषण इनबॉक्स मध्ये हलवले</item>
     <item quantity="other">%d संभाषण इनबॉक्स मध्ये हलवली</item>
   </plurals>
-  <string name="ConversationListFragment_read">वाचले</string>
-  <string name="ConversationListFragment_unread">वाचले नाही</string>
-  <string name="ConversationListFragment_pin">पिन करा</string>
-  <string name="ConversationListFragment_unpin">अनपिन करा</string>
-  <string name="ConversationListFragment_mute">म्यूट करा</string>
-  <string name="ConversationListFragment_unmute">अनम्यूट करा</string>
   <string name="ConversationListFragment_select">निवडा</string>
-  <string name="ConversationListFragment_archive">आर्काइव्ह</string>
-  <string name="ConversationListFragment_unarchive">अनआर्काईव्ह</string>
-  <string name="ConversationListFragment_delete">हटवा</string>
   <string name="ConversationListFragment_select_all">सर्व निवडा</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d निवडले</item>
@@ -810,9 +801,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">ग्रिड दृश्य</string>
   <string name="MediaOverviewActivity_List_view_description">यादी दृश्य</string>
   <string name="MediaOverviewActivity_Selected_description">निवडलेले</string>
-  <string name="MediaOverviewActivity_save">जतन करा</string>
   <string name="MediaOverviewActivity_select_all">सर्व निवडा</string>
-  <string name="MediaOverviewActivity_delete">हटवा</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d निवडले (%2$s)</item>
     <item quantity="other">%1$d निवडले (%2$s)</item>
@@ -843,9 +832,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगती मध्ये</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
   <string name="NotificationBarManager__incoming_signal_call">येणारा Signal कॉल</string>
-  <string name="NotificationBarManager__incoming_signal_group_call">येणारे Signal गट काॅल</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">येणारा Signal गट कॉल</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद करत आहे</string>
-  <string name="NotificationBarManager__decline_call">कॉल नाकारा</string>
+  <string name="NotificationBarManager__decline_call">नकार द्या</string>
   <string name="NotificationBarManager__answer_call">कॉलला उत्तर द्या</string>
   <string name="NotificationBarManager__end_call">कॉल संपवा</string>
   <string name="NotificationBarManager__cancel_call">कॉल रद्द करा</string>
@@ -1221,7 +1210,7 @@
   <string name="WebRtcCallView__reconnecting">पुनःकनेक्ट करत आहे…</string>
   <string name="WebRtcCallView__joining">सामील होत आहे…</string>
   <string name="WebRtcCallView__disconnected">डिसकनेक्ट झाले</string>
-  <string name="WebRtcCallView__s_will_be_notified">%1$s ला अधिसूचित केले जाईल </string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s ला सुचित केले जाईल </string>
   <string name="WebRtcCallView__s_is_calling_you">%1$s तुम्हाला काॅल करत आहे</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s तुम्हाला, %2$s, %3$s आणि इतर %4$d जणांना काॅल करत आहे</item>
@@ -1571,7 +1560,7 @@
   <string name="WebRtcCallScreen_swipe_up_to_change_views">दृश्य बदल्ण्यासाठी वर स्वाइप करा</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">नकार द्या</string>
-  <string name="WebRtcCallScreen__answer">उत्तर</string>
+  <string name="WebRtcCallScreen__answer">उत्तर द्या</string>
   <string name="WebRtcCallScreen__answer_without_video">विना व्हिडिओ उत्तर द्या</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">ऑडिओ आउटपुट</string>
@@ -1833,13 +1822,13 @@
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">काही समस्यांकडे आपण लक्ष देण्याची गरज आहे.</string>
   <string name="message_details_header__sent">पाठवले :</string>
-  <string name="message_details_header__received">प्राप्त झाले :</string>
+  <string name="message_details_header__received">प्राप्त :</string>
   <string name="message_details_header__disappears">नाहिसे होणार :</string>
   <string name="message_details_header__via">द्वारे :</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">प्रलंबित</string>
   <string name="message_details_recipient_header__sent_to">याला पाठवले</string>
-  <string name="message_details_recipient_header__sent_from">यावरून पाठवले</string>
+  <string name="message_details_recipient_header__sent_from">याने पाठवले</string>
   <string name="message_details_recipient_header__delivered_to">याला पोहोचवले</string>
   <string name="message_details_recipient_header__read_by">याने वाचले</string>
   <string name="message_details_recipient_header__not_sent">पाठवलेले नाही</string>
@@ -2999,6 +2988,7 @@
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 खाली परवानाधारक</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">मिडिया दर्जा</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">मिडिया पाठवण्याचा दर्जा</string>
   <string name="DataAndStorageSettingsFragment__high">उंच</string>
   <string name="DataAndStorageSettingsFragment__standard">मानक</string>
   <string name="DataAndStorageSettingsFragment__calls">कॉल</string>

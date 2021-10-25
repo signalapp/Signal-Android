@@ -313,13 +313,7 @@
     <item quantity="one">Преместен разговор във входяща кутия</item>
     <item quantity="other">Преместени %d разговора във входящата кутия</item>
   </plurals>
-  <string name="ConversationListFragment_read">Прочетено</string>
-  <string name="ConversationListFragment_mute">Заглуши</string>
-  <string name="ConversationListFragment_unmute">Изключи тих режим</string>
   <string name="ConversationListFragment_select">Изберете</string>
-  <string name="ConversationListFragment_archive">Архив</string>
-  <string name="ConversationListFragment_unarchive">Разархивиране</string>
-  <string name="ConversationListFragment_delete">Изтрий</string>
   <string name="ConversationListFragment_select_all">Избери всичко</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за Изменя на ключожете</string>
@@ -800,9 +794,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Изглед на мрежа</string>
   <string name="MediaOverviewActivity_List_view_description">Изглед на списък</string>
   <string name="MediaOverviewActivity_Selected_description">Избрани</string>
-  <string name="MediaOverviewActivity_save">Запази</string>
   <string name="MediaOverviewActivity_select_all">Избери всичко</string>
-  <string name="MediaOverviewActivity_delete">Изтрий</string>
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>

@@ -316,16 +316,43 @@
     <item quantity="one">Unterhaltung in Eingang verschoben</item>
     <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
   </plurals>
-  <string name="ConversationListFragment_read">Gelesen</string>
-  <string name="ConversationListFragment_unread">Ungelesen</string>
-  <string name="ConversationListFragment_pin">Anheften</string>
-  <string name="ConversationListFragment_unpin">Lösen</string>
-  <string name="ConversationListFragment_mute">Stumm</string>
-  <string name="ConversationListFragment_unmute">Stummschaltung aufheben</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Gelesen</item>
+    <item quantity="other">Gelesen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ungelesen</item>
+    <item quantity="other">Ungelesen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Anheften</item>
+    <item quantity="other">Anheften</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Lösen</item>
+    <item quantity="other">Lösen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Stumm</item>
+    <item quantity="other">Stumm</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Stummschaltung aufheben</item>
+    <item quantity="other">Stummschaltung aufheben</item>
+  </plurals>
   <string name="ConversationListFragment_select">Auswählen</string>
-  <string name="ConversationListFragment_archive">Archivieren</string>
-  <string name="ConversationListFragment_unarchive">In Eingang verschieben</string>
-  <string name="ConversationListFragment_delete">Löschen</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archivieren</item>
+    <item quantity="other">Archivieren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">In Eingang verschieben</item>
+    <item quantity="other">In Eingang verschieben</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Löschen</item>
+    <item quantity="other">Löschen</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Alle auswählen</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d ausgewählt</item>
@@ -811,9 +838,15 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
-  <string name="MediaOverviewActivity_save">Speichern</string>
   <string name="MediaOverviewActivity_select_all">Alle auswählen</string>
-  <string name="MediaOverviewActivity_delete">Löschen</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Speichern</item>
+    <item quantity="other">Speichern</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Löschen</item>
+    <item quantity="other">Löschen</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d ausgewählt (%2$s)</item>
     <item quantity="other">%1$d ausgewählt (%2$s)</item>
@@ -3277,13 +3310,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dir wird heute der volle Betrag des neuen Spendenbeitrags in Rechnung gestellt. Deine Dauerspende wird verlängert %1$s.</string>
   <string name="Subscription__s_per_month">%s/Monat</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/Monat · Verlängert %2$s</string>
-  <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat  · Läuft ab %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat · Läuft ab %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ist eine Non-Profit-Organisation ohne Werbetreibende oder Investoren, die von den Menschen unterstützt wird, die es nutzen und schätzen. Leiste eine wiederkehrenden monatlichen Beitrag und erhalte ein Profil-Abzeichen, um deine Unterstützung zu teilen. </string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat sich der Mission verschrieben, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag unterstützt diese Sache. Keine Werbung. Keine Tracker. Im Ernst.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu bezahlen, die von Millionen auf der ganzen Welt für die private und sofortige Kommunikation verwendet wird.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für den Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für deine Spende!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du den Personen, mit denen du chattest, dass du Signal unterstützt.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
@@ -3295,7 +3328,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ManageDonationsFragment__subscription_faq">Dauerspende FAQ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fehler beim Abrufen der Dauerspende.</string>
   <string name="BoostFragment__give_signal_a_boost">Gib Signal einen Boost</string>
-  <string name="BoostFragment__say_thanks_and_earn">Sag \"Danke!\" und erhalte ein Boost-Abzeichen für %1$dTage.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Sag \"Danke!\" und erhalte das Boost-Abzeichen für %1$d Tage.</string>
   <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
   <string name="Boost__one_time_contribution">Einmaliger Betrag</string>
   <string name="MySupportPreference__add_a_signal_boost">Eine einmalige Spende tätigen</string>
@@ -3312,7 +3345,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Subscription__earn_a_s_badge">Erhalte ein %1$s Abzeichen</string>
   <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
   <string name="DonationsErrors__payment_failed">Zahlung gescheitert</string>
-  <string name="DonationsErrors__your_payment">Ihre Zahlung konnte nicht verarbeitet werden und wurde Ihnen nicht abgebucht. Bitte versuchen Sie es erneut.</string>
+  <string name="DonationsErrors__your_payment">Deine Zahlung konnte nicht verarbeitet werden und wurde nicht abgebucht. Bitte versuche es erneut.</string>
   <string name="DonationsErrors__redemption_still_pending">Einlösung noch ausstehend</string>
   <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Eventuell ist das Abzeichen nicht direkt sichtbar, aber wir arbeiten daran!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nicht verfügbar</string>

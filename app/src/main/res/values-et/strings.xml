@@ -313,16 +313,7 @@
     <item quantity="one">Vestlus postkasti liigutatud</item>
     <item quantity="other">%d vestlust postkasti liigutatud</item>
   </plurals>
-  <string name="ConversationListFragment_read">Loetud</string>
-  <string name="ConversationListFragment_unread">Mitteloetud</string>
-  <string name="ConversationListFragment_pin">Kinnita</string>
-  <string name="ConversationListFragment_unpin">Eemalda kinnitus</string>
-  <string name="ConversationListFragment_mute">Vaigista</string>
-  <string name="ConversationListFragment_unmute">Eemalda vaigistus</string>
   <string name="ConversationListFragment_select">Vali</string>
-  <string name="ConversationListFragment_archive">Arhiiv</string>
-  <string name="ConversationListFragment_unarchive">Eemalda arhiivist</string>
-  <string name="ConversationListFragment_delete">Kustuta</string>
   <string name="ConversationListFragment_select_all">Vali kõik</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
@@ -799,9 +790,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudustikvaade</string>
   <string name="MediaOverviewActivity_List_view_description">Nimekirjavaade</string>
   <string name="MediaOverviewActivity_Selected_description">Valitud</string>
-  <string name="MediaOverviewActivity_save">Salvesta</string>
   <string name="MediaOverviewActivity_select_all">Vali kõik</string>
-  <string name="MediaOverviewActivity_delete">Kustuta</string>
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>

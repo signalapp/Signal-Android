@@ -305,16 +305,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d件のチャットを受信ボックスに移動しました</item>
   </plurals>
-  <string name="ConversationListFragment_read">既読にする</string>
-  <string name="ConversationListFragment_unread">未読にする</string>
-  <string name="ConversationListFragment_pin">ピン留めする</string>
-  <string name="ConversationListFragment_unpin">ピン留め解除</string>
-  <string name="ConversationListFragment_mute">ミュート</string>
-  <string name="ConversationListFragment_unmute">ミュート解除</string>
   <string name="ConversationListFragment_select">選択</string>
-  <string name="ConversationListFragment_archive">アーカイブする</string>
-  <string name="ConversationListFragment_unarchive">受信箱に戻す</string>
-  <string name="ConversationListFragment_delete">削除</string>
   <string name="ConversationListFragment_select_all">すべて選択</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">%d件選択済み</item>
@@ -770,9 +761,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">グリッド表示</string>
   <string name="MediaOverviewActivity_List_view_description">リスト表示</string>
   <string name="MediaOverviewActivity_Selected_description">選択済み</string>
-  <string name="MediaOverviewActivity_save">保存</string>
   <string name="MediaOverviewActivity_select_all">すべて選択</string>
-  <string name="MediaOverviewActivity_delete">削除</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="other">%1$d件選択済み (%2$s)</item>
   </plurals>

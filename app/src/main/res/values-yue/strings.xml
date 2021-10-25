@@ -305,16 +305,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 個對話已經搬返去收件匣</item>
   </plurals>
-  <string name="ConversationListFragment_read">睇咗</string>
-  <string name="ConversationListFragment_unread">未睇</string>
-  <string name="ConversationListFragment_pin">置頂</string>
-  <string name="ConversationListFragment_unpin">唔使置頂</string>
-  <string name="ConversationListFragment_mute">沈默</string>
-  <string name="ConversationListFragment_unmute">解除沈默</string>
   <string name="ConversationListFragment_select">揀選</string>
-  <string name="ConversationListFragment_archive">封印</string>
-  <string name="ConversationListFragment_unarchive">解除封印</string>
-  <string name="ConversationListFragment_delete">刪除</string>
   <string name="ConversationListFragment_select_all">全部揀晒</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">揀選咗 %d 個</item>
@@ -770,9 +761,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">一格格顯示</string>
   <string name="MediaOverviewActivity_List_view_description">一行行顯示</string>
   <string name="MediaOverviewActivity_Selected_description">已揀選</string>
-  <string name="MediaOverviewActivity_save">儲存</string>
   <string name="MediaOverviewActivity_select_all">全部揀晒</string>
-  <string name="MediaOverviewActivity_delete">刪除</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="other">揀選咗 %1$d 個 (%2$s)</item>
   </plurals>

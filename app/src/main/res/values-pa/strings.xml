@@ -316,16 +316,7 @@
     <item quantity="one"> ਗੱਲਾਬਾਤਾਂ ਨੂੰ ਇਨਬਾਕਸ ਵਿੱਚ ਮੂਵ ਕੀਤਾ </item>
     <item quantity="other">%d ਗੱਲਬਾਤਾਂ ਨੂੰ ਇਨਬਾਕਸ ਵਿੱਚ ਭੇਜਿਆ</item>
   </plurals>
-  <string name="ConversationListFragment_read">ਪੜ੍ਹਿਆ ਗਿਆ</string>
-  <string name="ConversationListFragment_unread">ਨਾ-ਪੜ੍ਹੇ</string>
-  <string name="ConversationListFragment_pin">ਟੰਗੋ</string>
-  <string name="ConversationListFragment_unpin">ਲਾਹੋ</string>
-  <string name="ConversationListFragment_mute">ਚੁੱਪ</string>
-  <string name="ConversationListFragment_unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
   <string name="ConversationListFragment_select">ਚੁਣੋ</string>
-  <string name="ConversationListFragment_archive">ਆਰਕਾਈਵ ਕਰੋ</string>
-  <string name="ConversationListFragment_unarchive">ਅਨਆਰਕਾਈਵ ਕਰੋ</string>
-  <string name="ConversationListFragment_delete">ਹਟਾਓ</string>
   <string name="ConversationListFragment_select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ਮੁੱਖ ਐਕਸਚੇਂਜ ਸੁਨੇਹਾ</string>
@@ -807,9 +798,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">ਗਰਿੱਡ ਝਲਕ</string>
   <string name="MediaOverviewActivity_List_view_description">ਸੂਚੀ ਦ੍ਰਿਸ਼</string>
   <string name="MediaOverviewActivity_Selected_description">ਚੁਣਿਆ ਹੋਇਆ</string>
-  <string name="MediaOverviewActivity_save">ਸੰਭਾਲੋ</string>
   <string name="MediaOverviewActivity_select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
-  <string name="MediaOverviewActivity_delete">ਹਟਾਓ</string>
   <string name="MediaOverviewActivity_file">ਫ਼ਾਈਲ</string>
   <string name="MediaOverviewActivity_audio">ਆਡੀਓ</string>
   <string name="MediaOverviewActivity_video">ਵੀਡੀਓ</string>

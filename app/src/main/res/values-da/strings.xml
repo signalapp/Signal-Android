@@ -316,16 +316,7 @@
     <item quantity="one">Samtale flyttet til inbox</item>
     <item quantity="other">Flyttet %d samtaler til indbakke</item>
   </plurals>
-  <string name="ConversationListFragment_read">Læst</string>
-  <string name="ConversationListFragment_unread">Ulæst</string>
-  <string name="ConversationListFragment_pin">Fastgør</string>
-  <string name="ConversationListFragment_unpin">Frigør</string>
-  <string name="ConversationListFragment_mute">Ignorer</string>
-  <string name="ConversationListFragment_unmute">Ignorer ikke længere</string>
   <string name="ConversationListFragment_select">Vælg</string>
-  <string name="ConversationListFragment_archive">Arkivér</string>
-  <string name="ConversationListFragment_unarchive">Ophæv arkivering</string>
-  <string name="ConversationListFragment_delete">Slet</string>
   <string name="ConversationListFragment_select_all">Vælg alle</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d valgt</item>
@@ -811,9 +802,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Gittervisning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgte</string>
-  <string name="MediaOverviewActivity_save">Gem</string>
   <string name="MediaOverviewActivity_select_all">Vælg alle</string>
-  <string name="MediaOverviewActivity_delete">Slet</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d valgt (%2$s)</item>
     <item quantity="other">%1$d valgte (%2$s)</item>

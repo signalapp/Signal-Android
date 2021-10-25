@@ -327,16 +327,7 @@
     <item quantity="few">%d преписке премештене у пријем</item>
     <item quantity="other">%d преписки премештено у пријем</item>
   </plurals>
-  <string name="ConversationListFragment_read">Прочитано</string>
-  <string name="ConversationListFragment_unread">Непрочитано</string>
-  <string name="ConversationListFragment_pin">Закачити</string>
-  <string name="ConversationListFragment_unpin">Одкачити</string>
-  <string name="ConversationListFragment_mute">Утишај</string>
-  <string name="ConversationListFragment_unmute">Укључи обавештења</string>
   <string name="ConversationListFragment_select">Изабери више</string>
-  <string name="ConversationListFragment_archive">Архивирај</string>
-  <string name="ConversationListFragment_unarchive">Распакуј</string>
-  <string name="ConversationListFragment_delete">Избриши</string>
   <string name="ConversationListFragment_select_all">Изабери све</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порука размене кључева</string>
@@ -847,9 +838,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Изглед решетка</string>
   <string name="MediaOverviewActivity_List_view_description">Изглед листа</string>
   <string name="MediaOverviewActivity_Selected_description">Одабрано</string>
-  <string name="MediaOverviewActivity_save">Сачувај</string>
   <string name="MediaOverviewActivity_select_all">Изабери све</string>
-  <string name="MediaOverviewActivity_delete">Избриши</string>
   <string name="MediaOverviewActivity_file">Фајл</string>
   <string name="MediaOverviewActivity_audio">Звук</string>
   <string name="MediaOverviewActivity_video">Видео</string>

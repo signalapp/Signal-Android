@@ -338,16 +338,61 @@
     <item quantity="many">%d разговоров перемещено во Входящие</item>
     <item quantity="other">%d разговоров перемещено во Входящие</item>
   </plurals>
-  <string name="ConversationListFragment_read">Прочитано</string>
-  <string name="ConversationListFragment_unread">Непрочитано</string>
-  <string name="ConversationListFragment_pin">Прикрепить</string>
-  <string name="ConversationListFragment_unpin">Открепить</string>
-  <string name="ConversationListFragment_mute">Откл. звук</string>
-  <string name="ConversationListFragment_unmute">Вкл. звук</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Прочитан</item>
+    <item quantity="few">Прочитаны</item>
+    <item quantity="many">Прочитаны</item>
+    <item quantity="other">Прочитаны</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Не прочитан</item>
+    <item quantity="few">Не прочитаны</item>
+    <item quantity="many">Не прочитаны</item>
+    <item quantity="other">Не прочитаны</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Прикрепить</item>
+    <item quantity="few">Прикрепить</item>
+    <item quantity="many">Прикрепить</item>
+    <item quantity="other">Прикрепить</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Открепить</item>
+    <item quantity="few">Открепить</item>
+    <item quantity="many">Открепить</item>
+    <item quantity="other">Открепить</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Откл. звук</item>
+    <item quantity="few">Откл. звук</item>
+    <item quantity="many">Откл. звук</item>
+    <item quantity="other">Откл. звук</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Вкл. звук</item>
+    <item quantity="few">Вкл. звук</item>
+    <item quantity="many">Вкл. звук</item>
+    <item quantity="other">Вкл. звук</item>
+  </plurals>
   <string name="ConversationListFragment_select">Выбрать</string>
-  <string name="ConversationListFragment_archive">Архивировать</string>
-  <string name="ConversationListFragment_unarchive">Разархивировать</string>
-  <string name="ConversationListFragment_delete">Удалить</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Архивировать</item>
+    <item quantity="few">Архивировать</item>
+    <item quantity="many">Архивировать</item>
+    <item quantity="other">Архивировать</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Разархивировать</item>
+    <item quantity="few">Разархивировать</item>
+    <item quantity="many">Разархивировать</item>
+    <item quantity="other">Разархивировать</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Удалить</item>
+    <item quantity="few">Удалить</item>
+    <item quantity="many">Удалить</item>
+    <item quantity="other">Удалить</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Выбрать все</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d выбран</item>
@@ -893,9 +938,19 @@
   <string name="MediaOverviewActivity_Grid_view_description">Вид: сетка</string>
   <string name="MediaOverviewActivity_List_view_description">Вид: список</string>
   <string name="MediaOverviewActivity_Selected_description">Выбрано</string>
-  <string name="MediaOverviewActivity_save">Сохранить</string>
   <string name="MediaOverviewActivity_select_all">Выбрать все</string>
-  <string name="MediaOverviewActivity_delete">Удалить</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Сохранить</item>
+    <item quantity="few">Сохранить</item>
+    <item quantity="many">Сохранить</item>
+    <item quantity="other">Сохранить</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Удалить</item>
+    <item quantity="few">Удалить</item>
+    <item quantity="many">Удалить</item>
+    <item quantity="other">Удалить</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d выбран (%2$s)</item>
     <item quantity="few">%1$d выбрано (%2$s)</item>

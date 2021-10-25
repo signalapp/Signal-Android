@@ -316,16 +316,7 @@
     <item quantity="one">مکالمه به صندوق ورودی انتقال یافت</item>
     <item quantity="other">%d مکالمه به صندوق ورودی انتقال یافت</item>
   </plurals>
-  <string name="ConversationListFragment_read">خوانده شد</string>
-  <string name="ConversationListFragment_unread">خوانده نشده</string>
-  <string name="ConversationListFragment_pin">پین</string>
-  <string name="ConversationListFragment_unpin">برداشتن سنجاق</string>
-  <string name="ConversationListFragment_mute">بستن</string>
-  <string name="ConversationListFragment_unmute">باز کردن</string>
   <string name="ConversationListFragment_select">انتخاب کنید</string>
-  <string name="ConversationListFragment_archive">بایگانی</string>
-  <string name="ConversationListFragment_unarchive">خارج‌کردن از بایگانی</string>
-  <string name="ConversationListFragment_delete">حذف</string>
   <string name="ConversationListFragment_select_all">انتخاب همه</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d انتخاب شد</item>
@@ -811,9 +802,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">نمای مشبک</string>
   <string name="MediaOverviewActivity_List_view_description">نمای فهرستی</string>
   <string name="MediaOverviewActivity_Selected_description">انتخاب شده</string>
-  <string name="MediaOverviewActivity_save">ذخیره</string>
   <string name="MediaOverviewActivity_select_all">انتخاب همه</string>
-  <string name="MediaOverviewActivity_delete">حذف</string>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">ویدئو</string>

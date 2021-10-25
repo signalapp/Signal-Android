@@ -307,16 +307,7 @@
     <item quantity="one">Flyttet samtalen til innboks</item>
     <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lest</string>
-  <string name="ConversationListFragment_unread">Ulest</string>
-  <string name="ConversationListFragment_pin">Feste</string>
-  <string name="ConversationListFragment_unpin">Unpin</string>
-  <string name="ConversationListFragment_mute">Demping</string>
-  <string name="ConversationListFragment_unmute">Slå lyd på</string>
   <string name="ConversationListFragment_select">Velg</string>
-  <string name="ConversationListFragment_archive">Arkiv</string>
-  <string name="ConversationListFragment_unarchive">Hent frem fra arkiv</string>
-  <string name="ConversationListFragment_delete">Slett</string>
   <string name="ConversationListFragment_select_all">Velg alle</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
@@ -790,9 +781,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rutenett visning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgt</string>
-  <string name="MediaOverviewActivity_save">Lagre</string>
   <string name="MediaOverviewActivity_select_all">Velg alle</string>
-  <string name="MediaOverviewActivity_delete">Slett</string>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>

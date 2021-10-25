@@ -316,16 +316,7 @@
     <item quantity="one">Færði samtal í innhólf</item>
     <item quantity="other">Færði %d samtöl í innhólf</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lesa</string>
-  <string name="ConversationListFragment_unread">Ólesið</string>
-  <string name="ConversationListFragment_pin">Festa</string>
-  <string name="ConversationListFragment_unpin">Losa</string>
-  <string name="ConversationListFragment_mute">Hljóð af</string>
-  <string name="ConversationListFragment_unmute">Hljóð á</string>
   <string name="ConversationListFragment_select">Velja</string>
-  <string name="ConversationListFragment_archive">Safn</string>
-  <string name="ConversationListFragment_unarchive">Taka úr geymslu</string>
-  <string name="ConversationListFragment_delete">Eyða</string>
   <string name="ConversationListFragment_select_all">Velja allt</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Skilaboð fyrir lyklaskipti</string>
@@ -807,9 +798,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Reitasýn</string>
   <string name="MediaOverviewActivity_List_view_description">Listasýn</string>
   <string name="MediaOverviewActivity_Selected_description">Valið</string>
-  <string name="MediaOverviewActivity_save">Vista</string>
   <string name="MediaOverviewActivity_select_all">Velja allt</string>
-  <string name="MediaOverviewActivity_delete">Eyða</string>
   <string name="MediaOverviewActivity_file">Skrá</string>
   <string name="MediaOverviewActivity_audio">Hljóð</string>
   <string name="MediaOverviewActivity_video">Myndskeið</string>

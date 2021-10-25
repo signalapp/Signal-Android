@@ -338,16 +338,7 @@
     <item quantity="many">%d konverzácií presunutých do doručených</item>
     <item quantity="other">%d konverzácií presunutých do doručených</item>
   </plurals>
-  <string name="ConversationListFragment_read">Prečítaná</string>
-  <string name="ConversationListFragment_unread">Neprečítané</string>
-  <string name="ConversationListFragment_pin">Pripnúť</string>
-  <string name="ConversationListFragment_unpin">Odopnúť</string>
-  <string name="ConversationListFragment_mute">Stlmiť</string>
-  <string name="ConversationListFragment_unmute">Zrušiť stlmenie</string>
   <string name="ConversationListFragment_select">Vybrať</string>
-  <string name="ConversationListFragment_archive">Archív</string>
-  <string name="ConversationListFragment_unarchive">Vybrať z archívu</string>
-  <string name="ConversationListFragment_delete">Vymazať</string>
   <string name="ConversationListFragment_select_all">Označiť všetko</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d vybrané</item>
@@ -893,9 +884,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Zobrazenie mriežky</string>
   <string name="MediaOverviewActivity_List_view_description">Zobrazenie zoznamu</string>
   <string name="MediaOverviewActivity_Selected_description">Vybrané</string>
-  <string name="MediaOverviewActivity_save">Uložiť</string>
   <string name="MediaOverviewActivity_select_all">Označiť všetko</string>
-  <string name="MediaOverviewActivity_delete">Vymazať</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d vybrané (%2$s)</item>
     <item quantity="few">%1$d vybraných (%2$s)</item>

@@ -338,16 +338,61 @@
     <item quantity="many">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
     <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
   </plurals>
-  <string name="ConversationListFragment_read">Przeczytane</string>
-  <string name="ConversationListFragment_unread">Nieprzeczytane</string>
-  <string name="ConversationListFragment_pin">Przypnij</string>
-  <string name="ConversationListFragment_unpin">Odepnij</string>
-  <string name="ConversationListFragment_mute">Wycisz</string>
-  <string name="ConversationListFragment_unmute">Cofnij wyciszenie</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Przeczytana</item>
+    <item quantity="few">Przeczytane</item>
+    <item quantity="many">Przeczytane</item>
+    <item quantity="other">Przeczytane</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Nieprzeczytana</item>
+    <item quantity="few">Nieprzeczytane</item>
+    <item quantity="many">Nieprzeczytane</item>
+    <item quantity="other">Nieprzeczytane</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Przypnij</item>
+    <item quantity="few">Przypnij</item>
+    <item quantity="many">Przypnij</item>
+    <item quantity="other">Przypnij</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Odepnij</item>
+    <item quantity="few">Odepnij</item>
+    <item quantity="many">Odepnij</item>
+    <item quantity="other">Odepnij</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Wycisz</item>
+    <item quantity="few">Wycisz</item>
+    <item quantity="many">Wycisz</item>
+    <item quantity="other">Wycisz</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Cofnij wyciszenie</item>
+    <item quantity="few">Cofnij wyciszenie</item>
+    <item quantity="many">Cofnij wyciszenie</item>
+    <item quantity="other">Cofnij wyciszenie</item>
+  </plurals>
   <string name="ConversationListFragment_select">Zaznacz</string>
-  <string name="ConversationListFragment_archive">Archiwizuj</string>
-  <string name="ConversationListFragment_unarchive">Przywróć z archiwum</string>
-  <string name="ConversationListFragment_delete">Usuń</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archiwizuj</item>
+    <item quantity="few">Archiwizuj</item>
+    <item quantity="many">Archiwizuj</item>
+    <item quantity="other">Archiwizuj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Przywróć z archiwum</item>
+    <item quantity="few">Przywróć z archiwum</item>
+    <item quantity="many">Przywróć z archiwum</item>
+    <item quantity="other">Przywróć z archiwum</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Usuń</item>
+    <item quantity="few">Usuń</item>
+    <item quantity="many">Usuń</item>
+    <item quantity="other">Usuń</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Zaznacz wszystko</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d wybrany</item>
@@ -893,9 +938,19 @@
   <string name="MediaOverviewActivity_Grid_view_description">Widok siatki</string>
   <string name="MediaOverviewActivity_List_view_description">Widok listy</string>
   <string name="MediaOverviewActivity_Selected_description">Zaznaczono</string>
-  <string name="MediaOverviewActivity_save">Zapisz</string>
   <string name="MediaOverviewActivity_select_all">Zaznacz wszystko</string>
-  <string name="MediaOverviewActivity_delete">Usuń</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Zapisz</item>
+    <item quantity="few">Zapisz</item>
+    <item quantity="many">Zapisz</item>
+    <item quantity="other">Zapisz</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Usuń</item>
+    <item quantity="few">Usuń</item>
+    <item quantity="many">Usuń</item>
+    <item quantity="other">Usuń</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d wybrany (%2$s)</item>
     <item quantity="few">%1$d wybrane (%2$s)</item>

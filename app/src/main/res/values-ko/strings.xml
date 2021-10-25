@@ -305,16 +305,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">대화 %d개가 받은 메시지함으로 이동됨</item>
   </plurals>
-  <string name="ConversationListFragment_read">읽음</string>
-  <string name="ConversationListFragment_unread">읽지 않음</string>
-  <string name="ConversationListFragment_pin">고정</string>
-  <string name="ConversationListFragment_unpin">고정 취소</string>
-  <string name="ConversationListFragment_mute">알림 끄기</string>
-  <string name="ConversationListFragment_unmute">알림 켜기</string>
   <string name="ConversationListFragment_select">선택</string>
-  <string name="ConversationListFragment_archive">보관</string>
-  <string name="ConversationListFragment_unarchive">보관 해제</string>
-  <string name="ConversationListFragment_delete">삭제</string>
   <string name="ConversationListFragment_select_all">모두 선택</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">핵심 교환 메시지</string>
@@ -766,9 +757,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">눈금 보기</string>
   <string name="MediaOverviewActivity_List_view_description">목록 보기</string>
   <string name="MediaOverviewActivity_Selected_description">선택됨</string>
-  <string name="MediaOverviewActivity_save">저장</string>
   <string name="MediaOverviewActivity_select_all">모두 선택</string>
-  <string name="MediaOverviewActivity_delete">삭제</string>
   <string name="MediaOverviewActivity_file">파일</string>
   <string name="MediaOverviewActivity_audio">오디오</string>
   <string name="MediaOverviewActivity_video">동영상</string>

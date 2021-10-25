@@ -338,16 +338,7 @@
     <item quantity="many">%d pokalbių perkelta į gautųjų aplanką</item>
     <item quantity="other">%d pokalbių perkelta į gautųjų aplanką</item>
   </plurals>
-  <string name="ConversationListFragment_read">Perskaityta</string>
-  <string name="ConversationListFragment_unread">Neskaityta</string>
-  <string name="ConversationListFragment_pin">Prisegti</string>
-  <string name="ConversationListFragment_unpin">Atsegti</string>
-  <string name="ConversationListFragment_mute">Be garso</string>
-  <string name="ConversationListFragment_unmute">Įjungti pranešimus</string>
   <string name="ConversationListFragment_select">Pasirinkti</string>
-  <string name="ConversationListFragment_archive">Archyvuoti</string>
-  <string name="ConversationListFragment_unarchive">Nebearchyvuoti</string>
-  <string name="ConversationListFragment_delete">Ištrinti</string>
   <string name="ConversationListFragment_select_all">Žymėti visus</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">Pažymėta: %d</item>
@@ -893,9 +884,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tinklelio rodinys</string>
   <string name="MediaOverviewActivity_List_view_description">Sąrašo rodinys</string>
   <string name="MediaOverviewActivity_Selected_description">Pasirinkta</string>
-  <string name="MediaOverviewActivity_save">Įrašyti</string>
   <string name="MediaOverviewActivity_select_all">Žymėti visus</string>
-  <string name="MediaOverviewActivity_delete">Ištrinti</string>
   <string name="MediaOverviewActivity_file">Failas</string>
   <string name="MediaOverviewActivity_audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_video">Vaizdo įrašai</string>

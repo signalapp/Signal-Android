@@ -320,16 +320,7 @@
     <item quantity="one">సంభాషణ ఇన్బాక్స్కు తరలించబడినది</item>
     <item quantity="other">%d సంభాషణలు ఇన్బాక్స్కు తరలించబడినవి</item>
   </plurals>
-  <string name="ConversationListFragment_read">చదవండి</string>
-  <string name="ConversationListFragment_unread">చదవనిది</string>
-  <string name="ConversationListFragment_pin">పిన్</string>
-  <string name="ConversationListFragment_unpin">అన్పిన్ చేయండి</string>
-  <string name="ConversationListFragment_mute">నిశబ్ధం</string>
-  <string name="ConversationListFragment_unmute">మ్యూట్ తీసివేయి</string>
   <string name="ConversationListFragment_select">ఎంచుకోండి</string>
-  <string name="ConversationListFragment_archive">భద్రపరచు</string>
-  <string name="ConversationListFragment_unarchive">బయటపెట్టు</string>
-  <string name="ConversationListFragment_delete">తొలగించండి</string>
   <string name="ConversationListFragment_select_all">అన్నీ ఎంచుకో</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">కీ  సందేశం మార్పిడి</string>
@@ -809,9 +800,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">సమాంతరరేఖాచట్ర దృశ్యము</string>
   <string name="MediaOverviewActivity_List_view_description">జాబితా వీక్షణ</string>
   <string name="MediaOverviewActivity_Selected_description">ఎంచుకున్న</string>
-  <string name="MediaOverviewActivity_save">భద్రపరుచు</string>
   <string name="MediaOverviewActivity_select_all">అన్నీ ఎంచుకో</string>
-  <string name="MediaOverviewActivity_delete">తొలగించండి</string>
   <string name="MediaOverviewActivity_file">పత్రం</string>
   <string name="MediaOverviewActivity_audio">ఆడియో</string>
   <string name="MediaOverviewActivity_video">వీడియో</string>

@@ -316,16 +316,7 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
-  <string name="ConversationListFragment_read">படி</string>
-  <string name="ConversationListFragment_unread">படிக்காதது</string>
-  <string name="ConversationListFragment_pin">மேலே பொருத்தப்பட்ட செய்திகள்</string>
-  <string name="ConversationListFragment_unpin">அகற்று</string>
-  <string name="ConversationListFragment_mute">முடக்கு</string>
-  <string name="ConversationListFragment_unmute">ஒலியடக்கை நீக்கு</string>
   <string name="ConversationListFragment_select">தேர்வு</string>
-  <string name="ConversationListFragment_archive">காப்பகம்</string>
-  <string name="ConversationListFragment_unarchive">வெளிப்படுத்து</string>
-  <string name="ConversationListFragment_delete">நீக்கு</string>
   <string name="ConversationListFragment_select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
@@ -805,9 +796,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">கட்டம் காட்சி</string>
   <string name="MediaOverviewActivity_List_view_description">பட்டியல் காட்சி</string>
   <string name="MediaOverviewActivity_Selected_description">தேர்ந்தெடுக்கப்பட்ட</string>
-  <string name="MediaOverviewActivity_save">சேமி</string>
   <string name="MediaOverviewActivity_select_all">அனைத்தையும்  தேர்வுசெய்</string>
-  <string name="MediaOverviewActivity_delete">நீக்கு</string>
   <string name="MediaOverviewActivity_file">கோப்பு</string>
   <string name="MediaOverviewActivity_audio">ஒலி</string>
   <string name="MediaOverviewActivity_video">காணொளி</string>

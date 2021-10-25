@@ -312,16 +312,7 @@
     <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
-  <string name="ConversationListFragment_read">Διαβάστηκε</string>
-  <string name="ConversationListFragment_unread">Μη αναγνωσμένο</string>
-  <string name="ConversationListFragment_pin">Καρφίτσωμα</string>
-  <string name="ConversationListFragment_unpin">Ξεκαρφίτσωμα</string>
-  <string name="ConversationListFragment_mute">Σίγαση</string>
-  <string name="ConversationListFragment_unmute">Αναίρεση σίγασης</string>
   <string name="ConversationListFragment_select">Επιλογή</string>
-  <string name="ConversationListFragment_archive">Αρχειοθέτηση</string>
-  <string name="ConversationListFragment_unarchive">Μεταφορά στα εισερχόμενα</string>
-  <string name="ConversationListFragment_delete">Διαγραφή</string>
   <string name="ConversationListFragment_select_all">Επιλογή όλων</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d επιλεγμένο</item>
@@ -669,7 +660,7 @@
   <string name="ManageProfileFragment_username">Όνομα χρήστη</string>
   <string name="ManageProfileFragment_about">Πληροφορίες</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Γράψε μερικές λέξεις για σένα</string>
-  <string name="ManageProfileFragment_your_name">Το όνομά σας</string>
+  <string name="ManageProfileFragment_your_name">Το όνομά σου</string>
   <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
   <string name="ManageProfileFragment_badges">Εμβλήματα</string>
@@ -807,9 +798,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Προβολή σε πλέγμα</string>
   <string name="MediaOverviewActivity_List_view_description">Προβολή σε λίστα</string>
   <string name="MediaOverviewActivity_Selected_description">Επιλεγμένα</string>
-  <string name="MediaOverviewActivity_save">Αποθήκευση</string>
   <string name="MediaOverviewActivity_select_all">Επιλογή όλων</string>
-  <string name="MediaOverviewActivity_delete">Διαγραφή</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d επιλεγμένο (%2$s)</item>
     <item quantity="other">%1$d επιλεγμένα (%2$s)</item>
@@ -1823,7 +1812,7 @@
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
   <string name="EditProfileFragment__group_description">Περιγραφή ομάδας</string>
   <!--EditProfileNameFragment-->
-  <string name="EditProfileNameFragment_your_name">Το όνομά σας</string>
+  <string name="EditProfileNameFragment_your_name">Το όνομά σου</string>
   <string name="EditProfileNameFragment_first_name">Όνομα</string>
   <string name="EditProfileNameFragment_last_name_optional">Επώνυμο (προαιρετικό)</string>
   <string name="EditProfileNameFragment_save">Αποθήκευση</string>
@@ -2882,7 +2871,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <string name="PrivacySettingsFragment__app_security">Ασφάλεια εφαρμογής</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
-  <string name="PrivacySettingsFragment__signal_message_and_calls">Κλήσεις και μηνύματα Signal. οι κλήσεις πάντα αναμεταδίδονται, και προστατευμένος αποστολέας</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Κλήσεις και μηνύματα Signal, κλήσεις που πάντα αναμεταδίδονται, και προστατευμένος αποστολέας</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Προκαθορισμένο χρονόμετρο για νέες συνομιλίες</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ορισμός ενός προκαθορισμένου χρόνου εξαφάνισης μηνυμάτων για όλες τις συνομιλίες που ξεκινάς εσύ.</string>
   <!--AdvancedPrivacySettingsFragment-->

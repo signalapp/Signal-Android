@@ -302,16 +302,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已将 %d 个对话移至收件箱</item>
   </plurals>
-  <string name="ConversationListFragment_read">已读</string>
-  <string name="ConversationListFragment_unread">标为未读</string>
-  <string name="ConversationListFragment_pin">置顶</string>
-  <string name="ConversationListFragment_unpin">取消置顶</string>
-  <string name="ConversationListFragment_mute">静音</string>
-  <string name="ConversationListFragment_unmute">取消静音</string>
   <string name="ConversationListFragment_select">选择</string>
-  <string name="ConversationListFragment_archive">存档</string>
-  <string name="ConversationListFragment_unarchive">取消存档</string>
-  <string name="ConversationListFragment_delete">删除</string>
   <string name="ConversationListFragment_select_all">选择全部</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
@@ -757,9 +748,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">网格视图</string>
   <string name="MediaOverviewActivity_List_view_description">列表视图</string>
   <string name="MediaOverviewActivity_Selected_description">选中</string>
-  <string name="MediaOverviewActivity_save">保存</string>
   <string name="MediaOverviewActivity_select_all">选择全部</string>
-  <string name="MediaOverviewActivity_delete">删除</string>
   <string name="MediaOverviewActivity_file">文件</string>
   <string name="MediaOverviewActivity_audio">音频</string>
   <string name="MediaOverviewActivity_video">视频</string>

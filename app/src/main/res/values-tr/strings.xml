@@ -316,16 +316,7 @@
     <item quantity="one">Konuşma gelen kutusuna taşındı</item>
     <item quantity="other">%d konuşma gelen kutusuna taşındı</item>
   </plurals>
-  <string name="ConversationListFragment_read">Okundu</string>
-  <string name="ConversationListFragment_unread">Okunmamış</string>
-  <string name="ConversationListFragment_pin">Sabitle</string>
-  <string name="ConversationListFragment_unpin">Sabitlenenlerden kaldır</string>
-  <string name="ConversationListFragment_mute">Sessiz</string>
-  <string name="ConversationListFragment_unmute">Sesi aç</string>
   <string name="ConversationListFragment_select">Seç</string>
-  <string name="ConversationListFragment_archive">Arşivle</string>
-  <string name="ConversationListFragment_unarchive">Arşivden çıkart</string>
-  <string name="ConversationListFragment_delete">Sil</string>
   <string name="ConversationListFragment_select_all">Hepsini seç</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
@@ -807,9 +798,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Izgara görünümü</string>
   <string name="MediaOverviewActivity_List_view_description">Liste görünümü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçilen</string>
-  <string name="MediaOverviewActivity_save">Kaydet</string>
   <string name="MediaOverviewActivity_select_all">Hepsini seç</string>
-  <string name="MediaOverviewActivity_delete">Sil</string>
   <string name="MediaOverviewActivity_file">Dosya</string>
   <string name="MediaOverviewActivity_audio">Ses</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -3250,12 +3239,22 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubscribeFragment__not_now">Şimdi değil</string>
   <string name="SubscribeFragment__confirm">Onayla</string>
   <string name="SubscribeFragment__update">Güncelle</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tamam</string>
+  <string name="ManageDonationsFragment__manage_subscription">Aboneliği yönet</string>
   <string name="ManageDonationsFragment__badges">Rozetler</string>
   <string name="Boost__enter_custom_amount">Farklı Miktar Gir</string>
+  <string name="Boost__one_time_contribution">Tek seferlik bağış</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Sizin için -verileriniz için değil- oluşturulmuş teknolojiyi desteklemeye devam etmek için lütfen aylık abone olmayı düşünün.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abone ol</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
+  <string name="Subscription__please_contact_support_for_more_information">Daha fazla bilgi için lütfen bizimle iletişime geçin.</string>
   <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
   <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
   <string name="DonationsErrors__payment_failed">Ödeme başarısız oldu</string>
+  <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurmanız gerekir.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonelik iptali için internet bağlantısı gerekir.</string>
   <!--EOF-->
 </resources>

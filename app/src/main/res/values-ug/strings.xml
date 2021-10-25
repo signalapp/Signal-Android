@@ -316,16 +316,7 @@
     <item quantity="one">سۆھبەتنى كەلگەن خەت قۇتىسىغا يۆتكەش</item>
     <item quantity="other">%d سۆھبەتلەرنى كەلگەن خەت قۇتىسىغا يۆتكەش</item>
   </plurals>
-  <string name="ConversationListFragment_read">ئوقۇش</string>
-  <string name="ConversationListFragment_unread">ئوقۇلمىدى قىلىڭ</string>
-  <string name="ConversationListFragment_pin">مىخلاش</string>
-  <string name="ConversationListFragment_unpin">قوندۇرما</string>
-  <string name="ConversationListFragment_mute">ئۈنسىز</string>
-  <string name="ConversationListFragment_unmute">ئۈنلۈك</string>
   <string name="ConversationListFragment_select">تاللا</string>
-  <string name="ConversationListFragment_archive">ئارخىپ</string>
-  <string name="ConversationListFragment_unarchive">ئارخىپلىما</string>
-  <string name="ConversationListFragment_delete">ئۆچۈر</string>
   <string name="ConversationListFragment_select_all">ھەممىنى تاللا</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ئاچقۇچ ئالماشتۇرۇش ئۇچۇرى</string>
@@ -808,9 +799,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">سېتكا كۆرۈنۈش</string>
   <string name="MediaOverviewActivity_List_view_description">تىزىم كۆرۈنۈش</string>
   <string name="MediaOverviewActivity_Selected_description">تاللانغان</string>
-  <string name="MediaOverviewActivity_save">ساقلا</string>
   <string name="MediaOverviewActivity_select_all">ھەممىنى تاللا</string>
-  <string name="MediaOverviewActivity_delete">ئۆچۈر</string>
   <string name="MediaOverviewActivity_file">ھۆججەت</string>
   <string name="MediaOverviewActivity_audio">ئۈن</string>
   <string name="MediaOverviewActivity_video">سىن</string>

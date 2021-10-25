@@ -316,16 +316,7 @@
     <item quantity="one">Gumzo limehamishwa hadi kwenye kisanduku pokezi</item>
     <item quantity="other">Gumzo %dzimehamishwa hadi kwenye kisanduku pokezi</item>
   </plurals>
-  <string name="ConversationListFragment_read">Soma</string>
-  <string name="ConversationListFragment_unread">Haujasomwa</string>
-  <string name="ConversationListFragment_pin">Bandika</string>
-  <string name="ConversationListFragment_unpin">Bandua</string>
-  <string name="ConversationListFragment_mute">Zima</string>
-  <string name="ConversationListFragment_unmute">Washa </string>
   <string name="ConversationListFragment_select">Chagua</string>
-  <string name="ConversationListFragment_archive">Jalada</string>
-  <string name="ConversationListFragment_unarchive">Ondoa kwenye jalada</string>
-  <string name="ConversationListFragment_delete">Futa</string>
   <string name="ConversationListFragment_select_all">Chagua zote</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Ujumbe muhimu wa kubadilishana</string>
@@ -804,9 +795,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Mtazamo wa kigridi</string>
   <string name="MediaOverviewActivity_List_view_description">Mtazamo wa kiorodha</string>
   <string name="MediaOverviewActivity_Selected_description">Iliyochaguliwa</string>
-  <string name="MediaOverviewActivity_save">Hifadhi</string>
   <string name="MediaOverviewActivity_select_all">Chagua zote</string>
-  <string name="MediaOverviewActivity_delete">Futa</string>
   <string name="MediaOverviewActivity_file">Faili</string>
   <string name="MediaOverviewActivity_audio">Sauti</string>
   <string name="MediaOverviewActivity_video">Video</string>

@@ -307,13 +307,7 @@
     <item quantity="one">Conversa movida á caixa de entrada</item>
     <item quantity="other">%d conversas movidas á caixa de entrada</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lida</string>
-  <string name="ConversationListFragment_mute">Silenciar</string>
-  <string name="ConversationListFragment_unmute">Activar o son</string>
   <string name="ConversationListFragment_select">Seleccionar</string>
-  <string name="ConversationListFragment_archive">Arquivar</string>
-  <string name="ConversationListFragment_unarchive">Desarquivar</string>
-  <string name="ConversationListFragment_delete">Eliminar</string>
   <string name="ConversationListFragment_select_all">Seleccionar todo</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaxe de intercambio de chaves</string>
@@ -789,9 +783,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de grella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de lista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionado</string>
-  <string name="MediaOverviewActivity_save">Gardar</string>
   <string name="MediaOverviewActivity_select_all">Seleccionar todo</string>
-  <string name="MediaOverviewActivity_delete">Eliminar</string>
   <string name="MediaOverviewActivity_file">Ficheiro</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>

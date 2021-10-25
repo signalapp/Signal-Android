@@ -316,16 +316,7 @@
     <item quantity="one">സംഭാഷണം ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
     <item quantity="other">%d സംഭാഷണങ്ങൾ ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
   </plurals>
-  <string name="ConversationListFragment_read">വായിച്ചു</string>
-  <string name="ConversationListFragment_unread">വായിക്കാത്തവ</string>
-  <string name="ConversationListFragment_pin">പിൻചെയ്യു</string>
-  <string name="ConversationListFragment_unpin">അൺപിൻ ചെയ്യുക</string>
-  <string name="ConversationListFragment_mute">നിശബ്ദമാക്കുക</string>
-  <string name="ConversationListFragment_unmute">ശബ്‌ദിപ്പിക്കുക</string>
   <string name="ConversationListFragment_select">തിരഞ്ഞെടുക്കൂ</string>
-  <string name="ConversationListFragment_archive">ആർക്കൈവ്</string>
-  <string name="ConversationListFragment_unarchive">ആർക്കൈവ് ചെയ്യാത്ത</string>
-  <string name="ConversationListFragment_delete">ഇല്ലാതാക്കൂ</string>
   <string name="ConversationListFragment_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">കീ കൈമാറ്റ സന്ദേശം</string>
@@ -805,9 +796,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">ഗ്രിഡ് കാഴ്ച</string>
   <string name="MediaOverviewActivity_List_view_description">ലിസ്റ്റ് കാഴ്ച</string>
   <string name="MediaOverviewActivity_Selected_description">തിരഞ്ഞെടുത്തു</string>
-  <string name="MediaOverviewActivity_save">സംരക്ഷിക്കൂ</string>
   <string name="MediaOverviewActivity_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
-  <string name="MediaOverviewActivity_delete">ഇല്ലാതാക്കൂ</string>
   <string name="MediaOverviewActivity_file">ഫയൽ</string>
   <string name="MediaOverviewActivity_audio">ഓഡിയോ</string>
   <string name="MediaOverviewActivity_video">വീഡിയോ</string>

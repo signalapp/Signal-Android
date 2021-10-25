@@ -340,16 +340,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Symudwyd %d sgwrs i\'r blwch derbyn</item>
     <item quantity="other">Symudwyd %d sgwrs i\'r blwch derbyn</item>
   </plurals>
-  <string name="ConversationListFragment_read">Darllen</string>
-  <string name="ConversationListFragment_unread">Dad-ddarllen</string>
-  <string name="ConversationListFragment_pin">Pinio</string>
-  <string name="ConversationListFragment_unpin">Dadbinio</string>
-  <string name="ConversationListFragment_mute">Tewi</string>
-  <string name="ConversationListFragment_unmute">Dad-dewi</string>
   <string name="ConversationListFragment_select">Dewis</string>
-  <string name="ConversationListFragment_archive">Archif</string>
-  <string name="ConversationListFragment_unarchive">Dad-archifo</string>
-  <string name="ConversationListFragment_delete">Dileu</string>
   <string name="ConversationListFragment_select_all">Dewis popeth</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d wedi\'i ddewis</item>
@@ -895,9 +886,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaOverviewActivity_Grid_view_description">Golwg grid</string>
   <string name="MediaOverviewActivity_List_view_description">Golwg rhestr</string>
   <string name="MediaOverviewActivity_Selected_description">Dewiswyd</string>
-  <string name="MediaOverviewActivity_save">Cadw</string>
   <string name="MediaOverviewActivity_select_all">Dewis popeth</string>
-  <string name="MediaOverviewActivity_delete">Dileu</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d wedi\'u dewis (%2$s)</item>
     <item quantity="two">%1$d wedi\'u dewis (%2$s)</item>

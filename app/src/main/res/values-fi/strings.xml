@@ -316,16 +316,7 @@
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
   </plurals>
-  <string name="ConversationListFragment_read">Luettu</string>
-  <string name="ConversationListFragment_unread">Lukematon</string>
-  <string name="ConversationListFragment_pin">Kiinnitä</string>
-  <string name="ConversationListFragment_unpin">Irrota</string>
-  <string name="ConversationListFragment_mute">Mykistä</string>
-  <string name="ConversationListFragment_unmute">Poista mykistys</string>
   <string name="ConversationListFragment_select">Valitse</string>
-  <string name="ConversationListFragment_archive">Arkistoi</string>
-  <string name="ConversationListFragment_unarchive">Palauta arkistosta</string>
-  <string name="ConversationListFragment_delete">Poista</string>
   <string name="ConversationListFragment_select_all">Valitse kaikki</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
@@ -806,9 +797,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudukkonäkymä</string>
   <string name="MediaOverviewActivity_List_view_description">Listanäkymä</string>
   <string name="MediaOverviewActivity_Selected_description">Valittu</string>
-  <string name="MediaOverviewActivity_save">Tallenna</string>
   <string name="MediaOverviewActivity_select_all">Valitse kaikki</string>
-  <string name="MediaOverviewActivity_delete">Poista</string>
   <string name="MediaOverviewActivity_file">Tiedosto</string>
   <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
   <string name="MediaOverviewActivity_video">Video</string>

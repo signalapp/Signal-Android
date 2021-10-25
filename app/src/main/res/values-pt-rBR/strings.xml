@@ -316,16 +316,7 @@
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lida</string>
-  <string name="ConversationListFragment_unread">Não lida</string>
-  <string name="ConversationListFragment_pin">Fixar</string>
-  <string name="ConversationListFragment_unpin">Desafixar</string>
-  <string name="ConversationListFragment_mute">Silenciar</string>
-  <string name="ConversationListFragment_unmute">Reativar notificações</string>
   <string name="ConversationListFragment_select">Selecionar</string>
-  <string name="ConversationListFragment_archive">Arquivar</string>
-  <string name="ConversationListFragment_unarchive">Desarquivar</string>
-  <string name="ConversationListFragment_delete">Excluir</string>
   <string name="ConversationListFragment_select_all">Selecionar todas</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d selecionada</item>
@@ -811,9 +802,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Visualização em tabela</string>
   <string name="MediaOverviewActivity_List_view_description">Visualização em lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selecionado</string>
-  <string name="MediaOverviewActivity_save">Salvar</string>
   <string name="MediaOverviewActivity_select_all">Selecionar tudo</string>
-  <string name="MediaOverviewActivity_delete">Excluir</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d selecionada (%2$s)</item>
     <item quantity="other">%1$d selecionadas (%2$s)</item>

@@ -327,16 +327,7 @@
     <item quantity="few">%d razgovora su premještena u pristiglu poštu</item>
     <item quantity="other">%d razgovora je premješteno u pristiglu poštu</item>
   </plurals>
-  <string name="ConversationListFragment_read">Pročitano</string>
-  <string name="ConversationListFragment_unread">Označi kao nepročitano</string>
-  <string name="ConversationListFragment_pin">Prikvači</string>
-  <string name="ConversationListFragment_unpin">Otkvači</string>
-  <string name="ConversationListFragment_mute">Utišaj</string>
-  <string name="ConversationListFragment_unmute">Uključi zvuk</string>
   <string name="ConversationListFragment_select">Odaberi</string>
-  <string name="ConversationListFragment_archive">Arhiviraj</string>
-  <string name="ConversationListFragment_unarchive">Dearhiviraj</string>
-  <string name="ConversationListFragment_delete">Izbriši</string>
   <string name="ConversationListFragment_select_all">Odaberi sve</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključeva</string>
@@ -844,9 +835,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Prikaz rešetke</string>
   <string name="MediaOverviewActivity_List_view_description">Prikaz popisa</string>
   <string name="MediaOverviewActivity_Selected_description">Odabrano</string>
-  <string name="MediaOverviewActivity_save">Spremi</string>
   <string name="MediaOverviewActivity_select_all">Odaberi sve</string>
-  <string name="MediaOverviewActivity_delete">Izbriši</string>
   <string name="MediaOverviewActivity_file">Datoteka</string>
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>

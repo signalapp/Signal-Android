@@ -317,16 +317,7 @@
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
     <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
   </plurals>
-  <string name="ConversationListFragment_read">Gelezen</string>
-  <string name="ConversationListFragment_unread">Voor mij markeren als ongelezen</string>
-  <string name="ConversationListFragment_pin">Vastprikken</string>
-  <string name="ConversationListFragment_unpin">Maak los</string>
-  <string name="ConversationListFragment_mute">Dempen</string>
-  <string name="ConversationListFragment_unmute">Niet langer dempen</string>
   <string name="ConversationListFragment_select">Selecteren</string>
-  <string name="ConversationListFragment_archive">Gesprek archiveren</string>
-  <string name="ConversationListFragment_unarchive">Dearchiveren</string>
-  <string name="ConversationListFragment_delete">Gesprek wissen</string>
   <string name="ConversationListFragment_select_all">Alles selecteren</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d geselecteerd</item>
@@ -813,9 +804,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasterweergave</string>
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
-  <string name="MediaOverviewActivity_save">Opslaan</string>
   <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
-  <string name="MediaOverviewActivity_delete">Gesprek wissen</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d geselecteerd (%2$s)</item>
     <item quantity="other">%1$d geselecteerd (%2$s)</item>

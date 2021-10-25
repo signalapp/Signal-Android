@@ -316,16 +316,39 @@
     <item quantity="one">Flyttade konversation till inkorgen</item>
     <item quantity="other">Flyttade %d konversationer till inkorgen</item>
   </plurals>
-  <string name="ConversationListFragment_read">Läst</string>
-  <string name="ConversationListFragment_unread">Oläst</string>
-  <string name="ConversationListFragment_pin">Fäst</string>
-  <string name="ConversationListFragment_unpin">Lossa</string>
-  <string name="ConversationListFragment_mute">Ljud av</string>
-  <string name="ConversationListFragment_unmute">Ljud på</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Läst</item>
+    <item quantity="other">Lästa</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Oläst</item>
+    <item quantity="other">Olästa</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fäst</item>
+    <item quantity="other">Fäst</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Lossa</item>
+    <item quantity="other">Lossa</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Ljud av</item>
+    <item quantity="other">Ljud av</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Ljud på</item>
+    <item quantity="other">Ljud på</item>
+  </plurals>
   <string name="ConversationListFragment_select">Välj</string>
-  <string name="ConversationListFragment_archive">Arkivera</string>
-  <string name="ConversationListFragment_unarchive">Avarkivera</string>
-  <string name="ConversationListFragment_delete">Ta bort</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arkivera</item>
+    <item quantity="other">Arkivera</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Ta bort</item>
+    <item quantity="other">Ta bort</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Välj alla</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d vald</item>
@@ -811,9 +834,15 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rutnätsvy</string>
   <string name="MediaOverviewActivity_List_view_description">Listvy</string>
   <string name="MediaOverviewActivity_Selected_description">Valda</string>
-  <string name="MediaOverviewActivity_save">Spara</string>
   <string name="MediaOverviewActivity_select_all">Välj alla</string>
-  <string name="MediaOverviewActivity_delete">Ta bort</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Spara</item>
+    <item quantity="other">Spara</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Ta bort</item>
+    <item quantity="other">Ta bort</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d vald (%2$s)</item>
     <item quantity="other">%1$d valda (%2$s)</item>
@@ -3303,7 +3332,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Boost__one_time_contribution">Engångsbidrag</string>
   <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal-boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
-  <string name="MySupportPreference__renews_s">Förnyar %1$s</string>
+  <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har löpt ut</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ditt %1$s-märke har löpt ut och är inte längre synligt för andra i din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Om du vill fortsätta stöda teknik som är byggd för dig—inte för dina data—vänligen överväg att bli en månadsabonnent.</string>

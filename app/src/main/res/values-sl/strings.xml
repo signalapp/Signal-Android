@@ -335,16 +335,7 @@
     <item quantity="few">%d pogovori premaknjeni v nabiralnik</item>
     <item quantity="other">%d pogovorov premaknjenih v nabiralnik</item>
   </plurals>
-  <string name="ConversationListFragment_read">Prebrano</string>
-  <string name="ConversationListFragment_unread">Neprebrano</string>
-  <string name="ConversationListFragment_pin">Pripni</string>
-  <string name="ConversationListFragment_unpin">Odpni</string>
-  <string name="ConversationListFragment_mute">Utišaj</string>
-  <string name="ConversationListFragment_unmute">Prekini utišanje</string>
   <string name="ConversationListFragment_select">Izberi</string>
-  <string name="ConversationListFragment_archive">Premakni v arhiv</string>
-  <string name="ConversationListFragment_unarchive">Od-arhiviraj</string>
-  <string name="ConversationListFragment_delete">Izbriši</string>
   <string name="ConversationListFragment_select_all">Označi vse</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d izbran</item>
@@ -890,9 +881,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Mrežni pogled</string>
   <string name="MediaOverviewActivity_List_view_description">Seznam</string>
   <string name="MediaOverviewActivity_Selected_description">Izbrano</string>
-  <string name="MediaOverviewActivity_save">Shrani</string>
   <string name="MediaOverviewActivity_select_all">Označi vse</string>
-  <string name="MediaOverviewActivity_delete">Izbriši</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d izbran (%2$s)</item>
     <item quantity="two">%1$d izbrana (%2$s)</item>

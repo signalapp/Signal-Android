@@ -316,16 +316,7 @@
     <item quantity="one">S\'ha mogut la conversa a la safata d\'entrada</item>
     <item quantity="other">S\'han mogut %d converses a la safata d\'entrada</item>
   </plurals>
-  <string name="ConversationListFragment_read">Llegit</string>
-  <string name="ConversationListFragment_unread">Per llegir</string>
-  <string name="ConversationListFragment_pin">Fixa</string>
-  <string name="ConversationListFragment_unpin">No ho fixis</string>
-  <string name="ConversationListFragment_mute">Silenci</string>
-  <string name="ConversationListFragment_unmute">No la silenciïs</string>
   <string name="ConversationListFragment_select">Selecció</string>
-  <string name="ConversationListFragment_archive">Arxiva</string>
-  <string name="ConversationListFragment_unarchive">Restaura</string>
-  <string name="ConversationListFragment_delete">Suprimeix</string>
   <string name="ConversationListFragment_select_all">Selecciona-ho tot</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
@@ -807,9 +798,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de graella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de llista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
-  <string name="MediaOverviewActivity_save">Desa</string>
   <string name="MediaOverviewActivity_select_all">Selecciona-ho tot</string>
-  <string name="MediaOverviewActivity_delete">Suprimeix</string>
   <string name="MediaOverviewActivity_file">Fitxer</string>
   <string name="MediaOverviewActivity_audio">Àudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
