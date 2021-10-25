@@ -101,6 +101,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
@@ -366,6 +367,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     GiphyMp4ProjectionRecycler callback = new GiphyMp4ProjectionRecycler(holders);
 
     GiphyMp4PlaybackController.attach(list, callback, maxPlayback);
+    list.addItemDecoration(new GiphyMp4ItemDecoration(callback), 0);
 
     return callback;
   }

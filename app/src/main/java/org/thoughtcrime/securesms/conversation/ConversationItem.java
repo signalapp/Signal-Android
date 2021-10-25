@@ -1715,10 +1715,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
     if (mediaThumbnailStub != null && mediaThumbnailStub.isResolvable()) {
       return Projection.relativeToParent(recyclerView, mediaThumbnailStub.require(), mediaThumbnailStub.require().getCorners())
+                       .translateY(getTranslationY())
                        .translateX(bodyBubble.getTranslationX())
                        .translateX(getTranslationX());
     } else {
       return Projection.relativeToParent(recyclerView, bodyBubble, bodyBubbleCorners)
+                       .translateY(getTranslationY())
                        .translateX(bodyBubble.getTranslationX())
                        .translateX(getTranslationX());
     }
