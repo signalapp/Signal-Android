@@ -166,7 +166,7 @@ public class ConversationAdapter
 
   @Override
   public int getItemViewType(int position) {
-    if (hasHeader() && position == 0) {
+    if (isTypingViewEnabled() && position == 0) {
       return MESSAGE_TYPE_HEADER;
     }
 
@@ -365,7 +365,7 @@ public class ConversationAdapter
   }
 
   public @Nullable ConversationMessage getItem(int position) {
-    position = hasHeader() ? position - 1 : position;
+    position = isTypingViewEnabled() ? position - 1 : position;
 
     if (position == -1) {
       return null;
@@ -421,7 +421,7 @@ public class ConversationAdapter
    */
   @MainThread
   int getAdapterPositionForMessagePosition(int messagePosition) {
-    return hasHeader() ? messagePosition + 1 : messagePosition;
+    return isTypingViewEnabled() ? messagePosition + 1 : messagePosition;
   }
 
   /**
@@ -602,7 +602,7 @@ public class ConversationAdapter
     }
   }
 
-  public boolean hasHeader() {
+  public boolean isTypingViewEnabled() {
     return isTypingViewEnabled;
   }
 
@@ -611,7 +611,7 @@ public class ConversationAdapter
   }
 
   private boolean isHeaderPosition(int position) {
-    return hasHeader() && position == 0;
+    return isTypingViewEnabled() && position == 0;
   }
 
   private boolean isFooterPosition(int position) {

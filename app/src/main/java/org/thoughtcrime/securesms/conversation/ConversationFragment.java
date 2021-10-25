@@ -53,9 +53,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -86,7 +84,7 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickList
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
-import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemAnimator;
+import org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
@@ -158,7 +156,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
@@ -223,8 +220,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private ConversationUpdateTick     conversationUpdateTick;
   private MultiselectItemDecoration  multiselectItemDecoration;
 
-  private boolean initialDataLoaded = false;
-
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
@@ -258,15 +253,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
     reactionsShade        = view.findViewById(R.id.reactions_shade);
 
-    final LinearLayoutManager     layoutManager           = new SmoothScrollingLinearLayoutManager(getActivity(), true);
-    final MultiselectItemAnimator multiselectItemAnimator = new MultiselectItemAnimator(() -> {
+    final LinearLayoutManager      layoutManager            = new SmoothScrollingLinearLayoutManager(getActivity(), true);
+    final ConversationItemAnimator conversationItemAnimator = new ConversationItemAnimator(() -> {
       ConversationAdapter adapter = getListAdapter();
       if (adapter == null) {
         return false;
       } else {
         return Util.hasItems(adapter.getSelectedItems());
       }
-    }, () -> !initialDataLoaded, () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
+    }, () -> conversationViewModel.shouldPlayMessageAnimations(), () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
     multiselectItemDecoration = new MultiselectItemDecoration(requireContext(),
                                                               () -> conversationViewModel.getWallpaper().getValue());
 
@@ -276,7 +271,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     RecyclerViewColorizer recyclerViewColorizer = new RecyclerViewColorizer(list);
 
     list.addItemDecoration(multiselectItemDecoration);
-    list.setItemAnimator(multiselectItemAnimator);
+    list.setItemAnimator(conversationItemAnimator);
 
     getViewLifecycleOwner().getLifecycle().addObserver(multiselectItemDecoration);
 
@@ -307,25 +302,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     this.messageCountsViewModel = ViewModelProviders.of(requireActivity()).get(MessageCountsViewModel.class);
     this.conversationViewModel  = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
-    MutableLiveData<Boolean> hasSubmittedNonEmptyList = new MutableLiveData<>(false);
-    LiveData<Boolean>        hasMessagesInThread      = Transformations.map(conversationViewModel.getConversationMetadata(), c -> c.getThreadSize() > 0);
-
-    LiveData<Boolean> playAnimations = LiveDataUtil.combineLatest(hasSubmittedNonEmptyList, hasMessagesInThread, (a, b) -> {
-      if (a && b) {
-        return true;
-      } else {
-        return !b;
-      }
-    });
-
-    playAnimations.observe(getViewLifecycleOwner(), p -> initialDataLoaded = p);
-
     conversationViewModel.getChatColors().observe(getViewLifecycleOwner(), recyclerViewColorizer::setChatColors);
     conversationViewModel.getMessages().observe(getViewLifecycleOwner(), messages -> {
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
         getListAdapter().submitList(messages, () -> {
-          hasSubmittedNonEmptyList.postValue(!messages.isEmpty());
+          list.post(() -> conversationViewModel.onMessagesCommitted(messages));
         });
       }
     });
@@ -391,7 +373,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void clearFocusedItem() {
     multiselectItemDecoration.setFocusedItem(null);
     list.invalidateItemDecorations();
-    reactionsShade.setVisibility(View.GONE);
+    reactionsShade.setVisibility(View.INVISIBLE);
   }
 
   private void updateConversationItemTimestamps() {
@@ -1040,7 +1022,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                            .submit();
     } else if (conversation.getMessageRequestData().isMessageRequestAccepted()) {
       snapToTopDataObserver.buildScrollPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition)
-                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight() - (conversation.shouldScrollToLastSeen() ? lastSeenScrollOffset : 0)))
+                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, (list.getHeight() + reactionsShade.getHeight()) - (conversation.shouldScrollToLastSeen() ? lastSeenScrollOffset : 0)))
                            .withOnScrollRequestComplete(afterScroll)
                            .submit();
     } else {
@@ -1064,7 +1046,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private boolean isTypingIndicatorShowing() {
-    return getListAdapter().hasHeader();
+    return getListAdapter().isTypingViewEnabled();
   }
 
   public void onSearchQueryUpdated(@Nullable String query) {

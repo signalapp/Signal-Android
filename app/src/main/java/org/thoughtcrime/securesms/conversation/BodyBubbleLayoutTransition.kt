@@ -20,7 +20,7 @@ class BodyBubbleLayoutTransition(bodyBubble: ConversationItemBodyBubble) : Layou
 
     animator.duration = getAnimator(CHANGE_DISAPPEARING).duration
     animator.addUpdateListener {
-      val parentRecycler: RecyclerView? = bodyBubble.parent.parent as? RecyclerView
+      val parentRecycler: RecyclerView? = bodyBubble.parent?.parent as? RecyclerView
 
       try {
         parentRecycler?.invalidate()
