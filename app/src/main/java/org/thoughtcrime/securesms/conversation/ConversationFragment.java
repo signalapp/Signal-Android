@@ -255,14 +255,18 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     reactionsShade        = view.findViewById(R.id.reactions_shade);
 
     final LinearLayoutManager      layoutManager            = new SmoothScrollingLinearLayoutManager(getActivity(), true);
-    final ConversationItemAnimator conversationItemAnimator = new ConversationItemAnimator(() -> {
-      ConversationAdapter adapter = getListAdapter();
-      if (adapter == null) {
-        return false;
-      } else {
-        return Util.hasItems(adapter.getSelectedItems());
-      }
-    }, () -> conversationViewModel.shouldPlayMessageAnimations(), () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
+    final ConversationItemAnimator conversationItemAnimator = new ConversationItemAnimator(
+        () -> {
+          ConversationAdapter adapter = getListAdapter();
+          if (adapter == null) {
+            return false;
+          } else {
+            return Util.hasItems(adapter.getSelectedItems());
+          }
+        },
+        () -> conversationViewModel.shouldPlayMessageAnimations() && list.getScrollState() == RecyclerView.SCROLL_STATE_IDLE,
+        () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
+
     multiselectItemDecoration = new MultiselectItemDecoration(requireContext(),
                                                               () -> conversationViewModel.getWallpaper().getValue());
 
