@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class SignalExecutors {
 
   public static final ExecutorService UNBOUNDED  = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
-  public static final ExecutorService BOUNDED    = newCachedBoundedExecutor("signal-bounded", 4, 12, 5);
+  public static final ExecutorService BOUNDED    = Executors.newFixedThreadPool(4, new NumberedThreadFactory("signal-bounded"));
   public static final ExecutorService SERIAL     = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
   public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-io-bounded", 1, 32, 30);
 
