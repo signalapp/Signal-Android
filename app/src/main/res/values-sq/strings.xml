@@ -316,7 +316,43 @@
     <item quantity="one">Biseda u shpu te të marrat</item>
     <item quantity="other">%d biseda u shpunë te të marrat</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Lexojeni</item>
+    <item quantity="other">Lexojini</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Çlexojeni</item>
+    <item quantity="other">Çlexojini</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fiksoje</item>
+    <item quantity="other">Fiksoji</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Çfiksoje</item>
+    <item quantity="other">Çfiksoji</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Heshtoje</item>
+    <item quantity="other">Heshtoji</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Çheshtoje</item>
+    <item quantity="other">Çheshtoji</item>
+  </plurals>
   <string name="ConversationListFragment_select">Përzgjidhni</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arkivoje</item>
+    <item quantity="other">Arkivoji</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Çarkivoje</item>
+    <item quantity="other">Çarkivoji</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Fshije</item>
+    <item quantity="other">Fshiji</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Përzgjidhi krejt</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d i përzgjedhur</item>
@@ -807,6 +843,14 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MediaOverviewActivity_List_view_description">Pamje listë</string>
   <string name="MediaOverviewActivity_Selected_description">Të përzgjedhura</string>
   <string name="MediaOverviewActivity_select_all">Përzgjidhi krejt</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Ruaje</item>
+    <item quantity="other">Ruaji</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Fshije</item>
+    <item quantity="other">Fshiji</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d i përzgjedhur (%2$s)</item>
     <item quantity="other">%1$d të përzgjedhur (%2$s)</item>

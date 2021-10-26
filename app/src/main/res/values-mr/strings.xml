@@ -316,7 +316,43 @@
     <item quantity="one">संभाषण इनबॉक्स मध्ये हलवले</item>
     <item quantity="other">%d संभाषण इनबॉक्स मध्ये हलवली</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">वाचले</item>
+    <item quantity="other">वाचले</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">वाचले नाही</item>
+    <item quantity="other">वाचले नाही</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">पिन करा</item>
+    <item quantity="other">पिन करा</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">अनपिन करा</item>
+    <item quantity="other">अनपिन करा</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">म्यूट करा</item>
+    <item quantity="other">म्यूट करा</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">अनम्यूट करा</item>
+    <item quantity="other">अनम्यूट करा</item>
+  </plurals>
   <string name="ConversationListFragment_select">निवडा</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">आर्काईव्ह</item>
+    <item quantity="other">आर्काईव्ह</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">अनआर्काईव्ह</item>
+    <item quantity="other">अनआर्काईव्ह</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">हटवा</item>
+    <item quantity="other">हटवा</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">सर्व निवडा</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d निवडले</item>
@@ -802,6 +838,14 @@
   <string name="MediaOverviewActivity_List_view_description">यादी दृश्य</string>
   <string name="MediaOverviewActivity_Selected_description">निवडलेले</string>
   <string name="MediaOverviewActivity_select_all">सर्व निवडा</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">जतन करा</item>
+    <item quantity="other">जतन करा</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">हटवा</item>
+    <item quantity="other">हटवा</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d निवडले (%2$s)</item>
     <item quantity="other">%1$d निवडले (%2$s)</item>
@@ -1040,6 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s सोबत आपण आपला सुरक्षितता नंबर असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s यांनी त्यांचा नंबर नवीन नंबर वर बदलला.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये  आहे · %2$s</string>
@@ -1210,7 +1255,16 @@
   <string name="WebRtcCallView__reconnecting">पुनःकनेक्ट करत आहे…</string>
   <string name="WebRtcCallView__joining">सामील होत आहे…</string>
   <string name="WebRtcCallView__disconnected">डिसकनेक्ट झाले</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal %1$s, %2$s आणि इतर %3$d जणांना रिंग देईल</item>
+    <item quantity="other">Signal %1$s, %2$s आणि इतर %3$d जणांना रिंग देईल</item>
+  </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s ला सुचित केले जाईल </string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s आणि %2$s ला सूचित केले जाईल</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s आणि इतर %3$d जणांना सूचित केले जाईल</item>
+    <item quantity="other">%1$s, %2$s आणि इतर %3$d जणांना सूचित केले जाईल</item>
+  </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s तुम्हाला काॅल करत आहे</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s तुम्हाला, %2$s, %3$s आणि इतर %4$d जणांना काॅल करत आहे</item>
@@ -1225,9 +1279,11 @@
     <item quantity="one">%1$s, %2$s, आणि %3$d इतर व्यक्ती गट कॉलमध्ये आहे</item>
     <item quantity="other">%1$s, %2$s, आणि %3$d इतर व्यक्ती कॉलमध्ये आहेत</item>
   </plurals>
+  <string name="WebRtcCallView__flip">स्विच </string>
   <string name="WebRtcCallView__speaker">स्पीकर</string>
   <string name="WebRtcCallView__camera">कॅमेरा</string>
   <string name="WebRtcCallView__mute">म्यूट करा</string>
+  <string name="WebRtcCallView__ring">रिंग</string>
   <string name="WebRtcCallView__end_call">कॉल संपवा</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1276,6 +1332,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">आपल्या मित्रांसोबत जोडण्यासाठी, संदेश अदलाबदल करण्यासाठी, आणि सुरक्षित कॉल करण्यासाठी Signal ला आपल्या संपर्काच्या अॅक्सेसची गरज आहे.</string>
   <string name="RegistrationActivity_rate_limited_to_service">या नंबरसोबत आपण खूप प्रयत्न केले आहेत. कृपया नंतर पुन्हा प्रयत्न करा.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">सेवेसोबत कनेक्ट करण्यात अक्षम. कृपया नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
+  <string name="RegistrationActivity_call_requested">कॉलची विनंती केली</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">आपण आता डीबग लॉग प्रविष्ट करण्याच्या %d पायरी दूर आहात.</item>
     <item quantity="other">आपण आता डीबग लॉग प्रविष्ट करण्याच्या %d पायऱ्या दूर आहात.</item>
@@ -2923,6 +2980,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">आपण प्रविष्ट केलेला फोन नंबर आपल्या खात्याशी जुळत नाही.</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">फोन नंबर बदला</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s सत्यापित करत आहे…</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">नंबर बदला</string>
   <string name="ChangeNumberConfirmFragment__edit_number">नंबर संपादित करा</string>
@@ -3145,6 +3203,7 @@
   <string name="DSLSettingsToolbar__navigate_up">वर नॅव्हिगेट करा</string>
   <string name="MultiselectForwardFragment__forward_to">यांना फॉर्वर्ड करा</string>
   <string name="MultiselectForwardFragment__add_a_message">संदेश जोडा</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">फॉर्वर्ड केलेले संदेश आत्ता विनाविलंब  पाठवले जातील.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d संदेश पाठवा</item>
     <item quantity="other">%1$d संदेश पाठवा</item>

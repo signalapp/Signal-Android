@@ -338,7 +338,61 @@
     <item quantity="many">Přesunuto %d konverzací do složky příchozích zpráv</item>
     <item quantity="other">Přesunuto %d konverzací do složky příchozích zpráv</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Přečteno</item>
+    <item quantity="few">Přečteno</item>
+    <item quantity="many">Přečteno</item>
+    <item quantity="other">Přečteno</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Nepřečteno</item>
+    <item quantity="few">Nepřečteno</item>
+    <item quantity="many">Nepřečteno</item>
+    <item quantity="other">Nepřečteno</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Připnout</item>
+    <item quantity="few">Připnout</item>
+    <item quantity="many">Připnout</item>
+    <item quantity="other">Připnout</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Odepnout</item>
+    <item quantity="few">Odepnout</item>
+    <item quantity="many">Odepnout</item>
+    <item quantity="other">Odepnout</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Ztlumit</item>
+    <item quantity="few">Ztlumit</item>
+    <item quantity="many">Ztlumit</item>
+    <item quantity="other">Ztlumit</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Zrušit ztlumení</item>
+    <item quantity="few">Zrušit ztlumení</item>
+    <item quantity="many">Zrušit ztlumení</item>
+    <item quantity="other">Zrušit ztlumení</item>
+  </plurals>
   <string name="ConversationListFragment_select">Vybrat</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archivovat</item>
+    <item quantity="few">Archivovat</item>
+    <item quantity="many">Archivovat</item>
+    <item quantity="other">Archivovat</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Nearchivovat</item>
+    <item quantity="few">Nearchivovat</item>
+    <item quantity="many">Nearchivovat</item>
+    <item quantity="other">Nearchivovat</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Smazat</item>
+    <item quantity="few">Smazat</item>
+    <item quantity="many">Smazat</item>
+    <item quantity="other">Smazat</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Vybrat vše</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d vybrán</item>
@@ -885,6 +939,18 @@
   <string name="MediaOverviewActivity_List_view_description">Zobrazení seznamu</string>
   <string name="MediaOverviewActivity_Selected_description">Vybrané</string>
   <string name="MediaOverviewActivity_select_all">Vybrat vše</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Uložit</item>
+    <item quantity="few">Uložit</item>
+    <item quantity="many">Uložit</item>
+    <item quantity="other">Uložit</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Smazat</item>
+    <item quantity="few">Smazat</item>
+    <item quantity="many">Smazat</item>
+    <item quantity="other">Smazat</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d vybraný (%2$s)</item>
     <item quantity="few">%1$d vybrané (%2$s)</item>

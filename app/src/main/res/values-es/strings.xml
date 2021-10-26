@@ -316,6 +316,18 @@
     <item quantity="one">Chat devuelto al buzón de entrada</item>
     <item quantity="other">%d chats devueltos al buzón de entrada</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Leído</item>
+    <item quantity="other">Leídos</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">No leído</item>
+    <item quantity="other">No leídos</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fijado</item>
+    <item quantity="other">Fijados</item>
+  </plurals>
   <string name="ConversationListFragment_select">selecciona</string>
   <string name="ConversationListFragment_select_all">Seleccionar todo</string>
   <plurals name="ConversationListFragment_s_selected">

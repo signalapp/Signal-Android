@@ -2003,6 +2003,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
   <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
+  <string name="preferences__payments">Πληρωμές</string>
   <string name="preferences__payments_beta">Πληρωμή (Beta)</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2114,9 +2115,12 @@
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Όλη η δραστηριότητα</string>
+  <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
   <string name="PaymentsAllActivityFragment__sent">Στάλθηκε στις</string>
+  <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
   <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
   <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
+  <string name="PaymentsHomeFragment__see_all">Προβολή όλων</string>
   <string name="PaymentsHomeFragment__send">Αποστολή</string>
   <string name="PaymentsHomeFragment__currency_conversion">Μετατροπή νομίσματος</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Απενεργοποίηση πληρωμών</string>
@@ -2141,13 +2145,16 @@
   <string name="PaymentsDetailsFragment__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="PaymentsDetailsFragment__network_fee">Χρέωση δικτύου</string>
   <string name="PaymentsDetailsFragment__to">Προς</string>
+  <string name="PaymentsDetailsFragment__from">Από</string>
   <string name="PaymentsDetailsFragment__block_number">Φραγή αριθμού</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Μεταφορά</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">Σκανάρισμα κωδικού QR</string>
   <string name="PaymentsTransferFragment__next">Επόμενο</string>
   <string name="PaymentsTransferFragment__settings">Ρυθμίσεις</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Αίτημα</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2160,6 +2167,7 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Προσθήκη σημείωσης</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Σημείωση</string>
@@ -2769,16 +2777,19 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Σχετικά με το MobileCoin</string>
   <string name="payment_info_card_hide">Απόκρυψη</string>
+  <string name="payment_info_card_update_pin">Ανανέωση PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate">Απενεργοποίηση</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Φράση ανάκτησης</string>
+  <string name="PaymentsRecoveryStartFragment__start">Εκκίνηση</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Φράση ανάκτησης</string>
   <string name="PaymentsRecoveryPasteFragment__next">Επόμενο</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Επόμενο</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Eπεξεργασία</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Προηγούμενο</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Αντιγραφή</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Λέξη %1$d</string>
@@ -2792,6 +2803,7 @@
   <string name="PaymentNotificationsView__view">Εμφάνιση</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Στείλε ένα μήνυμα</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Δεν είσαι σε κοινές ομάδες με αυτό το άτομο. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Καμία από τις επαφές σου ή τα άτομα με τα οποία συνομιλείς δεν είναι σε αυτή την ομάδα. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>

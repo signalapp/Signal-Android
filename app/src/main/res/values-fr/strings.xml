@@ -317,33 +317,41 @@
     <item quantity="other">%d conversations ont été déplacées vers la boîte de réception</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
-    <item quantity="one">Lu</item>
-    <item quantity="other">Lus</item>
+    <item quantity="one">Lue</item>
+    <item quantity="other">Lues</item>
   </plurals>
   <plurals name="ConversationListFragment_unread_plural">
-    <item quantity="one">Non lu</item>
-    <item quantity="other">Non lus</item>
+    <item quantity="one">Non lue</item>
+    <item quantity="other">Non lues</item>
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
-    <item quantity="one">Épinglé</item>
-    <item quantity="other">Épinglés</item>
+    <item quantity="one">Épingler</item>
+    <item quantity="other">Épingler</item>
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
-    <item quantity="one">Désépinglé</item>
-    <item quantity="other">Désépinglés</item>
+    <item quantity="one">Désépingler</item>
+    <item quantity="other">Désépingler</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Désactiver</item>
+    <item quantity="other">Désactiver</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Réactiver</item>
+    <item quantity="other">Réactiver</item>
   </plurals>
   <string name="ConversationListFragment_select">Sélectionner</string>
   <plurals name="ConversationListFragment_archive_plural">
-    <item quantity="one">Archivé</item>
-    <item quantity="other">Archivés</item>
+    <item quantity="one">Archiver</item>
+    <item quantity="other">Archiver</item>
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">
-    <item quantity="one">Désarchivé</item>
-    <item quantity="other">Désarchivés</item>
+    <item quantity="one">Désarchiver</item>
+    <item quantity="other">Désarchiver</item>
   </plurals>
   <plurals name="ConversationListFragment_delete_plural">
-    <item quantity="one">Supprimé</item>
-    <item quantity="other">Supprimés</item>
+    <item quantity="one">Supprimer</item>
+    <item quantity="other">Supprimer</item>
   </plurals>
   <string name="ConversationListFragment_select_all">Tout sélectionner</string>
   <plurals name="ConversationListFragment_s_selected">
@@ -838,6 +846,10 @@
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="one">Supprimé</item>
     <item quantity="other">Supprimés</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d sélectionnée (%2$s)</item>
+    <item quantity="other">%1$d sélectionnées (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fichier</string>
   <string name="MediaOverviewActivity_audio">Son</string>
@@ -1920,6 +1932,16 @@
   <string name="HelpFragment__debug_log">Journal de débogage :</string>
   <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Veuillez sélectionner une option --</item>
+    <item>Quelque chose ne fonctionne pas</item>
+    <item>Proposition de fonction</item>
+    <item>Question</item>
+    <item>Rétroaction</item>
+    <item>Autre</item>
+    <item>Paiements (MobileCoin)</item>
+    <item>Dons (pourvoyeurs &amp; et Boost Signal)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilisés récemment</string>
@@ -3294,6 +3316,7 @@ Nouvelle tentative…</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Le montant total du prix du nouvel abonnement vous sera facturé aujourd’hui. Votre abonnement sera renouvelé %1$s.</string>
   <string name="Subscription__s_per_month">%s/mois</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mois · Renouvellement %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mois · Expire %2$s </string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal est une fondation à but non lucratif sans annonceurs ni investisseurs, soutenue uniquement par les gens qui l\'utilisent et l\'apprécient. Faites un don mensuel récurrent et recevez un badge de profil pour afficher votre soutien.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pourquoi contribuer ?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">L\'équipe de Signal est dévouée à la mission de développement de technologies de protection des renseignements personnels à code source ouvert, qui protègent la liberté d\'expression et rendent possible une communication sécurisée au niveau mondial. Votre don soutien cette cause. Sans pubs. Sans traçage. Sans déconner.</string>

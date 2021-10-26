@@ -316,7 +316,43 @@
     <item quantity="one">Samtale flyttet til inbox</item>
     <item quantity="other">Flyttet %d samtaler til indbakke</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Læst</item>
+    <item quantity="other">Læste</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ulæst</item>
+    <item quantity="other">Ulæste</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fastgør</item>
+    <item quantity="other">Fastgør</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Frigør</item>
+    <item quantity="other">Frigør</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Ignorer</item>
+    <item quantity="other">Ignorer</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Ignorer ikke</item>
+    <item quantity="other">Ignorer ikke</item>
+  </plurals>
   <string name="ConversationListFragment_select">Vælg</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arkiver</item>
+    <item quantity="other">Arkiver</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Ophæv arkivering</item>
+    <item quantity="other">Ophæv arkivering</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Slet</item>
+    <item quantity="other">Slet</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Vælg alle</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d valgt</item>
@@ -803,6 +839,14 @@
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgte</string>
   <string name="MediaOverviewActivity_select_all">Vælg alle</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Gem</item>
+    <item quantity="other">Gem</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Slet</item>
+    <item quantity="other">Slet</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d valgt (%2$s)</item>
     <item quantity="other">%1$d valgte (%2$s)</item>

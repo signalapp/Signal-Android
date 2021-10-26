@@ -305,7 +305,34 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d件のチャットを受信ボックスに移動しました</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">既読にする</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="other">未読にする</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="other">ピン留め</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="other">ピン留め解除</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="other">ミュート</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="other">ミュート解除</item>
+  </plurals>
   <string name="ConversationListFragment_select">選択</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="other">アーカイブ</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="other">受信箱に戻す</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="other">削除</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">すべて選択</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">%d件選択済み</item>
@@ -762,6 +789,12 @@
   <string name="MediaOverviewActivity_List_view_description">リスト表示</string>
   <string name="MediaOverviewActivity_Selected_description">選択済み</string>
   <string name="MediaOverviewActivity_select_all">すべて選択</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="other">保存</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="other">削除</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="other">%1$d件選択済み (%2$s)</item>
   </plurals>
@@ -2165,7 +2198,7 @@
   <string name="ConfirmPayment__payment_failed">支払いに失敗しました。</string>
   <string name="ConfirmPayment__payment_will_continue_processing">支払い処理中です。</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">無効な宛先</string>
-  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">この人は支払い機能を有効にしていません。</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">この人は支払い機能を有効にしていません</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">手数料を取得できません。支払いを続けるには、OKをタップしてもう一度試みてください。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%2$s で %1$s</string>
@@ -2595,10 +2628,10 @@
   <string name="OldDeviceTransferLockedDialog__done">完了</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">キャンセルしてこの端末をアクティベート</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB残高を移行しますか?</string>
-  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">あなたの残高は 1%1$s です。アカウントを削除する前に別のウォレットに移行しないと、残金が永遠に失われます。</string>
-  <string name="AdvancedPreferenceFragment__dont_transfer">移行しない</string>
-  <string name="AdvancedPreferenceFragment__transfer">移行する</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB残高を振り替えますか？</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">あなたの残高は%1$sです。口座を削除する前に、残高を別のウォレットに振り替えなければ、永遠に失われます。</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">振り替えない</string>
+  <string name="AdvancedPreferenceFragment__transfer">振り替える</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ブロック</string>
   <string name="RecipientBottomSheet_unblock">ブロック解除</string>
@@ -2690,7 +2723,7 @@
   <string name="DeleteAccountFragment__delete_account">アカウントを削除する</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">あなたのアカウント情報とプロフィール画像を削除します</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">あなたのメッセージをすべて削除します</string>
-  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">支払いアカウントにある %1$s を削除</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">支払い口座の %1$s を削除</string>
   <string name="DeleteAccountFragment__no_country_code">国番号が指定されていません</string>
   <string name="DeleteAccountFragment__no_number">電話番号が指定されていません</string>
   <string name="DeleteAccountFragment__the_phone_number">入力された電話番号は、あなたのアカウントのものと一致しません。</string>

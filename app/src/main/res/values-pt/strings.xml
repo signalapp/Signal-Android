@@ -316,7 +316,43 @@
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Ler</item>
+    <item quantity="other">Ler</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Por ler</item>
+    <item quantity="other">Por ler</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Afixar</item>
+    <item quantity="other">Afixar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Desafixar</item>
+    <item quantity="other">Desafixar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Silenciar</item>
+    <item quantity="other">Silenciar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Avisar</item>
+    <item quantity="other">Avisar</item>
+  </plurals>
   <string name="ConversationListFragment_select">Selecionar</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arquivar</item>
+    <item quantity="other">Arquivar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Desarquivar</item>
+    <item quantity="other">Desarquivar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Eliminar</item>
+    <item quantity="other">Eliminar</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Selecionar tudo</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d selecionado</item>
@@ -803,6 +839,14 @@
   <string name="MediaOverviewActivity_List_view_description">Vista em lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selecionado(s)</string>
   <string name="MediaOverviewActivity_select_all">Selecionar tudo</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Guardar</item>
+    <item quantity="other">Guardar</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Eliminar</item>
+    <item quantity="other">Eliminar</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d selecionado(a) (%2$s)</item>
     <item quantity="other">%1$d selecionados(as) (%2$s)</item>

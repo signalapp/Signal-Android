@@ -317,7 +317,39 @@
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
     <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Gelezen</item>
+    <item quantity="other">Gelezen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Vastprikken</item>
+    <item quantity="other">Vastprikken</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Losmaken</item>
+    <item quantity="other">Losmaken</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Gesprek dempen</item>
+    <item quantity="other">Gesprekken dempen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Gesprek niet langer dempen</item>
+    <item quantity="other">Gesprekken niet langer dempen</item>
+  </plurals>
   <string name="ConversationListFragment_select">Selecteren</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archiveren</item>
+    <item quantity="other">Archiveren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Dearchiveren</item>
+    <item quantity="other">Dearchiveren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Wissen</item>
+    <item quantity="other">Wissen</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Alles selecteren</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d geselecteerd</item>
@@ -805,6 +837,15 @@
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
   <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Onversleuteld opslaan
+</item>
+    <item quantity="other">Onversleuteld opslaan</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Wissen</item>
+    <item quantity="other">Wissen</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d geselecteerd (%2$s)</item>
     <item quantity="other">%1$d geselecteerd (%2$s)</item>

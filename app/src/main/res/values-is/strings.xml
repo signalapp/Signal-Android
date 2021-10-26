@@ -316,6 +316,10 @@
     <item quantity="one">Færði samtal í innhólf</item>
     <item quantity="other">Færði %d samtöl í innhólf</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Lesið</item>
+    <item quantity="other">Lesið</item>
+  </plurals>
   <string name="ConversationListFragment_select">Velja</string>
   <string name="ConversationListFragment_select_all">Velja allt</string>
   <!--ConversationListItem-->
