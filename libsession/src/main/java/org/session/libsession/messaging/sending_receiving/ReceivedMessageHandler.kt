@@ -144,7 +144,8 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
 }
 
 fun MessageReceiver.handleUnsendRequest(message: UnsendRequest) {
-    if (message.sender != message.author) { return }
+    val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey()
+    if (message.sender != message.author && (message.sender != userPublicKey && userPublicKey != null)) { return }
     val context = MessagingModuleConfiguration.shared.context
     val storage = MessagingModuleConfiguration.shared.storage
     val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider

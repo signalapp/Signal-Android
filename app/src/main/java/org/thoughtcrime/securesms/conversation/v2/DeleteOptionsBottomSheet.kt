@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_delete_message_bottom_sheet.*
@@ -57,6 +58,7 @@ class DeleteOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListen
             deleteForEveryoneTextView.text =
                 resources.getString(R.string.delete_message_for_me_and_recipient, contact)
         }
+        deleteForEveryoneTextView.isVisible = !recipient.isClosedGroupRecipient
         deleteForMeTextView.setOnClickListener(this)
         deleteForEveryoneTextView.setOnClickListener(this)
         cancelTextView.setOnClickListener(this)
