@@ -59,9 +59,11 @@ import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.push.exceptions.ContactManifestMismatchException;
 import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
+import org.whispersystems.signalservice.api.push.exceptions.ImpossiblePhoneNumberException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
+import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNumberException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
@@ -141,7 +143,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Future;
@@ -304,14 +305,7 @@ public class PushServiceSocket {
       path += "&challenge=" + challenge.get();
     }
 
-    makeServiceRequest(path, "GET", null, NO_HEADERS, new ResponseCodeHandler() {
-      @Override
-      public void handle(int responseCode) throws NonSuccessfulResponseCodeException {
-        if (responseCode == 402) {
-          throw new CaptchaRequiredException();
-        }
-      }
-    });
+    makeServiceRequest(path, "GET", null, NO_HEADERS, new VerificationCodeResponseHandler());
   }
 
   public void requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
@@ -324,14 +318,7 @@ public class PushServiceSocket {
       path += "?challenge=" + challenge.get();
     }
 
-    makeServiceRequest(path, "GET", null, headers, new ResponseCodeHandler() {
-      @Override
-      public void handle(int responseCode) throws NonSuccessfulResponseCodeException {
-        if (responseCode == 402) {
-          throw new CaptchaRequiredException();
-        }
-      }
-    });
+    makeServiceRequest(path, "GET", null, headers, new VerificationCodeResponseHandler());
   }
 
   public UUID getOwnUuid() throws IOException {
@@ -848,13 +835,10 @@ public class PushServiceSocket {
   }
 
   public void setUsername(String username) throws IOException {
-    makeServiceRequest(String.format(SET_USERNAME_PATH, username), "PUT", "", NO_HEADERS, new ResponseCodeHandler() {
-      @Override
-      public void handle(int responseCode) throws NonSuccessfulResponseCodeException {
-        switch (responseCode) {
-          case 400: throw new UsernameMalformedException();
-          case 409: throw new UsernameTakenException();
-        }
+    makeServiceRequest(String.format(SET_USERNAME_PATH, username), "PUT", "", NO_HEADERS, (responseCode, body) -> {
+      switch (responseCode) {
+        case 400: throw new UsernameMalformedException();
+        case 409: throw new UsernameTakenException();
       }
     }, Optional.<UnidentifiedAccess>absent());
   }
@@ -932,7 +916,7 @@ public class PushServiceSocket {
         String.format(SUBSCRIPTION_RECEIPT_CREDENTIALS, subscriptionId),
         "POST",
         payload,
-        code -> {
+        (code, body) -> {
           if (code == 204) throw new NonSuccessfulResponseCodeException(204);
         });
 
@@ -1636,7 +1620,7 @@ public class PushServiceSocket {
   {
     Response response = getServiceConnection(urlFragment, method, body, headers, unidentifiedAccessKey, doNotAddAuthenticationOrUnidentifiedAccessKey);
 
-    responseCodeHandler.handle(response.code());
+    responseCodeHandler.handle(response.code(), response.body());
 
     return validateServiceResponse(response);
   }
@@ -1916,7 +1900,7 @@ public class PushServiceSocket {
       }
     }
 
-    responseCodeHandler.handle(response.code());
+    responseCodeHandler.handle(response.code(), response.body());
 
     switch (response.code()) {
       case 204:
@@ -2231,12 +2215,12 @@ public class PushServiceSocket {
   }
 
   private interface ResponseCodeHandler {
-    void handle(int responseCode) throws NonSuccessfulResponseCodeException, PushNetworkException;
+    void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException;
   }
 
   private static class EmptyResponseCodeHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode) { }
+    public void handle(int responseCode, ResponseBody body) { }
   }
 
   public enum ClientSet { ContactDiscovery, KeyBackup }
@@ -2254,20 +2238,20 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, CredentialResponse.class);
   }
 
-  private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = responseCode -> {
+  private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = (responseCode, body) -> {
     if (responseCode == 409) throw new GroupExistsException();
   };;
   private static final ResponseCodeHandler GROUPS_V2_GET_LOGS_HANDLER       = NO_HANDLER;
-  private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = responseCode -> {
+  private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = (responseCode, body) -> {
     switch (responseCode) {
       case 403: throw new NotInGroupException();
       case 404: throw new GroupNotFoundException();
     }
   };
-  private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = responseCode -> {
+  private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = (responseCode, body) -> {
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();
   };
-  private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = responseCode -> {
+  private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = (responseCode, body) -> {
     if (responseCode == 403) throw new ForbiddenException();
   };
 
@@ -2402,6 +2386,34 @@ public class PushServiceSocket {
       throws NonSuccessfulResponseCodeException, MalformedResponseException, PushNetworkException
   {
     makeServiceRequest(String.format(REPORT_SPAM, e164, serverGuid), "POST", "");
+  }
+
+  private static class VerificationCodeResponseHandler implements ResponseCodeHandler {
+    @Override
+    public void handle(int responseCode, ResponseBody responseBody) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      switch (responseCode) {
+        case 400:
+          String body;
+          try {
+            body = responseBody != null ? responseBody.string() : "";
+          } catch (IOException e) {
+            throw new PushNetworkException(e);
+          }
+
+          if (body.isEmpty()) {
+            throw new ImpossiblePhoneNumberException();
+          } else {
+            try {
+              throw NonNormalizedPhoneNumberException.forResponse(body);
+            } catch (MalformedResponseException e) {
+              Log.w(TAG, "Unable to parse 400 response! Assuming a generic 400.");
+              throw new ImpossiblePhoneNumberException();
+            }
+          }
+        case 402:
+          throw new CaptchaRequiredException();
+      }
+    }
   }
 
   public static final class GroupHistory {
