@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -199,7 +200,13 @@ public final class TransferControlView extends FrameLayout {
       return slides.get(0).getContentDescription();
     } else {
       int downloadCount = Stream.of(slides).reduce(0, (count, slide) -> slide.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE ? count + 1 : count);
-      return getContext().getResources().getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount);
+      String prettyDownloadCount = getContext().getResources().getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount);
+      String prettyDownloadSize = Util.getPrettyFileSize(
+          Stream.of(slides)
+                .filter(slide -> slide.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE)
+                .map(Slide::getFileSize).reduce(0L, Long::sum)
+      );
+      return String.format("%s (%s)", prettyDownloadCount, prettyDownloadSize);
     }
   }
 

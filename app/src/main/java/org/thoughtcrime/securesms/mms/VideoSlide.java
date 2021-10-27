@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 public class VideoSlide extends Slide {
 
@@ -76,6 +77,8 @@ public class VideoSlide extends Slide {
 
   @NonNull @Override
   public String getContentDescription() {
-    return context.getString(R.string.Slide_video);
+    return String.format("%s (%s)",
+                         context.getString(R.string.Slide_video),
+                         Util.getPrettyFileSize(getFileSize()));
   }
 }
