@@ -39,7 +39,7 @@ class AppSettingsActivity : DSLSettingsActivity() {
 
   private val boostViewModel: BoostViewModel by viewModels(
     factoryProducer = {
-      BoostViewModel.Factory(BoostRepository(), donationRepository, FETCH_BOOST_TOKEN_REQUEST_CODE)
+      BoostViewModel.Factory(BoostRepository(ApplicationDependencies.getDonationsService()), donationRepository, FETCH_BOOST_TOKEN_REQUEST_CODE)
     }
   )
 

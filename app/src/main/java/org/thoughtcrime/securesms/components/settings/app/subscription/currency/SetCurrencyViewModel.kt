@@ -11,14 +11,18 @@ import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Currency
 import java.util.Locale
 
-class SetCurrencyViewModel(val isBoost: Boolean) : ViewModel() {
+class SetCurrencyViewModel(private val isBoost: Boolean) : ViewModel() {
 
   private val store = Store(SetCurrencyState())
 
   val state: LiveData<SetCurrencyState> = store.stateLiveData
 
   init {
-    val defaultCurrency = SignalStore.donationsValues().getSubscriptionCurrency()
+    val defaultCurrency = if (isBoost) {
+      SignalStore.donationsValues().getBoostCurrency()
+    } else {
+      SignalStore.donationsValues().getSubscriptionCurrency()
+    }
 
     store.update { state ->
       val platformCurrencies = Currency.getAvailableCurrencies()

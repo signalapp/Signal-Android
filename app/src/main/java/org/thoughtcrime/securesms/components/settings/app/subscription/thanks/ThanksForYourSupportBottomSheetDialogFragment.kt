@@ -107,7 +107,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     if (controlState == ControlState.DISPLAY) {
       badgeRepository.setVisibilityForAllBadges(controlChecked).subscribe()
-    } else {
+    } else if (controlChecked) {
       badgeRepository.setFeaturedBadge(args.badge).subscribe()
     }
 

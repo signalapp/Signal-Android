@@ -11,7 +11,7 @@ import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.JobTracker
+import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
@@ -19,6 +19,9 @@ import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
+import org.whispersystems.signalservice.api.subscriptions.SubscriptionClientSecret
+import org.whispersystems.signalservice.internal.EmptyResponse
+import org.whispersystems.signalservice.internal.ServiceResponse
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
@@ -67,7 +70,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(Exception("Amount is too small"))
           is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(Exception("Amount is too large"))
           is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(Exception("Currency is not supported"))
-          is StripeApi.CreatePaymentIntentResult.Success -> stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), result.paymentIntent)
+          is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(paymentData, result.paymentIntent)
         }
       }
   }
@@ -81,14 +84,9 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   fun cancelActiveSubscription(): Completable {
     val localSubscriber = SignalStore.donationsValues().requireSubscriber()
-    return ApplicationDependencies.getDonationsService().cancelSubscription(localSubscriber.subscriberId).flatMapCompletable {
-      when {
-        it.status == 200 -> Completable.complete()
-        it.applicationError.isPresent -> Completable.error(it.applicationError.get())
-        it.executionError.isPresent -> Completable.error(it.executionError.get())
-        else -> Completable.error(AssertionError("Something bad happened"))
-      }
-    }
+    return ApplicationDependencies.getDonationsService()
+      .cancelSubscription(localSubscriber.subscriberId)
+      .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
   }
 
   fun ensureSubscriberId(): Completable {
@@ -96,19 +94,42 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     return ApplicationDependencies
       .getDonationsService()
       .putSubscription(subscriberId)
-      .flatMapCompletable {
-        when {
-          it.status == 200 -> Completable.complete()
-          it.applicationError.isPresent -> Completable.error(it.applicationError.get())
-          it.executionError.isPresent -> Completable.error(it.executionError.get())
-          else -> Completable.error(AssertionError("Something bad happened"))
-        }
-      }
+      .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
       .doOnComplete {
         SignalStore
           .donationsValues()
           .setSubscriber(Subscriber(subscriberId, SignalStore.donationsValues().getSubscriptionCurrency().currencyCode))
       }
+  }
+
+  private fun confirmPayment(paymentData: PaymentData, paymentIntent: StripeApi.PaymentIntent): Completable {
+    return Completable.create {
+      stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent).blockingSubscribe()
+
+      val jobIds = BoostReceiptRequestResponseJob.enqueueChain(paymentIntent)
+      val countDownLatch = CountDownLatch(2)
+
+      ApplicationDependencies.getJobManager().addListener(jobIds.first()) { _, jobState ->
+        if (jobState.isComplete) {
+          countDownLatch.countDown()
+        }
+      }
+      ApplicationDependencies.getJobManager().addListener(jobIds.second()) { _, jobState ->
+        if (jobState.isComplete) {
+          countDownLatch.countDown()
+        }
+      }
+
+      try {
+        if (countDownLatch.await(10, TimeUnit.SECONDS)) {
+          it.onComplete()
+        } else {
+          it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+        }
+      } catch (e: InterruptedException) {
+        it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+      }
+    }
   }
 
   fun setSubscriptionLevel(subscriptionLevel: String): Completable {
@@ -121,40 +142,29 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           subscriptionLevel,
           subscriber.currencyCode,
           levelUpdateOperation.idempotencyKey.serialize()
-        ).flatMapCompletable { response ->
-          when {
-            response.status == 200 -> Completable.complete()
-            response.applicationError.isPresent -> Completable.error(response.applicationError.get())
-            response.executionError.isPresent -> Completable.error(response.executionError.get())
-            else -> Completable.error(AssertionError("should never happen"))
-          }
-        }.andThen {
+        ).flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().andThen {
           SignalStore.donationsValues().clearLevelOperation(levelUpdateOperation)
           it.onComplete()
         }.andThen {
           val jobIds = SubscriptionReceiptRequestResponseJob.enqueueSubscriptionContinuation()
           val countDownLatch = CountDownLatch(2)
 
-          val firstJobListener = JobTracker.JobListener { _, jobState ->
+          ApplicationDependencies.getJobManager().addListener(jobIds.first()) { _, jobState ->
             if (jobState.isComplete) {
               countDownLatch.countDown()
             }
           }
-
-          val secondJobListener = JobTracker.JobListener { _, jobState ->
+          ApplicationDependencies.getJobManager().addListener(jobIds.second()) { _, jobState ->
             if (jobState.isComplete) {
               countDownLatch.countDown()
             }
           }
-
-          ApplicationDependencies.getJobManager().addListener(jobIds.first(), firstJobListener)
-          ApplicationDependencies.getJobManager().addListener(jobIds.second(), secondJobListener)
 
           try {
-            if (!countDownLatch.await(10, TimeUnit.SECONDS)) {
-              it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
-            } else {
+            if (countDownLatch.await(10, TimeUnit.SECONDS)) {
               it.onComplete()
+            } else {
+              it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
             }
           } catch (e: InterruptedException) {
             it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
@@ -182,29 +192,17 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     return ApplicationDependencies
       .getDonationsService()
       .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode)
-      .flatMap { response ->
-        when {
-          response.status == 200 -> Single.just(StripeApi.PaymentIntent(response.result.get().id, response.result.get().clientSecret))
-          response.executionError.isPresent -> Single.error(response.executionError.get())
-          response.applicationError.isPresent -> Single.error(response.applicationError.get())
-          else -> Single.error(AssertionError("should never get here"))
-        }
+      .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
+      .map {
+        StripeApi.PaymentIntent(it.id, it.clientSecret)
       }
   }
 
   override fun fetchSetupIntent(): Single<StripeApi.SetupIntent> {
-    return Single.fromCallable {
-      SignalStore.donationsValues().requireSubscriber()
-    }.flatMap {
-      ApplicationDependencies.getDonationsService().createSubscriptionPaymentMethod(it.subscriberId)
-    }.flatMap { response ->
-      when {
-        response.status == 200 -> Single.just(StripeApi.SetupIntent(response.result.get().id, response.result.get().clientSecret))
-        response.executionError.isPresent -> Single.error(response.executionError.get())
-        response.applicationError.isPresent -> Single.error(response.applicationError.get())
-        else -> Single.error(AssertionError("should never get here"))
-      }
-    }
+    return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
+      .flatMap { ApplicationDependencies.getDonationsService().createSubscriptionPaymentMethod(it.subscriberId) }
+      .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
+      .map { StripeApi.SetupIntent(it.id, it.clientSecret) }
   }
 
   override fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
@@ -212,13 +210,6 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       SignalStore.donationsValues().requireSubscriber()
     }.flatMap {
       ApplicationDependencies.getDonationsService().setDefaultPaymentMethodId(it.subscriberId, paymentMethodId)
-    }.flatMapCompletable { response ->
-      when {
-        response.status == 200 -> Completable.complete()
-        response.executionError.isPresent -> Completable.error(response.executionError.get())
-        response.applicationError.isPresent -> Completable.error(response.applicationError.get())
-        else -> Completable.error(AssertionError("Should never get here"))
-      }
-    }
+    }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
   }
 }

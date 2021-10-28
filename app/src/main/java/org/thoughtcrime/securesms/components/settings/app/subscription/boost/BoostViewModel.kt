@@ -45,7 +45,10 @@ class BoostViewModel(
     val boosts = currencyObservable.flatMapSingle { boostRepository.getBoosts(it) }
     val boostBadge = boostRepository.getBoostBadge()
 
-    disposables += Observable.combineLatest(boosts, boostBadge.toObservable()) { (boosts, defaultBoost), badge -> BoostInfo(boosts, defaultBoost, badge) }.subscribe { info ->
+    disposables += Observable.combineLatest(boosts, boostBadge.toObservable()) {
+      boostList, badge ->
+      BoostInfo(boostList, boostList[2], badge)
+    }.subscribe { info ->
       store.update {
         it.copy(
           boosts = info.boosts,
@@ -79,25 +82,22 @@ class BoostViewModel(
     resultCode: Int,
     data: Intent?
   ) {
+    val boost = boostToPurchase
+    boostToPurchase = null
+
     donationPaymentRepository.onActivityResult(
-      requestCode,
-      resultCode,
-      data,
-      this.fetchTokenRequestCode,
+      requestCode, resultCode, data, this.fetchTokenRequestCode,
       object : GooglePayApi.PaymentRequestCallback {
         override fun onSuccess(paymentData: PaymentData) {
-          val boost = boostToPurchase
-          boostToPurchase = null
-
           if (boost != null) {
             eventPublisher.onNext(DonationEvent.RequestTokenSuccess)
+
             donationPaymentRepository.continuePayment(boost.price, paymentData).subscribeBy(
               onError = { throwable ->
                 store.update { it.copy(stage = BoostState.Stage.READY) }
                 eventPublisher.onNext(DonationEvent.PaymentConfirmationError(throwable))
               },
               onComplete = {
-                // TODO [alex] Now we need to do the whole query for a token, submit token rigamarole
                 store.update { it.copy(stage = BoostState.Stage.READY) }
                 eventPublisher.onNext(DonationEvent.PaymentConfirmationSuccess(store.state.boostBadge!!))
               }
@@ -127,10 +127,8 @@ class BoostViewModel(
 
     store.update { it.copy(stage = BoostState.Stage.PAYMENT_PIPELINE) }
 
-    // TODO [alex] -- Do we want prevalidation? Stripe will catch us anyway.
-    // TODO [alex] -- Custom boost badge details... how do we determine this?
     boostToPurchase = if (snapshot.isCustomAmountFocused) {
-      Boost(snapshot.selectedBoost.badge, snapshot.customAmount)
+      Boost(snapshot.customAmount)
     } else {
       snapshot.selectedBoost
     }

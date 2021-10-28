@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.whispersystems.signalservice.internal.ServiceResponse
 import java.util.Currency
 
 /**
@@ -18,14 +19,8 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
   fun getActiveSubscription(): Single<ActiveSubscription> {
     val localSubscription = SignalStore.donationsValues().getSubscriber()
     return if (localSubscription != null) {
-      donationsService.getSubscription(localSubscription.subscriberId).flatMap {
-        when {
-          it.status == 200 -> Single.just(it.result.get())
-          it.applicationError.isPresent -> Single.error(it.applicationError.get())
-          it.executionError.isPresent -> Single.error(it.executionError.get())
-          else -> throw AssertionError()
-        }
-      }
+      donationsService.getSubscription(localSubscription.subscriberId)
+        .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
     } else {
       Single.just(ActiveSubscription(null))
     }

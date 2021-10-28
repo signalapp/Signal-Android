@@ -28,7 +28,6 @@ import java.util.regex.Pattern
  * can unlock a corresponding badge for a time determined by the server.
  */
 data class Boost(
-  val badge: Badge,
   val price: FiatMoney
 ) {
 
@@ -93,7 +92,7 @@ data class Boost(
         button.text = FiatMoneyUtil.format(
           context.resources,
           boost.price,
-          FiatMoneyUtil.formatOptions()
+          FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
         )
         button.setOnClickListener {
           model.onBoostClick(boost)

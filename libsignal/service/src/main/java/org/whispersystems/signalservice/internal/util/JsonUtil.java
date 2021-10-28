@@ -10,6 +10,7 @@ package org.whispersystems.signalservice.internal.util;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -50,6 +51,22 @@ public class JsonUtil {
       throws IOException
   {
     return objectMapper.readValue(json, clazz);
+  }
+
+  public static <T> T fromJson(String json, TypeReference<T> typeRef)
+      throws IOException
+  {
+    return objectMapper.readValue(json, typeRef);
+  }
+
+  public static <T> T fromJsonResponse(String json, TypeReference<T> typeRef)
+      throws MalformedResponseException
+  {
+    try {
+      return JsonUtil.fromJson(json, typeRef);
+    } catch (IOException e) {
+      throw new MalformedResponseException("Unable to parse entity", e);
+    }
   }
 
   public static <T> T fromJsonResponse(String body, Class<T> clazz)

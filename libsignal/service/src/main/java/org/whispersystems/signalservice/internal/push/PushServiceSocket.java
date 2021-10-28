@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.MessageLite;
 
@@ -133,6 +134,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -242,7 +244,6 @@ public class PushServiceSocket {
   private static final String SUBMIT_RATE_LIMIT_CHALLENGE       = "/v1/challenge";
   private static final String REQUEST_RATE_LIMIT_PUSH_CHALLENGE = "/v1/challenge/push";
 
-  private static final String DONATION_INTENT         = "/v1/donation/authorize-apple-pay";
   private static final String DONATION_REDEEM_RECEIPT = "/v1/donation/redeem-receipt";
 
   private static final String SUBSCRIPTION_LEVELS                 = "/v1/subscription/levels";
@@ -251,6 +252,10 @@ public class PushServiceSocket {
   private static final String CREATE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
   private static final String DEFAULT_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/%s";
   private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS    = "/v1/subscription/%s/receipt_credentials";
+  private static final String BOOST_AMOUNTS                       = "/v1/subscription/boost/amounts";
+  private static final String CREATE_BOOST_PAYMENT_INTENT         = "/v1/subscription/boost/create";
+  private static final String BOOST_RECEIPT_CREDENTIALS           = "/v1/subscription/boost/receipt_credentials";
+  private static final String BOOST_BADGES                        = "/v1/subscription/boost/badges";
 
   private static final String REPORT_SPAM = "/v1/messages/report/%s/%s";
 
@@ -870,14 +875,41 @@ public class PushServiceSocket {
     makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
   }
 
-  /**
-   * @return The PaymentIntent id
-   */
-  public DonationIntentResult createDonationIntentWithAmount(String amount, String currencyCode) throws IOException {
-    String payload = JsonUtil.toJson(new DonationIntentPayload(Long.parseLong(amount), currencyCode.toLowerCase(Locale.ROOT)));
-    String result  = makeServiceRequest(DONATION_INTENT, "POST", payload);
-    return JsonUtil.fromJsonResponse(result, DonationIntentResult.class);
+  public SubscriptionClientSecret createBoostPaymentMethod(String currencyCode, long amount) throws IOException {
+    String payload = JsonUtil.toJson(new DonationIntentPayload(amount, currencyCode));
+    String result  = makeServiceRequestWithoutAuthentication(CREATE_BOOST_PAYMENT_INTENT, "POST", payload);
+    return JsonUtil.fromJsonResponse(result, SubscriptionClientSecret.class);
   }
+
+  public Map<String, List<BigDecimal>> getBoostAmounts() throws IOException {
+    String result = makeServiceRequestWithoutAuthentication(BOOST_AMOUNTS, "GET", null);
+    TypeReference<HashMap<String, List<BigDecimal>>> typeRef = new TypeReference<HashMap<String, List<BigDecimal>>>() {};
+    return JsonUtil.fromJsonResponse(result, typeRef);
+  }
+
+  public SubscriptionLevels getBoostLevels() throws IOException {
+    String result = makeServiceRequestWithoutAuthentication(BOOST_BADGES, "GET", null);
+    return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
+  }
+
+  public ReceiptCredentialResponse submitBoostReceiptCredentials(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest) throws IOException {
+    String payload  = JsonUtil.toJson(new BoostReceiptCredentialRequestJson(paymentIntentId, receiptCredentialRequest));
+    String response = makeServiceRequestWithoutAuthentication(
+        BOOST_RECEIPT_CREDENTIALS,
+        "POST",
+        payload,
+        (code, body) -> {
+          if (code == 204) throw new NonSuccessfulResponseCodeException(204);
+        });
+
+    ReceiptCredentialResponseJson responseJson = JsonUtil.fromJson(response, ReceiptCredentialResponseJson.class);
+    if (responseJson.getReceiptCredentialResponse() != null) {
+      return responseJson.getReceiptCredentialResponse();
+    } else {
+      throw new MalformedResponseException("Unable to parse response");
+    }
+  }
+
 
   public SubscriptionLevels getSubscriptionLevels() throws IOException {
     String result = makeServiceRequestWithoutAuthentication(SUBSCRIPTION_LEVELS, "GET", null);

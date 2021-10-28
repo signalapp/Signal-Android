@@ -8,6 +8,8 @@ import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
 
 import java.util.concurrent.ExecutionException;
 
+import io.reactivex.rxjava3.core.Single;
+
 /**
  * Encapsulates a parsed APi response regardless of where it came from (WebSocket or REST). Not only
  * includes the success result but also any application errors encountered (404s, parsing, etc.) or
@@ -66,6 +68,18 @@ public final class ServiceResponse<Result> {
 
   public Optional<Throwable> getExecutionError() {
     return executionError;
+  }
+
+  public Single<Result> flattenResult() {
+    if (result.isPresent()) {
+      return Single.just(result.get());
+    } else if (applicationError.isPresent()) {
+      return Single.error(applicationError.get());
+    } else if (executionError.isPresent()) {
+      return Single.error(executionError.get());
+    } else {
+      return Single.error(new AssertionError("Should never get here."));
+    }
   }
 
   public static <T> ServiceResponse<T> forResult(T result, WebsocketResponse response) {
