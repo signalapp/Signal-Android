@@ -52,7 +52,7 @@ data class Boost(
     val selectedBoost: Boost?,
     val currency: Currency,
     override val isEnabled: Boolean,
-    val onBoostClick: (Boost) -> Unit,
+    val onBoostClick: (View, Boost) -> Unit,
     val isCustomAmountFocused: Boolean,
     val onCustomAmountChanged: (String) -> Unit,
     val onCustomAmountFocusChanged: (Boolean) -> Unit,
@@ -95,7 +95,7 @@ data class Boost(
           FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
         )
         button.setOnClickListener {
-          model.onBoostClick(boost)
+          model.onBoostClick(it, boost)
           custom.clearFocus()
         }
       }

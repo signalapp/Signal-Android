@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.boost
 
 import android.text.SpannableStringBuilder
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
@@ -23,6 +25,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Cu
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.SpanUtil
 
 /**
@@ -34,6 +37,13 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
 
   private val viewModel: BoostViewModel by viewModels(ownerProducer = { requireActivity() })
   private val lifecycleDisposable = LifecycleDisposable()
+
+  private lateinit var boost1AnimationView: LottieAnimationView
+  private lateinit var boost2AnimationView: LottieAnimationView
+  private lateinit var boost3AnimationView: LottieAnimationView
+  private lateinit var boost4AnimationView: LottieAnimationView
+  private lateinit var boost5AnimationView: LottieAnimationView
+  private lateinit var boost6AnimationView: LottieAnimationView
 
   private lateinit var processingDonationPaymentDialog: AlertDialog
 
@@ -57,6 +67,13 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
       .setView(R.layout.processing_payment_dialog)
       .setCancelable(false)
       .create()
+
+    boost1AnimationView = requireView().findViewById(R.id.boost1_animation)
+    boost2AnimationView = requireView().findViewById(R.id.boost2_animation)
+    boost3AnimationView = requireView().findViewById(R.id.boost3_animation)
+    boost4AnimationView = requireView().findViewById(R.id.boost4_animation)
+    boost5AnimationView = requireView().findViewById(R.id.boost5_animation)
+    boost6AnimationView = requireView().findViewById(R.id.boost6_animation)
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
@@ -119,8 +136,9 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           currency = state.customAmount.currency,
           isCustomAmountFocused = state.isCustomAmountFocused,
           isEnabled = state.stage == BoostState.Stage.READY,
-          onBoostClick = {
-            viewModel.setSelectedBoost(it)
+          onBoostClick = { view, boost ->
+            startAnimationAboveSelectedBoost(view)
+            viewModel.setSelectedBoost(boost)
           },
           onCustomAmountChanged = {
             viewModel.setCustomAmount(it)
@@ -194,6 +212,35 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         dialog.dismiss()
         findNavController().popBackStack()
       }
+  }
+
+  private fun startAnimationAboveSelectedBoost(view: View) {
+    val animationView = getAnimationContainer(view)
+    val viewProjection = Projection.relativeToViewRoot(view, null)
+    val animationProjection = Projection.relativeToViewRoot(animationView, null)
+    val viewHorizontalCenter = viewProjection.x + viewProjection.width / 2f
+    val animationHorizontalCenter = animationProjection.x + animationProjection.width / 2f
+    val animationBottom = animationProjection.y + animationProjection.height
+
+    animationView.translationY = -(animationBottom - viewProjection.y) + (viewProjection.height / 2f)
+    animationView.translationX = viewHorizontalCenter - animationHorizontalCenter
+
+    animationView.playAnimation()
+
+    viewProjection.release()
+    animationProjection.release()
+  }
+
+  private fun getAnimationContainer(view: View): LottieAnimationView {
+    return when (view.id) {
+      R.id.boost_1 -> boost1AnimationView
+      R.id.boost_2 -> boost2AnimationView
+      R.id.boost_3 -> boost3AnimationView
+      R.id.boost_4 -> boost4AnimationView
+      R.id.boost_5 -> boost5AnimationView
+      R.id.boost_6 -> boost6AnimationView
+      else -> throw AssertionError()
+    }
   }
 
   companion object {

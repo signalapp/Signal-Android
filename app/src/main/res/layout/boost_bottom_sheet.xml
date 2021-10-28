@@ -26,4 +26,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/handle" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost1_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:lottie_rawRes="@raw/boost_smile"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost2_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:lottie_rawRes="@raw/boost_clap"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost3_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:lottie_rawRes="@raw/boost_heart_eyes"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost4_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:lottie_rawRes="@raw/boost_fire"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost5_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:lottie_rawRes="@raw/boost_shock"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost6_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:lottie_rawRes="@raw/boost_rockets"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
