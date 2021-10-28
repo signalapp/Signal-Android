@@ -48,6 +48,7 @@ class CustomChatColorCreatorPageFragment :
 
   private lateinit var hueSlider: AppCompatSeekBar
   private lateinit var saturationSlider: AppCompatSeekBar
+  private lateinit var preview: ChatColorPreviewView
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val args: CustomChatColorCreatorFragmentArgs = CustomChatColorCreatorFragmentArgs.fromBundle(requireArguments())
@@ -59,7 +60,8 @@ class CustomChatColorCreatorPageFragment :
       factory
     )[CustomChatColorCreatorViewModel::class.java]
 
-    val preview: ChatColorPreviewView = view.findViewById(R.id.chat_color_preview)
+    preview = view.findViewById(R.id.chat_color_preview)
+
     val hueThumb = ThumbDrawable(requireContext())
     val saturationThumb = ThumbDrawable(requireContext())
 

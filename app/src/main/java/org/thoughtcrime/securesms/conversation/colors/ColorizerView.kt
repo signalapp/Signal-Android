@@ -44,5 +44,6 @@ class ColorizerView @JvmOverloads constructor(
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
     projections.forEach { it.release() }
+    projections = emptyList()
   }
 }
