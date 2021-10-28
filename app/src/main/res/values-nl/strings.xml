@@ -74,8 +74,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.
-</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
   <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
@@ -90,7 +89,7 @@
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden zullen je niet langer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen weer berichten naar elkaar kunnen verzenden, kunnen bellen, en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
   <string name="BlockUnblockDialog_block">Blokkeren</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokkeren en verlaten</string>
@@ -321,6 +320,10 @@
     <item quantity="one">Gelezen</item>
     <item quantity="other">Gelezen</item>
   </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ongelezen</item>
+    <item quantity="other">Ongelezen</item>
+  </plurals>
   <plurals name="ConversationListFragment_pin_plural">
     <item quantity="one">Vastprikken</item>
     <item quantity="other">Vastprikken</item>
@@ -330,12 +333,12 @@
     <item quantity="other">Losmaken</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
-    <item quantity="one">Gesprek dempen</item>
-    <item quantity="other">Gesprekken dempen</item>
+    <item quantity="one">Meldingen dempen</item>
+    <item quantity="other">Meldingen dempen</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
-    <item quantity="one">Gesprek niet langer dempen</item>
-    <item quantity="other">Gesprekken niet langer dempen</item>
+    <item quantity="one">Meldingen niet langer dempen</item>
+    <item quantity="other">Meldingen niet langer dempen</item>
   </plurals>
   <string name="ConversationListFragment_select">Selecteren</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -3183,7 +3186,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__group_link">Groepsverwijzing voor deze groep</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
   <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek dedempt tot %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek gedempt tot %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Gesprek voor onbepaalde tijd gedempt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefoonnummer</string>

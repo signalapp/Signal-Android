@@ -350,6 +350,18 @@
     <item quantity="many">Neprečítané</item>
     <item quantity="other">Neprečítané</item>
   </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Pripnúť</item>
+    <item quantity="few">Pripnúť</item>
+    <item quantity="many">Pripnúť</item>
+    <item quantity="other">Pripnúť</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Odopnúť</item>
+    <item quantity="few">Odopnúť</item>
+    <item quantity="many">Odopnúť</item>
+    <item quantity="other">Odopnúť</item>
+  </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">Stlmiť</item>
     <item quantity="few">Stlmiť</item>
@@ -363,6 +375,24 @@
     <item quantity="other">Zapnúť zvuky</item>
   </plurals>
   <string name="ConversationListFragment_select">Vybrať</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archív</item>
+    <item quantity="few">Archív</item>
+    <item quantity="many">Archív</item>
+    <item quantity="other">Archív</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Odarchivovať</item>
+    <item quantity="few">Odarchivovať</item>
+    <item quantity="many">Odarchivovať</item>
+    <item quantity="other">Odarchivovať</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Odstrániť</item>
+    <item quantity="few">Odstrániť</item>
+    <item quantity="many">Odstrániť</item>
+    <item quantity="other">Odstrániť</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Označiť všetko</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d vybrané</item>
@@ -909,6 +939,18 @@
   <string name="MediaOverviewActivity_List_view_description">Zobrazenie zoznamu</string>
   <string name="MediaOverviewActivity_Selected_description">Vybrané</string>
   <string name="MediaOverviewActivity_select_all">Označiť všetko</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Uložiť</item>
+    <item quantity="few">Uložiť</item>
+    <item quantity="many">Uložiť</item>
+    <item quantity="other">Uložiť</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Odstrániť</item>
+    <item quantity="few">Odstrániť</item>
+    <item quantity="many">Odstrániť</item>
+    <item quantity="other">Odstrániť</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d vybrané (%2$s)</item>
     <item quantity="few">%1$d vybraných (%2$s)</item>
@@ -3481,8 +3523,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše predplatné bolo zrušené.</string>
   <string name="SubscribeFragment__update_subscription_question">Aktualizovať odber?</string>
   <string name="SubscribeFragment__update">Aktualizovať</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dnes vám bude účtovaná plná suma novej ceny predplatného. Vaše predplatné sa obnoví %1$s.</string>
   <string name="Subscription__s_per_month">%s/mesiac</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesiac · Obnovenie %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mesiac · Vyprší %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizácia bez žiadnych inzerentov, alebo investorov a udržiava ju iba ľudia, ktorí ju používajú a vážia si ju. Prispievajte opakovane mesačne a získajte odznak profilu, aby ste sa mohli podeliť o svoju podporu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Prečo prispieť?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tím spoločnosti Signal sa zaväzuje vyvíjať technológiu ochrany súkromia s otvoreným zdrojovým kódom, ktorá chráni slobodu prejavu a umožňuje bezpečnú globálnu komunikáciu. Váš príspevok podporuje túto činnosť. Žiadne reklamy. Žiadne sledovače. Nerobím si srandu.</string>
@@ -3493,6 +3537,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobraziť v profile</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvoriť vybraný odznak</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Ak máte viac ako jeden odznak, môžete si jeden vybrať, ktorý sa zobrazí ostatným vo vašom profile.</string>
   <string name="ManageDonationsFragment__my_support">Moja podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovať predplatné</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
@@ -3510,8 +3555,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás -nie pre vaše údaje-, zvážte možnosť stať sa mesačným predplatiteľom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Staňte sa predplatiteľmi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
+  <string name="Subscription__verification_failed">Overenie odberu zlyhalo</string>
   <string name="Subscription__please_contact_support_for_more_information">Pre viac informácií kontaktujte podporu.</string>
   <string name="Subscription__contact_support">Kontaktovať zákaznícku podporu</string>
+  <string name="Subscription__earn_a_s_badge">Získajte odznak %1$s</string>
   <string name="SubscribeFragment__processing_payment">Spracovanie platby…</string>
   <string name="DonationsErrors__payment_failed">Platba zlyhala</string>
   <string name="DonationsErrors__your_payment">Vašu platbu sa nepodarilo spracovať a nebola vám naúčtovaná. Skúste to prosím znova.</string>

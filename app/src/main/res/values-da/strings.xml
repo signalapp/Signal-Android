@@ -170,7 +170,7 @@
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Nøgleudvekslingsbesked modtaget. Tryk for at fortsætte.</string>
   <string name="ConversationItem_group_action_left">%1$s har forladt gruppen.</string>
   <string name="ConversationItem_send_paused">Afsendelse sat på pause</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse, tryk for at sende usikret SMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse. Tryk for at sende usikret SMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Benyt ukrypteret SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Benyt ukrypteret MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere bruger Signal.\n\nSend usikret besked?</string>
@@ -901,11 +901,11 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Et element blev fjernet, fordi det oversteg max. grænsen</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Et element blev fjernet, fordi det havde en ukendt type</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Et element blev fjernet, fordi det overskred størrelsesgrænsen eller havde en ukendt type</string>
-  <string name="MediaSendActivity_camera_unavailable">Kameraet er ikke tilgængeligt.</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera er ikke tilgængeligt.</string>
   <string name="MediaSendActivity_message_to_s">Besked til %s</string>
   <string name="MediaSendActivity_message">Besked</string>
   <string name="MediaSendActivity_select_recipients">Vælg modtagere</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal kræver tilladelse til at tilgå dine kontakter, for at kunne vise dem</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal kræver tilladelse til at tilgå dine kontakter for at kunne vise dem.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dine kontakter, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele flere end %d fil.</item>
@@ -959,7 +959,7 @@
   <string name="MessageRecord_you_added_s">Du tilføjede %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s tilføjede %2$s</string>
   <string name="MessageRecord_s_added_you">%1$s tilføjede dig til gruppen</string>
-  <string name="MessageRecord_you_joined_the_group">Du er medlem af gruppen.</string>
+  <string name="MessageRecord_you_joined_the_group">Du tilmeldte dig gruppen.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s tilsluttede sig gruppen.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Du fjernede %1$s.</string>

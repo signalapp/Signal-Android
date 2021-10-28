@@ -161,7 +161,7 @@
   <string name="ContactShareEditActivity_type_mobile">手提</string>
   <string name="ContactShareEditActivity_type_work">公司</string>
   <string name="ContactShareEditActivity_type_missing">其他</string>
-  <string name="ContactShareEditActivity_invalid_contact">您揀嘅聯絡人唔啱</string>
+  <string name="ContactShareEditActivity_invalid_contact">揀選嘅聯絡人無效</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">出唔到街，撳一下再話您知</string>
   <string name="ConversationItem_error_partially_not_delivered">出街出咗一半，撳一下再話您知</string>
@@ -248,7 +248,7 @@
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="other">係咪要刪除揀選嗰啲訊息？</item>
+    <item quantity="other">係咪要刪除揀選嘅訊息？</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">係咪要儲存落部機嘅儲存空間度？</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -771,7 +771,7 @@
   <string name="MediaOverviewActivity_Audio">聲音</string>
   <string name="MediaOverviewActivity_All">全部</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">係咪要刪除揀選嗰啲項目？</item>
+    <item quantity="other">係咪要刪除揀選嘅項目？</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="other">咁就會永久刪除揀選嗰 %1$d 個檔案個囉噃。任何黐住佢哋嘅訊息文字亦都會剷走埋㗎嘞。</item>
@@ -1391,8 +1391,8 @@
   <string name="ThreadRecord_view_once_photo">流聲掠影相片</string>
   <string name="ThreadRecord_view_once_video">流聲掠影影片</string>
   <string name="ThreadRecord_view_once_media">流聲掠影多媒體檔案</string>
-  <string name="ThreadRecord_this_message_was_deleted">呢個訊息已被刪除。</string>
-  <string name="ThreadRecord_you_deleted_this_message">您已刪除呢個訊息。</string>
+  <string name="ThreadRecord_this_message_was_deleted">呢個訊息已被扠走。</string>
+  <string name="ThreadRecord_you_deleted_this_message">您已扠走呢個訊息。</string>
   <string name="ThreadRecord_s_is_on_signal">%s 開咗 Signal 喇！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">過眼雲煙訊息已停用</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">過眼雲煙訊息倒數已設定為 %s</string>
@@ -1503,7 +1503,7 @@
   <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">對您嘅貼圖畀咗 %1$s 心情。</string>
-  <string name="MessageNotifier_this_message_was_deleted">呢個訊息已被刪除。</string>
+  <string name="MessageNotifier_this_message_was_deleted">呢個訊息已被扠走。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">係咪要閂咗聯絡人加入 Signal 嘅通知？您可以喺 Signal &gt; 設定 &gt; 通知 度再啟用返。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">訊息</string>

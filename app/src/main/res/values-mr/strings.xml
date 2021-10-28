@@ -1950,7 +1950,7 @@
   <string name="arrays__name_and_message">नाव आणि संदेश</string>
   <string name="arrays__name_only">फक्त नाव</string>
   <string name="arrays__no_name_or_message">कुठलेही नाव किंवा संदेश नाही</string>
-  <string name="arrays__images">चित्रे</string>
+  <string name="arrays__images">फोटो</string>
   <string name="arrays__audio">ऑडिओ</string>
   <string name="arrays__video">व्हिडिओ</string>
   <string name="arrays__documents">दस्तऐवज</string>
@@ -1959,7 +1959,7 @@
   <string name="arrays__large">मोठे</string>
   <string name="arrays__extra_large">जास्त मोठे</string>
   <string name="arrays__default">पूर्वनिर्धारित</string>
-  <string name="arrays__high">उंच</string>
+  <string name="arrays__high">उच्च</string>
   <string name="arrays__max">कमाल</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
@@ -2958,7 +2958,7 @@
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">मानक</string>
   <string name="QualitySelectorBottomSheetDialog__faster_less_data">जलद, कमी डेटा</string>
-  <string name="QualitySelectorBottomSheetDialog__high">उंच</string>
+  <string name="QualitySelectorBottomSheetDialog__high">उच्च</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">हळू, अधिक डेटा</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">फोटो दर्जा</string>
   <!--AppSettingsFragment-->
@@ -3047,7 +3047,8 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">मिडिया दर्जा</string>
   <string name="DataAndStorageSettingsFragment__sent_media_quality">मिडिया पाठवण्याचा दर्जा</string>
-  <string name="DataAndStorageSettingsFragment__high">उंच</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">मिडिया पाठवताना उच्च दर्जा हा पर्याय निवडल्यास अधिक डेटा वापरला जाईल.</string>
+  <string name="DataAndStorageSettingsFragment__high">उच्च</string>
   <string name="DataAndStorageSettingsFragment__standard">मानक</string>
   <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
   <!--ChatColorSelectionFragment-->
@@ -3216,6 +3217,10 @@
     <item quantity="one">संदेश पाठवण्यात अयशस्वी</item>
     <item quantity="other">संदेश पाठवण्यात अयशस्वी</item>
   </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">संदेश फॉर्वर्ड करण्यात अयशस्वी कारण ते आता उपलब्ध नाहीत.</item>
+    <item quantity="other">संदेश फॉर्वर्ड करण्यात अयशस्वी कारण ते आता उपलब्ध नाहीत.</item>
+  </plurals>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">संदेश जोडा</string>
   <string name="MediaReviewFragment__add_a_reply">प्रत्युत्तर जोडा</string>
@@ -3233,11 +3238,14 @@
   <string name="MediaReviewSelectedItem__tap_to_select">निवडण्यासाठी टॅप करा</string>
   <string name="MediaReviewImagePageFragment__discard">टाकून द्या</string>
   <string name="MediaReviewImagePageFragment__discard_changes">बदल रद्द करायचे ?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">या फोटोमध्ये केलेले कोणतेही बदल तुम्ही गमावाल.</string>
   <string name="SelectFeaturedBadgeFragment__preview">पुनरावलोकन</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आपल्यासारख्या लोकांद्वारा समर्थित आहे.</string>
   <string name="SubscribeFragment__donation_amount">देणगी रक्कम</string>
+  <string name="SubscribeFragment__cancel_subscription">सब्स्क्रिप्शन रद्द करा</string>
   <string name="SubscribeFragment__not_now">आता नाही</string>
   <string name="SubscribeFragment__confirm">पुष्टी करा</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">तुमचे सब्स्क्रिप्शन रद्द केले</string>
   <string name="SubscribeFragment__update">अद्यतन</string>
   <string name="Subscription__s_per_month">%s/महिना</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ठीक</string>

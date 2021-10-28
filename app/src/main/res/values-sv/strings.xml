@@ -345,6 +345,10 @@
     <item quantity="one">Arkivera</item>
     <item quantity="other">Arkivera</item>
   </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Avarkivera</item>
+    <item quantity="other">Avarkivera</item>
+  </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">Ta bort</item>
     <item quantity="other">Ta bort</item>

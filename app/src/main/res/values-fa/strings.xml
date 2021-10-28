@@ -316,7 +316,43 @@
     <item quantity="one">مکالمه به صندوق ورودی انتقال یافت</item>
     <item quantity="other">%d مکالمه به صندوق ورودی انتقال یافت</item>
   </plurals>
-  <string name="ConversationListFragment_select">انتخاب کنید</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">خوانده شده</item>
+    <item quantity="other">خوانده شده</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">خوانده نشده</item>
+    <item quantity="other">خوانده نشده</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">سنجاق</item>
+    <item quantity="other">سنجاق</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">برداشتن سنجاق</item>
+    <item quantity="other">برداشتن سنجاق</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">بستن</item>
+    <item quantity="other">بستن</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">باز کردن</item>
+    <item quantity="other">باز کردن</item>
+  </plurals>
+  <string name="ConversationListFragment_select">انتخاب</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">بایگانی</item>
+    <item quantity="other">بایگانی</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">خروج از بایگانی</item>
+    <item quantity="other">خروج از بایگانی</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">حذف</item>
+    <item quantity="other">حذف</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">انتخاب همه</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d انتخاب شد</item>
@@ -803,6 +839,18 @@
   <string name="MediaOverviewActivity_List_view_description">نمای فهرستی</string>
   <string name="MediaOverviewActivity_Selected_description">انتخاب شده</string>
   <string name="MediaOverviewActivity_select_all">انتخاب همه</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">ذخیره</item>
+    <item quantity="other">ذخیره</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">حذف</item>
+    <item quantity="other">حذف</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d انتخاب شد (%2$s)</item>
+    <item quantity="other">%1$d انتخاب شد (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">ویدئو</string>
@@ -1891,6 +1939,16 @@
   <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- لطفاً یک گزینه انتخاب کنید --</item>
+    <item>چیزی خراب شده است</item>
+    <item>درخواست قابلیت جدید</item>
+    <item>سؤال</item>
+    <item>بازخورد</item>
+    <item>سایر</item>
+    <item>پرداخت‌ها (MobileCoin)</item>
+    <item>کمک‌های اهدایی (نگهدارندگان و تقویت سیگنال)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
@@ -2271,12 +2329,12 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوت</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">حذف انتخاب شده(ها)</string>
+  <string name="conversation_list_batch__menu_delete_selected">حذف موارد انتخاب شده</string>
   <string name="conversation_list_batch__menu_pin_selected">سنجاق انتخاب شد</string>
   <string name="conversation_list_batch__menu_unpin_selected">برداشتن سنجاق انتخاب شد</string>
   <string name="conversation_list_batch__menu_select_all">انتخاب همه</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی موارد انتخاب شده</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خارج کردن موارد انتخاب شده از بایگانی</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خروج موارد انتخاب شده از بایگانی</string>
   <string name="conversation_list_batch__menu_mark_as_read">علامت گذاری به عنوان خوانده شده</string>
   <string name="conversation_list_batch__menu_mark_as_unread">علامت زدن به صورت خوانده نشده</string>
   <!--conversation_list-->

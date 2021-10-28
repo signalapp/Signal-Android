@@ -1964,7 +1964,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSメッセージで配信レポートを要求します。</string>
   <string name="preferences__data_and_storage">データとストレージ</string>
   <string name="preferences__storage">ストレージ</string>
-  <string name="preferences__payments">支払い</string>
+  <string name="preferences__payments">支払い機能</string>
   <string name="preferences__payments_beta">支払い機能 (ベータ)</string>
   <string name="preferences__conversation_length_limit">チャットの最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
@@ -2089,10 +2089,10 @@
   <string name="PaymentsHomeFragment__recent_activity">最近の取引</string>
   <string name="PaymentsHomeFragment__see_all">すべて表示</string>
   <string name="PaymentsHomeFragment__add_funds">入金</string>
-  <string name="PaymentsHomeFragment__send">送信する</string>
+  <string name="PaymentsHomeFragment__send">送金</string>
   <string name="PaymentsHomeFragment__sent_s">送金 %1$s</string>
   <string name="PaymentsHomeFragment__received_s">受取 %1$s</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">取引所に送付</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">取引所に振り替え</string>
   <string name="PaymentsHomeFragment__currency_conversion">通貨換算</string>
   <string name="PaymentsHomeFragment__deactivate_payments">支払い機能を停止</string>
   <string name="PaymentsHomeFragment__recovery_phrase">リカバリーフレーズ</string>
@@ -2111,7 +2111,7 @@
   <string name="PaymentsHomeFragment__deactivate">停止する</string>
   <string name="PaymentsHomeFragment__continue">続ける</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">残高は現在利用できません。</string>
-  <string name="PaymentsHomeFragment__payments_deactivated">支払い機能を停止</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">支払い機能を停止しました。</string>
   <string name="PaymentsHomeFragment__payment_failed">支払いに失敗しました。</string>
   <string name="PaymentsHomeFragment__details">詳細</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">SignalでMobileCoinを利用できます。すべての支払いは、MobileCoinsとMobileCoin Walletの利用規約に準じます。この機能はベータ版であり、問題が発生したり、支払いや残高を失う恐れがあります。</string>
@@ -2147,13 +2147,13 @@
   <string name="PaymentsDeatilsFragment__payment_completed_s">%1$s に支払い完了</string>
   <string name="PaymentsDetailsFragment__block_number">ブロック番号</string>
   <!--PaymentsTransferFragment-->
-  <string name="PaymentsTransferFragment__transfer">送金</string>
+  <string name="PaymentsTransferFragment__transfer">振り替え</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QRコードをスキャンする</string>
-  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">受取人: スキャンするかアドレスを入力</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">宛先: スキャンするかウォレットアドレスを入力してください</string>
   <string name="PaymentsTransferFragment__you_can_transfer">取引所のウォレットアドレスへの送金を完了することで、MobileCoinを送金できます。ウォレットアドレスは、QRコードの下にある文字列です。</string>
   <string name="PaymentsTransferFragment__next">次へ</string>
-  <string name="PaymentsTransferFragment__invalid_address">無効なアドレス</string>
-  <string name="PaymentsTransferFragment__check_the_wallet_address">ウォレットアドレスをチェックし、もう一度実行してください。</string>
+  <string name="PaymentsTransferFragment__invalid_address">無効なアドレスです</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">振り替え先のウォレットアドレスを確認して、再度試してください。</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">あなた自身のSignalのウォレットアドレスには送金できません。サポートされている取引所にあるあなたの口座のウォレットアドレスを入力してください。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要です。</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要です。設定メニューの「アプリの権限」で「カメラ」を有効にしてください。</string>
@@ -2181,7 +2181,7 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">バックスペース</string>
   <string name="CreatePaymentFragment__add_note">メモを追加</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">金額は概算で、正確ではありません</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">金額は概算であり、正確ではない場合があります。</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">メモ</string>
   <!--ConfirmPaymentFragment-->
@@ -2196,14 +2196,14 @@
   <string name="ConfirmPayment__processing_payment">支払いを処理しています…</string>
   <string name="ConfirmPayment__payment_complete">支払い完了</string>
   <string name="ConfirmPayment__payment_failed">支払いに失敗しました。</string>
-  <string name="ConfirmPayment__payment_will_continue_processing">支払い処理中です。</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">支払い処理を続けます</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">無効な宛先</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">この人は支払い機能を有効にしていません</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">手数料を取得できません。支払いを続けるには、OKをタップしてもう一度試みてください。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%2$s で %1$s</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s (%2$s現在)</string>
   <!--SetCurrencyFragment-->
-  <string name="SetCurrencyFragment__set_currency">通貨を設定</string>
+  <string name="SetCurrencyFragment__set_currency">通貨の設定</string>
   <string name="SetCurrencyFragment__all_currencies">すべての通貨</string>
   <!--****************************************-->
   <!--menus-->
@@ -2795,31 +2795,31 @@
   <string name="payment_info_card_adding_funds">入金</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoinをウォレットアドレスに送信することで、Singnalで使う口座に入金できます。</string>
   <string name="payment_info_card_cashing_out">出金</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoinを扱っている取引所にいつでも出金できます。取引所のあなたの口座に送付するだけです。</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoinを扱っている取引所では、いつでもMobileCoinを現金化することができます。その取引所のあなたの口座に振り込むだけです。</string>
   <string name="payment_info_card_hide_this_card">このカードを隠しますか？</string>
   <string name="payment_info_card_hide">隠す</string>
   <string name="payment_info_card_record_recovery_phrase">リカバリーフレーズを保存</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">リカバリーフレーズは、支払口座を復元するもう一つの方法です。</string>
   <string name="payment_info_card_record_your_phrase">リカバリーフレーズを記録</string>
-  <string name="payment_info_card_update_your_pin">PINをアップデート</string>
+  <string name="payment_info_card_update_your_pin">PINを更新してください</string>
   <string name="payment_info_card_with_a_high_balance">残高が大きい時、PINをアップデートし、口座保護を強化できます。</string>
-  <string name="payment_info_card_update_pin">PINをアップデート</string>
+  <string name="payment_info_card_update_pin">PINを更新</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">ウォレットを停止</string>
   <string name="DeactivateWalletFragment__your_balance">あなたの残高</string>
-  <string name="DeactivateWalletFragment__its_recommended_that_you">支払い機能を停止する前に、別のウォレットアドレスに残金を移行することをお勧めします。移行しない場合、支払いを再開した時に、Signalにリンクされたウォレットに残ります。</string>
-  <string name="DeactivateWalletFragment__transfer_remaining_balance">残高を移行</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring">移行せず停止</string>
-  <string name="DeactivateWalletFragment__deactivate">支払い機能を停止</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">残高を移行せず停止しますか?</string>
-  <string name="DeactivateWalletFragment__your_balance_will_remain">残高は、支払いを再開した時に、Signalにリンクされたウォレットに残ります。</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">支払い機能を停止する前に、別のウォレットアドレスに残高を振り替えることをお勧めします。振り替えない残高は、支払い機能を再開する場合、Signalにリンクされたウォレットに残ります。</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">残高を振り替える</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">振り替えずに停止する</string>
+  <string name="DeactivateWalletFragment__deactivate">停止する</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">振り替えずに停止しますか？</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">残高は、支払い機能を再開する場合、Signalにリンクされたウォレットに残ります。</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">ウォレットの停止でエラー</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">リカバリーフレーズ</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">リカバリーフレーズを見る</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">リカバリーフレーズを入力</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signalを再インストールしてPINを確認すると、残高は自動で復元します。また、%1$d 語のリカバリーフレーズを使って残高を復元することもできます。リカバリーフレーズは、紙に書いて安全な場所に保存してください。</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">リカバリーフレーズは %1$d 語で、口座の復元に使います。</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signalの再インストール時にSignal PINを確認すると、残高は自動で復元されます。また、あなた固有の%1$d語のリカバリーフレーズを使って、残高を復元することもできます。リカバリーフレーズは、書きとめて安全な場所に保管してください。</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">あなたのリカバリーフレーズは%1$d語で、あなた固有のものです。口座の復元に使用してください。</string>
   <string name="PaymentsRecoveryStartFragment__start">開始</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">マニュアル入力</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">クリップボードから貼り付け</string>
@@ -2827,14 +2827,14 @@
   <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">リカバリーフレーズを貼り付け</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">リカバリーフレーズ</string>
   <string name="PaymentsRecoveryPasteFragment__next">次へ</string>
-  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">無効なリカバリーフレーズです。</string>
-  <string name="PaymentsRecoveryPasteFragment__make_sure">正確に %1$d 語のフレーズを入力したか確かめ、もう一度試してください。</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">無効なリカバリーフレーズです</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">%1$d語を入力したか確認して、再度試してください。</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">次へ</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">編集</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">前へ</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">あなたのリカバリーフレーズ</string>
-  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">次の %1$d 語を書きとめ、安全な場所に保管してください。</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">次の%1$d語を順番通り書きとめて、安全な場所に保管してください。</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">フレーズが正しいかを確認してください。</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">スクリーンショットを使ったり、メールで送信しないでください。</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">支払い口座が復元されました</string>
@@ -2849,11 +2849,11 @@
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">単語 %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">フレーズを再点検してください。</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">完了</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">リカバリーフレーズが確認されました。</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">リカバリーフレーズを確認しました</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">リカバリーパスフレーズを入力してください</string>
-  <string name="PaymentsRecoveryEntryFragment__enter_word_d">次の単語を入力 %1$d</string>
-  <string name="PaymentsRecoveryEntryFragment__word_d">単語 %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">単語%1$dを入力してください</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">単語%1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">次へ</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">無効な単語</string>
   <!--ClearClipboardAlarmReceiver-->
@@ -2862,7 +2862,7 @@
   <string name="PaymentNotificationsView__view">表示する</string>
   <!--UnreadPayments-->
   <string name="UnreadPayments__s_sent_you_s">%1$s があなたに%2$sを送金しました</string>
-  <string name="UnreadPayments__d_new_payment_notifications">%1$d 件の新しい支払い通知</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d件の新しい支払い通知</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">送金できません</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">送金するには、このユーザーがあなたのメッセージリクエストを受け取る必要があります。リクエストを作成するため、先にメッセージを送ってください。</string>

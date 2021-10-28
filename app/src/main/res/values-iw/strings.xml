@@ -338,8 +338,68 @@
     <item quantity="many">%d שיחות הועברו לתיבה הנכנסת</item>
     <item quantity="other">%d שיחות הועברו לתיבה הנכנסת</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">קרא</item>
+    <item quantity="two">קרא</item>
+    <item quantity="many">קרא</item>
+    <item quantity="other">קרא</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">בטל קריאה</item>
+    <item quantity="two">בטל קריאה</item>
+    <item quantity="many">בטל קריאה</item>
+    <item quantity="other">בטל קריאה</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">הצמד</item>
+    <item quantity="two">הצמד</item>
+    <item quantity="many">הצמד</item>
+    <item quantity="other">הצמד</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">בטל הצמדה</item>
+    <item quantity="two">בטל הצמדה</item>
+    <item quantity="many">בטל הצמדה</item>
+    <item quantity="other">בטל הצמדה</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">השתק</item>
+    <item quantity="two">השתק</item>
+    <item quantity="many">השתק</item>
+    <item quantity="other">השתק</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">בטל השתקה</item>
+    <item quantity="two">בטל השתקה</item>
+    <item quantity="many">בטל השתקה</item>
+    <item quantity="other">בטל השתקה</item>
+  </plurals>
   <string name="ConversationListFragment_select">בחר</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">ארכב</item>
+    <item quantity="two">ארכב</item>
+    <item quantity="many">ארכב</item>
+    <item quantity="other">ארכב</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">בטל ארכוב</item>
+    <item quantity="two">בטל ארכוב</item>
+    <item quantity="many">בטל ארכוב</item>
+    <item quantity="other">בטל ארכוב</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">מחק</item>
+    <item quantity="two">מחק</item>
+    <item quantity="many">מחק</item>
+    <item quantity="other">מחק</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">בחר הכל</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d נבחר</item>
+    <item quantity="two">%d נבחרו</item>
+    <item quantity="many">%d נבחרו</item>
+    <item quantity="other">%d נבחרו</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתחות</string>
   <!--ConversationListItemAction-->
@@ -879,6 +939,24 @@
   <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
   <string name="MediaOverviewActivity_Selected_description">נבחר</string>
   <string name="MediaOverviewActivity_select_all">בחר הכל</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">שמור</item>
+    <item quantity="two">שמור</item>
+    <item quantity="many">שמור</item>
+    <item quantity="other">שמור</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">מחק</item>
+    <item quantity="two">מחק</item>
+    <item quantity="many">מחק</item>
+    <item quantity="other">מחק</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d נבחר (%2$s)</item>
+    <item quantity="two">%1$d נבחרו (%2$s)</item>
+    <item quantity="many">%1$d נבחרו (%2$s)</item>
+    <item quantity="other">%1$d נבחרו (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">קובץ</string>
   <string name="MediaOverviewActivity_audio">שמע</string>
   <string name="MediaOverviewActivity_video">סרטון</string>
@@ -3430,9 +3508,11 @@
   <string name="SubscribeFragment__confirm">אשר</string>
   <string name="SubscribeFragment__update_subscription">עדכן מינוי</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">המינוי שלך בוטל.</string>
+  <string name="SubscribeFragment__update_subscription_question">לעדכן מינוי?</string>
   <string name="SubscribeFragment__update">עדכן</string>
   <string name="Subscription__s_per_month">%s/חודש</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/חודש · מתחדש %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/חודש · יפוג %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">למה לתרום?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">תודה על התמיכה שלך!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">הצג בפרופיל</string>
@@ -3443,13 +3523,19 @@
   <string name="ManageDonationsFragment__badges">תגים</string>
   <string name="ManageDonationsFragment__subscription_faq">שאלות נפוצות של מינוי</string>
   <string name="Boost__enter_custom_amount">הכנס סכום מותאם אישית</string>
+  <string name="Boost__one_time_contribution">תרומה חד־פעמית</string>
   <string name="MySupportPreference__s_per_month">%1$s/חודש</string>
   <string name="MySupportPreference__renews_s">מתחדש %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">התג שלך פג</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">הייה מנוי</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
+  <string name="Subscription__verification_failed">וידוא מינוי נכשל</string>
+  <string name="Subscription__please_contact_support_for_more_information">אנא צור קשר עם התמיכה לעוד מידע.</string>
   <string name="Subscription__contact_support">צור קשר עם תמיכה</string>
   <string name="SubscribeFragment__processing_payment">מעבד תשלום…</string>
   <string name="DonationsErrors__payment_failed">תשלום נכשל</string>
+  <string name="DonationsErrors__your_payment">התשלום שלך לא היה יכול להיות מעובד ולא חויבת. אנא נסה שוב.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay לא זמין</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">נכשל בביטול מינוי</string>
   <!--EOF-->
 </resources>
