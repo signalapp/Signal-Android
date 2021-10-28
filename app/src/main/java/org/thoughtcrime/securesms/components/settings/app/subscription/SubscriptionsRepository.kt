@@ -31,7 +31,6 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
       subscriptionLevels.levels.map { (code, level) ->
         Subscription(
           id = code,
-          title = level.badge.name,
           badge = Badges.fromServiceBadge(level.badge),
           price = FiatMoney(level.currencies[currency.currencyCode]!!, currency),
           level = code.toInt()

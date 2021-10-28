@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.subscription
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,11 +21,19 @@ import java.util.Locale
  */
 data class Subscription(
   val id: String,
-  val title: String,
   val badge: Badge,
   val price: FiatMoney,
   val level: Int,
 ) {
+
+  fun getTitle(context: Context): String {
+    return when (level) {
+      500 -> context.getString(R.string.SubscribeFragment__sustainer_i)
+      1000 -> context.getString(R.string.SubscribeFragment__sustainer_ii)
+      2000 -> context.getString(R.string.SubscribeFragment__sustainer_iii)
+      else -> ""
+    }
+  }
 
   companion object {
     fun register(adapter: MappingAdapter) {
@@ -81,7 +90,7 @@ data class Subscription(
         badge.setBadge(model.subscription.badge)
       }
 
-      title.text = model.subscription.title
+      title.text = model.subscription.getTitle(context)
       tagline.text = context.getString(R.string.Subscription__earn_a_s_badge, model.subscription.badge.name)
 
       val formattedPrice = FiatMoneyUtil.format(

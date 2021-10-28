@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.thanks
 import android.animation.Animator
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
@@ -19,6 +21,7 @@ import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.visible
 
 class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
@@ -49,6 +52,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
     val done: MaterialButton = view.findViewById(R.id.thanks_bottom_sheet_done)
     val controlText: TextView = view.findViewById(R.id.thanks_bottom_sheet_control_text)
     val controlNote: View = view.findViewById(R.id.thanks_bottom_sheet_featured_note)
+    val subhead: TextView = view.findViewById(R.id.thanks_bottom_sheet_subhead)
 
     heading = view.findViewById(R.id.thanks_bottom_sheet_heading)
     switch = view.findViewById(R.id.thanks_bottom_sheet_switch)
@@ -57,6 +61,27 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     badgeView.setBadge(args.badge)
     badgeName.text = args.badge.name
+
+    if (args.badge.isBoost()) {
+      if (Recipient.self().badges.any { !it.isBoost() }) {
+        subhead.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal)
+      } else {
+        subhead.text = SpannableStringBuilder(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal))
+          .append(" ")
+          .append(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also))
+          .append(
+            SpanUtil.clickable(
+              getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer),
+              ContextCompat.getColor(requireContext(), R.color.signal_accent_primary),
+            ) {
+              requireActivity().finish()
+              requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
+            }
+          )
+      }
+    } else {
+      subhead.text = getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal, args.badge.name)
+    }
 
     val otherBadges = Recipient.self().badges.filterNot { it.id == args.badge.id }
     val hasOtherBadges = otherBadges.isNotEmpty()

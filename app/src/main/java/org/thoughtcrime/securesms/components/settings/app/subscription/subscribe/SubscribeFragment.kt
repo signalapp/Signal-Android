@@ -24,12 +24,11 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
-import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import java.util.Calendar
-import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
@@ -44,10 +43,10 @@ class SubscribeFragment : DSLSettingsFragment(
   private val lifecycleDisposable = LifecycleDisposable()
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(requireContext().getString(R.string.SubscribeFragment__support_technology_that_is_built_for_you))
+    SpannableStringBuilder(requireContext().getString(R.string.SubscribeFragment__support_technology_that_is_built_for_you_not))
       .append(" ")
       .append(
-        SpanUtil.learnMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)) {
+        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)) {
           findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSubscribeLearnMoreBottomSheetDialog())
         }
       )
@@ -152,14 +151,20 @@ class SubscribeFragment : DSLSettingsFragment(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
           isEnabled = areFieldsEnabled && (!activeAndSameLevel || isExpiring),
           onClick = {
+            val price = viewModel.state.value?.selectedSubscription?.price ?: return@primaryButton
             val calendar = Calendar.getInstance()
+
             calendar.add(Calendar.MONTH, 1)
             MaterialAlertDialogBuilder(requireContext())
               .setTitle(R.string.SubscribeFragment__update_subscription_question)
               .setMessage(
                 getString(
-                  R.string.SubscribeFragment__you_will_be_charged_the_full_amount,
-                  DateUtils.formatDateWithYear(Locale.getDefault(), calendar.timeInMillis)
+                  R.string.SubscribeFragment__you_will_be_charged_the_full_amount_s_of,
+                  FiatMoneyUtil.format(
+                    requireContext().resources,
+                    price,
+                    FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
+                  )
                 )
               )
               .setPositiveButton(R.string.SubscribeFragment__update) { dialog, _ ->
@@ -214,7 +219,7 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   private fun onGooglePayButtonClicked() {
-    viewModel.requestTokenFromGooglePay()
+    viewModel.requestTokenFromGooglePay(requireContext())
   }
 
   private fun onPaymentConfirmed(badge: Badge) {

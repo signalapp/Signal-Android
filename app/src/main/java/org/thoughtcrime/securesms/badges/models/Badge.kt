@@ -36,7 +36,7 @@ data class Badge(
   val visible: Boolean,
 ) : Parcelable, Key {
 
-  fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis()
+  fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis() && expirationTimestamp > 0
   fun isBoost(): Boolean = id == BOOST_BADGE_ID
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {

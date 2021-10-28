@@ -45,7 +45,7 @@ object ActiveSubscriptionPreference {
 
     override fun bind(model: Model) {
       badge.setBadge(model.subscription.badge)
-      title.text = model.subscription.title
+      title.text = model.subscription.getTitle(context)
 
       price.text = context.getString(
         R.string.MySupportPreference__s_per_month,

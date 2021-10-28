@@ -35,7 +35,7 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
         if (badge.isBoost()) {
           R.string.ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired
         } else {
-          R.string.ExpiredBadgeBottomSheetDialogFragment__your_subscription_was_cancelled
+          R.string.ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled
         }
       )
 
@@ -44,9 +44,9 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       noPadTextPref(
         DSLSettingsText.from(
           if (badge.isBoost()) {
-            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired, badge.name)
+            R.string.ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired
           } else {
-            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__because)
+            R.string.ExpiredBadgeBottomSheetDialogFragment__your_sustainer
           },
           DSLSettingsText.CenterModifier
         )
@@ -57,9 +57,9 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       noPadTextPref(
         DSLSettingsText.from(
           if (badge.isBoost()) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting
+            R.string.ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology
           } else {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_signal
+            R.string.ExpiredBadgeBottomSheetDialogFragment__you_can
           },
           DSLSettingsText.CenterModifier
         )
@@ -70,7 +70,7 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       primaryButton(
         text = DSLSettingsText.from(
           if (badge.isBoost()) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber
+            R.string.ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer
           } else {
             R.string.ExpiredBadgeBottomSheetDialogFragment__renew_subscription
           }

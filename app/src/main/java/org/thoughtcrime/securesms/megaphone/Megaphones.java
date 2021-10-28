@@ -348,7 +348,7 @@ public final class Megaphones {
         .setTitle(R.string.BecomeASustainerMegaphone__become_a_sustainer)
         .setImage(R.drawable.ic_become_a_sustainer_megaphone)
         .setBody(R.string.BecomeASustainerMegaphone__signal_is_powered)
-        .setActionButton(R.string.BecomeASustainerMegaphone__donate, (megaphone, listener) -> {
+        .setActionButton(R.string.BecomeASustainerMegaphone__contribute, (megaphone, listener) -> {
           listener.onMegaphoneNavigationRequested(AppSettingsActivity.subscriptions(context));
           listener.onMegaphoneCompleted(Event.BECOME_A_SUSTAINER);
         })

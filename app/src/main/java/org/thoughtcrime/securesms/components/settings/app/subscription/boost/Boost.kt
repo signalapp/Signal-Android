@@ -139,7 +139,7 @@ data class Boost(
   class MoneyFilter(val currency: Currency, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(), TextWatcher {
 
     val separatorCount = min(1, currency.defaultFractionDigits)
-    val prefix: String = "${currency.getSymbol(Locale.getDefault())} "
+    val prefix: String = currency.getSymbol(Locale.getDefault())
     val pattern: Pattern = "[0-9]*([.,]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
 
     override fun filter(

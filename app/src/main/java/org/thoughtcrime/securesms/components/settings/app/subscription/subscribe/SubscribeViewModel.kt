@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.subscribe
 
+import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -170,7 +171,7 @@ class SubscribeViewModel(
       )
   }
 
-  fun requestTokenFromGooglePay() {
+  fun requestTokenFromGooglePay(context: Context) {
     val snapshot = store.state
     if (snapshot.selectedSubscription == null) {
       return
@@ -179,7 +180,7 @@ class SubscribeViewModel(
     store.update { it.copy(stage = SubscribeState.Stage.TOKEN_REQUEST) }
 
     subscriptionToPurchase = snapshot.selectedSubscription
-    donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedSubscription.price, snapshot.selectedSubscription.title, fetchTokenRequestCode)
+    donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedSubscription.price, snapshot.selectedSubscription.getTitle(context), fetchTokenRequestCode)
   }
 
   fun setSelectedSubscription(subscription: Subscription) {
