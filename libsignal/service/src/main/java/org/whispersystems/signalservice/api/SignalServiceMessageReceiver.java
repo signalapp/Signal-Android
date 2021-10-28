@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -90,13 +91,13 @@ public class SignalServiceMessageReceiver {
                                                                 SignalServiceProfile.RequestType requestType,
                                                                 Locale locale)
   {
-    UUID uuid = address.getUuid();
+    ACI aci = address.getAci();
 
     if (profileKey.isPresent()) {
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        return socket.retrieveVersionedProfileAndCredential(uuid, profileKey.get(), unidentifiedAccess, locale);
+        return socket.retrieveVersionedProfileAndCredential(aci.uuid(), profileKey.get(), unidentifiedAccess, locale);
       } else {
-        return FutureTransformers.map(socket.retrieveVersionedProfile(uuid, profileKey.get(), unidentifiedAccess, locale), profile -> {
+        return FutureTransformers.map(socket.retrieveVersionedProfile(aci.uuid(), profileKey.get(), unidentifiedAccess, locale), profile -> {
           return new ProfileAndCredential(profile,
                                           SignalServiceProfile.RequestType.PROFILE,
                                           Optional.absent());
@@ -204,7 +205,7 @@ public class SignalServiceMessageReceiver {
       SignalServiceEnvelope envelope;
 
       if (entity.hasSource() && entity.getSourceDevice() > 0) {
-        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
+        SignalServiceAddress address = new SignalServiceAddress(ACI.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
         envelope = new SignalServiceEnvelope(entity.getType(),
                                              Optional.of(address),
                                              entity.getSourceDevice(),

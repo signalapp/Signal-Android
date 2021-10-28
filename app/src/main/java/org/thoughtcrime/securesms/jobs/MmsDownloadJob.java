@@ -105,7 +105,7 @@ public class MmsDownloadJob extends BaseJob {
 
   @Override
   public void onRun() {
-    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
+    if (TextSecurePreferences.getLocalAci(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
       throw new NotReadyException();
     }
 

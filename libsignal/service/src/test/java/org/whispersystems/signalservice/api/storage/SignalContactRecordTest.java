@@ -1,17 +1,16 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.junit.Test;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class SignalContactRecordTest {
 
-  private static final UUID   UUID_A = UuidUtil.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
+  private static final ACI    ACI_A  = ACI.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
   private static final String E164_A = "+16108675309";
 
   @Test
@@ -19,8 +18,8 @@ public class SignalContactRecordTest {
     byte[] profileKey     = new byte[32];
     byte[] profileKeyCopy = profileKey.clone();
 
-    SignalContactRecord a = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKey).build();
-    SignalContactRecord b = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
+    SignalContactRecord a = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKey).build();
+    SignalContactRecord b = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
 
     assertEquals(a, b);
     assertEquals(a.hashCode(), b.hashCode());
@@ -32,8 +31,8 @@ public class SignalContactRecordTest {
     byte[] profileKeyCopy = profileKey.clone();
     profileKeyCopy[0] = 1;
 
-    SignalContactRecord a = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKey).build();
-    SignalContactRecord b = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
+    SignalContactRecord a = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKey).build();
+    SignalContactRecord b = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
 
     assertNotEquals(a, b);
     assertNotEquals(a.hashCode(), b.hashCode());
@@ -49,11 +48,11 @@ public class SignalContactRecordTest {
   }
 
   private static SignalContactRecord.Builder contactBuilder(int key,
-                                                            UUID uuid,
+                                                            ACI aci,
                                                             String e164,
                                                             String givenName)
   {
-    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(uuid, e164))
+    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(aci, e164))
                                   .setGivenName(givenName);
   }
 }

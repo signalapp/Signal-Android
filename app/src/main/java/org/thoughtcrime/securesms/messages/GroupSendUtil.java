@@ -174,9 +174,9 @@ public final class GroupSendUtil {
       boolean                          validMembership = groupRecord.isPresent() && groupRecord.get().getMembers().contains(recipient.getId());
 
       if (recipient.getSenderKeyCapability() == Recipient.Capability.SUPPORTED &&
-          recipient.hasUuid()                                                  &&
-          access.isPresent()                                                   &&
-          access.get().getTargetUnidentifiedAccess().isPresent()               &&
+          recipient.hasAci() &&
+          access.isPresent() &&
+          access.get().getTargetUnidentifiedAccess().isPresent() &&
           validMembership)
       {
         senderKeyTargets.add(recipient);
@@ -312,8 +312,8 @@ public final class GroupSendUtil {
       Log.w(TAG, "There are " + unregisteredTargets.size() + " unregistered targets. Including failure results.");
 
       List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
-                                                                       .filter(Recipient::hasUuid)
-                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireUuid(), t.getE164().orNull())))
+                                                                       .filter(Recipient::hasAci)
+                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireAci(), t.getE164().orNull())))
                                                                        .collect(Collectors.toList());
 
       if (unregisteredResults.size() < unregisteredTargets.size()) {

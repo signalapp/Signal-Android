@@ -51,6 +51,7 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
@@ -326,13 +327,13 @@ public class PushServiceSocket {
     makeServiceRequest(path, "GET", null, headers, new VerificationCodeResponseHandler());
   }
 
-  public UUID getOwnUuid() throws IOException {
+  public ACI getOwnAci() throws IOException {
     String         body     = makeServiceRequest(WHO_AM_I, "GET", null);
     WhoAmIResponse response = JsonUtil.fromJson(body, WhoAmIResponse.class);
-    Optional<UUID> uuid     = UuidUtil.parse(response.getUuid());
+    Optional<ACI>  aci      = ACI.parse(response.getUuid());
 
-    if (uuid.isPresent()) {
-      return uuid.get();
+    if (aci.isPresent()) {
+      return aci.get();
     } else {
       throw new IOException("Invalid UUID!");
     }
@@ -2086,7 +2087,7 @@ public class PushServiceSocket {
 
   private String getAuthorizationHeader(CredentialsProvider credentialsProvider) {
     try {
-      String identifier = credentialsProvider.getUuid() != null ? credentialsProvider.getUuid().toString() : credentialsProvider.getE164();
+      String identifier = credentialsProvider.getAci() != null ? credentialsProvider.getAci().toString() : credentialsProvider.getE164();
       return "Basic " + Base64.encodeBytes((identifier + ":" + credentialsProvider.getPassword()).getBytes("UTF-8"));
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);

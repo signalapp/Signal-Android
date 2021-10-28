@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -804,10 +805,10 @@ private static final String[] GROUP_PROJECTION = {
   }
 
   private static boolean gv2GroupActive(@NonNull DecryptedGroup decryptedGroup) {
-    UUID uuid = Recipient.self().getUuid().get();
+    ACI aci = Recipient.self().requireAci();
 
-    return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid).isPresent() ||
-           DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid).isPresent();
+    return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), aci.uuid()).isPresent() ||
+           DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), aci.uuid()).isPresent();
   }
 
   private List<RecipientId> getCurrentMembers(@NonNull GroupId groupId) {
@@ -868,7 +869,7 @@ private static final String[] GROUP_PROJECTION = {
       if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
         Log.w(TAG, "Seen unknown UUID in members list");
       } else {
-        groupMembers.add(RecipientId.from(uuid, null));
+        groupMembers.add(RecipientId.from(ACI.from(uuid), null));
       }
     }
 
@@ -1186,9 +1187,9 @@ private static final String[] GROUP_PROJECTION = {
      */
     public boolean isPendingMember(@NonNull Recipient recipient) {
       if (isV2Group()) {
-        Optional<UUID> uuid = recipient.getUuid();
-        if (uuid.isPresent()) {
-          return DecryptedGroupUtil.findPendingByUuid(requireV2GroupProperties().getDecryptedGroup().getPendingMembersList(), uuid.get())
+        Optional<ACI> aci = recipient.getAci();
+        if (aci.isPresent()) {
+          return DecryptedGroupUtil.findPendingByUuid(requireV2GroupProperties().getDecryptedGroup().getPendingMembersList(), aci.get().uuid())
                                    .isPresent();
         }
       }
@@ -1229,13 +1230,13 @@ private static final String[] GROUP_PROJECTION = {
     }
 
     public boolean isAdmin(@NonNull Recipient recipient) {
-      Optional<UUID> uuid = recipient.getUuid();
+      Optional<ACI> aci = recipient.getAci();
 
-      if (!uuid.isPresent()) {
+      if (!aci.isPresent()) {
         return false;
       }
 
-      return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), uuid.get())
+      return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), aci.get().uuid())
                                .transform(t -> t.getRole() == Member.Role.ADMINISTRATOR)
                                .or(false);
     }
@@ -1245,21 +1246,21 @@ private static final String[] GROUP_PROJECTION = {
     }
 
     public MemberLevel memberLevel(@NonNull Recipient recipient) {
-      Optional<UUID> uuid = recipient.getUuid();
+      Optional<ACI> aci = recipient.getAci();
 
-      if (!uuid.isPresent()) {
+      if (!aci.isPresent()) {
         return MemberLevel.NOT_A_MEMBER;
       }
 
       DecryptedGroup decryptedGroup = getDecryptedGroup();
 
-      return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid.get())
+      return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), aci.get().uuid())
                                .transform(member -> member.getRole() == Member.Role.ADMINISTRATOR
                                                     ? MemberLevel.ADMINISTRATOR
                                                     : MemberLevel.FULL_MEMBER)
-                               .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid.get())
+                               .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), aci.get().uuid())
                                                            .transform(m -> MemberLevel.PENDING_MEMBER)
-                                                           .or(() -> DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), uuid.get())
+                                                           .or(() -> DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), aci.get().uuid())
                                                                                        .transform(m -> MemberLevel.REQUESTING_MEMBER)
                                                                                        .or(MemberLevel.NOT_A_MEMBER)));
     }
@@ -1271,7 +1272,7 @@ private static final String[] GROUP_PROJECTION = {
     public List<RecipientId> getMemberRecipientIds(@NonNull MemberSet memberSet) {
       boolean           includeSelf    = memberSet.includeSelf;
       DecryptedGroup    groupV2        = getDecryptedGroup();
-      UUID              selfUuid       = Recipient.self().getUuid().get();
+      UUID              selfUuid       = Recipient.self().requireAci().uuid();
       List<RecipientId> recipients     = new ArrayList<>(groupV2.getMembersCount() + groupV2.getPendingMembersCount());
       int               unknownMembers = 0;
       int               unknownPending = 0;
@@ -1280,7 +1281,7 @@ private static final String[] GROUP_PROJECTION = {
         if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
           unknownMembers++;
         } else if (includeSelf || !selfUuid.equals(uuid)) {
-          recipients.add(RecipientId.from(uuid, null));
+          recipients.add(RecipientId.from(ACI.from(uuid), null));
         }
       }
       if (memberSet.includePending) {
@@ -1288,7 +1289,7 @@ private static final String[] GROUP_PROJECTION = {
           if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
             unknownPending++;
           } else if (includeSelf || !selfUuid.equals(uuid)) {
-            recipients.add(RecipientId.from(uuid, null));
+            recipients.add(RecipientId.from(ACI.from(uuid), null));
           }
         }
       }

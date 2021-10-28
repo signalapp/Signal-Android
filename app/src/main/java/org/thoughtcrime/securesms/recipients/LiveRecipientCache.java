@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -160,11 +161,11 @@ public final class LiveRecipientCache {
     }
 
     if (selfId == null) {
-      UUID   localUuid = TextSecurePreferences.getLocalUuid(context);
+      ACI    localAci  = TextSecurePreferences.getLocalAci(context);
       String localE164 = TextSecurePreferences.getLocalNumber(context);
 
-      if (localUuid != null) {
-        selfId = recipientDatabase.getByUuid(localUuid).or(recipientDatabase.getByE164(localE164)).orNull();
+      if (localAci != null) {
+        selfId = recipientDatabase.getByAci(localAci).or(recipientDatabase.getByE164(localE164)).orNull();
       } else if (localE164 != null) {
         selfId = recipientDatabase.getByE164(localE164).orNull();
       } else {

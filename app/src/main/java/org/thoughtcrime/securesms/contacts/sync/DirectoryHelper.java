@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.BulkOperationsHandle;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -67,7 +68,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -112,9 +112,9 @@ public class DirectoryHelper {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
 
     for (Recipient recipient : recipients) {
-      if (recipient.hasUuid() && !recipient.hasE164()) {
-        if (isUuidRegistered(context, recipient)) {
-          recipientDatabase.markRegistered(recipient.getId(), recipient.requireUuid());
+      if (recipient.hasAci() && !recipient.hasE164()) {
+        if (isAciRegistered(context, recipient)) {
+          recipientDatabase.markRegistered(recipient.getId(), recipient.requireAci());
         } else {
           recipientDatabase.markUnregistered(recipient.getId());
         }
@@ -136,11 +136,11 @@ public class DirectoryHelper {
     RegisteredState   originalRegisteredState = recipient.resolve().getRegistered();
     RegisteredState   newRegisteredState;
 
-    if (recipient.hasUuid() && !recipient.hasE164()) {
-      boolean isRegistered = isUuidRegistered(context, recipient);
+    if (recipient.hasAci() && !recipient.hasE164()) {
+      boolean isRegistered = isAciRegistered(context, recipient);
       stopwatch.split("uuid-network");
       if (isRegistered) {
-        boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), recipient.getUuid().get());
+        boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), recipient.requireAci());
         if (idChanged) {
           Log.w(TAG, "ID changed during refresh by UUID.");
         }
@@ -169,18 +169,18 @@ public class DirectoryHelper {
     }
 
     if (result.getRegisteredNumbers().size() > 0) {
-      UUID uuid = result.getRegisteredNumbers().values().iterator().next();
-      if (uuid != null) {
-        boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), uuid);
+      ACI aci = result.getRegisteredNumbers().values().iterator().next();
+      if (aci != null) {
+        boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), aci);
         if (idChanged) {
-          recipient = Recipient.resolved(recipientDatabase.getByUuid(uuid).get());
+          recipient = Recipient.resolved(recipientDatabase.getByAci(aci).get());
         }
       } else {
         Log.w(TAG, "Registered number set had a null UUID!");
       }
-    } else if (recipient.hasUuid() && recipient.isRegistered() && hasCommunicatedWith(context, recipient)) {
-      if (isUuidRegistered(context, recipient)) {
-        recipientDatabase.markRegistered(recipient.getId(), recipient.requireUuid());
+    } else if (recipient.hasAci() && recipient.isRegistered() && hasCommunicatedWith(context, recipient)) {
+      if (isAciRegistered(context, recipient)) {
+        recipientDatabase.markRegistered(recipient.getId(), recipient.requireAci());
       } else {
         recipientDatabase.markUnregistered(recipient.getId());
       }
@@ -245,10 +245,10 @@ public class DirectoryHelper {
       recipientDatabase.updatePhoneNumbers(result.getNumberRewrites());
     }
 
-    Map<RecipientId, String> uuidMap       = recipientDatabase.bulkProcessCdsResult(result.getRegisteredNumbers());
-    Set<String>              activeNumbers = result.getRegisteredNumbers().keySet();
-    Set<RecipientId>         activeIds     = uuidMap.keySet();
-    Set<RecipientId>         inactiveIds   = Stream.of(allNumbers)
+    Map<RecipientId, ACI> aciMap        = recipientDatabase.bulkProcessCdsResult(result.getRegisteredNumbers());
+    Set<String>           activeNumbers = result.getRegisteredNumbers().keySet();
+    Set<RecipientId>      activeIds     = aciMap.keySet();
+    Set<RecipientId>      inactiveIds   = Stream.of(allNumbers)
                                                    .filterNot(activeNumbers::contains)
                                                    .filterNot(n -> result.getNumberRewrites().containsKey(n))
                                                    .filterNot(n -> result.getIgnoredNumbers().contains(n))
@@ -270,7 +270,7 @@ public class DirectoryHelper {
 
     Set<RecipientId> preExistingRegisteredUsers = new HashSet<>(recipientDatabase.getRegistered());
 
-    recipientDatabase.bulkUpdatedRegisteredStatus(uuidMap, inactiveIds);
+    recipientDatabase.bulkUpdatedRegisteredStatus(aciMap, inactiveIds);
 
     stopwatch.split("update-registered");
 
@@ -298,7 +298,7 @@ public class DirectoryHelper {
   }
 
 
-  private static boolean isUuidRegistered(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
+  private static boolean isAciRegistered(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
     try {
       ProfileUtil.retrieveProfileSync(context, recipient, SignalServiceProfile.RequestType.PROFILE);
       return true;
@@ -514,7 +514,7 @@ public class DirectoryHelper {
     List<Recipient> possiblyUnlisted = Stream.of(inactiveIds)
                                              .map(Recipient::resolved)
                                              .filter(Recipient::isRegistered)
-                                             .filter(Recipient::hasUuid)
+                                             .filter(Recipient::hasAci)
                                              .filter(r -> hasCommunicatedWith(context, r))
                                              .toList();
 
@@ -549,17 +549,17 @@ public class DirectoryHelper {
   }
 
   private static boolean hasCommunicatedWith(@NonNull Context context, @NonNull Recipient recipient) {
-    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId())                                                ||
-           (recipient.hasUuid() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireUuid().toString())) ||
+    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId()) ||
+           (recipient.hasAci() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireAci().toString())) ||
            (recipient.hasE164() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireE164()));
   }
 
   static class DirectoryResult {
-    private final Map<String, UUID>   registeredNumbers;
+    private final Map<String, ACI>    registeredNumbers;
     private final Map<String, String> numberRewrites;
     private final Set<String>         ignoredNumbers;
 
-    DirectoryResult(@NonNull Map<String, UUID> registeredNumbers,
+    DirectoryResult(@NonNull Map<String, ACI> registeredNumbers,
                     @NonNull Map<String, String> numberRewrites,
                     @NonNull Set<String> ignoredNumbers)
     {
@@ -569,7 +569,7 @@ public class DirectoryHelper {
     }
 
 
-    @NonNull Map<String, UUID> getRegisteredNumbers() {
+    @NonNull Map<String, ACI> getRegisteredNumbers() {
       return registeredNumbers;
     }
 

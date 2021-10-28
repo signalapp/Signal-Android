@@ -143,8 +143,8 @@ public class SenderKeySharedDatabase extends Database {
     SQLiteDatabase db        = databaseHelper.getSignalWritableDatabase();
     Recipient      recipient = Recipient.resolved(recipientId);
 
-    if (recipient.hasUuid()) {
-      db.delete(TABLE_NAME, ADDRESS + " = ?", SqlUtil.buildArgs(recipient.getUuid().get().toString()));
+    if (recipient.hasAci()) {
+      db.delete(TABLE_NAME, ADDRESS + " = ?", SqlUtil.buildArgs(recipient.requireAci().toString()));
     } else {
       Log.w(TAG, "Recipient doesn't have a UUID! " + recipientId);
     }

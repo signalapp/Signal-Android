@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
@@ -76,7 +77,6 @@ import org.whispersystems.signalservice.api.services.MessagingService;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Uint64RangeException;
 import org.whispersystems.signalservice.api.util.Uint64Util;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -128,7 +128,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -173,7 +172,7 @@ public class SignalServiceMessageSender {
     this.socket            = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
     this.store             = store;
     this.sessionLock       = sessionLock;
-    this.localAddress      = new SignalServiceAddress(credentialsProvider.getUuid(), credentialsProvider.getE164());
+    this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
     this.attachmentService = new AttachmentService(signalWebSocket);
     this.messagingService  = new MessagingService(signalWebSocket);
     this.eventListener     = eventListener;
@@ -773,14 +772,14 @@ public class SignalServiceMessageSender {
       DataMessage.Quote.Builder quoteBuilder = DataMessage.Quote.newBuilder()
                                                                 .setId(message.getQuote().get().getId())
                                                                 .setText(message.getQuote().get().getText())
-                                                                .setAuthorUuid(message.getQuote().get().getAuthor().getUuid().toString());
+                                                                .setAuthorUuid(message.getQuote().get().getAuthor().getAci().toString());
 
       if (!message.getQuote().get().getMentions().isEmpty()) {
         for (SignalServiceDataMessage.Mention mention : message.getQuote().get().getMentions()) {
           quoteBuilder.addBodyRanges(DataMessage.BodyRange.newBuilder()
                                                           .setStart(mention.getStart())
                                                           .setLength(mention.getLength())
-                                                          .setMentionUuid(mention.getUuid().toString()));
+                                                          .setMentionUuid(mention.getAci().toString()));
         }
 
         builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
@@ -834,7 +833,7 @@ public class SignalServiceMessageSender {
         builder.addBodyRanges(DataMessage.BodyRange.newBuilder()
                                                    .setStart(mention.getStart())
                                                    .setLength(mention.getLength())
-                                                   .setMentionUuid(mention.getUuid().toString()));
+                                                   .setMentionUuid(mention.getAci().toString()));
       }
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
     }
@@ -869,7 +868,7 @@ public class SignalServiceMessageSender {
                                                                          .setEmoji(message.getReaction().get().getEmoji())
                                                                          .setRemove(message.getReaction().get().isRemove())
                                                                          .setTargetSentTimestamp(message.getReaction().get().getTargetSentTimestamp())
-                                                                         .setTargetAuthorUuid(message.getReaction().get().getTargetAuthor().getUuid().toString());
+                                                                         .setTargetAuthorUuid(message.getReaction().get().getTargetAuthor().getAci().toString());
 
       builder.setReaction(reactionBuilder.build());
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS_VALUE, builder.getRequiredProtocolVersion()));
@@ -1041,7 +1040,7 @@ public class SignalServiceMessageSender {
       if (result.getSuccess() != null) {
         SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder builder = SyncMessage.Sent.UnidentifiedDeliveryStatus.newBuilder();
 
-        builder.setDestinationUuid(result.getAddress().getUuid().toString());
+        builder.setDestinationUuid(result.getAddress().getAci().toString());
 
         if (result.getAddress().getNumber().isPresent()) {
           builder.setDestinationE164(result.getAddress().getNumber().get());
@@ -1054,7 +1053,7 @@ public class SignalServiceMessageSender {
     }
 
     if (recipient.isPresent()) {
-      sentMessage.setDestinationUuid(recipient.get().getUuid().toString());
+      sentMessage.setDestinationUuid(recipient.get().getAci().toString());
 
       if (recipient.get().getNumber().isPresent()) {
         sentMessage.setDestinationE164(recipient.get().getNumber().get());
@@ -1082,7 +1081,7 @@ public class SignalServiceMessageSender {
     for (ReadMessage readMessage : readMessages) {
       SyncMessage.Read.Builder readBuilder = SyncMessage.Read.newBuilder().setTimestamp(readMessage.getTimestamp());
 
-      readBuilder.setSenderUuid(readMessage.getSender().getUuid().toString());
+      readBuilder.setSenderUuid(readMessage.getSender().getAci().toString());
 
       if (readMessage.getSender().getNumber().isPresent()) {
         readBuilder.setSenderE164(readMessage.getSender().getNumber().get());
@@ -1101,7 +1100,7 @@ public class SignalServiceMessageSender {
     for (ViewedMessage readMessage : readMessages) {
       SyncMessage.Viewed.Builder viewedBuilder = SyncMessage.Viewed.newBuilder().setTimestamp(readMessage.getTimestamp());
 
-      viewedBuilder.setSenderUuid(readMessage.getSender().getUuid().toString());
+      viewedBuilder.setSenderUuid(readMessage.getSender().getAci().toString());
 
       if (readMessage.getSender().getNumber().isPresent()) {
         viewedBuilder.setSenderE164(readMessage.getSender().getNumber().get());
@@ -1118,7 +1117,7 @@ public class SignalServiceMessageSender {
     SyncMessage.Builder              builder         = createSyncMessageBuilder();
     SyncMessage.ViewOnceOpen.Builder viewOnceBuilder = SyncMessage.ViewOnceOpen.newBuilder().setTimestamp(readMessage.getTimestamp());
 
-    viewOnceBuilder.setSenderUuid(readMessage.getSender().getUuid().toString());
+    viewOnceBuilder.setSenderUuid(readMessage.getSender().getAci().toString());
 
     if (readMessage.getSender().getNumber().isPresent()) {
       viewOnceBuilder.setSenderE164(readMessage.getSender().getNumber().get());
@@ -1135,7 +1134,7 @@ public class SignalServiceMessageSender {
     SyncMessage.Blocked.Builder blockedMessage = SyncMessage.Blocked.newBuilder();
 
     for (SignalServiceAddress address : blocked.getAddresses()) {
-      blockedMessage.addUuids(address.getUuid().toString());
+      blockedMessage.addUuids(address.getAci().toString());
       if (address.getNumber().isPresent()) {
         blockedMessage.addNumbers(address.getNumber().get());
       }
@@ -1235,7 +1234,7 @@ public class SignalServiceMessageSender {
       if (message.getPerson().get().getNumber().isPresent()) {
         responseMessage.setThreadE164(message.getPerson().get().getNumber().get());
       }
-      responseMessage.setThreadUuid(message.getPerson().get().getUuid().toString());
+      responseMessage.setThreadUuid(message.getPerson().get().getAci().toString());
     }
 
     switch (message.getType()) {
@@ -1268,7 +1267,7 @@ public class SignalServiceMessageSender {
     SyncMessage.OutgoingPayment.Builder paymentMessage = SyncMessage.OutgoingPayment.newBuilder();
 
     if (message.getRecipient().isPresent()) {
-      paymentMessage.setRecipientUuid(message.getRecipient().get().toString());
+      paymentMessage.setRecipientUuid(message.getRecipient().get().getAci().toString());
     }
 
     if (message.getNote().isPresent()) {
@@ -1320,7 +1319,7 @@ public class SignalServiceMessageSender {
 
     verifiedMessageBuilder.setNullMessage(ByteString.copyFrom(nullMessage));
     verifiedMessageBuilder.setIdentityKey(ByteString.copyFrom(verifiedMessage.getIdentityKey().serialize()));
-    verifiedMessageBuilder.setDestinationUuid(verifiedMessage.getDestination().getUuid().toString());
+    verifiedMessageBuilder.setDestinationUuid(verifiedMessage.getDestination().getAci().toString());
 
     if (verifiedMessage.getDestination().getNumber().isPresent()) {
       verifiedMessageBuilder.setDestinationE164(verifiedMessage.getDestination().getNumber().get());
@@ -1683,12 +1682,12 @@ public class SignalServiceMessageSender {
 
     Preconditions.checkArgument(recipients.size() == unidentifiedAccess.size(), "[" + timestamp + "] Unidentified access mismatch!");
 
-    Map<UUID, UnidentifiedAccess>  accessByUuid    = new HashMap<>();
+    Map<ACI, UnidentifiedAccess>   accessByAci     = new HashMap<>();
     Iterator<SignalServiceAddress> addressIterator = recipients.iterator();
     Iterator<UnidentifiedAccess>   accessIterator  = unidentifiedAccess.iterator();
 
     while (addressIterator.hasNext()) {
-      accessByUuid.put(addressIterator.next().getUuid(), accessIterator.next());
+      accessByAci.put(addressIterator.next().getAci(), accessIterator.next());
     }
 
     for (int i = 0; i < RETRY_COUNT; i++) {
@@ -1696,7 +1695,7 @@ public class SignalServiceMessageSender {
       Set<SignalProtocolAddress> sharedWith     = store.getSenderKeySharedWith(distributionId);
       List<SignalServiceAddress> needsSenderKey = targetInfo.destinations.stream()
                                                                          .filter(a -> !sharedWith.contains(a))
-                                                                         .map(a -> UuidUtil.parseOrThrow(a.getName()))
+                                                                         .map(a -> ACI.parseOrThrow(a.getName()))
                                                                          .distinct()
                                                                          .map(SignalServiceAddress::new)
                                                                          .collect(Collectors.toList());
@@ -1705,7 +1704,7 @@ public class SignalServiceMessageSender {
         SenderKeyDistributionMessage           message = getOrCreateNewGroupSession(distributionId);
         List<Optional<UnidentifiedAccessPair>> access  = needsSenderKey.stream()
                                                                        .map(r -> {
-                                                                         UnidentifiedAccess targetAccess = accessByUuid.get(r.getUuid());
+                                                                         UnidentifiedAccess targetAccess = accessByAci.get(r.getAci());
                                                                          return Optional.of(new UnidentifiedAccessPair(targetAccess, targetAccess));
                                                                        })
                                                                        .collect(Collectors.toList());
@@ -1717,7 +1716,7 @@ public class SignalServiceMessageSender {
                                                       .map(SendMessageResult::getAddress)
                                                       .collect(Collectors.toList());
 
-        Set<String>                successUuids     = successes.stream().map(a -> a.getUuid().toString()).collect(Collectors.toSet());
+        Set<String>                successUuids     = successes.stream().map(a -> a.getAci().toString()).collect(Collectors.toSet());
         Set<SignalProtocolAddress> successAddresses = targetInfo.destinations.stream().filter(a -> successUuids.contains(a.getName())).collect(Collectors.toSet());
 
         store.markSenderKeySharedWith(distributionId, successAddresses);
@@ -1785,13 +1784,13 @@ public class SignalServiceMessageSender {
       } catch (GroupMismatchedDevicesException e) {
         Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices.", e);
         for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
-          SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(mismatched.getUuid()), Optional.absent());
+          SignalServiceAddress address = new SignalServiceAddress(ACI.parseOrThrow(mismatched.getUuid()), Optional.absent());
           handleMismatchedDevices(socket, address, mismatched.getDevices());
         }
       } catch (GroupStaleDevicesException e) {
         Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling stale devices.", e);
         for (GroupStaleDevices stale : e.getStaleDevices()) {
-          SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(stale.getUuid()), Optional.absent());
+          SignalServiceAddress address = new SignalServiceAddress(ACI.parseOrThrow(stale.getUuid()), Optional.absent());
           handleStaleDevices(address, stale.getDevices());
         }
       }
@@ -1840,16 +1839,16 @@ public class SignalServiceMessageSender {
   }
 
   private List<SendMessageResult> transformGroupResponseToMessageResults(Map<SignalServiceAddress, List<Integer>> recipients, SendGroupMessageResponse response, Content content) {
-    Set<UUID> unregistered = response.getUnsentTargets();
+    Set<ACI> unregistered = response.getUnsentTargets();
 
     List<SendMessageResult> failures = unregistered.stream()
-                                                   .map(uuid -> new SignalServiceAddress(uuid))
+                                                   .map(SignalServiceAddress::new)
                                                    .map(SendMessageResult::unregisteredFailure)
                                                    .collect(Collectors.toList());
 
     List<SendMessageResult> success = recipients.keySet()
                                                 .stream()
-                                                .filter(r -> !unregistered.contains(r.getUuid()))
+                                                .filter(r -> !unregistered.contains(r.getAci()))
                                                 .map(a -> SendMessageResult.success(a, recipients.get(a), true, store.isMultiDevice(), -1, Optional.of(content)))
                                                 .collect(Collectors.toList());
 
@@ -2049,7 +2048,7 @@ public class SignalServiceMessageSender {
     List<SignalProtocolAddress> addresses = new ArrayList<>(devices.size());
 
     for (int staleDeviceId : devices) {
-      addresses.add(new SignalProtocolAddress(recipient.getUuid().toString(), staleDeviceId));
+      addresses.add(new SignalProtocolAddress(recipient.getAci().toString(), staleDeviceId));
 
       if (recipient.getNumber().isPresent()) {
         addresses.add(new SignalProtocolAddress(recipient.getNumber().get(), staleDeviceId));

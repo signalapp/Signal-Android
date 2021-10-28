@@ -26,8 +26,8 @@ import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.signalservice.api.push.ACI
 import java.util.Objects
-import java.util.UUID
 
 /**
  * Shows internal details about a recipient that you can view from the conversation settings.
@@ -60,7 +60,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       )
 
       if (!recipient.isGroup) {
-        val uuid = recipient.uuid.transform(UUID::toString).or("null")
+        val uuid = recipient.aci.transform(ACI::toString).or("null")
         longClickPref(
           title = DSLSettingsText.from("UUID"),
           summary = DSLSettingsText.from(uuid),
@@ -145,8 +145,8 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               .setTitle("Are you sure?")
               .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
               .setPositiveButton(android.R.string.ok) { _, _ ->
-                if (recipient.hasUuid()) {
-                  DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireUuid().toString())
+                if (recipient.hasAci()) {
+                  DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireAci().toString())
                 }
                 if (recipient.hasE164()) {
                   DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireE164())

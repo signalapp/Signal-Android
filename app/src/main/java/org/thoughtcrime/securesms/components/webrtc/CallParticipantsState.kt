@@ -127,10 +127,10 @@ data class CallParticipantsState(
   fun getIncomingRingingGroupDescription(context: Context): String? {
     if (callState == WebRtcViewModel.State.CALL_INCOMING &&
       groupCallState == WebRtcViewModel.GroupCallState.RINGING &&
-      ringerRecipient.hasUuid()
+      ringerRecipient.hasAci()
     ) {
       val ringerName = ringerRecipient.getShortDisplayName(context)
-      val membersWithoutYouOrRinger: List<GroupMemberEntry.FullMember> = groupMembers.filterNot { it.member.isSelf || ringerRecipient.requireUuid() == it.member.uuid.orNull() }
+      val membersWithoutYouOrRinger: List<GroupMemberEntry.FullMember> = groupMembers.filterNot { it.member.isSelf || ringerRecipient.requireAci() == it.member.aci.orNull() }
 
       return when (membersWithoutYouOrRinger.size) {
         0 -> context.getString(R.string.WebRtcCallView__s_is_calling_you, ringerName)

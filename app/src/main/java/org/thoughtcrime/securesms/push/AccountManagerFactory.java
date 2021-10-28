@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public class AccountManagerFactory {
   private static final String TAG = Log.tag(AccountManagerFactory.class);
 
   public static @NonNull SignalServiceAccountManager createAuthenticated(@NonNull Context context,
-                                                                         @NonNull UUID uuid,
+                                                                         @NonNull ACI aci,
                                                                          @NonNull String number,
                                                                          @NonNull String password)
   {
@@ -34,7 +35,11 @@ public class AccountManagerFactory {
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           uuid, number, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
+                                           aci,
+                                           number,
+                                           password,
+                                           BuildConfig.SIGNAL_AGENT,
+                                           FeatureFlags.okHttpAutomaticRetry());
   }
 
   /**

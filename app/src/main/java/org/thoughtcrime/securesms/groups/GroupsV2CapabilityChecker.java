@@ -86,7 +86,7 @@ public final class GroupsV2CapabilityChecker {
         }
       }
 
-      if (!member.hasUuid()) {
+      if (!member.hasAci()) {
         noUuidCount++;
       }
     }

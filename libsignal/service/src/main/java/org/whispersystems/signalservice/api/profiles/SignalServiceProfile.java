@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.libsignal.logging.Log;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.math.BigDecimal;
@@ -54,9 +55,9 @@ public class SignalServiceProfile {
   private Capabilities capabilities;
 
   @JsonProperty
-  @JsonSerialize(using = JsonUtil.UuidSerializer.class)
-  @JsonDeserialize(using = JsonUtil.UuidDeserializer.class)
-  private UUID uuid;
+  @JsonSerialize(using = JsonUtil.AciSerializer.class)
+  @JsonDeserialize(using = JsonUtil.AciDeserializer.class)
+  private ACI uuid;
 
   @JsonProperty
   private byte[] credential;
@@ -109,7 +110,7 @@ public class SignalServiceProfile {
     return badges;
   }
 
-  public UUID getUuid() {
+  public ACI getAci() {
     return uuid;
   }
 
