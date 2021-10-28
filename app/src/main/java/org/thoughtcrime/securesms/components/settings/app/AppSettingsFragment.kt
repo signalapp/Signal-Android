@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.PlayServicesUtil
 
 class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__menu_settings) {
 
@@ -143,7 +144,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         }
       )
 
-      if (FeatureFlags.donorBadges()) {
+      if (FeatureFlags.donorBadges() && PlayServicesUtil.getPlayServicesStatus(requireContext()) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
         customPref(
           SubscriptionPreference(
             title = DSLSettingsText.from(R.string.preferences__subscription),

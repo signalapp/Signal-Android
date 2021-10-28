@@ -7,7 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
 import java.util.Locale
 
@@ -43,7 +46,21 @@ class SetCurrencyViewModel(private val isBoost: Boolean) : ViewModel() {
     if (isBoost) {
       SignalStore.donationsValues().setBoostCurrency(Currency.getInstance(selectedCurrencyCode))
     } else {
-      SignalStore.donationsValues().setSubscriptionCurrency(Currency.getInstance(selectedCurrencyCode))
+      val currency = Currency.getInstance(selectedCurrencyCode)
+      val subscriber = SignalStore.donationsValues().getSubscriber(currency)
+
+      if (subscriber != null) {
+        SignalStore.donationsValues().setSubscriber(subscriber)
+      } else {
+        SignalStore.donationsValues().setSubscriber(
+          Subscriber(
+            subscriberId = SubscriberId.generate(),
+            currencyCode = currency.currencyCode
+          )
+        )
+      }
+
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
 

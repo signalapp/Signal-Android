@@ -121,7 +121,11 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
 
     this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
 
-    badge.setBadgeFromRecipient(recipientSnapshot);
+    if (recipientSnapshot == null || recipientSnapshot.isSelf()) {
+      badge.setBadge(null);
+    } else {
+      badge.setBadgeFromRecipient(recipientSnapshot);
+    }
   }
 
   public void setChecked(boolean selected, boolean animate) {

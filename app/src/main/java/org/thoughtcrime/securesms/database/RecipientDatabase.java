@@ -23,6 +23,7 @@ import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
@@ -1370,16 +1371,7 @@ public class RecipientDatabase extends Database {
       List<BadgeList.Badge> protoBadges = badgeList.getBadgesList();
       badges = new ArrayList<>(protoBadges.size());
       for (BadgeList.Badge protoBadge : protoBadges) {
-        badges.add(new Badge(
-            protoBadge.getId(),
-            Badge.Category.Companion.fromCode(protoBadge.getCategory()),
-            protoBadge.getName(),
-            protoBadge.getDescription(),
-            Uri.parse(protoBadge.getImageUrl()),
-            protoBadge.getImageDensity(),
-            protoBadge.getExpiration(),
-            protoBadge.getVisible()
-        ));
+        badges.add(Badges.fromDatabaseBadge(protoBadge));
       }
     } else {
       badges = Collections.emptyList();
@@ -1712,15 +1704,7 @@ public class RecipientDatabase extends Database {
     BadgeList.Builder badgeListBuilder = BadgeList.newBuilder();
 
     for (final Badge badge : badges) {
-      badgeListBuilder.addBadges(BadgeList.Badge.newBuilder()
-                                                .setId(badge.getId())
-                                                .setCategory(badge.getCategory().getCode())
-                                                .setDescription(badge.getDescription())
-                                                .setExpiration(badge.getExpirationTimestamp())
-                                                .setVisible(badge.getVisible())
-                                                .setName(badge.getName())
-                                                .setImageUrl(badge.getImageUrl().toString())
-                                                .setImageDensity(badge.getImageDensity()));
+      badgeListBuilder.addBadges(Badges.toDatabaseBadge(badge));
     }
 
     ContentValues values = new ContentValues(1);

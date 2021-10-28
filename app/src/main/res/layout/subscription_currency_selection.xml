@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circled_rectangle_outline"
         android:drawablePadding="8dp"
+        android:minHeight="32dp"
         android:padding="12dp"
         app:drawableEndCompat="@drawable/ic_chevron_down_20"
         app:drawableTint="@color/conversation_mention_background_color"

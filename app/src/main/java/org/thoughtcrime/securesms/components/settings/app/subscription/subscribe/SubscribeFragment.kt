@@ -124,6 +124,8 @@ class SubscribeFragment : DSLSettingsFragment(
         )
       )
 
+      space(DimensionUnit.DP.toPixels(4f).toInt())
+
       state.subscriptions.forEach {
         val isActive = state.activeSubscription?.activeSubscription?.level == it.level
         customPref(

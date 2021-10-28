@@ -119,6 +119,9 @@ data class Boost(
 
       if (model.isCustomAmountFocused && !custom.hasFocus()) {
         ViewUtil.focusAndShowKeyboard(custom)
+      } else if (!model.isCustomAmountFocused && custom.hasFocus()) {
+        ViewUtil.hideKeyboard(context, custom)
+        custom.clearFocus()
       }
     }
   }

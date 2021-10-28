@@ -7,6 +7,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -59,6 +60,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
 
     ActiveSubscriptionPreference.register(adapter)
     IndeterminateLoadingCircle.register(adapter)
+    BadgePreview.register(adapter)
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
@@ -75,6 +77,14 @@ class ManageDonationsFragment : DSLSettingsFragment() {
 
   private fun getConfiguration(state: ManageDonationsState): DSLConfiguration {
     return configure {
+      customPref(
+        BadgePreview.Model(
+          badge = state.featuredBadge
+        )
+      )
+
+      space(DimensionUnit.DP.toPixels(8f).toInt())
+
       sectionHeaderPref(
         title = DSLSettingsText.from(
           R.string.SubscribeFragment__signal_is_powered_by_people_like_you,
@@ -82,10 +92,12 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         )
       )
 
+      space(DimensionUnit.DP.toPixels(32f).toInt())
+
       noPadTextPref(
         title = DSLSettingsText.from(
           R.string.ManageDonationsFragment__my_support,
-          DSLSettingsText.Title2BoldModifier
+          DSLSettingsText.Body1BoldModifier, DSLSettingsText.BoldModifier
         )
       )
 
@@ -94,7 +106,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         if (activeSubscription.isActive) {
           val subscription: Subscription? = state.availableSubscriptions.firstOrNull { activeSubscription.activeSubscription.level == it.level }
           if (subscription != null) {
-            space(DimensionUnit.DP.toPixels(16f).toInt())
+            space(DimensionUnit.DP.toPixels(12f).toInt())
 
             customPref(
               ActiveSubscriptionPreference.Model(

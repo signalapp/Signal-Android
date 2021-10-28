@@ -3722,6 +3722,12 @@
     <string name="AddAProfilePhotoMegaphone__not_now">Not now</string>
     <string name="AddAProfilePhotoMegaphone__add_photo">Add photo</string>
 
+    <!-- BecomeASustainerMegaphone -->
+    <string name="BecomeASustainerMegaphone__become_a_sustainer">Become a Sustainer</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered">Signal is powered by people like you. Donate and receive a profile badge.</string>
+    <string name="BecomeASustainerMegaphone__no_thanks">No thanks</string>
+    <string name="BecomeASustainerMegaphone__donate">Donate</string>
+
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Open emoji search</string>
@@ -3972,6 +3978,10 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">To continue supporting technology that is built for you—not for your data—please consider becoming a monthly subscriber.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Become a subscriber</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Not now</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_subscription_was_cancelled">Your subscription was cancelled.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__because">Because you were inactive for more than 45 days, your subscription to Signal has been automatically cancelled.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_signal">To continue supporting Signal and to reactivate your badge, renew now.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
 
     <string name="Subscription__verification_failed">Subscription Verification Failed</string>
     <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
@@ -3987,6 +3997,7 @@
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Subscription cancellation requires an internet connection.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Your device doesn\'t support Google Pay, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
 
     <!-- EOF -->
 

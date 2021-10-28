@@ -64,17 +64,19 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     );
   }
 
-  public static Pair<String, String> enqueueSubscriptionContinuation() {
-    Subscriber                            subscriber        = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob = createJob(subscriber.getSubscriberId());
-    DonationReceiptRedemptionJob          redeemReceiptJob  = DonationReceiptRedemptionJob.createJobForSubscription();
+  public static String enqueueSubscriptionContinuation() {
+    Subscriber                            subscriber           = SignalStore.donationsValues().requireSubscriber();
+    SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId());
+    DonationReceiptRedemptionJob          redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForSubscription();
+    RefreshOwnProfileJob                  refreshOwnProfileJob = new RefreshOwnProfileJob();
 
     ApplicationDependencies.getJobManager()
                            .startChain(requestReceiptJob)
                            .then(redeemReceiptJob)
+                           .then(refreshOwnProfileJob)
                            .enqueue();
 
-    return new Pair<>(requestReceiptJob.getId(), redeemReceiptJob.getId());
+    return refreshOwnProfileJob.getId();
   }
 
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,

@@ -21,6 +21,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp" />
 
+    <TextView
+        android:id="@+id/no_support"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:text="@string/ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
@@ -41,8 +57,8 @@
         android:layout_marginBottom="32dp"
         android:minHeight="48dp"
         android:text="@string/ViewBadgeBottomSheetDialogFragment__become_a_sustainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/description" />
+        app:iconGravity="textEnd"
+        app:iconTint="@color/white"
+        tools:icon="@drawable/ic_open_20" />
 
 </LinearLayout>

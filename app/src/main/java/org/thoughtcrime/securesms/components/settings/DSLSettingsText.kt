@@ -70,4 +70,10 @@ sealed class DSLSettingsText {
       return SpanUtil.textAppearance(context, textAppearance, charSequence)
     }
   }
+
+  object BoldModifier : Modifier {
+    override fun modify(context: Context, charSequence: CharSequence): CharSequence {
+      return SpanUtil.bold(charSequence)
+    }
+  }
 }

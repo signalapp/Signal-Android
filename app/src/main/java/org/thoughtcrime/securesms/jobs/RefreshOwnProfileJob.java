@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -9,7 +8,6 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
@@ -23,10 +21,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ProfileUtil;
-import org.thoughtcrime.securesms.util.ScreenDensity;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -34,9 +30,10 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -175,9 +172,58 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
+    Set<String> localDonorBadgeIds  = Recipient.self()
+                                               .getBadges()
+                                               .stream()
+                                               .filter(badge -> badge.getCategory() == Badge.Category.Donor)
+                                               .map(Badge::getId)
+                                               .collect(Collectors.toSet());
+
+    Set<String> remoteDonorBadgeIds = badges.stream()
+                                            .filter(badge -> Objects.equals(badge.getCategory(), Badge.Category.Donor.getCode()))
+                                            .map(SignalServiceProfile.Badge::getId)
+                                            .collect(Collectors.toSet());
+
+    boolean remoteHasSubscriptionBadges = remoteDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isSubscription);
+    boolean localHasSubscriptionBadges  = localDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isSubscription);
+    boolean remoteHasBoostBadges        = remoteDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isBoost);
+    boolean localHasBoostBadges         = localDonorBadgeIds.stream().anyMatch(RefreshOwnProfileJob::isBoost);
+
+    if (!remoteHasSubscriptionBadges && localHasSubscriptionBadges) {
+      Badge mostRecentExpiration = Recipient.self()
+                                            .getBadges()
+                                            .stream()
+                                            .filter(badge -> badge.getCategory() == Badge.Category.Donor)
+                                            .filter(badge -> isSubscription(badge.getId()))
+                                            .max(Comparator.comparingLong(Badge::getExpirationTimestamp))
+                                            .get();
+
+      Log.d(TAG, "Marking subscription badge as expired, should notifiy next time the conversation list is open.");
+      SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
+    } else if (!remoteHasBoostBadges && localHasBoostBadges) {
+      Badge mostRecentExpiration = Recipient.self()
+                                            .getBadges()
+                                            .stream()
+                                            .filter(badge -> badge.getCategory() == Badge.Category.Donor)
+                                            .filter(badge -> isBoost(badge.getId()))
+                                            .max(Comparator.comparingLong(Badge::getExpirationTimestamp))
+                                            .get();
+
+      Log.d(TAG, "Marking boost badge as expired, should notifiy next time the conversation list is open.");
+      SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
+    }
+
     DatabaseFactory.getRecipientDatabase(context)
                    .setBadges(Recipient.self().getId(),
                               badges.stream().map(Badges::fromServiceBadge).collect(Collectors.toList()));
+  }
+
+  private static boolean isSubscription(String badgeId) {
+    return !Objects.equals(badgeId, Badge.BOOST_BADGE_ID);
+  }
+
+  private static boolean isBoost(String badgeId) {
+    return Objects.equals(badgeId, Badge.BOOST_BADGE_ID);
   }
 
   public static final class Factory implements Job.Factory<RefreshOwnProfileJob> {

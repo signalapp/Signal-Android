@@ -77,6 +77,8 @@ import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.models.Badge;
+import org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
@@ -321,6 +323,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (SignalStore.rateLimit().needsRecaptcha()) {
       Log.i(TAG, "Recaptcha required.");
       RecaptchaProofBottomSheetFragment.show(getChildFragmentManager());
+    }
+
+    Badge expiredBadge = SignalStore.donationsValues().getExpiredBadge();
+    if (expiredBadge != null) {
+      SignalStore.donationsValues().setExpiredBadge(null);
+      ExpiredBadgeBottomSheetDialogFragment.show(expiredBadge, getParentFragmentManager());
     }
   }
 

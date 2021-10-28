@@ -59,16 +59,18 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     );
   }
 
-  public static Pair<String, String> enqueueChain(StripeApi.PaymentIntent paymentIntent) {
-    BoostReceiptRequestResponseJob requestReceiptJob = createJob(paymentIntent);
-    DonationReceiptRedemptionJob   redeemReceiptJob  = DonationReceiptRedemptionJob.createJobForBoost();
+  public static String enqueueChain(StripeApi.PaymentIntent paymentIntent) {
+    BoostReceiptRequestResponseJob requestReceiptJob    = createJob(paymentIntent);
+    DonationReceiptRedemptionJob   redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForBoost();
+    RefreshOwnProfileJob           refreshOwnProfileJob = new RefreshOwnProfileJob();
 
     ApplicationDependencies.getJobManager()
                            .startChain(requestReceiptJob)
                            .then(redeemReceiptJob)
+                           .then(refreshOwnProfileJob)
                            .enqueue();
 
-    return new Pair<>(requestReceiptJob.getId(), redeemReceiptJob.getId());
+    return refreshOwnProfileJob.getId();
   }
 
   private BoostReceiptRequestResponseJob(@NonNull Parameters parameters,
