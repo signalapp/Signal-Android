@@ -12,8 +12,8 @@ dependencyVerification {
         ['com.fasterxml.jackson.core:jackson-databind:2.9.9.2',
          'fb262d42ea2de98044b62d393950a5aa050435fec38bbcadf2325cf7dc41b848'],
 
-        ['com.google.protobuf:protobuf-javalite:3.10.0',
-         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+        ['com.google.protobuf:protobuf-javalite:3.11.4',
+         '8cacea2f7a042dabae295c509dcdbfe32a49aa3708eec6ddb8efd8593aa0b4a3'],
 
         ['com.googlecode.libphonenumber:libphonenumber:8.12.17',
          '729483057ef874b01537da8395d67e23b419d504f8ff29ddf5f69da21bf816ac'],

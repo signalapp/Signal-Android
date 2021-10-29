@@ -420,8 +420,8 @@ dependencyVerification {
         ['com.google.j2objc:j2objc-annotations:1.3',
          '21af30c92267bd6122c0e0b4d20cccb6641a37eaf956c6540ec471d584e64a7b'],
 
-        ['com.google.protobuf:protobuf-javalite:3.10.0',
-         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+        ['com.google.protobuf:protobuf-javalite:3.11.4',
+         '8cacea2f7a042dabae295c509dcdbfe32a49aa3708eec6ddb8efd8593aa0b4a3'],
 
         ['com.google.zxing:android-integration:3.1.0',
          '89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4'],
