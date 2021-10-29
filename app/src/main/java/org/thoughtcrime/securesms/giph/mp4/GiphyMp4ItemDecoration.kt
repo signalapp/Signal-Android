@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.giph.mp4
 import android.graphics.Canvas
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
+import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import kotlin.math.min
 
 /**
@@ -21,8 +22,19 @@ class GiphyMp4ItemDecoration(val callback: GiphyMp4PlaybackController.Callback) 
     if (parent.childCount == 0 || parent.canScrollVertically(-1) || parent.canScrollVertically(1)) {
       parent.translationY = 0f
     } else {
-      val childTop = parent.children.last().top
-      parent.translationY = min(0, -childTop).toFloat()
+      val footerViewHolder = parent.children
+        .map { parent.getChildViewHolder(it) }
+        .filterIsInstance(ConversationAdapter.FooterViewHolder::class.java)
+        .firstOrNull()
+
+      if (footerViewHolder == null) {
+        parent.translationY = 0f
+        return
+      }
+
+      val childTop = footerViewHolder.itemView.top
+      parent.translationY = min(0, -childTop).toFloat().also {
+      }
     }
   }
 }

@@ -225,7 +225,7 @@ public class ConversationAdapter
       case MESSAGE_TYPE_HEADER:
         return new HeaderViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
       case MESSAGE_TYPE_FOOTER:
-        return new HeaderFooterViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
+        return new FooterViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
       default:
         throw new IllegalStateException("Cannot create viewholder for type: " + viewType);
     }
@@ -748,7 +748,7 @@ public class ConversationAdapter
     }
   }
 
-  public static class HeaderFooterViewHolder extends RecyclerView.ViewHolder {
+  public abstract static class HeaderFooterViewHolder extends RecyclerView.ViewHolder {
 
     private ViewGroup container;
 
@@ -775,6 +775,10 @@ public class ConversationAdapter
         ((ViewGroup) view.getParent()).removeView(view);
       }
     }
+  }
+
+  public static class FooterViewHolder extends HeaderFooterViewHolder {
+    FooterViewHolder(@NonNull View itemView) { super(itemView); }
   }
 
   public static class HeaderViewHolder extends HeaderFooterViewHolder {
