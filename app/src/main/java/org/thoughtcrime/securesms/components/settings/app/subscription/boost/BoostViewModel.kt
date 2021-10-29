@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -40,24 +41,33 @@ class BoostViewModel(
     disposables.clear()
   }
 
-  init {
+  fun refresh() {
+    disposables.clear()
+
     val currencyObservable = SignalStore.donationsValues().observableBoostCurrency
     val boosts = currencyObservable.flatMapSingle { boostRepository.getBoosts(it) }
     val boostBadge = boostRepository.getBoostBadge()
 
-    disposables += Observable.combineLatest(boosts, boostBadge.toObservable()) {
-      boostList, badge ->
+    disposables += Observable.combineLatest(boosts, boostBadge.toObservable()) { boostList, badge ->
       BoostInfo(boostList, boostList[2], badge)
-    }.subscribe { info ->
-      store.update {
-        it.copy(
-          boosts = info.boosts,
-          selectedBoost = if (it.selectedBoost in info.boosts) it.selectedBoost else info.defaultBoost,
-          boostBadge = it.boostBadge ?: info.boostBadge,
-          stage = if (it.stage == BoostState.Stage.INIT) BoostState.Stage.READY else it.stage
-        )
+    }.subscribeBy(
+      onNext = { info ->
+        store.update {
+          it.copy(
+            boosts = info.boosts,
+            selectedBoost = if (it.selectedBoost in info.boosts) it.selectedBoost else info.defaultBoost,
+            boostBadge = it.boostBadge ?: info.boostBadge,
+            stage = if (it.stage == BoostState.Stage.INIT || it.stage == BoostState.Stage.FAILURE) BoostState.Stage.READY else it.stage
+          )
+        }
+      },
+      onError = { throwable ->
+        Log.w(TAG, "Could not load boost information", throwable)
+        store.update {
+          it.copy(stage = BoostState.Stage.FAILURE)
+        }
       }
-    }
+    )
 
     disposables += donationPaymentRepository.isGooglePayAvailable().subscribeBy(
       onComplete = { store.update { it.copy(isGooglePayAvailable = true) } },
@@ -169,5 +179,9 @@ class BoostViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(BoostViewModel(boostRepository, donationPaymentRepository, fetchTokenRequestCode))!!
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(BoostViewModel::class.java)
   }
 }

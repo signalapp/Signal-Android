@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.util.Currency
 
@@ -26,8 +27,9 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
     }
   }
 
-  fun getSubscriptions(currency: Currency): Single<List<Subscription>> = donationsService.subscriptionLevels.map { response ->
-    response.result.transform { subscriptionLevels ->
+  fun getSubscriptions(currency: Currency): Single<List<Subscription>> = donationsService.subscriptionLevels
+    .flatMap(ServiceResponse<SubscriptionLevels>::flattenResult)
+    .map { subscriptionLevels ->
       subscriptionLevels.levels.map { (code, level) ->
         Subscription(
           id = code,
@@ -38,6 +40,5 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
       }.sortedBy {
         it.level
       }
-    }.or(emptyList())
-  }
+    }
 }

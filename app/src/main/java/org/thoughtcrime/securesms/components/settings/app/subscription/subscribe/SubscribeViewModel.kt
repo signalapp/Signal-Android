@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayApi
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
@@ -43,7 +44,9 @@ class SubscribeViewModel(
     disposables.clear()
   }
 
-  init {
+  fun refresh() {
+    disposables.clear()
+
     val currency: Observable<Currency> = SignalStore.donationsValues().observableSubscriptionCurrency
     val allSubscriptions: Observable<List<Subscription>> = currency.switchMapSingle { subscriptionsRepository.getSubscriptions(it) }
     refreshActiveSubscription()
@@ -56,16 +59,19 @@ class SubscribeViewModel(
       }
     }
 
-    disposables += Observable.combineLatest(allSubscriptions, activeSubscriptionSubject, ::Pair).subscribe { (subs, active) ->
-      store.update {
-        it.copy(
-          subscriptions = subs,
-          selectedSubscription = it.selectedSubscription ?: resolveSelectedSubscription(active, subs),
-          activeSubscription = active,
-          stage = if (it.stage == SubscribeState.Stage.INIT) SubscribeState.Stage.READY else it.stage,
-        )
-      }
-    }
+    disposables += Observable.combineLatest(allSubscriptions, activeSubscriptionSubject, ::Pair).subscribeBy(
+      onNext = { (subs, active) ->
+        store.update {
+          it.copy(
+            subscriptions = subs,
+            selectedSubscription = it.selectedSubscription ?: resolveSelectedSubscription(active, subs),
+            activeSubscription = active,
+            stage = if (it.stage == SubscribeState.Stage.INIT || it.stage == SubscribeState.Stage.FAILURE) SubscribeState.Stage.READY else it.stage,
+          )
+        }
+      },
+      onError = this::handleSubscriptionDataLoadFailure
+    )
 
     disposables += donationPaymentRepository.isGooglePayAvailable().subscribeBy(
       onComplete = { store.update { it.copy(isGooglePayAvailable = true) } },
@@ -77,10 +83,20 @@ class SubscribeViewModel(
     }
   }
 
+  private fun handleSubscriptionDataLoadFailure(throwable: Throwable) {
+    Log.w(TAG, "Could not load subscription data", throwable)
+    store.update {
+      it.copy(stage = SubscribeState.Stage.FAILURE)
+    }
+  }
+
   fun refreshActiveSubscription() {
     subscriptionsRepository
       .getActiveSubscription()
-      .subscribeBy { activeSubscriptionSubject.onNext(it) }
+      .subscribeBy(
+        onSuccess = { activeSubscriptionSubject.onNext(it) },
+        onError = { activeSubscriptionSubject.onNext(ActiveSubscription(null)) }
+      )
   }
 
   private fun resolveSelectedSubscription(activeSubscription: ActiveSubscription, subscriptions: List<Subscription>): Subscription? {
@@ -97,6 +113,7 @@ class SubscribeViewModel(
       onComplete = {
         eventPublisher.onNext(DonationEvent.SubscriptionCancelled)
         SignalStore.donationsValues().setLastEndOfPeriod(0L)
+        SignalStore.donationsValues().markUserManuallyCancelled()
         refreshActiveSubscription()
         store.update { it.copy(stage = SubscribeState.Stage.READY) }
       },
@@ -195,5 +212,9 @@ class SubscribeViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(SubscribeViewModel(subscriptionsRepository, donationPaymentRepository, fetchTokenRequestCode))!!
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(SubscribeViewModel::class.java)
   }
 }

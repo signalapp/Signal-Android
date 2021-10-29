@@ -51,9 +51,14 @@ class BadgesOverviewViewModel(
       } else {
         Optional.absent()
       }
-    }.subscribeBy { badgeId ->
-      store.update { it.copy(fadedBadgeId = badgeId.orNull()) }
-    }
+    }.subscribeBy(
+      onSuccess = { badgeId ->
+        store.update { it.copy(fadedBadgeId = badgeId.orNull()) }
+      },
+      onError = { throwable ->
+        Log.w(TAG, "Could not retrieve data from server", throwable)
+      }
+    )
   }
 
   fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
@@ -81,5 +86,9 @@ class BadgesOverviewViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository, subscriptionsRepository)))
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
   }
 }

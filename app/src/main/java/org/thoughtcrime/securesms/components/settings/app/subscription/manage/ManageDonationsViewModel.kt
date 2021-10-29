@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -66,9 +67,14 @@ class ManageDonationsViewModel(
       }
     )
 
-    disposables += subscriptionsRepository.getSubscriptions(SignalStore.donationsValues().getSubscriptionCurrency()).subscribeBy { subs ->
-      store.update { it.copy(availableSubscriptions = subs) }
-    }
+    disposables += subscriptionsRepository.getSubscriptions(SignalStore.donationsValues().getSubscriptionCurrency()).subscribeBy(
+      onSuccess = { subs ->
+        store.update { it.copy(availableSubscriptions = subs) }
+      },
+      onError = {
+        Log.w(TAG, "Error retrieving subscriptions data", it)
+      }
+    )
   }
 
   class Factory(
@@ -77,5 +83,9 @@ class ManageDonationsViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(ManageDonationsViewModel(subscriptionsRepository))!!
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(ManageDonationsViewModel::class.java)
   }
 }

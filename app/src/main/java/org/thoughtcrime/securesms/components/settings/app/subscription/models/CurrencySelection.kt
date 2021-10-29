@@ -39,9 +39,10 @@ data class CurrencySelection(
     override fun bind(model: Model) {
       spinner.text = model.currencySelection.selectedCurrencyCode
 
-      if (model.isEnabled) {
-        itemView.setOnClickListener { model.onClick() }
-      }
+      itemView.setOnClickListener { model.onClick() }
+
+      itemView.isEnabled = model.isEnabled
+      itemView.isClickable = model.isEnabled
     }
   }
 }

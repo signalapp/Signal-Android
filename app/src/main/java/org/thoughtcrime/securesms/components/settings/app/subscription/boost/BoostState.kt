@@ -21,5 +21,6 @@ data class BoostState(
     READY,
     TOKEN_REQUEST,
     PAYMENT_PIPELINE,
+    FAILURE
   }
 }

@@ -29,6 +29,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val KEY_LAST_KEEP_ALIVE_LAUNCH = "donation.last.successful.ping"
     private const val KEY_LAST_END_OF_PERIOD = "donation.last.end.of.period"
     private const val EXPIRED_BADGE = "donation.expired.badge"
+    private const val USER_MANUALLY_CANCELLED = "donation.user.manually.cancelled"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -186,6 +187,18 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun setLastEndOfPeriod(timestamp: Long) {
     putLong(KEY_LAST_END_OF_PERIOD, timestamp)
+  }
+
+  fun isUserManuallyCancelled(): Boolean {
+    return getBoolean(USER_MANUALLY_CANCELLED, false)
+  }
+
+  fun markUserManuallyCancelled() {
+    putBoolean(USER_MANUALLY_CANCELLED, true)
+  }
+
+  fun clearUserManuallyCancelled() {
+    remove(USER_MANUALLY_CANCELLED)
   }
 
   private fun dispatchLevelOperation() {

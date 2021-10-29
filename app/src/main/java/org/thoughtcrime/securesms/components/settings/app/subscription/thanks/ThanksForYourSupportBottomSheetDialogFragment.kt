@@ -14,6 +14,8 @@ import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.badges.BadgeImageView
@@ -131,9 +133,17 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
     val args = ThanksForYourSupportBottomSheetDialogFragmentArgs.fromBundle(requireArguments())
 
     if (controlState == ControlState.DISPLAY) {
-      badgeRepository.setVisibilityForAllBadges(controlChecked).subscribe()
+      badgeRepository.setVisibilityForAllBadges(controlChecked).subscribeBy(
+        onError = {
+          Log.w(TAG, "Failure while updating badge visibility", it)
+        }
+      )
     } else if (controlChecked) {
-      badgeRepository.setFeaturedBadge(args.badge).subscribe()
+      badgeRepository.setFeaturedBadge(args.badge).subscribeBy(
+        onError = {
+          Log.w(TAG, "Failure while updating featured badge", it)
+        }
+      )
     }
 
     if (args.isBoost) {
@@ -150,5 +160,9 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
   private fun presentSubscriptionCopy() {
     heading.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support)
+  }
+
+  companion object {
+    private val TAG = Log.tag(ThanksForYourSupportBottomSheetDialogFragment::class.java)
   }
 }

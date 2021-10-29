@@ -18,6 +18,7 @@ data class SubscribeState(
     READY,
     TOKEN_REQUEST,
     PAYMENT_PIPELINE,
-    CANCELLING
+    CANCELLING,
+    FAILURE
   }
 }

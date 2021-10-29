@@ -141,6 +141,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           subscriber.currencyCode,
           levelUpdateOperation.idempotencyKey.serialize()
         ).flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().andThen {
+          SignalStore.donationsValues().clearUserManuallyCancelled()
           SignalStore.donationsValues().clearLevelOperation(levelUpdateOperation)
           it.onComplete()
         }.andThen {

@@ -58,6 +58,8 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
+    viewModel.refresh()
+
     CurrencySelection.register(adapter)
     BadgePreview.register(adapter)
     Boost.register(adapter)

@@ -328,7 +328,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     Badge expiredBadge = SignalStore.donationsValues().getExpiredBadge();
     if (expiredBadge != null) {
       SignalStore.donationsValues().setExpiredBadge(null);
-      ExpiredBadgeBottomSheetDialogFragment.show(expiredBadge, getParentFragmentManager());
+
+      if (expiredBadge.isBoost() || !SignalStore.donationsValues().isUserManuallyCancelled()) {
+        ExpiredBadgeBottomSheetDialogFragment.show(expiredBadge, getParentFragmentManager());
+      }
     }
   }
 
