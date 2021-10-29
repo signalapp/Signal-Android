@@ -217,7 +217,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private int                         lastSeenScrollOffset;
   private View                        toolbarShadow;
   private Stopwatch                   startupStopwatch;
-  private View                        reactionsShade;
   private LayoutTransition            layoutTransition;
   private TransitionListener          transitionListener;
 
@@ -260,7 +259,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
     scrollDateHeader      = view.findViewById(R.id.scroll_date_header);
     toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
-    reactionsShade        = view.findViewById(R.id.reactions_shade);
 
     final LinearLayoutManager      layoutManager            = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     final ConversationItemAnimator conversationItemAnimator = new ConversationItemAnimator(
@@ -387,7 +385,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void clearFocusedItem() {
     multiselectItemDecoration.setFocusedItem(null);
     list.invalidateItemDecorations();
-    reactionsShade.setVisibility(View.INVISIBLE);
   }
 
   private void updateConversationItemTimestamps() {
@@ -1038,7 +1035,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                            .submit();
     } else if (conversation.getMessageRequestData().isMessageRequestAccepted()) {
       snapToTopDataObserver.buildScrollPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition)
-                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, (list.getHeight() + reactionsShade.getHeight()) - (conversation.shouldScrollToLastSeen() ? lastSeenScrollOffset : 0)))
+                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight() - (conversation.shouldScrollToLastSeen() ? lastSeenScrollOffset : 0)))
                            .withOnScrollRequestComplete(afterScroll)
                            .submit();
     } else {
@@ -1333,7 +1330,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
         multiselectItemDecoration.setFocusedItem(new MultiselectPart.Message(item.getConversationMessage()));
-        reactionsShade.setVisibility(View.VISIBLE);
         list.invalidateItemDecorations();
 
         isReacting = true;
@@ -1490,7 +1486,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       if (getContext() == null) return;
 
       multiselectItemDecoration.setFocusedItem(multiselectPart);
-      reactionsShade.setVisibility(View.VISIBLE);
       ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
     }
 
