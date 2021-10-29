@@ -10,7 +10,6 @@ import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.util.ArrayList;
@@ -34,6 +33,7 @@ public final class SignalAccountRecord implements SignalRecord {
   private final List<PinnedConversation> pinnedConversations;
   private final Payments                 payments;
   private final List<String>             defaultReactions;
+  private final Subscriber               subscriber;
 
   public SignalAccountRecord(StorageId id, AccountRecord proto) {
     this.id               = id;
@@ -47,6 +47,7 @@ public final class SignalAccountRecord implements SignalRecord {
     this.pinnedConversations  = new ArrayList<>(proto.getPinnedConversationsCount());
     this.payments             = new Payments(proto.getPayments().getEnabled(), OptionalUtil.absentIfEmpty(proto.getPayments().getEntropy()));
     this.defaultReactions     = new ArrayList<>(proto.getPreferredReactionEmojiList());
+    this.subscriber           = new Subscriber(proto.getSubscriberCurrencyCode(), proto.getSubscriberId().toByteArray());
 
     for (AccountRecord.PinnedConversation conversation : proto.getPinnedConversationsList()) {
       pinnedConversations.add(PinnedConversation.fromRemote(conversation));
@@ -153,6 +154,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("UnknownFields");
       }
 
+      if (!Objects.equals(this.getSubscriber(), that.getSubscriber())) {
+        diff.add("Subscriber");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -241,6 +246,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public List<String> getDefaultReactions() {
     return defaultReactions;
+  }
+
+  public Subscriber getSubscriber() {
+    return subscriber;
   }
 
   AccountRecord toProto() {
@@ -348,6 +357,42 @@ public final class SignalAccountRecord implements SignalRecord {
     @Override
     public int hashCode() {
       return Objects.hash(contact, groupV1Id, groupV2MasterKey);
+    }
+  }
+
+  public static class Subscriber {
+    private final Optional<String> currencyCode;
+    private final Optional<byte[]> id;
+
+    public Subscriber(String currencyCode, byte[] id) {
+      if (currencyCode != null && id != null && id.length == 32) {
+        this.currencyCode = Optional.of(currencyCode);
+        this.id           = Optional.of(id);
+      } else {
+        this.currencyCode = Optional.absent();
+        this.id           = Optional.absent();
+      }
+    }
+
+    public Optional<String> getCurrencyCode() {
+      return currencyCode;
+    }
+
+    public Optional<byte[]> getId() {
+      return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final Subscriber that = (Subscriber) o;
+      return Objects.equals(currencyCode, that.currencyCode) && OptionalUtil.byteArrayEquals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(currencyCode, id);
     }
   }
 
@@ -515,6 +560,18 @@ public final class SignalAccountRecord implements SignalRecord {
     public Builder setDefaultReactions(List<String> defaultReactions) {
       builder.clearPreferredReactionEmoji();
       builder.addAllPreferredReactionEmoji(defaultReactions);
+      return this;
+    }
+
+    public Builder setSubscriber(Subscriber subscriber) {
+      if (subscriber.id.isPresent() && subscriber.currencyCode.isPresent()) {
+        builder.setSubscriberId(ByteString.copyFrom(subscriber.id.get()));
+        builder.setSubscriberCurrencyCode(subscriber.currencyCode.get());
+      } else {
+        builder.clearSubscriberId();
+        builder.clearSubscriberCurrencyCode();
+      }
+
       return this;
     }
 
