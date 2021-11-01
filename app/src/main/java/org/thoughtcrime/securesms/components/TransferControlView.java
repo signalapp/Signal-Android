@@ -197,7 +197,9 @@ public final class TransferControlView extends FrameLayout {
 
   private String getDownloadText(@NonNull List<Slide> slides) {
     if (slides.size() == 1) {
-      return slides.get(0).getContentDescription();
+      return String.format("%s (%s)",
+                           slides.get(0).getContentDescription(),
+                           Util.getPrettyFileSize(slides.get(0).getFileSize()));
     } else {
       int downloadCount = Stream.of(slides).reduce(0, (count, slide) -> slide.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE ? count + 1 : count);
       String prettyDownloadCount = getContext().getResources().getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount);
