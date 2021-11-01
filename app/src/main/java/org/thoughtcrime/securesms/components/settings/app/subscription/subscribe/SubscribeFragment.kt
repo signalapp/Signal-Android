@@ -241,6 +241,7 @@ class SubscribeFragment : DSLSettingsFragment(
           requireActivity().finish()
           requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
         }
+        .show()
     } else {
       Log.w(TAG, "Error occurred while processing payment", throwable)
       MaterialAlertDialogBuilder(requireContext())
@@ -249,6 +250,7 @@ class SubscribeFragment : DSLSettingsFragment(
         .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
         }
+        .show()
     }
   }
 
@@ -281,6 +283,7 @@ class SubscribeFragment : DSLSettingsFragment(
         dialog.dismiss()
         findNavController().popBackStack()
       }
+      .show()
   }
 
   companion object {

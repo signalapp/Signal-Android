@@ -6,6 +6,7 @@ import com.google.android.gms.wallet.PaymentData
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
@@ -15,6 +16,7 @@ import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.Environment
@@ -142,7 +144,8 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           levelUpdateOperation.idempotencyKey.serialize()
         ).flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().andThen {
           SignalStore.donationsValues().clearUserManuallyCancelled()
-          SignalStore.donationsValues().clearLevelOperation(levelUpdateOperation)
+          SignalStore.donationsValues().clearLevelOperation()
+          LevelUpdate.updateProcessingState(false)
           it.onComplete()
         }.andThen {
           val jobId = SubscriptionReceiptRequestResponseJob.enqueueSubscriptionContinuation()
@@ -164,6 +167,8 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
             it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
           }
         }
+      }.doOnError {
+        LevelUpdate.updateProcessingState(false)
       }.subscribeOn(Schedulers.io())
   }
 
@@ -176,8 +181,10 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       )
 
       SignalStore.donationsValues().setLevelOperation(newOperation)
+      LevelUpdate.updateProcessingState(true)
       newOperation
     } else {
+      LevelUpdate.updateProcessingState(true)
       levelUpdateOperation
     }
   }
@@ -205,5 +212,9 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     }.flatMap {
       ApplicationDependencies.getDonationsService().setDefaultPaymentMethodId(it.subscriberId, paymentMethodId)
     }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
+  }
+
+  companion object {
+    private val TAG = Log.tag(DonationPaymentRepository::class.java)
   }
 }

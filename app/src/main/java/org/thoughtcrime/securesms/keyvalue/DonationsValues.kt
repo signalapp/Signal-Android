@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
@@ -44,9 +43,6 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   private val boostCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getBoostCurrency()) }
   val observableBoostCurrency: Observable<Currency> by lazy { boostCurrencyPublisher }
-
-  private val levelUpdateOperationPublisher: Subject<Optional<LevelUpdateOperation>> by lazy { BehaviorSubject.createDefault(Optional.fromNullable(getLevelOperation())) }
-  val levelUpdateOperationObservable: Observable<Optional<LevelUpdateOperation>> by lazy { levelUpdateOperationPublisher }
 
   fun getSubscriptionCurrency(): Currency {
     val currencyCode = getString(KEY_SUBSCRIPTION_CURRENCY_CODE, null)
@@ -120,7 +116,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun getLevelOperation(): LevelUpdateOperation? {
     val level = getString(KEY_LEVEL, null)
-    val idempotencyKey = getIdempotencyKey()
+    val idempotencyKey = getBlob(KEY_IDEMPOTENCY, null)?.let { IdempotencyKey.fromBytes(it) }
 
     return if (level == null || idempotencyKey == null) {
       null
@@ -130,19 +126,17 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   }
 
   fun setLevelOperation(levelUpdateOperation: LevelUpdateOperation) {
-    putString(KEY_LEVEL, levelUpdateOperation.level)
-    setIdempotencyKey(levelUpdateOperation.idempotencyKey)
-    dispatchLevelOperation()
+    store.beginWrite()
+      .putString(KEY_LEVEL, levelUpdateOperation.level)
+      .putBlob(KEY_IDEMPOTENCY, levelUpdateOperation.idempotencyKey.bytes)
+      .apply()
   }
 
-  fun clearLevelOperation(levelUpdateOperation: LevelUpdateOperation): Boolean {
-    val currentKey = getIdempotencyKey()
-    return if (currentKey == levelUpdateOperation.idempotencyKey) {
-      clearLevelOperation()
-      true
-    } else {
-      false
-    }
+  fun clearLevelOperation() {
+    store.beginWrite()
+      .remove(KEY_LEVEL)
+      .remove(KEY_IDEMPOTENCY)
+      .apply()
   }
 
   fun setExpiredBadge(badge: Badge?) {
@@ -157,20 +151,6 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     val badgeBytes = getBlob(EXPIRED_BADGE, null) ?: return null
 
     return Badges.fromDatabaseBadge(BadgeList.Badge.parseFrom(badgeBytes))
-  }
-
-  private fun clearLevelOperation() {
-    remove(KEY_IDEMPOTENCY)
-    remove(KEY_LEVEL)
-    dispatchLevelOperation()
-  }
-
-  private fun getIdempotencyKey(): IdempotencyKey? {
-    return getBlob(KEY_IDEMPOTENCY, null)?.let { IdempotencyKey.fromBytes(it) }
-  }
-
-  private fun setIdempotencyKey(key: IdempotencyKey) {
-    putBlob(KEY_IDEMPOTENCY, key.bytes)
   }
 
   fun getLastKeepAliveLaunchTime(): Long {
@@ -199,9 +179,5 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun clearUserManuallyCancelled() {
     remove(USER_MANUALLY_CANCELLED)
-  }
-
-  private fun dispatchLevelOperation() {
-    levelUpdateOperationPublisher.onNext(Optional.fromNullable(getLevelOperation()))
   }
 }

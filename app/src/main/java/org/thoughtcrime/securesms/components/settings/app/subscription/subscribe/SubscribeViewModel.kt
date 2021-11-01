@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -51,10 +52,10 @@ class SubscribeViewModel(
     val allSubscriptions: Observable<List<Subscription>> = currency.switchMapSingle { subscriptionsRepository.getSubscriptions(it) }
     refreshActiveSubscription()
 
-    disposables += SignalStore.donationsValues().levelUpdateOperationObservable.subscribeBy {
+    disposables += LevelUpdate.isProcessing.subscribeBy {
       store.update { state ->
         state.copy(
-          hasInProgressSubscriptionTransaction = it.isPresent
+          hasInProgressSubscriptionTransaction = it
         )
       }
     }
@@ -113,6 +114,7 @@ class SubscribeViewModel(
       onComplete = {
         eventPublisher.onNext(DonationEvent.SubscriptionCancelled)
         SignalStore.donationsValues().setLastEndOfPeriod(0L)
+        SignalStore.donationsValues().clearLevelOperation()
         SignalStore.donationsValues().markUserManuallyCancelled()
         refreshActiveSubscription()
         store.update { it.copy(stage = SubscribeState.Stage.READY) }

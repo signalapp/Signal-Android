@@ -193,6 +193,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           dialog.dismiss()
           findNavController().popBackStack()
         }
+        .show()
     } else {
       Log.w(TAG, "Error occurred while processing payment", throwable)
       MaterialAlertDialogBuilder(requireContext())
@@ -202,6 +203,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           dialog.dismiss()
           findNavController().popBackStack()
         }
+        .show()
     }
   }
 
@@ -214,6 +216,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         dialog.dismiss()
         findNavController().popBackStack()
       }
+      .show()
   }
 
   private fun startAnimationAboveSelectedBoost(view: View) {

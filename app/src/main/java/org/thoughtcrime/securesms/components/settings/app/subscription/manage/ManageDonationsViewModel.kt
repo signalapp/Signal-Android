@@ -14,9 +14,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
+import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 
 class ManageDonationsViewModel(
@@ -43,11 +42,11 @@ class ManageDonationsViewModel(
   fun refresh() {
     disposables.clear()
 
-    val levelUpdateOperationEdges: Observable<Optional<LevelUpdateOperation>> = SignalStore.donationsValues().levelUpdateOperationObservable.distinctUntilChanged()
+    val levelUpdateOperationEdges: Observable<Boolean> = LevelUpdate.isProcessing.distinctUntilChanged()
     val activeSubscription: Single<ActiveSubscription> = subscriptionsRepository.getActiveSubscription()
 
-    disposables += levelUpdateOperationEdges.flatMapSingle { optionalKey ->
-      if (optionalKey.isPresent) {
+    disposables += levelUpdateOperationEdges.flatMapSingle { isProcessing ->
+      if (isProcessing) {
         Single.just(ManageDonationsState.TransactionState.InTransaction)
       } else {
         activeSubscription.map { ManageDonationsState.TransactionState.NotInTransaction(it) }
