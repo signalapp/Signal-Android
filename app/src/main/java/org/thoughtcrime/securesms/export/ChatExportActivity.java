@@ -9,11 +9,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-//import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -43,7 +41,6 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState, boolean ready) {
         ChatExportViewModel.Factory factory = new ChatExportViewModel.Factory(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
-        Log.w(TAG, getIntent().getParcelableExtra(RECIPIENT_EXTRA).toString());
         ViewModelProviders.of(this, factory).get(ChatExportViewModel.class);
 
         dynamicTheme.onCreate(this);
@@ -55,7 +52,6 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
         toolbar.setNavigationOnClickListener(unused -> {
             if (!Navigation.findNavController(this, R.id.nav_host_fragment).popBackStack()) {
                 finish();
-                //ActivityTransitionUtil.setSlideOutTransition(this);
             }
         });
 
@@ -70,7 +66,6 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //ActivityTransitionUtil.setSlideOutTransition(this);
     }
 
     @Override

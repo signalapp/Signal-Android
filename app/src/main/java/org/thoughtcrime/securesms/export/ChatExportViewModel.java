@@ -18,16 +18,16 @@ import java.util.Objects;
 
 public class ChatExportViewModel extends ViewModel {
 
-    private static final Boolean INITIAL_HTML_VIEWER_STATE = false;
-    private static final Boolean INITIAL_MEDIA_STATE = false;
-    private static final String INITIAL_TIME_PERIOD     = "Default (whole chat)";
+    private static final Boolean    INITIAL_HTML_VIEWER_STATE = false;
+    private static final Boolean    INITIAL_MEDIA_STATE = false;
+    private static final String     INITIAL_TIME_PERIOD     = "Default (whole chat)";
 
     private final  MutableLiveData<Optional<Date>>      startDateControls          = new MutableLiveData<>();
     private final MutableLiveData<Optional<Date>>       endDateControls            = new MutableLiveData<>();
 
     private final MutableLiveData<String>         selectedTimePeriod         = new MutableLiveData<>(INITIAL_TIME_PERIOD);
     private final MutableLiveData<Boolean>        enableIncludeMediaControls = new MutableLiveData<>(INITIAL_MEDIA_STATE);
-    private final        MutableLiveData<Boolean> enableHTMLViewerControls = new MutableLiveData<>(INITIAL_HTML_VIEWER_STATE);
+    private final MutableLiveData<Boolean>        enableHTMLViewerControls = new MutableLiveData<>(INITIAL_HTML_VIEWER_STATE);
     @SuppressLint("SimpleDateFormat")
     private static final SimpleDateFormat         dateFormatter            = new SimpleDateFormat("EEE, dd MMM yyyy");
 

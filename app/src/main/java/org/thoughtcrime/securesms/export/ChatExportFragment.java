@@ -78,19 +78,15 @@ public class ChatExportFragment extends Fragment {
     private static ChatExportZipUtil zip;
 
 
-    @SuppressLint("LogTagInlined") @Override
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate (R.layout.chat_export_fragment, container, false);
         assert getArguments () != null;
-
-        Log.w(TAG, String.valueOf(getArguments ().size()));
         RecipientId rId = (RecipientId) getActivity().getIntent().getExtras().get(RECIPIENT_ID);
         if(rId!=null)
-        Log.w(TAG, rId.toString());
         existingThread = DatabaseFactory.getThreadDatabase (this.getContext ()).getThreadIdIfExistsFor (rId);
-        Log.w(TAG, String.valueOf(existingThread));
         return view;
     }
 
@@ -191,7 +187,6 @@ public class ChatExportFragment extends Fragment {
     }
 
     @RequiresApi(api = 21)
-    @SuppressLint("IntentReset")
     private void openGallery() {
         try {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
@@ -216,7 +211,6 @@ public class ChatExportFragment extends Fragment {
             if(data != null) {
                 treeUri = data.getData ();
                 String storagePath = StorageUtil.getDisplayPath (getContext (), treeUri);
-                Log.w (TAG, "Path: " + storagePath);
             }
             Navigation.findNavController(requireView()).popBackStack();
             onCreateClicked (viewModel);

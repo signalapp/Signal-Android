@@ -8,7 +8,6 @@ import android.media.MediaFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
-import org.signal.core.util.logging.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -367,7 +366,7 @@ public class ChatFormatter {
         MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(q.getId(), quoteAuthor.getId ());
         if(message != null)
             addElement(quote, "timestamp",
-                    DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, message.getTimestamp ()));
+                    DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, message.getReceiptTimestamp()));
         else
             addElement(quote, "timestamp", "Unknown");
     }
