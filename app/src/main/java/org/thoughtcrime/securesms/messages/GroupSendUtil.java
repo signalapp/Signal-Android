@@ -63,8 +63,6 @@ public final class GroupSendUtil {
 
   private static final String TAG = Log.tag(GroupSendUtil.class);
 
-  private static final long MAX_KEY_AGE = TimeUnit.DAYS.toMillis(30);
-
   private GroupSendUtil() {}
 
 
@@ -223,7 +221,7 @@ public final class GroupSendUtil {
       long           keyCreateTime  = SenderKeyUtil.getCreateTimeForOurKey(context, distributionId);
       long           keyAge         = System.currentTimeMillis() - keyCreateTime;
 
-      if (keyCreateTime != -1 && keyAge > MAX_KEY_AGE) {
+      if (keyCreateTime != -1 && keyAge > FeatureFlags.senderKeyMaxAge()) {
         Log.w(TAG, "Key is " + (keyAge) + " ms old (~" + TimeUnit.MILLISECONDS.toDays(keyAge) + " days). Rotating.");
         SenderKeyUtil.rotateOurKey(context, distributionId);
       }

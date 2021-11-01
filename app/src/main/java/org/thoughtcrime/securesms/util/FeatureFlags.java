@@ -78,6 +78,7 @@ public final class FeatureFlags {
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
   private static final String SENDER_KEY                        = "android.senderKey.5";
+  private static final String SENDER_KEY_MAX_AGE                = "android.senderKeyMaxAge";
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
@@ -121,7 +122,8 @@ public final class FeatureFlags {
       SUGGEST_SMS_BLACKLIST,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
-      CDSH
+      CDSH,
+      SENDER_KEY_MAX_AGE
   );
 
   @VisibleForTesting
@@ -174,7 +176,8 @@ public final class FeatureFlags {
       SENDER_KEY,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
-      CDSH
+      CDSH,
+      SENDER_KEY_MAX_AGE
   );
 
   /**
@@ -375,6 +378,11 @@ public final class FeatureFlags {
   /** Whether or not sending using sender key is enabled. */
   public static boolean senderKey() {
     return getBoolean(SENDER_KEY, true);
+  }
+
+  /** How long a sender key can live before it needs to be rotated. */
+  public static long senderKeyMaxAge() {
+    return Math.min(getLong(SENDER_KEY_MAX_AGE, TimeUnit.DAYS.toMillis(14)), TimeUnit.DAYS.toMillis(90));
   }
 
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
