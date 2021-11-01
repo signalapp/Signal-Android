@@ -162,7 +162,7 @@ public final class AttachmentCompressionJob extends BaseJob {
   {
     try {
       attachmentDatabase.markAttachmentAsTransformed(attachmentId);
-    } catch (IOException | MmsException e) {
+    } catch (Exception e) {
       throw new UndeliverableMessageException(e);
     }
   }
