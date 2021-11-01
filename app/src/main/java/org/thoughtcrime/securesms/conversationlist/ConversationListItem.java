@@ -358,7 +358,7 @@ public final class ConversationListItem extends ConstraintLayout
   }
 
   private void observeDisplayBody(@Nullable LiveData<SpannableString> displayBody) {
-    if (displayBody == null) {
+    if (displayBody == null && glideRequests != null) {
       glideRequests.clear(thumbTarget);
     }
 
