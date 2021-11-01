@@ -1960,10 +1960,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
-  <string name="arrays__mute_for_one_hour">Ljud av i 1 timme</string>
-  <string name="arrays__mute_for_eight_hours">Ljud av i 8 timmar</string>
-  <string name="arrays__mute_for_one_day">Ljud av i 1 dag</string>
-  <string name="arrays__mute_for_seven_days">Ljud av i 7 dagar</string>
+  <string name="arrays__mute_for_one_hour">Tysta i 1 timme</string>
+  <string name="arrays__mute_for_eight_hours">Tysta i 8 timmar</string>
+  <string name="arrays__mute_for_one_day">Tysta i 1 dag</string>
+  <string name="arrays__mute_for_seven_days">Tysta i 7 dagar</string>
   <string name="arrays__always">Alltid</string>
   <string name="arrays__settings_default">Inställningars standardvärden</string>
   <string name="arrays__enabled">Aktiverad</string>
@@ -3191,7 +3191,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stäng av ljudet för aviseringar</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ljud på</string>
-  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Ljudet är avstängt till %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Tystad till %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Omnämnanden</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Meddela alltid</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Meddela inte</string>

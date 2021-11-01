@@ -317,7 +317,19 @@
     <item quantity="one">Beszélgetés áthelyezve a bejövőbe</item>
     <item quantity="other">%d db beszélgetés áthelyezve a bejövő üzenetek közé</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Olvasott</item>
+    <item quantity="other">Olvasott</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Olvasatlan</item>
+    <item quantity="other">Olvasatlan</item>
+  </plurals>
   <string name="ConversationListFragment_select">Kiválasztás</string>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Törlés</item>
+    <item quantity="other">Törlés</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Összes kiválasztása</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d kiválasztva</item>
@@ -804,6 +816,14 @@
   <string name="MediaOverviewActivity_List_view_description">Listanézet</string>
   <string name="MediaOverviewActivity_Selected_description">Kiválasztott</string>
   <string name="MediaOverviewActivity_select_all">Összes kiválasztása</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Mentés</item>
+    <item quantity="other">Mentés</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Törlés</item>
+    <item quantity="other">Törlés</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fájl</string>
   <string name="MediaOverviewActivity_audio">Hang</string>
   <string name="MediaOverviewActivity_video">Videó</string>
@@ -1980,6 +2000,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__help">Súgó</string>
   <string name="preferences__advanced">Haladó</string>
   <string name="preferences__donate_to_signal">Adomány a Signal számára</string>
+  <string name="preferences__subscription">Előfizetés</string>
   <string name="preferences__privacy">Adatvédelem</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuális MMS beállítások</string>
@@ -3008,6 +3029,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3 </string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Média minőség</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Elküldött média minősége</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">A nagyfelbontású média nagyobb adathasználatot igényel.</string>
   <string name="DataAndStorageSettingsFragment__high">Magas</string>
   <string name="DataAndStorageSettingsFragment__standard">Normál</string>
@@ -3210,12 +3233,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ImageView__badge">Jelvény</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">A Signalt hozzád hasonló emberek működtetik.</string>
   <string name="SubscribeFragment__donation_amount">Adomány összege</string>
+  <string name="SubscribeFragment__more_payment_options">További fizetési lehetőség</string>
   <string name="SubscribeFragment__not_now">Később</string>
   <string name="SubscribeFragment__confirm">Megerősítés</string>
   <string name="SubscribeFragment__update">Frissítés</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Köszönjük a támogatásodat!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Befejezés</string>
+  <string name="ManageDonationsFragment__manage_subscription">Előfizetés kezelése</string>
   <string name="ManageDonationsFragment__badges">Jelvények</string>
+  <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
   <string name="Boost__enter_custom_amount">Egyedi összeg</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Legyél előfizető</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
   <string name="Subscription__contact_support">Kapcsolatfelvétel a támogatással</string>
   <string name="SubscribeFragment__processing_payment">Fizetés feldolgozása…</string>

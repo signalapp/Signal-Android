@@ -213,9 +213,9 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपल्या डिव्हाईस वर हा दुवा हाताळण्यासाठी कुठलाही अॅप नाही.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">आपली सामील होण्याची विनंती गट प्रशासकाकडे पाठविली गेली आहे. जेव्हा ते कारवाई करतात तेव्हा आपल्याला सूचित केले जाईल.</string>
   <string name="ConversationActivity_cancel_request">विनंती रद्द करा</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ऑडिओ संदेश पाठविण्यासाठी, Signal यास आपले मायक्रोफोन अॅक्सेस करण्याची अनुमती द्या.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ऑडिओ संदेश पाठविण्यासाठी, Signal ला आपले मायक्रोफोन अॅक्सेस करण्याची अनुमती द्या.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ऑडिओ संदेश पाठवण्यासाठी Signal ला मायक्रोफोन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"मायक्रोफोन\" सक्षम करा.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s यास कॉल करण्यासाठी Signal ला मायक्रोफोन आणि कॅमेरा परवानग्यांची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"मायक्रोफोन\" आणि \"कॅमेरा\" सक्षम करा.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s ला कॉल करण्यासाठी Signal ला मायक्रोफोन आणि कॅमेरा परवानग्यांची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"मायक्रोफोन\" आणि \"कॅमेरा\" सक्षम करा.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">फोटो आणि व्हिडिओ कॅप्चर करण्यासाठी, Signal ला कॅमेरा अॅक्सेसची अनुमती द्या.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">फोटो किंवा व्हिडिओ काढण्यासाठी Signal ला कॅमेरा परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"कॅमेरा\" सक्षम करा.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">फोटो किंवा व्हिडिओ घेण्यासाठी Signal ला कॅमेरा परवानग्यांची गरज आहे</string>
@@ -237,7 +237,7 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आपण हे गट सोडाल, आणि ते आपल्या सर्व डिव्हाईस वरून हटविले जाईल.</string>
   <string name="ConversationActivity_delete">हटवा</string>
   <string name="ConversationActivity_delete_and_leave">गटातून बाहेत पडा आणि गट हटवा</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s कॉल करण्यासाठी, सिग्नलला आपल्या मायक्रोफोन मध्ये प्रवेश करण्याची आवश्यकता आहे</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ला कॉल करण्यासाठी, Signal ला आपल्या मायक्रोफोनचा अॅक्सेस हवा आहे</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">\"गट सेटिंग्ज\" मध्ये आता अधिक पर्याय</string>
   <string name="ConversationActivity_join">सामील व्हा</string>
   <string name="ConversationActivity_full">पूर्ण</string>
@@ -924,7 +924,7 @@
   <string name="MessageRecord_left_group">आपण गट सोडला आहे.</string>
   <string name="MessageRecord_you_updated_group">आपण गट अद्ययावत केले.</string>
   <string name="MessageRecord_the_group_was_updated">गट अद्यतनित केला गेला.</string>
-  <string name="MessageRecord_you_called_date">आपण · %1$s ला कॉल केला</string>
+  <string name="MessageRecord_you_called_date"> आपण काॅल केला . %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">सुटलेला ऑडिओ कॉल · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">सुटलेला व्हिडिओ कॉल · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ने गट अद्ययावत केले.</string>
@@ -953,7 +953,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">आपण गट तयार केला.</string>
   <string name="MessageRecord_group_updated">गट अद्यतनित.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">गट लिंक द्वारा मित्रांना यै गटात आमंत्रित करा</string>
+  <string name="MessageRecord_invite_friends_to_this_group">गट लिंक द्वारे मित्रांना या गटात आमंत्रित करा</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">आपण %1$s ला जोडले.</string>
   <string name="MessageRecord_s_added_s">%1$s ने %2$s ला जोडले.</string>
@@ -2477,7 +2477,7 @@
     <item quantity="other">%1$d प्रयत्न उर्वरित.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$sला तुमच्याकडून एक संदेश विनंती मिळेल. एकदा आपली संदेश विनंती स्वीकारल्यानंतर आपण कॉल करू शकता.</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s ला तुमच्याकडून एक संदेश विनंती मिळेल. एकदा आपली संदेश विनंती स्वीकारल्यानंतर आपण कॉल करू शकता.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN तयार करा.</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात.</string>

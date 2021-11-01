@@ -733,7 +733,7 @@
   <string name="ShareableGroupLinkDialogFragment__share">Partager</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Réinitialiser le lien</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Demandes de membres</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Approuver de nouveaux membres</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Approuver les nouveaux membres</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Exiger qu’un administrateur approuve les nouveaux membres qui se joignent grâce au lien du groupe.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Voulez-vous vraiment réinitialiser le lien du groupe ? Personne ne pourra plus se joindre au groupe grâce au lien actuel.</string>
   <!--GroupLinkShareQrDialogFragment-->
@@ -948,7 +948,7 @@
     <item quantity="other">%1$s membres n’ont pas pu être ajoutés au Nouveau groupe et ont été supprimé du groupe.</item>
   </plurals>
   <!--Profile change updates-->
-  <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé son nom de profil à %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé son nom de profil en %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s a changé son nom de profil de %2$s à %3$s.</string>
   <string name="MessageRecord_changed_their_profile">%1$s a changé son profil.</string>
   <!--GV2 specific-->
@@ -1350,8 +1350,8 @@
   <string name="RegistrationActivity_next">Suivant</string>
   <string name="RegistrationActivity_continue">Poursuivre</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">La confidentialité dans votre poche.\nPour que chaque message reflète qui vous êtes.</string>
-  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Saisissez votre numéro de téléphone pour commencer</string>
-  <string name="RegistrationActivity_enter_your_phone_number">Saisissez votre numéro de téléphone</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Saisir votre numéro de téléphone pour commencer</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Saisir votre numéro de téléphone</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vous recevrez un code de confirmation. Les frais de l’opérateur peuvent s’appliquer.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Saisissez le code que nous avons envoyé au %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Afin de recevoir un texto ou un appel, assurez-vous que votre téléphone est connecté au réseau cellulaire</string>
@@ -2816,7 +2816,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (sur un autre appareil)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Supprimer votre compte implique :</string>
-  <string name="DeleteAccountFragment__enter_your_phone_number">Saisissez votre numéro de téléphone</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Saisir votre numéro de téléphone</string>
   <string name="DeleteAccountFragment__delete_account">Supprimer le compte</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Supprimer les renseignements de votre compte et votre photo de profil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Supprimer tous vos messages</string>
@@ -3352,6 +3352,7 @@ Nouvelle tentative…</string>
   <string name="SubscribeFragment__processing_payment">Traitement du paiement…</string>
   <string name="DonationsErrors__payment_failed">Échec de paiement</string>
   <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
+  <string name="DonationsErrors__redemption_still_pending">Récupération encore en cours</string>
   <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Vous ne verrez peut-être pas votre badge tout de suite, mais nous y travaillons !</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vous devez configurer Google Pay pour faire un don dans l’application.</string>

@@ -838,7 +838,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
-  <string name="MediaOverviewActivity_select_all">Alle auswählen</string>
+  <string name="MediaOverviewActivity_select_all">Alle wählen</string>
   <plurals name="MediaOverviewActivity_save_plural">
     <item quantity="one">Speichern</item>
     <item quantity="other">Speichern</item>
@@ -1930,16 +1930,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Bitte wähle eine Option --</item>
-    <item>Etwas funktioniert nicht</item>
-    <item>Erweiterungswunsch</item>
-    <item>Frage</item>
-    <item>Rückmeldung</item>
-    <item>Sonstiges</item>
-    <item>Zahlungen (MobileCoin)</item>
-    <item>Spenden</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -2037,7 +2027,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
   <string name="preferences__subscription">Regelmäßige Spende</string>
-  <string name="preferences__signal_boost">Einmalige Spende</string>
+  <string name="preferences__signal_boost">Signal-Boost</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-Einstellungen</string>
@@ -3262,8 +3252,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaReviewFragment__add_a_reply">Antwort hinzufügen</string>
   <string name="MediaReviewFragment__send_to">Senden an</string>
   <string name="MediaReviewFragment__view_once_message">Einmalig anzeigbare Nachricht</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ein oder mehrere Elemente waren zu groß</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ein oder mehrere Elemente waren ungültig</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Mindestens ein Element war zu groß</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Mindestens ein Element war ungültig</string>
   <string name="MediaReviewFragment__too_many_items_selected">Zu viele Elemente ausgewählt</string>
   <string name="ImageEditorHud__cancel">Abbrechen</string>
   <string name="ImageEditorHud__draw">Zeichnen</string>
@@ -3295,52 +3285,52 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
   <string name="ImageView__badge">Abzeichen</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze Technologie, die für Dich entwickelt wurde – nicht für deine Daten –, indem du dich der Gemeinschaft von Menschen anschließt, die sie unterstützen. </string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze eine Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, indem du dich der Gemeinschaft von Menschen anschließt, die sie aufrechterhalten.</string>
   <string name="SubscribeFragment__donation_amount">Spendenbetrag</string>
   <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
-  <string name="SubscribeFragment__cancel_subscription">Dauerspende kündigen</string>
+  <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
   <string name="SubscribeFragment__confirm_cancellation">Kündigung bestätigen?</string>
-  <string name="SubscribeFragment__you_wont_be_charged_again">Es werden keine weiteren Gebühren erhoben. Dein Abzeichen wird am Ende deines Abrechnungszeitraums aus deinem Profil entfernt.</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Es findet lediglich eine einmalige Abbuchung statt. Dein Abzeichen wird am Ende deines Abrechnungszeitraums aus deinem Profil entfernt.</string>
   <string name="SubscribeFragment__not_now">Jetzt nicht</string>
   <string name="SubscribeFragment__confirm">Bestätigen</string>
-  <string name="SubscribeFragment__update_subscription">Dauerspende aktualisieren</string>
-  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Deine Dauerspende wurde gekündigt.</string>
-  <string name="SubscribeFragment__update_subscription_question">Dauerspende aktualisieren?</string>
+  <string name="SubscribeFragment__update_subscription">Regelmäßige Spende aktualisieren</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Deine regelmäßige Spende wurde gekündigt.</string>
+  <string name="SubscribeFragment__update_subscription_question">Regelmäßige Spende aktualisieren</string>
   <string name="SubscribeFragment__update">Aktualisieren</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dir wird heute der volle Betrag des neuen Spendenbeitrags in Rechnung gestellt. Deine Dauerspende wird verlängert %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Heute wird die volle Summe des neuen Spendenbeitrags abgebucht. Deine regelmäßige Spende verlängert sich am %1$s.</string>
   <string name="Subscription__s_per_month">%s/Monat</string>
-  <string name="Subscription__s_per_month_dot_renews_s">%1$s/Monat · Verlängert %2$s</string>
-  <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat · Läuft ab %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ist eine Non-Profit-Organisation ohne Werbetreibende oder Investoren, die von den Menschen unterstützt wird, die es nutzen und schätzen. Leiste eine wiederkehrenden monatlichen Beitrag und erhalte ein Profil-Abzeichen, um deine Unterstützung zu teilen. </string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/Monat · Verlängert sich am %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat · Läuft ab am %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen getragen wird, die es nutzen und schätzen. Leiste eine wiederkehrenden monatlichen Beitrag und erhalte ein Profil-Abzeichen, das deine Unterstützung zeigt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat sich der Mission verschrieben, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag unterstützt diese Sache. Keine Werbung. Keine Tracker. Im Ernst.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu bezahlen, die von Millionen auf der ganzen Welt für die private und sofortige Kommunikation verwendet wird.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat es sich zur Aufgabe gemacht, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag trägt zu dieser Aufgabe bei. Keine Werbung. Keine Tracker. Kein Scherz.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu finanzieren, die von Millionen Menschen auf der ganzen Welt für private und sofortige Kommunikation verwendet wird.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für deine Spende!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s-Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du den Personen, mit denen du chattest, dass du Signal unterstützt.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s-Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du Personen, mit denen du chattest, dass du Signal unterstützt.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
-  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Wenn du mehrere Abzeichen hast, kannst du eines davon auswählen, um es bei deinem Profil anzuzeigen.</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Falls du mehrere Abzeichen hast, kannst du eines davon auswählen, das andere in deinem Profil sehen können.</string>
   <string name="ManageDonationsFragment__my_support">Meine Unterstützung</string>
-  <string name="ManageDonationsFragment__manage_subscription">Dauerspende verwalten</string>
+  <string name="ManageDonationsFragment__manage_subscription">Regelmäßige Spende verwalten</string>
   <string name="ManageDonationsFragment__badges">Abzeichen</string>
-  <string name="ManageDonationsFragment__subscription_faq">Dauerspende FAQ</string>
-  <string name="ManageDonationsFragment__error_getting_subscription">Fehler beim Abrufen der Dauerspende.</string>
+  <string name="ManageDonationsFragment__subscription_faq">FAQ Regelmäßige Spenden</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Die regelmäßige Spende konnte nicht abgerufen werden.</string>
   <string name="BoostFragment__give_signal_a_boost">Gib Signal einen Boost</string>
   <string name="BoostFragment__say_thanks_and_earn">Sag »Danke!« und erhalte das Boost-Abzeichen für %1$d Tage.</string>
   <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
-  <string name="Boost__one_time_contribution">Einmaliger Betrag</string>
-  <string name="MySupportPreference__add_a_signal_boost">Eine einmalige Spende tätigen</string>
+  <string name="Boost__one_time_contribution">Einmaliger Beitrag</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signal-Boost hinzufügen</string>
   <string name="MySupportPreference__s_per_month">%1$s/Monat</string>
-  <string name="MySupportPreference__renews_s">Verlängert %1$s</string>
+  <string name="MySupportPreference__renews_s">Verlängert sich am %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s-Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Um auch weiterhin eine Technologie zu unterstützen, die für Dich und nicht für deine Daten entwickelt wurde, erwäge eine Dauerspende abzuschließen.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Werde Dauerspende</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Um auch weiterhin eine Technologie zu unterstützen, die für dich — und nicht für deine Daten — entwickelt wird, zieh bitte eine regelmäßige Spende in Betracht.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Werde regelmäßiger Spender</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
-  <string name="Subscription__verification_failed">Verifikation der Dauerspende gescheitert</string>
-  <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere den Support für weitere Informationen.</string>
+  <string name="Subscription__verification_failed">Regelmäßige Spende konnte nicht verifiziert werden</string>
+  <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere für weitere Informationen den Support.</string>
   <string name="Subscription__contact_support">Support kontaktieren</string>
   <string name="Subscription__earn_a_s_badge">Erhalte ein %1$s-Abzeichen</string>
   <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
@@ -3350,7 +3340,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Eventuell ist das Abzeichen nicht direkt sichtbar, aber wir arbeiten daran!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nicht verfügbar</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du musst Google Pay einrichten, um in der App zu spenden.</string>
-  <string name="DonationsErrors__failed_to_cancel_subscription">Die Kündigung der Dauerspende ist fehlgeschlagen</string>
-  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung der Dauerspende benötigt eine Internetverbindung.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht gekündigt werden</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
   <!--EOF-->
 </resources>
