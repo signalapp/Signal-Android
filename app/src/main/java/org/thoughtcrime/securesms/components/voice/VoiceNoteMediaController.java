@@ -124,6 +124,12 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   @Override
   public void onDestroy(@NonNull LifecycleOwner owner) {
+    if (voiceNoteProximityWakeLockManager != null) {
+      voiceNoteProximityWakeLockManager.unregisterCallbacksAndRelease();
+      voiceNoteProximityWakeLockManager.unregisterFromLifecycle();
+      voiceNoteProximityWakeLockManager = null;
+    }
+
     activity.getLifecycle().removeObserver(this);
     activity = null;
   }
@@ -294,6 +300,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
       if (voiceNoteProximityWakeLockManager != null) {
         Log.d(TAG, "Session reconnected, cleaning up old wake lock manager");
         voiceNoteProximityWakeLockManager.unregisterCallbacksAndRelease();
+        voiceNoteProximityWakeLockManager.unregisterFromLifecycle();
         voiceNoteProximityWakeLockManager = null;
       }
     }
