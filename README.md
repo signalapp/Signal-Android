@@ -8,7 +8,7 @@ Expect updates about every 3 months.
 
 - **Deleting messages time extension**
 
-  Messages must be deleted within 3 hours of sending on Signal and Molly. Signal-LTS has modified this to 24 hours (the limit the recipient will allow deleted messages up to).
+  Messages must be deleted within 3 hours of sending on Signal. Signal-LTS has modified this to 24 hours (the limit the recipient will allow deleted messages up to).
 
 - **Does not compress images or video**
 
