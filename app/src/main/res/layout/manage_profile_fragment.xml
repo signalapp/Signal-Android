@@ -97,7 +97,7 @@
           android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/manage_profile_badge" />
+          app:layout_constraintTop_toBottomOf="@id/manage_profile_avatar_background" />
 
       <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/manage_profile_name_container"
