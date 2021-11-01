@@ -157,4 +157,12 @@ public class SenderKeySharedDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.delete(TABLE_NAME, null, null);
   }
+
+  /**
+   * Gets the shared state of all of our sender keys. Used for debugging.
+   */
+  public Cursor getAllSharedWithCursor() {
+    SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
+    return db.query(TABLE_NAME, null, null, null, null, null, DISTRIBUTION_ID + ", " + ADDRESS + ", " + DEVICE);
+  }
 }
