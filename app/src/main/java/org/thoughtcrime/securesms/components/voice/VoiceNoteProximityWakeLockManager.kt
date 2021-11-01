@@ -66,6 +66,12 @@ class VoiceNoteProximityWakeLockManager(
     cleanUpWakeLock()
   }
 
+  fun unregisterFromLifecycle() {
+    if (proximitySensor != null) {
+      activity.lifecycle.removeObserver(this)
+    }
+  }
+
   private fun isActivityResumed() = activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
 
   private fun isPlayerActive() = mediaController.playbackState.state == PlaybackStateCompat.STATE_BUFFERING ||

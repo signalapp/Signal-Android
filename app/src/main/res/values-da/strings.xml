@@ -399,7 +399,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test dit kodeord for backup og bekræft, at det matcher</string>
   <string name="BackupsPreferenceFragment__turn_on">Aktiver</string>
   <string name="BackupsPreferenceFragment__turn_off">Deaktiver</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">For at gendanne fra backup, skal du installere Signal igen. Åbn appen og tryk \"Gendan backup\", vælg derefter en backup-fil. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">For at gendanne fra backup skal du installere Signal igen. Åbn appen og tryk på \"Gendan backup.\" Vælg derefter en backup-fil. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Læs mere</string>
   <string name="BackupsPreferenceFragment__in_progress">I gang…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d indtil videre…</string>
@@ -1897,7 +1897,7 @@ nummer (%s) er ugyldigt</string>
   <string name="message_details_header__issues_need_your_attention">Nogle ting kræver din opmærksomhed</string>
   <string name="message_details_header__sent">Sendt:</string>
   <string name="message_details_header__received">Modtaget:</string>
-  <string name="message_details_header__disappears">Forsvinder:</string>
+  <string name="message_details_header__disappears">Forsvinder om:</string>
   <string name="message_details_header__via">Via:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Afventer</string>
@@ -2409,7 +2409,7 @@ nummer (%s) er ugyldigt</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Begynd at kommunikere sikkert og aktiver nye funktioner, der ikke har samme begrænsninger som ukrypterede SMS-beskeder, ved at invitere flere kontakter til at bruge Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed, og kan kun ses af dig. De bliver ikke videredelt.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed og kan kun ses af dig. De bliver aldrig sendt nogen steder hen.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
   <string name="InsightsDashboardFragment__send">Send</string>
@@ -2663,7 +2663,7 @@ nummer (%s) er ugyldigt</string>
   <string name="DeviceTransferSetup__retry">Prøv igen</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Indsend fejlsøgningslogger</string>
   <string name="DeviceTransferSetup__verify_code">Bekræft kode</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Bekræft, at nedenstående kode matcher på begge dine enheder. Tryk derefter på Fortsæt.</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Kontroller, at koden nedenfor er den samme på begge jeres enheder. Tryk derefter på Fortsæt.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrene stemmer ikke overens</string>
   <string name="DeviceTransferSetup__continue">Fortsæt</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Nummeret er ikke det samme</string>
@@ -3054,7 +3054,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i listen \"Seneste apps\" og i Signal</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardtimer for nye chats</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en timer for forsvindende beskeder der skal gælde som standard for alle nye chats, du starter.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en timer for forsvindende beskeder, der skal gælde som standard for alle nye chats startet af dig.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>

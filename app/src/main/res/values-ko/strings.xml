@@ -305,8 +305,38 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">대화 %d개가 받은 메시지함으로 이동됨</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">읽음 표시</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="other">읽지 않음 표시</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="other">상단 고정</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="other">상단 고정 해제</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="other">알림 끄기</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="other">알림 켜기</item>
+  </plurals>
   <string name="ConversationListFragment_select">선택</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="other">보관</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="other">보관 해제</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="other">삭제</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">모두 선택</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="other">%d개 선택됨</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">핵심 교환 메시지</string>
   <!--ConversationListItemAction-->
@@ -630,6 +660,7 @@
   <string name="ManageProfileFragment_your_name">내 이름</string>
   <string name="ManageProfileFragment_your_username">당신의 사용자 이름</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">아바타 설정을 실패했습니다.</string>
+  <string name="ManageProfileFragment_badges">배지</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">공통 그룹 없음</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -758,6 +789,12 @@
   <string name="MediaOverviewActivity_List_view_description">목록 보기</string>
   <string name="MediaOverviewActivity_Selected_description">선택됨</string>
   <string name="MediaOverviewActivity_select_all">모두 선택</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="other">저장</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="other">삭제</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">파일</string>
   <string name="MediaOverviewActivity_audio">오디오</string>
   <string name="MediaOverviewActivity_video">동영상</string>
@@ -3039,6 +3076,7 @@
   <string name="SubscribeFragment__confirm">확인</string>
   <string name="SubscribeFragment__update">업데이트</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">확인</string>
+  <string name="ManageDonationsFragment__badges">배지</string>
   <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
   <string name="Subscription__contact_support">지원에 문의</string>

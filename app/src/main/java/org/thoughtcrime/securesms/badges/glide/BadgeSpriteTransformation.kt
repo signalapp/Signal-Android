@@ -16,8 +16,18 @@ class BadgeSpriteTransformation(
   private val isDarkTheme: Boolean
 ) : BitmapTransformation() {
 
+  private val id = "BadgeSpriteTransformation(${size.code},$density,$isDarkTheme).$VERSION"
+
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
-    messageDigest.update("BadgeSpriteTransformation(${size.code},$density,$isDarkTheme).$VERSION".toByteArray(CHARSET))
+    messageDigest.update(id.toByteArray(CHARSET))
+  }
+
+  override fun equals(other: Any?): Boolean {
+    return (other as? BadgeSpriteTransformation)?.id == id
+  }
+
+  override fun hashCode(): Int {
+    return id.hashCode()
   }
 
   override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {

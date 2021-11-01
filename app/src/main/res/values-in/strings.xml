@@ -305,7 +305,34 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Memindahkan %d percakapan ke kotak masuk</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">Tandai Terbaca</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="other">Belum dibaca</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="other">Sematkan</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="other">Cabut Semat</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="other">Senyapkan</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="other">Bunyikan</item>
+  </plurals>
   <string name="ConversationListFragment_select">Pilih</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="other">Arispkan</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="other">Buka Arsip</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="other">Hapus</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Pilih semua</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">%d dipilih</item>
@@ -633,6 +660,7 @@
   <string name="ManageProfileFragment_your_name">Nama anda</string>
   <string name="ManageProfileFragment_your_username">Nama pengguna Anda</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Gagal mengatur avatar</string>
+  <string name="ManageProfileFragment_badges">Lencana</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Tidak ada grup yang sama</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -761,6 +789,12 @@
   <string name="MediaOverviewActivity_List_view_description">Tampilan urutan</string>
   <string name="MediaOverviewActivity_Selected_description">Terpilih</string>
   <string name="MediaOverviewActivity_select_all">Pilih semua</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="other">Simpan</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="other">Hapus</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="other">%1$d dipilih (%2$s)</item>
   </plurals>
@@ -2892,10 +2926,16 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Penggantian Nomor Signal - Butuh bantuan mengenai PIN untuk Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN tidak cocok</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN yang terkait dengan nomor baru Anda berbeda dengan PIN yang terkait dengan nomor lama Anda. Apa Anda ingin menggunakan PIN lama atau memperbaruinya?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Simpan PIN lama</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Perbarui PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Simpan PIN lama?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Sepertinya Anda mencoba mengganti nomor namun kami tidak dapat memutuskan apakah prosesnya berhasil.\n\nMemeriksa ulang sekarang…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Status perubahan dikonfirmasi</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Nomor Anda telah dikonfirmasi sebagai %1$s. Jika ini bukan nomor baru Anda, mohon mulai ulang proses perubahan nomor.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Status perubahan belum dikonfirmasi</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Kami tidak dapat menentukan status permintaan perubahan nomor Anda.\n\(Error: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Coba lagi</string>
   <string name="ChangeNumberLockActivity__leave">Tinggalkan</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Kirim catatan awakutu</string>
@@ -2950,6 +2990,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__copyright_signal_messenger">Hak Cipta Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Berlisensi dibawah GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kualitas media</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kualitas media terkirim</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Mengirimkan media dengan kualitas tinggi akan menggunakan lebih banyak data.</string>
   <string name="DataAndStorageSettingsFragment__high">Tinggi</string>
   <string name="DataAndStorageSettingsFragment__standard">Standar</string>
@@ -3122,10 +3164,15 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
     <item quantity="other">Tidak dapat meneruskan pesan karena sudah tak tersedia lagi.</item>
   </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Batas tercapai</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Tambah pesan</string>
   <string name="MediaReviewFragment__add_a_reply">Tambah balasan</string>
   <string name="MediaReviewFragment__send_to">Kirim ke</string>
+  <string name="MediaReviewFragment__view_once_message">Pesan satu tayangan</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ukuran satu atau beberapa media terlalu besar</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Satu atau beberapa media salah</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Terlalu banyak media dipilih</string>
   <string name="ImageEditorHud__cancel">Batal</string>
   <string name="ImageEditorHud__draw">Gambar</string>
   <string name="ImageEditorHud__write_text">Tulis teks</string>
@@ -3134,19 +3181,38 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ImageEditorHud__done_editing">Selesai mengedit</string>
   <string name="ImageEditorHud__clear_all">Hapus semua</string>
   <string name="ImageEditorHud__undo">Urungkan</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Beralih antara penanda dan penyorot</string>
   <string name="ImageEditorHud__delete">Hapus</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Beralih antara gaya teks</string>
   <string name="MediaCountIndicatorButton__send">Kirim</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Ketuk untuk menghilangkan</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Ketuk untuk memilih </string>
   <string name="MediaReviewImagePageFragment__discard">Batalkan</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Batalkan perubahan?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Anda akan kehilangan perubahan yang telah dibuat terhadap foto ini.</string>
+  <string name="CameraFragment__failed_to_open_camera">Gagal membuka kamera</string>
+  <string name="BadgesOverviewFragment__my_badges">Lencana saya</string>
+  <string name="BadgesOverviewFragment__featured_badge">Lencana utama</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Tampilkan lencana pada profil</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Gagal memperbarui profil</string>
+  <string name="BadgeSelectionFragment__select_badges">Pilih lencana</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pratinjau</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Pilih sebuah lencana</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Anda harus memilih sebuah lencana</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Gagal memperbarui profil</string>
+  <string name="ImageView__badge">Lencana</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
   <string name="SubscribeFragment__donation_amount">Jumlah donasi</string>
+  <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
+  <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
+  <string name="SubscribeFragment__confirm_cancellation">Konfirmasi Pembatalan?</string>
   <string name="SubscribeFragment__not_now">Nanti saja</string>
   <string name="SubscribeFragment__confirm">Konfirmasi</string>
+  <string name="SubscribeFragment__update_subscription">Perbarui Langganan</string>
   <string name="SubscribeFragment__update">Perbarui</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
+  <string name="ManageDonationsFragment__badges">Lencana</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
   <string name="Subscription__contact_support">Hubungi Bantuan</string>

@@ -31,6 +31,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
@@ -116,6 +117,8 @@ public final class ConversationListItem extends ConstraintLayout
   private View                checkContainer;
   private View                uncheckedView;
   private View                checkedView;
+  private int                 thumbSize;
+  private GlideLiveDataTarget thumbTarget;
 
   private int             unreadCount;
   private AvatarImageView contactPhotoImage;
@@ -148,6 +151,8 @@ public final class ConversationListItem extends ConstraintLayout
     this.checkContainer          = findViewById(R.id.conversation_list_item_check_container);
     this.uncheckedView           = findViewById(R.id.conversation_list_item_unchecked);
     this.checkedView             = findViewById(R.id.conversation_list_item_checked);
+    this.thumbSize               = (int) DimensionUnit.SP.toPixels(20f);
+    this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
 
     getLayoutTransition().setDuration(150);
   }
@@ -195,7 +200,7 @@ public final class ConversationListItem extends ConstraintLayout
     this.typingThreads = typingThreads;
     updateTypingIndicator(typingThreads);
 
-    observeDisplayBody(getThreadDisplayBody(getContext(), thread, glideRequests));
+    observeDisplayBody(getThreadDisplayBody(getContext(), thread, glideRequests, thumbSize, thumbTarget));
 
     if (thread.getDate() > 0) {
       CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
@@ -353,6 +358,10 @@ public final class ConversationListItem extends ConstraintLayout
   }
 
   private void observeDisplayBody(@Nullable LiveData<SpannableString> displayBody) {
+    if (displayBody == null && glideRequests != null) {
+      glideRequests.clear(thumbTarget);
+    }
+
     if (this.displayBody != null) {
       this.displayBody.removeObserver(this);
     }
@@ -441,7 +450,12 @@ public final class ConversationListItem extends ConstraintLayout
     badge.setBadgeFromRecipient(recipient);
   }
 
-  private static @NonNull LiveData<SpannableString> getThreadDisplayBody(@NonNull Context context, @NonNull ThreadRecord thread, @NonNull GlideRequests glideRequests) {
+  private static @NonNull LiveData<SpannableString> getThreadDisplayBody(@NonNull Context context,
+                                                                         @NonNull ThreadRecord thread,
+                                                                         @NonNull GlideRequests glideRequests,
+                                                                         @Px int thumbSize,
+                                                                         @NonNull GlideLiveDataTarget thumbTarget)
+  {
     int defaultTint = ContextCompat.getColor(context, R.color.signal_text_secondary);
 
     if (!thread.isMessageRequestAccepted()) {
@@ -514,7 +528,7 @@ public final class ConversationListItem extends ConstraintLayout
         return emphasisAdded(context, context.getString(thread.isOutgoing() ? R.string.ThreadRecord_you_deleted_this_message : R.string.ThreadRecord_this_message_was_deleted), defaultTint);
       } else {
         String                    body      = removeNewlines(thread.getBody());
-        LiveData<SpannableString> finalBody = LiveDataUtil.mapAsync(createFinalBodyWithMediaIcon(context, body, thread, glideRequests), updatedBody -> {
+        LiveData<SpannableString> finalBody = LiveDataUtil.mapAsync(createFinalBodyWithMediaIcon(context, body, thread, glideRequests, thumbSize, thumbTarget), updatedBody -> {
           if (thread.getRecipient().isGroup()) {
             RecipientId groupMessageSender = thread.getGroupMessageSender();
             if (!groupMessageSender.isUnknown()) {
@@ -533,7 +547,9 @@ public final class ConversationListItem extends ConstraintLayout
   private static LiveData<CharSequence> createFinalBodyWithMediaIcon(@NonNull Context context,
                                                                      @NonNull String body,
                                                                      @NonNull ThreadRecord thread,
-                                                                     @NonNull GlideRequests glideRequests)
+                                                                     @NonNull GlideRequests glideRequests,
+                                                                     @Px int thumbSize,
+                                                                     @NonNull GlideLiveDataTarget thumbTarget)
   {
     if (thread.getSnippetUri() == null) {
       return LiveDataUtil.just(body);
@@ -553,9 +569,6 @@ public final class ConversationListItem extends ConstraintLayout
       return LiveDataUtil.just(body);
     }
 
-    int                 thumbSize = (int) DimensionUnit.SP.toPixels(20f);
-    GlideLiveDataTarget target    = new GlideLiveDataTarget(thumbSize, thumbSize);
-
     glideRequests.asBitmap()
                  .load(new DecryptableStreamUriLoader.DecryptableUri(thread.getSnippetUri()))
                  .override(thumbSize, thumbSize)
@@ -563,9 +576,9 @@ public final class ConversationListItem extends ConstraintLayout
                      new OverlayTransformation(ContextCompat.getColor(context, R.color.transparent_black_08)),
                      new CenterCrop()
                  )
-                 .into(target);
+                 .into(thumbTarget);
 
-    return Transformations.map(target.getLiveData(), bitmap -> {
+    return Transformations.map(thumbTarget.getLiveData(), bitmap -> {
       if (bitmap == null) {
         return body;
       }

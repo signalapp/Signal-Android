@@ -13,8 +13,11 @@ import java.security.MessageDigest
 class OverlayTransformation(
   @ColorInt private val color: Int
 ) : BitmapTransformation() {
+
+  private val id = "${OverlayTransformation::class.java.name}$color"
+
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
-    messageDigest.update("${OverlayTransformation::class.java.name}$color".toByteArray(CHARSET))
+    messageDigest.update(id.toByteArray(CHARSET))
   }
 
   override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
@@ -25,5 +28,13 @@ class OverlayTransformation(
     canvas.drawColor(color)
 
     return outBitmap
+  }
+
+  override fun equals(other: Any?): Boolean {
+    return (other as? OverlayTransformation)?.color == color
+  }
+
+  override fun hashCode(): Int {
+    return id.hashCode()
   }
 }

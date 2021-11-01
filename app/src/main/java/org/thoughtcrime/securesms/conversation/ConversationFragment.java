@@ -17,6 +17,9 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.LayoutTransition;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -215,6 +218,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private View                        toolbarShadow;
   private Stopwatch                   startupStopwatch;
   private View                        reactionsShade;
+  private LayoutTransition            layoutTransition;
+  private TransitionListener          transitionListener;
 
   private GiphyMp4ProjectionRecycler giphyMp4ProjectionRecycler;
   private Colorizer                  colorizer;
@@ -247,6 +252,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     videoContainer = view.findViewById(R.id.video_container);
     list           = view.findViewById(android.R.id.list);
     composeDivider = view.findViewById(R.id.compose_divider);
+
+    layoutTransition   = new LayoutTransition();
+    transitionListener = new TransitionListener(list);
 
     scrollToBottomButton  = view.findViewById(R.id.scroll_to_bottom);
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
@@ -412,6 +420,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     super.onStart();
     initializeTypingObserver();
     SignalProxyUtil.startListeningToWebsocket();
+    layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING).addListener(transitionListener);
   }
 
   @Override
@@ -435,6 +444,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void onStop() {
     super.onStop();
     ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(getViewLifecycleOwner());
+    layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING).removeListener(transitionListener);
   }
 
   @Override
@@ -1903,6 +1913,36 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           ViewUtil.fadeOut(toolbarShadow, 250);
         }
       }
+    }
+  }
+
+  private static final class TransitionListener implements Animator.AnimatorListener {
+
+    private final ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+
+    TransitionListener(RecyclerView recyclerView) {
+      animator.addUpdateListener(unused -> recyclerView.invalidate());
+      animator.setDuration(100L);
+    }
+
+    @Override
+    public void onAnimationStart(Animator animation) {
+      animator.start();
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animation) {
+      animator.end();
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animation) {
+      // Do Nothing
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+      // Do Nothing
     }
   }
 }
