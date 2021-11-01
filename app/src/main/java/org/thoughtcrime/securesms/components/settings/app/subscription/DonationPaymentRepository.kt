@@ -168,6 +168,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           }
         }
       }.doOnError {
+        SignalStore.donationsValues().clearLevelOperation()
         LevelUpdate.updateProcessingState(false)
       }.subscribeOn(Schedulers.io())
   }
