@@ -161,25 +161,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       throws UndeliverableMessageException
   {
     try {
-      if (attachment.isSticker()) {
-        Log.d(TAG, "Sticker, not compressing.");
-      } else if (MediaUtil.isVideo(attachment)) {
-        Log.i(TAG, "Compressing video.");
-        attachment = transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
-        if (!constraints.isSatisfied(context, attachment)) {
-          throw new UndeliverableMessageException("Size constraints could not be met on video!");
-        }
-      } else if (constraints.canResize(attachment)) {
-        Log.i(TAG, "Compressing image.");
-        MediaStream converted = compressImage(context, attachment, constraints);
-        attachmentDatabase.updateAttachmentData(attachment, converted, false);
-        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
-      } else if (constraints.isSatisfied(context, attachment)) {
-        Log.i(TAG, "Not compressing.");
-        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
-      } else {
-        throw new UndeliverableMessageException("Size constraints could not be met!");
-      }
+      attachmentDatabase.markAttachmentAsTransformed(attachmentId);
     } catch (IOException | MmsException e) {
       throw new UndeliverableMessageException(e);
     }
