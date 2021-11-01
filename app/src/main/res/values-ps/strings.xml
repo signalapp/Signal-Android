@@ -316,16 +316,7 @@
     <item quantity="one">محاوره انباکس ته ولیږدول شوه</item>
     <item quantity="other">محاورې انباکس ته %dولیږدول شوې</item>
   </plurals>
-  <string name="ConversationListFragment_read">لوستل</string>
-  <string name="ConversationListFragment_unread">نالوستل شوي</string>
-  <string name="ConversationListFragment_pin">Pin</string>
-  <string name="ConversationListFragment_unpin">له سنجاق څخه ایستل</string>
-  <string name="ConversationListFragment_mute">صامت</string>
-  <string name="ConversationListFragment_unmute">بیرته خلاصول</string>
   <string name="ConversationListFragment_select">ټاکل</string>
-  <string name="ConversationListFragment_archive">ارشیف</string>
-  <string name="ConversationListFragment_unarchive">له ارشیف څخه ایستل</string>
-  <string name="ConversationListFragment_delete">پاکول</string>
   <string name="ConversationListFragment_select_all">ټول وټاکئ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">د کلید د تبادلې پیغام</string>
@@ -807,9 +798,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">شبکه اې ډول لیدل</string>
   <string name="MediaOverviewActivity_List_view_description">د لیست په ډول لیدل</string>
   <string name="MediaOverviewActivity_Selected_description">ټاکل شوي</string>
-  <string name="MediaOverviewActivity_save">ثبت</string>
   <string name="MediaOverviewActivity_select_all">ټول وټاکئ</string>
-  <string name="MediaOverviewActivity_delete">پاکول</string>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">اډیو</string>
   <string name="MediaOverviewActivity_video">ویډیو</string>

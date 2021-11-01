@@ -327,16 +327,52 @@
     <item quantity="few">%d konverzacije premještene u inbox</item>
     <item quantity="other">%d konverzacija premješteno u inbox</item>
   </plurals>
-  <string name="ConversationListFragment_read">Pročitano</string>
-  <string name="ConversationListFragment_unread">Nepročitano</string>
-  <string name="ConversationListFragment_pin">Istakni</string>
-  <string name="ConversationListFragment_unpin">Prestani isticati</string>
-  <string name="ConversationListFragment_mute">Stišaj</string>
-  <string name="ConversationListFragment_unmute">Isključi stišavanje</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Pročitano</item>
+    <item quantity="few">Pročitano</item>
+    <item quantity="other">Pročitano</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Nepročitano</item>
+    <item quantity="few">Nepročitano</item>
+    <item quantity="other">Nepročitano</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Istakni</item>
+    <item quantity="few">Istakni</item>
+    <item quantity="other">Istakni</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Prestani isticati</item>
+    <item quantity="few">Prestani isticati</item>
+    <item quantity="other">Prestani isticati</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Stišaj</item>
+    <item quantity="few">Stišaj</item>
+    <item quantity="other">Stišaj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Isključi stišavanje</item>
+    <item quantity="few">Isključi stišavanje</item>
+    <item quantity="other">Isključi stišavanje</item>
+  </plurals>
   <string name="ConversationListFragment_select">Odaberi</string>
-  <string name="ConversationListFragment_archive">Arhiviraj</string>
-  <string name="ConversationListFragment_unarchive">Dearhiviraj</string>
-  <string name="ConversationListFragment_delete">Izbriši</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arhiviraj</item>
+    <item quantity="few">Arhiviraj</item>
+    <item quantity="other">Arhiviraj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Dearhiviraj</item>
+    <item quantity="few">Dearhiviraj</item>
+    <item quantity="other">Dearhiviraj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Izbriši</item>
+    <item quantity="few">Izbriši</item>
+    <item quantity="other">Izbriši</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Odaberi sve</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d odabrana</item>
@@ -852,9 +888,17 @@
   <string name="MediaOverviewActivity_Grid_view_description">Sličice</string>
   <string name="MediaOverviewActivity_List_view_description">Popis</string>
   <string name="MediaOverviewActivity_Selected_description">Označeno</string>
-  <string name="MediaOverviewActivity_save">Pohrani</string>
   <string name="MediaOverviewActivity_select_all">Odaberi sve</string>
-  <string name="MediaOverviewActivity_delete">Izbriši</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Pohrani</item>
+    <item quantity="few">Pohrani</item>
+    <item quantity="other">Pohrani</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Izbriši</item>
+    <item quantity="few">Izbriši</item>
+    <item quantity="other">Izbriši</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d odabrana (%2$s)</item>
     <item quantity="few">%1$d odabrane (%2$s)</item>
@@ -3421,6 +3465,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SubscribeFragment__processing_payment">Obrađujem…</string>
   <string name="DonationsErrors__payment_failed">Plaćanje nije uspjelo</string>
   <string name="DonationsErrors__your_payment">Vašu uplatu nije bilo moguće obraditi i iznos nije naplaćen. Molimo, pokušajte ponovo.</string>
+  <string name="DonationsErrors__redemption_still_pending">Uplata još u obradi</string>
   <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možda nećete odmah vidjeti svoju značku, ali radimo na tome!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nedostupan</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Morate podesiti Google Pay da biste donirali kroz aplikaciju.</string>

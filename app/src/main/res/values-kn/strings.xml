@@ -318,16 +318,7 @@
     <item quantity="one">ಸಂಭಾಷಣೆಯನ್ನು ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಸರಿಸಲಾಗಿದೆ</item>
     <item quantity="other"> %d  ಸಂಭಾಷಣೆಗಳನ್ನು ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಸರಿಸಲಾಗಿದೆ</item>
   </plurals>
-  <string name="ConversationListFragment_read">ಓದಿ</string>
-  <string name="ConversationListFragment_unread">ಓದದಿರುವುದು</string>
-  <string name="ConversationListFragment_pin">ಪಿನ್</string>
-  <string name="ConversationListFragment_unpin">ಅನ್‌ಪಿನ್ ಮಾಡು</string>
-  <string name="ConversationListFragment_mute">ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-  <string name="ConversationListFragment_unmute">ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="ConversationListFragment_select">ಆಯ್ಕೆ ಮಾಡಿ</string>
-  <string name="ConversationListFragment_archive">ಆರ್ಕೈವ್ ಮಾಡಿ</string>
-  <string name="ConversationListFragment_unarchive">ಆರ್ಕೈವ್ ತೆಗೆಯಿರಿ</string>
-  <string name="ConversationListFragment_delete">ಅಳಿಸು</string>
   <string name="ConversationListFragment_select_all">ಎಲ್ಲಾ ಆಯ್ಕೆಮಾಡಿ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ಕೀ ವಿನಿಮಯ ಸಂದೇಶ</string>
@@ -806,9 +797,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">ಗ್ರಿಡ್ ವ್ಯೂ</string>
   <string name="MediaOverviewActivity_List_view_description">ಲಿಸ್ಟ್ ವ್ಯೂ</string>
   <string name="MediaOverviewActivity_Selected_description">ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
-  <string name="MediaOverviewActivity_save">ಉಳಿಸಿ</string>
   <string name="MediaOverviewActivity_select_all">ಎಲ್ಲಾ ಆಯ್ಕೆಮಾಡಿ</string>
-  <string name="MediaOverviewActivity_delete">ಅಳಿಸು</string>
   <string name="MediaOverviewActivity_file">ಫೈಲ್</string>
   <string name="MediaOverviewActivity_audio">ಆಡಿಯೊ</string>
   <string name="MediaOverviewActivity_video">ವೀಡಿಯೊ</string>

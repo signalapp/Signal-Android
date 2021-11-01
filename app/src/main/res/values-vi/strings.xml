@@ -302,16 +302,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Đã chuyển %d cuộc trò chuyện vào hộp thư đến</item>
   </plurals>
-  <string name="ConversationListFragment_read">Đã đọc</string>
-  <string name="ConversationListFragment_unread">Chưa đọc</string>
-  <string name="ConversationListFragment_pin">Ghim</string>
-  <string name="ConversationListFragment_unpin">Gỡ ghim</string>
-  <string name="ConversationListFragment_mute">Im lặng</string>
-  <string name="ConversationListFragment_unmute">Tắt tạm im</string>
   <string name="ConversationListFragment_select">Chọn</string>
-  <string name="ConversationListFragment_archive">Lưu trữ</string>
-  <string name="ConversationListFragment_unarchive">Bỏ lưu trữ</string>
-  <string name="ConversationListFragment_delete">Xóa</string>
   <string name="ConversationListFragment_select_all">Chọn tất cả</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Tin nhắn trao đổi mã khóa</string>
@@ -757,9 +748,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Hiển thị theo ô</string>
   <string name="MediaOverviewActivity_List_view_description">Hiển thị theo danh sách</string>
   <string name="MediaOverviewActivity_Selected_description">Đã chọn</string>
-  <string name="MediaOverviewActivity_save">Lưu</string>
   <string name="MediaOverviewActivity_select_all">Chọn tất cả</string>
-  <string name="MediaOverviewActivity_delete">Xóa</string>
   <string name="MediaOverviewActivity_file">Tệp</string>
   <string name="MediaOverviewActivity_audio">Âm thanh</string>
   <string name="MediaOverviewActivity_video">Video</string>

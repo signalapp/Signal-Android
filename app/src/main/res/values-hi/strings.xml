@@ -316,16 +316,7 @@
     <item quantity="one">बातचीत को इनबॉक्स में ले जाया गया</item>
     <item quantity="other">%d बातचीत को इनबॉक्स में ले जाया गया</item>
   </plurals>
-  <string name="ConversationListFragment_read">पठित</string>
-  <string name="ConversationListFragment_unread">अनपढ़ा करें</string>
-  <string name="ConversationListFragment_pin">पिन</string>
-  <string name="ConversationListFragment_unpin">अनपिन करें</string>
-  <string name="ConversationListFragment_mute">म्युट</string>
-  <string name="ConversationListFragment_unmute">अनम्यूट</string>
   <string name="ConversationListFragment_select">चुनिए</string>
-  <string name="ConversationListFragment_archive">संग्रहित करें</string>
-  <string name="ConversationListFragment_unarchive">अनारक्षित करें</string>
-  <string name="ConversationListFragment_delete">हटाए </string>
   <string name="ConversationListFragment_select_all">सभी को चुन लो</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय मेसेज</string>
@@ -804,9 +795,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">ग्रिड व्यु</string>
   <string name="MediaOverviewActivity_List_view_description">लिस्ट व्यु</string>
   <string name="MediaOverviewActivity_Selected_description">चयनित</string>
-  <string name="MediaOverviewActivity_save">सेव</string>
   <string name="MediaOverviewActivity_select_all">सभी को चुन लो</string>
-  <string name="MediaOverviewActivity_delete">हटाए </string>
   <string name="MediaOverviewActivity_file">फ़ाइल</string>
   <string name="MediaOverviewActivity_audio">ऑडियो</string>
   <string name="MediaOverviewActivity_video">वीडियो</string>

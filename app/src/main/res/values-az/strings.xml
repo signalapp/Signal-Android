@@ -316,16 +316,7 @@
     <item quantity="one">Söhbət gələnlər qutusuna köçürüldü</item>
     <item quantity="other">%d danışıq gələn qutusuna köçürüldü</item>
   </plurals>
-  <string name="ConversationListFragment_read">Oxundu</string>
-  <string name="ConversationListFragment_unread">Oxunmadı</string>
-  <string name="ConversationListFragment_pin">Sancaqla</string>
-  <string name="ConversationListFragment_unpin">Sancağı götür</string>
-  <string name="ConversationListFragment_mute">Səssizə al</string>
-  <string name="ConversationListFragment_unmute">Səsi aç</string>
   <string name="ConversationListFragment_select">Seçin</string>
-  <string name="ConversationListFragment_archive">Arxivlə</string>
-  <string name="ConversationListFragment_unarchive">Arxivdən çıxart</string>
-  <string name="ConversationListFragment_delete">Sil</string>
   <string name="ConversationListFragment_select_all">Hamısını seç</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d seçildi</item>
@@ -811,9 +802,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tor görünüşü</string>
   <string name="MediaOverviewActivity_List_view_description">Siyahı görünüşü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçildi</string>
-  <string name="MediaOverviewActivity_save">Saxla</string>
   <string name="MediaOverviewActivity_select_all">Hamısını seç</string>
-  <string name="MediaOverviewActivity_delete">Sil</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d seçildi (%2$s)</item>
     <item quantity="other">%1$d seçildi (%2$s)</item>

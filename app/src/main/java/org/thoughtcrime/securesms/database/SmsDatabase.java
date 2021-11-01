@@ -521,7 +521,7 @@ public class SmsDatabase extends MessageDatabase {
         }
       }
 
-      if (threadUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
+      if (threadUpdates.isEmpty() && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId(), timestamp);
       }
 

@@ -308,10 +308,6 @@
     <item quantity="one">ବାର୍ତ୍ତାଳାପକୁ ଇନବକ୍ସକୁ ଘୁଞ୍ଚାଇଲା</item>
     <item quantity="other">%dଟି ବାର୍ତ୍ତାଳାପକୁ ଇନବକ୍ସକୁ ଘୁଞ୍ଚାଇଲା</item>
   </plurals>
-  <string name="ConversationListFragment_read">ପଢ଼ା ଗଲା</string>
-  <string name="ConversationListFragment_mute">ନୀରବ</string>
-  <string name="ConversationListFragment_unmute">ନୀରବତା ଭାଙ୍ଗନ୍ତୁ</string>
-  <string name="ConversationListFragment_delete">ବିଲୋପ କରନ୍ତୁ</string>
   <string name="ConversationListFragment_select_all">ସବୁକିଛି ମନୋନୟନ କରନ୍ତୁ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ମୁଖ୍ୟ ବିନିମୟ ବାର୍ତ୍ତା</string>
@@ -785,9 +781,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">ଗ୍ରୀଡ଼୍ ଭିଉ</string>
   <string name="MediaOverviewActivity_List_view_description">ତାଲିକା ଭିଉ</string>
   <string name="MediaOverviewActivity_Selected_description">ମନୋନୀତ</string>
-  <string name="MediaOverviewActivity_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <string name="MediaOverviewActivity_select_all">ସବୁକିଛି ମନୋନୟନ କରନ୍ତୁ</string>
-  <string name="MediaOverviewActivity_delete">ବିଲୋପ କରନ୍ତୁ</string>
   <string name="MediaOverviewActivity_file">ଫାଇଲ୍</string>
   <string name="MediaOverviewActivity_audio">ଅଡ଼ିଓ</string>
   <string name="MediaOverviewActivity_video">ଭିଡ଼ିଓ</string>

@@ -3,6 +3,9 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://storage.googleapis.com/r8-releases/raw'
+        }
         jcenter {
             content {
                 includeVersion 'org.jetbrains.trove4j', 'trove4j', '20160824'
@@ -17,7 +20,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.2'
+        classpath 'com.android.tools:r8:3.0.73'
+        classpath 'com.android.tools.build:gradle:7.0.3'
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.17'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"

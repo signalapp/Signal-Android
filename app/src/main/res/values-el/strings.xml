@@ -312,17 +312,12 @@
     <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
-  <string name="ConversationListFragment_read">Διαβάστηκε</string>
-  <string name="ConversationListFragment_unread">Μη αναγνωσμένο</string>
-  <string name="ConversationListFragment_pin">Καρφίτσωμα</string>
-  <string name="ConversationListFragment_unpin">Ξεκαρφίτσωμα</string>
-  <string name="ConversationListFragment_mute">Σίγαση</string>
-  <string name="ConversationListFragment_unmute">Αναίρεση σίγασης</string>
   <string name="ConversationListFragment_select">Επιλογή</string>
-  <string name="ConversationListFragment_archive">Αρχείο</string>
-  <string name="ConversationListFragment_unarchive">Μεταφορά στα εισερχόμενα</string>
-  <string name="ConversationListFragment_delete">Διαγραφή</string>
   <string name="ConversationListFragment_select_all">Επιλογή όλων</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d επιλεγμένο</item>
+    <item quantity="other">%d επιλεγμένα</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιού</string>
   <!--ConversationListItemAction-->
@@ -665,7 +660,7 @@
   <string name="ManageProfileFragment_username">Όνομα χρήστη</string>
   <string name="ManageProfileFragment_about">Πληροφορίες</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Γράψε μερικές λέξεις για σένα</string>
-  <string name="ManageProfileFragment_your_name">Το όνομά σας</string>
+  <string name="ManageProfileFragment_your_name">Το όνομά σου</string>
   <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
   <string name="ManageProfileFragment_badges">Εμβλήματα</string>
@@ -803,9 +798,11 @@
   <string name="MediaOverviewActivity_Grid_view_description">Προβολή σε πλέγμα</string>
   <string name="MediaOverviewActivity_List_view_description">Προβολή σε λίστα</string>
   <string name="MediaOverviewActivity_Selected_description">Επιλεγμένα</string>
-  <string name="MediaOverviewActivity_save">Αποθήκευση</string>
   <string name="MediaOverviewActivity_select_all">Επιλογή όλων</string>
-  <string name="MediaOverviewActivity_delete">Διαγραφή</string>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d επιλεγμένο (%2$s)</item>
+    <item quantity="other">%1$d επιλεγμένα (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Αρχείο</string>
   <string name="MediaOverviewActivity_audio">Ήχος</string>
   <string name="MediaOverviewActivity_video">Βίντεο</string>
@@ -1815,7 +1812,7 @@
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
   <string name="EditProfileFragment__group_description">Περιγραφή ομάδας</string>
   <!--EditProfileNameFragment-->
-  <string name="EditProfileNameFragment_your_name">Το όνομά σας</string>
+  <string name="EditProfileNameFragment_your_name">Το όνομά σου</string>
   <string name="EditProfileNameFragment_first_name">Όνομα</string>
   <string name="EditProfileNameFragment_last_name_optional">Επώνυμο (προαιρετικό)</string>
   <string name="EditProfileNameFragment_save">Αποθήκευση</string>
@@ -1886,6 +1883,16 @@
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Παρακαλώ διάλεξε ένα από τα παρακάτω --</item>
+    <item>Κάτι δεν δουλεύει</item>
+    <item>Αίτημα για νέες δυνατότητες</item>
+    <item>Ερώτηση</item>
+    <item>Σχόλια</item>
+    <item>Άλλο</item>
+    <item>Πληρωμές (MobileCoin)</item>
+    <item>Δωρεές (Συντηρητές &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -1996,6 +2003,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
   <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
+  <string name="preferences__payments">Πληρωμές</string>
   <string name="preferences__payments_beta">Πληρωμή (Beta)</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2107,9 +2115,12 @@
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Όλη η δραστηριότητα</string>
+  <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
   <string name="PaymentsAllActivityFragment__sent">Στάλθηκε στις</string>
+  <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
   <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
   <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
+  <string name="PaymentsHomeFragment__see_all">Προβολή όλων</string>
   <string name="PaymentsHomeFragment__send">Αποστολή</string>
   <string name="PaymentsHomeFragment__currency_conversion">Μετατροπή νομίσματος</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Απενεργοποίηση πληρωμών</string>
@@ -2134,13 +2145,16 @@
   <string name="PaymentsDetailsFragment__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="PaymentsDetailsFragment__network_fee">Χρέωση δικτύου</string>
   <string name="PaymentsDetailsFragment__to">Προς</string>
+  <string name="PaymentsDetailsFragment__from">Από</string>
   <string name="PaymentsDetailsFragment__block_number">Φραγή αριθμού</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Μεταφορά</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">Σκανάρισμα κωδικού QR</string>
   <string name="PaymentsTransferFragment__next">Επόμενο</string>
   <string name="PaymentsTransferFragment__settings">Ρυθμίσεις</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Αίτημα</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2153,6 +2167,7 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Προσθήκη σημείωσης</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Σημείωση</string>
@@ -2762,16 +2777,19 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Σχετικά με το MobileCoin</string>
   <string name="payment_info_card_hide">Απόκρυψη</string>
+  <string name="payment_info_card_update_pin">Ανανέωση PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate">Απενεργοποίηση</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Φράση ανάκτησης</string>
+  <string name="PaymentsRecoveryStartFragment__start">Εκκίνηση</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Φράση ανάκτησης</string>
   <string name="PaymentsRecoveryPasteFragment__next">Επόμενο</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Επόμενο</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Eπεξεργασία</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Προηγούμενο</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Αντιγραφή</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Λέξη %1$d</string>
@@ -2785,6 +2803,7 @@
   <string name="PaymentNotificationsView__view">Εμφάνιση</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Στείλε ένα μήνυμα</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Δεν είσαι σε κοινές ομάδες με αυτό το άτομο. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Καμία από τις επαφές σου ή τα άτομα με τα οποία συνομιλείς δεν είναι σε αυτή την ομάδα. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
@@ -2864,7 +2883,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <string name="PrivacySettingsFragment__app_security">Ασφάλεια εφαρμογής</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
-  <string name="PrivacySettingsFragment__signal_message_and_calls">Κλήσεις και μηνύματα Signal. οι κλήσεις πάντα αναμεταδίδονται, και προστατευμένος αποστολέας</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Κλήσεις και μηνύματα Signal, κλήσεις που πάντα αναμεταδίδονται, και προστατευμένος αποστολέας</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Προκαθορισμένο χρονόμετρο για νέες συνομιλίες</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ορισμός ενός προκαθορισμένου χρόνου εξαφάνισης μηνυμάτων για όλες τις συνομιλίες που ξεκινάς εσύ.</string>
   <!--AdvancedPrivacySettingsFragment-->
@@ -3115,9 +3134,12 @@
   <string name="SubscribeFragment__confirm">Επιβεβαίωση</string>
   <string name="SubscribeFragment__update_subscription">Ανανέωση συνδρομής</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Η συνδρομή σου ακυρώθηκε.</string>
+  <string name="SubscribeFragment__update_subscription_question">Ανανέωση συνδρομής;</string>
   <string name="SubscribeFragment__update">Ενημέρωση</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Θα χρεωθείς ολόκληρο το ποσό της νέας συνδρομής σήμερα. Η συνδρομή σου θα ανανεωθεί %1$s.</string>
   <string name="Subscription__s_per_month">%s/μήνα</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/μήνα · Ανανεώνεται %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/μήνα · Λήγει %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Το Signal είναι μια ΜΚΟ χωρις διαφημίσεις και επενδυτές, που συντηρείται μόνο από τα άτομα που το χρησιμοποιούν και το θεωρούν σημαντικό. Με μια επαναλαμβανόμενη μηνιαία συνεισφορά παίρνεις ένα έμβλημα για το προφίλ σου, για να δείξεις την υποστήριξή σου.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Γιατι να συνεισφέρω;</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Η ομάδα του Signal είναι προσηλωμένη στην αποστολή της ανάπτυξης τεχνολογίας ιδιωτικότητας ανοιχτού κώδικα, που προστατεύει την ελευθερία της έκφρασης και δίνει τη δυνατότητα για ασφαλείς παγκόσμιες επικοινωνίες. Η συνεισφορά σου μας βοηθά σε αυτή την αποστολή. Χωρίς διαφημίσεις. Χωρίς παρακολούθηση. Σοβαρά.</string>
@@ -3127,6 +3149,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Κέρδισες ένα έμβλημα %s! Δείξε στα άτομα που συνομιλείς πως υποστηρίζεις το Signal, βάζοντας το έμβλημά σου στο προφίλ σου.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου</string>
   <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
   <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
   <string name="ManageDonationsFragment__badges">Εμβλήματα</string>
@@ -3144,8 +3167,18 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα και όχι για τα δεδομένα σου, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Γίνε υποστηρικτής</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
+  <string name="Subscription__verification_failed">Αποτυχία επιβεβαίωσης συνδρομής</string>
+  <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>
   <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
+  <string name="Subscription__earn_a_s_badge">Κέρδισε ένα έμβλημα %1$s</string>
   <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
   <string name="DonationsErrors__payment_failed">Η πληρωμή απέτυχε</string>
+  <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
+  <string name="DonationsErrors__redemption_still_pending">Εκκρεμεί η εξαργύρωση</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Μπορεί να μην δεις το έμβλημά σου κατ\' ευθείαν, αλλά το ετοιμάζουμε!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay μη διαθέσιμο</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Πρέπει να ενεργοποιήσεις το Google Pay για να κάνεις δωρεά μέσω της εφαρμογής.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Αποτυχία ακύρωσης συνδρομής</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Πρέπει να υπάρχει σύνδεση στο διαδίκτυο για την ακύρωση της συνδρομής.</string>
   <!--EOF-->
 </resources>

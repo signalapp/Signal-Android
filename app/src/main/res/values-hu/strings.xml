@@ -317,17 +317,12 @@
     <item quantity="one">Beszélgetés áthelyezve a bejövőbe</item>
     <item quantity="other">%d db beszélgetés áthelyezve a bejövő üzenetek közé</item>
   </plurals>
-  <string name="ConversationListFragment_read">Elolvasva</string>
-  <string name="ConversationListFragment_unread">Olvasatlan</string>
-  <string name="ConversationListFragment_pin">Rögzít</string>
-  <string name="ConversationListFragment_unpin">Felold</string>
-  <string name="ConversationListFragment_mute">Némítás</string>
-  <string name="ConversationListFragment_unmute">Némítás feloldása</string>
   <string name="ConversationListFragment_select">Kiválasztás</string>
-  <string name="ConversationListFragment_archive">Archiválás</string>
-  <string name="ConversationListFragment_unarchive">Archívumból visszahelyezés</string>
-  <string name="ConversationListFragment_delete">Törlés</string>
   <string name="ConversationListFragment_select_all">Összes kiválasztása</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d kiválasztva</item>
+    <item quantity="other">%d kiválasztva</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
   <!--ConversationListItemAction-->
@@ -808,9 +803,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rácsos nézet</string>
   <string name="MediaOverviewActivity_List_view_description">Listanézet</string>
   <string name="MediaOverviewActivity_Selected_description">Kiválasztott</string>
-  <string name="MediaOverviewActivity_save">Mentés</string>
   <string name="MediaOverviewActivity_select_all">Összes kiválasztása</string>
-  <string name="MediaOverviewActivity_delete">Törlés</string>
   <string name="MediaOverviewActivity_file">Fájl</string>
   <string name="MediaOverviewActivity_audio">Hang</string>
   <string name="MediaOverviewActivity_video">Videó</string>

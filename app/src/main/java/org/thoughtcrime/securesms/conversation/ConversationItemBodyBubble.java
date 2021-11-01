@@ -63,11 +63,19 @@ public class ConversationItemBodyBubble extends LinearLayout {
   }
 
   public void setQuoteViewProjection(@Nullable Projection quoteViewProjection) {
+    if (this.quoteViewProjection != null) {
+      this.quoteViewProjection.release();
+    }
+
     this.quoteViewProjection = quoteViewProjection;
     clipProjectionDrawable.setProjections(getProjections());
   }
 
   public void setVideoPlayerProjection(@Nullable Projection videoPlayerProjection) {
+    if (this.videoPlayerProjection != null) {
+      this.videoPlayerProjection.release();
+    }
+
     this.videoPlayerProjection = videoPlayerProjection;
     clipProjectionDrawable.setProjections(getProjections());
   }

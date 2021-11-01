@@ -340,16 +340,61 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Symudwyd %d sgwrs i\'r blwch derbyn</item>
     <item quantity="other">Symudwyd %d sgwrs i\'r blwch derbyn</item>
   </plurals>
-  <string name="ConversationListFragment_read">Darllen</string>
-  <string name="ConversationListFragment_unread">Dad-ddarllen</string>
-  <string name="ConversationListFragment_pin">Pinio</string>
-  <string name="ConversationListFragment_unpin">Dadbinio</string>
-  <string name="ConversationListFragment_mute">Tewi</string>
-  <string name="ConversationListFragment_unmute">Dad-dewi</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Darllen</item>
+    <item quantity="two">Darllen</item>
+    <item quantity="many">Darllen</item>
+    <item quantity="other">Darllen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Dad-ddarllen</item>
+    <item quantity="two">Dad-ddarllen</item>
+    <item quantity="many">Dad-ddarllen</item>
+    <item quantity="other">Dad-ddarllen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Pinio</item>
+    <item quantity="two">Pinio</item>
+    <item quantity="many">Pinio</item>
+    <item quantity="other">Pinio</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Dadbinio</item>
+    <item quantity="two">Dadbinio</item>
+    <item quantity="many">Dadbinio</item>
+    <item quantity="other">Dadbinio</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Tewi</item>
+    <item quantity="two">Tewi</item>
+    <item quantity="many">Tewi</item>
+    <item quantity="other">Tewi</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Dad-dewi</item>
+    <item quantity="two">Dad-dewi</item>
+    <item quantity="many">Dad-dewi</item>
+    <item quantity="other">Dad-dewi</item>
+  </plurals>
   <string name="ConversationListFragment_select">Dewis</string>
-  <string name="ConversationListFragment_archive">Archif</string>
-  <string name="ConversationListFragment_unarchive">Dad-archifo</string>
-  <string name="ConversationListFragment_delete">Dileu</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archifo</item>
+    <item quantity="two">Archifo</item>
+    <item quantity="many">Archifo</item>
+    <item quantity="other">Archifo</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Dad-archifio</item>
+    <item quantity="two">Dad-archifio</item>
+    <item quantity="many">Dad-archifio</item>
+    <item quantity="other">Dad-archifio</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Dileu</item>
+    <item quantity="two">Dileu</item>
+    <item quantity="many">Dileu</item>
+    <item quantity="other">Dileu</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Dewis popeth</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d wedi\'i ddewis</item>
@@ -895,9 +940,19 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaOverviewActivity_Grid_view_description">Golwg grid</string>
   <string name="MediaOverviewActivity_List_view_description">Golwg rhestr</string>
   <string name="MediaOverviewActivity_Selected_description">Dewiswyd</string>
-  <string name="MediaOverviewActivity_save">Cadw</string>
   <string name="MediaOverviewActivity_select_all">Dewis popeth</string>
-  <string name="MediaOverviewActivity_delete">Dileu</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Cadw</item>
+    <item quantity="two">Cadw</item>
+    <item quantity="many">Cadw</item>
+    <item quantity="other">Cadw</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Dileu</item>
+    <item quantity="two">Dileu</item>
+    <item quantity="many">Dileu</item>
+    <item quantity="other">Dileu</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d wedi\'u dewis (%2$s)</item>
     <item quantity="two">%1$d wedi\'u dewis (%2$s)</item>

@@ -305,16 +305,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%dperbualan dialihkan ke peti masuk</item>
   </plurals>
-  <string name="ConversationListFragment_read">Baca</string>
-  <string name="ConversationListFragment_unread">Belum dibaca</string>
-  <string name="ConversationListFragment_pin">Pin</string>
-  <string name="ConversationListFragment_unpin">Nyahpin</string>
-  <string name="ConversationListFragment_mute">Bisukan</string>
-  <string name="ConversationListFragment_unmute">Nyahbisukan</string>
   <string name="ConversationListFragment_select">Pilih</string>
-  <string name="ConversationListFragment_archive">Arkib</string>
-  <string name="ConversationListFragment_unarchive">Nyaharkib</string>
-  <string name="ConversationListFragment_delete">Padam</string>
   <string name="ConversationListFragment_select_all">Pilih semua</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesej pertukaran kunci</string>
@@ -765,9 +756,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Pandangan grid</string>
   <string name="MediaOverviewActivity_List_view_description">Pandangan senarai</string>
   <string name="MediaOverviewActivity_Selected_description">Dipilih</string>
-  <string name="MediaOverviewActivity_save">Simpan</string>
   <string name="MediaOverviewActivity_select_all">Pilih semua</string>
-  <string name="MediaOverviewActivity_delete">Padam</string>
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>

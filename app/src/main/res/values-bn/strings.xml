@@ -316,16 +316,7 @@
     <item quantity="one"> টি আলাপন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
   </plurals>
-  <string name="ConversationListFragment_read">পড়ুন</string>
-  <string name="ConversationListFragment_unread">অপঠিত করুন</string>
-  <string name="ConversationListFragment_pin">পিন</string>
-  <string name="ConversationListFragment_unpin">আনপিন করুন</string>
-  <string name="ConversationListFragment_mute">নিরব</string>
-  <string name="ConversationListFragment_unmute">আনমিউট করুন</string>
   <string name="ConversationListFragment_select">নির্বাচন</string>
-  <string name="ConversationListFragment_archive">আর্কাইভ</string>
-  <string name="ConversationListFragment_unarchive">আর্কাইভ মুক্ত করুন</string>
-  <string name="ConversationListFragment_delete">মুছুন</string>
   <string name="ConversationListFragment_select_all">সবগুলো নির্বাচন করুন</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key বিনিময় বার্তা</string>
@@ -804,9 +795,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">গার্ড ভিউ</string>
   <string name="MediaOverviewActivity_List_view_description">লিস্ট ভিউ</string>
   <string name="MediaOverviewActivity_Selected_description">নির্বাচিত</string>
-  <string name="MediaOverviewActivity_save">সংরক্ষণ</string>
   <string name="MediaOverviewActivity_select_all">সবগুলো নির্বাচন করুন</string>
-  <string name="MediaOverviewActivity_delete">মুছুন</string>
   <string name="MediaOverviewActivity_file">ফাইল</string>
   <string name="MediaOverviewActivity_audio">শব্দ</string>
   <string name="MediaOverviewActivity_video">ভিডিও</string>

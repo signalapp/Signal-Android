@@ -317,16 +317,7 @@
     <item quantity="one">گفتگو ان باکس میں چلی گئی</item>
     <item quantity="other">%dگفتگو ان باکس میں چلی گئی</item>
   </plurals>
-  <string name="ConversationListFragment_read">پڑھ لیا</string>
-  <string name="ConversationListFragment_unread">غیر پڑھے ہوئے</string>
-  <string name="ConversationListFragment_pin">Pin</string>
-  <string name="ConversationListFragment_unpin">Unpin</string>
-  <string name="ConversationListFragment_mute">خاموش</string>
-  <string name="ConversationListFragment_unmute">غیر خاموش</string>
   <string name="ConversationListFragment_select">منتخب کریں</string>
-  <string name="ConversationListFragment_archive">پوشیدہ خانہ</string>
-  <string name="ConversationListFragment_unarchive">غیر پس پردہ</string>
-  <string name="ConversationListFragment_delete">حذف کریں</string>
   <string name="ConversationListFragment_select_all">تمام منتخب کریں</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key تبادلہ کا پیغام</string>
@@ -804,9 +795,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">جالی دار نظارہ</string>
   <string name="MediaOverviewActivity_List_view_description">فہرست دیکھیں</string>
   <string name="MediaOverviewActivity_Selected_description">منتخب شدہ</string>
-  <string name="MediaOverviewActivity_save">محفوظ کریں</string>
   <string name="MediaOverviewActivity_select_all">تمام منتخب کریں</string>
-  <string name="MediaOverviewActivity_delete">حذف کریں</string>
   <string name="MediaOverviewActivity_file">فائل</string>
   <string name="MediaOverviewActivity_audio">آڈیو</string>
   <string name="MediaOverviewActivity_video">وڈیو</string>

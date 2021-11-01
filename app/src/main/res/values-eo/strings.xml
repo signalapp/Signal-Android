@@ -316,12 +316,6 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
-  <string name="ConversationListFragment_read">Legita</string>
-  <string name="ConversationListFragment_mute">Silentigi</string>
-  <string name="ConversationListFragment_unmute">Malsilentigi</string>
-  <string name="ConversationListFragment_archive">Enarĥivigi</string>
-  <string name="ConversationListFragment_unarchive">Elarĥivigi</string>
-  <string name="ConversationListFragment_delete">Forigi</string>
   <string name="ConversationListFragment_select_all">Elekti ĉiujn</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
@@ -800,9 +794,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Krada vido</string>
   <string name="MediaOverviewActivity_List_view_description">Lista vido</string>
   <string name="MediaOverviewActivity_Selected_description">Elektita</string>
-  <string name="MediaOverviewActivity_save">Konservi</string>
   <string name="MediaOverviewActivity_select_all">Elekti ĉiujn</string>
-  <string name="MediaOverviewActivity_delete">Forigi</string>
   <string name="MediaOverviewActivity_file">Dosiero</string>
   <string name="MediaOverviewActivity_audio">Sonaĵo</string>
   <string name="MediaOverviewActivity_video">Videaĵo</string>

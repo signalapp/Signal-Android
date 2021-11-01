@@ -335,16 +335,61 @@
     <item quantity="few">%d pogovori premaknjeni v nabiralnik</item>
     <item quantity="other">%d pogovorov premaknjenih v nabiralnik</item>
   </plurals>
-  <string name="ConversationListFragment_read">Prebrano</string>
-  <string name="ConversationListFragment_unread">Neprebrano</string>
-  <string name="ConversationListFragment_pin">Pripni</string>
-  <string name="ConversationListFragment_unpin">Odpni</string>
-  <string name="ConversationListFragment_mute">Utišaj</string>
-  <string name="ConversationListFragment_unmute">Prekini utišanje</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Prebrano</item>
+    <item quantity="two">Prebrano</item>
+    <item quantity="few">Prebrano</item>
+    <item quantity="other">Prebrano</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Neprebrano</item>
+    <item quantity="two">Neprebrano</item>
+    <item quantity="few">Neprebrano</item>
+    <item quantity="other">Neprebrano</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Pripni</item>
+    <item quantity="two">Pripni</item>
+    <item quantity="few">Pripni</item>
+    <item quantity="other">Pripni</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Odpni</item>
+    <item quantity="two">Odpni</item>
+    <item quantity="few">Odpni</item>
+    <item quantity="other">Odpni</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Utišaj</item>
+    <item quantity="two">Utišaj</item>
+    <item quantity="few">Utišaj</item>
+    <item quantity="other">Utišaj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Prekini utišanje</item>
+    <item quantity="two">Prekini utišanje</item>
+    <item quantity="few">Prekini utišanje</item>
+    <item quantity="other">Prekini utišanje</item>
+  </plurals>
   <string name="ConversationListFragment_select">Izberi</string>
-  <string name="ConversationListFragment_archive">Premakni v arhiv</string>
-  <string name="ConversationListFragment_unarchive">Od-arhiviraj</string>
-  <string name="ConversationListFragment_delete">Izbriši</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Premakni v arhiv</item>
+    <item quantity="two">Premakni v arhiv</item>
+    <item quantity="few">Premakni v arhiv</item>
+    <item quantity="other">Premakni v arhiv</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Premakni v nabiralnik</item>
+    <item quantity="two">Premakni v nabiralnik</item>
+    <item quantity="few">Od-arhiviraj</item>
+    <item quantity="other">Premakni v nabiralnik</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Izbriši</item>
+    <item quantity="two">Izbriši</item>
+    <item quantity="few">Izbriši</item>
+    <item quantity="other">Izbriši</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Označi vse</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d izbran</item>
@@ -890,9 +935,19 @@
   <string name="MediaOverviewActivity_Grid_view_description">Mrežni pogled</string>
   <string name="MediaOverviewActivity_List_view_description">Seznam</string>
   <string name="MediaOverviewActivity_Selected_description">Izbrano</string>
-  <string name="MediaOverviewActivity_save">Shrani</string>
   <string name="MediaOverviewActivity_select_all">Označi vse</string>
-  <string name="MediaOverviewActivity_delete">Izbriši</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Shrani</item>
+    <item quantity="two">Shrani</item>
+    <item quantity="few">Shrani</item>
+    <item quantity="other">Shrani</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Izbriši</item>
+    <item quantity="two">Izbriši</item>
+    <item quantity="few">Izbriši</item>
+    <item quantity="other">Izbriši</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d izbran (%2$s)</item>
     <item quantity="two">%1$d izbrana (%2$s)</item>

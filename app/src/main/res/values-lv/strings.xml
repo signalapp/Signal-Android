@@ -327,16 +327,7 @@
     <item quantity="one">Pārvietoja sarunu uz iesūtni </item>
     <item quantity="other">Pārvietoja %d sarunas uz iesūtni</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lasīta</string>
-  <string name="ConversationListFragment_unread">Nelasītie</string>
-  <string name="ConversationListFragment_pin">Piespraust</string>
-  <string name="ConversationListFragment_unpin">Atspraust</string>
-  <string name="ConversationListFragment_mute">Atspējot ziņas</string>
-  <string name="ConversationListFragment_unmute">Ieslēgt ziņas</string>
   <string name="ConversationListFragment_select">Atlasīt</string>
-  <string name="ConversationListFragment_archive">Arhīvs</string>
-  <string name="ConversationListFragment_unarchive">Izņemt no arhīva</string>
-  <string name="ConversationListFragment_delete">Dzēst</string>
   <string name="ConversationListFragment_select_all">Atzīmēt visus</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Atslēgapmaiņas ziņa</string>
@@ -844,9 +835,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Režģa skats</string>
   <string name="MediaOverviewActivity_List_view_description">Saraksta skats</string>
   <string name="MediaOverviewActivity_Selected_description">Izvēlētais</string>
-  <string name="MediaOverviewActivity_save">Saglabāt</string>
   <string name="MediaOverviewActivity_select_all">Atzīmēt visus</string>
-  <string name="MediaOverviewActivity_delete">Dzēst</string>
   <string name="MediaOverviewActivity_file">Fails</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>

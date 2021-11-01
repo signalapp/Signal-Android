@@ -316,16 +316,43 @@
     <item quantity="one">Conversazione spostata nei messaggi in arrivo</item>
     <item quantity="other">%d conversazioni spostate nei messaggi in arrivo</item>
   </plurals>
-  <string name="ConversationListFragment_read">Letta</string>
-  <string name="ConversationListFragment_unread">Non letta</string>
-  <string name="ConversationListFragment_pin">Fissa</string>
-  <string name="ConversationListFragment_unpin">Non fissare</string>
-  <string name="ConversationListFragment_mute">Silenzia</string>
-  <string name="ConversationListFragment_unmute">Non silenziare</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Letta</item>
+    <item quantity="other">Lette</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Non letta</item>
+    <item quantity="other">Non lette</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fissa</item>
+    <item quantity="other">Fissa</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Non fissare</item>
+    <item quantity="other">Non fissare</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Silenzia</item>
+    <item quantity="other">Silenzia</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Non silenziare</item>
+    <item quantity="other">Non silenziare</item>
+  </plurals>
   <string name="ConversationListFragment_select">Seleziona</string>
-  <string name="ConversationListFragment_archive">Archivia</string>
-  <string name="ConversationListFragment_unarchive">Estrai dall\'archivio</string>
-  <string name="ConversationListFragment_delete">Elimina</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archivia</item>
+    <item quantity="other">Archivia</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Estrai dall\'archivio</item>
+    <item quantity="other">Estrai dall\'archivio</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Elimina</item>
+    <item quantity="other">Elimina</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Seleziona tutto</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d selezionata</item>
@@ -811,9 +838,15 @@
   <string name="MediaOverviewActivity_Grid_view_description">Visualizzazione griglia</string>
   <string name="MediaOverviewActivity_List_view_description">Visualizzazione elenco</string>
   <string name="MediaOverviewActivity_Selected_description">Selezionato</string>
-  <string name="MediaOverviewActivity_save">Salva</string>
   <string name="MediaOverviewActivity_select_all">Seleziona tutto</string>
-  <string name="MediaOverviewActivity_delete">Elimina</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Salva</item>
+    <item quantity="other">Salva</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Elimina</item>
+    <item quantity="other">Elimina</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d selezionato (%2$s)</item>
     <item quantity="other">%1$d selezionati (%2$s)</item>

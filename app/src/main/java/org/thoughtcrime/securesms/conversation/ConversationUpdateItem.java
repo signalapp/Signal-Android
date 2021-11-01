@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -59,7 +60,9 @@ import java.util.concurrent.ExecutionException;
 public final class ConversationUpdateItem extends FrameLayout
                                           implements BindableConversationItem
 {
-  private static final String TAG = Log.tag(ConversationUpdateItem.class);
+  private static final String         TAG                   = Log.tag(ConversationUpdateItem.class);
+  private static final ProjectionList EMPTY_PROJECTION_LIST = new ProjectionList();
+
 
   private Set<MultiselectPart> batchSelected;
 
@@ -221,8 +224,8 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   @Override
-  public @NonNull List<Projection> getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
-    return Collections.emptyList();
+  public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
+    return EMPTY_PROJECTION_LIST;
   }
 
   @Override

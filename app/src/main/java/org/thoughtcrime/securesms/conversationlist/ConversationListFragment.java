@@ -1078,21 +1078,21 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (!conversation.getThreadRecord().isArchived()) {
       if (conversation.getThreadRecord().isRead()) {
-        items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread, 1), () -> handleMarkAsUnread(id)));
+        items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, 1), () -> handleMarkAsUnread(id)));
       } else {
-        items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read, 1), () -> handleMarkAsRead(id)));
+        items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, 1), () -> handleMarkAsRead(id)));
       }
 
       if (conversation.getThreadRecord().isPinned()) {
-        items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin, 1), () -> handleUnpin(id)));
+        items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin_plural, 1), () -> handleUnpin(id)));
       } else {
-        items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin, 1), () -> handlePin(Collections.singleton(conversation))));
+        items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin_plural, 1), () -> handlePin(Collections.singleton(conversation))));
       }
 
       if (conversation.getThreadRecord().getRecipient().live().get().isMuted()) {
-        items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute, 1), () -> handleUnmute(Collections.singleton(conversation))));
+        items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute_plural, 1), () -> handleUnmute(Collections.singleton(conversation))));
       } else {
-        items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute, 1), () -> handleMute(Collections.singleton(conversation))));
+        items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, 1), () -> handleMute(Collections.singleton(conversation))));
       }
     }
 
@@ -1103,12 +1103,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }));
 
     if (conversation.getThreadRecord().isArchived()) {
-      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive, 1), () -> handleArchive(id, false)));
+      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive_plural, 1), () -> handleArchive(id, false)));
     } else {
-      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive, 1), () -> handleArchive(id, false)));
+      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive_plural, 1), () -> handleArchive(id, false)));
     }
 
-    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete, 1), () -> handleDelete(id)));
+    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, 1), () -> handleDelete(id)));
 
     new SignalContextMenu.Builder(view, list)
         .offsetX(ViewUtil.dpToPx(12))
@@ -1185,30 +1185,30 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     List<ActionItem> items = new ArrayList<>();
 
     if (hasUnread) {
-      items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read, count), () -> handleMarkAsRead(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(defaultAdapter.getBatchSelectionIds())));
     } else {
-      items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread, count), () -> handleMarkAsUnread(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, count), () -> handleMarkAsUnread(defaultAdapter.getBatchSelectionIds())));
     }
 
     if (!isArchived() && hasUnpinned && canPin) {
-      items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin, count), () -> handlePin(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin_plural, count), () -> handlePin(defaultAdapter.getBatchSelection())));
     } else if (!isArchived() && !hasUnpinned) {
-      items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin, count), () -> handleUnpin(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin_plural, count), () -> handleUnpin(defaultAdapter.getBatchSelectionIds())));
     }
 
     if (isArchived()) {
-      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive_plural, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
     } else {
-      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive_plural, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
     }
 
-    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete, count), () -> handleDelete(defaultAdapter.getBatchSelectionIds())));
+    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, count), () -> handleDelete(defaultAdapter.getBatchSelectionIds())));
 
 
     if (hasUnmuted) {
-      items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute, count), () -> handleMute(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, count), () -> handleMute(defaultAdapter.getBatchSelection())));
     } else {
-      items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute, count), () -> handleUnmute(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute_plural, count), () -> handleUnmute(defaultAdapter.getBatchSelection())));
     }
 
     items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), this::handleSelectAllThreads));
@@ -1338,6 +1338,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       if (viewHolder.itemView instanceof ConversationListItemAction      ||
           viewHolder instanceof ConversationListAdapter.HeaderViewHolder ||
           actionMode != null                                             ||
+          viewHolder.itemView.isSelected()                               ||
           activeAdapter == searchAdapter)
       {
         return 0;

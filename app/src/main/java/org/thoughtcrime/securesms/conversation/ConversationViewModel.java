@@ -6,6 +6,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,8 +38,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.util.livedata.Store;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -76,6 +79,8 @@ public class ConversationViewModel extends ViewModel {
   private final MutableLiveData<Integer>            toolbarBottom;
   private final MutableLiveData<Integer>            inlinePlayerHeight;
   private final LiveData<Integer>                   conversationTopMargin;
+  private final Store<ThreadAnimationState>         threadAnimationStateStore;
+  private final Observer<ThreadAnimationState>      threadAnimationStateStoreDriver;
 
   private final Map<GroupId, Set<Recipient>> sessionMemberCache = new HashMap<>();
 
@@ -83,22 +88,23 @@ public class ConversationViewModel extends ViewModel {
   private int                      jumpToPosition;
 
   private ConversationViewModel() {
-    this.context                = ApplicationDependencies.getApplication();
-    this.mediaRepository        = new MediaRepository();
-    this.conversationRepository = new ConversationRepository();
-    this.recentMedia            = new MutableLiveData<>();
-    this.threadId               = new MutableLiveData<>();
-    this.showScrollButtons      = new MutableLiveData<>(false);
-    this.hasUnreadMentions      = new MutableLiveData<>(false);
-    this.recipientId            = new MutableLiveData<>();
-    this.events                 = new SingleLiveEvent<>();
-    this.pagingController       = new ProxyPagingController<>();
-    this.conversationObserver   = pagingController::onDataInvalidated;
-    this.messageUpdateObserver  = pagingController::onDataItemChanged;
-    this.messageInsertObserver  = messageId -> pagingController.onDataItemInserted(messageId, 0);
-    this.toolbarBottom          = new MutableLiveData<>();
-    this.inlinePlayerHeight     = new MutableLiveData<>();
-    this.conversationTopMargin  = Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(toolbarBottom, inlinePlayerHeight, Integer::sum));
+    this.context                   = ApplicationDependencies.getApplication();
+    this.mediaRepository           = new MediaRepository();
+    this.conversationRepository    = new ConversationRepository();
+    this.recentMedia               = new MutableLiveData<>();
+    this.threadId                  = new MutableLiveData<>();
+    this.showScrollButtons         = new MutableLiveData<>(false);
+    this.hasUnreadMentions         = new MutableLiveData<>(false);
+    this.recipientId               = new MutableLiveData<>();
+    this.events                    = new SingleLiveEvent<>();
+    this.pagingController          = new ProxyPagingController<>();
+    this.conversationObserver      = pagingController::onDataInvalidated;
+    this.messageUpdateObserver     = pagingController::onDataItemChanged;
+    this.messageInsertObserver     = messageId -> pagingController.onDataItemInserted(messageId, 0);
+    this.toolbarBottom             = new MutableLiveData<>();
+    this.inlinePlayerHeight        = new MutableLiveData<>();
+    this.conversationTopMargin     = Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(toolbarBottom, inlinePlayerHeight, Integer::sum));
+    this.threadAnimationStateStore = new Store<>(new ThreadAnimationState(-1L, null, false));
 
     LiveData<Recipient>          recipientLiveData  = LiveDataUtil.mapAsync(recipientId, Recipient::resolved);
     LiveData<ThreadAndRecipient> threadAndRecipient = LiveDataUtil.combineLatest(threadId, recipientLiveData, ThreadAndRecipient::new);
@@ -158,6 +164,47 @@ public class ConversationViewModel extends ViewModel {
     chatColors = LiveDataUtil.mapDistinct(Transformations.switchMap(recipientId,
                                                                     id -> Recipient.live(id).getLiveData()),
                                                                     Recipient::getChatColors);
+
+    threadAnimationStateStore.update(threadId, (id, state) -> {
+      if (state.getThreadId() == id) {
+        return state;
+      } else {
+        return new ThreadAnimationState(id, null, false);
+      }
+    });
+
+    threadAnimationStateStore.update(metadata, (m, state) -> {
+      if (state.getThreadId() == m.getThreadId()) {
+        return state.copy(state.getThreadId(), m, state.getHasCommittedNonEmptyMessageList());
+      } else {
+        return state.copy(m.getThreadId(), m, false);
+      }
+    });
+
+    this.threadAnimationStateStoreDriver = state -> {};
+    threadAnimationStateStore.getStateLiveData().observeForever(threadAnimationStateStoreDriver);
+  }
+
+  void onMessagesCommitted(@NonNull List<ConversationMessage> conversationMessages) {
+    if (Util.hasItems(conversationMessages)) {
+      threadAnimationStateStore.update(state -> {
+        long threadId = conversationMessages.stream()
+                                            .filter(Objects::nonNull)
+                                            .findFirst()
+                                            .map(c -> c.getMessageRecord().getThreadId())
+                                            .orElse(-2L);
+
+        if (state.getThreadId() == threadId) {
+          return state.copy(state.getThreadId(), state.getThreadMetadata(), true);
+        } else {
+          return state;
+        }
+      });
+    }
+  }
+
+  boolean shouldPlayMessageAnimations() {
+    return threadAnimationStateStore.getState().shouldPlayMessageAnimations();
   }
 
   void setToolbarBottom(int bottom) {
@@ -301,6 +348,7 @@ public class ConversationViewModel extends ViewModel {
   @Override
   protected void onCleared() {
     super.onCleared();
+    threadAnimationStateStore.getStateLiveData().removeObserver(threadAnimationStateStoreDriver);
     ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver);
     ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageUpdateObserver);
     ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver);

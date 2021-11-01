@@ -305,16 +305,34 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 個對話已移動到收件匣</item>
   </plurals>
-  <string name="ConversationListFragment_read">已讀</string>
-  <string name="ConversationListFragment_unread">未讀</string>
-  <string name="ConversationListFragment_pin">釘選</string>
-  <string name="ConversationListFragment_unpin">取消釘選</string>
-  <string name="ConversationListFragment_mute">靜音</string>
-  <string name="ConversationListFragment_unmute">取消靜音</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">已讀</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="other">未讀</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="other">釘選</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="other">取消釘選</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="other">靜音</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="other">取消靜音</item>
+  </plurals>
   <string name="ConversationListFragment_select">選取</string>
-  <string name="ConversationListFragment_archive">封存</string>
-  <string name="ConversationListFragment_unarchive">解除封存</string>
-  <string name="ConversationListFragment_delete">刪除</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="other">封存</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="other">解除封存</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="other">刪除</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">全選</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">%d 個已選取</item>
@@ -770,9 +788,13 @@
   <string name="MediaOverviewActivity_Grid_view_description">網格檢視</string>
   <string name="MediaOverviewActivity_List_view_description">清單檢視</string>
   <string name="MediaOverviewActivity_Selected_description">已選取</string>
-  <string name="MediaOverviewActivity_save">儲存</string>
   <string name="MediaOverviewActivity_select_all">全選</string>
-  <string name="MediaOverviewActivity_delete">刪除</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="other">儲存</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="other">刪除</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="other">%1$d 個已選取 (%2$s)</item>
   </plurals>
@@ -1048,7 +1070,7 @@
     <item quantity="other">%1$d 個成員 (+%2$d 個邀請)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="other">%d 個額外群組</item>
+    <item quantity="other">另 %d 個群組</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">密碼不匹配！</string>

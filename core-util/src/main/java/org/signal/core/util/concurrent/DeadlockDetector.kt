@@ -27,12 +27,15 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
 
   private fun poll() {
     val threads: Map<Thread, Array<StackTraceElement>> = Thread.getAllStackTraces()
-    val blocked: Map<Thread, Array<StackTraceElement>> = threads.filter { entry ->
-      val thread: Thread = entry.key
-      val stack: Array<StackTraceElement> = entry.value
+    val blocked: Map<Thread, Array<StackTraceElement>> = threads
+      .filter { entry ->
+        val thread: Thread = entry.key
+        val stack: Array<StackTraceElement> = entry.value
 
-      thread.state == Thread.State.BLOCKED || (thread.state == Thread.State.WAITING && stack.any { it.methodName.startsWith("lock") })
-    }
+        thread.state == Thread.State.BLOCKED || (thread.state == Thread.State.WAITING && stack.any { it.methodName.startsWith("lock") })
+      }
+      .filter { entry -> !BLOCK_BLACKLIST.contains(entry.key.name) }
+
     val blockedIds: Set<Long> = blocked.keys.map(Thread::getId).toSet()
     val stillBlocked: Set<Long> = blockedIds.intersect(previouslyBlocked)
 
@@ -92,6 +95,8 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
     )
 
     private const val CONCERNING_QUEUE_THRESHOLD = 4
+
+    private val BLOCK_BLACKLIST = setOf("HeapTaskDaemon")
 
     private fun buildLogString(description: String, blocked: Map<Thread, Array<StackTraceElement>>): String {
       val stringBuilder = StringBuilder()

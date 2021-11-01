@@ -316,17 +316,48 @@
     <item quantity="one">Færði samtal í innhólf</item>
     <item quantity="other">Færði %d samtöl í innhólf</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lesa</string>
-  <string name="ConversationListFragment_unread">Ólesið</string>
-  <string name="ConversationListFragment_pin">Festa</string>
-  <string name="ConversationListFragment_unpin">Losa</string>
-  <string name="ConversationListFragment_mute">Hljóð af</string>
-  <string name="ConversationListFragment_unmute">Hljóð á</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Lesið</item>
+    <item quantity="other">Lesið</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ólesið</item>
+    <item quantity="other">Ólesið</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Festa</item>
+    <item quantity="other">Festa</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Losa</item>
+    <item quantity="other">Losa</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Þagga</item>
+    <item quantity="other">Þagga</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Ekki þagga</item>
+    <item quantity="other">Ekki þagga</item>
+  </plurals>
   <string name="ConversationListFragment_select">Velja</string>
-  <string name="ConversationListFragment_archive">Safn</string>
-  <string name="ConversationListFragment_unarchive">Taka úr geymslu</string>
-  <string name="ConversationListFragment_delete">Eyða</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Setja í geymslu</item>
+    <item quantity="other">Setja í geymslu</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Taka úr geymslu</item>
+    <item quantity="other">Taka úr geymslu</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Eyða</item>
+    <item quantity="other">Eyða</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Velja allt</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d valið</item>
+    <item quantity="other">%d valin</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Skilaboð fyrir lyklaskipti</string>
   <!--ConversationListItemAction-->
@@ -807,9 +838,19 @@
   <string name="MediaOverviewActivity_Grid_view_description">Reitasýn</string>
   <string name="MediaOverviewActivity_List_view_description">Listasýn</string>
   <string name="MediaOverviewActivity_Selected_description">Valið</string>
-  <string name="MediaOverviewActivity_save">Vista</string>
   <string name="MediaOverviewActivity_select_all">Velja allt</string>
-  <string name="MediaOverviewActivity_delete">Eyða</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Vista</item>
+    <item quantity="other">Vista</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Eyða</item>
+    <item quantity="other">Eyða</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d valið (%2$s)</item>
+    <item quantity="other">%1$d valin (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Skrá</string>
   <string name="MediaOverviewActivity_audio">Hljóð</string>
   <string name="MediaOverviewActivity_video">Myndskeið</string>
@@ -1899,6 +1940,16 @@
   <string name="HelpFragment__debug_log">Villumeldingaskrá:</string>
   <string name="HelpFragment__could_not_upload_logs">Gat ekki sent inn atvikaskrár</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lýstu þessu eins nákvæmlega og þú getur til að auðvelda okkur að skilja vandamálið.</string>
+  <string-array name="HelpFragment__categories_2">
+    <item>-- Veldu eitthvað atriði --</item>
+    <item>Eitthvað er ekki að virka</item>
+    <item>Beiðni um endurbætur</item>
+    <item>Spurning</item>
+    <item>Umsögn</item>
+    <item>Annað</item>
+    <item>Greiðslur (MobileCoin)</item>
+    <item>Styrkir (Stuðningsaðilar &amp; Signal-hvatning)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Þessi skilaboð</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nýlega notað</string>
@@ -3251,6 +3302,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Veldu merki</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Þú þarft að velja merki</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Mistókst að uppfæra persónusnið</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ImageView__badge">Merki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drifið áfram af fólki eins og þér.</string>
   <string name="SubscribeFragment__donation_amount">Upphæð styrks</string>
@@ -3261,9 +3313,11 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SubscribeFragment__confirm">Staðfesta</string>
   <string name="SubscribeFragment__update_subscription">Uppfæra áskrift</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Áskriftinni þinni hefur verið sagt upp</string>
+  <string name="SubscribeFragment__update_subscription_question">Uppfæra áskrift?</string>
   <string name="SubscribeFragment__update">Uppfæra</string>
   <string name="Subscription__s_per_month">%s/mánuði</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mánuði · Endurnýjast %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mánuði · Rennur út %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Af hverju styrkja?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Þakka þér fyrir stuðninginn!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Þakka þér fyrir hvatninguna!</string>
@@ -3278,6 +3332,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="BoostFragment__give_signal_a_boost">Gefðu Signal hvatningu</string>
   <string name="Boost__enter_custom_amount">Settu inn sérsniðna upphæð</string>
   <string name="Boost__one_time_contribution">Eins-skiptis styrkur</string>
+  <string name="MySupportPreference__add_a_signal_boost">Bæta við Signal-hvatningu</string>
   <string name="MySupportPreference__s_per_month">%1$s/mánuði</string>
   <string name="MySupportPreference__renews_s">Endurnýjast %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkið þitt er útrunnið</string>
@@ -3287,5 +3342,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="Subscription__contact_support">Hafa samband við hjálparteymi</string>
   <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>
   <string name="DonationsErrors__payment_failed">Greiðsla mistókst</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ekki aðgengilegt</string>
   <!--EOF-->
 </resources>

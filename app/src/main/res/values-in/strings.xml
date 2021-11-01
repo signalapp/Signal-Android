@@ -305,16 +305,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Memindahkan %d percakapan ke kotak masuk</item>
   </plurals>
-  <string name="ConversationListFragment_read">Terbaca</string>
-  <string name="ConversationListFragment_unread">Belum dibaca</string>
-  <string name="ConversationListFragment_pin">Pin</string>
-  <string name="ConversationListFragment_unpin">Cabut Pin</string>
-  <string name="ConversationListFragment_mute">Senyap</string>
-  <string name="ConversationListFragment_unmute">Tidak Senyap</string>
   <string name="ConversationListFragment_select">Pilih</string>
-  <string name="ConversationListFragment_archive">Arsip</string>
-  <string name="ConversationListFragment_unarchive">Buka Arsip</string>
-  <string name="ConversationListFragment_delete">Hapus</string>
   <string name="ConversationListFragment_select_all">Pilih semua</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">%d dipilih</item>
@@ -769,9 +760,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tampilan grid</string>
   <string name="MediaOverviewActivity_List_view_description">Tampilan urutan</string>
   <string name="MediaOverviewActivity_Selected_description">Terpilih</string>
-  <string name="MediaOverviewActivity_save">Simpan</string>
   <string name="MediaOverviewActivity_select_all">Pilih semua</string>
-  <string name="MediaOverviewActivity_delete">Hapus</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="other">%1$d dipilih (%2$s)</item>
   </plurals>

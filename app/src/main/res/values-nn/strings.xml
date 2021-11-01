@@ -317,16 +317,43 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
     <item quantity="one">Flytta samtalen til innboks</item>
     <item quantity="other">Flytta %d samtalar til innboks</item>
   </plurals>
-  <string name="ConversationListFragment_read">Lese</string>
-  <string name="ConversationListFragment_unread">Ulese</string>
-  <string name="ConversationListFragment_pin">Fest</string>
-  <string name="ConversationListFragment_unpin">Ikkje fest</string>
-  <string name="ConversationListFragment_mute">Demp</string>
-  <string name="ConversationListFragment_unmute">Vis varsel</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Lesen</item>
+    <item quantity="other">Lesne</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ulesen</item>
+    <item quantity="other">Ulesne</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fest</item>
+    <item quantity="other">Fest</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Ikkje fest</item>
+    <item quantity="other">Ikkje fest</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Demp</item>
+    <item quantity="other">Demp</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Ikkje demp</item>
+    <item quantity="other">Ikkje demp</item>
+  </plurals>
   <string name="ConversationListFragment_select">Vel</string>
-  <string name="ConversationListFragment_archive">Arkiver</string>
-  <string name="ConversationListFragment_unarchive">Angra arkivering</string>
-  <string name="ConversationListFragment_delete">Slett</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arkiver</item>
+    <item quantity="other">Arkiver</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Uarkiver</item>
+    <item quantity="other">Uarkiver</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Slett</item>
+    <item quantity="other">Slett</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Vel alle</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d vald</item>
@@ -816,9 +843,15 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MediaOverviewActivity_Grid_view_description">Gittervisning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valde</string>
-  <string name="MediaOverviewActivity_save">Lagra</string>
   <string name="MediaOverviewActivity_select_all">Vel alle</string>
-  <string name="MediaOverviewActivity_delete">Slett</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Lagra</item>
+    <item quantity="other">Lagra</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Slett</item>
+    <item quantity="other">Slett</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d vald (%2$s)</item>
     <item quantity="other">%1$d valde (%2$s)</item>
@@ -3338,7 +3371,7 @@ Sjekkar igjen no …</string>
   <string name="SubscribeFragment__processing_payment">Behandlar betaling …</string>
   <string name="DonationsErrors__payment_failed">Feil ved betaling</string>
   <string name="DonationsErrors__your_payment">Klarte ikkje prosessera betalinga di og beløpet har ikkje blitt trekt. Prøv igjen.</string>
-  <string name="DonationsErrors__redemption_still_pending">Tilbakebetaling på veg</string>
+  <string name="DonationsErrors__redemption_still_pending">Innløysing undervegs</string>
   <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du ser kanskje ikkje merket umiddelbart, men me jobbar med det!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay er utilgjengeleg</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du må setja opp Google Pay for å donera frå appen.</string>

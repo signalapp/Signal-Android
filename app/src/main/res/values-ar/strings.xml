@@ -361,16 +361,7 @@
     <item quantity="many">تم نقل %d رسالة إلى الوارد</item>
     <item quantity="other">تم نقل %d رسالة إلى الوارد</item>
   </plurals>
-  <string name="ConversationListFragment_read">مقروء</string>
-  <string name="ConversationListFragment_unread">غير مقروءة</string>
-  <string name="ConversationListFragment_pin">تثبيت</string>
-  <string name="ConversationListFragment_unpin">فَكّ التَّثبيت</string>
-  <string name="ConversationListFragment_mute">كتم</string>
-  <string name="ConversationListFragment_unmute">شغِّل الصوت</string>
   <string name="ConversationListFragment_select">حَدِّد</string>
-  <string name="ConversationListFragment_archive">أرشفة</string>
-  <string name="ConversationListFragment_unarchive">الإخراج من اﻷرشيف</string>
-  <string name="ConversationListFragment_delete">حذف  </string>
   <string name="ConversationListFragment_select_all">اختيار الجميع</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
@@ -967,9 +958,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">عرض شبكي</string>
   <string name="MediaOverviewActivity_List_view_description">عرض القائمة</string>
   <string name="MediaOverviewActivity_Selected_description">مختار</string>
-  <string name="MediaOverviewActivity_save">حفظ</string>
   <string name="MediaOverviewActivity_select_all">اختيار الجميع</string>
-  <string name="MediaOverviewActivity_delete">حذف  </string>
   <string name="MediaOverviewActivity_file">ملف</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">فيديو</string>

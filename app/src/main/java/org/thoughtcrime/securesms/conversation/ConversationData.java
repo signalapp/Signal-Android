@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 /**
  * Represents metadata about a conversation.
  */
-final class ConversationData {
+public final class ConversationData {
   private final long               threadId;
   private final long               lastSeen;
   private final int                lastSeenPosition;

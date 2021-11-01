@@ -338,16 +338,61 @@
     <item quantity="many">%d pokalbių perkelta į gautųjų aplanką</item>
     <item quantity="other">%d pokalbių perkelta į gautųjų aplanką</item>
   </plurals>
-  <string name="ConversationListFragment_read">Perskaityta</string>
-  <string name="ConversationListFragment_unread">Neskaityta</string>
-  <string name="ConversationListFragment_pin">Prisegti</string>
-  <string name="ConversationListFragment_unpin">Atsegti</string>
-  <string name="ConversationListFragment_mute">Be garso</string>
-  <string name="ConversationListFragment_unmute">Įjungti pranešimus</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Perskaityta</item>
+    <item quantity="few">Perskaitytos</item>
+    <item quantity="many">Perskaitytos</item>
+    <item quantity="other">Perskaitytos</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Neskaityta</item>
+    <item quantity="few">Neskaitytos</item>
+    <item quantity="many">Neskaitytos</item>
+    <item quantity="other">Neskaitytos</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Prisegti</item>
+    <item quantity="few">Prisegti</item>
+    <item quantity="many">Prisegti</item>
+    <item quantity="other">Prisegti</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Atsegti</item>
+    <item quantity="few">Atsegti</item>
+    <item quantity="many">Atsegti</item>
+    <item quantity="other">Atsegti</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Išjungti pranešimus</item>
+    <item quantity="few">Išjungti pranešimus</item>
+    <item quantity="many">Išjungti pranešimus</item>
+    <item quantity="other">Išjungti pranešimus</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Įjungti pranešimus</item>
+    <item quantity="few">Įjungti pranešimus</item>
+    <item quantity="many">Įjungti pranešimus</item>
+    <item quantity="other">Įjungti pranešimus</item>
+  </plurals>
   <string name="ConversationListFragment_select">Pasirinkti</string>
-  <string name="ConversationListFragment_archive">Archyvuoti</string>
-  <string name="ConversationListFragment_unarchive">Nebearchyvuoti</string>
-  <string name="ConversationListFragment_delete">Ištrinti</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archyvuoti</item>
+    <item quantity="few">Archyvuoti</item>
+    <item quantity="many">Archyvuoti</item>
+    <item quantity="other">Archyvuoti</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Išarchyvuoti</item>
+    <item quantity="few">Išarchyvuoti</item>
+    <item quantity="many">Išarchyvuoti</item>
+    <item quantity="other">Išarchyvuoti</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Ištrinti</item>
+    <item quantity="few">Ištrinti</item>
+    <item quantity="many">Ištrinti</item>
+    <item quantity="other">Ištrinti</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Žymėti visus</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">Pažymėta: %d</item>
@@ -893,9 +938,19 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tinklelio rodinys</string>
   <string name="MediaOverviewActivity_List_view_description">Sąrašo rodinys</string>
   <string name="MediaOverviewActivity_Selected_description">Pasirinkta</string>
-  <string name="MediaOverviewActivity_save">Įrašyti</string>
   <string name="MediaOverviewActivity_select_all">Žymėti visus</string>
-  <string name="MediaOverviewActivity_delete">Ištrinti</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Įrašyti</item>
+    <item quantity="few">Įrašyti</item>
+    <item quantity="many">Įrašyti</item>
+    <item quantity="other">Įrašyti</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Ištrinti</item>
+    <item quantity="few">Ištrinti</item>
+    <item quantity="many">Ištrinti</item>
+    <item quantity="other">Ištrinti</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Failas</string>
   <string name="MediaOverviewActivity_audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_video">Vaizdo įrašai</string>

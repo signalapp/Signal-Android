@@ -316,16 +316,19 @@
     <item quantity="one">Chat devuelto al buzón de entrada</item>
     <item quantity="other">%d chats devueltos al buzón de entrada</item>
   </plurals>
-  <string name="ConversationListFragment_read">Leído</string>
-  <string name="ConversationListFragment_unread">No leído</string>
-  <string name="ConversationListFragment_pin">Fijar</string>
-  <string name="ConversationListFragment_unpin">No fijar</string>
-  <string name="ConversationListFragment_mute">Silenciar</string>
-  <string name="ConversationListFragment_unmute">No silenciar</string>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Leído</item>
+    <item quantity="other">Leídos</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">No leído</item>
+    <item quantity="other">No leídos</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fijado</item>
+    <item quantity="other">Fijados</item>
+  </plurals>
   <string name="ConversationListFragment_select">selecciona</string>
-  <string name="ConversationListFragment_archive">Archivar</string>
-  <string name="ConversationListFragment_unarchive">Desarchivar</string>
-  <string name="ConversationListFragment_delete">Eliminar</string>
   <string name="ConversationListFragment_select_all">Seleccionar todo</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d seleccionado</item>
@@ -811,9 +814,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista en cuadrícula</string>
   <string name="MediaOverviewActivity_List_view_description">Vista en lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selección</string>
-  <string name="MediaOverviewActivity_save">Guardar</string>
   <string name="MediaOverviewActivity_select_all">Seleccionar todo</string>
-  <string name="MediaOverviewActivity_delete">Eliminar</string>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d seleccionado (%2$s)</item>
     <item quantity="other">%1$d seleccionados (%2$s)</item>
