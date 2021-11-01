@@ -54,7 +54,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: "v${{ steps.get-version.outputs.VERSION }}"
-        release_name: "Signal ${{ steps.get-version.outputs.VERSION }}"
+        release_name: "Signal"
         draft: false
         prerelease: false
 
