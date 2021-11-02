@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Cu
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -55,7 +56,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
       .append(" ")
       .append(
         SpanUtil.learnMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)) {
-          // TODO [alex] -- Where's this go?
+          CommunicationActions.openBrowserLink(requireContext(), R.string.sustainer_boost_and_badges)
         }
       )
   }
