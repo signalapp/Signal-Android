@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -49,6 +48,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -61,7 +61,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
@@ -1029,7 +1028,7 @@ public class Recipient {
   }
 
   public @NonNull List<Badge> getBadges() {
-    return FeatureFlags.donorBadges() ? badges : Collections.emptyList();
+    return badges;
   }
 
   public @Nullable Badge getFeaturedBadge() {
