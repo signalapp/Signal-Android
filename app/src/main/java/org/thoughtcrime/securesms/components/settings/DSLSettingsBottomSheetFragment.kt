@@ -20,7 +20,8 @@ abstract class DSLSettingsBottomSheetFragment(
   override val peekHeightPercentage: Float = 1f
 ) : FixedRoundedCornerBottomSheetDialogFragment() {
 
-  private lateinit var recyclerView: RecyclerView
+  protected lateinit var recyclerView: RecyclerView
+    private set
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.inflate(layoutId, container, false)

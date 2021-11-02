@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.DimensionUnit
@@ -14,6 +15,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgePreview
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
@@ -24,6 +26,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -70,12 +73,26 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
       .setCancelable(false)
       .create()
 
+    recyclerView.overScrollMode = RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS
+
     boost1AnimationView = requireView().findViewById(R.id.boost1_animation)
     boost2AnimationView = requireView().findViewById(R.id.boost2_animation)
     boost3AnimationView = requireView().findViewById(R.id.boost3_animation)
     boost4AnimationView = requireView().findViewById(R.id.boost4_animation)
     boost5AnimationView = requireView().findViewById(R.id.boost5_animation)
     boost6AnimationView = requireView().findViewById(R.id.boost6_animation)
+
+    KeyboardAwareLinearLayout(requireContext()).apply {
+      addOnKeyboardHiddenListener {
+        recyclerView.post { recyclerView.requestLayout() }
+      }
+
+      addOnKeyboardShownListener {
+        recyclerView.post { recyclerView.scrollToPosition(adapter.itemCount - 1) }
+      }
+
+      requireCoordinatorLayout().addView(this)
+    }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
