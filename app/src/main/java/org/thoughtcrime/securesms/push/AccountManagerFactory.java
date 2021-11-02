@@ -9,6 +9,7 @@ import com.google.android.gms.security.ProviderInstaller;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
@@ -24,7 +25,7 @@ public class AccountManagerFactory {
                                                                          @NonNull String number,
                                                                          @NonNull String password)
   {
-    if (new SignalServiceNetworkAccess(context).isCensored(number)) {
+    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(number)) {
       SignalExecutors.BOUNDED.execute(() -> {
         try {
           ProviderInstaller.installIfNeeded(context);
@@ -34,7 +35,7 @@ public class AccountManagerFactory {
       });
     }
 
-    return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
+    return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
                                            aci,
                                            number,
                                            password,

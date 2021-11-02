@@ -60,7 +60,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   protected final void onCreate(Bundle savedInstanceState) {
     Tracer.getInstance().start(Log.tag(getClass()) + "#onCreate()");
     AppStartup.getInstance().onCriticalRenderEventStart();
-    this.networkAccess = new SignalServiceNetworkAccess(this);
+    this.networkAccess = ApplicationDependencies.getSignalServiceNetworkAccess();
     onPreCreate();
 
     final boolean locked = KeyCachingService.isLocked(this);
