@@ -84,7 +84,7 @@ public final class FeatureFlags {
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
-  private static final String DONOR_BADGES                      = "android.donorBadges";
+  private static final String DONOR_BADGES                      = "android.donorBadges.2";
   private static final String CDSH                              = "android.cdsh";
 
   /**
@@ -123,14 +123,14 @@ public final class FeatureFlags {
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
       CDSH,
-      SENDER_KEY_MAX_AGE
+      SENDER_KEY_MAX_AGE,
+      DONOR_BADGES
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
       PHONE_NUMBER_PRIVACY_VERSION,
-      CHANGE_NUMBER_ENABLED,
-      DONOR_BADGES
+      CHANGE_NUMBER_ENABLED
   );
 
   /**
