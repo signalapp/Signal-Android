@@ -263,6 +263,7 @@ class SubscribeFragment : DSLSettingsFragment(
         dialog.dismiss()
         findNavController().popBackStack()
       }
+      .show()
   }
 
   private fun onSubscriptionCancelled() {
