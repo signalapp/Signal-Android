@@ -3,7 +3,7 @@ name: Android CI
 on:
   push:
     branches:
-    - 'master'
+    - '5.**'
 
 jobs:
   build:
@@ -46,35 +46,3 @@ jobs:
         echo "$(sha256sum ${out})"
         done
         rm apksign.keystore
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: "v${{ steps.get-version.outputs.VERSION }}"
-        release_name: "Signal"
-        draft: false
-        prerelease: false
-
-    - name: Get Universal APK Filename
-      id: get-universal-filename
-      run: echo ::set-output name=FILENAME::$(basename $(ls -1 app/build/outputs/apk/playProd/release/*-universal-*-signed-*.apk) )
-
-    - name: Upload Universal APK
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: "app/build/outputs/apk/playProd/release/${{ steps.get-universal-filename.outputs.FILENAME }}"
-        asset_name: ${{ steps.get-universal-filename.outputs.FILENAME }}
-        asset_content_type: application/vnd.android.package-archive
-
-    - name: Archive reports for failed build
-      if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: reports
-        path: '*/build/reports'
