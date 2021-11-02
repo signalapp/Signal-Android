@@ -173,7 +173,7 @@ class GooglePayApi(
     private val merchantInfo: JSONObject =
       JSONObject().put("merchantName", MERCHANT_NAME)
 
-    private val allowedCardAuthMethods = JSONArray(listOf("CRYPTOGRAM_3DS"))
+    private val allowedCardAuthMethods = JSONArray(listOf("PAN_ONLY", "CRYPTOGRAM_3DS"))
 
     private val baseRequest = JSONObject().apply {
       put("apiVersion", 2)
