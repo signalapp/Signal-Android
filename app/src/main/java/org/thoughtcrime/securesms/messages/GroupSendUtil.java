@@ -185,28 +185,22 @@ public final class GroupSendUtil {
       }
     }
 
-    if (FeatureFlags.senderKey()) {
-      if (groupId == null) {
-        Log.i(TAG, "Recipients not in a group. Using legacy.");
-        legacyTargets.addAll(senderKeyTargets);
-        senderKeyTargets.clear();
-      } else if (Recipient.self().getSenderKeyCapability() != Recipient.Capability.SUPPORTED) {
-        Log.i(TAG, "All of our devices do not support sender key. Using legacy.");
-        legacyTargets.addAll(senderKeyTargets);
-        senderKeyTargets.clear();
-      } else if (SignalStore.internalValues().removeSenderKeyMinimum()) {
-        Log.i(TAG, "Sender key minimum removed. Using for " + senderKeyTargets.size() + " recipients.");
-      } else if (senderKeyTargets.size() < 2) {
-        Log.i(TAG, "Too few sender-key-capable users (" + senderKeyTargets.size() + "). Doing all legacy sends.");
-        legacyTargets.addAll(senderKeyTargets);
-        senderKeyTargets.clear();
-      } else {
-        Log.i(TAG, "Can use sender key for " + senderKeyTargets.size() + "/" + allTargets.size() + " recipients.");
-      }
-    } else {
-      Log.i(TAG, "Feature flag disabled. Using legacy.");
+    if (groupId == null) {
+      Log.i(TAG, "Recipients not in a group. Using legacy.");
       legacyTargets.addAll(senderKeyTargets);
       senderKeyTargets.clear();
+    } else if (Recipient.self().getSenderKeyCapability() != Recipient.Capability.SUPPORTED) {
+      Log.i(TAG, "All of our devices do not support sender key. Using legacy.");
+      legacyTargets.addAll(senderKeyTargets);
+      senderKeyTargets.clear();
+    } else if (SignalStore.internalValues().removeSenderKeyMinimum()) {
+      Log.i(TAG, "Sender key minimum removed. Using for " + senderKeyTargets.size() + " recipients.");
+    } else if (senderKeyTargets.size() < 2) {
+      Log.i(TAG, "Too few sender-key-capable users (" + senderKeyTargets.size() + "). Doing all legacy sends.");
+      legacyTargets.addAll(senderKeyTargets);
+      senderKeyTargets.clear();
+    } else {
+      Log.i(TAG, "Can use sender key for " + senderKeyTargets.size() + "/" + allTargets.size() + " recipients.");
     }
 
     if (relatedMessageId != null) {

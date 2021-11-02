@@ -375,11 +375,6 @@ public final class FeatureFlags {
     return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(14));
   }
 
-  /** Whether or not sending using sender key is enabled. */
-  public static boolean senderKey() {
-    return getBoolean(SENDER_KEY, true);
-  }
-
   /** How long a sender key can live before it needs to be rotated. */
   public static long senderKeyMaxAge() {
     return Math.min(getLong(SENDER_KEY_MAX_AGE, TimeUnit.DAYS.toMillis(14)), TimeUnit.DAYS.toMillis(90));
