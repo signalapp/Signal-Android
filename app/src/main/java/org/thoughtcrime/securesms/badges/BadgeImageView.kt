@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.visible
@@ -28,31 +29,46 @@ class BadgeImageView @JvmOverloads constructor(
   }
 
   fun setBadgeFromRecipient(recipient: Recipient?) {
+    getGlideRequests()?.let {
+      setBadgeFromRecipient(recipient, it)
+    }
+  }
+
+  fun setBadgeFromRecipient(recipient: Recipient?, glideRequests: GlideRequests) {
     if (recipient == null || recipient.badges.isEmpty()) {
-      setBadge(null)
+      setBadge(null, glideRequests)
     } else {
-      setBadge(recipient.badges[0])
+      setBadge(recipient.badges[0], glideRequests)
     }
   }
 
   fun setBadge(badge: Badge?) {
+    getGlideRequests()?.let {
+      setBadge(badge, it)
+    }
+  }
+
+  fun setBadge(badge: Badge?, glideRequests: GlideRequests) {
     visible = badge != null
 
-    try {
-      if (badge != null) {
-        GlideApp
-          .with(this)
-          .load(badge)
-          .downsample(DownsampleStrategy.NONE)
-          .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
-          .into(this)
-      } else {
-        GlideApp
-          .with(this)
-          .clear(this)
-      }
+    if (badge != null) {
+      glideRequests
+        .load(badge)
+        .downsample(DownsampleStrategy.NONE)
+        .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
+        .into(this)
+    } else {
+      glideRequests
+        .clear(this)
+    }
+  }
+
+  private fun getGlideRequests(): GlideRequests? {
+    return try {
+      GlideApp.with(this)
     } catch (e: IllegalArgumentException) {
-      // Do nothing. Activity was destroyed.
+      // View not attached to an activity or activity destroyed
+      null
     }
   }
 }

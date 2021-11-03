@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -168,6 +169,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
 
               final Context                    context;
               final AvatarImageView            avatar;
+              final BadgeImageView             badge;
               final TextView                   recipient;
               final EmojiTextView              about;
               final CheckBox                   selected;
@@ -190,6 +192,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
 
       this.context                    = itemView.getContext();
       this.avatar                     = itemView.findViewById(R.id.recipient_avatar);
+      this.badge                      = itemView.findViewById(R.id.recipient_badge);
       this.recipient                  = itemView.findViewById(R.id.recipient_name);
       this.about                      = itemView.findViewById(R.id.recipient_about);
       this.selected                   = itemView.findViewById(R.id.recipient_selected);
@@ -212,6 +215,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
     void bindImageAndText(@NonNull Recipient recipient, @NonNull String displayText, @Nullable String about) {
       this.recipient.setText(displayText);
       this.avatar.setRecipient(recipient);
+      this.badge.setBadgeFromRecipient(recipient);
 
       if (this.about != null) {
         this.about.setText(about);
