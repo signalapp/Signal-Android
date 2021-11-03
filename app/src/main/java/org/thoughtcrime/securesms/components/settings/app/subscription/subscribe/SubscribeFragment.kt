@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Go
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import java.util.Calendar
@@ -213,7 +214,7 @@ class SubscribeFragment : DSLSettingsFragment(
           text = DSLSettingsText.from(R.string.SubscribeFragment__more_payment_options),
           icon = DSLSettingsIcon.from(R.drawable.ic_open_20, R.color.signal_accent_primary),
           onClick = {
-            // TODO [alex] support page
+            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
           }
         )
       }
