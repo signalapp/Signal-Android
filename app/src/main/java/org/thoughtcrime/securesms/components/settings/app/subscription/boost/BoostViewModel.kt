@@ -17,10 +17,11 @@ import org.signal.donations.GooglePayApi
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.math.BigDecimal
+import java.util.Currency
 
 class BoostViewModel(
   private val boostRepository: BoostRepository,
@@ -28,7 +29,7 @@ class BoostViewModel(
   private val fetchTokenRequestCode: Int
 ) : ViewModel() {
 
-  private val store = Store(BoostState())
+  private val store = Store(BoostState(currencySelection = SignalStore.donationsValues().getBoostCurrency()))
   private val eventPublisher: PublishSubject<DonationEvent> = PublishSubject.create()
   private val disposables = CompositeDisposable()
 
@@ -41,15 +42,26 @@ class BoostViewModel(
     disposables.clear()
   }
 
+  fun getSupportedCurrencyCodes(): List<String> {
+    return store.state.supportedCurrencyCodes
+  }
+
   fun refresh() {
     disposables.clear()
 
     val currencyObservable = SignalStore.donationsValues().observableBoostCurrency
-    val boosts = currencyObservable.flatMapSingle { boostRepository.getBoosts(it) }
+    val allBoosts = boostRepository.getBoosts()
     val boostBadge = boostRepository.getBoostBadge()
 
-    disposables += Observable.combineLatest(boosts, boostBadge.toObservable()) { boostList, badge ->
-      BoostInfo(boostList, boostList[2], badge)
+    disposables += Observable.combineLatest(currencyObservable, allBoosts.toObservable(), boostBadge.toObservable()) { currency, boostMap, badge ->
+      val boostList = if (currency in boostMap) {
+        boostMap[currency]!!
+      } else {
+        SignalStore.donationsValues().setBoostCurrency(PlatformCurrencyUtil.USD)
+        listOf()
+      }
+
+      BoostInfo(boostList, boostList[2], badge, boostMap.keys)
     }.subscribeBy(
       onNext = { info ->
         store.update {
@@ -57,7 +69,8 @@ class BoostViewModel(
             boosts = info.boosts,
             selectedBoost = if (it.selectedBoost in info.boosts) it.selectedBoost else info.defaultBoost,
             boostBadge = it.boostBadge ?: info.boostBadge,
-            stage = if (it.stage == BoostState.Stage.INIT || it.stage == BoostState.Stage.FAILURE) BoostState.Stage.READY else it.stage
+            stage = if (it.stage == BoostState.Stage.INIT || it.stage == BoostState.Stage.FAILURE) BoostState.Stage.READY else it.stage,
+            supportedCurrencyCodes = info.supportedCurrencies.map(Currency::getCurrencyCode)
           )
         }
       },
@@ -77,7 +90,7 @@ class BoostViewModel(
     disposables += currencyObservable.subscribeBy { currency ->
       store.update {
         it.copy(
-          currencySelection = CurrencySelection(currency.currencyCode),
+          currencySelection = currency,
           isCustomAmountFocused = false,
           customAmount = FiatMoney(
             BigDecimal.ZERO, currency
@@ -169,7 +182,7 @@ class BoostViewModel(
     store.update { it.copy(isCustomAmountFocused = isFocused) }
   }
 
-  private data class BoostInfo(val boosts: List<Boost>, val defaultBoost: Boost?, val boostBadge: Badge)
+  private data class BoostInfo(val boosts: List<Boost>, val defaultBoost: Boost?, val boostBadge: Badge, val supportedCurrencies: Set<Currency>)
 
   class Factory(
     private val boostRepository: BoostRepository,

@@ -141,10 +141,10 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
 
       customPref(
         CurrencySelection.Model(
-          currencySelection = state.currencySelection,
+          selectedCurrency = state.currencySelection,
           isEnabled = state.stage == BoostState.Stage.READY,
           onClick = {
-            findNavController().navigate(BoostFragmentDirections.actionBoostFragmentToSetDonationCurrencyFragment(true))
+            findNavController().navigate(BoostFragmentDirections.actionBoostFragmentToSetDonationCurrencyFragment(true, viewModel.getSupportedCurrencyCodes().toTypedArray()))
           }
         )
       )

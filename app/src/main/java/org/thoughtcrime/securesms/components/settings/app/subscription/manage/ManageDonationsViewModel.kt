@@ -12,7 +12,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -66,7 +65,7 @@ class ManageDonationsViewModel(
       }
     )
 
-    disposables += subscriptionsRepository.getSubscriptions(SignalStore.donationsValues().getSubscriptionCurrency()).subscribeBy(
+    disposables += subscriptionsRepository.getSubscriptions().subscribeBy(
       onSuccess = { subs ->
         store.update { it.copy(availableSubscriptions = subs) }
       },

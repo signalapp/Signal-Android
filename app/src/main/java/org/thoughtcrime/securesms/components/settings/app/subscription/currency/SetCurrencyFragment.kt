@@ -15,7 +15,8 @@ class SetCurrencyFragment : DSLSettingsBottomSheetFragment() {
 
   private val viewModel: SetCurrencyViewModel by viewModels(
     factoryProducer = {
-      SetCurrencyViewModel.Factory(SetCurrencyFragmentArgs.fromBundle(requireArguments()).isBoost)
+      val args = SetCurrencyFragmentArgs.fromBundle(requireArguments())
+      SetCurrencyViewModel.Factory(args.isBoost, args.supportedCurrencyCodes.toList())
     }
   )
 

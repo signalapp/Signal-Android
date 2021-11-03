@@ -5,6 +5,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels
@@ -28,7 +29,7 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
     }
   }
 
-  fun getSubscriptions(currency: Currency): Single<List<Subscription>> = donationsService.getSubscriptionLevels(Locale.getDefault())
+  fun getSubscriptions(): Single<List<Subscription>> = donationsService.getSubscriptionLevels(Locale.getDefault())
     .flatMap(ServiceResponse<SubscriptionLevels>::flattenResult)
     .map { subscriptionLevels ->
       subscriptionLevels.levels.map { (code, level) ->
@@ -36,7 +37,13 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
           id = code,
           name = level.name,
           badge = Badges.fromServiceBadge(level.badge),
-          price = FiatMoney(level.currencies[currency.currencyCode]!!, currency),
+          prices = level.currencies.filter {
+            PlatformCurrencyUtil
+              .getAvailableCurrencyCodes()
+              .contains(it.key)
+          }.map { (currencyCode, price) ->
+            FiatMoney(price, Currency.getInstance(currencyCode))
+          }.toSet(),
           level = code.toInt()
         )
       }.sortedBy {

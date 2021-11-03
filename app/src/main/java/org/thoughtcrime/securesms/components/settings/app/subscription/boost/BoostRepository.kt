@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.internal.ServiceResponse
@@ -13,12 +14,14 @@ import java.util.Locale
 
 class BoostRepository(private val donationsService: DonationsService) {
 
-  fun getBoosts(currency: Currency): Single<List<Boost>> {
+  fun getBoosts(): Single<Map<Currency, List<Boost>>> {
     return donationsService.boostAmounts
       .flatMap(ServiceResponse<Map<String, List<BigDecimal>>>::flattenResult)
       .map { result ->
-        val boosts = result[currency.currencyCode] ?: throw Exception("Unsupported currency! ${currency.currencyCode}")
-        boosts.map { Boost(FiatMoney(it, currency)) }
+        result
+          .filter { PlatformCurrencyUtil.getAvailableCurrencyCodes().contains(it.key) }
+          .mapKeys { (code, _) -> Currency.getInstance(code) }
+          .mapValues { (currency, prices) -> prices.map { Boost(FiatMoney(it, currency)) } }
       }
   }
 

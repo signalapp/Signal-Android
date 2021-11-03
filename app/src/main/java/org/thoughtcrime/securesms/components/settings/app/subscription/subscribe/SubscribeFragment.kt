@@ -118,10 +118,13 @@ class SubscribeFragment : DSLSettingsFragment(
 
       customPref(
         CurrencySelection.Model(
-          currencySelection = state.currencySelection,
+          selectedCurrency = state.currencySelection,
           isEnabled = areFieldsEnabled && state.activeSubscription?.isActive != true,
           onClick = {
-            findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSetDonationCurrencyFragment(false))
+            val selectableCurrencies = viewModel.getSelectableCurrencyCodes()
+            if (selectableCurrencies != null) {
+              findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSetDonationCurrencyFragment(false, selectableCurrencies.toTypedArray()))
+            }
           }
         )
       )
@@ -138,7 +141,8 @@ class SubscribeFragment : DSLSettingsFragment(
             isActive = isActive,
             willRenew = isActive && state.activeSubscription?.activeSubscription?.willCancelAtPeriodEnd() ?: false,
             onClick = { viewModel.setSelectedSubscription(it) },
-            renewalTimestamp = TimeUnit.SECONDS.toMillis(state.activeSubscription?.activeSubscription?.endOfCurrentPeriod ?: 0L)
+            renewalTimestamp = TimeUnit.SECONDS.toMillis(state.activeSubscription?.activeSubscription?.endOfCurrentPeriod ?: 0L),
+            selectedCurrency = state.currencySelection
           )
         )
       }
@@ -154,7 +158,7 @@ class SubscribeFragment : DSLSettingsFragment(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
           isEnabled = areFieldsEnabled && (!activeAndSameLevel || isExpiring),
           onClick = {
-            val price = viewModel.state.value?.selectedSubscription?.price ?: return@primaryButton
+            val price = viewModel.getPriceOfSelectedSubscription() ?: return@primaryButton
             val calendar = Calendar.getInstance()
 
             calendar.add(Calendar.MONTH, 1)
@@ -222,7 +226,7 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   private fun onGooglePayButtonClicked() {
-    viewModel.requestTokenFromGooglePay(requireContext())
+    viewModel.requestTokenFromGooglePay()
   }
 
   private fun onPaymentConfirmed(badge: Badge) {

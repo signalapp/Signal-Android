@@ -6,6 +6,7 @@ import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.DateUtils
@@ -51,7 +52,7 @@ object ActiveSubscriptionPreference {
         R.string.MySupportPreference__s_per_month,
         FiatMoneyUtil.format(
           context.resources,
-          model.subscription.price,
+          model.subscription.prices.first { it.currency == SignalStore.donationsValues().getSubscriptionCurrency() },
           FiatMoneyUtil.formatOptions()
         )
       )
