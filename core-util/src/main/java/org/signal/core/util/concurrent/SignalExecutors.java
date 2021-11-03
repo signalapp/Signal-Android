@@ -5,6 +5,7 @@ import android.os.HandlerThread;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.LinkedBlockingLifoQueue;
+import org.signal.core.util.ThreadUtil;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,10 +17,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public final class SignalExecutors {
 
-  public static final ExecutorService UNBOUNDED  = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
-  public static final ExecutorService BOUNDED    = Executors.newFixedThreadPool(4, new NumberedThreadFactory("signal-bounded"));
-  public static final ExecutorService SERIAL     = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
-  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-io-bounded", 1, 32, 30);
+  public static final ExecutorService UNBOUNDED  = ThreadUtil.trace(Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded")));
+  public static final ExecutorService BOUNDED    = ThreadUtil.trace(Executors.newFixedThreadPool(4, new NumberedThreadFactory("signal-bounded")));
+  public static final ExecutorService SERIAL     = ThreadUtil.trace(Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial")));
+  public static final ExecutorService BOUNDED_IO = ThreadUtil.trace(newCachedBoundedExecutor("signal-io-bounded", 1, 32, 30));
 
   private SignalExecutors() {}
 

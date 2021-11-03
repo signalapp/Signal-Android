@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.concurrent.TracingExecutorService;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -28,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -60,7 +61,7 @@ public final class LiveRecipientCache {
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
     this.db                = DatabaseFactory.getInstance(context).getRawDatabase();
-    this.resolveExecutor   = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction());
+    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction()));
   }
 
   @AnyThread
@@ -83,16 +84,7 @@ public final class LiveRecipientCache {
     }
 
     if (needsResolve) {
-      final LiveRecipient toResolve = live;
-
-      MissingRecipientException prettyStackTraceError = new MissingRecipientException(toResolve.getId());
-      resolveExecutor.execute(() -> {
-        try {
-          toResolve.resolve();
-        } catch (MissingRecipientException e) {
-          throw prettyStackTraceError;
-        }
-      });
+      resolveExecutor.execute(live::resolve);
     }
 
     return live;
