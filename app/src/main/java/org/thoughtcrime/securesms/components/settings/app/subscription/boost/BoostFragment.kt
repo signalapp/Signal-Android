@@ -56,7 +56,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
       .append(" ")
       .append(
         SpanUtil.learnMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)) {
-          CommunicationActions.openBrowserLink(requireContext(), R.string.sustainer_boost_and_badges)
+          CommunicationActions.openBrowserLink(requireContext(), getString(R.string.sustainer_boost_and_badges))
         }
       )
   }

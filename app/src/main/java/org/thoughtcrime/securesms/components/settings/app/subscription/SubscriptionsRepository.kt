@@ -10,6 +10,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.util.Currency
+import java.util.Locale
 
 /**
  * Repository which can query for the user's active subscription as well as a list of available subscriptions,
@@ -27,12 +28,13 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
     }
   }
 
-  fun getSubscriptions(currency: Currency): Single<List<Subscription>> = donationsService.subscriptionLevels
+  fun getSubscriptions(currency: Currency): Single<List<Subscription>> = donationsService.getSubscriptionLevels(Locale.getDefault())
     .flatMap(ServiceResponse<SubscriptionLevels>::flattenResult)
     .map { subscriptionLevels ->
       subscriptionLevels.levels.map { (code, level) ->
         Subscription(
           id = code,
+          name = level.name,
           badge = Badges.fromServiceBadge(level.badge),
           price = FiatMoney(level.currencies[currency.currencyCode]!!, currency),
           level = code.toInt()

@@ -9,6 +9,7 @@ import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.math.BigDecimal
 import java.util.Currency
+import java.util.Locale
 
 class BoostRepository(private val donationsService: DonationsService) {
 
@@ -22,7 +23,7 @@ class BoostRepository(private val donationsService: DonationsService) {
   }
 
   fun getBoostBadge(): Single<Badge> {
-    return donationsService.boostBadge
+    return donationsService.getBoostBadge(Locale.getDefault())
       .flatMap(ServiceResponse<SignalServiceProfile.Badge>::flattenResult)
       .map(Badges::fromServiceBadge)
   }

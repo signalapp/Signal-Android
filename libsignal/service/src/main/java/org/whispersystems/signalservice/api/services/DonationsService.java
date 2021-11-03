@@ -22,6 +22,7 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -102,15 +103,15 @@ public class DonationsService {
   /**
    * @return The badge configuration for signal boost. Expect for right now only a single level numbered 1.
    */
-  public Single<ServiceResponse<SignalServiceProfile.Badge>> getBoostBadge() {
-    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getBoostLevels().getLevels().get("1").getBadge(), 200));
+  public Single<ServiceResponse<SignalServiceProfile.Badge>> getBoostBadge(Locale locale) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getBoostLevels(locale).getLevels().get("1").getBadge(), 200));
   }
 
   /**
    * Returns the subscription levels that are available for the client to choose from along with currencies and current prices
    */
-  public Single<ServiceResponse<SubscriptionLevels>> getSubscriptionLevels() {
-    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getSubscriptionLevels(), 200));
+  public Single<ServiceResponse<SubscriptionLevels>> getSubscriptionLevels(Locale locale) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getSubscriptionLevels(locale), 200));
   }
 
   /**

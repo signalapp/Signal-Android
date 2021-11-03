@@ -199,7 +199,7 @@ class SubscribeViewModel(
     store.update { it.copy(stage = SubscribeState.Stage.TOKEN_REQUEST) }
 
     subscriptionToPurchase = snapshot.selectedSubscription
-    donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedSubscription.price, snapshot.selectedSubscription.getTitle(context), fetchTokenRequestCode)
+    donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedSubscription.price, snapshot.selectedSubscription.name, fetchTokenRequestCode)
   }
 
   fun setSelectedSubscription(subscription: Subscription) {

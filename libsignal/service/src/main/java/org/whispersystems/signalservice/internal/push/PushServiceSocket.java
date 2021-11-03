@@ -888,8 +888,8 @@ public class PushServiceSocket {
     return JsonUtil.fromJsonResponse(result, typeRef);
   }
 
-  public SubscriptionLevels getBoostLevels() throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(BOOST_BADGES, "GET", null);
+  public SubscriptionLevels getBoostLevels(Locale locale) throws IOException {
+    String result = makeServiceRequestWithoutAuthentication(BOOST_BADGES, "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale));
     return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
   }
 
@@ -912,8 +912,8 @@ public class PushServiceSocket {
   }
 
 
-  public SubscriptionLevels getSubscriptionLevels() throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(SUBSCRIPTION_LEVELS, "GET", null);
+  public SubscriptionLevels getSubscriptionLevels(Locale locale) throws IOException {
+    String result = makeServiceRequestWithoutAuthentication(SUBSCRIPTION_LEVELS, "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale));
     return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
   }
 
@@ -1530,7 +1530,19 @@ public class PushServiceSocket {
   private String makeServiceRequestWithoutAuthentication(String urlFragment, String method, String jsonBody, ResponseCodeHandler responseCodeHandler)
       throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
   {
-    ResponseBody responseBody = makeServiceRequest(urlFragment, method, jsonRequestBody(jsonBody), NO_HEADERS, responseCodeHandler, Optional.absent(), true).body();
+    return makeServiceRequestWithoutAuthentication(urlFragment, method, jsonBody, NO_HEADERS, responseCodeHandler);
+  }
+
+  private String makeServiceRequestWithoutAuthentication(String urlFragment, String method, String jsonBody, Map<String, String> headers)
+      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
+  {
+    return makeServiceRequestWithoutAuthentication(urlFragment, method, jsonBody, headers, NO_HANDLER);
+  }
+
+  private String makeServiceRequestWithoutAuthentication(String urlFragment, String method, String jsonBody, Map<String, String> headers, ResponseCodeHandler responseCodeHandler)
+      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
+  {
+    ResponseBody responseBody = makeServiceRequest(urlFragment, method, jsonRequestBody(jsonBody), headers, responseCodeHandler, Optional.absent(), true).body();
     try {
       return responseBody.string();
     } catch (IOException e) {

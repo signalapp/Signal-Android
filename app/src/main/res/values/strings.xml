@@ -3947,9 +3947,6 @@
     <string name="SubscribeFragment__update">Update</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount">You will be charged the full amount of the new subscription price today. Your subscription will renew %1$s.</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">You will be charged the full amount (%1$s) of the new subscription price today. Your subscription will renew monthly.</string>
-    <string name="SubscribeFragment__sustainer_i">Sustainer I</string>
-    <string name="SubscribeFragment__sustainer_ii">Sustainer II</string>
-    <string name="SubscribeFragment__sustainer_iii">Sustainer III</string>
 
     <string name="Subscription__s_per_month">%s/month</string>
     <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Renews %2$s</string>
