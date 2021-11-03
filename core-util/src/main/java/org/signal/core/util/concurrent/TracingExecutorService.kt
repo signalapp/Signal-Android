@@ -1,6 +1,9 @@
 package org.signal.core.util.concurrent
 
+import java.util.Queue
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.ThreadPoolExecutor
 
 /**
  * An executor that will keep track of the stack trace at the time of calling [execute] and use that to build a more useful stack trace in the event of a crash.
@@ -11,12 +14,42 @@ internal class TracingExecutorService(val wrapped: ExecutorService) : ExecutorSe
     val callerStackTrace = Throwable()
 
     wrapped.execute {
-      val currentHandler: Thread.UncaughtExceptionHandler? = Thread.currentThread().uncaughtExceptionHandler
+      val currentThread: Thread = Thread.currentThread()
+      val currentHandler: Thread.UncaughtExceptionHandler? = currentThread.uncaughtExceptionHandler
       val originalHandler: Thread.UncaughtExceptionHandler? = if (currentHandler is TracingUncaughtExceptionHandler) currentHandler.originalHandler else currentHandler
 
-      Thread.currentThread().uncaughtExceptionHandler = TracingUncaughtExceptionHandler(originalHandler, callerStackTrace)
+      currentThread.uncaughtExceptionHandler = TracingUncaughtExceptionHandler(originalHandler, callerStackTrace)
 
-      command?.run()
+      TracedThreads.callerStackTraces.put(currentThread.id, callerStackTrace)
+      try {
+        command?.run()
+      } finally {
+        TracedThreads.callerStackTraces.remove(currentThread.id)
+      }
     }
   }
+
+  val queue: Queue<Runnable>
+    get() {
+      return if (wrapped is ThreadPoolExecutor)
+        wrapped.queue
+      else
+        LinkedBlockingQueue()
+    }
+
+  val activeCount: Int
+    get() {
+      return if (wrapped is ThreadPoolExecutor)
+        wrapped.activeCount
+      else
+        0
+    }
+
+  val maximumPoolSize: Int
+    get() {
+      return if (wrapped is ThreadPoolExecutor)
+        wrapped.maximumPoolSize
+      else
+        0
+    }
 }

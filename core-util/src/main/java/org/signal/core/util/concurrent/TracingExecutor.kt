@@ -11,12 +11,18 @@ internal class TracingExecutor(val wrapped: Executor) : Executor by wrapped {
     val callerStackTrace = Throwable()
 
     wrapped.execute {
-      val currentHandler: Thread.UncaughtExceptionHandler? = Thread.currentThread().uncaughtExceptionHandler
+      val currentThread: Thread = Thread.currentThread()
+      val currentHandler: Thread.UncaughtExceptionHandler? = currentThread.uncaughtExceptionHandler
       val originalHandler: Thread.UncaughtExceptionHandler? = if (currentHandler is TracingUncaughtExceptionHandler) currentHandler.originalHandler else currentHandler
 
-      Thread.currentThread().uncaughtExceptionHandler = TracingUncaughtExceptionHandler(originalHandler, callerStackTrace)
+      currentThread.uncaughtExceptionHandler = TracingUncaughtExceptionHandler(originalHandler, callerStackTrace)
 
-      command?.run()
+      TracedThreads.callerStackTraces.put(currentThread.id, callerStackTrace)
+      try {
+        command?.run()
+      } finally {
+        TracedThreads.callerStackTraces.remove(currentThread.id)
+      }
     }
   }
 }

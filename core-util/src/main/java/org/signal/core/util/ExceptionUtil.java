@@ -29,8 +29,15 @@ public final class ExceptionUtil {
    * @return The provided original exception, for convenience.
    */
   public static <E extends Throwable> E joinStackTrace(@NonNull E original, @NonNull Throwable inferred) {
-    StackTraceElement[] originalTrace = original.getStackTrace();
-    StackTraceElement[] inferredTrace = inferred.getStackTrace();
+    StackTraceElement[] combinedTrace = joinStackTrace(original.getStackTrace(), inferred.getStackTrace());
+    original.setStackTrace(combinedTrace);
+    return original;
+  }
+
+  /**
+   * See {@link #joinStackTrace(Throwable, Throwable)}
+   */
+  public static StackTraceElement[] joinStackTrace(@NonNull StackTraceElement[] originalTrace, @NonNull StackTraceElement[] inferredTrace) {
     StackTraceElement[] combinedTrace = new StackTraceElement[originalTrace.length + inferredTrace.length + 2];
 
     System.arraycopy(originalTrace, 0, combinedTrace, 0, originalTrace.length);
@@ -40,9 +47,7 @@ public final class ExceptionUtil {
 
     System.arraycopy(inferredTrace, 0, combinedTrace, originalTrace.length + 2, inferredTrace.length);
 
-    original.setStackTrace(combinedTrace);
-
-    return original;
+    return combinedTrace;
   }
 
   public static @NonNull String convertThrowableToString(@NonNull Throwable throwable) {
