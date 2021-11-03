@@ -816,7 +816,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           }
         }
 
-        process((s, p) -> p.handleTurnServerUpdate(s, iceServers, TextSecurePreferences.isTurnOnly(context)));
+        process((s, p) -> {
+          RemotePeer activePeer = s.getCallInfoState().getActivePeer();
+          if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
+            return p.handleTurnServerUpdate(s, iceServers, TextSecurePreferences.isTurnOnly(context));
+          }
+
+          Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
+          return s;
+        });
       } catch (IOException e) {
         Log.w(TAG, "Unable to retrieve turn servers: ", e);
         process((s, p) -> p.handleSetupFailure(s, remotePeer.getCallId()));

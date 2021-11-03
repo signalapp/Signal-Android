@@ -343,6 +343,9 @@ public class WebRtcCallViewModel extends ViewModel {
       case CALL_DISCONNECTED:
         callState = WebRtcControls.CallState.ENDING;
         break;
+      case CALL_DISCONNECTED_GLARE:
+        callState = WebRtcControls.CallState.INCOMING;
+        break;
       case NETWORK_FAILURE:
         callState = WebRtcControls.CallState.ERROR;
         break;
