@@ -105,7 +105,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder;
@@ -173,6 +172,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
+import kotlin.Unit;
+
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends LoggingFragment implements MultiselectForwardFragment.Callback {
   private static final String TAG = Log.tag(ConversationFragment.class);
@@ -219,6 +220,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private Stopwatch                   startupStopwatch;
   private LayoutTransition            layoutTransition;
   private TransitionListener          transitionListener;
+  private View                        reactionsShade;
 
   private GiphyMp4ProjectionRecycler giphyMp4ProjectionRecycler;
   private Colorizer                  colorizer;
@@ -259,6 +261,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
     scrollDateHeader      = view.findViewById(R.id.scroll_date_header);
     toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
+    reactionsShade        = view.findViewById(R.id.reactions_shade);
 
     final LinearLayoutManager      layoutManager            = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     final ConversationItemAnimator conversationItemAnimator = new ConversationItemAnimator(
@@ -376,7 +379,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     GiphyMp4ProjectionRecycler callback = new GiphyMp4ProjectionRecycler(holders);
 
     GiphyMp4PlaybackController.attach(list, callback, maxPlayback);
-    list.addItemDecoration(new GiphyMp4ItemDecoration(callback), 0);
+    list.addItemDecoration(new GiphyMp4ItemDecoration(callback, translationY -> {
+      reactionsShade.setTranslationY(translationY);
+      return Unit.INSTANCE;
+    }), 0);
 
     return callback;
   }
@@ -1326,9 +1332,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         list.invalidateItemDecorations();
 
         isReacting = true;
+        reactionsShade.setVisibility(View.VISIBLE);
         list.setLayoutFrozen(true);
         listener.handleReaction(item.getConversationMessage(), new ReactionsToolbarListener(item.getConversationMessage()), () -> {
           isReacting = false;
+          reactionsShade.setVisibility(View.GONE);
           list.setLayoutFrozen(false);
           WindowUtil.setLightStatusBarFromTheme(requireActivity());
           clearFocusedItem();
