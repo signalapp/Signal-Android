@@ -80,7 +80,7 @@ class SubscribeFragment : DSLSettingsFragment(
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe {
       when (it) {
-        is DonationEvent.GooglePayUnavailableError -> onGooglePayUnavailable(it.throwable)
+        is DonationEvent.GooglePayUnavailableError -> Unit
         is DonationEvent.PaymentConfirmationError -> onPaymentError(it.throwable)
         is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed(it.badge)
         DonationEvent.RequestTokenError -> onPaymentError(null)
@@ -203,16 +203,14 @@ class SubscribeFragment : DSLSettingsFragment(
           }
         )
       } else {
-        if (state.isGooglePayAvailable) {
-          space(DimensionUnit.DP.toPixels(16f).toInt())
+        space(DimensionUnit.DP.toPixels(16f).toInt())
 
-          customPref(
-            GooglePayButton.Model(
-              onClick = this@SubscribeFragment::onGooglePayButtonClicked,
-              isEnabled = areFieldsEnabled && state.selectedSubscription != null
-            )
+        customPref(
+          GooglePayButton.Model(
+            onClick = this@SubscribeFragment::onGooglePayButtonClicked,
+            isEnabled = areFieldsEnabled && state.selectedSubscription != null
           )
-        }
+        )
 
         secondaryButtonNoOutline(
           text = DSLSettingsText.from(R.string.SubscribeFragment__more_payment_options),
@@ -257,18 +255,6 @@ class SubscribeFragment : DSLSettingsFragment(
         }
         .show()
     }
-  }
-
-  private fun onGooglePayUnavailable(throwable: Throwable?) {
-    Log.w(TAG, "Google Pay error", throwable)
-    MaterialAlertDialogBuilder(requireContext())
-      .setTitle(R.string.DonationsErrors__google_pay_unavailable)
-      .setMessage(R.string.DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app)
-      .setPositiveButton(android.R.string.ok) { dialog, _ ->
-        dialog.dismiss()
-        findNavController().popBackStack()
-      }
-      .show()
   }
 
   private fun onSubscriptionCancelled() {

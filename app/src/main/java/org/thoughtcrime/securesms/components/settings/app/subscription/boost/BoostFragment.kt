@@ -102,7 +102,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe { event: DonationEvent ->
       when (event) {
-        is DonationEvent.GooglePayUnavailableError -> onGooglePayUnavailable(event.throwable)
+        is DonationEvent.GooglePayUnavailableError -> Unit
         is DonationEvent.PaymentConfirmationError -> onPaymentError(event.throwable)
         is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed(event.badge)
         DonationEvent.RequestTokenError -> onPaymentError(null)
@@ -169,16 +169,14 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         )
       )
 
-      if (state.isGooglePayAvailable) {
-        space(DimensionUnit.DP.toPixels(16f).toInt())
+      space(DimensionUnit.DP.toPixels(16f).toInt())
 
-        customPref(
-          GooglePayButton.Model(
-            onClick = this@BoostFragment::onGooglePayButtonClicked,
-            isEnabled = state.stage == BoostState.Stage.READY
-          )
+      customPref(
+        GooglePayButton.Model(
+          onClick = this@BoostFragment::onGooglePayButtonClicked,
+          isEnabled = state.stage == BoostState.Stage.READY
         )
-      }
+      )
 
       secondaryButtonNoOutline(
         text = DSLSettingsText.from(R.string.SubscribeFragment__more_payment_options),
@@ -223,18 +221,6 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         }
         .show()
     }
-  }
-
-  private fun onGooglePayUnavailable(throwable: Throwable?) {
-    Log.w(TAG, "Google Pay error", throwable)
-    MaterialAlertDialogBuilder(requireContext())
-      .setTitle(R.string.DonationsErrors__google_pay_unavailable)
-      .setMessage(R.string.DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app)
-      .setPositiveButton(android.R.string.ok) { dialog, _ ->
-        dialog.dismiss()
-        findNavController().popBackStack()
-      }
-      .show()
   }
 
   private fun startAnimationAboveSelectedBoost(view: View) {
