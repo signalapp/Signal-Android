@@ -125,8 +125,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       if (response.getStatus() == 204) {
         Log.w(TAG, "User does not have receipts available to exchange. Exiting.", response.getApplicationError().get());
       } else {
-        Log.w(TAG, "Encountered a permanent failure: " + response.getStatus(), response.getApplicationError().get());
-        throw new Exception(response.getApplicationError().get());
+        Log.w(TAG, "Encountered a server failure: " + response.getStatus(), response.getApplicationError().get());
+        throw new RetryableException();
       }
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());

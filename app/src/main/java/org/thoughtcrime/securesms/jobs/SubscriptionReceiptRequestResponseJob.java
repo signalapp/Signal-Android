@@ -140,8 +140,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       if (response.getStatus() == 204) {
         Log.w(TAG, "User does not have receipts available to exchange. Exiting.", response.getApplicationError().get());
       } else {
-        Log.w(TAG, "Encountered a permanent failure: " + response.getStatus(), response.getApplicationError().get());
-        throw new Exception(response.getApplicationError().get());
+        Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get());
+        throw new RetryableException();
       }
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
@@ -214,6 +214,12 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     boolean isExpiration86400        = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
     boolean isExpirationInTheFuture  = receiptCredential.getReceiptExpirationTime() > now;
     boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() < monthFromNow;
+
+    Log.d(TAG, "Credential validation: isSameLevel(" + isSameLevel +
+               ") isExpirationAfterSub(" + isExpirationAfterSub +
+               ") isExpiration86400(" + isExpiration86400 +
+               ") isExpirationInTheFuture(" + isExpirationInTheFuture +
+               ") isExpirationWithinAMonth(" + isExpirationWithinAMonth + ")");
 
     return isSameLevel && isExpirationAfterSub && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinAMonth;
   }

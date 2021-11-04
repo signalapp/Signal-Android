@@ -2601,6 +2601,9 @@
     <string name="preferences__internal_calling" translatable="false">Group call server</string>
     <string name="preferences__internal_calling_default" translatable="false">Default</string>
     <string name="preferences__internal_calling_s_server" translatable="false">%1$s server</string>
+    <string name="preferences__internal_badges" translatable="false">Badges</string>
+    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
+
 
     <!-- Payments -->
     <string name="PaymentsActivityFragment__all_activity">All activity</string>
