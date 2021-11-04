@@ -2112,16 +2112,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="HelpFragment__debug_log">Denník ladenia:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodarilo sa nahrať denníky</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Prosíme, čo najpodrobnejšie popíšte situáciu a pomôžte nám tak porozumieť vášmu problému.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Vyberte si prosím jednu možnosť --</item>
-    <item>Niečo nefunguje</item>
-    <item>Žiadosť o funkciu</item>
-    <item>Otázka</item>
-    <item>Spätná väzba</item>
-    <item>Iné</item>
-    <item>Platby (MobileCoin)</item>
-    <item>Príspevky (Udržiavanie a Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Táto správa</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -3529,11 +3519,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mesiac · Vyprší %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizácia bez žiadnych inzerentov, alebo investorov a udržiava ju iba ľudia, ktorí ju používajú a vážia si ju. Prispievajte opakovane mesačne a získajte odznak profilu, aby ste sa mohli podeliť o svoju podporu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Prečo prispieť?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tím spoločnosti Signal sa zaväzuje vyvíjať technológiu ochrany súkromia s otvoreným zdrojovým kódom, ktorá chráni slobodu prejavu a umožňuje bezpečnú globálnu komunikáciu. Váš príspevok podporuje túto činnosť. Žiadne reklamy. Žiadne sledovače. Nerobím si srandu.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Váš príspevok pomôže zaplatiť za vývoj, servery a šírku pásma aplikácie, ktorú používajú milióny na celom svete na súkromnú a okamžitú komunikáciu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tím spoločnosti Signal sa zaväzuje vyvíjať technológiu ochrany súkromia s otvoreným zdrojovým kódom, ktorá chráni slobodu prejavu a umožňuje bezpečnú globálnu komunikáciu. Váš príspevok podporuje túto činnosť. Žiadne reklamy. Žiadne sledovače. Nerobím si srandu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Váš príspevok pomôže zaplatiť za vývoj, servery a šírku pásma aplikácie, ktorú používajú milióny na celom svete na súkromnú a okamžitú komunikáciu.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ďakujem za tvoju podporu!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Ďakujem za podporu!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Získali ste odznak %s! Zobrazenie vášho odznaku ukáže ľuďom s ktorými sa zhovárate že podporujete Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Získali ste odznak %s! Zobrazenie vášho odznaku ukáže ľuďom s ktorými sa zhovárate že podporujete Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobraziť v profile</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvoriť vybraný odznak</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
@@ -3551,9 +3541,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MySupportPreference__s_per_month">%1$s/mesiac</string>
   <string name="MySupportPreference__renews_s">Obnovuje %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Platnosť odznaku vypršala</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Platnosť odznaku %1$s vypršala a už nie je viditeľný pre ostatných vo vašom profile.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás -nie pre vaše údaje-, zvážte možnosť stať sa mesačným predplatiteľom.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Staňte sa predplatiteľmi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Platnosť odznaku %1$s vypršala a už nie je viditeľný pre ostatných vo vašom profile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás -nie pre vaše údaje-, zvážte možnosť stať sa mesačným predplatiteľom.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Staňte sa predplatiteľmi</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
   <string name="Subscription__verification_failed">Overenie odberu zlyhalo</string>
   <string name="Subscription__please_contact_support_for_more_information">Pre viac informácií kontaktujte podporu.</string>

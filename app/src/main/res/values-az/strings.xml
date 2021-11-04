@@ -316,7 +316,43 @@
     <item quantity="one">Söhbət gələnlər qutusuna köçürüldü</item>
     <item quantity="other">%d danışıq gələn qutusuna köçürüldü</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Oxundu</item>
+    <item quantity="other">Oxundu</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Oxunmadı</item>
+    <item quantity="other">Oxunmadı</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Sancaqla</item>
+    <item quantity="other">Sancaqla</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Sancağı götür</item>
+    <item quantity="other">Sancağı götür</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Səssizə al</item>
+    <item quantity="other">Səssizə al</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Səsi aç</item>
+    <item quantity="other">Səsi aç</item>
+  </plurals>
   <string name="ConversationListFragment_select">Seçin</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arxivlə</item>
+    <item quantity="other">Arxivlə</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Arxivdən çıxart</item>
+    <item quantity="other">Arxivdən çıxart</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Sil</item>
+    <item quantity="other">Sil</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Hamısını seç</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d seçildi</item>
@@ -803,6 +839,14 @@
   <string name="MediaOverviewActivity_List_view_description">Siyahı görünüşü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçildi</string>
   <string name="MediaOverviewActivity_select_all">Hamısını seç</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Saxla</item>
+    <item quantity="other">Saxla</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Sil</item>
+    <item quantity="other">Sil</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d seçildi (%2$s)</item>
     <item quantity="other">%1$d seçildi (%2$s)</item>
@@ -1897,16 +1941,6 @@
   <string name="HelpFragment__debug_log">Sazlama jurnalı:</string>
   <string name="HelpFragment__could_not_upload_logs">Jurnal yüklənilə bilmədi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Zəhmət olmasa anlamağımıza kömək etmək üçün problemi daha aydın təsvir edin.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Zəhmət olmasa seçim edin --</item>
-    <item>Nəsə işləmir</item>
-    <item>Özəllik tələb et</item>
-    <item>Sual</item>
-    <item>Əks əlaqə</item>
-    <item>Digər</item>
-    <item>Ödənişlər (MobileCoin)</item>
-    <item>İanələr (Dəstəkçilər və Signal gücləndirməsi)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Son istifadə edilən</string>
@@ -3280,11 +3314,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · %2$s bitir</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklam verəni və ya investoru olmayan, yalnız onu istifadə edən və ona dəyər verən insanlar tərəfindən dəstəklənən qeyri-kommersiya təşkilatıdır. Hər ay müntəzəm olaraq töhfə verin və dəstəyinizi paylaşmaq üçün bir profil nişanı alın.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Niyə töhfə verməliyəm?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal-dakı komanda, azad ifadəni qoruyan və güvənli qlobal ünsiyyəti təmin edən açıq mənbəli gizlilik texnologiyasını təkmilləşdirmə missiyasına sadiqdir. Sizin töhfəniz də, bu məqsədə xidmət edir. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Töhfəniz, özəl və ani ünsiyyət üçün dünyada milyonlarla insan tərəfindən istifadə edilən bir tətbiqin inkişafı və serverləri üçün ödənişlərin edilməsinə kömək edir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal-dakı komanda, azad ifadəni qoruyan və güvənli qlobal ünsiyyəti təmin edən açıq mənbəli gizlilik texnologiyasını təkmilləşdirmə missiyasına sadiqdir. Sizin töhfəniz də, bu məqsədə xidmət edir. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Töhfəniz, özəl və ani ünsiyyət üçün dünyada milyonlarla insan tərəfindən istifadə edilən bir tətbiqin inkişafı və serverləri üçün ödənişlərin edilməsinə kömək edir.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gücləndirmə üçün təşəkkürlər!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%s nişanını qazandınız! Nişanın görüntülənməsi, söhbət etdiyiniz şəxslərə Signal-ı dəstəklədiyinizi göstərəcəkdir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%s nişanını qazandınız! Nişanın görüntülənməsi, söhbət etdiyiniz şəxslərə Signal-ı dəstəklədiyinizi göstərəcəkdir.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profildə görüntülə</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Xüsusi nişan hazırla</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Bitdi</string>
@@ -3302,9 +3336,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/ay</string>
   <string name="MySupportPreference__renews_s">Yenilənir %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Nişanınızın müddəti bitdi</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq abunəçi olmağı düşünün.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abunəçi olun</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq abunəçi olmağı düşünün.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abunəçi olun</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
   <string name="Subscription__verification_failed">Abunəlik Təsdiqlənmədi</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha çox məlumat üçün zəhmət olmasa dəstəklə əlaqə saxlayın.</string>

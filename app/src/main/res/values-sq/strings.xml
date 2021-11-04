@@ -1941,16 +1941,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Ju lutemi, përzgjidhni një mundësi --</item>
-    <item>Diçka S’po Funksionon</item>
-    <item>Kërkesë Për Veçori</item>
-    <item>Pyetje</item>
-    <item>Përshtypje</item>
-    <item>Tjetër</item>
-    <item>Pagesa (MobileCoin)</item>
-    <item>Dhurime (Përkrahës &amp; Përforcim Signal-i)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
@@ -3327,11 +3317,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/muaj · Skadon më %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal-i është një ent jofitimprurës, pa reklamues për të apo investues, i bazuar vetëm te njerëzit që e përdorin dhe vlerësojnë. Bëni një dhurim mujor ripërsëritës dhe merrni një stemë profili për t’u treguar të tjerëve përkrahjen tuaj.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pse të Jepet Ndihmesë?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Ekipi i Signal-it i është përkushtuar misioni të zhvillimit me burim të hapët të teknologjive të privatësisë, që mbrojnë fjalën e lirë dhe bëjnë të mundur komunikim global të sigurt. Kontributi juaj i jep frymë kësaj kauze. Pa reklama. Pa ndjekës. Pa tallje.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Kontributi juaj ndihmon të paguhet zhvillimi, shërbyesit dhe trafiku në ta, për një aplikacion të përdorur nga miliona vetë anembanë botës, për komunikim privat dhe të menjëhershëm.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Ekipi i Signal-it i është përkushtuar misioni të zhvillimit me burim të hapët të teknologjive të privatësisë, që mbrojnë fjalën e lirë dhe bëjnë të mundur komunikim global të sigurt. Kontributi juaj i jep frymë kësaj kauze. Pa reklama. Pa ndjekës. Pa tallje.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Kontributi juaj ndihmon të paguhet zhvillimi, shërbyesit dhe trafiku në ta, për një aplikacion të përdorur nga miliona vetë anembanë botës, për komunikim privat dhe të menjëhershëm.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Faleminderit për Përkrahjen tuaj!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Faleminderit për Fuqizimin!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Fituat një stemë %s! Shpalosja e stemës tuaj do t’u shfaqë personave me të cilët bisedoni se e përkrahni Signal-in.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Fituat një stemë %s! Shpalosja e stemës tuaj do t’u shfaqë personave me të cilët bisedoni se e përkrahni Signal-in.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Shfaqe në Profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Bëje stemë të zgjedhur</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">U bë</string>
@@ -3349,9 +3339,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MySupportPreference__s_per_month">%1$s/muaj</string>
   <string name="MySupportPreference__renews_s">Rinovohet më %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Stema juaj ka Skaduar</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Stema juaj %1$s ka skaduar dhe te profili juaj s’është më e dukshme për të tjerët.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Që të vazhdon përkrahjen e teknologjisë që është ngritur për ju—jo për të dhënat tuaja—ju lutemi, shihni mundësinë e bërjes së një pajtimtari të përmuajshëm.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bëhuni një pajtimtar</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Stema juaj %1$s ka skaduar dhe te profili juaj s’është më e dukshme për të tjerët.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Që të vazhdon përkrahjen e teknologjisë që është ngritur për ju—jo për të dhënat tuaja—ju lutemi, shihni mundësinë e bërjes së një pajtimtari të përmuajshëm.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bëhuni një pajtimtar</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
   <string name="Subscription__verification_failed">Verifikimi i Pajtimit Dështoi</string>
   <string name="Subscription__please_contact_support_for_more_information">Ju lutemi, për më tepër hollësi, lidhuni më asistencën.</string>

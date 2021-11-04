@@ -1940,16 +1940,6 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Por favor, selecione uma opção --</item>
-    <item>Algo não está a funcionar</item>
-    <item>Pedido de funcionalidade</item>
-    <item>Questão</item>
-    <item>Feedback</item>
-    <item>Outro(a)</item>
-    <item>Pagamentos (MobileCoin)</item>
-    <item>Doações (Sustainers &amp; Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -3323,11 +3313,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mês · Expira %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma contribuição mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Porque contribuir?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipa do Signal está comprometida com a missão de desenvolver uma tecnologia de privacidade de código aberto que proteja a liberdade de expressão e permita a comunicação global segura. A sua contribuição alimenta essa causa. Sem anúncios. Sem rastreadores. Sem brincadeiras. </string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">A sua contribuição ajuda a pagar pelo desenvolvimento, servidores e largura de banda de uma aplicação utilizada por milhões em todo o mundo para uma comunicação privada e instantânea.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipa do Signal está comprometida com a missão de desenvolver uma tecnologia de privacidade de código aberto que proteja a liberdade de expressão e permita a comunicação global segura. A sua contribuição alimenta essa causa. Sem anúncios. Sem rastreadores. Sem brincadeiras. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">A sua contribuição ajuda a pagar pelo desenvolvimento, servidores e largura de banda de uma aplicação utilizada por milhões em todo o mundo para uma comunicação privada e instantânea.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Obrigado pelo seu Apoio!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Obrigado pelo seu Apoio!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Você ganhou um crachá %s! Exibir o seu crachá mostrará às pessoas com quem conversa que você apoia o Signal. </string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Você ganhou um crachá %s! Exibir o seu crachá mostrará às pessoas com quem conversa que você apoia o Signal. </string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Fazer crachá de funcionalidade</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Concluído</string>
@@ -3345,9 +3335,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/mês</string>
   <string name="MySupportPreference__renews_s">Renovações %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">O seu crachá %1$s expirou, e deixou de estar visível para outras pessoas no seu perfil.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar a suportar a tecnologia que foi construída para si (não para os seus dados), considere fazer uma assinatura mensal.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Torne-se um assinante</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">O seu crachá %1$s expirou, e deixou de estar visível para outras pessoas no seu perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar a suportar a tecnologia que foi construída para si (não para os seus dados), considere fazer uma assinatura mensal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Torne-se um assinante</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="Subscription__verification_failed">Falha na verificação da assinatura</string>
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacte o \'Suporte\' para mais informações.</string>

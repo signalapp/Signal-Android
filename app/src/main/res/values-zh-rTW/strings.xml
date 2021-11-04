@@ -1851,16 +1851,6 @@
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- 請選擇一個選項 --</item>
-    <item>出了點問題</item>
-    <item>功能要求</item>
-    <item>問題</item>
-    <item>反應</item>
-    <item>其他</item>
-    <item>支付 (行動貨幣)</item>
-    <item>捐贈 (維護員和 Signal增強器)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用的</string>
@@ -3217,11 +3207,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · 過期了 %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是一個沒有廣告商或投資者的非營利組織，只有使用和珍惜它的人才能維持。 每月定期捐款可獲得個人資料徽章，以與他人分享你的支持。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。你的貢獻推動了這一事業。 無廣告。 沒有追踪。這不是開玩笑的。</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">你的捐款協助於支付全球數百萬人用於私密和即時通訊程式的開發、伺服器維護和網路頻寬。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。你的貢獻推動了這一事業。 無廣告。 沒有追踪。這不是開玩笑的。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">你的捐款協助於支付全球數百萬人用於私密和即時通訊程式的開發、伺服器維護和網路頻寬。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的加油!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">你贏得了一枚 %s 徽章！ 展示你的徽章將讓與你聊天的人知道你支援了 Signal。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">你贏得了一枚 %s 徽章！ 展示你的徽章將讓與你聊天的人知道你支援了 Signal。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資訊中展示</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為特色徽章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
@@ -3239,9 +3229,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">續約 %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">你的 %1$s 徽章已過期，在你的個人資料中徽章無法再被看見。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">要繼續支援專為你打造的技術—而非為你的資料—請考慮成為月訂閱者。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">你的 %1$s 徽章已過期，在你的個人資料中徽章無法再被看見。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">要繼續支援專為你打造的技術—而非為你的資料—請考慮成為月訂閱者。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <string name="Subscription__verification_failed">訂閱驗證失敗</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援部門以了解更多資訊。</string>

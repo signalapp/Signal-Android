@@ -1940,16 +1940,6 @@
   <string name="HelpFragment__debug_log">Villumeldingaskrá:</string>
   <string name="HelpFragment__could_not_upload_logs">Gat ekki sent inn atvikaskrár</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lýstu þessu eins nákvæmlega og þú getur til að auðvelda okkur að skilja vandamálið.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Veldu eitthvað atriði --</item>
-    <item>Eitthvað er ekki að virka</item>
-    <item>Beiðni um endurbætur</item>
-    <item>Spurning</item>
-    <item>Umsögn</item>
-    <item>Annað</item>
-    <item>Greiðslur (MobileCoin)</item>
-    <item>Styrkir (Stuðningsaðilar &amp; Signal-hvatning)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Þessi skilaboð</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nýlega notað</string>
@@ -3336,8 +3326,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MySupportPreference__s_per_month">%1$s/mánuði</string>
   <string name="MySupportPreference__renews_s">Endurnýjast %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkið þitt er útrunnið</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s merkið þitt er útrunnið og er því ekki lengur sýnilegt öðrum á sniðinu þínu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Gerstu áskrifandi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s merkið þitt er útrunnið og er því ekki lengur sýnilegt öðrum á sniðinu þínu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Gerstu áskrifandi</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
   <string name="Subscription__contact_support">Hafa samband við hjálparteymi</string>
   <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>

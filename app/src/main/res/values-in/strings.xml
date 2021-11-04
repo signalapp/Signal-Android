@@ -1855,16 +1855,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__debug_log">Catatan debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Mohon pilih --</item>
-    <item>Sesuatu Tidak Berfungsi</item>
-    <item>Permintaan Fitur</item>
-    <item>Pertanyaan</item>
-    <item>Umpan balik</item>
-    <item>Lainnya</item>
-    <item>Pembayaran (MobileCoin)</item>
-    <item>Donasi (Pemelihara &amp; Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Terakhir Digunakan</string>
@@ -3200,6 +3190,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Pilih sebuah lencana</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Anda harus memilih sebuah lencana</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Gagal memperbarui profil</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi penyokong</string>
   <string name="ImageView__badge">Lencana</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
@@ -3207,10 +3198,21 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
   <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
   <string name="SubscribeFragment__confirm_cancellation">Konfirmasi Pembatalan?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Anda tidak akan dikenakan biaya lagi. Lencana Anda akan dihapus dari profil Anda pada periode akhir tagihan Anda.</string>
   <string name="SubscribeFragment__not_now">Nanti saja</string>
   <string name="SubscribeFragment__confirm">Konfirmasi</string>
   <string name="SubscribeFragment__update_subscription">Perbarui Langganan</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Langganan Anda telah dibatalkan.</string>
+  <string name="SubscribeFragment__update_subscription_question">Perbarui langganan?</string>
   <string name="SubscribeFragment__update">Perbarui</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Anda akan dikenakan biaya penuh dari harga berlangganan hari ini. Langganan Anda akan diperbarui %1$s.</string>
+  <string name="Subscription__s_per_month">%s/bulan</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/bulan. Perbarui %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Berakhir %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Mengapa Berkontribusi?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim di Signal berkomitmen pada misi mengembangkan teknologi privasi bersumber terbuka yang melindungi kebebasan berekspresi dan memungkinkan komunikasi global yang aman. Kontribusi Anda mendukung gerakan ini. Tanpa iklan. Tanpa pelacak. Beneran.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Kontribusii Anda membantu pembayaran pengembangan, peladen, dan bandwith dari aplikasi yang digunakan oleh jutaan orang di seluruh dunia untuk komunikasi yang privat dan instan.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih untuk Dukungan Anda!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
   <string name="ManageDonationsFragment__badges">Lencana</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>

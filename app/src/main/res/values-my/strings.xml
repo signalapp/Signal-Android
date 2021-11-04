@@ -92,6 +92,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s ကို ဘလော့ဖြည်မည်လား?</string>
   <string name="BlockUnblockDialog_block">ဘလော့မည်</string>
   <string name="BlockUnblockDialog_block_and_leave">ဘလော့ပြီး ထွက်မည်</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">တိုင်ကြားပီး ဘလော့မည်</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ယနေ့ </string>
   <string name="BucketedThreadMedia_Yesterday">မနေ့က </string>
@@ -167,6 +168,7 @@
   <string name="ConversationItem_error_network_not_delivered">ပို့ဆောင်မှု မအောင်မြင်ပါ</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">အလဲအလှယ်စာတိုသော့ရရှိပါသည်၊ ဆက်လက်လုပ်ဆောင်ရန် နှိပ်ပါ။ </string>
   <string name="ConversationItem_group_action_left">%1$s အဖွဲ့မှထွက်သွားသည်။ </string>
+  <string name="ConversationItem_send_paused">áá±áá­á¯á·áá¾á¯áá­á¯ áááºááá·áºáá²á·áááº</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ပို့ရန် မအောင်မြင်ပါ၊ လုံခြုံမှုမရှိသော အရန်အတွက် အသာထိပါ။</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">မလုံခြုံသောဖုန်းစာတိုပို့စနစ်ကိုပြန်သုံးမလား? </string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">မလုံခြုံသော ရုပ်သံပုံပါ စာပို့စနစ်ကို ပြန်သုံးမလား? </string>
@@ -234,6 +236,7 @@
   <string name="ConversationActivity_join">ပူးပေါင်း</string>
   <string name="ConversationActivity_full">ပြည့်နေသည်</string>
   <string name="ConversationActivity_error_sending_media">မီဒီယာပို့ခြင်းအမှား</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">áá­á¯ááºáá¼á¬á¸áá®á¸ ááá±á¬á·áááº</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">မဖတ်ရသေးသည့် စာတို %d </item>
@@ -296,6 +299,9 @@
   <string name="ConversationListFragment_undo">မလုပ်တော့ဘူး </string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ပြောစကား %d ကို စာပုံးထဲသို့ရွေ့သည်</item>
+  </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">ဖတ်သည်</item>
   </plurals>
   <string name="ConversationListFragment_select">ရွေးမယ်</string>
   <string name="ConversationListFragment_select_all">အားလုံးကို ရွေးမယ်</string>
@@ -1891,6 +1897,8 @@
   <string name="preferences_data_and_storage__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးမယ်</string>
   <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">ဝိုင်ဖိုင် နှင့် အင်တာနက်</string>
+  <string name="preferences_data_and_storage__mobile_data_only">အင်တာနက်</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">မကောင်းသော ချိတ်ဆက်မှုလိုင်းပေါ်တွင် ဒေတာပိုနည်းစွာသုံးလျှင် ခေါ်ဆိုမှုများ ပိုကြည်လင်ကောင်းမွန် နိုင်ပါသည်</string>
   <string name="preferences_notifications__messages">စာများ</string>
   <string name="preferences_notifications__events">ပွဲများ</string>
@@ -2707,6 +2715,7 @@
   <string name="GroupsInCommonMessageRequest__okay">အိုကေ</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">áá¯á¶áá¾ááº á¡ááá·áºááá·áº</string>
   <string name="QualitySelectorBottomSheetDialog__high">မြင့်သော</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
@@ -2743,10 +2752,14 @@
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">ပိတ်ထားမယ်</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 ပတ်</string>
   <string name="ExpireTimerSettingsFragment__1_week">၁ ပတ်</string>
   <string name="ExpireTimerSettingsFragment__1_day">၁ ရက်</string>
   <string name="ExpireTimerSettingsFragment__8_hours">၈ နာရီ</string>
   <string name="ExpireTimerSettingsFragment__1_hour">၁ နာရီ</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 မိနစ်</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 စက္ကန့်</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">စိတ်ကြိုက် အချိန်</string>
   <string name="ExpireTimerSettingsFragment__set">တပ်ဆင်မယ်</string>
   <string name="ExpireTimerSettingsFragment__save">သိမ်းမယ်</string>
   <string name="CustomExpireTimerSelectorView__minutes">မိနစ်</string>
@@ -2756,7 +2769,9 @@
   <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">áá®áá®áá¬ á¡áááºá¡âáá½á¸</string>
   <string name="DataAndStorageSettingsFragment__high">မြင့်သော</string>
+  <string name="DataAndStorageSettingsFragment__standard">áá¯á¶áá¾ááº á¡ááá·áºááá·áº</string>
   <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">စကားပြောဆိုမှု၏ အရောင်</string>

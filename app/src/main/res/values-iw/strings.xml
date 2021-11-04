@@ -2113,16 +2113,6 @@
   <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- אנא בחר אפשרות --</item>
-    <item>משהו לא עובד</item>
-    <item>בקשת מאפיין</item>
-    <item>שאלה</item>
-    <item>משוב</item>
-    <item>אחר</item>
-    <item>תשלומים (MobileCoin)</item>
-    <item>תרומות (מחזיקים ותמריץ Signal)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
@@ -3530,11 +3520,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/חודש · יפוג %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal הוא ללא מטרות רווח בלי מפרסמים או משקיעים, מוחזק רק ע״י האנשים שמשתמשים בו ומעריכים אותו. בצע תרומה חודשית חוזרת וקבל תג פרופיל כדי לשתף את התמיכה שלך.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">למה לתרום?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">הצוות ב־Signal מחוייב אל המשימה של פיתוח טכנולוגית פרטיות בקוד פתוח אשר מגינה על חופש ביטוי ומאפשרת תקשורת עולמית מאובטחת. התרומה שלך מתדלקת את המטרה הזאת. ללא פרסומות. ללא עוקבנים. ללא שטויות.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">התרומה שלך עוזרת לשלם עבור הפיתוח, השרתים, והתעבורה של יישום שנמצא בשימוש ע״י מיליוני אנשים ברחבי העולם למען תקשורת פרטית ומיידית.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">הצוות ב־Signal מחוייב אל המשימה של פיתוח טכנולוגית פרטיות בקוד פתוח אשר מגינה על חופש ביטוי ומאפשרת תקשורת עולמית מאובטחת. התרומה שלך מתדלקת את המטרה הזאת. ללא פרסומות. ללא עוקבנים. ללא שטויות.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">התרומה שלך עוזרת לשלם עבור הפיתוח, השרתים, והתעבורה של יישום שנמצא בשימוש ע״י מיליוני אנשים ברחבי העולם למען תקשורת פרטית ומיידית.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">תודה על התמיכה שלך!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">תודה על התמריץ!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">הרווחת תג %s! הצגת התג שלך תראה לאנשים שאיתם אתה מתכתב שאתה תומך ב־Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">הרווחת תג %s! הצגת התג שלך תראה לאנשים שאיתם אתה מתכתב שאתה תומך ב־Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">הצג בפרופיל</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">עשה תג בולט</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">סיים</string>
@@ -3552,9 +3542,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/חודש</string>
   <string name="MySupportPreference__renews_s">מתחדש %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">התג שלך פג</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">תג %1$s שלך פג, ואינו גלוי יותר אל אחרים בפרופיל שלך.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">כדי להמשיך לתמוך בטכנולוגיה שנבנתה עבורך—לא עבור הנתונים שלך—אנא שקול להפוך למנוי חודשי.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">הייה מנוי</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">תג %1$s שלך פג, ואינו גלוי יותר אל אחרים בפרופיל שלך.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">כדי להמשיך לתמוך בטכנולוגיה שנבנתה עבורך—לא עבור הנתונים שלך—אנא שקול להפוך למנוי חודשי.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">הייה מנוי</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
   <string name="Subscription__verification_failed">וידוא מינוי נכשל</string>
   <string name="Subscription__please_contact_support_for_more_information">אנא צור קשר עם התמיכה לעוד מידע.</string>

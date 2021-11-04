@@ -361,8 +361,88 @@
     <item quantity="many">تم نقل %d رسالة إلى الوارد</item>
     <item quantity="other">تم نقل %d رسالة إلى الوارد</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="zero">اقرأ</item>
+    <item quantity="one">اقرأ</item>
+    <item quantity="two">اقرأ</item>
+    <item quantity="few">اقرأ</item>
+    <item quantity="many">اقرأ</item>
+    <item quantity="other">اقرأ</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="zero">غير مقروء</item>
+    <item quantity="one">غير مقروء</item>
+    <item quantity="two">غير مقروءه</item>
+    <item quantity="few">غير مقروءه</item>
+    <item quantity="many">غير مقروء</item>
+    <item quantity="other">غير مقروء</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="zero">تثبيت</item>
+    <item quantity="one">تثبيت</item>
+    <item quantity="two">تثبيت</item>
+    <item quantity="few">ثبت</item>
+    <item quantity="many">تثبيت</item>
+    <item quantity="other">ثبت</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="zero">إلغاء التثبيت</item>
+    <item quantity="one">إلغاء التثبيت</item>
+    <item quantity="two">إلغاء التثبيت</item>
+    <item quantity="few">إلغاء التثبيت</item>
+    <item quantity="many">إلغاء التثبيت</item>
+    <item quantity="other">إلغاء التثبيت</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="zero">كتم الصوت</item>
+    <item quantity="one">كتم الصوت</item>
+    <item quantity="two">كتم الصوت</item>
+    <item quantity="few">كتم الصوت</item>
+    <item quantity="many">كتم الصوت</item>
+    <item quantity="other">كتم الصوت</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="zero">إعادة الصوت</item>
+    <item quantity="one">إعادة الصوت</item>
+    <item quantity="two">إعادة الصوت</item>
+    <item quantity="few">إعادة الصوت</item>
+    <item quantity="many">إعادة الصوت</item>
+    <item quantity="other">إعادة الصوت</item>
+  </plurals>
   <string name="ConversationListFragment_select">حَدِّد</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="zero">أرشيف</item>
+    <item quantity="one">أرشيف</item>
+    <item quantity="two">أرشيف</item>
+    <item quantity="few">أرشيف</item>
+    <item quantity="many">أرشيف</item>
+    <item quantity="other">أرشيف</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="zero">أخرج من الأرشيف</item>
+    <item quantity="one">أخرج من الأرشيف</item>
+    <item quantity="two">أخرج من الأرشيف</item>
+    <item quantity="few">أخرج من الأرشيف</item>
+    <item quantity="many">أخرج من الأرشيف</item>
+    <item quantity="other">أخرج من الأرشيف</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="zero">حذف</item>
+    <item quantity="one">حذف</item>
+    <item quantity="two">حذف</item>
+    <item quantity="few">حذف</item>
+    <item quantity="many">حذف</item>
+    <item quantity="other">حذف</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">اختيار الجميع</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="zero">تم تحديد %d</item>
+    <item quantity="one">تم تحديد %d</item>
+    <item quantity="two">تم تحديد %d</item>
+    <item quantity="few">تم تحديد %d</item>
+    <item quantity="many">تم تحديد %d</item>
+    <item quantity="other">تم تحديد %d</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListItemAction-->
@@ -796,6 +876,7 @@
   <string name="ManageProfileFragment_your_name">اسمك</string>
   <string name="ManageProfileFragment_your_username">اسم المستخدم الخاص بك</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
+  <string name="ManageProfileFragment_badges">الشارات </string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">لا توجد مجموعات مشتركة</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -959,6 +1040,30 @@
   <string name="MediaOverviewActivity_List_view_description">عرض القائمة</string>
   <string name="MediaOverviewActivity_Selected_description">مختار</string>
   <string name="MediaOverviewActivity_select_all">اختيار الجميع</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="zero">حفظ</item>
+    <item quantity="one">حفظ</item>
+    <item quantity="two">حفظ</item>
+    <item quantity="few">حفظ</item>
+    <item quantity="many">احفظ</item>
+    <item quantity="other">حفظ</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="zero">حذف</item>
+    <item quantity="one">احذف</item>
+    <item quantity="two">حذف</item>
+    <item quantity="few">حذف</item>
+    <item quantity="many">احذف</item>
+    <item quantity="other">حذف</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="zero">تم تحديد %1$d (%2$s)</item>
+    <item quantity="one">تم تحديد %1$d (%2$s)</item>
+    <item quantity="two">تم تحديد %1$d (%2$s)</item>
+    <item quantity="few">تم تحديد %1$d (%2$s)</item>
+    <item quantity="many">تم تحديد %1$d (%2$s)</item>
+    <item quantity="other">تم تحديد %1$d (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">ملف</string>
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">فيديو</string>
@@ -1770,6 +1875,7 @@
   <string name="MessageNotifier_reacted_s_to_s">تفاعل %1$s مع: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">تفاعل %1$s مع الفيديو الخاص بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">تفاعل %1$s مع الصورة الخاصة بك.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">تفاعل %1$s على صورة GIF الخاصة بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع الملف الخاص بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع التسجيل الصوتي الخاص بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعل %1$s مع وسائطك التي تُعرَض مرة واحدة</string>
@@ -2276,6 +2382,8 @@
   <string name="preferences__help">المساعدة</string>
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__donate_to_signal">التبرع لـ Signal</string>
+  <string name="preferences__subscription">الاشتراك</string>
+  <string name="preferences__signal_boost">تعزيز سيجنال</string>
   <string name="preferences__privacy">الخصوصية</string>
   <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>
   <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
@@ -3354,6 +3462,8 @@
   <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال Signal‬</string>
   <string name="HelpFragment__licenced_under_the_gplv3">بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">جودة الوسائط</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">جودة الوسائط المرسلة</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">إن إرسال وسائط بجودة عالية سوف يستخدم كما أكبر من البيانات.</string>
   <string name="DataAndStorageSettingsFragment__high">بالغ الأهميّة </string>
   <string name="DataAndStorageSettingsFragment__standard">قياسي</string>
@@ -3562,6 +3672,9 @@
   <string name="MediaReviewFragment__add_a_reply">إضافة رد</string>
   <string name="MediaReviewFragment__send_to">إرسال إلى</string>
   <string name="MediaReviewFragment__view_once_message">وسيط للعرض مرة واحدة</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">عنصر واحد أو أكثر كان كبيرًا جدًا</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">عنصر واحد أو أكثر غير صالح</string>
+  <string name="MediaReviewFragment__too_many_items_selected">تم تحديد عدد كبير جدًا من العناصر</string>
   <string name="ImageEditorHud__cancel">إلغاء</string>
   <string name="ImageEditorHud__draw">رسم</string>
   <string name="ImageEditorHud__write_text">كتابة نص</string>
@@ -3580,17 +3693,74 @@
   <string name="MediaReviewImagePageFragment__discard_changes">تجاهل التغييرات ؟</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تضيع كل تغييرات قمت بها على هذه الصورة.</string>
   <string name="CameraFragment__failed_to_open_camera">فشل تشغيل الكاميرا</string>
+  <string name="BadgesOverviewFragment__my_badges">شاراتي</string>
+  <string name="BadgesOverviewFragment__featured_badge">شارة مميزة</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">عرض الشارات على الملف الشخصي</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">فشل تحديث الملف الشخصي</string>
+  <string name="BadgeSelectionFragment__select_badges">حدد الشارات</string>
   <string name="SelectFeaturedBadgeFragment__preview">مُعاينة</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">اختر شارة</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">يجب عليك تحديد شارة</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">فشل تحديث الملف الشخصي</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">كن داعماً</string>
+  <string name="ImageView__badge">شارة</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">يُشغَّل Signal بِواسِطَة أشخاص مِثلَك.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">دعم التكنولوجيا المصممة لك - وليس لبياناتك - من خلال الانضمام إلى مجتمع الأشخاص الذين يدعمونها.</string>
   <string name="SubscribeFragment__donation_amount">مَبلَغ التَّبَرُّع</string>
+  <string name="SubscribeFragment__more_payment_options">المزيد من خيارات الدفع</string>
+  <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
+  <string name="SubscribeFragment__confirm_cancellation">تأكيد الإلغاء؟</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">لن يتم محاسبتك مرة أخرى. ستتم إزالة شارتك من ملفك الشخصي في نهاية المدة الزمنية لإعداد الفواتير.</string>
   <string name="SubscribeFragment__not_now">ليس الآن</string>
   <string name="SubscribeFragment__confirm">تأكيد</string>
+  <string name="SubscribeFragment__update_subscription">تحديث الاشتراك</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">تم إلغاء اشتراكك.</string>
+  <string name="SubscribeFragment__update_subscription_question">تحديث الاشتراك؟</string>
   <string name="SubscribeFragment__update">تحديث التطبيق</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">سيتم تحصيل المبلغ الكامل لسعر الاشتراك الجديد اليوم. سيتم تجديد اشتراكك %1$s.</string>
+  <string name="Subscription__s_per_month">%s شهرياً</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s شهرياً . يُجدد في  %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s شهرياً . ينتهي في  %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal هو تطبيق غير ربحي بدون معلنين أو مستثمرين، يدعمه فقط الأشخاص الذين يستخدمونه ويقدرونه. قدم مساهمة شهرية متكررة واحصل على شارة الملف الشخصي لمشاركة دعمك.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">لماذا المساهمة؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">يلتزم فريق سيجنال بمهمة تطوير تقنية خصوصية مفتوحة المصدر تحمي حرية التعبير وتتيح اتصالاً عالمياً آمناً. مساهمتك تدعم هذه القضية. بلا إعلانات. بلا تعقب. جدية في الالتزام.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">تساعد مساهمتك في دفع تكاليف التطوير والخوادم وعرض النطاق الترددي لتطبيق يستخدمه الملايين حول العالم للتواصل الخاص والفوري.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">شكرا لدعمك!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">شكراً على الدعم!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">لقد حصلت على شارة %s! سيؤدي عرض شارتك إلى إظهار الأشخاص الذين تدردش معهم أنك تدعم تطبيق Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الملف الشخصي</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">اصنع شارة مميزة</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمّ</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يمكنك اختيار واحدة لتمييزها ليراها الآخرين في ملفك الشخصي.</string>
+  <string name="ManageDonationsFragment__my_support">دعمي</string>
+  <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
+  <string name="ManageDonationsFragment__badges">شارات</string>
+  <string name="ManageDonationsFragment__subscription_faq">الأسئلة الشائعة حول الاشتراك</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">خطأ في الحصول على الاشتراك.</string>
+  <string name="BoostFragment__give_signal_a_boost">دعم Signal </string>
+  <string name="BoostFragment__say_thanks_and_earn">ادعمنا واحصل على شارة Boost لمدة %1$d يوم.</string>
   <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
+  <string name="Boost__one_time_contribution">مساهمة لمرة واحدة</string>
+  <string name="MySupportPreference__add_a_signal_boost">دعم Signal </string>
+  <string name="MySupportPreference__s_per_month">%1$s/شهر</string>
+  <string name="MySupportPreference__renews_s">يجدد %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">انتهت صلاحية شارتك</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">انتهت صلاحية شارة %1$s الخاصة بك، ولم تعد مرئية للآخرين في ملفك الشخصي.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">لمواصلة دعم التكنولوجيا المصممة لك - وليس لبياناتك - يرجى التفكير في أن تصبح مشتركًا شهريًا.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">الاشتراك</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
+  <string name="Subscription__verification_failed">فشل التحقق من الاشتراك</string>
+  <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>
   <string name="Subscription__contact_support">الاتصال بالدعم</string>
+  <string name="Subscription__earn_a_s_badge">احصل على شارة %1$s</string>
   <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
   <string name="DonationsErrors__payment_failed">فشلت الدفوعات</string>
+  <string name="DonationsErrors__your_payment">تعذرت معالجة دفعتك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
+  <string name="DonationsErrors__redemption_still_pending">لا يزال التسديد معلقًا</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">قد لا ترى شارتك على الفور، ولكننا نعمل على ذلك!</string>
+  <string name="DonationsErrors__google_pay_unavailable">خدمة Google Pay غير متوفرة</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">يجب عليك إعداد Google Pay للتبرع داخل التطبيق.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالاً بالإنترنت.</string>
   <!--EOF-->
 </resources>

@@ -1883,16 +1883,6 @@
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Παρακαλώ διάλεξε ένα από τα παρακάτω --</item>
-    <item>Κάτι δεν δουλεύει</item>
-    <item>Αίτημα για νέες δυνατότητες</item>
-    <item>Ερώτηση</item>
-    <item>Σχόλια</item>
-    <item>Άλλο</item>
-    <item>Πληρωμές (MobileCoin)</item>
-    <item>Δωρεές (Συντηρητές &amp; Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -3142,11 +3132,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/μήνα · Λήγει %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Το Signal είναι μια ΜΚΟ χωρις διαφημίσεις και επενδυτές, που συντηρείται μόνο από τα άτομα που το χρησιμοποιούν και το θεωρούν σημαντικό. Με μια επαναλαμβανόμενη μηνιαία συνεισφορά παίρνεις ένα έμβλημα για το προφίλ σου, για να δείξεις την υποστήριξή σου.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Γιατι να συνεισφέρω;</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Η ομάδα του Signal είναι προσηλωμένη στην αποστολή της ανάπτυξης τεχνολογίας ιδιωτικότητας ανοιχτού κώδικα, που προστατεύει την ελευθερία της έκφρασης και δίνει τη δυνατότητα για ασφαλείς παγκόσμιες επικοινωνίες. Η συνεισφορά σου μας βοηθά σε αυτή την αποστολή. Χωρίς διαφημίσεις. Χωρίς παρακολούθηση. Σοβαρά.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Η συνεισφορά σου βοηθά με τα έξοδα ανάπτυξης, server, και συνδεσιμότητας μιας εφαρμογής που χρησιμοποιείται από εκατομμύρια άνθρώπους σε όλο το κόσμο για ασφαλή και άμεση επικοινωνία.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Η ομάδα του Signal είναι προσηλωμένη στην αποστολή της ανάπτυξης τεχνολογίας ιδιωτικότητας ανοιχτού κώδικα, που προστατεύει την ελευθερία της έκφρασης και δίνει τη δυνατότητα για ασφαλείς παγκόσμιες επικοινωνίες. Η συνεισφορά σου μας βοηθά σε αυτή την αποστολή. Χωρίς διαφημίσεις. Χωρίς παρακολούθηση. Σοβαρά.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Η συνεισφορά σου βοηθά με τα έξοδα ανάπτυξης, server, και συνδεσιμότητας μιας εφαρμογής που χρησιμοποιείται από εκατομμύρια άνθρώπους σε όλο το κόσμο για ασφαλή και άμεση επικοινωνία.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Ευχαριστούμε για την ενίσχυση!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Κέρδισες ένα έμβλημα %s! Δείξε στα άτομα που συνομιλείς πως υποστηρίζεις το Signal, βάζοντας το έμβλημά σου στο προφίλ σου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Κέρδισες ένα έμβλημα %s! Δείξε στα άτομα που συνομιλείς πως υποστηρίζεις το Signal, βάζοντας το έμβλημά σου στο προφίλ σου.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου</string>
@@ -3163,9 +3153,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/μήνα</string>
   <string name="MySupportPreference__renews_s">Ανανεώνεται %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Το έμβλημά σου έληξε</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Το έμβλημα %1$s έληξε, και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα και όχι για τα δεδομένα σου, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Γίνε υποστηρικτής</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Το έμβλημα %1$s έληξε, και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα και όχι για τα δεδομένα σου, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Γίνε υποστηρικτής</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
   <string name="Subscription__verification_failed">Αποτυχία επιβεβαίωσης συνδρομής</string>
   <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>

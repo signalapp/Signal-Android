@@ -1941,16 +1941,6 @@
   <string name="HelpFragment__debug_log">Log di debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Impossibile inviare i log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Sii il più descrittivo possibile per aiutarci a capire il problema.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Per favore seleziona un\'opzione --</item>
-    <item>Qualcosa non funziona</item>
-    <item>Richiesta di funzionalità</item>
-    <item>Domanda</item>
-    <item>Opinione</item>
-    <item>Altro</item>
-    <item>Pagamenti (MobileCoin)</item>
-    <item>Donazioni (Sostenitori &amp; Boost di Signal)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Questo messaggio</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usate di recente</string>
@@ -3324,11 +3314,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mese · Scade %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal è una non-profit senza inserzionisti o investitori, sostenuta solo dalle persone che la usano e la apprezzano. Fai un contributo mensile ricorrente e ricevi un badge del profilo per condividere il tuo sostegno.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Perché contribuire?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Il team di Signal è impegnato nella missione di sviluppare una tecnologia open source per la privacy che protegge la libera espressione e consente una comunicazione globale sicura. Il tuo contributo alimenta questa causa. Nessuna pubblicità. Nessun tracker. Nessuno scherzo.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Il tuo contributo aiuta a pagare lo sviluppo, i server e la banda di un\'applicazione usata da milioni di persone nel mondo per la comunicazione privata e istantanea.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Il team di Signal è impegnato nella missione di sviluppare una tecnologia open source per la privacy che protegge la libera espressione e consente una comunicazione globale sicura. Il tuo contributo alimenta questa causa. Nessuna pubblicità. Nessun tracker. Nessuno scherzo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Il tuo contributo aiuta a pagare lo sviluppo, i server e la banda di un\'applicazione usata da milioni di persone nel mondo per la comunicazione privata e istantanea.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Grazie per il tuo supporto!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Grazie per il Boost!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Hai guadagnato un badge %s ! Mostrando il tuo badge mostrerai alle persone con cui chatti che sostieni Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Hai guadagnato un badge %s ! Mostrando il tuo badge mostrerai alle persone con cui chatti che sostieni Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra sul profilo</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Rendi badge in evidenza</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fatto</string>
@@ -3346,9 +3336,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/mese</string>
   <string name="MySupportPreference__renews_s">Rinnovo %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Il tuo badge %1$s è scaduto, e non è più visibile agli altri sul tuo profilo.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuare a sostenere la tecnologia che è costruita per te—non per i tuoi dati—considera di diventare un contributore mensile.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Diventa un contributore</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Il tuo badge %1$s è scaduto, e non è più visibile agli altri sul tuo profilo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuare a sostenere la tecnologia che è costruita per te—non per i tuoi dati—considera di diventare un contributore mensile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Diventa un contributore</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Non ora</string>
   <string name="Subscription__verification_failed">Verifica del contributo non riuscita</string>
   <string name="Subscription__please_contact_support_for_more_information">Si prega di contattare l\'assistenza per ulteriori informazioni.</string>
