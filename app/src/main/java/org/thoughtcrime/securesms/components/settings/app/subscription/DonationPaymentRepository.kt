@@ -137,6 +137,8 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       .flatMapCompletable { levelUpdateOperation ->
         val subscriber = SignalStore.donationsValues().requireSubscriber()
 
+        Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel")
+
         ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
           subscriber.subscriberId,
           subscriptionLevel,
