@@ -14,7 +14,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
-import org.thoughtcrime.securesms.jobmanager.workmanager.WorkManagerMigrator;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -73,11 +72,6 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     executor.execute(() -> {
       synchronized (this) {
-        if (WorkManagerMigrator.needsMigration(application)) {
-          Log.i(TAG, "Detected an old WorkManager database. Migrating.");
-          WorkManagerMigrator.migrate(application, configuration.getJobStorage(), configuration.getDataSerializer());
-        }
-
         JobStorage jobStorage = configuration.getJobStorage();
         jobStorage.init();
 
