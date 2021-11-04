@@ -165,7 +165,7 @@ public final class LiveRecipientCache {
       }
 
       if (selfId == null) {
-        throw new MissingRecipientException(null);
+        selfId = recipientDatabase.getAndPossiblyMerge(localAci, localE164, false);
       }
 
       synchronized (localRecipientId) {
