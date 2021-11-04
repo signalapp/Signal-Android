@@ -85,6 +85,7 @@ public final class FeatureFlags {
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
   private static final String DONOR_BADGES                      = "android.donorBadges.2";
+  private static final String DONOR_BADGES_MEGAPHONE            = "android.donorBadges.megaphone";
   private static final String CDSH                              = "android.cdsh";
 
   /**
@@ -124,7 +125,8 @@ public final class FeatureFlags {
       GROUP_CALL_RINGING,
       CDSH,
       SENDER_KEY_MAX_AGE,
-      DONOR_BADGES
+      DONOR_BADGES,
+      DONOR_BADGES_MEGAPHONE
   );
 
   @VisibleForTesting
@@ -412,6 +414,10 @@ public final class FeatureFlags {
     } else {
       return getBoolean(DONOR_BADGES, false ) || SignalStore.donationsValues().getSubscriber() != null;
     }
+  }
+
+  public static boolean donorBadgesMegaphone() {
+    return getBoolean(DONOR_BADGES_MEGAPHONE, false);
   }
 
   public static boolean cdsh() {

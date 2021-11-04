@@ -384,7 +384,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowBecomeASustainerMegaphone() {
-    return FeatureFlags.donorBadges();
+    return FeatureFlags.donorBadgesMegaphone();
   }
 
   private static boolean shouldShowNotificationsMegaphone(@NonNull Context context) {
