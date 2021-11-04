@@ -62,8 +62,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="16dp"
         android:visibility="gone"
-        app:badge_size="small"
-        tools:background="@color/red" />
+        app:badge_size="small" />
 
     <org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble
         android:id="@+id/body_bubble"

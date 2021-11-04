@@ -30,7 +30,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="22dp"
         android:contentDescription="@string/ImageView__badge"
-        android:visibility="gone"
         app:badge_size="medium"
         app:layout_constraintStart_toStartOf="@id/contact_photo_image"
         app:layout_constraintTop_toTopOf="@id/contact_photo_image"

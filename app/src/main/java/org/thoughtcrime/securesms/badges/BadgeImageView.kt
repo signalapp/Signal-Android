@@ -31,7 +31,7 @@ class BadgeImageView @JvmOverloads constructor(
   fun setBadgeFromRecipient(recipient: Recipient?) {
     getGlideRequests()?.let {
       setBadgeFromRecipient(recipient, it)
-    }
+    } ?: setImageDrawable(null)
   }
 
   fun setBadgeFromRecipient(recipient: Recipient?, glideRequests: GlideRequests) {
@@ -45,12 +45,10 @@ class BadgeImageView @JvmOverloads constructor(
   fun setBadge(badge: Badge?) {
     getGlideRequests()?.let {
       setBadge(badge, it)
-    }
+    } ?: setImageDrawable(null)
   }
 
   fun setBadge(badge: Badge?, glideRequests: GlideRequests) {
-    visible = badge != null
-
     if (badge != null) {
       glideRequests
         .load(badge)
@@ -60,6 +58,7 @@ class BadgeImageView @JvmOverloads constructor(
     } else {
       glideRequests
         .clear(this)
+      setImageDrawable(null)
     }
   }
 
