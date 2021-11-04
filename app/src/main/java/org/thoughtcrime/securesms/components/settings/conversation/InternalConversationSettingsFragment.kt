@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.keyvalue.DonationsValues
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -153,6 +155,20 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
                 }
               }
               .show()
+          }
+        )
+      }
+
+      if (recipient.isSelf) {
+        sectionHeaderPref(DSLSettingsText.from("Donations"))
+
+        val subscriberId: String = if (SignalStore.donationsValues().getSubscriber() != null) SignalStore.donationsValues().getSubscriber().toString() else "None"
+
+        longClickPref(
+          title = DSLSettingsText.from("Subscriber ID"),
+          summary = DSLSettingsText.from(subscriberId),
+          onLongClick = {
+            copyToClipboard(subscriberId)
           }
         )
       }
