@@ -32,11 +32,13 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       customPref(ExpiredBadge.Model(badge))
 
       sectionHeaderPref(
-        if (badge.isBoost()) {
-          R.string.ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired
-        } else {
-          R.string.ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled
-        }
+        DSLSettingsText.from(
+          if (badge.isBoost()) {
+            R.string.ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired
+          } else {
+            R.string.ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled
+          }, DSLSettingsText.CenterModifier
+        )
       )
 
       space(DimensionUnit.DP.toPixels(4f).toInt())
@@ -44,9 +46,9 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       noPadTextPref(
         DSLSettingsText.from(
           if (badge.isBoost()) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired
+            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired)
           } else {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__your_sustainer
+            getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_sustainer, badge.name)
           },
           DSLSettingsText.CenterModifier
         )
