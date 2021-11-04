@@ -140,6 +140,7 @@
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:layout_marginBottom="16dp"
         android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
