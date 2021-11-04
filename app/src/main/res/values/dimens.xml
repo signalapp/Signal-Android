@@ -105,7 +105,7 @@
 
     <dimen name="tooltip_popup_margin">8dp</dimen>
 
-    <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
+    <dimen name="conversation_list_fragment_archive_padding">12dp</dimen>
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
     <dimen name="unread_count_bubble_radius">12.5dp</dimen>

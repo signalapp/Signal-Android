@@ -33,6 +33,7 @@
                     </shape>
                 </inset>
             </item>
+            <item android:drawable="@drawable/conversation_list_item_background_default" />
         </ripple>
     </item>
 </selector>
