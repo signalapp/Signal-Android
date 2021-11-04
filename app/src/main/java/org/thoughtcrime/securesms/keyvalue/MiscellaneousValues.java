@@ -16,6 +16,8 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String OLD_DEVICE_TRANSFER_LOCKED      = "misc.old_device.transfer.locked";
   private static final String HAS_EVER_HAD_AN_AVATAR          = "misc.has.ever.had.an.avatar";
   private static final String CHANGE_NUMBER_LOCK              = "misc.change_number.lock";
+  private static final String NR_OF_POTENTIALLY_MISSED_BACKGROUND_NOTIFICATIONS = "misc.nr_of_potentially_missed_notifications";
+  private static final String LAST_TIME_MISSED_NOTIFICATION_WAS_COUNTED = "misc.last_time_missed_notification_was_counted";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -24,6 +26,8 @@ public final class MiscellaneousValues extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
     putLong(MESSAGE_REQUEST_ENABLE_TIME, 0);
+    putLong(NR_OF_POTENTIALLY_MISSED_BACKGROUND_NOTIFICATIONS, 0);
+    putLong(LAST_TIME_MISSED_NOTIFICATION_WAS_COUNTED, 0);
   }
 
   @Override
@@ -110,4 +114,22 @@ public final class MiscellaneousValues extends SignalStoreValues {
   public void unlockChangeNumber() {
     putBoolean(CHANGE_NUMBER_LOCK, false);
   }
+
+  public long getNrOfPotentiallyMissedNotifications() {
+    return getLong(NR_OF_POTENTIALLY_MISSED_BACKGROUND_NOTIFICATIONS, 0);
+  }
+
+  public void increaseNrOfPotentiallyMissedNotifications() {
+    long currentValue = getLong(NR_OF_POTENTIALLY_MISSED_BACKGROUND_NOTIFICATIONS, 0);
+    putLong(NR_OF_POTENTIALLY_MISSED_BACKGROUND_NOTIFICATIONS, currentValue + 1);
+  }
+
+  public void resetNrOfPotentiallyMissedNotifications() { putLong(NR_OF_POTENTIALLY_MISSED_BACKGROUND_NOTIFICATIONS, 0);  }
+
+  public long getLastTimeMissedNotificationWasCounted() {
+    return getLong(LAST_TIME_MISSED_NOTIFICATION_WAS_COUNTED, 0);
+  }
+
+  public void setLastTimeMissedNotificationWasCounted(long time) { putLong(LAST_TIME_MISSED_NOTIFICATION_WAS_COUNTED, time); }
+
 }

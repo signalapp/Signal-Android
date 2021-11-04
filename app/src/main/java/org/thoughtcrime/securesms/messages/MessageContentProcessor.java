@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -83,7 +82,6 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
-import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -98,6 +96,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -123,7 +122,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -1302,6 +1300,8 @@ public final class MessageContentProcessor {
 
       forceStickerDownloadIfNecessary(insertResult.get().getMessageId(), stickerAttachments);
 
+      checkIfPotentiallyMissedNotification(context, content); // Workaround for issue #8692 (and related): Unless we can really finally solve this issue, better show an explanation to inform typical none-expert users, how they can solve it themselves.
+
       for (DatabaseAttachment attachment : attachments) {
         ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
       }
@@ -1507,6 +1507,8 @@ public final class MessageContentProcessor {
                                                                 TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
                                                                 content.isNeedsReceipt(),
                                                                 content.getServerUuid());
+
+      checkIfPotentiallyMissedNotification(context, content); // Workaround for issue #8692 (and related): Unless we can really finally solve this issue, better show an explanation to inform typical none-expert users, how they can solve it themselves.
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
       insertResult = database.insertMessageInbox(textMessage);
@@ -2334,4 +2336,32 @@ public final class MessageContentProcessor {
       return groupId;
     }
   }
+
+  /**
+   * Workaround for issue #8692 (and related): Unless we can really finally solve this issue, better show an explanation to inform typical none-expert users, how they can solve it themselves.
+   * - After 3x times a notification was shown >1 hour delayed (although notifications were activated!), then display a warning/info to the user
+   * - Known limitation: It might shows the warning to users who maybe intentionally put their phone offline for long periods (over night, during a flight etc)
+   * - Potential solution to overcome this limitation(?): Maybe checking logcat -> ConnectivityService -> to check if "DISCONNECT / CONNECT" happened during last time Signal was in foreground
+   */
+  private static void checkIfPotentiallyMissedNotification(@NonNull Context context, @NonNull SignalServiceContent content){
+    boolean notificationsEnabled = SignalStore.settings().isMessageNotificationsEnabled() &&
+                                   NotificationChannels.isMessageChannelEnabled(context) &&
+                                   NotificationChannels.isMessagesChannelGroupEnabled(context) &&
+                                   NotificationChannels.areNotificationsEnabled(context);
+    if (notificationsEnabled) {
+      long currentTime = System.currentTimeMillis();
+      long msgReceptionDelaySec = (currentTime - content.getServerReceivedTimestamp());
+
+      // Only count this msg as "potential missed notification" in the case of a long delay has happened (e.g. minutes or hours) between "ServerReceivedTimestamp" and "current-time" (=this is the time when the msg is *actually* displayed to the user, if Signal maybe previously was forced to sleep by Android)
+      if(msgReceptionDelaySec >= 60*1000) { // TODO: Change from 60 to 3600 before release! 60 is used for test purposes
+
+        // Use an additional check-timeout of 1min, so that only the counter is only increased once(!) in the case of multiple messages are arriving in bunches as mentioned in #8692 (e.g. after app was re-started after system-sleep for longer time)
+        if(currentTime - SignalStore.misc().getLastTimeMissedNotificationWasCounted() > 60*1000) {
+          SignalStore.misc().increaseNrOfPotentiallyMissedNotifications();
+          SignalStore.misc().setLastTimeMissedNotificationWasCounted(currentTime);
+        }
+      }
+    }
+  }
+
 }

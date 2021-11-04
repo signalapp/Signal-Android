@@ -986,6 +986,12 @@
     <string name="NotificationsMegaphone_turn_on">Turn on</string>
     <string name="NotificationsMegaphone_not_now">Not now</string>
 
+    <!-- MissedBackgroundNotificationsMegaphone -->
+    <string name="MissedBackgroundNotificationsMegaphone_missed_background_notifications">Troubles getting Notifications while Signal was closed?</string>
+    <string name="MissedBackgroundNotificationsMegaphone_info_about_missed_background_notifications">If you miss Notifications while Signal was closed although your phone was online, you might have to manually change few general Android settings (background data or energy optimization).</string>
+    <string name="MissedBackgroundNotificationsMegaphone_read_further_infos">See infos at website</string>
+    <string name="MissedBackgroundNotificationsMegaphone_not_now">Not now</string>
+
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloading MMS message</string>

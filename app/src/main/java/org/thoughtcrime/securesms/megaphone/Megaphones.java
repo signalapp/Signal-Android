@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.megaphone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
@@ -106,6 +107,7 @@ public final class Megaphones {
       put(Event.GROUP_CALLING, shouldShowGroupCallingMegaphone() ? ALWAYS : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
+      put(Event.MISSED_BACKGROUND_NOTIFICATIONS, shouldshowMissedBackgroundNotificationsMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
       put(Event.CHAT_COLORS, ALWAYS);
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
     }};
@@ -135,6 +137,8 @@ public final class Megaphones {
         return buildOnboardingMegaphone();
       case NOTIFICATIONS:
         return buildNotificationsMegaphone(context);
+      case MISSED_BACKGROUND_NOTIFICATIONS:
+        return buildMissedBackgroundNotificationsMegaphone(context);
       case CHAT_COLORS:
         return buildChatColorsMegaphone(context);
       case ADD_A_PROFILE_PHOTO:
@@ -310,6 +314,31 @@ public final class Megaphones {
                         .build();
   }
 
+  /**
+   * Workaround for issue #8692 (and related): Unless we can really finally solve this issue, better show an explanation (for typical none-expert users!)
+   */
+  private static @NonNull Megaphone buildMissedBackgroundNotificationsMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.NOTIFICATIONS, Megaphone.Style.BASIC)
+        .setTitle(R.string.MissedBackgroundNotificationsMegaphone_missed_background_notifications)
+        .setBody(R.string.MissedBackgroundNotificationsMegaphone_info_about_missed_background_notifications)
+        .setImage(R.drawable.megaphone_notifications_64)
+        .setActionButton(R.string.MissedBackgroundNotificationsMegaphone_read_further_infos, (megaphone, controller) -> {
+          // Remarks to @devs: Currently it would be better to link the URI to such an "unofficial" support website (such as undoze.com), since it explains these Android-settings perfectly, and particularly also for different phone models.
+          //   Please note that the author of this workaround is not(!) in anyway involved in the linked "undoze"-website. However, IMHO currently this website provides much more infos than "https://support.signal.org/hc/en-us/articles/360027913252-Troubleshoot-receiving-messages"
+          //   @Signal-Support (website): Could you please either also provide such "Android-energy-setting-issues" explained in a comparable understandable manner, or provide a few links to external sites (such as undoze) to your official support.signal.org website?
+          Uri uri = Uri.parse("https://www.undoze.com/a/signal"); // Remark: Currently it's not linking to singal.org (maybe @devs can change that later), please see my explanations above.
+          Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+          controller.onMegaphoneNavigationRequested(intent);
+        })
+        .setSecondaryButton(R.string.MissedBackgroundNotificationsMegaphone_not_now, (megaphone, controller) -> {
+          // Instead of using "snooze" here, alternatively reset the counter and wait until a few MissedNotifications happen again
+          SignalStore.misc().resetNrOfPotentiallyMissedNotifications();
+          controller.onMegaphoneCompleted(Event.NOTIFICATIONS);
+        })
+        .setPriority(Megaphone.Priority.DEFAULT)
+        .build();
+  }
+
   private static @NonNull Megaphone buildChatColorsMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.CHAT_COLORS, Megaphone.Style.BASIC)
                         .setTitle(R.string.ChatColorsMegaphone__new_chat_colors)
@@ -383,6 +412,11 @@ public final class Megaphones {
     return shouldShow;
   }
 
+  private static boolean shouldshowMissedBackgroundNotificationsMegaphone(@NonNull Context context) {
+    // Suggestion to better wait for 3 times "potential-missed-notifications" were counted until raising the megaphone (to avoid annoying users too often?)
+    return SignalStore.misc().getNrOfPotentiallyMissedNotifications() >= 3;
+  }
+
   private static boolean shouldShowAddAProfilePhotoMegaphone(@NonNull Context context) {
     if (SignalStore.misc().hasEverHadAnAvatar()) {
       return false;
@@ -409,6 +443,7 @@ public final class Megaphones {
     GROUP_CALLING("group_calling"),
     ONBOARDING("onboarding"),
     NOTIFICATIONS("notifications"),
+    MISSED_BACKGROUND_NOTIFICATIONS("missed_background_notifications"),
     CHAT_COLORS("chat_colors"),
     ADD_A_PROFILE_PHOTO("add_a_profile_photo");
 
