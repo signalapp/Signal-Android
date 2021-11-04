@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.PlayServicesUtil
 import org.thoughtcrime.securesms.util.visible
@@ -47,6 +48,7 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       action.visible = false
     }
 
+    @Suppress("CascadeIf")
     if (PlayServicesUtil.getPlayServicesStatus(requireContext()) != PlayServicesUtil.PlayServicesStatus.SUCCESS) {
       noSupport.visible = true
       action.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_open_20)
@@ -54,10 +56,12 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       action.setOnClickListener {
         CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
       }
-    } else {
+    } else if (FeatureFlags.donorBadges()) {
       action.setOnClickListener {
         startActivity(AppSettingsActivity.subscriptions(requireContext()))
       }
+    } else {
+      action.visible = false
     }
 
     val adapter = MappingAdapter()
@@ -116,6 +120,10 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       recipientId: RecipientId,
       startBadge: Badge? = null
     ) {
+      if (!FeatureFlags.displayDonorBadges()) {
+        return
+      }
+
       ViewBadgeBottomSheetDialogFragment().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_START_BADGE, startBadge)
