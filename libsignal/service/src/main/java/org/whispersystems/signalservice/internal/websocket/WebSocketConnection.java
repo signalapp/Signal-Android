@@ -208,7 +208,7 @@ public class WebSocketConnection extends WebSocketListener {
 
     return single.subscribeOn(Schedulers.io())
                  .observeOn(Schedulers.io())
-                 .timeout(10, TimeUnit.SECONDS);
+                 .timeout(10, TimeUnit.SECONDS, Schedulers.io());
   }
 
   public synchronized void sendResponse(WebSocketResponseMessage response) throws IOException {
