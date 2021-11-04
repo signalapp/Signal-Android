@@ -37,7 +37,8 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
             R.string.ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired
           } else {
             R.string.ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled
-          }, DSLSettingsText.CenterModifier
+          },
+          DSLSettingsText.CenterModifier
         )
       )
 

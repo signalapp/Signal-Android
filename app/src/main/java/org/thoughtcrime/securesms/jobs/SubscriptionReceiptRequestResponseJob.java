@@ -58,6 +58,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             .setQueue("ReceiptRedemption")
             .setMaxInstancesForQueue(1)
             .setLifespan(TimeUnit.DAYS.toMillis(7))
+            .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
         subscriberId
