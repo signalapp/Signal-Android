@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.keyvalue.DonationsValues
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -26,8 +28,8 @@ import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.signalservice.api.push.ACI
 import java.util.Objects
-import java.util.UUID
 
 /**
  * Shows internal details about a recipient that you can view from the conversation settings.
@@ -60,7 +62,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       )
 
       if (!recipient.isGroup) {
-        val uuid = recipient.uuid.transform(UUID::toString).or("null")
+        val uuid = recipient.aci.transform(ACI::toString).or("null")
         longClickPref(
           title = DSLSettingsText.from("UUID"),
           summary = DSLSettingsText.from(uuid),
@@ -145,14 +147,28 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               .setTitle("Are you sure?")
               .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
               .setPositiveButton(android.R.string.ok) { _, _ ->
-                if (recipient.hasUuid()) {
-                  DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireUuid().toString())
+                if (recipient.hasAci()) {
+                  DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireAci().toString())
                 }
                 if (recipient.hasE164()) {
                   DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireE164())
                 }
               }
               .show()
+          }
+        )
+      }
+
+      if (recipient.isSelf) {
+        sectionHeaderPref(DSLSettingsText.from("Donations"))
+
+        val subscriberId: String = if (SignalStore.donationsValues().getSubscriber() != null) SignalStore.donationsValues().getSubscriber().toString() else "None"
+
+        longClickPref(
+          title = DSLSettingsText.from("Subscriber ID"),
+          summary = DSLSettingsText.from(subscriberId),
+          onLongClick = {
+            copyToClipboard(subscriberId)
           }
         )
       }

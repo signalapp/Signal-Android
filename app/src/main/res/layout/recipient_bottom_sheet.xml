@@ -28,11 +28,9 @@
             android:layout_marginStart="47dp"
             android:layout_marginTop="48dp"
             android:contentDescription="@string/ImageView__badge"
-            android:visibility="gone"
             app:badge_size="large"
             app:layout_constraintStart_toStartOf="@id/rbs_recipient_avatar"
-            app:layout_constraintTop_toTopOf="@id/rbs_recipient_avatar"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toTopOf="@id/rbs_recipient_avatar" />
 
         <ProgressBar
             android:id="@+id/rbs_admin_action_busy"

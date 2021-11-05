@@ -27,6 +27,7 @@ import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.libsignal.state.SessionRecord
 import org.whispersystems.libsignal.util.guava.Optional
+import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 
@@ -62,7 +63,7 @@ class RecipientDatabaseTest_merges {
   @Test
   fun getAndPossiblyMerge_general() {
     // Setup
-    val recipientIdAci: RecipientId = recipientDatabase.getOrInsertFromUuid(ACI_A)
+    val recipientIdAci: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_A)
     val recipientIdE164: RecipientId = recipientDatabase.getOrInsertFromE164(E164_A)
 
     val smsId1: Long = smsDatabase.insertMessageInbox(smsMessage(sender = recipientIdAci, time = 0, body = "0")).get().messageId
@@ -97,7 +98,7 @@ class RecipientDatabaseTest_merges {
 
     // Recipient validation
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireUuid())
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
     val existingE164Recipient = Recipient.resolved(recipientIdE164)
@@ -211,8 +212,8 @@ class RecipientDatabaseTest_merges {
   )
 
   companion object {
-    val ACI_A = UUID.fromString("3436efbe-5a76-47fa-a98a-7e72c948a82e")
-    val ACI_B = UUID.fromString("8de7f691-0b60-4a68-9cd9-ed2f8453f9ed")
+    val ACI_A = ACI.from(UUID.fromString("3436efbe-5a76-47fa-a98a-7e72c948a82e"))
+    val ACI_B = ACI.from(UUID.fromString("8de7f691-0b60-4a68-9cd9-ed2f8453f9ed"))
 
     val E164_A = "+12221234567"
     val E164_B = "+13331234567"

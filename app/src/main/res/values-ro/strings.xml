@@ -2023,16 +2023,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Vă rugăm selectați o opțiune --</item>
-    <item>Ceva nu funcționează</item>
-    <item>Solicitare funcționalitate nouă</item>
-    <item>Întrebare</item>
-    <item>Opinie</item>
-    <item>Altceva</item>
-    <item>Plăți (MobileCoin)</item>
-    <item>Donații (Susținători &amp; Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -3423,11 +3413,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/lună · Expiră %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal este o organizație non-profit, fără agenți de publicitate sau investitori, susținută doar de oamenii care o folosesc și o apreciază. Faceți o contribuție lunară recurentă și primiți o insignă de profil pentru a vă împărtăși sprijinul.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">De ce să contribuiți?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Echipa de la Signal este dedicată misiunii de a dezvolta o tehnologie de confidențialitate open source care protejează libertatea de exprimare și permite o comunicare globală securizată. Contribuția dumneavoastră susține această cauză. Fără reclame. Fără elemente de urmărire. Pe bune.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Contribuția dumneavoastră ajută la plata dezvoltării, a serverelor și a lățimii de bandă a unei aplicații folosite de milioane de oameni din întreaga lume pentru comunicare privată și instantanee.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Echipa de la Signal este dedicată misiunii de a dezvolta o tehnologie de confidențialitate open source care protejează libertatea de exprimare și permite o comunicare globală securizată. Contribuția dumneavoastră susține această cauză. Fără reclame. Fără elemente de urmărire. Pe bune.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Contribuția dumneavoastră ajută la plata dezvoltării, a serverelor și a lățimii de bandă a unei aplicații folosite de milioane de oameni din întreaga lume pentru comunicare privată și instantanee.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Vă mulțumim pentru sprijinul dvs!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Vă mulțumim pentru Boost!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Ați dobândit o insignă %s! Afișarea insignei va arăta persoanelor cu care discutați că susțineți Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Ați dobândit o insignă %s! Afișarea insignei va arăta persoanelor cu care discutați că susțineți Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afișați la profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gata</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Atunci când aveți mai mult de o insignă, puteți alege una pe care să o afișați pentru ca ceilalți să o vadă pe profilul dvs.</string>
@@ -3444,9 +3434,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MySupportPreference__s_per_month">%1$s/lună</string>
   <string name="MySupportPreference__renews_s">Se reînnoiește %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Insigna dvs. a expirat</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Insigna dvs. %1$s a expirat și nu mai este vizibilă pentru ceilalți pe profilul dvs.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Pentru a continua să sprijiniți o tehnologie construită pentru dvs, —nu pentru datele dvs.—, vă rugăm să luați în considerare posibilitatea de a deveni un abonat lunar.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Deveniți un abonat</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Insigna dvs. %1$s a expirat și nu mai este vizibilă pentru ceilalți pe profilul dvs.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Pentru a continua să sprijiniți o tehnologie construită pentru dvs, —nu pentru datele dvs.—, vă rugăm să luați în considerare posibilitatea de a deveni un abonat lunar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Deveniți un abonat</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <string name="Subscription__verification_failed">Verificarea abonamentului a eșuat</string>
   <string name="Subscription__please_contact_support_for_more_information">Vă rugăm contactați suportul pentru mai multe informații.</string>

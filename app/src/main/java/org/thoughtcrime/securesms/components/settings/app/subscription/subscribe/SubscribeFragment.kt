@@ -24,12 +24,12 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
-import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import java.util.Calendar
-import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
@@ -44,10 +44,10 @@ class SubscribeFragment : DSLSettingsFragment(
   private val lifecycleDisposable = LifecycleDisposable()
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(requireContext().getString(R.string.SubscribeFragment__support_technology_that_is_built_for_you))
+    SpannableStringBuilder(requireContext().getString(R.string.SubscribeFragment__support_technology_that_is_built_for_you_not))
       .append(" ")
       .append(
-        SpanUtil.learnMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)) {
+        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)) {
           findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSubscribeLearnMoreBottomSheetDialog())
         }
       )
@@ -61,6 +61,8 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
+    viewModel.refresh()
+
     BadgePreview.register(adapter)
     CurrencySelection.register(adapter)
     Subscription.register(adapter)
@@ -78,7 +80,7 @@ class SubscribeFragment : DSLSettingsFragment(
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe {
       when (it) {
-        is DonationEvent.GooglePayUnavailableError -> onGooglePayUnavailable(it.throwable)
+        is DonationEvent.GooglePayUnavailableError -> Unit
         is DonationEvent.PaymentConfirmationError -> onPaymentError(it.throwable)
         is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed(it.badge)
         DonationEvent.RequestTokenError -> onPaymentError(null)
@@ -116,13 +118,18 @@ class SubscribeFragment : DSLSettingsFragment(
 
       customPref(
         CurrencySelection.Model(
-          currencySelection = state.currencySelection,
+          selectedCurrency = state.currencySelection,
           isEnabled = areFieldsEnabled && state.activeSubscription?.isActive != true,
           onClick = {
-            findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSetDonationCurrencyFragment(false))
+            val selectableCurrencies = viewModel.getSelectableCurrencyCodes()
+            if (selectableCurrencies != null) {
+              findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSetDonationCurrencyFragment(false, selectableCurrencies.toTypedArray()))
+            }
           }
         )
       )
+
+      space(DimensionUnit.DP.toPixels(4f).toInt())
 
       state.subscriptions.forEach {
         val isActive = state.activeSubscription?.activeSubscription?.level == it.level
@@ -134,7 +141,8 @@ class SubscribeFragment : DSLSettingsFragment(
             isActive = isActive,
             willRenew = isActive && state.activeSubscription?.activeSubscription?.willCancelAtPeriodEnd() ?: false,
             onClick = { viewModel.setSelectedSubscription(it) },
-            renewalTimestamp = TimeUnit.SECONDS.toMillis(state.activeSubscription?.activeSubscription?.endOfCurrentPeriod ?: 0L)
+            renewalTimestamp = TimeUnit.SECONDS.toMillis(state.activeSubscription?.activeSubscription?.endOfCurrentPeriod ?: 0L),
+            selectedCurrency = state.currencySelection
           )
         )
       }
@@ -150,14 +158,20 @@ class SubscribeFragment : DSLSettingsFragment(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
           isEnabled = areFieldsEnabled && (!activeAndSameLevel || isExpiring),
           onClick = {
+            val price = viewModel.getPriceOfSelectedSubscription() ?: return@primaryButton
             val calendar = Calendar.getInstance()
+
             calendar.add(Calendar.MONTH, 1)
             MaterialAlertDialogBuilder(requireContext())
               .setTitle(R.string.SubscribeFragment__update_subscription_question)
               .setMessage(
                 getString(
-                  R.string.SubscribeFragment__you_will_be_charged_the_full_amount,
-                  DateUtils.formatDateWithYear(Locale.getDefault(), calendar.timeInMillis)
+                  R.string.SubscribeFragment__you_will_be_charged_the_full_amount_s_of,
+                  FiatMoneyUtil.format(
+                    requireContext().resources,
+                    price,
+                    FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
+                  )
                 )
               )
               .setPositiveButton(R.string.SubscribeFragment__update) { dialog, _ ->
@@ -189,22 +203,20 @@ class SubscribeFragment : DSLSettingsFragment(
           }
         )
       } else {
-        if (state.isGooglePayAvailable) {
-          space(DimensionUnit.DP.toPixels(16f).toInt())
+        space(DimensionUnit.DP.toPixels(16f).toInt())
 
-          customPref(
-            GooglePayButton.Model(
-              onClick = this@SubscribeFragment::onGooglePayButtonClicked,
-              isEnabled = areFieldsEnabled && state.selectedSubscription != null
-            )
+        customPref(
+          GooglePayButton.Model(
+            onClick = this@SubscribeFragment::onGooglePayButtonClicked,
+            isEnabled = areFieldsEnabled && state.selectedSubscription != null
           )
-        }
+        )
 
         secondaryButtonNoOutline(
           text = DSLSettingsText.from(R.string.SubscribeFragment__more_payment_options),
           icon = DSLSettingsIcon.from(R.drawable.ic_open_20, R.color.signal_accent_primary),
           onClick = {
-            // TODO [alex] support page
+            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
           }
         )
       }
@@ -232,6 +244,7 @@ class SubscribeFragment : DSLSettingsFragment(
           requireActivity().finish()
           requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
         }
+        .show()
     } else {
       Log.w(TAG, "Error occurred while processing payment", throwable)
       MaterialAlertDialogBuilder(requireContext())
@@ -240,18 +253,8 @@ class SubscribeFragment : DSLSettingsFragment(
         .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
         }
+        .show()
     }
-  }
-
-  private fun onGooglePayUnavailable(throwable: Throwable?) {
-    Log.w(TAG, "Google Pay error", throwable)
-    MaterialAlertDialogBuilder(requireContext())
-      .setTitle(R.string.DonationsErrors__google_pay_unavailable)
-      .setMessage(R.string.DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app)
-      .setPositiveButton(android.R.string.ok) { dialog, _ ->
-        dialog.dismiss()
-        findNavController().popBackStack()
-      }
   }
 
   private fun onSubscriptionCancelled() {
@@ -272,6 +275,7 @@ class SubscribeFragment : DSLSettingsFragment(
         dialog.dismiss()
         findNavController().popBackStack()
       }
+      .show()
   }
 
   companion object {

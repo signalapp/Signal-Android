@@ -325,6 +325,14 @@
     <item quantity="other">Непрочитано</item>
   </plurals>
   <string name="ConversationListFragment_select">Одбери</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Архивирај</item>
+    <item quantity="other">Архивирај</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Деархивирај</item>
+    <item quantity="other">Деархивирај</item>
+  </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">Избриши</item>
     <item quantity="other">Избриши</item>
@@ -3215,7 +3223,7 @@
   <string name="Subscription__s_per_month">%s/месец</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, одржуван само од луѓето кои го користат и ценат. Направете месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесеш?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Тимот на Signal е посветен на мисија за развој на технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација. Вашиот придонес ја одржува оваа мисија. Нема реклами. Нема тракери. Нема шега.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Тимот на Signal е посветен на мисија за развој на технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација. Вашиот придонес ја одржува оваа мисија. Нема реклами. Нема тракери. Нема шега.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставете како главен беџ</string>
@@ -3230,8 +3238,8 @@
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
   <string name="MySupportPreference__s_per_month">%1$s/месец</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашата значка е истечена</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">За да продолжите да ја поддржувате технологијата која е развиена за Вас—не за Вашите податоци—ве молиме размислете да станете месечен претплатник.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стани претплатник</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">За да продолжите да ја поддржувате технологијата која е развиена за Вас—не за Вашите податоци—ве молиме размислете да станете месечен претплатник.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стани претплатник</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <string name="Subscription__verification_failed">Проверка на претплата не успеа</string>
   <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со поддршка за повеќе информации.</string>

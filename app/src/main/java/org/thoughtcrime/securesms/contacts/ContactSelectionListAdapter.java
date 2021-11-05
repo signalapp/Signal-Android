@@ -141,7 +141,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
     @Override
     public void unbind(@NonNull GlideRequests glideRequests) {
-      getView().unbind(glideRequests);
+      getView().unbind();
     }
 
     @Override

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
+import java.util.Currency
 import java.util.Locale
 
 /**
@@ -20,9 +21,9 @@ import java.util.Locale
  */
 data class Subscription(
   val id: String,
-  val title: String,
+  val name: String,
   val badge: Badge,
-  val price: FiatMoney,
+  val prices: Set<FiatMoney>,
   val level: Int,
 ) {
 
@@ -39,7 +40,8 @@ data class Subscription(
     val willRenew: Boolean,
     override val isEnabled: Boolean,
     val onClick: () -> Unit,
-    val renewalTimestamp: Long
+    val renewalTimestamp: Long,
+    val selectedCurrency: Currency
   ) : PreferenceModel<Model>(isEnabled = isEnabled) {
 
     override fun areItemsTheSame(newItem: Model): Boolean {
@@ -52,7 +54,8 @@ data class Subscription(
         newItem.isSelected == isSelected &&
         newItem.isActive == isActive &&
         newItem.renewalTimestamp == renewalTimestamp &&
-        newItem.willRenew == willRenew
+        newItem.willRenew == willRenew &&
+        newItem.selectedCurrency == selectedCurrency
     }
 
     override fun getChangePayload(newItem: Model): Any? {
@@ -81,12 +84,12 @@ data class Subscription(
         badge.setBadge(model.subscription.badge)
       }
 
-      title.text = model.subscription.title
+      title.text = model.subscription.name
       tagline.text = context.getString(R.string.Subscription__earn_a_s_badge, model.subscription.badge.name)
 
       val formattedPrice = FiatMoneyUtil.format(
         context.resources,
-        model.subscription.price,
+        model.subscription.prices.first { it.currency == model.selectedCurrency },
         FiatMoneyUtil.formatOptions()
       )
 

@@ -75,7 +75,7 @@ public class NewConversationActivity extends ContactSelectionActivity
         SimpleTask.run(getLifecycle(), () -> {
           Recipient resolved = Recipient.external(this, number);
 
-          if (!resolved.isRegistered() || !resolved.hasUuid()) {
+          if (!resolved.isRegistered() || !resolved.hasAci()) {
             Log.i(TAG, "[onContactSelected] Not registered or no UUID. Doing a directory refresh.");
             try {
               DirectoryHelper.refreshDirectoryFor(this, resolved, false);

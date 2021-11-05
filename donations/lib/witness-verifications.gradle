@@ -96,11 +96,11 @@ dependencyVerification {
         ['com.google.android.gms:play-services-wallet:18.1.3',
          'e19d1f4650f51ce2202c092cbe174058860b6558cf26c8be37a732eff3ae1864'],
 
-        ['com.google.protobuf:protobuf-javalite:3.10.0',
-         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+        ['com.google.protobuf:protobuf-javalite:3.11.4',
+         '8cacea2f7a042dabae295c509dcdbfe32a49aa3708eec6ddb8efd8593aa0b4a3'],
 
-        ['com.squareup.okhttp3:okhttp:3.12.10',
-         '3cb8e21cd3ab10d390448f5a475c960732efab583a09c39f06f866a7ed819ebc'],
+        ['com.squareup.okhttp3:okhttp:3.12.13',
+         '508234e024ef7e270ab1a6d5b356f5b98e786511239ca986d684fd1e2cf7bc82'],
 
         ['com.squareup.okio:okio:1.15.0',
          '693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2'],

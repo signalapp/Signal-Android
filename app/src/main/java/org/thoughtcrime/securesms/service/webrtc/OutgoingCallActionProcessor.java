@@ -87,21 +87,6 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleSendOffer(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, @NonNull OfferMetadata offerMetadata, boolean broadcast) {
-    Log.i(TAG, "handleSendOffer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
-
-    OfferMessage             offerMessage        = new OfferMessage(callMetadata.getCallId().longValue(), offerMetadata.getSdp(), offerMetadata.getOfferType(), offerMetadata.getOpaque());
-    Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
-    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forOffer(offerMessage, true, destinationDeviceId);
-
-    Recipient callRecipient = currentState.getCallInfoState().getCallRecipient();
-    RecipientUtil.shareProfileIfFirstSecureMessage(context, callRecipient);
-    webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
-
-    return currentState;
-  }
-
-  @Override
   public @NonNull WebRtcServiceState handleTurnServerUpdate(@NonNull WebRtcServiceState currentState,
                                                             @NonNull List<PeerConnection.IceServer> iceServers,
                                                             boolean isAlwaysTurn)
@@ -225,15 +210,6 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
     return activeCallDelegate.handleCallConcluded(currentState, remotePeer);
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleSendIceCandidates(@NonNull WebRtcServiceState currentState,
-                                                                @NonNull CallMetadata callMetadata,
-                                                                boolean broadcast,
-                                                                @NonNull List<byte[]> iceCandidates)
-  {
-    return activeCallDelegate.handleSendIceCandidates(currentState, callMetadata, broadcast, iceCandidates);
   }
 
   @Override

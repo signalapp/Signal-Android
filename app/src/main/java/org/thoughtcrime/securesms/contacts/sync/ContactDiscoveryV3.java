@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper.DirectoryResult;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ class ContactDiscoveryV3 {
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
     try {
-      Map<String, UUID>                   results      = accountManager.getRegisteredUsersWithCdsh(sanitizedNumbers, BuildConfig.CDSH_PUBLIC_KEY, BuildConfig.CDSH_CODE_HASH);
+      Map<String, ACI>                    results      = accountManager.getRegisteredUsersWithCdsh(sanitizedNumbers, BuildConfig.CDSH_PUBLIC_KEY, BuildConfig.CDSH_CODE_HASH);
       FuzzyPhoneNumberHelper.OutputResult outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
 
       return new DirectoryResult(outputResult.getNumbers(), outputResult.getRewrites(), ignoredNumbers);

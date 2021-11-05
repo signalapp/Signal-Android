@@ -7,19 +7,26 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.wallet.PaymentData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.util.logging.Log
+import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.subscription.LevelUpdate
+import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
 
 class SubscribeViewModel(
@@ -28,7 +35,7 @@ class SubscribeViewModel(
   private val fetchTokenRequestCode: Int
 ) : ViewModel() {
 
-  private val store = Store(SubscribeState())
+  private val store = Store(SubscribeState(currencySelection = SignalStore.donationsValues().getSubscriptionCurrency()))
   private val eventPublisher: PublishSubject<DonationEvent> = PublishSubject.create()
   private val disposables = CompositeDisposable()
 
@@ -42,44 +49,86 @@ class SubscribeViewModel(
     disposables.clear()
   }
 
-  init {
+  fun getPriceOfSelectedSubscription(): FiatMoney? {
+    return store.state.selectedSubscription?.prices?.first { it.currency == store.state.currencySelection }
+  }
+
+  fun getSelectableCurrencyCodes(): List<String>? {
+    return store.state.subscriptions.firstOrNull()?.prices?.map { it.currency.currencyCode }
+  }
+
+  fun refresh() {
+    disposables.clear()
+
     val currency: Observable<Currency> = SignalStore.donationsValues().observableSubscriptionCurrency
-    val allSubscriptions: Observable<List<Subscription>> = currency.switchMapSingle { subscriptionsRepository.getSubscriptions(it) }
+    val allSubscriptions: Single<List<Subscription>> = subscriptionsRepository.getSubscriptions()
+
     refreshActiveSubscription()
 
-    disposables += SignalStore.donationsValues().levelUpdateOperationObservable.subscribeBy {
+    disposables += LevelUpdate.isProcessing.subscribeBy {
       store.update { state ->
         state.copy(
-          hasInProgressSubscriptionTransaction = it.isPresent
+          hasInProgressSubscriptionTransaction = it
         )
       }
     }
 
-    disposables += Observable.combineLatest(allSubscriptions, activeSubscriptionSubject, ::Pair).subscribe { (subs, active) ->
-      store.update {
-        it.copy(
-          subscriptions = subs,
-          selectedSubscription = it.selectedSubscription ?: resolveSelectedSubscription(active, subs),
-          activeSubscription = active,
-          stage = if (it.stage == SubscribeState.Stage.INIT) SubscribeState.Stage.READY else it.stage,
-        )
-      }
-    }
+    disposables += allSubscriptions.subscribeBy(
+      onSuccess = { subscriptions ->
+        if (subscriptions.isNotEmpty()) {
+          val priceCurrencies = subscriptions[0].prices.map { it.currency }
+          val selectedCurrency = SignalStore.donationsValues().getSubscriptionCurrency()
+
+          if (selectedCurrency !in priceCurrencies) {
+            Log.w(TAG, "Unsupported currency selection. Defaulting to USD. $currency isn't supported.")
+            val usd = PlatformCurrencyUtil.USD
+            val newSubscriber = SignalStore.donationsValues().getSubscriber(usd) ?: Subscriber(SubscriberId.generate(), usd.currencyCode)
+            SignalStore.donationsValues().setSubscriber(newSubscriber)
+            StorageSyncHelper.scheduleSyncForDataChange()
+          }
+        }
+      },
+      onError = {}
+    )
+
+    disposables += Observable.combineLatest(allSubscriptions.toObservable(), activeSubscriptionSubject, ::Pair).subscribeBy(
+      onNext = { (subs, active) ->
+        store.update {
+          it.copy(
+            subscriptions = subs,
+            selectedSubscription = it.selectedSubscription ?: resolveSelectedSubscription(active, subs),
+            activeSubscription = active,
+            stage = if (it.stage == SubscribeState.Stage.INIT || it.stage == SubscribeState.Stage.FAILURE) SubscribeState.Stage.READY else it.stage,
+          )
+        }
+      },
+      onError = this::handleSubscriptionDataLoadFailure
+    )
 
     disposables += donationPaymentRepository.isGooglePayAvailable().subscribeBy(
       onComplete = { store.update { it.copy(isGooglePayAvailable = true) } },
       onError = { eventPublisher.onNext(DonationEvent.GooglePayUnavailableError(it)) }
     )
 
-    disposables += currency.map { CurrencySelection(it.currencyCode) }.subscribe { selection ->
+    disposables += currency.subscribe { selection ->
       store.update { it.copy(currencySelection = selection) }
+    }
+  }
+
+  private fun handleSubscriptionDataLoadFailure(throwable: Throwable) {
+    Log.w(TAG, "Could not load subscription data", throwable)
+    store.update {
+      it.copy(stage = SubscribeState.Stage.FAILURE)
     }
   }
 
   fun refreshActiveSubscription() {
     subscriptionsRepository
       .getActiveSubscription()
-      .subscribeBy { activeSubscriptionSubject.onNext(it) }
+      .subscribeBy(
+        onSuccess = { activeSubscriptionSubject.onNext(it) },
+        onError = { activeSubscriptionSubject.onNext(ActiveSubscription(null)) }
+      )
   }
 
   private fun resolveSelectedSubscription(activeSubscription: ActiveSubscription, subscriptions: List<Subscription>): Subscription? {
@@ -96,6 +145,8 @@ class SubscribeViewModel(
       onComplete = {
         eventPublisher.onNext(DonationEvent.SubscriptionCancelled)
         SignalStore.donationsValues().setLastEndOfPeriod(0L)
+        SignalStore.donationsValues().clearLevelOperation()
+        SignalStore.donationsValues().markUserManuallyCancelled()
         refreshActiveSubscription()
         store.update { it.copy(stage = SubscribeState.Stage.READY) }
       },
@@ -178,8 +229,10 @@ class SubscribeViewModel(
 
     store.update { it.copy(stage = SubscribeState.Stage.TOKEN_REQUEST) }
 
+    val selectedCurrency = snapshot.currencySelection
+
     subscriptionToPurchase = snapshot.selectedSubscription
-    donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedSubscription.price, snapshot.selectedSubscription.title, fetchTokenRequestCode)
+    donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedSubscription.prices.first { it.currency == selectedCurrency }, snapshot.selectedSubscription.name, fetchTokenRequestCode)
   }
 
   fun setSelectedSubscription(subscription: Subscription) {
@@ -194,5 +247,9 @@ class SubscribeViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(SubscribeViewModel(subscriptionsRepository, donationPaymentRepository, fetchTokenRequestCode))!!
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(SubscribeViewModel::class.java)
   }
 }

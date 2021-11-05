@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.util.UUID;
 
@@ -136,7 +137,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                        .changeCallSetupState()
                        .isRemoteVideoOffer(true)
                        .ringId(ringId)
-                       .ringerRecipient(Recipient.externalPush(context, uuid, null, false))
+                       .ringerRecipient(Recipient.externalPush(context, ACI.from(uuid), null, false))
                        .commit()
                        .changeCallInfoState()
                        .callRecipient(remotePeerGroup.getRecipient())

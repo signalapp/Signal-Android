@@ -10,11 +10,13 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.groups.state.SenderKeyRecord;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
 
@@ -108,6 +110,17 @@ public class SenderKeyDatabase extends Database {
     String[]       args  = SqlUtil.buildArgs(addressName, distributionId);
 
     db.delete(TABLE_NAME, query, args);
+  }
+
+  /**
+   * Get metadata for all sender keys created by the local user. Used for debugging.
+   */
+  public Cursor getAllCreatedBySelf() {
+    SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
+    String         query = ADDRESS + " = ?";
+    String[]       args  = SqlUtil.buildArgs(Recipient.self().requireAci());
+
+    return db.query(TABLE_NAME, new String[]{ ID, DISTRIBUTION_ID, CREATED_AT }, query, args, null, null, CREATED_AT + " DESC");
   }
 
   /**

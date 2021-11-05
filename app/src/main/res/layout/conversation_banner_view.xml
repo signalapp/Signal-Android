@@ -23,11 +23,9 @@
         android:layout_marginStart="47dp"
         android:layout_marginTop="48dp"
         android:contentDescription="@string/ImageView__badge"
-        android:visibility="gone"
         app:badge_size="large"
         app:layout_constraintStart_toStartOf="@id/message_request_avatar"
-        app:layout_constraintTop_toTopOf="@id/message_request_avatar"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toTopOf="@id/message_request_avatar" />
 
     <LinearLayout
         android:id="@+id/message_request_avatar_tap_to_view"

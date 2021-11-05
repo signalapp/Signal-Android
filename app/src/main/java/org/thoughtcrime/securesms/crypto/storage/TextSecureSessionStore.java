@@ -134,8 +134,8 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
     synchronized (LOCK) {
       Recipient recipient = Recipient.resolved(recipientId);
 
-      if (recipient.hasUuid()) {
-        archiveSession(new SignalProtocolAddress(recipient.requireUuid().toString(), deviceId));
+      if (recipient.hasAci()) {
+        archiveSession(new SignalProtocolAddress(recipient.requireAci().toString(), deviceId));
       }
 
       if (recipient.hasE164()) {

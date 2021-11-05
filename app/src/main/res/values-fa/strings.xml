@@ -245,8 +245,8 @@
   <string name="ConversationActivity__reported_as_spam_and_blocked">اسپم گزارش داده و مسدود شد.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
-    <item quantity="one">%d پیام خوانده نشده</item>
-    <item quantity="other">%d پیام خوانده نشده</item>
+    <item quantity="one">%d پیام نخوانده</item>
+    <item quantity="other">%d پیام نخوانده</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -317,12 +317,12 @@
     <item quantity="other">%d مکالمه به صندوق ورودی انتقال یافت</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
-    <item quantity="one">خوانده شده</item>
-    <item quantity="other">خوانده شده</item>
+    <item quantity="one">خوانده</item>
+    <item quantity="other">خوانده</item>
   </plurals>
   <plurals name="ConversationListFragment_unread_plural">
-    <item quantity="one">خوانده نشده</item>
-    <item quantity="other">خوانده نشده</item>
+    <item quantity="one">نخوانده</item>
+    <item quantity="other">نخوانده</item>
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
     <item quantity="one">سنجاق</item>
@@ -747,7 +747,7 @@
     <item quantity="other">آیا می‌خواهید %2$d دعوت ارسال شده از طرف %1$s را لغو کنید؟</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">شما از پیش عضو هستید</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">شما از قبل عضو هستید</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">پیوستن</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">درخواست پیوستن</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">پیوستن به گروه ممکن نبود. لطفاً بعداً دوباره امتحان کنید</string>
@@ -1939,16 +1939,6 @@
   <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- لطفاً یک گزینه انتخاب کنید --</item>
-    <item>چیزی خراب شده است</item>
-    <item>درخواست قابلیت جدید</item>
-    <item>سؤال</item>
-    <item>بازخورد</item>
-    <item>سایر</item>
-    <item>پرداخت‌ها (MobileCoin)</item>
-    <item>کمک‌های اهدایی (نگهدارندگان و تقویت سیگنال)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
@@ -2335,8 +2325,8 @@
   <string name="conversation_list_batch__menu_select_all">انتخاب همه</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی موارد انتخاب شده</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خروج موارد انتخاب شده از بایگانی</string>
-  <string name="conversation_list_batch__menu_mark_as_read">علامت گذاری به عنوان خوانده شده</string>
-  <string name="conversation_list_batch__menu_mark_as_unread">علامت زدن به صورت خوانده نشده</string>
+  <string name="conversation_list_batch__menu_mark_as_read">علامت گذاری به عنوان خوانده</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">علامت زدن به صورت نخوانده</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">میانبر تنظیمات</string>
   <string name="conversation_list_search_description">جستجو</string>
@@ -3312,7 +3302,7 @@
   <string name="SubscribeFragment__update">به‌روزرسانی</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ممنون بابت تقویت!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">شما یک نشان %s بدست آوردید! نمایش نشان شما به کسانی که با آن‌ها گفتگو می‌کنید نشان می‌دهد که شما از سیگنال حمایت می‌کنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">شما یک نشان %s بدست آوردید! نمایش نشان شما به کسانی که با آن‌ها گفتگو می‌کنید نشان می‌دهد که شما از سیگنال حمایت می‌کنید.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">نمایش روی پروفایل</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمام</string>
   <string name="ManageDonationsFragment__my_support">پشتیبانی من</string>
@@ -3325,9 +3315,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/ماه</string>
   <string name="MySupportPreference__renews_s">در %1$s تمدید می‌شود</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">نشان شما منقضی شده است</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">نشان %1$s شما منقضی شده است، و دیگر روی پروفایل شما برای دیگران قابل رؤیت نیست.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">برای ادامهٔ حمایت از فناوری که برای شما ساخته شده است—نه برای داده‌های شما—لطفاً در نظر بگیرید که یک مشترک ماهانهٔ ما شوید.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">مشترک شوید</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">نشان %1$s شما منقضی شده است، و دیگر روی پروفایل شما برای دیگران قابل رؤیت نیست.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">برای ادامهٔ حمایت از فناوری که برای شما ساخته شده است—نه برای داده‌های شما—لطفاً در نظر بگیرید که یک مشترک ماهانهٔ ما شوید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">مشترک شوید</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
   <string name="Subscription__contact_support">تماس با پشتیبانی</string>
   <string name="SubscribeFragment__processing_payment">در حال پردازش پرداخت…</string>

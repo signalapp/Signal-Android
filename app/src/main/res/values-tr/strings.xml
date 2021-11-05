@@ -316,8 +316,48 @@
     <item quantity="one">Konuşma gelen kutusuna taşındı</item>
     <item quantity="other">%d konuşma gelen kutusuna taşındı</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Okunmuş</item>
+    <item quantity="other">Okunmuş</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Okunmamış</item>
+    <item quantity="other">Okunmamış</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Sabitle</item>
+    <item quantity="other">Sabitle</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Kaldır</item>
+    <item quantity="other">Kaldır</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Sessize al</item>
+    <item quantity="other">Sessize al</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Sesi aç</item>
+    <item quantity="other">Sesi aç</item>
+  </plurals>
   <string name="ConversationListFragment_select">Seç</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arşivle</item>
+    <item quantity="other">Arşivle</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Çıkart</item>
+    <item quantity="other">Çıkart</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Sil</item>
+    <item quantity="other">Sil</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Hepsini seç</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d seçili</item>
+    <item quantity="other">%d seçili</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
   <!--ConversationListItemAction-->
@@ -799,6 +839,18 @@
   <string name="MediaOverviewActivity_List_view_description">Liste görünümü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçilen</string>
   <string name="MediaOverviewActivity_select_all">Hepsini seç</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Kaydet</item>
+    <item quantity="other">Kaydet</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Sil</item>
+    <item quantity="other">Sil</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d seçili (%2$s)</item>
+    <item quantity="other">%1$d seçili (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Dosya</string>
   <string name="MediaOverviewActivity_audio">Ses</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1983,6 +2035,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__help">Yardım</string>
   <string name="preferences__advanced">Gelişmiş</string>
   <string name="preferences__donate_to_signal">Signal\'e Bağış Yap</string>
+  <string name="preferences__subscription">Abonelik</string>
+  <string name="preferences__signal_boost">Signal Arttırma</string>
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS Kullanıcı Aracı</string>
   <string name="preferences__advanced_mms_access_point_names">Manuel MMS ayarları</string>
@@ -3021,6 +3075,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__copyright_signal_messenger">Telif hakkı Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3\'e göre lisanslanmıştır</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">İçerik kalitesi</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Gönderilen içerik kalitesi</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Yüksek kalitede içerik göndermek daha fazla veri kullanacaktır.</string>
   <string name="DataAndStorageSettingsFragment__high">Yüksek</string>
   <string name="DataAndStorageSettingsFragment__standard">Standart</string>
@@ -3205,6 +3261,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaReviewFragment__add_a_reply">Yanıt ekle</string>
   <string name="MediaReviewFragment__send_to">Gönderilecek</string>
   <string name="MediaReviewFragment__view_once_message">Tek görümlük ileti</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Bir veya daha fazla öğe çok büyük</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Bir veya daha fazla öğe çok geçersiz</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Çok fazla öğe seçildi</string>
   <string name="ImageEditorHud__cancel">İptal</string>
   <string name="ImageEditorHud__draw">Çizim</string>
   <string name="ImageEditorHud__write_text">Yazı yazma</string>
@@ -3235,24 +3294,57 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Destekleyin</string>
   <string name="ImageView__badge">Rozet</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal sizin gibi bireyler sayesinde var.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Bunu sürdüren insanlar topluluğuna katılarak verileriniz için değil, sizin için oluşturulan teknolojiyi destekleyin.</string>
   <string name="SubscribeFragment__donation_amount">Bağış miktarı</string>
+  <string name="SubscribeFragment__more_payment_options">Diğer Ödeme Seçenekleri</string>
+  <string name="SubscribeFragment__cancel_subscription">Aboneliği iptal et</string>
+  <string name="SubscribeFragment__confirm_cancellation">İptal edilsin mi?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Bir daha faturalandırılmayacaksınız. Rozetiniz fatura döneminizin sonunda profilinizden kaldırılacaktır.</string>
   <string name="SubscribeFragment__not_now">Şimdi değil</string>
   <string name="SubscribeFragment__confirm">Onayla</string>
+  <string name="SubscribeFragment__update_subscription">Aboneliği Güncelle</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Aboneliğiniz iptal edildi.</string>
+  <string name="SubscribeFragment__update_subscription_question">Abonelik güncellensin mi?</string>
   <string name="SubscribeFragment__update">Güncelle</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bugün yeni abonelik fiyatının tamamı sizden tahsil edilecektir. Aboneliğiniz %1$s tarihinde yenilenir.</string>
+  <string name="Subscription__s_per_month">%s/ay</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/ay · Yenilenme %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · Bitiş %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Neden Katkıda Bulunulmalı?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal ekibi, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi sağlayan açık kaynaklı gizlilik teknolojisi geliştirme misyonuna kendini adamıştır. Katkınız bu davayı körüklüyor. Reklam yok. İzlenme yok. Şaka yok.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Arttırıcı için teşekkürler!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Bir %s rozeti kazandınız! Rozetinizi göstermek, sohbet ettiğiniz kişilere Signal\'i desteklediğinizi gösterir.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tamam</string>
+  <string name="ManageDonationsFragment__my_support">Desteğim</string>
   <string name="ManageDonationsFragment__manage_subscription">Aboneliği yönet</string>
   <string name="ManageDonationsFragment__badges">Rozetler</string>
+  <string name="ManageDonationsFragment__subscription_faq">Abonelik SSS</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Abonelik alınamadı</string>
+  <string name="BoostFragment__give_signal_a_boost">Signal\'i Arttırın</string>
+  <string name="BoostFragment__say_thanks_and_earn">Teşekkürlerinizi ileterek %1$d gün geçerli Arttırıcı rozeti kazanın.</string>
   <string name="Boost__enter_custom_amount">Farklı Miktar Gir</string>
   <string name="Boost__one_time_contribution">Tek seferlik bağış</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Sizin için -verileriniz için değil- oluşturulmuş teknolojiyi desteklemeye devam etmek için lütfen aylık abone olmayı düşünün.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abone ol</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signal Arttırıcı ekleyin</string>
+  <string name="MySupportPreference__s_per_month">%1$s/ay</string>
+  <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s rozetinizin süresi doldu ve artık başkalarına gözükmeyecek.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Sizin için -verileriniz için değil- oluşturulmuş teknolojiyi desteklemeye devam etmek için lütfen aylık abone olmayı düşünün.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abone ol</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
+  <string name="Subscription__verification_failed">Abonelik Onaylanamadı</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha fazla bilgi için lütfen bizimle iletişime geçin.</string>
   <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
+  <string name="Subscription__earn_a_s_badge">Bir %1$s rozeti kazanın</string>
   <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
   <string name="DonationsErrors__payment_failed">Ödeme başarısız oldu</string>
   <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
+  <string name="DonationsErrors__redemption_still_pending">Ödeme beklemede</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Rozetinizi hemen göremeyebilirsiniz ama üzerinde çalışıyoruz!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay Kullanılamıyor</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurmanız gerekir.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonelik iptali için internet bağlantısı gerekir.</string>

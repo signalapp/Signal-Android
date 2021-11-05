@@ -1935,16 +1935,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Seleccioneu una opció --</item>
-    <item>Alguna cosa no funciona.</item>
-    <item>Petició de funció</item>
-    <item>Pregunta</item>
-    <item>Retroacció</item>
-    <item>Altres</item>
-    <item>Pagaments (MobileCoin)</item>
-    <item>Donacions (Suport i Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
@@ -3318,11 +3308,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ mes · Venciment: %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, sostinguda només per les persones que l’usen i valoren. Feu-hi una contribució mensual periòdica i rebeu una insígnia de perfil per compartir el vostre suport.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Per què contribuir-hi?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">L’equip del Signal està compromès amb la missió de desenvolupar tecnologia de privadesa de codi obert que protegeixi la llibertat d\'expressió i permeti una comunicació global segura. La vostra contribució alimenta aquesta causa. Sense anuncis. Sense rastrejadors. No és broma.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">La vostra contribució ajuda a pagar el desenvolupament, els servidors i l’amplada de banda d’una aplicació que fan servir milions de persones a tot el món per a la comunicació privada i instantània.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">L’equip del Signal està compromès amb la missió de desenvolupar tecnologia de privadesa de codi obert que protegeixi la llibertat d\'expressió i permeti una comunicació global segura. La vostra contribució alimenta aquesta causa. Sense anuncis. Sense rastrejadors. No és broma.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">La vostra contribució ajuda a pagar el desenvolupament, els servidors i l’amplada de banda d’una aplicació que fan servir milions de persones a tot el món per a la comunicació privada i instantània.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Gràcies pel vostre suport!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gràcies per l\'empenta!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Heu obtingut una insígnia de %s. Si la mostreu, es mostrarà a les persones amb qui converseu que doneu suport al Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Heu obtingut una insígnia de %s. Si la mostreu, es mostrarà a les persones amb qui converseu que doneu suport al Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra-ho al perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Feu una insígnia inclosa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fet</string>
@@ -3340,9 +3330,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MySupportPreference__s_per_month">%1$s/ mes</string>
   <string name="MySupportPreference__renews_s">Renovacions %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">La vostra insígnia %1$s ha caducat i ja no és visible al perfil per a altres usuaris.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuar donant suport a la tecnologia dissenyada per a vosaltres (no per a les vostres dades), penseu a convertir-vos en subscriptor mensual.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Fes-me\'n subscriptor</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">La vostra insígnia %1$s ha caducat i ja no és visible al perfil per a altres usuaris.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuar donant suport a la tecnologia dissenyada per a vosaltres (no per a les vostres dades), penseu a convertir-vos en subscriptor mensual.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Fes-me\'n subscriptor</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
   <string name="Subscription__verification_failed">La verificació de la subscripció ha fallat.</string>
   <string name="Subscription__please_contact_support_for_more_information">Poseu-vos en contacte amb el servei d\'assistència per obtenir-ne més informació.</string>

@@ -8,6 +8,7 @@
     <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
     <string name="support_center_url" translatable="false">https://support.signal.org/</string>
     <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -815,6 +816,7 @@
     <string name="ManageProfileFragment_your_username">Your username</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
     <string name="ManageProfileFragment_badges">Badges</string>
+    <string name="ManageProfileFragment__edit_photo">Edit photo</string>
 
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">No groups in common</string>
@@ -933,6 +935,8 @@
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Learn more</string>
+
+    <string name="SpanUtil__read_more">Read more</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Unable to find message</string>
@@ -1560,6 +1564,9 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal needs access to your contacts in order to connect with friends, exchange messages, and make secure calls</string>
     <string name="RegistrationActivity_rate_limited_to_service">You\'ve made too many attempts to register this number. Please try again later.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_non_standard_number_format">Non-standard number format</string>
+    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">The number you entered (%1$s) appears to be a non-standard format.\n\nDid you mean %2$s?</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Phone Number Format</string>
     <string name="RegistrationActivity_call_requested">Call requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">You are now %d step away from submitting a debug log.</item>
@@ -2284,7 +2291,7 @@
     <string name="HelpFragment__debug_log">Debug Log:</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
-    <string-array name="HelpFragment__categories_2">
+    <string-array name="HelpFragment__categories_3">
         <item>-- Please select an option --</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
@@ -2292,7 +2299,7 @@
         <item>Feedback</item>
         <item>Other</item>
         <item>Payments (MobileCoin)</item>
-        <item>Donations (Sustainers &amp; Signal Boost)</item>
+        <item>Sustainers &amp; Signal Boost</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -2401,6 +2408,7 @@
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__donate_to_signal">Donate to Signal</string>
     <string name="preferences__subscription">Subscription</string>
+    <string name="preferences__become_a_signal_sustainer">Become a Signal Sustainer</string>
     <string name="preferences__signal_boost">Signal Boost</string>
     <string name="preferences__privacy">Privacy</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -2593,6 +2601,9 @@
     <string name="preferences__internal_calling" translatable="false">Group call server</string>
     <string name="preferences__internal_calling_default" translatable="false">Default</string>
     <string name="preferences__internal_calling_s_server" translatable="false">%1$s server</string>
+    <string name="preferences__internal_badges" translatable="false">Badges</string>
+    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
+
 
     <!-- Payments -->
     <string name="PaymentsActivityFragment__all_activity">All activity</string>
@@ -3719,6 +3730,12 @@
     <string name="AddAProfilePhotoMegaphone__not_now">Not now</string>
     <string name="AddAProfilePhotoMegaphone__add_photo">Add photo</string>
 
+    <!-- BecomeASustainerMegaphone -->
+    <string name="BecomeASustainerMegaphone__become_a_sustainer">Become a Sustainer</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered">Signal is powered by people like you. Contribute and receive a profile badge.</string>
+    <string name="BecomeASustainerMegaphone__no_thanks">No thanks</string>
+    <string name="BecomeASustainerMegaphone__contribute">Contribute</string>
+
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Open emoji search</string>
@@ -3770,6 +3787,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation muted forever</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
     <string name="ConversationSettingsFragment__phone_number">Phone number</string>
+    <string name="ConversationSettingsFragment__get_badges">Get badges for your profile by supporting Signal. Tap on a badge to learn more.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Add members</string>
@@ -3918,6 +3936,7 @@
 
     <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal is powered by people like you.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Support technology that is built for you—not for your data—by joining the community of people that sustain it.</string>
+    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Support technology that is built for you, not for your data, by joining the community that sustains Signal.</string>
     <string name="SubscribeFragment__donation_amount">Donation amount</string>
     <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
     <string name="SubscribeFragment__cancel_subscription">Cancel Subscription</string>
@@ -3930,6 +3949,7 @@
     <string name="SubscribeFragment__update_subscription_question">Update subscription?</string>
     <string name="SubscribeFragment__update">Update</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount">You will be charged the full amount of the new subscription price today. Your subscription will renew %1$s.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">You will be charged the full amount (%1$s) of the new subscription price today. Your subscription will renew monthly.</string>
 
     <string name="Subscription__s_per_month">%s/month</string>
     <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Renews %2$s</string>
@@ -3937,12 +3957,15 @@
 
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is a non-profit with no advertisers or investors, sustained only by the people who use and value it. Make a recurring monthly contribution and receive a profile badge to share your support.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Why Contribute?</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">The team at Signal is committed to the mission of developing open source privacy technology that protects free expression and enables secure global communication. Your contribution fuels this cause. No ads. No trackers. No kidding.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Your contribution helps pay for the development, servers, and bandwidth of an app used by millions around the world for private and instantaneous communication.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is">Signal is committed to developing open source privacy technology that protects free expression and enables secure global communication.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Your contribution fuels this cause and pays for the development and operations of an app used by millions for private communication. No ads. No trackers. No kidding.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Thanks for your Support!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Thanks for the Boost!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">You\'ve earned a %s badge! Displaying your badge will show people you chat with that you support Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">You\'ve earned %s badge! Help Signal build awareness by displaying this badge on your profile.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">You\'ve earned a Boost badge! Help Signal build awareness by displaying this badge on your profile.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">You can also</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">become a monthly Sustainer.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Display on Profile</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make featured badge</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Done</string>
@@ -3965,10 +3988,15 @@
     <string name="MySupportPreference__renews_s">Renews %1$s</string>
 
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Your Badge has Expired</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Your %1$s badge has expired, and is no longer visible to others on your profile.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">To continue supporting technology that is built for you—not for your data—please consider becoming a monthly subscriber.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Become a subscriber</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expired</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscription cancelled</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Your Boost badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">To continue supporting technology that is built for you, please consider becoming a monthly Sustainer.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a sustainer</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Not now</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Your Sustainer subscription was automatically cancelled because you were inactive for too long. Your %1$s badge is no longer visible on your profile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">You can keep using Signal but to support the app and reactivate your badge, renew now.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
 
     <string name="Subscription__verification_failed">Subscription Verification Failed</string>
     <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
@@ -3984,6 +4012,7 @@
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Subscription cancellation requires an internet connection.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Your device doesn\'t support Google Pay, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
 
     <!-- EOF -->
 

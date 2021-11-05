@@ -27,8 +27,8 @@ dependencyVerification {
         ['androidx.versionedparcelable:versionedparcelable:1.1.1',
          '57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4'],
 
-        ['com.google.protobuf:protobuf-javalite:3.10.0',
-         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+        ['com.google.protobuf:protobuf-javalite:3.11.4',
+         '8cacea2f7a042dabae295c509dcdbfe32a49aa3708eec6ddb8efd8593aa0b4a3'],
 
         ['org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32',
          'e1ff6f55ee9e7591dcc633f7757bac25a7edb1cc7f738b37ec652f10f66a4145'],

@@ -226,7 +226,7 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                             .asExpirationUpdate(message.isExpirationUpdate())
                                                                                             .build();
 
-      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid())) {
+      if (Util.equals(TextSecurePreferences.getLocalAci(context), address.getAci())) {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 

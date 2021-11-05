@@ -34,6 +34,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -45,9 +48,11 @@ import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
 import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputController;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
+import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -230,8 +235,15 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                     } else if (processor.rateLimit()) {
                                       Log.i(TAG, "Unable to request sms code due to rate limit");
                                       Toast.makeText(register.getContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
+                                    } else if (processor.isImpossibleNumber()) {
+                                      Log.w(TAG, "Impossible number", processor.getError());
+                                      Dialogs.showAlertDialog(requireContext(),
+                                                              getString(R.string.RegistrationActivity_invalid_number),
+                                                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.getNumber().getFullFormattedNumber()));
+                                    } else if (processor.isNonNormalizedNumber()) {
+                                      handleNonNormalizedNumberError(processor.getOriginalNumber(), processor.getNormalizedNumber(), mode);
                                     } else {
-                                      Log.w(TAG, "Unable to request sms code", processor.getError());
+                                      Log.i(TAG, "Unknown error during verification code request", processor.getError());
                                       Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
                                     }
 
@@ -271,6 +283,37 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   @Override
   public void setCountry(int countryCode) {
     viewModel.onCountrySelected(null, countryCode);
+  }
+
+  private void handleNonNormalizedNumberError(@NonNull String originalNumber, @NonNull String normalizedNumber, @NonNull Mode mode) {
+    try {
+      Phonenumber.PhoneNumber phoneNumber = PhoneNumberUtil.getInstance().parse(normalizedNumber, null);
+
+      new MaterialAlertDialogBuilder(requireContext())
+          .setTitle(R.string.RegistrationActivity_non_standard_number_format)
+          .setMessage(getString(R.string.RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard, originalNumber, normalizedNumber))
+          .setNegativeButton(android.R.string.no, (d, i) -> d.dismiss())
+          .setNeutralButton(R.string.RegistrationActivity_contact_signal_support, (d, i) -> {
+            String subject = getString(R.string.RegistrationActivity_signal_android_phone_number_format);
+            String body    = SupportEmailUtil.generateSupportEmailBody(requireContext(), R.string.RegistrationActivity_signal_android_phone_number_format, null, null);
+
+            CommunicationActions.openEmail(requireContext(), SupportEmailUtil.getSupportEmailAddress(requireContext()), subject, body);
+            d.dismiss();
+          })
+          .setPositiveButton(R.string.yes, (d, i) -> {
+            countryCode.setText(String.valueOf(phoneNumber.getCountryCode()));
+            number.setText(String.valueOf(phoneNumber.getNationalNumber()));
+            requestVerificationCode(mode);
+            d.dismiss();
+          })
+          .show();
+    } catch (NumberParseException e) {
+      Log.w(TAG, "Failed to parse number!", e);
+
+      Dialogs.showAlertDialog(requireContext(),
+                              getString(R.string.RegistrationActivity_invalid_number),
+                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.getNumber().getFullFormattedNumber()));
+    }
   }
 
   private void handlePromptForNoPlayServices(@NonNull Context context) {

@@ -23,7 +23,7 @@ class BadgeRepository(context: Context) {
 
   fun setFeaturedBadge(featuredBadge: Badge): Completable = Completable.fromAction {
     val badges = Recipient.self().badges
-    val reOrderedBadges = listOf(featuredBadge) + (badges - featuredBadge)
+    val reOrderedBadges = listOf(featuredBadge.copy(visible = true)) + (badges.filterNot { it.id == featuredBadge.id })
     ProfileUtil.uploadProfileWithBadges(context, reOrderedBadges)
 
     val recipientDatabase: RecipientDatabase = DatabaseFactory.getRecipientDatabase(context)

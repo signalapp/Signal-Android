@@ -53,6 +53,17 @@
 
     </FrameLayout>
 
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/badge"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignStart="@id/contact_photo_container"
+        android:layout_alignTop="@id/contact_photo_container"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:badge_size="small" />
+
     <org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble
         android:id="@+id/body_bubble"
         android:layout_width="wrap_content"
@@ -106,19 +117,19 @@
             android:textColor="@color/signal_text_primary"
             android:textColorLink="@color/signal_text_primary"
             app:emoji_maxLength="1000"
-            app:scaleEmojis="true"
             app:measureLastLine="true"
+            app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
             android:id="@+id/conversation_item_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="-5dp"
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
-            android:layout_gravity="end"
             android:alpha="0.7"
             android:clipChildren="false"
             android:clipToPadding="false"

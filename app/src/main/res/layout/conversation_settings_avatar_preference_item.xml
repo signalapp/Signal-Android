@@ -28,10 +28,8 @@
             android:layout_marginStart="47dp"
             android:layout_marginTop="48dp"
             android:contentDescription="@string/ImageView__badge"
-            android:visibility="gone"
             app:badge_size="large"
             app:layout_constraintStart_toStartOf="@id/bio_preference_avatar"
-            app:layout_constraintTop_toTopOf="@id/bio_preference_avatar"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toTopOf="@id/bio_preference_avatar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

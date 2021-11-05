@@ -30,6 +30,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/message_details_recipient_badge"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/ImageView__badge"
+            app:badge_size="medium"
+            app:layout_constraintStart_toStartOf="@id/message_details_recipient_avatar"
+            app:layout_constraintTop_toTopOf="@id/message_details_recipient_avatar" />
+
         <org.thoughtcrime.securesms.components.FromTextView
             android:id="@+id/message_details_recipient_name"
             android:layout_width="0dp"

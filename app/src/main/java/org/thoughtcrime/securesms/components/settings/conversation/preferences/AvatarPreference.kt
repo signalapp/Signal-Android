@@ -49,13 +49,19 @@ object AvatarPreference {
     }
 
     override fun bind(model: Model) {
-      badge.setBadgeFromRecipient(model.recipient)
-      badge.setOnClickListener {
-        val badge = model.recipient.badges.firstOrNull()
-        if (badge != null) {
-          model.onBadgeClick(badge)
+      if (model.recipient.isSelf) {
+        badge.setBadge(null)
+        badge.setOnClickListener(null)
+      } else {
+        badge.setBadgeFromRecipient(model.recipient)
+        badge.setOnClickListener {
+          val badge = model.recipient.badges.firstOrNull()
+          if (badge != null) {
+            model.onBadgeClick(badge)
+          }
         }
       }
+
       avatar.setAvatar(model.recipient)
       avatar.disableQuickContact()
       avatar.setOnClickListener { model.onAvatarClick(avatar) }

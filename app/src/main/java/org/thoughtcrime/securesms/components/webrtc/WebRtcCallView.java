@@ -116,6 +116,7 @@ public class WebRtcCallView extends ConstraintLayout {
   private View                          foldParticipantCountWrapper;
   private TextView                      foldParticipantCount;
   private AvatarImageView               largeHeaderAvatar;
+  private ConstraintSet                 largeHeaderConstraints;
   private ConstraintSet                 smallHeaderConstraints;
   private Guideline                     statusBarGuideline;
   private View                          fullScreenShade;
@@ -292,6 +293,9 @@ public class WebRtcCallView extends ConstraintLayout {
     rotatableControls.add(decline);
     rotatableControls.add(smallLocalRender.findViewById(R.id.call_participant_mic_muted));
     rotatableControls.add(ringToggle);
+
+    largeHeaderConstraints = new ConstraintSet();
+    largeHeaderConstraints.clone(getContext(), R.layout.webrtc_call_view_header_large);
 
     smallHeaderConstraints = new ConstraintSet();
     smallHeaderConstraints.clone(getContext(), R.layout.webrtc_call_view_header_small);
@@ -689,6 +693,7 @@ public class WebRtcCallView extends ConstraintLayout {
     if (!visibleViewSet.equals(lastVisibleSet) ||
         !controls.isFadeOutEnabled() ||
         (webRtcControls.showSmallHeader() && largeHeaderAvatar.getVisibility() == View.VISIBLE) ||
+        (!webRtcControls.showSmallHeader() && largeHeaderAvatar.getVisibility() == View.GONE) ||
         forceUpdate)
     {
 
@@ -930,6 +935,8 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (showSmallHeader) {
       smallHeaderConstraints.applyTo(toolbar);
+    } else {
+      largeHeaderConstraints.applyTo(toolbar);
     }
   }
 

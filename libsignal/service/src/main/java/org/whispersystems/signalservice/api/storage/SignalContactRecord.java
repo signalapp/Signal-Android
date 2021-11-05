@@ -5,6 +5,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
@@ -37,7 +38,7 @@ public final class SignalContactRecord implements SignalRecord {
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
 
-    this.address     = new SignalServiceAddress(UuidUtil.parseOrUnknown(proto.getServiceUuid()), proto.getServiceE164());
+    this.address     = new SignalServiceAddress(ACI.parseOrUnknown(proto.getServiceUuid()), proto.getServiceE164());
     this.givenName   = OptionalUtil.absentIfEmpty(proto.getGivenName());
     this.familyName  = OptionalUtil.absentIfEmpty(proto.getFamilyName());
     this.profileKey  = OptionalUtil.absentIfEmpty(proto.getProfileKey());
@@ -69,7 +70,7 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("E164");
       }
 
-      if (!Objects.equals(this.getAddress().getUuid(), that.getAddress().getUuid())) {
+      if (!Objects.equals(this.getAddress().getAci(), that.getAddress().getAci())) {
         diff.add("UUID");
       }
 
@@ -211,7 +212,7 @@ public final class SignalContactRecord implements SignalRecord {
       this.id      = StorageId.forContact(rawId);
       this.builder = ContactRecord.newBuilder();
 
-      builder.setServiceUuid(address.getUuid().toString());
+      builder.setServiceUuid(address.getAci().toString());
       builder.setServiceE164(address.getNumber().or(""));
     }
 

@@ -291,8 +291,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Usuwanie</string>
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości…</string>
-  <string name="ConversationFragment_delete_for_me">U mnie</string>
-  <string name="ConversationFragment_delete_for_everyone">U wszystkich</string>
+  <string name="ConversationFragment_delete_for_me">Usuń u mnie</string>
+  <string name="ConversationFragment_delete_for_everyone">Usuń wszędzie</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ta wiadomość zostanie usunięta u wszystkich uczestników tej konwersacji, jeśli używają najnowszej wersji Signal. Będą oni mogli zobaczyć, że skasowałeś(aś) wiadomość.</string>
   <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
@@ -1646,7 +1646,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Nazwy użytkowników mogą zawierać wyłącznie a–Z, 0–9 i podkreślenia (_).</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nazwy użytkowników nie mogą zaczynać się od cyfry.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nazwa użytkownika jest niepoprawna.</string>
-  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć od %1$d do %2$d znaków.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć długość od %1$d do %2$d znaków.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nazwy użytkowników w Signal są opcjonalne. Jeśli postanowisz dodać nazwę użytkownika, inni użytkownicy Signal będą mogli Cię po niej znaleźć i skontaktować się z Tobą, nie znając Twojego numeru.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dkontakt jest w Signal!</item>
@@ -2105,16 +2105,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__debug_log">Logi debugowania:</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Wybierz opcję --</item>
-    <item>Coś nie działa</item>
-    <item>Prośba o dodanie funkcji</item>
-    <item>Pytanie</item>
-    <item>Opinia</item>
-    <item>Inne</item>
-    <item>Płatności (MobileCoin)</item>
-    <item>Datki (wspierający i wsparcie Signal)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ta wiadomość</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Ostatnio używane</string>
@@ -3522,11 +3512,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/miesiąc · Wygasa %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi, którzy używają i cenią naszą aplikację. Rozpocznij subskrypcję z comiesięczną opłatą, aby otrzymać odznakę profilową, dzięki której pochwalisz się swoim wsparciem.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Po co składać datek?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Zespół Signal jest oddany misji rozwoju otwartoźródłowej, zapewniającej prywatność technologii, która chroni wolność słowa i umożliwia bezpieczną, globalną komunikację. Twój datek pomaga tej sprawie. Bez reklam. Bez śledzenia. Bez ściemy.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Twoja dotacja pomoże opłacić serwery, łącze internetowe i dalszy rozwój aplikacji, której miliony osób na całym świecie używają do prywatnej i natychmiastowej komunikacji.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Zespół Signal jest oddany misji rozwoju otwartoźródłowej, zapewniającej prywatność technologii, która chroni wolność słowa i umożliwia bezpieczną, globalną komunikację. Twój datek pomaga tej sprawie. Bez reklam. Bez śledzenia. Bez ściemy.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Twoja dotacja pomoże opłacić serwery, łącze internetowe i dalszy rozwój aplikacji, której miliony osób na całym świecie używają do prywatnej i natychmiastowej komunikacji.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dziękujemy za datek!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Otrzymałeś(aś) odznakę %s! Wyświetlenie odznaki pokaże ludziom, z którymi rozmawiasz, że wspierasz Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Otrzymałeś(aś) odznakę %s! Wyświetlenie odznaki pokaże ludziom, z którymi rozmawiasz, że wspierasz Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pokaż w profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ustaw wyświetlaną odznakę</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotowe</string>
@@ -3544,10 +3534,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MySupportPreference__s_per_month">%1$s/miesiąc</string>
   <string name="MySupportPreference__renews_s">Przedłużane %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Twoja odznaka wygasła</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Twoja odznaka %1$swygasła i nie jest już widoczna dla innych, w Twoim profilu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Aby nadal wspierać technologię stworzoną dla Ciebie — nie dla zdobycia Twoich 
-danych — rozważ miesięczną subskrypcję.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Zostań subskrybentem</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Twoja odznaka %1$swygasła i nie jest już widoczna dla innych, w Twoim profilu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Aby nadal wspierać technologię stworzoną dla Ciebie — nie dla zdobycia Twoich
+danych — rozważ miesięczną subskrypcję.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Zostań subskrybentem</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>
   <string name="Subscription__verification_failed">Weryfikacja subskrypcji nie powiodła się</string>
   <string name="Subscription__please_contact_support_for_more_information">Skontaktuj się z pomocą techniczną, aby uzyskać więcej informacji.</string>

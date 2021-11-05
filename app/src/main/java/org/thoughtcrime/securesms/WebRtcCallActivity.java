@@ -484,6 +484,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     delayedFinish();
   }
 
+  private void handleGlare(@NonNull Recipient recipient) {
+    Log.i(TAG, "handleGlare: " + recipient.getId());
+
+    callScreen.setStatus("");
+  }
+
   private void handleCallRinging() {
     callScreen.setStatus(getString(R.string.RedPhone_ringing));
   }
@@ -629,6 +635,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
         handleCallRinging(); break;
       case CALL_DISCONNECTED:
         handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL); break;
+      case CALL_DISCONNECTED_GLARE:
+        handleGlare(event.getRecipient()); break;
       case CALL_ACCEPTED_ELSEWHERE:
         handleTerminate(event.getRecipient(), HangupMessage.Type.ACCEPTED); break;
       case CALL_DECLINED_ELSEWHERE:

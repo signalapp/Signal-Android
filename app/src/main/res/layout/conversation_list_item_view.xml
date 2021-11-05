@@ -181,10 +181,8 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="26dp"
         android:contentDescription="@string/ImageView__badge"
-        android:visibility="gone"
         app:badge_size="medium"
         app:layout_constraintStart_toStartOf="@id/conversation_list_item_avatar"
-        app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toTopOf="@id/conversation_list_item_avatar" />
 
 </org.thoughtcrime.securesms.conversationlist.ConversationListItem>

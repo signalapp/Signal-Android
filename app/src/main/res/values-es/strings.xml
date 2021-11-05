@@ -328,7 +328,31 @@
     <item quantity="one">Fijado</item>
     <item quantity="other">Fijados</item>
   </plurals>
-  <string name="ConversationListFragment_select">selecciona</string>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">No fijar </item>
+    <item quantity="other">No fijar </item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Silenciar</item>
+    <item quantity="other">Silenciar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">No silenciar</item>
+    <item quantity="other">No silenciar</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Selecciona</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archivar</item>
+    <item quantity="other">Archivar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Desarchivar</item>
+    <item quantity="other">Desarchivar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Eliminar</item>
+    <item quantity="other">Eliminar </item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Seleccionar todo</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d seleccionado</item>
@@ -815,6 +839,14 @@
   <string name="MediaOverviewActivity_List_view_description">Vista en lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selección</string>
   <string name="MediaOverviewActivity_select_all">Seleccionar todo</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Guardar</item>
+    <item quantity="other">Guardar</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Eliminar</item>
+    <item quantity="other">Eliminar</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d seleccionado (%2$s)</item>
     <item quantity="other">%1$d seleccionados (%2$s)</item>
@@ -1909,16 +1941,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__debug_log">Registro de depuración:</string>
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item> -- Selecciona una opción --</item>
-    <item>Algo no funciona</item>
-    <item>Solicitar una nueva función</item>
-    <item>Pregunta</item>
-    <item>Crítica/opinión</item>
-    <item>Otras</item>
-    <item>Pagos (MobileCoin)</item>
-    <item>Donaciones (Patron@s e Impulso a Signal)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usados recientemente</string>
@@ -2373,7 +2395,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="Insights__title">Estadísticas</string>
   <string name="InsightsDashboardFragment__title">Estadísticas</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El protocolo de Signal ha cifrado automáticamente %1$d%% de tus mensajes enviados en los últimos %2$d días. Los chats en Signal siempre están cifrados de extremo a extremo.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Mejora con Signal</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Impulsa Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">No hay datos suficientes</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Este porcentaje se calcula con los mensajes enviados durante los últimos %1$d días que no han desaparecido o se han eliminado.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comienza un chat</string>
@@ -3289,14 +3311,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Te haremos el cargo completo de la suscripción hoy. Tu suscripción se renovará el %1$s.</string>
   <string name="Subscription__s_per_month">%s al mes</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s al mes · Se renueva el %2$s</string>
-  <string name="Subscription__s_per_month_dot_expires_s">%1$s al mes · Se renueva el %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal es una organización sin ánimo de lucro, sin anunciantes ni inversores, sólo sostenida por la gente que  usa y valora la aplicación. Haz una contribución mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s al mes · Caduca el %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal es una organización sin ánimo de lucro, sin anunciantes ni inversores, sólo sostenida por la gente que usa y valora la aplicación. Haz una contribución mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">¿Por qué contribuir?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">El equipo de Signal está comprometido con la misión de desarrollar tecnología de código abierto que protege la libre expresión y permite comunicaciones globales seguras y privadas. Tu apoyo alimenta la causa. Sin anuncios. Sin seguimiento. Sin bromas.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Tu apoyo contribuye a pagar el desarrollo, uso de servidores y ancho de banda de una aplicación usada por millones de personas a lo largo de todo el mundo para comunicarse de forma privada e instantánea.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">El equipo de Signal está comprometido con la misión de desarrollar tecnología de código abierto que protege la libre expresión y permite comunicaciones globales seguras y privadas. Tu apoyo alimenta la causa. Sin anuncios. Sin seguimiento. Sin bromas.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Tu apoyo contribuye a pagar el desarrollo, uso de servidores y ancho de banda de una aplicación usada por millones de personas a lo largo de todo el mundo para comunicarse de forma privada e instantánea.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">¡Gracias por tu apoyo!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">¡Gracias por el impulso!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">¡Has conseguido el distintivo %s! Si decides mostrar el distintivo en tu perfil la gente con la que chateas verá que apoyas Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">¡Has conseguido el distintivo %s! Si decides mostrar el distintivo en tu perfil la gente con la que chateas verá que apoyas Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Hacer distintivo especial</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hecho</string>
@@ -3314,9 +3336,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MySupportPreference__s_per_month">%1$s al mes</string>
   <string name="MySupportPreference__renews_s">Se renueva el %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Tu distintivo %1$s ha caducado y ya no es visible para otr@s en tu perfil</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar apoyando la tecnología construída para ti (y no para tus datos) considera una suscripción mensual.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Suscribirme</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Tu distintivo %1$s ha caducado y ya no es visible para otr@s en tu perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar apoyando la tecnología construída para ti (y no para tus datos) considera una suscripción mensual.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Suscribirme</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
   <string name="Subscription__verification_failed">Fallo al verificar la suscripción</string>
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacta con el soporte técnico para más información.</string>

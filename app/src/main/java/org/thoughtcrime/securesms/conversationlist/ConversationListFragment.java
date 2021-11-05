@@ -50,12 +50,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -63,13 +64,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
+import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
+import com.google.android.material.animation.ArgbEvaluatorCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainFragment;
@@ -77,12 +81,14 @@ import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.models.Badge;
+import org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
+import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
-import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
@@ -321,6 +327,15 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (SignalStore.rateLimit().needsRecaptcha()) {
       Log.i(TAG, "Recaptcha required.");
       RecaptchaProofBottomSheetFragment.show(getChildFragmentManager());
+    }
+
+    Badge expiredBadge = SignalStore.donationsValues().getExpiredBadge();
+    if (expiredBadge != null) {
+      SignalStore.donationsValues().setExpiredBadge(null);
+
+      if (expiredBadge.isBoost() || !SignalStore.donationsValues().isUserManuallyCancelled()) {
+        ExpiredBadgeBottomSheetDialogFragment.show(expiredBadge, getParentFragmentManager());
+      }
     }
   }
 
@@ -1225,7 +1240,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   protected @DrawableRes int getArchiveIconRes() {
-    return R.drawable.ic_archive_white_36dp;
+    return R.drawable.ic_archive_24;
   }
 
   @WorkerThread
@@ -1321,6 +1336,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
 
+    private static final int ARCHIVE_SWIPE_START_COLOR = 0xFF28782A;
+    private static final int ARCHIVE_SWIPE_END_COLOR   = 0xFF329635;
+
     ArchiveListenerCallback() {
       super(0, ItemTouchHelper.RIGHT);
     }
@@ -1365,34 +1383,60 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     {
       if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-        View  itemView = viewHolder.itemView;
-        float alpha    = 1.0f - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
+        Resources resources       = getResources();
+        View      itemView        = viewHolder.itemView;
+        float     percentDx       = Math.abs(dX) / viewHolder.itemView.getWidth();
+        int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), ARCHIVE_SWIPE_START_COLOR, ARCHIVE_SWIPE_END_COLOR);
+        float     scaleStartPoint = DimensionUnit.DP.toPixels(48f);
+        float     scaleEndPoint   = DimensionUnit.DP.toPixels(112f);
+
+        float scale;
+        if (dX < scaleStartPoint) {
+          scale = 0.5f;
+        } else if (dX > scaleEndPoint) {
+          scale = 1f;
+        } else {
+          scale = Math.min(1f, 0.5f + ((dX - scaleStartPoint) / (scaleEndPoint - scaleStartPoint)) * (1f - 0.5f));
+        }
 
         if (dX > 0) {
-          Resources resources = getResources();
-
           if (archiveDrawable == null) {
-            archiveDrawable = ResourcesCompat.getDrawable(resources, getArchiveIconRes(), requireActivity().getTheme());
-            Objects.requireNonNull(archiveDrawable).setBounds(0, 0, archiveDrawable.getIntrinsicWidth(), archiveDrawable.getIntrinsicHeight());
+            archiveDrawable = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), getArchiveIconRes()));
+            archiveDrawable.setColorFilter(new SimpleColorFilter(Color.WHITE));
+            archiveDrawable.setBounds(0, 0, archiveDrawable.getIntrinsicWidth(), archiveDrawable.getIntrinsicHeight());
           }
 
           canvas.save();
-          canvas.clipRect(itemView.getLeft(), itemView.getTop(), dX, itemView.getBottom());
+          canvas.clipRect(itemView.getLeft(), itemView.getTop(), itemView.getRight(), itemView.getBottom());
 
-          canvas.drawColor(alpha > 0 ? resources.getColor(R.color.green_500) : Color.WHITE);
+          canvas.drawColor(color);
 
-          canvas.translate(itemView.getLeft() + resources.getDimension(R.dimen.conversation_list_fragment_archive_padding),
+          float gutter = resources.getDimension(R.dimen.dsl_settings_gutter);
+          float extra  = resources.getDimension(R.dimen.conversation_list_fragment_archive_padding);
+
+          canvas.translate(itemView.getLeft() + gutter + extra,
                            itemView.getTop() + (itemView.getBottom() - itemView.getTop() - archiveDrawable.getIntrinsicHeight()) / 2f);
+
+          canvas.scale(scale, scale, archiveDrawable.getIntrinsicWidth() / 2f, archiveDrawable.getIntrinsicHeight() / 2f);
 
           archiveDrawable.draw(canvas);
           canvas.restore();
+
+          ViewCompat.setElevation(viewHolder.itemView, DimensionUnit.DP.toPixels(4f));
+        } else if (dX == 0) {
+          ViewCompat.setElevation(viewHolder.itemView, DimensionUnit.DP.toPixels(0f));
         }
 
-        viewHolder.itemView.setAlpha(alpha);
         viewHolder.itemView.setTranslationX(dX);
       } else {
         super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
       }
+    }
+
+    @Override
+    public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+      super.clearView(recyclerView, viewHolder);
+      ViewCompat.setElevation(viewHolder.itemView, 0);
     }
   }
 

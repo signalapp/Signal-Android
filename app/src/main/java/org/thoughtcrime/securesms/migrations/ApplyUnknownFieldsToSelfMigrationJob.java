@@ -7,10 +7,8 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -47,7 +45,7 @@ public class ApplyUnknownFieldsToSelfMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    if (!TextSecurePreferences.isPushRegistered(context) || TextSecurePreferences.getLocalUuid(context) == null) {
+    if (!TextSecurePreferences.isPushRegistered(context) || TextSecurePreferences.getLocalAci(context) == null) {
       Log.w(TAG, "Not registered!");
       return;
     }

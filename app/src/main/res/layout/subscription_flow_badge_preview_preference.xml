@@ -9,8 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="8dp">
 
         <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/avatar"

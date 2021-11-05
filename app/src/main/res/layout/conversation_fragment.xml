@@ -6,14 +6,6 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/reactions_shade"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/reactions_screen_shade_color"
-        app:layout_constraintTop_toBottomOf="@android:id/list"
-        android:visibility="invisible" />
-
     <FrameLayout
         android:id="@+id/video_container"
         android:layout_width="0dp"
@@ -34,6 +26,15 @@
         android:scrollbars="vertical"
         android:overScrollMode="ifContentScrolls"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/reactions_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/reactions_screen_shade_color"
+        android:visibility="gone"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@android:id/list" />
 
     <TextView
         android:id="@+id/scroll_date_header"

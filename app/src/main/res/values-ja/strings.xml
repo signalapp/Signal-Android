@@ -1845,16 +1845,6 @@
   <string name="HelpFragment__debug_log">デバッグログ:</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- 選択してください --</item>
-    <item>機能の不具合</item>
-    <item>機能のリクエスト</item>
-    <item>質問</item>
-    <item>フィードバック</item>
-    <item>その他</item>
-    <item>支払い機能 (MobileCoin)</item>
-    <item>寄付  (サポーター &amp; Signalブースト)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
@@ -3211,11 +3201,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · 期限 %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、Signalを利用し、評価くださる方々によって支えられています。毎月の定期的なご寄付をいただき、あなたのご支援を示すプロフィールバッジを受け取ってください。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">寄付をお願いする理由</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signalのチームは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー技術を開発するというミッションに取り組んでいます。あなたの寄付がこの目的を後押しします。広告はありません。トラッカーもいません。</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">あなたの寄付は、世界中の何百万人もの人々がプライベートでリアルタイムなコミュニケーションをとるために使用している、アプリの開発、サーバー、通信の費用に充てられます。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signalのチームは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー技術を開発するというミッションに取り組んでいます。あなたの寄付がこの目的を後押しします。広告はありません。トラッカーもいません。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">あなたの寄付は、世界中の何百万人もの人々がプライベートでリアルタイムなコミュニケーションをとるために使用している、アプリの開発、サーバー、通信の費用に充てられます。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援をありがとうございます！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%sバッジを獲得しました！バッジを表示すると、あなたのSignalへのご支援がチャット相手に伝わります。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%sバッジを獲得しました！バッジを表示すると、あなたのSignalへのご支援がチャット相手に伝わります。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">注目のバッジにする</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
@@ -3233,9 +3223,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">更新 %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">バッジの有効期限が切れました</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$sバッジは有効期限が切れたため、プロフィールには表示されません。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">データのためではなく、あなたのために作られた技術を継続的に支援するため、毎月のサブスクリプションをご検討ください。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">サブスクリプションを行う</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$sバッジは有効期限が切れたため、プロフィールには表示されません。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">データのためではなく、あなたのために作られた技術を継続的に支援するため、毎月のサブスクリプションをご検討ください。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">サブスクリプションを行う</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <string name="Subscription__verification_failed">サブスクリプションを確認できませんでした</string>
   <string name="Subscription__please_contact_support_for_more_information">詳しくはサポートにお問い合わせください。</string>

@@ -57,7 +57,11 @@ public class ConversationBannerView extends ConstraintLayout {
   }
 
   public void setBadge(@Nullable Recipient recipient) {
-    contactBadge.setBadgeFromRecipient(recipient);
+    if (recipient == null || recipient.isSelf()) {
+      contactBadge.setBadge(null);
+    } else {
+      contactBadge.setBadgeFromRecipient(recipient);
+    }
   }
 
   public void setAvatar(@NonNull GlideRequests requests, @Nullable Recipient recipient) {

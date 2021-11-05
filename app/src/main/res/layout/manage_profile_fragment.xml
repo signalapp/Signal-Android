@@ -23,8 +23,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/manage_profile_avatar_background"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/circle_tintable"
         android:tint="@color/core_grey_05"
@@ -71,32 +71,45 @@
         app:layout_constraintStart_toStartOf="@+id/manage_profile_avatar_background"
         app:layout_constraintTop_toTopOf="@+id/manage_profile_avatar_background" />
 
-    <ImageView
-        android:id="@+id/manage_profile_camera_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/circle_tintable_padded"
-        android:cropToPadding="false"
-        android:elevation="4dp"
-        android:padding="14dp"
-        app:backgroundTint="@color/camera_icon_background_tint"
-        app:layout_constraintStart_toStartOf="@+id/manage_profile_avatar_background"
-        app:layout_constraintTop_toTopOf="@+id/manage_profile_avatar_background"
-        app:srcCompat="@drawable/ic_camera_24" />
+      <org.thoughtcrime.securesms.badges.BadgeImageView
+          android:id="@+id/manage_profile_badge"
+          android:layout_width="36dp"
+          android:layout_height="36dp"
+          android:layout_marginStart="44dp"
+          android:layout_marginTop="52dp"
+          app:badge_size="large"
+          app:layout_constraintStart_toStartOf="@+id/manage_profile_avatar_background"
+          app:layout_constraintTop_toTopOf="@+id/manage_profile_avatar_background" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/manage_profile_name_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingStart="@dimen/dsl_settings_gutter"
-        android:paddingEnd="@dimen/dsl_settings_gutter"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:background="?selectableItemBackground"
-        app:layout_constraintTop_toBottomOf="@id/manage_profile_avatar">
+      <TextView
+          android:id="@+id/manage_profile_edit_photo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/dsl_settings_gutter"
+          android:layout_marginTop="14dp"
+          android:layout_marginEnd="@dimen/dsl_settings_gutter"
+          android:background="@drawable/rounded_rectangle_tertiary"
+          android:paddingStart="21dp"
+          android:paddingTop="7dp"
+          android:paddingEnd="21dp"
+          android:paddingBottom="7dp"
+          android:text="@string/ManageProfileFragment__edit_photo"
+          android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/manage_profile_avatar_background" />
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/manage_profile_name_container"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:background="?selectableItemBackground"
+          android:paddingStart="@dimen/dsl_settings_gutter"
+          android:paddingTop="16dp"
+          android:paddingEnd="@dimen/dsl_settings_gutter"
+          android:paddingBottom="16dp"
+          app:layout_constraintTop_toBottomOf="@id/manage_profile_edit_photo">
 
       <ImageView
           android:id="@+id/manage_profile_name_icon"

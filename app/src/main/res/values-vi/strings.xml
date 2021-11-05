@@ -205,6 +205,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Bạn không thể nhắn tin cho nhóm này vì bạn không còn là thành viên.</string>
   <string name="ConversationActivity_admins">người quản trị</string>
+  <string name="ConversationActivity_message_an_admin">Nhắn tin cho quản trị viên</string>
+  <string name="ConversationActivity_cant_start_group_call">Không thể bắt đầu cuộc gọi nhóm</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Chỉ có người quản trị của nhóm mới có thể bắt đầu cuộc gọi.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Không ứng dụng nào trên điện thoại bạn có thể xử lí liên kết này.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Yêu cầu tham gia nhóm của bạn đã được gửi tới quản trị viên nhóm. Bạn sẽ được thông báo khi họ đưa ra quyết định.</string>
@@ -302,8 +304,38 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Đã chuyển %d cuộc trò chuyện vào hộp thư đến</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="other">Đọc</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="other">Chưa đọc</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="other">Ghim</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="other">Bỏ ghim</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="other">Tắt tiếng</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="other">Bỏ tắt tiếng</item>
+  </plurals>
   <string name="ConversationListFragment_select">Chọn</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="other">Lưu trữ</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="other">Lấy ra</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="other">Xóa</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Chọn tất cả</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="other">%d đã chọn</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Tin nhắn trao đổi mã khóa</string>
   <!--ConversationListItemAction-->
@@ -329,6 +361,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Khôi phục từ sao lưu</string>
   <string name="ChooseBackupFragment__choose_backup">Chọn bản sao lưu</string>
   <string name="ChooseBackupFragment__learn_more">Tìm hiểu thêm</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Không có trình duyệt tệp khả dụng</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Hoàn tất khôi phục</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Để tiếp tục sử dụng tính năng sao lưu, vui lòng chọn một thư mục. Các bản sao lưu mới sẽ được lưu vào thư mục này.</string>
@@ -405,6 +438,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Gửi nhiều tệp đính kèm chỉ áp dụng cho ảnh và video</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Bạn không có quyền gửi cho nhóm này</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể kết nối với Dịch vụ Google Play. Cuộc gọi và tin nhắn Signal không khả dụng, hãy thử đăng ký lại từ Cài đặt &gt; Nâng cao.</string>
@@ -532,6 +566,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Xong</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Người này không thể được thêm vào nhóm cũ.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Người này không thể thêm vào các nhóm thông báo</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">Thêm %3$d thành viên vào \"%2$s\"?</item>
   </plurals>
@@ -705,6 +740,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Chia sẻ</string>
   <string name="InviteActivity_share_with_contacts">Chia sẻ với liên hệ</string>
+  <string name="InviteActivity_share_via">Chia sẻ qua…</string>
   <string name="InviteActivity_cancel">Hủy bỏ</string>
   <string name="InviteActivity_sending">Đang gửi…</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
@@ -749,6 +785,12 @@
   <string name="MediaOverviewActivity_List_view_description">Hiển thị theo danh sách</string>
   <string name="MediaOverviewActivity_Selected_description">Đã chọn</string>
   <string name="MediaOverviewActivity_select_all">Chọn tất cả</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="other">Lưu</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="other">Xóa</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Tệp</string>
   <string name="MediaOverviewActivity_audio">Âm thanh</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -770,11 +812,14 @@
   <string name="Megaphones_invite_friends">Mời bạn bè</string>
   <string name="Megaphones_use_sms">Sử dụng SMS</string>
   <string name="Megaphones_appearance">Diện mạo</string>
+  <string name="Megaphones_add_photo">Thêm ảnh</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Đang tiến hành cuộc gọi Signal </string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Đang có cuộc gọi nhóm Signal đến</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Dừng dịch vụ gọi thoại Signal</string>
+  <string name="NotificationBarManager__decline_call">Từ chối cuộc gọi</string>
   <string name="NotificationBarManager__answer_call">Trả lời cuộc gọi</string>
   <string name="NotificationBarManager__end_call">Kết thúc cuộc gọi.</string>
   <string name="NotificationBarManager__cancel_call">Huỷ cuộc gọi</string>
@@ -1121,8 +1166,10 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Để gọi %1$s, Signal cần quyền truy cập máy ảnh của bạn</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Đang gọi…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Nhóm quá lớn để rung chuông các thành viên</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Cuộc gọi Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Cuộc gọi hình ảnh qua Signal</string>
   <string name="WebRtcCallView__start_call">Bắt đầu Cuộc gọi</string>
   <string name="WebRtcCallView__join_call">Tham gia Cuộc gọi</string>
   <string name="WebRtcCallView__call_is_full">Cuộc gọi đã đầy</string>
@@ -1132,6 +1179,16 @@
   <string name="WebRtcCallView__reconnecting">Đang kết nối lại…</string>
   <string name="WebRtcCallView__joining">Đang tham gia…</string>
   <string name="WebRtcCallView__disconnected">Đã ngắt kết nối</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal sẽ rung chuông %1$s</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s sẽ được thông báo</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s và %2$s sẽ được thông báo</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s, %2$s, và %3$d người khác sẽ được thông báo</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Đang rung chuông %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Đang rung chuông %1$s và %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s đang gọi bạn </string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s đang gọi bạn và %2$s</string>
   <string name="WebRtcCallView__no_one_else_is_here">Không có ai khác đang ở đây</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s đang trong cuộc gọi này</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s và %2$s đang trong cuộc gọi này</string>
@@ -1142,6 +1199,7 @@
   <string name="WebRtcCallView__speaker">Loa</string>
   <string name="WebRtcCallView__camera">Máy ảnh</string>
   <string name="WebRtcCallView__mute">Im lặng</string>
+  <string name="WebRtcCallView__ring">Rung chuông</string>
   <string name="WebRtcCallView__end_call">Kết thúc cuộc gọi</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1704,8 +1762,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="recipients_panel__to"><small>Điền vào tên hoặc số</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Nhấn để quét</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Xác thực số an toàn thất bại</string>
   <string name="verify_display_fragment__loading">Đang tải…</string>
   <string name="verify_display_fragment__mark_as_verified">Đánh dấu đã xác minh</string>
+  <string name="verify_display_fragment__clear_verification">Xóa xác nhận</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Chia sẻ mã số an toàn</string>
   <!--verity_scan_fragment-->
@@ -2894,6 +2954,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ChatColorsMegaphone__not_now">Để sau</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Để sau</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Thêm ảnh</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Mở tìm kiếm emoji</string>

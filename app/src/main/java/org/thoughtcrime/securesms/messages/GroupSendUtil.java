@@ -63,8 +63,6 @@ public final class GroupSendUtil {
 
   private static final String TAG = Log.tag(GroupSendUtil.class);
 
-  private static final long MAX_KEY_AGE = TimeUnit.DAYS.toMillis(30);
-
   private GroupSendUtil() {}
 
 
@@ -160,6 +158,8 @@ public final class GroupSendUtil {
                                                      @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
+    Log.i(TAG, "Starting group send. GroupId: " + (groupId != null ? groupId.toString() : "none") + ", RelatedMessageId: " + (relatedMessageId != null ? relatedMessageId.toString() : "none") + ", Targets: " + allTargets.size() + ", RecipientUpdate: " + isRecipientUpdate + ", Operation: " + sendOperation.getClass().getSimpleName());
+
     Set<Recipient>  unregisteredTargets = allTargets.stream().filter(Recipient::isUnregistered).collect(Collectors.toSet());
     List<Recipient> registeredTargets   = allTargets.stream().filter(r -> !unregisteredTargets.contains(r)).collect(Collectors.toList());
 
@@ -174,9 +174,9 @@ public final class GroupSendUtil {
       boolean                          validMembership = groupRecord.isPresent() && groupRecord.get().getMembers().contains(recipient.getId());
 
       if (recipient.getSenderKeyCapability() == Recipient.Capability.SUPPORTED &&
-          recipient.hasUuid()                                                  &&
-          access.isPresent()                                                   &&
-          access.get().getTargetUnidentifiedAccess().isPresent()               &&
+          recipient.hasAci() &&
+          access.isPresent() &&
+          access.get().getTargetUnidentifiedAccess().isPresent() &&
           validMembership)
       {
         senderKeyTargets.add(recipient);
@@ -185,28 +185,22 @@ public final class GroupSendUtil {
       }
     }
 
-    if (FeatureFlags.senderKey()) {
-      if (groupId == null) {
-        Log.i(TAG, "Recipients not in a group. Using legacy.");
-        legacyTargets.addAll(senderKeyTargets);
-        senderKeyTargets.clear();
-      } else if (Recipient.self().getSenderKeyCapability() != Recipient.Capability.SUPPORTED) {
-        Log.i(TAG, "All of our devices do not support sender key. Using legacy.");
-        legacyTargets.addAll(senderKeyTargets);
-        senderKeyTargets.clear();
-      } else if (SignalStore.internalValues().removeSenderKeyMinimum()) {
-        Log.i(TAG, "Sender key minimum removed. Using for " + senderKeyTargets.size() + " recipients.");
-      } else if (senderKeyTargets.size() < 2) {
-        Log.i(TAG, "Too few sender-key-capable users (" + senderKeyTargets.size() + "). Doing all legacy sends.");
-        legacyTargets.addAll(senderKeyTargets);
-        senderKeyTargets.clear();
-      } else {
-        Log.i(TAG, "Can use sender key for " + senderKeyTargets.size() + "/" + allTargets.size() + " recipients.");
-      }
-    } else {
-      Log.i(TAG, "Feature flag disabled. Using legacy.");
+    if (groupId == null) {
+      Log.i(TAG, "Recipients not in a group. Using legacy.");
       legacyTargets.addAll(senderKeyTargets);
       senderKeyTargets.clear();
+    } else if (Recipient.self().getSenderKeyCapability() != Recipient.Capability.SUPPORTED) {
+      Log.i(TAG, "All of our devices do not support sender key. Using legacy.");
+      legacyTargets.addAll(senderKeyTargets);
+      senderKeyTargets.clear();
+    } else if (SignalStore.internalValues().removeSenderKeyMinimum()) {
+      Log.i(TAG, "Sender key minimum removed. Using for " + senderKeyTargets.size() + " recipients.");
+    } else if (senderKeyTargets.size() < 2) {
+      Log.i(TAG, "Too few sender-key-capable users (" + senderKeyTargets.size() + "). Doing all legacy sends.");
+      legacyTargets.addAll(senderKeyTargets);
+      senderKeyTargets.clear();
+    } else {
+      Log.i(TAG, "Can use sender key for " + senderKeyTargets.size() + "/" + allTargets.size() + " recipients.");
     }
 
     if (relatedMessageId != null) {
@@ -221,7 +215,7 @@ public final class GroupSendUtil {
       long           keyCreateTime  = SenderKeyUtil.getCreateTimeForOurKey(context, distributionId);
       long           keyAge         = System.currentTimeMillis() - keyCreateTime;
 
-      if (keyCreateTime != -1 && keyAge > MAX_KEY_AGE) {
+      if (keyCreateTime != -1 && keyAge > FeatureFlags.senderKeyMaxAge()) {
         Log.w(TAG, "Key is " + (keyAge) + " ms old (~" + TimeUnit.MILLISECONDS.toDays(keyAge) + " days). Rotating.");
         SenderKeyUtil.rotateOurKey(context, distributionId);
       }
@@ -312,8 +306,8 @@ public final class GroupSendUtil {
       Log.w(TAG, "There are " + unregisteredTargets.size() + " unregistered targets. Including failure results.");
 
       List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
-                                                                       .filter(Recipient::hasUuid)
-                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireUuid(), t.getE164().orNull())))
+                                                                       .filter(Recipient::hasAci)
+                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireAci(), t.getE164().orNull())))
                                                                        .collect(Collectors.toList());
 
       if (unregisteredResults.size() < unregisteredTargets.size()) {

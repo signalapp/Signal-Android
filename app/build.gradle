@@ -54,7 +54,7 @@ repositories {
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.10.0'
+        artifact = 'com.google.protobuf:protoc:3.11.4'
     }
     generateProtoTasks {
         all().each { task ->
@@ -67,8 +67,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 946
-def canonicalVersionName = "5.25.8"
+def canonicalVersionCode = 947
+def canonicalVersionName = "5.26.0"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -533,6 +533,7 @@ dependencies {
 
     flipperImplementation libs.facebook.flipper
     flipperImplementation libs.facebook.soloader
+    flipperImplementation libs.square.leakcanary
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core

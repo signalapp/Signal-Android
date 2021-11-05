@@ -78,12 +78,15 @@ public final class FeatureFlags {
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
   private static final String SENDER_KEY                        = "android.senderKey.5";
+  private static final String SENDER_KEY_MAX_AGE                = "android.senderKeyMaxAge";
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
-  private static final String DONOR_BADGES                      = "android.donorBadges";
+  private static final String DONOR_BADGES                      = "android.donorBadges.3";
+  private static final String DONOR_BADGES_MEGAPHONE            = "android.donorBadges.megaphone";
+  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display";
   private static final String CDSH                              = "android.cdsh";
 
   /**
@@ -121,14 +124,17 @@ public final class FeatureFlags {
       SUGGEST_SMS_BLACKLIST,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
-      CDSH
+      CDSH,
+      SENDER_KEY_MAX_AGE,
+      DONOR_BADGES,
+      DONOR_BADGES_MEGAPHONE,
+      DONOR_BADGES_DISPLAY
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
       PHONE_NUMBER_PRIVACY_VERSION,
-      CHANGE_NUMBER_ENABLED,
-      DONOR_BADGES
+      CHANGE_NUMBER_ENABLED
   );
 
   /**
@@ -174,7 +180,9 @@ public final class FeatureFlags {
       SENDER_KEY,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
-      CDSH
+      CDSH,
+      SENDER_KEY_MAX_AGE,
+      DONOR_BADGES_DISPLAY
   );
 
   /**
@@ -372,9 +380,9 @@ public final class FeatureFlags {
     return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(14));
   }
 
-  /** Whether or not sending using sender key is enabled. */
-  public static boolean senderKey() {
-    return getBoolean(SENDER_KEY, true);
+  /** How long a sender key can live before it needs to be rotated. */
+  public static long senderKeyMaxAge() {
+    return Math.min(getLong(SENDER_KEY_MAX_AGE, TimeUnit.DAYS.toMillis(14)), TimeUnit.DAYS.toMillis(90));
   }
 
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
@@ -409,6 +417,17 @@ public final class FeatureFlags {
     } else {
       return getBoolean(DONOR_BADGES, false ) || SignalStore.donationsValues().getSubscriber() != null;
     }
+  }
+
+  public static boolean donorBadgesMegaphone() {
+    return getBoolean(DONOR_BADGES_MEGAPHONE, false);
+  }
+
+  /**
+   * Whether or not donor badges should be displayed throughout the app.
+   */
+  public static boolean displayDonorBadges() {
+    return getBoolean(DONOR_BADGES_DISPLAY, false);
   }
 
   public static boolean cdsh() {

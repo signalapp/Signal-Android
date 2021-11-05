@@ -78,8 +78,8 @@ dependencyVerification {
         ['androidx.viewpager:viewpager:1.0.0',
          '147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682'],
 
-        ['com.google.protobuf:protobuf-javalite:3.10.0',
-         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+        ['com.google.protobuf:protobuf-javalite:3.11.4',
+         '8cacea2f7a042dabae295c509dcdbfe32a49aa3708eec6ddb8efd8593aa0b4a3'],
 
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],

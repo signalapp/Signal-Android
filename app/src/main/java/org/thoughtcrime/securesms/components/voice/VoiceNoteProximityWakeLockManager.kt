@@ -30,7 +30,7 @@ class VoiceNoteProximityWakeLockManager(
 ) : DefaultLifecycleObserver {
 
   private val wakeLock: PowerManager.WakeLock? = if (Build.VERSION.SDK_INT >= 21) {
-    ServiceUtil.getPowerManager(activity).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG)
+    ServiceUtil.getPowerManager(activity.applicationContext).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG)
   } else {
     null
   }

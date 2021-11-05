@@ -33,7 +33,7 @@ class BoostTest__MoneyFilter {
 
     testSubject.afterTextChanged(editable)
 
-    assertEquals("$ 5", editable.toString())
+    assertEquals("$5", editable.toString())
   }
 
   @Test
@@ -92,7 +92,7 @@ class BoostTest__MoneyFilter {
 
     testSubject.afterTextChanged(editable)
 
-    assertEquals("¥ 5", editable.toString())
+    assertEquals("¥5", editable.toString())
   }
 
   @Test

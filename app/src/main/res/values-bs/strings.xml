@@ -2027,16 +2027,6 @@
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Izaberite stavku --</item>
-    <item>Nešto ne funkcioniše</item>
-    <item>Zahtjev za novim funkcijama</item>
-    <item>Pitanje</item>
-    <item>Povratna informacija</item>
-    <item>Drugo</item>
-    <item>Plaćanja (MobileCoin)</item>
-    <item>Donacije (održavatelji i pojačivači Signala)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
@@ -3411,7 +3401,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Izaberi značku</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Morate izabrati značku</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Neuspjelo ažuriranje profila</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pomagač</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pokrovitelj</string>
   <string name="ImageView__badge">Značka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal postoji zbog osoba poput Vas.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podržite tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – pridruživši se zajednici koja je održava.</string>
@@ -3432,11 +3422,11 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mjesecu · Ističe %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija koja se ne finansira reklamama i investicijama, već je održavaju osobe koje koriste aplikaciju i cijene je. Dajte mjesečni doprinos i primite značku za svoj profil koja pokazuje Vašu podršku.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zašto se pretplatiti?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim koji stoji iza Signala predan je misiji razvoja tehnologije otvorenog kōda koja štiti privatnost i slobodu izražavanja i koja omogućava sigurnu globalnu komunikaciju. Vaš doprinos održava tu misiju. Bez reklama. Bez uhođenja. Bez zezanja.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Vaš doprinos pomaže finansiranje razvoja, servera i protoka za aplikaciju koju koriste milioni ljudi širom svijeta za privatnu i trenutačnu komunikaciju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim koji stoji iza Signala predan je misiji razvoja tehnologije otvorenog kōda koja štiti privatnost i slobodu izražavanja i koja omogućava sigurnu globalnu komunikaciju. Vaš doprinos održava tu misiju. Bez reklama. Bez uhođenja. Bez zezanja.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Vaš doprinos pomaže finansiranje razvoja, servera i protoka za aplikaciju koju koriste milioni ljudi širom svijeta za privatnu i trenutačnu komunikaciju.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala Vam za Vašu podršku!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za podsticaj!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Zaslužili ste %s značku! Prikazivanjem značke pokazat ćete osobama s kojima razgovarate da podržavate Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Zaslužili ste %s značku! Prikazivanjem značke pokazat ćete osobama s kojima razgovarate da podržavate Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži na profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Odredi za odabranu značku</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Uredu</string>
@@ -3454,9 +3444,9 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MySupportPreference__s_per_month">%1$s/mjesecu</string>
   <string name="MySupportPreference__renews_s">Obnavlja se %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaša je značka istekla</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Vaša %1$s značka istekla je i više nije prikazana na Vašem profilu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Da nastavite podržavati tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – razmislite o tome da postanete mjesečni pretplatnik.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite pretplatnik</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Vaša %1$s značka istekla je i više nije prikazana na Vašem profilu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Da nastavite podržavati tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – razmislite o tome da postanete mjesečni pretplatnik.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite pretplatnik</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <string name="Subscription__verification_failed">Ovjera pretplate nije uspjela</string>
   <string name="Subscription__please_contact_support_for_more_information">Molimo kontaktirajte podršku za više informacija.</string>

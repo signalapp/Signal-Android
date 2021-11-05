@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.util.List;
 
@@ -108,7 +109,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     }
 
     List<Recipient> callParticipants = Stream.of(peekInfo.getJoinedMembers())
-                                             .map(uuid -> Recipient.externalPush(context, uuid, null, false))
+                                             .map(uuid -> Recipient.externalPush(context, ACI.from(uuid), null, false))
                                              .toList();
 
     WebRtcServiceStateBuilder.CallInfoStateBuilder builder = currentState.builder()

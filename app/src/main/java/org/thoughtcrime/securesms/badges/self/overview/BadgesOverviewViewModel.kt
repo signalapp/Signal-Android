@@ -13,7 +13,6 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.libsignal.util.guava.Optional
@@ -44,16 +43,21 @@ class BadgesOverviewViewModel(
 
     disposables += Single.zip(
       subscriptionsRepository.getActiveSubscription(),
-      subscriptionsRepository.getSubscriptions(SignalStore.donationsValues().getSubscriptionCurrency())
+      subscriptionsRepository.getSubscriptions()
     ) { active, all ->
       if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
         Optional.fromNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
       } else {
         Optional.absent()
       }
-    }.subscribeBy { badgeId ->
-      store.update { it.copy(fadedBadgeId = badgeId.orNull()) }
-    }
+    }.subscribeBy(
+      onSuccess = { badgeId ->
+        store.update { it.copy(fadedBadgeId = badgeId.orNull()) }
+      },
+      onError = { throwable ->
+        Log.w(TAG, "Could not retrieve data from server", throwable)
+      }
+    )
   }
 
   fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
@@ -81,5 +85,9 @@ class BadgesOverviewViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository, subscriptionsRepository)))
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
   }
 }

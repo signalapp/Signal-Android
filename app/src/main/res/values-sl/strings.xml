@@ -2101,16 +2101,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Prosimo izberite eno možnost --</item>
-    <item>Nekaj ne deluje</item>
-    <item>Predlog za novo funkcijo</item>
-    <item>Vprašanje</item>
-    <item>Odziv</item>
-    <item>Druigo</item>
-    <item>Plačila (MobileCoin)</item>
-    <item>Donacije (Sustainers &amp; Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -3408,11 +3398,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mesec · Poteče %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija, brez podpore oglaševalcev ali vlagateljev, financirajo jo zgolj običajni ljudje, ki jo cenijo. Odločite se za mesečno podporo Signalu in prejmite bedž podpornika, ki bo viden na vašem profilu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zakaj prispevati?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Ekipa Signala je predana razvoju odprtokodne tehnologije s poudarkom na zasebnosti, ki ščiti svobodo izražanja in omogoča varne globalne komunikacije. Vaš doprinos bo namenjen k temu cilju. Nič reklam. Nič sledenja. Brez heca!</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">S svojim prispevkom nam boste pomagali pri razvoju, najemu strežnikov in pasovne širine za aplikacijo, ki jo uporabljajo milijoni po svetu za zasebno in hipno komunikacijo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Ekipa Signala je predana razvoju odprtokodne tehnologije s poudarkom na zasebnosti, ki ščiti svobodo izražanja in omogoča varne globalne komunikacije. Vaš doprinos bo namenjen k temu cilju. Nič reklam. Nič sledenja. Brez heca!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">S svojim prispevkom nam boste pomagali pri razvoju, najemu strežnikov in pasovne širine za aplikacijo, ki jo uporabljajo milijoni po svetu za zasebno in hipno komunikacijo.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala za vašo podporo!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za Boost!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Prislužili ste sibedž %s! Vaš bedž bo kazal ljudem s katerimi komunicirate, da podpirate Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Prislužili ste sibedž %s! Vaš bedž bo kazal ljudem s katerimi komunicirate, da podpirate Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikazuj na profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Izpostavi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">OK</string>
@@ -3430,9 +3420,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MySupportPreference__s_per_month">%1$s/mesečno</string>
   <string name="MySupportPreference__renews_s">Obnovitev naročnine: %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaš bedž je potekel</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Vaš bedž %1$s je potekel in ni več viden drugim na vašem profilu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Za nadaljno podporo tehnologiji, ki je bila izdelana za vas -- ne za vaše osebne podatke --, premislite o morebitnem mesečnem prispevku.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite podpornik</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Vaš bedž %1$s je potekel in ni več viden drugim na vašem profilu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite podpornik</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
   <string name="Subscription__verification_failed">Preverjanje naročnine ni bilo uspešno</string>
   <string name="Subscription__please_contact_support_for_more_information">Za več informacij se obrnite na podporo uporabnikom.</string>

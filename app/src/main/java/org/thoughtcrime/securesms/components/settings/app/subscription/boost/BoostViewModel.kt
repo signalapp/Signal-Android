@@ -11,15 +11,17 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.math.BigDecimal
+import java.util.Currency
 
 class BoostViewModel(
   private val boostRepository: BoostRepository,
@@ -27,7 +29,7 @@ class BoostViewModel(
   private val fetchTokenRequestCode: Int
 ) : ViewModel() {
 
-  private val store = Store(BoostState())
+  private val store = Store(BoostState(currencySelection = SignalStore.donationsValues().getBoostCurrency()))
   private val eventPublisher: PublishSubject<DonationEvent> = PublishSubject.create()
   private val disposables = CompositeDisposable()
 
@@ -40,21 +42,45 @@ class BoostViewModel(
     disposables.clear()
   }
 
-  init {
+  fun getSupportedCurrencyCodes(): List<String> {
+    return store.state.supportedCurrencyCodes
+  }
+
+  fun refresh() {
+    disposables.clear()
+
     val currencyObservable = SignalStore.donationsValues().observableBoostCurrency
-    val boosts = currencyObservable.flatMapSingle { boostRepository.getBoosts(it) }
+    val allBoosts = boostRepository.getBoosts()
     val boostBadge = boostRepository.getBoostBadge()
 
-    disposables += Observable.combineLatest(boosts, boostBadge.toObservable()) { (boosts, defaultBoost), badge -> BoostInfo(boosts, defaultBoost, badge) }.subscribe { info ->
-      store.update {
-        it.copy(
-          boosts = info.boosts,
-          selectedBoost = if (it.selectedBoost in info.boosts) it.selectedBoost else info.defaultBoost,
-          boostBadge = it.boostBadge ?: info.boostBadge,
-          stage = if (it.stage == BoostState.Stage.INIT) BoostState.Stage.READY else it.stage
-        )
+    disposables += Observable.combineLatest(currencyObservable, allBoosts.toObservable(), boostBadge.toObservable()) { currency, boostMap, badge ->
+      val boostList = if (currency in boostMap) {
+        boostMap[currency]!!
+      } else {
+        SignalStore.donationsValues().setBoostCurrency(PlatformCurrencyUtil.USD)
+        listOf()
       }
-    }
+
+      BoostInfo(boostList, boostList[2], badge, boostMap.keys)
+    }.subscribeBy(
+      onNext = { info ->
+        store.update {
+          it.copy(
+            boosts = info.boosts,
+            selectedBoost = if (it.selectedBoost in info.boosts) it.selectedBoost else info.defaultBoost,
+            boostBadge = it.boostBadge ?: info.boostBadge,
+            stage = if (it.stage == BoostState.Stage.INIT || it.stage == BoostState.Stage.FAILURE) BoostState.Stage.READY else it.stage,
+            supportedCurrencyCodes = info.supportedCurrencies.map(Currency::getCurrencyCode)
+          )
+        }
+      },
+      onError = { throwable ->
+        Log.w(TAG, "Could not load boost information", throwable)
+        store.update {
+          it.copy(stage = BoostState.Stage.FAILURE)
+        }
+      }
+    )
 
     disposables += donationPaymentRepository.isGooglePayAvailable().subscribeBy(
       onComplete = { store.update { it.copy(isGooglePayAvailable = true) } },
@@ -64,7 +90,7 @@ class BoostViewModel(
     disposables += currencyObservable.subscribeBy { currency ->
       store.update {
         it.copy(
-          currencySelection = CurrencySelection(currency.currencyCode),
+          currencySelection = currency,
           isCustomAmountFocused = false,
           customAmount = FiatMoney(
             BigDecimal.ZERO, currency
@@ -79,25 +105,22 @@ class BoostViewModel(
     resultCode: Int,
     data: Intent?
   ) {
+    val boost = boostToPurchase
+    boostToPurchase = null
+
     donationPaymentRepository.onActivityResult(
-      requestCode,
-      resultCode,
-      data,
-      this.fetchTokenRequestCode,
+      requestCode, resultCode, data, this.fetchTokenRequestCode,
       object : GooglePayApi.PaymentRequestCallback {
         override fun onSuccess(paymentData: PaymentData) {
-          val boost = boostToPurchase
-          boostToPurchase = null
-
           if (boost != null) {
             eventPublisher.onNext(DonationEvent.RequestTokenSuccess)
+
             donationPaymentRepository.continuePayment(boost.price, paymentData).subscribeBy(
               onError = { throwable ->
                 store.update { it.copy(stage = BoostState.Stage.READY) }
                 eventPublisher.onNext(DonationEvent.PaymentConfirmationError(throwable))
               },
               onComplete = {
-                // TODO [alex] Now we need to do the whole query for a token, submit token rigamarole
                 store.update { it.copy(stage = BoostState.Stage.READY) }
                 eventPublisher.onNext(DonationEvent.PaymentConfirmationSuccess(store.state.boostBadge!!))
               }
@@ -127,10 +150,8 @@ class BoostViewModel(
 
     store.update { it.copy(stage = BoostState.Stage.PAYMENT_PIPELINE) }
 
-    // TODO [alex] -- Do we want prevalidation? Stripe will catch us anyway.
-    // TODO [alex] -- Custom boost badge details... how do we determine this?
     boostToPurchase = if (snapshot.isCustomAmountFocused) {
-      Boost(snapshot.selectedBoost.badge, snapshot.customAmount)
+      Boost(snapshot.customAmount)
     } else {
       snapshot.selectedBoost
     }
@@ -161,7 +182,7 @@ class BoostViewModel(
     store.update { it.copy(isCustomAmountFocused = isFocused) }
   }
 
-  private data class BoostInfo(val boosts: List<Boost>, val defaultBoost: Boost?, val boostBadge: Badge)
+  private data class BoostInfo(val boosts: List<Boost>, val defaultBoost: Boost?, val boostBadge: Badge, val supportedCurrencies: Set<Currency>)
 
   class Factory(
     private val boostRepository: BoostRepository,
@@ -171,5 +192,9 @@ class BoostViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(BoostViewModel(boostRepository, donationPaymentRepository, fetchTokenRequestCode))!!
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(BoostViewModel::class.java)
   }
 }

@@ -39,7 +39,7 @@ class AppSettingsActivity : DSLSettingsActivity() {
 
   private val boostViewModel: BoostViewModel by viewModels(
     factoryProducer = {
-      BoostViewModel.Factory(BoostRepository(), donationRepository, FETCH_BOOST_TOKEN_REQUEST_CODE)
+      BoostViewModel.Factory(BoostRepository(ApplicationDependencies.getDonationsService()), donationRepository, FETCH_BOOST_TOKEN_REQUEST_CODE)
     }
   )
 
@@ -63,7 +63,8 @@ class AppSettingsActivity : DSLSettingsActivity() {
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
         StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
-        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions()
+        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions().setSkipToSubscribe(true)
+        StartLocation.MANAGE_SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions()
       }
     }
 
@@ -138,6 +139,9 @@ class AppSettingsActivity : DSLSettingsActivity() {
     @JvmStatic
     fun subscriptions(context: Context): Intent = getIntentForStartLocation(context, StartLocation.SUBSCRIPTIONS)
 
+    @JvmStatic
+    fun manageSubscriptions(context: Context): Intent = getIntentForStartLocation(context, StartLocation.MANAGE_SUBSCRIPTIONS)
+
     private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings)
@@ -159,7 +163,8 @@ class AppSettingsActivity : DSLSettingsActivity() {
     PROXY(3),
     NOTIFICATIONS(4),
     CHANGE_NUMBER(5),
-    SUBSCRIPTIONS(6);
+    SUBSCRIPTIONS(6),
+    MANAGE_SUBSCRIPTIONS(7);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

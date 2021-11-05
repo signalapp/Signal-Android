@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -21,6 +22,7 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
   private final TextView                        error;
   private final View                            conflictButton;
   private final View                            unidentifiedDeliveryIcon;
+  private final BadgeImageView                  badge;
   private       MessageDetailsAdapter.Callbacks callbacks;
 
   RecipientViewHolder(@NonNull View itemView, @NonNull MessageDetailsAdapter.Callbacks callbacks) {
@@ -34,12 +36,14 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
     error                    = itemView.findViewById(R.id.message_details_recipient_error_description);
     conflictButton           = itemView.findViewById(R.id.message_details_recipient_conflict_button);
     unidentifiedDeliveryIcon = itemView.findViewById(R.id.message_details_recipient_ud_indicator);
+    badge                    = itemView.findViewById(R.id.message_details_recipient_badge);
   }
 
   void bind(RecipientDeliveryStatus data) {
     unidentifiedDeliveryIcon.setVisibility(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(itemView.getContext()) && data.isUnidentified() ? View.VISIBLE : View.GONE);
     fromView.setText(data.getRecipient());
     avatar.setRecipient(data.getRecipient());
+    badge.setBadgeFromRecipient(data.getRecipient());
 
     if (data.getKeyMismatchFailure() != null) {
       timestamp.setVisibility(View.GONE);

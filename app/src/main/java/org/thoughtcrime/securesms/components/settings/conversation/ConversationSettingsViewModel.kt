@@ -103,10 +103,8 @@ sealed class ConversationSettingsViewModel(
 
   override fun onCleared() {
     cleared = true
-    store.update { state ->
-      openedMediaCursors.forEach { it.ensureClosed() }
-      state.copy(sharedMedia = null)
-    }
+    openedMediaCursors.forEach { it.ensureClosed() }
+    store.clear()
   }
 
   private fun Cursor?.ensureClosed() {

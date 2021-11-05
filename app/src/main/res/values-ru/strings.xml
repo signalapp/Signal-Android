@@ -2106,16 +2106,6 @@
   <string name="HelpFragment__debug_log">Журнал отладки:</string>
   <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Пожалуйста, выберите вариант --</item>
-    <item>Что-то не работает</item>
-    <item>Запросить новые функции</item>
-    <item>Вопрос</item>
-    <item>Обратная связь</item>
-    <item>Другое</item>
-    <item>Платежи (MobileCoin)</item>
-    <item>Пожертвования (поддержка и Ускорение Signal)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Это сообщение</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно использованные</string>
@@ -3523,11 +3513,11 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месяц · Истекает %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят её. Делая пожертвование ежемесячно, вы получите значок для профиля, чтобы поделиться с другими тем, что вы поддерживаете Signal.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Команда Signal предана миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру. Ваш вклад поддерживает эту миссию. Без рекламы. Без трекеров. Без шуток.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваше пожертвование помогает оплачивать разработку, серверы и пропускную способность приложения, которое используется миллионами людей по всему миру для конфиденциального и мгновенного общения.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Команда Signal предана миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру. Ваш вклад поддерживает эту миссию. Без рекламы. Без трекеров. Без шуток.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваше пожертвование помогает оплачивать разработку, серверы и пропускную способность приложения, которое используется миллионами людей по всему миру для конфиденциального и мгновенного общения.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Спасибо за вашу поддержку!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Спасибо за Ускорение!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Вы получили значок «%s»! Если вы будете показывать значок в своём профиле, то люди, с которыми вы общаетесь, увидят, что вы поддерживаете Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Вы получили значок «%s»! Если вы будете показывать значок в своём профиле, то люди, с которыми вы общаетесь, увидят, что вы поддерживаете Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показывать в профиле</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Сделать главным значком</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
@@ -3545,9 +3535,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
   <string name="MySupportPreference__renews_s">Возобновится %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваш значок «%1$s» истёк и больше не виден другим людям в вашем профиле.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным подписчиком.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стать подписчиком</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваш значок «%1$s» истёк и больше не виден другим людям в вашем профиле.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным подписчиком.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стать подписчиком</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
   <string name="Subscription__verification_failed">Не удалось проверить подписку</string>
   <string name="Subscription__please_contact_support_for_more_information">Пожалуйста, свяжитесь с поддержкой, чтобы получить больше информации.</string>

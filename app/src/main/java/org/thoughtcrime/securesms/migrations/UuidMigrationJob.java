@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -70,10 +71,10 @@ public class UuidMigrationJob extends MigrationJob {
 
   private static void fetchOwnUuid(@NonNull Context context) throws IOException {
     RecipientId self      = Recipient.self().getId();
-    UUID        localUuid = ApplicationDependencies.getSignalServiceAccountManager().getOwnUuid();
+    ACI         localUuid = ApplicationDependencies.getSignalServiceAccountManager().getOwnAci();
 
     DatabaseFactory.getRecipientDatabase(context).markRegisteredOrThrow(self, localUuid);
-    TextSecurePreferences.setLocalUuid(context, localUuid);
+    TextSecurePreferences.setLocalAci(context, localUuid);
   }
 
   public static class Factory implements Job.Factory<UuidMigrationJob> {

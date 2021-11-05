@@ -3243,7 +3243,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ManageDonationsFragment__badges">Jelvények</string>
   <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
   <string name="Boost__enter_custom_amount">Egyedi összeg</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Legyél előfizető</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Legyél előfizető</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
   <string name="Subscription__contact_support">Kapcsolatfelvétel a támogatással</string>
   <string name="SubscribeFragment__processing_payment">Fizetés feldolgozása…</string>

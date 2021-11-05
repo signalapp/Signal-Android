@@ -287,7 +287,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या एकदा-बघा मिडिया फाईल स्वयंचलितपणे काढल्या जातील</string>
   <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">आपण या संभाषणात आपल्यासाठी नोट्स जोडू शकता. \nआपल्या खात्यात कोणतेही दुवा साधलेले डिव्हाइस असल्यास, नवीन नोट्स संकालित केल्या जातील.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">आपण या संभाषणात आपल्यासाठी नोट्स जोडू शकता. \nआपल्या खात्यात कोणतेही लिंक डिव्हाइस असल्यास, नवीन नोट्स समक्रमित केल्या जातील.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dगट सदस्यांचे समान नाव आहे.</string>
   <string name="ConversationFragment__tap_to_review">पुनरावलोकन करण्यासाठी टॅप करा</string>
   <string name="ConversationFragment__review_requests_carefully">विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा</string>
@@ -355,7 +355,7 @@
   </plurals>
   <string name="ConversationListFragment_select_all">सर्व निवडा</string>
   <plurals name="ConversationListFragment_s_selected">
-    <item quantity="one">%d निवडले</item>
+    <item quantity="one">%d निवडला</item>
     <item quantity="other">%d निवडले</item>
   </plurals>
   <!--ConversationListItem-->
@@ -973,6 +973,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला अॅडमिन केले.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला अॅडमिन केले.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले अॅडमिन विशेषाधिकार रद्द केले.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s आता अॅडमिन आहे.</string>
   <string name="MessageRecord_you_are_now_an_admin">आपण आता प्रशासक आहात.</string>
@@ -1266,6 +1267,8 @@
     <item quantity="other">%1$s, %2$s आणि इतर %3$d जणांना सूचित केले जाईल</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s तुम्हाला काॅल करत आहे</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s तुम्हाला आणि %2$s ला काॅल करत आहे</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s तुम्हाला, %2$s आणि %3$s ला काॅल करत आहे</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s तुम्हाला, %2$s, %3$s आणि इतर %4$d जणांना काॅल करत आहे</item>
     <item quantity="other">%1$s तुम्हाला, %2$s, %3$s आणि इतर %4$d जणांना काॅल करत आहे</item>
@@ -1884,7 +1887,7 @@
   <string name="message_details_header__via">द्वारे :</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">प्रलंबित</string>
-  <string name="message_details_recipient_header__sent_to">याला पाठवले</string>
+  <string name="message_details_recipient_header__sent_to">यांना पाठवले</string>
   <string name="message_details_recipient_header__sent_from">याने पाठवले</string>
   <string name="message_details_recipient_header__delivered_to">याला पोहोचवले</string>
   <string name="message_details_recipient_header__read_by">याने वाचले</string>
@@ -2201,7 +2204,7 @@
   <string name="PaymentsDetailsFragment__payment_complete">पेमेंट पूर्ण झाले</string>
   <string name="PaymentsDetailsFragment__payment_failed">पेमेंट अयशस्वी झाले</string>
   <string name="PaymentsDetailsFragment__network_fee">नेटवर्क फी</string>
-  <string name="PaymentsDetailsFragment__sent_by">याने पाठवले</string>
+  <string name="PaymentsDetailsFragment__sent_by">यांनी पाठवले</string>
   <string name="PaymentsDetailsFragment__sent_to_s">%1$s ला पाठवले</string>
   <string name="PaymentsDetailsFragment__you_on_s_at_s">आपण %2$s वर  %1$s</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%2$s वर %1$s वर %3$s</string>
@@ -2969,6 +2972,7 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal सोबत पुन्हा नोंदणी करताना आपला Signal PIN आवश्यक करा.</string>
   <string name="AccountSettingsFragment__change_phone_number">फोन नंबर बदला</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">तुमचा वर्तमान फोन नंबर नवीन फोन नंबरवर बदलण्यासाठी याचा वापर करा.आपण हा बदल पूर्ववत करु शकत नाही.\n\nपुढे जाण्यापूर्वी, तुमच्या नवीन नंबरवर SMS किंवा कॉल मिळू शकतील याची खात्री करा.</string>
   <string name="ChangeNumberFragment__continue">सुरू ठेवा</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">तुमचा फोन नंबर बदलला आहे.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2978,19 +2982,26 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">तुमचा नवीन नंबर</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">नवीन फोन नंबर</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">आपण प्रविष्ट केलेला फोन नंबर आपल्या खात्याशी जुळत नाही.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">तुम्ही तुमच्या जुन्या नंबरचा देश कोड नमूद करणे आवश्यक आहे</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">तुम्ही तुमचा जुना फोन नंबर नमूद करणे आवश्यक आहे</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">तुम्ही तुमच्या नवीन नंबरचा देश कोड नमूद करणे आवश्यक आहे</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">आपण आपला नवीन फोन नंबर निर्दिष्ट करणे आवश्यक आहे</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">फोन नंबर बदला</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">%1$s सत्यापित करत आहे…</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha आवश्यक</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">नंबर बदला</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">तुम्ही तुमचा फोन नंबर %1$s वरून %2$s वर बदलणार आहात.\n\nपुढे जाण्यापूर्वी, कृपया खालील क्रमांक बरोबर असल्याचे सत्यापित करा.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">नंबर संपादित करा</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
-  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">पिन जुळत नाहीत</string>
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN जुळत नाहीत</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">जुना PIN ठेवा</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN अद्यतनित करा</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">जुना पिन ठेवायचा ?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">तुमचा नंबर म्हणून %1$s ची पुष्टी केली गेली आहे. हा तुमचा नवीन क्रमांक नसल्यास, कृपया क्रमांक बदलण्याची प्रक्रिया पुन्हा सुरू करा.</string>
   <string name="ChangeNumberLockActivity__retry">पुन्हा प्रयत्न करा</string>
   <string name="ChangeNumberLockActivity__leave">सोडा</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">डीबग लॉग प्रविष्ट करा</string>
@@ -3177,6 +3188,7 @@
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">व्हॉईस संदेश बंद </string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">व्हॉइस संदेशची गती बदला</string>
   <string name="VoiceNotePlayerView__pause_voice_message">व्हॉईस संदेश थांबवा</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">अवतार पुनरावलोकन</string>
@@ -3221,15 +3233,20 @@
     <item quantity="one">संदेश फॉर्वर्ड करण्यात अयशस्वी कारण ते आता उपलब्ध नाहीत.</item>
     <item quantity="other">संदेश फॉर्वर्ड करण्यात अयशस्वी कारण ते आता उपलब्ध नाहीत.</item>
   </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">मर्यादा गाठली</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">संदेश जोडा</string>
   <string name="MediaReviewFragment__add_a_reply">प्रत्युत्तर जोडा</string>
   <string name="MediaReviewFragment__send_to">यांना पाठवा</string>
   <string name="MediaReviewFragment__view_once_message">एकदा-बघा संदेश</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">एक किंवा अधिक आयटम खूप मोठे होते</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">एक किंवा अधिक आयटम अवैध होते</string>
   <string name="ImageEditorHud__cancel">रद्द करा</string>
+  <string name="ImageEditorHud__draw">रेखाटा</string>
   <string name="ImageEditorHud__write_text">मजकूर लिहा</string>
   <string name="ImageEditorHud__add_a_sticker">स्टिकर जोडा</string>
   <string name="ImageEditorHud__blur">अस्पष्ट</string>
+  <string name="ImageEditorHud__done_editing">संपादन झाले</string>
   <string name="ImageEditorHud__clear_all">सर्व साफ करा</string>
   <string name="ImageEditorHud__undo">अनडू करा</string>
   <string name="ImageEditorHud__delete">हटवा</string>
@@ -3239,8 +3256,12 @@
   <string name="MediaReviewImagePageFragment__discard">टाकून द्या</string>
   <string name="MediaReviewImagePageFragment__discard_changes">बदल रद्द करायचे ?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">या फोटोमध्ये केलेले कोणतेही बदल तुम्ही गमावाल.</string>
+  <string name="CameraFragment__failed_to_open_camera">कॅमेरा उघडण्यात अयशस्वी</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
   <string name="SelectFeaturedBadgeFragment__preview">पुनरावलोकन</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आपल्यासारख्या लोकांद्वारा समर्थित आहे.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
   <string name="SubscribeFragment__donation_amount">देणगी रक्कम</string>
   <string name="SubscribeFragment__cancel_subscription">सब्स्क्रिप्शन रद्द करा</string>
   <string name="SubscribeFragment__not_now">आता नाही</string>
@@ -3248,11 +3269,17 @@
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">तुमचे सब्स्क्रिप्शन रद्द केले</string>
   <string name="SubscribeFragment__update">अद्यतन</string>
   <string name="Subscription__s_per_month">%s/महिना</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">योगदान का द्यावे ?</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफाइलवर दाखवा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ठीक</string>
+  <string name="ManageDonationsFragment__subscription_faq">सब्स्क्रिप्शन बद्दल वारंवार विचारले जाणारे प्रश्न</string>
   <string name="Boost__enter_custom_amount">कस्टम रक्कम प्रविष्ट करा</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
   <string name="Subscription__contact_support">समर्थन सोबत संपर्क साधा</string>
   <string name="SubscribeFragment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
   <string name="DonationsErrors__payment_failed">पेमेंट अयशस्वी झाले</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अॅपमधील देणगी देण्यासाठी तुम्हाला Google Pay सेटअप करावे लागेल.</string>
   <!--EOF-->
 </resources>

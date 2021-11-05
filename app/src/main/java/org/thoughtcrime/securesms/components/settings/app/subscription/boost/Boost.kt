@@ -28,7 +28,6 @@ import java.util.regex.Pattern
  * can unlock a corresponding badge for a time determined by the server.
  */
 data class Boost(
-  val badge: Badge,
   val price: FiatMoney
 ) {
 
@@ -53,7 +52,7 @@ data class Boost(
     val selectedBoost: Boost?,
     val currency: Currency,
     override val isEnabled: Boolean,
-    val onBoostClick: (Boost) -> Unit,
+    val onBoostClick: (View, Boost) -> Unit,
     val isCustomAmountFocused: Boolean,
     val onCustomAmountChanged: (String) -> Unit,
     val onCustomAmountFocusChanged: (Boolean) -> Unit,
@@ -93,10 +92,10 @@ data class Boost(
         button.text = FiatMoneyUtil.format(
           context.resources,
           boost.price,
-          FiatMoneyUtil.formatOptions()
+          FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
         )
         button.setOnClickListener {
-          model.onBoostClick(boost)
+          model.onBoostClick(it, boost)
           custom.clearFocus()
         }
       }
@@ -120,6 +119,9 @@ data class Boost(
 
       if (model.isCustomAmountFocused && !custom.hasFocus()) {
         ViewUtil.focusAndShowKeyboard(custom)
+      } else if (!model.isCustomAmountFocused && custom.hasFocus()) {
+        ViewUtil.hideKeyboard(context, custom)
+        custom.clearFocus()
       }
     }
   }
@@ -137,7 +139,7 @@ data class Boost(
   class MoneyFilter(val currency: Currency, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(), TextWatcher {
 
     val separatorCount = min(1, currency.defaultFractionDigits)
-    val prefix: String = "${currency.getSymbol(Locale.getDefault())} "
+    val prefix: String = currency.getSymbol(Locale.getDefault())
     val pattern: Pattern = "[0-9]*([.,]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
 
     override fun filter(

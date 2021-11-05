@@ -1362,7 +1362,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem je privacy met je mee.\nWees jezelf in elk bericht.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
   <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
-  <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen. Providerkosten zijn mogelijk van toepassing.</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we hebben verzonden naar %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verzeker je ervan dat je telefoon netwerkbereik heeft zodat je een sms of oproep kunt ontvangen</string>
   <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
@@ -1625,7 +1625,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je vanaf een ander apparaat je telefoonnummer bij Signal hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
@@ -1945,16 +1945,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Maak een keuze --</item>
-    <item>Er werkt iets niet zoals het hoort</item>
-    <item>Verzoek voor nieuwe functionaliteit</item>
-    <item>Vraag</item>
-    <item>Terugkoppeling</item>
-    <item>Iets anders</item>
-    <item>Overschrijvingen (MobileCoin)</item>
-    <item>Donaties (maandelijks of eenmalig)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -2026,7 +2016,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__led_color">Melding-LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">Melding-LED-knipperpatroon</string>
-  <string name="preferences__sound">Geluid</string>
+  <string name="preferences__sound">Berichtgeluid</string>
   <string name="preferences__silent">Stil</string>
   <string name="preferences__default">Standaardmeldingen</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
@@ -2883,7 +2873,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond verwijderen</string>
   <string name="ChatWallpaperFragment__reset_wallpaper_question">Achtergrond verwijderen?</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Kiezen vanuit galerij</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Afbeelding uit galerij kiezen</string>
   <string name="ChatWallpaperSelectionFragment__presets">Reeds beschikbare achtergronden</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
@@ -3328,11 +3318,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakts door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge om—als je dat wilt—te laten zien dat je Signal ondersteunt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Het Signal team heeft zich toegewijd tot het ontwikkelen van technologieën met open broncode waarmee de vrijheid van meningsuiting en wereldwijde beveiligde communicatie mogelijk worden gemaakt. Jou bijdrage helpt dat mogelijk te maken. We doen dit zonder advertenties en zonder volgers die je gegevens verzamelen.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Met jou bijdrage betalen we de ontwikkeling, servers en bandbreedte voor een app die wereldwijd door miljoenen mensen over de hele wereld wordt gebruikt voor privé-communicatie.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Het Signal team heeft zich toegewijd tot het ontwikkelen van technologieën met open broncode waarmee de vrijheid van meningsuiting en wereldwijde beveiligde communicatie mogelijk worden gemaakt. Jou bijdrage helpt dat mogelijk te maken. We doen dit zonder advertenties en zonder volgers die je gegevens verzamelen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Met jou bijdrage betalen we de ontwikkeling, servers en bandbreedte voor een app die wereldwijd door miljoenen mensen over de hele wereld wordt gebruikt voor privé-communicatie.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Je hebt een %s badge verdient! Als je er voor kiest deze badge op je profiel weer te geven dan kunnen de mensen met wie je gesprekken voert zien dat jij Signal steunt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Je hebt een %s badge verdient! Als je er voor kiest deze badge op je profiel weer te geven dan kunnen de mensen met wie je gesprekken voert zien dat jij Signal steunt.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op je profiel weergeven</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klaar</string>
@@ -3350,9 +3340,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MySupportPreference__s_per_month">%1$s/maand</string>
   <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Je badge is verlopen</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Je %1$s badge is verlopen en is daarom niet langer voor anderen zichtbaar op je profiel.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Als je door wilt gaan met het ondersteunen van technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—overweeg dan om maandelijks te doneren.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Wordt een maandelijkse ondersteuner</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Je %1$s badge is verlopen en is daarom niet langer voor anderen zichtbaar op je profiel.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Als je door wilt gaan met het ondersteunen van technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—overweeg dan om maandelijks te doneren.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Wordt een maandelijkse ondersteuner</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
   <string name="Subscription__verification_failed">Bevestiging van maandelijkse donatie is mislukt</string>
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>

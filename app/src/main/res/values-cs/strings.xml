@@ -2112,16 +2112,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Vyberte prosím možnost --</item>
-    <item>Něco nefunguje</item>
-    <item>Požadavek na funkci</item>
-    <item>Dotaz</item>
-    <item>Zpětná vazba</item>
-    <item>Jiné</item>
-    <item>Platby (MobileCoin)</item>
-    <item>Příspěvky</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -3529,11 +3519,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/měsíčně · Exspiruje %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Proč podpořit?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tým společnosti Signal se zavázal k vývoji open source technologie ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci. Váš příspěvek je pro tento cíl přínosem. Žádné reklamy. Žádné trackery. Bez legrace.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Váš příspěvek pomáhá platit vývoj, servery a datové přenosy aplikace, kterou používají miliony lidí na celém světě k soukromé a okamžité komunikaci.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tým společnosti Signal se zavázal k vývoji open source technologie ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci. Váš příspěvek je pro tento cíl přínosem. Žádné reklamy. Žádné trackery. Bez legrace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Váš příspěvek pomáhá platit vývoj, servery a datové přenosy aplikace, kterou používají miliony lidí na celém světě k soukromé a okamžité komunikaci.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Díky za vaši podporu!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Díky za Boost!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Získali jste odznak %s! Zobrazení odznaku ukáže lidem, se kterými chatujete, že podporujete Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Získali jste odznak %s! Zobrazení odznaku ukáže lidem, se kterými chatujete, že podporujete Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvořit doporučený odznak</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
@@ -3551,9 +3541,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MySupportPreference__s_per_month">%1$s/měsíc</string>
   <string name="MySupportPreference__renews_s">Obnova %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Váš odznak %1$s vypršel a již se nezobrazuje ostatním ve vašem profilu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás - ne pro vaše data - zvažte možnost stát se měsíčním předplatitelem.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Stát se předplatitelem</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Váš odznak %1$s vypršel a již se nezobrazuje ostatním ve vašem profilu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás - ne pro vaše data - zvažte možnost stát se měsíčním předplatitelem.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Stát se předplatitelem</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
   <string name="Subscription__verification_failed">Ověření předplatného selhalo</string>
   <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>

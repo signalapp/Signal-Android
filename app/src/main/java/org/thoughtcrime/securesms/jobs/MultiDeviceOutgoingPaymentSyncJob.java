@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
@@ -88,9 +89,9 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
 
     boolean defrag = payment.isDefrag();
 
-    Optional<UUID> uuid;
+    Optional<SignalServiceAddress> uuid;
     if (!defrag && payment.getPayee().hasRecipientId()) {
-      uuid = Optional.of(Recipient.resolved(payment.getPayee().requireRecipientId()).requireUuid());
+      uuid = Optional.of(new SignalServiceAddress(Recipient.resolved(payment.getPayee().requireRecipientId()).requireAci()));
     } else {
       uuid = Optional.absent();
     }

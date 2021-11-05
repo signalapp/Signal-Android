@@ -6,6 +6,7 @@ import org.signal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
@@ -19,6 +20,10 @@ import org.whispersystems.signalservice.internal.push.DonationIntentResult;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Single;
@@ -73,15 +78,40 @@ public class DonationsService {
    * @param currencyCode  The currency code for the amount
    * @return              A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
-  public Single<ServiceResponse<DonationIntentResult>> createDonationIntentWithAmount(String amount, String currencyCode) {
-    return createServiceResponse(() -> new Pair<>(pushServiceSocket.createDonationIntentWithAmount(amount, currencyCode), 200));
+  public Single<ServiceResponse<SubscriptionClientSecret>> createDonationIntentWithAmount(String amount, String currencyCode) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.createBoostPaymentMethod(currencyCode, Long.parseLong(amount)), 200));
+  }
+
+  /**
+   * Given a completed payment intent and a receipt credential request produces a receipt credential response.
+   * Clients should always use the same ReceiptCredentialRequest with the same payment intent id. This request is repeatable so long as the two values are reused.
+   *
+   * @param paymentIntentId          PaymentIntent ID from a boost donation intent response.
+   * @param receiptCredentialRequest Client-generated request token
+   */
+  public Single<ServiceResponse<ReceiptCredentialResponse>> submitBoostReceiptCredentialRequest(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.submitBoostReceiptCredentials(paymentIntentId, receiptCredentialRequest), 200));
+  }
+
+  /**
+   * @return The suggested amounts for Signal Boost
+   */
+  public Single<ServiceResponse<Map<String, List<BigDecimal>>>> getBoostAmounts() {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getBoostAmounts(), 200));
+  }
+
+  /**
+   * @return The badge configuration for signal boost. Expect for right now only a single level numbered 1.
+   */
+  public Single<ServiceResponse<SignalServiceProfile.Badge>> getBoostBadge(Locale locale) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getBoostLevels(locale).getLevels().get("1").getBadge(), 200));
   }
 
   /**
    * Returns the subscription levels that are available for the client to choose from along with currencies and current prices
    */
-  public Single<ServiceResponse<SubscriptionLevels>> getSubscriptionLevels() {
-    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getSubscriptionLevels(), 200));
+  public Single<ServiceResponse<SubscriptionLevels>> getSubscriptionLevels(Locale locale) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.getSubscriptionLevels(locale), 200));
   }
 
   /**

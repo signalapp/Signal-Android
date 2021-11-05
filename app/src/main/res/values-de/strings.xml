@@ -3303,11 +3303,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat · Läuft ab am %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen getragen wird, die es nutzen und schätzen. Leiste eine wiederkehrenden monatlichen Beitrag und erhalte ein Profil-Abzeichen, das deine Unterstützung zeigt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat es sich zur Aufgabe gemacht, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag trägt zu dieser Aufgabe bei. Keine Werbung. Keine Tracker. Kein Scherz.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu finanzieren, die von Millionen Menschen auf der ganzen Welt für private und sofortige Kommunikation verwendet wird.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat es sich zur Aufgabe gemacht, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag trägt zu dieser Aufgabe bei. Keine Werbung. Keine Tracker. Kein Scherz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu finanzieren, die von Millionen Menschen auf der ganzen Welt für private und sofortige Kommunikation verwendet wird.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für deine Spende!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s-Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du Personen, mit denen du chattest, dass du Signal unterstützt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s-Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du Personen, mit denen du chattest, dass du Signal unterstützt.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
@@ -3325,9 +3325,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MySupportPreference__s_per_month">%1$s/Monat</string>
   <string name="MySupportPreference__renews_s">Verlängert sich am %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s-Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Um auch weiterhin eine Technologie zu unterstützen, die für dich — und nicht für deine Daten — entwickelt wird, zieh bitte eine regelmäßige Spende in Betracht.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Werde regelmäßiger Spender</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s-Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Um auch weiterhin eine Technologie zu unterstützen, die für dich — und nicht für deine Daten — entwickelt wird, zieh bitte eine regelmäßige Spende in Betracht.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Spende regelmäßig</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
   <string name="Subscription__verification_failed">Regelmäßige Spende konnte nicht verifiziert werden</string>
   <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere für weitere Informationen den Support.</string>

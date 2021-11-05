@@ -1945,16 +1945,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Klarte ikkje lasta opp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Vel eit alternativ --</item>
-    <item>Noko fungerer ikkje</item>
-    <item>Forslag til funksjonalitet</item>
-    <item>Spørsmål</item>
-    <item>Tilbakemelding</item>
-    <item>Anna</item>
-    <item>Betalingar (MobileCoin) </item>
-    <item>Donasjonar (Bidragsytarar &amp; Signal-auke) </item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldinga</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyleg brukt</string>
@@ -3338,11 +3328,11 @@ Sjekkar igjen no …</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Går ut %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er ein ideell organisasjon utan reklame eller investorar, berre finansiert av dei som bruker og verdset det. Gje eit månadleg bidrag og få eit profilmerke som viser at du støtter Signal.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kvifor bidra?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Utviklarane av Signal er dedikerte til å laga personvernteknologi med open kjelde som vernar om ytringsfridom og støttar trygg, global kommunikasjon. Ditt bidrag går mot dette formålet. Ingen reklame. Ingen sporing. Ikkje noko tull.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ditt bidrag hjelper å finansiera utviklinga, serverane og bandbreidda til ein app som blir brukt av millionar av menneske rundt om i verda for privat og omgåande kommunikasjon.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Utviklarane av Signal er dedikerte til å laga personvernteknologi med open kjelde som vernar om ytringsfridom og støttar trygg, global kommunikasjon. Ditt bidrag går mot dette formålet. Ingen reklame. Ingen sporing. Ikkje noko tull.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ditt bidrag hjelper å finansiera utviklinga, serverane og bandbreidda til ein app som blir brukt av millionar av menneske rundt om i verda for privat og omgåande kommunikasjon.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Takk for støtta!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Takk for auken!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har fortent %s-merket! Ber merket ditt for å visa dei du pratar med at du støttar Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har fortent %s-merket! Ber merket ditt for å visa dei du pratar med at du støttar Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profilen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Lag eit merke å visa fram</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
@@ -3360,9 +3350,9 @@ Sjekkar igjen no …</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Fornyar %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merket ditt er utgått</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s-merket ditt er utgått, og er ikkje lenger synleg for andre på profilen din.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Vurder eit månadleg bidrag for å fortsetja å støtta teknologi som er bygd for deg – og ikkje berre for dine data.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli abonnent</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s-merket ditt er utgått, og er ikkje lenger synleg for andre på profilen din.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Vurder eit månadleg bidrag for å fortsetja å støtta teknologi som er bygd for deg – og ikkje berre for dine data.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli abonnent</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
   <string name="Subscription__verification_failed">Klarte ikkje stadfesta abonnementet</string>
   <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med brukarstøtte for meir informasjon.</string>

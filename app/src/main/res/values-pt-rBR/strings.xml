@@ -1941,16 +1941,6 @@
   <string name="HelpFragment__debug_log">Registro de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não foi possível enviar o registro</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais detalhista possível para nos ajudar a entender o problema.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Por favor, selecione uma opção --</item>
-    <item>Algo não está funcionando</item>
-    <item>Pedido de nova funcionalidade</item>
-    <item>Pergunta</item>
-    <item>Comentário</item>
-    <item>Outro</item>
-    <item>Pagamentos (MobileCoin)</item>
-    <item>Doações (Regulares ou únicas)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizado recentemente</string>
@@ -3318,8 +3308,8 @@
   <string name="SubscribeFragment__update">Atualizar</string>
   <string name="Subscription__s_per_month">%s/mês</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Por que contribuir?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipe do Signal está comprometida com a missão de desenvolver tecnologias de código aberto focadas em privacidade que protegem a liberdade de expressão e permitem haver segurança na comunicação global. Sua contribuição alimenta essa causa. Nosso app é divulgado sem anúncios. Sem rastreadores. Sem brincadeiras.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Sua contribuição ajudará a pagar pelo desenvolvimento, servidores e transmissão de dados. Signal é um aplicativo usado por milhões de pessoas em todo o mundo para se comunicarem de modo privado e instantâneo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipe do Signal está comprometida com a missão de desenvolver tecnologias de código aberto focadas em privacidade que protegem a liberdade de expressão e permitem haver segurança na comunicação global. Sua contribuição alimenta essa causa. Nosso app é divulgado sem anúncios. Sem rastreadores. Sem brincadeiras.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Sua contribuição ajudará a pagar pelo desenvolvimento, servidores e transmissão de dados. Signal é um aplicativo usado por milhões de pessoas em todo o mundo para se comunicarem de modo privado e instantâneo.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Agradecemos por seu apoio!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Agradecemos por sua doação única!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>

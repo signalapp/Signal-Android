@@ -34,11 +34,13 @@ public class SenderKeySharedDatabase extends Database {
   public static final  String DISTRIBUTION_ID = "distribution_id";
   public static final  String ADDRESS         = "address";
   public static final  String DEVICE          = "device";
+  public static final  String TIMESTAMP       = "timestamp";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID              + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                                                  DISTRIBUTION_ID + " TEXT NOT NULL, " +
                                                                                  ADDRESS         + " TEXT NOT NULL, " +
                                                                                  DEVICE          + " INTEGER NOT NULL, " +
+                                                                                 TIMESTAMP       + " INTEGER DEFAULT 0, " +
                                                                                  "UNIQUE(" + DISTRIBUTION_ID + "," + ADDRESS + ", " + DEVICE + ") ON CONFLICT REPLACE);";
 
   SenderKeySharedDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
@@ -58,6 +60,7 @@ public class SenderKeySharedDatabase extends Database {
         values.put(ADDRESS, address.getName());
         values.put(DEVICE, address.getDeviceId());
         values.put(DISTRIBUTION_ID, distributionId.toString());
+        values.put(TIMESTAMP, System.currentTimeMillis());
 
         db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
       }
@@ -143,8 +146,8 @@ public class SenderKeySharedDatabase extends Database {
     SQLiteDatabase db        = databaseHelper.getSignalWritableDatabase();
     Recipient      recipient = Recipient.resolved(recipientId);
 
-    if (recipient.hasUuid()) {
-      db.delete(TABLE_NAME, ADDRESS + " = ?", SqlUtil.buildArgs(recipient.getUuid().get().toString()));
+    if (recipient.hasAci()) {
+      db.delete(TABLE_NAME, ADDRESS + " = ?", SqlUtil.buildArgs(recipient.requireAci().toString()));
     } else {
       Log.w(TAG, "Recipient doesn't have a UUID! " + recipientId);
     }
@@ -156,5 +159,13 @@ public class SenderKeySharedDatabase extends Database {
   public void deleteAll() {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.delete(TABLE_NAME, null, null);
+  }
+
+  /**
+   * Gets the shared state of all of our sender keys. Used for debugging.
+   */
+  public Cursor getAllSharedWithCursor() {
+    SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
+    return db.query(TABLE_NAME, null, null, null, null, null, DISTRIBUTION_ID + ", " + ADDRESS + ", " + DEVICE);
   }
 }

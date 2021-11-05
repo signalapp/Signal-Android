@@ -2026,16 +2026,6 @@
   <string name="HelpFragment__debug_log">Извештај о грешкама:</string>
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Одаберите опцију --</item>
-    <item>Нешто не ради</item>
-    <item>Нова способност</item>
-    <item>Питање</item>
-    <item>Информација</item>
-    <item>Друго</item>
-    <item>Плачање (MobileCoin)</item>
-    <item>Донације (Sustainers &amp; Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ова порука</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно коришћено</string>
@@ -3426,10 +3416,10 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месечно · Обнова %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Крај %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зашто доприносити?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваш допринос помаже у плаћању развоја, сервера и опсега апликације коју користе милиони широм света за приватну и тренутну комуникацију.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваш допринос помаже у плаћању развоја, сервера и опсега апликације коју користе милиони широм света за приватну и тренутну комуникацију.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Хвала вам на подршци!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Хвала вам на Boost!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Заслужили сте %s значку! Приказивање ваше значке показаће људима са којима разговарате да подржавате Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Заслужили сте %s значку! Приказивање ваше значке показаће људима са којима разговарате да подржавате Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показати на профил</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Направити истакнуту значку</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
@@ -3447,9 +3437,9 @@
   <string name="MySupportPreference__s_per_month">%1$s/месечно</string>
   <string name="MySupportPreference__renews_s">Обнова %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваша значка је истекла</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваша значка %1$s је истекла, и не може више де се види на вашем профилу.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">За наставак пратеће технологије која је изграђена за вас -а не за ваше податке- размислите да постанете месечни претплатник.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Постаните претплатник</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваша значка %1$s је истекла, и не може више де се види на вашем профилу.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">За наставак пратеће технологије која је изграђена за вас -а не за ваше податке- размислите да постанете месечни претплатник.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Постаните претплатник</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>
   <string name="Subscription__verification_failed">Верификација претплате није успела</string>
   <string name="Subscription__please_contact_support_for_more_information">Молимо контактирајте подршку за више информација.</string>

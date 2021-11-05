@@ -3506,7 +3506,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/mėnesį</string>
   <string name="MySupportPreference__renews_s">Atsinaujina %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Jūsų %1$s ženkliukas nebegalioja ir daugiau nebematomas jūsų profilyje kitiems asmenims.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Jūsų %1$s ženkliukas nebegalioja ir daugiau nebematomas jūsų profilyje kitiems asmenims.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <string name="Subscription__contact_support">Susisiekti su palaikymu</string>
   <string name="SubscribeFragment__processing_payment">Apdorojamas mokėjimas…</string>

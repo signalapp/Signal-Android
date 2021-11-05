@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.conversation.preferences
 import android.view.View
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -40,11 +41,13 @@ object RecipientPreference {
     private val name: TextView = itemView.findViewById(R.id.recipient_name)
     private val about: TextView = itemView.findViewById(R.id.recipient_about)
     private val admin: View = itemView.findViewById(R.id.admin)
+    private val badge: BadgeImageView = itemView.findViewById(R.id.recipient_badge)
 
     override fun bind(model: Model) {
       itemView.setOnClickListener { model.onClick() }
 
       avatar.setRecipient(model.recipient)
+      badge.setBadgeFromRecipient(model.recipient)
       name.text = if (model.recipient.isSelf) {
         context.getString(R.string.Recipient_you)
       } else {

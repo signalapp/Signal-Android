@@ -58,23 +58,26 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             .setQueue("ReceiptRedemption")
             .setMaxInstancesForQueue(1)
             .setLifespan(TimeUnit.DAYS.toMillis(7))
+            .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
         subscriberId
     );
   }
 
-  public static Pair<String, String> enqueueSubscriptionContinuation() {
-    Subscriber                            subscriber        = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob = createJob(subscriber.getSubscriberId());
-    DonationReceiptRedemptionJob          redeemReceiptJob  = DonationReceiptRedemptionJob.createJob();
+  public static String enqueueSubscriptionContinuation() {
+    Subscriber                            subscriber           = SignalStore.donationsValues().requireSubscriber();
+    SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId());
+    DonationReceiptRedemptionJob          redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForSubscription();
+    RefreshOwnProfileJob                  refreshOwnProfileJob = new RefreshOwnProfileJob();
 
     ApplicationDependencies.getJobManager()
                            .startChain(requestReceiptJob)
                            .then(redeemReceiptJob)
+                           .then(refreshOwnProfileJob)
                            .enqueue();
 
-    return new Pair<>(requestReceiptJob.getId(), redeemReceiptJob.getId());
+    return refreshOwnProfileJob.getId();
   }
 
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,
@@ -138,8 +141,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       if (response.getStatus() == 204) {
         Log.w(TAG, "User does not have receipts available to exchange. Exiting.", response.getApplicationError().get());
       } else {
-        Log.w(TAG, "Encountered a permanent failure: " + response.getStatus(), response.getApplicationError().get());
-        throw new Exception(response.getApplicationError().get());
+        Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get());
+        throw new RetryableException();
       }
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
@@ -212,6 +215,12 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     boolean isExpiration86400        = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
     boolean isExpirationInTheFuture  = receiptCredential.getReceiptExpirationTime() > now;
     boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() < monthFromNow;
+
+    Log.d(TAG, "Credential validation: isSameLevel(" + isSameLevel +
+               ") isExpirationAfterSub(" + isExpirationAfterSub +
+               ") isExpiration86400(" + isExpiration86400 +
+               ") isExpirationInTheFuture(" + isExpirationInTheFuture +
+               ") isExpirationWithinAMonth(" + isExpirationWithinAMonth + ")");
 
     return isSameLevel && isExpirationAfterSub && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinAMonth;
   }
