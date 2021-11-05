@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -235,7 +236,7 @@ class SubscribeFragment : DSLSettingsFragment(
 
   private fun onPaymentError(throwable: Throwable?) {
     if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
-      Log.w(TAG, "Error occurred while redeeming token", throwable)
+      Log.w(TAG, "Timeout occurred while redeeming token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.DonationsErrors__redemption_still_pending)
         .setMessage(R.string.DonationsErrors__you_might_not_see_your_badge_right_away)
@@ -245,8 +246,19 @@ class SubscribeFragment : DSLSettingsFragment(
           requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
         }
         .show()
+    } else if (throwable is DonationExceptions.RedemptionFailed) {
+      Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.DonationsErrors__redemption_failed)
+        .setMessage(R.string.DonationsErrors__please_contact_support)
+        .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
+          dialog.dismiss()
+          requireActivity().finish()
+          requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
+        }
+        .show()
     } else {
-      Log.w(TAG, "Error occurred while processing payment", throwable)
+      Log.w(TAG, "Error occurred while processing payment", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.DonationsErrors__payment_failed)
         .setMessage(R.string.DonationsErrors__your_payment)
@@ -267,7 +279,7 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   private fun onSubscriptionFailedToCancel(throwable: Throwable) {
-    Log.w(TAG, "Failed to cancel subscription", throwable)
+    Log.w(TAG, "Failed to cancel subscription", throwable, true)
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.DonationsErrors__failed_to_cancel_subscription)
       .setMessage(R.string.DonationsErrors__subscription_cancellation_requires_an_internet_connection)

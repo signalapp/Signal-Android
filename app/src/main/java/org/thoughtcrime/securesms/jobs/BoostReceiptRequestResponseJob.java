@@ -19,9 +19,6 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
-import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
-import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
@@ -122,12 +119,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                                                  .blockingGet();
 
     if (response.getApplicationError().isPresent()) {
-      if (response.getStatus() == 204) {
-        Log.w(TAG, "User does not have receipts available to exchange. Exiting.", response.getApplicationError().get());
-      } else {
-        Log.w(TAG, "Encountered a server failure: " + response.getStatus(), response.getApplicationError().get());
-        throw new RetryableException();
-      }
+      handleApplicationError(response);
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 
@@ -140,8 +132,26 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                        receiptCredentialPresentation.serialize())
                                       .build());
     } else {
-      Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orNull());
+      Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orNull(), true);
       throw new RetryableException();
+    }
+  }
+
+  private static void handleApplicationError(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
+    Throwable applicationException = response.getApplicationError().get();
+    switch (response.getStatus()) {
+      case 204:
+        Log.w(TAG, "User does not have receipts available to exchange. Exiting.", applicationException, true);
+        break;
+      case 400:
+        Log.w(TAG, "Receipt credential request failed to validate.", applicationException, true);
+        throw new Exception(applicationException);
+      case 409:
+        Log.w(TAG, "Receipt already redeemed with a different request credential.", response.getApplicationError().get(), true);
+        throw new Exception(applicationException);
+      default:
+        Log.w(TAG, "Encountered a server failure: " + response.getStatus(), applicationException, true);
+        throw new RetryableException();
     }
   }
 
@@ -151,7 +161,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     try {
       return operations.createReceiptCredentialPresentation(receiptCredential);
     } catch (VerificationFailedException e) {
-      Log.w(TAG, "getReceiptCredentialPresentation: encountered a verification failure in zk", e);
+      Log.w(TAG, "getReceiptCredentialPresentation: encountered a verification failure in zk", e, true);
       requestContext = null;
       throw new RetryableException();
     }
@@ -163,7 +173,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     try {
       return operations.receiveReceiptCredential(requestContext, response);
     } catch (VerificationFailedException e) {
-      Log.w(TAG, "getReceiptCredential: encountered a verification failure in zk", e);
+      Log.w(TAG, "getReceiptCredential: encountered a verification failure in zk", e, true);
       requestContext = null;
       throw new RetryableException();
     }

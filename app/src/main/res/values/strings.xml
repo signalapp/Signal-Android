@@ -4007,6 +4007,8 @@
     <string name="DonationsErrors__payment_failed">Payment failed</string>
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__redemption_still_pending">Redemption still pending</string>
+    <string name="DonationsErrors__redemption_failed">Redemption failed</string>
+    <string name="DonationsErrors__please_contact_support">Please contact support</string>
     <string name="DonationsErrors__you_might_not_see_your_badge_right_away">You may not see your badge right away, but we\'re working on it!</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>

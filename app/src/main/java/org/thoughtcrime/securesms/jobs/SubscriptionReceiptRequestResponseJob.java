@@ -109,10 +109,10 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   protected void onRun() throws Exception {
     ActiveSubscription.Subscription subscription = getLatestSubscriptionInformation();
     if (subscription == null || !subscription.isActive()) {
-      Log.d(TAG, "User does not have an active subscription. Exiting.");
+      Log.d(TAG, "User does not have an active subscription. Exiting.", true);
       return;
     } else {
-      Log.i(TAG, "Recording end of period from active subscription.");
+      Log.i(TAG, "Recording end of period from active subscription.", true);
       SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
     }
 
@@ -133,12 +133,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
                                                                                  .blockingGet();
 
     if (response.getApplicationError().isPresent()) {
-      if (response.getStatus() == 204) {
-        Log.w(TAG, "User does not have receipts available to exchange. Exiting.", response.getApplicationError().get());
-      } else {
-        Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get());
-        throw new RetryableException();
-      }
+      handleApplicationError(response);
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 
@@ -151,7 +146,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
                                                        receiptCredentialPresentation.serialize())
                                       .build());
     } else {
-      Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orNull());
+      Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orNull(), true);
       throw new RetryableException();
     }
   }
@@ -164,7 +159,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     if (activeSubscription.getResult().isPresent()) {
       return activeSubscription.getResult().get().getActiveSubscription();
     } else if (activeSubscription.getApplicationError().isPresent()) {
-      Log.w(TAG, "Unrecoverable error getting the user's current subscription. Failing.");
+      Log.w(TAG, "Unrecoverable error getting the user's current subscription. Failing.", activeSubscription.getApplicationError().get(), true);
       throw new IOException(activeSubscription.getApplicationError().get());
     } else {
       throw new RetryableException();
@@ -177,7 +172,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     try {
       return operations.createReceiptCredentialPresentation(receiptCredential);
     } catch (VerificationFailedException e) {
-      Log.w(TAG, "getReceiptCredentialPresentation: encountered a verification failure in zk", e);
+      Log.w(TAG, "getReceiptCredentialPresentation: encountered a verification failure in zk", e, true);
       requestContext = null;
       throw new RetryableException();
     }
@@ -189,9 +184,32 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     try {
       return operations.receiveReceiptCredential(requestContext, response);
     } catch (VerificationFailedException e) {
-      Log.w(TAG, "getReceiptCredential: encountered a verification failure in zk", e);
+      Log.w(TAG, "getReceiptCredential: encountered a verification failure in zk", e, true);
       requestContext = null;
       throw new RetryableException();
+    }
+  }
+
+  private static void handleApplicationError(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
+    switch (response.getStatus()) {
+      case 204:
+        Log.w(TAG, "User does not have receipts available to exchange. Exiting.", response.getApplicationError().get(), true);
+        break;
+      case 400:
+        Log.w(TAG, "Receipt credential request failed to validate.", response.getApplicationError().get(), true);
+        throw new Exception(response.getApplicationError().get());
+      case 403:
+        Log.w(TAG, "SubscriberId password mismatch or account auth was present.", response.getApplicationError().get(), true);
+        throw new Exception(response.getApplicationError().get());
+      case 404:
+        Log.w(TAG, "SubscriberId not found or misformed.", response.getApplicationError().get(), true);
+        throw new Exception(response.getApplicationError().get());
+      case 409:
+        Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
+        throw new Exception(response.getApplicationError().get());
+      default:
+        Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get(), true);
+        throw new RetryableException();
     }
   }
 
