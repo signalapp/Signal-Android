@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -89,7 +90,7 @@ import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
-import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
+import org.thoughtcrime.securesms.components.recyclerview.ConversationListItemAnimator;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
@@ -270,7 +271,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     cameraFab.show();
 
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
-    list.setItemAnimator(new DeleteItemAnimator());
+    list.setItemAnimator(new ConversationListItemAnimator());
     list.addOnScrollListener(new ScrollListener());
 
     snapToTopDataObserver = new SnapToTopDataObserver(list);
@@ -638,7 +639,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     viewModel.getSearchResult().observe(getViewLifecycleOwner(), this::onSearchResultChanged);
     viewModel.getMegaphone().observe(getViewLifecycleOwner(), this::onMegaphoneChanged);
-    viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onSubmitList);
+    viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onConversationListChanged);
     viewModel.hasNoConversations().observe(getViewLifecycleOwner(), this::updateEmptyState);
     viewModel.getPipeState().observe(getViewLifecycleOwner(), this::updateProxyStatus);
 
@@ -653,6 +654,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     };
 
     viewModel.getUnreadPaymentsLiveData().observe(getViewLifecycleOwner(), this::onUnreadPaymentsChanged);
+  }
+
+  private void onConversationListChanged(@NonNull List<Conversation> conversations) {
+    LinearLayoutManager layoutManager    = (LinearLayoutManager) list.getLayoutManager();
+    int                 firstVisibleItem = layoutManager != null ? layoutManager.findFirstCompletelyVisibleItemPosition() : -1;
+
+    defaultAdapter.submitList(conversations, () -> {
+     if (firstVisibleItem == 0) {
+       list.scrollToPosition(0);
+     }
+    });
   }
 
   private void onUnreadPaymentsChanged(@NonNull Optional<UnreadPayments> unreadPayments) {
@@ -1336,8 +1348,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
 
-    private static final int ARCHIVE_SWIPE_START_COLOR = 0xFF28782A;
-    private static final int ARCHIVE_SWIPE_END_COLOR   = 0xFF329635;
+    private static final int   ARCHIVE_SWIPE_START_COLOR = 0xFF28782A;
+    private static final int   ARCHIVE_SWIPE_END_COLOR   = 0xFF329635;
+    private static final float MIN_ICON_SCALE            = 0.75f;
 
     ArchiveListenerCallback() {
       super(0, ItemTouchHelper.RIGHT);
@@ -1392,11 +1405,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
         float scale;
         if (dX < scaleStartPoint) {
-          scale = 0.5f;
+          scale = MIN_ICON_SCALE;
         } else if (dX > scaleEndPoint) {
           scale = 1f;
         } else {
-          scale = Math.min(1f, 0.5f + ((dX - scaleStartPoint) / (scaleEndPoint - scaleStartPoint)) * (1f - 0.5f));
+          scale = Math.min(1f, MIN_ICON_SCALE + ((dX - scaleStartPoint) / (scaleEndPoint - scaleStartPoint)) * (1f - MIN_ICON_SCALE));
         }
 
         if (dX > 0) {
