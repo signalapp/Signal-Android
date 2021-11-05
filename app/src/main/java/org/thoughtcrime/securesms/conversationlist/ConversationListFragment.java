@@ -1354,7 +1354,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
 
-    private static final float MIN_ICON_SCALE = 0.75f;
+    private static final float MIN_ICON_SCALE = 0.85f;
+    private static final float MAX_ICON_SCALE = 1.25f;
 
     private final int archiveColorStart;
     private final int archiveColorEnd;
@@ -1410,15 +1411,15 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         float     percentDx       = Math.abs(dX) / viewHolder.itemView.getWidth();
         int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), archiveColorStart, archiveColorEnd);
         float     scaleStartPoint = DimensionUnit.DP.toPixels(48f);
-        float     scaleEndPoint   = DimensionUnit.DP.toPixels(112f);
+        float     scaleEndPoint   = DimensionUnit.DP.toPixels(96f);
 
         float scale;
         if (dX < scaleStartPoint) {
           scale = MIN_ICON_SCALE;
         } else if (dX > scaleEndPoint) {
-          scale = 1f;
+          scale = MAX_ICON_SCALE;
         } else {
-          scale = Math.min(1f, MIN_ICON_SCALE + ((dX - scaleStartPoint) / (scaleEndPoint - scaleStartPoint)) * (1f - MIN_ICON_SCALE));
+          scale = Math.min(MAX_ICON_SCALE, MIN_ICON_SCALE + ((dX - scaleStartPoint) / (scaleEndPoint - scaleStartPoint)) * (MAX_ICON_SCALE - MIN_ICON_SCALE));
         }
 
         if (dX > 0) {

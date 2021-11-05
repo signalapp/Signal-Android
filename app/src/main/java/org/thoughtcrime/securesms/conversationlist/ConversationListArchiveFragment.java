@@ -106,7 +106,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
 
   @Override
   protected @DrawableRes int getArchiveIconRes() {
-    return R.drawable.ic_unarchive_white_36dp;
+    return R.drawable.ic_unarchive_24;
   }
 
   @Override
