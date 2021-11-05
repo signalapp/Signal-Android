@@ -88,11 +88,6 @@ object ButtonStripPreference {
       audioCall.setOnClickListener { model.onAudioClick() }
       mute.setOnClickListener { model.onMuteClick() }
       search.setOnClickListener { model.onSearchClick() }
-
-      val firstButton: View? = listOf(messageContainer, videoContainer, audioContainer, muteContainer, searchContainer).firstOrNull { it.visible }
-      if (firstButton != null) {
-        ViewUtil.setLeftMargin(firstButton, context.resources.getDimensionPixelSize(R.dimen.conversation_settings_button_strip_spacing))
-      }
     }
   }
 
