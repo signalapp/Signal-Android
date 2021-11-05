@@ -154,18 +154,30 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         val subscriber = SignalStore.donationsValues().requireSubscriber()
 
         Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
-
         ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
           subscriber.subscriberId,
           subscriptionLevel,
           subscriber.currencyCode,
-          levelUpdateOperation.idempotencyKey.serialize()
-        ).flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().andThen {
-          Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel", true)
-          SignalStore.donationsValues().clearUserManuallyCancelled()
-          SignalStore.donationsValues().clearLevelOperation()
-          LevelUpdate.updateProcessingState(false)
-          it.onComplete()
+          levelUpdateOperation.idempotencyKey.serialize(),
+          SubscriptionReceiptRequestResponseJob.MUTEX
+        ).flatMapCompletable {
+          if (it.status == 200 || it.status == 204) {
+            Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
+            SignalStore.donationsValues().clearUserManuallyCancelled()
+            SignalStore.donationsValues().clearLevelOperations()
+            LevelUpdate.updateProcessingState(false)
+            Completable.complete()
+          } else {
+            if (it.applicationError.isPresent) {
+              Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${it.status}", it.applicationError.get(), true)
+              SignalStore.donationsValues().clearLevelOperations()
+            } else {
+              Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", it.executionError.orNull(), true)
+            }
+
+            LevelUpdate.updateProcessingState(false)
+            it.flattenResult().ignoreElement()
+          }
         }.andThen {
           Log.d(TAG, "Enqueuing request response job chain.", true)
           val jobId = SubscriptionReceiptRequestResponseJob.enqueueSubscriptionContinuation()
@@ -205,14 +217,13 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           }
         }
       }.doOnError {
-        SignalStore.donationsValues().clearLevelOperation()
         LevelUpdate.updateProcessingState(false)
       }.subscribeOn(Schedulers.io())
   }
 
   private fun getOrCreateLevelUpdateOperation(subscriptionLevel: String): Single<LevelUpdateOperation> = Single.fromCallable {
-    val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation()
-    if (levelUpdateOperation == null || subscriptionLevel != levelUpdateOperation.level) {
+    val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
+    if (levelUpdateOperation == null) {
       val newOperation = LevelUpdateOperation(
         idempotencyKey = IdempotencyKey.generate(),
         level = subscriptionLevel

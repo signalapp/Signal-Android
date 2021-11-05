@@ -150,7 +150,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       findNavController().popBackStack()
     } else {
       requireActivity().finish()
-      requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
+      requireActivity().startActivity(AppSettingsActivity.manageSubscriptions(requireContext()))
     }
   }
 

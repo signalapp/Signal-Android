@@ -125,10 +125,18 @@ public class DonationsService {
    * @param level          The new level to subscribe to
    * @param currencyCode   The currencyCode the user is using for payment
    * @param idempotencyKey url-safe-base64-encoded random 16-byte value (see description)
+   * @param mutex          A mutex to lock on to avoid a situation where this subscription update happens *as* we are trying to get a credential receipt.
    */
-  public Single<ServiceResponse<EmptyResponse>> updateSubscriptionLevel(SubscriberId subscriberId, String level, String currencyCode, String idempotencyKey) {
+  public Single<ServiceResponse<EmptyResponse>> updateSubscriptionLevel(SubscriberId subscriberId,
+                                                                        String level,
+                                                                        String currencyCode,
+                                                                        String idempotencyKey,
+                                                                        Object mutex
+  ) {
     return createServiceResponse(() -> {
-      pushServiceSocket.updateSubscriptionLevel(subscriberId.serialize(), level, currencyCode, idempotencyKey);
+      synchronized(mutex) {
+        pushServiceSocket.updateSubscriptionLevel(subscriberId.serialize(), level, currencyCode, idempotencyKey);
+      }
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }

@@ -224,14 +224,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       Log.d(TAG, "Detected mixed visibility of badges. Telling the server to mark them all visible.", true);
 
       BadgeRepository badgeRepository = new BadgeRepository(context);
-      badgeRepository.setVisibilityForAllBadges(true);
-
-      DatabaseFactory.getRecipientDatabase(context)
-                     .setBadges(Recipient.self().getId(),
-                                appBadges.stream()
-                                         .map(Badge::setVisible)
-                                         .collect(Collectors.toList()));
-
+      badgeRepository.setVisibilityForAllBadges(true, appBadges).blockingSubscribe();
     } else {
       DatabaseFactory.getRecipientDatabase(context)
                      .setBadges(Recipient.self().getId(), appBadges);

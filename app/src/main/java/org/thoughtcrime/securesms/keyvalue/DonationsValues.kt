@@ -23,12 +23,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val KEY_SUBSCRIPTION_CURRENCY_CODE = "donation.currency.code"
     private const val KEY_CURRENCY_CODE_BOOST = "donation.currency.code.boost"
     private const val KEY_SUBSCRIBER_ID_PREFIX = "donation.subscriber.id."
-    private const val KEY_IDEMPOTENCY = "donation.idempotency.key"
-    private const val KEY_LEVEL = "donation.level"
     private const val KEY_LAST_KEEP_ALIVE_LAUNCH = "donation.last.successful.ping"
     private const val KEY_LAST_END_OF_PERIOD = "donation.last.end.of.period"
     private const val EXPIRED_BADGE = "donation.expired.badge"
     private const val USER_MANUALLY_CANCELLED = "donation.user.manually.cancelled"
+    private const val KEY_LEVEL_OPERATION_PREFIX = "donation.level.operation."
+    private const val KEY_LEVEL_HISTORY = "donation.level.history"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -114,29 +114,36 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     subscriptionCurrencyPublisher.onNext(Currency.getInstance(currencyCode))
   }
 
-  fun getLevelOperation(): LevelUpdateOperation? {
-    val level = getString(KEY_LEVEL, null)
-    val idempotencyKey = getBlob(KEY_IDEMPOTENCY, null)?.let { IdempotencyKey.fromBytes(it) }
-
-    return if (level == null || idempotencyKey == null) {
-      null
+  fun getLevelOperation(level: String): LevelUpdateOperation? {
+    val idempotencyKey = getBlob("${KEY_LEVEL_OPERATION_PREFIX}$level", null)
+    return if (idempotencyKey != null) {
+      LevelUpdateOperation(IdempotencyKey.fromBytes(idempotencyKey), level)
     } else {
-      LevelUpdateOperation(idempotencyKey, level)
+      null
     }
   }
 
   fun setLevelOperation(levelUpdateOperation: LevelUpdateOperation) {
-    store.beginWrite()
-      .putString(KEY_LEVEL, levelUpdateOperation.level)
-      .putBlob(KEY_IDEMPOTENCY, levelUpdateOperation.idempotencyKey.bytes)
-      .apply()
+    addLevelToHistory(levelUpdateOperation.level)
+    putBlob("$KEY_LEVEL_OPERATION_PREFIX${levelUpdateOperation.level}", levelUpdateOperation.idempotencyKey.bytes)
   }
 
-  fun clearLevelOperation() {
-    store.beginWrite()
-      .remove(KEY_LEVEL)
-      .remove(KEY_IDEMPOTENCY)
-      .apply()
+  private fun getLevelHistory(): Set<String> {
+    return getString(KEY_LEVEL_HISTORY, "").split(",").toSet()
+  }
+
+  private fun addLevelToHistory(level: String) {
+    val levels = getLevelHistory() + level
+    putString(KEY_LEVEL_HISTORY, levels.joinToString(","))
+  }
+
+  fun clearLevelOperations() {
+    val levelHistory = getLevelHistory()
+    val write = store.beginWrite()
+    for (level in levelHistory) {
+      write.remove("${KEY_LEVEL_OPERATION_PREFIX}$level")
+    }
+    write.apply()
   }
 
   fun setExpiredBadge(badge: Badge?) {

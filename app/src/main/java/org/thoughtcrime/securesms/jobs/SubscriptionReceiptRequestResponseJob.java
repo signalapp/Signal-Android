@@ -41,6 +41,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private static final String DATA_REQUEST_BYTES   = "data.request.bytes";
   private static final String DATA_SUBSCRIBER_ID   = "data.subscriber.id";
 
+  public static final Object MUTEX = new Object();
+
   private ReceiptCredentialRequestContext requestContext;
 
   private final SubscriberId subscriberId;
@@ -107,6 +109,12 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    synchronized (MUTEX) {
+      doRun();
+    }
+  }
+
+  private void doRun() throws Exception {
     ActiveSubscription.Subscription subscription = getLatestSubscriptionInformation();
     if (subscription == null || !subscription.isActive()) {
       Log.d(TAG, "User does not have an active subscription. Exiting.", true);

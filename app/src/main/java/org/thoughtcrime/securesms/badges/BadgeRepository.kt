@@ -13,8 +13,11 @@ class BadgeRepository(context: Context) {
 
   private val context = context.applicationContext
 
-  fun setVisibilityForAllBadges(displayBadgesOnProfile: Boolean): Completable = Completable.fromAction {
-    val badges = Recipient.self().badges.map { it.copy(visible = displayBadgesOnProfile) }
+  fun setVisibilityForAllBadges(
+    displayBadgesOnProfile: Boolean,
+    selfBadges: List<Badge> = Recipient.self().badges
+  ): Completable = Completable.fromAction {
+    val badges = selfBadges.map { it.copy(visible = displayBadgesOnProfile) }
     ProfileUtil.uploadProfileWithBadges(context, badges)
 
     val recipientDatabase: RecipientDatabase = DatabaseFactory.getRecipientDatabase(context)

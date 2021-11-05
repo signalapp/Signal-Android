@@ -427,7 +427,7 @@ public final class FeatureFlags {
    * Whether or not donor badges should be displayed throughout the app.
    */
   public static boolean displayDonorBadges() {
-    return getBoolean(DONOR_BADGES_DISPLAY, false);
+    return getBoolean(DONOR_BADGES_DISPLAY, Environment.IS_STAGING);
   }
 
   public static boolean cdsh() {
