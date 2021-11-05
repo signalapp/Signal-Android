@@ -182,7 +182,7 @@ public class DatabaseFactory {
     return getInstance(context).storageIdDatabase;
   }
 
-  static RemappedRecordsDatabase getRemappedRecordsDatabase(Context context) {
+  public static RemappedRecordsDatabase getRemappedRecordsDatabase(Context context) {
     return getInstance(context).remappedRecordsDatabase;
   }
 
