@@ -139,11 +139,28 @@ private static final String[] GROUP_PROJECTION = {
   }
 
   public Optional<GroupRecord> getGroup(@NonNull GroupId groupId) {
-    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
-                                                                          new String[] {groupId.toString()},
-                                                                          null, null, null))
-    {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, GROUP_ID + " = ?", SqlUtil.buildArgs(groupId.toString()), null, null, null)) {
       if (cursor != null && cursor.moveToNext()) {
+        Optional<GroupRecord> groupRecord = getGroup(cursor);
+
+        if (groupRecord.isPresent() && RemappedRecords.getInstance().areAnyRemapped(context, groupRecord.get().getMembers())) {
+          String remaps = RemappedRecords.getInstance().buildRemapDescription(context, groupRecord.get().getMembers());
+          Log.w(TAG, "Found a group with remapped recipients in it's membership list! Updating the list. GroupId: " + groupId + ", Remaps: " + remaps, true);
+
+          Collection<RecipientId> remapped = RemappedRecords.getInstance().remap(context, groupRecord.get().getMembers());
+
+          ContentValues values = new ContentValues();
+          values.put(MEMBERS, RecipientId.toSerializedList(remapped));
+
+          if (db.update(TABLE_NAME, values, GROUP_ID + " = ?", SqlUtil.buildArgs(groupId)) > 0) {
+            return getGroup(groupId);
+          } else {
+            throw new IllegalStateException("Failed to update group with remapped recipients!");
+          }
+        }
+
         return getGroup(cursor);
       }
 
@@ -565,7 +582,7 @@ private static final String[] GROUP_PROJECTION = {
         throw new AssertionError("V2 master key but no group state");
       }
       groupId.requireV2();
-      groupMembers = getV2GroupMembers(groupState);
+      groupMembers = getV2GroupMembers(context, groupState);
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
       contentValues.put(V2_REVISION, groupState.getRevision());
       contentValues.put(V2_DECRYPTED_GROUP, groupState.toByteArray());
@@ -704,7 +721,7 @@ private static final String[] GROUP_PROJECTION = {
       contentValues.put(UNMIGRATED_V1_MEMBERS, unmigratedV1Members.isEmpty() ? null : RecipientId.toSerializedList(unmigratedV1Members));
     }
 
-    List<RecipientId> groupMembers = getV2GroupMembers(decryptedGroup);
+    List<RecipientId> groupMembers = getV2GroupMembers(context, decryptedGroup);
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getRevision());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
@@ -863,7 +880,7 @@ private static final String[] GROUP_PROJECTION = {
 
 
   private static @NonNull List<RecipientId> uuidsToRecipientIds(@NonNull List<UUID> uuids) {
-    List<RecipientId> groupMembers  = new ArrayList<>(uuids.size());
+    List<RecipientId> groupMembers = new ArrayList<>(uuids.size());
 
     for (UUID uuid : uuids) {
       if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
@@ -878,9 +895,15 @@ private static final String[] GROUP_PROJECTION = {
     return groupMembers;
   }
 
-  private static @NonNull List<RecipientId> getV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
-    List<UUID> uuids = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
-    return uuidsToRecipientIds(uuids);
+  private static @NonNull List<RecipientId> getV2GroupMembers(@NonNull Context context, @NonNull DecryptedGroup decryptedGroup) {
+    List<UUID>        uuids = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
+    List<RecipientId> ids   = uuidsToRecipientIds(uuids);
+
+    if (RemappedRecords.getInstance().areAnyRemapped(context, ids)) {
+      throw new IllegalStateException("Remapped records in group membership!");
+    } else {
+      return ids;
+    }
   }
 
   public @NonNull List<GroupId.V2> getAllGroupV2Ids() {
