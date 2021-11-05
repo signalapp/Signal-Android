@@ -20,17 +20,12 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
-import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -214,13 +209,13 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     boolean isExpirationAfterSub     = subscription.getEndOfCurrentPeriod() < receiptCredential.getReceiptExpirationTime();
     boolean isExpiration86400        = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
     boolean isExpirationInTheFuture  = receiptCredential.getReceiptExpirationTime() > now;
-    boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() < monthFromNow;
+    boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() <= monthFromNow;
 
     Log.d(TAG, "Credential validation: isSameLevel(" + isSameLevel +
                ") isExpirationAfterSub(" + isExpirationAfterSub +
                ") isExpiration86400(" + isExpiration86400 +
                ") isExpirationInTheFuture(" + isExpirationInTheFuture +
-               ") isExpirationWithinAMonth(" + isExpirationWithinAMonth + ")");
+               ") isExpirationWithinAMonth(" + isExpirationWithinAMonth + ")", true);
 
     return isSameLevel && isExpirationAfterSub && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinAMonth;
   }

@@ -182,7 +182,12 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     boolean isCorrectLevel           = receiptCredential.getReceiptLevel() == 1;
     boolean isExpiration86400        = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
     boolean isExpirationInTheFuture  = receiptCredential.getReceiptExpirationTime() > now;
-    boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() < monthFromNow;
+    boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() <= monthFromNow;
+
+    Log.d(TAG, "Credential validation: isCorrectLevel(" + isCorrectLevel +
+               ") isExpiration86400(" + isExpiration86400 +
+               ") isExpirationInTheFuture(" + isExpirationInTheFuture +
+               ") isExpirationWithinAMonth(" + isExpirationWithinAMonth + ")", true);
 
     return isCorrectLevel && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinAMonth;
   }
