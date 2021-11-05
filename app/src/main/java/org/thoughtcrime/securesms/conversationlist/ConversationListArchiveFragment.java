@@ -124,6 +124,8 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   @SuppressLint("StaticFieldLeak")
   @Override
   protected void onItemSwiped(long threadId, int unreadCount) {
+    archiveDecoration.onArchiveStarted();
+
     new SnackbarAsyncTask<Long>(getViewLifecycleOwner().getLifecycle(),
                                 requireView(),
                                 getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.recyclerview;
+package org.thoughtcrime.securesms.conversationlist;
 
 
 import androidx.recyclerview.widget.DefaultItemAnimator;

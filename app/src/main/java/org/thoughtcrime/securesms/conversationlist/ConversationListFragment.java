@@ -44,6 +44,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -90,7 +91,6 @@ import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
-import org.thoughtcrime.securesms.components.recyclerview.ConversationListItemAnimator;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
@@ -212,8 +212,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private VoiceNotePlayerView               voiceNotePlayerView;
   private SignalBottomActionBar             bottomActionBar;
 
-
-  private Stopwatch startupStopwatch;
+  protected ConversationListArchiveItemDecoration archiveDecoration;
+  private   Stopwatch                             startupStopwatch;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
@@ -270,13 +270,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     fab.show();
     cameraFab.show();
 
+    archiveDecoration = new ConversationListArchiveItemDecoration(new ColorDrawable(getResources().getColor(R.color.conversation_list_archive_background_end)));
+
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(new ConversationListItemAnimator());
     list.addOnScrollListener(new ScrollListener());
+    list.addItemDecoration(archiveDecoration);
 
     snapToTopDataObserver = new SnapToTopDataObserver(list);
 
-    new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
+    new ItemTouchHelper(new ArchiveListenerCallback(getResources().getColor(R.color.conversation_list_archive_background_start),
+                                                    getResources().getColor(R.color.conversation_list_archive_background_end))).attachToRecyclerView(list);
 
     fab.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewConversationActivity.class)));
     cameraFab.setOnClickListener(v -> {
@@ -1267,6 +1271,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @SuppressLint("StaticFieldLeak")
   protected void onItemSwiped(long threadId, int unreadCount) {
+    archiveDecoration.onArchiveStarted();
+
     new SnackbarAsyncTask<Long>(getViewLifecycleOwner().getLifecycle(),
                                 requireView(),
                                 getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
@@ -1275,7 +1281,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                 Snackbar.LENGTH_LONG,
                                 false)
     {
-      private final ThreadDatabase threadDatabase= DatabaseFactory.getThreadDatabase(getActivity());
+      private final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getActivity());
 
       private List<Long> pinnedThreadIds;
 
@@ -1348,12 +1354,15 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
 
-    private static final int   ARCHIVE_SWIPE_START_COLOR = 0xFF28782A;
-    private static final int   ARCHIVE_SWIPE_END_COLOR   = 0xFF329635;
-    private static final float MIN_ICON_SCALE            = 0.75f;
+    private static final float MIN_ICON_SCALE = 0.75f;
 
-    ArchiveListenerCallback() {
+    private final int archiveColorStart;
+    private final int archiveColorEnd;
+
+    ArchiveListenerCallback(@ColorInt int archiveColorStart, @ColorInt int archiveColorEnd) {
       super(0, ItemTouchHelper.RIGHT);
+      this.archiveColorStart = archiveColorStart;
+      this.archiveColorEnd   = archiveColorEnd;
     }
 
     @Override
@@ -1399,7 +1408,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         Resources resources       = getResources();
         View      itemView        = viewHolder.itemView;
         float     percentDx       = Math.abs(dX) / viewHolder.itemView.getWidth();
-        int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), ARCHIVE_SWIPE_START_COLOR, ARCHIVE_SWIPE_END_COLOR);
+        int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), archiveColorStart, archiveColorEnd);
         float     scaleStartPoint = DimensionUnit.DP.toPixels(48f);
         float     scaleEndPoint   = DimensionUnit.DP.toPixels(112f);
 
