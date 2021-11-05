@@ -295,6 +295,10 @@ public final class ConversationListItem extends ConstraintLayout
     boolean selected = batchMode && selectedThreads.contains(thread.getThreadId());
     setSelected(selected);
 
+    if (recipient != null) {
+      contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+    }
+    
     if (batchMode && selected) {
       checkContainer.setVisibility(VISIBLE);
       uncheckedView.setVisibility(GONE);
