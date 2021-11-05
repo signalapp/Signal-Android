@@ -3313,11 +3313,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Neden Katkıda Bulunulmalı?</string>
   <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal ekibi, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi sağlayan açık kaynaklı gizlilik teknolojisi geliştirme misyonuna kendini adamıştır. Katkınız bu davayı körüklüyor. Reklam yok. İzlenme yok. Şaka yok.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Katkınız, gizli ve anlık iletişim için dünya çapında milyonlarca kişi tarafından kullanılan bir uygulamanın geliştirilmesi, sunucuları ve bant genişliği için giderlerin karşılanmasında yardımcı olur.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Arttırıcı için teşekkürler!</string>
   <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Bir %s rozeti kazandınız! Rozetinizi göstermek, sohbet ettiğiniz kişilere Signal\'i desteklediğinizi gösterir.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Öne çıkarılan rozet seçin</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tamam</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Birden fazla rozetiniz olduğunda, profilinizde başkalarının görmesi için birini seçebilirsiniz.</string>
   <string name="ManageDonationsFragment__my_support">Desteğim</string>
   <string name="ManageDonationsFragment__manage_subscription">Aboneliği yönet</string>
   <string name="ManageDonationsFragment__badges">Rozetler</string>
@@ -3332,7 +3335,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s rozetinizin süresi doldu ve artık başkalarına gözükmeyecek.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Sizin için -verileriniz için değil- oluşturulmuş teknolojiyi desteklemeye devam etmek için lütfen aylık abone olmayı düşünün.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abone ol</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
   <string name="Subscription__verification_failed">Abonelik Onaylanamadı</string>

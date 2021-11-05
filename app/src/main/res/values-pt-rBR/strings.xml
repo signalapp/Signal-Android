@@ -3321,9 +3321,11 @@
   <string name="Boost__enter_custom_amount">Insira o valor</string>
   <string name="MySupportPreference__s_per_month">%1$s/mês</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
+  <string name="Subscription__please_contact_support_for_more_information">Entre em contato com o suporte para obter mais informações, por favor.</string>
   <string name="Subscription__contact_support">Entre em contato com o suporte</string>
   <string name="SubscribeFragment__processing_payment">Processando o pagamento…</string>
   <string name="DonationsErrors__payment_failed">Falha ao pagar</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Talvez você não veja o seu selo imediatamente. Estamos trabalhando para melhorar esse detalhe!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Você precisa configurar o Google Pay para doar dentro do aplicativo.</string>
   <!--EOF-->

@@ -394,7 +394,7 @@
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-upbestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-upbestanden inschakelt maakt Signal automatisch elke dag een nieuw back-upbestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-upbestanden blijven bewaard, oudere back-upbestanden worden overschreven.</string>
   <string name="BackupsPreferenceFragment__create_backup">Nu een back-upbestand maken</string>
   <string name="BackupsPreferenceFragment__last_backup">Meest recente back-upbestand: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Back-updirectory</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Back-uplocatie</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Back-upwachtwoord verifiëren</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord hebt onthouden</string>
   <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
@@ -2549,11 +2549,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
   <string name="RegistrationActivity_backup_size_s">Back-upbestand-grootte: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Back-upbestand-tijdstip: %s</string>
-  <string name="BackupDialog_enable_local_backups">Signal back-upbestanden laten maken?</string>
+  <string name="BackupDialog_enable_local_backups">Back-upbestanden maken?</string>
   <string name="BackupDialog_enable_backups">Back-upbestanden inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
   <string name="BackupDialog_delete_backups">Alle back-upbestanden wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-upbestanden wilt laten maken, dan zal Signal ook alle bestaande back-upbestanden in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je het maken van back-upbestanden uitschakeld, dan zal Signal ook alle bestaande back-upbestanden uit de back-uplocatie wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-upbestanden wissen</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-upbestanden te kunnen inschakelen.</string>
   <string name="BackupDialog_choose_folder">Kies een map</string>
@@ -3153,7 +3153,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
   <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
-  <string name="ConversationSettingsFragment__message">Bericht verzenden</string>
+  <string name="ConversationSettingsFragment__message">Berichten</string>
   <string name="ConversationSettingsFragment__video">Video-oproep</string>
   <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
   <string name="ConversationSettingsFragment__call">Bellen</string>

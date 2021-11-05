@@ -2282,7 +2282,6 @@
   <string name="HelpFragment__debug_log">سِجل التصحيح :</string>
   <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
-  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ابتسامات وأشخاص</string>

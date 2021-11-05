@@ -1816,7 +1816,7 @@ nummer (%s) er ugyldigt</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Signal\'s krypterede database?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Signals krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Systemets standarddatabase vil ikke blive modificeret eller ændret på nogen måde.</string>
   <string name="database_migration_activity__skip">Spring over</string>
   <string name="database_migration_activity__import">Importér</string>
@@ -1993,7 +1993,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tryk på [Enter] sender tekstbeskeder</string>
   <string name="preferences__pref_use_address_book_photos">Brug billeder fra adressebog</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis tilgængelige.</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige.</string>
   <string name="preferences__generate_link_previews">Generer forhåndsvisninger af links</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger af links direkte fra websteder til beskeder, som du sender.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
@@ -2110,7 +2110,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences_storage__s_messages">%1$s beskeder</string>
   <string name="preferences_storage__custom">Tilpasset</string>
   <string name="preferences_advanced__use_system_emoji">Anvend system-emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktiver Signal\'s indbyggede emoji-understøttelse</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktiver Signals indbyggede emoji-understøttelse</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren, for at undgå at afsløre din IP-adresse over for din kontakt. Opkaldskvaliteten vil blive forringet.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
@@ -2374,7 +2374,7 @@ nummer (%s) er ugyldigt</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med udklipsholder</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importér system-SMS\'er</string>
-  <string name="reminder_header_sms_import_text">Tryk for at kopiere din telefons SMS-beskeder til Signal\'s krypterede database.</string>
+  <string name="reminder_header_sms_import_text">Tryk for at kopiere din telefons SMS-beskeder til Signals krypterede database.</string>
   <string name="reminder_header_push_title">Aktiver Signal-beskeder og opkald</string>
   <string name="reminder_header_push_text">Opgrader din kommunikationsoplevelse.</string>
   <string name="reminder_header_service_outage_text">Signal har tekniske problemer. Vi arbejder hårdt på at genoprette servicen så hurtigt som muligt!</string>
@@ -2518,7 +2518,7 @@ nummer (%s) er ugyldigt</string>
   <string name="Permissions_continue">Fortsæt</string>
   <string name="Permissions_not_now">Ikke nu</string>
   <string name="conversation_activity__enable_signal_messages">AKTIVER SIGNAL-BESKEDER</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerer Signal\'s database</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Overførsel af Signals database</string>
   <string name="PushDecryptJob_new_locked_message">Ny låst besked</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås op for at se afventende beskeder</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Adgangssætning til sikkerhedskopi</string>
@@ -3336,7 +3336,6 @@ nummer (%s) er ugyldigt</string>
   <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dit %1$s-emblem er udløbet og er ikke længere synligt for andre på din profil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Overvej at tegne et månedsabonnement for forsat at støtte op om teknologi, der er udviklet til dig - ikke for at høste dine data.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bliv abonnent</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
   <string name="Subscription__verification_failed">Bekræftelse af abonnement mislykkedes</string>

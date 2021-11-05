@@ -1971,7 +1971,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_storage__custom">Selvvalgt</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vill redusere samtalekvaliteten.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vil redusere samtalekvaliteten.</string>
   <string name="preferences_advanced__always_relay_calls">Omdiriger alle samtaler</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
   <string name="preferences_app_protection__app_access">Programtilgang</string>

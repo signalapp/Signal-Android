@@ -429,7 +429,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">முழு தெளிவுத்திறன் GIF ஐ மீட்டெடுக்கும்போது பிழை</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF கள் </string>
-  <string name="GiphyFragmentPagerAdapter_stickers">ஒட்டிகள்</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">ஒட்டிப்படங்கள்</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">உறுப்பினரைச் சேர்க்கவா?</string>
   <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ஐ \"%2$s\" இல் சேர்க்கவா?</string>
@@ -1314,7 +1314,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">ஒரு மாதத்தில் மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
   <!--Slide-->
   <string name="Slide_image">உருவம்</string>
-  <string name="Slide_sticker">ஒட்டி</string>
+  <string name="Slide_sticker">ஒட்டிப்படம்</string>
   <string name="Slide_audio">ஒலி</string>
   <string name="Slide_video">காணொளி</string>
   <!--SmsMessageRecord-->
@@ -1329,7 +1329,7 @@
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">இந்தச் செய்தியை செயலாக்க முடியவில்லை, ஏனெனில் இது Signal புதிய பதிப்பிலிருந்து அனுப்பப்பட்டது. நீங்கள் புதுப்பித்த பிறகு இந்த செய்தியை மீண்டும் அனுப்ப உங்கள் தொடர்பைக் கேட்கலாம்.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">உள்வரும் செய்தியைக் கையாளுவதில் பிழை.</string>
   <!--StickerManagementActivity-->
-  <string name="StickerManagementActivity_stickers">ஒட்டிகள்</string>
+  <string name="StickerManagementActivity_stickers">ஒட்டிப்படங்கள்</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">நிறுவப்பட்ட ஒட்டிகள்</string>
   <string name="StickerManagementAdapter_stickers_you_received">நீங்கள் பெற்ற ஒட்டிகள்</string>
@@ -1343,7 +1343,7 @@
   <string name="StickerPackPreviewActivity_unknown">முன் தெரிந்திராத</string>
   <string name="StickerPackPreviewActivity_install">நிறுவு</string>
   <string name="StickerPackPreviewActivity_remove">நீக்கு</string>
-  <string name="StickerPackPreviewActivity_stickers">ஒட்டிகள்</string>
+  <string name="StickerPackPreviewActivity_stickers">ஒட்டிப்படங்கள்</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ஸ்டிக்கர் பேக்கை ஏற்றுவதில் தோல்வி</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">தொகு</string>
@@ -1373,7 +1373,7 @@
   <string name="ThreadRecord_missed_audio_call">ஒலி அழைப்பு தவறவிட்டது</string>
   <string name="ThreadRecord_missed_video_call">காணொளி அழைப்பு தவறவிட்டது</string>
   <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
-  <string name="ThreadRecord_sticker">ஒட்டி</string>
+  <string name="ThreadRecord_sticker">ஒட்டிப்படம்</string>
   <string name="ThreadRecord_view_once_photo">காண்க-ஒருமுறை புகைப்படம் </string>
   <string name="ThreadRecord_view_once_video">காண்க-ஒருமுறை காணொளி</string>
   <string name="ThreadRecord_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
@@ -1642,7 +1642,7 @@
   <string name="QuoteView_photo">புகைப்பட</string>
   <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
-  <string name="QuoteView_sticker">ஒட்டி</string>
+  <string name="QuoteView_sticker">ஒட்டிப்படம்</string>
   <string name="QuoteView_you">நீங்கள்</string>
   <string name="QuoteView_original_missing">அசல் செய்தி கிடைக்கவில்லை</string>
   <!--conversation_fragment-->
@@ -3008,7 +3008,7 @@
   <string name="KeyboardPagerFragment_open_emoji_search">திற ஈமோஜி தேடல்</string>
   <string name="KeyboardPagerFragment_open_sticker_search">திற ஓட்டி தேடல்</string>
   <string name="KeyboardPagerFragment_open_gif_search">திற gif தேடல்</string>
-  <string name="KeyboardPagerFragment_stickers">ஒட்டிகள்</string>
+  <string name="KeyboardPagerFragment_stickers">ஒட்டிப்படங்கள்</string>
   <string name="KeyboardPagerFragment_backspace">பின்வெளி</string>
   <string name="KeyboardPagerFragment_gifs">Gifs</string>
   <string name="KeyboardPagerFragment_search_emoji">தேடல் ஈமோஜி</string>

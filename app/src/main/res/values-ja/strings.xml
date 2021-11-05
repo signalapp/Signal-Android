@@ -3224,7 +3224,6 @@
   <string name="MySupportPreference__renews_s">更新 %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">バッジの有効期限が切れました</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$sバッジは有効期限が切れたため、プロフィールには表示されません。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">データのためではなく、あなたのために作られた技術を継続的に支援するため、毎月のサブスクリプションをご検討ください。</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">サブスクリプションを行う</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <string name="Subscription__verification_failed">サブスクリプションを確認できませんでした</string>

@@ -3542,7 +3542,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MySupportPreference__renews_s">Obnova %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Váš odznak %1$s vypršel a již se nezobrazuje ostatním ve vašem profilu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás - ne pro vaše data - zvažte možnost stát se měsíčním předplatitelem.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Stát se předplatitelem</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
   <string name="Subscription__verification_failed">Ověření předplatného selhalo</string>

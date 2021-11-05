@@ -317,8 +317,8 @@
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
-    <item quantity="one">Ler</item>
-    <item quantity="other">Ler</item>
+    <item quantity="one">Lida</item>
+    <item quantity="other">Lidas</item>
   </plurals>
   <plurals name="ConversationListFragment_unread_plural">
     <item quantity="one">Por ler</item>
@@ -337,8 +337,8 @@
     <item quantity="other">Silenciar</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
-    <item quantity="one">Avisar</item>
-    <item quantity="other">Avisar</item>
+    <item quantity="one">Alertar</item>
+    <item quantity="other">Alertar</item>
   </plurals>
   <string name="ConversationListFragment_select">Selecionar</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -3336,7 +3336,6 @@
   <string name="MySupportPreference__renews_s">Renovações %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">O seu crachá %1$s expirou, e deixou de estar visível para outras pessoas no seu perfil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar a suportar a tecnologia que foi construída para si (não para os seus dados), considere fazer uma assinatura mensal.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Torne-se um assinante</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="Subscription__verification_failed">Falha na verificação da assinatura</string>

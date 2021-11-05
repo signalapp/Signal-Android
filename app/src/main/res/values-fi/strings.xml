@@ -316,8 +316,48 @@
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Luettu</item>
+    <item quantity="other">Luettu</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Lukematon</item>
+    <item quantity="other">Lukematon</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Kiinnitä</item>
+    <item quantity="other">Kiinnitä</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Irrota</item>
+    <item quantity="other">Irrota</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Mykistä</item>
+    <item quantity="other">Mykistä</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Poista mykistys</item>
+    <item quantity="other">Poista mykistys</item>
+  </plurals>
   <string name="ConversationListFragment_select">Valitse</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arkistoi</item>
+    <item quantity="other">Arkistoi</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Pal. arkistosta</item>
+    <item quantity="other">Pal. arkistosta</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Poista</item>
+    <item quantity="other">Poista</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Valitse kaikki</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d valittu</item>
+    <item quantity="other">%d valittu</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
   <!--ConversationListItemAction-->
@@ -798,6 +838,18 @@
   <string name="MediaOverviewActivity_List_view_description">Listanäkymä</string>
   <string name="MediaOverviewActivity_Selected_description">Valittu</string>
   <string name="MediaOverviewActivity_select_all">Valitse kaikki</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Tallenna</item>
+    <item quantity="other">Tallenna</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Poista</item>
+    <item quantity="other">Poista</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d valittu (%2$s)</item>
+    <item quantity="other">%1$d valittu (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Tiedosto</string>
   <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1204,9 +1256,34 @@
   <string name="WebRtcCallView__reconnecting">Yhdistetään uudelleen…</string>
   <string name="WebRtcCallView__joining">Liittymässä…</string>
   <string name="WebRtcCallView__disconnected">Ei yhteyttä</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal soittaa %1$s:lle</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal soittaa %1$s:lle ja %2$s:lle</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal soittaa %1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+    <item quantity="other">Signal soittaa%1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s:lle ilmoitetaan</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s:lle ja %2$s:lle ilmoitetaan</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s:lle, %2$s:lle sekä %3$d:lle muulle ilmoitetaan</item>
+    <item quantity="other">%1$s:lle, %2$s:lle sekä %3$d:lle muulle ilmoitetaan</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Soitetaan%1$s:lle</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Soitetaan%1$s:lle ja %2$s:lle</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Soitetaan %1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+    <item quantity="other">Soitetaan%1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+  </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s soittaa sinulle</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s soittaa sinulle ja  %2$s:lle</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s soittaa sinulle, %2$s:lle sekä %3$s:lle</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s soittaa sinulle, %2$s:lle, %3$s:lle sekä %4$d:lle muulle</item>
+    <item quantity="other">%1$s soittaa sinulle, %2$s:lle, %3$s:lle sekä %4$d:lle muulle</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Kukaan muu ei ole täällä</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s on tässä puhelussa</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s ovat tässä puhelussa</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ja %2$s ovat tässä puhelussa</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s esittää</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1265,6 +1342,7 @@ puhelinnumero</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal tarvitsee lupaa käyttää yhteystietojasi, jotta voit olla yhteydessä ystäviisi, viestitellä ja soitella turvallisesti.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Olet yrittänyt rekisteröidä tätä numeroa liian monta kertaa. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Yhteyttä ei voitu muodostaa palveluun. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
+  <string name="RegistrationActivity_call_requested">Soittoa pyydetty</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Olet tällä hetkellä %d askeleen päässä virheenkorjauslokin lähettämisestä.</item>
     <item quantity="other">Vielä %d vaihetta virheenkorjauslokin lähettämiseen.</item>
@@ -1489,6 +1567,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_reacted_s_to_s">Reagoi %1$s viestiin %2$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagoi %1$s videoosi.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoi %1$s kuvaasi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagoi %1$s GIF:illesi.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoi %1$s tiedostoosi.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi %1$s ääniviestiisi.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoi %1$s kerran katsottavaan mediaasi.</string>
@@ -1813,6 +1892,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="message_details_header__sent">Lähetetty:</string>
   <string name="message_details_header__received">Vastaanotettu:</string>
   <string name="message_details_header__disappears">Katoaa:</string>
+  <string name="message_details_header__via">Kautta:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Käsiteltävänä</string>
   <string name="message_details_recipient_header__sent_to">Lähetetty käyttäjälle</string>
@@ -1950,6 +2030,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__help">Tuki </string>
   <string name="preferences__advanced">Lisäasetukset</string>
   <string name="preferences__donate_to_signal">Lahjoita Signalille</string>
+  <string name="preferences__subscription">Tilaus</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Yksityisyys</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuaaliset MMS-asetukset</string>
@@ -2921,12 +3003,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Olet aikeissa vaihtaa puhelinnumerosi numerosta %1$s numeroon %2$s.\n\nEnnen kuin jatkat, varmista että alla oleva numero on oikein.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Muokkaa numeroa</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signalin numeronvaihto - Tarvitsen apua tunnusluvun kanssa Androidilla (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-koodit eivät täsmää</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Uudella ja vanhalla numerolllasi on eri tunnusluvut. Haluatko pitää vanhan tunnuslukusi vai päivittää sen?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Säilytä vanha PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Päivitä tunnusluku</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Säilytetäänkö vanha PIN-koodi?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Vaikuttaa siltä että yritit vaihtaa numerosi, mutta emme pystyneet vahvistamaan että se onnistui.\n\nTarkistetaan uudestaan…</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numeroksesi on vahvistettu %1$s. Jos tämä ei ole numerosi, ole hyvä ja aloita numeronvaihtoprosessi alusta.</string>
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Puhelinnumeron vaihtopyynnön tilaa ei voitu määrittää.\n\n(Virhe: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Yritä uudelleen</string>
   <string name="ChangeNumberLockActivity__leave">Poistu</string>
@@ -2982,6 +3068,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensoitu GPLv3-lisenssillä</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Median laatu</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Lähetettävän median laatu</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Korkealaatuiden median lähetys kuluttaa enemmän dataa.</string>
   <string name="DataAndStorageSettingsFragment__high">Korkea</string>
   <string name="DataAndStorageSettingsFragment__standard">Vakio</string>
@@ -3156,16 +3244,28 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="one">Viestin lähetys epäonnistui</item>
     <item quantity="other">Viestien lähetys epäonnistui</item>
   </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Viestin eteenpäinlähetys epäonnistui koska se ei enää ole saatavilla.</item>
+    <item quantity="other">Viestien eteenpäinlähetys epäonnistui koska ne eivät enää ole saatavilla.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Yläraja saavutettu</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Lisää viesti</string>
   <string name="MediaReviewFragment__add_a_reply">Lisää vastaus</string>
+  <string name="MediaReviewFragment__send_to">Lähetä kontaktille</string>
   <string name="MediaReviewFragment__view_once_message">Kerran katsottava viesti</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Yksi tai useampi valinnoista olivat liian suuria</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Yksi tai useampi valinnoista olivat virheellisiä</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Liikaa valintoja</string>
   <string name="ImageEditorHud__cancel">Peruuta</string>
+  <string name="ImageEditorHud__draw">Piirrä</string>
   <string name="ImageEditorHud__write_text">Kirjoita teksti</string>
   <string name="ImageEditorHud__add_a_sticker">Lisää tarra</string>
+  <string name="ImageEditorHud__blur">Sumenna</string>
+  <string name="ImageEditorHud__done_editing">Muokkaus valmis</string>
   <string name="ImageEditorHud__clear_all">Tyhjennä kaikki</string>
   <string name="ImageEditorHud__undo">Kumoa</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Vaihda kynän ja korostekynän välillä</string>
   <string name="ImageEditorHud__delete">Poista</string>
   <string name="ImageEditorHud__toggle_between_text_styles">Vaihda tekstityylien välillä</string>
   <string name="MediaCountIndicatorButton__send">Lähetä</string>
@@ -3175,17 +3275,49 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaReviewImagePageFragment__discard_changes">Hylätäänkö muutokset?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
   <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
   <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy tukijaksi</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Kaltaisesti ihmiset pitävät Signalin tehokkaana.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Tue teknologiaa joka on rakennettu sinulle—ei datallesi—liittymällä yhteisöön joka pitää sitä yllä.</string>
   <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string>
+  <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
+  <string name="SubscribeFragment__cancel_subscription">Peruuta tilaus</string>
+  <string name="SubscribeFragment__confirm_cancellation">Vahvista peruutus?</string>
   <string name="SubscribeFragment__not_now">Ei nyt</string>
   <string name="SubscribeFragment__confirm">Vahvista</string>
+  <string name="SubscribeFragment__update_subscription">Päivitä tilaus</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tilauksesi on peruttu.</string>
+  <string name="SubscribeFragment__update_subscription_question">Päivitä tilaus?</string>
   <string name="SubscribeFragment__update">Päivitä</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Sinulta laskutetaan tilauksesi täysi hinta tänään. Tilauksesi uudistuu %1$s.</string>
+  <string name="Subscription__s_per_month">%s/kk</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/kk· Uudistetaan %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/kk· Loppuu %2$s</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Kiitämme tuestasi!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Kiitos boostista!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Näytä profiilissa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
+  <string name="ManageDonationsFragment__my_support">Antamani tuki</string>
+  <string name="ManageDonationsFragment__manage_subscription">Muokkaa tilausta</string>
+  <string name="ManageDonationsFragment__subscription_faq">Tilausten UKK</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
+  <string name="BoostFragment__give_signal_a_boost">Anna Signalille boostia</string>
   <string name="Boost__enter_custom_amount">Syöltä muu summa</string>
+  <string name="Boost__one_time_contribution">Kertalahjoitus</string>
+  <string name="MySupportPreference__add_a_signal_boost">Lisää Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/kk</string>
+  <string name="MySupportPreference__renews_s">Uudistuu%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Ryhdy tilaajaksi</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
+  <string name="Subscription__verification_failed">Tilauksen vahvistus epäonnistui</string>
   <string name="Subscription__contact_support">Ota yhteyttä tukeen</string>
   <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
   <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string>
+  <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään joten sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruuttaminen epäonnistui</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruuttaminen vaatii internet-yhteyden.</string>
   <!--EOF-->
 </resources>

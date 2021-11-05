@@ -3351,7 +3351,6 @@ Sjekkar igjen no …</string>
   <string name="MySupportPreference__renews_s">Fornyar %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merket ditt er utgått</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s-merket ditt er utgått, og er ikkje lenger synleg for andre på profilen din.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Vurder eit månadleg bidrag for å fortsetja å støtta teknologi som er bygd for deg – og ikkje berre for dine data.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli abonnent</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
   <string name="Subscription__verification_failed">Klarte ikkje stadfesta abonnementet</string>

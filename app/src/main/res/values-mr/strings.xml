@@ -2564,7 +2564,7 @@
   <string name="PhoneNumberPrivacy_my_contacts">माझे संपर्क</string>
   <string name="PhoneNumberPrivacy_nobody">कोणीही नाही</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">आपण संदेश पाठवलेल्या सर्व व्यक्ती आणि गटांना आपला फोन नंबर दृश्यमान असेल.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">ज्याच्याकडे आपला फोन नंबर त्यांच्या संपर्कामध्ये आहे ते आपल्याला Signal मध्ये संपर्क म्हणून पाहतील. इतर व्यक्ती आपल्याला शोधू शकतील.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">ज्यांच्याकडे आपला फोन नंबर त्यांच्या संपर्कामध्ये आहे ते आपल्याला Signal मध्ये संपर्क म्हणून पाहतील. इतर व्यक्ती आपल्याला शोधू शकतील.</string>
   <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android स्क्रीन लॉक किंवा फिंगरप्रिंटने Signal अॅक्सेस लॉक करा</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">स्क्रीन लॉक निष्क्रियता टाईमआऊट</string>

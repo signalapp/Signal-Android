@@ -1855,7 +1855,6 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">上載唔到記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請您儘可能具體說明，幫我哋了解個問題。</string>
-  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">呢個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近用過</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">公仔同人像</string>
@@ -3234,7 +3233,6 @@
   <string name="MySupportPreference__renews_s">到 %1$s 續期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您個襟章已經褪色夠鐘換喇</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">您個「%1$s」襟章已經褪色夠鐘換喇，因此已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">如果您想繼續力撐為您而設、而非為求您嘅資料而打造嘅科技，請考慮做我哋月供課金計劃嘅金主。</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">擔當課金計劃金主</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
   <string name="Subscription__verification_failed">課金計劃驗證失敗</string>

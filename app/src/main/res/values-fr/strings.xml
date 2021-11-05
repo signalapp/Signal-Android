@@ -3332,7 +3332,6 @@ Nouvelle tentative…</string>
   <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre badge a expiré</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Votre badge %1$s a expiré et n’est plus visible par les autres sur votre profil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Pour soutenir une technologie conçue pour vous — pas pour vos données — envisagez de prendre un abonnement mensuel.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">S’abonner</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
   <string name="Subscription__verification_failed">Échec de la vérification de l’abonnement</string>
