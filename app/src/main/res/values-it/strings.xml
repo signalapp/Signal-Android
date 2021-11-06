@@ -3337,6 +3337,7 @@
   <string name="MySupportPreference__renews_s">Rinnovo %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Il tuo badge %1$s è scaduto, e non è più visibile agli altri sul tuo profilo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuare a sostenere la tecnologia che è costruita per te—non per i tuoi dati—considera di diventare un contributore mensile.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Diventa un contributore</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Non ora</string>
   <string name="Subscription__verification_failed">Verifica del contributo non riuscita</string>

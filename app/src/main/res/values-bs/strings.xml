@@ -3283,7 +3283,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Uvrštavanje članova</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Izmjene informacija o grupi</string>
-  <string name="PermissionsSettingsFragment__send_messages">Pošalji poruke</string>
+  <string name="PermissionsSettingsFragment__send_messages">Slanje poruka</string>
   <string name="PermissionsSettingsFragment__all_members">Svi članovi</string>
   <string name="PermissionsSettingsFragment__only_admins">Samo administratori</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Ko može uvrstiti nove članove?</string>

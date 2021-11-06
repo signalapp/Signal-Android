@@ -3326,6 +3326,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MySupportPreference__renews_s">Verlängert sich am %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s-Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Um auch weiterhin eine Technologie zu unterstützen, die für dich — und nicht für deine Daten — entwickelt wird, zieh bitte eine regelmäßige Spende in Betracht.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Spende regelmäßig</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
   <string name="Subscription__verification_failed">Regelmäßige Spende konnte nicht verifiziert werden</string>

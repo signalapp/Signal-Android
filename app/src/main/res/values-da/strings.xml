@@ -38,7 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">Pinkode deaktiveret.</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påmindelse?</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer sætning til betalingsgendannelse</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer gendannelsessætning for betalinger</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Registrer sætning</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere din pinkode, skal du registrere din sætning til betalingsgendannelse for at sikre, at du kan gendanne din betalingskonto.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -228,7 +228,7 @@
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d af %2$d</string>
   <string name="ConversationActivity_no_results">Ingen resultater</string>
-  <string name="ConversationActivity_sticker_pack_installed">Pakke med klistermærker installeret</string>
+  <string name="ConversationActivity_sticker_pack_installed">Klistermærkepakke installeret</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nyt! Udtryk dig med klistermærker</string>
   <string name="ConversationActivity_cancel">Annuller</string>
   <string name="ConversationActivity_delete_conversation">Slet samtale?</string>
@@ -933,9 +933,9 @@
   <string name="MessageRecord_s_joined_signal">%s bruger Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverede forsvindende beskeder.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverede forsvindende beskeder.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du indstillede timeren for forsvindende beskeder til %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s indstillede timeren for forsvindende beskeder til %2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Timeren for forsvindende beskeder er indstillet til %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du indstillede udløbstiden for forsvindende beskeder til %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s indstillede udløbstiden for forsvindende beskeder til %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Udløbstiden for forsvindende beskeder er indstillet til %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen blev opdateret til en ny gruppe.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke føjes til den nye gruppe og er blevet inviteret til at deltage.</string>
   <string name="MessageRecord_chat_session_refreshed">Chatsession genopfrisket</string>
@@ -1469,7 +1469,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ThreadRecord_you_deleted_this_message">Du slettede beskeden.</string>
   <string name="ThreadRecord_s_is_on_signal">%s bruger Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvindende beskeder deaktiveret</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timer for forsvindende beskeder indstillet til %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Udløbstid for forsvindende beskeder indstillet til %s</string>
   <string name="ThreadRecord_safety_number_changed">Sikkerhedsnummer ændret</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
   <string name="ThreadRecord_you_marked_verified">Markeret som verificeret</string>
@@ -1720,7 +1720,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen grupper til fælles. Gennemgå anmodninger omhyggeligt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i gruppen. Gennemgå anmodninger omhyggeligt. </string>
   <string name="ConversationUpdateItem_view">Vis</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Tiden for forsvindende besked indstilles til %1$s, når du sender beskeder til dem.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Udløbstiden for forsvindende besked indstilles til %1$s, når du sender beskeder til dem.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspil … Pause</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -2561,7 +2561,7 @@ nummer (%s) er ugyldigt</string>
   <string name="LocalBackupJob_creating_backup">Opretter sikkerhedskopi…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhedskopiering mislykkedes</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mappe med sikkerhedskopier er blevet slettet eller flyttet.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din sikkerhedskopifil er for stor til at kunne gemmes på enheden</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din sikkerhedskopifil er for stor til at kunne gemmes på denne lagerenhed.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Der er ikke nok plads tilgængelig til at gemme din sikkerhedskopi.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryk for at administrere sikkerhedskopier.</string>
   <string name="ProgressPreference_d_messages_so_far">%d beskeder ind til videre</string>
@@ -3043,14 +3043,14 @@ nummer (%s) er ugyldigt</string>
   <string name="PrivacySettingsFragment__app_security">App-sikkerhed</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i listen \"Seneste apps\" og i Signal</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardtimer for nye chats</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en timer for forsvindende beskeder, der skal gælde som standard for alle nye chats startet af dig.</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye chats</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye chats startet af dig.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når funktionen er aktiveret, forsvinder nye sendte og modtagne beskeder i nye chats, som du har startet, efter de er blevet set.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når funktionen er aktiveret, forsvinder nye sendte og modtagne beskeder i chatten, efter de er blevet set.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder, i nye samtaler du starter, forsvinde efter at de er blevet set.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder, i nye samtaler du starter, forsvinde efter at de er blevet set.</string>
   <string name="ExpireTimerSettingsFragment__off">Fra</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 uger</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 uge</string>
@@ -3336,6 +3336,7 @@ nummer (%s) er ugyldigt</string>
   <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dit %1$s-emblem er udløbet og er ikke længere synligt for andre på din profil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Overvej at tegne et månedsabonnement for forsat at støtte op om teknologi, der er udviklet til dig - ikke for at høste dine data.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bliv abonnent</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
   <string name="Subscription__verification_failed">Bekræftelse af abonnement mislykkedes</string>

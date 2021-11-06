@@ -3542,6 +3542,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MySupportPreference__renews_s">Obnovuje %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Platnosť odznaku vypršala</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Platnosť odznaku %1$s vypršala a už nie je viditeľný pre ostatných vo vašom profile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás -nie pre vaše údaje-, zvážte možnosť stať sa mesačným predplatiteľom.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Staňte sa predplatiteľmi</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
   <string name="Subscription__verification_failed">Overenie odberu zlyhalo</string>

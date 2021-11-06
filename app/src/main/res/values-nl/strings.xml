@@ -3158,7 +3158,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
   <string name="ConversationSettingsFragment__call">Bellen</string>
   <string name="ConversationSettingsFragment__mute">Meldingen dempen</string>
-  <string name="ConversationSettingsFragment__muted">Gedempt</string>
+  <string name="ConversationSettingsFragment__muted">Meldingen zijn gedempt</string>
   <string name="ConversationSettingsFragment__search">Zoeken</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Verlopende berichten</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Geluiden &amp; meldingen</string>
@@ -3176,8 +3176,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__group_link">Groepsverwijzing voor deze groep</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
   <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek gedempt tot %1$s</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">Gesprek voor onbepaalde tijd gedempt</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Je heb dit gesprek in het verleden tot %1$s gedempt</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Je hebt dit gesprek in het verleden voor onbepaalde tijd gedempt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefoonnummer</string>
   <!--PermissionsSettingsFragment-->

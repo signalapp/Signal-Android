@@ -703,6 +703,7 @@
   <string name="ManageProfileFragment_your_name">आपले नाव</string>
   <string name="ManageProfileFragment_your_username">आपले वापरकर्तानाव</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">अवतार सेट करण्यात अयशस्वी</string>
+  <string name="ManageProfileFragment_badges">बॅजेस्</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">कुठलेही गट समाईक नाहीत</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1547,7 +1548,7 @@
   <string name="MessageNotifier_message_delivery_paused">संदेश डिलिव्हरीला विराम दिला.</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal वर संदेश पाठवणे सुरू ठेवण्यासाठी सत्यापित करा.</string>
   <string name="MessageNotifier_mark_all_as_read">सर्व वाचले म्हणून चिन्हांकित करा</string>
-  <string name="MessageNotifier_mark_read">वाचले चिन्हांकित करा</string>
+  <string name="MessageNotifier_mark_read">वाचले असे चिन्हांकित करा</string>
   <string name="MessageNotifier_turn_off_these_notifications">या सूचना बंद करा</string>
   <string name="MessageNotifier_view_once_photo">एकदा-बघा फोटो</string>
   <string name="MessageNotifier_view_once_video">एकदा-बघा व्हिडिओ</string>
@@ -1867,6 +1868,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>एक नाव किंवा नंबर प्रविष्ट करा</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[जर आपल्याला %s सोबत आपल्या एन्क्रिप्शनची सुरक्षा सत्यापित करायची असेल, तर त्यांचा डिव्हाईस वरील नंबरची तुलना करा. पर्यायीरीत्या, आपण त्यांच्या फोन वरील कोड स्कॅन करू शकता, किंवा त्यांना आपला कोड स्कॅन करण्यास विचारू शकता. <a href="https://signal.org/redirect/safety-numbers">अधिक जाणा</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">स्कॅन करण्यासाठी टॅप करा</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">सुरक्षितता नंबरची पडताळणी करण्यात अयशस्वी</string>
   <string name="verify_display_fragment__loading">लोड होत आहे…</string>
@@ -2995,13 +2997,17 @@
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">तुम्ही तुमचा फोन नंबर %1$s वरून %2$s वर बदलणार आहात.\n\nपुढे जाण्यापूर्वी, कृपया खालील क्रमांक बरोबर असल्याचे सत्यापित करा.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">नंबर संपादित करा</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal क्रमांक बदला - Android (v2 PIN) साठी PIN ची मदत पाहिजे</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN जुळत नाहीत</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">तुमच्या नवीन क्रमांकाशी संबंधित PIN तुमच्या जुन्या क्रमांकाशी संबंधित PIN पेक्षा वेगळा आहे. तुम्हाला तुमचा जुना PIN ठेवायचा आहे की तो बदलायचा आहे ?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">जुना PIN ठेवा</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN अद्यतनित करा</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">जुना पिन ठेवायचा ?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">तुम्ही तुमचा नंबर बदलण्याचा प्रयत्न केला आहे असे दिसते पण तो यशस्वी झाला की नाही हे आम्हाला कळू शकले नाही.\n\nपुन्हा तपासत आहे….</string>
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">तुमचा नंबर म्हणून %1$s ची पुष्टी केली गेली आहे. हा तुमचा नवीन क्रमांक नसल्यास, कृपया क्रमांक बदलण्याची प्रक्रिया पुन्हा सुरू करा.</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">आम्ही तुमच्या नंबर बदलण्याच्या विनंतीची स्थिती निर्धारित करू शकलो नाही.\n\n(त्रुटी: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">पुन्हा प्रयत्न करा</string>
   <string name="ChangeNumberLockActivity__leave">सोडा</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">डीबग लॉग प्रविष्ट करा</string>
@@ -3257,26 +3263,63 @@
   <string name="MediaReviewImagePageFragment__discard_changes">बदल रद्द करायचे ?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">या फोटोमध्ये केलेले कोणतेही बदल तुम्ही गमावाल.</string>
   <string name="CameraFragment__failed_to_open_camera">कॅमेरा उघडण्यात अयशस्वी</string>
+  <string name="BadgesOverviewFragment__my_badges">आपले बॅजेेस्</string>
+  <string name="BadgesOverviewFragment__featured_badge">वैशिष्ट्यीकृत बॅज</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">बॅज प्रोफाइलवर दाखवा</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
+  <string name="BadgeSelectionFragment__select_badges">बॅजेस् निवडा</string>
   <string name="SelectFeaturedBadgeFragment__preview">पुनरावलोकन</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">बॅज निवडा</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">आपन बॅज निवडणे आवश्यक आहे</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
+  <string name="ImageView__badge">बॅज</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आपल्यासारख्या लोकांद्वारा समर्थित आहे.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
   <string name="SubscribeFragment__donation_amount">देणगी रक्कम</string>
+  <string name="SubscribeFragment__more_payment_options">अधिक पेमेंट पर्याय</string>
   <string name="SubscribeFragment__cancel_subscription">सब्स्क्रिप्शन रद्द करा</string>
+  <string name="SubscribeFragment__confirm_cancellation">रद्द करण्याची पुष्टी करायची ?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">तुमच्याकडून पुन्हा शुल्क आकारले जाणार नाही. तुमचा बिलिंग कालावधी संपल्यावर तुमचा बॅज तुमच्या प्रोफाइलमधून काढून टाकला जाईल.</string>
   <string name="SubscribeFragment__not_now">आता नाही</string>
   <string name="SubscribeFragment__confirm">पुष्टी करा</string>
+  <string name="SubscribeFragment__update_subscription">सब्स्क्रिप्शन अद्ययावत करा</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">तुमचे सब्स्क्रिप्शन रद्द केले</string>
+  <string name="SubscribeFragment__update_subscription_question">सब्स्क्रिप्शन अद्ययावत करायचे ?</string>
   <string name="SubscribeFragment__update">अद्यतन</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">तुमच्याकडून आज नवीन सब्स्क्रिप्शनची संपूर्ण रक्कम आकारली जाईल. तुमचे सदस्यत्व नूतनीकरण होईल %1$s.</string>
   <string name="Subscription__s_per_month">%s/महिना</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/महिना . नूतनीकरण %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/महिना . कालबाह्य %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ही एक विना - नफा संस्था आहे ज्यामध्ये कोणतेही जाहिरातदार किंवा गुंतवणूकदार नसतात, केवळ ते वापरणाऱ्या आणि मूल्यवान लोकांद्वारे टिकून राहते.  आवर्ती मासिक योगदान द्या आणि तुमचे समर्थन सामायिक करण्यासाठी प्रोफाइल बॅज मिळवा.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">योगदान का द्यावे ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">तुमचे योगदान जगभरातील लाखो लोक खाजगी आणि तात्काळ संप्रेषणासाठी वापरत असलेल्या अॅपच्या विकास, सर्व्हर आणि बँडविड्थसाठी पैसे देण्यास मदत करते.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट साठी धन्यवाद !</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">तुम्ही %s बॅज मिळवला आहे! तुमचा बॅज प्रदर्शित केल्याने तुम्ही Signal ला समर्थन करता असे तुम्ही ज्यांच्याशी चॅट करता त्यांना दर्शवेल.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफाइलवर दाखवा</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">वैशिष्ट्यीकृत बॅज बनवा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ठीक</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जेव्हा तुमच्याकडे एकापेक्षा जास्त बॅज असतील, तेव्हा तुम्ही तुमच्या प्रोफाईलवर इतरांना पाहण्यासाठी एक निवडू शकता.</string>
+  <string name="ManageDonationsFragment__my_support">आपले समर्थन</string>
+  <string name="ManageDonationsFragment__manage_subscription">सब्स्क्रिप्शन व्यवस्थापित करा</string>
+  <string name="ManageDonationsFragment__badges">बॅजेस्</string>
   <string name="ManageDonationsFragment__subscription_faq">सब्स्क्रिप्शन बद्दल वारंवार विचारले जाणारे प्रश्न</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">सब्स्क्रिप्शन मिळविण्यात त्रुटी.</string>
+  <string name="BoostFragment__give_signal_a_boost">Signal ला बूस्ट करा</string>
+  <string name="BoostFragment__say_thanks_and_earn">\"धन्यवाद !\" म्हणा आणि यासाठी %1$d दिवस बूस्ट बॅज मिळवा.</string>
   <string name="Boost__enter_custom_amount">कस्टम रक्कम प्रविष्ट करा</string>
+  <string name="Boost__one_time_contribution">एक वेळचे योगदान</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signal बूस्ट जोडा</string>
+  <string name="MySupportPreference__s_per_month">%1$s/महिना</string>
+  <string name="MySupportPreference__renews_s">नूतनीकरण %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपला बॅज कालबाह्य झाला आहे</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">आपला %1$s बॅज कालबाह्य झाला आहे, आणि यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">सब्स्क्राइबर व्हा</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
+  <string name="Subscription__verification_failed">सब्स्क्रिप्शन सत्यापन अयशस्वी</string>
   <string name="Subscription__contact_support">समर्थन सोबत संपर्क साधा</string>
+  <string name="Subscription__earn_a_s_badge">%1$s बॅज मिळवा</string>
   <string name="SubscribeFragment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
   <string name="DonationsErrors__payment_failed">पेमेंट अयशस्वी झाले</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>

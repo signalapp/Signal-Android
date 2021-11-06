@@ -3335,6 +3335,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s rozetinizin süresi doldu ve artık başkalarına gözükmeyecek.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Sizin için -verileriniz için değil- oluşturulmuş teknolojiyi desteklemeye devam etmek için lütfen aylık abone olmayı düşünün.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abone ol</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
   <string name="Subscription__verification_failed">Abonelik Onaylanamadı</string>

@@ -2994,9 +2994,9 @@
   <string name="HelpFragment__copyright_signal_messenger">Авторски права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
-  <string name="DataAndStorageSettingsFragment__media_quality">Квалитет на медиуми</string>
-  <string name="DataAndStorageSettingsFragment__sent_media_quality">Квалитет на испратени медиуми</string>
-  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Испраќањето на висококвалитетни медиуми ќе користи повеќе податоци.</string>
+  <string name="DataAndStorageSettingsFragment__media_quality">Квалитет на медија</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Квалитет на испратена медија</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Испраќањето на висококвалитетна медија ќе користи повеќе податоци.</string>
   <string name="DataAndStorageSettingsFragment__high">Високо</string>
   <string name="DataAndStorageSettingsFragment__standard">Стандардно</string>
   <string name="DataAndStorageSettingsFragment__calls">Повици</string>
@@ -3179,6 +3179,7 @@
   <string name="MediaReviewFragment__add_a_message">Додај порака</string>
   <string name="MediaReviewFragment__add_a_reply">Додај одговор</string>
   <string name="MediaReviewFragment__send_to">Испрати на</string>
+  <string name="MediaReviewFragment__view_once_message">Еднократно видлива порака</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">Еден или повеќе предмети беа премногу големи</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">Еден или повеќе предмети беа невалидни</string>
   <string name="MediaReviewFragment__too_many_items_selected">Премногу избрани предмети</string>

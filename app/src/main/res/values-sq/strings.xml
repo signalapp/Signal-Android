@@ -3340,6 +3340,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MySupportPreference__renews_s">Rinovohet më %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Stema juaj ka Skaduar</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Stema juaj %1$s ka skaduar dhe te profili juaj s’është më e dukshme për të tjerët.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Që të vazhdon përkrahjen e teknologjisë që është ngritur për ju—jo për të dhënat tuaja—ju lutemi, shihni mundësinë e bërjes së një pajtimtari të përmuajshëm.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bëhuni një pajtimtar</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
   <string name="Subscription__verification_failed">Verifikimi i Pajtimit Dështoi</string>

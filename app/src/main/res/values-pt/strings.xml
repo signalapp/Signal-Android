@@ -3336,6 +3336,7 @@
   <string name="MySupportPreference__renews_s">Renovações %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">O seu crachá %1$s expirou, e deixou de estar visível para outras pessoas no seu perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar a suportar a tecnologia que foi construída para si (não para os seus dados), considere fazer uma assinatura mensal.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Torne-se um assinante</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="Subscription__verification_failed">Falha na verificação da assinatura</string>

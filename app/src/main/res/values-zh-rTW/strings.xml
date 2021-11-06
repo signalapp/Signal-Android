@@ -3230,6 +3230,7 @@
   <string name="MySupportPreference__renews_s">續約 %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">你的 %1$s 徽章已過期，在你的個人資料中徽章無法再被看見。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">要繼續支援專為你打造的技術—而非為你的資料—請考慮成為月訂閱者。</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <string name="Subscription__verification_failed">訂閱驗證失敗</string>

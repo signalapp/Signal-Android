@@ -3329,6 +3329,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har löpt ut</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ditt %1$s-märke har löpt ut och är inte längre synligt för andra i din profil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Om du vill fortsätta stöda teknik som är byggd för dig—inte för dina data—vänligen överväg att bli en månadsabonnent.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli prenumerant</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
   <string name="Subscription__verification_failed">Prenumerationsverifiering misslyckades</string>

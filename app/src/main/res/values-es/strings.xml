@@ -3337,6 +3337,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MySupportPreference__renews_s">Se renueva el %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Tu distintivo %1$s ha caducado y ya no es visible para otr@s en tu perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar apoyando la tecnología construída para ti (y no para tus datos) considera una suscripción mensual.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Suscribirme</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
   <string name="Subscription__verification_failed">Fallo al verificar la suscripción</string>
