@@ -54,14 +54,31 @@ public class SenderKeyDatabase extends Database {
   public void store(@NonNull SignalProtocolAddress address, @NonNull DistributionId distributionId, @NonNull SenderKeyRecord record) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
-    ContentValues values = new ContentValues();
-    values.put(ADDRESS, address.getName());
-    values.put(DEVICE, address.getDeviceId());
-    values.put(DISTRIBUTION_ID, distributionId.toString());
-    values.put(RECORD, record.serialize());
-    values.put(CREATED_AT, System.currentTimeMillis());
+    db.beginTransaction();
+    try {
+      ContentValues updateValues = new ContentValues();
+      updateValues.put(RECORD, record.serialize());
 
-    db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+      String   query       = ADDRESS + " = ? AND " + DEVICE + " = ? AND " + DISTRIBUTION_ID + " = ?";
+      String[] args        = SqlUtil.buildArgs(address.getName(), address.getDeviceId(), distributionId);
+      int      updateCount = db.update(TABLE_NAME, updateValues, query, args);
+
+      if (updateCount <= 0) {
+        Log.d(TAG, "New sender key " + distributionId + " from " + address);
+
+        ContentValues insertValues = new ContentValues();
+        insertValues.put(ADDRESS, address.getName());
+        insertValues.put(DEVICE, address.getDeviceId());
+        insertValues.put(DISTRIBUTION_ID, distributionId.toString());
+        insertValues.put(RECORD, record.serialize());
+        insertValues.put(CREATED_AT, System.currentTimeMillis());
+        db.insertWithOnConflict(TABLE_NAME, null, insertValues, SQLiteDatabase.CONFLICT_REPLACE);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   public @Nullable SenderKeyRecord load(@NonNull SignalProtocolAddress address, @NonNull DistributionId distributionId) {

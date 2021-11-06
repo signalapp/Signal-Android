@@ -735,7 +735,7 @@ private static final String[] GROUP_PROJECTION = {
       List<UUID>           removed = DecryptedGroupUtil.removedMembersUuidList(change);
 
       if (removed.size() > 0) {
-        Log.i(TAG, removed.size() + " members were removed from group " + groupId + ". Rotating the sender key.");
+        Log.i(TAG, removed.size() + " members were removed from group " + groupId + ". Rotating the DistributionId " + distributionId);
         SenderKeyUtil.rotateOurKey(context, distributionId);
       }
     }

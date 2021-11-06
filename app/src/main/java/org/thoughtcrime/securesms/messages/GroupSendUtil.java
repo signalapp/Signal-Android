@@ -216,7 +216,7 @@ public final class GroupSendUtil {
       long           keyAge         = System.currentTimeMillis() - keyCreateTime;
 
       if (keyCreateTime != -1 && keyAge > FeatureFlags.senderKeyMaxAge()) {
-        Log.w(TAG, "Key is " + (keyAge) + " ms old (~" + TimeUnit.MILLISECONDS.toDays(keyAge) + " days). Rotating.");
+        Log.w(TAG, "DistributionId " + distributionId + " was created at " + keyCreateTime + " and is " + (keyAge) + " ms old (~" + TimeUnit.MILLISECONDS.toDays(keyAge) + " days). Rotating.");
         SenderKeyUtil.rotateOurKey(context, distributionId);
       }
 
