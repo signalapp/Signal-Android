@@ -253,4 +253,17 @@
 
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+  <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+      android:id="@+id/conversation_list_bottom_action_bar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="36dp"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

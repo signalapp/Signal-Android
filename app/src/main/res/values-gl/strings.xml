@@ -180,9 +180,6 @@
   <string name="ConversationItem_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <string name="ConversationItem_you_deleted_this_message">Eliminaches esta mensaxe.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Restablecer sesión segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode resultar de axuda en caso de haber problemas de cifraxe nesta conversa. As mensaxes manteranse.</string>
-  <string name="ConversationActivity_reset">Restablecer</string>
   <string name="ConversationActivity_add_attachment">Engadir anexo</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Redactar mensaxe</string>
@@ -310,6 +307,8 @@
     <item quantity="one">Conversa movida á caixa de entrada</item>
     <item quantity="other">%d conversas movidas á caixa de entrada</item>
   </plurals>
+  <string name="ConversationListFragment_select">Seleccionar</string>
+  <string name="ConversationListFragment_select_all">Seleccionar todo</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaxe de intercambio de chaves</string>
   <!--ConversationListItemAction-->
@@ -784,14 +783,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de grella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de lista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionado</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d elemento %2$s</item>
-    <item quantity="other">%1$d elementos %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d elemento</item>
-    <item quantity="other">%1$d elementos</item>
-  </plurals>
+  <string name="MediaOverviewActivity_select_all">Seleccionar todo</string>
   <string name="MediaOverviewActivity_file">Ficheiro</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -1289,6 +1281,8 @@
   <string name="SharedContactView_add_to_contacts">Engadir a contactos</string>
   <string name="SharedContactView_invite_to_signal">Convidar a Signal</string>
   <string name="SharedContactView_message">Mensaxe de Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Máis</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Lembrarémoscho máis tarde.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Lembrarémoscho mañá.</string>
@@ -2706,6 +2700,7 @@
   <string name="HelpSettingsFragment__debug_log">Rexistro de depuración</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos e política de privacidade</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
   <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">Cor do chat</string>
@@ -2790,12 +2785,15 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalizar notificacións</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nova mensaxe</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Cámara</string>
   <string name="AvatarPickerFragment__photo">Fotografía</string>
@@ -2817,5 +2815,11 @@
   <string name="MediaReviewSelectedItem__tap_to_select">Toca para seleccionar</string>
   <string name="MediaReviewImagePageFragment__discard">Descartar</string>
   <string name="SelectFeaturedBadgeFragment__preview">Visualización</string>
+  <string name="SubscribeFragment__not_now">Agora non</string>
+  <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeFragment__update">Actualizar</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Feito</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora non</string>
+  <string name="Subscription__contact_support">Contactar coa Axuda</string>
   <!--EOF-->
 </resources>

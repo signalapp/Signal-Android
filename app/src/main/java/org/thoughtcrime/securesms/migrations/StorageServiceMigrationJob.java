@@ -42,7 +42,7 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    if (TextSecurePreferences.getLocalUuid(context) == null) {
+    if (TextSecurePreferences.getLocalAci(context) == null) {
       Log.w(TAG, "Self not yet available.");
       return;
     }

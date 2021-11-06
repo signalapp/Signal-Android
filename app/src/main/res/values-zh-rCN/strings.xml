@@ -183,9 +183,6 @@
   <string name="ConversationItem_this_message_was_deleted">消息已删除。</string>
   <string name="ConversationItem_you_deleted_this_message">您删除了此消息。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">对话出现加密问题时，可尝试重置。重置不会删除你的消息。</string>
-  <string name="ConversationActivity_reset">重置</string>
   <string name="ConversationActivity_add_attachment">添加附件</string>
   <string name="ConversationActivity_select_contact_info">选择联系人信息</string>
   <string name="ConversationActivity_compose_message">撰写消息</string>
@@ -305,6 +302,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已将 %d 个对话移至收件箱</item>
   </plurals>
+  <string name="ConversationListFragment_select">选择</string>
+  <string name="ConversationListFragment_select_all">选择全部</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
   <!--ConversationListItemAction-->
@@ -749,12 +748,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">网格视图</string>
   <string name="MediaOverviewActivity_List_view_description">列表视图</string>
   <string name="MediaOverviewActivity_Selected_description">选中</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d 个条目 %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d 条目</item>
-  </plurals>
+  <string name="MediaOverviewActivity_select_all">选择全部</string>
   <string name="MediaOverviewActivity_file">文件</string>
   <string name="MediaOverviewActivity_audio">音频</string>
   <string name="MediaOverviewActivity_video">视频</string>
@@ -1238,6 +1232,8 @@
   <string name="SharedContactView_add_to_contacts">添加到联系人</string>
   <string name="SharedContactView_invite_to_signal">邀请使用 Signal</string>
   <string name="SharedContactView_message">Signal 消息</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">更多</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">稍后提示。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">明天提示。</string>
@@ -1767,15 +1763,6 @@
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- 请选择选项 --</item>
-    <item>出现问题</item>
-    <item>功能请求</item>
-    <item>疑问</item>
-    <item>反馈</item>
-    <item>其他</item>
-    <item>付款</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -2874,6 +2861,8 @@
   <string name="HelpFragment__copyright_signal_messenger">版权所有 Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">根据 GPLv3 授权许可</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">高</string>
+  <string name="DataAndStorageSettingsFragment__standard">标准</string>
   <string name="DataAndStorageSettingsFragment__calls">通话</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">自动</string>
@@ -2983,6 +2972,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">新付款</string>
@@ -2991,7 +2981,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">搜索名字或号码</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">相机</string>
   <string name="AvatarPickerFragment__photo">图片</string>
@@ -3017,5 +3007,16 @@
   <string name="MediaReviewSelectedItem__tap_to_select">点击选择</string>
   <string name="MediaReviewImagePageFragment__discard">放弃</string>
   <string name="SelectFeaturedBadgeFragment__preview">预览</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由如您一样的用户提供动力。</string>
+  <string name="SubscribeFragment__donation_amount">捐赠金额</string>
+  <string name="SubscribeFragment__not_now">稍后再说</string>
+  <string name="SubscribeFragment__confirm">确认</string>
+  <string name="SubscribeFragment__update">更新</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
+  <string name="Boost__enter_custom_amount">输入自定义金额</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍后再说</string>
+  <string name="Subscription__contact_support">联系支持</string>
+  <string name="SubscribeFragment__processing_payment">正在处理付款…</string>
+  <string name="DonationsErrors__payment_failed">付款失败</string>
   <!--EOF-->
 </resources>

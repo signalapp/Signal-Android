@@ -362,5 +362,17 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
     db.delete(PayloadTable.TABLE_NAME, query, args)
   }
 
+  fun remapRecipient(oldRecipientId: RecipientId, newRecipientId: RecipientId) {
+    val values = ContentValues().apply {
+      put(RecipientTable.RECIPIENT_ID, newRecipientId.serialize())
+    }
+
+    val db = databaseHelper.signalWritableDatabase
+    val query = "${RecipientTable.RECIPIENT_ID} = ?"
+    val args = SqlUtil.buildArgs(oldRecipientId.serialize())
+
+    db.update(RecipientTable.TABLE_NAME, values, query, args)
+  }
+
   private data class RecipientDevice(val recipientId: RecipientId, val devices: List<Int>)
 }

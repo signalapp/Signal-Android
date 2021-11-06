@@ -15,10 +15,12 @@ import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
+import org.whispersystems.signalservice.internal.push.http.AcceptLanguagesUtil;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
@@ -26,6 +28,7 @@ import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.WebSocketProtos;
 
 import java.security.SecureRandom;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -55,10 +58,11 @@ public final class ProfileService {
   public Single<ServiceResponse<ProfileAndCredential>> getProfile(SignalServiceAddress address,
                                                                   Optional<ProfileKey> profileKey,
                                                                   Optional<UnidentifiedAccess> unidentifiedAccess,
-                                                                  SignalServiceProfile.RequestType requestType)
+                                                                  SignalServiceProfile.RequestType requestType,
+                                                                  Locale locale)
   {
-    UUID                               uuid           = address.getUuid();
-    SecureRandom                       random         = new SecureRandom();
+    ACI                                aci   = address.getAci();
+    SecureRandom                       random = new SecureRandom();
     ProfileKeyCredentialRequestContext requestContext = null;
 
     WebSocketProtos.WebSocketRequestMessage.Builder builder = WebSocketProtos.WebSocketRequestMessage.newBuilder()
@@ -66,22 +70,24 @@ public final class ProfileService {
                                                                                                      .setVerb("GET");
 
     if (profileKey.isPresent()) {
-      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(uuid);
+      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(aci.uuid());
       String            version              = profileKeyIdentifier.serialize();
 
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, uuid, profileKey.get());
+        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, aci.uuid(), profileKey.get());
 
         ProfileKeyCredentialRequest request           = requestContext.getRequest();
         String                      credentialRequest = Hex.toStringCondensed(request.serialize());
 
-        builder.setPath(String.format("/v1/profile/%s/%s/%s", uuid, version, credentialRequest));
+        builder.setPath(String.format("/v1/profile/%s/%s/%s", aci, version, credentialRequest));
       } else {
-        builder.setPath(String.format("/v1/profile/%s/%s", uuid, version));
+        builder.setPath(String.format("/v1/profile/%s/%s", aci, version));
       }
     } else {
       builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));
     }
+
+    builder.addHeaders(AcceptLanguagesUtil.getAcceptLanguageHeader(locale));
 
     WebSocketProtos.WebSocketRequestMessage requestMessage = builder.build();
 
@@ -91,17 +97,18 @@ public final class ProfileService {
 
     return signalWebSocket.request(requestMessage, unidentifiedAccess)
                           .map(responseMapper::map)
-                          .onErrorResumeNext(t -> restFallback(address, profileKey, unidentifiedAccess, requestType))
+                          .onErrorResumeNext(t -> restFallback(address, profileKey, unidentifiedAccess, requestType, locale))
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
   private Single<ServiceResponse<ProfileAndCredential>> restFallback(SignalServiceAddress address,
                                                                      Optional<ProfileKey> profileKey,
                                                                      Optional<UnidentifiedAccess> unidentifiedAccess,
-                                                                     SignalServiceProfile.RequestType requestType)
+                                                                     SignalServiceProfile.RequestType requestType,
+                                                                     Locale locale)
   {
-    return Single.fromFuture(receiver.retrieveProfile(address, profileKey, unidentifiedAccess, requestType), 10, TimeUnit.SECONDS)
-                 .onErrorResumeNext(t -> Single.fromFuture(receiver.retrieveProfile(address, profileKey, Optional.absent(), requestType), 10, TimeUnit.SECONDS))
+    return Single.fromFuture(receiver.retrieveProfile(address, profileKey, unidentifiedAccess, requestType, locale), 10, TimeUnit.SECONDS)
+                 .onErrorResumeNext(t -> Single.fromFuture(receiver.retrieveProfile(address, profileKey, Optional.absent(), requestType, locale), 10, TimeUnit.SECONDS))
                  .map(p -> ServiceResponse.forResult(p, 0, null));
   }
 

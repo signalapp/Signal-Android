@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.payments.currency.FiatMoney;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -60,6 +60,11 @@ public final class FiatMoneyUtil {
       formatter.setMinimumFractionDigits(amount.getCurrency().getDefaultFractionDigits());
     }
 
+    if (options.trimZerosAfterDecimal) {
+      formatter.setMinimumFractionDigits(0);
+      formatter.setMaximumFractionDigits(amount.getCurrency().getDefaultFractionDigits());
+    }
+
     String formattedAmount = formatter.format(amount.getAmount());
     if (amount.getTimestamp() > 0 && options.displayTime) {
       return resources.getString(R.string.CurrencyAmountFormatter_s_at_s,
@@ -106,8 +111,9 @@ public final class FiatMoneyUtil {
   }
 
   public static class FormatOptions {
-    private boolean displayTime = true;
-    private boolean withSymbol  = true;
+    private boolean displayTime           = true;
+    private boolean withSymbol            = true;
+    private boolean trimZerosAfterDecimal = false;
 
     private FormatOptions() {
     }
@@ -119,6 +125,11 @@ public final class FiatMoneyUtil {
 
     public @NonNull FormatOptions numberOnly() {
       this.withSymbol = false;
+      return this;
+    }
+
+    public @NonNull FormatOptions trimZerosAfterDecimal() {
+      this.trimZerosAfterDecimal = true;
       return this;
     }
   }

@@ -11,6 +11,8 @@ import com.annimon.stream.function.Function;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Executor;
 
 /**
@@ -44,12 +46,21 @@ public class Store<State> {
     liveStore.update(source, action);
   }
 
+  @MainThread
+  public void clear() {
+    liveStore.clear();
+  }
+
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   private final class LiveDataStore extends MediatorLiveData<State> {
     private       State    state;
     private final Executor stateUpdater;
 
+    private final Set<LiveData> sources;
+
     LiveDataStore(@NonNull State state) {
       this.stateUpdater = new SerialExecutor(SignalExecutors.BOUNDED);
+      this.sources      = new HashSet<>();
       setState(state);
     }
 
@@ -63,11 +74,19 @@ public class Store<State> {
     }
 
     <Input> void update(@NonNull LiveData<Input> source, @NonNull Action<Input, State> action) {
+      sources.add(source);
       addSource(source, input -> stateUpdater.execute(() -> setState(action.apply(input, getState()))));
     }
 
     void update(@NonNull Function<State, State> updater) {
       stateUpdater.execute(() -> setState(updater.apply(getState())));
+    }
+
+    void clear() {
+      for (LiveData source : sources) {
+        removeSource(source);
+      }
+      sources.clear();
     }
   }
 

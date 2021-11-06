@@ -34,16 +34,14 @@ public final class SignalSenderKeyStore implements SignalServiceSenderKeyStore {
   @Override
   public void storeSenderKey(@NonNull SignalProtocolAddress sender, @NonNull UUID distributionId, @NonNull SenderKeyRecord record) {
     synchronized (LOCK) {
-      RecipientId recipientId = RecipientId.fromExternalPush(sender.getName());
-      DatabaseFactory.getSenderKeyDatabase(context).store(recipientId, sender.getDeviceId(), DistributionId.from(distributionId), record);
+      DatabaseFactory.getSenderKeyDatabase(context).store(sender, DistributionId.from(distributionId), record);
     }
   }
 
   @Override
   public @Nullable SenderKeyRecord loadSenderKey(@NonNull SignalProtocolAddress sender, @NonNull UUID distributionId) {
     synchronized (LOCK) {
-      RecipientId recipientId = RecipientId.fromExternalPush(sender.getName());
-      return DatabaseFactory.getSenderKeyDatabase(context).load(recipientId, sender.getDeviceId(), DistributionId.from(distributionId));
+      return DatabaseFactory.getSenderKeyDatabase(context).load(sender, DistributionId.from(distributionId));
     }
   }
 
@@ -71,9 +69,9 @@ public final class SignalSenderKeyStore implements SignalServiceSenderKeyStore {
   /**
    * Removes all sender key session state for all devices for the provided recipient-distributionId pair.
    */
-  public void deleteAllFor(@NonNull RecipientId recipientId, @NonNull DistributionId distributionId) {
+  public void deleteAllFor(@NonNull String addressName, @NonNull DistributionId distributionId) {
     synchronized (LOCK) {
-      DatabaseFactory.getSenderKeyDatabase(context).deleteAllFor(recipientId, distributionId);
+      DatabaseFactory.getSenderKeyDatabase(context).deleteAllFor(addressName, distributionId);
     }
   }
 

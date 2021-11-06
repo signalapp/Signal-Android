@@ -15,8 +15,11 @@ import androidx.core.app.NotificationCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupProtos;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
@@ -26,7 +29,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.Medium;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -79,7 +82,7 @@ public class TextSecurePreferences {
   public  static final String MMS_USER_AGENT                   = "pref_mms_user_agent";
   private static final String MMS_CUSTOM_USER_AGENT            = "pref_custom_mms_user_agent";
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
-  private static final String LOCAL_UUID_PREF                  = "pref_local_uuid";
+  private static final String LOCAL_ACI_PREF                   = "pref_local_uuid";
   private static final String LOCAL_USERNAME_PREF              = "pref_local_username";
   public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
@@ -472,6 +475,10 @@ public class TextSecurePreferences {
     if (previous != value) {
       Recipient.self().live().refresh();
     }
+
+    if (value) {
+      clearLocalCredentials(context);
+    }
   }
 
   public static boolean isUnauthorizedRecieved(Context context) {
@@ -735,12 +742,12 @@ public class TextSecurePreferences {
     setStringPreference(context, LOCAL_NUMBER_PREF, localNumber);
   }
 
-  public static UUID getLocalUuid(Context context) {
-    return UuidUtil.parseOrNull(getStringPreference(context, LOCAL_UUID_PREF, null));
+  public static ACI getLocalAci(Context context) {
+    return ACI.parseOrNull(getStringPreference(context, LOCAL_ACI_PREF, null));
   }
 
-  public static void setLocalUuid(Context context, UUID uuid) {
-    setStringPreference(context, LOCAL_UUID_PREF, uuid.toString());
+  public static void setLocalAci(Context context, ACI aci) {
+    setStringPreference(context, LOCAL_ACI_PREF, aci.toString());
   }
 
   public static String getPushServerPassword(Context context) {
@@ -926,6 +933,10 @@ public class TextSecurePreferences {
 
     if (previous != registered) {
       Recipient.self().live().refresh();
+    }
+
+    if (previous && !registered) {
+      clearLocalCredentials(context);
     }
   }
 
@@ -1289,6 +1300,16 @@ public class TextSecurePreferences {
     } else {
       return defaultValues;
     }
+  }
+
+  private static void clearLocalCredentials(Context context) {
+    TextSecurePreferences.setPushServerPassword(context, Util.getSecret(18));
+
+    ProfileKey newProfileKey = ProfileKeyUtil.createNew();
+    Recipient  self          = Recipient.self();
+    DatabaseFactory.getRecipientDatabase(context).setProfileKey(self.getId(), newProfileKey);
+
+    ApplicationDependencies.getGroupsV2Authorization().clear();
   }
 
   // NEVER rename these -- they're persisted by name

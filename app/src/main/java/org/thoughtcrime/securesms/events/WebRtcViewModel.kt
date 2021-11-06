@@ -21,6 +21,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     CALL_RINGING,
     CALL_BUSY,
     CALL_DISCONNECTED,
+    CALL_DISCONNECTED_GLARE,
     CALL_NEEDS_PERMISSION,
 
     // Error states

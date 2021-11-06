@@ -5,17 +5,24 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.BadgeRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.libsignal.util.guava.Optional
 
 private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
 
-class BadgesOverviewViewModel(private val badgeRepository: BadgeRepository) : ViewModel() {
+class BadgesOverviewViewModel(
+  private val badgeRepository: BadgeRepository,
+  private val subscriptionsRepository: SubscriptionsRepository
+) : ViewModel() {
   private val store = Store(BadgesOverviewState())
   private val eventSubject = PublishSubject.create<BadgesOverviewEvent>()
 
@@ -29,9 +36,28 @@ class BadgesOverviewViewModel(private val badgeRepository: BadgeRepository) : Vi
       state.copy(
         stage = if (state.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else state.stage,
         allUnlockedBadges = recipient.badges,
-        displayBadgesOnProfile = recipient.badges.firstOrNull()?.visible == true
+        displayBadgesOnProfile = recipient.badges.firstOrNull()?.visible == true,
+        featuredBadge = recipient.featuredBadge
       )
     }
+
+    disposables += Single.zip(
+      subscriptionsRepository.getActiveSubscription(),
+      subscriptionsRepository.getSubscriptions()
+    ) { active, all ->
+      if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
+        Optional.fromNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
+      } else {
+        Optional.absent()
+      }
+    }.subscribeBy(
+      onSuccess = { badgeId ->
+        store.update { it.copy(fadedBadgeId = badgeId.orNull()) }
+      },
+      onError = { throwable ->
+        Log.w(TAG, "Could not retrieve data from server", throwable)
+      }
+    )
   }
 
   fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
@@ -52,9 +78,16 @@ class BadgesOverviewViewModel(private val badgeRepository: BadgeRepository) : Vi
     disposables.clear()
   }
 
-  class Factory(private val badgeRepository: BadgeRepository) : ViewModelProvider.Factory {
+  class Factory(
+    private val badgeRepository: BadgeRepository,
+    private val subscriptionsRepository: SubscriptionsRepository
+  ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository)))
+      return requireNotNull(modelClass.cast(BadgesOverviewViewModel(badgeRepository, subscriptionsRepository)))
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
   }
 }

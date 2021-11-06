@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode
 import kotlin.math.abs
@@ -17,6 +18,8 @@ class DataAndStorageSettingsFragment : DSLSettingsFragment(R.string.preferences_
 
   private val autoDownloadValues by lazy { resources.getStringArray(R.array.pref_media_download_entries) }
   private val autoDownloadLabels by lazy { resources.getStringArray(R.array.pref_media_download_values) }
+
+  private val sentMediaQualityLabels by lazy { SentMediaQuality.getLabels(requireContext()) }
 
   private val callBandwidthLabels by lazy { resources.getStringArray(R.array.pref_data_and_storage_call_bandwidth_values) }
 
@@ -80,6 +83,21 @@ class DataAndStorageSettingsFragment : DSLSettingsFragment(R.string.preferences_
           val resultSet = it.mapIndexed { index, selected -> if (selected) autoDownloadValues[index] else null }.filterNotNull().toSet()
           viewModel.setRoamingAutoDownloadValues(resultSet)
         }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(R.string.DataAndStorageSettingsFragment__media_quality)
+
+      radioListPref(
+        title = DSLSettingsText.from(R.string.DataAndStorageSettingsFragment__sent_media_quality),
+        listItems = sentMediaQualityLabels,
+        selected = SentMediaQuality.values().indexOf(state.sentMediaQuality),
+        onSelected = { viewModel.setSentMediaQuality(SentMediaQuality.values()[it]) }
+      )
+
+      textPref(
+        summary = DSLSettingsText.from(R.string.DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data)
       )
 
       dividerPref()

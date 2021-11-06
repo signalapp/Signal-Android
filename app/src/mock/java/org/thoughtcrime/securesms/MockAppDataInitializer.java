@@ -5,7 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -100,7 +100,7 @@ final class MockAppDataInitializer {
 
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setLocalNumber(context, localE164);
-    TextSecurePreferences.setLocalUuid(context, Recipient.external(context, localE164).requireUuid());
+    TextSecurePreferences.setLocalAci(context, Recipient.external(context, localE164).requireAci());
     TextSecurePreferences.setPushRegistered(context, true);
   }
 }

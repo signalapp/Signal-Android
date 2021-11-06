@@ -64,6 +64,7 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
 import java.io.IOException;
@@ -149,7 +150,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     serviceExecutor.execute(() -> {
       if (needsToSetSelfUuid) {
         try {
-          callManager.setSelfUuid(Recipient.self().requireUuid());
+          callManager.setSelfUuid(Recipient.self().requireAci().uuid());
           needsToSetSelfUuid = false;
         } catch (CallException e) {
           Log.w(TAG, "Unable to set self UUID on CallManager", e);
@@ -593,7 +594,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, true, null);
 
     networkExecutor.execute(() -> {
-      Recipient recipient = Recipient.resolved(RecipientId.from(uuid, null));
+      Recipient recipient = Recipient.resolved(RecipientId.from(ACI.from(uuid), null));
       if (recipient.isBlocked()) {
         return;
       }
@@ -788,6 +789,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                            .updateNotification(context, messageAndThreadId.second(), signal);
   }
 
+  public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean signal, boolean isVideoOffer) {
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(context)
+                                                         .insertReceivedCall(remotePeer.getId(), isVideoOffer);
+
+    ApplicationDependencies.getMessageNotifier()
+                           .updateNotification(context, messageAndThreadId.second(), signal);
+  }
+
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
     networkExecutor.execute(() -> {
       try {
@@ -807,7 +816,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           }
         }
 
-        process((s, p) -> p.handleTurnServerUpdate(s, iceServers, TextSecurePreferences.isTurnOnly(context)));
+        process((s, p) -> {
+          RemotePeer activePeer = s.getCallInfoState().getActivePeer();
+          if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
+            return p.handleTurnServerUpdate(s, iceServers, TextSecurePreferences.isTurnOnly(context));
+          }
+
+          Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
+          return s;
+        });
       } catch (IOException e) {
         Log.w(TAG, "Unable to retrieve turn servers: ", e);
         process((s, p) -> p.handleSetupFailure(s, remotePeer.getCallId()));

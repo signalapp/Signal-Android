@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.ByteUnit;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -86,6 +87,10 @@ public class SubmitDebugLogRepository {
     add(new LogSectionTrace());
     add(new LogSectionThreads());
     add(new LogSectionBlockedThreads());
+    if (FeatureFlags.internalUser()) {
+      add(new LogSectionSenderKey());
+    }
+    add(new LogSectionRemappedRecords());
     add(new LogSectionLogcat());
     add(new LogSectionLoggerHeader());
   }};
@@ -104,6 +109,7 @@ public class SubmitDebugLogRepository {
 
   public void buildAndSubmitLog(@NonNull Callback<Optional<String>> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
+      Log.blockUntilAllWritesFinished();
       LogDatabase.getInstance(context).trimToSize();
       callback.onResult(submitLogInternal(System.currentTimeMillis(), getPrefixLogLinesInternal(), Tracer.getInstance().serialize()));
     });

@@ -30,7 +30,7 @@ class VoiceNoteProximityWakeLockManager(
 ) : DefaultLifecycleObserver {
 
   private val wakeLock: PowerManager.WakeLock? = if (Build.VERSION.SDK_INT >= 21) {
-    ServiceUtil.getPowerManager(activity).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG)
+    ServiceUtil.getPowerManager(activity.applicationContext).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG)
   } else {
     null
   }
@@ -64,6 +64,12 @@ class VoiceNoteProximityWakeLockManager(
   fun unregisterCallbacksAndRelease() {
     mediaController.unregisterCallback(mediaControllerCallback)
     cleanUpWakeLock()
+  }
+
+  fun unregisterFromLifecycle() {
+    if (proximitySensor != null) {
+      activity.lifecycle.removeObserver(this)
+    }
   }
 
   private fun isActivityResumed() = activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)

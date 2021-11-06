@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <ImageView
+    <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/badge"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/BadgesOverviewFragment__featured_badge"
+        app:badge_size="xlarge"
         tools:src="@drawable/test_gradient" />
 
     <TextView

@@ -180,9 +180,6 @@
   <string name="ConversationItem_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="ConversationItem_you_deleted_this_message">Du slettet denne meldingen.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestille sikker økt?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe hvis du har krypteringsproblemer med samtalen. Meldinger blir beholdt.</string>
-  <string name="ConversationActivity_reset">Tilbakestill</string>
   <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
   <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
   <string name="ConversationActivity_compose_message">Skriv melding</string>
@@ -310,6 +307,8 @@
     <item quantity="one">Flyttet samtalen til innboks</item>
     <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
+  <string name="ConversationListFragment_select">Velg</string>
+  <string name="ConversationListFragment_select_all">Velg alle</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
   <!--ConversationListItemAction-->
@@ -782,14 +781,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rutenett visning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgt</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element %2$s</item>
-    <item quantity="other">%1$d elementer %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d elementer</item>
-  </plurals>
+  <string name="MediaOverviewActivity_select_all">Velg alle</string>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1276,6 +1268,8 @@ skrev inn (%s) er ugyldig.</string>
   <string name="SharedContactView_add_to_contacts">Legg til kontakt</string>
   <string name="SharedContactView_invite_to_signal">Inviter til Signal</string>
   <string name="SharedContactView_message">Signal-melding</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mer</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vi minner deg om det senere.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi minner deg på igjen i morgen.</string>
@@ -1809,15 +1803,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Vennligst velg et alternativ --</item>
-    <item>Det er noe ikke fungerer</item>
-    <item>Foreslå nye funksjoner</item>
-    <item>Hvordan kan jeg … ?</item>
-    <item>Tilbakemeldinger</item>
-    <item>Annet</item>
-    <item>Betalinger</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
@@ -1986,7 +1971,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_storage__custom">Selvvalgt</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vill redusere samtalekvaliteten.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vil redusere samtalekvaliteten.</string>
   <string name="preferences_advanced__always_relay_calls">Omdiriger alle samtaler</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
   <string name="preferences_app_protection__app_access">Programtilgang</string>
@@ -2851,6 +2836,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Høy</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -2934,7 +2921,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NewConversationActivity__new_message">Ny melding</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Bilde</string>
@@ -2956,5 +2942,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
   <string name="MediaReviewImagePageFragment__discard">Kast</string>
   <string name="SelectFeaturedBadgeFragment__preview">Forhåndsvisning</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drives av folk som deg.</string>
+  <string name="SubscribeFragment__donation_amount">Donasjonsbeløp</string>
+  <string name="SubscribeFragment__not_now">Ikke nå</string>
+  <string name="SubscribeFragment__confirm">Bekreft</string>
+  <string name="SubscribeFragment__update">Oppdater</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
+  <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
+  <string name="Subscription__contact_support">Kontakt brukerstøtte</string>
+  <string name="SubscribeFragment__processing_payment">Behandler betaling …</string>
+  <string name="DonationsErrors__payment_failed">Betaling mislyktes</string>
   <!--EOF-->
 </resources>

@@ -45,6 +45,8 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
             private VideoPlayer    player;
   @Nullable private VideoEditorHud hud;
             private Runnable       updatePosition;
+            private boolean        isInEdit;
+            private boolean        wasPlayingBeforeEdit;
 
   public static VideoEditorFragment newInstance(@NonNull Uri uri, long maxCompressedVideoSize, long maxAttachmentSize, boolean isVideoGif) {
     Bundle args = new Bundle();
@@ -88,9 +90,10 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
     long       maxOutput  = requireArguments().getLong(KEY_MAX_OUTPUT);
     long       maxSend    = requireArguments().getLong(KEY_MAX_SEND);
     VideoSlide slide      = new VideoSlide(requireContext(), uri, 0, isVideoGif);
+    boolean    autoplay   = isVideoGif;
 
     player.setWindow(requireActivity().getWindow());
-    player.setVideoSource(slide, true);
+    player.setVideoSource(slide, autoplay);
 
     if (slide.isVideoGif()) {
       player.setPlayerCallback(new VideoPlayer.PlayerCallback() {
@@ -116,7 +119,7 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
       hud.setEventListener(this);
       updateHud(data);
       if (data.durationEdited) {
-        player.clip(data.startTimeUs, data.endTimeUs, true);
+        player.clip(data.startTimeUs, data.endTimeUs, autoplay);
       }
       try {
         hud.setVideoSource(slide, new VideoBitRateCalculator(maxOutput), maxSend);
@@ -134,8 +137,12 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
       player.setPlayerCallback(new VideoPlayer.PlayerCallback() {
 
         @Override
-        public void onPlaying() {
+        public void onReady() {
           controller.onPlayerReady();
+        }
+
+        @Override
+        public void onPlaying() {
           hud.fadePlayButton();
         }
 
@@ -279,7 +286,11 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
     data.endTimeUs       = endTimeUs;
 
     if (editingComplete) {
+      isInEdit = false;
       videoScanThrottle.clear();
+    } else if (!isInEdit) {
+      isInEdit = true;
+      wasPlayingBeforeEdit = player.isPlaying();
     }
 
     videoScanThrottle.publish(() -> {
@@ -290,9 +301,13 @@ public class VideoEditorFragment extends Fragment implements VideoEditorHud.Even
       player.setPlaybackPosition(fromEdited || editingComplete ? clampedStartTime / 1000 : endTimeUs / 1000);
       if (editingComplete) {
         if (durationEdited) {
-          player.clip(clampedStartTime, endTimeUs, true);
+          player.clip(clampedStartTime, endTimeUs, wasPlayingBeforeEdit);
         } else {
-          player.removeClip(true);
+          player.removeClip(wasPlayingBeforeEdit);
+        }
+
+        if (!wasPlayingBeforeEdit) {
+          hud.showPlayButton();
         }
       }
     });

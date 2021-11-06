@@ -8,7 +8,10 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Merging together recipients and threads is messy business. We can easily replace *almost* all of
@@ -45,6 +48,39 @@ class RemappedRecords {
   @NonNull Optional<Long> getThread(@NonNull Context context, long oldId) {
     ensureThreadMapIsPopulated(context);
     return Optional.fromNullable(threadMap.get(oldId));
+  }
+
+  boolean areAnyRemapped(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
+    ensureRecipientMapIsPopulated(context);
+    return recipientIds.stream().anyMatch(id -> recipientMap.containsKey(id));
+  }
+
+  @NonNull Set<RecipientId> remap(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
+    ensureRecipientMapIsPopulated(context);
+
+    Set<RecipientId> remapped = new LinkedHashSet<>();
+
+    for (RecipientId original : recipientIds) {
+      if (recipientMap.containsKey(original)) {
+        remapped.add(recipientMap.get(original));
+      } else {
+        remapped.add(original);
+      }
+    }
+
+    return remapped;
+  }
+
+  @NonNull String buildRemapDescription(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
+    StringBuilder builder = new StringBuilder();
+
+    for (RecipientId original : recipientIds) {
+      if (recipientMap.containsKey(original)) {
+        builder.append(original).append(" -> ").append(recipientMap.get(original)).append(" ");
+      }
+    }
+
+    return builder.toString();
   }
 
   /**

@@ -99,6 +99,14 @@ class MediaSelectionActivity :
     overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
   }
 
+  override fun onNoMediaSelected() {
+    Log.w(TAG, "No media selected. Exiting.")
+
+    setResult(RESULT_CANCELED)
+    finish()
+    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
+  }
+
   override fun onPopFromReview() {
     if (isCameraFirst()) {
       viewModel.removeCameraFirstCapture()

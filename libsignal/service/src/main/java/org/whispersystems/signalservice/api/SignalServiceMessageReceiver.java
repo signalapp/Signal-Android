@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -41,6 +42,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -84,24 +86,25 @@ public class SignalServiceMessageReceiver {
   }
 
   public ListenableFuture<ProfileAndCredential> retrieveProfile(SignalServiceAddress address,
-                                                                 Optional<ProfileKey> profileKey,
-                                                                 Optional<UnidentifiedAccess> unidentifiedAccess,
-                                                                 SignalServiceProfile.RequestType requestType)
+                                                                Optional<ProfileKey> profileKey,
+                                                                Optional<UnidentifiedAccess> unidentifiedAccess,
+                                                                SignalServiceProfile.RequestType requestType,
+                                                                Locale locale)
   {
-    UUID uuid = address.getUuid();
+    ACI aci = address.getAci();
 
     if (profileKey.isPresent()) {
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        return socket.retrieveVersionedProfileAndCredential(uuid, profileKey.get(), unidentifiedAccess);
+        return socket.retrieveVersionedProfileAndCredential(aci.uuid(), profileKey.get(), unidentifiedAccess, locale);
       } else {
-        return FutureTransformers.map(socket.retrieveVersionedProfile(uuid, profileKey.get(), unidentifiedAccess), profile -> {
+        return FutureTransformers.map(socket.retrieveVersionedProfile(aci.uuid(), profileKey.get(), unidentifiedAccess, locale), profile -> {
           return new ProfileAndCredential(profile,
                                           SignalServiceProfile.RequestType.PROFILE,
                                           Optional.absent());
         });
       }
     } else {
-      return FutureTransformers.map(socket.retrieveProfile(address, unidentifiedAccess), profile -> {
+      return FutureTransformers.map(socket.retrieveProfile(address, unidentifiedAccess, locale), profile -> {
         return new ProfileAndCredential(profile,
                                         SignalServiceProfile.RequestType.PROFILE,
                                         Optional.absent());
@@ -109,10 +112,10 @@ public class SignalServiceMessageReceiver {
     }
   }
 
-  public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess)
+  public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess, Locale locale)
       throws IOException
   {
-    return socket.retrieveProfileByUsername(username, unidentifiedAccess);
+    return socket.retrieveProfileByUsername(username, unidentifiedAccess, locale);
   }
 
   public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, long maxSizeBytes)
@@ -202,7 +205,7 @@ public class SignalServiceMessageReceiver {
       SignalServiceEnvelope envelope;
 
       if (entity.hasSource() && entity.getSourceDevice() > 0) {
-        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
+        SignalServiceAddress address = new SignalServiceAddress(ACI.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
         envelope = new SignalServiceEnvelope(entity.getType(),
                                              Optional.of(address),
                                              entity.getSourceDevice(),

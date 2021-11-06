@@ -40,4 +40,10 @@ class ColorizerView @JvmOverloads constructor(
       super.draw(canvas)
     }
   }
+
+  override fun onDetachedFromWindow() {
+    super.onDetachedFromWindow()
+    projections.forEach { it.release() }
+    projections = emptyList()
+  }
 }

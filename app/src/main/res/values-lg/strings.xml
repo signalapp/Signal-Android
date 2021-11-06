@@ -70,7 +70,7 @@
   <string name="ConversationItem_to_s">okutuka %s</string>
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Damu ekitundu ekikumibwa?</string> -->
-  <string name="ConversationActivity_reset">Reset</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reset</string> -->
   <string name="ConversationActivity_add_attachment">Gatako ekigatiddwako</string>
   <string name="ConversationActivity_select_contact_info">Londako obuubaka bwa kontakiti</string>
   <string name="ConversationActivity_compose_message">Wandika obubaka</string>

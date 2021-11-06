@@ -112,7 +112,7 @@ public class WebSocketConnection extends WebSocketListener {
       String filledUri;
 
       if (credentialsProvider.isPresent()) {
-        String identifier = Objects.requireNonNull(credentialsProvider.get().getUuid()).toString();
+        String identifier = Objects.requireNonNull(credentialsProvider.get().getAci()).toString();
         filledUri = String.format(wsUri, identifier, credentialsProvider.get().getPassword());
       } else {
         filledUri = wsUri;
@@ -208,7 +208,7 @@ public class WebSocketConnection extends WebSocketListener {
 
     return single.subscribeOn(Schedulers.io())
                  .observeOn(Schedulers.io())
-                 .timeout(10, TimeUnit.SECONDS);
+                 .timeout(10, TimeUnit.SECONDS, Schedulers.io());
   }
 
   public synchronized void sendResponse(WebSocketResponseMessage response) throws IOException {

@@ -124,7 +124,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Gruppenfoto entfernen?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signal aktualisieren</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Signal-Version wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf neueste Version.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Signal-Version wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf die neueste Version.</string>
   <string name="ClientDeprecatedActivity_update">Aktualisieren</string>
   <string name="ClientDeprecatedActivity_dont_update">Nicht aktualisieren</string>
   <string name="ClientDeprecatedActivity_warning">Warnung</string>
@@ -137,7 +137,7 @@
   <string name="CommunicationActions_cancel">Abbrechen</string>
   <string name="CommunicationActions_call">Anrufen</string>
   <string name="CommunicationActions_insecure_call">Unverschlüsselter Anruf</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter anstatt über das Internet erfolgen.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter und nicht über das Internet erfolgen.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Möglicherweise möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="ConversationItem_you_deleted_this_message">Du hast diese Nachricht gelöscht.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Sichere Sitzung zurücksetzen?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
-  <string name="ConversationActivity_reset">Neu starten</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -318,6 +315,48 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Unterhaltung in Eingang verschoben</item>
     <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
+  </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Gelesen</item>
+    <item quantity="other">Gelesen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ungelesen</item>
+    <item quantity="other">Ungelesen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Anheften</item>
+    <item quantity="other">Anheften</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Lösen</item>
+    <item quantity="other">Lösen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Stumm</item>
+    <item quantity="other">Stumm</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Stummschaltung aufheben</item>
+    <item quantity="other">Stummschaltung aufheben</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Auswählen</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archivieren</item>
+    <item quantity="other">Archivieren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">In Eingang verschieben</item>
+    <item quantity="other">In Eingang verschieben</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Löschen</item>
+    <item quantity="other">Löschen</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Alle auswählen</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d ausgewählt</item>
+    <item quantity="other">%d ausgewählt</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
@@ -799,13 +838,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d Element %2$s</item>
-    <item quantity="other">%1$d Elemente %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Alle wählen</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Speichern</item>
+    <item quantity="other">Speichern</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d Element</item>
-    <item quantity="other">%1$d Elemente</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Löschen</item>
+    <item quantity="other">Löschen</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d ausgewählt (%2$s)</item>
+    <item quantity="other">%1$d ausgewählt (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Datei</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -1338,6 +1382,8 @@
   <string name="SharedContactView_add_to_contacts">Zu Kontakten hinzufügen</string>
   <string name="SharedContactView_invite_to_signal">Zu Signal einladen</string>
   <string name="SharedContactView_message">Signal-Nachricht</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mehr</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Wir erinnern dich später.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Wir erinnern dich morgen.</string>
@@ -1884,15 +1930,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Bitte wähle eine Option --</item>
-    <item>Etwas funktioniert nicht</item>
-    <item>Erweiterungswunsch</item>
-    <item>Frage</item>
-    <item>Rückmeldung</item>
-    <item>Sonstiges</item>
-    <item>Zahlungen</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -1989,6 +2026,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__help">Hilfe</string>
   <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
+  <string name="preferences__subscription">Regelmäßige Spende</string>
+  <string name="preferences__signal_boost">Signal-Boost</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-Einstellungen</string>
@@ -2037,7 +2076,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
-  <string name="preferences_chats__media_auto_download">Medieninhalte autom. herunterladen</string>
+  <string name="preferences_chats__media_auto_download">Medieninhalte automatisch herunterladen</string>
   <string name="preferences_chats__message_history">Nachrichtenverlauf</string>
   <string name="preferences_storage__storage_usage">Speicherbelegung</string>
   <string name="preferences_storage__photos">Bilder</string>
@@ -3027,6 +3066,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__copyright_signal_messenger">Urheberrecht Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lizenziert unter GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Medienqualität</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Medienqualität für Versand</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Das Senden von Medieninhalten hoher Qualität verbraucht mehr Datenvolumen.</string>
+  <string name="DataAndStorageSettingsFragment__high">Hoch</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Anrufe</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3152,7 +3196,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Sprachnachricht stoppen</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Geschwindigkeit der Sprachnachricht ändern</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sprachnachricht pausieren</string>
@@ -3208,6 +3252,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaReviewFragment__add_a_reply">Antwort hinzufügen</string>
   <string name="MediaReviewFragment__send_to">Senden an</string>
   <string name="MediaReviewFragment__view_once_message">Einmalig anzeigbare Nachricht</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Mindestens ein Element war zu groß</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Mindestens ein Element war ungültig</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Zu viele Elemente ausgewählt</string>
   <string name="ImageEditorHud__cancel">Abbrechen</string>
   <string name="ImageEditorHud__draw">Zeichnen</string>
   <string name="ImageEditorHud__write_text">Text schreiben</string>
@@ -3237,5 +3284,62 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil konnte nicht aktualisiert werden</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
   <string name="ImageView__badge">Abzeichen</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze eine Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, indem du dich der Gemeinschaft von Menschen anschließt, die sie aufrechterhalten.</string>
+  <string name="SubscribeFragment__donation_amount">Spendenbetrag</string>
+  <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
+  <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
+  <string name="SubscribeFragment__confirm_cancellation">Kündigung bestätigen?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Es findet lediglich eine einmalige Abbuchung statt. Dein Abzeichen wird am Ende deines Abrechnungszeitraums aus deinem Profil entfernt.</string>
+  <string name="SubscribeFragment__not_now">Jetzt nicht</string>
+  <string name="SubscribeFragment__confirm">Bestätigen</string>
+  <string name="SubscribeFragment__update_subscription">Regelmäßige Spende aktualisieren</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Deine regelmäßige Spende wurde gekündigt.</string>
+  <string name="SubscribeFragment__update_subscription_question">Regelmäßige Spende aktualisieren</string>
+  <string name="SubscribeFragment__update">Aktualisieren</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Heute wird die volle Summe des neuen Spendenbeitrags abgebucht. Deine regelmäßige Spende verlängert sich am %1$s.</string>
+  <string name="Subscription__s_per_month">%s/Monat</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/Monat · Verlängert sich am %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat · Läuft ab am %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen getragen wird, die es nutzen und schätzen. Leiste eine wiederkehrenden monatlichen Beitrag und erhalte ein Profil-Abzeichen, das deine Unterstützung zeigt.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat es sich zur Aufgabe gemacht, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag trägt zu dieser Aufgabe bei. Keine Werbung. Keine Tracker. Kein Scherz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu finanzieren, die von Millionen Menschen auf der ganzen Welt für private und sofortige Kommunikation verwendet wird.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für deine Spende!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s-Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du Personen, mit denen du chattest, dass du Signal unterstützt.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Falls du mehrere Abzeichen hast, kannst du eines davon auswählen, das andere in deinem Profil sehen können.</string>
+  <string name="ManageDonationsFragment__my_support">Meine Unterstützung</string>
+  <string name="ManageDonationsFragment__manage_subscription">Regelmäßige Spende verwalten</string>
+  <string name="ManageDonationsFragment__badges">Abzeichen</string>
+  <string name="ManageDonationsFragment__subscription_faq">FAQ Regelmäßige Spenden</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Die regelmäßige Spende konnte nicht abgerufen werden.</string>
+  <string name="BoostFragment__give_signal_a_boost">Gib Signal einen Boost</string>
+  <string name="BoostFragment__say_thanks_and_earn">Sag »Danke!« und erhalte das Boost-Abzeichen für %1$d Tage.</string>
+  <string name="Boost__enter_custom_amount">Eigenen Betrag eingeben</string>
+  <string name="Boost__one_time_contribution">Einmaliger Beitrag</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signal-Boost hinzufügen</string>
+  <string name="MySupportPreference__s_per_month">%1$s/Monat</string>
+  <string name="MySupportPreference__renews_s">Verlängert sich am %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s-Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Spende regelmäßig</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
+  <string name="Subscription__verification_failed">Regelmäßige Spende konnte nicht verifiziert werden</string>
+  <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere für weitere Informationen den Support.</string>
+  <string name="Subscription__contact_support">Support kontaktieren</string>
+  <string name="Subscription__earn_a_s_badge">Erhalte ein %1$s-Abzeichen</string>
+  <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
+  <string name="DonationsErrors__payment_failed">Zahlung gescheitert</string>
+  <string name="DonationsErrors__your_payment">Deine Zahlung konnte nicht verarbeitet werden und wurde nicht abgebucht. Bitte versuche es erneut.</string>
+  <string name="DonationsErrors__redemption_still_pending">Einlösung noch ausstehend</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Eventuell ist das Abzeichen nicht direkt sichtbar, aber wir arbeiten daran!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay nicht verfügbar</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du musst Google Pay einrichten, um in der App zu spenden.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht gekündigt werden</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
   <!--EOF-->
 </resources>

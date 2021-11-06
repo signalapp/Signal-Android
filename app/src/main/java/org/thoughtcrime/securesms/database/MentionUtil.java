@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
@@ -105,7 +106,7 @@ public final class MentionUtil {
     BodyRangeList.Builder builder = BodyRangeList.newBuilder();
 
     for (Mention mention : mentions) {
-      String uuid = Recipient.resolved(mention.getRecipientId()).requireUuid().toString();
+      String uuid = Recipient.resolved(mention.getRecipientId()).requireAci().toString();
       builder.addRanges(BodyRangeList.BodyRange.newBuilder()
                                                .setMentionUuid(uuid)
                                                .setStart(mention.getStart())
@@ -121,7 +122,7 @@ public final class MentionUtil {
         return Stream.of(BodyRangeList.parseFrom(data).getRangesList())
                      .filter(bodyRange -> bodyRange.getAssociatedValueCase() == BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
                      .map(mention -> {
-                       RecipientId id = Recipient.externalPush(context, UuidUtil.parseOrThrow(mention.getMentionUuid()), null, false).getId();
+                       RecipientId id = Recipient.externalPush(context, ACI.parseOrThrow(mention.getMentionUuid()), null, false).getId();
                        return new Mention(id, mention.getStart(), mention.getLength());
                      })
                      .toList();

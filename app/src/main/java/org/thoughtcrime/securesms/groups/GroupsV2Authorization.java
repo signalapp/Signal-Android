@@ -9,6 +9,7 @@ import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.util.Map;
@@ -27,7 +28,7 @@ public final class GroupsV2Authorization {
     this.cache       = cache;
   }
 
-  public GroupsV2AuthorizationString getAuthorizationForToday(@NonNull UUID self,
+  public GroupsV2AuthorizationString getAuthorizationForToday(@NonNull ACI self,
                                                               @NonNull GroupSecretParams groupSecretParams)
       throws IOException, VerificationFailedException
   {
@@ -57,11 +58,15 @@ public final class GroupsV2Authorization {
     }
   }
 
+  public void clear() {
+    cache.clear();
+  }
+
   private static int currentTimeDays() {
     return (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis());
   }
 
-  private GroupsV2AuthorizationString getAuthorization(UUID self,
+  private GroupsV2AuthorizationString getAuthorization(ACI self,
                                                        GroupSecretParams groupSecretParams,
                                                        Map<Integer, AuthCredentialResponse> credentials,
                                                        int today)

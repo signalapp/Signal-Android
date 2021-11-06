@@ -186,9 +186,6 @@
   <string name="ConversationItem_this_message_was_deleted">Tato zpráva byla smazána.</string>
   <string name="ConversationItem_you_deleted_this_message">Smazali jste tuto zprávu.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Resetovat zabezpečenou konverzaci?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Může to pomoct, pokud máte problém s šifrováním této konverzace. Vaše zprávy zůstanou zachovány.</string>
-  <string name="ConversationActivity_reset">Reset</string>
   <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
   <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napište zprávu</string>
@@ -340,6 +337,68 @@
     <item quantity="few">Přesunuty %d konverzace do složky příchozích zpráv</item>
     <item quantity="many">Přesunuto %d konverzací do složky příchozích zpráv</item>
     <item quantity="other">Přesunuto %d konverzací do složky příchozích zpráv</item>
+  </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Přečteno</item>
+    <item quantity="few">Přečteno</item>
+    <item quantity="many">Přečteno</item>
+    <item quantity="other">Přečteno</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Nepřečteno</item>
+    <item quantity="few">Nepřečteno</item>
+    <item quantity="many">Nepřečteno</item>
+    <item quantity="other">Nepřečteno</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Připnout</item>
+    <item quantity="few">Připnout</item>
+    <item quantity="many">Připnout</item>
+    <item quantity="other">Připnout</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Odepnout</item>
+    <item quantity="few">Odepnout</item>
+    <item quantity="many">Odepnout</item>
+    <item quantity="other">Odepnout</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Ztlumit</item>
+    <item quantity="few">Ztlumit</item>
+    <item quantity="many">Ztlumit</item>
+    <item quantity="other">Ztlumit</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Zrušit ztlumení</item>
+    <item quantity="few">Zrušit ztlumení</item>
+    <item quantity="many">Zrušit ztlumení</item>
+    <item quantity="other">Zrušit ztlumení</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Vybrat</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archivovat</item>
+    <item quantity="few">Archivovat</item>
+    <item quantity="many">Archivovat</item>
+    <item quantity="other">Archivovat</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Nearchivovat</item>
+    <item quantity="few">Nearchivovat</item>
+    <item quantity="many">Nearchivovat</item>
+    <item quantity="other">Nearchivovat</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Smazat</item>
+    <item quantity="few">Smazat</item>
+    <item quantity="many">Smazat</item>
+    <item quantity="other">Smazat</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Vybrat vše</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d vybrán</item>
+    <item quantity="few">%d vybráno</item>
+    <item quantity="many">%d vybráno</item>
+    <item quantity="other">%d vybráno</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Zpráva o výměně klíčů</string>
@@ -879,17 +938,24 @@
   <string name="MediaOverviewActivity_Grid_view_description">Zobrazení v mřížce</string>
   <string name="MediaOverviewActivity_List_view_description">Zobrazení seznamu</string>
   <string name="MediaOverviewActivity_Selected_description">Vybrané</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$dpoložka %2$s</item>
-    <item quantity="few">%1$dpoložek%2$s</item>
-    <item quantity="many">%1$dpoložek%2$sp</item>
-    <item quantity="other">%1$d položek %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Vybrat vše</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Uložit</item>
+    <item quantity="few">Uložit</item>
+    <item quantity="many">Uložit</item>
+    <item quantity="other">Uložit</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$dpoložka</item>
-    <item quantity="few">%1$dpoložek</item>
-    <item quantity="many">%1$dpoložek</item>
-    <item quantity="other">%1$d položek</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Smazat</item>
+    <item quantity="few">Smazat</item>
+    <item quantity="many">Smazat</item>
+    <item quantity="other">Smazat</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d vybraný (%2$s)</item>
+    <item quantity="few">%1$d vybrané (%2$s)</item>
+    <item quantity="many">%1$d vybraných (%2$s)</item>
+    <item quantity="other">%1$d vybraných (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Soubor</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -1473,6 +1539,8 @@ telefonní číslo
   <string name="SharedContactView_add_to_contacts">Přidat do kontaktů</string>
   <string name="SharedContactView_invite_to_signal">Pozvat do Signal</string>
   <string name="SharedContactView_message">Zpráva Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Víc</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Připomeneme se vám později.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Připomeneme se vám zase zítra.</string>
@@ -2044,15 +2112,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Vyberte prosím možnost --</item>
-    <item>Něco nefunguje</item>
-    <item>Požadavek na funkci</item>
-    <item>Dotaz</item>
-    <item>Zpětná vazba</item>
-    <item>Ostatní</item>
-    <item>Platby</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -2151,6 +2210,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__help">Nápověda</string>
   <string name="preferences__advanced">Rozšířené možnosti</string>
   <string name="preferences__donate_to_signal">Podpořte Signal finančně</string>
+  <string name="preferences__subscription">Předplatné</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Soukromí</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuální nastavení MMS</string>
@@ -3209,6 +3270,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licencováno pod GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kvalita médií</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalita odeslaných médií</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Odesílání médií ve vysoké kvalitě spotřebovává více dat.</string>
+  <string name="DataAndStorageSettingsFragment__high">Vysoká</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Volání</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3338,7 +3404,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Vyhledat jméno nebo číslo</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">%1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Zastavit hlasovou zprávu</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Změnit rychlost hlasové zprávy</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pozastavit hlasovou zprávu</string>
@@ -3402,6 +3468,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MediaReviewFragment__add_a_reply">Přidat odpověď</string>
   <string name="MediaReviewFragment__send_to">Odeslat</string>
   <string name="MediaReviewFragment__view_once_message">Zpráva pro jednorázové zobrazení</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jeden nebo více souborů je moc velkých</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jeden nebo více souborů je neplatných</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Příliš mnoho vybraných položek</string>
   <string name="ImageEditorHud__cancel">Zrušit</string>
   <string name="ImageEditorHud__draw">Kreslit</string>
   <string name="ImageEditorHud__write_text">Napsat text</string>
@@ -3431,5 +3500,62 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nepodařilo se aktualizovat profil</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
   <string name="ImageView__badge">Odznak</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal pohání lidé, jako jste vy.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podpořte technologii, která je vytvořena pro vás - ne pro vaše data - a připojte se ke komunitě lidí, kteří ji podporují.</string>
+  <string name="SubscribeFragment__donation_amount">Výše příspěvku</string>
+  <string name="SubscribeFragment__more_payment_options">Více možností plateb</string>
+  <string name="SubscribeFragment__cancel_subscription">Zrušit předplatné</string>
+  <string name="SubscribeFragment__confirm_cancellation">Potvrdit zrušení?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Nebude vám již účtován žádný poplatek. Na konci zúčtovacího období bude váš odznak z vašeho profilu odstraněn.</string>
+  <string name="SubscribeFragment__not_now">Teď ne</string>
+  <string name="SubscribeFragment__confirm">Potvrdit</string>
+  <string name="SubscribeFragment__update_subscription">Aktualizovat předplatné</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše předplatné bylo zrušeno.</string>
+  <string name="SubscribeFragment__update_subscription_question">Aktualizovat předplatné?</string>
+  <string name="SubscribeFragment__update">Aktualizovat</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dnes vám bude účtována plná částka nového předplatného. Vaše předplatné bude obnoveno %1$s.</string>
+  <string name="Subscription__s_per_month">%s/měsíc</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/měsíc · Obnovení %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/měsíčně · Exspiruje %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Proč podpořit?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tým společnosti Signal se zavázal k vývoji open source technologie ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci. Váš příspěvek je pro tento cíl přínosem. Žádné reklamy. Žádné trackery. Bez legrace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Váš příspěvek pomáhá platit vývoj, servery a datové přenosy aplikace, kterou používají miliony lidí na celém světě k soukromé a okamžité komunikaci.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Díky za vaši podporu!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Díky za Boost!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Získali jste odznak %s! Zobrazení odznaku ukáže lidem, se kterými chatujete, že podporujete Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvořit doporučený odznak</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pokud máte více odznaků, můžete si jeden z nich vybrat, aby ho ostatní viděli na vašem profilu.</string>
+  <string name="ManageDonationsFragment__my_support">Má podpora</string>
+  <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
+  <string name="ManageDonationsFragment__badges">Odznaky</string>
+  <string name="ManageDonationsFragment__subscription_faq">Často kladené dotazy k předplatnému</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Chyba při získávání předplatného.</string>
+  <string name="BoostFragment__give_signal_a_boost">Dejte Signalu Boost</string>
+  <string name="BoostFragment__say_thanks_and_earn">Řekněte \"Díky!\" a získejte Boost odznak na %1$d dnů.</string>
+  <string name="Boost__enter_custom_amount">Zadat vlastní výši</string>
+  <string name="Boost__one_time_contribution">Jednorázový příspěvek</string>
+  <string name="MySupportPreference__add_a_signal_boost">Přidat Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/měsíc</string>
+  <string name="MySupportPreference__renews_s">Obnova %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Váš odznak %1$s vypršel a již se nezobrazuje ostatním ve vašem profilu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Stát se předplatitelem</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
+  <string name="Subscription__verification_failed">Ověření předplatného selhalo</string>
+  <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>
+  <string name="Subscription__contact_support">Kontaktovat podporu</string>
+  <string name="Subscription__earn_a_s_badge">Získat odznak %1$s</string>
+  <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
+  <string name="DonationsErrors__payment_failed">Platba selhala</string>
+  <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
+  <string name="DonationsErrors__redemption_still_pending">Na vykoupení se stále čeká</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možná svůj odznak neuvidíte hned, ale pracujeme na tom!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musíte si nastavit Google Pay, abyste mohli přispět v rámci aplikace.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného selhalo</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušení předplatného vyžaduje aktivní připojení k internetu.</string>
   <!--EOF-->
 </resources>

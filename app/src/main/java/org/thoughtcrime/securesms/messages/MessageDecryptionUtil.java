@@ -78,7 +78,7 @@ public final class MessageDecryptionUtil {
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
     SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
-    SignalServiceAddress localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalUuid(context), Optional.of(TextSecurePreferences.getLocalNumber(context)));
+    SignalServiceAddress localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalAci(context), Optional.of(TextSecurePreferences.getLocalNumber(context)));
     SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>            jobs         = new LinkedList<>();
 
@@ -106,19 +106,19 @@ public final class MessageDecryptionUtil {
 
         return DecryptionResult.forNoop(jobs);
       } catch (ProtocolLegacyMessageException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forError(MessageState.LEGACY_MESSAGE, toExceptionMetadata(e), jobs);
       } catch (ProtocolDuplicateMessageException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forError(MessageState.DUPLICATE_MESSAGE, toExceptionMetadata(e), jobs);
       } catch (InvalidMetadataVersionException | InvalidMetadataMessageException | InvalidMessageStructureException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forNoop(jobs);
       } catch (SelfSendException e) {
         Log.i(TAG, "Dropping UD message from self.");
         return DecryptionResult.forNoop(jobs);
       } catch (UnsupportedDataMessageException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] " + envelope.getSourceIdentifier() + ":" + envelope.getSourceDevice(), e);
         return DecryptionResult.forError(MessageState.UNSUPPORTED_DATA_MESSAGE, toExceptionMetadata(e), jobs);
       }
     } catch (NoSenderException e) {

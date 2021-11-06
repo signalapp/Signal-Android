@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி நீக்கப்பட்டது.</string>
   <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">இந்த உரையாடலில் குறியாக்க சிக்கல்கள் இருந்தால் இது உதவக்கூடும். உங்கள் செய்திகள் வைக்கப்படும்.</string>
-  <string name="ConversationActivity_reset">மீட்டமைக்க</string>
   <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
   <string name="ConversationActivity_compose_message">செய்தியை இயற்று</string>
@@ -319,6 +316,8 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
+  <string name="ConversationListFragment_select">தேர்வு</string>
+  <string name="ConversationListFragment_select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
   <!--ConversationListItemAction-->
@@ -430,7 +429,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">முழு தெளிவுத்திறன் GIF ஐ மீட்டெடுக்கும்போது பிழை</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF கள் </string>
-  <string name="GiphyFragmentPagerAdapter_stickers">ஒட்டிகள்</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">ஒட்டிப்படங்கள்</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">உறுப்பினரைச் சேர்க்கவா?</string>
   <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ஐ \"%2$s\" இல் சேர்க்கவா?</string>
@@ -797,14 +796,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">கட்டம் காட்சி</string>
   <string name="MediaOverviewActivity_List_view_description">பட்டியல் காட்சி</string>
   <string name="MediaOverviewActivity_Selected_description">தேர்ந்தெடுக்கப்பட்ட</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d உருப்படியை%2$s</item>
-    <item quantity="other">%1$d  பொருட்களை%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d பொருட்களை</item>
-    <item quantity="other">%1$d உருப்படியை</item>
-  </plurals>
+  <string name="MediaOverviewActivity_select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <string name="MediaOverviewActivity_file">கோப்பு</string>
   <string name="MediaOverviewActivity_audio">ஒலி</string>
   <string name="MediaOverviewActivity_video">காணொளி</string>
@@ -1311,6 +1303,8 @@
   <string name="SharedContactView_add_to_contacts">தொடர்பு பட்டியலில் சேர்க்க</string>
   <string name="SharedContactView_invite_to_signal">Signalக்கு அழை</string>
   <string name="SharedContactView_message">Signal செய்தி</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">மேலும்</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">பின்னர் உங்களுக்கு நினைவூட்டுவோம்.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">நாளை மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
@@ -1320,7 +1314,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">ஒரு மாதத்தில் மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
   <!--Slide-->
   <string name="Slide_image">உருவம்</string>
-  <string name="Slide_sticker">ஒட்டி</string>
+  <string name="Slide_sticker">ஒட்டிப்படம்</string>
   <string name="Slide_audio">ஒலி</string>
   <string name="Slide_video">காணொளி</string>
   <!--SmsMessageRecord-->
@@ -1335,7 +1329,7 @@
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">இந்தச் செய்தியை செயலாக்க முடியவில்லை, ஏனெனில் இது Signal புதிய பதிப்பிலிருந்து அனுப்பப்பட்டது. நீங்கள் புதுப்பித்த பிறகு இந்த செய்தியை மீண்டும் அனுப்ப உங்கள் தொடர்பைக் கேட்கலாம்.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">உள்வரும் செய்தியைக் கையாளுவதில் பிழை.</string>
   <!--StickerManagementActivity-->
-  <string name="StickerManagementActivity_stickers">ஒட்டிகள்</string>
+  <string name="StickerManagementActivity_stickers">ஒட்டிப்படங்கள்</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">நிறுவப்பட்ட ஒட்டிகள்</string>
   <string name="StickerManagementAdapter_stickers_you_received">நீங்கள் பெற்ற ஒட்டிகள்</string>
@@ -1349,7 +1343,7 @@
   <string name="StickerPackPreviewActivity_unknown">முன் தெரிந்திராத</string>
   <string name="StickerPackPreviewActivity_install">நிறுவு</string>
   <string name="StickerPackPreviewActivity_remove">நீக்கு</string>
-  <string name="StickerPackPreviewActivity_stickers">ஒட்டிகள்</string>
+  <string name="StickerPackPreviewActivity_stickers">ஒட்டிப்படங்கள்</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ஸ்டிக்கர் பேக்கை ஏற்றுவதில் தோல்வி</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">தொகு</string>
@@ -1379,7 +1373,7 @@
   <string name="ThreadRecord_missed_audio_call">ஒலி அழைப்பு தவறவிட்டது</string>
   <string name="ThreadRecord_missed_video_call">காணொளி அழைப்பு தவறவிட்டது</string>
   <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
-  <string name="ThreadRecord_sticker">ஒட்டி</string>
+  <string name="ThreadRecord_sticker">ஒட்டிப்படம்</string>
   <string name="ThreadRecord_view_once_photo">காண்க-ஒருமுறை புகைப்படம் </string>
   <string name="ThreadRecord_view_once_video">காண்க-ஒருமுறை காணொளி</string>
   <string name="ThreadRecord_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
@@ -1648,7 +1642,7 @@
   <string name="QuoteView_photo">புகைப்பட</string>
   <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
-  <string name="QuoteView_sticker">ஒட்டி</string>
+  <string name="QuoteView_sticker">ஒட்டிப்படம்</string>
   <string name="QuoteView_you">நீங்கள்</string>
   <string name="QuoteView_original_missing">அசல் செய்தி கிடைக்கவில்லை</string>
   <!--conversation_fragment-->
@@ -1850,15 +1844,6 @@
   <string name="HelpFragment__debug_log">பிழைத்திருத்த பதிவு:</string>
   <string name="HelpFragment__could_not_upload_logs">பதிவுகளை பதிவேற்ற முடியவில்லை</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">சிக்கலைப் புரிந்துகொள்ள எங்களுக்கு உதவ முடிந்தவரை விளக்கமாகச் சொல்லுங்கள்.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- தயவு செய்து தேர்ந்தெடுக்கவும் ஒரு விருப்பம் --</item>
-    <item>ஏதோ வேலை செய்யவில்லை</item>
-    <item>அம்சம் கோரிக்கை</item>
-    <item>கேள்வி</item>
-    <item>பின்னூட்டம்</item>
-    <item>மற்றவை</item>
-    <item>கொடுப்பனவுகள்</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">இந்த செய்தி</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">சமீபத்தில் பயன்படுத்தப்பட்டது</string>
@@ -2969,6 +2954,9 @@
   <string name="HelpFragment__copyright_signal_messenger">பதிப்புரிமை Signal தூதர்</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 இன் கீழ் உரிமம் பெற்றது</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">உயர்தரத்தை அனுப்புகிறது ஊடகம் அதிக தரவைப் பயன்படுத்தும்.</string>
+  <string name="DataAndStorageSettingsFragment__high">உயர்</string>
+  <string name="DataAndStorageSettingsFragment__standard">தரநிலை</string>
   <string name="DataAndStorageSettingsFragment__calls">அழைப்புகள்</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">ஆட்டோ</string>
@@ -3020,7 +3008,7 @@
   <string name="KeyboardPagerFragment_open_emoji_search">திற ஈமோஜி தேடல்</string>
   <string name="KeyboardPagerFragment_open_sticker_search">திற ஓட்டி தேடல்</string>
   <string name="KeyboardPagerFragment_open_gif_search">திற gif தேடல்</string>
-  <string name="KeyboardPagerFragment_stickers">ஒட்டிகள்</string>
+  <string name="KeyboardPagerFragment_stickers">ஒட்டிப்படங்கள்</string>
   <string name="KeyboardPagerFragment_backspace">பின்வெளி</string>
   <string name="KeyboardPagerFragment_gifs">Gifs</string>
   <string name="KeyboardPagerFragment_search_emoji">தேடல் ஈமோஜி</string>
@@ -3093,7 +3081,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">தேடல் பெயர் அல்லது எண்</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">குரல் செய்தியை நிறுத்து</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">மாற்றம் குரல் செய்தி வேகம்</string>
   <string name="VoiceNotePlayerView__pause_voice_message">குரல் செய்தியை இடைநிறுத்துங்கள்</string>
@@ -3144,5 +3132,16 @@
   <string name="MediaReviewSelectedItem__tap_to_select">தேர்ந்தெடுக்க தட்டவும்</string>
   <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
   <string name="SelectFeaturedBadgeFragment__preview">முன்னோட்டம்</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal இயக்கப்படுகிறது மக்கள் உன்னைப்போல.</string>
+  <string name="SubscribeFragment__donation_amount">நன்கொடை தொகை</string>
+  <string name="SubscribeFragment__not_now">இப்போது இல்லை</string>
+  <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
+  <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">முடிந்தது</string>
+  <string name="Boost__enter_custom_amount">உள்ளிடவும் தனிப்பயன் தொகை</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">இப்போது இல்லை</string>
+  <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
+  <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
+  <string name="DonationsErrors__payment_failed">கட்டணம் தோல்வியடைந்தது</string>
   <!--EOF-->
 </resources>

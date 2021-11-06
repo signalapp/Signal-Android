@@ -185,9 +185,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="ConversationItem_you_deleted_this_message">Általad törölt üzenet.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Újraindítod a biztonsági munkamenetet?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ez akkor segíthet, ha titkosítással kapcsolatos problémák léptek fel ebben a beszélgetésben. Az üzeneteid meg lesznek tartva.</string>
-  <string name="ConversationActivity_reset">Alaphelyzetbe állítás</string>
   <string name="ConversationActivity_add_attachment">Melléklet csatolása</string>
   <string name="ConversationActivity_select_contact_info">Válassz kontakt infót</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
@@ -319,6 +316,24 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Beszélgetés áthelyezve a bejövőbe</item>
     <item quantity="other">%d db beszélgetés áthelyezve a bejövő üzenetek közé</item>
+  </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Olvasott</item>
+    <item quantity="other">Olvasott</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Olvasatlan</item>
+    <item quantity="other">Olvasatlan</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Kiválasztás</string>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Törlés</item>
+    <item quantity="other">Törlés</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Összes kiválasztása</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d kiválasztva</item>
+    <item quantity="other">%d kiválasztva</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
@@ -752,10 +767,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Megosztás</string>
   <string name="InviteActivity_share_with_contacts">Megosztás kontaktokkal</string>
+  <string name="InviteActivity_share_via">Oszd meg…</string>
   <string name="InviteActivity_cancel">Mégse</string>
   <string name="InviteActivity_sending">Küldés…</string>
   <string name="InviteActivity_invitations_sent">Meghívók elküldve!</string>
   <string name="InviteActivity_invite_to_signal">Meghívás a Signal-ba</string>
+  <string name="InviteActivity_send_sms">SMS küldése (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Elküldesz %d SMS meghívót?</item>
     <item quantity="other">Elküldesz %d db SMS meghívót?</item>
@@ -798,13 +815,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rácsos nézet</string>
   <string name="MediaOverviewActivity_List_view_description">Listanézet</string>
   <string name="MediaOverviewActivity_Selected_description">Kiválasztott</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d db elem %2$s</item>
-    <item quantity="other">%1$d db elem %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Összes kiválasztása</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Mentés</item>
+    <item quantity="other">Mentés</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d db elem</item>
-    <item quantity="other">%1$d db elem</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Törlés</item>
+    <item quantity="other">Törlés</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fájl</string>
   <string name="MediaOverviewActivity_audio">Hang</string>
@@ -854,6 +872,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Egy felirat hozzáadása…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Egy elem el lett távolítva, mivel túllépte a megengedett mérethatárt</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Egy elem el lett távolítva, mivel ismeretlen típusa volt</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Egy elem el lett távolítva, mivel túllépte a megengedett mérethatárt vagy ismeretlen típusa volt</string>
   <string name="MediaSendActivity_camera_unavailable">A kamera nem érhető el.</string>
   <string name="MediaSendActivity_message_to_s">Üzenet neki: %s</string>
   <string name="MediaSendActivity_message">Üzenetek</string>
@@ -1039,6 +1059,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Biztonsági számodat megerősítetlennek jelölted a %s nevű partnereddel</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Biztonsági számodat egy másik készülékről megerősítetlennek jelölted %s nevű partnereddel</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Egy üzenet %s ismerősödtől nem érkezett meg</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s megváltoztatta a számát egy új számra.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s csoport hívást indított · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s csoporthívásban van · %2$s</string>
@@ -1211,17 +1232,37 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallView__reconnecting">Újracsatlakozás…</string>
   <string name="WebRtcCallView__joining">Csatlakozás…</string>
   <string name="WebRtcCallView__disconnected">Lecsatlakozva</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal hívni fogja %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal hívni fogja %1$s és %2$s</string>
   <string name="WebRtcCallView__s_will_be_notified">%1$s értesítve lesz</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s és %2$s értesítve lesz</string>
+  <string name="WebRtcCallView__ringing_s"> %1$s csörgetése</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s és %2$s csörgetése</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one"> %1$s, %2$s, és %3$d másik személy csörgetése</item>
+    <item quantity="other">%1$s, %2$s, és %3$d másik személy csörgetése</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s hív téged</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s hív téged és %2$s-t</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s hív téged, %2$s-t, és %3$s-t</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s hív téged, %2$s-t, és %3$s-t és %4$d más személyt</item>
+    <item quantity="other">%1$s hív téged, %2$s-t, és %3$s-t és %4$d más személyt</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Nincs itt senki</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s ebben a hívásban van</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s ebben a hívásban</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s és  %2$s ebben a hívásban van</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s megosztja képernyőjét</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s és még %3$d másik személy van ebben a hívásban</item>
     <item quantity="other">%1$s, %2$s és még %3$d másik személy van ebben a hívásban</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Átvált</string>
   <string name="WebRtcCallView__speaker">Kihangosító</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Némítás</string>
+  <string name="WebRtcCallView__ring">Csörög</string>
   <string name="WebRtcCallView__end_call">Hívás befejezése</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1272,6 +1313,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">A Signalnak hozzá kell férnie a névjegyeidhez annak érdekében, hogy kapcsolatot teremthess barátaiddal, üzenetet cserélhess velük, és hogy biztonságos hívásokat tudj bonyolítani.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Túl sokszor próbálkoztál ennek a számnak a regisztrációjával. Kérlek próbáld újra később!</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nem lehet kapcsolódni szolgáltatáshoz. Kérlek ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
+  <string name="RegistrationActivity_call_requested">Hívás kérve</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Még %d lépésre vagy a fejlesztői napló elküldésétől.</item>
     <item quantity="other">Még %d lépésre vagy a fejlesztői napló elküldésétől.</item>
@@ -1314,6 +1356,8 @@ szám (%s) érvénytelen.
   <string name="SharedContactView_add_to_contacts">Hozzáadás a névjegyzékhez</string>
   <string name="SharedContactView_invite_to_signal">Meghívás a Signal-ba</string>
   <string name="SharedContactView_message">Signal üzenet</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Továbbiak</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Később újra emlékeztetünk.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Holnap újra emlékeztetni fogunk.</string>
@@ -1801,9 +1845,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy telefonszámot</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">Koppints a szkenneléshez</string>
+  <string name="verify_display_fragment__successful_match">Sikeres egyezés</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Biztonsági azonosító ellenőrzése sikertelen</string>
   <string name="verify_display_fragment__loading">Betöltés…</string>
   <string name="verify_display_fragment__mark_as_verified">Megjelölés ellenőrzöttként</string>
+  <string name="verify_display_fragment__clear_verification">Ellenőrzött állapot törlése</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Biztonsági szám megosztása</string>
   <!--verity_scan_fragment-->
@@ -1858,15 +1904,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__debug_log">Hibakeresési napló:</string>
   <string name="HelpFragment__could_not_upload_logs">Nem sikerült feltölteni a naplót</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Hogy megérthessük a problémát, fogalmazz olyan pontosan, amennyire csak lehetséges!</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- válassz a lehetőségek közül --</item>
-    <item>Valami nem működik</item>
-    <item>Funkció kérés</item>
-    <item>Kérdés</item>
-    <item>Visszajelzés</item>
-    <item>Egyéb</item>
-    <item>Fizetések</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Jelenlegi üzenet</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nemrég használt</string>
@@ -1963,6 +2000,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__help">Súgó</string>
   <string name="preferences__advanced">Haladó</string>
   <string name="preferences__donate_to_signal">Adomány a Signal számára</string>
+  <string name="preferences__subscription">Előfizetés</string>
   <string name="preferences__privacy">Adatvédelem</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuális MMS beállítások</string>
@@ -2926,6 +2964,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Meg kell adnod új telefonszámodat</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Szám változtatása</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s ellenőrzése</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha szükséges</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Szám megváltoztatása</string>
@@ -2933,7 +2972,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">A PIN kódok nem egyeznek.</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Régi PIN megtartása</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN módosítása</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Régi PIN megtartása?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__retry">Újra</string>
   <string name="ChangeNumberLockActivity__leave">Csoport elhagyása</string>
@@ -2988,6 +3029,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3 </string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Média minőség</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Elküldött média minősége</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">A nagyfelbontású média nagyobb adathasználatot igényel.</string>
+  <string name="DataAndStorageSettingsFragment__high">Magas</string>
+  <string name="DataAndStorageSettingsFragment__standard">Normál</string>
   <string name="DataAndStorageSettingsFragment__calls">Hívások</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3104,19 +3150,23 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Telefonszám vagy név keresése</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Hangüzenet leállítása</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Hangüzenet sebességének megváltoztatása</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Hangüzenet szüneteltetése</string>
   <string name="VoiceNotePlayerView__play_voice_message">Hangüzenet lejátszása</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Profilkép előnézet</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__take_a_picture">Kép készítése</string>
   <string name="AvatarPickerFragment__choose_a_photo">Fotó választás</string>
   <string name="AvatarPickerFragment__photo">Fotó</string>
   <string name="AvatarPickerFragment__text">Szöveg</string>
   <string name="AvatarPickerFragment__save">Mentés</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Profilkép kiválasztás</string>
+  <string name="AvatarPickerFragment__clear_avatar">Profilkép törlése</string>
   <string name="AvatarPickerFragment__edit">Szerkesztés</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Sikertelen a profilkép mentése</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Előnézet</string>
   <string name="TextAvatarCreationFragment__done">Befejezés</string>
@@ -3128,10 +3178,15 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Navigáció fel</string>
   <string name="MultiselectForwardFragment__forward_to">Továbbítás számukra</string>
   <string name="MultiselectForwardFragment__add_a_message">Szöveg hozzáadása</string>
   <string name="MultiselectForwardFragment__faster_forwards">Gyorsabb továbbítás</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">A továbbított üzenetek azonnal elküldésre kerülnek.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d üzenet küldése</item>
+    <item quantity="other">%1$d üzenet küldése</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Üzenetek elküldve</item>
     <item quantity="other">Üzenetek elküldve</item>
@@ -3144,8 +3199,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="one">Sikertelen a továbbítás, mert az üzenetek már nem elérhetőek.</item>
     <item quantity="other">Sikertelen a továbbítás, mert az üzenetek már nem elérhetőek.</item>
   </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Korlát elérve</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Szöveg hozzáadása</string>
+  <string name="MediaReviewFragment__add_a_reply">Válasz hozzáadása</string>
+  <string name="MediaReviewFragment__view_once_message">Egyszer megjelenő üzenet</string>
   <string name="ImageEditorHud__cancel">Mégsem</string>
   <string name="ImageEditorHud__draw">Rajz</string>
   <string name="ImageEditorHud__write_text">Szövegírás</string>
@@ -3167,8 +3225,28 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BadgesOverviewFragment__my_badges">Jelvényeim</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Jelvények megjelenítése a profilon</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Nem sikerült a profil frissítése</string>
+  <string name="BadgeSelectionFragment__select_badges">Jelvény választása</string>
   <string name="SelectFeaturedBadgeFragment__preview">Előnézet</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Válassz egy jelvényt</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ki kell választanod egy jelvényt</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nem sikerült a profil frissítése</string>
   <string name="ImageView__badge">Jelvény</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">A Signalt hozzád hasonló emberek működtetik.</string>
+  <string name="SubscribeFragment__donation_amount">Adomány összege</string>
+  <string name="SubscribeFragment__more_payment_options">További fizetési lehetőség</string>
+  <string name="SubscribeFragment__not_now">Később</string>
+  <string name="SubscribeFragment__confirm">Megerősítés</string>
+  <string name="SubscribeFragment__update">Frissítés</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Köszönjük a támogatásodat!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Befejezés</string>
+  <string name="ManageDonationsFragment__manage_subscription">Előfizetés kezelése</string>
+  <string name="ManageDonationsFragment__badges">Jelvények</string>
+  <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
+  <string name="Boost__enter_custom_amount">Egyedi összeg</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Legyél előfizető</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
+  <string name="Subscription__contact_support">Kapcsolatfelvétel a támogatással</string>
+  <string name="SubscribeFragment__processing_payment">Fizetés feldolgozása…</string>
+  <string name="DonationsErrors__payment_failed">Fizetés sikertelen</string>
   <!--EOF-->
 </resources>

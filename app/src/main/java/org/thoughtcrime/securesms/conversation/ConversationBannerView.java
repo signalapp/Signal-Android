@@ -57,7 +57,11 @@ public class ConversationBannerView extends ConstraintLayout {
   }
 
   public void setBadge(@Nullable Recipient recipient) {
-    contactBadge.setBadgeFromRecipient(recipient);
+    if (recipient == null || recipient.isSelf()) {
+      contactBadge.setBadge(null);
+    } else {
+      contactBadge.setBadgeFromRecipient(recipient);
+    }
   }
 
   public void setAvatar(@NonNull GlideRequests requests, @Nullable Recipient recipient) {
@@ -125,17 +129,17 @@ public class ConversationBannerView extends ConstraintLayout {
   private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
     @Override
     public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
-      return new ResourceContactPhoto(R.drawable.ic_profile_80);
+      return new ResourceContactPhoto(R.drawable.ic_profile_64);
     }
 
     @Override
     public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new ResourceContactPhoto(R.drawable.ic_group_80);
+      return new ResourceContactPhoto(R.drawable.ic_group_64);
     }
 
     @Override
     public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-      return new ResourceContactPhoto(R.drawable.ic_note_80);
+      return new ResourceContactPhoto(R.drawable.ic_note_64);
     }
   }
 }

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
+import net.zetetic.database.sqlcipher.SQLiteConnection;
+import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;
 
 /**
  * Standard hook for setting common SQLCipher PRAGMAs.
@@ -9,18 +9,15 @@ import net.sqlcipher.database.SQLiteDatabaseHook;
 public class SqlCipherDatabaseHook implements SQLiteDatabaseHook {
 
   @Override
-  public void preKey(SQLiteDatabase db) {
-    db.rawExecSQL("PRAGMA cipher_default_kdf_iter = 1;");
-    db.rawExecSQL("PRAGMA cipher_default_page_size = 4096;");
+  public void preKey(SQLiteConnection connection) {
+    connection.execute("PRAGMA cipher_default_kdf_iter = 1;", null, null);
+    connection.execute("PRAGMA cipher_default_page_size = 4096;", null, null);
   }
 
   @Override
-  public void postKey(SQLiteDatabase db) {
-    db.rawExecSQL("PRAGMA cipher_compatibility = 3;");
-    db.rawExecSQL("PRAGMA cipher_memory_security = OFF;");
-    db.rawExecSQL("PRAGMA kdf_iter = '1';");
-    db.rawExecSQL("PRAGMA cipher_page_size = 4096;");
-    db.enableWriteAheadLogging();
-    db.setForeignKeyConstraintsEnabled(true);
+  public void postKey(SQLiteConnection connection) {
+    connection.execute("PRAGMA cipher_compatibility = 3;", null, null);
+    connection.execute("PRAGMA kdf_iter = '1';", null, null);
+    connection.execute("PRAGMA cipher_page_size = 4096;", null, null);
   }
 }

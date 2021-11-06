@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="ConversationItem_you_deleted_this_message">Heu suprimit aquest missatge.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
-  <string name="ConversationActivity_reset">Restableix</string>
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
   <string name="ConversationActivity_select_contact_info">Seleccioneu informació del contacte</string>
   <string name="ConversationActivity_compose_message">Escriviu un missatge</string>
@@ -318,6 +315,48 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">S\'ha mogut la conversa a la safata d\'entrada</item>
     <item quantity="other">S\'han mogut %d converses a la safata d\'entrada</item>
+  </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Llegit</item>
+    <item quantity="other">Llegits</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">No llegit</item>
+    <item quantity="other">No llegits</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Fixat</item>
+    <item quantity="other">Fixats</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">No fixat</item>
+    <item quantity="other">No fixats</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Silenciat</item>
+    <item quantity="other">Silenciats</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">No silenciat</item>
+    <item quantity="other">No silenciats</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Selecció</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arxivat</item>
+    <item quantity="other">Arxivats</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">No arxivat</item>
+    <item quantity="other">No arxivats</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Suprimit</item>
+    <item quantity="other">Suprimits</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Selecciona-ho tot</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d de seleccionat</item>
+    <item quantity="other">%d de seleccionats</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
@@ -799,13 +838,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de graella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de llista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element: %2$s</item>
-    <item quantity="other">%1$d elements: %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Selecciona-ho tot</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Desat</item>
+    <item quantity="other">Desats</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d elements</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Suprimit</item>
+    <item quantity="other">Suprimits</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d de seleccionat (%2$s)</item>
+    <item quantity="other">%1$d de seleccionats  (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fitxer</string>
   <string name="MediaOverviewActivity_audio">Àudio</string>
@@ -1342,6 +1386,8 @@ especificat (%s) no és vàlid.</string>
   <string name="SharedContactView_add_to_contacts">Afegeix als contactes</string>
   <string name="SharedContactView_invite_to_signal">Convida al Signal</string>
   <string name="SharedContactView_message">Missatge del Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Més</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Us ho recordarem més tard.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Us ho recordarem demà.</string>
@@ -1889,15 +1935,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Seleccioneu una opció --</item>
-    <item>Alguna cosa no funciona.</item>
-    <item>Petició de funció</item>
-    <item>Pregunta</item>
-    <item>Retroacció</item>
-    <item>Altres</item>
-    <item>Pagaments</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
@@ -1994,6 +2031,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançat</string>
   <string name="preferences__donate_to_signal">Feu una donació a Signal</string>
+  <string name="preferences__subscription">Subscripció</string>
+  <string name="preferences__signal_boost">Empenta del Signal</string>
   <string name="preferences__privacy">Privadesa</string>
   <string name="preferences__mms_user_agent">Agent usuari dels MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuració manual dels MMS</string>
@@ -2350,7 +2389,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="Insights__title">Interior</string>
   <string name="InsightsDashboardFragment__title">Interior</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de cap a cap.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Impuls de Signal</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Empenta del Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comenceu una conversa</string>
@@ -2364,7 +2403,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="InsightsModalFragment__view_insights">Mostra l\'Interior</string>
   <string name="FirstInviteReminder__title">Convida al Signal</string>
   <string name="FirstInviteReminder__description">Podeu augmentar el nombre de missatges encriptats que envieu gràcies a %1$d%%</string>
-  <string name="SecondInviteReminder__title">Impulseu el Signal</string>
+  <string name="SecondInviteReminder__title">Doneu una empenta al Signal</string>
   <string name="SecondInviteReminder__description">Convida %1$s</string>
   <string name="InsightsReminder__view_insights">Mostra l\'Interior</string>
   <string name="InsightsReminder__invite">Convida</string>
@@ -3032,6 +3071,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Amb llicència de GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Qualitat dels mitjans</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualitat dels mitjans enviats</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">L’enviament de mitjans d’alta qualitat usarà més dades.</string>
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Estàndard</string>
   <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Automàtic</string>
@@ -3157,7 +3201,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Cerqueu un nom o un número</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Atura el missatge de veu</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Canvia la velocitat del missatge de veu</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Interromp el missatge de veu</string>
@@ -3213,6 +3257,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MediaReviewFragment__add_a_reply">Afegiu-hi una resposta</string>
   <string name="MediaReviewFragment__send_to">Envia a</string>
   <string name="MediaReviewFragment__view_once_message">Mostra el missatge un cop</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un o més elements eren massa grossos.</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un o més elements no eren vàlids.</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Massa elements seleccionats</string>
   <string name="ImageEditorHud__cancel">Cancel·la</string>
   <string name="ImageEditorHud__draw">Dibuix</string>
   <string name="ImageEditorHud__write_text">Escriptura de text</string>
@@ -3242,5 +3289,63 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
   <string name="ImageView__badge">Insígnia</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">El Signal és alimentat per persones com vosaltres.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ajudeu la tecnologia creada per a vosaltres —no per a les vostres dades— afegint-vos a la comunitat de persones que la sustenten.</string>
+  <string name="SubscribeFragment__donation_amount">Quantitat de la donació</string>
+  <string name="SubscribeFragment__more_payment_options">Més opcions de pagament</string>
+  <string name="SubscribeFragment__cancel_subscription">Cancel·la la subscripció</string>
+  <string name="SubscribeFragment__confirm_cancellation">En confirmeu la cancel·lació?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">No se us tornarà a cobrar. La insígnia se suprimirà del perfil al final del període de facturació.</string>
+  <string name="SubscribeFragment__not_now">Ara no</string>
+  <string name="SubscribeFragment__confirm">Confirmació</string>
+  <string name="SubscribeFragment__update_subscription">Actualitza la subscripció</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">S\'ha cancel·lat la subscripció.</string>
+  <string name="SubscribeFragment__update_subscription_question">Voleu actualitzar la subscripció?</string>
+  <string name="SubscribeFragment__update">Actualitza-la</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Se us cobrarà l\'import total del preu de la subscripció nova avui. La vostra subscripció es renovarà %1$s.</string>
+  <string name="Subscription__s_per_month">%s/ mes</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/ mes · Renovacions %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/ mes · Venciment: %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, sostinguda només per les persones que l’usen i valoren. Feu-hi una contribució mensual periòdica i rebeu una insígnia de perfil per compartir el vostre suport.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Per què contribuir-hi?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">L’equip del Signal està compromès amb la missió de desenvolupar tecnologia de privadesa de codi obert que protegeixi la llibertat d\'expressió i permeti una comunicació global segura. La vostra contribució alimenta aquesta causa. Sense anuncis. Sense rastrejadors. No és broma.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">La vostra contribució ajuda a pagar el desenvolupament, els servidors i l’amplada de banda d’una aplicació que fan servir milions de persones a tot el món per a la comunicació privada i instantània.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Gràcies pel vostre suport!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gràcies per l\'empenta!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Heu obtingut una insígnia de %s. Si la mostreu, es mostrarà a les persones amb qui converseu que doneu suport al Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra-ho al perfil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Feu una insígnia inclosa</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fet</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quan tingueu més d\'una insígnia, podeu triar-ne una per mostrar-la perquè altres la vegin al perfil.</string>
+  <string name="ManageDonationsFragment__my_support">Suport</string>
+  <string name="ManageDonationsFragment__manage_subscription">Gestioneu la subscripció</string>
+  <string name="ManageDonationsFragment__badges">Insígnies</string>
+  <string name="ManageDonationsFragment__subscription_faq">PMF de la subscripció</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Error en obtenir una subscripció</string>
+  <string name="BoostFragment__give_signal_a_boost">Doneu una empenta al Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Digueu \"Gràcies!\" i obtingueu la insígnia Boost durant %1$d dies.</string>
+  <string name="Boost__enter_custom_amount">Introduïu la quantitat personalitzada</string>
+  <string name="Boost__one_time_contribution">Contribució d\'un cop</string>
+  <string name="MySupportPreference__add_a_signal_boost">Afegiu una empenta al Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/ mes</string>
+  <string name="MySupportPreference__renews_s">Renovacions %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">La vostra insígnia %1$s ha caducat i ja no és visible al perfil per a altres usuaris.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuar donant suport a la tecnologia dissenyada per a vosaltres (no per a les vostres dades), penseu a convertir-vos en subscriptor mensual.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Fes-me\'n subscriptor</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
+  <string name="Subscription__verification_failed">La verificació de la subscripció ha fallat.</string>
+  <string name="Subscription__please_contact_support_for_more_information">Poseu-vos en contacte amb el servei d\'assistència per obtenir-ne més informació.</string>
+  <string name="Subscription__contact_support">Contacteu amb l\'Assistència</string>
+  <string name="Subscription__earn_a_s_badge">Guanyeu una insígnia %1$s</string>
+  <string name="SubscribeFragment__processing_payment">Es processa el pagament…</string>
+  <string name="DonationsErrors__payment_failed">Ha fallat el pagament.</string>
+  <string name="DonationsErrors__your_payment">El pagament no s\'ha pogut processar i no se us ha cobrat. Si us plau, torneu-ho a provar.</string>
+  <string name="DonationsErrors__redemption_still_pending">La redempció encara està pendent.</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">És possible que no vegeu la insígnia de seguida, però estem treballant-hi!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Heu de configurar Google Pay per fer donacions des de l\'aplicació.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">No s\'ha pogut cancel·lar la subscripció.</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">La cancel·lació de la subscripció requereix una connexió a Internet.</string>
   <!--EOF-->
 </resources>

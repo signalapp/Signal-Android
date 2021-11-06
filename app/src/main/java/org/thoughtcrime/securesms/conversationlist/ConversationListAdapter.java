@@ -57,8 +57,6 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
     this.glideRequests               = glideRequests;
     this.onConversationClickListener = onConversationClickListener;
-
-    this.setHasStableIds(true);
   }
 
   @Override
@@ -90,7 +88,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         int position = holder.getAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
-          return onConversationClickListener.onConversationLongClick(getItem(position));
+          return onConversationClickListener.onConversationLongClick(getItem(position), v);
         }
 
         return false;
@@ -171,23 +169,6 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     return super.getItem(position);
   }
 
-  @Override
-  public long getItemId(int position) {
-    Conversation item = getItem(position);
-
-    if (item == null) {
-      return 0;
-    }
-
-    switch (item.getType()) {
-      case THREAD:          return item.getThreadRecord().getThreadId();
-      case PINNED_HEADER:   return -1;
-      case UNPINNED_HEADER: return -2;
-      case ARCHIVED_FOOTER: return -3;
-      default:              throw new AssertionError();
-    }
-  }
-
   public void setPagingController(@Nullable PagingController pagingController) {
     this.pagingController = pagingController;
   }
@@ -249,13 +230,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   void initializeBatchMode(boolean toggle) {
     this.batchMode = toggle;
-    unselectAllThreads();
-  }
-
-  private void unselectAllThreads() {
     batchSet.clear();
-
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
   }
 
   static final class ConversationViewHolder extends RecyclerView.ViewHolder {
@@ -302,8 +277,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   }
 
   interface OnConversationClickListener {
-    void onConversationClick(Conversation conversation);
-    boolean onConversationLongClick(Conversation conversation);
+    void onConversationClick(@NonNull Conversation conversation);
+    boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view);
     void onShowArchiveClick();
   }
 }

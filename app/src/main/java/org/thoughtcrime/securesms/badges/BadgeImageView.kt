@@ -1,75 +1,72 @@
 package org.thoughtcrime.securesms.badges
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import androidx.annotation.ColorInt
-import androidx.annotation.Px
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
-import androidx.lifecycle.Lifecycle
-import org.signal.core.util.logging.Log
+import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.Badges.insetWithOutline
+import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.visible
-
-private val TAG = Log.tag(BadgeImageView::class.java)
+import org.thoughtcrime.securesms.util.ThemeUtil
+import java.lang.IllegalArgumentException
 
 class BadgeImageView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null
 ) : AppCompatImageView(context, attrs) {
 
-  @Px
-  private var outlineWidth: Float = 0f
-
-  @ColorInt
-  private var outlineColor: Int = Color.BLACK
+  private var badgeSize: Int = 0
 
   init {
     context.obtainStyledAttributes(attrs, R.styleable.BadgeImageView).use {
-      outlineWidth = it.getDimension(R.styleable.BadgeImageView_badge_outline_width, 0f)
-      outlineColor = it.getColor(R.styleable.BadgeImageView_badge_outline_color, Color.BLACK)
+      badgeSize = it.getInt(R.styleable.BadgeImageView_badge_size, 0)
     }
   }
 
   fun setBadgeFromRecipient(recipient: Recipient?) {
+    getGlideRequests()?.let {
+      setBadgeFromRecipient(recipient, it)
+    } ?: setImageDrawable(null)
+  }
+
+  fun setBadgeFromRecipient(recipient: Recipient?, glideRequests: GlideRequests) {
     if (recipient == null || recipient.badges.isEmpty()) {
-      setBadge(null)
+      setBadge(null, glideRequests)
     } else {
-      setBadge(recipient.badges[0])
+      setBadge(recipient.badges[0], glideRequests)
     }
   }
 
   fun setBadge(badge: Badge?) {
-    visible = badge != null
-
-    val lifecycle = ViewUtil.getActivityLifecycle(this)
-    if (lifecycle?.currentState == Lifecycle.State.DESTROYED) {
-      Log.w(TAG, "Ignoring setBadge call for destroyed activity.")
-      return
-    }
-
-    GlideApp
-      .with(this)
-      .load(badge)
-      .into(this)
+    getGlideRequests()?.let {
+      setBadge(badge, it)
+    } ?: setImageDrawable(null)
   }
 
-  override fun setImageDrawable(drawable: Drawable?) {
-    if (drawable == null || outlineWidth == 0f) {
-      super.setImageDrawable(drawable)
+  fun setBadge(badge: Badge?, glideRequests: GlideRequests) {
+    if (badge != null) {
+      glideRequests
+        .load(badge)
+        .downsample(DownsampleStrategy.NONE)
+        .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
+        .into(this)
     } else {
-      super.setImageDrawable(
-        drawable.insetWithOutline(
-          outlineWidth, outlineColor
-        )
-      )
+      glideRequests
+        .clear(this)
+      setImageDrawable(null)
+    }
+  }
+
+  private fun getGlideRequests(): GlideRequests? {
+    return try {
+      GlideApp.with(this)
+    } catch (e: IllegalArgumentException) {
+      // View not attached to an activity or activity destroyed
+      null
     }
   }
 }

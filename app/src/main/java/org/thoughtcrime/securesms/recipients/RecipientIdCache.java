@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -35,35 +36,35 @@ final class RecipientIdCache {
   synchronized void put(@NonNull Recipient recipient) {
     RecipientId      recipientId = recipient.getId();
     Optional<String> e164        = recipient.getE164();
-    Optional<UUID>   uuid        = recipient.getUuid();
+    Optional<ACI>    aci         = recipient.getAci();
 
     if (e164.isPresent()) {
       ids.put(e164.get(), recipientId);
     }
 
-    if (uuid.isPresent()) {
-      ids.put(uuid.get(), recipientId);
+    if (aci.isPresent()) {
+      ids.put(aci.get(), recipientId);
     }
   }
 
-  synchronized @Nullable RecipientId get(@Nullable UUID uuid, @Nullable String e164) {
-    if (uuid != null && e164 != null) {
-      RecipientId recipientIdByUuid = ids.get(uuid);
-      if (recipientIdByUuid == null) return null;
+  synchronized @Nullable RecipientId get(@Nullable ACI aci, @Nullable String e164) {
+    if (aci != null && e164 != null) {
+      RecipientId recipientIdByAci = ids.get(aci);
+      if (recipientIdByAci == null) return null;
 
       RecipientId recipientIdByE164 = ids.get(e164);
       if (recipientIdByE164 == null) return null;
 
-      if (recipientIdByUuid.equals(recipientIdByE164)) {
-        return recipientIdByUuid;
+      if (recipientIdByAci.equals(recipientIdByE164)) {
+        return recipientIdByAci;
       } else {
-        ids.remove(uuid);
+        ids.remove(aci);
         ids.remove(e164);
         Log.w(TAG, "Seen invalid RecipientIdCacheState");
         return null;
       }
-    } else if (uuid != null) {
-      return ids.get(uuid);
+    } else if (aci != null) {
+      return ids.get(aci);
     } else if (e164 != null) {
       return ids.get(e164);
     }

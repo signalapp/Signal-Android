@@ -41,7 +41,7 @@ public class AccountRecordMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    if (!TextSecurePreferences.isPushRegistered(context) || TextSecurePreferences.getLocalUuid(context) == null) {
+    if (!TextSecurePreferences.isPushRegistered(context) || TextSecurePreferences.getLocalAci(context) == null) {
       Log.w(TAG, "Not registered!");
       return;
     }

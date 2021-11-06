@@ -53,6 +53,17 @@
 
     </FrameLayout>
 
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/badge"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignStart="@id/contact_photo_container"
+        android:layout_alignTop="@id/contact_photo_container"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:badge_size="small" />
+
     <org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble
         android:id="@+id/body_bubble"
         android:layout_width="wrap_content"

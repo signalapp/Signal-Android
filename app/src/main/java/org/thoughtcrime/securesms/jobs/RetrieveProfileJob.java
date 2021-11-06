@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.app.Application;
 import android.content.Context;
-import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
-import org.thoughtcrime.securesms.badges.models.Badge;
+import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
@@ -49,6 +47,7 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -60,7 +59,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -173,7 +171,7 @@ public class RetrieveProfileJob extends BaseJob {
   public static void enqueueRoutineFetchIfNecessary(Application application) {
     if (!SignalStore.registrationValues().isRegistrationComplete() ||
         !TextSecurePreferences.isPushRegistered(application) ||
-        TextSecurePreferences.getLocalUuid(application) == null)
+        TextSecurePreferences.getLocalAci(application) == null)
     {
       Log.i(TAG, "Registration not complete. Skipping.");
       return;
@@ -291,11 +289,11 @@ public class RetrieveProfileJob extends BaseJob {
     Set<RecipientId> success = SetUtil.difference(recipientIds, operationState.retries);
     recipientDatabase.markProfilesFetched(success, System.currentTimeMillis());
 
-    Map<RecipientId, String> newlyRegistered = Stream.of(operationState.profiles)
-                                                     .map(Pair::first)
-                                                     .filterNot(Recipient::isRegistered)
-                                                     .collect(Collectors.toMap(Recipient::getId,
-                                                                               r -> r.getUuid().transform(UUID::toString).orNull()));
+    Map<RecipientId, ACI> newlyRegistered = Stream.of(operationState.profiles)
+                                                  .map(Pair::first)
+                                                  .filterNot(Recipient::isRegistered)
+                                                  .collect(Collectors.toMap(Recipient::getId,
+                                                                            r -> r.getAci().orNull()));
 
     if (operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) {
       Log.i(TAG, "Marking " + newlyRegistered.size() + " users as registered and " + operationState.unregistered.size() + " users as unregistered.");
@@ -353,19 +351,7 @@ public class RetrieveProfileJob extends BaseJob {
 
     DatabaseFactory.getRecipientDatabase(context)
                    .setBadges(recipient.getId(),
-                              badges.stream().map(RetrieveProfileJob::adaptFromServiceBadge).collect(java.util.stream.Collectors.toList()));
-  }
-
-  private static Badge adaptFromServiceBadge(@NonNull SignalServiceProfile.Badge serviceBadge) {
-    return new Badge(
-        serviceBadge.getId(),
-        Badge.Category.Companion.fromCode(serviceBadge.getCategory()),
-        Uri.parse(serviceBadge.getImageUrl()),
-        serviceBadge.getName(),
-        serviceBadge.getDescription(),
-        0L,
-        true
-    );
+                              badges.stream().map(Badges::fromServiceBadge).collect(java.util.stream.Collectors.toList()));
   }
 
   private void setProfileKeyCredential(@NonNull Recipient recipient,

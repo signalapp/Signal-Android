@@ -71,7 +71,8 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           sharedMedia = cursor.orNull(),
           sharedMediaIds = ids,
-          sharedMediaLoaded = true
+          sharedMediaLoaded = true,
+          displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
         )
       } else {
         cursor.orNull().ensureClosed()
@@ -102,10 +103,8 @@ sealed class ConversationSettingsViewModel(
 
   override fun onCleared() {
     cleared = true
-    store.update { state ->
-      openedMediaCursors.forEach { it.ensureClosed() }
-      state.copy(sharedMedia = null)
-    }
+    openedMediaCursors.forEach { it.ensureClosed() }
+    store.clear()
   }
 
   private fun Cursor?.ensureClosed() {
@@ -121,9 +120,7 @@ sealed class ConversationSettingsViewModel(
     private val repository: ConversationSettingsRepository
   ) : ConversationSettingsViewModel(
     repository,
-    SpecificSettingsState.RecipientSettingsState(
-      displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
-    )
+    SpecificSettingsState.RecipientSettingsState()
   ) {
 
     private val liveRecipient = Recipient.live(recipientId)

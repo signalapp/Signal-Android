@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <string name="ConversationItem_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন। </string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string>
-  <string name="ConversationActivity_reset">রিসেট </string>
   <string name="ConversationActivity_add_attachment">সংযুক্তি যোগ করুন</string>
   <string name="ConversationActivity_select_contact_info">পরিচিতির তথ্য নির্বাচন করুন</string>
   <string name="ConversationActivity_compose_message">বার্তা তৈরি করুন</string>
@@ -319,6 +316,8 @@
     <item quantity="one"> টি আলাপন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
   </plurals>
+  <string name="ConversationListFragment_select">নির্বাচন</string>
+  <string name="ConversationListFragment_select_all">সবগুলো নির্বাচন করুন</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key বিনিময় বার্তা</string>
   <!--ConversationListItemAction-->
@@ -796,14 +795,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">গার্ড ভিউ</string>
   <string name="MediaOverviewActivity_List_view_description">লিস্ট ভিউ</string>
   <string name="MediaOverviewActivity_Selected_description">নির্বাচিত</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d আইটেম %2$s</item>
-    <item quantity="other">%1$d আইটেমগুলি %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d আইটেম</item>
-    <item quantity="other">%1$d আইটেমগুলি</item>
-  </plurals>
+  <string name="MediaOverviewActivity_select_all">সবগুলো নির্বাচন করুন</string>
   <string name="MediaOverviewActivity_file">ফাইল</string>
   <string name="MediaOverviewActivity_audio">শব্দ</string>
   <string name="MediaOverviewActivity_video">ভিডিও</string>
@@ -1304,6 +1296,8 @@
   <string name="SharedContactView_add_to_contacts">পরিচিতিতে যুক্ত করুন</string>
   <string name="SharedContactView_invite_to_signal">Signal এ আমন্ত্রণ জানান</string>
   <string name="SharedContactView_message">Signal বার্তা</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">আরও</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">আমরা আপনাকে পরে আবারও মনে করিয়ে দেব।</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">আমরা আগামীকাল আপনাকে আবারও স্মরণ করিয়ে দেব।</string>
@@ -1842,15 +1836,6 @@
   <string name="HelpFragment__debug_log">ডিবাগ লগ:</string>
   <string name="HelpFragment__could_not_upload_logs">লগসমূহ আপলোড করা যায়নি</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">আমরা যাতে সমস্যাটি বুঝতে পারি সেজন্য যতটা সম্ভব বিস্তারিত বলুন।</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- অনুগ্রহ করে একটি অপশন বেছে নিন --</item>
-    <item>কিছু একটা কাজ করছে না</item>
-    <item>ফিচারের জন্য অনুরোধ</item>
-    <item>প্রশ্ন</item>
-    <item>মতামত</item>
-    <item>অন্যান্য</item>
-    <item>পেমেন্ট</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">এই মেসেজ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">সম্প্রতি ব্যাবহৃত হয়েছে</string>
@@ -2957,6 +2942,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger এর কপিরাইট</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 লাইসেন্সে নথিভুক্ত</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">উচ্চ</string>
+  <string name="DataAndStorageSettingsFragment__standard">স্ট্যান্ডার্ড</string>
   <string name="DataAndStorageSettingsFragment__calls">কল সমূহ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">স্বয়ংক্রিয়</string>
@@ -3073,6 +3060,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">নতুন পেমেন্ট</string>
@@ -3081,7 +3069,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">নাম বা নাম্বার খুঁজুন</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">মৌখিক বার্তা থামাও</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">মৌখিক বার্তার গতি পাল্টাও</string>
   <string name="VoiceNotePlayerView__pause_voice_message">মৌখিক বার্তা থামাও</string>
@@ -3119,5 +3107,16 @@
   <string name="MediaReviewSelectedItem__tap_to_select">নির্বাচন করতে চাপুন</string>
   <string name="MediaReviewImagePageFragment__discard">বাতিল করুন</string>
   <string name="SelectFeaturedBadgeFragment__preview">প্রিভিউ</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal আপনার মতো ব্যক্তির সহায়তায় পরিচালিত হয়।</string>
+  <string name="SubscribeFragment__donation_amount">অনুদানের পরিমাণ</string>
+  <string name="SubscribeFragment__not_now">এখন না</string>
+  <string name="SubscribeFragment__confirm">নিশ্চিত করুন</string>
+  <string name="SubscribeFragment__update">আপডেট করুন</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">শেষ</string>
+  <string name="Boost__enter_custom_amount">কাস্টম পরিমাণ লিখুন</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
+  <string name="Subscription__contact_support">সহায়তায় যোগাযোগ করুন</string>
+  <string name="SubscribeFragment__processing_payment">পেমেন্ট প্রক্রিয়া করা হচ্ছে…</string>
+  <string name="DonationsErrors__payment_failed">পেমেন্ট ব্যর্থ হয়েছে</string>
   <!--EOF-->
 </resources>

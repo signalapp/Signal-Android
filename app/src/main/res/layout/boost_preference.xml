@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dsl_settings_gutter"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="@dimen/dsl_settings_gutter">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/boost_1"
+        style="@style/Signal.Widget.Button.Large.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="48sp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        app:backgroundTint="@color/signal_selectable_button_background_tint"
+        app:cornerRadius="38dp"
+        app:layout_constraintEnd_toStartOf="@id/boost_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/signal_selectable_button_stroke"
+        app:strokeWidth="1.5dp"
+        tools:text="$3" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/boost_2"
+        style="@style/Signal.Widget.Button.Large.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="48sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        app:backgroundTint="@color/signal_selectable_button_background_tint"
+        app:cornerRadius="38dp"
+        app:layout_constraintEnd_toStartOf="@id/boost_3"
+        app:layout_constraintStart_toEndOf="@id/boost_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/signal_selectable_button_stroke"
+        app:strokeWidth="1.5dp"
+        tools:text="$5" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/boost_3"
+        style="@style/Signal.Widget.Button.Large.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="48sp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        app:backgroundTint="@color/signal_selectable_button_background_tint"
+        app:cornerRadius="38dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/boost_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/signal_selectable_button_stroke"
+        app:strokeWidth="1.5dp"
+        tools:text="$10" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/boost_4"
+        style="@style/Signal.Widget.Button.Large.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="48sp"
+        android:layout_marginTop="12dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        app:backgroundTint="@color/signal_selectable_button_background_tint"
+        app:cornerRadius="38dp"
+        app:layout_constraintEnd_toStartOf="@id/boost_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boost_1"
+        app:strokeColor="@color/signal_selectable_button_stroke"
+        app:strokeWidth="1.5dp"
+        tools:text="$20" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/boost_5"
+        style="@style/Signal.Widget.Button.Large.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="48sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        app:backgroundTint="@color/signal_selectable_button_background_tint"
+        app:cornerRadius="38dp"
+        app:layout_constraintEnd_toStartOf="@id/boost_6"
+        app:layout_constraintStart_toEndOf="@id/boost_4"
+        app:layout_constraintTop_toBottomOf="@id/boost_2"
+        app:strokeColor="@color/signal_selectable_button_stroke"
+        app:strokeWidth="1.5dp"
+        tools:text="$50" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/boost_6"
+        style="@style/Signal.Widget.Button.Large.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="48sp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        app:backgroundTint="@color/signal_selectable_button_background_tint"
+        app:cornerRadius="38dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/boost_5"
+        app:layout_constraintTop_toBottomOf="@id/boost_3"
+        app:strokeColor="@color/signal_selectable_button_stroke"
+        app:strokeWidth="1.5dp"
+        tools:text="$100" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/boost_custom"
+        android:layout_width="0dp"
+        android:layout_height="48sp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rounded_outline_focusable_38dp"
+        android:gravity="center"
+        android:hint="@string/Boost__enter_custom_amount"
+        android:imeOptions="actionDone"
+        android:inputType="numberDecimal"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_text_primary"
+        android:textColorHint="@color/signal_text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boost_4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

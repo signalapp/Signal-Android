@@ -29,7 +29,7 @@ import androidx.annotation.VisibleForTesting;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 
-import net.sqlcipher.database.SQLiteStatement;
+import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -202,6 +202,7 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(id, false));
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   @Override
@@ -520,7 +521,7 @@ public class SmsDatabase extends MessageDatabase {
         }
       }
 
-      if (threadUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
+      if (threadUpdates.isEmpty() && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId(), timestamp);
       }
 
@@ -722,11 +723,11 @@ public class SmsDatabase extends MessageDatabase {
 
       if (!peerEraIdSameAsPrevious && !Util.isEmpty(peekGroupCallEraId)) {
         Recipient self     = Recipient.self();
-        boolean   markRead = peekJoinedUuids.contains(self.requireUuid()) || self.getId().equals(sender);
+        boolean   markRead = peekJoinedUuids.contains(self.requireAci().uuid()) || self.getId().equals(sender);
 
         byte[] updateDetails = GroupCallUpdateDetails.newBuilder()
                                                      .setEraId(Util.emptyIfNull(peekGroupCallEraId))
-                                                     .setStartedCallUuid(Recipient.resolved(sender).requireUuid().toString())
+                                                     .setStartedCallUuid(Recipient.resolved(sender).requireAci().toString())
                                                      .setStartedCallTimestamp(timestamp)
                                                      .addAllInCallUuids(Stream.of(peekJoinedUuids).map(UUID::toString).toList())
                                                      .setIsCallFull(isCallFull)
@@ -803,7 +804,7 @@ public class SmsDatabase extends MessageDatabase {
       if (!sameEraId && !Util.isEmpty(messageGroupCallEraId)) {
         byte[] updateDetails = GroupCallUpdateDetails.newBuilder()
                                                      .setEraId(Util.emptyIfNull(messageGroupCallEraId))
-                                                     .setStartedCallUuid(Recipient.resolved(sender).requireUuid().toString())
+                                                     .setStartedCallUuid(Recipient.resolved(sender).requireAci().toString())
                                                      .setStartedCallTimestamp(timestamp)
                                                      .addAllInCallUuids(Collections.emptyList())
                                                      .setIsCallFull(false)
@@ -852,7 +853,7 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
-      boolean                containsSelf           = peekJoinedUuids.contains(Recipient.self().requireUuid());
+      boolean                containsSelf           = peekJoinedUuids.contains(Recipient.self().requireAci().uuid());
 
       sameEraId = groupCallUpdateDetails.getEraId().equals(peekGroupCallEraId) && !Util.isEmpty(peekGroupCallEraId);
 

@@ -2,8 +2,9 @@ package org.thoughtcrime.securesms.components.settings.app
 
 import android.view.View
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -14,25 +15,38 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
+import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.PlayServicesUtil
 
 class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__menu_settings) {
+
+  private val viewModel: AppSettingsViewModel by viewModels(
+    factoryProducer = {
+      AppSettingsViewModel.Factory(SubscriptionsRepository(ApplicationDependencies.getDonationsService()))
+    }
+  )
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     adapter.registerFactory(BioPreference::class.java, MappingAdapter.LayoutFactory(::BioPreferenceViewHolder, R.layout.bio_preference_item))
     adapter.registerFactory(PaymentsPreference::class.java, MappingAdapter.LayoutFactory(::PaymentsPreferenceViewHolder, R.layout.dsl_payments_preference))
-
-    val viewModel = ViewModelProvider(this)[AppSettingsViewModel::class.java]
+    adapter.registerFactory(SubscriptionPreference::class.java, MappingAdapter.LayoutFactory(::SubscriptionPreferenceViewHolder, R.layout.dsl_preference_item))
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.refreshActiveSubscription()
   }
 
   private fun getConfiguration(state: AppSettingsState): DSLConfiguration {
@@ -130,11 +144,41 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         }
       )
 
-      externalLinkPref(
-        title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
-        icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
-        linkId = R.string.donate_url
-      )
+      if (FeatureFlags.donorBadges() && PlayServicesUtil.getPlayServicesStatus(requireContext()) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
+        customPref(
+          SubscriptionPreference(
+            title = DSLSettingsText.from(
+              if (state.hasActiveSubscription) {
+                R.string.preferences__subscription
+              } else {
+                R.string.preferences__become_a_signal_sustainer
+              }
+            ),
+            icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
+            isActive = state.hasActiveSubscription,
+            onClick = { isActive ->
+              findNavController()
+                .navigate(
+                  AppSettingsFragmentDirections.actionAppSettingsFragmentToSubscriptions()
+                    .setSkipToSubscribe(!isActive)
+                )
+            }
+          )
+        )
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__signal_boost),
+          icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
+          onClick = {
+            findNavController().navigate(R.id.action_appSettingsFragment_to_boostsFragment)
+          }
+        )
+      } else {
+        externalLinkPref(
+          title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
+          icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
+          linkId = R.string.donate_url
+        )
+      }
 
       if (FeatureFlags.internalUser()) {
         dividerPref()
@@ -146,6 +190,30 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
           }
         )
       }
+    }
+  }
+
+  private class SubscriptionPreference(
+    override val title: DSLSettingsText,
+    override val summary: DSLSettingsText? = null,
+    override val icon: DSLSettingsIcon? = null,
+    override val isEnabled: Boolean = true,
+    val isActive: Boolean = false,
+    val onClick: (Boolean) -> Unit
+  ) : PreferenceModel<SubscriptionPreference>() {
+    override fun areItemsTheSame(newItem: SubscriptionPreference): Boolean {
+      return true
+    }
+
+    override fun areContentsTheSame(newItem: SubscriptionPreference): Boolean {
+      return super.areContentsTheSame(newItem) && isActive == newItem.isActive
+    }
+  }
+
+  private class SubscriptionPreferenceViewHolder(itemView: View) : PreferenceViewHolder<SubscriptionPreference>(itemView) {
+    override fun bind(model: SubscriptionPreference) {
+      super.bind(model)
+      itemView.setOnClickListener { model.onClick(model.isActive) }
     }
   }
 

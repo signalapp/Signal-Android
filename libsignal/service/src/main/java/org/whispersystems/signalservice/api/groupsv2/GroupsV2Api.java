@@ -21,6 +21,7 @@ import org.signal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 
@@ -54,14 +55,14 @@ public final class GroupsV2Api {
   /**
    * Create an auth token from a credential response.
    */
-  public GroupsV2AuthorizationString getGroupsV2AuthorizationString(UUID self,
+  public GroupsV2AuthorizationString getGroupsV2AuthorizationString(ACI self,
                                                                     int today,
                                                                     GroupSecretParams groupSecretParams,
                                                                     AuthCredentialResponse authCredentialResponse)
       throws VerificationFailedException
   {
     ClientZkAuthOperations     authOperations             = groupsOperations.getAuthOperations();
-    AuthCredential             authCredential             = authOperations.receiveAuthCredential(self, today, authCredentialResponse);
+    AuthCredential             authCredential             = authOperations.receiveAuthCredential(self.uuid(), today, authCredentialResponse);
     AuthCredentialPresentation authCredentialPresentation = authOperations.createAuthCredentialPresentation(new SecureRandom(), groupSecretParams, authCredential);
 
     return new GroupsV2AuthorizationString(groupSecretParams, authCredentialPresentation);

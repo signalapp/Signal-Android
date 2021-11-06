@@ -50,6 +50,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="17dp"
+        android:textAllCaps="false"
         app:cpb_textIdle="@string/RegistrationActivity_continue"
         app:layout_constraintBottom_toTopOf="@id/welcome_transfer_or_restore"
         app:layout_constraintEnd_toEndOf="parent"

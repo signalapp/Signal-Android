@@ -13,7 +13,9 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 
@@ -26,11 +28,19 @@ class BadgesOverviewFragment : DSLSettingsFragment(
 ) {
 
   private val lifecycleDisposable = LifecycleDisposable()
-  private val viewModel: BadgesOverviewViewModel by viewModels(factoryProducer = { BadgesOverviewViewModel.Factory(BadgeRepository(requireContext())) })
+  private val viewModel: BadgesOverviewViewModel by viewModels(
+    factoryProducer = {
+      BadgesOverviewViewModel.Factory(BadgeRepository(requireContext()), SubscriptionsRepository(ApplicationDependencies.getDonationsService()))
+    }
+  )
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    Badge.register(adapter) { badge, _ ->
-      ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, Recipient.self().id, badge)
+    Badge.register(adapter) { badge, _, isFaded ->
+      if (badge.isExpired() || isFaded) {
+        findNavController().navigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToExpiredBadgeDialog(badge))
+      } else {
+        ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, Recipient.self().id, badge)
+      }
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
@@ -52,11 +62,16 @@ class BadgesOverviewFragment : DSLSettingsFragment(
     return configure {
       sectionHeaderPref(R.string.BadgesOverviewFragment__my_badges)
 
-      displayBadges(state.allUnlockedBadges)
+      displayBadges(
+        context = requireContext(),
+        badges = state.allUnlockedBadges,
+        fadedBadgeId = state.fadedBadgeId
+      )
 
       switchPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__display_badges_on_profile),
         isChecked = state.displayBadgesOnProfile,
+        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges,
         onClick = {
           viewModel.setDisplayBadgesOnProfile(!state.displayBadgesOnProfile)
         }
@@ -65,7 +80,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
       clickPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__featured_badge),
         summary = state.featuredBadge?.name?.let { DSLSettingsText.from(it) },
-        isEnabled = state.stage == BadgesOverviewState.Stage.READY,
+        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges,
         onClick = {
           findNavController().navigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToFeaturedBadgeFragment())
         }

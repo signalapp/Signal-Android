@@ -158,7 +158,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atur malih sesi aman?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tumindak niki bakal mbiantu menawi sampeyan gadhah masalah enkripsi ing obrolan niki. Pesen sampeyan bakal disimpen.</string> -->
-  <string name="ConversationActivity_reset">Atur malih</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atur malih</string> -->
   <string name="ConversationActivity_add_attachment">Minggahaken lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pileh informasi kontak</string>
   <string name="ConversationActivity_compose_message">Serat pesen</string>
@@ -446,12 +446,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tampilan kisi-kisi</string>
   <string name="MediaOverviewActivity_List_view_description">Tampilan daftar</string>
   <string name="MediaOverviewActivity_Selected_description">Dipunpileh</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d prakawis %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d prakawis</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">File</string>
   <string name="MediaOverviewActivity_audio">Suwanten</string>
   <string name="MediaOverviewActivity_video">Video</string>

@@ -33,14 +33,17 @@ public class ConversationItemBodyBubble extends LinearLayout {
 
   public ConversationItemBodyBubble(Context context) {
     super(context);
+    setLayoutTransition(new BodyBubbleLayoutTransition());
   }
 
   public ConversationItemBodyBubble(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
+    setLayoutTransition(new BodyBubbleLayoutTransition());
   }
 
   public ConversationItemBodyBubble(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+    setLayoutTransition(new BodyBubbleLayoutTransition());
   }
 
   public void setOutliners(@NonNull List<Outliner> outliners) {
@@ -60,11 +63,19 @@ public class ConversationItemBodyBubble extends LinearLayout {
   }
 
   public void setQuoteViewProjection(@Nullable Projection quoteViewProjection) {
+    if (this.quoteViewProjection != null) {
+      this.quoteViewProjection.release();
+    }
+
     this.quoteViewProjection = quoteViewProjection;
     clipProjectionDrawable.setProjections(getProjections());
   }
 
   public void setVideoPlayerProjection(@Nullable Projection videoPlayerProjection) {
+    if (this.videoPlayerProjection != null) {
+      this.videoPlayerProjection.release();
+    }
+
     this.videoPlayerProjection = videoPlayerProjection;
     clipProjectionDrawable.setProjections(getProjections());
   }

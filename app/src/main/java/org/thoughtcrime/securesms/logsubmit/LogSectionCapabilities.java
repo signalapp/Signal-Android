@@ -22,7 +22,7 @@ public final class LogSectionCapabilities implements LogSection {
       return "Unregistered";
     }
 
-    if (TextSecurePreferences.getLocalNumber(context) == null || TextSecurePreferences.getLocalUuid(context) == null) {
+    if (TextSecurePreferences.getLocalNumber(context) == null || TextSecurePreferences.getLocalAci(context) == null) {
       return "Self not yet available!";
     }
 

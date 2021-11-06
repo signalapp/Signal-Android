@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
@@ -226,6 +227,14 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public void  updateSnippetUriSilently(long threadId, @Nullable Uri attachment) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(SNIPPET_URI, attachment != null ? attachment.toString() : null);
+
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
+  }
+
   public void updateSnippet(long threadId, String snippet, @Nullable Uri attachment, long date, long type, boolean unarchive) {
     if (isSilentType(type)) {
       return;
@@ -242,7 +251,7 @@ public class ThreadDatabase extends Database {
     }
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
+    db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
     notifyConversationListListeners();
   }
 
@@ -867,7 +876,7 @@ public class ThreadDatabase extends Database {
     StorageSyncHelper.scheduleSyncForDataChange();
   }
 
-  public void unpinConversations(@NonNull Set<Long> threadIds) {
+  public void unpinConversations(@NonNull Collection<Long> threadIds) {
     SQLiteDatabase db            = databaseHelper.getSignalWritableDatabase();
     ContentValues  contentValues = new ContentValues(1);
     String         placeholders  = StringUtil.join(Stream.of(threadIds).map(unused -> "?").toList(), ",");
@@ -1438,7 +1447,7 @@ public class ThreadDatabase extends Database {
         if (threadRecipient.isPushV2Group()) {
           MessageRecord.InviteAddState inviteAddState = record.getGv2AddInviteState();
           if (inviteAddState != null) {
-            RecipientId from = RecipientId.from(inviteAddState.getAddedOrInvitedBy(), null);
+            RecipientId from = RecipientId.from(ACI.from(inviteAddState.getAddedOrInvitedBy()), null);
             if (inviteAddState.isInvited()) {
               Log.i(TAG, "GV2 invite message request from " + from);
               return Extra.forGroupV2invite(from, individualRecipientId);

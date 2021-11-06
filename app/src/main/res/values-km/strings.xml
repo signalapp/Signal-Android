@@ -195,9 +195,9 @@
   <string name="ConversationItem_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <string name="ConversationItem_you_deleted_this_message">អ្នកបានលុបសារនេះ។</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string>
-  <string name="ConversationActivity_reset">កំណត់ឡើងវិញ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">កំណត់ឡើងវិញ</string> -->
   <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ</string>
   <string name="ConversationActivity_select_contact_info">ជ្រើសរើសព័ត៌មានលេខទំនាក់ទំនង</string>
   <string name="ConversationActivity_compose_message">បង្កើតសារថ្មី</string>
@@ -659,12 +659,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">ទិដ្ឋភាពក្រឡាចត្រង្គ</string>
   <string name="MediaOverviewActivity_List_view_description">ទិដ្ឋភាពបញ្ជី</string>
   <string name="MediaOverviewActivity_Selected_description">បានជ្រើសរើស</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d ធាតុ%2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d ធាតុ</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">ឯកសារ</string>
   <string name="MediaOverviewActivity_audio">សំឡេង</string>
   <string name="MediaOverviewActivity_video">វីដេអូ</string>

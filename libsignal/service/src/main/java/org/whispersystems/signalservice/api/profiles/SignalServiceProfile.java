@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.libsignal.logging.Log;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.math.BigDecimal;
@@ -54,9 +55,9 @@ public class SignalServiceProfile {
   private Capabilities capabilities;
 
   @JsonProperty
-  @JsonSerialize(using = JsonUtil.UuidSerializer.class)
-  @JsonDeserialize(using = JsonUtil.UuidDeserializer.class)
-  private UUID uuid;
+  @JsonSerialize(using = JsonUtil.AciSerializer.class)
+  @JsonDeserialize(using = JsonUtil.AciDeserializer.class)
+  private ACI uuid;
 
   @JsonProperty
   private byte[] credential;
@@ -109,7 +110,7 @@ public class SignalServiceProfile {
     return badges;
   }
 
-  public UUID getUuid() {
+  public ACI getAci() {
     return uuid;
   }
 
@@ -129,13 +130,13 @@ public class SignalServiceProfile {
     private String category;
 
     @JsonProperty
-    private String imageUrl;
-
-    @JsonProperty
     private String name;
 
     @JsonProperty
     private String description;
+
+    @JsonProperty
+    private List<String> sprites6;
 
     @JsonProperty
     private BigDecimal expiration;
@@ -159,12 +160,12 @@ public class SignalServiceProfile {
       return description;
     }
 
-    public BigDecimal getExpiration() {
-      return expiration;
+    public List<String> getSprites6() {
+      return sprites6;
     }
 
-    public String getImageUrl() {
-      return imageUrl;
+    public BigDecimal getExpiration() {
+      return expiration;
     }
 
     public boolean isVisible() {

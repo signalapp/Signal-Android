@@ -45,7 +45,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     put(CallEvent.ENDED_REMOTE_HANGUP_DECLINED, WebRtcViewModel.State.CALL_DECLINED_ELSEWHERE);
     put(CallEvent.ENDED_REMOTE_BUSY, WebRtcViewModel.State.CALL_BUSY);
     put(CallEvent.ENDED_REMOTE_HANGUP_NEED_PERMISSION, WebRtcViewModel.State.CALL_NEEDS_PERMISSION);
-    put(CallEvent.ENDED_REMOTE_GLARE, WebRtcViewModel.State.CALL_DISCONNECTED);
+    put(CallEvent.ENDED_REMOTE_GLARE, WebRtcViewModel.State.CALL_DISCONNECTED_GLARE);
   }};
 
   public ActiveCallActionProcessorDelegate(@NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
@@ -57,26 +57,6 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     if (resultReceiver != null) {
       resultReceiver.send(1, null);
     }
-    return currentState;
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleSendIceCandidates(@NonNull WebRtcServiceState currentState,
-                                                                @NonNull WebRtcData.CallMetadata callMetadata,
-                                                                boolean broadcast,
-                                                                @NonNull List<byte[]> iceCandidates)
-  {
-    Log.i(tag, "handleSendIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
-
-    List<IceUpdateMessage> iceUpdateMessages = Stream.of(iceCandidates)
-                                                     .map(c -> new IceUpdateMessage(callMetadata.getCallId().longValue(), c, null))
-                                                     .toList();
-
-    Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
-    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forIceUpdates(iceUpdateMessages, true, destinationDeviceId);
-
-    webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
-
     return currentState;
   }
 
@@ -220,6 +200,10 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       ThreadUtil.runOnMainDelayed(ringer::stop, SignalCallManager.BUSY_TONE_LENGTH);
     } else if (endedRemoteEvent == CallEvent.ENDED_REMOTE_GLARE && incomingBeforeAccept) {
       webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState().isRemoteVideoOffer());
+    }
+
+    if (state == WebRtcViewModel.State.CALL_ACCEPTED_ELSEWHERE) {
+      webRtcInteractor.insertReceivedCall(remotePeer, currentState.getCallSetupState().isRemoteVideoOffer());
     }
 
     currentState = currentState.builder()

@@ -120,7 +120,7 @@
 
     <fragment
         android:id="@+id/enterCodeFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.EnterCodeFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.EnterSmsCodeFragment"
         android:label="fragment_enter_code"
         tools:layout="@layout/fragment_registration_enter_code">
 

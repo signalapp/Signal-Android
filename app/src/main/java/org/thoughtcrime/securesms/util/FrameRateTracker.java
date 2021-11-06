@@ -40,7 +40,7 @@ public class FrameRateTracker {
     updateRefreshRate();
   }
 
-  public void begin() {
+  public void start() {
     Log.d(TAG, String.format(Locale.ENGLISH, "Beginning frame rate tracking. Screen refresh rate: %.2f hz, or %.2f ms per frame.", refreshRate, idealTimePerFrameNanos / (float) 1_000_000));
 
     lastFrameTimeNanos  = System.nanoTime();
@@ -48,7 +48,7 @@ public class FrameRateTracker {
     Choreographer.getInstance().postFrameCallback(calculator);
   }
 
-  public void end() {
+  public void stop() {
     Choreographer.getInstance().removeFrameCallback(calculator);
   }
 

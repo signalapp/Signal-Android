@@ -74,8 +74,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.
-</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
   <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
@@ -90,7 +89,7 @@
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden zullen je niet langer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen weer berichten naar elkaar kunnen verzenden, kunnen bellen, en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
   <string name="BlockUnblockDialog_block">Blokkeren</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokkeren en verlaten</string>
@@ -185,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ConversationItem_you_deleted_this_message">Je hebt dit bericht gewist.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie vernieuwen?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string>
-  <string name="ConversationActivity_reset">Opnieuw opzetten</string>
   <string name="ConversationActivity_add_attachment">Bijlage toevoegen</string>
   <string name="ConversationActivity_select_contact_info">Tik op contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
@@ -291,7 +287,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. — Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Signal app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nEn als je gebruik maakt van gekoppelde apparaten, dan zullen noties vanaf het moment van koppelen worden gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
   <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
   <string name="ConversationFragment__review_requests_carefully">Overweeg dit gespreksverzoek zorgvuldig:</string>
@@ -319,6 +315,48 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
     <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
+  </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Gelezen</item>
+    <item quantity="other">Gelezen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ongelezen</item>
+    <item quantity="other">Ongelezen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Vastprikken</item>
+    <item quantity="other">Vastprikken</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Losmaken</item>
+    <item quantity="other">Losmaken</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Meldingen dempen</item>
+    <item quantity="other">Meldingen dempen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Meldingen niet langer dempen</item>
+    <item quantity="other">Meldingen niet langer dempen</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Selecteren</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archiveren</item>
+    <item quantity="other">Archiveren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Dearchiveren</item>
+    <item quantity="other">Dearchiveren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Wissen</item>
+    <item quantity="other">Wissen</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Alles selecteren</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d geselecteerd</item>
+    <item quantity="other">%d geselecteerd</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
@@ -356,9 +394,9 @@
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-upbestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-upbestanden inschakelt maakt Signal automatisch elke dag een nieuw back-upbestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-upbestanden blijven bewaard, oudere back-upbestanden worden overschreven.</string>
   <string name="BackupsPreferenceFragment__create_backup">Nu een back-upbestand maken</string>
   <string name="BackupsPreferenceFragment__last_backup">Meest recente back-upbestand: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Back-updirectory</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Back-uplocatie</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Back-upwachtwoord verifiëren</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord hebt onthouden</string>
   <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
   <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-upbestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal app en tik op “Back-upgegevens terugzetten”. %1$s</string>
@@ -801,13 +839,19 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasterweergave</string>
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d item %2$s</item>
-    <item quantity="other">%1$d items %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Onversleuteld opslaan
+</item>
+    <item quantity="other">Onversleuteld opslaan</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d item</item>
-    <item quantity="other">%1$d items</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Wissen</item>
+    <item quantity="other">Wissen</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d geselecteerd (%2$s)</item>
+    <item quantity="other">%1$d geselecteerd (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Bestand</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -1318,7 +1362,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem je privacy met je mee.\nWees jezelf in elk bericht.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
   <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
-  <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen. Providerkosten zijn mogelijk van toepassing.</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we hebben verzonden naar %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verzeker je ervan dat je telefoon netwerkbereik heeft zodat je een sms of oproep kunt ontvangen</string>
   <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
@@ -1350,6 +1394,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SharedContactView_add_to_contacts">Aan contactenlijst toevoegen</string>
   <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
   <string name="SharedContactView_message">Signal-gesprek openen</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Meer opties</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Correct! Signal zal je later opnieuw vragen of je je pincode nog weet.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Correct! Signal zal je morgen opnieuw vragen of je je pincode nog weet.</string>
@@ -1579,7 +1625,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je vanaf een ander apparaat je telefoonnummer bij Signal hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
@@ -1899,15 +1945,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Maak een keuze --</item>
-    <item>Er werkt iets niet zoals het hoort</item>
-    <item>Verzoek voor nieuwe functionaliteit</item>
-    <item>Vraag</item>
-    <item>Terugkoppeling</item>
-    <item>Iets anders</item>
-    <item>Overschrijvingen</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -1979,7 +2016,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__led_color">Melding-LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">Melding-LED-knipperpatroon</string>
-  <string name="preferences__sound">Geluid</string>
+  <string name="preferences__sound">Berichtgeluid</string>
   <string name="preferences__silent">Stil</string>
   <string name="preferences__default">Standaardmeldingen</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
@@ -2004,6 +2041,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__help">Hulp</string>
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__donate_to_signal">Aan Signal doneren</string>
+  <string name="preferences__subscription">Maandelijkse donatie</string>
+  <string name="preferences__signal_boost">Eenmalige donatie</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige mms-instellingen</string>
@@ -2510,11 +2549,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
   <string name="RegistrationActivity_backup_size_s">Back-upbestand-grootte: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Back-upbestand-tijdstip: %s</string>
-  <string name="BackupDialog_enable_local_backups">Signal back-upbestanden laten maken?</string>
+  <string name="BackupDialog_enable_local_backups">Back-upbestanden maken?</string>
   <string name="BackupDialog_enable_backups">Back-upbestanden inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
   <string name="BackupDialog_delete_backups">Alle back-upbestanden wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-upbestanden wilt laten maken, dan zal Signal ook alle bestaande back-upbestanden in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je het maken van back-upbestanden uitschakeld, dan zal Signal ook alle bestaande back-upbestanden uit de back-uplocatie wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-upbestanden wissen</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-upbestanden te kunnen inschakelen.</string>
   <string name="BackupDialog_choose_folder">Kies een map</string>
@@ -2834,7 +2873,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond verwijderen</string>
   <string name="ChatWallpaperFragment__reset_wallpaper_question">Achtergrond verwijderen?</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Kiezen vanuit galerij</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Afbeelding uit galerij kiezen</string>
   <string name="ChatWallpaperSelectionFragment__presets">Reeds beschikbare achtergronden</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
@@ -3042,6 +3081,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__copyright_signal_messenger">Auteursrecht Signal berichtenapp</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Uitgegeven onder een GPLv3 licentie</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Media-verzendkwaliteit</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Door hoge kwaliteit media te verzenden verbruik je meer dataoverdracht.</string>
+  <string name="DataAndStorageSettingsFragment__high">Hoog</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standaard</string>
   <string name="DataAndStorageSettingsFragment__calls">Oproepen</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3109,11 +3153,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
   <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
-  <string name="ConversationSettingsFragment__message">Bericht verzenden</string>
+  <string name="ConversationSettingsFragment__message">Berichten</string>
   <string name="ConversationSettingsFragment__video">Video-oproep</string>
   <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
   <string name="ConversationSettingsFragment__call">Bellen</string>
-  <string name="ConversationSettingsFragment__mute">Dempen</string>
+  <string name="ConversationSettingsFragment__mute">Meldingen dempen</string>
   <string name="ConversationSettingsFragment__muted">Gedempt</string>
   <string name="ConversationSettingsFragment__search">Zoeken</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Verlopende berichten</string>
@@ -3132,7 +3176,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__group_link">Groepsverwijzing voor deze groep</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
   <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek dedempt tot %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek gedempt tot %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Gesprek voor onbepaalde tijd gedempt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefoonnummer</string>
@@ -3167,7 +3211,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Zoek op naam of telefoonnummer</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Audiobericht afspelen stoppen</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Audioafspeelsnelheid aanpassen</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Audiobericht pauzeren</string>
@@ -3223,6 +3267,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MediaReviewFragment__add_a_reply">Een reactie toevoegen</string>
   <string name="MediaReviewFragment__send_to">Verzonden aan</string>
   <string name="MediaReviewFragment__view_once_message">Eenmaligeweergave-bericht</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Een of meerdere items zijn te groot</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Een of meerdere items zijn ongeldig</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Te veel items geselecteerd</string>
   <string name="ImageEditorHud__cancel">Annuleren</string>
   <string name="ImageEditorHud__draw">Tekenen</string>
   <string name="ImageEditorHud__write_text">Schrijf tekst</string>
@@ -3252,5 +3299,63 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiel bijwerken mislukt</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Wordt een ondersteuner</string>
   <string name="ImageView__badge">Badge</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
+  <string name="SubscribeFragment__donation_amount">Bedrag</string>
+  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties</string>
+  <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie annuleren</string>
+  <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie annuleren?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>
+  <string name="SubscribeFragment__not_now">Niet nu</string>
+  <string name="SubscribeFragment__confirm">Bevestigen</string>
+  <string name="SubscribeFragment__update_subscription">Maandelijkse donatie bijwerken</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donatie is geannuleerd.</string>
+  <string name="SubscribeFragment__update_subscription_question">Maandelijkse donatie aanpassen?</string>
+  <string name="SubscribeFragment__update">Bijwerken</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Vandaag wordt het volledige bedrag voor de maandelijkse donatie afgeschreven. Je donatie wordt vernieuwd op %1$s.</string>
+  <string name="Subscription__s_per_month">%s/maand</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakts door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge om—als je dat wilt—te laten zien dat je Signal ondersteunt.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Het Signal team heeft zich toegewijd tot het ontwikkelen van technologieën met open broncode waarmee de vrijheid van meningsuiting en wereldwijde beveiligde communicatie mogelijk worden gemaakt. Jou bijdrage helpt dat mogelijk te maken. We doen dit zonder advertenties en zonder volgers die je gegevens verzamelen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Met jou bijdrage betalen we de ontwikkeling, servers en bandbreedte voor een app die wereldwijd door miljoenen mensen over de hele wereld wordt gebruikt voor privé-communicatie.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Je hebt een %s badge verdient! Als je er voor kiest deze badge op je profiel weer te geven dan kunnen de mensen met wie je gesprekken voert zien dat jij Signal steunt.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op je profiel weergeven</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klaar</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Als je meerdere badges hebt dan kun je er één kiezen om voor anderen op je profiel weer te geven.</string>
+  <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string>
+  <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donatie beheren</string>
+  <string name="ManageDonationsFragment__badges">Badges</string>
+  <string name="ManageDonationsFragment__subscription_faq">Informatie over maandelijkse donaties</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Fout bij het ophalen van informatie over maandelijkse donaties.</string>
+  <string name="BoostFragment__give_signal_a_boost">Help Signal met een eenmalige bijdrage</string>
+  <string name="BoostFragment__say_thanks_and_earn">Bedank Signal en verdien de oppepper-badge voor %1$d dagen.</string>
+  <string name="Boost__enter_custom_amount">Vul een zelfgekozen bedrag in</string>
+  <string name="Boost__one_time_contribution">Eenmalige bijdrage</string>
+  <string name="MySupportPreference__add_a_signal_boost">Geef Signal een oppepper</string>
+  <string name="MySupportPreference__s_per_month">%1$s/maand</string>
+  <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Je badge is verlopen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Je %1$s badge is verlopen en is daarom niet langer voor anderen zichtbaar op je profiel.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Als je door wilt gaan met het ondersteunen van technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—overweeg dan om maandelijks te doneren.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Wordt een maandelijkse ondersteuner</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
+  <string name="Subscription__verification_failed">Bevestiging van maandelijkse donatie is mislukt</string>
+  <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
+  <string name="Subscription__contact_support">Neem contact op met ondersteuning</string>
+  <string name="Subscription__earn_a_s_badge">Verdien een %1$s badge</string>
+  <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
+  <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string>
+  <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
+  <string name="DonationsErrors__redemption_still_pending">Terugbetaling nog in afwachting</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Het kan zijn dat je de badge niet gelijk ziet maar we werken er aan.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal app donaties te kunnen doen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donatie is mislukt</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie te annuleren moet je toegang hebben tot internet.</string>
   <!--EOF-->
 </resources>

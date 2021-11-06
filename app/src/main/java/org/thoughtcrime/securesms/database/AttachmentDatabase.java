@@ -626,7 +626,10 @@ public class AttachmentDatabase extends Database {
       //noinspection ResultOfMethodCallIgnored
       dataInfo.file.delete();
     } else {
-      notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
+      long threadId = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId);
+      DatabaseFactory.getThreadDatabase(context).updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId));
+
+      notifyConversationListeners(threadId);
       notifyConversationListListeners();
     }
 

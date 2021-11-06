@@ -29,7 +29,7 @@ import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
 
-import net.sqlcipher.database.SQLiteStatement;
+import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,6 +81,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -826,6 +827,7 @@ public class MmsDatabase extends MessageDatabase {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE, Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   @Override
@@ -833,6 +835,7 @@ public class MmsDatabase extends MessageDatabase {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (secure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0), Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   @Override
@@ -866,6 +869,7 @@ public class MmsDatabase extends MessageDatabase {
       db.endTransaction();
     }
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   @Override
@@ -1556,7 +1560,7 @@ public class MmsDatabase extends MessageDatabase {
         MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
         members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
                              .distinct()
-                             .map(uuid -> RecipientId.from(uuid, null))
+                             .map(uuid -> RecipientId.from(ACI.from(uuid), null))
                              .toList());
         members.remove(Recipient.self().getId());
       } else {

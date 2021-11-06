@@ -237,7 +237,7 @@ public final class MessageContentProcessor {
       PendingRetryReceiptModel pending      = ApplicationDependencies.getPendingRetryReceiptCache().get(senderRecipient.getId(), content.getTimestamp());
       long                     receivedTime = handlePendingRetry(pending, content, threadRecipient);
 
-      log(String.valueOf(content.getTimestamp()), "Beginning message processing. Sender: " + senderRecipient.getId() + " | " + senderRecipient.requireServiceId());
+      log(String.valueOf(content.getTimestamp()), "Beginning message processing. Sender: " + formatSender(senderRecipient, content));
 
       if (content.getDataMessage().isPresent()) {
         GroupDatabase            groupDatabase  = DatabaseFactory.getGroupDatabase(context);
@@ -641,7 +641,7 @@ public final class MessageContentProcessor {
     }
 
     ApplicationDependencies.getSignalCallManager()
-                           .receivedOpaqueMessage(new WebRtcData.OpaqueMessageMetadata(senderRecipient.requireUuid(),
+                           .receivedOpaqueMessage(new WebRtcData.OpaqueMessageMetadata(senderRecipient.requireAci().uuid(),
                                                                                        message.getOpaque(),
                                                                                        content.getSenderDevice(),
                                                                                        messageAgeSeconds));
@@ -1019,7 +1019,7 @@ public final class MessageContentProcessor {
 
   private void handleSynchronizeOutgoingPayment(@NonNull SignalServiceContent content, @NonNull OutgoingPaymentMessage outgoingPaymentMessage) {
     RecipientId recipientId = outgoingPaymentMessage.getRecipient()
-                                                    .transform(uuid -> RecipientId.from(uuid, null))
+                                                    .transform(RecipientId::from)
                                                     .orNull();
     long timestamp = outgoingPaymentMessage.getBlockTimestamp();
     if (timestamp == 0) {
@@ -1811,9 +1811,9 @@ public final class MessageContentProcessor {
 
     long sentTimestamp = decryptionErrorMessage.getTimestamp();
 
-    warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + senderRecipient.getId() + ", device " + content.getSenderDevice() + " for message with timestamp " + sentTimestamp + ".");
+    warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + formatSender(senderRecipient, content) + " for message with timestamp " + sentTimestamp + ".");
 
-    if (!senderRecipient.hasUuid()) {
+    if (!senderRecipient.hasAci()) {
       warn(content.getTimestamp(), "[RetryReceipt] Requester " + senderRecipient.getId() + " somehow has no UUID! timestamp: " + sentTimestamp);
       return;
     }
@@ -1853,12 +1853,12 @@ public final class MessageContentProcessor {
 
     GroupId.V2            groupId          = threadRecipient.requireGroupId().requireV2();
     DistributionId        distributionId   = DatabaseFactory.getGroupDatabase(context).getOrCreateDistributionId(groupId);
-    SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireUuid().toString(), decryptionErrorMessage.getDeviceId());
+    SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireAci().toString(), content.getSenderDevice());
 
     DatabaseFactory.getSenderKeySharedDatabase(context).delete(distributionId, Collections.singleton(requesterAddress));
 
     if (messageLogEntry != null) {
-      warn(content.getTimestamp(), "[RetryReceipt-SK] Found MSL entry for " + requester.getId() + " with timestamp " + sentTimestamp + ". Scheduling a resend.");
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Found MSL entry for " + requester.getId() + " (" + requesterAddress + ") with timestamp " + sentTimestamp + ". Scheduling a resend.");
 
       ApplicationDependencies.getJobManager().add(new ResendMessageJob(messageLogEntry.getRecipientId(),
                                                                        messageLogEntry.getDateSent(),
@@ -1867,7 +1867,7 @@ public final class MessageContentProcessor {
                                                                        groupId,
                                                                        distributionId));
     } else {
-      warn(content.getTimestamp(), "[RetryReceipt-SK] Unable to find MSL entry for " + requester.getId() + " with timestamp " + sentTimestamp + ".");
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Unable to find MSL entry for " + requester.getId() + " (" + requesterAddress + ") with timestamp " + sentTimestamp + ".");
 
       Optional<GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);
 
@@ -2092,7 +2092,7 @@ public final class MessageContentProcessor {
     List<Mention> mentions = new ArrayList<>(signalServiceMentions.size());
 
     for (SignalServiceDataMessage.Mention mention : signalServiceMentions) {
-      mentions.add(new Mention(Recipient.externalPush(context, mention.getUuid(), null, false).getId(), mention.getStart(), mention.getLength()));
+      mentions.add(new Mention(Recipient.externalPush(context, mention.getAci(), null, false).getId(), mention.getStart(), mention.getLength()));
     }
 
     return mentions;
@@ -2231,50 +2231,63 @@ public final class MessageContentProcessor {
     if (recipient.hasE164()) {
       unidentified |= message.isUnidentified(recipient.requireE164());
     }
-    if (recipient.hasUuid()) {
-      unidentified |= message.isUnidentified(recipient.requireUuid());
+    if (recipient.hasAci()) {
+      unidentified |= message.isUnidentified(recipient.requireAci());
     }
 
     return unidentified;
   }
 
-  protected void log(@NonNull String message) {
+  private static void log(@NonNull String message) {
     Log.i(TAG, message);
   }
 
-  protected void log(long timestamp, @NonNull String message) {
+  private static void log(long timestamp, @NonNull String message) {
     log(String.valueOf(timestamp), message);
   }
 
-  protected void log(@NonNull String extra, @NonNull String message) {
+  private static void log(@NonNull String extra, @NonNull String message) {
     String extraLog = Util.isEmpty(extra) ? "" : "[" + extra + "] ";
     Log.i(TAG, extraLog + message);
   }
 
-  protected void warn(@NonNull String message) {
+  private static void warn(@NonNull String message) {
     warn("", message, null);
   }
 
-  protected void warn(@NonNull String extra, @NonNull String message) {
+  private static void warn(@NonNull String extra, @NonNull String message) {
     warn(extra, message, null);
   }
 
-  protected void warn(long timestamp, @NonNull String message) {
+  private static void warn(long timestamp, @NonNull String message) {
     warn(String.valueOf(timestamp), message);
   }
 
-  protected void warn(long timestamp, @NonNull String message, @Nullable Throwable t) {
+  private static void warn(long timestamp, @NonNull String message, @Nullable Throwable t) {
     warn(String.valueOf(timestamp), message, t);
   }
 
-  protected void warn(@NonNull String message, @Nullable Throwable t) {
+  private static void warn(@NonNull String message, @Nullable Throwable t) {
     warn("", message, t);
   }
 
-  protected void warn(@NonNull String extra, @NonNull String message, @Nullable Throwable t) {
+  private static void warn(@NonNull String extra, @NonNull String message, @Nullable Throwable t) {
     String extraLog = Util.isEmpty(extra) ? "" : "[" + extra + "] ";
     Log.w(TAG, extraLog + message, t);
   }
+
+  private static String formatSender(@NonNull Recipient recipient, @Nullable SignalServiceContent content) {
+    return formatSender(recipient.getId(), content);
+  }
+
+  private static String formatSender(@NonNull RecipientId recipientId, @Nullable SignalServiceContent content) {
+    if (content != null) {
+      return recipientId + " (" + content.getSender().getIdentifier() + "." + content.getSenderDevice() + ")";
+    } else {
+      return recipientId.toString();
+    }
+  }
+
 
   @SuppressWarnings("WeakerAccess")
   private static class StorageFailedException extends Exception {

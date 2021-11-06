@@ -110,6 +110,7 @@ public final class Megaphones {
       put(Event.MISSED_BACKGROUND_NOTIFICATIONS, shouldshowMissedBackgroundNotificationsMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
       put(Event.CHAT_COLORS, ALWAYS);
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
+      put(Event.BECOME_A_SUSTAINER, shouldShowBecomeASustainerMegaphone() ? ALWAYS : NEVER);
     }};
   }
 
@@ -143,6 +144,8 @@ public final class Megaphones {
         return buildChatColorsMegaphone(context);
       case ADD_A_PROFILE_PHOTO:
         return buildAddAProfilePhotoMegaphone(context);
+      case BECOME_A_SUSTAINER:
+        return buildBecomeASustainerMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -369,6 +372,22 @@ public final class Megaphones {
                         .build();
   }
 
+  private static @NonNull Megaphone buildBecomeASustainerMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.BECOME_A_SUSTAINER, Megaphone.Style.BASIC)
+        .setTitle(R.string.BecomeASustainerMegaphone__become_a_sustainer)
+        .setImage(R.drawable.ic_become_a_sustainer_megaphone)
+        .setBody(R.string.BecomeASustainerMegaphone__signal_is_powered)
+        .setActionButton(R.string.BecomeASustainerMegaphone__contribute, (megaphone, listener) -> {
+          listener.onMegaphoneNavigationRequested(AppSettingsActivity.subscriptions(context));
+          listener.onMegaphoneCompleted(Event.BECOME_A_SUSTAINER);
+        })
+        .setSecondaryButton(R.string.BecomeASustainerMegaphone__no_thanks, (megaphone, listener) -> {
+          listener.onMegaphoneCompleted(Event.BECOME_A_SUSTAINER);
+        })
+        .build();
+  }
+
+
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
@@ -391,6 +410,10 @@ public final class Megaphones {
 
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
     return SignalStore.onboarding().hasOnboarding(context);
+  }
+
+  private static boolean shouldShowBecomeASustainerMegaphone() {
+    return FeatureFlags.donorBadgesMegaphone();
   }
 
   private static boolean shouldShowNotificationsMegaphone(@NonNull Context context) {
@@ -445,7 +468,8 @@ public final class Megaphones {
     NOTIFICATIONS("notifications"),
     MISSED_BACKGROUND_NOTIFICATIONS("missed_background_notifications"),
     CHAT_COLORS("chat_colors"),
-    ADD_A_PROFILE_PHOTO("add_a_profile_photo");
+    ADD_A_PROFILE_PHOTO("add_a_profile_photo"),
+    BECOME_A_SUSTAINER("become_a_sustainer");
 
     private final String key;
 

@@ -49,6 +49,7 @@ import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
@@ -206,7 +207,7 @@ public final class GroupsV2StateProcessor {
           }
 
           if (inputGroupState == null) {
-            if (localState != null && DecryptedGroupUtil.isPendingOrRequesting(localState, Recipient.self().getUuid().get())) {
+            if (localState != null && DecryptedGroupUtil.isPendingOrRequesting(localState, Recipient.self().requireAci().uuid())) {
               Log.w(TAG, "Unable to query server for group " + groupId + " server says we're not in group, but we think we are a pending or requesting member");
             } else {
               Log.w(TAG, "Unable to query server for group " + groupId + " server says we're not in group, inserting leave message");
@@ -250,7 +251,7 @@ public final class GroupsV2StateProcessor {
         throws IOException, GroupNotAMemberException, GroupDoesNotExistException
     {
       try {
-        return groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
+        return groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireAci(), groupSecretParams));
       } catch (GroupNotFoundException e) {
         throw new GroupDoesNotExistException(e);
       } catch (NotInGroupException e) {
@@ -265,7 +266,7 @@ public final class GroupsV2StateProcessor {
         throws IOException, GroupNotAMemberException, GroupDoesNotExistException
     {
       try {
-        return groupsV2Api.getGroupHistory(groupSecretParams, revision, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams))
+        return groupsV2Api.getGroupHistory(groupSecretParams, revision, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireAci(), groupSecretParams))
                           .get(0)
                           .getGroup()
                           .orNull();
@@ -285,7 +286,7 @@ public final class GroupsV2StateProcessor {
       }
 
       Recipient      groupRecipient = Recipient.externalGroupExact(context, groupId);
-      UUID           selfUuid       = Recipient.self().getUuid().get();
+      UUID           selfUuid       = Recipient.self().requireAci().uuid();
       DecryptedGroup decryptedGroup = groupDatabase.requireGroup(groupId)
                                                    .requireV2GroupProperties()
                                                    .getDecryptedGroup();
@@ -359,7 +360,7 @@ public final class GroupsV2StateProcessor {
                                          @NonNull DecryptedGroup newLocalState)
     {
       if (inputGroupState.getLocalState() != null) {
-        boolean wasAMemberAlready = DecryptedGroupUtil.findMemberByUuid(inputGroupState.getLocalState().getMembersList(), Recipient.self().getUuid().get()).isPresent();
+        boolean wasAMemberAlready = DecryptedGroupUtil.findMemberByUuid(inputGroupState.getLocalState().getMembersList(), Recipient.self().requireAci().uuid()).isPresent();
 
         if (wasAMemberAlready) {
           Log.i(TAG, "Skipping profile sharing detection as was already a full member before update");
@@ -367,7 +368,7 @@ public final class GroupsV2StateProcessor {
         }
       }
 
-      Optional<DecryptedMember> selfAsMemberOptional = DecryptedGroupUtil.findMemberByUuid(newLocalState.getMembersList(), Recipient.self().getUuid().get());
+      Optional<DecryptedMember> selfAsMemberOptional = DecryptedGroupUtil.findMemberByUuid(newLocalState.getMembersList(), Recipient.self().requireAci().uuid());
 
       if (selfAsMemberOptional.isPresent()) {
         DecryptedMember     selfAsMember     = selfAsMemberOptional.get();
@@ -378,7 +379,7 @@ public final class GroupsV2StateProcessor {
                                                      .filter(c -> c != null && c.getRevision() == revisionJoinedAt)
                                                      .findFirst()
                                                      .map(c -> Optional.fromNullable(UuidUtil.fromByteStringOrNull(c.getEditor()))
-                                                                       .transform(a -> Recipient.externalPush(context, UuidUtil.fromByteStringOrNull(c.getEditor()), null, false)))
+                                                                       .transform(a -> Recipient.externalPush(context, ACI.fromByteStringOrNull(c.getEditor()), null, false)))
                                                      .orElse(Optional.absent());
 
         if (addedByOptional.isPresent()) {
@@ -446,33 +447,33 @@ public final class GroupsV2StateProcessor {
     private @NonNull GlobalGroupState queryServer(@Nullable DecryptedGroup localState, boolean latestOnly)
         throws IOException, GroupNotAMemberException
     {
-      UUID                      selfUuid          = Recipient.self().getUuid().get();
+      ACI                       selfAci = Recipient.self().requireAci();
       DecryptedGroup            latestServerGroup;
       List<ServerGroupLogEntry> history;
 
       try {
-        latestServerGroup = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
+        latestServerGroup = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(selfAci, groupSecretParams));
       } catch (NotInGroupException | GroupNotFoundException e) {
         throw new GroupNotAMemberException(e);
       } catch (VerificationFailedException | InvalidGroupStateException e) {
         throw new IOException(e);
       }
 
-      if (latestOnly || !GroupProtoUtil.isMember(selfUuid, latestServerGroup.getMembersList())) {
+      if (latestOnly || !GroupProtoUtil.isMember(selfAci.uuid(), latestServerGroup.getMembersList())) {
         history = Collections.singletonList(new ServerGroupLogEntry(latestServerGroup, null));
       } else {
-        int revisionWeWereAdded = GroupProtoUtil.findRevisionWeWereAdded(latestServerGroup, selfUuid);
+        int revisionWeWereAdded = GroupProtoUtil.findRevisionWeWereAdded(latestServerGroup, selfAci.uuid());
         int logsNeededFrom      = localState != null ? Math.max(localState.getRevision(), revisionWeWereAdded) : revisionWeWereAdded;
 
-        history = getFullMemberHistory(selfUuid, logsNeededFrom);
+        history = getFullMemberHistory(selfAci, logsNeededFrom);
       }
 
       return new GlobalGroupState(localState, history);
     }
 
-    private List<ServerGroupLogEntry> getFullMemberHistory(@NonNull UUID selfUuid, int logsNeededFromRevision) throws IOException {
+    private List<ServerGroupLogEntry> getFullMemberHistory(@NonNull ACI selfAci, int logsNeededFromRevision) throws IOException {
       try {
-        Collection<DecryptedGroupHistoryEntry> groupStatesFromRevision = groupsV2Api.getGroupHistory(groupSecretParams, logsNeededFromRevision, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
+        Collection<DecryptedGroupHistoryEntry> groupStatesFromRevision = groupsV2Api.getGroupHistory(groupSecretParams, logsNeededFromRevision, groupsV2Authorization.getAuthorizationForToday(selfAci, groupSecretParams));
         ArrayList<ServerGroupLogEntry>         history                 = new ArrayList<>(groupStatesFromRevision.size());
         boolean                                ignoreServerChanges     = SignalStore.internalValues().gv2IgnoreServerChanges();
 
@@ -496,9 +497,9 @@ public final class GroupsV2StateProcessor {
     }
 
     private void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp) {
-      Optional<UUID> editor = getEditor(decryptedGroupV2Context);
+      Optional<ACI> editor = getEditor(decryptedGroupV2Context).transform(ACI::from);
 
-      boolean outgoing = !editor.isPresent() || Recipient.self().requireUuid().equals(editor.get());
+      boolean outgoing = !editor.isPresent() || Recipient.self().requireAci().equals(editor.get());
 
       if (outgoing) {
         try {
@@ -536,7 +537,7 @@ public final class GroupsV2StateProcessor {
       if (changeEditor.isPresent()) {
         return changeEditor;
       } else {
-        Optional<DecryptedPendingMember> pendingByUuid = DecryptedGroupUtil.findPendingByUuid(decryptedGroupV2Context.getGroupState().getPendingMembersList(), Recipient.self().requireUuid());
+        Optional<DecryptedPendingMember> pendingByUuid = DecryptedGroupUtil.findPendingByUuid(decryptedGroupV2Context.getGroupState().getPendingMembersList(), Recipient.self().requireAci().uuid());
         if (pendingByUuid.isPresent()) {
           return Optional.fromNullable(UuidUtil.fromByteStringOrNull(pendingByUuid.get().getAddedByUuid()));
         }

@@ -119,6 +119,10 @@ public final class ViewUtil {
     return animateOut(view, getAlphaAnimation(1f, 0f, duration), visibility);
   }
 
+  public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation) {
+    return animateOut(view, animation, View.GONE);
+  }
+
   public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation, final int visibility) {
     final SettableFuture future = new SettableFuture();
     if (view.getVisibility() == visibility) {

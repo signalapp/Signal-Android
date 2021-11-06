@@ -177,9 +177,9 @@
   <string name="ConversationItem_this_message_was_deleted">Ev peyam hat jêbirin.</string>
   <string name="ConversationItem_you_deleted_this_message">Te ev peyam jê bir.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Rûniştina parastî reset bike?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Heke tu di vê axiftinê de li rastî pirsgirêkên şîfrekirinê tê, dibe ku ev alîkariya te bike. Ew ê peyamên te bên hilanîn.</string>
-  <string name="ConversationActivity_reset">Reset bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Rûniştina parastî reset bike?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Heke tu di vê axiftinê de li rastî pirsgirêkên şîfrekirinê tê, dibe ku ev alîkariya te bike. Ew ê peyamên te bên hilanîn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Reset bike</string> -->
   <string name="ConversationActivity_add_attachment">Pêvekê tevlî bike</string>
   <string name="ConversationActivity_select_contact_info">Agahiya kesî hilbijêre</string>
   <string name="ConversationActivity_compose_message">Peyamê binivîse</string>
@@ -754,14 +754,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Xuyanga grîdî</string>
   <string name="MediaOverviewActivity_List_view_description">Xuyanga lîsteyî</string>
   <string name="MediaOverviewActivity_Selected_description">Bijartî</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d hêman %2$s</item>
     <item quantity="other">%1$d hêman %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d hêman</item>
     <item quantity="other">%1$d hêman</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">Dosye</string>
   <string name="MediaOverviewActivity_audio">Deng</string>
   <string name="MediaOverviewActivity_video">Vîdyo</string>

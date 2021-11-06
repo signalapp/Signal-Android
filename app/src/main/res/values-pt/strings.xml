@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Esta mensagem foi eliminada.</string>
   <string name="ConversationItem_you_deleted_this_message">Eliminou esta mensagem.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto poderá ajudar caso tenha problemas com a encriptação desta conversa. As suas mensagens serão mantidas.</string>
-  <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contacto</string>
   <string name="ConversationActivity_compose_message">Compor mensagem</string>
@@ -318,6 +315,48 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
+  </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Lida</item>
+    <item quantity="other">Lidas</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Por ler</item>
+    <item quantity="other">Por ler</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Afixar</item>
+    <item quantity="other">Afixar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Desafixar</item>
+    <item quantity="other">Desafixar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Silenciar</item>
+    <item quantity="other">Silenciar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Alertar</item>
+    <item quantity="other">Alertar</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Selecionar</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arquivar</item>
+    <item quantity="other">Arquivar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Desarquivar</item>
+    <item quantity="other">Desarquivar</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Eliminar</item>
+    <item quantity="other">Eliminar</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Selecionar tudo</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d selecionado</item>
+    <item quantity="other">%d selecionados</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
@@ -799,13 +838,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista em grelha</string>
   <string name="MediaOverviewActivity_List_view_description">Vista em lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selecionado(s)</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d item %2$s</item>
-    <item quantity="other">%1$d itens %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Selecionar tudo</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Guardar</item>
+    <item quantity="other">Guardar</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d item</item>
-    <item quantity="other">%1$d itens</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Eliminar</item>
+    <item quantity="other">Eliminar</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d selecionado(a) (%2$s)</item>
+    <item quantity="other">%1$d selecionados(as) (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Ficheiro</string>
   <string name="MediaOverviewActivity_audio">Áudio</string>
@@ -1345,6 +1389,8 @@
   <string name="SharedContactView_add_to_contacts">Adicionar aos contactos</string>
   <string name="SharedContactView_invite_to_signal">Convidar para o Signal</string>
   <string name="SharedContactView_message">Mensagem do Signal</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mais</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Iremos recordar-lhe mais tarde.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Iremos recordar-lhe de novo amanhã.</string>
@@ -1894,15 +1940,6 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Ppr favor, selecione uma opção --</item>
-    <item>Alguma coisa não está a funcionar</item>
-    <item>Pedido de função</item>
-    <item>Pergunta</item>
-    <item>Feedback</item>
-    <item>Outro(s)</item>
-    <item>Pagamentos</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -1999,6 +2036,8 @@
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__donate_to_signal">Doar ao Signal</string>
+  <string name="preferences__subscription">Assinatura</string>
+  <string name="preferences__signal_boost">Melhoria Signal</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente do utilizador de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Definições manuais de MMS</string>
@@ -3037,6 +3076,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Distribuição guiada pela licença GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Qualidade média</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualidade da multimédia enviada</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Enviar multimédia com alta qualidade utilizará mais dados de internet.</string>
+  <string name="DataAndStorageSettingsFragment__high">Elevada</string>
+  <string name="DataAndStorageSettingsFragment__standard">Normal</string>
   <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3162,7 +3206,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Procurar nome ou número</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Parar mensagem de voz</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Alterar a velocidade da mensagem de voz</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Pausar mensagem de voz</string>
@@ -3218,6 +3262,9 @@
   <string name="MediaReviewFragment__add_a_reply">Adicionar uma resposta</string>
   <string name="MediaReviewFragment__send_to">Enviar para</string>
   <string name="MediaReviewFragment__view_once_message">Mensagem de visualização única</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Um ou mais itens são demasiado grandes</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Um ou mais itens são inválidos</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Demasiados itens selecionados</string>
   <string name="ImageEditorHud__cancel">Cancelar</string>
   <string name="ImageEditorHud__draw">Desenhar</string>
   <string name="ImageEditorHud__write_text">Escrever texto</string>
@@ -3247,5 +3294,62 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num apoiante</string>
   <string name="ImageView__badge">Crachá</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é feito por pessoas como você.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
+  <string name="SubscribeFragment__donation_amount">Montante doado</string>
+  <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
+  <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
+  <string name="SubscribeFragment__confirm_cancellation">Confirma o concelamento?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Você não será cobrado novamente. O seu crachá será removido do seu perfil no final do seu período de faturação</string>
+  <string name="SubscribeFragment__not_now">Agora não</string>
+  <string name="SubscribeFragment__confirm">Confirmar</string>
+  <string name="SubscribeFragment__update_subscription">Atualizar assinatura</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">A sua assinatura foi cancelada.</string>
+  <string name="SubscribeFragment__update_subscription_question">Atualizar assinatura?</string>
+  <string name="SubscribeFragment__update">Atualizar</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ser-lhe-á cobrado o valor total do novo preço da assinatura aos dias de hoje. A sua assinatura será renovada %1$s. </string>
+  <string name="Subscription__s_per_month">%s/mês</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/mês · Renovações %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/mês · Expira %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma contribuição mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Porque contribuir?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipa do Signal está comprometida com a missão de desenvolver uma tecnologia de privacidade de código aberto que proteja a liberdade de expressão e permita a comunicação global segura. A sua contribuição alimenta essa causa. Sem anúncios. Sem rastreadores. Sem brincadeiras. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">A sua contribuição ajuda a pagar pelo desenvolvimento, servidores e largura de banda de uma aplicação utilizada por milhões em todo o mundo para uma comunicação privada e instantânea.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Obrigado pelo seu Apoio!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Obrigado pelo seu Apoio!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Você ganhou um crachá %s! Exibir o seu crachá mostrará às pessoas com quem conversa que você apoia o Signal. </string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Fazer crachá de funcionalidade</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Concluído</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando tem mais do que um crachá, você pode escolher apresentar um para para que outras pessoas o vejam no seu perfil.</string>
+  <string name="ManageDonationsFragment__my_support">O meu apoio</string>
+  <string name="ManageDonationsFragment__manage_subscription">Gerir assinatura</string>
+  <string name="ManageDonationsFragment__badges">Crachás</string>
+  <string name="ManageDonationsFragment__subscription_faq">Assinatura - FAQ</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Ocorreu um erro ao tentar obter a assinatura.</string>
+  <string name="BoostFragment__give_signal_a_boost">Dê ao Signal uma melhoria</string>
+  <string name="BoostFragment__say_thanks_and_earn">Diga \"Obrigado\" e ganhe o crachá de melhorias durante %1$d dias.</string>
+  <string name="Boost__enter_custom_amount">Introduzir montante personalizado</string>
+  <string name="Boost__one_time_contribution">Contribuição única</string>
+  <string name="MySupportPreference__add_a_signal_boost">Adicione uma melhoria</string>
+  <string name="MySupportPreference__s_per_month">%1$s/mês</string>
+  <string name="MySupportPreference__renews_s">Renovações %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">O seu crachá %1$s expirou, e deixou de estar visível para outras pessoas no seu perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Torne-se um assinante</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
+  <string name="Subscription__verification_failed">Falha na verificação da assinatura</string>
+  <string name="Subscription__please_contact_support_for_more_information">Por favor, contacte o \'Suporte\' para mais informações.</string>
+  <string name="Subscription__contact_support">Contactar o Suporte</string>
+  <string name="Subscription__earn_a_s_badge">Ganhe um crachá %1$s</string>
+  <string name="SubscribeFragment__processing_payment">A processar pagamento…</string>
+  <string name="DonationsErrors__payment_failed">Falha de pagamento</string>
+  <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Por favor, tente novamente. </string>
+  <string name="DonationsErrors__redemption_still_pending">Resgate ainda pendente</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Poderá ainda não ver o seu crachá, mas estamos a trabalhar nisso!</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Definiu o Google Pay para as doações in-app.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Ocorreu um erro ao tentar cancelar a assinatura</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">O cancelamento da sua assinatura exige que esteja disponível uma ligação à internet.</string>
   <!--EOF-->
 </resources>

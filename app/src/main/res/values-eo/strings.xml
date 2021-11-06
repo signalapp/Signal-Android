@@ -184,9 +184,6 @@
   <string name="ConversationItem_this_message_was_deleted">Tiu ĉi mesaĝo estis forviŝita.</string>
   <string name="ConversationItem_you_deleted_this_message">Vi forviŝis tiun mesaĝon.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ĉu restarigi sekuran seancon?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ĉi tio eble helpos, se vi havas ĉifrajn problemojn en ĉi tiu interparolo. Viaj mesaĝoj konserviĝos.</string>
-  <string name="ConversationActivity_reset">Restarigi</string>
   <string name="ConversationActivity_add_attachment">Aldoni kunsendaĵon</string>
   <string name="ConversationActivity_select_contact_info">Elekti kontaktinformon</string>
   <string name="ConversationActivity_compose_message">Krei mesaĝon</string>
@@ -319,6 +316,7 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
+  <string name="ConversationListFragment_select_all">Elekti ĉiujn</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -796,14 +794,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Krada vido</string>
   <string name="MediaOverviewActivity_List_view_description">Lista vido</string>
   <string name="MediaOverviewActivity_Selected_description">Elektita</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d ero %2$s</item>
-    <item quantity="other">%1$d eroj %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d ero</item>
-    <item quantity="other">%1$d eroj</item>
-  </plurals>
+  <string name="MediaOverviewActivity_select_all">Elekti ĉiujn</string>
   <string name="MediaOverviewActivity_file">Dosiero</string>
   <string name="MediaOverviewActivity_audio">Sonaĵo</string>
   <string name="MediaOverviewActivity_video">Videaĵo</string>
@@ -1312,6 +1303,8 @@
   <string name="SharedContactView_add_to_contacts">Aldoni al kontaktaro</string>
   <string name="SharedContactView_invite_to_signal">Inviti al Signal</string>
   <string name="SharedContactView_message">Signal-mesaĝo</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Pli</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ni memorigos vin poste.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ni memorigos vin morgaŭ.</string>
@@ -1849,15 +1842,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__debug_log">Sencimiga protokolo:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
-  <string-array name="HelpFragment__categories">
-    <item>— Elekti opcion —</item>
-    <item>Io ne funkcias</item>
-    <item>Peto por nova funkcio</item>
-    <item>Demando</item>
-    <item>Prikomento</item>
-    <item>Alia</item>
-    <item>Pagoj</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
@@ -2882,6 +2866,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__copyright_signal_messenger">Kopirajto Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Laŭ la permisilo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Defaŭlta</string>
   <string name="DataAndStorageSettingsFragment__calls">Alvokoj</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Aŭto.</string>
@@ -2991,12 +2977,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Lastatempe uzitaj</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nova mesaĝo</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Fotilo</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
@@ -3019,5 +3008,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaReviewSelectedItem__tap_to_select">Tuŝeto por elekti</string>
   <string name="MediaReviewImagePageFragment__discard">Ne konservi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Antaŭrigardo</string>
+  <string name="SubscribeFragment__not_now">Ne nun</string>
+  <string name="SubscribeFragment__update">Ĝisdatigi</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Farita</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
+  <string name="Subscription__contact_support">Kontakti subtenon</string>
+  <string name="SubscribeFragment__processing_payment">Traktado de pago…</string>
+  <string name="DonationsErrors__payment_failed">Pago malsukcesa</string>
   <!--EOF-->
 </resources>

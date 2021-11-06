@@ -11,7 +11,11 @@ import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.models.Button
+import org.thoughtcrime.securesms.components.settings.models.Space
+import org.thoughtcrime.securesms.components.settings.models.Text
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
@@ -30,6 +34,9 @@ class DSLSettingsAdapter : MappingAdapter() {
     registerFactory(SectionHeaderPreference::class.java, LayoutFactory(::SectionHeaderPreferenceViewHolder, R.layout.dsl_section_header))
     registerFactory(SwitchPreference::class.java, LayoutFactory(::SwitchPreferenceViewHolder, R.layout.dsl_switch_preference_item))
     registerFactory(RadioPreference::class.java, LayoutFactory(::RadioPreferenceViewHolder, R.layout.dsl_radio_preference_item))
+    Text.register(this)
+    Space.register(this)
+    Button.register(this)
   }
 }
 
@@ -97,8 +104,13 @@ class RadioListPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Radio
   override fun bind(model: RadioListPreference) {
     super.bind(model)
 
-    summaryView.visibility = View.VISIBLE
-    summaryView.text = model.listItems[model.selected]
+    if (model.selected >= 0) {
+      summaryView.visibility = View.VISIBLE
+      summaryView.text = model.listItems[model.selected]
+    } else {
+      summaryView.visibility = View.GONE
+      Log.w(TAG, "Detected a radio list without a default selection: ${model.dialogTitle}")
+    }
 
     itemView.setOnClickListener {
       var selection = -1
@@ -127,6 +139,10 @@ class RadioListPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Radio
         builder.show()
       }
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(RadioListPreference::class.java)
   }
 }
 
