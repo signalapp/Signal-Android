@@ -119,6 +119,7 @@ public final class AudioView extends FrameLayout {
 
       lottieDirection = REVERSE;
       this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
+      this.playPauseButton.setOnLongClickListener(v -> performLongClick());
       this.seekBar.setOnSeekBarChangeListener(new SeekBarModifiedListener());
 
       setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE));

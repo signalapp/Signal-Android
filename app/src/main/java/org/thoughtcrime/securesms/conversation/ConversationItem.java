@@ -329,6 +329,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setReactions(messageRecord);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread, hasWallpaper);
+
+    if (audioViewStub.resolved()) {
+      audioViewStub.get().setOnLongClickListener(passthroughClickListener);
+    }
   }
 
   @Override
