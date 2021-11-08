@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
@@ -68,6 +69,7 @@ class SubscribeFragment : DSLSettingsFragment(
     CurrencySelection.register(adapter)
     Subscription.register(adapter)
     GooglePayButton.register(adapter)
+    Progress.register(adapter)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -132,20 +134,28 @@ class SubscribeFragment : DSLSettingsFragment(
 
       space(DimensionUnit.DP.toPixels(4f).toInt())
 
-      state.subscriptions.forEach {
-        val isActive = state.activeSubscription?.activeSubscription?.level == it.level
+      if (state.stage == SubscribeState.Stage.INIT) {
         customPref(
-          Subscription.Model(
-            subscription = it,
-            isSelected = state.selectedSubscription == it,
-            isEnabled = areFieldsEnabled,
-            isActive = isActive,
-            willRenew = isActive && state.activeSubscription?.activeSubscription?.willCancelAtPeriodEnd() ?: false,
-            onClick = { viewModel.setSelectedSubscription(it) },
-            renewalTimestamp = TimeUnit.SECONDS.toMillis(state.activeSubscription?.activeSubscription?.endOfCurrentPeriod ?: 0L),
-            selectedCurrency = state.currencySelection
+          Progress.Model(
+            title = DSLSettingsText.from(R.string.load_more_header__loading)
           )
         )
+      } else {
+        state.subscriptions.forEach {
+          val isActive = state.activeSubscription?.activeSubscription?.level == it.level
+          customPref(
+            Subscription.Model(
+              subscription = it,
+              isSelected = state.selectedSubscription == it,
+              isEnabled = areFieldsEnabled,
+              isActive = isActive,
+              willRenew = isActive && state.activeSubscription?.activeSubscription?.willCancelAtPeriodEnd() ?: false,
+              onClick = { viewModel.setSelectedSubscription(it) },
+              renewalTimestamp = TimeUnit.SECONDS.toMillis(state.activeSubscription?.activeSubscription?.endOfCurrentPeriod ?: 0L),
+              selectedCurrency = state.currencySelection
+            )
+          )
+        }
       }
 
       if (state.activeSubscription?.isActive == true) {

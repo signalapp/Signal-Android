@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -70,6 +71,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     BadgePreview.register(adapter)
     Boost.register(adapter)
     GooglePayButton.register(adapter)
+    Progress.register(adapter)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -151,25 +153,33 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         )
       )
 
-      customPref(
-        Boost.SelectionModel(
-          boosts = state.boosts,
-          selectedBoost = state.selectedBoost,
-          currency = state.customAmount.currency,
-          isCustomAmountFocused = state.isCustomAmountFocused,
-          isEnabled = state.stage == BoostState.Stage.READY,
-          onBoostClick = { view, boost ->
-            startAnimationAboveSelectedBoost(view)
-            viewModel.setSelectedBoost(boost)
-          },
-          onCustomAmountChanged = {
-            viewModel.setCustomAmount(it)
-          },
-          onCustomAmountFocusChanged = {
-            viewModel.setCustomAmountFocused(it)
-          }
+      if (state.stage == BoostState.Stage.INIT) {
+        customPref(
+          Progress.Model(
+            title = DSLSettingsText.from(R.string.load_more_header__loading)
+          )
         )
-      )
+      } else {
+        customPref(
+          Boost.SelectionModel(
+            boosts = state.boosts,
+            selectedBoost = state.selectedBoost,
+            currency = state.customAmount.currency,
+            isCustomAmountFocused = state.isCustomAmountFocused,
+            isEnabled = state.stage == BoostState.Stage.READY,
+            onBoostClick = { view, boost ->
+              startAnimationAboveSelectedBoost(view)
+              viewModel.setSelectedBoost(boost)
+            },
+            onCustomAmountChanged = {
+              viewModel.setCustomAmount(it)
+            },
+            onCustomAmountFocusChanged = {
+              viewModel.setCustomAmountFocused(it)
+            }
+          )
+        )
+      }
 
       space(DimensionUnit.DP.toPixels(16f).toInt())
 
