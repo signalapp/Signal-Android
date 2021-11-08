@@ -1359,7 +1359,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
 
     private static final float MIN_ICON_SCALE = 0.85f;
-    private static final float MAX_ICON_SCALE = 1.25f;
+    private static final float MAX_ICON_SCALE = 1f;
 
     private final int archiveColorStart;
     private final int archiveColorEnd;

@@ -218,9 +218,15 @@ public final class ConversationListItem extends ConstraintLayout
 
     setStatusIcons(thread);
     setBatchMode(batchMode);
-    badge.setBadgeFromRecipient(recipient.get());
+    setBadgeFromRecipient(recipient.get());
     setUnreadIndicator(thread);
     this.contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+  }
+
+  private void setBadgeFromRecipient(Recipient recipient) {
+    if (!recipient.isSelf()) {
+      badge.setBadgeFromRecipient(recipient);
+    }
   }
 
   public void bindContact(@NonNull  Recipient     contact,
@@ -246,7 +252,7 @@ public final class ConversationListItem extends ConstraintLayout
     alertView.setNone();
 
     setBatchMode(false);
-    badge.setBadgeFromRecipient(recipient.get());
+    setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
@@ -273,7 +279,7 @@ public final class ConversationListItem extends ConstraintLayout
     alertView.setNone();
 
     setBatchMode(false);
-    badge.setBadgeFromRecipient(recipient.get());
+    setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
@@ -451,7 +457,7 @@ public final class ConversationListItem extends ConstraintLayout
       fromView.setText(recipient, false);
     }
     contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
-    badge.setBadgeFromRecipient(recipient);
+    setBadgeFromRecipient(recipient);
   }
 
   private static @NonNull LiveData<SpannableString> getThreadDisplayBody(@NonNull Context context,
