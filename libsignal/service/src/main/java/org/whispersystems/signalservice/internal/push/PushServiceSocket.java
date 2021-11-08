@@ -521,22 +521,23 @@ public class PushServiceSocket {
   }
 
   public SignalServiceMessagesResult getMessages() throws IOException {
-    Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, NO_HEADERS, NO_HANDLER, Optional.absent());
-    validateServiceResponse(response);
+    try (Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, NO_HEADERS, NO_HANDLER, Optional.absent())) {
+      validateServiceResponse(response);
 
-    List<SignalServiceEnvelopeEntity> envelopes = readBodyJson(response.body(), SignalServiceEnvelopeEntityList.class).getMessages();
+      List<SignalServiceEnvelopeEntity> envelopes = readBodyJson(response.body(), SignalServiceEnvelopeEntityList.class).getMessages();
 
-    long serverDeliveredTimestamp = 0;
-    try {
-      String stringValue = response.header(SERVER_DELIVERED_TIMESTAMP_HEADER);
-      stringValue = stringValue != null ? stringValue : "0";
+      long serverDeliveredTimestamp = 0;
+      try {
+        String stringValue = response.header(SERVER_DELIVERED_TIMESTAMP_HEADER);
+        stringValue = stringValue != null ? stringValue : "0";
 
-      serverDeliveredTimestamp = Long.parseLong(stringValue);
-    } catch (NumberFormatException e) {
-      Log.w(TAG, e);
+        serverDeliveredTimestamp = Long.parseLong(stringValue);
+      } catch (NumberFormatException e) {
+        Log.w(TAG, e);
+      }
+
+      return new SignalServiceMessagesResult(envelopes, serverDeliveredTimestamp);
     }
-
-    return new SignalServiceMessagesResult(envelopes, serverDeliveredTimestamp);
   }
 
   public void acknowledgeMessage(String sender, long timestamp) throws IOException {
@@ -1087,7 +1088,7 @@ public class PushServiceSocket {
 
   public Optional<StorageManifest> writeStorageContacts(String authToken, WriteOperation writeOperation) throws IOException {
     try {
-      makeStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation));
+      makeAndCloseStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation));
       return Optional.absent();
     } catch (ContactManifestMismatchException e) {
       return Optional.of(StorageManifest.parseFrom(e.getResponseBody()));
@@ -1095,7 +1096,7 @@ public class PushServiceSocket {
   }
 
   public void pingStorageService() throws IOException {
-    makeStorageRequest(null, "/ping", "GET", null);
+    makeAndCloseStorageRequest(null, "/ping", "GET", null);
   }
 
   public RemoteConfigResponse getRemoteConfig() throws IOException {
@@ -1616,7 +1617,8 @@ public class PushServiceSocket {
     call.enqueue(new Callback() {
       @Override
       public void onResponse(Call call, Response response) {
-        try (ResponseBody body = validateServiceResponse(response).body()) {
+        try (ResponseBody body = response.body()) {
+          validateServiceResponse(response);
           bodyFuture.set(readBodyString(body));
         } catch (IOException e) {
           bodyFuture.setException(e);
@@ -1665,9 +1667,17 @@ public class PushServiceSocket {
   {
     Response response = getServiceConnection(urlFragment, method, body, headers, unidentifiedAccessKey, doNotAddAuthenticationOrUnidentifiedAccessKey);
 
-    responseCodeHandler.handle(response.code(), response.body());
+    ResponseBody responseBody = response.body();
+    try {
+      responseCodeHandler.handle(response.code(), responseBody);
 
-    return validateServiceResponse(response);
+      return validateServiceResponse(response);
+    } catch (NonSuccessfulResponseCodeException | PushNetworkException | MalformedResponseException e) {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+      throw e;
+    }
   }
 
   private Response validateServiceResponse(Response response)
@@ -1888,6 +1898,21 @@ public class PushServiceSocket {
     throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
   }
 
+  private void makeAndCloseStorageRequest(String authorization, String path, String method, RequestBody body)
+      throws PushNetworkException, NonSuccessfulResponseCodeException
+  {
+    makeAndCloseStorageRequest(authorization, path, method, body, NO_HANDLER);
+  }
+
+  private void makeAndCloseStorageRequest(String authorization, String path, String method, RequestBody body, ResponseCodeHandler responseCodeHandler)
+      throws PushNetworkException, NonSuccessfulResponseCodeException
+  {
+    ResponseBody responseBody = makeStorageRequest(authorization, path, method, body, responseCodeHandler);
+    if (responseBody != null) {
+      responseBody.close();
+    }
+  }
+
   private ResponseBody makeStorageRequest(String authorization, String path, String method, RequestBody body)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
@@ -1945,29 +1970,37 @@ public class PushServiceSocket {
       }
     }
 
-    responseCodeHandler.handle(response.code(), response.body());
+    ResponseBody responseBody = response.body();
+    try {
+      responseCodeHandler.handle(response.code(), responseBody);
 
-    switch (response.code()) {
-      case 204:
-        throw new NoContentException("No content!");
-      case 401:
-      case 403:
-        throw new AuthorizationFailedException(response.code(), "Authorization failed!");
-      case 404:
-        throw new NotFoundException("Not found");
-      case 409:
-        if (response.body() != null) {
-          throw new ContactManifestMismatchException(readBodyBytes(response.body()));
-        } else {
-          throw new ConflictException();
-        }
-      case 429:
-        throw new RateLimitException("Rate limit exceeded: " + response.code());
-      case 499:
-        throw new DeprecatedVersionException();
+      switch (response.code()) {
+        case 204:
+          throw new NoContentException("No content!");
+        case 401:
+        case 403:
+          throw new AuthorizationFailedException(response.code(), "Authorization failed!");
+        case 404:
+          throw new NotFoundException("Not found");
+        case 409:
+          if (responseBody != null) {
+            throw new ContactManifestMismatchException(readBodyBytes(responseBody));
+          } else {
+            throw new ConflictException();
+          }
+        case 429:
+          throw new RateLimitException("Rate limit exceeded: " + response.code());
+        case 499:
+          throw new DeprecatedVersionException();
+      }
+
+      throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+    } catch (NonSuccessfulResponseCodeException | PushNetworkException e) {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+      throw e;
     }
-
-    throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
   }
 
   public CallingResponse makeCallingRequest(long requestId, String url, String httpMethod, List<Pair<String, String>> headers, byte[] body) {
@@ -2303,11 +2336,11 @@ public class PushServiceSocket {
   public void putNewGroupsV2Group(Group group, GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-      makeStorageRequest(authorization.toString(),
-                         GROUPSV2_GROUP,
-                         "PUT",
-                         protobufRequestBody(group),
-                         GROUPS_V2_PUT_RESPONSE_HANDLER);
+    makeAndCloseStorageRequest(authorization.toString(),
+                               GROUPSV2_GROUP,
+                               "PUT",
+                               protobufRequestBody(group),
+                               GROUPS_V2_PUT_RESPONSE_HANDLER);
   }
 
   public Group getGroupsV2Group(GroupsV2AuthorizationString authorization)
@@ -2368,8 +2401,8 @@ public class PushServiceSocket {
     }
 
     GroupChanges groupChanges;
-    try {
-      groupChanges = GroupChanges.parseFrom(response.body().byteStream());
+    try (InputStream input = response.body().byteStream()) {
+      groupChanges = GroupChanges.parseFrom(input);
     } catch (IOException e) {
       throw new PushNetworkException(e);
     }
