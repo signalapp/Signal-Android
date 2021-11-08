@@ -35,7 +35,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
     KEY_CURRENCY_CODE_BOOST,
-    KEY_LAST_KEEP_ALIVE_LAUNCH
+    KEY_LAST_KEEP_ALIVE_LAUNCH,
+    KEY_LAST_END_OF_PERIOD
   )
 
   private val subscriptionCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency()) }
