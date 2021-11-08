@@ -83,6 +83,7 @@ import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.RatingManager;
@@ -518,6 +519,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void initializeProfileIcon(@NonNull Recipient recipient) {
     ImageView icon = requireView().findViewById(R.id.toolbar_icon);
+
+    BadgeImageView imageView = requireView().findViewById(R.id.toolbar_badge);
+    imageView.setBadgeFromRecipient(recipient);
 
     AvatarUtil.loadIconIntoImageView(recipient, icon, getResources().getDimensionPixelSize(R.dimen.toolbar_avatar_size));
     icon.setOnClickListener(v -> getNavigator().goToAppSettings());

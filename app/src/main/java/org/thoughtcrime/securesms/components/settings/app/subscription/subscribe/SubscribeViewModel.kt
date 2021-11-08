@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -38,6 +39,7 @@ class SubscribeViewModel(
   private val store = Store(SubscribeState(currencySelection = SignalStore.donationsValues().getSubscriptionCurrency()))
   private val eventPublisher: PublishSubject<DonationEvent> = PublishSubject.create()
   private val disposables = CompositeDisposable()
+  private val networkDisposable: Disposable
 
   val state: LiveData<SubscribeState> = store.stateLiveData
   val events: Observable<DonationEvent> = eventPublisher.observeOn(AndroidSchedulers.mainThread())
@@ -45,8 +47,21 @@ class SubscribeViewModel(
   private var subscriptionToPurchase: Subscription? = null
   private val activeSubscriptionSubject = PublishSubject.create<ActiveSubscription>()
 
+  init {
+    networkDisposable = donationPaymentRepository
+      .internetConnectionObserver()
+      .distinctUntilChanged()
+      .subscribe { isConnected ->
+        if (!disposables.isDisposed && isConnected && store.state.stage == SubscribeState.Stage.FAILURE) {
+          store.update { it.copy(stage = SubscribeState.Stage.INIT) }
+          refresh()
+        }
+      }
+  }
+
   override fun onCleared() {
-    disposables.clear()
+    networkDisposable.dispose()
+    disposables.dispose()
   }
 
   fun getPriceOfSelectedSubscription(): FiatMoney? {

@@ -210,7 +210,5 @@
 
     <dimen name="verify_identity_vertical_margin">16dp</dimen>
 
-    <integer name="badge_columns">3</integer>
-
     <dimen name="signal_context_menu_corner_radius">18dp</dimen>
 </resources>

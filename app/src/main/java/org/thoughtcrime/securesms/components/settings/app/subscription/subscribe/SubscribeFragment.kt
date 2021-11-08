@@ -21,11 +21,15 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationExceptions
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.Progress
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
+import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -41,8 +45,6 @@ class SubscribeFragment : DSLSettingsFragment(
   layoutId = R.layout.subscribe_fragment
 ) {
 
-  private val viewModel: SubscribeViewModel by viewModels(ownerProducer = { requireActivity() })
-
   private val lifecycleDisposable = LifecycleDisposable()
 
   private val supportTechSummary: CharSequence by lazy {
@@ -56,6 +58,13 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   private lateinit var processingDonationPaymentDialog: AlertDialog
+  private lateinit var donationPaymentComponent: DonationPaymentComponent
+
+  private val viewModel: SubscribeViewModel by viewModels(
+    factoryProducer = {
+      SubscribeViewModel.Factory(SubscriptionsRepository(ApplicationDependencies.getDonationsService()), donationPaymentComponent.donationPaymentRepository, FETCH_SUBSCRIPTION_TOKEN_REQUEST_CODE)
+    }
+  )
 
   override fun onResume() {
     super.onResume()
@@ -63,6 +72,7 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
+    donationPaymentComponent = findListener()!!
     viewModel.refresh()
 
     BadgePreview.register(adapter)
@@ -91,6 +101,9 @@ class SubscribeFragment : DSLSettingsFragment(
         DonationEvent.SubscriptionCancelled -> onSubscriptionCancelled()
         is DonationEvent.SubscriptionCancellationFailed -> onSubscriptionFailedToCancel(it.throwable)
       }
+    }
+    lifecycleDisposable += donationPaymentComponent.googlePayResultPublisher.subscribe {
+      viewModel.onActivityResult(it.requestCode, it.resultCode, it.data)
     }
   }
 
@@ -302,5 +315,6 @@ class SubscribeFragment : DSLSettingsFragment(
 
   companion object {
     private val TAG = Log.tag(SubscribeFragment::class.java)
+    private const val FETCH_SUBSCRIPTION_TOKEN_REQUEST_CODE = 1000
   }
 }
