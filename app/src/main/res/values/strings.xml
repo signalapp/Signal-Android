@@ -3937,7 +3937,7 @@
     <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal is powered by people like you.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Support technology that is built for you—not for your data—by joining the community of people that sustain it.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Support technology that is built for you, not for your data, by joining the community that sustains Signal.</string>
-    <string name="SubscribeFragment__donation_amount">Donation amount</string>
+    <string name="SubscribeFragment__currency">Currency</string>
     <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
     <string name="SubscribeFragment__cancel_subscription">Cancel Subscription</string>
     <string name="SubscribeFragment__confirm_cancellation">Confirm Cancellation?</string>
