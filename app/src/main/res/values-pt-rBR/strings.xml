@@ -3297,7 +3297,7 @@
   <string name="ImageView__badge">Selo</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é mantido por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Em vez de apoiar tecnologias desenvolvidas para terceiros lucrarem com seus dados privados, apoie tecnologias desenvolvidas para você, juntando-se à comunidade de pessoas que as sustentam financeiramente.</string>
-  <string name="SubscribeFragment__donation_amount">Valor da doação</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Valor da doação</string> -->
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar doação</string>
   <string name="SubscribeFragment__confirm_cancellation">Cancelar a doação mensal?</string>

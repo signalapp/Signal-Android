@@ -3381,7 +3381,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ImageView__badge">Značka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal podpirajo ljudje kot ste vi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podprite tehnologijo, ki je bila izdelana za vas -- ne za vaše osebne podatke -- in se pridružite skupnosti podpornikov.</string>
-  <string name="SubscribeFragment__donation_amount">Znesek podpore</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Znesek podpore</string> -->
   <string name="SubscribeFragment__more_payment_options">Več opcij za plačilo</string>
   <string name="SubscribeFragment__cancel_subscription">Prekini naročnino</string>
   <string name="SubscribeFragment__confirm_cancellation">Res želite prekiniti svojo naročnino?</string>

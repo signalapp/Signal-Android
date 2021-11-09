@@ -3292,7 +3292,7 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
   <string name="ImageView__badge">نشان</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">سیگنال با کمک افرادی همانند شما پشتیبانی می‌شود.</string>
-  <string name="SubscribeFragment__donation_amount">مبلغ کمک اهدایی</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">مبلغ کمک اهدایی</string> -->
   <string name="SubscribeFragment__more_payment_options">گزینه‌ها‌ی پرداخت بیشتر</string>
   <string name="SubscribeFragment__cancel_subscription">لغو اشتراک</string>
   <string name="SubscribeFragment__confirm_cancellation">تأیید لغو اشتراک؟</string>

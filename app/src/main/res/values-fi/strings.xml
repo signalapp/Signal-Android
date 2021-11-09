@@ -3281,7 +3281,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy tukijaksi</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Kaltaisesti ihmiset pitävät Signalin tehokkaana.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Tue teknologiaa joka on rakennettu sinulle—ei datallesi—liittymällä yhteisöön joka pitää sitä yllä.</string>
-  <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string> -->
   <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
   <string name="SubscribeFragment__cancel_subscription">Peruuta tilaus</string>
   <string name="SubscribeFragment__confirm_cancellation">Vahvista peruutus?</string>

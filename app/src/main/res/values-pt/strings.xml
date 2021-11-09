@@ -3296,7 +3296,7 @@
   <string name="ImageView__badge">Crachá</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é feito por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
-  <string name="SubscribeFragment__donation_amount">Montante doado</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Montante doado</string> -->
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirma o concelamento?</string>

@@ -3108,7 +3108,7 @@
   <string name="MediaReviewImagePageFragment__discard">বাতিল করুন</string>
   <string name="SelectFeaturedBadgeFragment__preview">প্রিভিউ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal আপনার মতো ব্যক্তির সহায়তায় পরিচালিত হয়।</string>
-  <string name="SubscribeFragment__donation_amount">অনুদানের পরিমাণ</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">অনুদানের পরিমাণ</string> -->
   <string name="SubscribeFragment__not_now">এখন না</string>
   <string name="SubscribeFragment__confirm">নিশ্চিত করুন</string>
   <string name="SubscribeFragment__update">আপডেট করুন</string>

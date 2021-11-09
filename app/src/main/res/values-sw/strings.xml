@@ -3111,7 +3111,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="MediaReviewImagePageFragment__discard">Ghairi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Hakiki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal inaendeshwa na watu kama wewe.</string>
-  <string name="SubscribeFragment__donation_amount">Kiasi cha mchango</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Kiasi cha mchango</string> -->
   <string name="SubscribeFragment__not_now">Sio sasa</string>
   <string name="SubscribeFragment__confirm">Thibitisha</string>
   <string name="SubscribeFragment__update">Sasisha</string>

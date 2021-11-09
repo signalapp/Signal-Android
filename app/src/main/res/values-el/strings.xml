@@ -2125,6 +2125,7 @@
   <string name="PaymentsHomeFragment__activate">Ενεργοποίηση</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Προβολή όρων MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Η διεύθυνση πορτοφολιού σας</string>
   <string name="PaymentsAddMoneyFragment__copy">Αντιγραφή</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <!--PaymentsDetailsFragment-->
@@ -2145,6 +2146,7 @@
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Αίτημα</string>
+  <string name="CreatePaymentFragment__pay">Πληρωμή</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2767,6 +2769,7 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Σχετικά με το MobileCoin</string>
   <string name="payment_info_card_hide">Απόκρυψη</string>
+  <string name="payment_info_card_update_your_pin">Ενημέρωση του PIN</string>
   <string name="payment_info_card_update_pin">Ανανέωση PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate">Απενεργοποίηση</string>
@@ -3116,7 +3119,7 @@
   <string name="SelectFeaturedBadgeFragment__preview">Προεπισκόπηση</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Το Signal στηρίζεται σε άτομα σαν κι εσένα.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
-  <string name="SubscribeFragment__donation_amount">Ποσό δωρεάς</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Ποσό δωρεάς</string> -->
   <string name="SubscribeFragment__cancel_subscription">Ακύρωση συνδρομής</string>
   <string name="SubscribeFragment__confirm_cancellation">Επιβεβαίωση ακύρωσης;</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Δεν θα χρεωθείς ξανά. Το έμβλημά σου θα αφαιρεθεί από το προφίλ σου στο τέλος της περιόδου για την οποία έχεις χρεωθεί.</string>

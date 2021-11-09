@@ -130,7 +130,7 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">呢個版本嘅 Signal 已經 out 咗喇。您可以睇返先前嘅訊息記錄，但係要升咗級先至可以收發訊息。</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">搵唔到網頁瀏覽器。</string>
-  <string name="CommunicationActions_send_email">傳送電子郵件</string>
+  <string name="CommunicationActions_send_email">發送電郵</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">手機已經打緊電話。</string>
   <string name="CommunicationActions_start_voice_call">係咪要開始語音通話？</string>
   <string name="CommunicationActions_cancel">取消</string>
@@ -187,7 +187,7 @@
   <string name="ConversationActivity_select_contact_info">揀選聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">寫訊息</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">唔好意思，您份附件搞唔掂。</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人唔係有效嘅短訊或電子郵件地址！</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人唔係有效嘅短訊或電郵地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">乜嘢都無寫噃！</string>
   <string name="ConversationActivity_group_members">個谷嘅成員</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">撳一下呢度開始成谷嘅通話</string>
@@ -272,7 +272,7 @@
   <string name="ConversationFragment_deleting_messages">刪除緊啲訊息…</string>
   <string name="ConversationFragment_delete_for_me">刪走我自己嘅紀錄</string>
   <string name="ConversationFragment_delete_for_everyone">全世界扠咗佢</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">呢個訊息會喺對話中用緊最近版本嘅 Signal 嘅所有人度扠走。佢哋會見到您刪除咗一個訊息囉。</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">呢個訊息會喺對話入面所有用緊 Signal 最近版本嘅人嗰度扠走。佢哋會見到您扠走咗一個訊息，咁樣囉。</string>
   <string name="ConversationFragment_quoted_message_not_found">搵唔到原來嘅訊息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原來嘅訊息已經無咗</string>
   <string name="ConversationFragment_failed_to_open_message">開唔到訊息</string>
@@ -2145,7 +2145,7 @@
   <string name="PaymentsDetailsFragment__sent_payment">傳送咗嘅付款</string>
   <string name="PaymentsDetailsFragment__received_payment">接收咗嘅付款</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">付款完成 %1$s</string>
-  <string name="PaymentsDetailsFragment__block_number">封鎖冧把</string>
+  <string name="PaymentsDetailsFragment__block_number">區塊編號</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">轉移</string>
   <string name="PaymentsTransferFragment__scan_qr_code">掃描二維碼</string>
@@ -3194,7 +3194,7 @@
   <string name="ImageView__badge">襟章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 應援靠團伙。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">力撐為您而設、而非為求您嘅資料而打造嘅科技；「惜爐」有團伙，Signal 不懼風吹日曬。</string>
-  <string name="SubscribeFragment__donation_amount">捐款金額</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">捐款金額</string> -->
   <string name="SubscribeFragment__more_payment_options">其他付款方式</string>
   <string name="SubscribeFragment__cancel_subscription">取消課金計劃</string>
   <string name="SubscribeFragment__confirm_cancellation">係咪確認取消？</string>

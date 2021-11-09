@@ -158,7 +158,7 @@
   <string name="ContactNameEditActivity_suffix">Sufijo</string>
   <string name="ContactNameEditActivity_middle_name">Segundo nombre</string>
   <!--ContactShareEditActivity-->
-  <string name="ContactShareEditActivity_type_home">Domicilio</string>
+  <string name="ContactShareEditActivity_type_home">Privado</string>
   <string name="ContactShareEditActivity_type_mobile">Móvil</string>
   <string name="ContactShareEditActivity_type_work">Trabajo</string>
   <string name="ContactShareEditActivity_type_missing">Otros</string>
@@ -3297,7 +3297,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ImageView__badge">Distintivo</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal depende de gente como tú.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Incentiva la tecnología que desarrollamos para ti (no para tus datos) y únete a la comunidad que la sostiene.</string>
-  <string name="SubscribeFragment__donation_amount">Cantidad de donación</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Cantidad de donación</string> -->
   <string name="SubscribeFragment__more_payment_options">Más opciones de pago</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar suscripción</string>
   <string name="SubscribeFragment__confirm_cancellation">¿Confirmar cancelación?</string>

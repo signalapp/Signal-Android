@@ -2144,7 +2144,7 @@
   <string name="PaymentsDetailsFragment__sent_payment">已發送付款</string>
   <string name="PaymentsDetailsFragment__received_payment">已接收付款</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">付款已完成 %1$s</string>
-  <string name="PaymentsDetailsFragment__block_number">封鎖號碼</string>
+  <string name="PaymentsDetailsFragment__block_number">區塊編號</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">轉移</string>
   <string name="PaymentsTransferFragment__scan_qr_code">掃描二維碼</string>
@@ -3193,7 +3193,7 @@
   <string name="ImageView__badge">徽章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由您這樣的人提供動力。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">支持為您而設—而非為您的資料而造—的科技，擔起力撐派，成為延續爐火的一分子。</string>
-  <string name="SubscribeFragment__donation_amount">捐贈金額</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">捐贈金額</string> -->
   <string name="SubscribeFragment__more_payment_options">更多付款選項</string>
   <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
   <string name="SubscribeFragment__confirm_cancellation">確認取消訂閱嗎？</string>

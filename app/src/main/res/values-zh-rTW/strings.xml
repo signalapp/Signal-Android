@@ -3190,7 +3190,7 @@
   <string name="ImageView__badge">徽章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由像你這樣的人提供動力。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">加入支援技術的眾人共同維持的社群，是為了支援你打造的技術—而不是為你的資訊—打造。</string>
-  <string name="SubscribeFragment__donation_amount">捐款金額</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">捐款金額</string> -->
   <string name="SubscribeFragment__more_payment_options">更多付款方式</string>
   <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
   <string name="SubscribeFragment__confirm_cancellation">確認取消?</string>

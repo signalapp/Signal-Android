@@ -3025,7 +3025,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MediaReviewImagePageFragment__discard">Buang</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pratonton</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal dikuasakan oleh orang seperti anda.</string>
-  <string name="SubscribeFragment__donation_amount">Jumlah derma</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Jumlah derma</string> -->
   <string name="SubscribeFragment__not_now">Bukan sekarang</string>
   <string name="SubscribeFragment__confirm">Sahkan</string>
   <string name="SubscribeFragment__update">Kemas Kini</string>

@@ -337,7 +337,7 @@
     <item quantity="one">Избриши</item>
     <item quantity="other">Избриши</item>
   </plurals>
-  <string name="ConversationListFragment_select_all">Избери се</string>
+  <string name="ConversationListFragment_select_all">Избери сѐ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви</string>
   <!--ConversationListItemAction-->
@@ -818,7 +818,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">Поглед како мрежа</string>
   <string name="MediaOverviewActivity_List_view_description">Поглед како листа</string>
   <string name="MediaOverviewActivity_Selected_description">Избрано</string>
-  <string name="MediaOverviewActivity_select_all">Избери се</string>
+  <string name="MediaOverviewActivity_select_all">Избери сѐ</string>
   <plurals name="MediaOverviewActivity_save_plural">
     <item quantity="one">Зачувај</item>
     <item quantity="other">Зачувај</item>
@@ -3210,7 +3210,7 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не успеав да го ажурирам профилот</string>
   <string name="ImageView__badge">Беџ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal е овозможен од луѓе како тебе.</string>
-  <string name="SubscribeFragment__donation_amount">Износ на донација</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Износ на донација</string> -->
   <string name="SubscribeFragment__more_payment_options">Повеќе опции за плаќање</string>
   <string name="SubscribeFragment__cancel_subscription">Откажи претплата</string>
   <string name="SubscribeFragment__confirm_cancellation">Потврди откажување?</string>

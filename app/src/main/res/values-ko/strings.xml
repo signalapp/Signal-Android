@@ -3071,7 +3071,7 @@
   <string name="MediaReviewImagePageFragment__discard">파기</string>
   <string name="SelectFeaturedBadgeFragment__preview">미리보기</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal은 귀하와 같은 분들이 만들어나갑니다.</string>
-  <string name="SubscribeFragment__donation_amount">기부 금액</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">기부 금액</string> -->
   <string name="SubscribeFragment__not_now">나중에</string>
   <string name="SubscribeFragment__confirm">확인</string>
   <string name="SubscribeFragment__update">업데이트</string>

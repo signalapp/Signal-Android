@@ -3138,7 +3138,7 @@
   <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
-  <string name="SubscribeFragment__donation_amount">സംഭാവന തുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">സംഭാവന തുക</string> -->
   <string name="SubscribeFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="SubscribeFragment__confirm">സ്ഥിരീകരിക്കുക</string>
   <string name="SubscribeFragment__update">അപ്‌ഡേറ്റ്</string>

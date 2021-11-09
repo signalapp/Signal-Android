@@ -3236,7 +3236,7 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">قۇۋۋەتلىگۈچى بولۇڭ</string>
   <string name="ImageView__badge">ئىزناك</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal نى سىزگە ئوخشاش كىشىلەر قوللايدۇ.</string>
-  <string name="SubscribeFragment__donation_amount">ئىئانە سوممىسى</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">ئىئانە سوممىسى</string> -->
   <string name="SubscribeFragment__not_now">ھازىر ئەمەس</string>
   <string name="SubscribeFragment__confirm">جەزملە</string>
   <string name="SubscribeFragment__update">يېڭىلا</string>

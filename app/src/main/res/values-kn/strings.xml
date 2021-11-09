@@ -3112,7 +3112,7 @@
   <string name="MediaReviewImagePageFragment__discard">ತ್ಯಜಿಸಿ</string>
   <string name="SelectFeaturedBadgeFragment__preview">ಪ್ರಿವ್ಯೂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ಅನ್ನು ನಿಮ್ಮಂಥ ಜನರೇ ನಡೆಸುತ್ತಿದ್ದಾರೆ.</string>
-  <string name="SubscribeFragment__donation_amount">ಕೊಡುಗೆಯ ಮೊತ್ತ</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">ಕೊಡುಗೆಯ ಮೊತ್ತ</string> -->
   <string name="SubscribeFragment__not_now">ಈಗಲ್ಲ</string>
   <string name="SubscribeFragment__confirm">ದೃಢೀಕರಿಸಿ</string>
   <string name="SubscribeFragment__update">ನವೀಕರಿಸಿ</string>

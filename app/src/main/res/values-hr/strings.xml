@@ -3199,7 +3199,7 @@ broj telefona</string>
   <string name="MediaReviewImagePageFragment__discard">Poništi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pregled</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal napajaju ljudi poput vas.</string>
-  <string name="SubscribeFragment__donation_amount">Iznos donacije</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Iznos donacije</string> -->
   <string name="SubscribeFragment__not_now">Ne sada</string>
   <string name="SubscribeFragment__confirm">Potvrdi</string>
   <string name="SubscribeFragment__update">Ažuriraj</string>

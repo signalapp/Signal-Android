@@ -3502,7 +3502,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ImageView__badge">Odznak</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal pohání lidé, jako jste vy.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podpořte technologii, která je vytvořena pro vás - ne pro vaše data - a připojte se ke komunitě lidí, kteří ji podporují.</string>
-  <string name="SubscribeFragment__donation_amount">Výše příspěvku</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Výše příspěvku</string> -->
   <string name="SubscribeFragment__more_payment_options">Více možností plateb</string>
   <string name="SubscribeFragment__cancel_subscription">Zrušit předplatné</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrdit zrušení?</string>

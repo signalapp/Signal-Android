@@ -3291,7 +3291,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ImageView__badge">Insígnia</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">El Signal és alimentat per persones com vosaltres.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ajudeu la tecnologia creada per a vosaltres —no per a les vostres dades— afegint-vos a la comunitat de persones que la sustenten.</string>
-  <string name="SubscribeFragment__donation_amount">Quantitat de la donació</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Quantitat de la donació</string> -->
   <string name="SubscribeFragment__more_payment_options">Més opcions de pagament</string>
   <string name="SubscribeFragment__cancel_subscription">Cancel·la la subscripció</string>
   <string name="SubscribeFragment__confirm_cancellation">En confirmeu la cancel·lació?</string>

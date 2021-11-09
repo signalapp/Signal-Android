@@ -3405,7 +3405,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ImageView__badge">Značka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal postoji zbog osoba poput Vas.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podržite tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – pridruživši se zajednici koja je održava.</string>
-  <string name="SubscribeFragment__donation_amount">Iznos donacije</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Iznos donacije</string> -->
   <string name="SubscribeFragment__more_payment_options">Više opcija za plaćanje</string>
   <string name="SubscribeFragment__cancel_subscription">Otkaži pretplatu</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrditi otkazivanje?</string>

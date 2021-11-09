@@ -3070,7 +3070,7 @@
   <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
   <string name="SelectFeaturedBadgeFragment__preview">Eelvaade</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalit loovad sinusugused inimesed.</string>
-  <string name="SubscribeFragment__donation_amount">Annetuse summa</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Annetuse summa</string> -->
   <string name="SubscribeFragment__not_now">Mitte praegu</string>
   <string name="SubscribeFragment__confirm">Kinnita</string>
   <string name="SubscribeFragment__update">Uuenda</string>

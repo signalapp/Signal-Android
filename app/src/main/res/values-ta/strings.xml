@@ -3133,7 +3133,7 @@
   <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
   <string name="SelectFeaturedBadgeFragment__preview">முன்னோட்டம்</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal இயக்கப்படுகிறது மக்கள் உன்னைப்போல.</string>
-  <string name="SubscribeFragment__donation_amount">நன்கொடை தொகை</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">நன்கொடை தொகை</string> -->
   <string name="SubscribeFragment__not_now">இப்போது இல்லை</string>
   <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
   <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>

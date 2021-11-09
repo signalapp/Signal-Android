@@ -3184,7 +3184,7 @@
   <string name="ImageView__badge">バッジ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalはユーザーの皆様によって支えられています。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">データのためではなく、あなたのために作られた技術を支える人々のコミュニティに参加して、ご支援をお願いします。</string>
-  <string name="SubscribeFragment__donation_amount">寄付額</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">寄付額</string> -->
   <string name="SubscribeFragment__more_payment_options">その他の支払い方法</string>
   <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除</string>
   <string name="SubscribeFragment__confirm_cancellation">解除しますか？</string>

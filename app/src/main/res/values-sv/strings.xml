@@ -3289,7 +3289,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ImageView__badge">Märke</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drivs av personer som du.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Stöda teknik som är byggd för dig—inte för dina data—genom att gå med i gruppen av personer som upprätthåller den.</string>
-  <string name="SubscribeFragment__donation_amount">Donationsbelopp</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donationsbelopp</string> -->
   <string name="SubscribeFragment__more_payment_options">Fler betalningsalternativ</string>
   <string name="SubscribeFragment__cancel_subscription">Avbryt prenumeration</string>
   <string name="SubscribeFragment__confirm_cancellation">Bekräfta annullering?</string>
