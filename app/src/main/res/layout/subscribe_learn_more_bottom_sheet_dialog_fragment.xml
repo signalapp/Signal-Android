@@ -15,13 +15,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bottom_sheet_handle" />
 
-    <!-- TODO [alex] - need final asset -->
     <ImageView
         android:id="@+id/subscribe_bottom_sheet_heart"
         android:layout_width="76dp"
         android:layout_height="74dp"
         android:layout_marginTop="36dp"
         android:importantForAccessibility="no"
+        app:srcCompat="@drawable/ic_sustainer_heart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_handle" />
@@ -72,7 +72,7 @@
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed"
+        android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no"
         android:textAppearance="@style/Signal.Text.Body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:paddingBottom="36dp"
-        android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay"
+        android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__your_contribution"
         android:textAppearance="@style/Signal.Text.Body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

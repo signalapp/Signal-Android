@@ -28,15 +28,22 @@ public final class SubscriptionLevels {
    * An available subscription level
    */
   public static final class Level {
+    private final String                     name;
     private final SignalServiceProfile.Badge badge;
     private final Map<String, BigDecimal>    currencies;
 
     @JsonCreator
-    public Level(@JsonProperty("badge") SignalServiceProfile.Badge badge,
+    public Level(@JsonProperty("name") String name,
+                 @JsonProperty("badge") SignalServiceProfile.Badge badge,
                  @JsonProperty("currencies") Map<String, BigDecimal> currencies)
     {
+      this.name       = name;
       this.badge      = badge;
       this.currencies = currencies;
+    }
+
+    public String getName() {
+      return name;
     }
 
     public SignalServiceProfile.Badge getBadge() {

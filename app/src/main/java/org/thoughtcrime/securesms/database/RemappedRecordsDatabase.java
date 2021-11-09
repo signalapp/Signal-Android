@@ -97,6 +97,14 @@ public class RemappedRecordsDatabase extends Database {
     addMapping(Threads.TABLE_NAME, new Mapping(oldId, newId));
   }
 
+  public Cursor getAllRecipients() {
+    return databaseHelper.getSignalReadableDatabase().query(Recipients.TABLE_NAME, null, null, null, null, null, null);
+  }
+
+  public Cursor getAllThreads() {
+    return databaseHelper.getSignalReadableDatabase().query(Threads.TABLE_NAME, null, null, null, null, null, null);
+  }
+
   private @NonNull List<Mapping> getAllMappings(@NonNull String table) {
     List<Mapping> mappings = new LinkedList<>();
 

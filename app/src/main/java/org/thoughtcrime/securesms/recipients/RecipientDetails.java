@@ -22,15 +22,15 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 public class RecipientDetails {
 
-  final UUID                       uuid;
+  final ACI                        aci;
   final String                     username;
   final String                     e164;
   final String                     email;
@@ -94,7 +94,7 @@ public class RecipientDetails {
     this.systemContactPhoto          = Util.uri(settings.getSystemContactPhotoUri());
     this.customLabel                 = settings.getSystemPhoneLabel();
     this.contactUri                  = Util.uri(settings.getSystemContactUri());
-    this.uuid                        = settings.getUuid();
+    this.aci                         = settings.getAci();
     this.username                    = settings.getUsername();
     this.e164                        = settings.getE164();
     this.email                       = settings.getEmail();
@@ -149,9 +149,9 @@ public class RecipientDetails {
     this.groupAvatarId               = null;
     this.systemContactPhoto          = null;
     this.customLabel                 = null;
-    this.contactUri                  = null;
-    this.uuid                        = null;
-    this.username                    = null;
+    this.contactUri = null;
+    this.aci        = null;
+    this.username   = null;
     this.e164                        = null;
     this.email                       = null;
     this.groupId                     = null;
@@ -201,7 +201,7 @@ public class RecipientDetails {
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {
     boolean systemContact = !settings.getSystemProfileName().isEmpty();
     boolean isSelf        = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
-                            (settings.getUuid() != null && settings.getUuid().equals(TextSecurePreferences.getLocalUuid(context)));
+                            (settings.getAci() != null && settings.getAci().equals(TextSecurePreferences.getLocalAci(context)));
 
     RegisteredState registeredState = settings.getRegistered();
 

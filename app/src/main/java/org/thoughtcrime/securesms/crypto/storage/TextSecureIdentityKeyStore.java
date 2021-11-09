@@ -5,8 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.C;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
@@ -124,7 +122,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   @Override
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
-    boolean isSelf = address.getName().equals(TextSecurePreferences.getLocalUuid(context).toString()) ||
+    boolean isSelf = address.getName().equals(TextSecurePreferences.getLocalAci(context).toString()) ||
                      address.getName().equals(TextSecurePreferences.getLocalNumber(context));
 
     if (isSelf) {

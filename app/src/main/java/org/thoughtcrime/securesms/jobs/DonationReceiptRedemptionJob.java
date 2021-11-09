@@ -8,13 +8,10 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,7 +24,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static final String KEY                                   = "DonationReceiptRedemptionJob";
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
 
-  public static DonationReceiptRedemptionJob createJob() {
+  public static DonationReceiptRedemptionJob createJobForSubscription() {
     return new DonationReceiptRedemptionJob(
         new Job.Parameters
             .Builder()
@@ -36,6 +33,17 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .setMaxAttempts(Parameters.UNLIMITED)
             .setMaxInstancesForQueue(1)
             .setLifespan(TimeUnit.DAYS.toMillis(7))
+            .build());
+  }
+
+  public static DonationReceiptRedemptionJob createJobForBoost() {
+    return new DonationReceiptRedemptionJob(
+        new Job.Parameters
+            .Builder()
+            .addConstraint(NetworkConstraint.KEY)
+            .setQueue("BoostReceiptRedemption")
+            .setMaxAttempts(Parameters.UNLIMITED)
+            .setLifespan(TimeUnit.DAYS.toMillis(30))
             .build());
   }
 
@@ -62,13 +70,13 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     Data inputData = getInputData();
 
     if (inputData == null) {
-      Log.w(TAG, "No input data. Failing.");
+      Log.w(TAG, "No input data. Failing.", null, true);
       throw new IllegalStateException("Expected a presentation object in input data.");
     }
 
     byte[] presentationBytes = inputData.getStringAsBlob(INPUT_RECEIPT_CREDENTIAL_PRESENTATION);
     if (presentationBytes == null) {
-      Log.d(TAG, "No response data. Exiting.");
+      Log.d(TAG, "No response data. Exiting.", null, true);
       return;
     }
 
@@ -79,10 +87,15 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                                                                      .blockingGet();
 
     if (response.getApplicationError().isPresent()) {
-      Log.w(TAG, "Encountered a non-recoverable exception", response.getApplicationError().get());
-      throw new IOException(response.getApplicationError().get());
+      if (response.getStatus() >= 500) {
+        Log.w(TAG, "Encountered a server exception " + response.getStatus(), response.getApplicationError().get(), true);
+        throw new RetryableException();
+      } else {
+        Log.w(TAG, "Encountered a non-recoverable exception " + response.getStatus(), response.getApplicationError().get(), true);
+        throw new IOException(response.getApplicationError().get());
+      }
     } else if (response.getExecutionError().isPresent()) {
-      Log.w(TAG, "Encountered a retryable exception", response.getExecutionError().get());
+      Log.w(TAG, "Encountered a retryable exception", response.getExecutionError().get(), true);
       throw new RetryableException();
     }
   }

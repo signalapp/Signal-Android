@@ -218,8 +218,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int RECEIPT_TIMESTAMP                = 117;
   private static final int BADGES                           = 118;
   private static final int SENDER_KEY_UUID                  = 119;
+  private static final int SENDER_KEY_SHARED_TIMESTAMP      = 120;
 
-  private static final int    DATABASE_VERSION = 119;
+  private static final int    DATABASE_VERSION = 120;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context context;
@@ -2073,6 +2074,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         db.execSQL("ALTER TABLE sender_keys_tmp RENAME TO sender_keys");
 
         Log.d(TAG, "Sender key migration took " + (System.currentTimeMillis() - start) + " ms");
+      }
+
+      if (oldVersion < SENDER_KEY_SHARED_TIMESTAMP) {
+        db.execSQL("ALTER TABLE sender_key_shared ADD COLUMN timestamp INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

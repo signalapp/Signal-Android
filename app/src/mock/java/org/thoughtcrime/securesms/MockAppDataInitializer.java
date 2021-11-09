@@ -100,7 +100,7 @@ final class MockAppDataInitializer {
 
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setLocalNumber(context, localE164);
-    TextSecurePreferences.setLocalUuid(context, Recipient.external(context, localE164).requireUuid());
+    TextSecurePreferences.setLocalAci(context, Recipient.external(context, localE164).requireAci());
     TextSecurePreferences.setPushRegistered(context, true);
   }
 }

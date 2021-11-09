@@ -38,6 +38,7 @@ dependencies {
 
     implementation libs.signal.client.java
     api libs.square.okhttp3
+    api libs.square.okio
     implementation libs.threeten.threetenbp
 
     api libs.rxjava3.rxjava

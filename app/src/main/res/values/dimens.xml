@@ -54,7 +54,7 @@
     <dimen name="media_bubble_max_height">320dp</dimen>
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
     <dimen name="media_bubble_gif_width">240dp</dimen>
-    <dimen name="message_audio_width">200dp</dimen>
+    <dimen name="message_audio_width">242dp</dimen>
     <dimen name="message_bubble_default_footer_bottom_margin">-4dp</dimen>
     <dimen name="message_bubble_same_line_footer_bottom_margin">-24dp</dimen>
 
@@ -105,7 +105,7 @@
 
     <dimen name="tooltip_popup_margin">8dp</dimen>
 
-    <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
+    <dimen name="conversation_list_fragment_archive_padding">12dp</dimen>
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
     <dimen name="unread_count_bubble_radius">12.5dp</dimen>
@@ -196,7 +196,9 @@
 
     <dimen name="chat_colors_preview_bubble_max_width">240dp</dimen>
 
+    <dimen name="conversation_settings_button_strip_container_spacing">4dp</dimen>
     <dimen name="conversation_settings_button_strip_spacing">16dp</dimen>
+    <dimen name="conversation_settings_button_strip_spacing_half">8dp</dimen>
     <dimen name="conversation_settings_button_strip_button_size">48dp</dimen>
     <dimen name="conversation_settings_button_strip_button_padding">12dp</dimen>
 
@@ -207,8 +209,6 @@
     <dimen name="conversation_list_avatar_size">48dp</dimen>
 
     <dimen name="verify_identity_vertical_margin">16dp</dimen>
-
-    <integer name="badge_columns">3</integer>
 
     <dimen name="signal_context_menu_corner_radius">18dp</dimen>
 </resources>

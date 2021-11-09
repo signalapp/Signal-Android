@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.PlayServicesUtil
 
 class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__menu_settings) {
 
@@ -143,10 +144,16 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         }
       )
 
-      if (FeatureFlags.donorBadges()) {
+      if (FeatureFlags.donorBadges() && PlayServicesUtil.getPlayServicesStatus(requireContext()) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
         customPref(
           SubscriptionPreference(
-            title = DSLSettingsText.from(R.string.preferences__subscription),
+            title = DSLSettingsText.from(
+              if (state.hasActiveSubscription) {
+                R.string.preferences__subscription
+              } else {
+                R.string.preferences__become_a_signal_sustainer
+              }
+            ),
             icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
             isActive = state.hasActiveSubscription,
             onClick = { isActive ->
@@ -158,10 +165,9 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
             }
           )
         )
-        // TODO [alex] -- clap
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__signal_boost),
-          icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
+          icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
           onClick = {
             findNavController().navigate(R.id.action_appSettingsFragment_to_boostsFragment)
           }
@@ -198,6 +204,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
     override fun areItemsTheSame(newItem: SubscriptionPreference): Boolean {
       return true
     }
+
     override fun areContentsTheSame(newItem: SubscriptionPreference): Boolean {
       return super.areContentsTheSame(newItem) && isActive == newItem.isActive
     }

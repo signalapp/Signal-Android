@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
@@ -744,11 +745,12 @@ final class GroupsV2UpdateMessageProducer {
   interface DescribeMemberStrategy {
 
     /**
-     * Map a UUID to a string that describes the group member.
+     * Map an ACI to a string that describes the group member.
+     * @param aci
      */
     @NonNull
     @WorkerThread
-    String describe(@NonNull UUID uuid);
+    String describe(@NonNull ACI aci);
   }
 
   private interface StringFactory1Arg {
@@ -769,9 +771,9 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull StringFactory1Arg stringFactory,
                                               @DrawableRes int iconResource)
   {
-    UUID uuid1 = UuidUtil.fromByteStringOrUnknown(uuid1Bytes);
+    ACI aci1 = ACI.fromByteStringOrUnknown(uuid1Bytes);
 
-    return UpdateDescription.mentioning(Collections.singletonList(uuid1), () -> stringFactory.create(descriptionStrategy.describe(uuid1)), iconResource);
+    return UpdateDescription.mentioning(Collections.singletonList(aci1), () -> stringFactory.create(descriptionStrategy.describe(aci1)), iconResource);
   }
 
   private UpdateDescription updateDescription(@NonNull ByteString uuid1Bytes,
@@ -779,9 +781,9 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull StringFactory2Args stringFactory,
                                               @DrawableRes int iconResource)
   {
-    UUID uuid1 = UuidUtil.fromByteStringOrUnknown(uuid1Bytes);
-    UUID uuid2 = UuidUtil.fromByteStringOrUnknown(uuid2Bytes);
+    ACI aci1 = ACI.fromByteStringOrUnknown(uuid1Bytes);
+    ACI aci2 = ACI.fromByteStringOrUnknown(uuid2Bytes);
 
-    return UpdateDescription.mentioning(Arrays.asList(uuid1, uuid2), () -> stringFactory.create(descriptionStrategy.describe(uuid1), descriptionStrategy.describe(uuid2)), iconResource);
+    return UpdateDescription.mentioning(Arrays.asList(aci1, aci2), () -> stringFactory.create(descriptionStrategy.describe(aci1), descriptionStrategy.describe(aci2)), iconResource);
   }
 }

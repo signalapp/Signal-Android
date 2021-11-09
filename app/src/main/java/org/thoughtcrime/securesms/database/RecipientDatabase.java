@@ -23,6 +23,7 @@ import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
@@ -32,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList;
@@ -79,7 +81,6 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.StorageId;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -106,7 +107,7 @@ public class RecipientDatabase extends Database {
 
           static final String TABLE_NAME                = "recipient";
   public  static final String ID                        = "_id";
-  private static final String UUID                      = "uuid";
+  private static final String ACI_COLUMN                = "uuid";
   private static final String USERNAME                  = "username";
   public  static final String PHONE                     = "phone";
   public  static final String EMAIL                     = "email";
@@ -177,7 +178,7 @@ public class RecipientDatabase extends Database {
   }
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      ID, UUID, USERNAME, PHONE, EMAIL, GROUP_ID, GROUP_TYPE,
+      ID, ACI_COLUMN, USERNAME, PHONE, EMAIL, GROUP_ID, GROUP_TYPE,
       BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, AVATAR_COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
       PROFILE_KEY, PROFILE_KEY_CREDENTIAL,
       SYSTEM_JOINED_NAME, SYSTEM_GIVEN_NAME, SYSTEM_FAMILY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
@@ -328,7 +329,7 @@ public class RecipientDatabase extends Database {
 
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME + " (" + ID                        + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                            UUID                      + " TEXT UNIQUE DEFAULT NULL, " +
+                                            ACI_COLUMN                + " TEXT UNIQUE DEFAULT NULL, " +
                                             USERNAME                  + " TEXT UNIQUE DEFAULT NULL, " +
                                             PHONE                     + " TEXT UNIQUE DEFAULT NULL, " +
                                             EMAIL                     + " TEXT UNIQUE DEFAULT NULL, " +
@@ -397,7 +398,7 @@ public class RecipientDatabase extends Database {
 
   public @NonNull boolean containsPhoneOrUuid(@NonNull String id) {
     SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
-    String         query = UUID + " = ? OR " + PHONE + " = ?";
+    String         query = ACI_COLUMN + " = ? OR " + PHONE + " = ?";
     String[]       args  = new String[]{id, id};
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID }, query, args, null, null, null)) {
@@ -420,8 +421,8 @@ public class RecipientDatabase extends Database {
   }
 
   public @NonNull
-  Optional<RecipientId> getByUuid(@NonNull UUID uuid) {
-    return getByColumn(UUID, uuid.toString());
+  Optional<RecipientId> getByAci(@NonNull ACI uuid) {
+    return getByColumn(ACI_COLUMN, uuid.toString());
   }
 
   public @NonNull
@@ -429,12 +430,12 @@ public class RecipientDatabase extends Database {
     return getByColumn(USERNAME, username);
   }
 
-  public @NonNull RecipientId getAndPossiblyMerge(@Nullable UUID uuid, @Nullable String e164, boolean highTrust) {
-    return getAndPossiblyMerge(uuid, e164, highTrust, false);
+  public @NonNull RecipientId getAndPossiblyMerge(@Nullable ACI aci, @Nullable String e164, boolean highTrust) {
+    return getAndPossiblyMerge(aci, e164, highTrust, false);
   }
 
-  public @NonNull RecipientId getAndPossiblyMerge(@Nullable UUID uuid, @Nullable String e164, boolean highTrust, boolean changeSelf) {
-    if (uuid == null && e164 == null) {
+  public @NonNull RecipientId getAndPossiblyMerge(@Nullable ACI aci, @Nullable String e164, boolean highTrust, boolean changeSelf) {
+    if (aci == null && e164 == null) {
       throw new IllegalArgumentException("Must provide a UUID or E164!");
     }
 
@@ -448,115 +449,115 @@ public class RecipientDatabase extends Database {
 
     try {
       Optional<RecipientId> byE164 = e164 != null ? getByE164(e164) : Optional.absent();
-      Optional<RecipientId> byUuid = uuid != null ? getByUuid(uuid) : Optional.absent();
+      Optional<RecipientId> byAci  = aci != null ? getByAci(aci) : Optional.absent();
 
       RecipientId finalId;
 
-      if (!byE164.isPresent() && !byUuid.isPresent()) {
+      if (!byE164.isPresent() && !byAci.isPresent()) {
         Log.i(TAG, "Discovered a completely new user. Inserting.", true);
         if (highTrust) {
-          long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(e164, uuid));
+          long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(e164, aci));
           finalId = RecipientId.from(id);
         } else {
-          long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(uuid == null ? e164 : null, uuid));
+          long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(aci == null ? e164 : null, aci));
           finalId = RecipientId.from(id);
         }
-      } else if (byE164.isPresent() && !byUuid.isPresent()) {
-        if (uuid != null) {
+      } else if (byE164.isPresent() && !byAci.isPresent()) {
+        if (aci != null) {
           RecipientSettings e164Settings = getRecipientSettings(byE164.get());
-          if (e164Settings.uuid != null) {
+          if (e164Settings.aci != null) {
             if (highTrust) {
-              Log.w(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s), but that user already has a UUID (%s). Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to a new entry.", uuid, byE164.get(), e164Settings.uuid), true);
+              Log.w(TAG, String.format(Locale.US, "Found out about an ACI (%s) for a known E164 user (%s), but that user already has an ACI (%s). Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to a new entry.", aci, byE164.get(), e164Settings.aci), true);
 
               removePhoneNumber(byE164.get(), db);
               recipientNeedingRefresh = byE164.get();
 
-              ContentValues insertValues = buildContentValuesForNewUser(e164, uuid);
+              ContentValues insertValues = buildContentValuesForNewUser(e164, aci);
               insertValues.put(BLOCKED, e164Settings.blocked ? 1 : 0);
 
               long id = db.insert(TABLE_NAME, null, insertValues);
               finalId = RecipientId.from(id);
             } else {
-              Log.w(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s), but that user already has a UUID (%s). Likely a case of re-registration. Low-trust, so making a new user for the UUID.", uuid, byE164.get(), e164Settings.uuid), true);
+              Log.w(TAG, String.format(Locale.US, "Found out about an ACI (%s) for a known E164 user (%s), but that user already has an ACI (%s). Likely a case of re-registration. Low-trust, so making a new user for the UUID.", aci, byE164.get(), e164Settings.aci), true);
 
-              long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, uuid));
+              long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, aci));
               finalId = RecipientId.from(id);
             }
           } else {
             if (highTrust) {
-              Log.i(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s). High-trust, so updating.", uuid, byE164.get()), true);
-              markRegisteredOrThrow(byE164.get(), uuid);
+              Log.i(TAG, String.format(Locale.US, "Found out about an ACI (%s) for a known E164 user (%s). High-trust, so updating.", aci, byE164.get()), true);
+              markRegisteredOrThrow(byE164.get(), aci);
               finalId = byE164.get();
             } else {
-              Log.i(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s). Low-trust, so making a new user for the UUID.", uuid, byE164.get()), true);
-              long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, uuid));
+              Log.i(TAG, String.format(Locale.US, "Found out about an ACI (%s) for a known E164 user (%s). Low-trust, so making a new user for the ACI.", aci, byE164.get()), true);
+              long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, aci));
               finalId = RecipientId.from(id);
             }
           }
         } else {
           finalId = byE164.get();
         }
-      } else if (!byE164.isPresent() && byUuid.isPresent()) {
+      } else if (!byE164.isPresent() && byAci.isPresent()) {
         if (e164 != null) {
           if (highTrust) {
-            if (Objects.equals(uuid, TextSecurePreferences.getLocalUuid(context)) && !changeSelf) {
-              Log.w(TAG, String.format(Locale.US, "Found out about an E164 (%s) for our own UUID user (%s). High-trust but not change self, doing nothing.", e164, byUuid.get()), true);
-              finalId = byUuid.get();
+            if (Objects.equals(aci, TextSecurePreferences.getLocalAci(context)) && !changeSelf) {
+              Log.w(TAG, String.format(Locale.US, "Found out about an E164 (%s) for our own ACI user (%s). High-trust but not change self, doing nothing.", e164, byAci.get()), true);
+              finalId = byAci.get();
             } else {
-              Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). High-trust, so updating.", e164, byUuid.get()), true);
+              Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known ACI user (%s). High-trust, so updating.", e164, byAci.get()), true);
 
-              RecipientSettings byUuidSettings = getRecipientSettings(byUuid.get());
+              RecipientSettings byUuidSettings = getRecipientSettings(byAci.get());
 
-              setPhoneNumberOrThrow(byUuid.get(), e164);
-              finalId = byUuid.get();
+              setPhoneNumberOrThrow(byAci.get(), e164);
+              finalId = byAci.get();
 
               if (!Util.isEmpty(byUuidSettings.e164) && !byUuidSettings.e164.equals(e164)) {
                 recipientChangedNumber = finalId;
               }
             }
           } else {
-            Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). Low-trust, so doing nothing.", e164, byUuid.get()), true);
-            finalId = byUuid.get();
+            Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known ACI user (%s). Low-trust, so doing nothing.", e164, byAci.get()), true);
+            finalId = byAci.get();
           }
         } else {
-          finalId = byUuid.get();
+          finalId = byAci.get();
         }
       } else {
-        if (byE164.equals(byUuid)) {
-          finalId = byUuid.get();
+        if (byE164.equals(byAci)) {
+          finalId = byAci.get();
         } else {
-          Log.w(TAG, String.format(Locale.US, "Hit a conflict between %s (E164 of %s) and %s (UUID %s). They map to different recipients.", byE164.get(), e164, byUuid.get(), uuid), new Throwable(), true);
+          Log.w(TAG, String.format(Locale.US, "Hit a conflict between %s (E164 of %s) and %s (ACI %s). They map to different recipients.", byE164.get(), e164, byAci.get(), aci), new Throwable(), true);
 
           RecipientSettings e164Settings = getRecipientSettings(byE164.get());
 
-          if (e164Settings.getUuid() != null) {
+          if (e164Settings.getAci() != null) {
             if (highTrust) {
-              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to the UUID entry.", true);
+              Log.w(TAG, "The E164 contact has a different ACI. Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to the ACI entry.", true);
 
               removePhoneNumber(byE164.get(), db);
               recipientNeedingRefresh = byE164.get();
 
-              RecipientSettings byUuidSettings = getRecipientSettings(byUuid.get());
+              RecipientSettings byUuidSettings = getRecipientSettings(byAci.get());
 
-              setPhoneNumberOrThrow(byUuid.get(), Objects.requireNonNull(e164));
-              finalId = byUuid.get();
+              setPhoneNumberOrThrow(byAci.get(), Objects.requireNonNull(e164));
+              finalId = byAci.get();
 
               if (!Util.isEmpty(byUuidSettings.e164) && !byUuidSettings.e164.equals(e164)) {
                 recipientChangedNumber = finalId;
               }
             } else {
-              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. Low-trust, so doing nothing.", true);
-              finalId = byUuid.get();
+              Log.w(TAG, "The E164 contact has a different ACI. Likely a case of re-registration. Low-trust, so doing nothing.", true);
+              finalId = byAci.get();
             }
           } else {
             if (highTrust) {
-              Log.w(TAG, "We have one contact with just an E164, and another with UUID. High-trust, so merging the two rows together.", true);
-              finalId                 = merge(byUuid.get(), byE164.get());
-              recipientNeedingRefresh = byUuid.get();
-              remapped                = new Pair<>(byE164.get(), byUuid.get());
+              Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. High-trust, so merging the two rows together.", true);
+              finalId                 = merge(byAci.get(), byE164.get());
+              recipientNeedingRefresh = byAci.get();
+              remapped                = new Pair<>(byE164.get(), byAci.get());
             } else {
-              Log.w(TAG, "We have one contact with just an E164, and another with UUID. Low-trust, so doing nothing.", true);
-              finalId  = byUuid.get();
+              Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. Low-trust, so doing nothing.", true);
+              finalId  = byAci.get();
             }
           }
         }
@@ -591,13 +592,13 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  private static ContentValues buildContentValuesForNewUser(@Nullable String e164, @Nullable UUID uuid) {
+  private static ContentValues buildContentValuesForNewUser(@Nullable String e164, @Nullable ACI aci) {
     ContentValues values = new ContentValues();
 
     values.put(PHONE, e164);
 
-    if (uuid != null) {
-      values.put(UUID, uuid.toString().toLowerCase());
+    if (aci != null) {
+      values.put(ACI_COLUMN, aci.toString().toLowerCase());
       values.put(REGISTERED, RegisteredState.REGISTERED.getId());
       values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
       values.put(AVATAR_COLOR, AvatarColor.random().serialize());
@@ -607,8 +608,8 @@ public class RecipientDatabase extends Database {
   }
 
 
-  public @NonNull RecipientId getOrInsertFromUuid(@NonNull UUID uuid) {
-    return getOrInsertByColumn(UUID, uuid.toString()).recipientId;
+  public @NonNull RecipientId getOrInsertFromAci(@NonNull ACI aci) {
+    return getOrInsertByColumn(ACI_COLUMN, aci.toString()).recipientId;
   }
 
   public @NonNull RecipientId getOrInsertFromE164(@NonNull String e164) {
@@ -828,13 +829,13 @@ public class RecipientDatabase extends Database {
 
     if (id < 0) {
       Log.w(TAG,  "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.");
-      recipientId = getAndPossiblyMerge(insert.getAddress().hasValidUuid() ? insert.getAddress().getUuid() : null, insert.getAddress().getNumber().get(), true);
+      recipientId = getAndPossiblyMerge(insert.getAddress().hasValidAci() ? insert.getAddress().getAci() : null, insert.getAddress().getNumber().get(), true);
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
     } else {
       recipientId = RecipientId.from(id);
     }
 
-    if (insert.getIdentityKey().isPresent() && insert.getAddress().hasValidUuid()) {
+    if (insert.getIdentityKey().isPresent() && insert.getAddress().hasValidAci()) {
       try {
         IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
 
@@ -863,7 +864,7 @@ public class RecipientDatabase extends Database {
       RecipientId recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getOld().getId().getRaw())).get();
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Found user " + recipientId + ". Possibly merging.");
 
-      recipientId = getAndPossiblyMerge(update.getNew().getAddress().hasValidUuid() ? update.getNew().getAddress().getUuid() : null, update.getNew().getAddress().getNumber().orNull(), true);
+      recipientId = getAndPossiblyMerge(update.getNew().getAddress().hasValidAci() ? update.getNew().getAddress().getAci() : null, update.getNew().getAddress().getNumber().orNull(), true);
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Merged into " + recipientId);
 
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
@@ -880,7 +881,7 @@ public class RecipientDatabase extends Database {
     try {
       Optional<IdentityRecord> oldIdentityRecord = identityStore.getIdentityRecord(recipientId);
 
-      if (update.getNew().getIdentityKey().isPresent() && update.getNew().getAddress().hasValidUuid()) {
+      if (update.getNew().getIdentityKey().isPresent() && update.getNew().getAddress().hasValidAci()) {
         IdentityKey identityKey = new IdentityKey(update.getNew().getIdentityKey().get(), 0);
         DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(update.getNew().getAddress().getIdentifier(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
       }
@@ -1058,8 +1059,8 @@ public class RecipientDatabase extends Database {
     ProfileName profileName = ProfileName.fromParts(contact.getGivenName().orNull(), contact.getFamilyName().orNull());
     String      username    = contact.getUsername().orNull();
 
-    if (contact.getAddress().hasValidUuid()) {
-      values.put(UUID, contact.getAddress().getUuid().toString());
+    if (contact.getAddress().hasValidAci()) {
+      values.put(ACI_COLUMN, contact.getAddress().getAci().toString());
     }
 
     values.put(PHONE, contact.getAddress().getNumber().orNull());
@@ -1132,9 +1133,9 @@ public class RecipientDatabase extends Database {
 
   private List<RecipientSettings> getRecipientSettingsForSync(@Nullable String query, @Nullable String[] args) {
     SQLiteDatabase          db    = databaseHelper.getSignalReadableDatabase();
-    String                  table = TABLE_NAME + " LEFT OUTER JOIN " + IdentityDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + UUID     + " = " + IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.ADDRESS
-                                               + " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME    + " ON " + TABLE_NAME + "." + GROUP_ID + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID
-                                               + " LEFT OUTER JOIN " + ThreadDatabase.TABLE_NAME   + " ON " + TABLE_NAME + "." + ID       + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
+    String                  table = TABLE_NAME + " LEFT OUTER JOIN " + IdentityDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + ACI_COLUMN + " = " + IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.ADDRESS
+                                    + " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + GROUP_ID + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID
+                                    + " LEFT OUTER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
     List<RecipientSettings> out   = new ArrayList<>();
 
     String[] columns = Stream.of(TYPED_RECIPIENT_PROJECTION,
@@ -1168,7 +1169,7 @@ public class RecipientDatabase extends Database {
    */
   public @NonNull Map<RecipientId, StorageId> getContactStorageSyncIdsMap() {
     SQLiteDatabase              db    = databaseHelper.getSignalReadableDatabase();
-    String                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + UUID + " NOT NULL AND " + ID + " != ? AND " + GROUP_TYPE + " != ?";
+    String                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + ACI_COLUMN + " NOT NULL AND " + ID + " != ? AND " + GROUP_TYPE + " != ?";
     String[]                    args  = SqlUtil.buildArgs(Recipient.self().getId(), String.valueOf(GroupType.SIGNAL_V2.getId()));
     Map<RecipientId, StorageId> out   = new HashMap<>();
 
@@ -1214,7 +1215,7 @@ public class RecipientDatabase extends Database {
 
   static @NonNull RecipientSettings getRecipientSettings(@NonNull Context context, @NonNull Cursor cursor, @NonNull String idColumnName) {
     long      id                         = CursorUtil.requireLong(cursor, idColumnName);
-    UUID      uuid                       = UuidUtil.parseOrNull(CursorUtil.requireString(cursor, UUID));
+    ACI       uuid                       = ACI.parseOrNull(CursorUtil.requireString(cursor, ACI_COLUMN));
     String    username                   = CursorUtil.requireString(cursor, USERNAME);
     String    e164                       = CursorUtil.requireString(cursor, PHONE);
     String    email                      = CursorUtil.requireString(cursor, EMAIL);
@@ -1370,16 +1371,7 @@ public class RecipientDatabase extends Database {
       List<BadgeList.Badge> protoBadges = badgeList.getBadgesList();
       badges = new ArrayList<>(protoBadges.size());
       for (BadgeList.Badge protoBadge : protoBadges) {
-        badges.add(new Badge(
-            protoBadge.getId(),
-            Badge.Category.Companion.fromCode(protoBadge.getCategory()),
-            protoBadge.getName(),
-            protoBadge.getDescription(),
-            Uri.parse(protoBadge.getImageUrl()),
-            protoBadge.getImageDensity(),
-            protoBadge.getExpiration(),
-            protoBadge.getVisible()
-        ));
+        badges.add(Badges.fromDatabaseBadge(protoBadge));
       }
     } else {
       badges = Collections.emptyList();
@@ -1712,15 +1704,7 @@ public class RecipientDatabase extends Database {
     BadgeList.Builder badgeListBuilder = BadgeList.newBuilder();
 
     for (final Badge badge : badges) {
-      badgeListBuilder.addBadges(BadgeList.Badge.newBuilder()
-                                                .setId(badge.getId())
-                                                .setCategory(badge.getCategory().getCode())
-                                                .setDescription(badge.getDescription())
-                                                .setExpiration(badge.getExpirationTimestamp())
-                                                .setVisible(badge.getVisible())
-                                                .setName(badge.getName())
-                                                .setImageUrl(badge.getImageUrl().toString())
-                                                .setImageDensity(badge.getImageDensity()));
+      badgeListBuilder.addBadges(Badges.toDatabaseBadge(badge));
     }
 
     ContentValues values = new ContentValues(1);
@@ -1856,9 +1840,9 @@ public class RecipientDatabase extends Database {
    * database if missing.
    */
   public Set<RecipientId> persistProfileKeySet(@NonNull ProfileKeySet profileKeySet) {
-    Map<UUID, ProfileKey> profileKeys              = profileKeySet.getProfileKeys();
-    Map<UUID, ProfileKey> authoritativeProfileKeys = profileKeySet.getAuthoritativeProfileKeys();
-    int                   totalKeys                = profileKeys.size() + authoritativeProfileKeys.size();
+    Map<ACI, ProfileKey> profileKeys              = profileKeySet.getProfileKeys();
+    Map<ACI, ProfileKey> authoritativeProfileKeys = profileKeySet.getAuthoritativeProfileKeys();
+    int                   totalKeys               = profileKeys.size() + authoritativeProfileKeys.size();
 
     if (totalKeys == 0) {
       return Collections.emptySet();
@@ -1869,8 +1853,8 @@ public class RecipientDatabase extends Database {
     HashSet<RecipientId> updated = new HashSet<>(totalKeys);
     RecipientId          selfId  = Recipient.self().getId();
 
-    for (Map.Entry<UUID, ProfileKey> entry : profileKeys.entrySet()) {
-      RecipientId recipientId = getOrInsertFromUuid(entry.getKey());
+    for (Map.Entry<ACI, ProfileKey> entry : profileKeys.entrySet()) {
+      RecipientId recipientId = getOrInsertFromAci(entry.getKey());
 
       if (setProfileKeyIfAbsent(recipientId, entry.getValue())) {
         Log.i(TAG, "Learned new profile key");
@@ -1878,8 +1862,8 @@ public class RecipientDatabase extends Database {
       }
     }
 
-    for (Map.Entry<UUID, ProfileKey> entry : authoritativeProfileKeys.entrySet()) {
-      RecipientId recipientId = getOrInsertFromUuid(entry.getKey());
+    for (Map.Entry<ACI, ProfileKey> entry : authoritativeProfileKeys.entrySet()) {
+      RecipientId recipientId = getOrInsertFromAci(entry.getKey());
 
       if (selfId.equals(recipientId)) {
         Log.i(TAG, "Seen authoritative update for self");
@@ -2127,7 +2111,7 @@ public class RecipientDatabase extends Database {
       Log.w(TAG, "[setPhoneNumber] Hit a conflict when trying to update " + id + ". Possibly merging.");
 
       RecipientSettings existing = getRecipientSettings(id);
-      RecipientId       newId    = getAndPossiblyMerge(existing.getUuid(), e164, true);
+      RecipientId       newId    = getAndPossiblyMerge(existing.getAci(), e164, true);
       Log.w(TAG, "[setPhoneNumber] Resulting id: " + newId);
 
       db.setTransactionSuccessful();
@@ -2163,7 +2147,7 @@ public class RecipientDatabase extends Database {
 
     try {
       RecipientId id    = Recipient.self().getId();
-      RecipientId newId = getAndPossiblyMerge(Recipient.self().requireUuid(), e164, true, true);
+      RecipientId newId = getAndPossiblyMerge(Recipient.self().requireAci(), e164, true, true);
 
       if (id.equals(newId)) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self");
@@ -2222,19 +2206,19 @@ public class RecipientDatabase extends Database {
   /**
    * @return True if setting the UUID resulted in changed recipientId, otherwise false.
    */
-  public boolean markRegistered(@NonNull RecipientId id, @NonNull UUID uuid) {
+  public boolean markRegistered(@NonNull RecipientId id, @NonNull ACI aci) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.beginTransaction();
 
     try {
-      markRegisteredOrThrow(id, uuid);
+      markRegisteredOrThrow(id, aci);
       db.setTransactionSuccessful();
       return false;
     } catch (SQLiteConstraintException e) {
       Log.w(TAG, "[markRegistered] Hit a conflict when trying to update " + id + ". Possibly merging.");
 
       RecipientSettings existing = getRecipientSettings(id);
-      RecipientId       newId    = getAndPossiblyMerge(uuid, existing.getE164(), true);
+      RecipientId       newId    = getAndPossiblyMerge(aci, existing.getE164(), true);
       Log.w(TAG, "[markRegistered] Merged into " + newId);
 
       db.setTransactionSuccessful();
@@ -2247,10 +2231,10 @@ public class RecipientDatabase extends Database {
   /**
    * Should only use if you are confident that this shouldn't result in any contact merging.
    */
-  public void markRegisteredOrThrow(@NonNull RecipientId id, @NonNull UUID uuid) {
+  public void markRegisteredOrThrow(@NonNull RecipientId id, @NonNull ACI aci) {
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-    contentValues.put(UUID, uuid.toString().toLowerCase());
+    contentValues.put(ACI_COLUMN, aci.toString().toLowerCase());
 
     if (update(id, contentValues)) {
       setStorageIdIfNotSet(id);
@@ -2268,28 +2252,31 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public void bulkUpdatedRegisteredStatus(@NonNull Map<RecipientId, String> registered, Collection<RecipientId> unregistered) {
+  public void bulkUpdatedRegisteredStatus(@NonNull Map<RecipientId, ACI> registered, Collection<RecipientId> unregistered) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.beginTransaction();
 
     try {
-      for (Map.Entry<RecipientId, String> entry : registered.entrySet()) {
+      for (Map.Entry<RecipientId, ACI> entry : registered.entrySet()) {
+        RecipientId recipientId = entry.getKey();
+        ACI         aci         = entry.getValue();
+
         ContentValues values = new ContentValues(2);
         values.put(REGISTERED, RegisteredState.REGISTERED.getId());
 
-        if (entry.getValue() != null) {
-          values.put(UUID, entry.getValue().toLowerCase());
+        if (aci != null) {
+          values.put(ACI_COLUMN, aci.toString().toLowerCase());
         }
 
         try {
-          if (update(entry.getKey(), values)) {
-            setStorageIdIfNotSet(entry.getKey());
+          if (update(recipientId, values)) {
+            setStorageIdIfNotSet(recipientId);
           }
         } catch (SQLiteConstraintException e) {
-          Log.w(TAG, "[bulkUpdateRegisteredStatus] Hit a conflict when trying to update " + entry.getKey() + ". Possibly merging.");
+          Log.w(TAG, "[bulkUpdateRegisteredStatus] Hit a conflict when trying to update " + recipientId + ". Possibly merging.");
 
           RecipientSettings existing = getRecipientSettings(entry.getKey());
-          RecipientId       newId    = getAndPossiblyMerge(UuidUtil.parseOrThrow(entry.getValue()), existing.getE164(), true);
+          RecipientId       newId    = getAndPossiblyMerge(aci, existing.getE164(), true);
           Log.w(TAG, "[bulkUpdateRegisteredStatus] Merged into " + newId);
         }
       }
@@ -2314,27 +2301,27 @@ public class RecipientDatabase extends Database {
    *
    * @return A mapping of (RecipientId, UUID)
    */
-  public @NonNull Map<RecipientId, String> bulkProcessCdsResult(@NonNull Map<String, UUID> mapping) {
-    SQLiteDatabase               db      = databaseHelper.getSignalWritableDatabase();
-    HashMap<RecipientId, String> uuidMap = new HashMap<>();
+  public @NonNull Map<RecipientId, ACI> bulkProcessCdsResult(@NonNull Map<String, ACI> mapping) {
+    SQLiteDatabase            db      = databaseHelper.getSignalWritableDatabase();
+    HashMap<RecipientId, ACI> aciMap = new HashMap<>();
 
     db.beginTransaction();
     try {
-      for (Map.Entry<String, UUID> entry : mapping.entrySet()) {
+      for (Map.Entry<String, ACI> entry : mapping.entrySet()) {
         String                e164      = entry.getKey();
-        UUID                  uuid      = entry.getValue();
-        Optional<RecipientId> uuidEntry = uuid != null ? getByUuid(uuid) : Optional.absent();
+        ACI                   aci       = entry.getValue();
+        Optional<RecipientId> aciEntry = aci != null ? getByAci(aci) : Optional.absent();
 
-        if (uuidEntry.isPresent()) {
-          boolean idChanged = setPhoneNumber(uuidEntry.get(), e164);
+        if (aciEntry.isPresent()) {
+          boolean idChanged = setPhoneNumber(aciEntry.get(), e164);
           if (idChanged) {
-            uuidEntry = getByUuid(Objects.requireNonNull(uuid));
+            aciEntry = getByAci(Objects.requireNonNull(aci));
           }
         }
 
-        RecipientId id = uuidEntry.isPresent() ? uuidEntry.get() : getOrInsertFromE164(e164);
+        RecipientId id = aciEntry.isPresent() ? aciEntry.get() : getOrInsertFromE164(e164);
 
-        uuidMap.put(id, uuid != null ? uuid.toString() : null);
+        aciMap.put(id, aci);
       }
 
       db.setTransactionSuccessful();
@@ -2342,7 +2329,7 @@ public class RecipientDatabase extends Database {
       db.endTransaction();
     }
 
-    return uuidMap;
+    return aciMap;
   }
 
   public @NonNull List<RecipientId> getUninvitedRecipientsForInsights() {
@@ -2746,7 +2733,7 @@ public class RecipientDatabase extends Database {
                                      .map(b -> b.getNumber().get())
                                      .toList();
     List<String> blockedUuid = Stream.of(blocked)
-                                     .map(b -> b.getUuid().toString().toLowerCase())
+                                     .map(b -> b.getAci().toString().toLowerCase())
                                      .toList();
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
@@ -2766,7 +2753,7 @@ public class RecipientDatabase extends Database {
       }
 
       for (String uuid : blockedUuid) {
-        db.update(TABLE_NAME, setBlocked, UUID + " = ?", new String[] { uuid });
+        db.update(TABLE_NAME, setBlocked, ACI_COLUMN + " = ?", new String[] { uuid });
       }
 
       List<GroupId.V1> groupIdStrings = new ArrayList<>(groupIds.size());
@@ -3122,7 +3109,7 @@ public class RecipientDatabase extends Database {
     SessionDatabase sessionDatabase = DatabaseFactory.getSessionDatabase(context);
 
     boolean hasE164Session = sessionDatabase.getAllFor(e164Settings.e164).size() > 0;
-    boolean hasUuidSession = sessionDatabase.getAllFor(uuidSettings.uuid.toString()).size() > 0;
+    boolean hasUuidSession = sessionDatabase.getAllFor(uuidSettings.aci.toString()).size() > 0;
 
     if (hasE164Session && hasUuidSession) {
       Log.w(TAG, "Had a session for both users. Deleting the E164.", true);
@@ -3130,7 +3117,7 @@ public class RecipientDatabase extends Database {
     } else if (hasE164Session && !hasUuidSession) {
       Log.w(TAG, "Had a session for E164, but not UUID. Re-assigning to the UUID.", true);
       ContentValues values = new ContentValues();
-      values.put(SessionDatabase.ADDRESS, uuidSettings.uuid.toString());
+      values.put(SessionDatabase.ADDRESS, uuidSettings.aci.toString());
       db.update(SessionDatabase.TABLE_NAME, values, SessionDatabase.ADDRESS + " = ?", SqlUtil.buildArgs(e164Settings.e164));
     } else if (!hasE164Session && hasUuidSession) {
       Log.w(TAG, "Had a session for UUID, but not E164. No action necessary.", true);
@@ -3276,7 +3263,7 @@ public class RecipientDatabase extends Database {
 
   public static class RecipientSettings {
     private final RecipientId                     id;
-    private final UUID                            uuid;
+    private final ACI                             aci;
     private final String                          username;
     private final String                          e164;
     private final String                          email;
@@ -3326,7 +3313,7 @@ public class RecipientDatabase extends Database {
     private final List<Badge>                     badges;
 
     RecipientSettings(@NonNull RecipientId id,
-                      @Nullable UUID uuid,
+                      @Nullable ACI uuid,
                       @Nullable String username,
                       @Nullable String e164,
                       @Nullable String email,
@@ -3371,7 +3358,7 @@ public class RecipientDatabase extends Database {
                       @NonNull List<Badge> badges)
     {
       this.id                          = id;
-      this.uuid                        = uuid;
+      this.aci                         = uuid;
       this.username                    = username;
       this.e164                        = e164;
       this.email                       = email;
@@ -3425,8 +3412,8 @@ public class RecipientDatabase extends Database {
       return id;
     }
 
-    public @Nullable UUID getUuid() {
-      return uuid;
+    public @Nullable ACI getAci() {
+      return aci;
     }
 
     public @Nullable String getUsername() {

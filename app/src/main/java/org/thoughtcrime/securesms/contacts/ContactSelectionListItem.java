@@ -71,6 +71,12 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
 
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    unbind();
+  }
+
   public void set(@NonNull GlideRequests glideRequests,
                   @Nullable RecipientId recipientId,
                   int type,
@@ -92,6 +98,9 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
       this.recipient = null;
       this.contactPhotoImage.setAvatar(glideRequests, null, false);
     } else if (recipientId != null) {
+      if (this.recipient != null) {
+        this.recipient.removeForeverObserver(this);
+      }
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);
     }
@@ -121,7 +130,11 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
 
     this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
 
-    badge.setBadgeFromRecipient(recipientSnapshot);
+    if (recipientSnapshot == null || recipientSnapshot.isSelf()) {
+      badge.setBadge(null);
+    } else {
+      badge.setBadgeFromRecipient(recipientSnapshot);
+    }
   }
 
   public void setChecked(boolean selected, boolean animate) {
@@ -146,7 +159,7 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     this.checkBox.setEnabled(enabled);
   }
 
-  public void unbind(GlideRequests glideRequests) {
+  public void unbind() {
     if (recipient != null) {
       recipient.removeForeverObserver(this);
       recipient = null;

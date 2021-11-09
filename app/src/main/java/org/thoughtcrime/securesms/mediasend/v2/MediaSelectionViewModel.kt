@@ -179,6 +179,10 @@ class MediaSelectionViewModel(
   }
 
   fun removeMedia(media: Media) {
+    removeMedia(media, false)
+  }
+
+  private fun removeMedia(media: Media, suppressEmptyError: Boolean) {
     val snapshot = store.state
     val newMediaList = snapshot.selectedMedia - media
     val oldFocusIndex = snapshot.selectedMedia.indexOf(media)
@@ -197,7 +201,7 @@ class MediaSelectionViewModel(
       )
     }
 
-    if (newMediaList.isEmpty()) {
+    if (newMediaList.isEmpty() && !suppressEmptyError) {
       mediaErrors.postValue(MediaValidator.FilterError.NO_ITEMS)
     }
 
@@ -216,7 +220,7 @@ class MediaSelectionViewModel(
   fun removeCameraFirstCapture() {
     val cameraFirstCapture: Media? = store.state.cameraFirstCapture
     if (cameraFirstCapture != null) {
-      removeMedia(cameraFirstCapture)
+      removeMedia(cameraFirstCapture, true)
     }
   }
 

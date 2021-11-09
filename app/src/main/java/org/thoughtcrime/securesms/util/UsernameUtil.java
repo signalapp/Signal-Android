@@ -14,10 +14,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class UsernameUtil {
@@ -51,15 +51,15 @@ public class UsernameUtil {
   }
 
   @WorkerThread
-  public static @NonNull Optional<UUID> fetchUuidForUsername(@NonNull Context context, @NonNull String username) {
+  public static @NonNull Optional<ACI> fetchAciForUsername(@NonNull Context context, @NonNull String username) {
     Optional<RecipientId> localId = DatabaseFactory.getRecipientDatabase(context).getByUsername(username);
 
     if (localId.isPresent()) {
       Recipient recipient = Recipient.resolved(localId.get());
 
-      if (recipient.getUuid().isPresent()) {
+      if (recipient.getAci().isPresent()) {
         Log.i(TAG, "Found username locally -- using associated UUID.");
-        return recipient.getUuid();
+        return recipient.getAci();
       } else {
         Log.w(TAG, "Found username locally, but it had no associated UUID! Clearing it.");
         DatabaseFactory.getRecipientDatabase(context).clearUsernameIfExists(username);
@@ -69,7 +69,7 @@ public class UsernameUtil {
     try {
       Log.d(TAG, "No local user with this username. Searching remotely.");
       SignalServiceProfile profile = ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfileByUsername(username, Optional.absent(), Locale.getDefault());
-      return Optional.fromNullable(profile.getUuid());
+      return Optional.fromNullable(profile.getAci());
     } catch (IOException e) {
       return Optional.absent();
     }

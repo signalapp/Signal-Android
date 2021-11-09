@@ -515,31 +515,4 @@ public class Util {
       return defaultValue;
     }
   }
-
-  /**
-   * Appends the stack trace of the provided throwable onto the provided primary exception. This is
-   * useful for when exceptions are thrown inside of asynchronous systems (like runnables in an
-   * executor) where you'd otherwise lose important parts of the stack trace. This lets you save a
-   * throwable at the entry point, and then combine it with any caught exceptions later.
-   *
-   * @return The provided primary exception, for convenience.
-   */
-  public static RuntimeException appendStackTrace(@NonNull RuntimeException primary, @NonNull Throwable secondary) {
-    StackTraceElement[] now      = primary.getStackTrace();
-    StackTraceElement[] then     = secondary.getStackTrace();
-    StackTraceElement[] combined = new StackTraceElement[now.length + then.length];
-
-    System.arraycopy(now, 0, combined, 0, now.length);
-    System.arraycopy(then, 0, combined, now.length, then.length);
-
-    primary.setStackTrace(combined);
-
-    return primary;
-  }
-
-  public static @NonNull String convertThrowableToString(@NonNull Throwable throwable) {
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    throwable.printStackTrace(new PrintStream(outputStream));
-    return outputStream.toString();
-  }
 }

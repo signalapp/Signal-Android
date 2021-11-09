@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_heading"
-        tools:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge" />
+        tools:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge_help_signal" />
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/thanks_bottom_sheet_badge"
@@ -140,6 +140,7 @@
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:layout_marginBottom="16dp"
         android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

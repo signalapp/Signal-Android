@@ -15,7 +15,8 @@ class SetCurrencyFragment : DSLSettingsBottomSheetFragment() {
 
   private val viewModel: SetCurrencyViewModel by viewModels(
     factoryProducer = {
-      SetCurrencyViewModel.Factory(SetCurrencyFragmentArgs.fromBundle(requireArguments()).isBoost)
+      val args = SetCurrencyFragmentArgs.fromBundle(requireArguments())
+      SetCurrencyViewModel.Factory(args.isBoost, args.supportedCurrencyCodes.toList())
     }
   )
 
@@ -28,12 +29,12 @@ class SetCurrencyFragment : DSLSettingsBottomSheetFragment() {
   private fun getConfiguration(state: SetCurrencyState): DSLConfiguration {
     return configure {
       state.currencies.forEach { currency ->
-        radioPref(
+        clickPref(
           title = DSLSettingsText.from(currency.getDisplayName(Locale.getDefault())),
           summary = DSLSettingsText.from(currency.currencyCode),
-          isChecked = currency.currencyCode == state.selectedCurrencyCode,
           onClick = {
             viewModel.setSelectedCurrency(currency.currencyCode)
+            dismissAllowingStateLoss()
           }
         )
       }

@@ -58,7 +58,7 @@ public class UserNotificationMigrationJob extends MigrationJob {
   void performMigration() {
     if (!TextSecurePreferences.isPushRegistered(context)      ||
         TextSecurePreferences.getLocalNumber(context) == null ||
-        TextSecurePreferences.getLocalUuid(context) == null)
+        TextSecurePreferences.getLocalAci(context) == null)
     {
       Log.w(TAG, "Not registered! Skipping.");
       return;

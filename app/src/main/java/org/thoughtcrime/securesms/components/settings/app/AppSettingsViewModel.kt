@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -37,6 +38,9 @@ class AppSettingsViewModel(private val subscriptionsRepository: SubscriptionsRep
 
     subscriptionsRepository.getActiveSubscription().subscribeBy(
       onSuccess = { subscription -> store.update { it.copy(hasActiveSubscription = subscription.isActive) } },
+      onError = { throwable ->
+        Log.w(TAG, "Could not load active subscription", throwable)
+      }
     )
   }
 
@@ -44,5 +48,9 @@ class AppSettingsViewModel(private val subscriptionsRepository: SubscriptionsRep
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(AppSettingsViewModel(subscriptionsRepository)) as T
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(AppSettingsViewModel::class.java)
   }
 }

@@ -29,7 +29,7 @@ final class LogSectionKeyPreferences implements LogSection {
                               .append("Client Deprecated    : ").append(SignalStore.misc().isClientDeprecated()).append("\n")
                               .append("Push Registered      : ").append(TextSecurePreferences.isPushRegistered(context)).append("\n")
                               .append("Unauthorized Received: ").append(TextSecurePreferences.isUnauthorizedRecieved(context)).append("\n")
-                              .append("self.isRegistered()  : ").append(TextSecurePreferences.getLocalUuid(context) == null ? "false" : Recipient.self().isRegistered()).append("\n")
+                              .append("self.isRegistered()  : ").append(TextSecurePreferences.getLocalAci(context) == null ? "false" : Recipient.self().isRegistered()).append("\n")
                               .append("Thread Trimming      : ").append(getThreadTrimmingString()).append("\n");
   }
 

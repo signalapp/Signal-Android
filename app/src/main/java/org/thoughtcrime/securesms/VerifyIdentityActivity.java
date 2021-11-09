@@ -56,13 +56,14 @@ import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.OneShotPreDrawListener;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -322,23 +323,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       //noinspection WrongThread
       Recipient resolved = recipient.resolve();
 
-      if (FeatureFlags.verifyV2() && resolved.getUuid().isPresent()) {
+      if (FeatureFlags.verifyV2() && resolved.getAci().isPresent()) {
         Log.i(TAG, "Using UUID (version 2).");
         version  = 2;
-        localId  = UuidUtil.toByteArray(TextSecurePreferences.getLocalUuid(requireContext()));
-        remoteId = UuidUtil.toByteArray(resolved.getUuid().get());
+        localId  = TextSecurePreferences.getLocalAci(requireContext()).toByteArray();
+        remoteId = resolved.requireAci().toByteArray();
       } else if (!FeatureFlags.verifyV2() && resolved.getE164().isPresent()) {
         Log.i(TAG, "Using E164 (version 1).");
         version  = 1;
         localId  = TextSecurePreferences.getLocalNumber(requireContext()).getBytes();
         remoteId = resolved.requireE164().getBytes();
       } else {
-        Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", FeatureFlags.verifyV2(), resolved.getUuid().isPresent(), resolved.getE164().isPresent()));
-        new AlertDialog.Builder(requireContext())
-                       .setMessage(getString(R.string.VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view, resolved.getDisplayName(requireContext())))
-                       .setPositiveButton(android.R.string.ok, (dialog, which) -> requireActivity().finish())
-                       .setOnDismissListener(dialog -> requireActivity().finish())
-                       .show();
+        Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", FeatureFlags.verifyV2(), resolved.getAci().isPresent(), resolved.getE164().isPresent()));
+        new MaterialAlertDialogBuilder(requireContext())
+            .setMessage(getString(R.string.VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view, resolved.getDisplayName(requireContext())))
+            .setPositiveButton(android.R.string.ok, (dialog, which) -> requireActivity().finish())
+            .setOnDismissListener(dialog -> {
+              requireActivity().finish();
+              dialog.dismiss();
+            })
+            .show();
         return;
       }
 

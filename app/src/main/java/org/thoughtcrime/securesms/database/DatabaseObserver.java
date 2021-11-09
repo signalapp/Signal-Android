@@ -117,6 +117,7 @@ public final class DatabaseObserver {
   public void unregisterObserver(@NonNull MessageObserver listener) {
     executor.execute(() -> {
       messageUpdateObservers.remove(listener);
+      unregisterMapped(messageInsertObservers, listener);
     });
   }
 
@@ -227,8 +228,8 @@ public final class DatabaseObserver {
     map.put(key, listeners);
   }
 
-  private <K> void unregisterMapped(@NonNull Map<K, Set<Observer>> map, @NonNull Observer listener) {
-    for (Map.Entry<K, Set<Observer>> entry : map.entrySet()) {
+  private <K, V> void unregisterMapped(@NonNull Map<K, Set<V>> map, @NonNull V listener) {
+    for (Map.Entry<K, Set<V>> entry : map.entrySet()) {
       entry.getValue().remove(listener);
     }
   }

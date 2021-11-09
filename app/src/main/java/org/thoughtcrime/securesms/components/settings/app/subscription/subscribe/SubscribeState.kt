@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.subscribe
 
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import java.util.Currency
 
 data class SubscribeState(
-  val currencySelection: CurrencySelection = CurrencySelection("USD"),
+  val currencySelection: Currency,
   val subscriptions: List<Subscription> = listOf(),
   val selectedSubscription: Subscription? = null,
   val activeSubscription: ActiveSubscription? = null,
@@ -18,6 +18,7 @@ data class SubscribeState(
     READY,
     TOKEN_REQUEST,
     PAYMENT_PIPELINE,
-    CANCELLING
+    CANCELLING,
+    FAILURE
   }
 }

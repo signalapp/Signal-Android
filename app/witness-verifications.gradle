@@ -420,8 +420,8 @@ dependencyVerification {
         ['com.google.j2objc:j2objc-annotations:1.3',
          '21af30c92267bd6122c0e0b4d20cccb6641a37eaf956c6540ec471d584e64a7b'],
 
-        ['com.google.protobuf:protobuf-javalite:3.10.0',
-         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+        ['com.google.protobuf:protobuf-javalite:3.11.4',
+         '8cacea2f7a042dabae295c509dcdbfe32a49aa3708eec6ddb8efd8593aa0b4a3'],
 
         ['com.google.zxing:android-integration:3.1.0',
          '89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4'],
@@ -432,8 +432,8 @@ dependencyVerification {
         ['com.googlecode.ez-vcard:ez-vcard:0.9.11',
          '7e24ad50b222d2f70ac91bdccfa3c0f6200b078d797cb784837f75e77bb4210f'],
 
-        ['com.googlecode.libphonenumber:libphonenumber:8.12.17',
-         '729483057ef874b01537da8395d67e23b419d504f8ff29ddf5f69da21bf816ac'],
+        ['com.googlecode.libphonenumber:libphonenumber:8.12.33',
+         'eb983d0b10104f5f31592dacf691dde6032139e626bd95ec22e1ae949ef1806d'],
 
         ['com.jpardogo.materialtabstrip:library:1.0.9',
          'c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa'],
@@ -459,14 +459,14 @@ dependencyVerification {
         ['com.pnikosis:materialish-progress:1.5',
          'd71d80e00717a096784482aee21001a9d299fec3833e4ebd87739ed36cf77c54'],
 
-        ['com.squareup.okhttp3:okhttp:3.12.10',
-         '3cb8e21cd3ab10d390448f5a475c960732efab583a09c39f06f866a7ed819ebc'],
+        ['com.squareup.okhttp3:okhttp:3.12.13',
+         '508234e024ef7e270ab1a6d5b356f5b98e786511239ca986d684fd1e2cf7bc82'],
 
         ['com.squareup.okhttp:okhttp:2.7.4',
          'c88be9af1509d5aeec9394a818c0fa08e26fad9d64ba134e6f977e0bb20cb114'],
 
-        ['com.squareup.okio:okio:1.17.5',
-         '19a7ff48d86d3cf4497f7f250fbf295f430c13a528dd5b7b203f821802b886ad'],
+        ['com.squareup.okio:okio:2.2.2',
+         'e58c97406a6bb1138893750299ac63c6aa04b38b6b49eae1bfcad1a63ef9ba1b'],
 
         ['com.takisoft.fix:colorpicker:0.9.1',
          'f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1'],

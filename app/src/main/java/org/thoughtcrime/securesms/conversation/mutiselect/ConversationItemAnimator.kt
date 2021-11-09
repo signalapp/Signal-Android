@@ -45,7 +45,8 @@ class ConversationItemAnimator(
     if (viewHolder is ConversationAdapter.HeaderViewHolder &&
       !pendingSlideAnimations.containsKey(viewHolder) &&
       !slideAnimations.containsKey(viewHolder) &&
-      shouldPlayMessageAnimations()
+      shouldPlayMessageAnimations() &&
+      isParentFilled()
     ) {
       pendingSlideAnimations[viewHolder] = TweeningInfo(0f, viewHolder.itemView.height.toFloat())
       dispatchAnimationStarted(viewHolder)
@@ -67,11 +68,6 @@ class ConversationItemAnimator(
 
   private fun animateSlide(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo?, postLayoutInfo: ItemHolderInfo, operation: Operation): Boolean {
     if (isInMultiSelectMode() || !shouldPlayMessageAnimations()) {
-      dispatchAnimationFinished(viewHolder)
-      return false
-    }
-
-    if (operation == Operation.CHANGE && !isParentFilled() || slideAnimations.containsKey(viewHolder)) {
       dispatchAnimationFinished(viewHolder)
       return false
     }
@@ -100,8 +96,7 @@ class ConversationItemAnimator(
   }
 
   override fun animatePersistence(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo): Boolean {
-    val isInMultiSelectMode = isInMultiSelectMode()
-    return if (!isInMultiSelectMode && shouldPlayMessageAnimations()) {
+    return if (!isInMultiSelectMode() && shouldPlayMessageAnimations() && isParentFilled()) {
       if (pendingSlideAnimations.contains(viewHolder) || slideAnimations.containsKey(viewHolder)) {
         dispatchAnimationFinished(viewHolder)
         false

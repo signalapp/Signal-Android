@@ -42,7 +42,7 @@ public final class DirectoryRefreshMigrationJob extends MigrationJob {
   public void performMigration() throws IOException {
     if (!TextSecurePreferences.isPushRegistered(context)           ||
         !SignalStore.registrationValues().isRegistrationComplete() ||
-        TextSecurePreferences.getLocalUuid(context) == null)
+        TextSecurePreferences.getLocalAci(context) == null)
     {
       Log.w(TAG, "Not registered! Skipping.");
       return;

@@ -98,6 +98,18 @@ public final class Projection {
     }
   }
 
+  @Override public String toString() {
+    return "Projection{" +
+           "x=" + x +
+           ", y=" + y +
+           ", width=" + width +
+           ", height=" + height +
+           ", corners=" + corners +
+           ", path=" + path +
+           ", rect=" + rect +
+           '}';
+  }
+
   public @NonNull Projection translateX(float xTranslation) {
     return set(x + xTranslation, y, width, height, corners);
   }

@@ -4,6 +4,7 @@ import org.signal.libsignal.hsmenclave.HsmEnclaveClient;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -33,11 +34,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.core.SingleEmitter;
-import io.reactivex.rxjava3.core.SingleOnSubscribe;
-import io.reactivex.rxjava3.subjects.PublishSubject;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -84,7 +81,7 @@ public final class CdshService {
     }
   }
 
-  public Single<ServiceResponse<Map<String, UUID>>> getRegisteredUsers(Set<String> e164Numbers) {
+  public Single<ServiceResponse<Map<String, ACI>>> getRegisteredUsers(Set<String> e164Numbers) {
     return Single.create(emitter -> {
       AtomicReference<Stage> stage       = new AtomicReference<>(Stage.WAITING_TO_INITIALIZE);
       List<String>           addressBook = e164Numbers.stream().map(e -> e.substring(1)).collect(Collectors.toList());
@@ -108,7 +105,7 @@ public final class CdshService {
               byte[] response = enclave.establishedRecv(bytes.toByteArray());
 
               try {
-                Map<String, UUID> out = parseResponse(addressBook, response);
+                Map<String, ACI> out = parseResponse(addressBook, response);
                 emitter.onSuccess(ServiceResponse.forResult(out, 200, null));
               } catch (IOException e) {
                 emitter.onSuccess(ServiceResponse.forUnknownError(e));
@@ -150,15 +147,15 @@ public final class CdshService {
     }
   }
 
-  private static Map<String, UUID> parseResponse(List<String> addressBook, byte[] plaintextResponse) throws IOException {
-    Map<String, UUID> results = new HashMap<>();
+  private static Map<String, ACI> parseResponse(List<String> addressBook, byte[] plaintextResponse) throws IOException {
+    Map<String, ACI> results = new HashMap<>();
 
     try (DataInputStream uuidInputStream = new DataInputStream(new ByteArrayInputStream(plaintextResponse))) {
       for (String candidate : addressBook) {
         long candidateUuidHigh = uuidInputStream.readLong();
         long candidateUuidLow  = uuidInputStream.readLong();
         if (candidateUuidHigh != 0 || candidateUuidLow != 0) {
-          results.put('+' + candidate, new UUID(candidateUuidHigh, candidateUuidLow));
+          results.put('+' + candidate, ACI.from(new UUID(candidateUuidHigh, candidateUuidLow)));
         }
       }
     }

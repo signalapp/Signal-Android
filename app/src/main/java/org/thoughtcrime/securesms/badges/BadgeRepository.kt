@@ -13,8 +13,11 @@ class BadgeRepository(context: Context) {
 
   private val context = context.applicationContext
 
-  fun setVisibilityForAllBadges(displayBadgesOnProfile: Boolean): Completable = Completable.fromAction {
-    val badges = Recipient.self().badges.map { it.copy(visible = displayBadgesOnProfile) }
+  fun setVisibilityForAllBadges(
+    displayBadgesOnProfile: Boolean,
+    selfBadges: List<Badge> = Recipient.self().badges
+  ): Completable = Completable.fromAction {
+    val badges = selfBadges.map { it.copy(visible = displayBadgesOnProfile) }
     ProfileUtil.uploadProfileWithBadges(context, badges)
 
     val recipientDatabase: RecipientDatabase = DatabaseFactory.getRecipientDatabase(context)
@@ -23,7 +26,7 @@ class BadgeRepository(context: Context) {
 
   fun setFeaturedBadge(featuredBadge: Badge): Completable = Completable.fromAction {
     val badges = Recipient.self().badges
-    val reOrderedBadges = listOf(featuredBadge) + (badges - featuredBadge)
+    val reOrderedBadges = listOf(featuredBadge.copy(visible = true)) + (badges.filterNot { it.id == featuredBadge.id })
     ProfileUtil.uploadProfileWithBadges(context, reOrderedBadges)
 
     val recipientDatabase: RecipientDatabase = DatabaseFactory.getRecipientDatabase(context)

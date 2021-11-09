@@ -3093,7 +3093,7 @@
   <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
   <string name="SelectFeaturedBadgeFragment__preview">پیش نظارہ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal آپ جیسے لوگوں کے ذریعہ تقویت یافتہ ہے۔</string>
-  <string name="SubscribeFragment__donation_amount">عطیہ کی رقم۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">عطیہ کی رقم۔</string> -->
   <string name="SubscribeFragment__not_now">ابھی نہیں</string>
   <string name="SubscribeFragment__confirm">تصدیق</string>
   <string name="SubscribeFragment__update">اَپ ڈیٹ</string>

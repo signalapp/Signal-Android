@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import org.whispersystems.signalservice.api.push.ACI;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -50,8 +52,8 @@ class FuzzyPhoneNumberHelper {
    * these results and our initial input set, we can decide if we need to rewrite which number we
    * have stored locally.
    */
-  static @NonNull OutputResult generateOutput(@NonNull Map<String, UUID> registeredNumbers, @NonNull InputResult inputResult) {
-    Map<String, UUID>   allNumbers = new HashMap<>(registeredNumbers);
+  static @NonNull OutputResult generateOutput(@NonNull Map<String, ACI> registeredNumbers, @NonNull InputResult inputResult) {
+    Map<String, ACI>    allNumbers = new HashMap<>(registeredNumbers);
     Map<String, String> rewrites   = new HashMap<>();
 
     for (Map.Entry<String, String> entry : inputResult.getMapOfOriginalToVariant().entrySet()) {
@@ -170,15 +172,15 @@ class FuzzyPhoneNumberHelper {
   }
 
   public static class OutputResult {
-    private final Map<String, UUID>   numbers;
+    private final Map<String, ACI>   numbers;
     private final Map<String, String> rewrites;
 
-    private OutputResult(@NonNull Map<String, UUID> numbers, @NonNull Map<String, String> rewrites) {
+    private OutputResult(@NonNull Map<String, ACI> numbers, @NonNull Map<String, String> rewrites) {
       this.numbers  = numbers;
       this.rewrites = rewrites;
     }
 
-    public @NonNull Map<String, UUID> getNumbers() {
+    public @NonNull Map<String, ACI> getNumbers() {
       return numbers;
     }
 

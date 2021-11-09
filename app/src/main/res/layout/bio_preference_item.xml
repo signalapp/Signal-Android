@@ -26,11 +26,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/ImageView__badge"
-        android:visibility="gone"
         app:badge_size="medium"
         app:layout_constraintStart_toStartOf="@id/icon"
-        app:layout_constraintTop_toTopOf="@id/icon"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toTopOf="@id/icon" />
 
     <LinearLayout
         android:layout_width="0dp"

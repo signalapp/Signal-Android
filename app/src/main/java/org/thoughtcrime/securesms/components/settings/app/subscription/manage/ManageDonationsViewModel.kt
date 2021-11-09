@@ -10,12 +10,11 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
+import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 
 class ManageDonationsViewModel(
@@ -42,11 +41,11 @@ class ManageDonationsViewModel(
   fun refresh() {
     disposables.clear()
 
-    val levelUpdateOperationEdges: Observable<Optional<LevelUpdateOperation>> = SignalStore.donationsValues().levelUpdateOperationObservable.distinctUntilChanged()
+    val levelUpdateOperationEdges: Observable<Boolean> = LevelUpdate.isProcessing.distinctUntilChanged()
     val activeSubscription: Single<ActiveSubscription> = subscriptionsRepository.getActiveSubscription()
 
-    disposables += levelUpdateOperationEdges.flatMapSingle { optionalKey ->
-      if (optionalKey.isPresent) {
+    disposables += levelUpdateOperationEdges.flatMapSingle { isProcessing ->
+      if (isProcessing) {
         Single.just(ManageDonationsState.TransactionState.InTransaction)
       } else {
         activeSubscription.map { ManageDonationsState.TransactionState.NotInTransaction(it) }
@@ -66,9 +65,14 @@ class ManageDonationsViewModel(
       }
     )
 
-    disposables += subscriptionsRepository.getSubscriptions(SignalStore.donationsValues().getSubscriptionCurrency()).subscribeBy { subs ->
-      store.update { it.copy(availableSubscriptions = subs) }
-    }
+    disposables += subscriptionsRepository.getSubscriptions().subscribeBy(
+      onSuccess = { subs ->
+        store.update { it.copy(availableSubscriptions = subs) }
+      },
+      onError = {
+        Log.w(TAG, "Error retrieving subscriptions data", it)
+      }
+    )
   }
 
   class Factory(
@@ -77,5 +81,9 @@ class ManageDonationsViewModel(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(ManageDonationsViewModel(subscriptionsRepository))!!
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(ManageDonationsViewModel::class.java)
   }
 }

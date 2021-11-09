@@ -99,7 +99,13 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
   override fun onCameraError() {
     Log.w(TAG, "Camera Error.")
-    Toast.makeText(requireContext(), R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show()
+
+    val context = this.context
+    if (context != null) {
+      Toast.makeText(context, R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show()
+    } else {
+      Log.w(TAG, "Could not post toast, fragment not attached to a context.")
+    }
   }
 
   override fun onImageCaptured(data: ByteArray, width: Int, height: Int) {

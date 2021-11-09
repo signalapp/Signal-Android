@@ -12,8 +12,6 @@
     <dimen name="album_5_cell_size_big">125dp</dimen>
     <dimen name="album_5_cell_size_small">83dp</dimen>
 
-    <dimen name="message_audio_width">242dp</dimen>
-
     <dimen name="payment_recovery_phrase_adapter_margin">92dp</dimen>
     <dimen name="payment_recovery_phrase_outline_margin">48dp</dimen>
 
@@ -25,6 +23,7 @@
     <dimen name="chat_colors_preview_bubble_max_width">260dp</dimen>
 
     <dimen name="conversation_settings_button_strip_spacing">32dp</dimen>
+    <dimen name="conversation_settings_button_strip_spacing_half">16dp</dimen>
     <dimen name="conversation_settings_button_strip_button_size">56dp</dimen>
     <dimen name="conversation_settings_button_strip_button_padding">16dp</dimen>
 
@@ -33,6 +32,4 @@
     <dimen name="toolbar_avatar_margin">34dp</dimen>
 
     <dimen name="verify_identity_vertical_margin">32dp</dimen>
-
-    <integer name="badge_columns">4</integer>
 </resources>

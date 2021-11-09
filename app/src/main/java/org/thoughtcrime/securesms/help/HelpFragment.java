@@ -93,7 +93,7 @@ public class HelpFragment extends LoggingFragment {
       emoji.add(view.findViewById(feeling.getViewId()));
     }
 
-    categoryAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.HelpFragment__categories_2, android.R.layout.simple_spinner_item);
+    categoryAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.HelpFragment__categories_3, android.R.layout.simple_spinner_item);
     categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
     categorySpinner.setAdapter(categoryAdapter);
@@ -209,7 +209,7 @@ public class HelpFragment extends LoggingFragment {
       suffix.append(getString(feeling.getStringId()));
     }
 
-    String[] englishCategories = ResourceUtil.getEnglishResources(requireContext()).getStringArray(R.array.HelpFragment__categories_2);
+    String[] englishCategories = ResourceUtil.getEnglishResources(requireContext()).getStringArray(R.array.HelpFragment__categories_3);
     String   category          = (helpViewModel.getCategoryIndex() >= 0 && helpViewModel.getCategoryIndex() < englishCategories.length) ? englishCategories[helpViewModel.getCategoryIndex()]
                                                                                                                                         : categoryAdapter.getItem(helpViewModel.getCategoryIndex()).toString();
 

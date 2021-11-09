@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -71,7 +70,7 @@ public class GroupV1MigrationJob extends BaseJob {
   public static void enqueueRoutineMigrationsIfNecessary(@NonNull Application application) {
     if (!SignalStore.registrationValues().isRegistrationComplete() ||
         !TextSecurePreferences.isPushRegistered(application)       ||
-        TextSecurePreferences.getLocalUuid(application) == null)
+        TextSecurePreferences.getLocalAci(application) == null)
     {
       Log.i(TAG, "Registration not complete. Skipping.");
       return;

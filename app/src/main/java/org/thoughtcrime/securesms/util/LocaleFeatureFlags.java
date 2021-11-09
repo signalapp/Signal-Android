@@ -72,12 +72,12 @@ public final class LocaleFeatureFlags {
     Map<String, Integer> countryCodeValues = parseCountryValues(serialized, 0);
     Recipient            self              = Recipient.self();
 
-    if (countryCodeValues.isEmpty() || !self.getE164().isPresent() || !self.getUuid().isPresent()) {
+    if (countryCodeValues.isEmpty() || !self.getE164().isPresent() || !self.getAci().isPresent()) {
       return false;
     }
 
     long countEnabled      = getCountryValue(countryCodeValues, self.getE164().or(""), 0);
-    long currentUserBucket = BucketingUtil.bucket(flag, self.requireUuid(), 1_000_000);
+    long currentUserBucket = BucketingUtil.bucket(flag, self.requireAci().uuid(), 1_000_000);
 
     return countEnabled > currentUserBucket;
   }

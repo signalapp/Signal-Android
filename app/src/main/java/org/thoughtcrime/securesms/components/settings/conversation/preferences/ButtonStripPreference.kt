@@ -41,27 +41,24 @@ object ButtonStripPreference {
   class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
 
     private val message: View = itemView.findViewById(R.id.message)
-    private val messageLabel: View = itemView.findViewById(R.id.message_label)
+    private val messageContainer: View = itemView.findViewById(R.id.button_strip_message_container)
     private val videoCall: View = itemView.findViewById(R.id.start_video)
-    private val videoLabel: View = itemView.findViewById(R.id.start_video_label)
+    private val videoContainer: View = itemView.findViewById(R.id.button_strip_video_container)
     private val audioCall: ImageView = itemView.findViewById(R.id.start_audio)
     private val audioLabel: TextView = itemView.findViewById(R.id.start_audio_label)
+    private val audioContainer: View = itemView.findViewById(R.id.button_strip_audio_container)
     private val mute: ImageView = itemView.findViewById(R.id.mute)
     private val muteLabel: TextView = itemView.findViewById(R.id.mute_label)
+    private val muteContainer: View = itemView.findViewById(R.id.button_strip_mute_container)
     private val search: View = itemView.findViewById(R.id.search)
-    private val searchLabel: View = itemView.findViewById(R.id.search_label)
+    private val searchContainer: View = itemView.findViewById(R.id.button_strip_search_container)
 
     override fun bind(model: Model) {
-      message.visible = model.state.isMessageAvailable
-      messageLabel.visible = model.state.isMessageAvailable
-      videoCall.visible = model.state.isVideoAvailable
-      videoLabel.visible = model.state.isVideoAvailable
-      audioCall.visible = model.state.isAudioAvailable
-      audioLabel.visible = model.state.isAudioAvailable
-      mute.visible = model.state.isMuteAvailable
-      muteLabel.visible = model.state.isMuteAvailable
-      search.visible = model.state.isSearchAvailable
-      searchLabel.visible = model.state.isSearchAvailable
+      messageContainer.visible = model.state.isMessageAvailable
+      videoContainer.visible = model.state.isVideoAvailable
+      audioContainer.visible = model.state.isAudioAvailable
+      muteContainer.visible = model.state.isMuteAvailable
+      searchContainer.visible = model.state.isSearchAvailable
 
       if (model.state.isAudioSecure) {
         audioLabel.setText(R.string.ConversationSettingsFragment__audio)
