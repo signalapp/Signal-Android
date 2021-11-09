@@ -125,6 +125,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   @Override
   protected void onItemSwiped(long threadId, int unreadCount) {
     archiveDecoration.onArchiveStarted();
+    itemAnimator.enable();
 
     new SnackbarAsyncTask<Long>(getViewLifecycleOwner().getLifecycle(),
                                 requireView(),
