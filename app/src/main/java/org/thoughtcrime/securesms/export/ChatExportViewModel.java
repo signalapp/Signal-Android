@@ -32,7 +32,6 @@ public class ChatExportViewModel extends ViewModel {
     private static final SimpleDateFormat         dateFormatter            = new SimpleDateFormat("EEE, dd MMM yyyy");
 
 
-
     public ChatExportViewModel () {
         this.startDateControls.setValue(Optional.fromNullable (new Date(0L)));
         this.endDateControls.setValue(Optional.fromNullable (new Date()));
@@ -46,11 +45,16 @@ public class ChatExportViewModel extends ViewModel {
         this.startDateControls.setValue(Optional.fromNullable (fromDate));
     }
     public void setDateUntil (Date endDate) {
+
         this.endDateControls.setValue(Optional.fromNullable ( endDate));
     }
 
     public Date getInitialDateFrom() {
         return new Date(0);
+    }
+
+    private Date getInitialDateUntil() {
+        return new Date();
     }
 
     public LiveData<Optional<Date>> getDateFrom() {
@@ -62,14 +66,10 @@ public class ChatExportViewModel extends ViewModel {
     }
 
     public String getCurrentSelectedTimePeriod(LiveData<Optional<Date>> from, LiveData<Optional<Date>> until){
-        if (from == null) {
-            return INITIAL_TIME_PERIOD;
-        }
-        else{
-            String fromTimePeriod = dateFormatter.format (Objects.requireNonNull (from.getValue ()).get ());
-            String untilTimePeriod = dateFormatter.format (Objects.requireNonNull (until.getValue ()).get ());
-            return "From " + fromTimePeriod + " to " + untilTimePeriod;
-        }
+
+        String fromTimePeriod = dateFormatter.format (Objects.requireNonNull (from.getValue ()).get ());
+        String untilTimePeriod = dateFormatter.format (Objects.requireNonNull (until.getValue ()).get ());
+        return "From " + fromTimePeriod + " to " + untilTimePeriod;
 
     }
 
@@ -92,10 +92,10 @@ public class ChatExportViewModel extends ViewModel {
     }
 
     @NonNull LiveData<String> getSelectedTimePeriod () {
-        if((getDateFrom ().getValue ().get ()).equals (getInitialDateFrom ())) selectedTimePeriod.setValue (INITIAL_TIME_PERIOD);
-        else selectedTimePeriod.setValue (getCurrentSelectedTimePeriod (getDateFrom (),getDateUntil ()));
+        selectedTimePeriod.setValue (getCurrentSelectedTimePeriod (getDateFrom (),getDateUntil ()));
         return selectedTimePeriod;
     }
+
 
     boolean getCurrentSelectionAllMedia() {
         Boolean value = enableIncludeMediaControls.getValue ();

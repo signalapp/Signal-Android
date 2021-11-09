@@ -4066,6 +4066,7 @@
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Subscription cancellation requires an internet connection.</string>
+    <string name="ChatExport_wrong_picked_file">The selected folder is invalid</string>
 
     <!-- EOF -->
 

@@ -89,7 +89,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
         this(context, null, 0, threadId);
     }
 
-    public ChatExportZipUtil (Context context, Uri storagePath, int count, long threadId) throws IOException, NoExternalStorageException {
+    public ChatExportZipUtil (Context context, @NonNull Uri storagePath, int count, long threadId) throws IOException, NoExternalStorageException {
         super (context,
                 context.getResources ().getString (R.string.ExportZip_start_to_export),
                 context.getResources ().getQuantityString (R.plurals.ExportZip_adding_n_attachments_to_media_folder, count, count));
@@ -112,6 +112,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
     private DocumentFile instantiateZipFile () {
         DocumentFile pickedDir = DocumentFile.fromTreeUri(getContext (), getStorageTreeUri ());
         String fileName = createFileName();
+        //if(pickedDir.)
         return pickedDir.createFile("application/zip", fileName);
     }
 
@@ -380,7 +381,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
         return storageUri;
     }
 
-    private void setStorageUri (Uri storageUri) {
+    private void setStorageUri (@NonNull Uri storageUri) {
         this.storageUri = storageUri;
     }
 
@@ -394,7 +395,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
 
     private void setStorageUri () {
         DocumentFile zipFile = instantiateZipFile();
-        if(zipFile != null)
+        if(zipFile != null && zipFile.getUri() !=null)
             setStorageUri (zipFile.getUri ());
     }
 

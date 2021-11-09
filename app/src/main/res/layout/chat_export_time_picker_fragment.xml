@@ -27,152 +27,162 @@
             android:textStyle="bold" />
 
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@drawable/background_pattern"
-            android:orientation="vertical">
-
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chat_export_chip_group"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:visibility="visible"
-                app:selectionRequired="true"
-                app:singleSelection="true">
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_all"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chat_export_chip_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/whole_historial" />
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="visible"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_7_days"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/last_7_days" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_30_days"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/last_30_days" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_3_months"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/last_3_months" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_6_months"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/last_6_months" />
-
-            </com.google.android.material.chip.ChipGroup>
-
-            <TableLayout
-                android:layout_width="fill_parent"
-                android:layout_height="125dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="32dp"
-                android:background="@color/conversation_item_incoming_view_once_circle_wallpaper"
-                android:paddingStart="@dimen/dsl_settings_gutter"
-                android:paddingEnd="@dimen/dsl_settings_gutter">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="@color/audio_play_pause_sent_background_tint"
-                    android:orientation="vertical"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="16dp">
-
-                    <TextView
-                        android:id="@+id/export_select_from_title"
-
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_all"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:enabled="true"
-                        android:text="@string/export_select_from_title"
-                        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-                        android:textColor="@color/signal_text_primary"
-                        android:visibility="visible"
-                        tools:visibility="visible" />
+                        android:text="@string/whole_historial" />
 
-                    <TextView
-                        android:id="@+id/export_select_until_title"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_7_days"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:enabled="true"
-                        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-                        android:textColor="@color/signal_text_primary"
-                        android:visibility="visible"
-                        android:text="@string/export_select_until_title"
-                        tools:visibility="visible" />
-                </TableRow>
+                        android:text="@string/last_7_days" />
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/export_from_date"
-
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_30_days"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:hint="@string/start_date"
-                        android:inputType="date"
-                        android:paddingStart="@dimen/dsl_settings_gutter"
+                        android:text="@string/last_30_days" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_3_months"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/last_3_months" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_6_months"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/last_6_months" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="125dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@color/conversation_item_incoming_view_once_circle_wallpaper"
+                    android:paddingStart="@dimen/dsl_settings_gutter"
+                    android:paddingEnd="@dimen/dsl_settings_gutter">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@color/audio_play_pause_sent_background_tint"
+                        android:orientation="vertical"
+                        android:paddingStart="16dp"
                         android:paddingTop="16dp"
-                        android:paddingEnd="@dimen/dsl_settings_gutter"
-                        android:paddingBottom="16dp"
-                        android:selectAllOnFocus="true"
-                        android:singleLine="true"
-                        android:textColor="@color/signal_text_secondary"
-                        tools:ignore="DuplicateSpeakableTextCheck" />
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="16dp">
 
-                    <EditText
-                        android:id="@+id/export_to_date"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:hint="@string/end_date"
-                        android:inputType="date"
-                        android:paddingStart="@dimen/dsl_settings_gutter"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="@dimen/dsl_settings_gutter"
-                        android:paddingBottom="16dp"
-                        android:selectAllOnFocus="true"
-                        android:singleLine="true"
-                        android:textColor="@color/signal_text_secondary" />
-                </TableRow>
+                        <TextView
+                            android:id="@+id/export_select_from_title"
 
-            </TableLayout>
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:enabled="true"
+                            android:text="@string/export_select_from_title"
+                            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+                            android:textColor="@color/signal_text_primary"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
+                        <TextView
+                            android:id="@+id/export_select_until_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:enabled="true"
+                            android:text="@string/export_select_until_title"
+                            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+                            android:textColor="@color/signal_text_primary"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/export_from_date"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="@string/start_date"
+                            android:inputType="date"
+                            android:paddingStart="@dimen/dsl_settings_gutter"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="@dimen/dsl_settings_gutter"
+                            android:paddingBottom="16dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true"
+                            android:textColor="@color/signal_text_secondary"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                        <EditText
+                            android:id="@+id/export_to_date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="@string/end_date"
+                            android:inputType="date"
+                            android:paddingStart="@dimen/dsl_settings_gutter"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="@dimen/dsl_settings_gutter"
+                            android:paddingBottom="16dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true"
+                            android:textColor="@color/signal_text_secondary"
+                            tools:ignore="TextContrastCheck" />
+                    </TableRow>
+
+                </TableLayout>
+
+
+
+            </LinearLayout>
             <Button
                 android:id="@+id/button_set_time_period"
                 android:layout_width="match_parent"
@@ -188,8 +198,8 @@
                 android:text="@string/set_time_period"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
-
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 

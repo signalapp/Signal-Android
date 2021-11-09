@@ -212,8 +212,13 @@ public class ChatExportFragment extends Fragment {
                 treeUri = data.getData ();
                 String storagePath = StorageUtil.getDisplayPath (getContext (), treeUri);
             }
+            else{
+                Toast.makeText(this.requireContext(), R.string.ChatExport_wrong_picked_file, Toast.LENGTH_LONG)
+                     .show();
+            }
             Navigation.findNavController(requireView()).popBackStack();
-            onCreateClicked (viewModel);
+            if(treeUri != null)
+                onCreateClicked(viewModel);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -246,7 +251,7 @@ public class ChatExportFragment extends Fragment {
     }
 
 
-    void createZip (@NonNull ChatFormatter exp, ChatExportViewModel viewModel, Uri uri) {
+    void createZip (@NonNull ChatFormatter exp, ChatExportViewModel viewModel, @NonNull Uri uri) {
         String result = exp.parseConversationToXML ();
         if (result.length () > 0) {
             Map<String, ChatFormatter.MediaRecord> selectedMedia = new HashMap<> ();
@@ -263,13 +268,13 @@ public class ChatExportFragment extends Fragment {
     }
 
     private void handleSaveMedia (
-            Uri path, @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords, HashMap<String, Uri> moreFiles,
+            @NonNull Uri path, @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords, HashMap<String, Uri> moreFiles,
             boolean currentSelectionViewer,
             String result) {
 
         final Context context = requireContext ();
 
-        if (StorageUtil.canWriteToMediaStore ()) {
+        if (StorageUtil.canWriteToMediaStore () ) {
             performSaveToDisk (context, path, mediaRecords, moreFiles, currentSelectionViewer, result);
             return;
         }
@@ -286,7 +291,7 @@ public class ChatExportFragment extends Fragment {
 
 
     private static void performSaveToDisk (@NonNull Context context,
-                                           Uri path,
+                                           @NonNull Uri path,
                                            @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords,
                                            HashMap<String, Uri> moreFiles,
                                            boolean hasViewer,
