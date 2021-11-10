@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN απενεργοποιημένο.</string>
   <string name="ApplicationPreferencesActivity_hide">Απόκρυψη</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Απόκρυψη υπενθύμισης;</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Καταγραφή φράσης</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d λεπτό</item>
@@ -312,7 +313,43 @@
     <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Σημ. αναγνωσμ.</item>
+    <item quantity="other">Σημ. αναγνωσμ.</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Σημ. μη αναγν.</item>
+    <item quantity="other">Σημ. μη αναγν.</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Καρφίτσωμα</item>
+    <item quantity="other">Καρφίτσωμα</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Ξεκαρφίτσωμα</item>
+    <item quantity="other">Ξεκαρφίτσωμα</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Σίγαση</item>
+    <item quantity="other">Σίγαση</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Αποσίγαση</item>
+    <item quantity="other">Αποσίγαση</item>
+  </plurals>
   <string name="ConversationListFragment_select">Επιλογή</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Αρχειοθ.</item>
+    <item quantity="other">Αρχειοθ.</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Αποαρχειοθ.</item>
+    <item quantity="other">Αποαρχειοθ.</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Διαγραφή</item>
+    <item quantity="other">Διαγραφή</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Επιλογή όλων</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d επιλεγμένο</item>
@@ -799,6 +836,14 @@
   <string name="MediaOverviewActivity_List_view_description">Προβολή σε λίστα</string>
   <string name="MediaOverviewActivity_Selected_description">Επιλεγμένα</string>
   <string name="MediaOverviewActivity_select_all">Επιλογή όλων</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Αποθήκευση</item>
+    <item quantity="other">Αποθήκευση</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Διαγραφή</item>
+    <item quantity="other">Διαγραφή</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d επιλεγμένο (%2$s)</item>
     <item quantity="other">%1$d επιλεγμένα (%2$s)</item>
@@ -1270,6 +1315,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Χρήση proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Επιτυχής σύνδεση στο proxy.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Αποτυχία υποβολής</string>
   <string name="RecaptchaProofActivity_complete_verification">Ολοκλήρωση επιβεβαίωσης</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Διάλεξε τη χώρα σου</string>
@@ -1518,6 +1564,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Αντέδρασε με %1$s στο \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Αντέδρασε με %1$s στο βίντεό σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Αντέδρασε με %1$s στη φωτογραφία σου.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Αντέδρασε με %1$s στο GIF σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Αντέδρασε με %1$s στο αρχείο σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Αντέδρασε με %1$s στο ηχητικό σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Αντέδρασε με %1$s στο πολυμέσο μιας μόνο προβολής</string>
@@ -3116,7 +3163,17 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Απόρριψη αλλαγών;</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Θα χάσεις όλες τις αλλαγές που έχεις κάνει σε αυτή τη φωτογραφία.</string>
   <string name="CameraFragment__failed_to_open_camera">Αποτυχία ενεργοποίησης κάμερας</string>
+  <string name="BadgesOverviewFragment__my_badges">Τα εμβλήματά μου</string>
+  <string name="BadgesOverviewFragment__featured_badge">Βασικό έμβλημα</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Εμφάνιση εμβλημάτων στο προφίλ</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Αποτυχία ανανέωσης προφίλ</string>
+  <string name="BadgeSelectionFragment__select_badges">Επιλογή εμβλημάτων</string>
   <string name="SelectFeaturedBadgeFragment__preview">Προεπισκόπηση</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Επιλογή εμβλήματος</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Πρέπει να επιλέξεις έμβλημα</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Αποτυχία ανανέωσης προφίλ</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε συνεχόμενα υποστηρικτής</string>
+  <string name="ImageView__badge">Έμβλημα</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Το Signal στηρίζεται σε άτομα σαν κι εσένα.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
   <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Ποσό δωρεάς</string> -->
@@ -3141,8 +3198,9 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Ευχαριστούμε για την ενίσχυση!</string>
   <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Κέρδισες ένα έμβλημα %s! Δείξε στα άτομα που συνομιλείς πως υποστηρίζεις το Signal, βάζοντας το έμβλημά σου στο προφίλ σου.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Να γίνει το βασικό έμβλημα</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
-  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου.</string>
   <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
   <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
   <string name="ManageDonationsFragment__badges">Εμβλήματα</string>

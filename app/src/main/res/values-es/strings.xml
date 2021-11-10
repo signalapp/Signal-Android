@@ -325,8 +325,8 @@
     <item quantity="other">No leídos</item>
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
-    <item quantity="one">Fijado</item>
-    <item quantity="other">Fijados</item>
+    <item quantity="one">Fijar</item>
+    <item quantity="other">Fijar</item>
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">No fijar </item>
@@ -340,7 +340,7 @@
     <item quantity="one">No silenciar</item>
     <item quantity="other">No silenciar</item>
   </plurals>
-  <string name="ConversationListFragment_select">Selecciona</string>
+  <string name="ConversationListFragment_select">Seleccionar</string>
   <plurals name="ConversationListFragment_archive_plural">
     <item quantity="one">Archivar</item>
     <item quantity="other">Archivar</item>
@@ -353,7 +353,7 @@
     <item quantity="one">Eliminar</item>
     <item quantity="other">Eliminar </item>
   </plurals>
-  <string name="ConversationListFragment_select_all">Seleccionar todo</string>
+  <string name="ConversationListFragment_select_all">Selecciona todo</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d seleccionado</item>
     <item quantity="other">%d seleccionados</item>

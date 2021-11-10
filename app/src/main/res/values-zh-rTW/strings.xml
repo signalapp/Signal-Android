@@ -1947,7 +1947,7 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">捐贈 Signal</string>
   <string name="preferences__subscription">訂閱</string>
-  <string name="preferences__signal_boost">Signal 加速</string>
+  <string name="preferences__signal_boost">Signal 推廣</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">手動多媒體設定</string>
@@ -2304,7 +2304,7 @@
   <string name="Insights__title">統計</string>
   <string name="InsightsDashboardFragment__title">統計</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal 協定自動保護%1$d%%你的過去%2$d天傳出的訊息。 Signal使用者之間的對話始終是點對點加密的。</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal 加速</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal 推廣</string>
   <string name="InsightsDashboardFragment__not_enough_data">沒有足夠的資料</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">你的統計百分比是根據過去%1$d天內尚未銷毀或刪除的出訊息計算得出的。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">開啟一個對話</string>
@@ -2318,7 +2318,7 @@
   <string name="InsightsModalFragment__view_insights">檢視 統計</string>
   <string name="FirstInviteReminder__title">邀請至 Signal</string>
   <string name="FirstInviteReminder__description">你傳送的加密訊息數量可以增加多達 %1$d%%</string>
-  <string name="SecondInviteReminder__title">提升你的 Signal</string>
+  <string name="SecondInviteReminder__title">推廣你的 Signal</string>
   <string name="SecondInviteReminder__description">邀請 %1$s</string>
   <string name="InsightsReminder__view_insights">檢視 統計</string>
   <string name="InsightsReminder__invite">邀請</string>
@@ -3210,7 +3210,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。你的貢獻推動了這一事業。 無廣告。 沒有追踪。這不是開玩笑的。</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">你的捐款協助於支付全球數百萬人用於私密和即時通訊程式的開發、伺服器維護和網路頻寬。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的加油!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的推廣!</string>
   <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">你贏得了一枚 %s 徽章！ 展示你的徽章將讓與你聊天的人知道你支援了 Signal。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資訊中展示</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為特色徽章</string>
@@ -3221,11 +3221,11 @@
   <string name="ManageDonationsFragment__badges">徽章</string>
   <string name="ManageDonationsFragment__subscription_faq">訂閱 問與答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤</string>
-  <string name="BoostFragment__give_signal_a_boost">給 Signal 加油</string>
-  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得加油徽章並展示在個人資料中 %1$d 天。</string>
+  <string name="BoostFragment__give_signal_a_boost">推廣 Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得推廣徽章並展示在個人資料中 %1$d 天。</string>
   <string name="Boost__enter_custom_amount">輸入自定義金額</string>
   <string name="Boost__one_time_contribution">一次性捐款</string>
-  <string name="MySupportPreference__add_a_signal_boost">新增 Signal 加油</string>
+  <string name="MySupportPreference__add_a_signal_boost">加強 Signal 的推廣</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">續約 %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>

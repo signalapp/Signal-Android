@@ -3,7 +3,7 @@
   <string name="yes">Da</string>
   <string name="no">Nu</string>
   <string name="delete">Ștergeți</string>
-  <string name="please_wait">Vă rugăm să așteptați…</string>
+  <string name="please_wait">Vă rugăm așteptați…</string>
   <string name="save">Salvează</string>
   <string name="note_to_self">Notă personală</string>
   <!--AbstractNotificationBuilder-->
