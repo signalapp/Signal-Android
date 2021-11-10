@@ -127,6 +127,9 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         is DonationEvent.SubscriptionCancellationFailed -> Unit
       }
     }
+    lifecycleDisposable += donationPaymentComponent.googlePayResultPublisher.subscribe {
+      viewModel.onActivityResult(it.requestCode, it.resultCode, it.data)
+    }
   }
 
   private fun getConfiguration(state: BoostState): DSLConfiguration {
