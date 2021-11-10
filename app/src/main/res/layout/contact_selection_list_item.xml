@@ -39,15 +39,14 @@
         android:id="@+id/check_box"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:alpha="0"
         android:background="@drawable/contact_selection_checkbox"
         android:button="@null"
         android:clickable="false"
         android:focusable="false"
-        app:layout_constraintStart_toStartOf="@id/contact_photo_image"
-        app:layout_constraintTop_toTopOf="@id/contact_photo_image" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <org.thoughtcrime.securesms.components.FromTextView
         android:id="@+id/name"
@@ -104,13 +103,15 @@
         android:id="@+id/sms_tag"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginEnd="20dp"
         android:text="@string/ContactSelectionListItem__sms"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/check_box"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginEnd="0dp"
         tools:visibility="visible" />
 
 </org.thoughtcrime.securesms.contacts.ContactSelectionListItem>
