@@ -117,8 +117,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private void doRun() throws Exception {
     ActiveSubscription.Subscription subscription = getLatestSubscriptionInformation();
     if (subscription == null || !subscription.isActive()) {
-      Log.d(TAG, "User does not have an active subscription. Exiting.", true);
-      return;
+      Log.w(TAG, "User does not have an active subscription yet.", true);
+      throw new RetryableException();
     } else {
       Log.i(TAG, "Recording end of period from active subscription.", true);
       SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
