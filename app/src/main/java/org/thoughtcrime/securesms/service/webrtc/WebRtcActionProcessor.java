@@ -16,6 +16,7 @@ import org.signal.ringrtc.CallManager.RingUpdate;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -295,9 +296,21 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
-    Log.i(tag, "handleCallConcluded not processed");
-    return currentState;
+  final protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
+    Log.i(tag, "handleCallConcluded():");
+
+    if (remotePeer == null) {
+      return currentState;
+    }
+
+    Log.i(tag, "delete remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
+
+    EglBaseWrapper.releaseEglBase(remotePeer.getCallId().longValue());
+
+    return currentState.builder()
+                       .changeCallInfoState()
+                       .removeRemotePeer(remotePeer)
+                       .build();
   }
 
   protected @NonNull WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
@@ -558,6 +571,8 @@ public abstract class WebRtcActionProcessor {
       Log.w(tag, "Unable to reset call manager: ", e);
     }
 
+    EglBaseWrapper.forceRelease();
+
     currentState = builder.changeCallInfoState().clearPeerMap().build();
     return terminate(currentState, currentState.getCallInfoState().getActivePeer());
   }
@@ -596,7 +611,7 @@ public abstract class WebRtcActionProcessor {
                           .commit()
                           .changeLocalDeviceState()
                           .commit()
-                          .actionProcessor(currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED ? new DisconnectingCallActionProcessor(webRtcInteractor) : new IdleActionProcessor(webRtcInteractor))
+                          .actionProcessor(new IdleActionProcessor(webRtcInteractor))
                           .terminate(remotePeer.getCallId())
                           .build();
   }
@@ -748,6 +763,7 @@ public abstract class WebRtcActionProcessor {
 
     if (terminateVideo) {
       WebRtcVideoUtil.deinitializeVideo(currentState);
+      EglBaseWrapper.releaseEglBase(RemotePeer.GROUP_CALL_ID.longValue());
     }
 
     GroupCallSafetyNumberChangeNotificationUtil.cancelNotification(context, currentState.getCallInfoState().getCallRecipient());

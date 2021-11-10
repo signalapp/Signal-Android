@@ -205,11 +205,6 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
-    return activeCallDelegate.handleCallConcluded(currentState, remotePeer);
-  }
-
-  @Override
   public @NonNull WebRtcServiceState handleCallConnected(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     return callSetupDelegate.handleCallConnected(currentState, remotePeer);
   }

@@ -9,6 +9,7 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -105,7 +106,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     DatabaseFactory.getGroupCallRingDatabase(context).insertGroupRing(ringId, System.currentTimeMillis(), ringUpdate);
 
-    currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState);
+    currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState, RemotePeer.GROUP_CALL_ID.longValue());
 
     webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
@@ -240,10 +241,12 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
     webRtcInteractor.stopForegroundService();
 
-    return WebRtcVideoUtil.deinitializeVideo(currentState)
-                          .builder()
-                          .actionProcessor(new IdleActionProcessor(webRtcInteractor))
-                          .terminate(RemotePeer.GROUP_CALL_ID)
-                          .build();
+    currentState = WebRtcVideoUtil.deinitializeVideo(currentState);
+    EglBaseWrapper.releaseEglBase(RemotePeer.GROUP_CALL_ID.longValue());
+
+    return currentState.builder()
+                       .actionProcessor(new IdleActionProcessor(webRtcInteractor))
+                       .terminate(RemotePeer.GROUP_CALL_ID)
+                       .build();
   }
 }

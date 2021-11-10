@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.webrtc.CapturerObserver;
-import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 
@@ -27,12 +26,13 @@ public final class WebRtcVideoUtil {
 
   public static @NonNull WebRtcServiceState initializeVideo(@NonNull Context context,
                                                             @NonNull CameraEventListener cameraEventListener,
-                                                            @NonNull WebRtcServiceState currentState)
+                                                            @NonNull WebRtcServiceState currentState,
+                                                            @NonNull Object eglBaseHolder)
   {
     final WebRtcServiceStateBuilder builder = currentState.builder();
 
     ThreadUtil.runOnMainSync(() -> {
-      EglBaseWrapper     eglBase   = new EglBaseWrapper(EglBase.create());
+      EglBaseWrapper     eglBase   = EglBaseWrapper.acquireEglBase(eglBaseHolder);
       BroadcastVideoSink localSink = new BroadcastVideoSink(eglBase,
                                                             true,
                                                             false,
@@ -88,8 +88,6 @@ public final class WebRtcVideoUtil {
     if (camera != null) {
       camera.dispose();
     }
-
-    currentState.getVideoState().getLockableEglBase().releaseEglBase();
 
     return currentState.builder()
                        .changeVideoState()

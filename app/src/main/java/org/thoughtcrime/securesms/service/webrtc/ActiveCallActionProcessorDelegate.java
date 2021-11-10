@@ -119,21 +119,6 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
-    Log.i(tag, "handleCallConcluded():");
-
-    if (remotePeer == null) {
-      return currentState;
-    }
-
-    Log.i(tag, "delete remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
-    return currentState.builder()
-                       .changeCallInfoState()
-                       .removeRemotePeer(remotePeer)
-                       .build();
-  }
-
-  @Override
   protected @NonNull WebRtcServiceState handleReceivedOfferWhileActive(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 

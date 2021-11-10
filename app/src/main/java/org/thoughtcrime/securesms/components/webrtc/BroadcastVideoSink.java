@@ -31,7 +31,7 @@ public class BroadcastVideoSink implements VideoSink {
   private       RequestedSize                   currentlyRequestedMaxSize;
 
   public BroadcastVideoSink() {
-    this(new EglBaseWrapper(null), false, true, 0);
+    this(new EglBaseWrapper(), false, true, 0);
   }
 
   /**

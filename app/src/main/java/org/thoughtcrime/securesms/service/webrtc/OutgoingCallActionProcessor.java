@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -75,6 +76,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(remotePeer.getId()));
     DatabaseFactory.getSmsDatabase(context).insertOutgoingCall(remotePeer.getId(), isVideoCall);
+
+    EglBaseWrapper.replaceHolder(EglBaseWrapper.OUTGOING_PLACEHOLDER, remotePeer.getCallId().longValue());
 
     webRtcInteractor.retrieveTurnServers(remotePeer);
 
@@ -208,11 +211,6 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
     return activeCallDelegate.handleSetupFailure(currentState, callId);
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
-    return activeCallDelegate.handleCallConcluded(currentState, remotePeer);
   }
 
   @Override
