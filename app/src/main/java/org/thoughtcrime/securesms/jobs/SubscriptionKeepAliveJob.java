@@ -29,11 +29,22 @@ public class SubscriptionKeepAliveJob extends BaseJob {
   private static final String TAG         = Log.tag(SubscriptionKeepAliveJob.class);
   private static final long   JOB_TIMEOUT = TimeUnit.DAYS.toMillis(3);
 
-  public SubscriptionKeepAliveJob() {
+  public static void launchSubscriberIdKeepAliveJobIfNecessary() {
+    long nextLaunchTime = SignalStore.donationsValues().getLastKeepAliveLaunchTime() + TimeUnit.DAYS.toMillis(3);
+    long now            = System.currentTimeMillis();
+
+    if (nextLaunchTime <= now) {
+      ApplicationDependencies.getJobManager().add(new SubscriptionKeepAliveJob());
+      SignalStore.donationsValues().setLastKeepAliveLaunchTime(now);
+    }
+  }
+
+  private SubscriptionKeepAliveJob() {
     this(new Parameters.Builder()
                        .setQueue(KEY)
                        .addConstraint(NetworkConstraint.KEY)
                        .setMaxInstancesForQueue(1)
+                       .setMaxAttempts(Parameters.UNLIMITED)
                        .setLifespan(JOB_TIMEOUT)
                        .build());
   }
@@ -68,22 +79,15 @@ public class SubscriptionKeepAliveJob extends BaseJob {
                                                                      .putSubscription(subscriber.getSubscriberId())
                                                                      .blockingGet();
 
-    if (!response.getResult().isPresent()) {
-      if (response.getStatus() == 403) {
-        Log.w(TAG, "Response code 403, possibly corrupted subscription id.");
-        // TODO [alex] - Probably need some UX around this, or some kind of protocol.
-      }
-
-      throw new IOException("Failed to ping subscription service.");
-    }
+    verifyResponse(response);
+    Log.i(TAG, "Successful call to PUT subscription ID");
 
     ServiceResponse<ActiveSubscription> activeSubscriptionResponse = ApplicationDependencies.getDonationsService()
                                                                                             .getSubscription(subscriber.getSubscriberId())
                                                                                             .blockingGet();
 
-    if (!response.getResult().isPresent()) {
-      throw new IOException("Failed to perform active subscription check");
-    }
+    verifyResponse(activeSubscriptionResponse);
+    Log.i(TAG, "Successful call to GET active subscription");
 
     ActiveSubscription activeSubscription = activeSubscriptionResponse.getResult().get();
     if (activeSubscription.getActiveSubscription() == null || !activeSubscription.getActiveSubscription().isActive()) {
@@ -97,9 +101,29 @@ public class SubscriptionKeepAliveJob extends BaseJob {
     }
   }
 
+  private <T> void verifyResponse(@NonNull ServiceResponse<T> response) throws Exception {
+    if (response.getExecutionError().isPresent()) {
+      Log.w(TAG, "Failed with an execution error. Scheduling retry.", response.getExecutionError().get(), true);
+      throw new RetryableException();
+    } else if (response.getApplicationError().isPresent()) {
+      switch (response.getStatus()) {
+        case 403:
+        case 404:
+          Log.w(TAG, "Invalid or malformed subscriber id. Status: " + response.getStatus(), response.getApplicationError().get(), true);
+          throw new IOException();
+        default:
+          Log.w(TAG, "An unknown server error occurred: " + response.getStatus(), response.getApplicationError().get(), true);
+          throw new RetryableException();
+      }
+    }
+  }
+
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
-    return true;
+    return e instanceof RetryableException;
+  }
+
+  private static class RetryableException extends Exception {
   }
 
   public static class Factory implements Job.Factory<SubscriptionKeepAliveJob> {
