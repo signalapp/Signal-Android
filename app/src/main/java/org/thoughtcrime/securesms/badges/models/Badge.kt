@@ -133,7 +133,7 @@ data class Badge(
         .downsample(DownsampleStrategy.NONE)
         .diskCacheStrategy(DiskCacheStrategy.NONE)
         .transform(
-          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.XLARGE, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
+          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.BADGE_60, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
         )
         .into(badge)
 
