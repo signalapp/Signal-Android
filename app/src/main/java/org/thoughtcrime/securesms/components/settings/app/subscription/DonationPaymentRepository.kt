@@ -91,9 +91,9 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     return stripeApi.createPaymentIntent(price)
       .flatMapCompletable { result ->
         when (result) {
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(Exception("Amount is too small"))
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(Exception("Amount is too large"))
-          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(Exception("Currency is not supported"))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(Exception("Boost amount is too small"))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(Exception("Boost amount is too large"))
+          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(Exception("Boost currency is not supported"))
           is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(paymentData, result.paymentIntent)
         }
       }
@@ -147,15 +147,15 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         if (countDownLatch.await(10, TimeUnit.SECONDS)) {
           when (finalJobState) {
             JobTracker.JobState.SUCCESS -> {
-              Log.d(TAG, "Request response job chain succeeded.", true)
+              Log.d(TAG, "Boost request response job chain succeeded.", true)
               it.onComplete()
             }
             JobTracker.JobState.FAILURE -> {
-              Log.d(TAG, "Request response job chain failed permanently.", true)
+              Log.d(TAG, "Boost request response job chain failed permanently.", true)
               it.onError(DonationExceptions.RedemptionFailed)
             }
             else -> {
-              Log.d(TAG, "Request response job chain ignored due to in-progress jobs.", true)
+              Log.d(TAG, "Boost request response job chain ignored due to in-progress jobs.", true)
               it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
             }
           }
@@ -215,24 +215,24 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
             if (countDownLatch.await(10, TimeUnit.SECONDS)) {
               when (finalJobState) {
                 JobTracker.JobState.SUCCESS -> {
-                  Log.d(TAG, "Request response job chain succeeded.", true)
+                  Log.d(TAG, "Subscription request response job chain succeeded.", true)
                   it.onComplete()
                 }
                 JobTracker.JobState.FAILURE -> {
-                  Log.d(TAG, "Request response job chain failed permanently.", true)
+                  Log.d(TAG, "Subscription request response job chain failed permanently.", true)
                   it.onError(DonationExceptions.RedemptionFailed)
                 }
                 else -> {
-                  Log.d(TAG, "Request response job chain ignored due to in-progress jobs.", true)
+                  Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)
                   it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
                 }
               }
             } else {
-              Log.d(TAG, "Request response job timed out.", true)
+              Log.d(TAG, "Subscription request response job timed out.", true)
               it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
             }
           } catch (e: InterruptedException) {
-            Log.w(TAG, "Request response interrupted.", e, true)
+            Log.w(TAG, "Subscription request response interrupted.", e, true)
             it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
           }
         }
