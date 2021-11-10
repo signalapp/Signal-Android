@@ -45,9 +45,8 @@ class BoostViewModel(
       .internetConnectionObserver()
       .distinctUntilChanged()
       .subscribe { isConnected ->
-        if (!disposables.isDisposed && isConnected && store.state.stage == BoostState.Stage.FAILURE) {
-          store.update { it.copy(stage = BoostState.Stage.INIT) }
-          refresh()
+        if (isConnected) {
+          retry()
         }
       }
   }
@@ -59,6 +58,13 @@ class BoostViewModel(
 
   fun getSupportedCurrencyCodes(): List<String> {
     return store.state.supportedCurrencyCodes
+  }
+
+  fun retry() {
+    if (!disposables.isDisposed && store.state.stage == BoostState.Stage.FAILURE) {
+      store.update { it.copy(stage = BoostState.Stage.INIT) }
+      refresh()
+    }
   }
 
   fun refresh() {

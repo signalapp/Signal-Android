@@ -52,9 +52,8 @@ class SubscribeViewModel(
       .internetConnectionObserver()
       .distinctUntilChanged()
       .subscribe { isConnected ->
-        if (!disposables.isDisposed && isConnected && store.state.stage == SubscribeState.Stage.FAILURE) {
-          store.update { it.copy(stage = SubscribeState.Stage.INIT) }
-          refresh()
+        if (isConnected) {
+          retry()
         }
       }
   }
@@ -70,6 +69,13 @@ class SubscribeViewModel(
 
   fun getSelectableCurrencyCodes(): List<String>? {
     return store.state.subscriptions.firstOrNull()?.prices?.map { it.currency.currencyCode }
+  }
+
+  fun retry() {
+    if (!disposables.isDisposed && store.state.stage == SubscribeState.Stage.FAILURE) {
+      store.update { it.copy(stage = SubscribeState.Stage.INIT) }
+      refresh()
+    }
   }
 
   fun refresh() {

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
+import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -80,6 +81,7 @@ class SubscribeFragment : DSLSettingsFragment(
     Subscription.register(adapter)
     GooglePayButton.register(adapter)
     Progress.register(adapter)
+    NetworkFailure.register(adapter)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -147,12 +149,19 @@ class SubscribeFragment : DSLSettingsFragment(
 
       space(DimensionUnit.DP.toPixels(4f).toInt())
 
+      @Suppress("CascadeIf")
       if (state.stage == SubscribeState.Stage.INIT) {
         customPref(
-          Progress.Model(
-            title = DSLSettingsText.from(R.string.load_more_header__loading)
-          )
+          Subscription.LoaderModel()
         )
+      } else if (state.stage == SubscribeState.Stage.FAILURE) {
+        space(DimensionUnit.DP.toPixels(69f).toInt())
+        customPref(
+          NetworkFailure.Model {
+            viewModel.refresh()
+          }
+        )
+        space(DimensionUnit.DP.toPixels(75f).toInt())
       } else {
         state.subscriptions.forEach {
           val isActive = state.activeSubscription?.activeSubscription?.level == it.level

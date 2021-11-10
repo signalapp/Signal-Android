@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.boost
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.text.Editable
 import android.text.Spanned
 import android.text.TextWatcher
@@ -7,7 +10,10 @@ import android.text.method.DigitsKeyListener
 import android.view.View
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.animation.doOnEnd
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.button.MaterialButton
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
@@ -41,6 +47,45 @@ data class Boost(
 
     override fun areContentsTheSame(newItem: HeadingModel): Boolean {
       return super.areContentsTheSame(newItem) && newItem.boostBadge == boostBadge
+    }
+  }
+
+  class LoadingModel : PreferenceModel<LoadingModel>() {
+    override fun areItemsTheSame(newItem: LoadingModel): Boolean = true
+  }
+
+  class LoadingViewHolder(itemView: View) : MappingViewHolder<LoadingModel>(itemView), DefaultLifecycleObserver {
+
+    private val animator: Animator = AnimatorSet().apply {
+      val fadeTo25Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.8f, 0.25f).apply {
+        duration = 1000L
+      }
+
+      val fadeTo80Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.25f, 0.8f).apply {
+        duration = 300L
+      }
+
+      playSequentially(fadeTo25Animator, fadeTo80Animator)
+      doOnEnd { start() }
+    }
+
+    init {
+      lifecycle.addObserver(this)
+    }
+
+    override fun bind(model: LoadingModel) {
+    }
+
+    override fun onResume(owner: LifecycleOwner) {
+      if (animator.isStarted) {
+        animator.resume()
+      } else {
+        animator.start()
+      }
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+      animator.pause()
     }
   }
 
@@ -184,6 +229,7 @@ data class Boost(
     fun register(adapter: MappingAdapter) {
       adapter.registerFactory(SelectionModel::class.java, MappingAdapter.LayoutFactory({ SelectionViewHolder(it) }, R.layout.boost_preference))
       adapter.registerFactory(HeadingModel::class.java, MappingAdapter.LayoutFactory({ HeadingViewHolder(it) }, R.layout.boost_preview_preference))
+      adapter.registerFactory(LoadingModel::class.java, MappingAdapter.LayoutFactory({ LoadingViewHolder(it) }, R.layout.boost_loading_preference))
     }
   }
 }
