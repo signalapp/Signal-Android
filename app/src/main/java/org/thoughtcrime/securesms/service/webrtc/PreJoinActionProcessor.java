@@ -62,9 +62,6 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
 
     currentState.getVideoState().getCamera().setEnabled(enable);
     return currentState.builder()
-                       .changeCallSetupState()
-                       .enableVideoOnCreate(enable)
-                       .commit()
                        .changeLocalDeviceState()
                        .cameraState(currentState.getVideoState().getCamera().getCameraState())
                        .build();

@@ -54,7 +54,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     Log.i(TAG, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);
 
     Recipient recipient              = remotePeerGroup.getRecipient();
-    boolean   updateForCurrentRingId = ringId == currentState.getCallSetupState().getRingId();
+    boolean   updateForCurrentRingId = ringId == currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).getRingId();
     boolean   isCurrentlyRinging     = currentState.getCallInfoState().getGroupCallState().isRinging();
 
     if (DatabaseFactory.getGroupCallRingDatabase(context).isCancelled(ringId)) {
@@ -134,12 +134,13 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     webRtcInteractor.registerPowerButtonReceiver();
 
     return currentState.builder()
-                       .changeCallSetupState()
+                       .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                        .isRemoteVideoOffer(true)
                        .ringId(ringId)
                        .ringerRecipient(Recipient.externalPush(context, ACI.from(uuid), null, false))
                        .commit()
                        .changeCallInfoState()
+                       .activePeer(new RemotePeer(currentState.getCallInfoState().getCallRecipient().getId(), RemotePeer.GROUP_CALL_ID))
                        .callRecipient(remotePeerGroup.getRecipient())
                        .callState(WebRtcViewModel.State.CALL_INCOMING)
                        .groupCallState(WebRtcViewModel.GroupCallState.RINGING)
@@ -186,7 +187,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                .groupCall(groupCall)
                                .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
                                .commit()
-                               .changeCallSetupState()
+                               .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                                .isRemoteVideoOffer(false)
                                .enableVideoOnCreate(answerWithVideo)
                                .build();
@@ -220,7 +221,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
   protected @NonNull WebRtcServiceState handleDenyCall(@NonNull WebRtcServiceState currentState) {
     Recipient         recipient = currentState.getCallInfoState().getCallRecipient();
     Optional<GroupId> groupId   = recipient.getGroupId();
-    long              ringId    = currentState.getCallSetupState().getRingId();
+    long              ringId    = currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).getRingId();
 
     DatabaseFactory.getGroupCallRingDatabase(context).insertOrUpdateGroupRing(ringId,
                                                                               System.currentTimeMillis(),
@@ -242,7 +243,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     return WebRtcVideoUtil.deinitializeVideo(currentState)
                           .builder()
                           .actionProcessor(new IdleActionProcessor(webRtcInteractor))
-                          .terminate()
+                          .terminate(RemotePeer.GROUP_CALL_ID)
                           .build();
   }
 }

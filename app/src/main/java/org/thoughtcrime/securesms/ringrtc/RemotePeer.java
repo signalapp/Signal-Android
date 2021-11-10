@@ -22,15 +22,22 @@ public final class RemotePeer implements Remote, Parcelable
 {
   private static final String TAG = Log.tag(RemotePeer.class);
 
+  public static final CallId NO_CALL_ID    = new CallId(-1L);
+  public static final CallId GROUP_CALL_ID = new CallId(-2L);
+
   @NonNull private final RecipientId recipientId;
   @NonNull private       CallState   callState;
   @NonNull private       CallId      callId;
            private       long        callStartTimestamp;
 
   public RemotePeer(@NonNull RecipientId recipientId) {
+    this(recipientId, new CallId(-1L));
+  }
+
+  public RemotePeer(@NonNull RecipientId recipientId, @NonNull CallId callId) {
     this.recipientId        = recipientId;
     this.callState          = CallState.IDLE;
-    this.callId             = new CallId(-1L);
+    this.callId             = callId;
     this.callStartTimestamp = 0;
   }
 

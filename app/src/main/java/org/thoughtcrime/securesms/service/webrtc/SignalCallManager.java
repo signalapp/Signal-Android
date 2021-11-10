@@ -142,6 +142,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   private void process(@NonNull ProcessAction action) {
+    Throwable t = new Throwable();
+    String caller = t.getStackTrace().length > 1 ? t.getStackTrace()[1].getMethodName() : "unknown";
+
     if (callManager == null) {
       Log.w(TAG, "Unable to process action, call manager is not initialized");
       return;
@@ -157,7 +160,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         }
       }
 
-      Log.v(TAG, "Processing action, handler: " + serviceState.getActionProcessor().getTag());
+      Log.v(TAG, "Processing action: " + caller + ", handler: " + serviceState.getActionProcessor().getTag());
       WebRtcServiceState previous = serviceState;
       serviceState = action.process(previous, previous.getActionProcessor());
 
@@ -395,7 +398,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       remotePeer.setCallId(callId);
 
       if (isOutgoing) {
-        return p.handleStartOutgoingCall(s, remotePeer);
+        return p.handleStartOutgoingCall(s, remotePeer, WebRtcUtil.getOfferTypeFromCallMediaType(callMediaType));
       } else {
         return p.handleStartIncomingCall(s, remotePeer);
       }
@@ -503,16 +506,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                           @NonNull byte[] opaque,
                           @NonNull CallManager.CallMediaType callMediaType)
   {
-    Log.i(TAG, "onSendOffer: id: " + callId.format(remoteDevice) + " type: " + callMediaType.name());
-
     if (!(remote instanceof RemotePeer)) {
       return;
     }
+    RemotePeer remotePeer = (RemotePeer) remote;
 
-    RemotePeer        remotePeer = (RemotePeer) remote;
-    OfferMessage.Type offerType  = WebRtcUtil.getOfferTypeFromCallMediaType(callMediaType);
+    Log.i(TAG, "onSendOffer: id: " + remotePeer.getCallId().format(remoteDevice) + " type: " + callMediaType.name());
 
-    WebRtcData.CallMetadata  callMetadata  = new WebRtcData.CallMetadata(remotePeer, callId, remoteDevice);
+    OfferMessage.Type        offerType     = WebRtcUtil.getOfferTypeFromCallMediaType(callMediaType);
+    WebRtcData.CallMetadata  callMetadata  = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
     WebRtcData.OfferMetadata offerMetadata = new WebRtcData.OfferMetadata(opaque, null, offerType);
 
     process((s, p) -> p.handleSendOffer(s, callMetadata, offerMetadata, broadcast));
@@ -525,14 +527,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                            @NonNull Boolean broadcast,
                            @NonNull byte[] opaque)
   {
-    Log.i(TAG, "onSendAnswer: id: " + callId.format(remoteDevice));
-
     if (!(remote instanceof RemotePeer)) {
       return;
     }
 
-    RemotePeer                remotePeer     = (RemotePeer) remote;
-    WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, callId, remoteDevice);
+    RemotePeer remotePeer = (RemotePeer) remote;
+
+    Log.i(TAG, "onSendAnswer: id: " + remotePeer.getCallId().format(remoteDevice));
+
+    WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
     WebRtcData.AnswerMetadata answerMetadata = new WebRtcData.AnswerMetadata(opaque, null);
 
     process((s, p) -> p.handleSendAnswer(s, callMetadata, answerMetadata, broadcast));
@@ -545,28 +548,30 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                   @NonNull Boolean broadcast,
                                   @NonNull List<byte[]> iceCandidates)
   {
-    Log.i(TAG, "onSendIceCandidates: id: " + callId.format(remoteDevice));
-
     if (!(remote instanceof RemotePeer)) {
       return;
     }
 
-    RemotePeer              remotePeer   = (RemotePeer) remote;
-    WebRtcData.CallMetadata callMetadata = new WebRtcData.CallMetadata(remotePeer, callId, remoteDevice);
+    RemotePeer remotePeer = (RemotePeer) remote;
+
+    Log.i(TAG, "onSendIceCandidates: id: " + remotePeer.getCallId().format(remoteDevice));
+
+    WebRtcData.CallMetadata callMetadata = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
 
     process((s, p) -> p.handleSendIceCandidates(s, callMetadata, broadcast, iceCandidates));
   }
 
   @Override
   public void onSendHangup(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @NonNull CallManager.HangupType hangupType, @NonNull Integer deviceId, @NonNull Boolean useLegacyHangupMessage) {
-    Log.i(TAG, "onSendHangup: id: " + callId.format(remoteDevice) + " type: " + hangupType.name() + " isLegacy: " + useLegacyHangupMessage);
-
     if (!(remote instanceof RemotePeer)) {
       return;
     }
 
-    RemotePeer                remotePeer     = (RemotePeer) remote;
-    WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, callId, remoteDevice);
+    RemotePeer remotePeer = (RemotePeer) remote;
+
+    Log.i(TAG, "onSendHangup: id: " + remotePeer.getCallId().format(remoteDevice) + " type: " + hangupType.name() + " isLegacy: " + useLegacyHangupMessage);
+
+    WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
     WebRtcData.HangupMetadata hangupMetadata = new WebRtcData.HangupMetadata(WebRtcUtil.getHangupTypeFromCallHangupType(hangupType), useLegacyHangupMessage, deviceId);
 
     process((s, p) -> p.handleSendHangup(s, callMetadata, hangupMetadata, broadcast));
@@ -574,14 +579,15 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onSendBusy(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast) {
-    Log.i(TAG, "onSendBusy: id: " + callId.format(remoteDevice));
-
     if (!(remote instanceof RemotePeer)) {
       return;
     }
 
-    RemotePeer              remotePeer   = (RemotePeer) remote;
-    WebRtcData.CallMetadata callMetadata = new WebRtcData.CallMetadata(remotePeer, callId, remoteDevice);
+    RemotePeer remotePeer = (RemotePeer) remote;
+
+    Log.i(TAG, "onSendBusy: id: " + remotePeer.getCallId().format(remoteDevice));
+
+    WebRtcData.CallMetadata callMetadata = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
 
     process((s, p) -> p.handleSendBusy(s, callMetadata, broadcast));
   }

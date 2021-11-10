@@ -62,6 +62,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                        .changeCallInfoState()
                        .groupCall(groupCall)
                        .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
+                       .activePeer(new RemotePeer(currentState.getCallInfoState().getCallRecipient().getId(), RemotePeer.GROUP_CALL_ID))
                        .build();
   }
 
@@ -177,7 +178,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     currentState.getVideoState().requireCamera().setEnabled(enable);
     return currentState.builder()
-                       .changeCallSetupState()
+                       .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                        .enableVideoOnCreate(enable)
                        .commit()
                        .changeLocalDeviceState()
