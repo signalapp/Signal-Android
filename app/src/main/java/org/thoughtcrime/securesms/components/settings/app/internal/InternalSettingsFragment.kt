@@ -415,6 +415,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   }
 
   private fun enqueueSubscriptionRedemption() {
-    SubscriptionReceiptRequestResponseJob.enqueueSubscriptionContinuation()
+    SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue()
   }
 }

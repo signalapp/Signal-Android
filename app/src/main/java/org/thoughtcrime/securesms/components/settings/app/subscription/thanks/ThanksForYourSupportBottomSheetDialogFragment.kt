@@ -108,6 +108,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     if (args.isBoost) {
       presentBoostCopy()
+      badgeView.visibility = View.INVISIBLE
       lottie.visible = true
       lottie.playAnimation()
       lottie.addAnimatorListener(object : AnimationCompleteListener() {

@@ -61,6 +61,7 @@ class BadgesOverviewViewModel(
   }
 
   fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
+    store.update { it.copy(stage = BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE) }
     disposables += badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile)
       .subscribe(
         {

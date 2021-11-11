@@ -44,8 +44,15 @@ class BadgeImageView @JvmOverloads constructor(
   fun setBadgeFromRecipient(recipient: Recipient?, glideRequests: GlideRequests) {
     if (recipient == null || recipient.badges.isEmpty()) {
       setBadge(null, glideRequests)
+    } else if (recipient.isSelf) {
+      val badge = recipient.featuredBadge
+      if (badge == null || !badge.visible || badge.isExpired()) {
+        setBadge(null, glideRequests)
+      } else {
+        setBadge(badge, glideRequests)
+      }
     } else {
-      setBadge(recipient.badges[0], glideRequests)
+      setBadge(recipient.featuredBadge, glideRequests)
     }
   }
 

@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
-import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -97,7 +96,7 @@ public class SubscriptionKeepAliveJob extends BaseJob {
 
     if (activeSubscription.getActiveSubscription().getEndOfCurrentPeriod() > SignalStore.donationsValues().getLastEndOfPeriod()) {
       Log.i(TAG, "Last end of period change. Requesting receipt refresh.");
-      SubscriptionReceiptRequestResponseJob.enqueueSubscriptionContinuation();
+      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue();
     }
   }
 

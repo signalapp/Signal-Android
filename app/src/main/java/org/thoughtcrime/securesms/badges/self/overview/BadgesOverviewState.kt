@@ -15,6 +15,6 @@ data class BadgesOverviewState(
   enum class Stage {
     INIT,
     READY,
-    UPDATING
+    UPDATING_BADGE_DISPLAY_STATE
   }
 }

@@ -3999,6 +3999,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
 
     <string name="Subscription__verification_failed">Subscription Verification Failed</string>
+    <string name="Subscription__redemption_failed">Badge Redemption Failed</string>
     <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
     <string name="Subscription__contact_support">Contact Support</string>
     <string name="Subscription__earn_a_s_badge">Earn a %1$s badge</string>

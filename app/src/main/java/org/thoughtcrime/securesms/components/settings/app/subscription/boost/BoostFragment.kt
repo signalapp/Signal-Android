@@ -132,6 +132,11 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     }
   }
 
+  override fun onDestroyView() {
+    super.onDestroyView()
+    processingDonationPaymentDialog.hide()
+  }
+
   private fun getConfiguration(state: BoostState): DSLConfiguration {
     if (state.stage == BoostState.Stage.PAYMENT_PIPELINE) {
       processingDonationPaymentDialog.show()

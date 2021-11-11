@@ -132,11 +132,10 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     return Completable.create {
       stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent).blockingSubscribe()
 
-      val jobId = BoostReceiptRequestResponseJob.enqueueChain(paymentIntent)
       val countDownLatch = CountDownLatch(1)
-
       var finalJobState: JobTracker.JobState? = null
-      ApplicationDependencies.getJobManager().addListener(jobId) { _, jobState ->
+
+      BoostReceiptRequestResponseJob.createJobChain(paymentIntent).enqueue { _, jobState ->
         if (jobState.isComplete) {
           finalJobState = jobState
           countDownLatch.countDown()
@@ -200,11 +199,10 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           }
         }.andThen {
           Log.d(TAG, "Enqueuing request response job chain.", true)
-          val jobId = SubscriptionReceiptRequestResponseJob.enqueueSubscriptionContinuation()
           val countDownLatch = CountDownLatch(1)
-
           var finalJobState: JobTracker.JobState? = null
-          ApplicationDependencies.getJobManager().addListener(jobId) { _, jobState ->
+
+          SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue { _, jobState ->
             if (jobState.isComplete) {
               finalJobState = jobState
               countDownLatch.countDown()

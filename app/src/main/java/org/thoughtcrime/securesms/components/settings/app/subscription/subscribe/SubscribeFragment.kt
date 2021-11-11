@@ -109,6 +109,11 @@ class SubscribeFragment : DSLSettingsFragment(
     }
   }
 
+  override fun onDestroyView() {
+    super.onDestroyView()
+    processingDonationPaymentDialog.hide()
+  }
+
   private fun getConfiguration(state: SubscribeState): DSLConfiguration {
     if (state.hasInProgressSubscriptionTransaction || state.stage == SubscribeState.Stage.PAYMENT_PIPELINE) {
       processingDonationPaymentDialog.show()

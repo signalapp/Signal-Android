@@ -11,6 +11,7 @@ import android.view.View
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.animation.doOnEnd
+import androidx.core.text.isDigitsOnly
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -25,6 +26,7 @@ import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.ViewUtil
 import java.lang.Integer.min
+import java.text.DecimalFormatSymbols
 import java.util.Currency
 import java.util.Locale
 import java.util.regex.Pattern
@@ -137,7 +139,10 @@ data class Boost(
         button.text = FiatMoneyUtil.format(
           context.resources,
           boost.price,
-          FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
+          FiatMoneyUtil
+            .formatOptions()
+            .numberOnly()
+            .trimZerosAfterDecimal()
         )
         button.setOnClickListener {
           model.onBoostClick(it, boost)
@@ -181,11 +186,12 @@ data class Boost(
   }
 
   @VisibleForTesting
-  class MoneyFilter(val currency: Currency, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(), TextWatcher {
+  class MoneyFilter(val currency: Currency, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(false, true), TextWatcher {
 
+    val separator = DecimalFormatSymbols.getInstance().decimalSeparator
     val separatorCount = min(1, currency.defaultFractionDigits)
     val prefix: String = currency.getSymbol(Locale.getDefault())
-    val pattern: Pattern = "[0-9]*([.,]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
+    val pattern: Pattern = "[0-9]*($separator){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
 
     override fun filter(
       source: CharSequence,
@@ -198,6 +204,11 @@ data class Boost(
 
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
       val resultWithoutCurrencyPrefix = result.removePrefix(prefix)
+
+      if (result.length == 1 && !result.isDigitsOnly() && result != separator.toString()) {
+        return dest.subSequence(dstart, dend)
+      }
+
       val matcher = pattern.matcher(resultWithoutCurrencyPrefix)
 
       if (!matcher.matches()) {

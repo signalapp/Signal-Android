@@ -462,6 +462,14 @@ public class JobManager implements ConstraintObserver.Notifier {
       jobManager.enqueueChain(this);
     }
 
+    public void enqueue(@NonNull JobTracker.JobListener listener) {
+      List<Job> lastChain          = jobs.get(jobs.size() - 1);
+      Job       lastJobInLastChain = lastChain.get(lastChain.size() - 1);
+
+      jobManager.addListener(lastJobInLastChain.getId(), listener);
+      enqueue();
+    }
+
     private List<List<Job>> getJobListChain() {
       return jobs;
     }

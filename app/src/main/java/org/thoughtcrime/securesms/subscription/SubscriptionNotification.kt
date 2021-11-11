@@ -38,5 +38,31 @@ sealed class SubscriptionNotification {
     }
   }
 
+  object RedemptionFailed : SubscriptionNotification() {
+    override fun show(context: Context) {
+      val notification = NotificationCompat.Builder(context, NotificationChannels.FAILURES)
+        .setSmallIcon(R.drawable.ic_notification)
+        .setContentTitle(context.getString(R.string.Subscription__redemption_failed))
+        .setContentText(context.getString(R.string.Subscription__please_contact_support_for_more_information))
+        .addAction(
+          NotificationCompat.Action.Builder(
+            null,
+            context.getString(R.string.Subscription__contact_support),
+            PendingIntent.getActivity(
+              context,
+              0,
+              AppSettingsActivity.help(context, HelpFragment.DONATION_INDEX),
+              if (Build.VERSION.SDK_INT >= 23) PendingIntent.FLAG_ONE_SHOT else 0
+            )
+          ).build()
+        )
+        .build()
+
+      NotificationManagerCompat
+        .from(context)
+        .notify(NotificationIds.SUBSCRIPTION_VERIFY_FAILED, notification)
+    }
+  }
+
   abstract fun show(context: Context)
 }

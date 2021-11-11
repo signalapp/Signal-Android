@@ -17,6 +17,7 @@ import org.signal.zkgroup.receipts.ReceiptSerial;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -56,18 +57,15 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     );
   }
 
-  public static String enqueueChain(StripeApi.PaymentIntent paymentIntent) {
+  public static JobManager.Chain createJobChain(StripeApi.PaymentIntent paymentIntent) {
     BoostReceiptRequestResponseJob requestReceiptJob    = createJob(paymentIntent);
     DonationReceiptRedemptionJob   redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForBoost();
     RefreshOwnProfileJob           refreshOwnProfileJob = new RefreshOwnProfileJob();
 
-    ApplicationDependencies.getJobManager()
-                           .startChain(requestReceiptJob)
-                           .then(redeemReceiptJob)
-                           .then(refreshOwnProfileJob)
-                           .enqueue();
-
-    return refreshOwnProfileJob.getId();
+    return ApplicationDependencies.getJobManager()
+                                  .startChain(requestReceiptJob)
+                                  .then(redeemReceiptJob)
+                                  .then(refreshOwnProfileJob);
   }
 
   private BoostReceiptRequestResponseJob(@NonNull Parameters parameters,

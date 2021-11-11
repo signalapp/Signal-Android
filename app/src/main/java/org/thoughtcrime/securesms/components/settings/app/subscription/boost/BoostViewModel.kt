@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.math.BigDecimal
+import java.text.DecimalFormatSymbols
 import java.util.Currency
 
 class BoostViewModel(
@@ -190,7 +191,7 @@ class BoostViewModel(
   }
 
   fun setCustomAmount(amount: String) {
-    val bigDecimalAmount = if (amount.isEmpty()) {
+    val bigDecimalAmount = if (amount.isEmpty() || amount == DecimalFormatSymbols.getInstance().decimalSeparator.toString()) {
       BigDecimal.ZERO
     } else {
       BigDecimal(amount)

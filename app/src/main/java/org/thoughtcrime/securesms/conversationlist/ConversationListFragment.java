@@ -322,6 +322,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), Recipient::self, this::initializeProfileIcon);
 
+    initializeSettingsTouchTarget();
+
     if ((!searchToolbar.resolved() || !searchToolbar.get().isVisible()) && list.getAdapter() != defaultAdapter) {
       list.removeItemDecoration(searchAdapterDecoration);
       setAdapter(defaultAdapter);
@@ -527,7 +529,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     imageView.setBadgeFromRecipient(recipient);
 
     AvatarUtil.loadIconIntoImageView(recipient, icon, getResources().getDimensionPixelSize(R.dimen.toolbar_avatar_size));
-    icon.setOnClickListener(v -> getNavigator().goToAppSettings());
+  }
+
+  private void initializeSettingsTouchTarget() {
+    View touchArea = requireView().findViewById(R.id.toolbar_settings_touch_area);
+    touchArea.setOnClickListener(v -> getNavigator().goToAppSettings());
   }
 
   private void initializeSearchListener() {

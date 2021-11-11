@@ -16,6 +16,7 @@ import org.signal.zkgroup.receipts.ReceiptSerial;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.subscription.Subscriber;
@@ -62,19 +63,16 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     );
   }
 
-  public static String enqueueSubscriptionContinuation() {
+  public static JobManager.Chain createSubscriptionContinuationJobChain() {
     Subscriber                            subscriber           = SignalStore.donationsValues().requireSubscriber();
     SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId());
     DonationReceiptRedemptionJob          redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForSubscription();
     RefreshOwnProfileJob                  refreshOwnProfileJob = new RefreshOwnProfileJob();
 
-    ApplicationDependencies.getJobManager()
-                           .startChain(requestReceiptJob)
-                           .then(redeemReceiptJob)
-                           .then(refreshOwnProfileJob)
-                           .enqueue();
-
-    return refreshOwnProfileJob.getId();
+    return ApplicationDependencies.getJobManager()
+                                  .startChain(requestReceiptJob)
+                                  .then(redeemReceiptJob)
+                                  .then(refreshOwnProfileJob);
   }
 
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,
