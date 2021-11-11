@@ -34,8 +34,9 @@ public final class GeographicalRestrictionsTest {
   }
 
   @Test
-  public void us_not_allowed_in_release() {
-    assumeFalse(BuildConfig.DEBUG);
-    assertFalse(GeographicalRestrictions.e164Allowed("+15407011234"));
+  public void blacklist_not_allowed() {
+    for (int code : BuildConfig.MOBILE_COIN_BLACKLIST) {
+      assertFalse(GeographicalRestrictions.regionAllowed(code));
+    }
   }
 }
