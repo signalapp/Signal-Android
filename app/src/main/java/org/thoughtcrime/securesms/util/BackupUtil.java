@@ -105,6 +105,7 @@ public class BackupUtil {
     BackupPassphrase.set(context, null);
     SignalStore.settings().setBackupEnabled(false);
     BackupUtil.deleteAllBackups();
+    BackupUtil.deleteTemporaryBackups();
 
     if (BackupUtil.isUserSelectionRequired(context)) {
       Uri backupLocationUri = SignalStore.settings().getSignalBackupDirectory();
@@ -131,6 +132,44 @@ public class BackupUtil {
       return getAllBackupsNewestFirstApi29();
     } else {
       return getAllBackupsNewestFirstLegacy();
+    }
+  }
+
+  private static void deleteTemporaryBackups() {
+    try {
+      if (isUserSelectionRequired(ApplicationDependencies.getApplication())) {
+        deleteTemporaryBackupsApi29();
+      } else {
+        deleteTemporaryBackupsLegacy();
+      }
+    } catch (NoExternalStorageException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  @RequiresApi(29)
+  private static void deleteTemporaryBackupsApi29() {
+    Uri backupDirectoryUri = SignalStore.settings().getSignalBackupDirectory();
+    if (backupDirectoryUri == null) {
+      Log.i(TAG, "Backup directory is not set.");
+      return;
+    }
+
+    DocumentFile backupDirectory = DocumentFile.fromTreeUri(ApplicationDependencies.getApplication(), backupDirectoryUri);
+    if (backupDirectory == null || !backupDirectory.exists() || !backupDirectory.canRead()) {
+      Log.w(TAG, "Backup directory is inaccessible.");
+      return;
+    }
+
+    DocumentFile[]   files   = backupDirectory.listFiles();
+
+    for (DocumentFile file : files) {
+      if (file.isFile() && file.getName() != null && file.getName().endsWith(".tmp")) {
+        Log.i(TAG, "Deleting File: " + file.getUri().toString());
+        if (!file.delete()) {
+          Log.w(TAG, "Delete failed: " + file.getUri().toString());
+        }
+      }
     }
   }
 
@@ -175,6 +214,24 @@ public class BackupUtil {
     } else {
       Log.w(TAG, "Could not load backup info.");
       return null;
+    }
+  }
+
+  private static void deleteTemporaryBackupsLegacy() throws NoExternalStorageException {
+    File             backupDirectory = StorageUtil.getOrCreateBackupDirectory();
+    File[]           files = backupDirectory.listFiles();
+
+    if (files == null) {
+      return;
+    }
+
+    for (File file : files) {
+      if (file.isFile() && file.getAbsolutePath().endsWith(".tmp")) {
+        Log.i(TAG, "Deleting File: " + file.getAbsolutePath());
+        if(!file.delete()) {
+          Log.w(TAG, "Delete failed: " + file.getAbsolutePath());
+        }
+      }
     }
   }
 
