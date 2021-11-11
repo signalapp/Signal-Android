@@ -1945,6 +1945,16 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Maak een keuze</item>
+    <item>Er werkt iets niet zoals het hoort</item>
+    <item>Verzoek voor nieuwe functionaliteit</item>
+    <item>Vraag</item>
+    <item>Terugkoppeling</item>
+    <item>Iets anders</item>
+    <item>Overschrijvingen (MobileCoin)</item>
+    <item>Donaties (maandelijks of eenmalig)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
