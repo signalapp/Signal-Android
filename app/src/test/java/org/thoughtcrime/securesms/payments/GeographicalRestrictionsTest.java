@@ -34,6 +34,11 @@ public final class GeographicalRestrictionsTest {
   }
 
   @Test
+  public void crimea_not_allowed() {
+    assertFalse(GeographicalRestrictions.e164Allowed("+79782222222"));
+  }
+
+  @Test
   public void blacklist_not_allowed() {
     for (int code : BuildConfig.MOBILE_COIN_BLACKLIST) {
       assertFalse(GeographicalRestrictions.regionAllowed(code));
