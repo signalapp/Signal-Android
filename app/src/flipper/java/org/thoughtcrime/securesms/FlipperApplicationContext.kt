@@ -23,23 +23,37 @@ class FlipperApplicationContext : ApplicationContext() {
 
     LeakCanary.config = LeakCanary.config.copy(
       referenceMatchers = AndroidReferenceMatchers.appDefaults +
-        AndroidReferenceMatchers.instanceFieldLeak(
+        AndroidReferenceMatchers.ignoredInstanceField(
           className = "android.service.media.MediaBrowserService\$ServiceBinder",
-          fieldName = "this\$0",
-          description = "Framework bug",
-          patternApplies = { true }
+          fieldName = "this\$0"
         ) +
-        AndroidReferenceMatchers.instanceFieldLeak(
+        AndroidReferenceMatchers.ignoredInstanceField(
           className = "androidx.media.MediaBrowserServiceCompat\$MediaBrowserServiceImplApi26\$MediaBrowserServiceApi26",
-          fieldName = "mBase",
-          description = "Framework bug",
-          patternApplies = { true }
+          fieldName = "mBase"
         ) +
-        AndroidReferenceMatchers.instanceFieldLeak(
+        AndroidReferenceMatchers.ignoredInstanceField(
+          className = "android.support.v4.media.MediaBrowserCompat",
+          fieldName = "mImpl"
+        ) +
+        AndroidReferenceMatchers.ignoredInstanceField(
+          className = "android.support.v4.media.session.MediaControllerCompat",
+          fieldName = "mToken"
+        ) +
+        AndroidReferenceMatchers.ignoredInstanceField(
+          className = "android.support.v4.media.session.MediaControllerCompat",
+          fieldName = "mImpl"
+        ) +
+        AndroidReferenceMatchers.ignoredInstanceField(
           className = "org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackService",
-          fieldName = "mApplication",
-          description = "Framework bug",
-          patternApplies = { true }
+          fieldName = "mApplication"
+        ) +
+        AndroidReferenceMatchers.ignoredInstanceField(
+          className = "org.thoughtcrime.securesms.service.GenericForegroundService\$LocalBinder",
+          fieldName = "this\$0"
+        ) +
+        AndroidReferenceMatchers.ignoredInstanceField(
+          className = "org.thoughtcrime.securesms.contacts.ContactsSyncAdapter",
+          fieldName = "mContext"
         )
     )
   }
