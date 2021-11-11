@@ -37,9 +37,8 @@
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/check_box"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:alpha="0"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:background="@drawable/contact_selection_checkbox"
         android:button="@null"
         android:clickable="false"
@@ -80,7 +79,11 @@
         android:textColor="@color/signal_text_secondary"
         android:textDirection="ltr"
         app:emoji_forceCustom="true"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/label"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
         app:layout_constraintTop_toBottomOf="@id/name"
         tools:text="@sample/contacts.json/data/number" />
@@ -94,6 +97,7 @@
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
+        app:layout_constraintEnd_toEndOf="@id/name"
         app:layout_constraintStart_toEndOf="@id/number"
         app:layout_constraintTop_toTopOf="@id/number"
         tools:ignore="RtlSymmetry"
