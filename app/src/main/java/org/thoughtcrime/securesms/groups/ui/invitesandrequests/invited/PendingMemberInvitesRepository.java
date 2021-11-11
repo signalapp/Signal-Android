@@ -15,7 +15,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.UuidCiphertext;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeException;

@@ -14,7 +14,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;

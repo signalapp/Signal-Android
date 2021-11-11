@@ -465,7 +465,6 @@ dependencies {
     implementation project(':image-editor')
     implementation project(':donations')
 
-    implementation libs.signal.zkgroup.android
     implementation libs.signal.client.android
     implementation libs.google.protobuf.javalite
 
