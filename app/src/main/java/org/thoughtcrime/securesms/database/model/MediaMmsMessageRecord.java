@@ -128,6 +128,13 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return partCount;
   }
 
+  public @NonNull MediaMmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
+    return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
+                                     getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                     getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, isRemoteDelete(), mentionsSelf,
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp());
+  }
+
   public @NonNull MediaMmsMessageRecord withAttachments(@NonNull Context context, @NonNull List<DatabaseAttachment> attachments) {
     Map<AttachmentId, DatabaseAttachment> attachmentIdMap = new HashMap<>();
     for (DatabaseAttachment attachment : attachments) {

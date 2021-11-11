@@ -76,6 +76,7 @@ public class DatabaseFactory {
   private final MessageSendLogDatabase      messageSendLogDatabase;
   private final AvatarPickerDatabase        avatarPickerDatabase;
   private final GroupCallRingDatabase       groupCallRingDatabase;
+  private final ReactionDatabase            reactionDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     if (instance == null) {
@@ -214,6 +215,10 @@ public class DatabaseFactory {
     return getInstance(context).groupCallRingDatabase;
   }
 
+  public static ReactionDatabase getReactionDatabase(Context context) {
+    return getInstance(context).reactionDatabase;
+  }
+
   public static net.zetetic.database.sqlcipher.SQLiteDatabase getBackupDatabase(Context context) {
     return getInstance(context).databaseHelper.getRawReadableDatabase();
   }
@@ -274,6 +279,7 @@ public class DatabaseFactory {
     this.messageSendLogDatabase      = new MessageSendLogDatabase(context, databaseHelper);
     this.avatarPickerDatabase        = new AvatarPickerDatabase(context, databaseHelper);
     this.groupCallRingDatabase       = new GroupCallRingDatabase(context, databaseHelper);
+    this.reactionDatabase            = new ReactionDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

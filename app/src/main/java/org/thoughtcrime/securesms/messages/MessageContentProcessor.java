@@ -874,14 +874,14 @@ public final class MessageContentProcessor {
       return null;
     }
 
-    MessageDatabase db = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+    MessageId targetMessageId = new MessageId(targetMessage.getId(), targetMessage.isMms());
 
     if (reaction.isRemove()) {
-      db.deleteReaction(targetMessage.getId(), senderRecipient.getId());
+      DatabaseFactory.getReactionDatabase(context).deleteReaction(targetMessageId, senderRecipient.getId());
       ApplicationDependencies.getMessageNotifier().updateNotification(context);
     } else {
       ReactionRecord reactionRecord = new ReactionRecord(reaction.getEmoji(), senderRecipient.getId(), message.getTimestamp(), System.currentTimeMillis());
-      db.addReaction(targetMessage.getId(), reactionRecord);
+      DatabaseFactory.getReactionDatabase(context).addReaction(targetMessageId, reactionRecord);
       ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
     }
 

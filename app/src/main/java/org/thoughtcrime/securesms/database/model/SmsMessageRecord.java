@@ -109,4 +109,11 @@ public class SmsMessageRecord extends MessageRecord {
   public boolean isMmsNotification() {
     return false;
   }
+
+  public @NonNull SmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
+    return new SmsMessageRecord(getId(), getBody(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(),
+                                getServerTimestamp(), getDeliveryReceiptCount(), getType(), getThreadId(), getDeliveryStatus(), getIdentityKeyMismatches(),
+                                getSubscriptionId(), getExpiresIn(), getExpireStarted(), getReadReceiptCount(), isUnidentified(), reactions, isRemoteDelete(),
+                                getNotifiedTimestamp(), getReceiptTimestamp());
+  }
 }

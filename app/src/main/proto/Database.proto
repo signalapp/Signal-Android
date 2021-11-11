@@ -11,8 +11,10 @@ package signal;
 option java_package        = "org.thoughtcrime.securesms.database.model.databaseprotos";
 option java_multiple_files = true;
 
-
+// DEPRECATED -- only here for database migrations
 message ReactionList {
+    option deprecated = true;
+
     message Reaction {
         string emoji        = 1;
         uint64 author       = 2;

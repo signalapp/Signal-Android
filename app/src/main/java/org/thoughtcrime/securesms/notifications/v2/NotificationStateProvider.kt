@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.MmsSmsDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -34,13 +35,16 @@ object NotificationStateProvider {
         while (record != null) {
           val threadRecipient: Recipient? = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(record.threadId)
           if (threadRecipient != null) {
+            val hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1
+
             messages += NotificationMessage(
               messageRecord = record,
+              reactions = if (hasUnreadReactions) DatabaseFactory.getReactionDatabase(context).getReactions(MessageId(record.id, record.isMms)) else emptyList(),
               threadRecipient = threadRecipient,
               threadId = record.threadId,
               stickyThread = stickyThreads.containsKey(record.threadId),
               isUnreadMessage = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.READ) == 0,
-              hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1,
+              hasUnreadReactions = hasUnreadReactions,
               lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN)
             )
           }
@@ -66,7 +70,7 @@ object NotificationStateProvider {
           }
 
           if (notification.hasUnreadReactions) {
-            notification.messageRecord.reactions.filter { notification.includeReaction(it) }
+            notification.reactions.filter { notification.includeReaction(it) }
               .forEach { notificationItems.add(ReactionNotification(notification.threadRecipient, notification.messageRecord, it)) }
           }
         }
@@ -87,6 +91,7 @@ object NotificationStateProvider {
 
   private data class NotificationMessage(
     val messageRecord: MessageRecord,
+    val reactions: List<ReactionRecord>,
     val threadRecipient: Recipient,
     val threadId: Long,
     val stickyThread: Boolean,

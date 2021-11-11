@@ -39,8 +39,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoriesAdapter;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
-import org.thoughtcrime.securesms.reactions.ReactionsLoader;
 import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MappingModel;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -65,10 +65,11 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
   private ReactWithAnyEmojiViewModel viewModel;
   private Callback                   callback;
-  private ReactionsLoader            reactionsLoader;
   private EmojiPageView              emojiPageView;
   private KeyboardPageSearchView     search;
   private View                       tabBar;
+
+  private final LifecycleDisposable disposables = new LifecycleDisposable();
 
   private final UpdateCategorySelectionOnScroll categoryUpdateOnScroll = new UpdateCategorySelectionOnScroll();
 
@@ -174,11 +175,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    reactionsLoader = new ReactionsLoader(requireContext(),
-                                          requireArguments().getLong(ARG_MESSAGE_ID),
-                                          requireArguments().getBoolean(ARG_IS_MMS));
-
-    LoaderManager.getInstance(requireActivity()).initLoader((int) requireArguments().getLong(ARG_MESSAGE_ID), null, reactionsLoader);
+    disposables.bindTo(getViewLifecycleOwner());
 
     emojiPageView = view.findViewById(R.id.react_with_any_emoji_page_view);
     emojiPageView.initialize(this, this, true);
@@ -219,15 +216,15 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
       emojiPageView.addOnScrollListener(new TopAndBottomShadowHelper(requireView().findViewById(R.id.react_with_any_emoji_top_shadow),
                                                                      tabBar.findViewById(R.id.react_with_any_emoji_bottom_shadow)));
 
-      viewModel.getEmojiList().observe(getViewLifecycleOwner(), pages -> emojiPageView.setList(pages, null));
-      viewModel.getCategories().observe(getViewLifecycleOwner(), categoriesAdapter::submitList);
-      viewModel.getSelectedKey().observe(getViewLifecycleOwner(), key -> categoriesRecycler.post(() -> {
+      disposables.add(viewModel.getEmojiList().subscribe(pages -> emojiPageView.setList(pages, null)));
+      disposables.add(viewModel.getCategories().subscribe(categoriesAdapter::submitList));
+      disposables.add(viewModel.getSelectedKey().subscribe(key -> categoriesRecycler.post(() -> {
         int index = categoriesAdapter.indexOfFirst(EmojiKeyboardPageCategoryMappingModel.class, m -> m.getKey().equals(key));
 
         if (index != -1) {
           categoriesRecycler.smoothScrollToPosition(index);
         }
-      }));
+      })));
     }
   }
 
@@ -259,7 +256,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   private void initializeViewModel() {
     Bundle                             args       = requireArguments();
     ReactWithAnyEmojiRepository        repository = new ReactWithAnyEmojiRepository(requireContext(), args.getString(ARG_RECENT_KEY, REACTION_STORAGE_KEY));
-    ReactWithAnyEmojiViewModel.Factory factory    = new ReactWithAnyEmojiViewModel.Factory(reactionsLoader, repository, args.getLong(ARG_MESSAGE_ID), args.getBoolean(ARG_IS_MMS));
+    ReactWithAnyEmojiViewModel.Factory factory    = new ReactWithAnyEmojiViewModel.Factory(repository, args.getLong(ARG_MESSAGE_ID), args.getBoolean(ARG_IS_MMS));
 
     viewModel = ViewModelProviders.of(this, factory).get(ReactWithAnyEmojiViewModel.class);
   }

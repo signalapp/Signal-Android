@@ -74,7 +74,6 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.MESSAGE_BOX,
                                               SmsDatabase.STATUS,
                                               MmsSmsColumns.UNIDENTIFIED,
-                                              MmsSmsColumns.REACTIONS,
                                               MmsDatabase.PART_COUNT,
                                               MmsDatabase.CONTENT_LOCATION,
                                               MmsDatabase.TRANSACTION_ID,
@@ -101,7 +100,6 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.LINK_PREVIEWS,
                                               MmsDatabase.VIEW_ONCE,
                                               MmsSmsColumns.READ,
-                                              MmsSmsColumns.REACTIONS,
                                               MmsSmsColumns.REACTIONS_UNREAD,
                                               MmsSmsColumns.REACTIONS_LAST_SEEN,
                                               MmsSmsColumns.REMOTE_DELETED,
@@ -678,7 +676,6 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
                               MmsDatabase.VIEW_ONCE,
-                              MmsDatabase.REACTIONS,
                               MmsSmsColumns.REACTIONS_UNREAD,
                               MmsSmsColumns.REACTIONS_LAST_SEEN,
                               MmsSmsColumns.DATE_SERVER,
@@ -712,7 +709,6 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
                               MmsDatabase.VIEW_ONCE,
-                              MmsDatabase.REACTIONS,
                               MmsSmsColumns.REACTIONS_UNREAD,
                               MmsSmsColumns.REACTIONS_LAST_SEEN,
                               MmsSmsColumns.DATE_SERVER,
@@ -775,7 +771,6 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
     mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);
     mmsColumnsPresent.add(MmsDatabase.VIEW_ONCE);
-    mmsColumnsPresent.add(MmsDatabase.REACTIONS);
     mmsColumnsPresent.add(MmsDatabase.REACTIONS_UNREAD);
     mmsColumnsPresent.add(MmsDatabase.REACTIONS_LAST_SEEN);
     mmsColumnsPresent.add(MmsDatabase.REMOTE_DELETED);
@@ -805,7 +800,6 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.DATE_SERVER);
     smsColumnsPresent.add(SmsDatabase.STATUS);
     smsColumnsPresent.add(SmsDatabase.UNIDENTIFIED);
-    smsColumnsPresent.add(SmsDatabase.REACTIONS);
     smsColumnsPresent.add(SmsDatabase.REACTIONS_UNREAD);
     smsColumnsPresent.add(SmsDatabase.REACTIONS_LAST_SEEN);
     smsColumnsPresent.add(MmsDatabase.REMOTE_DELETED);

@@ -167,6 +167,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
@@ -2361,9 +2362,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                        .orElse(null);
 
       if (oldRecord != null && oldRecord.getEmoji().equals(emoji)) {
-        MessageSender.sendReactionRemoval(context, messageRecord.getId(), messageRecord.isMms(), oldRecord);
+        MessageSender.sendReactionRemoval(context, new MessageId(messageRecord.getId(), messageRecord.isMms()), oldRecord);
       } else {
-        MessageSender.sendNewReaction(context, messageRecord.getId(), messageRecord.isMms(), emoji);
+        MessageSender.sendNewReaction(context, new MessageId(messageRecord.getId(), messageRecord.isMms()), emoji);
       }
     });
   }
@@ -2381,8 +2382,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       reactionDelegate.hide();
 
       SignalExecutors.BOUNDED.execute(() -> MessageSender.sendReactionRemoval(context,
-                                                                              messageRecord.getId(),
-                                                                              messageRecord.isMms(),
+                                                                              new MessageId(messageRecord.getId(), messageRecord.isMms()),
                                                                               oldRecord));
     } else {
       reactionDelegate.hideForReactWithAny();

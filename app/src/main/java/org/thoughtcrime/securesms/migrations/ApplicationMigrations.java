@@ -89,9 +89,10 @@ public class ApplicationMigrations {
     static final int CHANGE_NUMBER_CAPABILITY      = 45;
     static final int CHANGE_NUMBER_CAPABILITY_2    = 46;
     static final int DEFAULT_REACTIONS_SYNC        = 47;
+    static final int DB_REACTIONS_MIGRATION        = 48;
   }
 
-  public static final int CURRENT_VERSION = 47;
+  public static final int CURRENT_VERSION = 48;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -387,6 +388,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.DEFAULT_REACTIONS_SYNC) {
       jobs.put(Version.DEFAULT_REACTIONS_SYNC, new StorageServiceMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DB_REACTIONS_MIGRATION) {
+      jobs.put(Version.DB_REACTIONS_MIGRATION, new DatabaseMigrationJob());
     }
 
     return jobs;
