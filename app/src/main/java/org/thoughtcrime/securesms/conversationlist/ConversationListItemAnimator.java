@@ -17,6 +17,8 @@ public class ConversationListItemAnimator extends DefaultItemAnimator {
 
   public ConversationListItemAnimator() {
     setSupportsChangeAnimations(false);
+    setMoveDuration(0);
+    setAddDuration(0);
   }
 
   @MainThread
