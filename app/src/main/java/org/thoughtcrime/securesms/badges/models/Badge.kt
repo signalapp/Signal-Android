@@ -36,10 +36,6 @@ data class Badge(
   val visible: Boolean,
 ) : Parcelable, Key {
 
-  fun setVisible(): Badge {
-    return copy(visible = true)
-  }
-
   fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis() && expirationTimestamp > 0
   fun isBoost(): Boolean = id == BOOST_BADGE_ID
 

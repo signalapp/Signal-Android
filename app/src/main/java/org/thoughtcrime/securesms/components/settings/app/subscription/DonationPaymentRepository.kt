@@ -11,17 +11,20 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
@@ -59,6 +62,17 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
 
   fun isGooglePayAvailable(): Completable = googlePayApi.queryIsReadyToPay()
+
+  fun scheduleSyncForAccountRecordChange() {
+    SignalExecutors.BOUNDED.execute {
+      scheduleSyncForAccountRecordChangeSync()
+    }
+  }
+
+  fun scheduleSyncForAccountRecordChangeSync() {
+    DatabaseFactory.getRecipientDatabase(application).markNeedsSync(Recipient.self().id)
+    StorageSyncHelper.scheduleSyncForDataChange()
+  }
 
   fun internetConnectionObserver(): Observable<Boolean> = Observable.create {
     val observer = object : BroadcastReceiver() {
@@ -124,7 +138,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           .donationsValues()
           .setSubscriber(Subscriber(subscriberId, SignalStore.donationsValues().getSubscriptionCurrency().currencyCode))
 
-        StorageSyncHelper.scheduleSyncForDataChange()
+        scheduleSyncForAccountRecordChangeSync()
       }
   }
 

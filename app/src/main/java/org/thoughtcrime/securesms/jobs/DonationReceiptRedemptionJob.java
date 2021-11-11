@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -85,7 +86,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     ReceiptCredentialPresentation presentation = new ReceiptCredentialPresentation(presentationBytes);
 
     ServiceResponse<EmptyResponse> response = ApplicationDependencies.getDonationsService()
-                                                                     .redeemReceipt(presentation, false, false)
+                                                                     .redeemReceipt(presentation,
+                                                                                    SignalStore.donationsValues().getDisplayBadgesOnProfile(),
+                                                                                    false)
                                                                      .blockingGet();
 
     if (response.getApplicationError().isPresent()) {

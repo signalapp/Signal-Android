@@ -108,8 +108,9 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean                              primarySendsSms        = local.isPrimarySendsSms();
     String                               e164                   = local.getE164();
     List<String>                         defaultReactions       = remote.getDefaultReactions().size() > 0 ? remote.getDefaultReactions() : local.getDefaultReactions();
-    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber);
-    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber);
+    boolean                              displayBadgesOnProfile = remote.isDisplayBadgesOnProfile();
+    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile);
+    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile);
 
     if (matchesRemote) {
       return remote;
@@ -139,6 +140,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setE164(e164)
                                     .setDefaultReactions(defaultReactions)
                                     .setSubscriber(subscriber)
+                                    .setDisplayBadgesOnProfile(displayBadgesOnProfile)
                                     .build();
     }
   }
@@ -179,7 +181,8 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean primarySendsSms,
                                        String e164,
                                        @NonNull List <String> defaultReactions,
-                                       @NonNull SignalAccountRecord.Subscriber subscriber)
+                                       @NonNull SignalAccountRecord.Subscriber subscriber,
+                                       boolean displayBadgesOnProfile)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)        &&
            Objects.equals(contact.getGivenName().or(""), givenName)              &&
@@ -201,6 +204,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.getUniversalExpireTimer() == universalExpireTimer             &&
            contact.isPrimarySendsSms() == primarySendsSms                        &&
            Objects.equals(contact.getPinnedConversations(), pinnedConversations) &&
-           Objects.equals(contact.getSubscriber(), subscriber);
+           Objects.equals(contact.getSubscriber(), subscriber)                   &&
+           contact.isDisplayBadgesOnProfile() == displayBadgesOnProfile;
   }
 }

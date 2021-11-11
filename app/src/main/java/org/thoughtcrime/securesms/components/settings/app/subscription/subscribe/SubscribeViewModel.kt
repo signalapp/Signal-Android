@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
@@ -105,7 +104,7 @@ class SubscribeViewModel(
             val usd = PlatformCurrencyUtil.USD
             val newSubscriber = SignalStore.donationsValues().getSubscriber(usd) ?: Subscriber(SubscriberId.generate(), usd.currencyCode)
             SignalStore.donationsValues().setSubscriber(newSubscriber)
-            StorageSyncHelper.scheduleSyncForDataChange()
+            donationPaymentRepository.scheduleSyncForAccountRecordChange()
           }
         }
       },

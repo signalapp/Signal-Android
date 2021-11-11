@@ -29,6 +29,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val USER_MANUALLY_CANCELLED = "donation.user.manually.cancelled"
     private const val KEY_LEVEL_OPERATION_PREFIX = "donation.level.operation."
     private const val KEY_LEVEL_HISTORY = "donation.level.history"
+    private const val DISPLAY_BADGES_ON_PROFILE = "donation.display.badges.on.profile"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -187,5 +188,13 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun clearUserManuallyCancelled() {
     remove(USER_MANUALLY_CANCELLED)
+  }
+
+  fun setDisplayBadgesOnProfile(enabled: Boolean) {
+    putBoolean(DISPLAY_BADGES_ON_PROFILE, enabled)
+  }
+
+  fun getDisplayBadgesOnProfile(): Boolean {
+    return getBoolean(DISPLAY_BADGES_ON_PROFILE, false)
   }
 }

@@ -221,10 +221,13 @@ public class RefreshOwnProfileJob extends BaseJob {
     List<Badge> appBadges = badges.stream().map(Badges::fromServiceBadge).collect(Collectors.toList());
 
     if (userHasVisibleBadges && userHasInvisibleBadges) {
-      Log.d(TAG, "Detected mixed visibility of badges. Telling the server to mark them all visible.", true);
+      boolean displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile();
+      Log.d(TAG, "Detected mixed visibility of badges. Telling the server to mark them all " +
+                 (displayBadgesOnProfile ? "" : "not") +
+                 " visible.", true);
 
       BadgeRepository badgeRepository = new BadgeRepository(context);
-      badgeRepository.setVisibilityForAllBadges(true, appBadges).blockingSubscribe();
+      badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile, appBadges).blockingSubscribe();
     } else {
       DatabaseFactory.getRecipientDatabase(context)
                      .setBadges(Recipient.self().getId(), appBadges);
