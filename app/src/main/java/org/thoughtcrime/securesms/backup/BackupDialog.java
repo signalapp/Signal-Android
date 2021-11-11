@@ -146,11 +146,8 @@ public class BackupDialog {
                    .setMessage(R.string.BackupDialog_disable_and_delete_all_local_backups)
                    .setNegativeButton(android.R.string.cancel, null)
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
-                     /*onBackupsDisabled.run();
-                     BackupUtil.disableBackups(context);*/
-
-                     BackupUtil.disableBackups(context);
                      onBackupsDisabled.run();
+                     BackupUtil.disableBackups(context);
                    })
                    .create()
                    .show();
