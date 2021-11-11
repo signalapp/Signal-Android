@@ -1939,6 +1939,16 @@
   <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>لطفاً یک گزینه انتخاب کنید</item>
+    <item>چیزی خراب شده است</item>
+    <item>درخواست قابلیت جدید</item>
+    <item>سؤال</item>
+    <item>بازخورد</item>
+    <item>سایر</item>
+    <item>پرداخت‌ها (MobileCoin)</item>
+    <item>کمک‌های اهدایی (نگهدارندگان و تقویت سیگنال)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
@@ -3283,6 +3293,7 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
   <string name="CameraFragment__failed_to_open_camera">باز کردن دوربین ناموفق بود</string>
   <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
+  <string name="BadgesOverviewFragment__featured_badge">نشان مورد استفاده</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">نمایش نشان‌ها روی پروفایل</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
   <string name="BadgeSelectionFragment__select_badges">انتخاب نشان‌ها</string>

@@ -1855,6 +1855,16 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__debug_log">Catatan debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Pilih opsi</item>
+    <item>Sesuatu Tidak Bekerja</item>
+    <item>Permintaan Fitur</item>
+    <item>Pertanyaan</item>
+    <item>Masukan</item>
+    <item>Lainnya</item>
+    <item>Pembayaran (MobileCoin)</item>
+    <item>Donasi (Penopang &amp; Penguat Signal)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Terakhir Digunakan</string>

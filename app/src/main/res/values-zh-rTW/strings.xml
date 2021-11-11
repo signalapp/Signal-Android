@@ -1851,6 +1851,16 @@
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>請選擇一個選項</item>
+    <item>有某處發生了問題</item>
+    <item>功能要求</item>
+    <item>問題</item>
+    <item>回報</item>
+    <item>其他</item>
+    <item>付款 (行動貨幣)</item>
+    <item>贊助 (維護者 &amp; Signal 推廣)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用的</string>

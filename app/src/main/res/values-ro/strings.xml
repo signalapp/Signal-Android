@@ -2023,6 +2023,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Vă rugăm selectați o opțiune</item>
+    <item>Ceva nu funcționează</item>
+    <item>Solicitare funcționalitate nouă</item>
+    <item>Întrebare</item>
+    <item>Opinie</item>
+    <item>Altceva</item>
+    <item>Plăți (MobileCoin)</item>
+    <item>Donații (Susținători &amp; Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>

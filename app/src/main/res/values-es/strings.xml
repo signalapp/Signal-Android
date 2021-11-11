@@ -1941,6 +1941,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__debug_log">Registro de depuración:</string>
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Por favor, selecciona una opción</item>
+    <item>Algo no está funcionando</item>
+    <item>Solicitud de características</item>
+    <item>Consulta</item>
+    <item>Comentarios</item>
+    <item>Otros</item>
+    <item>Pagos (MobileCoin)</item>
+    <item>Donaciones (Sostenedores, ras e impulso a Signal)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usados recientemente</string>

@@ -1940,6 +1940,16 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Vælg en mulighed</item>
+    <item>Noget fungerer ikke</item>
+    <item>Anmodning om funktion</item>
+    <item>Spørgsmål</item>
+    <item>Feedback</item>
+    <item>Andet</item>
+    <item>Betalinger (MobileCoin)</item>
+    <item>Donationer (Bidragsydere &amp; Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -1994,7 +2004,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tryk på [Enter] sender tekstbeskeder</string>
   <string name="preferences__pref_use_address_book_photos">Brug billeder fra adressebog</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige.</string>
-  <string name="preferences__generate_link_previews">Generer forhåndsvisninger af links</string>
+  <string name="preferences__generate_link_previews">Generér forhåndsvisninger af links</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger af links direkte fra websteder til beskeder, som du sender.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten</string>

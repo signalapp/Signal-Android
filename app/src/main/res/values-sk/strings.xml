@@ -2112,6 +2112,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="HelpFragment__debug_log">Denník ladenia:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodarilo sa nahrať denníky</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Prosíme, čo najpodrobnejšie popíšte situáciu a pomôžte nám tak porozumieť vášmu problému.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Vyberte možnosť</item>
+    <item>Niečo nefunguje</item>
+    <item>Požiadavka na funkciu</item>
+    <item>Question</item>
+    <item>Spätná väzba</item>
+    <item>Iné</item>
+    <item>Platby (MobileCoin)</item>
+    <item>Dary (Podporovatelia &amp; Signal podpora)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Táto správa</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>

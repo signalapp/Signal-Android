@@ -316,6 +316,18 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Legita</item>
+    <item quantity="other">Legitaj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Neligita</item>
+    <item quantity="other">Nelegitaj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Alpingli</item>
+    <item quantity="other">Alpingli</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Elekti ĉiujn</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>

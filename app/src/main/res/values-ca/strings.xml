@@ -1935,6 +1935,16 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item> Seleccioneu una opció.</item>
+    <item>Alguna cosa no funciona.</item>
+    <item>Petició de funció</item>
+    <item>Pregunta</item>
+    <item>Retroacció</item>
+    <item>Altres</item>
+    <item>Pagaments  (MobileCoin) </item>
+    <item>Donacions (Sostenidors i Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>

@@ -1934,6 +1934,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Vänligen välj ett alternativ</item>
+    <item>Något fungerar inte</item>
+    <item>Funktionsbegäran</item>
+    <item>Fråga</item>
+    <item>Återkoppling</item>
+    <item>Annat</item>
+    <item>Betalningar (MobileCoin)</item>
+    <item>Donationer (underhållare &amp; Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyligen använda</string>

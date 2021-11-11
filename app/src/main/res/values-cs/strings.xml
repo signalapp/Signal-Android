@@ -2112,6 +2112,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Vyberte jednu z možností prosím</item>
+    <item>Něco nefunguje</item>
+    <item>Požadavek na zlepšení</item>
+    <item>Dotaz</item>
+    <item>Zpětná vazba</item>
+    <item>Jiné</item>
+    <item>Platby (MobileCoin)</item>
+    <item>Dary (Sustainers &amp; Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>

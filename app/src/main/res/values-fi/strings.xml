@@ -703,6 +703,7 @@
   <string name="ManageProfileFragment_your_name">Nimesi</string>
   <string name="ManageProfileFragment_your_username">Käyttäjätunnuksesi</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar-kuvan asettaminen epäonnistui</string>
+  <string name="ManageProfileFragment_badges">Merkit</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ei yhteisiä ryhmiä</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1934,6 +1935,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Valitse vaihtoehdoista</item>
+    <item>Jokin ei toimi</item>
+    <item>Ominaisuustoive</item>
+    <item>Kysymys</item>
+    <item>Palaute</item>
+    <item>Muu</item>
+    <item>Maksu (MobileCoin)</item>
+    <item>Lahjoitus (Ylläpitäjät &amp; Signalin tehostaminen)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -3012,7 +3023,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Säilytetäänkö vanha PIN-koodi?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Vaikuttaa siltä että yritit vaihtaa numerosi, mutta emme pystyneet vahvistamaan että se onnistui.\n\nTarkistetaan uudestaan…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Muutostila vahvistettu</string>
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numeroksesi on vahvistettu %1$s. Jos tämä ei ole numerosi, ole hyvä ja aloita numeronvaihtoprosessi alusta.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Muutostila vahvistamaton</string>
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Puhelinnumeron vaihtopyynnön tilaa ei voitu määrittää.\n\n(Virhe: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Yritä uudelleen</string>
   <string name="ChangeNumberLockActivity__leave">Poistu</string>
@@ -3275,16 +3288,24 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaReviewImagePageFragment__discard_changes">Hylätäänkö muutokset?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
   <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
+  <string name="BadgesOverviewFragment__my_badges">Omat merkkini</string>
+  <string name="BadgesOverviewFragment__featured_badge">Suositeltu merkki</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Näytä merkit profiilissa</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
+  <string name="BadgeSelectionFragment__select_badges">Valitse merkki</string>
   <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Valitse merkki</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Sinun tulee valita merkki</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy tukijaksi</string>
+  <string name="ImageView__badge">Merkki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Kaltaisesti ihmiset pitävät Signalin tehokkaana.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Tue teknologiaa joka on rakennettu sinulle—ei datallesi—liittymällä yhteisöön joka pitää sitä yllä.</string>
   <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string> -->
   <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
   <string name="SubscribeFragment__cancel_subscription">Peruuta tilaus</string>
   <string name="SubscribeFragment__confirm_cancellation">Vahvista peruutus?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Sinua ei veloiteta uudelleen. Merkkisi poistetaan profiilistasi laskutusjaksosi lopussa.</string>
   <string name="SubscribeFragment__not_now">Ei nyt</string>
   <string name="SubscribeFragment__confirm">Vahvista</string>
   <string name="SubscribeFragment__update_subscription">Päivitä tilaus</string>
@@ -3295,28 +3316,45 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="Subscription__s_per_month">%s/kk</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/kk· Uudistetaan %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/kk· Loppuu %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal on voittoa tavoittelematon yhtiö, jolla ei ole mainostajia tai sijoittajia, ja sitä ylläpitävät vain ihmiset, jotka käyttävät ja arvostavat sitä. Tee toistuva kuukausittainen lahjoitus ja vastaanota profiilimerkki, jotta voit jakaa tukesi.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Miksi avustaa?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signalin tiimi on sitoutunut kehittämään avoimen lähdekoodin tietosuojateknologiaa, joka suojaa sananvapautta ja mahdollistaa turvallisen maailmanlaajuisen viestinnän. Sinun panoksesi ruokkii tätä asiaa. Ei mainoksia. Ei seurantalaitteita. Ihan totta.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Panoksesi auttaa maksamaan miljoonien ihmisten ympäri maailmaa yksityiseen ja välittömään viestintään käyttämän sovelluksen kehittämisen, palvelimien ja kaistanleveyden.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Kiitämme tuestasi!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Kiitos boostista!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Olet ansainnut %s merkin! Merkkisi näkyy ihmisille, joiden kanssa keskustelet. Ja, että tuet Signalia.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Näytä profiilissa</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Tee esitelty merkki</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kun sinulla on useampi kuin yksi merkki, voit valita yhden esille muiden nähtäväksi profiilissasi.</string>
   <string name="ManageDonationsFragment__my_support">Antamani tuki</string>
   <string name="ManageDonationsFragment__manage_subscription">Muokkaa tilausta</string>
+  <string name="ManageDonationsFragment__badges">Merkit</string>
   <string name="ManageDonationsFragment__subscription_faq">Tilausten UKK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
   <string name="BoostFragment__give_signal_a_boost">Anna Signalille boostia</string>
+  <string name="BoostFragment__say_thanks_and_earn">Sano \"Kiitos!\" ja ansaitse tehostusmerkki %1$d päivän ajaksi.</string>
   <string name="Boost__enter_custom_amount">Syöltä muu summa</string>
   <string name="Boost__one_time_contribution">Kertalahjoitus</string>
   <string name="MySupportPreference__add_a_signal_boost">Lisää Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/kk</string>
   <string name="MySupportPreference__renews_s">Uudistuu%1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkkisi on vanhentunut</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Sinun %1$s merkki on vanhentunut ja ei ole enää näkyvissä muille profiilissasi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Harkitse kuukausitilaajaksi ryhtymistä, jos haluat jatkaa teknologian tukemista, joka on rakennettu sinulle – ei tietoihisi.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Ryhdy tilaajaksi</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
   <string name="Subscription__verification_failed">Tilauksen vahvistus epäonnistui</string>
+  <string name="Subscription__please_contact_support_for_more_information">Ota yhteyttä tukeen saadaksesi lisätietoja.</string>
   <string name="Subscription__contact_support">Ota yhteyttä tukeen</string>
+  <string name="Subscription__earn_a_s_badge">Ansaitse %1$s merkki</string>
   <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
   <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string>
   <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään joten sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
+  <string name="DonationsErrors__redemption_still_pending">Lunastus odottaa vielä</string>
+  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Et ehkä näe merkkiäsi heti, mutta työskentelemme sen eteen!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruuttaminen epäonnistui</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruuttaminen vaatii internet-yhteyden.</string>
   <!--EOF-->

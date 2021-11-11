@@ -1981,6 +1981,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_data_and_storage__calls">Samtaler</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
   <string name="preferences_data_and_storage__never">Aldri</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi og mobildata</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Kun mobildata</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre samtaler på dårlige nettverk</string>
   <string name="preferences_notifications__messages">Meldinger</string>
   <string name="preferences_notifications__events">Hendelser</string>
@@ -2836,6 +2838,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Sendt mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Å sende høykvalitetsmedier vil bruke mer data.</string>
   <string name="DataAndStorageSettingsFragment__high">Høy</string>
   <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>

@@ -1941,6 +1941,16 @@
   <string name="HelpFragment__debug_log">Log di debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Impossibile inviare i log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Sii il più descrittivo possibile per aiutarci a capire il problema.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Per favore seleziona un\'opzione</item>
+    <item>Qualcosa non funziona</item>
+    <item>Richiesta di funzionalità</item>
+    <item>Domanda</item>
+    <item>Opinione</item>
+    <item>Altro</item>
+    <item>Pagamenti (MobileCoin)</item>
+    <item>Donazioni (Sostenitori &amp; Boost di Signal)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Questo messaggio</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usate di recente</string>
