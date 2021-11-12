@@ -108,15 +108,15 @@ public final class PaymentsValues extends SignalStoreValues {
   public PaymentsAvailability getPaymentsAvailability() {
     Context context = ApplicationDependencies.getApplication();
 
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!TextSecurePreferences.isPushRegistered(context) ||
+        !GeographicalRestrictions.e164Allowed(TextSecurePreferences.getLocalNumber(context)))
+    {
       return PaymentsAvailability.NOT_IN_REGION;
     }
 
     if (FeatureFlags.payments()) {
       if (mobileCoinPaymentsEnabled()) {
         return PaymentsAvailability.WITHDRAW_AND_SEND;
-      } else if (!GeographicalRestrictions.e164Allowed(TextSecurePreferences.getLocalNumber(context))) {
-        return PaymentsAvailability.NOT_IN_REGION;
       } else {
         return PaymentsAvailability.REGISTRATION_AVAILABLE;
       }
