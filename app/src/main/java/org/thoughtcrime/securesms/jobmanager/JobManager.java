@@ -138,6 +138,14 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Returns the state of the first Job that matches the provided filter. Note that there will always be races here, and the result you get back may not be
+   * valid anymore by the time you get it. Use with caution.
+   */
+  public @Nullable JobTracker.JobState getFirstMatchingJobState(@NonNull JobTracker.JobFilter filter) {
+    return jobTracker.getFirstMatchingJobState(filter);
+  }
+
+  /**
    * Enqueues a single job to be run.
    */
   public void add(@NonNull Job job) {
