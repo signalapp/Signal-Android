@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
@@ -88,6 +89,7 @@ public final class FeatureFlags {
   private static final String DONOR_BADGES_MEGAPHONE            = "android.donorBadges.megaphone";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display";
   private static final String CDSH                              = "android.cdsh";
+  private static final String MOBILECOIN_BLACKLIST              = "android.mobilecoin.blacklist";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -128,7 +130,8 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
       DONOR_BADGES_MEGAPHONE,
-      DONOR_BADGES_DISPLAY
+      DONOR_BADGES_DISPLAY,
+      MOBILECOIN_BLACKLIST
   );
 
   @VisibleForTesting
@@ -432,6 +435,10 @@ public final class FeatureFlags {
 
   public static boolean cdsh() {
     return Environment.IS_STAGING && getBoolean(CDSH, false);
+  }
+
+  public static @Nullable String mobileCoinBlacklist() {
+    return getString(MOBILECOIN_BLACKLIST, null);
   }
 
   /** Only for rendering debug info. */

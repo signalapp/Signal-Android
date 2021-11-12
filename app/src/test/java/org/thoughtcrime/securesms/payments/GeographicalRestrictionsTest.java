@@ -13,6 +13,8 @@ import static org.junit.Assume.assumeTrue;
 
 public final class GeographicalRestrictionsTest {
 
+  private static final String INVALID_BLACKLIST = "asdfkljsdhfla";
+
   @Before
   public void setup() {
     Log.initialize(new EmptyLogger());
@@ -20,28 +22,57 @@ public final class GeographicalRestrictionsTest {
 
   @Test
   public void bad_number_not_allowed() {
-    assertFalse(GeographicalRestrictions.e164Allowed("bad_number"));
+    assertFalse(GeographicalRestrictions.e164Allowed("bad_number", null));
   }
 
   @Test
   public void null_not_allowed() {
-    assertFalse(GeographicalRestrictions.e164Allowed(null));
+    assertFalse(GeographicalRestrictions.e164Allowed(null, null));
   }
 
   @Test
   public void uk_allowed() {
-    assertTrue(GeographicalRestrictions.e164Allowed("+441617151234"));
+    assertTrue(GeographicalRestrictions.e164Allowed("+441617151234", null));
   }
 
   @Test
-  public void crimea_not_allowed() {
-    assertFalse(GeographicalRestrictions.e164Allowed("+79782222222"));
+  public void us_not_allowed_in_release() {
+    assumeFalse(BuildConfig.DEBUG);
+    assertFalse(GeographicalRestrictions.e164Allowed("+15407011234", null));
   }
 
   @Test
-  public void blacklist_not_allowed() {
-    for (int code : BuildConfig.MOBILE_COIN_BLACKLIST) {
-      assertFalse(GeographicalRestrictions.regionAllowed(code));
-    }
+  public void givenAnInvalidBlackList_whenIE164AllowedAUkNumber_thenIExpectTrue() {
+    assertTrue(GeographicalRestrictions.e164Allowed("+441617151234", INVALID_BLACKLIST));
+  }
+
+  @Test
+  public void givenAValidBlacklistWithRegionBlock_whenIE164AllowedANumberInThatRegion_thenIExpectFalse() {
+    assertFalse(GeographicalRestrictions.e164Allowed("+73652222222", "7 365"));
+  }
+
+  @Test
+  public void givenAValidBlacklistWithInvalidRegionBlock_whenIE164AllowedANumberInThatRegion_thenIExpectTrue() {
+    assertTrue(GeographicalRestrictions.e164Allowed("+73652222222", "4,7 365 2"));
+  }
+
+  @Test
+  public void givenAValidBlacklist_whenIE164AllowedANumberNotInTheBlacklist_thenIExpectTrue() {
+    assertTrue(GeographicalRestrictions.e164Allowed("+73632222222", "4,7 365,44,33"));
+  }
+
+  @Test
+  public void givenAValidBlacklist_whenIE164AllowedANumberInTheBlacklist_thenIExpectFalse() {
+    assertFalse(GeographicalRestrictions.e164Allowed("+73632222222", "4,7,44,33"));
+  }
+
+  @Test
+  public void givenAValidBlacklistWithExtraSpaces_whenIE164AllowedANumberInTheBlacklist_thenIExpectFalse() {
+    assertFalse(GeographicalRestrictions.e164Allowed("+73632222222", " 4, 7, 44, 33 "));
+  }
+
+  @Test
+  public void givenAValidBlacklistWithAreaCode_whenIE164AllowedANumberInTheBlacklistAreaCode_thenIExpectFalse() {
+    assertFalse(GeographicalRestrictions.e164Allowed("+15065550199", "1 506"));
   }
 }
