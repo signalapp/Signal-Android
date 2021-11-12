@@ -150,4 +150,5 @@ message AccountRecord {
   repeated string                 preferredReactionEmoji = 20;
            bytes                  subscriberId           = 21;
            string                 subscriberCurrencyCode = 22;
+           bool                   displayBadgesOnProfile = 23;
 }

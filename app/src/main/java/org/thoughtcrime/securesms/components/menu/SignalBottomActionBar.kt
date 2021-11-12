@@ -61,7 +61,7 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet) : Line
     }
 
     val widthDp: Float = ViewUtil.pxToDp(width.toFloat())
-    val minButtonWidthDp = 70
+    val minButtonWidthDp = 80
     val maxButtons: Int = (widthDp / minButtonWidthDp).toInt()
     val usableButtonCount = when {
       items.size <= maxButtons -> items.size

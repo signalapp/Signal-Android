@@ -2115,6 +2115,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__debug_log">Cofnod Dadfygio:</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Dewiswch un o\'r rhain</item>
+    <item>Mae Rhywbeth wedi Torri</item>
+    <item>Cais am Nodwedd</item>
+    <item>Cwestiwn</item>
+    <item>Adborth</item>
+    <item>Arall</item>
+    <item>Taliadau(MobileCoin)</item>
+    <item>Rhoddion(Sustainers &amp; Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Defnyddiwyd yn ddiweddar</string>
@@ -3505,7 +3515,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ImageView__badge">Bathodyn</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Mae nerth Signal mewn pobl fel chi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Cefnogwch dechnoleg sydd wedi\'i hadeiladu ar eich cyfer chi—nid ar gyfer eich data—trwy ymuno â\'r gymuned o bobl sy\'n ei chynnal.</string>
-  <string name="SubscribeFragment__donation_amount">Swm Cyfraniad</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Swm Cyfraniad</string> -->
   <string name="SubscribeFragment__more_payment_options">Rhagor o Ddewisiadau Talu</string>
   <string name="SubscribeFragment__cancel_subscription">Diddymu\'r Tanysgrifiad</string>
   <string name="SubscribeFragment__confirm_cancellation">Cadarnhau\'r Dileu?</string>

@@ -72,11 +72,6 @@ class ConversationItemAnimator(
       return false
     }
 
-    if (operation == Operation.CHANGE || slideAnimations.containsKey(viewHolder)) {
-      dispatchAnimationFinished(viewHolder)
-      return false
-    }
-
     if (slideAnimations.containsKey(viewHolder)) {
       dispatchAnimationFinished(viewHolder)
       return false

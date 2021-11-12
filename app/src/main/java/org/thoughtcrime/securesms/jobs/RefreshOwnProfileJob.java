@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.badges.BadgeRepository;
 import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
@@ -30,6 +31,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
+import java.sql.Ref;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -213,9 +215,23 @@ public class RefreshOwnProfileJob extends BaseJob {
       SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
     }
 
-    DatabaseFactory.getRecipientDatabase(context)
-                   .setBadges(Recipient.self().getId(),
-                              badges.stream().map(Badges::fromServiceBadge).collect(Collectors.toList()));
+    boolean userHasVisibleBadges   = badges.stream().anyMatch(SignalServiceProfile.Badge::isVisible);
+    boolean userHasInvisibleBadges = badges.stream().anyMatch(b -> !b.isVisible());
+
+    List<Badge> appBadges = badges.stream().map(Badges::fromServiceBadge).collect(Collectors.toList());
+
+    if (userHasVisibleBadges && userHasInvisibleBadges) {
+      boolean displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile();
+      Log.d(TAG, "Detected mixed visibility of badges. Telling the server to mark them all " +
+                 (displayBadgesOnProfile ? "" : "not") +
+                 " visible.", true);
+
+      BadgeRepository badgeRepository = new BadgeRepository(context);
+      badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile, appBadges).blockingSubscribe();
+    } else {
+      DatabaseFactory.getRecipientDatabase(context)
+                     .setBadges(Recipient.self().getId(), appBadges);
+    }
   }
 
   private static boolean isSubscription(String badgeId) {

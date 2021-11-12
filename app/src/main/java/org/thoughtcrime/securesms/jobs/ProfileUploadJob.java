@@ -43,7 +43,6 @@ public final class ProfileUploadJob extends BaseJob {
     }
 
     ProfileUtil.uploadProfile(context);
-    SignalStore.registrationValues().markHasUploadedProfile();
     Log.i(TAG, "Profile uploaded.");
   }
 

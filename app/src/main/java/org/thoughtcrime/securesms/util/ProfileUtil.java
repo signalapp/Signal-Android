@@ -292,7 +292,7 @@ public final class ProfileUtil {
                                                                                     Optional.fromNullable(paymentsAddress),
                                                                                     avatar,
                                                                                     badgeIds).orNull();
-
+    SignalStore.registrationValues().markHasUploadedProfile();
     DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
   }
 

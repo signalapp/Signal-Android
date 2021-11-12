@@ -3300,7 +3300,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ImageView__badge">Stemë</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal bazohet në njerëz si ju.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Përkrahni teknologjinë e ngritur për ju—jo për të dhënat tuaja—duke u bërë pjesë e bashkësisë së njerëzve që e mbajnë atë gjallë.</string>
-  <string name="SubscribeFragment__donation_amount">Sasi dhurimi</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Sasi dhurimi</string> -->
   <string name="SubscribeFragment__more_payment_options">Më Tepër Mundësi Pagesash</string>
   <string name="SubscribeFragment__cancel_subscription">Anuloje Pajtimin</string>
   <string name="SubscribeFragment__confirm_cancellation">E ripohoni Anulimin?</string>

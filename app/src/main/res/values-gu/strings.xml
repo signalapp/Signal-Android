@@ -3103,7 +3103,7 @@
   <string name="MediaReviewImagePageFragment__discard">કાઢી નાખો</string>
   <string name="SelectFeaturedBadgeFragment__preview">પ્રિવ્યૂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal તમારા જેવા લોકો દ્વારા સંચાલિત છે.</string>
-  <string name="SubscribeFragment__donation_amount">ફાળાની રકમ</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">ફાળાની રકમ</string> -->
   <string name="SubscribeFragment__not_now">અત્યારે નહીં </string>
   <string name="SubscribeFragment__confirm">ખાતરી કરો</string>
   <string name="SubscribeFragment__update">અપડેટ</string>

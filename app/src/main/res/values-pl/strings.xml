@@ -3076,7 +3076,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="payment_info_card_about_mobilecoin">O MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin to nowa, skupiona na prywatności, cyfrowa waluta.</string>
   <string name="payment_info_card_adding_funds">Dodawanie środków</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Możesz dodać środki di użycia w Signal, wysyłając walutę MobileCoin na adres swojego portfela.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Możesz dodać środki do użycia w Signal, wysyłając walutę MobileCoin na adres swojego portfela.</string>
   <string name="payment_info_card_cashing_out">Wypłacanie</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Możesz w każdej chwili spieniężyć MobileCoin w kantorze, który obsługuje walutę MobileCoin. Po prostu przenieś środki na swoje konto w tym kantorze.</string>
   <string name="payment_info_card_hide_this_card">Ukryć tę kartę?</string>
@@ -3495,7 +3495,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ImageView__badge">Odznaka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal funkcjonuje dzięki ludziom takim jak Ty.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Wspieraj technologię stworzoną dla Ciebie — nie dla zdobycia Twoich danych — dołączając do społeczności osób, które pomagają jej funkcjonować.</string>
-  <string name="SubscribeFragment__donation_amount">Wysokość datku</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Wysokość datku</string> -->
   <string name="SubscribeFragment__more_payment_options">Więcej opcji płatności</string>
   <string name="SubscribeFragment__cancel_subscription">Anuluj subskrypcję</string>
   <string name="SubscribeFragment__confirm_cancellation">Potwierdzić anulowanie?</string>

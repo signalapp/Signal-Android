@@ -3400,7 +3400,7 @@
   <string name="ImageView__badge">Значка</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal покрећу особе попут Вас.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Подржите технологију која је изграђена за вас -не за ваше податке- придруживањем заједници људи који је издржавају.</string>
-  <string name="SubscribeFragment__donation_amount">Износ донације</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Износ донације</string> -->
   <string name="SubscribeFragment__more_payment_options">Више опција плаћања</string>
   <string name="SubscribeFragment__cancel_subscription">Отказати претплату</string>
   <string name="SubscribeFragment__confirm_cancellation">Потврдити отказивање?</string>

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MappingAdapter;
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.util.MappingViewHolder;
 public class RecipientViewHolder<T extends RecipientMappingModel<T>> extends MappingViewHolder<T> {
 
   protected final @Nullable AvatarImageView  avatar;
+  protected final @Nullable BadgeImageView   badge;
   protected final @Nullable TextView         name;
   protected final @Nullable EventListener<T> eventListener;
   private   final           boolean          quickContactEnabled;
@@ -30,6 +32,7 @@ public class RecipientViewHolder<T extends RecipientMappingModel<T>> extends Map
     this.quickContactEnabled = quickContactEnabled;
 
     avatar = findViewById(R.id.recipient_view_avatar);
+    badge  = findViewById(R.id.recipient_view_badge);
     name   = findViewById(R.id.recipient_view_name);
   }
 
@@ -37,6 +40,10 @@ public class RecipientViewHolder<T extends RecipientMappingModel<T>> extends Map
   public void bind(@NonNull T model) {
     if (avatar != null) {
       avatar.setRecipient(model.getRecipient(), quickContactEnabled);
+    }
+
+    if (badge != null) {
+      badge.setBadgeFromRecipient(model.getRecipient());
     }
 
     if (name != null) {

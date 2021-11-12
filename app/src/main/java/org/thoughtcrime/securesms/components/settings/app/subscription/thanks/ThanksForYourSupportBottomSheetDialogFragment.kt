@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.visible
@@ -87,7 +88,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     val otherBadges = Recipient.self().badges.filterNot { it.id == args.badge.id }
     val hasOtherBadges = otherBadges.isNotEmpty()
-    val displayingBadges = otherBadges.all { it.visible }
+    val displayingBadges = SignalStore.donationsValues().getDisplayBadgesOnProfile()
 
     if (hasOtherBadges && displayingBadges) {
       switch.isChecked = false
@@ -108,6 +109,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     if (args.isBoost) {
       presentBoostCopy()
+      badgeView.visibility = View.INVISIBLE
       lottie.visible = true
       lottie.playAnimation()
       lottie.addAnimatorListener(object : AnimationCompleteListener() {
@@ -150,7 +152,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       findNavController().popBackStack()
     } else {
       requireActivity().finish()
-      requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
+      requireActivity().startActivity(AppSettingsActivity.manageSubscriptions(requireContext()))
     }
   }
 

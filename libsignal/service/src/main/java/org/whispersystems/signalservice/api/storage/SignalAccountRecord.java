@@ -158,6 +158,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("Subscriber");
       }
 
+      if (!Objects.equals(this.isDisplayBadgesOnProfile(), that.isDisplayBadgesOnProfile())) {
+        diff.add("DisplayBadgesOnProfile");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -250,6 +254,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public Subscriber getSubscriber() {
     return subscriber;
+  }
+
+  public boolean isDisplayBadgesOnProfile() {
+    return proto.getDisplayBadgesOnProfile();
   }
 
   AccountRecord toProto() {
@@ -572,6 +580,11 @@ public final class SignalAccountRecord implements SignalRecord {
         builder.clearSubscriberCurrencyCode();
       }
 
+      return this;
+    }
+
+    public Builder setDisplayBadgesOnProfile(boolean displayBadgesOnProfile) {
+      builder.setDisplayBadgesOnProfile(displayBadgesOnProfile);
       return this;
     }
 

@@ -16,7 +16,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -24,6 +25,8 @@
             android:id="@+id/message"
             android:layout_width="@dimen/conversation_settings_button_strip_button_size"
             android:layout_height="@dimen/conversation_settings_button_strip_button_size"
+            android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
+            android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
             android:background="@drawable/selectable_icon_button"
             android:contentDescription="@string/ConversationSettingsFragment__message"
             android:padding="@dimen/conversation_settings_button_strip_button_padding"
@@ -46,7 +49,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -54,6 +58,8 @@
             android:id="@+id/start_video"
             android:layout_width="@dimen/conversation_settings_button_strip_button_size"
             android:layout_height="@dimen/conversation_settings_button_strip_button_size"
+            android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
+            android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
             android:background="@drawable/selectable_icon_button"
             android:contentDescription="@string/ConversationSettingsFragment__start_video_call"
             android:padding="@dimen/conversation_settings_button_strip_button_padding"
@@ -76,7 +82,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -84,6 +91,8 @@
             android:id="@+id/start_audio"
             android:layout_width="@dimen/conversation_settings_button_strip_button_size"
             android:layout_height="@dimen/conversation_settings_button_strip_button_size"
+            android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
+            android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
             android:background="@drawable/selectable_icon_button"
             android:contentDescription="@string/ConversationSettingsFragment__start_audio_call"
             android:padding="@dimen/conversation_settings_button_strip_button_padding"
@@ -106,7 +115,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -114,6 +124,8 @@
             android:id="@+id/mute"
             android:layout_width="@dimen/conversation_settings_button_strip_button_size"
             android:layout_height="@dimen/conversation_settings_button_strip_button_size"
+            android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
+            android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
             android:background="@drawable/selectable_icon_button"
             android:contentDescription="@string/ConversationSettingsFragment__mute"
             android:padding="@dimen/conversation_settings_button_strip_button_padding"
@@ -139,7 +151,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -147,6 +160,8 @@
             android:id="@+id/search"
             android:layout_width="@dimen/conversation_settings_button_strip_button_size"
             android:layout_height="@dimen/conversation_settings_button_strip_button_size"
+            android:layout_marginStart="@dimen/conversation_settings_button_strip_spacing_half"
+            android:layout_marginEnd="@dimen/conversation_settings_button_strip_spacing_half"
             android:background="@drawable/selectable_icon_button"
             android:contentDescription="@string/ConversationSettingsFragment__search"
             android:padding="@dimen/conversation_settings_button_strip_button_padding"
@@ -155,7 +170,7 @@
 
         <TextView
             android:id="@+id/search_label"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/ConversationSettingsFragment__search"

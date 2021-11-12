@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.libsignal.util.guava.Optional
@@ -36,7 +37,7 @@ class BadgesOverviewViewModel(
       state.copy(
         stage = if (state.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else state.stage,
         allUnlockedBadges = recipient.badges,
-        displayBadgesOnProfile = recipient.badges.firstOrNull()?.visible == true,
+        displayBadgesOnProfile = SignalStore.donationsValues().getDisplayBadgesOnProfile(),
         featuredBadge = recipient.featuredBadge
       )
     }
@@ -61,6 +62,7 @@ class BadgesOverviewViewModel(
   }
 
   fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
+    store.update { it.copy(stage = BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE) }
     disposables += badgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile)
       .subscribe(
         {

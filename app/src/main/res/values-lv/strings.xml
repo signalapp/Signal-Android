@@ -3204,7 +3204,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MediaReviewImagePageFragment__discard">Atmest</string>
   <string name="SelectFeaturedBadgeFragment__preview">Priekšskatīt</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal attīsta un uzlabo tādi cilvēki kā jūs.</string>
-  <string name="SubscribeFragment__donation_amount">Ziedojuma summa</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Ziedojuma summa</string> -->
   <string name="SubscribeFragment__not_now">Ne tagad</string>
   <string name="SubscribeFragment__confirm">Apstiprināt</string>
   <string name="SubscribeFragment__update">Aktualizēt</string>

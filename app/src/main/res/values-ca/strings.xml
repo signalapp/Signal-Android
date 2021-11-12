@@ -1935,6 +1935,16 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item> Seleccioneu una opció.</item>
+    <item>Alguna cosa no funciona.</item>
+    <item>Petició de funció</item>
+    <item>Pregunta</item>
+    <item>Retroacció</item>
+    <item>Altres</item>
+    <item>Pagaments  (MobileCoin) </item>
+    <item>Donacions (Sostenidors i Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
@@ -3291,7 +3301,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ImageView__badge">Insígnia</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">El Signal és alimentat per persones com vosaltres.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ajudeu la tecnologia creada per a vosaltres —no per a les vostres dades— afegint-vos a la comunitat de persones que la sustenten.</string>
-  <string name="SubscribeFragment__donation_amount">Quantitat de la donació</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Quantitat de la donació</string> -->
   <string name="SubscribeFragment__more_payment_options">Més opcions de pagament</string>
   <string name="SubscribeFragment__cancel_subscription">Cancel·la la subscripció</string>
   <string name="SubscribeFragment__confirm_cancellation">En confirmeu la cancel·lació?</string>

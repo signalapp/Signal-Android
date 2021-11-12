@@ -59,7 +59,7 @@ object ActiveSubscriptionPreference {
 
       expiry.text = context.getString(
         R.string.MySupportPreference__renews_s,
-        DateUtils.formatDate(
+        DateUtils.formatDateWithYear(
           Locale.getDefault(),
           model.renewalTimestamp
         )

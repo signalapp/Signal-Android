@@ -3496,7 +3496,7 @@
   <string name="ImageView__badge">Значок</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу людей, поддерживающих её.</string>
-  <string name="SubscribeFragment__donation_amount">Сумма пожертвования</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Сумма пожертвования</string> -->
   <string name="SubscribeFragment__more_payment_options">Больше способов оплаты</string>
   <string name="SubscribeFragment__cancel_subscription">Отменить подписку</string>
   <string name="SubscribeFragment__confirm_cancellation">Подтверждаете отмену?</string>

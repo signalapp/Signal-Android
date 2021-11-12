@@ -3032,7 +3032,7 @@
   <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
   <string name="SelectFeaturedBadgeFragment__preview">ภาพตัวอย่าง</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ขับเคลื่อนโดยผู้คนเช่นคุณ</string>
-  <string name="SubscribeFragment__donation_amount">จำนวนการบริจาค</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">จำนวนการบริจาค</string> -->
   <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="SubscribeFragment__confirm">ยืนยัน</string>
   <string name="SubscribeFragment__update">ปรับรุ่น</string>

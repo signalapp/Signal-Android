@@ -3286,7 +3286,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ImageView__badge">Abzeichen</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze eine Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, indem du dich der Gemeinschaft von Menschen anschließt, die sie aufrechterhalten.</string>
-  <string name="SubscribeFragment__donation_amount">Spendenbetrag</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Spendenbetrag</string> -->
   <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
   <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
   <string name="SubscribeFragment__confirm_cancellation">Kündigung bestätigen?</string>

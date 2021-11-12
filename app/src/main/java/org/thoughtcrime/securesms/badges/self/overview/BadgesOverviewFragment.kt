@@ -68,10 +68,11 @@ class BadgesOverviewFragment : DSLSettingsFragment(
         fadedBadgeId = state.fadedBadgeId
       )
 
-      switchPref(
+      asyncSwitchPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__display_badges_on_profile),
         isChecked = state.displayBadgesOnProfile,
         isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges,
+        isProcessing = state.stage == BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE,
         onClick = {
           viewModel.setDisplayBadgesOnProfile(!state.displayBadgesOnProfile)
         }

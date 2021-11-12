@@ -3292,7 +3292,7 @@ Nouvelle tentative…</string>
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes telles que vous.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Soutenez une technologie conçue pour vous – pas pour vos données – en rejoignant la communauté qui la porte.</string>
-  <string name="SubscribeFragment__donation_amount">Montant du don</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Montant du don</string> -->
   <string name="SubscribeFragment__more_payment_options">Plus d’options de paiement</string>
   <string name="SubscribeFragment__cancel_subscription">Annuler l’abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirmer l’annulation ?</string>

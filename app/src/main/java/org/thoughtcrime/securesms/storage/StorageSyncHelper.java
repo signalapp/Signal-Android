@@ -133,6 +133,7 @@ public final class StorageSyncHelper {
                                                          .setE164(TextSecurePreferences.getLocalNumber(context))
                                                          .setDefaultReactions(SignalStore.emojiValues().getReactions())
                                                          .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))
+                                                         .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -156,6 +157,7 @@ public final class StorageSyncHelper {
     SignalStore.paymentsValues().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orNull()));
     SignalStore.settings().setUniversalExpireTimer(update.getNew().getUniversalExpireTimer());
     SignalStore.emojiValues().setReactions(update.getNew().getDefaultReactions());
+    SignalStore.donationsValues().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
 
     Subscriber subscriber = StorageSyncModels.remoteToLocalSubscriber(update.getNew().getSubscriber());
     if (subscriber != null) {

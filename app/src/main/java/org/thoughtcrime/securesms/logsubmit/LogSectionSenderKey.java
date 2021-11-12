@@ -28,7 +28,7 @@ public class LogSectionSenderKey implements LogSection {
   public @NonNull CharSequence getContent(@NonNull Context context) {
     StringBuilder builder = new StringBuilder();
 
-    builder.append("--- Sender Keys").append("\n\n");
+    builder.append("--- Sender Keys Created By This Device").append("\n\n");
     try (Cursor cursor = DatabaseFactory.getSenderKeyDatabase(context).getAllCreatedBySelf()) {
       builder.append(AsciiArt.tableFor(cursor)).append("\n\n");
     }

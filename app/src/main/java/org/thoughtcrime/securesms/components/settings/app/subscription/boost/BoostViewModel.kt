@@ -8,6 +8,7 @@ import com.google.android.gms.wallet.PaymentData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.math.BigDecimal
+import java.text.DecimalFormatSymbols
 import java.util.Currency
 
 class BoostViewModel(
@@ -32,18 +34,38 @@ class BoostViewModel(
   private val store = Store(BoostState(currencySelection = SignalStore.donationsValues().getBoostCurrency()))
   private val eventPublisher: PublishSubject<DonationEvent> = PublishSubject.create()
   private val disposables = CompositeDisposable()
+  private val networkDisposable: Disposable
 
   val state: LiveData<BoostState> = store.stateLiveData
   val events: Observable<DonationEvent> = eventPublisher.observeOn(AndroidSchedulers.mainThread())
 
   private var boostToPurchase: Boost? = null
 
+  init {
+    networkDisposable = donationPaymentRepository
+      .internetConnectionObserver()
+      .distinctUntilChanged()
+      .subscribe { isConnected ->
+        if (isConnected) {
+          retry()
+        }
+      }
+  }
+
   override fun onCleared() {
-    disposables.clear()
+    networkDisposable.dispose()
+    disposables.dispose()
   }
 
   fun getSupportedCurrencyCodes(): List<String> {
     return store.state.supportedCurrencyCodes
+  }
+
+  fun retry() {
+    if (!disposables.isDisposed && store.state.stage == BoostState.Stage.FAILURE) {
+      store.update { it.copy(stage = BoostState.Stage.INIT) }
+      refresh()
+    }
   }
 
   fun refresh() {
@@ -169,7 +191,7 @@ class BoostViewModel(
   }
 
   fun setCustomAmount(amount: String) {
-    val bigDecimalAmount = if (amount.isEmpty()) {
+    val bigDecimalAmount = if (amount.isEmpty() || amount == DecimalFormatSymbols.getInstance().decimalSeparator.toString()) {
       BigDecimal.ZERO
     } else {
       BigDecimal(amount)

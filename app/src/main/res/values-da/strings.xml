@@ -38,7 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">Pinkode deaktiveret.</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påmindelse?</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer sætning til betalingsgendannelse</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer gendannelsessætning for betalinger</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Registrer sætning</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere din pinkode, skal du registrere din sætning til betalingsgendannelse for at sikre, at du kan gendanne din betalingskonto.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke længere modtage beskeder eller opdateringer fra gruppen, og medlemmer kan ikke tilføje dig til gruppen igen.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlemmer kan ikke tilføje dig til gruppen igen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmer kan tilføje dig til gruppen igen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">I vil kunne sende beskeder og ringe til hinanden, og dit navn og foto deles med dem.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">I vil kunne sende beskeder og ringe til hinanden, og dit navn og billede deles med dem.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokerede personer vil hverken kunne ringe eller sende beskeder til dig.</string>
   <string name="BlockUnblockDialog_unblock_s">Fjern blokering af %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokér</string>
@@ -121,7 +121,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
-  <string name="ClearProfileActivity_remove_group_photo">Fjern gruppefoto?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Fjern gruppebillede?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Opdater Signal</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denne version af appen understøttes ikke længere. Opdatér til den nyeste version for at fortsætte med at sende og modtage beskeder.</string>
@@ -143,7 +143,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør verificere dit sikkerhedsnummer med denne kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Godkend</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">Seneste beskeder</string>
+  <string name="ContactsCursorLoader_recent_chats">Seneste samtaler</string>
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <string name="ContactsCursorLoader_phone_number_search">Søg telefonnummer</string>
@@ -228,7 +228,7 @@
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d af %2$d</string>
   <string name="ConversationActivity_no_results">Ingen resultater</string>
-  <string name="ConversationActivity_sticker_pack_installed">Pakke med klistermærker installeret</string>
+  <string name="ConversationActivity_sticker_pack_installed">Klistermærkepakke installeret</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nyt! Udtryk dig med klistermærker</string>
   <string name="ConversationActivity_cancel">Annuller</string>
   <string name="ConversationActivity_delete_conversation">Slet samtale?</string>
@@ -375,7 +375,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fejl opstået ved oprettelse af profilbilledet</string>
   <string name="CreateProfileActivity_problem_setting_profile">Fejl opstod ved oprettelse af profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil er end-to-end krypteret. Din profil og dens ændringer vil være synlig for dine kontaktpersoner, når du indleder eller accepterer nye samtaler, og når du tilslutter dig nye grupper.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil er end-to-end krypteret. Din profil og dens ændringer vil være synlig for dine kontakter, når du indleder eller accepterer nye samtaler, og når du tilslutter dig nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Vælg avatar</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Gendan fra sikkerhedskopi?</string>
@@ -390,8 +390,8 @@
   <string name="RestoreBackupFragment__choose_folder">Vælg mappe</string>
   <string name="RestoreBackupFragment__not_now">Ikke nu</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Sikkerhedskopier af chats</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Sikkerhedskopier er krypteret med en adgangssætning og gemt på din enhed.</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Sikkerhedskopier af samtaler</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Sikkerhedskopier krypteres med en adgangssætning og gemmes på din enhed.</string>
   <string name="BackupsPreferenceFragment__create_backup">Opret sikkerhedskopi</string>
   <string name="BackupsPreferenceFragment__last_backup">Seneste sikkerhedskopi: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Mappe til sikkerhedskopi</string>
@@ -421,8 +421,8 @@
   <string name="DateUtils_today">I dag</string>
   <string name="DateUtils_yesterday">I går</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">Chatsession genopfrisket</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal bruger end-to-end kryptering, og det kan undertiden være nødvendigt at genopfriske din chatsession. Dette påvirker ikke din chats sikkerhed, men du har muligvis gået glip af en besked fra denne kontakt, og du kan bede dem om at sende det igen.</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Samtalesession genopfrisket</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal bruger end-to-end kryptering, og det kan undertiden være nødvendigt at genopfriske din samtalesession. Dette påvirker ikke din samtales sikkerhed, men du har muligvis gået glip af en besked fra denne kontakt, og du kan bede dem om at sende det igen.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Frakobl \"%s\"?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Enheden vil ikke længere være i stand til at sende og modtage beskeder, hvis den frakobles.</string>
@@ -622,7 +622,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Dette felt er påkrævet</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Oprettelse af gruppe mislykkedes</string>
   <string name="AddGroupDetailsFragment__try_again_later">Prøv igen senere</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontaktperson, der ikke understøtter Signal-grupper, så denne gruppe vil være MMS.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontakt, der ikke understøtter Signal-grupper, så denne gruppe vil være MMS.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tilpassede MMS-gruppenavne og -billeder vil kun være synlige for dig.</string>
   <string name="AddGroupDetailsFragment__remove">Fjern</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
@@ -659,7 +659,7 @@
   <string name="ManageGroupActivity_mute_notifications">Slå notifikationer fra</string>
   <string name="ManageGroupActivity_custom_notifications">Brugerdefinerede notifikationer</string>
   <string name="ManageGroupActivity_mentions">Omtaler</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">Chatfarve &amp; baggrund</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Samtalefarve &amp; baggrund</string>
   <string name="ManageGroupActivity_until_s">Indtil %1$s</string>
   <string name="ManageGroupActivity_always">Altid</string>
   <string name="ManageGroupActivity_off">Deaktiveret</string>
@@ -686,13 +686,13 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Dette er en forældet gruppe. For adgang til nye funktioner som @omtaler og administrator,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Denne forældede gruppe er for stor til at kunne opgraderes til en Ny gruppe. Den maksimale størrelse på grupper er %1$d</string>
   <string name="ManageGroupActivity_upgrade_this_group">opgrader gruppen</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. Inviter dine kontakter til Signal for at chatte privat.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. Inviter dine kontakter til Signal for at skrive og tale privat.</string>
   <string name="ManageGroupActivity_invite_now">Inviter nu</string>
   <string name="ManageGroupActivity_more">mere</string>
   <string name="ManageGroupActivity_add_group_description">Tilføj gruppebeskrivelse…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du modtage notifikationer, når du omtales i ignorerede chats?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du modtage notifikationer, når du omtales i ignorerede samtaler?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Underret mig altid</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Underret mig ikke</string>
   <!--ManageProfileFragment-->
@@ -754,8 +754,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Der opstod en netværksfejl.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dette gruppelink er ikke aktivt</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det lykkedes ikke at få gruppeinformation, prøv igen senere</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du deltage i gruppen, og dele dit navn og foto med dens medlemmer?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator af gruppen skal godkende din anmodning, inden du kan deltage. Når du anmoder om at deltage, vil dit navn og foto blive delt med dens medlemmer</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du deltage i gruppen, og dele dit navn og billede med dens medlemmer?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator af gruppen skal godkende din anmodning, inden du kan deltage. Når du anmoder om at deltage, vil dit navn og billede blive delt med dens medlemmer</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Gruppe · %1$d medlem</item>
     <item quantity="other">Gruppe · %1$d medlemmer</item>
@@ -774,7 +774,7 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Det lykkedes ikke at aktivere gruppelinket, prøv igen senere</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Der opstod en netværksfejl.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Du har ingen rettigheder til at aktivere gruppelinket. Spørg en administrator.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du er i øjeblikket ikke medlem af gruppen.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du er ikke medlem af gruppen i øjeblikket.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Føj \"%1$s\" til gruppen?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Afvis anmodning fra \"%1$s\"?</string>
@@ -933,12 +933,12 @@
   <string name="MessageRecord_s_joined_signal">%s bruger Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverede forsvindende beskeder.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverede forsvindende beskeder.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du indstillede timeren for forsvindende beskeder til %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s indstillede timeren for forsvindende beskeder til %2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Timeren for forsvindende beskeder er indstillet til %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du indstillede udløbstiden for forsvindende beskeder til %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s indstillede udløbstiden for forsvindende beskeder til %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Udløbstiden for forsvindende beskeder er indstillet til %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen blev opdateret til en ny gruppe.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke føjes til den nye gruppe og er blevet inviteret til at deltage.</string>
-  <string name="MessageRecord_chat_session_refreshed">Chatsession genopfrisket</string>
+  <string name="MessageRecord_chat_session_refreshed">Samtalesession genopfrisket</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">En bruger kunne ikke blive tilføjet til den nye gruppe og er blevet inviteret til at deltage.</item>
     <item quantity="other">%1$s medlemmer kunne ikke tilføjes den nye gruppe og er blevet inviteret til at deltage.</item>
@@ -1080,7 +1080,7 @@
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du annullerede din anmodning om at deltage i gruppen.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s annullerede sin anmodning om at deltage i gruppen.</string>
   <!--End of GV2 specific update messages-->
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du har markeret dit sikkerhedsnummer med %s som verificeret</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som verificeret fra en anden enhed</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du har markeret dit sikkerhedsnummer med %s som ubekræftet</string>
@@ -1113,15 +1113,15 @@
   <string name="MessageRequestBottomView_delete">Slet</string>
   <string name="MessageRequestBottomView_block">Blokér</string>
   <string name="MessageRequestBottomView_unblock">Ophæv blokering</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lad %1$s sende dig beskeder og del dit navn og foto med vedkommende? De ved ikke, at du har set deres besked, før du accepterer.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lad %1$s sende dig beskeder og del dit navn og foto med vedkommende? Du modtager ikke nogen beskeder, før du fjerner blokeringen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lad %1$s sende dig beskeder og del dit navn og billede med vedkommende? De ved ikke, at du har set deres besked, før du accepterer.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lad %1$s sende dig beskeder og del dit navn og billede med vedkommende? Du modtager ikke nogen beskeder, før du fjerner blokeringen.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsæt din samtale med gruppen, og del dit navn og billede med dens medlemmer?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Opgrader gruppen for adgang til nye funktioner, som @omtaler og administrator. Medlemmer som ikke har delt deres navn eller billede i gruppen, vil blive inviteret til at deltage</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denne forældede gruppe kan ikke bruges længere, da den er for stor. Den maksimale størrelse på grupper er %1$d</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsæt din samtale med %1$s og del dit navn og billede med dem?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og foto med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og billede med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bliv medlem af gruppen? De ved ikke at du har set deres beskeder, før du accepterer</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og foto med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og billede med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
   <string name="MessageRequestProfileView_view">Vis</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem af %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem af %1$s og %2$s</string>
@@ -1469,7 +1469,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ThreadRecord_you_deleted_this_message">Du slettede beskeden.</string>
   <string name="ThreadRecord_s_is_on_signal">%s bruger Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvindende beskeder deaktiveret</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timer for forsvindende beskeder indstillet til %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Udløbstid for forsvindende beskeder indstillet til %s</string>
   <string name="ThreadRecord_safety_number_changed">Sikkerhedsnummer ændret</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
   <string name="ThreadRecord_you_marked_verified">Markeret som verificeret</string>
@@ -1482,7 +1482,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ThreadRecord_voice_message">Talebesked</string>
   <string name="ThreadRecord_file">Fil</string>
   <string name="ThreadRecord_video">Video</string>
-  <string name="ThreadRecord_chat_session_refreshed">Chatsession genopfrisket</string>
+  <string name="ThreadRecord_chat_session_refreshed">Samtalesession genopfrisket</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Opdater Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tryk for at opdatere</string>
@@ -1512,7 +1512,7 @@ nummer (%s) er ugyldigt</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt bruger en gammel version af Signal. Bed dem om at opdatere før verifikation af dit sikkerhedsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt bruger en nyere version af Signal med en inkompatibel QR-kode. Opdatér venligst for at sammenligne.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannede QR-kode registreres ikke som en korrekt verifikationskode. Prøv at skanne igen</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannede QR-kode er ikke korrekt formateret som verifikationskode for sikkerhedsnummer. Prøv at skanne igen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhedsnummer via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vores Signal-sikkerhedsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det lader til at du ikke har nogen apps at dele til.</string>
@@ -1588,11 +1588,11 @@ nummer (%s) er ugyldigt</string>
   <string name="NotificationChannel_locked_status">Låsestatus</string>
   <string name="NotificationChannel_app_updates">App-opdateringer</string>
   <string name="NotificationChannel_other">Andet</string>
-  <string name="NotificationChannel_group_chats">Chats</string>
+  <string name="NotificationChannel_group_chats">Samtaler</string>
   <string name="NotificationChannel_missing_display_name">Ukendt</string>
   <string name="NotificationChannel_voice_notes">Stemmenoter</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt bruger nu Signal</string>
-  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for meddelelseskanal.</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for notifikationsskanal.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig svar utilgængelig når Signal er låst!</string>
@@ -1720,7 +1720,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen grupper til fælles. Gennemgå anmodninger omhyggeligt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i gruppen. Gennemgå anmodninger omhyggeligt. </string>
   <string name="ConversationUpdateItem_view">Vis</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Tiden for forsvindende besked indstilles til %1$s, når du sender beskeder til dem.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Udløbstiden for forsvindende besked indstilles til %1$s, når du sender beskeder til dem.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspil … Pause</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -1743,7 +1743,7 @@ nummer (%s) er ugyldigt</string>
   <string name="safety_number_change_dialog__join_call">Deltag i opkaldet</string>
   <string name="safety_number_change_dialog__continue_call">Fortsæt opkaldet</string>
   <string name="safety_number_change_dialog__leave_call">Forlad opkaldet</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan have geninstalleret eller skiftet enheder. Bekræft dit sikkerhedsnummer med dem for at sikre privatlivets fred</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan have geninstalleret eller skiftet enheder. Bekræft dit sikkerhedsnummer med dem for at sikre privatlivets fred.</string>
   <string name="safety_number_change_dialog__view">Vis</string>
   <string name="safety_number_change_dialog__previous_verified">Tidligere bekræftet</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
@@ -1798,7 +1798,7 @@ nummer (%s) er ugyldigt</string>
   <string name="expiration_weeks_abbreviated">%du</string>
   <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">Dit sikkerhedsnummer med %s er blevet ændret, og er ikke længere verificeret</string>
+  <string name="IdentityUtil_unverified_banner_one">Dit sikkerhedsnummer med %s er blevet ændret og er ikke længere verificeret.</string>
   <string name="IdentityUtil_unverified_banner_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret</string>
   <string name="IdentityUtil_unverified_banner_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret</string>
   <string name="IdentityUtil_unverified_dialog_one">Dine sikkerhedsnumre med %1$s er blevet ændret og er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller at %1$s bare har geninstalleret Signal.</string>
@@ -1816,7 +1816,7 @@ nummer (%s) er ugyldigt</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Signal\'s krypterede database?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Signals krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Systemets standarddatabase vil ikke blive modificeret eller ændret på nogen måde.</string>
   <string name="database_migration_activity__skip">Spring over</string>
   <string name="database_migration_activity__import">Importér</string>
@@ -1861,7 +1861,7 @@ nummer (%s) er ugyldigt</string>
   <string name="EditAboutFragment_encrypted">Krypteret</string>
   <string name="EditAboutFragment_be_kind">Vær venlig</string>
   <string name="EditAboutFragment_coffee_lover">Kaffeelsker</string>
-  <string name="EditAboutFragment_free_to_chat">Klar til at chatte</string>
+  <string name="EditAboutFragment_free_to_chat">Ledig til samtale</string>
   <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
   <string name="EditAboutFragment_working_on_something_new">Arbejder på noget nyt</string>
   <!--EditProfileFragment-->
@@ -1940,6 +1940,16 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Vælg en mulighed</item>
+    <item>Noget fungerer ikke</item>
+    <item>Anmodning om funktion</item>
+    <item>Spørgsmål</item>
+    <item>Feedback</item>
+    <item>Andet</item>
+    <item>Betalinger (MobileCoin)</item>
+    <item>Donationer (Bidragsydere &amp; Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -1993,8 +2003,8 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tryk på [Enter] sender tekstbeskeder</string>
   <string name="preferences__pref_use_address_book_photos">Brug billeder fra adressebog</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis tilgængelige.</string>
-  <string name="preferences__generate_link_previews">Generer forhåndsvisninger af links</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige.</string>
+  <string name="preferences__generate_link_previews">Generér forhåndsvisninger af links</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger af links direkte fra websteder til beskeder, som du sender.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten</string>
@@ -2060,12 +2070,12 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__dark_theme">Mørkt</string>
   <string name="preferences__appearance">Udseende</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__chat_wallpaper">Chatbaggrund</string>
-  <string name="preferences__chat_color_and_wallpaper">Chatfarve &amp; baggrund</string>
+  <string name="preferences__chat_wallpaper">Samtalebaggrund</string>
+  <string name="preferences__chat_color_and_wallpaper">Samtalefarve &amp; baggrund</string>
   <string name="preferences__disable_pin">Deaktiver pinkode</string>
   <string name="preferences__enable_pin">Aktiver pinkode</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkoden mister du alle data når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere registreringslås, mens pinkoden er deaktiveret.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Pinkoder sørger for at information lagret hos Signal er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontaktpersoner gendannes når du geninstallerer. Du har ikke brug for din pinkode for at åbne appen.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Pinkoder sørger for at information lagret hos Signal er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontakter gendannes når du geninstallerer. Du har ikke brug for din pinkode for at åbne appen.</string>
   <string name="preferences__system_default">Systemstandard</string>
   <string name="preferences__language">Sprog</string>
   <string name="preferences__signal_messages_and_calls">Signal-beskeder og opkald</string>
@@ -2110,13 +2120,13 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences_storage__s_messages">%1$s beskeder</string>
   <string name="preferences_storage__custom">Tilpasset</string>
   <string name="preferences_advanced__use_system_emoji">Anvend system-emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktiver Signal\'s indbyggede emoji-understøttelse</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktiver Signals indbyggede emoji-understøttelse</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren, for at undgå at afsløre din IP-adresse over for din kontakt. Opkaldskvaliteten vil blive forringet.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
   <string name="preferences_app_protection__app_access">App-adgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
-  <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_chats__chats">Samtaler</string>
   <string name="preferences_data_and_storage__manage_storage">Administrer lagerplads</string>
   <string name="preferences_data_and_storage__calls">Opkald</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
@@ -2126,7 +2136,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk</string>
   <string name="preferences_notifications__messages">Beskeder</string>
   <string name="preferences_notifications__events">Begivenheder</string>
-  <string name="preferences_notifications__in_chat_sounds">Chatlyde</string>
+  <string name="preferences_notifications__in_chat_sounds">Samtalelyde</string>
   <string name="preferences_notifications__show">Vis</string>
   <string name="preferences_notifications__calls">Opkald</string>
   <string name="preferences_notifications__ringtone">Ringetone</string>
@@ -2166,7 +2176,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PaymentsAllActivityFragment__sent">Sendt</string>
   <string name="PaymentsAllActivityFragment__received">Modtaget</string>
   <string name="PaymentsHomeFragment__introducing_payments">Introducerer betalinger (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny fortrolighedsfokuseret digital valuta. Aktivér for at komme i gang.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny privatlivsfokuseret digital valuta. Aktivér for at komme i gang.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktiver Betalinger</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktiverer betalinger…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Gendan betalingskonto</string>
@@ -2224,7 +2234,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s på %2$s kl. %3$s</string>
   <string name="PaymentsDetailsFragment__to">Til</string>
   <string name="PaymentsDetailsFragment__from">Fra</string>
-  <string name="PaymentsDetailsFragment__information">Transaktionsdetaljer herunder betalingsbeløb og tidspunkt for transaktionen er en del af MobileCoin-hovedbog.</string>
+  <string name="PaymentsDetailsFragment__information">Transaktionsdetaljer herunder betalingsbeløb og tidspunkt for transaktionen er en del af MobileCoin-registret.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Mønt-oprydningsgebyr</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">Et \"Mønt-oprydningsgebyr\" opkræves, når mønterne i din besiddelse ikke kan kombineres for at fuldføre en transaktion. Oprydning gør det muligt for dig fortsat at sende betalinger.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Ingen yderligere detaljer er tilgængelige for transaktionen</string>
@@ -2332,19 +2342,19 @@ nummer (%s) er ugyldigt</string>
   <string name="conversation_list_settings_shortcut">Genvej til indstillinger</string>
   <string name="conversation_list_search_description">Søg</string>
   <string name="conversation_list__pinned">Fastgjort</string>
-  <string name="conversation_list__chats">Chats</string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan kun fastgøre op til %1$d chats</string>
+  <string name="conversation_list__chats">Samtaler</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan kun fastgøre op til %1$d samtaler</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbillede</string>
   <string name="conversation_list_item_view__archived">Arkiveret</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Åbn kamera</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Der er ingen chats endnu.\nKom i gang ved at sende en besked til en ven.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Der er ingen samtaler endnu.\nKom i gang ved at sende en besked til en ven.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Gendan sikker forbindelse</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">Ignorer ikke længere</string>
+  <string name="conversation_muted__unmute">Slå notifikationer til</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Slå notifikationer fra</string>
   <!--conversation-->
@@ -2374,7 +2384,7 @@ nummer (%s) er ugyldigt</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med udklipsholder</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importér system-SMS\'er</string>
-  <string name="reminder_header_sms_import_text">Tryk for at kopiere din telefons SMS-beskeder til Signal\'s krypterede database.</string>
+  <string name="reminder_header_sms_import_text">Tryk for at kopiere din telefons SMS-beskeder til Signals krypterede database.</string>
   <string name="reminder_header_push_title">Aktiver Signal-beskeder og opkald</string>
   <string name="reminder_header_push_text">Opgrader din kommunikationsoplevelse.</string>
   <string name="reminder_header_service_outage_text">Signal har tekniske problemer. Vi arbejder hårdt på at genoprette servicen så hurtigt som muligt!</string>
@@ -2518,7 +2528,7 @@ nummer (%s) er ugyldigt</string>
   <string name="Permissions_continue">Fortsæt</string>
   <string name="Permissions_not_now">Ikke nu</string>
   <string name="conversation_activity__enable_signal_messages">AKTIVER SIGNAL-BESKEDER</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerer Signal\'s database</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Overførsel af Signals database</string>
   <string name="PushDecryptJob_new_locked_message">Ny låst besked</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås op for at se afventende beskeder</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Adgangssætning til sikkerhedskopi</string>
@@ -2530,8 +2540,8 @@ nummer (%s) er ugyldigt</string>
   <string name="registration_activity__transfer_or_restore_account">Overfør eller gendan konto</string>
   <string name="registration_activity__transfer_account">Overfør konto</string>
   <string name="registration_activity__skip">Spring over</string>
-  <string name="preferences_chats__chat_backups">Sikkerhedskopier af chats</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Sikkerhedskopiér chats til eksternt lager</string>
+  <string name="preferences_chats__chat_backups">Sikkerhedskopier af samtaler</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Sikkerhedskopiér samtaler til eksternt lager</string>
   <string name="preferences_chats__transfer_account">Overfør konto</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til en ny Android-enhed</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Indtast adgangssætning til sikkerhedskopi</string>
@@ -2561,7 +2571,7 @@ nummer (%s) er ugyldigt</string>
   <string name="LocalBackupJob_creating_backup">Opretter sikkerhedskopi…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhedskopiering mislykkedes</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mappe med sikkerhedskopier er blevet slettet eller flyttet.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din sikkerhedskopifil er for stor til at kunne gemmes på enheden</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din sikkerhedskopifil er for stor til at kunne gemmes på denne lagerenhed.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Der er ikke nok plads tilgængelig til at gemme din sikkerhedskopi.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryk for at administrere sikkerhedskopier.</string>
   <string name="ProgressPreference_d_messages_so_far">%d beskeder ind til videre</string>
@@ -2664,7 +2674,7 @@ nummer (%s) er ugyldigt</string>
   <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sørg for følgende tilladelser og tjenester er aktiveret:</string>
   <string name="DeviceTransferSetup__location_permission">Placeringstilladelse</string>
   <string name="DeviceTransferSetup__location_services">Placeringstjenester</string>
-  <string name="DeviceTransferSetup__wifi">Wi-fi</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">På WiFi Direct-skærmen skal du fjerne alle huskede grupper og fjerne linket til inviterede eller forbundne enheder.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-skærm</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prøv at slå Wi-Fi fra og til på begge enheder.</string>
@@ -2721,7 +2731,7 @@ nummer (%s) er ugyldigt</string>
   <string name="OldDeviceTransferLockedDialog__done">Udført</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuller og aktiver denne enhed</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Overfør MOB saldo?</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Overfør MOB-saldo?</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Du har en saldo på %1$s. Hvis du ikke overfører dine penge til en anden wallet-adresse, før du sletter din konto, vil du miste dem for evigt.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Overfør ikke</string>
   <string name="AdvancedPreferenceFragment__transfer">Overfør</string>
@@ -2839,26 +2849,26 @@ nummer (%s) er ugyldigt</string>
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
   <string name="ShareActivity__comma_s">. %1$s</string>
-  <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere chats understøttes kun til Signal-beskeder</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere samtaler er kun understøttet i Signal-beskeder</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
-  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele op til %1$d chats</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele med op til %1$d samtaler</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Videresend besked</string>
   <!--ChatWallpaperActivity-->
-  <string name="ChatWallpaperActivity__chat_wallpaper">Chatbaggrund</string>
+  <string name="ChatWallpaperActivity__chat_wallpaper">Samtalebaggrund</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__chat_color">Chatfarve</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">Nulstil chatfarver</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">Nulstil chatfarve</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">Nulstil chatfarve?</string>
+  <string name="ChatWallpaperFragment__chat_color">Samtalefarve</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Nulstil samtalefarver</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Nulstil samtalefarve</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Nulstil samtalefarve?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Indstil baggrund</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mørkt tema dæmper baggrund</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktnavn</string>
   <string name="ChatWallpaperFragment__reset">Nulstil</string>
   <string name="ChatWallpaperFragment__clear">Fjern</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Forhåndsvisning af baggrund</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du tilsidesætte alle chatfarver?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du tilsidesætte alle samtalefarver?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vil du tilsidesætte alle baggrunde?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Nulstil standardfarver</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Nulstil alle farver</string>
@@ -2874,20 +2884,20 @@ nummer (%s) er ugyldigt</string>
   <string name="ChatWallpaperPreviewActivity__preview">Forhåndsvisning</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Indstil baggrund</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Stryg for at få vist flere baggrunde</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle chats.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle samtaler.</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Indstil baggrund for %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">For at kunne se dit galleri kræves lagertilladelse.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Vælg baggrundsbillede</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Klem for at zoome, træk for at justere.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle chats.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle samtaler.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Indstil baggrund for %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fejl ved opsætning af baggrund.</string>
   <string name="WallpaperCropActivity__blur_photo">Slør billede</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny fortrolighedsfokuseret digital valuta.</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny privatlivsfokuseret digital valuta.</string>
   <string name="payment_info_card_adding_funds">Tilføjer midler</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan tilføje midler til brug i Signal ved at sende MobileCoin til din wallet-adresse.</string>
   <string name="payment_info_card_cashing_out">Udbetaler</string>
@@ -2965,10 +2975,10 @@ nummer (%s) er ugyldigt</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send en besked</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Du har ingen grupper til fælles med denne person. Gennemgå anmodninger nøje, inden du accepterer for at undgå uønskede beskeder.</string>
-  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen af dine kontakter eller personer, du chatter med, er i gruppen. Gennemgå anmodninger nøje, inden du accepterer for at undgå uønskede beskeder.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen af dine kontakter eller personer, du taler med, er i gruppen. Gennemgå anmodninger nøje, inden du accepterer for at undgå uønskede beskeder.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Ang. beskedanmodninger</string>
   <string name="GroupsInCommonMessageRequest__okay">Okay</string>
-  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Her er et smugkig af chatfarven.</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Her er et smugkig på samtalefarven.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Farven er kun synlig for dig.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Gruppebeskrivelse</string>
@@ -2982,7 +2992,7 @@ nummer (%s) er ugyldigt</string>
   <string name="AppSettingsFragment__invite_your_friends">Inviter dine venner</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du bliver spurgt sjældnere med tiden</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil blive spurgt sjældnere med tiden</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Kræv din Signal-pinkode for at registrere dit telefonnummer med Signal igen.</string>
   <string name="AccountSettingsFragment__change_phone_number">Skift telefonnummer</string>
   <!--ChangeNumberFragment-->
@@ -3043,14 +3053,14 @@ nummer (%s) er ugyldigt</string>
   <string name="PrivacySettingsFragment__app_security">App-sikkerhed</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i listen \"Seneste apps\" og i Signal</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardtimer for nye chats</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en timer for forsvindende beskeder, der skal gælde som standard for alle nye chats startet af dig.</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye samtaler</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye samtaler startet af dig.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når funktionen er aktiveret, forsvinder nye sendte og modtagne beskeder i nye chats, som du har startet, efter de er blevet set.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når funktionen er aktiveret, forsvinder nye sendte og modtagne beskeder i chatten, efter de er blevet set.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder, i nye samtaler du starter, forsvinde efter at de er blevet set.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder, i nye samtaler du starter, forsvinde efter at de er blevet set.</string>
   <string name="ExpireTimerSettingsFragment__off">Fra</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 uger</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 uge</string>
@@ -3085,16 +3095,16 @@ nummer (%s) er ugyldigt</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
   <string name="ChatColorSelectionFragment__use_custom_colors">Brug tilpassede farver</string>
-  <string name="ChatColorSelectionFragment__chat_color">Chatfarve</string>
+  <string name="ChatColorSelectionFragment__chat_color">Samtalefarve</string>
   <string name="ChatColorSelectionFragment__edit">Redigér</string>
   <string name="ChatColorSelectionFragment__duplicate">Duplikér</string>
   <string name="ChatColorSelectionFragment__delete">Slet</string>
   <string name="ChatColorSelectionFragment__delete_color">Slet farve</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="one">Denne tilpassede farve bruges i %1$d chat. Vil du slette det for alle chats?</item>
-    <item quantity="other">Denne tilpassede farve bruges i %1$d chats. Vil du slette den for alle chats?</item>
+    <item quantity="other">Denne tilpassede farve bruges i %1$d samtaler. Vil du slette den for alle samtaler?</item>
   </plurals>
-  <string name="ChatColorSelectionFragment__delete_chat_color">Slet chatfarve?</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Slet samtalefarve?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Solid</string>
   <string name="CustomChatColorCreatorFragment__gradient">Farveovergang</string>
@@ -3105,7 +3115,7 @@ nummer (%s) er ugyldigt</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Rediger farve</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
     <item quantity="one">Denne farve bruges i %1$d chat. Vil du gemme ændringer for alle chats?</item>
-    <item quantity="other">Denne farve bruges i %1$d chats. Vil du gemme ændringer for alle chats?</item>
+    <item quantity="other">Denne farve bruges i %1$d samtaler. Vil du gemme ændringer for alle samtaler?</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Øverste kantvælger</string>
@@ -3118,8 +3128,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto-tilstanden matcher farven til baggrunden</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Træk for at ændre retningen af farveovergangen</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">Nye chatfarver</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Vi har skiftet chatfarver for at give dig flere muligheder og gøre chat nemmere at læse.</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">Nye samtalefarver</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Vi har skiftet samtalefarver for at give dig flere muligheder og gøre samtaler nemmere at læse.</string>
   <string name="ChatColorsMegaphone__appearance">Udseende</string>
   <string name="ChatColorsMegaphone__not_now">Ikke nu</string>
   <!--AddAProfilePhotoMegaphone-->
@@ -3170,7 +3180,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Anmodninger &amp; invitationer</string>
   <string name="ConversationSettingsFragment__group_link">Gruppelink</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Tilføj som en kontakt</string>
-  <string name="ConversationSettingsFragment__unmute">Ignorer ikke længere</string>
+  <string name="ConversationSettingsFragment__unmute">Slå notifikationer til</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtale ignoreres indtil %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtale ignoreres for evigt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierede telefonnummer til udklipsholder.</string>
@@ -3296,7 +3306,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ImageView__badge">Emblem</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drevet af personer som dig.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - og ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der understøtte den.</string>
-  <string name="SubscribeFragment__donation_amount">Donationsbeløb</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donationsbeløb</string> -->
   <string name="SubscribeFragment__more_payment_options">Flere betalingsmuligheder</string>
   <string name="SubscribeFragment__cancel_subscription">Opsig abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Bekræft opsigelse?</string>
@@ -3317,7 +3327,7 @@ nummer (%s) er ugyldigt</string>
   <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dit bidrag er med til at betale for udvikling, servere og båndbredde for en app, der bruges af millioner af mennesker rundt om i verden til privat og hurtig kommunikation.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tak for din støtte!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for saltvandsindsprøjtningen!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har gjort dig fortjent til et %s-emblem! Når du viser dit emblem, viser du de personer du chatter med, at du støtter Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har gjort dig fortjent til et %s-emblem! Når du viser dit emblem, viser du de personer du taler med, at du støtter Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gør til fremhævet emblem</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Udført</string>

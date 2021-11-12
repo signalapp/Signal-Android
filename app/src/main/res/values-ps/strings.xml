@@ -3245,7 +3245,7 @@
   <string name="ImageView__badge">بج</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ستاسې په څیر خلکو له خوا ځواکمن شوی دی.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">هغې تکنالوژي څخه ملاتړ کوي کوم چې ستاسې لپاره جوړه شوې ده - نه ستاسې د ډیټا لپاره - د هغو خلکو له ټولنې سره په یو ځای کېدو کوم چې ساتنه او پالنه یې کوي.</string>
-  <string name="SubscribeFragment__donation_amount">د مرستې مقدار</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">د مرستې مقدار</string> -->
   <string name="SubscribeFragment__more_payment_options">د زیاتو پرداختونو غوراوي</string>
   <string name="SubscribeFragment__cancel_subscription">ګډون لغوه کړئ</string>
   <string name="SubscribeFragment__confirm_cancellation">غواړئ لغوه کول تایید کړئ؟</string>

@@ -226,7 +226,11 @@ public class ManageProfileFragment extends LoggingFragment {
   }
 
   private void presentBadge(@NonNull Optional<Badge> badge) {
-    badgeView.setBadge(badge.orNull());
+    if (badge.isPresent() && badge.get().getVisible() && !badge.get().isExpired()) {
+      badgeView.setBadge(badge.orNull());
+    } else {
+      badgeView.setBadge(null);
+    }
   }
 
   private void presentEvent(@NonNull ManageProfileViewModel.Event event) {

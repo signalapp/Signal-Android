@@ -8,8 +8,8 @@
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/badge"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/BadgesOverviewFragment__featured_badge"
         app:badge_size="xlarge"

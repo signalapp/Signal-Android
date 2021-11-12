@@ -3057,7 +3057,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
   <string name="SelectFeaturedBadgeFragment__preview">Xem trước</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal được hỗ trợ bởi những cá nhân như bạn.</string>
-  <string name="SubscribeFragment__donation_amount">Số tiền đóng góp</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Số tiền đóng góp</string> -->
   <string name="SubscribeFragment__not_now">Để sau</string>
   <string name="SubscribeFragment__confirm">Xác nhận</string>
   <string name="SubscribeFragment__update">Cập nhật</string>

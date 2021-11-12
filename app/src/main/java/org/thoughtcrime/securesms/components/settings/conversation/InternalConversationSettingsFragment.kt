@@ -18,11 +18,11 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.keyvalue.DonationsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -162,13 +162,22 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       if (recipient.isSelf) {
         sectionHeaderPref(DSLSettingsText.from("Donations"))
 
-        val subscriberId: String = if (SignalStore.donationsValues().getSubscriber() != null) SignalStore.donationsValues().getSubscriber().toString() else "None"
+        val subscriber: Subscriber? = SignalStore.donationsValues().getSubscriber()
+        val summary = if (subscriber != null) {
+          """currency code: ${subscriber.currencyCode}
+            |subscriber id: ${subscriber.subscriberId.serialize()}
+          """.trimMargin()
+        } else {
+          "None"
+        }
 
         longClickPref(
           title = DSLSettingsText.from("Subscriber ID"),
-          summary = DSLSettingsText.from(subscriberId),
+          summary = DSLSettingsText.from(summary),
           onLongClick = {
-            copyToClipboard(subscriberId)
+            if (subscriber != null) {
+              copyToClipboard(subscriber.subscriberId.serialize())
+            }
           }
         )
       }

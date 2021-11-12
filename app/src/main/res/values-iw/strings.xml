@@ -3503,7 +3503,7 @@
   <string name="ImageView__badge">תג</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ממונע על ידי אנשים כמוך.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">תמוך בטכנולוגיה שנבנתה עבורך—לא עבור הנתונים שלך—ע״י הצטרפות אל קהילת האנשים שמחזיקים אותה.</string>
-  <string name="SubscribeFragment__donation_amount">סכום תרומה</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">סכום תרומה</string> -->
   <string name="SubscribeFragment__more_payment_options">עוד אפשרויות תשלום</string>
   <string name="SubscribeFragment__cancel_subscription">בטל מינוי</string>
   <string name="SubscribeFragment__confirm_cancellation">לאשר ביטול?</string>

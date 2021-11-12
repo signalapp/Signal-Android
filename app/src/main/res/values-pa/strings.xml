@@ -3188,7 +3188,7 @@
   <string name="SelectFeaturedBadgeFragment__preview">ਝਲਕ</string>
   <string name="ImageView__badge">ਬੈਜ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਦਾ ਆਸਰਾ ਹੈ।</string>
-  <string name="SubscribeFragment__donation_amount">ਦਾਨ ਦੀ ਰਕਮ</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">ਦਾਨ ਦੀ ਰਕਮ</string> -->
   <string name="SubscribeFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <string name="SubscribeFragment__confirm">ਪੁਸ਼ਟੀ ਕਰੋ</string>
   <string name="SubscribeFragment__update">ਅੱਪਡੇਟ ਕਰੋ</string>

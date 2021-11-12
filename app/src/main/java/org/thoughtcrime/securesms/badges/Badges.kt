@@ -7,6 +7,7 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -36,8 +37,15 @@ object Badges {
       }
       .forEach { customPref(it) }
 
-    val perRow = context.resources.getInteger(R.integer.badge_columns)
-    val empties = (perRow - (badges.size % perRow)) % perRow
+    val gutter = context.resources.getDimensionPixelSize(R.dimen.dsl_settings_gutter)
+    val buffer = DimensionUnit.DP.toPixels(12f)
+    val gutterExtra = gutter - buffer
+    val badgeSize = DimensionUnit.DP.toPixels(88f)
+    val windowWidth = context.resources.displayMetrics.widthPixels
+    val availableWidth = windowWidth - gutterExtra
+    val perRow = (availableWidth / badgeSize).toInt()
+
+    val empties = ((perRow - (badges.size % perRow)) % perRow)
     repeat(empties) {
       customPref(Badge.EmptyModel())
     }

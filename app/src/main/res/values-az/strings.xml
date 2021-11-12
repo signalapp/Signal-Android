@@ -3297,7 +3297,7 @@
   <string name="ImageView__badge">Nişan</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal, sizin kimi insanların sayəsində güclüdür.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya, onu davam etdirən insan cəmiyyətinə qoşularaq dəstək verin.</string>
-  <string name="SubscribeFragment__donation_amount">İanə məbləği</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">İanə məbləği</string> -->
   <string name="SubscribeFragment__more_payment_options">Daha çox ödəniş seçimləri</string>
   <string name="SubscribeFragment__cancel_subscription">Abunəlikdən imtina</string>
   <string name="SubscribeFragment__confirm_cancellation">İmtinanı təsdiqləyirsiniz?</string>

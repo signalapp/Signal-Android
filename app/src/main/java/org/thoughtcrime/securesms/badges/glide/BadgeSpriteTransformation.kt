@@ -75,6 +75,17 @@ class BadgeSpriteTransformation(
         Density.XXXHDPI to FrameSet(Frame(741, 1, 144, 144), Frame(643, 213, 144, 144))
       )
     ),
+    BADGE_60(
+      "badge_60",
+      mapOf(
+        Density.LDPI to FrameSet(Frame(124, 76, 45, 45), Frame(124, 76, 45, 45)),
+        Density.MDPI to FrameSet(Frame(163, 101, 60, 60), Frame(163, 101, 60, 60)),
+        Density.HDPI to FrameSet(Frame(244, 151, 90, 90), Frame(244, 151, 90, 90)),
+        Density.XHDPI to FrameSet(Frame(323, 201, 120, 120), Frame(323, 201, 120, 120)),
+        Density.XXHDPI to FrameSet(Frame(483, 301, 180, 180), Frame(483, 301, 180, 180)),
+        Density.XXXHDPI to FrameSet(Frame(643, 401, 240, 240), Frame(643, 401, 240, 240))
+      )
+    ),
     XLARGE(
       "xlarge",
       mapOf(
@@ -94,6 +105,7 @@ class BadgeSpriteTransformation(
           1 -> MEDIUM
           2 -> LARGE
           3 -> XLARGE
+          4 -> BADGE_60
           else -> LARGE
         }
       }
@@ -123,7 +135,7 @@ class BadgeSpriteTransformation(
   }
 
   companion object {
-    private const val VERSION = 1
+    private const val VERSION = 2
 
     private fun getDensity(density: String): Density {
       return Density.values().first { it.density == density }

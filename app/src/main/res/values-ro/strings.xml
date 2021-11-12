@@ -3,7 +3,7 @@
   <string name="yes">Da</string>
   <string name="no">Nu</string>
   <string name="delete">Ștergeți</string>
-  <string name="please_wait">Vă rugăm să așteptați…</string>
+  <string name="please_wait">Vă rugăm așteptați…</string>
   <string name="save">Salvează</string>
   <string name="note_to_self">Notă personală</string>
   <!--AbstractNotificationBuilder-->
@@ -2023,6 +2023,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Vă rugăm selectați o opțiune</item>
+    <item>Ceva nu funcționează</item>
+    <item>Solicitare funcționalitate nouă</item>
+    <item>Întrebare</item>
+    <item>Opinie</item>
+    <item>Altceva</item>
+    <item>Plăți (MobileCoin)</item>
+    <item>Donații (Susținători &amp; Signal Boost)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -3396,7 +3406,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ImageView__badge">Insignă</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal este susținut de oameni ca tine.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Sprijiniți tehnologia construită pentru dvs.—nu pentru datele dvs— alăturându-vă comunității de oameni care o susțin.</string>
-  <string name="SubscribeFragment__donation_amount">Sumă donație</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Sumă donație</string> -->
   <string name="SubscribeFragment__more_payment_options">Mai multe opțiuni de plată</string>
   <string name="SubscribeFragment__cancel_subscription">Anulare abonament</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirmați anularea?</string>

@@ -3706,7 +3706,7 @@
   <string name="ImageView__badge">شارة</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">يُشغَّل Signal بِواسِطَة أشخاص مِثلَك.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">دعم التكنولوجيا المصممة لك - وليس لبياناتك - من خلال الانضمام إلى مجتمع الأشخاص الذين يدعمونها.</string>
-  <string name="SubscribeFragment__donation_amount">مَبلَغ التَّبَرُّع</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">مَبلَغ التَّبَرُّع</string> -->
   <string name="SubscribeFragment__more_payment_options">المزيد من خيارات الدفع</string>
   <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
   <string name="SubscribeFragment__confirm_cancellation">تأكيد الإلغاء؟</string>

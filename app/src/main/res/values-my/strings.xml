@@ -2715,7 +2715,7 @@
   <string name="GroupsInCommonMessageRequest__okay">အိုကေ</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
-  <string name="QualitySelectorBottomSheetDialog__standard">áá¯á¶áá¾ááº á¡ááá·áºááá·áº</string>
+  <string name="QualitySelectorBottomSheetDialog__standard">အသင့်အတင့်</string>
   <string name="QualitySelectorBottomSheetDialog__high">မြင့်သော</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
@@ -2769,9 +2769,9 @@
   <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
   <!--DataAndStorageSettingsFragment-->
-  <string name="DataAndStorageSettingsFragment__media_quality">áá®áá®áá¬ á¡áááºá¡âáá½á¸</string>
+  <string name="DataAndStorageSettingsFragment__media_quality">ဓာတ်ပုံ အရည်အသွေး</string>
   <string name="DataAndStorageSettingsFragment__high">မြင့်သော</string>
-  <string name="DataAndStorageSettingsFragment__standard">áá¯á¶áá¾ááº á¡ááá·áºááá·áº</string>
+  <string name="DataAndStorageSettingsFragment__standard">အသင့်အတင့်</string>
   <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">စကားပြောဆိုမှု၏ အရောင်</string>

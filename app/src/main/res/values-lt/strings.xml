@@ -3491,7 +3491,7 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nepavyko atnaujinti profilio</string>
   <string name="ImageView__badge">Ženkliukas</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal veikia dėka tokių žmonių kaip jūs.</string>
-  <string name="SubscribeFragment__donation_amount">Paaukojimo suma</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Paaukojimo suma</string> -->
   <string name="SubscribeFragment__more_payment_options">Daugiau mokėjimo parinkčių</string>
   <string name="SubscribeFragment__not_now">Ne dabar</string>
   <string name="SubscribeFragment__confirm">Patvirtinkite</string>

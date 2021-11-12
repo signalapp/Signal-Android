@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
@@ -38,6 +38,7 @@ class SubscribeViewModel(
   private val store = Store(SubscribeState(currencySelection = SignalStore.donationsValues().getSubscriptionCurrency()))
   private val eventPublisher: PublishSubject<DonationEvent> = PublishSubject.create()
   private val disposables = CompositeDisposable()
+  private val networkDisposable: Disposable
 
   val state: LiveData<SubscribeState> = store.stateLiveData
   val events: Observable<DonationEvent> = eventPublisher.observeOn(AndroidSchedulers.mainThread())
@@ -45,8 +46,20 @@ class SubscribeViewModel(
   private var subscriptionToPurchase: Subscription? = null
   private val activeSubscriptionSubject = PublishSubject.create<ActiveSubscription>()
 
+  init {
+    networkDisposable = donationPaymentRepository
+      .internetConnectionObserver()
+      .distinctUntilChanged()
+      .subscribe { isConnected ->
+        if (isConnected) {
+          retry()
+        }
+      }
+  }
+
   override fun onCleared() {
-    disposables.clear()
+    networkDisposable.dispose()
+    disposables.dispose()
   }
 
   fun getPriceOfSelectedSubscription(): FiatMoney? {
@@ -55,6 +68,13 @@ class SubscribeViewModel(
 
   fun getSelectableCurrencyCodes(): List<String>? {
     return store.state.subscriptions.firstOrNull()?.prices?.map { it.currency.currencyCode }
+  }
+
+  fun retry() {
+    if (!disposables.isDisposed && store.state.stage == SubscribeState.Stage.FAILURE) {
+      store.update { it.copy(stage = SubscribeState.Stage.INIT) }
+      refresh()
+    }
   }
 
   fun refresh() {
@@ -84,7 +104,7 @@ class SubscribeViewModel(
             val usd = PlatformCurrencyUtil.USD
             val newSubscriber = SignalStore.donationsValues().getSubscriber(usd) ?: Subscriber(SubscriberId.generate(), usd.currencyCode)
             SignalStore.donationsValues().setSubscriber(newSubscriber)
-            StorageSyncHelper.scheduleSyncForDataChange()
+            donationPaymentRepository.scheduleSyncForAccountRecordChange()
           }
         }
       },
@@ -145,7 +165,7 @@ class SubscribeViewModel(
       onComplete = {
         eventPublisher.onNext(DonationEvent.SubscriptionCancelled)
         SignalStore.donationsValues().setLastEndOfPeriod(0L)
-        SignalStore.donationsValues().clearLevelOperation()
+        SignalStore.donationsValues().clearLevelOperations()
         SignalStore.donationsValues().markUserManuallyCancelled()
         refreshActiveSubscription()
         store.update { it.copy(stage = SubscribeState.Stage.READY) }

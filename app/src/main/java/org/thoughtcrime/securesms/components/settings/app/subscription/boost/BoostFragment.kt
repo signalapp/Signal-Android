@@ -21,11 +21,18 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationExceptions
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
+import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.models.Progress
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.help.HelpFragment
+import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -39,7 +46,12 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   layoutId = R.layout.boost_bottom_sheet
 ) {
 
-  private val viewModel: BoostViewModel by viewModels(ownerProducer = { requireActivity() })
+  private val viewModel: BoostViewModel by viewModels(
+    factoryProducer = {
+      BoostViewModel.Factory(BoostRepository(ApplicationDependencies.getDonationsService()), donationPaymentComponent.donationPaymentRepository, FETCH_BOOST_TOKEN_REQUEST_CODE)
+    }
+  )
+
   private val lifecycleDisposable = LifecycleDisposable()
 
   private lateinit var boost1AnimationView: LottieAnimationView
@@ -50,6 +62,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   private lateinit var boost6AnimationView: LottieAnimationView
 
   private lateinit var processingDonationPaymentDialog: AlertDialog
+  private lateinit var donationPaymentComponent: DonationPaymentComponent
 
   private val sayThanks: CharSequence by lazy {
     SpannableStringBuilder(requireContext().getString(R.string.BoostFragment__say_thanks_and_earn, 30))
@@ -62,12 +75,15 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
+    donationPaymentComponent = findListener()!!
     viewModel.refresh()
 
     CurrencySelection.register(adapter)
     BadgePreview.register(adapter)
     Boost.register(adapter)
     GooglePayButton.register(adapter)
+    Progress.register(adapter)
+    NetworkFailure.register(adapter)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -111,6 +127,14 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         is DonationEvent.SubscriptionCancellationFailed -> Unit
       }
     }
+    lifecycleDisposable += donationPaymentComponent.googlePayResultPublisher.subscribe {
+      viewModel.onActivityResult(it.requestCode, it.resultCode, it.data)
+    }
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    processingDonationPaymentDialog.hide()
   }
 
   private fun getConfiguration(state: BoostState): DSLConfiguration {
@@ -149,25 +173,39 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         )
       )
 
-      customPref(
-        Boost.SelectionModel(
-          boosts = state.boosts,
-          selectedBoost = state.selectedBoost,
-          currency = state.customAmount.currency,
-          isCustomAmountFocused = state.isCustomAmountFocused,
-          isEnabled = state.stage == BoostState.Stage.READY,
-          onBoostClick = { view, boost ->
-            startAnimationAboveSelectedBoost(view)
-            viewModel.setSelectedBoost(boost)
-          },
-          onCustomAmountChanged = {
-            viewModel.setCustomAmount(it)
-          },
-          onCustomAmountFocusChanged = {
-            viewModel.setCustomAmountFocused(it)
+      @Suppress("CascadeIf")
+      if (state.stage == BoostState.Stage.INIT) {
+        customPref(
+          Boost.LoadingModel()
+        )
+      } else if (state.stage == BoostState.Stage.FAILURE) {
+        space(DimensionUnit.DP.toPixels(20f).toInt())
+        customPref(
+          NetworkFailure.Model {
+            viewModel.retry()
           }
         )
-      )
+      } else {
+        customPref(
+          Boost.SelectionModel(
+            boosts = state.boosts,
+            selectedBoost = state.selectedBoost,
+            currency = state.customAmount.currency,
+            isCustomAmountFocused = state.isCustomAmountFocused,
+            isEnabled = state.stage == BoostState.Stage.READY,
+            onBoostClick = { view, boost ->
+              startAnimationAboveSelectedBoost(view)
+              viewModel.setSelectedBoost(boost)
+            },
+            onCustomAmountChanged = {
+              viewModel.setCustomAmount(it)
+            },
+            onCustomAmountFocusChanged = {
+              viewModel.setCustomAmountFocused(it)
+            }
+          )
+        )
+      }
 
       space(DimensionUnit.DP.toPixels(16f).toInt())
 
@@ -201,7 +239,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
 
   private fun onPaymentError(throwable: Throwable?) {
     if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
-      Log.w(TAG, "Error occurred while redeeming token", throwable)
+      Log.w(TAG, "Timed out while redeeming token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.DonationsErrors__redemption_still_pending)
         .setMessage(R.string.DonationsErrors__you_might_not_see_your_badge_right_away)
@@ -210,8 +248,19 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           findNavController().popBackStack()
         }
         .show()
+    } else if (throwable is DonationExceptions.RedemptionFailed) {
+      Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.DonationsErrors__redemption_failed)
+        .setMessage(R.string.DonationsErrors__please_contact_support)
+        .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
+          dialog.dismiss()
+          requireActivity().finish()
+          requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
+        }
+        .show()
     } else {
-      Log.w(TAG, "Error occurred while processing payment", throwable)
+      Log.w(TAG, "Error occurred while processing payment", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.DonationsErrors__payment_failed)
         .setMessage(R.string.DonationsErrors__your_payment)
@@ -254,5 +303,6 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
 
   companion object {
     private val TAG = Log.tag(BoostFragment::class.java)
+    private const val FETCH_BOOST_TOKEN_REQUEST_CODE = 2000
   }
 }

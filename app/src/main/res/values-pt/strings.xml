@@ -317,8 +317,8 @@
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
-    <item quantity="one">Ler</item>
-    <item quantity="other">Ler</item>
+    <item quantity="one">Lida</item>
+    <item quantity="other">Lidas</item>
   </plurals>
   <plurals name="ConversationListFragment_unread_plural">
     <item quantity="one">Por ler</item>
@@ -337,8 +337,8 @@
     <item quantity="other">Silenciar</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
-    <item quantity="one">Avisar</item>
-    <item quantity="other">Avisar</item>
+    <item quantity="one">Alertar</item>
+    <item quantity="other">Alertar</item>
   </plurals>
   <string name="ConversationListFragment_select">Selecionar</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -1940,6 +1940,16 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Por favor, selecione uma opção </item>
+    <item>Alguma coisa não está a funcionar</item>
+    <item>Pedido de nova funcionalidade</item>
+    <item>Pergunta</item>
+    <item>Feedback</item>
+    <item>Outro</item>
+    <item>Pagamentos (Mobile Coin)</item>
+    <item>Doações (Sustentadores e Melhoria do Signal)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -3296,7 +3306,7 @@
   <string name="ImageView__badge">Crachá</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é feito por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
-  <string name="SubscribeFragment__donation_amount">Montante doado</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Montante doado</string> -->
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirma o concelamento?</string>

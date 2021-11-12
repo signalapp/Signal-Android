@@ -27,14 +27,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24">
 
-        <org.thoughtcrime.securesms.components.AvatarImageView
-            android:id="@+id/toolbar_avatar"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+        <FrameLayout
+            android:id="@+id/toolbar_avatar_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:alpha="0"
             android:translationY="56dp"
-            app:fallbackImageSize="small" />
+            tools:alpha="1"
+            tools:translationY="0dp">
+
+            <org.thoughtcrime.securesms.components.AvatarImageView
+                android:id="@+id/toolbar_avatar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:fallbackImageSize="small" />
+
+            <org.thoughtcrime.securesms.badges.BadgeImageView
+                android:id="@+id/toolbar_badge"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="23dp"
+                app:badge_size="small" />
+
+        </FrameLayout>
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/toolbar_title"
@@ -46,7 +63,9 @@
             android:maxLines="1"
             android:textAppearance="@style/Signal.Text.Title"
             android:translationY="56dp"
-            tools:text="Miles Morales" />
+            tools:alpha="1"
+            tools:text="Miles Morales"
+            tools:translationY="0dp" />
 
     </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 

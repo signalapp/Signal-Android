@@ -2776,7 +2776,7 @@
   <string name="MediaReviewImagePageFragment__discard">తీసివేయు</string>
   <string name="SelectFeaturedBadgeFragment__preview">పూర్వప్రదర్శన</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal మీలాంటి వ్యక్తులచే ఆధారితం.</string>
-  <string name="SubscribeFragment__donation_amount">విరాళం మొత్తం</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">విరాళం మొత్తం</string> -->
   <string name="SubscribeFragment__not_now">ఇప్పుడు కాదు</string>
   <string name="SubscribeFragment__confirm">నిర్ధారించండి</string>
   <string name="SubscribeFragment__update">నవీకరణ </string>
