@@ -1,8 +1,12 @@
 package org.thoughtcrime.securesms.components;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Annotation;
@@ -371,6 +375,27 @@ public class ComposeText extends EmojiEditText {
       return delimiterSearchIndex + 1;
     }
     return -1;
+  }
+
+  @Override
+  public boolean onTextContextMenuItem(int id) {
+    if (id == android.R.id.paste) {
+      ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+      ClipData clipData = clipboardManager.getPrimaryClip();
+      if (clipData != null) {
+        ClipData.Item clipItem = clipData.getItemAt(0);
+        Uri pasteUri = clipItem.getUri();
+        if (pasteUri != null) {
+          ClipDescription clipDescription = clipData.getDescription();
+          String mimeType = clipDescription.getMimeType(0);
+          if (mediaListener != null) {
+            mediaListener.onMediaSelected(pasteUri, mimeType);
+            return true;
+          }
+        }
+      }
+    }
+    return super.onTextContextMenuItem(id);
   }
 
   private static class CommitContentListener implements InputConnectionCompat.OnCommitContentListener {
