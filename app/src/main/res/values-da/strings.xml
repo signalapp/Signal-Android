@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke længere modtage beskeder eller opdateringer fra gruppen, og medlemmer kan ikke tilføje dig til gruppen igen.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlemmer kan ikke tilføje dig til gruppen igen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmer kan tilføje dig til gruppen igen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">I vil kunne sende beskeder og ringe til hinanden, og dit navn og foto deles med dem.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">I vil kunne sende beskeder og ringe til hinanden, og dit navn og billede deles med dem.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokerede personer vil hverken kunne ringe eller sende beskeder til dig.</string>
   <string name="BlockUnblockDialog_unblock_s">Fjern blokering af %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokér</string>
@@ -121,7 +121,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
-  <string name="ClearProfileActivity_remove_group_photo">Fjern gruppefoto?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Fjern gruppebillede?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Opdater Signal</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denne version af appen understøttes ikke længere. Opdatér til den nyeste version for at fortsætte med at sende og modtage beskeder.</string>
@@ -754,8 +754,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Der opstod en netværksfejl.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dette gruppelink er ikke aktivt</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det lykkedes ikke at få gruppeinformation, prøv igen senere</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du deltage i gruppen, og dele dit navn og foto med dens medlemmer?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator af gruppen skal godkende din anmodning, inden du kan deltage. Når du anmoder om at deltage, vil dit navn og foto blive delt med dens medlemmer</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du deltage i gruppen, og dele dit navn og billede med dens medlemmer?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator af gruppen skal godkende din anmodning, inden du kan deltage. Når du anmoder om at deltage, vil dit navn og billede blive delt med dens medlemmer</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Gruppe · %1$d medlem</item>
     <item quantity="other">Gruppe · %1$d medlemmer</item>
@@ -774,7 +774,7 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Det lykkedes ikke at aktivere gruppelinket, prøv igen senere</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Der opstod en netværksfejl.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Du har ingen rettigheder til at aktivere gruppelinket. Spørg en administrator.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du er i øjeblikket ikke medlem af gruppen.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du er ikke medlem af gruppen i øjeblikket.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Føj \"%1$s\" til gruppen?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Afvis anmodning fra \"%1$s\"?</string>
@@ -1113,15 +1113,15 @@
   <string name="MessageRequestBottomView_delete">Slet</string>
   <string name="MessageRequestBottomView_block">Blokér</string>
   <string name="MessageRequestBottomView_unblock">Ophæv blokering</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lad %1$s sende dig beskeder og del dit navn og foto med vedkommende? De ved ikke, at du har set deres besked, før du accepterer.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lad %1$s sende dig beskeder og del dit navn og foto med vedkommende? Du modtager ikke nogen beskeder, før du fjerner blokeringen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lad %1$s sende dig beskeder og del dit navn og billede med vedkommende? De ved ikke, at du har set deres besked, før du accepterer.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lad %1$s sende dig beskeder og del dit navn og billede med vedkommende? Du modtager ikke nogen beskeder, før du fjerner blokeringen.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsæt din samtale med gruppen, og del dit navn og billede med dens medlemmer?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Opgrader gruppen for adgang til nye funktioner, som @omtaler og administrator. Medlemmer som ikke har delt deres navn eller billede i gruppen, vil blive inviteret til at deltage</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denne forældede gruppe kan ikke bruges længere, da den er for stor. Den maksimale størrelse på grupper er %1$d</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsæt din samtale med %1$s og del dit navn og billede med dem?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og foto med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og billede med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bliv medlem af gruppen? De ved ikke at du har set deres beskeder, før du accepterer</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og foto med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og billede med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
   <string name="MessageRequestProfileView_view">Vis</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem af %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem af %1$s og %2$s</string>
@@ -1592,7 +1592,7 @@ nummer (%s) er ugyldigt</string>
   <string name="NotificationChannel_missing_display_name">Ukendt</string>
   <string name="NotificationChannel_voice_notes">Stemmenoter</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt bruger nu Signal</string>
-  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for meddelelseskanal.</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for notifikationsskanal.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig svar utilgængelig når Signal er låst!</string>
@@ -2176,7 +2176,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PaymentsAllActivityFragment__sent">Sendt</string>
   <string name="PaymentsAllActivityFragment__received">Modtaget</string>
   <string name="PaymentsHomeFragment__introducing_payments">Introducerer betalinger (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny fortrolighedsfokuseret digital valuta. Aktivér for at komme i gang.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny privatlivsfokuseret digital valuta. Aktivér for at komme i gang.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktiver Betalinger</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktiverer betalinger…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Gendan betalingskonto</string>
@@ -2234,7 +2234,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s på %2$s kl. %3$s</string>
   <string name="PaymentsDetailsFragment__to">Til</string>
   <string name="PaymentsDetailsFragment__from">Fra</string>
-  <string name="PaymentsDetailsFragment__information">Transaktionsdetaljer herunder betalingsbeløb og tidspunkt for transaktionen er en del af MobileCoin-hovedbog.</string>
+  <string name="PaymentsDetailsFragment__information">Transaktionsdetaljer herunder betalingsbeløb og tidspunkt for transaktionen er en del af MobileCoin-registret.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Mønt-oprydningsgebyr</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">Et \"Mønt-oprydningsgebyr\" opkræves, når mønterne i din besiddelse ikke kan kombineres for at fuldføre en transaktion. Oprydning gør det muligt for dig fortsat at sende betalinger.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Ingen yderligere detaljer er tilgængelige for transaktionen</string>
@@ -2674,7 +2674,7 @@ nummer (%s) er ugyldigt</string>
   <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sørg for følgende tilladelser og tjenester er aktiveret:</string>
   <string name="DeviceTransferSetup__location_permission">Placeringstilladelse</string>
   <string name="DeviceTransferSetup__location_services">Placeringstjenester</string>
-  <string name="DeviceTransferSetup__wifi">Wi-fi</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">På WiFi Direct-skærmen skal du fjerne alle huskede grupper og fjerne linket til inviterede eller forbundne enheder.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-skærm</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prøv at slå Wi-Fi fra og til på begge enheder.</string>
@@ -2731,7 +2731,7 @@ nummer (%s) er ugyldigt</string>
   <string name="OldDeviceTransferLockedDialog__done">Udført</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuller og aktiver denne enhed</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Overfør MOB saldo?</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Overfør MOB-saldo?</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Du har en saldo på %1$s. Hvis du ikke overfører dine penge til en anden wallet-adresse, før du sletter din konto, vil du miste dem for evigt.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Overfør ikke</string>
   <string name="AdvancedPreferenceFragment__transfer">Overfør</string>
@@ -2852,7 +2852,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere samtaler er kun understøttet i Signal-beskeder</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
-  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele op til %1$d samtaler</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele med op til %1$d samtaler</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Videresend besked</string>
   <!--ChatWallpaperActivity-->
@@ -2897,7 +2897,7 @@ nummer (%s) er ugyldigt</string>
   <string name="WallpaperCropActivity__blur_photo">Slør billede</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny fortrolighedsfokuseret digital valuta.</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny privatlivsfokuseret digital valuta.</string>
   <string name="payment_info_card_adding_funds">Tilføjer midler</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan tilføje midler til brug i Signal ved at sende MobileCoin til din wallet-adresse.</string>
   <string name="payment_info_card_cashing_out">Udbetaler</string>
@@ -2992,7 +2992,7 @@ nummer (%s) er ugyldigt</string>
   <string name="AppSettingsFragment__invite_your_friends">Inviter dine venner</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du bliver spurgt sjældnere med tiden</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil blive spurgt sjældnere med tiden</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Kræv din Signal-pinkode for at registrere dit telefonnummer med Signal igen.</string>
   <string name="AccountSettingsFragment__change_phone_number">Skift telefonnummer</string>
   <!--ChangeNumberFragment-->

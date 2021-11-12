@@ -2102,7 +2102,7 @@
   <string name="PaymentsHomeFragment__sent_s">已付給 %1$s</string>
   <string name="PaymentsHomeFragment__received_s">已收取 %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">轉移至交易平台</string>
-  <string name="PaymentsHomeFragment__currency_conversion">貨幣兌換</string>
+  <string name="PaymentsHomeFragment__currency_conversion">貨幣換算</string>
   <string name="PaymentsHomeFragment__deactivate_payments">停用付款</string>
   <string name="PaymentsHomeFragment__recovery_phrase">恢復片語</string>
   <string name="PaymentsHomeFragment__help">說明</string>
@@ -2111,8 +2111,8 @@
   <string name="PaymentsHomeFragment__received_payment">已接收付款</string>
   <string name="PaymentsHomeFragment__processing_payment">處理中付款</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
-  <string name="PaymentsHomeFragment__currency_conversion_not_available">貨幣兌換不可用</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">無法顯示貨幣兌換。請檢查您手機的連線，然後再試一次。</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">貨幣換算不可用</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">無法顯示貨幣換算。請檢查您手機的連線，然後再試一次。</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">付款不適用於您的地區。</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">無法啟用付款。請稍後再試。</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">要停用付款嗎？</string>
@@ -2190,7 +2190,7 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">退格鍵</string>
   <string name="CreatePaymentFragment__add_note">新增備註</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">兌換僅為估算，並非準確。</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">換算僅為估算，並非準確。</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">備註</string>
   <!--ConfirmPaymentFragment-->
@@ -2210,7 +2210,7 @@
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">此人未啟用付款</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">無法請求網絡費用。如要繼續此付款，請輕觸「確定」以重試。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%1$s，匯率為 %2$s</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s，於 %2$s 換算</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">設定貨幣</string>
   <string name="SetCurrencyFragment__all_currencies">所有貨幣</string>

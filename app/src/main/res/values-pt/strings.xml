@@ -1940,6 +1940,16 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Por favor, selecione uma opção </item>
+    <item>Alguma coisa não está a funcionar</item>
+    <item>Pedido de nova funcionalidade</item>
+    <item>Pergunta</item>
+    <item>Feedback</item>
+    <item>Outro</item>
+    <item>Pagamentos (Mobile Coin)</item>
+    <item>Doações (Sustentadores e Melhoria do Signal)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>

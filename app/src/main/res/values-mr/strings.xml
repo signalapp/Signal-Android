@@ -472,7 +472,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">सदस्य जोडायचा?</string>
-  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" मध्ये \"%2$s\" जोडायचे?</string>
+  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ला \"%2$s\" मध्ये जोडायचे ?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" मध्ये \"%2$s\" जोडले.</string>
   <string name="AddToGroupActivity_add_to_group">गटात जोडा</string>
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
@@ -777,7 +777,7 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">आपण सध्या या गटाचे सदस्य नाही.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">”%1$s” ला गटात जोडायचे?</string>
-  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" कडून विनंती नाकारायची?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" ची विनंती नाकारायची?</string>
   <string name="RequestConfirmationDialog_add">जोडा</string>
   <string name="RequestConfirmationDialog_deny">नकार द्या</string>
   <!--ImageEditorHud-->
@@ -1069,14 +1069,14 @@
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने गट लिंक द्वारे सामिल होण्यासाठी विनंती केली.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ने गटामध्ये सामील होण्याची आपली विनंती मान्य केली.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%2$s मधील गटात सामील होण्याच्या विनंतीस %1$s ने मान्यता दिली.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">%1$sकडून गटात सामील होण्याची विनंतीस आपण मान्यता दिली.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">आपल्यास गटामध्ये सामील होण्याची विनंती मंजूर झाली आहे.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s मधील गटात सामील होण्याची विनंती मंजूर झाली आहे.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s"> %2$s कडून गटात सामील होण्याच्या विनंतीला %1$s ने मान्यता दिली.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">%1$s कडून गटात सामील होण्याच्या विनंतीला आपण मान्यता दिली.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">आपली गटामध्ये सामील होण्याची विनंती मंजूर झाली आहे.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s ची गटात सामील होण्याची विनंती मंजूर झाली आहे.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">आपली गटामध्ये सामील होण्याची विनंती प्रशासकाद्वारे नाकारली गेली आहे.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$sमधील गटात सामील होण्याची विनंती %1$sने नाकारली.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$sमधील गटात सामील होण्याची विनंती नाकारली गेली आहे.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$s कडून गटात सामील होण्याची विनंती %1$s ने नाकारली.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s ची गटात सामील होण्याची विनंती नाकारण्यात आली आहे.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">आपण गटात सामील होण्याची आपली विनंती रद्द केली.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ने गटात सामील होण्याची त्यांची विनंती रद्द केली.</string>
   <!--End of GV2 specific update messages-->
@@ -1900,9 +1900,9 @@
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">प्रलंबित</string>
   <string name="message_details_recipient_header__sent_to">यांना पाठवले</string>
-  <string name="message_details_recipient_header__sent_from">याने पाठवले</string>
-  <string name="message_details_recipient_header__delivered_to">याला पोहोचवले</string>
-  <string name="message_details_recipient_header__read_by">याने वाचले</string>
+  <string name="message_details_recipient_header__sent_from">यांनी पाठवले</string>
+  <string name="message_details_recipient_header__delivered_to">यांना पोहोचवले</string>
+  <string name="message_details_recipient_header__read_by">यांनी वाचले</string>
   <string name="message_details_recipient_header__not_sent">पाठवलेले नाही</string>
   <string name="message_details_recipient_header__viewed">यांनी बघितले</string>
   <!--message_Details_recipient-->
@@ -1934,7 +1934,7 @@
   <string name="HelpFragment__how_do_you_feel">आपल्याला कसे वाटत आहे? (पर्यायी)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">आपण का लिहित आहात ते कळवा.</string>
   <string name="HelpFragment__support_info">समर्थन माहिती</string>
-  <string name="HelpFragment__signal_android_support_request">Signal Android समर्थन विनंती</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android सपोर्ट विनंती</string>
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
@@ -1982,7 +1982,7 @@
     <item quantity="other">%d ता</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences_beta">बिटा</string>
+  <string name="preferences_beta">बीटा</string>
   <string name="preferences__sms_mms">SMS आणि MMS</string>
   <string name="preferences__pref_all_sms_title">सर्व SMS प्राप्त करा</string>
   <string name="preferences__pref_all_mms_title">सर्व MMS प्राप्त करा</string>
@@ -2049,7 +2049,7 @@
   <string name="preferences__data_and_storage">डेटा आणि संचयन</string>
   <string name="preferences__storage">संचयन</string>
   <string name="preferences__payments">पेमेंट</string>
-  <string name="preferences__payments_beta">पेमेंट (बिटा)</string>
+  <string name="preferences__payments_beta">पेमेंट (बीटा)</string>
   <string name="preferences__conversation_length_limit">संभाषण लांबी मर्यादा</string>
   <string name="preferences__keep_messages">संदेश ठेवा</string>
   <string name="preferences__clear_message_history">संदेश इतिहास साफ करा</string>
@@ -2163,7 +2163,7 @@
   <string name="PaymentsAllActivityFragment__all">सर्व</string>
   <string name="PaymentsAllActivityFragment__sent">पाठविले</string>
   <string name="PaymentsAllActivityFragment__received">प्राप्त झाले</string>
-  <string name="PaymentsHomeFragment__introducing_payments">सादर करत आहे पेमेंट (बिटा)</string>
+  <string name="PaymentsHomeFragment__introducing_payments">सादर करत आहे पेमेंट (बीटा)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">नवीन गोपनीयता केंद्रित डिजिटल चलन, MobileCoin पाठवण्यासाठी आणि प्राप्त करण्यासाठी Signal वापरा. चालू करण्यासाठी सक्रिय करा.</string>
   <string name="PaymentsHomeFragment__activate_payments">पेमेंट सक्रिय करा</string>
   <string name="PaymentsHomeFragment__activating_payments">पेमेंट सक्रिय करत आहे…</string>
@@ -2198,7 +2198,7 @@
   <string name="PaymentsHomeFragment__payments_deactivated">पेमेंट निष्क्रिय केले गेले.</string>
   <string name="PaymentsHomeFragment__payment_failed">पेमेंट अयशस्वी झाले</string>
   <string name="PaymentsHomeFragment__details">तपशील</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">MobileCoin पाठवण्यासाठी आणि प्राप्त करण्यासाठी आपण Signal चा वापर करू शकता. सर्व पेमेंट MobileCoin आणि MobileCoin वॉलेट च्या वापराच्या अटींच्या अधीन आहेत. हे बिटा वैशिष्ट्य असल्यामुळे आपल्याला काही समस्या उद्भवू शकतात किंवा आपण गमावलेले बॅलंस पुन्हा प्राप्त केले जाऊ शकत नाही.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">MobileCoin पाठवण्यासाठी आणि प्राप्त करण्यासाठी आपण Signal चा वापर करू शकता. सर्व पेमेंट MobileCoin आणि MobileCoin वॉलेट च्या वापराच्या अटींच्या अधीन आहेत. हे बीटा वैशिष्ट्य असल्यामुळे आपल्याला काही समस्या उद्भवू शकतात किंवा आपण गमावलेले बॅलंस पुन्हा प्राप्त केले जाऊ शकत नाही.</string>
   <string name="PaymentsHomeFragment__activate">सक्रिय करा</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin च्या अटी पहा</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal मध्ये पेमेंट यापुढे उपलब्ध नाही. तरीही आपण फंड एक्सचेंजवर स्थानांतरित करू शकता पण आपण यापुढे पेमेंट पाठवू किंवा प्राप्त करू शकत नाही किंवा फंड जोडू शकत नाही.</string>
@@ -2220,7 +2220,7 @@
   <string name="PaymentsDetailsFragment__sent_to_s">%1$s ला पाठवले</string>
   <string name="PaymentsDetailsFragment__you_on_s_at_s">आपण %2$s वर  %1$s</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%2$s वर %1$s वर %3$s</string>
-  <string name="PaymentsDetailsFragment__to">याला</string>
+  <string name="PaymentsDetailsFragment__to">यांना</string>
   <string name="PaymentsDetailsFragment__from">याकडून</string>
   <string name="PaymentsDetailsFragment__information">व्यवहार तपशील ज्यात पेमेंट रक्कम आणि व्यवहाराची वेळ हे MobileCoin लेजरचा एक भाग आहेत.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">कॉइन सफाई फी</string>
@@ -2273,7 +2273,7 @@
   <string name="ConfirmPayment__network_fee">नेटवर्क फी</string>
   <string name="ConfirmPayment__error_getting_fee">फी मिळवण्यात त्रुटी</string>
   <string name="ConfirmPayment__estimated_s">अंदाजे %1$s</string>
-  <string name="ConfirmPayment__to">याला</string>
+  <string name="ConfirmPayment__to">यांना</string>
   <string name="ConfirmPayment__total_amount">एकूण रक्कम</string>
   <string name="ConfirmPayment__balance_s">बॅलंस: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">पेमेंट सबमिट करत आहे…</string>
@@ -2503,7 +2503,7 @@
   <string name="ResearchMegaphone_learn_more">अधिक जाणा</string>
   <string name="ResearchMegaphone_dismiss">रद्द करा</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal संशोधन</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>आम्ही गोपनीयतेमध्ये विश्वास ठेवतो.</b></p><p>Signal आपल्या ट्रॅक किंवा आपला डेटा गोळा करत नाही. सर्वांसाठी Signal सुधारित करण्यासाठी, आम्ही वापरकर्ता अभिप्रायावर अवलंबून असतो,<b> आणि आम्हाला आपण तो दिलेला आवडेल.</b></p><p>आपण Signal चा वापर कसा करता हे समजून घेण्यासाठी आम्ही एक सर्वेक्षण करतो आहे. आपण ओळखले जाल असा कुठलाही डेटा आमचा सर्वेक्षण गोळा करत नाही. आपण अतिरिक्त अभिप्राय शेअर करण्यास इच्छुक असल्यास, आपल्याकडे संपर्क माहिती पुरवण्याचा पर्याय असेल.</p><p>आपल्याकडे देण्यासाठी काही मिनिटे आणि अभिप्राय असल्यास, आम्हाला तो आपल्याकडून ऐकायला आवडेल.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>आम्ही गोपनीयतेमध्ये विश्वास ठेवतो.</b></p><p>Signal आपल्याला ट्रॅक किंवा आपला डेटा गोळा करत नाही. सर्वांसाठी Signal सुधारित करण्यासाठी, आम्ही वापरकर्त्याच्या अभिप्रायावर अवलंबून असतो,<b> आणि आम्हाला आपण तो दिलेला आवडेल.</b></p><p>आपण Signal चा वापर कसा करता हे समजून घेण्यासाठी आम्ही एक सर्वेक्षण करतो आहे. आपण ओळखले जाल असा कुठलाही डेटा आमचे सर्वेक्षण गोळा करत नाही. आपण अतिरिक्त अभिप्राय शेअर करण्यास इच्छुक असल्यास, आपल्याकडे संपर्क माहिती पुरवण्याचा पर्याय असेल.</p><p>आपल्याकडे देण्यासाठी काही मिनिटे आणि अभिप्राय असल्यास, आम्हाला तो आपल्याकडून ऐकायला आवडेल.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">सर्वेक्षण घ्या</string>
   <string name="ResearchMegaphoneDialog_no_thanks">नाही धन्यवाद</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">सर्वेक्षण Alchemer द्वारा सुरक्षित डोमेन surveys.signalusers.org वर होस्ट केलेले आहे</string>
@@ -2728,7 +2728,7 @@
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करा</string>
   <string name="RecipientBottomSheet_add_to_contacts">संपर्कात जोडा</string>
   <string name="RecipientBottomSheet_add_to_a_group">गटात जोडा</string>
-  <string name="RecipientBottomSheet_add_to_another_group">आणखी एक गटात जोडा</string>
+  <string name="RecipientBottomSheet_add_to_another_group">आणखी एका गटात जोडा</string>
   <string name="RecipientBottomSheet_view_safety_number">सुरक्षितता नंबर बघा</string>
   <string name="RecipientBottomSheet_make_admin">प्रशासक बनवा</string>
   <string name="RecipientBottomSheet_remove_as_admin">अॅडमिन म्हणून काढून टाका</string>
@@ -2753,7 +2753,7 @@
   <string name="GroupsLearnMore_paragraph_2">लेगसी गट अजूनतरी नवीन गटांमध्ये श्रेणीसुधारित केले जाऊ शकत नाही, पण ते Signal च्या नवीनतम आवृत्तीवर असल्यास आपण त्याच सदस्यांसोबत नवीन गट तयार करू शकता.</string>
   <string name="GroupsLearnMore_paragraph_3">भविष्यात लेगसी गटांना श्रेणीसुधारित करण्यासाठी Signal एक मार्ग ऑफर करेल.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ही लिंक असलेला कुणीही या गटाचे नाव आणि फोटो आणि सामील होण्याची विनंती पाहू शकतो. याला आपल्या विश्वासातल्या लोकांसह सामायिक करा.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ही लिंक असलेले कोणीही गटाचे नाव आणि फोटो पाहू शकतात आणि सामील होण्याची विनंती करू शकतात. याला आपल्या विश्वासातल्या लोकांसह सामायिक करा.</string>
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ही लिंक असलेला कुणीही या गटाचा नाव आणि फोटो आणि गटात सामील होऊ शकतो. याला आपल्या विश्वासातल्या लोकांसह सामायिक करा.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal द्वारा शेअर करा</string>
   <string name="GroupLinkBottomSheet_copy">कॉपी करा</string>

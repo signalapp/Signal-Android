@@ -2018,7 +2018,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__enable_passphrase">Appvergrendeling met wachtwoord inschakelen</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel de Signal-app en -meldingen met een wachtwoord</string>
   <string name="preferences__screen_security">Meekijkpreventie</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken op je eigen telefoon tegen schermopnames vanuit andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
@@ -2217,7 +2217,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsHomeFragment__details">Details</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Je kunt Signal gebruiken om MobileCoin te verzenden en ontvangen. De gebruiksvoorwaarden van MobileCoin en van de MobileCoin-portemonnee zijn op alle overschrijvingen van toepassing. Dit is een bèta-functionaliteit, dat betekent dat er fouten kunnen voorkomen en het kan voorkomen dat overschrijvingen en krediet verloren gaan en niet hersteld kunnen worden.</string>
   <string name="PaymentsHomeFragment__activate">Inschakelen</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">De voorwaarden van MobileCoin weergeven</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Voorwaarden MobileCoin weergeven</string>
   <string name="PaymentsHomeFragment__payments_not_available">Overschrijvingen via Signal zijn niet langer mogelijk. Je kunt nog wel je krediet omzetten naar een andere valuta maar je kunt niet langer overschrijvingen verzenden of ontvangen of krediet toevoegen.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Krediet toevoegen</string>
@@ -2251,7 +2251,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsTransferFragment__transfer">Overschrijven</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR-code scannen</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Naar: Scan de QR-code of vul het portomonnee-adres in</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Je kunt MobileCoin overschrijven door een deel van je krediet te sturen naar het adres van de portemonnee die je via de beurs hebt gekregen. Dat adres bestaat uit nummers en letters en je vind het meestal onder de QR-code.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Je kunt MobileCoin overschrijven door een deel van je krediet te sturen naar het adres van de portemonnee die je via de beurs hebt gekregen. Dat adres bestaat uit nummers en letters en je vindt het meestal onder de QR-code.</string>
   <string name="PaymentsTransferFragment__next">Volgende</string>
   <string name="PaymentsTransferFragment__invalid_address">Adres ongeldig</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Ga na dat het portemonnee-adres waarnaar je probeert over te schrijven juist is en probeer het opnieuw.</string>
@@ -2261,8 +2261,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal heeft toegang nodig tot de camera om een QR-code the kunnen scannen.</string>
   <string name="PaymentsTransferFragment__settings">Instellingen</string>
   <!--PaymentsTransferQrScanFragment-->
-  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan de QR-code van de portemonnee van de ontvanger</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan de QR-code van der persoon of organisatie naar wie je wilt overschrijven.</string>
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan de QR-code van de ontvanger</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan de QR-code van de persoon of organisatie naar wie je wilt overschrijven.</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Verzoek</string>
   <string name="CreatePaymentFragment__pay">Overschrijven</string>
@@ -2904,7 +2904,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="payment_info_card_about_mobilecoin">Over MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is een nieuw privacygericht digitaal betaalmiddel.</string>
   <string name="payment_info_card_adding_funds">Krediet toevoegen</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Je kunt krediet toevoegen aan Signal door MobileCoin te verzenden naar je portemonnee-adres.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Je kunt krediet aan Signal toevoegen door een hoeveelheid MobileCoin naar je portemonnee-adres te sturen.</string>
   <string name="payment_info_card_cashing_out">Uitbetalen</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Je kunt op elk moment je MobileCoin laten uitbetalen via een beurs die MobileCoin ondersteund. Je hoeft slechts over te schrijven naar jouw account bij die beurs.</string>
   <string name="payment_info_card_hide_this_card">Deze informatie verbergen?</string>
@@ -2929,7 +2929,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Herstel-zin weergeven</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Je krediet wordt automatisch hersteld wanneer je Signal opnieuw installeert en je Signal-pincode invult. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Je krediet wordt automatisch hersteld wanneer je Signal opnieuw installeert en daarbij je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstel-zin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen als je toegang hebt verloren.</string>
   <string name="PaymentsRecoveryStartFragment__start">Beginnen</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Handmatig invullen</string>
