@@ -64,47 +64,16 @@ public abstract class Database {
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
-  protected void notifyStickerListeners() {
-    context.getContentResolver().notifyChange(DatabaseContentProviders.Sticker.CONTENT_URI, null);
-  }
-
   protected void notifyStickerPackListeners() {
     ApplicationDependencies.getDatabaseObserver().notifyStickerPackObservers();
   }
 
-  @Deprecated
-  protected void setNotifyConversationListeners(Cursor cursor, long threadId) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getUriForThread(threadId));
-  }
-
-  @Deprecated
-  protected void setNotifyConversationListeners(Cursor cursor) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getUriForAllThreads());
-  }
-
-  @Deprecated
-  protected void setNotifyVerboseConversationListeners(Cursor cursor, long threadId) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId));
-  }
-
-  @Deprecated
-  protected void setNotifyStickerListeners(Cursor cursor) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Sticker.CONTENT_URI);
-  }
-
-  @Deprecated
-  protected void setNotifyStickerPackListeners(Cursor cursor) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.StickerPack.CONTENT_URI);
-  }
-
-  protected void registerAttachmentListeners(@NonNull ContentObserver observer) {
-    context.getContentResolver().registerContentObserver(DatabaseContentProviders.Attachment.CONTENT_URI,
-                                                         true,
-                                                         observer);
+  protected void notifyStickerListeners() {
+    ApplicationDependencies.getDatabaseObserver().notifyStickerObservers();
   }
 
   protected void notifyAttachmentListeners() {
-    context.getContentResolver().notifyChange(DatabaseContentProviders.Attachment.CONTENT_URI, null);
+    ApplicationDependencies.getDatabaseObserver().notifyAttachmentObservers();
   }
 
   public void reset(SQLCipherOpenHelper databaseHelper) {

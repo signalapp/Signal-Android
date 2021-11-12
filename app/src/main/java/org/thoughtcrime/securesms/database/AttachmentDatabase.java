@@ -317,15 +317,6 @@ public class AttachmentDatabase extends Database {
     return false;
   }
 
-  public boolean hasAttachmentFilesForMessage(long mmsId) {
-    String   selection = MMS_ID + " = ? AND (" + DATA + " NOT NULL OR " + TRANSFER_STATE + " != ?)";
-    String[] args      = new String[] { String.valueOf(mmsId), String.valueOf(TRANSFER_PROGRESS_DONE) };
-
-    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, "1")) {
-      return cursor != null && cursor.moveToFirst();
-    }
-  }
-
   public @NonNull List<DatabaseAttachment> getPendingAttachments() {
     final SQLiteDatabase           database    = databaseHelper.getSignalReadableDatabase();
     final List<DatabaseAttachment> attachments = new LinkedList<>();
@@ -343,8 +334,7 @@ public class AttachmentDatabase extends Database {
     return attachments;
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
-  public void deleteAttachmentsForMessage(long mmsId) {
+  public boolean deleteAttachmentsForMessage(long mmsId) {
     Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: " + mmsId);
 
     SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
@@ -365,8 +355,10 @@ public class AttachmentDatabase extends Database {
         cursor.close();
     }
 
-    database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
+    int deleteCount = database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
     notifyAttachmentListeners();
+
+    return deleteCount > 0;
   }
 
   /**
@@ -631,6 +623,7 @@ public class AttachmentDatabase extends Database {
 
       notifyConversationListeners(threadId);
       notifyConversationListListeners();
+      notifyAttachmentListeners();
     }
 
     if (transferFile != null) {
@@ -1273,6 +1266,9 @@ public class AttachmentDatabase extends Database {
     Log.d(TAG, "Inserting attachment for mms id: " + mmsId);
     SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
+    AttachmentId attachmentId = null;
+    boolean      notifyPacks  = false;
+
     database.beginTransaction();
     try {
       DataInfo       dataInfo        = null;
@@ -1347,20 +1343,23 @@ public class AttachmentDatabase extends Database {
         }
       }
 
-      boolean      notifyPacks  = attachment.isSticker() && !hasStickerAttachments();
-      long         rowId        = database.insert(TABLE_NAME, null, contentValues);
-      AttachmentId attachmentId = new AttachmentId(rowId, uniqueId);
+      long rowId = database.insert(TABLE_NAME, null, contentValues);
 
-      if (notifyPacks) {
-        notifyStickerPackListeners();
-      }
+      attachmentId = new AttachmentId(rowId, uniqueId);
+      notifyPacks  = attachment.isSticker() && !hasStickerAttachments();
 
       database.setTransactionSuccessful();
-
-      return attachmentId;
     } finally {
       database.endTransaction();
     }
+
+    if (notifyPacks) {
+      notifyStickerPackListeners();
+    }
+
+    notifyAttachmentListeners();
+
+    return attachmentId;
   }
 
   private @Nullable DatabaseAttachment findTemplateAttachment(@NonNull String dataHash) {

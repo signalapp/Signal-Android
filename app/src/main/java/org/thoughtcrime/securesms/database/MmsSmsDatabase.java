@@ -200,24 +200,11 @@ public class MmsSmsDatabase extends Database {
     String         limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
     String         query     = buildQuery(PROJECTION, selection, order, limitStr, false);
 
-    Cursor cursor = db.rawQuery(query, null);
-    setNotifyConversationListeners(cursor, threadId);
-
-    return cursor;
+    return db.rawQuery(query, null);
   }
 
   public Cursor getConversation(long threadId) {
     return getConversation(threadId, 0, 0);
-  }
-
-  public Cursor getIdentityConflictMessagesForThread(long threadId) {
-    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.MISMATCHED_IDENTITIES + " IS NOT NULL";
-
-    Cursor cursor = queryTables(PROJECTION, selection, order, null);
-    setNotifyConversationListeners(cursor, threadId);
-
-    return cursor;
   }
 
   public @NonNull MessageRecord getConversationSnippet(long threadId) throws NoSuchMessageException {

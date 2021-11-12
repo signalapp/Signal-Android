@@ -275,16 +275,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public Cursor getMessageCursor(long messageId) {
-    Cursor cursor = internalGetMessage(messageId);
-    setNotifyConversationListeners(cursor, getThreadIdForMessage(messageId));
-    return cursor;
-  }
-
-  @Override
-  public Cursor getVerboseMessageCursor(long messageId) {
-    Cursor cursor = internalGetMessage(messageId);
-    setNotifyVerboseConversationListeners(cursor, getThreadIdForMessage(messageId));
-    return cursor;
+    return internalGetMessage(messageId);
   }
 
   @Override
@@ -843,6 +834,8 @@ public class MmsDatabase extends MessageDatabase {
 
     long threadId;
 
+    boolean deletedAttachments = false;
+
     db.beginTransaction();
     try {
       ContentValues values = new ContentValues();
@@ -856,7 +849,7 @@ public class MmsDatabase extends MessageDatabase {
       values.putNull(SHARED_CONTACTS);
       db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(messageId) });
 
-      DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentsForMessage(messageId);
+      deletedAttachments = DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentsForMessage(messageId);
       DatabaseFactory.getMentionDatabase(context).deleteMentionsForMessage(messageId);
       DatabaseFactory.getMessageLogDatabase(context).deleteAllRelatedToMessage(messageId, true);
 
@@ -866,8 +859,13 @@ public class MmsDatabase extends MessageDatabase {
     } finally {
       db.endTransaction();
     }
+
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
+
+    if (deletedAttachments) {
+      ApplicationDependencies.getDatabaseObserver().notifyAttachmentObservers();
+    }
   }
 
   @Override

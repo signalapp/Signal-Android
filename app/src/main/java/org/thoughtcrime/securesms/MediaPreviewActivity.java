@@ -568,23 +568,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       if (item == 0) {
         viewPagerListener.onPageSelected(0);
       }
-
-      cursor.registerContentObserver(new ContentObserver(new Handler(getMainLooper())) {
-        @Override
-        public void onChange(boolean selfChange) {
-          onMediaChange();
-        }
-      });
     } else {
       mediaNotAvailable();
-    }
-  }
-
-  private void onMediaChange() {
-    MediaItemAdapter adapter = (MediaItemAdapter) mediaPager.getAdapter();
-
-    if (adapter != null) {
-      adapter.checkMedia(mediaPager.getCurrentItem());
     }
   }
 
@@ -700,11 +685,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     @Override
     public boolean hasFragmentFor(int position) {
       return mediaPreviewFragment != null;
-    }
-
-    @Override
-    public void checkMedia(int currentItem) {
-
     }
   }
 
@@ -824,14 +804,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       return mediaFragments.containsKey(position);
     }
 
-    @Override
-    public void checkMedia(int position) {
-      MediaPreviewFragment fragment = mediaFragments.get(position);
-      if (fragment != null) {
-        fragment.checkMediaStillAvailable();
-      }
-    }
-
     private int getCursorPosition(int position) {
       if (leftIsRecent) return position;
       else              return cursor.getCount() - 1 - position;
@@ -870,6 +842,5 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     void pause(int position);
     @Nullable View getPlaybackControls(int position);
     boolean hasFragmentFor(int position);
-    void checkMedia(int currentItem);
   }
 }

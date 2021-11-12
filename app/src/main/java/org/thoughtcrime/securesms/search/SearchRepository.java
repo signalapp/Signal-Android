@@ -14,7 +14,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
-import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MentionDatabase;
@@ -118,7 +117,7 @@ public class SearchRepository {
 
   public void query(@NonNull String query, long threadId, @NonNull Callback<List<MessageResult>> callback) {
     if (TextUtils.isEmpty(query)) {
-      callback.onResult(CursorList.emptyList());
+      callback.onResult(Collections.emptyList());
       return;
     }
 
@@ -345,11 +344,11 @@ public class SearchRepository {
     return body;
   }
 
-  private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull CursorList.ModelBuilder<T> builder) {
+  private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull ModelBuilder<T> builder) {
     return readToList(cursor, builder, -1);
   }
 
-  private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull CursorList.ModelBuilder<T> builder, int limit) {
+  private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull ModelBuilder<T> builder, int limit) {
     if (cursor == null) {
       return Collections.emptyList();
     }
@@ -396,7 +395,7 @@ public class SearchRepository {
     return combined;
   }
 
-  private static class RecipientModelBuilder implements CursorList.ModelBuilder<Recipient> {
+  private static class RecipientModelBuilder implements ModelBuilder<Recipient> {
 
     @Override
     public Recipient build(@NonNull Cursor cursor) {
@@ -405,7 +404,7 @@ public class SearchRepository {
     }
   }
 
-  private static class ThreadModelBuilder implements CursorList.ModelBuilder<ThreadRecord> {
+  private static class ThreadModelBuilder implements ModelBuilder<ThreadRecord> {
 
     private final ThreadDatabase threadDatabase;
 
@@ -419,7 +418,7 @@ public class SearchRepository {
     }
   }
 
-  private static class MessageModelBuilder implements CursorList.ModelBuilder<MessageResult> {
+  private static class MessageModelBuilder implements ModelBuilder<MessageResult> {
 
     @Override
     public MessageResult build(@NonNull Cursor cursor) {
@@ -440,5 +439,9 @@ public class SearchRepository {
 
   public interface Callback<E> {
     void onResult(@NonNull E result);
+  }
+
+  public interface ModelBuilder<T> {
+    T build(@NonNull Cursor cursor);
   }
 }

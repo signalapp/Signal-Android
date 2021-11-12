@@ -1321,13 +1321,6 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Cursor getVerboseMessageCursor(long messageId) {
-    Cursor cursor = getMessageCursor(messageId);
-    setNotifyVerboseConversationListeners(cursor, getThreadIdForMessage(messageId));
-    return cursor;
-  }
-
-  @Override
   public Cursor getMessageCursor(long messageId) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
     return db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[] {messageId + ""}, null, null, null);
