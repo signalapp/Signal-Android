@@ -80,12 +80,6 @@ def abiPostFix = ['universal'   : 0,
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
 def selectableVariants = [
-        'internalProdFlipper',
-        'internalProdPerf',
-        'internalProdRelease',
-        'internalStagingFlipper',
-        'internalStagingPerf',
-        'internalStagingRelease',
         'nightlyProdFlipper',
         'nightlyProdPerf',
         'nightlyProdRelease',
@@ -297,14 +291,6 @@ android {
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"website\""
-        }
-
-        internal {
-            dimension 'distribution'
-            ext.websiteUpdateUrl = "null"
-            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
-            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
-            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"internal\""
         }
 
         nightly {
