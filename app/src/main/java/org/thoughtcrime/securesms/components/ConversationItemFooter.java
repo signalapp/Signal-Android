@@ -246,7 +246,7 @@ public class ConversationItemFooter extends ConstraintLayout {
                                });
 
     if (isOutgoing) {
-      dateView.setMaxWidth(ViewUtil.dpToPx(32));
+      dateView.setMaxWidth(ViewUtil.dpToPx(28));
     } else {
       ConstraintSet constraintSet = new ConstraintSet();
       constraintSet.clone(this);
