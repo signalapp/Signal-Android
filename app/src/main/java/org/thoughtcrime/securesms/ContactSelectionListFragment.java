@@ -746,7 +746,11 @@ public final class ContactSelectionListFragment extends LoggingFragment
       return;
     }
 
-    TransitionManager.beginDelayedTransition(constraintLayout, new AutoTransition().setDuration(CHIP_GROUP_REVEAL_DURATION_MS));
+    AutoTransition transition = new AutoTransition();
+    transition.setDuration(CHIP_GROUP_REVEAL_DURATION_MS);
+    transition.excludeChildren(recyclerView, true);
+    transition.excludeTarget(recyclerView, true);
+    TransitionManager.beginDelayedTransition(constraintLayout, transition);
 
     ConstraintSet constraintSet = new ConstraintSet();
     constraintSet.clone(constraintLayout);
