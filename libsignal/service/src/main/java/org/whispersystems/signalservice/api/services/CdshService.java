@@ -6,6 +6,7 @@ import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.TrustStore;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
@@ -122,6 +123,16 @@ public final class CdshService {
         }
 
         @Override
+        public void onClosing(WebSocket webSocket, int code, String reason) {
+          if (code != 1000) {
+            Log.w(TAG, "Remote side is closing with non-normal code " + code);
+            webSocket.close(1000, "Remote closed with code " + code);
+            stage.set(Stage.FAILURE);
+            emitter.onSuccess(ServiceResponse.forApplicationError(new NonSuccessfulResponseCodeException(code), code, null));
+          }
+        }
+
+        @Override
         public void onFailure(WebSocket webSocket, Throwable t, Response response) {
           emitter.onSuccess(ServiceResponse.forApplicationError(t, response != null ? response.code() : 0, null));
           stage.set(Stage.FAILURE);
@@ -130,6 +141,7 @@ public final class CdshService {
       });
 
       webSocket.send(ByteString.of(enclave.initialRequest()));
+      emitter.setCancellable(() -> webSocket.close(1000, "OK"));
     });
   }
 
