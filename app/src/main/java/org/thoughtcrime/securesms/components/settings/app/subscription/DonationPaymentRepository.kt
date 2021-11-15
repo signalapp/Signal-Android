@@ -17,6 +17,7 @@ import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
@@ -103,7 +104,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   fun continuePayment(price: FiatMoney, paymentData: PaymentData): Completable {
     Log.d(TAG, "Creating payment intent...", true)
-    return stripeApi.createPaymentIntent(price)
+    return stripeApi.createPaymentIntent(price, application.getString(R.string.Boost__thank_you_for_your_donation))
       .onErrorResumeNext { Single.error(DonationExceptions.SetupFailed(it)) }
       .flatMapCompletable { result ->
         Log.d(TAG, "Created payment intent.", true)
@@ -280,7 +281,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   override fun fetchPaymentIntent(price: FiatMoney, description: String?): Single<StripeApi.PaymentIntent> {
     return ApplicationDependencies
       .getDonationsService()
-      .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode)
+      .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, description)
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
       .map {
         StripeApi.PaymentIntent(it.id, it.clientSecret)

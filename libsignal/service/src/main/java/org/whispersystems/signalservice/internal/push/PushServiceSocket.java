@@ -876,8 +876,8 @@ public class PushServiceSocket {
     makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
   }
 
-  public SubscriptionClientSecret createBoostPaymentMethod(String currencyCode, long amount) throws IOException {
-    String payload = JsonUtil.toJson(new DonationIntentPayload(amount, currencyCode));
+  public SubscriptionClientSecret createBoostPaymentMethod(String currencyCode, long amount, String description) throws IOException {
+    String payload = JsonUtil.toJson(new DonationIntentPayload(amount, currencyCode, description));
     String result  = makeServiceRequestWithoutAuthentication(CREATE_BOOST_PAYMENT_INTENT, "POST", payload);
     return JsonUtil.fromJsonResponse(result, SubscriptionClientSecret.class);
   }

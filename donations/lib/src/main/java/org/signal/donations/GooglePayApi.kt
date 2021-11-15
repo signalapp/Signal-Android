@@ -114,7 +114,7 @@ class GooglePayApi(
       put("merchantInfo", merchantInfo)
       put("allowedPaymentMethods", JSONArray().put(cardPaymentMethod()))
       put("transactionInfo", getTransactionInfo(price, label))
-      put("emailRequired", false)
+      put("emailRequired", true)
       put("shippingAddressRequired", false)
     }
   }

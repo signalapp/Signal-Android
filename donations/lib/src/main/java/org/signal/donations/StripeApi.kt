@@ -69,10 +69,15 @@ class StripeApi(
   fun confirmPaymentIntent(paymentSource: PaymentSource, paymentIntent: PaymentIntent): Completable = Completable.fromAction {
     val paymentMethodId = createPaymentMethodAndParseId(paymentSource)
 
-    val parameters = mapOf(
+    val parameters = mutableMapOf(
       "client_secret" to paymentIntent.clientSecret,
       "payment_method" to paymentMethodId
     )
+
+    val email = paymentSource.email()
+    if (email != null) {
+      parameters["receipt_email"] = email
+    }
 
     postForm("payment_intents/${paymentIntent.id}/confirm", parameters)
   }.subscribeOn(Schedulers.io())
@@ -344,5 +349,6 @@ class StripeApi(
 
   interface PaymentSource {
     fun parameterize(): JSONObject
+    fun email(): String?
   }
 }
