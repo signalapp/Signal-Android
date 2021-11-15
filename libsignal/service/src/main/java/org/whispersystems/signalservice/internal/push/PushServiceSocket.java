@@ -258,6 +258,8 @@ public class PushServiceSocket {
   private static final String BOOST_RECEIPT_CREDENTIALS           = "/v1/subscription/boost/receipt_credentials";
   private static final String BOOST_BADGES                        = "/v1/subscription/boost/badges";
 
+  private static final String CDSH_AUTH = "/v2/directory/auth";
+
   private static final String REPORT_SPAM = "/v1/messages/report/%s/%s";
 
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
@@ -341,6 +343,11 @@ public class PushServiceSocket {
 
   public WhoAmIResponse getWhoAmI() throws IOException {
     return JsonUtil.fromJson(makeServiceRequest(WHO_AM_I, "GET", null), WhoAmIResponse.class);
+  }
+
+  public CdshAuthResponse getCdshAuth() throws IOException {
+    String body = makeServiceRequest(CDSH_AUTH, "GET", null);
+    return JsonUtil.fromJsonResponse(body, CdshAuthResponse.class);
   }
 
   public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,

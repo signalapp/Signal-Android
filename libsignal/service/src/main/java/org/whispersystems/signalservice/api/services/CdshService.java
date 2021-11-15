@@ -18,6 +18,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
@@ -82,7 +83,7 @@ public final class CdshService {
     }
   }
 
-  public Single<ServiceResponse<Map<String, ACI>>> getRegisteredUsers(Set<String> e164Numbers) {
+  public Single<ServiceResponse<Map<String, ACI>>> getRegisteredUsers(String username, String password, Set<String> e164Numbers) {
     return Single.create(emitter -> {
       AtomicReference<Stage> stage       = new AtomicReference<>(Stage.WAITING_TO_INITIALIZE);
       List<String>           addressBook = e164Numbers.stream().map(e -> e.substring(1)).collect(Collectors.toList());
@@ -96,7 +97,7 @@ public final class CdshService {
             case WAITING_TO_INITIALIZE:
               enclave.completeHandshake(bytes.toByteArray());
 
-              byte[] request = enclave.establishedSend(buildPlaintextRequest(addressBook));
+              byte[] request = enclave.establishedSend(buildPlaintextRequest(username, password, addressBook));
 
               stage.set(Stage.WAITING_FOR_RESPONSE);
               webSocket.send(ByteString.of(request));
@@ -145,9 +146,11 @@ public final class CdshService {
     });
   }
 
-  private static byte[] buildPlaintextRequest(List<String> addressBook) {
+  private static byte[] buildPlaintextRequest(String username, String password, List<String> addressBook) {
     try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
       outputStream.write(VERSION);
+      outputStream.write(username.getBytes(StandardCharsets.UTF_8));
+      outputStream.write(password.getBytes(StandardCharsets.UTF_8));
 
       for (String e164 : addressBook) {
         outputStream.write(ByteUtil.longToByteArray(Long.parseLong(e164)));

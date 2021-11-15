@@ -71,7 +71,8 @@ public class JsonUtil {
   }
 
   public static <T> T fromJsonResponse(String body, Class<T> clazz)
-      throws MalformedResponseException {
+      throws MalformedResponseException
+  {
     try {
       return JsonUtil.fromJson(body, clazz);
     } catch (IOException e) {

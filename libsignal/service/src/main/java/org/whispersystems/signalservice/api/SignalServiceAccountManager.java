@@ -60,6 +60,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequ
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
+import org.whispersystems.signalservice.internal.push.CdshAuthResponse;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
@@ -493,8 +494,9 @@ public class SignalServiceAccountManager {
   public Map<String, ACI> getRegisteredUsersWithCdsh(Set<String> e164numbers, String hexPublicKey, String hexCodeHash)
       throws IOException
   {
+    CdshAuthResponse                          auth    = pushServiceSocket.getCdshAuth();
     CdshService                               service = new CdshService(configuration, hexPublicKey, hexCodeHash);
-    Single<ServiceResponse<Map<String, ACI>>> result  = service.getRegisteredUsers(e164numbers);
+    Single<ServiceResponse<Map<String, ACI>>> result  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), e164numbers);
 
     ServiceResponse<Map<String, ACI>> response;
     try {
