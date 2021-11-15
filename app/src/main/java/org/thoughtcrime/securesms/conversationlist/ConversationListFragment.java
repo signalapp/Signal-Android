@@ -315,6 +315,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     updateReminders();
     EventBus.getDefault().register(this);
+    itemAnimator.disable();
 
     if (Util.isDefaultSmsProvider(requireContext())) {
       InsightsLauncher.showInsightsModal(requireContext(), requireFragmentManager());
@@ -355,6 +356,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     super.onStart();
     ConversationFragment.prepare(requireContext());
     ApplicationDependencies.getAppForegroundObserver().addListener(appForegroundObserver);
+    itemAnimator.disable();
   }
 
   @Override
@@ -695,28 +697,16 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void animatePaymentUnreadStatusIn() {
-    animatePaymentUnreadStatus(ConstraintSet.VISIBLE);
+    paymentNotificationView.get().setVisibility(View.VISIBLE);
     unreadPaymentsDot.animate().alpha(1);
   }
 
   private void animatePaymentUnreadStatusOut() {
     if (paymentNotificationView.resolved()) {
-      animatePaymentUnreadStatus(ConstraintSet.GONE);
+      paymentNotificationView.get().setVisibility(View.GONE);
     }
 
     unreadPaymentsDot.animate().alpha(0);
-  }
-
-  private void animatePaymentUnreadStatus(int constraintSetVisibility) {
-    paymentNotificationView.get();
-
-    TransitionManager.beginDelayedTransition(constraintLayout);
-
-    ConstraintSet currentLayout = new ConstraintSet();
-    currentLayout.clone(constraintLayout);
-
-    currentLayout.setVisibility(R.id.payments_notification, constraintSetVisibility);
-    currentLayout.applyTo(constraintLayout);
   }
 
   private void onSearchResultChanged(@Nullable SearchResult result) {
