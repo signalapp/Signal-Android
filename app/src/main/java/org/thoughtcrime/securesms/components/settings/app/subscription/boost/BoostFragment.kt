@@ -248,7 +248,17 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           findNavController().popBackStack()
         }
         .show()
-    } else if (throwable is DonationExceptions.RedemptionFailed) {
+    } else if (throwable is DonationExceptions.SetupFailed) {
+      Log.w(TAG, "Error occurred while processing payment", throwable, true)
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.DonationsErrors__payment_failed)
+        .setMessage(R.string.DonationsErrors__your_payment)
+        .setPositiveButton(android.R.string.ok) { dialog, _ ->
+          dialog.dismiss()
+          findNavController().popBackStack()
+        }
+        .show()
+    } else {
       Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.DonationsErrors__redemption_failed)
@@ -257,16 +267,6 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           dialog.dismiss()
           requireActivity().finish()
           requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
-        }
-        .show()
-    } else {
-      Log.w(TAG, "Error occurred while processing payment", throwable, true)
-      MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__payment_failed)
-        .setMessage(R.string.DonationsErrors__your_payment)
-        .setPositiveButton(android.R.string.ok) { dialog, _ ->
-          dialog.dismiss()
-          findNavController().popBackStack()
         }
         .show()
     }
