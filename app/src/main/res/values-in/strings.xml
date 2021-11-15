@@ -3236,7 +3236,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Populer Langganan</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Eror mengambil langganan.</string>
   <string name="BoostFragment__give_signal_a_boost">Beri Penguat untuk Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Ucapkan \"Terima Kasih!\" dan dapatkan Penguat lencana untuk %1$d hari.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Ucapkan Terima kasih!\\" dan dapatkan lencana Penguat untuk %1$d hari.</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
   <string name="Boost__one_time_contribution">Kontribusi sekali saja</string>
   <string name="MySupportPreference__add_a_signal_boost">Tambahkan Penguat Signal</string>
@@ -3254,8 +3254,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
   <string name="DonationsErrors__payment_failed">Pembayaran gagal</string>
   <string name="DonationsErrors__your_payment">Pembayaran tidak dapat diproses dan Anda belum ditagih. Silakan coba kembali.</string>
-  <string name="DonationsErrors__redemption_still_pending">Penukaran masih tertunda</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Anda mungkin tidak dapat langsung melihat lencana, tetapi kami mengupayakannya!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Penukaran masih tertunda</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Anda mungkin tidak dapat langsung melihat lencana, tetapi kami mengupayakannya!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda harus menata Google Pay untuk berdonasi dari dalam aplikasi.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>

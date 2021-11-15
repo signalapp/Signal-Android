@@ -1063,7 +1063,7 @@
   <string name="MessageRecord_the_group_link_has_been_reset">गट लिंक रीसेट केली गेली आहे.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">गट लिंक द्वारा आपण गटात सामील झाला आहात.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s ने गट लिंक द्वारा आपण गटात सामील झाला आहात.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">गट लिंक द्वारे %1$s गटात सामील झाले.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">आपण गटात सामील होण्यासाठी विनंती पाठविली.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने गट लिंक द्वारे सामिल होण्यासाठी विनंती केली.</string>
@@ -1113,8 +1113,8 @@
   <string name="MessageRequestBottomView_delete">हटवा</string>
   <string name="MessageRequestBottomView_block">अवरोधित करा</string>
   <string name="MessageRequestBottomView_unblock">अनब्लॉक करा</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ला आपल्याला संदेश देऊ द्या आणि त्यांचे नाव आणि फोटो त्यांच्यासह शेअर करू द्यायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ला आपल्याला संदेश देऊ द्या आणि त्यांचे नाव आणि फोटो त्यांच्यासह सामायिक करू द्या? आपण त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ला आपल्याला संदेश देऊ द्या आणि आपले नाव आणि फोटो त्यांच्यासह शेअर करू द्यायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ला आपल्याला संदेश देऊ द्या आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक करू द्या? आपण त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">आपले या गटासोबतचे संभाषण आणि आपले नाव आणि फोटो त्याच्या सदस्यांसह सामायिक करणे सुरू ठेवायचे?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@उल्लेख आणि अॅडमिन सारखे नवीन वैशिष्ट्ये सक्रिय करण्यासाठी गट श्रेणीसुधारित करा. ज्या सदस्यांनी त्यांचे नाव किंवा फोटो या गटात शेअर केलेले नाही त्यांना सामील होण्याचे आमंत्रण दिले जाईल.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">हा लेगसी गट वापरला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
@@ -1189,7 +1189,7 @@
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">आपला PIN आपण तयार केलेला एक %1$d+ अंकी कोड आहे जो न्युमेरिक किंवा अल्फान्युमेरिक असू शकतो.\n\nजर आपल्याला आपला PIN आठवत नसेल, तर आपण नवीन तयार करू शकता. आपण नोंदणी करू शकता आणि आपले खाते वापरू शकता पण आपण काही जतन केलेल्या सेटिंग गमवाल जसे की आपली प्रोफाईल माहिती.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">जर आपल्याला आपला PIN आठवत नसेल, तर आपण एक नवीन तयार करू शकता. आपण नोंदणी करू शकता आणि आपले खाते वापरू शकता पण काही जतन केलेल्या सेटिंग आपण गमवाल जसे की आपली प्रोफाईल माहिती.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">नवीन PIN तयार करा</string>
-  <string name="PinRestoreEntryFragment_contact_support">समर्थन सोबत संपर्क साधा</string>
+  <string name="PinRestoreEntryFragment_contact_support">सपोर्ट सोबत संपर्क साधा</string>
   <string name="PinRestoreEntryFragment_cancel">रद्द करा</string>
   <string name="PinRestoreEntryFragment_skip">वगळा</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
@@ -1241,7 +1241,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">आपण डायल केलेला नंबर सुरक्षित व्हॉईसचे समर्थन करत नाही!</string>
   <string name="RedPhone_got_it">कळले</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">आपला व्हिडिओ चालू करण्यासाठी टॅप करा</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">आपला व्हिडिओ चालू करण्यासाठी येथे टॅप करा</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ला कॉल करण्यासाठी, Signal ला आपल्या कॅमेराचा अॅक्सेस हवा आहे</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">कॉलिंग…</string>
@@ -1285,7 +1285,7 @@
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">येथे अजून कुणीही नाही</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s या कॉलमध्ये आहे</string>
-  <string name="WebRtcCallView__s_are_in_this_call">%1$s  या काॅल मध्ये आहे</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s या काॅल मध्ये आहे</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s आणि %2$s या कॉलमध्ये आहेत</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s सादर करत आहे</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1319,7 +1319,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">प्रॉक्सी वापरा</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">प्रॉक्सी शी यशस्वीरीत्या कनेक्ट केले.</string>
   <!--RecaptchaProofActivity-->
-  <string name="RecaptchaProofActivity_failed_to_submit">प्रविष्ट करण्यात अयशस्वी</string>
+  <string name="RecaptchaProofActivity_failed_to_submit">पाठविण्यात अयशस्वी</string>
   <string name="RecaptchaProofActivity_complete_verification">सत्यापन पूर्ण करा</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">आपला देश निवडा</string>
@@ -1343,7 +1343,7 @@
   <string name="RegistrationActivity_terms_and_privacy">अटी आणि गोपनीयता धोरण</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">आपल्या मित्रांसोबत जोडण्यासाठी, संदेश अदलाबदल करण्यासाठी, आणि सुरक्षित कॉल करण्यासाठी Signal ला आपल्या संपर्काच्या अॅक्सेसची गरज आहे.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">आपल्या मित्रांसोबत जोडण्यासाठी, संदेश अदलाबदल करण्यासाठी, आणि सुरक्षित कॉल करण्यासाठी Signal ला आपल्या संपर्काच्या अॅक्सेसची गरज आहे.</string>
-  <string name="RegistrationActivity_rate_limited_to_service">या नंबरसोबत आपण खूप प्रयत्न केले आहेत. कृपया नंतर पुन्हा प्रयत्न करा.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">तुम्ही हा नंबर नोंदवण्यासाठी खूप प्रयत्न केले आहेत. कृपया नंतर पुन्हा प्रयत्न करा.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">सेवेसोबत कनेक्ट करण्यात अक्षम. कृपया नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="RegistrationActivity_call_requested">कॉलची विनंती केली</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2280,7 +2280,7 @@
   <string name="ConfirmPayment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
   <string name="ConfirmPayment__payment_complete">पेमेंट पूर्ण झाले</string>
   <string name="ConfirmPayment__payment_failed">पेमेंट अयशस्वी झाले</string>
-  <string name="ConfirmPayment__payment_will_continue_processing">पेमेंट प्रक्रिया करणे सुरू राहील</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">पेमेंट प्रक्रिया सुरू राहील</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">अवैध प्राप्तकर्ता</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">या व्यक्तीने पेमेंट सक्रिय केलेले नाही</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">नेटवर्क फीची विनंती करण्यात अक्षम. हे पेमेंट सुरू ठेवण्यासाठी पुन्हा प्रयत्न करण्यासाठी ठीक आहे वर टॅप करा.</string>
@@ -2325,7 +2325,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">निवडलेले आर्काईव्ह करा</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">निवडलेले अनआर्काईव्ह करा</string>
   <string name="conversation_list_batch__menu_mark_as_read">वाचले म्हणून चिन्हांकित करा</string>
-  <string name="conversation_list_batch__menu_mark_as_unread">वाचले नाही अशी खुण करा</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">वाचले नाही असे चिन्हांकित करा</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">सेटिंग शॉर्टकट</string>
   <string name="conversation_list_search_description">शोध</string>
@@ -2589,7 +2589,7 @@
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">ज्याअर्थी ते पुनर्स्थित केले जाऊ शकत नाहीत स्मरणपत्र आपल्याला PIN लक्षात ठेवण्यास मदत करतात. काही काळानंतर आपल्याला विचारण्याची वारंवारता कमी होईल.</string>
   <string name="preferences_app_protection__turn_off">बंद करा</string>
   <string name="preferences_app_protection__confirm_pin">PIN ची पुष्टी करा</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">आपल्या Signal PIN याची पुष्टी करा</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">आपल्या Signal PIN ची पुष्टी करा</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ज्याअर्थी ते पुनर्स्थित केले जाऊ शकत नाही त्यामुळे आपला PIN आपण लक्षात ठेवला किंवा सुरक्षितपणे जतन केले असल्याची खात्री करा. जर आपण आपला PIN विसरलात, तर आपण आपले Signal खाते पुन्हा-नोंदवताना आपला डेटा गमवाल.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">नोंदणी लॉक सक्षम करण्यात अयशस्वी.</string>
@@ -2617,11 +2617,11 @@
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">आपल्या Android फोनवर Signal उघडा</string>
   <string name="NewDeviceTransferInstructions__continue">सुरू ठेवा</string>
-  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">१.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">सेटिंग उघडण्यासाठी सर्वात वरती डावीकडे आपल्या प्रोफाइल फोटोवर टॅप करा</string>
-  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">२.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">\"खाते\" वर टॅप करा</string>
-  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">३.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">दोन्ही डिव्हाइसवर \"खाते स्थानांतरित करा\" आणि नंतर \"सुरू ठेवा\" वर टॅप करा</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">जुन्या Android डिव्हाइससोबत कनेक्ट करण्याचा प्रयत्न करत आहे…</string>
@@ -2632,7 +2632,7 @@
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal ला आपल्या जुन्या Android डिव्हाससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Wi-Fi आवश्यक आहे. Wi-Fi चालू असायला हवे पण Wi-Fi नेटवर्कसोबत कनेक्ट केलेले असणे गरजेचे नाही.</string>
   <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">क्षमस्व, हा डिव्हाइस Wi-Fi डायरेक्टचे समर्थन करत नसल्याचे दिसते. आपल्या जुन्या Android डिव्हाइससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal Wi-Fi डायरेक्ट वापरते. आपल्या जुन्या Android डिव्हाइसवरून आपण तरीही आपले खाते पुनर्स्थापित करण्यासाठी बॅकअप पुनर्स्थापित करू शकता.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">बॅकअप पुनर्स्थापित करा</string>
-  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपल्या जुन्या Android डिव्हाइससोबत कनेक्ट करायचा प्रयत्न करताना एक अनेपक्षित त्रुटी आढळली.</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपल्या जुन्या Android डिव्हाइससोबत कनेक्ट करायचा प्रयत्न करताना एक अनेपक्षित त्रुटी आली.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">नवीन Android डिव्हाइससाठी शोधत आहे…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">आपल्या नवीन Android डिव्हाइसला शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal ला स्थान परवानगीची आवश्यकता आहे.</string>
@@ -2640,7 +2640,7 @@
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal ला आपल्या नवीन Android डिव्हाससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Wi-Fi आवश्यक आहे. Wi-Fi चालू असायला हवे पण Wi-Fi नेटवर्कसोबत कनेक्ट केलेले असणे गरजेचे नाही.</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">क्षमस्व, हा डिव्हाइस Wi-Fi डायरेक्टचे समर्थन करत नसल्याचे दिसते. आपल्या नवीन Android डिव्हाइससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal Wi-Fi डायरेक्ट वापरते. आपल्या नवीन Android डिव्हाइसवर आपण तरीही आपले खाते पुनर्स्थापित करण्यासाठी बॅकअप तयार करू शकता.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">बॅकअप तयार करा</string>
-  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपल्या नवीन Android डिव्हाइससोबत कनेक्ट करायचा प्रयत्न करताना एक अनेपक्षित त्रुटी आढळली.</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपल्या नवीन Android डिव्हाइससोबत कनेक्ट करायचा प्रयत्न करताना एक अनेपक्षित त्रुटी आली.</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi सेटिंग उघडण्यात अक्षम. कृपया Wi-Fi व्यक्तीचलितपणे चालू करा.</string>
   <string name="DeviceTransferSetup__grant_location_permission">स्थान परवानगी मान्य करा</string>
@@ -2688,11 +2688,11 @@
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">खाते स्थानांतरित करा</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">नवीन Android डिव्हाइसवर Signal सेट अप करताना आपण आपले Signal खाते स्थानांतरित करू शकता. सुरू ठेवण्यापूर्वी:</string>
-  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">१.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">आपल्या नवीन Android डिव्हाइसवर Signal डाऊनलोड करा</string>
-  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">२.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"खाते स्थानांतरित करा किंवा पुनर्स्थापित करा\" वर टॅप करा</string>
-  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">३.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">सूचित केल्यावर \"Android डिव्हाइसवरून स्थानांतरित करा\" आणि नंतर \"सुरू ठेवा\" निवडा. दोन्ही डिव्हाइस जवळपास ठेवा.</string>
   <string name="OldDeviceTransferInstructions__continue">सुरू ठेवा</string>
   <!--OldDeviceTransferComplete-->
@@ -2746,7 +2746,7 @@
   <string name="GroupRecipientListItem_approve_description">स्वीकार करा</string>
   <string name="GroupRecipientListItem_deny_description">नकार द्या</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsLearnMore_legacy_vs_new_groups">लेगसी वि. नवीन गट</string>
+  <string name="GroupsLearnMore_legacy_vs_new_groups">लेगसी vs. नवीन गट</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">लेगसी गट काय आहेत?</string>
   <string name="GroupsLearnMore_paragraph_1">लीगेसी ग्रुप्स असे गट आहेत जे नवीन गट वैशिष्ट्यांमधील अ‍ॅडमिन आणि अधिक वर्णनात्मक गट अद्यतनांसह सुसंगत नाहीत. </string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">काय मी लेगसी गटात श्रेणीसुधारणा करू शकतो?</string>
@@ -2874,7 +2874,7 @@
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">अधिक वॉलपेपर पुनरावलोकन करण्यासाठी स्वाइप करा</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">सर्व चॅटसाठी वॉलपेपर सेट करा</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s साठी वॉलपेपर सेट करा</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">आपली गॅलरी पहाण्यासाठी संचय परवानग्या आवश्यक आहेत.</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">आपली गॅलरी पहाण्यासाठी संचय परवानगी आवश्यक आहेत.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">वॉलपेपर चित्र निवडा</string>
   <!--WallpaperCropActivity-->
@@ -2915,7 +2915,7 @@
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">आपण आपल्या Signal PIN ची पुष्टी केल्यास, आपण Signal पुन्हा स्थापित केल्यावर आपला बॅलंस स्वयंचलितपणे पुनर्स्थापित होईल. आपण आपला बॅलंस रिकव्हरी फ्रेझ वापरून देखील पुनर्स्थापित करू शकता, जी %1$d-शब्द फ्रेझ आपल्यासाठी ऐकमेव आहे. ती लिहून ठेवा आणि त्यास एका सुरक्षित जागेवर ठेवा. </string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">आपली रिकव्हरी फ्रेझ %1$d-शब्दांची फ्रेझ आपल्यासाठी ऐकमेव आहे. आपला बॅलंस पुनर्स्थापित करण्यासाठी ही फ्रेझ वापरा.</string>
   <string name="PaymentsRecoveryStartFragment__start">चालू करा</string>
-  <string name="PaymentsRecoveryStartFragment__enter_manually">व्यक्तिचलितपणे प्रविष्ट करा</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">स्वहस्ते प्रविष्ट करा</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">क्लिपबोर्ड वरून पेस्ट करा</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">रिकव्हरी फ्रेझ पेस्ट करा</string>
@@ -2930,12 +2930,12 @@
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">आपला रिकव्हरी फ्रेझ</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">पुढील %1$d शब्द ओळीत लिहून ठेवा. आपली यादी सुरक्षित ठिकाणी ठेवा.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">आपला फ्रेझ आपण योग्यरित्या प्रविष्ट केला असल्याची खात्री करा.</string>
-  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">स्क्रीनशॉट घेऊ नका किंवा ईमेलद्वारा पाठवू नका.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">स्क्रीनशॉट घेऊ नका किंवा ईमेलद्वारे पाठवू नका.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">पेमेंट खाते पुनर्स्थापित केले गेले.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">अवैध रिकव्हरी फ्रेझ</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">आपला फ्रेझ आपण योग्यरित्या प्रविष्ट केला असल्याची खात्री करा आणि पुन्हा प्रयत्न करा.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">क्लिपबोर्डवर कॉपी करायचे?</string>
-  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">आपण जर आपला रिकव्हरी फ्रेझ डिटिटल स्वरूपात स्टोअर करण्याचे निवडत असल्यास, ते कुठेतरी सुरक्षितपणे स्टोअर केले असल्याची खात्री करा.</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">आपण जर आपला रिकव्हरी फ्रेझ डिजिटल स्वरूपात स्टोअर करण्याचे निवडत असल्यास, ते कुठेतरी सुरक्षितपणे स्टोअर करत आहात याची खात्री करा.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">कॉपी करा</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">रिकव्हरी फ्रेझची पुष्टी करा</string>
@@ -3025,7 +3025,7 @@
   <string name="ChangeNumberLockActivity__submit_debug_log">डीबग लॉग प्रविष्ट करा</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">कीबोर्ड</string>
-  <string name="ChatsSettingsFragment__enter_key_sends">प्रविष्ट करा की पाठवते</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">ऐंटर की पाठवते</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">पूर्वनिर्धारित SMS अॅप म्हणून वापरा</string>
   <!--NotificationsSettingsFragment-->
@@ -3334,7 +3334,7 @@
   <string name="MySupportPreference__renews_s">नूतनीकरण %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपला बॅज कालबाह्य झाला आहे</string>
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">आपला %1$s बॅज कालबाह्य झाला आहे, आणि यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">तुमच्या साठी निर्मित तंत्रज्ञानास समर्थन देणे सुरू ठेवण्यासाठी- केवळ तुमच्या डेटासाठीच नाही- कृपया मासिक सदस्य बनण्याचा विचार करा.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">तुमच्या डेटासाठी नव्हे—तर तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाला समर्थन देत राहण्यासाठी, कृपया मासिक सदस्य बनण्याचा विचार करा.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">सब्स्क्राइबर व्हा</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
   <string name="Subscription__verification_failed">सब्स्क्रिप्शन सत्यापन अयशस्वी</string>
@@ -3344,8 +3344,8 @@
   <string name="SubscribeFragment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
   <string name="DonationsErrors__payment_failed">पेमेंट अयशस्वी झाले</string>
   <string name="DonationsErrors__your_payment">तुमची पेमेंट प्रक्रिया पुर्ण नाही केली जाऊ शकली आणि तुमच्याकडून शुल्क आकारले गेले नाही. कृपया पुन्हा प्रयत्न करा.</string>
-  <string name="DonationsErrors__redemption_still_pending">विमोचन अद्यापही प्रलंबित</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">तुम्हाला तुमचा बॅज लगेच दिसणार नाही, पण आम्ही त्यावर काम करत आहोत!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">विमोचन अद्यापही प्रलंबित</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">तुम्हाला तुमचा बॅज लगेच दिसणार नाही, पण आम्ही त्यावर काम करत आहोत!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अॅपमधील देणगी देण्यासाठी तुम्हाला Google Pay सेटअप करावे लागेल.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">सब्स्क्रिप्शन रद्द करण्यात अयशस्वी</string>

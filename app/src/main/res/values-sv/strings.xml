@@ -3349,8 +3349,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubscribeFragment__processing_payment">Bearbetar betalningen…</string>
   <string name="DonationsErrors__payment_failed">Betalningen misslyckades</string>
   <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Vänligen försök igen.</string>
-  <string name="DonationsErrors__redemption_still_pending">Inlösen väntar fortfarande</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kanske inte ser ditt märke direkt, men vi jobbar på det!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Inlösen väntar fortfarande</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kanske inte ser ditt märke direkt, men vi jobbar på det!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay är inte tillgängligt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du måste konfigurera Google Pay för att donera i appen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Det gick inte att säga upp prenumerationen</string>

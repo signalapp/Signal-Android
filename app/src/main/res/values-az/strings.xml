@@ -3347,8 +3347,8 @@
   <string name="SubscribeFragment__processing_payment">Ödəniş emal olunur…</string>
   <string name="DonationsErrors__payment_failed">Ödəniş edilmədi</string>
   <string name="DonationsErrors__your_payment">Ödənişiniz emal edilə bilmədi və sizdən ödəniş alınmadı. Zəhmət olmasa yenidən sınayın.</string>
-  <string name="DonationsErrors__redemption_still_pending">Geri ödəmə hələ də gözləmədədir</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Nişanınızı dərhal görməyə bilərsiniz, ancaq üzərində işləyirik!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Geri ödəmə hələ də gözləmədədir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Nişanınızı dərhal görməyə bilərsiniz, ancaq üzərində işləyirik!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay əlçatmazdır</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Tətbiq daxilində ianə etmək üçün \"Google Pay\"i quraşdırmalısınız.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abunəlik ləğv edilmədi</string>

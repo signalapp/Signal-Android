@@ -1801,7 +1801,7 @@ nummer (%s) er ugyldigt</string>
   <string name="IdentityUtil_unverified_banner_one">Dit sikkerhedsnummer med %s er blevet ændret og er ikke længere verificeret.</string>
   <string name="IdentityUtil_unverified_banner_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret</string>
   <string name="IdentityUtil_unverified_banner_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret</string>
-  <string name="IdentityUtil_unverified_dialog_one">Dine sikkerhedsnumre med %1$s er blevet ændret og er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller at %1$s bare har geninstalleret Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Dit sikkerhedsnummer med %1$s er blevet ændret og er ikke længere verificeret. Det kan enten betyde, at nogen forsøger at opsnappe jeres kommunikation, eller blot at %1$s har geninstalleret Signal.</string>
   <string name="IdentityUtil_unverified_dialog_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller at de bare har geninstalleret Signal.</string>
   <string name="IdentityUtil_unverified_dialog_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller de bare har geninstalleret Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Dit sikkerhedsnummer med %s er lige blevet ændret</string>
@@ -2461,7 +2461,7 @@ nummer (%s) er ugyldigt</string>
   <string name="KbsSplashFragment__disable_pin">Deaktiver pinkode</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Indtast din Signal-pinkode</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For at hjælpe med at huske din pinkode, beder vi dig periodisk om at indtaste den. Vi vil bede om den sjældnere over tid</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For at hjælpe dig med at huske din pinkode, beder vi dig periodisk om at indtaste den. Med tiden vil vi sjældnere spørge dig om den.</string>
   <string name="KbsReminderDialog__skip">Spring over</string>
   <string name="KbsReminderDialog__submit">Send</string>
   <string name="KbsReminderDialog__forgot_pin">Glemt pinkode?</string>
@@ -3356,8 +3356,8 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeFragment__processing_payment">Bearbejder betaling…</string>
   <string name="DonationsErrors__payment_failed">Betaling fejlede</string>
   <string name="DonationsErrors__your_payment">Din betaling kunne ikke gennemføres, og du er ikke blevet opkrævet. Prøv venligst igen.</string>
-  <string name="DonationsErrors__redemption_still_pending">Indløsning afventer stadig</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kan måske ikke se dit emblem med det samme, men vi arbejder på det!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Indløsning afventer stadig</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kan måske ikke se dit emblem med det samme, men vi arbejder på det!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ikke tilgængelig</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du skal konfigurere Google Pay for at kunne donere i appen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Opsigelse af abonnementet mislykkedes</string>

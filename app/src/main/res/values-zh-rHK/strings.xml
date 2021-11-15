@@ -3253,8 +3253,8 @@
   <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
   <string name="DonationsErrors__your_payment">您的付款未能處理，沒有向您扣帳。請再試一次。</string>
-  <string name="DonationsErrors__redemption_still_pending">換領進行中</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">您的徽章仍在處理，未必即時看到，但我們很快會補上！</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">換領進行中</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">您的徽章仍在處理，未必即時看到，但我們很快會補上！</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">您必需先設置 Google Pay 才可在應用程式中捐款。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>

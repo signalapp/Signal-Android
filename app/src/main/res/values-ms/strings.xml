@@ -3234,8 +3234,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
   <string name="DonationsErrors__payment_failed">Pembayaran telah gagal</string>
   <string name="DonationsErrors__your_payment">Pembayaran anda tidak dapat diproses dan anda belum dicaj. Sila cuba lagi.</string>
-  <string name="DonationsErrors__redemption_still_pending">Penebusan masih belum selesai</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Anda mungkin tidak melihat lencana anda serta-merta, tetapi kami sedang menyiapkannya!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Penebusan masih belum selesai</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Anda mungkin tidak melihat lencana anda serta-merta, tetapi kami sedang menyiapkannya!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda perlu memasang Google Pay untuk menderma dalam aplikasi.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>

@@ -321,7 +321,7 @@
     <item quantity="other">Legitaj</item>
   </plurals>
   <plurals name="ConversationListFragment_unread_plural">
-    <item quantity="one">Neligita</item>
+    <item quantity="one">Nelegita</item>
     <item quantity="other">Nelegitaj</item>
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
@@ -1941,16 +1941,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__debug_log">Sencimiga protokolo:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>— Elekti opcion —</item>
-    <item>Io ne funkcias</item>
-    <item>Peto por nova funkcio</item>
-    <item>Demando</item>
-    <item>Prikomento</item>
-    <item>Alia</item>
-    <item>Pagoj (MobileCoin)</item>
-    <item>Donacoj (subtenantoj kaj Signal-plikonatigo)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
@@ -2972,6 +2962,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UnreadPayments__d_new_payment_notifications">%1$d sciigoj pri nova pago</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Sendado de pago malsukcesis</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Por sendi pagon al tiu uzanto, tiu ĉi devas akcepti mesagôpeton el vi. Por krei mesaĝopeton, sendu al li aŭ ŝi mesaĝon.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Sendi mesaĝon</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Vi havas neniun komunan grupon kun tiu homo. Kontroli la petojn zorgeme antaŭ via akcepto por ne sendi nedeziratajn mesaĝojn.</string>
@@ -2994,17 +2985,44 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Oni demandos al vi malpli ofte iom post iom.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Via Signal-PIN estu deviga por reregistri vian telefonnumeron al Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Ŝanĝi telefonnumeron</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Tio eblas al vi ŝanĝi vian nunan telefonnumeron al nova. Vi ne povas malfari tion.\n\nAntaŭ ol daŭrigi, certigu, ke via nova numero povas ricevi SMS-ojn aŭ alvokojn.</string>
   <string name="ChangeNumberFragment__continue">Daŭrigi</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Via telefonnumero ŝanĝiĝis.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ŝanĝi telefonnumeron</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Via antaŭa numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Antaŭa telefonnumero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Via nova numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nova telefonnumero</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">La telefonnumero, kiu vi entajpis ne kongruas kun tiu de via konto.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Vi devas specifi la landan kodon de via antaŭa numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Vi devas specifi vian antaŭan telefonnumeron</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Vi devas specifi la landan kodon de via nova numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Vi devas specifi vian novan numeron</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Ŝanĝi telefonnumeron</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Kontrolo de %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Defio-responda testo bezonata</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Ŝanĝi numeron</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vi estas ŝanĝonta vian telefonnumeron de %1$s al %2$s.\n\nAntaŭ ol daŭrigi, kontrolu, ke la ĉi-suba numero estas ĝusta.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Modifi numeron</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Change Number — Helpbezono pri PIN ĉe Android (PIN-v2)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-oj ne kongruas</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">La PIN de via nova numero malsamas ol la PIN de via antaŭa. Ĉu uzi la antaŭan aŭ ĝisdatigi ĝin?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Uzi la antaŭan PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ĝisdatigi PIN-on</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Ĉu uzi la antaŭan PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Ŝajnas, ke vi provis ŝanĝi vian numeron, sed ni ne povis scii, ĉu tio sukcesis.\n\nRekontrolado nun…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Ŝanĝo konfirmita</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Via numero konfirme estas %1$s. Se ĝi ne estas via nova numero, rekomencu la procezon pri ŝanĝo de numero.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Ŝanĝo nekonfirmita</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Ni ne povis scii la staton de via peto pri ŝanĝo de numero.\n\n(Eraro: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Reprovi</string>
   <string name="ChangeNumberLockActivity__leave">Forlasi</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Sendi sencimigan protokolon</string>
@@ -3059,6 +3077,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__copyright_signal_messenger">Kopirajto Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Laŭ la permisilo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kvalito de aŭdvidaĵoj</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalito de senditaj aŭdvidaĵoj</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sendado de altkvalitaj aŭdvidaĵoj uzos pli da datumoj</string>
   <string name="DataAndStorageSettingsFragment__high">Alta</string>
   <string name="DataAndStorageSettingsFragment__standard">Defaŭlta</string>
   <string name="DataAndStorageSettingsFragment__calls">Alvokoj</string>
@@ -3180,6 +3201,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nova pago</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nova mesaĝo</string>
   <!--ContactFilterView-->
@@ -3215,22 +3237,121 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Iri supren</string>
+  <string name="MultiselectForwardFragment__forward_to">Plusendi al</string>
+  <string name="MultiselectForwardFragment__add_a_message">Aldoni mesaĝon</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Plusendadoj pli rapidaj</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Plusenditaj mesaĝoj nun tuj sendiĝas. </string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Sendi %1$d mesaĝon</item>
+    <item quantity="other">Sendi %1$d mesaĝojn</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mesaĝo sendita</item>
+    <item quantity="other">Mesaĝoj senditaj</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mesaĝo malsukcese sendiĝis</item>
+    <item quantity="other">Mesaĝoj malsukcese sendiĝis</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Mesaĝo ne estis sukcese plusendita, ĉar ĝi ne plu estas disponebla.</item>
+    <item quantity="other">Mesaĝoj ne estis sukcese plusenditaj, ĉar ili ne plu estas disponeblaj.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Limo-atingo</string>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Aldoni mesaĝon</string>
+  <string name="MediaReviewFragment__add_a_reply">Aldoni respondon</string>
+  <string name="MediaReviewFragment__send_to">Sendi al</string>
+  <string name="MediaReviewFragment__view_once_message">Nurunufoje videbla mesaĝo</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Unu aŭ pli eroj tro grandis</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Unu aŭ pli eroj tro estis nevalidaj</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Tro da eroj elektitaj</string>
   <string name="ImageEditorHud__cancel">Nuligi</string>
+  <string name="ImageEditorHud__draw">Desegni</string>
+  <string name="ImageEditorHud__write_text">Skribi tekston</string>
+  <string name="ImageEditorHud__add_a_sticker">Aldoni glumarkon</string>
   <string name="ImageEditorHud__blur">Malklarigi</string>
+  <string name="ImageEditorHud__done_editing">Modifoj finitaj</string>
+  <string name="ImageEditorHud__clear_all">Forviŝi ĉiujn</string>
   <string name="ImageEditorHud__undo">Malfari</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Baskuligi inter feltkrojono kaj emfazilo</string>
   <string name="ImageEditorHud__delete">Forigi</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Baskuligi inter tekstaj stiloj</string>
   <string name="MediaCountIndicatorButton__send">Sendi</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Tuŝeti por demeti</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tuŝeto por elekti</string>
   <string name="MediaReviewImagePageFragment__discard">Ne konservi</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Ĉu ne konservi la ŝanĝojn?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vi perdos ĉiujn modifojn, kiujn vi faris en tiu foto.</string>
+  <string name="CameraFragment__failed_to_open_camera">Malsukceso malfermi la fotilon</string>
+  <string name="BadgesOverviewFragment__my_badges">Miaj insignoj</string>
+  <string name="BadgesOverviewFragment__featured_badge">Elstarigita insigno</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Montri insignojn ĉe profilo</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Malsukceso ĝisdatigi la profilon</string>
+  <string name="BadgeSelectionFragment__select_badges">Elekti insignojn</string>
   <string name="SelectFeaturedBadgeFragment__preview">Antaŭrigardo</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Elekti insignon</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vi devas elekti insignon</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Malsukceso ĝisdatigi la profilon</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
+  <string name="ImageView__badge">Insigno</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ekzistas pro la subteno de homoj kiel vi.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Subtenu teĥnologiojn, kiujn oni konstruas por vi — ne por akiri viajn datumojn —, enirante la komunumon de homoj, kiuj donacas pro tio.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donaco-monsumo</string> -->
+  <string name="SubscribeFragment__more_payment_options">Pli da pagomanieroj</string>
+  <string name="SubscribeFragment__cancel_subscription">Nuligi la abonon</string>
+  <string name="SubscribeFragment__confirm_cancellation">Ĉu konfirmi la nuligon?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Vi ne plu estos debetita. Via insigno estos demetita el via profilo fine de via abono.</string>
   <string name="SubscribeFragment__not_now">Ne nun</string>
+  <string name="SubscribeFragment__confirm">Konfirmi</string>
+  <string name="SubscribeFragment__update_subscription">Ĝisdatigi la abonon</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Via abono nuliĝis.</string>
+  <string name="SubscribeFragment__update_subscription_question">Ĉu ĝisdatigi la abonon?</string>
   <string name="SubscribeFragment__update">Ĝisdatigi</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">La plena monsumo de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos %1$s.</string>
+  <string name="Subscription__s_per_month">Po %s monate</string>
+  <string name="Subscription__s_per_month_dot_renews_s">Po %1$s monate · Rekomenciĝos %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">Po %1$s monate · Finiĝos %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, ĝi nur estas subtenata de homoj, kiuj uzas kaj taksaj ĝin. Faru ĉiumonatan donacon, kaj ricevu profilan insignon por montri vian subtenon.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kial donaci?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">La Signal-skipo sin dediĉas al la miso disvolvi priprivatecan malfermitkodan teĥnologion, kiuj protektas liberan esprimon, kaj ebligas mondan sekuran komunikadon. Via donaco vivtenas tiun aferon. Neniu reklamo. Neniu spurilo. Neniu ŝerco.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Via donaco helpas pagi pro la programado, la serviloj kaj la trafiko de la aplikaĵo, kiu estas uzata de milionoj de homoj tutmonde por tuj interkomunikiĝi privatece.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dankon pro via subtenado!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dankon pro via subteno!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Vi gajnis insignon %s! Montri vian insignon vidigas al la kunparolantoj vian subtenon al Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Montri ĉe profilo</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Uzi kiel elstarigitan insignon</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Farita</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiam vi havas pli ol unu insignon, vi povas elekti tiun, kiun vi elstarigos por vidigi ĉe via profilo.</string>
+  <string name="ManageDonationsFragment__my_support">Mia subteno</string>
+  <string name="ManageDonationsFragment__manage_subscription">Administri la abonon</string>
   <string name="ManageDonationsFragment__badges">Insignoj</string>
+  <string name="ManageDonationsFragment__subscription_faq">Respondaro pri abono</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Eraro dum ricevo de abono.</string>
+  <string name="BoostFragment__give_signal_a_boost">Signal-plikonatigo</string>
+  <string name="BoostFragment__say_thanks_and_earn">Diru „Dankon!“ kaj gajnu la insignon „Plikonatigo“ dum %1$d tagoj.</string>
+  <string name="Boost__enter_custom_amount">Entajpi propran monsumon</string>
+  <string name="Boost__one_time_contribution">Unufoja donaco</string>
+  <string name="MySupportPreference__add_a_signal_boost">Aldoni Signal-plikonatigo</string>
+  <string name="MySupportPreference__s_per_month">Po %1$s monate</string>
+  <string name="MySupportPreference__renews_s">Rekomenciĝos %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Via insigno finiĝis</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Via insigno %1$s senvalidiĝis kaj ne plu videblas al aliuloj ĉe via profilo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Por plu subteni teĥnologion, kiu estas por vi — ne por havi viajn datumojn —, konsideru donaci monate.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Iĝi abonanto</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
+  <string name="Subscription__verification_failed">Kontrolo de abono malsukcesis</string>
+  <string name="Subscription__please_contact_support_for_more_information">Kontaktu Signa-helpon por plia informo. </string>
   <string name="Subscription__contact_support">Kontakti subtenon</string>
+  <string name="Subscription__earn_a_s_badge">Gajni insignon %1$s</string>
   <string name="SubscribeFragment__processing_payment">Traktado de pago…</string>
   <string name="DonationsErrors__payment_failed">Pago malsukcesa</string>
+  <string name="DonationsErrors__your_payment">Via pago ne sukcesis, kaj vi ne estis debetita. Provu ree.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Kolekto ankoraŭ okazanta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Vi ne vidas vian insignon nun, sed ni faras ĉion pro ĝia alveno!</string> -->
+  <string name="DonationsErrors__google_pay_unavailable">„Google Pay“ ne disponebla</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vi devas agordi „Google Pay“ por povi donaci enaplikaĵe.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Nuligo de abono malsukcesis</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Nuligo de abono bezonas retaliron.</string>
   <!--EOF-->
 </resources>

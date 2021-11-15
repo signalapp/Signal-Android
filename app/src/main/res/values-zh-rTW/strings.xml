@@ -3250,8 +3250,8 @@
   <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
   <string name="DonationsErrors__your_payment">你的付款無法處理，所以也未向你收費。 請再試一次。</string>
-  <string name="DonationsErrors__redemption_still_pending">加值仍在待定中</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">你可能不會立即看到你的徽章，但我們正在解決這個問題！</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">加值仍在待定中</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">你可能不會立即看到你的徽章，但我們正在解決這個問題！</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必須設定 Google Pay 才能在程式中捐款。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>

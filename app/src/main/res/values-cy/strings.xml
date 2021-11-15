@@ -3565,8 +3565,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubscribeFragment__processing_payment">Yn prosesu taliad</string>
   <string name="DonationsErrors__payment_failed">Methodd y taliad</string>
   <string name="DonationsErrors__your_payment">Nid oedd modd prosesu\'ch taliad ac nid ydym wedi codi tâl arnoch. Ceisiwch eto.</string>
-  <string name="DonationsErrors__redemption_still_pending">Yn disgwyl adbryniant</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Efallai na welwch eich bathodyn ar unwaith, ond mae ar ei ffordd!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Yn disgwyl adbryniant</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Efallai na welwch eich bathodyn ar unwaith, ond mae ar ei ffordd!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Nid yw Google Pay ar gael</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Mae\'n rhaid i chi osod Google Pay i roi o fewn yr ap.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Wedi methu diddymu\'r tanysgrifiad</string>

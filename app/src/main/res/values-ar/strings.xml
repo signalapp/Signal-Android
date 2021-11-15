@@ -3756,8 +3756,8 @@
   <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
   <string name="DonationsErrors__payment_failed">فشلت الدفوعات</string>
   <string name="DonationsErrors__your_payment">تعذرت معالجة دفعتك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
-  <string name="DonationsErrors__redemption_still_pending">لا يزال التسديد معلقًا</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">قد لا ترى شارتك على الفور، ولكننا نعمل على ذلك!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">لا يزال التسديد معلقًا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">قد لا ترى شارتك على الفور، ولكننا نعمل على ذلك!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">خدمة Google Pay غير متوفرة</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">يجب عليك إعداد Google Pay للتبرع داخل التطبيق.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>

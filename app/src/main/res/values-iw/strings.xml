@@ -3553,8 +3553,8 @@
   <string name="SubscribeFragment__processing_payment">מעבד תשלום…</string>
   <string name="DonationsErrors__payment_failed">תשלום נכשל</string>
   <string name="DonationsErrors__your_payment">התשלום שלך לא היה יכול להיות מעובד ולא חויבת. אנא נסה שוב.</string>
-  <string name="DonationsErrors__redemption_still_pending">מימוש עדין ממתין</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">ייתכן שלא תראה את התג שלך מיד, אבל אנחנו עובדים על זה!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">מימוש עדין ממתין</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">ייתכן שלא תראה את התג שלך מיד, אבל אנחנו עובדים על זה!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay לא זמין</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">אתה חייב להגדיר את Google Pay כדי לתרום בתוך יישום.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">נכשל בביטול מינוי</string>

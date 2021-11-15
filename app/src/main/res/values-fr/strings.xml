@@ -3342,8 +3342,8 @@ Nouvelle tentative…</string>
   <string name="SubscribeFragment__processing_payment">Traitement du paiement…</string>
   <string name="DonationsErrors__payment_failed">Échec de paiement</string>
   <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
-  <string name="DonationsErrors__redemption_still_pending">Récupération encore en cours</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Vous ne verrez peut-être pas votre badge tout de suite, mais nous y travaillons !</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Récupération encore en cours</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Vous ne verrez peut-être pas votre badge tout de suite, mais nous y travaillons !</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vous devez configurer Google Pay pour faire un don dans l’application.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Échec de l’annulation de l’abonnement</string>

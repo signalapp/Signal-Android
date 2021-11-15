@@ -3430,8 +3430,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubscribeFragment__processing_payment">Obdelava plačila …</string>
   <string name="DonationsErrors__payment_failed">Plačilo ni uspelo</string>
   <string name="DonationsErrors__your_payment">Vaše plačilo ni moglo biti obdelano, zato vam znesek ni bil zaračunan. Prosimo poskusite znova.</string>
-  <string name="DonationsErrors__redemption_still_pending">Vnovčenje v teku</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Mogoče takoj še ne boste videli svojega bedža, a delamo na tem!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Vnovčenje v teku</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Mogoče takoj še ne boste videli svojega bedža, a delamo na tem!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ni na voljo</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Če želite donirati znotraj aplikacije, si morate najprej nastaviti Google Pay.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Prekinitev naročnine ni bila uspešna</string>

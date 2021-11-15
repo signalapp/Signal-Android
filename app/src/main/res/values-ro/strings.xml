@@ -979,7 +979,7 @@
   <string name="MessageRecord_left_group">Ați părăsit grupul.</string>
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
   <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
-  <string name="MessageRecord_you_called_date">Ați apelat pe · %1$s</string>
+  <string name="MessageRecord_you_called_date">Ați apelat · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Apel audio nepreluat · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Apel video nepreluat · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
@@ -1529,7 +1529,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_secure_session_reset">Sesiune securizată resetată.</string>
   <string name="ThreadRecord_draft">Ciornă:</string>
   <string name="ThreadRecord_called">Ați apelat</string>
-  <string name="ThreadRecord_called_you">Te-a apelat</string>
+  <string name="ThreadRecord_called_you">V-a apelat</string>
   <string name="ThreadRecord_missed_audio_call">Apel audio nepreluat</string>
   <string name="ThreadRecord_missed_video_call">Apel video nepreluat</string>
   <string name="ThreadRecord_media_message">Mesaj media</string>
@@ -2278,7 +2278,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__deactivate_payments">Dezactivați plățile</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsHomeFragment__help">Ajutor</string>
-  <string name="PaymentsHomeFragment__coin_cleanup_fee">Comision curățare monedă</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Comision consolidare monedă</string>
   <string name="PaymentsHomeFragment__sent_payment">Plată trimisă</string>
   <string name="PaymentsHomeFragment__received_payment">Plată primită</string>
   <string name="PaymentsHomeFragment__processing_payment">Se procesează plata</string>
@@ -2320,8 +2320,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsDetailsFragment__to">Către</string>
   <string name="PaymentsDetailsFragment__from">De la</string>
   <string name="PaymentsDetailsFragment__information">Detaliile tranzacției inclusiv valoarea și data acesteia, fac parte din registrul MobileCoin.</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Comision de curățare monedă</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">Un „comision de curățare monedă” este perceput când monedele pe care le dețineți nu pot fi combinate pentru a finaliza o tranzacție. Curățarea vă permite să continuați efectuarea de plăți.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Comision consolidare monedă</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Un „comision de consolidare monedă” este perceput când monedele pe care le dețineți nu pot fi combinate pentru a finaliza o tranzacție. Consolidarea vă permite să continuați efectuarea de plăți.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Nu mai sunt detalii disponibile pentru această tranzacție</string>
   <string name="PaymentsDetailsFragment__sent_payment">Plată efectuată</string>
   <string name="PaymentsDetailsFragment__received_payment">Plată încasată</string>
@@ -3455,8 +3455,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SubscribeFragment__processing_payment">Se procesează plata…</string>
   <string name="DonationsErrors__payment_failed">Plata a eșuat</string>
   <string name="DonationsErrors__your_payment">Plata dvs. nu a putut fi procesată iar dvs. nu ați fost taxat. Vă rugăm încercați din nou.</string>
-  <string name="DonationsErrors__redemption_still_pending">Atribuire în curs</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Este posibil să nu vedeți insigna dvs. imediat, dar ne ocupăm de asta!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Atribuire în curs</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Este posibil să nu vedeți insigna dvs. imediat, dar ne ocupăm de asta!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nu este disponibil</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Trebuie să configurați Google Pay pentru a face donații în aplicație.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Nu s-a reușit anularea abonamentul</string>

@@ -3448,8 +3448,8 @@
   <string name="SubscribeFragment__processing_payment">Обрађујем уплату…</string>
   <string name="DonationsErrors__payment_failed">Неуспешна уплата</string>
   <string name="DonationsErrors__your_payment">Ваша уплата се не може обрадити и нисте наплаћени. Молим вас, покушајте поново.</string>
-  <string name="DonationsErrors__redemption_still_pending">Откуп још увек у току</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Можда не видите своју значку одмах, али радимо на томе!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Откуп још увек у току</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Можда не видите своју значку одмах, али радимо на томе!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступан</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Морате да подесите Google Pay да би донилари преко апликације.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Није успело отказивање претплате</string>

@@ -2106,6 +2106,16 @@
   <string name="HelpFragment__debug_log">Журнал отладки:</string>
   <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
+    <item>Пожалуйста, выберите вариант</item>
+    <item>Что-то не работает</item>
+    <item>Запросить новые функции</item>
+    <item>Вопрос</item>
+    <item>Обратная связь</item>
+    <item>Другое</item>
+    <item>Платежи (MobileCoin)</item>
+    <item>Пожертвования (Ускорение Signal и Поддерживающие)</item>
+  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Это сообщение</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно использованные</string>
@@ -3546,8 +3556,8 @@
   <string name="SubscribeFragment__processing_payment">Обрабатываем платёж…</string>
   <string name="DonationsErrors__payment_failed">Платёж не удался</string>
   <string name="DonationsErrors__your_payment">Не удалось обработать ваш платёж; с вас не была взята плата. Пожалуйста, попробуйте ещё раз.</string>
-  <string name="DonationsErrors__redemption_still_pending">Получение значка всё ещё в процессе</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Возможно, вы не сразу увидите свой значок, но мы работаем над этим!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Получение значка всё ещё в процессе</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Возможно, вы не сразу увидите свой значок, но мы работаем над этим!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступен</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Вам необходимо настроить Google Pay, чтобы пожертвовать в приложении.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не удалось отменить подписку</string>

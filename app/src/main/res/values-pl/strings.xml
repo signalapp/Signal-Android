@@ -3546,8 +3546,8 @@ danych — rozważ miesięczną subskrypcję.</string> -->
   <string name="SubscribeFragment__processing_payment">Przetwarzanie płatności…</string>
   <string name="DonationsErrors__payment_failed">Płatność nie powiodła się</string>
   <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
-  <string name="DonationsErrors__redemption_still_pending">Wpłata wciąż oczekuje</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Możesz nie zobaczyć swojej odznaki natychmiast, ale pracujemy nad tym!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Wpłata wciąż oczekuje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Możesz nie zobaczyć swojej odznaki natychmiast, ale pracujemy nad tym!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Aplikacja Google Pay nie jest dostępna</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musisz skonfigurować Google Pay, aby móc płacić w aplikacji.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Nie udało się anulować subskrypcji</string>

@@ -3345,8 +3345,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
   <string name="DonationsErrors__payment_failed">Ödeme başarısız oldu</string>
   <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
-  <string name="DonationsErrors__redemption_still_pending">Ödeme beklemede</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Rozetinizi hemen göremeyebilirsiniz ama üzerinde çalışıyoruz!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Ödeme beklemede</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Rozetinizi hemen göremeyebilirsiniz ama üzerinde çalışıyoruz!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Kullanılamıyor</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurmanız gerekir.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>

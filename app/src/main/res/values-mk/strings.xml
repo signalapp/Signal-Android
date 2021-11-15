@@ -324,6 +324,22 @@
     <item quantity="one">Непрочитано</item>
     <item quantity="other">Непрочитано</item>
   </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Закачи</item>
+    <item quantity="other">Закачи</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Откачи</item>
+    <item quantity="other">Откачи</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Исклучи известувања</item>
+    <item quantity="other">Исклучи известувања</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Вклучи известувања</item>
+    <item quantity="other">Вклучи известувања</item>
+  </plurals>
   <string name="ConversationListFragment_select">Одбери</string>
   <plurals name="ConversationListFragment_archive_plural">
     <item quantity="one">Архивирај</item>
@@ -338,6 +354,10 @@
     <item quantity="other">Избриши</item>
   </plurals>
   <string name="ConversationListFragment_select_all">Избери сѐ</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d избран</item>
+    <item quantity="other">%d избрани</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви</string>
   <!--ConversationListItemAction-->
@@ -826,6 +846,10 @@
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="one">Избриши</item>
     <item quantity="other">Избриши</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d избрано (%2$s)</item>
+    <item quantity="other">%1$d избрани (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Датотека</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
@@ -3247,7 +3271,7 @@
   <string name="Subscription__contact_support">Контакт за поддршка</string>
   <string name="SubscribeFragment__processing_payment">Плаќањето се обработува…</string>
   <string name="DonationsErrors__payment_failed">Плаќањето не успеа</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Вие не можете веднаш да го видите Вашиот беџ, но ние работиме на тоа!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Вие не можете веднаш да го видите Вашиот беџ, но ние работиме на тоа!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не успеа да се откажете претплатата</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>

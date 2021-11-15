@@ -3562,8 +3562,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubscribeFragment__processing_payment">Spracovanie platby…</string>
   <string name="DonationsErrors__payment_failed">Platba zlyhala</string>
   <string name="DonationsErrors__your_payment">Vašu platbu sa nepodarilo spracovať a nebola vám naúčtovaná. Skúste to prosím znova.</string>
-  <string name="DonationsErrors__redemption_still_pending">Uplatnenie stále prebieha</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možno svoj odznak neuvidíte hneď, ale pracujeme na tom!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Uplatnenie stále prebieha</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možno svoj odznak neuvidíte hneď, ale pracujeme na tom!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay je nedostupný</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Ak chcete prispieť v aplikácii, musíte si nastaviť službu Google Pay.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Predplatné sa nepodarilo zrušiť</string>

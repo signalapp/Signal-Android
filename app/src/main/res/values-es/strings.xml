@@ -3357,8 +3357,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeFragment__processing_payment">Procesando pago …</string>
   <string name="DonationsErrors__payment_failed">Fallo en el pago</string>
   <string name="DonationsErrors__your_payment">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
-  <string name="DonationsErrors__redemption_still_pending">Reembolso pendiente</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Tal vez no veas tu distintivo inmediatamente ¡estamos trabajando en ello!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Reembolso pendiente</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Tal vez no veas tu distintivo inmediatamente ¡estamos trabajando en ello!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Debes activar Google Pay para poder hacer una donación en la aplicación.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Fallo al cancelar la suscripción</string>

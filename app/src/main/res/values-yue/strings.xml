@@ -318,10 +318,10 @@
     <item quantity="other">唔使置頂</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
-    <item quantity="other">沈默</item>
+    <item quantity="other">避靜</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
-    <item quantity="other">解除沈默</item>
+    <item quantity="other">解除避靜</item>
   </plurals>
   <string name="ConversationListFragment_select">揀選</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -354,7 +354,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">設定個人資料相嘅時候發生問題</string>
   <string name="CreateProfileActivity_problem_setting_profile">設定個人資料嘅時候發生問題</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定您嘅個人資料</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您嘅個人資料係受到端對端加密。當您發起或接受新嘅對話，又或者加入新嘅谷，您嘅聯絡人就會睇到您嘅個人資料 (以及您之後所作嘅變化)。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您嘅個人資料係受到端對端加密。您嘅個人資料 (以及您之後所作嘅變化) 將會俾您嘅聯絡人睇到，而且當您發起或接受新嘅對話，又或者加入新嘅谷，亦會向別人展示。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">係咪要攞返備份嚟還原？</string>
@@ -614,7 +614,7 @@
   <string name="ManageGroupActivity_block_group">封鎖個谷</string>
   <string name="ManageGroupActivity_unblock_group">解除封鎖個谷</string>
   <string name="ManageGroupActivity_leave_group">退谷</string>
-  <string name="ManageGroupActivity_mute_notifications">沈默地通知</string>
+  <string name="ManageGroupActivity_mute_notifications">將啲通知潛水避靜</string>
   <string name="ManageGroupActivity_custom_notifications">自訂通知</string>
   <string name="ManageGroupActivity_mentions">點名講</string>
   <string name="ManageGroupActivity_chat_color_and_wallpaper">傾偈顏色同背景</string>
@@ -649,7 +649,7 @@
   <string name="ManageGroupActivity_add_group_description">加返個谷嘅描述…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">點名講起我嘅時候通知</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">喺沈默嘅傾偈中點名講起您嘅時候，使唔使接收通知？</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">喺避靜嘅傾偈中點名講起您嘅時候，使唔使接收通知？</string>
   <string name="GroupMentionSettingDialog_always_notify_me">幾時都要通知我</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">唔好通知我</string>
   <!--ManageProfileFragment-->
@@ -925,7 +925,7 @@
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s 已唔再係話事人。</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">您已唔再係話事人。</string>
   <!--GV2 invitations-->
-  <string name="MessageRecord_you_invited_s_to_the_group">您已邀請 %1$s 人加入呢個谷。</string>
+  <string name="MessageRecord_you_invited_s_to_the_group">您已邀請 %1$s 加入呢個谷。</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s 已邀請您加入呢個谷。</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="other">%1$s 已邀請 %2$d 人加入呢個谷。</item>
@@ -1453,7 +1453,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">加密嘅多媒體短訊訊息軭咗</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">多媒體短訊訊息所屬嘅加密階段唔存在</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">沈默地通知</string>
+  <string name="MuteDialog_mute_notifications">將啲通知潛水避靜</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">匯入而家整緊</string>
   <string name="ApplicationMigrationService_importing_text_messages">匯入緊文字訊息</string>
@@ -1881,10 +1881,10 @@
   <!--arrays.xml-->
   <string name="arrays__use_default">跟返預設咁樣</string>
   <string name="arrays__use_custom">自己揀選咁樣</string>
-  <string name="arrays__mute_for_one_hour">沈默 1 個鐘</string>
-  <string name="arrays__mute_for_eight_hours">沈默 8 個鐘</string>
-  <string name="arrays__mute_for_one_day">沈默 1 日</string>
-  <string name="arrays__mute_for_seven_days">沈默 7 日</string>
+  <string name="arrays__mute_for_one_hour">避靜 1 個鐘</string>
+  <string name="arrays__mute_for_eight_hours">避靜 8 個鐘</string>
+  <string name="arrays__mute_for_one_day">避靜 1 日</string>
+  <string name="arrays__mute_for_seven_days">避靜 7 日</string>
   <string name="arrays__always">幾時都係</string>
   <string name="arrays__settings_default">跟返 [設定] 點話點好</string>
   <string name="arrays__enabled">啟用</string>
@@ -2268,9 +2268,9 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">重設安全對話</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">解除沈默</string>
+  <string name="conversation_muted__unmute">解除避靜</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">沈默地通知</string>
+  <string name="conversation_unmuted__mute_notifications">將啲通知潛水避靜</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">谷嘅設定</string>
   <string name="conversation__menu_leave_group">退谷</string>
@@ -2595,7 +2595,7 @@
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">由較新版本嘅 Sigmal 轉移過嚟係唔得嘅</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">轉移緊資料</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">將兩部機保持靠近。唔好熄機、開住 Signal。轉移經端對端加密。</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">將兩部機保持靠近。唔好熄機，並且開住 Signal。轉移係經端對端加密。</string>
   <string name="DeviceTransfer__d_messages_so_far">目前為止 %1$d 個訊息…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
@@ -3064,8 +3064,8 @@
   <string name="ConversationSettingsFragment__video">視像</string>
   <string name="ConversationSettingsFragment__audio">語音</string>
   <string name="ConversationSettingsFragment__call">打電話</string>
-  <string name="ConversationSettingsFragment__mute">沈默</string>
-  <string name="ConversationSettingsFragment__muted">已沈默</string>
+  <string name="ConversationSettingsFragment__mute">避靜</string>
+  <string name="ConversationSettingsFragment__muted">已避靜</string>
   <string name="ConversationSettingsFragment__search">搜尋</string>
   <string name="ConversationSettingsFragment__disappearing_messages">過眼雲煙訊息</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">聲音同通知</string>
@@ -3082,9 +3082,9 @@
   <string name="ConversationSettingsFragment__requests_and_invites">請求與邀請</string>
   <string name="ConversationSettingsFragment__group_link">谷拎</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">加做聯絡人</string>
-  <string name="ConversationSettingsFragment__unmute">解除沈默</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">對話沈默至 %1$s</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">對話沈默至永遠</string>
+  <string name="ConversationSettingsFragment__unmute">解除避靜</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">對話避靜至 %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">對話避靜至永遠</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">複製咗個電話冧把去剪貼簿。</string>
   <string name="ConversationSettingsFragment__phone_number">電話冧把</string>
   <!--PermissionsSettingsFragment-->
@@ -3097,9 +3097,9 @@
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">邊個改到關於呢個谷嘅資訊？</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">邊個可以傳送訊息？</string>
   <!--SoundsAndNotificationsSettingsFragment-->
-  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">沈默地通知</string>
-  <string name="SoundsAndNotificationsSettingsFragment__not_muted">非沈默</string>
-  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">沈默至 %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">將啲通知潛水避靜</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">唔使避靜</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">避靜至 %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">點名講</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">幾時都要通知</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">唔好通知</string>
@@ -3126,7 +3126,7 @@
   <string name="VoiceNotePlayerView__navigate_to_voice_message">跳去語音訊息嗰個位</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
-  <string name="AvatarPickerFragment__camera">相機</string>
+  <string name="AvatarPickerFragment__camera">影相</string>
   <string name="AvatarPickerFragment__take_a_picture">影返幅相</string>
   <string name="AvatarPickerFragment__choose_a_photo">揀張相</string>
   <string name="AvatarPickerFragment__photo">揀相</string>
@@ -3254,8 +3254,8 @@
   <string name="SubscribeFragment__processing_payment">處理緊付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
   <string name="DonationsErrors__your_payment">處理唔到您嘅付款，您未有被扣數。請再試一次。</string>
-  <string name="DonationsErrors__redemption_still_pending">換領手續仲搞緊</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">您個襟章可能仲要等等，但我哋好快會為您送上！</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">換領手續仲搞緊</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">您個襟章可能仲要等等，但我哋好快會為您送上！</string> -->
   <string name="DonationsErrors__google_pay_unavailable">用唔到 Google Pay</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">您要設定好 Google Pay 先可以喺 App 內捐款。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消唔到課金計劃</string>

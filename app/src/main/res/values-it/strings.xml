@@ -3357,8 +3357,8 @@
   <string name="SubscribeFragment__processing_payment">Pagamento in elaborazione…</string>
   <string name="DonationsErrors__payment_failed">Pagamento fallito</string>
   <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
-  <string name="DonationsErrors__redemption_still_pending">Riscatto ancora in corso</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Forse non vedrai subito il tuo badge, ma ci stiamo lavorando!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Riscatto ancora in corso</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Forse non vedrai subito il tuo badge, ma ci stiamo lavorando!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay non disponibile</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Devi impostare Google Pay per donare all\'interno dell\'app.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Impossibile annullare il contributo</string>

@@ -3562,8 +3562,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
   <string name="DonationsErrors__payment_failed">Platba selhala</string>
   <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
-  <string name="DonationsErrors__redemption_still_pending">Na vykoupení se stále čeká</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možná svůj odznak neuvidíte hned, ale pracujeme na tom!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Na vykoupení se stále čeká</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možná svůj odznak neuvidíte hned, ale pracujeme na tom!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musíte si nastavit Google Pay, abyste mohli přispět v rámci aplikace.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného selhalo</string>

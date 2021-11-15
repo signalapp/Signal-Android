@@ -3351,8 +3351,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubscribeFragment__processing_payment">Es processa el pagament…</string>
   <string name="DonationsErrors__payment_failed">Ha fallat el pagament.</string>
   <string name="DonationsErrors__your_payment">El pagament no s\'ha pogut processar i no se us ha cobrat. Si us plau, torneu-ho a provar.</string>
-  <string name="DonationsErrors__redemption_still_pending">La redempció encara està pendent.</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">És possible que no vegeu la insígnia de seguida, però estem treballant-hi!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">La redempció encara està pendent.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">És possible que no vegeu la insígnia de seguida, però estem treballant-hi!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Heu de configurar Google Pay per fer donacions des de l\'aplicació.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">No s\'ha pogut cancel·lar la subscripció.</string>

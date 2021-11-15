@@ -3016,11 +3016,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signalin numeronvaihto - Tarvitsen apua tunnusluvun kanssa Androidilla (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
-  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-koodit eivät täsmää</string>
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Tunnusluvut eivät täsmää</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Uudella ja vanhalla numerolllasi on eri tunnusluvut. Haluatko pitää vanhan tunnuslukusi vai päivittää sen?</string>
-  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Säilytä vanha PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Säilytä vanha tunnusluku</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Päivitä tunnusluku</string>
-  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Säilytetäänkö vanha PIN-koodi?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Säilytetäänkö vanha tunnusluku?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Vaikuttaa siltä että yritit vaihtaa numerosi, mutta emme pystyneet vahvistamaan että se onnistui.\n\nTarkistetaan uudestaan…</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Muutostila vahvistettu</string>
@@ -3351,8 +3351,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
   <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string>
   <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään joten sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
-  <string name="DonationsErrors__redemption_still_pending">Lunastus odottaa vielä</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Et ehkä näe merkkiäsi heti, mutta työskentelemme sen eteen!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Lunastus odottaa vielä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Et ehkä näe merkkiäsi heti, mutta työskentelemme sen eteen!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruuttaminen epäonnistui</string>

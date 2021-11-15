@@ -3225,8 +3225,8 @@
   <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
   <string name="DonationsErrors__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
-  <string name="DonationsErrors__redemption_still_pending">Εκκρεμεί η εξαργύρωση</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Μπορεί να μην δεις το έμβλημά σου κατ\' ευθείαν, αλλά το ετοιμάζουμε!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Εκκρεμεί η εξαργύρωση</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Μπορεί να μην δεις το έμβλημά σου κατ\' ευθείαν, αλλά το ετοιμάζουμε!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay μη διαθέσιμο</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Πρέπει να ενεργοποιήσεις το Google Pay για να κάνεις δωρεά μέσω της εφαρμογής.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Αποτυχία ακύρωσης συνδρομής</string>

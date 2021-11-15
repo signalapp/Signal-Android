@@ -3342,8 +3342,8 @@
   <string name="SubscribeFragment__processing_payment">পেমেন্ট প্রক্রিয়া করা হচ্ছে…</string>
   <string name="DonationsErrors__payment_failed">পেমেন্ট ব্যর্থ হয়েছে</string>
   <string name="DonationsErrors__your_payment">আপনার পেমেন্ট প্রক্রিয়া করা যায়নি এবং আপনাকে চার্জ করা হয়নি। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
-  <string name="DonationsErrors__redemption_still_pending">খালাস এখনও অপেক্ষারত আছে</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">আপনি হয়তো এখনই আপনার ব্যাজ দেখতে পাবেন না, কিন্তু আমরা এটি নিয়ে কাজ করছি!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">খালাস এখনও অপেক্ষারত আছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">আপনি হয়তো এখনই আপনার ব্যাজ দেখতে পাবেন না, কিন্তু আমরা এটি নিয়ে কাজ করছি!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay  সহজলভ্য নয়</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">অ্যাপের মধ্যে দান করার জন্য আপনাকে Google Pay সেট-আপ করতে হবে।</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">সাবস্ক্রিপশন বাতিল করতে ব্যর্থ হয়েছে</string>
