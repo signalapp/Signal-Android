@@ -176,7 +176,7 @@ class SubscribeFragment : DSLSettingsFragment(
               isSelected = state.selectedSubscription == it,
               isEnabled = areFieldsEnabled,
               isActive = isActive,
-              willRenew = isActive && state.activeSubscription?.activeSubscription?.willCancelAtPeriodEnd() ?: false,
+              willRenew = isActive && !state.isSubscriptionExpiring(),
               onClick = { viewModel.setSelectedSubscription(it) },
               renewalTimestamp = TimeUnit.SECONDS.toMillis(state.activeSubscription?.activeSubscription?.endOfCurrentPeriod ?: 0L),
               selectedCurrency = state.currencySelection
@@ -190,11 +190,10 @@ class SubscribeFragment : DSLSettingsFragment(
 
         val activeAndSameLevel = state.activeSubscription.isActive &&
           state.selectedSubscription?.level == state.activeSubscription.activeSubscription?.level
-        val isExpiring = state.activeSubscription.isActive && state.activeSubscription.activeSubscription?.willCancelAtPeriodEnd() == true
 
         primaryButton(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
-          isEnabled = areFieldsEnabled && (!activeAndSameLevel || isExpiring),
+          isEnabled = areFieldsEnabled && (!activeAndSameLevel || state.isSubscriptionExpiring()),
           onClick = {
             val price = viewModel.getPriceOfSelectedSubscription() ?: return@primaryButton
             val calendar = Calendar.getInstance()
