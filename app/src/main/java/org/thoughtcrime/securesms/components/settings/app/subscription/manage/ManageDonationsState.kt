@@ -7,11 +7,18 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 data class ManageDonationsState(
   val featuredBadge: Badge? = null,
   val transactionState: TransactionState = TransactionState.Init,
-  val availableSubscriptions: List<Subscription> = emptyList()
+  val availableSubscriptions: List<Subscription> = emptyList(),
+  val subscriptionRedemptionState: SubscriptionRedemptionState = SubscriptionRedemptionState.NONE
 ) {
   sealed class TransactionState {
     object Init : TransactionState()
     object InTransaction : TransactionState()
     class NotInTransaction(val activeSubscription: ActiveSubscription) : TransactionState()
+  }
+
+  enum class SubscriptionRedemptionState {
+    NONE,
+    IN_PROGRESS,
+    FAILED
   }
 }

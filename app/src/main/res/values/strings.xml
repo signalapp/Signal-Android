@@ -3986,6 +3986,9 @@
     <string name="MySupportPreference__add_a_signal_boost">Add a Signal Boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/month</string>
     <string name="MySupportPreference__renews_s">Renews %1$s</string>
+    <string name="MySupportPreference__processing_transaction">Processing transaction…</string>
+    <string name="MySupportPreference__couldnt_add_badge">Couldn\'t add badge.</string>
+    <string name="MySupportPreference__please_contact_support">Please contact support.</string>
 
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Your Badge has Expired</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expired</string>
@@ -4007,10 +4010,10 @@
     <string name="SubscribeFragment__processing_payment">Processing payment…</string>
     <string name="DonationsErrors__payment_failed">Payment failed</string>
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
-    <string name="DonationsErrors__redemption_still_pending">Redemption still pending</string>
+    <string name="DonationsErrors__still_processing">Still processing</string>
     <string name="DonationsErrors__redemption_failed">Redemption failed</string>
     <string name="DonationsErrors__please_contact_support">Please contact support</string>
-    <string name="DonationsErrors__you_might_not_see_your_badge_right_away">You may not see your badge right away, but we\'re working on it!</string>
+    <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>

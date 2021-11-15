@@ -241,8 +241,8 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
       Log.w(TAG, "Timed out while redeeming token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__redemption_still_pending)
-        .setMessage(R.string.DonationsErrors__you_might_not_see_your_badge_right_away)
+        .setTitle(R.string.DonationsErrors__still_processing)
+        .setMessage(R.string.DonationsErrors__your_payment_is_still)
         .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
           findNavController().popBackStack()

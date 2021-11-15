@@ -275,12 +275,12 @@ class SubscribeFragment : DSLSettingsFragment(
     if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
       Log.w(TAG, "Timeout occurred while redeeming token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__redemption_still_pending)
-        .setMessage(R.string.DonationsErrors__you_might_not_see_your_badge_right_away)
+        .setTitle(R.string.DonationsErrors__still_processing)
+        .setMessage(R.string.DonationsErrors__your_payment)
         .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
           requireActivity().finish()
-          requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
+          requireActivity().startActivity(AppSettingsActivity.manageSubscriptions(requireContext()))
         }
         .show()
     } else if (throwable is DonationExceptions.SetupFailed) {
