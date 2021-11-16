@@ -29,10 +29,12 @@ import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.models.Badge;
+import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarState;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.NameUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -118,7 +120,11 @@ public class ManageProfileFragment extends LoggingFragment {
 
     if (FeatureFlags.donorBadges()) {
       badgesContainer.setOnClickListener(v -> {
-        Navigation.findNavController(v).navigate(ManageProfileFragmentDirections.actionManageProfileFragmentToBadgeManageFragment());
+        if (Recipient.self().getBadges().isEmpty()) {
+          BecomeASustainerFragment.show(getParentFragmentManager());
+        } else {
+          Navigation.findNavController(v).navigate(ManageProfileFragmentDirections.actionManageProfileFragmentToBadgeManageFragment());
+        }
       });
     } else {
       badgesContainer.setVisibility(View.GONE);
