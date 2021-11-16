@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.AccountIdentifier;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
@@ -406,6 +407,13 @@ public class SignalServiceAccountManager {
    */
   public SignedPreKeyEntity getSignedPreKey() throws IOException {
     return this.pushServiceSocket.getCurrentSignedPreKey();
+  }
+
+  /**
+   * @return True if the identifier corresponds to a registered user, otherwise false.
+   */
+  public boolean isIdentifierRegistered(AccountIdentifier identifier) throws IOException {
+    return pushServiceSocket.isIdentifierRegistered(identifier);
   }
 
   /**

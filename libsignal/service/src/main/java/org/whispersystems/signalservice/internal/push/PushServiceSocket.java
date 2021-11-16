@@ -52,6 +52,7 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.AccountIdentifier;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
@@ -86,7 +87,6 @@ import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
@@ -178,20 +178,21 @@ public class PushServiceSocket {
 
   private static final String TAG = PushServiceSocket.class.getSimpleName();
 
-  private static final String CREATE_ACCOUNT_SMS_PATH   = "/v1/accounts/sms/code/%s?client=%s";
-  private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
-  private static final String VERIFY_ACCOUNT_CODE_PATH  = "/v1/accounts/code/%s";
-  private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
-  private static final String TURN_SERVER_INFO          = "/v1/accounts/turn";
-  private static final String SET_ACCOUNT_ATTRIBUTES    = "/v1/accounts/attributes/";
-  private static final String PIN_PATH                  = "/v1/accounts/pin/";
-  private static final String REGISTRATION_LOCK_PATH    = "/v1/accounts/registration_lock";
-  private static final String REQUEST_PUSH_CHALLENGE    = "/v1/accounts/fcm/preauth/%s/%s";
-  private static final String WHO_AM_I                  = "/v1/accounts/whoami";
-  private static final String SET_USERNAME_PATH         = "/v1/accounts/username/%s";
-  private static final String DELETE_USERNAME_PATH      = "/v1/accounts/username";
-  private static final String DELETE_ACCOUNT_PATH       = "/v1/accounts/me";
-  private static final String CHANGE_NUMBER_PATH        = "/v1/accounts/number";
+  private static final String CREATE_ACCOUNT_SMS_PATH    = "/v1/accounts/sms/code/%s?client=%s";
+  private static final String CREATE_ACCOUNT_VOICE_PATH  = "/v1/accounts/voice/code/%s";
+  private static final String VERIFY_ACCOUNT_CODE_PATH   = "/v1/accounts/code/%s";
+  private static final String REGISTER_GCM_PATH          = "/v1/accounts/gcm/";
+  private static final String TURN_SERVER_INFO           = "/v1/accounts/turn";
+  private static final String SET_ACCOUNT_ATTRIBUTES     = "/v1/accounts/attributes/";
+  private static final String PIN_PATH                   = "/v1/accounts/pin/";
+  private static final String REGISTRATION_LOCK_PATH     = "/v1/accounts/registration_lock";
+  private static final String REQUEST_PUSH_CHALLENGE     = "/v1/accounts/fcm/preauth/%s/%s";
+  private static final String WHO_AM_I                   = "/v1/accounts/whoami";
+  private static final String SET_USERNAME_PATH          = "/v1/accounts/username/%s";
+  private static final String DELETE_USERNAME_PATH       = "/v1/accounts/username";
+  private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
+  private static final String CHANGE_NUMBER_PATH         = "/v1/accounts/number";
+  private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
@@ -332,7 +333,7 @@ public class PushServiceSocket {
   public ACI getOwnAci() throws IOException {
     String         body     = makeServiceRequest(WHO_AM_I, "GET", null);
     WhoAmIResponse response = JsonUtil.fromJson(body, WhoAmIResponse.class);
-    Optional<ACI>  aci      = ACI.parse(response.getUuid());
+    Optional<ACI>  aci      = ACI.parse(response.getAci());
 
     if (aci.isPresent()) {
       return aci.get();
@@ -343,6 +344,15 @@ public class PushServiceSocket {
 
   public WhoAmIResponse getWhoAmI() throws IOException {
     return JsonUtil.fromJson(makeServiceRequest(WHO_AM_I, "GET", null), WhoAmIResponse.class);
+  }
+
+  public boolean isIdentifierRegistered(AccountIdentifier identifier) throws IOException {
+    try {
+      makeServiceRequestWithoutAuthentication(String.format(IDENTIFIER_REGISTERED_PATH, identifier.toString()), "HEAD", null);
+      return true;
+    } catch (NotFoundException e) {
+      return false;
+    }
   }
 
   public CdshAuthResponse getCdshAuth() throws IOException {
