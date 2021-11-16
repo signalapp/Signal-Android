@@ -3299,6 +3299,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SubscribeFragment__more_payment_options">Fleiri greiðslumátar</string>
   <string name="SubscribeFragment__cancel_subscription">Segja upp áskrift</string>
   <string name="SubscribeFragment__confirm_cancellation">Staðfesta uppsögn?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Þú færð ekki rukkun oftar. Merkið verður fjarlægt úr persónusniðinu þínu eftir að greiðslutímabilinu lýkur.</string>
   <string name="SubscribeFragment__not_now">Ekki núna</string>
   <string name="SubscribeFragment__confirm">Staðfesta</string>
   <string name="SubscribeFragment__update_subscription">Uppfæra áskrift</string>
@@ -3311,6 +3312,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Af hverju styrkja?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Þakka þér fyrir stuðninginn!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Þakka þér fyrir hvatninguna!</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Þú varðst þér út um %s merki! Birting merkisins mun sýna fólki sem þú spjallar við að þú ert að styðja Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Birta á persónusniði</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gera merki áberandi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Lokið</string>
@@ -3320,6 +3322,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ManageDonationsFragment__subscription_faq">Spurningar varðandi áskrift</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Villa við að ná í áskrift</string>
   <string name="BoostFragment__give_signal_a_boost">Gefðu Signal hvatningu</string>
+  <string name="BoostFragment__say_thanks_and_earn">Segðu \"Bestu þakkir!\" og vinndu þér inn hvatningarmerki í %1$d daga.</string>
   <string name="Boost__enter_custom_amount">Settu inn sérsniðna upphæð</string>
   <string name="Boost__one_time_contribution">Eins-skiptis styrkur</string>
   <string name="MySupportPreference__add_a_signal_boost">Bæta við Signal-hvatningu</string>
@@ -3329,9 +3332,16 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s merkið þitt er útrunnið og er því ekki lengur sýnilegt öðrum á sniðinu þínu.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Gerstu áskrifandi</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
+  <string name="Subscription__verification_failed">Staðfesting áskriftar mistókst</string>
+  <string name="Subscription__please_contact_support_for_more_information">Hafðu samband við aðstoðarteymið til að fá nánari upplýsingar.</string>
   <string name="Subscription__contact_support">Hafa samband við hjálparteymi</string>
+  <string name="Subscription__earn_a_s_badge">Fáðu %1$s merki</string>
   <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>
   <string name="DonationsErrors__payment_failed">Greiðsla mistókst</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Það er ekki víst að þú sjáir merkið þitt alveg strax, en við erum að vinna í málinu!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ekki aðgengilegt</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Þú þarft að setja upp Google Pay til að styrkja inni í forritinu.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Mistókst að hætta áskrift</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Til að hætta áskrift þarf tengingu við internetið.</string>
   <!--EOF-->
 </resources>

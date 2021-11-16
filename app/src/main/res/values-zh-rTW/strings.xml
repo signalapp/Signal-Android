@@ -418,9 +418,9 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名稱的檔案</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">捐贈 Signal</string>
+  <string name="DonateMegaphone_donate_to_signal">贊助 Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 由像你這樣的人提供動力。這顯示了你的支持！</string>
-  <string name="DonateMegaphone_donate">捐贈</string>
+  <string name="DonateMegaphone_donate">贊助</string>
   <string name="DonateMegaphone_no_thanks">在心中</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">群組通話簡介</string>
@@ -1955,7 +1955,7 @@
   <string name="preferences__slow">緩慢</string>
   <string name="preferences__help">幫助</string>
   <string name="preferences__advanced">進階</string>
-  <string name="preferences__donate_to_signal">捐贈 Signal</string>
+  <string name="preferences__donate_to_signal">贊助 Signal</string>
   <string name="preferences__subscription">訂閱</string>
   <string name="preferences__signal_boost">Signal 推廣</string>
   <string name="preferences__privacy">隱私權</string>
@@ -3253,7 +3253,7 @@
   <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">加值仍在待定中</string> -->
   <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">你可能不會立即看到你的徽章，但我們正在解決這個問題！</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
-  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必須設定 Google Pay 才能在程式中捐款。</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必須設定 Google Pay 才能在程式中贊助。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">取消訂閱需要連接網路。</string>
   <!--EOF-->

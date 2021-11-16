@@ -299,11 +299,11 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">आपला %s सोबतचा सुरक्षितता नंबर बदलला, कारण कदाचित त्यांनी Signal पुन्हा स्थापित केले किंवा उपकरण बदलले. नवीन सुरक्षितता नंबर पुष्टी करण्यासाठी सत्यापित करा वर टॅप करा. हे पर्यायी आहे.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">निवडलेले संभाषण हटवायचे?</item>
-    <item quantity="other">निवडलेले संभाषण हटवायचे?</item>
+    <item quantity="other">निवडलेले संभाषणे हटवायचे?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">हे निवडलेले संभाषण कायमचे हटवेल.</item>
-    <item quantity="other">हे निवडलेले %1$d संभाषण कायमचे हटवेल.</item>
+    <item quantity="other">हे निवडलेले %1$d संभाषणे कायमचे हटवेल.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">हटवत आहे</string>
   <string name="ConversationListFragment_deleting_selected_conversations">निवडलेले संभाषण हटवत आहे…</string>
@@ -473,7 +473,7 @@
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">सदस्य जोडायचा?</string>
   <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ला \"%2$s\" मध्ये जोडायचे ?</string>
-  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" मध्ये \"%2$s\" जोडले.</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ने \"%2$s\" ला जोडले.</string>
   <string name="AddToGroupActivity_add_to_group">गटात जोडा</string>
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
@@ -599,8 +599,8 @@
   <string name="RequestingMembersFragment_pending_member_requests">प्रलंबित सदस्य विनंत्या</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">दाखवण्यासाठी कोणतीही सदस्यांची विनंती नाही.</string>
   <string name="RequestingMembersFragment_explanation">या यादीवरील लोक गट लिंक द्वारा गटात सामील होण्याचा प्रयत्न करत आहेत.</string>
-  <string name="RequestingMembersFragment_added_s">\"%1$s\" जोडले</string>
-  <string name="RequestingMembersFragment_denied_s">\"%1$s\" नाकारले</string>
+  <string name="RequestingMembersFragment_added_s">\"%1$s\" ला जोडले</string>
+  <string name="RequestingMembersFragment_denied_s">\"%1$s\" ला नाकारले</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ठीक</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
@@ -1440,7 +1440,7 @@
   <string name="SubmitDebugLogActivity_success">यश!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ही URL कॉपी करा आणि आपल्या समस्येच्या अहवालात किंवा समर्थन ईमेल वर जोडा : \n\n <b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">सामायिक करा</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">अंशदात्यांनी बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल. आपण अपलोड करण्यापूर्वी त्यास तपासू शकता.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">अंशदात्यांना बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल. आपण अपलोड करण्यापूर्वी त्यास तपासू शकता.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">फिल्टर:</string>
   <string name="SupportEmailUtil_device_info">डिव्हाईस माहिती:</string>
@@ -1852,7 +1852,7 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">सानुकूलित MMS गट नाव आणि फोटो फक्त आपल्याला दृश्यमान असतील.</string>
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">गट विवरण या गटाच्या सदस्यांना आणि आमंत्रित केलेल्या लोकांना दृश्यमान असेल.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">याबद्दल</string>
+  <string name="EditAboutFragment_about">आपल्याबद्दल</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">स्वतःबद्दल काही शब्द लिहा…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">मोकळेपणाने बोला</string>
@@ -1938,6 +1938,7 @@
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
+  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2"/> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">हा संदेश</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">अलीकडील वापरलेले</string>
@@ -1993,7 +1994,7 @@
   <string name="preferences__pref_use_address_book_photos">पत्ता पुस्तक फोटो वापरा</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध असल्यास आपल्या पत्ता पुस्तकातून संपर्क फोटो दाखवा</string>
   <string name="preferences__generate_link_previews">लिंक पुनरावलोकन उत्पन्न करा</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">आपण संदेशसाठी पाठवलेल्या वेबसाईट वरून लिंक पुनरावलोकन थेट मिळवू शकता.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">तुम्ही पाठवलेल्या संदेशांसाठी थेट कोणत्याही वेबसाइटवरून लिंक पूर्वावलोकने प्राप्त करू शकता.</string>
   <string name="preferences__choose_identity">ओळख निवडा</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">संपर्क यादी मधून आपली संपर्क प्रविष्टी निवडा.</string>
   <string name="preferences__change_passphrase">पासफ्रेझ बदला</string>
@@ -2234,7 +2235,7 @@
   <string name="PaymentsTransferFragment__transfer">स्थानांतरित करा</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR कोड स्कॅन करा</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">हे करण्यासाठी: स्कॅन करा किंवा वॉलेट पत्ता प्रविष्ट करा</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">ऐक्सचेंजने पुरवलेल्या वॉलेट पत्त्यावर स्थानांतरण पूर्ण करून आपण MobileCoin स्थानांतरित करू शकता. वॉलेट पत्ता हे अंक आणि अक्षरांची स्ट्रिंग आहे साधारणपणे QR कोडच्या खाली.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">ऐक्सचेंजने पुरवलेल्या वॉलेट पत्त्यावर स्थानांतरण पूर्ण करून आपण MobileCoin स्थानांतरित करू शकता. वॉलेट पत्ता हे अंक आणि अक्षरांची स्ट्रिंग आहे, जो साधारणपणे QR कोडच्या खाली असेल.</string>
   <string name="PaymentsTransferFragment__next">पुढे</string>
   <string name="PaymentsTransferFragment__invalid_address">अवैध पत्ता</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">आपण स्थानांतरित करत असलेला वॉलेट पत्ता तपासा आणि पुन्हा प्रयत्न करा.</string>
@@ -2285,7 +2286,7 @@
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">या व्यक्तीने पेमेंट सक्रिय केलेले नाही</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">नेटवर्क फीची विनंती करण्यात अक्षम. हे पेमेंट सुरू ठेवण्यासाठी पुन्हा प्रयत्न करण्यासाठी ठीक आहे वर टॅप करा.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%2$s वर %1$s</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%2$s ला %1$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">चलन सेट करा</string>
   <string name="SetCurrencyFragment__all_currencies">सर्व चलन</string>
@@ -2887,7 +2888,7 @@
   <string name="payment_info_card_about_mobilecoin">MobileCoin बद्दल</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin हे नवीन गोपनीयता केंद्रित डिजिटल चलन आहे.</string>
   <string name="payment_info_card_adding_funds">फंड जोडत आहे</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoin आपल्या वॉलेट पत्त्यावर पाठवण्यासाठी आपण Signal मध्ये वापरासाठी फंड जोडू शकता.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">तुम्ही तुमच्या वॉलेट पत्त्यावर MobileCoin पाठवून Signal मध्ये वापरासाठी निधी जोडू शकता.</string>
   <string name="payment_info_card_cashing_out">फंड काढत आहे</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin चे समर्थन करत असलेल्या ऐक्सचेंजवर आपण कधीही MobileCoin फंड काढू शकता. फक्त त्या ऐक्सचेंजवर आपल्या खात्यावर स्थानांतरण करा.</string>
   <string name="payment_info_card_hide_this_card">हे कार्ड लपवायचे?</string>
