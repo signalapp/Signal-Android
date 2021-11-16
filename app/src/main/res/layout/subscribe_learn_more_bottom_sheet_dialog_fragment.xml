@@ -72,7 +72,7 @@
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no"
+        android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing"
         android:textAppearance="@style/Signal.Text.Body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
