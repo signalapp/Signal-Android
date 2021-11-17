@@ -84,9 +84,9 @@ public final class FeatureFlags {
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
-  private static final String DONOR_BADGES                      = "android.donorBadges.4";
-  private static final String DONOR_BADGES_MEGAPHONE            = "android.donorBadges.megaphone.2";
-  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.2";
+  private static final String DONOR_BADGES                      = "android.donorBadges.5";
+  private static final String DONOR_BADGES_MEGAPHONE            = "android.donorBadges.megaphone.3";
+  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.3";
   private static final String CDSH                              = "android.cdsh";
 
   /**

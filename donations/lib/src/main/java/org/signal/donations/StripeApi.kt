@@ -96,10 +96,15 @@ class StripeApi(
 
   private fun createPaymentMethod(paymentSource: PaymentSource): Response {
     val tokenizationData = paymentSource.parameterize()
-    val parameters = mapOf(
+    val parameters = mutableMapOf(
       "card[token]" to JSONObject((tokenizationData.get("token") as String).replace("\n", "")).getString("id"),
-      "type" to "card"
+      "type" to "card",
     )
+
+    val email = paymentSource.email()
+    if (email != null) {
+      parameters["billing_details[email]"] = email
+    }
 
     return postForm("payment_methods", parameters)
   }
