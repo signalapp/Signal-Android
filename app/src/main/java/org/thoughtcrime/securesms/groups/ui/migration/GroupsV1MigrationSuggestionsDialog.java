@@ -65,6 +65,7 @@ public final class GroupsV1MigrationSuggestionsDialog {
                                         .show();
 
     GroupMemberListView memberListView = dialog.findViewById(R.id.list_members);
+    memberListView.initializeAdapter(fragmentActivity);
 
     SimpleTask.run(() -> Recipient.resolvedList(suggestions),
                    memberListView::setDisplayOnlyMembers);

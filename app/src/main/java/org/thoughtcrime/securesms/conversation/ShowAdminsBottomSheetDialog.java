@@ -68,6 +68,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
 
     GroupMemberListView list = view.findViewById(R.id.show_admin_list);
+    list.initializeAdapter(getViewLifecycleOwner());
     list.setDisplayOnlyMembers(Collections.emptyList());
 
     list.setRecipientClickListener(recipient -> {
