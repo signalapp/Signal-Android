@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
@@ -134,7 +136,10 @@ public class ManageProfileFragment extends LoggingFragment {
   private void initializeViewModel() {
     viewModel = ViewModelProviders.of(this, new ManageProfileViewModel.Factory()).get(ManageProfileViewModel.class);
 
-    viewModel.getAvatar().observe(getViewLifecycleOwner(), this::presentAvatar);
+    LiveData<Optional<byte[]>> avatarImage = Transformations.distinctUntilChanged(Transformations.map(viewModel.getAvatar(), avatar -> Optional.fromNullable(avatar.getAvatar())));
+    avatarImage.observe(getViewLifecycleOwner(), this::presentAvatarImage);
+
+    viewModel.getAvatar().observe(getViewLifecycleOwner(), this::presentAvatarPlaceholder);
     viewModel.getProfileName().observe(getViewLifecycleOwner(), this::presentProfileName);
     viewModel.getEvents().observe(getViewLifecycleOwner(), this::presentEvent);
     viewModel.getAbout().observe(getViewLifecycleOwner(), this::presentAbout);
@@ -148,10 +153,19 @@ public class ManageProfileFragment extends LoggingFragment {
     }
   }
 
-  private void presentAvatar(@NonNull AvatarState avatarState) {
-    if (avatarState.getAvatar() == null) {
+  private void presentAvatarImage(@NonNull Optional<byte[]> avatarData) {
+    if (avatarData.isPresent()) {
+      Glide.with(this)
+           .load(avatarData.get())
+           .circleCrop()
+           .into(avatarView);
+    } else {
       avatarView.setImageDrawable(null);
+    }
+  }
 
+  private void presentAvatarPlaceholder(@NonNull AvatarState avatarState) {
+    if (avatarState.getAvatar() == null) {
       CharSequence            initials        = NameUtil.getAbbreviation(avatarState.getSelf().getDisplayName(requireContext()));
       Avatars.ForegroundColor foregroundColor = Avatars.getForegroundColor(avatarState.getSelf().getAvatarColor());
 
@@ -170,11 +184,6 @@ public class ManageProfileFragment extends LoggingFragment {
     } else {
       avatarPlaceholderView.setVisibility(View.GONE);
       avatarInitials.setVisibility(View.GONE);
-
-      Glide.with(this)
-           .load(avatarState.getAvatar())
-           .circleCrop()
-           .into(avatarView);
     }
 
     if (avatarProgress == null && avatarState.getLoadingState() == ManageProfileViewModel.LoadingState.LOADING) {
