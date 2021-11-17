@@ -40,9 +40,9 @@ public final class DirectoryRefreshMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() throws IOException {
-    if (!TextSecurePreferences.isPushRegistered(context)           ||
+    if (!SignalStore.account().isRegistered()                      ||
         !SignalStore.registrationValues().isRegistrationComplete() ||
-        TextSecurePreferences.getLocalAci(context) == null)
+        SignalStore.account().getAci() == null)
     {
       Log.w(TAG, "Not registered! Skipping.");
       return;

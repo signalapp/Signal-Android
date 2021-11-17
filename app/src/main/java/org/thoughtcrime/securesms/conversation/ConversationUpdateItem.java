@@ -346,7 +346,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
       int text = 0;
       if (Util.hasItems(acis)) {
-        if (acis.contains(TextSecurePreferences.getLocalAci(getContext()))) {
+        if (acis.contains(Recipient.self().requireAci())) {
           text = R.string.ConversationUpdateItem_return_to_call;
         } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).getIsCallFull()) {
           text = R.string.ConversationUpdateItem_call_is_full;

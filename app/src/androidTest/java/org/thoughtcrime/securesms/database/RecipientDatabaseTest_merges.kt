@@ -16,7 +16,9 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -43,6 +45,7 @@ class RecipientDatabaseTest_merges {
   private lateinit var mmsDatabase: MessageDatabase
   private lateinit var sessionDatabase: SessionDatabase
   private lateinit var mentionDatabase: MentionDatabase
+  private lateinit var reactionDatabase: ReactionDatabase
 
   @Before
   fun setup() {
@@ -55,6 +58,7 @@ class RecipientDatabaseTest_merges {
     mmsDatabase = DatabaseFactory.getMmsDatabase(context)
     sessionDatabase = DatabaseFactory.getSessionDatabase(context)
     mentionDatabase = DatabaseFactory.getMentionDatabase(context)
+    reactionDatabase = DatabaseFactory.getReactionDatabase(context)
 
     ensureDbEmpty()
   }
@@ -90,6 +94,9 @@ class RecipientDatabaseTest_merges {
     identityDatabase.saveIdentity(E164_A, recipientIdE164, identityKeyE164, IdentityDatabase.VerifiedStatus.VERIFIED, false, 0, false)
 
     sessionDatabase.store(SignalProtocolAddress(ACI_A.toString(), 1), SessionRecord())
+
+    reactionDatabase.addReaction(MessageId(smsId1, false), ReactionRecord("a", recipientIdAci, 1, 1))
+    reactionDatabase.addReaction(MessageId(mmsId1, true), ReactionRecord("b", recipientIdE164, 1, 1))
 
     // Merge
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
@@ -155,6 +162,16 @@ class RecipientDatabaseTest_merges {
 
     // Session validation
     assertNotNull(sessionDatabase.load(SignalProtocolAddress(ACI_A.toString(), 1)))
+
+    // Reaction validation
+    val reactionsSms: List<ReactionRecord> = reactionDatabase.getReactions(MessageId(smsId1, false))
+    val reactionsMms: List<ReactionRecord> = reactionDatabase.getReactions(MessageId(mmsId1, true))
+
+    assertEquals(1, reactionsSms.size)
+    assertEquals(ReactionRecord("a", recipientIdAci, 1, 1), reactionsSms[0])
+
+    assertEquals(1, reactionsMms.size)
+    assertEquals(ReactionRecord("b", recipientIdAci, 1, 1), reactionsMms[0])
   }
 
   private val context: Application

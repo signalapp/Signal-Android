@@ -12,9 +12,6 @@ import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.animation.doOnEnd
 import androidx.core.text.isDigitsOnly
-import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.button.MaterialButton
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
@@ -56,7 +53,7 @@ data class Boost(
     override fun areItemsTheSame(newItem: LoadingModel): Boolean = true
   }
 
-  class LoadingViewHolder(itemView: View) : MappingViewHolder<LoadingModel>(itemView), DefaultLifecycleObserver {
+  class LoadingViewHolder(itemView: View) : MappingViewHolder<LoadingModel>(itemView) {
 
     private val animator: Animator = AnimatorSet().apply {
       val fadeTo25Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.8f, 0.25f).apply {
@@ -68,17 +65,17 @@ data class Boost(
       }
 
       playSequentially(fadeTo25Animator, fadeTo80Animator)
-      doOnEnd { start() }
-    }
-
-    init {
-      lifecycle.addObserver(this)
+      doOnEnd {
+        if (itemView.isAttachedToWindow) {
+          start()
+        }
+      }
     }
 
     override fun bind(model: LoadingModel) {
     }
 
-    override fun onResume(owner: LifecycleOwner) {
+    override fun onAttachedToWindow() {
       if (animator.isStarted) {
         animator.resume()
       } else {
@@ -86,7 +83,7 @@ data class Boost(
       }
     }
 
-    override fun onDestroy(owner: LifecycleOwner) {
+    override fun onDetachedFromWindow() {
       animator.pause()
     }
   }

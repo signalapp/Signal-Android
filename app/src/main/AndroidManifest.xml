@@ -770,22 +770,6 @@
 
     </provider>
 
-    <provider android:name=".database.DatabaseContentProviders$Conversation"
-              android:authorities="${applicationId}.database.conversation"
-              android:exported="false" />
-
-    <provider android:name=".database.DatabaseContentProviders$Attachment"
-              android:authorities="${applicationId}.database.attachment"
-              android:exported="false" />
-
-    <provider android:name=".database.DatabaseContentProviders$Sticker"
-              android:authorities="${applicationId}.database.sticker"
-              android:exported="false" />
-
-    <provider android:name=".database.DatabaseContentProviders$StickerPack"
-              android:authorities="${applicationId}.database.stickerpack"
-              android:exported="false" />
-
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>

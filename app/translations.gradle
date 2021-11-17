@@ -87,7 +87,7 @@ task excludeNonTranslatables {
                 def newLines = f.readLines()
                         .collect { line ->
                             if (!inMultiline) {
-                                def singleLineMatcher = line =~ /name="([^"]*)".*<\//
+                                def singleLineMatcher = line =~ /name="([^"]*)".*(<\/|\/>)/
                                 if (singleLineMatcher.find()) {
                                     def name = singleLineMatcher.group(1)
                                     if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {

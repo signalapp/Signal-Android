@@ -551,11 +551,11 @@ public final class MessageContentProcessor {
       MessageDatabase database = DatabaseFactory.getSmsDatabase(context);
       database.markAsMissedCall(smsMessageId.get(), message.getType() == OfferMessage.Type.VIDEO_CALL);
     } else {
-      RemotePeer remotePeer        = new RemotePeer(senderRecipient.getId());
+      RemotePeer remotePeer        = new RemotePeer(senderRecipient.getId(), new CallId(message.getId()));
       byte[]     remoteIdentityKey = ApplicationDependencies.getIdentityStore().getIdentityRecord(senderRecipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
 
       ApplicationDependencies.getSignalCallManager()
-                             .receivedOffer(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
+                             .receivedOffer(new WebRtcData.CallMetadata(remotePeer, content.getSenderDevice()),
                                             new WebRtcData.OfferMetadata(message.getOpaque(), message.getSdp(), message.getType()),
                                             new WebRtcData.ReceivedOfferMetadata(remoteIdentityKey,
                                                                                  content.getServerReceivedTimestamp(),
@@ -569,11 +569,11 @@ public final class MessageContentProcessor {
                                        @NonNull Recipient senderRecipient)
   {
     log(String.valueOf(content), "handleCallAnswerMessage...");
-    RemotePeer remotePeer        = new RemotePeer(senderRecipient.getId());
+    RemotePeer remotePeer        = new RemotePeer(senderRecipient.getId(), new CallId(message.getId()));
     byte[]     remoteIdentityKey = ApplicationDependencies.getIdentityStore().getIdentityRecord(senderRecipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
 
     ApplicationDependencies.getSignalCallManager()
-                           .receivedAnswer(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
+                           .receivedAnswer(new WebRtcData.CallMetadata(remotePeer, content.getSenderDevice()),
                                            new WebRtcData.AnswerMetadata(message.getOpaque(), message.getSdp()),
                                            new WebRtcData.ReceivedAnswerMetadata(remoteIdentityKey, content.getCallMessage().get().isMultiRing()));
   }
@@ -592,10 +592,10 @@ public final class MessageContentProcessor {
       callId = iceMessage.getId();
     }
 
-    RemotePeer remotePeer = new RemotePeer(senderRecipient.getId());
+    RemotePeer remotePeer = new RemotePeer(senderRecipient.getId(), new CallId(callId));
 
     ApplicationDependencies.getSignalCallManager()
-                           .receivedIceCandidates(new WebRtcData.CallMetadata(remotePeer, new CallId(callId), content.getSenderDevice()),
+                           .receivedIceCandidates(new WebRtcData.CallMetadata(remotePeer, content.getSenderDevice()),
                                                   iceCandidates);
   }
 
@@ -608,10 +608,10 @@ public final class MessageContentProcessor {
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get(), false);
     } else {
-      RemotePeer remotePeer = new RemotePeer(senderRecipient.getId());
+      RemotePeer remotePeer = new RemotePeer(senderRecipient.getId(), new CallId(message.getId()));
 
       ApplicationDependencies.getSignalCallManager()
-                             .receivedCallHangup(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
+                             .receivedCallHangup(new WebRtcData.CallMetadata(remotePeer, content.getSenderDevice()),
                                                  new WebRtcData.HangupMetadata(message.getType(), message.isLegacy(), message.getDeviceId()));
     }
   }
@@ -622,10 +622,10 @@ public final class MessageContentProcessor {
   {
     log(String.valueOf(content.getTimestamp()), "handleCallBusyMessage");
 
-    RemotePeer remotePeer = new RemotePeer(senderRecipient.getId());
+    RemotePeer remotePeer = new RemotePeer(senderRecipient.getId(), new CallId(message.getId()));
 
     ApplicationDependencies.getSignalCallManager()
-                           .receivedCallBusy(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()));
+                           .receivedCallBusy(new WebRtcData.CallMetadata(remotePeer, content.getSenderDevice()));
   }
 
   private void handleCallOpaqueMessage(@NonNull SignalServiceContent content,
@@ -874,14 +874,14 @@ public final class MessageContentProcessor {
       return null;
     }
 
-    MessageDatabase db = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+    MessageId targetMessageId = new MessageId(targetMessage.getId(), targetMessage.isMms());
 
     if (reaction.isRemove()) {
-      db.deleteReaction(targetMessage.getId(), senderRecipient.getId());
+      DatabaseFactory.getReactionDatabase(context).deleteReaction(targetMessageId, senderRecipient.getId());
       ApplicationDependencies.getMessageNotifier().updateNotification(context);
     } else {
       ReactionRecord reactionRecord = new ReactionRecord(reaction.getEmoji(), senderRecipient.getId(), message.getTimestamp(), System.currentTimeMillis());
-      db.addReaction(targetMessage.getId(), reactionRecord);
+      DatabaseFactory.getReactionDatabase(context).addReaction(targetMessageId, reactionRecord);
       ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
     }
 

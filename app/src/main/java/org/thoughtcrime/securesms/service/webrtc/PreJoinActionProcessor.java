@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service.webrtc;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
@@ -28,6 +29,7 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
     Log.i(TAG, "handleCancelPreJoinCall():");
 
     WebRtcVideoUtil.deinitializeVideo(currentState);
+    EglBaseWrapper.releaseEglBase(EglBaseWrapper.OUTGOING_PLACEHOLDER);
 
     return new WebRtcServiceState(new IdleActionProcessor(webRtcInteractor));
   }
@@ -35,6 +37,7 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
   protected @NonNull WebRtcServiceState handleStartIncomingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handleStartIncomingCall():");
 
+    EglBaseWrapper.replaceHolder(EglBaseWrapper.OUTGOING_PLACEHOLDER, remotePeer.getCallId().longValue());
     currentState = WebRtcVideoUtil.reinitializeCamera(context, webRtcInteractor.getCameraEventListener(), currentState)
                                   .builder()
                                   .changeCallInfoState()
@@ -62,9 +65,6 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
 
     currentState.getVideoState().getCamera().setEnabled(enable);
     return currentState.builder()
-                       .changeCallSetupState()
-                       .enableVideoOnCreate(enable)
-                       .commit()
                        .changeLocalDeviceState()
                        .cameraState(currentState.getVideoState().getCamera().getCameraState())
                        .build();

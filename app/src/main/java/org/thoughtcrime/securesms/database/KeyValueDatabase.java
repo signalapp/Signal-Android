@@ -7,7 +7,6 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
-import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -15,8 +14,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
+import org.thoughtcrime.securesms.keyvalue.KeyValuePersistentStorage;
 import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.SqlUtil;
 
 import java.util.Collection;
 import java.util.Map;
@@ -27,7 +26,7 @@ import java.util.Map;
  * This is it's own separate physical database, so it cannot do joins or queries with any other
  * tables.
  */
-public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase {
+public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase, KeyValuePersistentStorage {
 
   private static final String TAG = Log.tag(KeyValueDatabase.class);
 
@@ -99,6 +98,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     });
   }
 
+  @Override
   public @NonNull KeyValueDataSet getDataSet() {
     KeyValueDataSet dataSet = new KeyValueDataSet();
 
@@ -133,6 +133,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     return dataSet;
   }
 
+  @Override
   public void writeDataSet(@NonNull KeyValueDataSet dataSet, @NonNull Collection<String> removes) {
     SQLiteDatabase db = getWritableDatabase();
 

@@ -39,13 +39,10 @@ dependencyVerification {
         ['org.reactivestreams:reactive-streams:1.0.3',
          '1dee0481072d19c929b623e155e14d2f6085dc011529a0a0dbefc84cf571d865'],
 
-        ['org.signal:zkgroup-java:0.8.2',
-         'eaae035a974e0179052d9b90fb4dc4d5b8bd2fdb0b20ed36824f2bdf9fb6dd36'],
-
         ['org.threeten:threetenbp:1.3.6',
          'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
 
-        ['org.whispersystems:signal-client-java:0.9.7',
-         'b9c141324db38e940e910c71d3c8474679a9f6f46c4d4f3116ec63a1e1368ffc'],
+        ['org.whispersystems:signal-client-java:0.10.0',
+         'e32606dfab66f9c4a1356da988ae51f55e52a30669621da94ae4032d7e5c5528'],
     ]
 }

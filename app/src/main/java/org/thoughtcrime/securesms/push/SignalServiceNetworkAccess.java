@@ -307,8 +307,8 @@ public class SignalServiceNetworkAccess {
     this.censoredCountries = this.censorshipConfiguration.keySet().toArray(new String[0]);
   }
 
-  public SignalServiceConfiguration getConfiguration(Context context) {
-    String localNumber = TextSecurePreferences.getLocalNumber(context);
+  public SignalServiceConfiguration getConfiguration() {
+    String localNumber = SignalStore.account().getE164();
     return getConfiguration(localNumber);
   }
 
@@ -330,8 +330,8 @@ public class SignalServiceNetworkAccess {
     return this.uncensoredConfiguration;
   }
 
-  public boolean isCensored(Context context) {
-    return getConfiguration(context) != this.uncensoredConfiguration;
+  public boolean isCensored() {
+    return getConfiguration() != this.uncensoredConfiguration;
   }
 
   public boolean isCensored(String number) {

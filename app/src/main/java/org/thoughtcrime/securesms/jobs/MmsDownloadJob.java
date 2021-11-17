@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -105,7 +106,7 @@ public class MmsDownloadJob extends BaseJob {
 
   @Override
   public void onRun() {
-    if (TextSecurePreferences.getLocalAci(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
+    if (SignalStore.account().getE164() == null) {
       throw new NotReadyException();
     }
 
@@ -122,7 +123,7 @@ public class MmsDownloadJob extends BaseJob {
         throw new MmsException("Notification content location was null.");
       }
 
-      if (!TextSecurePreferences.isPushRegistered(context)) {
+      if (!SignalStore.account().isRegistered()) {
         throw new MmsException("Not registered");
       }
 

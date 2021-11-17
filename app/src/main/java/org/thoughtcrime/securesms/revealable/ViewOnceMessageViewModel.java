@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.revealable;
 
 import android.app.Application;
-import android.database.ContentObserver;
-import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -12,37 +10,25 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseContentProviders;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 class ViewOnceMessageViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ViewOnceMessageViewModel.class);
 
-  private final Application                                 application;
-  private final ViewOnceMessageRepository                   repository;
   private final MutableLiveData<Optional<MmsMessageRecord>> message;
-  private final ContentObserver                             observer;
+  private final DatabaseObserver.Observer                   observer;
 
-  private ViewOnceMessageViewModel(@NonNull Application application,
-                                   long messageId,
-                                   @NonNull ViewOnceMessageRepository repository)
-  {
-    this.application = application;
-    this.repository  = repository;
-    this.message     = new MutableLiveData<>();
-    this.observer    = new ContentObserver(null) {
-      @Override
-      public void onChange(boolean selfChange) {
-        repository.getMessage(messageId, optionalMessage -> onMessageRetrieved(optionalMessage));
-      }
-    };
+  private ViewOnceMessageViewModel(long messageId, @NonNull ViewOnceMessageRepository repository) {
+    this.message  = new MutableLiveData<>();
+    this.observer = () -> repository.getMessage(messageId, this::onMessageRetrieved);
 
     repository.getMessage(messageId, message -> {
       if (message.isPresent()) {
-        Uri uri = DatabaseContentProviders.Conversation.getUriForThread(message.get().getThreadId());
-        application.getContentResolver().registerContentObserver(uri, true, observer);
+        ApplicationDependencies.getDatabaseObserver().registerConversationObserver(message.get().getThreadId(), observer);
       }
 
       onMessageRetrieved(message);
@@ -55,7 +41,7 @@ class ViewOnceMessageViewModel extends ViewModel {
 
   @Override
   protected void onCleared() {
-    application.getContentResolver().unregisterContentObserver(observer);
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   private void onMessageRetrieved(@NonNull Optional<MmsMessageRecord> optionalMessage) {
@@ -73,15 +59,10 @@ class ViewOnceMessageViewModel extends ViewModel {
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
 
-    private final Application               application;
     private final long                      messageId;
     private final ViewOnceMessageRepository repository;
 
-    Factory(@NonNull Application application,
-            long messageId,
-            @NonNull ViewOnceMessageRepository repository)
-    {
-      this.application = application;
+    Factory(long messageId, @NonNull ViewOnceMessageRepository repository) {
       this.messageId   = messageId;
       this.repository  = repository;
     }
@@ -89,7 +70,7 @@ class ViewOnceMessageViewModel extends ViewModel {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new ViewOnceMessageViewModel(application, messageId, repository));
+      return modelClass.cast(new ViewOnceMessageViewModel(messageId, repository));
     }
   }
 }

@@ -32,10 +32,10 @@ public class EditProxyViewModel extends ViewModel {
     this.events    = new SingleLiveEvent<>();
     this.uiState   = new MutableLiveData<>();
     this.saveState = new MutableLiveData<>(SaveState.IDLE);
-    this.pipeState = TextSecurePreferences.getLocalNumber(ApplicationDependencies.getApplication()) == null ? new MutableLiveData<>()
-                                                                                                            : fromPublisher(ApplicationDependencies.getSignalWebSocket()
-                                                                                                                                                   .getWebSocketState()
-                                                                                                                                                   .toFlowable(BackpressureStrategy.LATEST));
+    this.pipeState = SignalStore.account().getE164() == null ? new MutableLiveData<>()
+                                                             : fromPublisher(ApplicationDependencies.getSignalWebSocket()
+                                                                                                    .getWebSocketState()
+                                                                                                    .toFlowable(BackpressureStrategy.LATEST));
 
     if (SignalStore.proxy().isProxyEnabled()) {
       uiState.setValue(UiState.ALL_ENABLED);

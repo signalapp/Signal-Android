@@ -5,12 +5,12 @@ import android.view.View;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class MappingViewHolder<Model> extends LifecycleViewHolder implements LifecycleOwner {
+public abstract class MappingViewHolder<Model> extends RecyclerView.ViewHolder {
 
   protected final Context      context;
   protected final List<Object> payload;
@@ -27,6 +27,12 @@ public abstract class MappingViewHolder<Model> extends LifecycleViewHolder imple
 
   public @NonNull Context getContext() {
     return itemView.getContext();
+  }
+
+  public void onAttachedToWindow() {
+  }
+
+  public void onDetachedFromWindow() {
   }
 
   public abstract void bind(@NonNull Model model);

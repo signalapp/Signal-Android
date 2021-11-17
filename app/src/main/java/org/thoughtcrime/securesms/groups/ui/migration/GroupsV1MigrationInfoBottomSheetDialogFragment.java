@@ -72,6 +72,9 @@ public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends Bottom
     this.droppedTitle     = view.findViewById(R.id.gv1_learn_more_dropped_title);
     this.droppedList      = view.findViewById(R.id.gv1_learn_more_dropped_list);
 
+    pendingList.initializeAdapter(getViewLifecycleOwner());
+    droppedList.initializeAdapter(getViewLifecycleOwner());
+
     //noinspection ConstantConditions
     GroupMigrationMembershipChange membershipChange = GroupMigrationMembershipChange.deserialize(getArguments().getString(KEY_MEMBERSHIP_CHANGE));
 

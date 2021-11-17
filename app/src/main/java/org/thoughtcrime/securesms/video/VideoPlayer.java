@@ -30,6 +30,9 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.ClippingMediaSource;
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -47,8 +50,9 @@ public class VideoPlayer extends FrameLayout {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(VideoPlayer.class);
 
-  private final PlayerView        exoView;
-  private final PlayerControlView exoControls;
+  private final PlayerView                exoView;
+  private final PlayerControlView         exoControls;
+  private final DefaultMediaSourceFactory mediaSourceFactory;
 
   private SimpleExoPlayer                     exoPlayer;
   private Window                              window;
@@ -72,6 +76,8 @@ public class VideoPlayer extends FrameLayout {
     super(context, attrs, defStyleAttr);
 
     inflate(context, R.layout.video_player, this);
+
+    this.mediaSourceFactory = new DefaultMediaSourceFactory(context);
 
     this.exoView     = findViewById(R.id.video_view);
     this.exoControls = new PlayerControlView(getContext());
@@ -213,11 +219,10 @@ public class VideoPlayer extends FrameLayout {
 
   public void clip(long fromUs, long toUs, boolean playWhenReady) {
     if (this.exoPlayer != null && mediaItem != null) {
-      MediaItem clippedMediaItem = mediaItem.buildUpon()
-                                            .setClipStartPositionMs(TimeUnit.MICROSECONDS.toMillis(fromUs))
-                                            .setClipEndPositionMs(TimeUnit.MICROSECONDS.toMillis(toUs))
-                                            .build();
-      exoPlayer.setMediaItem(clippedMediaItem);
+      MediaSource         mediaItemSource = mediaSourceFactory.createMediaSource(mediaItem);
+      ClippingMediaSource clippedSource   = new ClippingMediaSource(mediaItemSource, fromUs, toUs);
+
+      exoPlayer.setMediaSource(clippedSource);
       exoPlayer.prepare();
       exoPlayer.setPlayWhenReady(playWhenReady);
       clipped        = true;

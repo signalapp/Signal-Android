@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -190,7 +191,7 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < INTERNALIZE_CONTACTS) {
-      if (TextSecurePreferences.isPushRegistered(context)) {
+      if (SignalStore.account().isRegistered()) {
         TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true);
       }
     }
@@ -239,11 +240,6 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < UNIDENTIFIED_DELIVERY) {
-      if (TextSecurePreferences.isMultiDevice(context)) {
-        Log.i(TAG, "MultiDevice: Disabling UD (will be re-enabled if possible after pending refresh).");
-        TextSecurePreferences.setIsUnidentifiedDeliveryEnabled(context, false);
-      }
-
       Log.i(TAG, "Scheduling UD attributes refresh.");
       ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }

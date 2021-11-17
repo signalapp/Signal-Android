@@ -15,15 +15,20 @@ private val TAG = Log.tag(EglBaseWrapper::class.java)
 
 /**
  * Wrapper which allows caller to perform synchronized actions on an EglBase object.
- */
-class EglBaseWrapper(val eglBase: EglBase?) {
+ * Must use [acquireEglBase] to get a valid instance to an [EglBaseWrapper] for use in calling.
+ * The instance returned may be shared across calls. Call [releaseEglBase] when it is no longer
+ * required. When the wrapper has no others are using it, it will be properly released (a la reference counting).
+*/
+class EglBaseWrapper private constructor(val eglBase: EglBase?) {
 
   private val lock: Lock = ReentrantLock()
 
-  fun require(): EglBase = requireNotNull(eglBase)
-
   @Volatile
   private var isReleased: Boolean = false
+
+  constructor() : this(null)
+
+  fun require(): EglBase = requireNotNull(eglBase)
 
   fun performWithValidEglBase(consumer: Consumer<EglBase>) {
     if (isReleased) {
@@ -53,7 +58,7 @@ class EglBaseWrapper(val eglBase: EglBase?) {
     }
   }
 
-  fun releaseEglBase() {
+  private fun releaseEglBase() {
     if (isReleased || eglBase == null) {
       return
     }
@@ -65,6 +70,50 @@ class EglBaseWrapper(val eglBase: EglBase?) {
 
       isReleased = true
       eglBase.release()
+    }
+  }
+
+  companion object {
+    const val OUTGOING_PLACEHOLDER: String = "OUTGOING_PLACEHOLDER"
+
+    private var eglBaseWrapper: EglBaseWrapper? = null
+    private val holders: MutableSet<Any> = mutableSetOf()
+
+    @JvmStatic
+    fun acquireEglBase(holder: Any): EglBaseWrapper {
+      val eglBase: EglBaseWrapper = eglBaseWrapper ?: EglBaseWrapper(EglBase.create())
+      eglBaseWrapper = eglBase
+      holders += holder
+      Log.d(TAG, "Acquire EGL $eglBaseWrapper with holder: $holder")
+      return eglBase
+    }
+
+    @JvmStatic
+    fun releaseEglBase(holder: Any) {
+      Log.d(TAG, "Release EGL with holder: $holder")
+      holders.remove(holder)
+      if (holders.isEmpty()) {
+        Log.d(TAG, "Holders empty, release EGL Base")
+        eglBaseWrapper?.releaseEglBase()
+        eglBaseWrapper = null
+      }
+    }
+
+    @JvmStatic
+    fun replaceHolder(currentHolder: Any, newHolder: Any) {
+      if (currentHolder == newHolder) {
+        return
+      }
+      Log.d(TAG, "Replace holder $currentHolder with $newHolder")
+      holders += newHolder
+      holders.remove(currentHolder)
+    }
+
+    @JvmStatic
+    fun forceRelease() {
+      eglBaseWrapper?.releaseEglBase()
+      eglBaseWrapper = null
+      holders.clear()
     }
   }
 }

@@ -94,6 +94,7 @@ class StickerKeyboardPageFragment :
     view.findViewById<View>(R.id.sticker_search).setOnClickListener { StickerSearchDialogFragment.show(requireActivity().supportFragmentManager) }
     view.findViewById<View>(R.id.sticker_manage).setOnClickListener { findListener<StickerEventListener>()?.onStickerManagementClicked() }
 
+    ApplicationDependencies.getDatabaseObserver().registerStickerObserver(this)
     ApplicationDependencies.getDatabaseObserver().registerStickerPackObserver(this)
 
     view.addOnLayoutChangeListener(this)

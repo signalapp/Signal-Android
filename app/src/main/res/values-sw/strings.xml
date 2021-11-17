@@ -2994,6 +2994,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Chagua mwonekano na rangi au ubadilishe herufi zako za kwanza.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Sio sasa</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ongeza picha</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Hapana nashukuru</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Fungua utaftaji wa emoji</string>
@@ -3111,7 +3113,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="MediaReviewImagePageFragment__discard">Ghairi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Hakiki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal inaendeshwa na watu kama wewe.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Kiasi cha mchango</string> -->
   <string name="SubscribeFragment__not_now">Sio sasa</string>
   <string name="SubscribeFragment__confirm">Thibitisha</string>
   <string name="SubscribeFragment__update">Sasisha</string>
@@ -3121,5 +3122,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="Subscription__contact_support">Wasiliana na Msaada</string>
   <string name="SubscribeFragment__processing_payment">Tunachakata malipo…</string>
   <string name="DonationsErrors__payment_failed">Malipo hayajatumwa</string>
+  <string name="NetworkFailure__retry">Jaribu Upya</string>
   <!--EOF-->
 </resources>

@@ -241,14 +241,24 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
       Log.w(TAG, "Timed out while redeeming token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__redemption_still_pending)
-        .setMessage(R.string.DonationsErrors__you_might_not_see_your_badge_right_away)
+        .setTitle(R.string.DonationsErrors__still_processing)
+        .setMessage(R.string.DonationsErrors__your_payment_is_still)
         .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
           findNavController().popBackStack()
         }
         .show()
-    } else if (throwable is DonationExceptions.RedemptionFailed) {
+    } else if (throwable is DonationExceptions.SetupFailed) {
+      Log.w(TAG, "Error occurred while processing payment", throwable, true)
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.DonationsErrors__payment_failed)
+        .setMessage(R.string.DonationsErrors__your_payment)
+        .setPositiveButton(android.R.string.ok) { dialog, _ ->
+          dialog.dismiss()
+          findNavController().popBackStack()
+        }
+        .show()
+    } else {
       Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.DonationsErrors__redemption_failed)
@@ -257,16 +267,6 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           dialog.dismiss()
           requireActivity().finish()
           requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
-        }
-        .show()
-    } else {
-      Log.w(TAG, "Error occurred while processing payment", throwable, true)
-      MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__payment_failed)
-        .setMessage(R.string.DonationsErrors__your_payment)
-        .setPositiveButton(android.R.string.ok) { dialog, _ ->
-          dialog.dismiss()
-          findNavController().popBackStack()
         }
         .show()
     }

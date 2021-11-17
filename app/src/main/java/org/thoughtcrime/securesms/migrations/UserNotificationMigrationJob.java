@@ -56,9 +56,9 @@ public class UserNotificationMigrationJob extends MigrationJob {
 
   @Override
   void performMigration() {
-    if (!TextSecurePreferences.isPushRegistered(context)      ||
-        TextSecurePreferences.getLocalNumber(context) == null ||
-        TextSecurePreferences.getLocalAci(context) == null)
+    if (!SignalStore.account().isRegistered()   ||
+        SignalStore.account().getE164() == null ||
+        SignalStore.account().getAci() == null)
     {
       Log.w(TAG, "Not registered! Skipping.");
       return;

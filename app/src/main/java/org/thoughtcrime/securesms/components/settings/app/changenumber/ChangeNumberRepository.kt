@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
 import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.KbsPinData
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.internal.ServiceResponse
@@ -62,7 +61,7 @@ class ChangeNumberRepository(private val context: Context) {
   fun changeLocalNumber(e164: String): Single<Unit> {
     DatabaseFactory.getRecipientDatabase(context).updateSelfPhone(e164)
 
-    TextSecurePreferences.setLocalNumber(context, e164)
+    SignalStore.account().setE164(e164)
 
     ApplicationDependencies.closeConnections()
     ApplicationDependencies.getIncomingMessageObserver()

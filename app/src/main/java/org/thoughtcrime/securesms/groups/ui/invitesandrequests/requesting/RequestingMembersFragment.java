@@ -51,6 +51,8 @@ public class RequestingMembersFragment extends Fragment {
     noRequestingMessage   = view.findViewById(R.id.no_requesting);
     requestingExplanation = view.findViewById(R.id.requesting_members_explain);
 
+    requestingMembers.initializeAdapter(getViewLifecycleOwner());
+
     requestingMembers.setRecipientClickListener(recipient ->
       RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
                                         .show(requireActivity().getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG));

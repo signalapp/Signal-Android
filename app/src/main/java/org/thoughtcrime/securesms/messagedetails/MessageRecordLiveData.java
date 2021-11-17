@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.messagedetails;
 
 import android.content.Context;
-import android.database.ContentObserver;
 import android.database.Cursor;
 
 import androidx.annotation.Nullable;
@@ -10,18 +9,20 @@ import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
-  private final Context         context;
-  private final String          type;
-  private final Long            messageId;
-  private final ContentObserver obs;
+  private final Context                   context;
+  private final String                    type;
+  private final Long                      messageId;
+  private final DatabaseObserver.Observer observer;
 
   private @Nullable Cursor cursor;
 
@@ -29,13 +30,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
     this.context   = context;
     this.type      = type;
     this.messageId = messageId;
-
-    obs = new ContentObserver(null) {
-      @Override
-      public void onChange(boolean selfChange) {
-        SignalExecutors.BOUNDED.execute(() -> resetCursor());
-      }
-    };
+    this.observer  = () -> SignalExecutors.BOUNDED.execute(this::resetCursor);
   }
 
   @Override
@@ -54,8 +49,9 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
   @WorkerThread
   private synchronized void destroyCursor() {
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
+
     if (cursor != null) {
-      cursor.unregisterContentObserver(obs);
       cursor.close();
       cursor = null;
     }
@@ -87,22 +83,22 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
   @WorkerThread
   private synchronized void handleSms() {
     final MessageDatabase db     = DatabaseFactory.getSmsDatabase(context);
-    final Cursor          cursor = db.getVerboseMessageCursor(messageId);
+    final Cursor          cursor = db.getMessageCursor(messageId);
     final MessageRecord   record = SmsDatabase.readerFor(cursor).getNext();
 
     postValue(record);
-    cursor.registerContentObserver(obs);
+    ApplicationDependencies.getDatabaseObserver().registerVerboseConversationObserver(record.getThreadId(), observer);
     this.cursor = cursor;
   }
 
   @WorkerThread
   private synchronized void handleMms() {
     final MessageDatabase db     = DatabaseFactory.getMmsDatabase(context);
-    final Cursor          cursor = db.getVerboseMessageCursor(messageId);
+    final Cursor          cursor = db.getMessageCursor(messageId);
     final MessageRecord   record = MmsDatabase.readerFor(cursor).getNext();
 
     postValue(record);
-    cursor.registerContentObserver(obs);
+    ApplicationDependencies.getDatabaseObserver().registerVerboseConversationObserver(record.getThreadId(), observer);
     this.cursor = cursor;
   }
 }

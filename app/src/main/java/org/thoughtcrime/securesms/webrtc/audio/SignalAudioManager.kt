@@ -128,15 +128,11 @@ class SignalAudioManager(private val context: Context, private val eventListener
 
   private fun stop(playDisconnect: Boolean) {
     Log.d(TAG, "Stopping. state: $state")
-    if (state == State.UNINITIALIZED) {
-      Log.i(TAG, "Trying to stop AudioManager in incorrect state: $state")
-      return
-    }
 
     incomingRinger.stop()
     outgoingRinger.stop()
 
-    if (playDisconnect) {
+    if (playDisconnect && state != State.UNINITIALIZED) {
       val volume: Float = androidAudioManager.ringVolumeWithMinimum()
       soundPool.play(disconnectedSoundId, volume, volume, 0, 0, 1.0f)
     }

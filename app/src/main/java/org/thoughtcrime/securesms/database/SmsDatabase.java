@@ -123,7 +123,6 @@ public class SmsDatabase extends MessageDatabase {
                                                                                   NOTIFIED               + " DEFAULT 0, " +
                                                                                   READ_RECEIPT_COUNT     + " INTEGER DEFAULT 0, " +
                                                                                   UNIDENTIFIED           + " INTEGER DEFAULT 0, " +
-                                                                                  REACTIONS              + " BLOB DEFAULT NULL, " +
                                                                                   REACTIONS_UNREAD       + " INTEGER DEFAULT 0, " +
                                                                                   REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1, " +
                                                                                   REMOTE_DELETED         + " INTEGER DEFAULT 0, " +
@@ -148,7 +147,7 @@ public class SmsDatabase extends MessageDatabase {
       PROTOCOL, READ, STATUS, TYPE,
       REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, DELIVERY_RECEIPT_COUNT,
       MISMATCHED_IDENTITIES, SUBSCRIPTION_ID, EXPIRES_IN, EXPIRE_STARTED,
-      NOTIFIED, READ_RECEIPT_COUNT, UNIDENTIFIED, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
+      NOTIFIED, READ_RECEIPT_COUNT, UNIDENTIFIED, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
       REMOTE_DELETED, NOTIFIED_TIMESTAMP, RECEIPT_TIMESTAMP
   };
 
@@ -391,7 +390,6 @@ public class SmsDatabase extends MessageDatabase {
       ContentValues values = new ContentValues();
       values.put(REMOTE_DELETED, 1);
       values.putNull(BODY);
-      values.putNull(REACTIONS);
       db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(id) });
 
       threadId = getThreadIdForMessage(id);
@@ -1323,13 +1321,6 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Cursor getVerboseMessageCursor(long messageId) {
-    Cursor cursor = getMessageCursor(messageId);
-    setNotifyVerboseConversationListeners(cursor, getThreadIdForMessage(messageId));
-    return cursor;
-  }
-
-  @Override
   public Cursor getMessageCursor(long messageId) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
     return db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[] {messageId + ""}, null, null, null);
@@ -1696,7 +1687,6 @@ public class SmsDatabase extends MessageDatabase {
       String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
       boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.UNIDENTIFIED)) == 1;
       boolean              remoteDelete         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.REMOTE_DELETED)) == 1;
-      List<ReactionRecord> reactions            = parseReactions(cursor);
       long                 notifiedTimestamp    = CursorUtil.requireLong(cursor, NOTIFIED_TIMESTAMP);
       long                 receiptTimestamp     = CursorUtil.requireLong(cursor, RECEIPT_TIMESTAMP);
 
@@ -1713,7 +1703,7 @@ public class SmsDatabase extends MessageDatabase {
                                   dateSent, dateReceived, dateServer, deliveryReceiptCount, type,
                                   threadId, status, mismatches, subscriptionId,
                                   expiresIn, expireStarted,
-                                  readReceiptCount, unidentified, reactions, remoteDelete,
+                                  readReceiptCount, unidentified, Collections.emptyList(), remoteDelete,
                                   notifiedTimestamp, receiptTimestamp);
     }
 

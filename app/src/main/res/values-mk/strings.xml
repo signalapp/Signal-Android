@@ -324,6 +324,22 @@
     <item quantity="one">Непрочитано</item>
     <item quantity="other">Непрочитано</item>
   </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Закачи</item>
+    <item quantity="other">Закачи</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Откачи</item>
+    <item quantity="other">Откачи</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Исклучи известувања</item>
+    <item quantity="other">Исклучи известувања</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Вклучи известувања</item>
+    <item quantity="other">Вклучи известувања</item>
+  </plurals>
   <string name="ConversationListFragment_select">Одбери</string>
   <plurals name="ConversationListFragment_archive_plural">
     <item quantity="one">Архивирај</item>
@@ -338,6 +354,10 @@
     <item quantity="other">Избриши</item>
   </plurals>
   <string name="ConversationListFragment_select_all">Избери сѐ</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d избран</item>
+    <item quantity="other">%d избрани</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви</string>
   <!--ConversationListItemAction-->
@@ -684,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">Вашето корисничко име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Не успеав да поставам аватар</string>
   <string name="ManageProfileFragment_badges">Беџови</string>
+  <string name="ManageProfileFragment__edit_photo">Уреди фотографија</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Немате заеднички групи</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -784,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Изгледа дека немате апликации преку кои може да споделите.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Дознајте повеќе</string>
+  <string name="SpanUtil__read_more">Прочитај повеќе</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Не успеав да ја најдам пораката</string>
   <string name="LongMessageActivity_message_from_s">Порака од %1$s</string>
@@ -826,6 +848,10 @@
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="one">Избриши</item>
     <item quantity="other">Избриши</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d избрано (%2$s)</item>
+    <item quantity="other">%1$d избрани (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Датотека</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
@@ -3045,6 +3071,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Изберете изглед и боја или прилагодете ги Вашите иницијали.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Додај слика</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Не, благодарам</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори пребарување на емоџи</string>
@@ -3210,7 +3238,6 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не успеав да го ажурирам профилот</string>
   <string name="ImageView__badge">Беџ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal е овозможен од луѓе како тебе.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Износ на донација</string> -->
   <string name="SubscribeFragment__more_payment_options">Повеќе опции за плаќање</string>
   <string name="SubscribeFragment__cancel_subscription">Откажи претплата</string>
   <string name="SubscribeFragment__confirm_cancellation">Потврди откажување?</string>
@@ -3224,7 +3251,6 @@
   <string name="Subscription__s_per_month">%s/месец</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, одржуван само од луѓето кои го користат и ценат. Направете месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесеш?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Тимот на Signal е посветен на мисија за развој на технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација. Вашиот придонес ја одржува оваа мисија. Нема реклами. Нема тракери. Нема шега.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставете како главен беџ</string>
@@ -3238,18 +3264,17 @@
   <string name="Boost__enter_custom_amount">Внесете износ</string>
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
   <string name="MySupportPreference__s_per_month">%1$s/месец</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашата значка е истечена</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">За да продолжите да ја поддржувате технологијата која е развиена за Вас—не за Вашите податоци—ве молиме размислете да станете месечен претплатник.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Стани претплатник</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашиот беџ е истечен</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <string name="Subscription__verification_failed">Проверка на претплата не успеа</string>
   <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со поддршка за повеќе информации.</string>
   <string name="Subscription__contact_support">Контакт за поддршка</string>
+  <string name="Subscription__earn_a_s_badge">Заработете %1$s беџ</string>
   <string name="SubscribeFragment__processing_payment">Плаќањето се обработува…</string>
   <string name="DonationsErrors__payment_failed">Плаќањето не успеа</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Вие не можете веднаш да го видите Вашиот беџ, но ние работиме на тоа!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не успеа да се откажете претплатата</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>
+  <string name="NetworkFailure__retry">Пробај пак</string>
   <!--EOF-->
 </resources>

@@ -17,6 +17,7 @@ import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
@@ -69,7 +70,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     }
   }
 
-  fun scheduleSyncForAccountRecordChangeSync() {
+  private fun scheduleSyncForAccountRecordChangeSync() {
     DatabaseFactory.getRecipientDatabase(application).markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
   }
@@ -102,12 +103,15 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   fun continuePayment(price: FiatMoney, paymentData: PaymentData): Completable {
-    return stripeApi.createPaymentIntent(price)
+    Log.d(TAG, "Creating payment intent...", true)
+    return stripeApi.createPaymentIntent(price, application.getString(R.string.Boost__thank_you_for_your_donation))
+      .onErrorResumeNext { Single.error(DonationExceptions.SetupFailed(it)) }
       .flatMapCompletable { result ->
+        Log.d(TAG, "Created payment intent.", true)
         when (result) {
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(Exception("Boost amount is too small"))
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(Exception("Boost amount is too large"))
-          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(Exception("Boost currency is not supported"))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too small")))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too large")))
+          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost currency is not supported")))
           is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(paymentData, result.paymentIntent)
         }
       }
@@ -143,8 +147,10 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   private fun confirmPayment(paymentData: PaymentData, paymentIntent: StripeApi.PaymentIntent): Completable {
-    return Completable.create {
-      stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent).blockingSubscribe()
+    Log.d(TAG, "Confirming payment intent...", true)
+    val confirmPayment = stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent)
+    val waitOnRedemption = Completable.create {
+      Log.d(TAG, "Confirmed payment intent.", true)
 
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null
@@ -179,6 +185,8 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
       }
     }
+
+    return confirmPayment.andThen(waitOnRedemption)
   }
 
   fun setSubscriptionLevel(subscriptionLevel: String): Completable {
@@ -273,7 +281,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   override fun fetchPaymentIntent(price: FiatMoney, description: String?): Single<StripeApi.PaymentIntent> {
     return ApplicationDependencies
       .getDonationsService()
-      .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode)
+      .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, description)
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
       .map {
         StripeApi.PaymentIntent(it.id, it.clientSecret)

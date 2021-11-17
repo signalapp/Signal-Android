@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -500,7 +501,7 @@ public class RecipientDatabase extends Database {
       } else if (!byE164.isPresent() && byAci.isPresent()) {
         if (e164 != null) {
           if (highTrust) {
-            if (Objects.equals(aci, TextSecurePreferences.getLocalAci(context)) && !changeSelf) {
+            if (Objects.equals(aci, SignalStore.account().getAci()) && !changeSelf) {
               Log.w(TAG, String.format(Locale.US, "Found out about an E164 (%s) for our own ACI user (%s). High-trust but not change self, doing nothing.", e164, byAci.get()), true);
               finalId = byAci.get();
             } else {
@@ -3019,43 +3020,6 @@ public class RecipientDatabase extends Database {
     RecipientSettings uuidSettings = getRecipientSettings(byUuid);
     RecipientSettings e164Settings = getRecipientSettings(byE164);
 
-    // Recipient
-    Log.w(TAG, "Deleting recipient " + byE164, true);
-    db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(byE164));
-    RemappedRecords.getInstance().addRecipient(context, byE164, byUuid);
-
-    ContentValues uuidValues = new ContentValues();
-    uuidValues.put(PHONE, e164Settings.getE164());
-    uuidValues.put(BLOCKED, e164Settings.isBlocked() || uuidSettings.isBlocked());
-    uuidValues.put(MESSAGE_RINGTONE, Optional.fromNullable(uuidSettings.getMessageRingtone()).or(Optional.fromNullable(e164Settings.getMessageRingtone())).transform(Uri::toString).orNull());
-    uuidValues.put(MESSAGE_VIBRATE, uuidSettings.getMessageVibrateState() != VibrateState.DEFAULT ? uuidSettings.getMessageVibrateState().getId() : e164Settings.getMessageVibrateState().getId());
-    uuidValues.put(CALL_RINGTONE, Optional.fromNullable(uuidSettings.getCallRingtone()).or(Optional.fromNullable(e164Settings.getCallRingtone())).transform(Uri::toString).orNull());
-    uuidValues.put(CALL_VIBRATE, uuidSettings.getCallVibrateState() != VibrateState.DEFAULT ? uuidSettings.getCallVibrateState().getId() : e164Settings.getCallVibrateState().getId());
-    uuidValues.put(NOTIFICATION_CHANNEL, uuidSettings.getNotificationChannel() != null ? uuidSettings.getNotificationChannel() : e164Settings.getNotificationChannel());
-    uuidValues.put(MUTE_UNTIL, uuidSettings.getMuteUntil() > 0 ? uuidSettings.getMuteUntil() : e164Settings.getMuteUntil());
-    uuidValues.put(CHAT_COLORS, Optional.fromNullable(uuidSettings.getChatColors()).or(Optional.fromNullable(e164Settings.getChatColors())).transform(colors -> colors.serialize().toByteArray()).orNull());
-    uuidValues.put(AVATAR_COLOR, uuidSettings.getAvatarColor().serialize());
-    uuidValues.put(CUSTOM_CHAT_COLORS_ID, Optional.fromNullable(uuidSettings.getChatColors()).or(Optional.fromNullable(e164Settings.getChatColors())).transform(colors -> colors.getId().getLongValue()).orNull());
-    uuidValues.put(SEEN_INVITE_REMINDER, e164Settings.getInsightsBannerTier().getId());
-    uuidValues.put(DEFAULT_SUBSCRIPTION_ID, e164Settings.getDefaultSubscriptionId().or(-1));
-    uuidValues.put(MESSAGE_EXPIRATION_TIME, uuidSettings.getExpireMessages() > 0 ? uuidSettings.getExpireMessages() : e164Settings.getExpireMessages());
-    uuidValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-    uuidValues.put(SYSTEM_GIVEN_NAME, e164Settings.getSystemProfileName().getGivenName());
-    uuidValues.put(SYSTEM_FAMILY_NAME, e164Settings.getSystemProfileName().getFamilyName());
-    uuidValues.put(SYSTEM_JOINED_NAME, e164Settings.getSystemProfileName().toString());
-    uuidValues.put(SYSTEM_PHOTO_URI, e164Settings.getSystemContactPhotoUri());
-    uuidValues.put(SYSTEM_PHONE_LABEL, e164Settings.getSystemPhoneLabel());
-    uuidValues.put(SYSTEM_CONTACT_URI, e164Settings.getSystemContactUri());
-    uuidValues.put(PROFILE_SHARING, uuidSettings.isProfileSharing() || e164Settings.isProfileSharing());
-    uuidValues.put(CAPABILITIES, Math.max(uuidSettings.getCapabilities(), e164Settings.getCapabilities()));
-    uuidValues.put(MENTION_SETTING, uuidSettings.getMentionSetting() != MentionSetting.ALWAYS_NOTIFY ? uuidSettings.getMentionSetting().getId() : e164Settings.getMentionSetting().getId());
-    if (uuidSettings.getProfileKey() != null) {
-      updateProfileValuesForMerge(uuidValues, uuidSettings);
-    } else if (e164Settings.getProfileKey() != null) {
-      updateProfileValuesForMerge(uuidValues, e164Settings);
-    }
-    db.update(TABLE_NAME, uuidValues, ID_WHERE, SqlUtil.buildArgs(byUuid));
-
     // Identities
     ApplicationDependencies.getIdentityStore().delete(e164Settings.e164);
 
@@ -3140,6 +3104,46 @@ public class RecipientDatabase extends Database {
 
     DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadMerge.threadId, 0);
     DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false);
+
+    // Reactions
+    DatabaseFactory.getReactionDatabase(context).remapRecipient(byE164, byUuid);
+
+    // Recipient
+    Log.w(TAG, "Deleting recipient " + byE164, true);
+    db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(byE164));
+    RemappedRecords.getInstance().addRecipient(context, byE164, byUuid);
+
+    ContentValues uuidValues = new ContentValues();
+    uuidValues.put(PHONE, e164Settings.getE164());
+    uuidValues.put(BLOCKED, e164Settings.isBlocked() || uuidSettings.isBlocked());
+    uuidValues.put(MESSAGE_RINGTONE, Optional.fromNullable(uuidSettings.getMessageRingtone()).or(Optional.fromNullable(e164Settings.getMessageRingtone())).transform(Uri::toString).orNull());
+    uuidValues.put(MESSAGE_VIBRATE, uuidSettings.getMessageVibrateState() != VibrateState.DEFAULT ? uuidSettings.getMessageVibrateState().getId() : e164Settings.getMessageVibrateState().getId());
+    uuidValues.put(CALL_RINGTONE, Optional.fromNullable(uuidSettings.getCallRingtone()).or(Optional.fromNullable(e164Settings.getCallRingtone())).transform(Uri::toString).orNull());
+    uuidValues.put(CALL_VIBRATE, uuidSettings.getCallVibrateState() != VibrateState.DEFAULT ? uuidSettings.getCallVibrateState().getId() : e164Settings.getCallVibrateState().getId());
+    uuidValues.put(NOTIFICATION_CHANNEL, uuidSettings.getNotificationChannel() != null ? uuidSettings.getNotificationChannel() : e164Settings.getNotificationChannel());
+    uuidValues.put(MUTE_UNTIL, uuidSettings.getMuteUntil() > 0 ? uuidSettings.getMuteUntil() : e164Settings.getMuteUntil());
+    uuidValues.put(CHAT_COLORS, Optional.fromNullable(uuidSettings.getChatColors()).or(Optional.fromNullable(e164Settings.getChatColors())).transform(colors -> colors.serialize().toByteArray()).orNull());
+    uuidValues.put(AVATAR_COLOR, uuidSettings.getAvatarColor().serialize());
+    uuidValues.put(CUSTOM_CHAT_COLORS_ID, Optional.fromNullable(uuidSettings.getChatColors()).or(Optional.fromNullable(e164Settings.getChatColors())).transform(colors -> colors.getId().getLongValue()).orNull());
+    uuidValues.put(SEEN_INVITE_REMINDER, e164Settings.getInsightsBannerTier().getId());
+    uuidValues.put(DEFAULT_SUBSCRIPTION_ID, e164Settings.getDefaultSubscriptionId().or(-1));
+    uuidValues.put(MESSAGE_EXPIRATION_TIME, uuidSettings.getExpireMessages() > 0 ? uuidSettings.getExpireMessages() : e164Settings.getExpireMessages());
+    uuidValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
+    uuidValues.put(SYSTEM_GIVEN_NAME, e164Settings.getSystemProfileName().getGivenName());
+    uuidValues.put(SYSTEM_FAMILY_NAME, e164Settings.getSystemProfileName().getFamilyName());
+    uuidValues.put(SYSTEM_JOINED_NAME, e164Settings.getSystemProfileName().toString());
+    uuidValues.put(SYSTEM_PHOTO_URI, e164Settings.getSystemContactPhotoUri());
+    uuidValues.put(SYSTEM_PHONE_LABEL, e164Settings.getSystemPhoneLabel());
+    uuidValues.put(SYSTEM_CONTACT_URI, e164Settings.getSystemContactUri());
+    uuidValues.put(PROFILE_SHARING, uuidSettings.isProfileSharing() || e164Settings.isProfileSharing());
+    uuidValues.put(CAPABILITIES, Math.max(uuidSettings.getCapabilities(), e164Settings.getCapabilities()));
+    uuidValues.put(MENTION_SETTING, uuidSettings.getMentionSetting() != MentionSetting.ALWAYS_NOTIFY ? uuidSettings.getMentionSetting().getId() : e164Settings.getMentionSetting().getId());
+    if (uuidSettings.getProfileKey() != null) {
+      updateProfileValuesForMerge(uuidValues, uuidSettings);
+    } else if (e164Settings.getProfileKey() != null) {
+      updateProfileValuesForMerge(uuidValues, e164Settings);
+    }
+    db.update(TABLE_NAME, uuidValues, ID_WHERE, SqlUtil.buildArgs(byUuid));
 
     return byUuid;
   }

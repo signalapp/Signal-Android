@@ -291,7 +291,6 @@ public class ThreadDatabase extends Database {
     }
 
     notifyAttachmentListeners();
-    notifyStickerListeners();
     notifyStickerPackListeners();
   }
 
@@ -326,7 +325,6 @@ public class ThreadDatabase extends Database {
     }
 
     notifyAttachmentListeners();
-    notifyStickerListeners();
     notifyStickerPackListeners();
   }
 

@@ -7,11 +7,9 @@ import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscriber
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
@@ -30,6 +28,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val KEY_LEVEL_OPERATION_PREFIX = "donation.level.operation."
     private const val KEY_LEVEL_HISTORY = "donation.level.history"
     private const val DISPLAY_BADGES_ON_PROFILE = "donation.display.badges.on.profile"
+    private const val SUBSCRIPTION_REDEMPTION_FAILED = "donation.subscription.redemption.failed"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -51,7 +50,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     val currency: Currency? = if (currencyCode == null) {
       val localeCurrency = CurrencyUtil.getCurrencyByLocale(Locale.getDefault())
       if (localeCurrency == null) {
-        val e164 = TextSecurePreferences.getLocalNumber(ApplicationDependencies.getApplication())
+        val e164: String? = SignalStore.account().e164
         if (e164 == null) {
           null
         } else {
@@ -196,5 +195,17 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun getDisplayBadgesOnProfile(): Boolean {
     return getBoolean(DISPLAY_BADGES_ON_PROFILE, false)
+  }
+
+  fun getSubscriptionRedemptionFailed(): Boolean {
+    return getBoolean(SUBSCRIPTION_REDEMPTION_FAILED, false)
+  }
+
+  fun markSubscriptionRedemptionFailed() {
+    putBoolean(SUBSCRIPTION_REDEMPTION_FAILED, true)
+  }
+
+  fun clearSubscriptionRedemptionFailed() {
+    putBoolean(SUBSCRIPTION_REDEMPTION_FAILED, false)
   }
 }

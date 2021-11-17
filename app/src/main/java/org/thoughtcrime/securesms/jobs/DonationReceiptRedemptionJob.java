@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class DonationReceiptRedemptionJob extends BaseJob {
   private static final String TAG = Log.tag(DonationReceiptRedemptionJob.class);
 
+  public static final String SUBSCRIPTION_QUEUE                    = "ReceiptRedemption";
   public static final String KEY                                   = "DonationReceiptRedemptionJob";
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
 
@@ -31,7 +33,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
-            .setQueue("ReceiptRedemption")
+            .setQueue(SUBSCRIPTION_QUEUE)
             .setMaxAttempts(Parameters.UNLIMITED)
             .setMaxInstancesForQueue(1)
             .setLifespan(TimeUnit.DAYS.toMillis(7))
@@ -66,6 +68,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   @Override
   public void onFailure() {
     SubscriptionNotification.RedemptionFailed.INSTANCE.show(context);
+    if (isForSubscription()) {
+      SignalStore.donationsValues().markSubscriptionRedemptionFailed();
+    }
   }
 
   @Override
@@ -103,6 +108,14 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       Log.w(TAG, "Encountered a retryable exception", response.getExecutionError().get(), true);
       throw new RetryableException();
     }
+
+    if (isForSubscription()) {
+      SignalStore.donationsValues().clearSubscriptionRedemptionFailed();
+    }
+  }
+
+  private boolean isForSubscription() {
+    return Objects.equals(getParameters().getQueue(), SUBSCRIPTION_QUEUE);
   }
 
   @Override

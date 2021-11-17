@@ -166,7 +166,7 @@ public class StorageSyncJob extends BaseJob {
       return;
     }
 
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.i(TAG, "Not registered. Skipping.");
       return;
     }

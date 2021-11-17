@@ -163,7 +163,6 @@ public class MmsDatabase extends MessageDatabase {
                                                                                   UNIDENTIFIED           + " INTEGER DEFAULT 0, " +
                                                                                   LINK_PREVIEWS          + " TEXT, " +
                                                                                   VIEW_ONCE              + " INTEGER DEFAULT 0, " +
-                                                                                  REACTIONS              + " BLOB DEFAULT NULL, " +
                                                                                   REACTIONS_UNREAD       + " INTEGER DEFAULT 0, " +
                                                                                   REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1, " +
                                                                                   REMOTE_DELETED         + " INTEGER DEFAULT 0, " +
@@ -193,7 +192,7 @@ public class MmsDatabase extends MessageDatabase {
       BODY, PART_COUNT, RECIPIENT_ID, ADDRESS_DEVICE_ID,
       DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
       EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, QUOTE_MISSING, QUOTE_MENTIONS,
-      SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
+      SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
       REMOTE_DELETED, MENTIONS_SELF, NOTIFIED_TIMESTAMP, VIEWED_RECEIPT_COUNT, RECEIPT_TIMESTAMP,
       "json_group_array(json_object(" +
       "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
@@ -276,16 +275,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public Cursor getMessageCursor(long messageId) {
-    Cursor cursor = internalGetMessage(messageId);
-    setNotifyConversationListeners(cursor, getThreadIdForMessage(messageId));
-    return cursor;
-  }
-
-  @Override
-  public Cursor getVerboseMessageCursor(long messageId) {
-    Cursor cursor = internalGetMessage(messageId);
-    setNotifyVerboseConversationListeners(cursor, getThreadIdForMessage(messageId));
-    return cursor;
+    return internalGetMessage(messageId);
   }
 
   @Override
@@ -844,6 +834,8 @@ public class MmsDatabase extends MessageDatabase {
 
     long threadId;
 
+    boolean deletedAttachments = false;
+
     db.beginTransaction();
     try {
       ContentValues values = new ContentValues();
@@ -855,10 +847,9 @@ public class MmsDatabase extends MessageDatabase {
       values.putNull(QUOTE_ID);
       values.putNull(LINK_PREVIEWS);
       values.putNull(SHARED_CONTACTS);
-      values.putNull(REACTIONS);
       db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(messageId) });
 
-      DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentsForMessage(messageId);
+      deletedAttachments = DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentsForMessage(messageId);
       DatabaseFactory.getMentionDatabase(context).deleteMentionsForMessage(messageId);
       DatabaseFactory.getMessageLogDatabase(context).deleteAllRelatedToMessage(messageId, true);
 
@@ -868,8 +859,13 @@ public class MmsDatabase extends MessageDatabase {
     } finally {
       db.endTransaction();
     }
+
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
+
+    if (deletedAttachments) {
+      ApplicationDependencies.getDatabaseObserver().notifyAttachmentObservers();
+    }
   }
 
   @Override
@@ -2099,7 +2095,6 @@ public class MmsDatabase extends MessageDatabase {
       boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.UNIDENTIFIED)) == 1;
       boolean              isViewOnce           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))   == 1;
       boolean              remoteDelete         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.REMOTE_DELETED))   == 1;
-      List<ReactionRecord> reactions            = parseReactions(cursor);
       boolean              mentionsSelf         = CursorUtil.requireBoolean(cursor, MENTIONS_SELF);
       long                 notifiedTimestamp    = CursorUtil.requireLong(cursor, NOTIFIED_TIMESTAMP);
       int                  viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
@@ -2128,7 +2123,7 @@ public class MmsDatabase extends MessageDatabase {
                                        addressDeviceId, dateSent, dateReceived, dateServer, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
-                                       isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, reactions,
+                                       isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, Collections.emptyList(),
                                        remoteDelete, mentionsSelf, notifiedTimestamp, viewedReceiptCount, receiptTimestamp);
     }
 

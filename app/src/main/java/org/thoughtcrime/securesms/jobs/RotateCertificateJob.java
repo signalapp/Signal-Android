@@ -51,7 +51,7 @@ public final class RotateCertificateJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Not yet registered. Ignoring.");
       return;
     }

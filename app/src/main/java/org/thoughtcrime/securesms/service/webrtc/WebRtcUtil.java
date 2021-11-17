@@ -46,7 +46,7 @@ public final class WebRtcUtil {
     return offerType == OfferMessage.Type.VIDEO_CALL ? CallManager.CallMediaType.VIDEO_CALL : CallManager.CallMediaType.AUDIO_CALL;
   }
 
-  public static @NonNull OfferMessage.Type getOfferTypeFromCallMediaType(@NonNull CallManager.CallMediaType callMediaType) {
+  public static @NonNull OfferMessage.Type getOfferTypeFromCallMediaType(@Nullable CallManager.CallMediaType callMediaType) {
     return callMediaType == CallManager.CallMediaType.VIDEO_CALL ? OfferMessage.Type.VIDEO_CALL : OfferMessage.Type.AUDIO_CALL;
   }
 

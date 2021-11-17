@@ -24,7 +24,6 @@ public interface MmsSmsColumns {
   public static final String NOTIFIED                 = "notified";
   public static final String NOTIFIED_TIMESTAMP       = "notified_timestamp";
   public static final String UNIDENTIFIED             = "unidentified";
-  public static final String REACTIONS                = "reactions";
   public static final String REACTIONS_UNREAD         = "reactions_unread";
   public static final String REACTIONS_LAST_SEEN      = "reactions_last_seen";
   public static final String REMOTE_DELETED           = "remote_deleted";

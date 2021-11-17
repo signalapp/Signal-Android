@@ -45,9 +45,9 @@ class BadgeSpriteTransformation(
     SMALL(
       "small",
       mapOf(
-        Density.LDPI to FrameSet(Frame(124, 1, 13, 13), Frame(145, 31, 13, 13)),
+        Density.LDPI to FrameSet(Frame(124, 1, 12, 12), Frame(145, 31, 12, 12)),
         Density.MDPI to FrameSet(Frame(163, 1, 16, 16), Frame(189, 39, 16, 16)),
-        Density.HDPI to FrameSet(Frame(244, 1, 25, 25), Frame(283, 58, 25, 25)),
+        Density.HDPI to FrameSet(Frame(244, 1, 24, 24), Frame(283, 58, 24, 24)),
         Density.XHDPI to FrameSet(Frame(323, 1, 32, 32), Frame(373, 75, 32, 32)),
         Density.XXHDPI to FrameSet(Frame(483, 1, 48, 48), Frame(557, 111, 48, 48)),
         Density.XXXHDPI to FrameSet(Frame(643, 1, 64, 64), Frame(741, 147, 64, 64))
@@ -56,9 +56,9 @@ class BadgeSpriteTransformation(
     MEDIUM(
       "medium",
       mapOf(
-        Density.LDPI to FrameSet(Frame(124, 16, 19, 19), Frame(160, 31, 19, 19)),
+        Density.LDPI to FrameSet(Frame(124, 16, 18, 18), Frame(160, 31, 18, 18)),
         Density.MDPI to FrameSet(Frame(163, 19, 24, 24), Frame(207, 39, 24, 24)),
-        Density.HDPI to FrameSet(Frame(244, 28, 37, 37), Frame(310, 58, 37, 37)),
+        Density.HDPI to FrameSet(Frame(244, 28, 36, 36), Frame(310, 58, 36, 36)),
         Density.XHDPI to FrameSet(Frame(323, 35, 48, 48), Frame(407, 75, 48, 48)),
         Density.XXHDPI to FrameSet(Frame(483, 51, 72, 72), Frame(607, 111, 72, 72)),
         Density.XXXHDPI to FrameSet(Frame(643, 67, 96, 96), Frame(807, 147, 96, 96))
@@ -67,31 +67,42 @@ class BadgeSpriteTransformation(
     LARGE(
       "large",
       mapOf(
-        Density.LDPI to FrameSet(Frame(145, 1, 28, 28), Frame(124, 46, 28, 28)),
+        Density.LDPI to FrameSet(Frame(145, 1, 27, 27), Frame(124, 46, 27, 27)),
         Density.MDPI to FrameSet(Frame(189, 1, 36, 36), Frame(163, 57, 36, 36)),
-        Density.HDPI to FrameSet(Frame(283, 1, 55, 55), Frame(244, 85, 55, 55)),
+        Density.HDPI to FrameSet(Frame(283, 1, 54, 54), Frame(244, 85, 54, 54)),
         Density.XHDPI to FrameSet(Frame(373, 1, 72, 72), Frame(323, 109, 72, 72)),
         Density.XXHDPI to FrameSet(Frame(557, 1, 108, 108), Frame(483, 161, 108, 108)),
         Density.XXXHDPI to FrameSet(Frame(741, 1, 144, 144), Frame(643, 213, 144, 144))
       )
     ),
-    BADGE_60(
-      "badge_60",
+    BADGE_64(
+      "badge_64",
       mapOf(
-        Density.LDPI to FrameSet(Frame(124, 76, 45, 45), Frame(124, 76, 45, 45)),
-        Density.MDPI to FrameSet(Frame(163, 101, 60, 60), Frame(163, 101, 60, 60)),
-        Density.HDPI to FrameSet(Frame(244, 151, 90, 90), Frame(244, 151, 90, 90)),
-        Density.XHDPI to FrameSet(Frame(323, 201, 120, 120), Frame(323, 201, 120, 120)),
-        Density.XXHDPI to FrameSet(Frame(483, 301, 180, 180), Frame(483, 301, 180, 180)),
-        Density.XXXHDPI to FrameSet(Frame(643, 401, 240, 240), Frame(643, 401, 240, 240))
+        Density.LDPI to FrameSet(Frame(124, 73, 48, 48), Frame(124, 73, 48, 48)),
+        Density.MDPI to FrameSet(Frame(163, 97, 64, 64), Frame(163, 97, 64, 64)),
+        Density.HDPI to FrameSet(Frame(244, 145, 96, 96), Frame(244, 145, 96, 96)),
+        Density.XHDPI to FrameSet(Frame(323, 193, 128, 128), Frame(323, 193, 128, 128)),
+        Density.XXHDPI to FrameSet(Frame(483, 289, 192, 192), Frame(483, 289, 192, 192)),
+        Density.XXXHDPI to FrameSet(Frame(643, 385, 256, 256), Frame(643, 385, 256, 256))
+      )
+    ),
+    BADGE_112(
+      "badge_112",
+      mapOf(
+        Density.LDPI to FrameSet(Frame(181, 1, 84, 84), Frame(181, 1, 84, 84)),
+        Density.MDPI to FrameSet(Frame(233, 1, 112, 112), Frame(233, 1, 112, 112)),
+        Density.HDPI to FrameSet(Frame(349, 1, 168, 168), Frame(349, 1, 168, 168)),
+        Density.XHDPI to FrameSet(Frame(457, 1, 224, 224), Frame(457, 1, 224, 224)),
+        Density.XXHDPI to FrameSet(Frame(681, 1, 336, 336), Frame(681, 1, 336, 336)),
+        Density.XXXHDPI to FrameSet(Frame(905, 1, 448, 448), Frame(905, 1, 448, 448))
       )
     ),
     XLARGE(
       "xlarge",
       mapOf(
-        Density.LDPI to FrameSet(Frame(1, 1, 121, 121), Frame(1, 1, 121, 121)),
+        Density.LDPI to FrameSet(Frame(1, 1, 120, 120), Frame(1, 1, 120, 120)),
         Density.MDPI to FrameSet(Frame(1, 1, 160, 160), Frame(1, 1, 160, 160)),
-        Density.HDPI to FrameSet(Frame(1, 1, 241, 241), Frame(1, 1, 241, 241)),
+        Density.HDPI to FrameSet(Frame(1, 1, 240, 240), Frame(1, 1, 240, 240)),
         Density.XHDPI to FrameSet(Frame(1, 1, 320, 320), Frame(1, 1, 320, 320)),
         Density.XXHDPI to FrameSet(Frame(1, 1, 480, 480), Frame(1, 1, 480, 480)),
         Density.XXXHDPI to FrameSet(Frame(1, 1, 640, 640), Frame(1, 1, 640, 640))
@@ -105,7 +116,8 @@ class BadgeSpriteTransformation(
           1 -> MEDIUM
           2 -> LARGE
           3 -> XLARGE
-          4 -> BADGE_60
+          4 -> BADGE_64
+          5 -> BADGE_112
           else -> LARGE
         }
       }
@@ -135,7 +147,7 @@ class BadgeSpriteTransformation(
   }
 
   companion object {
-    private const val VERSION = 2
+    private const val VERSION = 3
 
     private fun getDensity(density: String): Density {
       return Density.values().first { it.density == density }

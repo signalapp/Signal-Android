@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.VerificationFailedException;
@@ -103,6 +104,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   @Override
   public void onFailure() {
     SubscriptionNotification.VerificationFailed.INSTANCE.show(context);
+    SignalStore.donationsValues().markSubscriptionRedemptionFailed();
   }
 
   @Override
@@ -140,6 +142,10 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(response);
+
+      if (response.getStatus() == 204) {
+        SignalStore.donationsValues().clearSubscriptionRedemptionFailed();
+      }
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 

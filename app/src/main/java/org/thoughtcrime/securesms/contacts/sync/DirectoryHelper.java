@@ -82,7 +82,7 @@ public class DirectoryHelper {
 
   @WorkerThread
   public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
-    if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+    if (TextUtils.isEmpty(SignalStore.account().getE164())) {
       Log.w(TAG, "Have not yet set our own local number. Skipping.");
       return;
     }

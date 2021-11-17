@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -34,7 +35,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleStartIncomingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handleStartIncomingCall():");
 
-    currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState);
+    currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState, remotePeer.getCallId().longValue());
     return beginCallDelegate.handleStartIncomingCall(currentState, remotePeer);
   }
 
@@ -51,7 +52,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
       return currentState;
     }
 
-    currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState);
+    currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState, EglBaseWrapper.OUTGOING_PLACEHOLDER);
     return beginCallDelegate.handleOutgoingCall(currentState, remotePeer, offerType);
   }
 
@@ -63,7 +64,11 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
     WebRtcActionProcessor processor   = isGroupCall ? new GroupPreJoinActionProcessor(webRtcInteractor)
                                                     : new PreJoinActionProcessor(webRtcInteractor);
 
-    currentState = WebRtcVideoUtil.initializeVanityCamera(WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState));
+    currentState = WebRtcVideoUtil.initializeVanityCamera(WebRtcVideoUtil.initializeVideo(context,
+                                                                                          webRtcInteractor.getCameraEventListener(),
+                                                                                          currentState,
+                                                                                          isGroupCall ? RemotePeer.GROUP_CALL_ID.longValue()
+                                                                                                      : EglBaseWrapper.OUTGOING_PLACEHOLDER));
 
     currentState = currentState.builder()
                                .actionProcessor(processor)

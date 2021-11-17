@@ -2877,6 +2877,8 @@
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Добави профилна снимка</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Добави снимка</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Не, благодаря</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоджи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори търсачката на емоджита</string>
@@ -2988,5 +2990,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <string name="Subscription__contact_support">Връзка с отдела за поддръжка</string>
   <string name="DonationsErrors__payment_failed">Грешка при плащане</string>
+  <string name="NetworkFailure__retry">Опитай Отново</string>
   <!--EOF-->
 </resources>

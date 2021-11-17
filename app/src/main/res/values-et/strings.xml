@@ -2915,6 +2915,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vali välimus ja tunnetus või kohanda enda initsiaale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Mitte praegu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Lisa foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Tänan, ei</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Ava emotikonide otsing</string>
@@ -3070,7 +3072,6 @@
   <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
   <string name="SelectFeaturedBadgeFragment__preview">Eelvaade</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalit loovad sinusugused inimesed.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Annetuse summa</string> -->
   <string name="SubscribeFragment__not_now">Mitte praegu</string>
   <string name="SubscribeFragment__confirm">Kinnita</string>
   <string name="SubscribeFragment__update">Uuenda</string>
@@ -3079,5 +3080,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <string name="Subscription__contact_support">Võta ühendust kasutajatoega</string>
   <string name="DonationsErrors__payment_failed">Makse ei õnnestunud</string>
+  <string name="NetworkFailure__retry">Proovi uuesti</string>
   <!--EOF-->
 </resources>

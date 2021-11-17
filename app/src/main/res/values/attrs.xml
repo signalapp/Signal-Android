@@ -333,7 +333,8 @@
             <enum name="medium" value="1" />
             <enum name="large" value="2" />
             <enum name="xlarge" value="3" />
-            <enum name="badge_60" value="4" />
+            <enum name="badge_64" value="4" />
+            <enum name="badge_112" value="5" />
         </attr>
     </declare-styleable>
 </resources>

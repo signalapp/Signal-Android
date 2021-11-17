@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PaymentDatabase;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.ReactionDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
@@ -219,8 +220,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int BADGES                           = 118;
   private static final int SENDER_KEY_UUID                  = 119;
   private static final int SENDER_KEY_SHARED_TIMESTAMP      = 120;
+  private static final int REACTION_REFACTOR                = 121;
 
-  private static final int    DATABASE_VERSION = 120;
+  private static final int    DATABASE_VERSION = 121;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context context;
@@ -263,6 +265,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(EmojiSearchDatabase.CREATE_TABLE);
     db.execSQL(AvatarPickerDatabase.CREATE_TABLE);
     db.execSQL(GroupCallRingDatabase.CREATE_TABLE);
+    db.execSQL(ReactionDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
     executeStatements(db, MessageSendLogDatabase.CREATE_TABLE);
@@ -283,6 +286,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     executeStatements(db, GroupCallRingDatabase.CREATE_INDEXES);
 
     executeStatements(db, MessageSendLogDatabase.CREATE_TRIGGERS);
+    executeStatements(db, ReactionDatabase.CREATE_TRIGGERS);
 
     if (context.getDatabasePath(ClassicOpenHelper.NAME).exists()) {
       ClassicOpenHelper                      legacyHelper = new ClassicOpenHelper(context);
@@ -555,7 +559,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       }
 
       if (oldVersion < SELF_ATTACHMENT_CLEANUP) {
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
 
         if (!TextUtils.isEmpty(localNumber)) {
           try (Cursor threadCursor = db.rawQuery("SELECT _id FROM thread WHERE recipient_ids = ?", new String[]{ localNumber })) {
@@ -647,7 +651,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < RECIPIENT_SEARCH) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN system_phone_type INTEGER DEFAULT -1");
 
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
         if (!TextUtils.isEmpty(localNumber)) {
           try (Cursor cursor = db.query("recipient", null, "phone = ?", new String[] { localNumber }, null, null, null)) {
             if (cursor == null || !cursor.moveToFirst()) {
@@ -830,7 +834,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       }
 
       if (oldVersion < PROFILE_KEY_TO_DB) {
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
         if (!TextUtils.isEmpty(localNumber)) {
           String        encodedProfileKey = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_key", null);
           byte[]        profileKey        = encodedProfileKey != null ? Base64.decodeOrThrow(encodedProfileKey) : Util.getSecretBytes(32);
@@ -899,7 +903,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       }
 
       if (oldVersion < PROFILE_DATA_MIGRATION) {
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
         if (localNumber != null) {
           String      encodedProfileName = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_name", null);
           ProfileName profileName        = ProfileName.fromSerialized(encodedProfileName);
@@ -2054,12 +2058,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         long start = System.currentTimeMillis();
 
         db.execSQL("CREATE TABLE sender_keys_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                   "address TEXT NOT NULL, " +
-                   "device INTEGER NOT NULL, " +
-                   "distribution_id TEXT NOT NULL, " +
-                   "record BLOB NOT NULL, " +
-                   "created_at INTEGER NOT NULL, " +
-                   "UNIQUE(address, device, distribution_id) ON CONFLICT REPLACE)");
+                                                 "address TEXT NOT NULL, " +
+                                                 "device INTEGER NOT NULL, " +
+                                                 "distribution_id TEXT NOT NULL, " +
+                                                 "record BLOB NOT NULL, " +
+                                                 "created_at INTEGER NOT NULL, " +
+                                                 "UNIQUE(address, device, distribution_id) ON CONFLICT REPLACE)");
 
         db.execSQL("INSERT INTO sender_keys_tmp (address, device, distribution_id, record, created_at) "  +
                    "SELECT recipient.uuid AS new_address, " +
@@ -2080,6 +2084,37 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         db.execSQL("ALTER TABLE sender_key_shared ADD COLUMN timestamp INTEGER DEFAULT 0");
       }
 
+      if (oldVersion < REACTION_REFACTOR) {
+        db.execSQL("CREATE TABLE reaction (_id INTEGER PRIMARY KEY, " +
+                                          "message_id INTEGER NOT NULL, " +
+                                          "is_mms INTEGER NOT NULL, " +
+                                          "author_id INTEGER NOT NULL REFERENCES recipient (_id) ON DELETE CASCADE, " +
+                                          "emoji TEXT NOT NULL, " +
+                                          "date_sent INTEGER NOT NULL, " +
+                                          "date_received INTEGER NOT NULL, " +
+                                          "UNIQUE(message_id, is_mms, author_id) ON CONFLICT REPLACE)");
+
+        try (Cursor cursor = db.rawQuery("SELECT _id, reactions FROM sms WHERE reactions NOT NULL", null)) {
+          while (cursor.moveToNext()) {
+            migrateReaction(db, cursor, false);
+          }
+        }
+
+        try (Cursor cursor = db.rawQuery("SELECT _id, reactions FROM mms WHERE reactions NOT NULL", null)) {
+          while (cursor.moveToNext()) {
+            migrateReaction(db, cursor, true);
+          }
+        }
+
+        db.execSQL("UPDATE reaction SET author_id = IFNULL((SELECT new_id FROM remapped_recipients WHERE author_id = old_id), author_id)");
+
+        db.execSQL("CREATE TRIGGER reactions_sms_delete AFTER DELETE ON sms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 0; END");
+        db.execSQL("CREATE TRIGGER reactions_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 0; END");
+
+        db.execSQL("UPDATE sms SET reactions = NULL WHERE reactions NOT NULL");
+        db.execSQL("UPDATE mms SET reactions = NULL WHERE reactions NOT NULL");
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -2092,6 +2127,27 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
   }
 
+  private void migrateReaction(@NonNull SQLiteDatabase db, @NonNull Cursor cursor, boolean isMms) {
+    try {
+      long         messageId    = CursorUtil.requireLong(cursor, "_id");
+      ReactionList reactionList = ReactionList.parseFrom(CursorUtil.requireBlob(cursor, "reactions"));
+
+      for (ReactionList.Reaction reaction : reactionList.getReactionsList()) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("message_id", messageId);
+        contentValues.put("is_mms", isMms ? 1 : 0);
+        contentValues.put("author_id", reaction.getAuthor());
+        contentValues.put("emoji", reaction.getEmoji());
+        contentValues.put("date_sent", reaction.getSentTime());
+        contentValues.put("date_received", reaction.getReceivedTime());
+
+        db.insert("reaction", null, contentValues);
+      }
+    } catch (InvalidProtocolBufferException e) {
+      Log.w(TAG, "Failed to parse reaction!");
+    }
+  }
+
   @Override
   public net.zetetic.database.sqlcipher.SQLiteDatabase getReadableDatabase() {
     throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
@@ -2099,7 +2155,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
   @Override
   public net.zetetic.database.sqlcipher.SQLiteDatabase getWritableDatabase() {
-    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
+    throw new UnsupportedOperationException("Call getSignalWritableDatabase() instead!");
   }
 
   public net.zetetic.database.sqlcipher.SQLiteDatabase getRawReadableDatabase() {

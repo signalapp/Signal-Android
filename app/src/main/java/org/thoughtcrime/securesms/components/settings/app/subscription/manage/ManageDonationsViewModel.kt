@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -43,6 +44,22 @@ class ManageDonationsViewModel(
 
     val levelUpdateOperationEdges: Observable<Boolean> = LevelUpdate.isProcessing.distinctUntilChanged()
     val activeSubscription: Single<ActiveSubscription> = subscriptionsRepository.getActiveSubscription()
+
+    disposables += SubscriptionRedemptionJobWatcher.watch().subscribeBy { jobStateOptional ->
+      store.update { manageDonationsState ->
+        manageDonationsState.copy(
+          subscriptionRedemptionState = jobStateOptional.transform { jobState ->
+            when (jobState) {
+              JobTracker.JobState.PENDING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
+              JobTracker.JobState.RUNNING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
+              JobTracker.JobState.SUCCESS -> ManageDonationsState.SubscriptionRedemptionState.NONE
+              JobTracker.JobState.FAILURE -> ManageDonationsState.SubscriptionRedemptionState.FAILED
+              JobTracker.JobState.IGNORED -> ManageDonationsState.SubscriptionRedemptionState.NONE
+            }
+          }.or(ManageDonationsState.SubscriptionRedemptionState.NONE)
+        )
+      }
+    }
 
     disposables += levelUpdateOperationEdges.flatMapSingle { isProcessing ->
       if (isProcessing) {
