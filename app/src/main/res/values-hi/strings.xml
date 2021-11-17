@@ -804,6 +804,7 @@
   <string name="InviteActivity_no_app_to_share_to">ऐसा लगता है कि आपके पास साझा करने के लिए कोई ऐप नहीं है।</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">अधिक जानें</string>
+  <string name="SpanUtil__read_more">ज़्यादा पढ़ें</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">मेसेज खोजने में असमर्थ</string>
   <string name="LongMessageActivity_message_from_s">%1$s से मेसेज</string>
@@ -3121,6 +3122,8 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">एक रूप और रंग चुनें या अपने आद्याक्षर को अनुकूलित करें।</string>
   <string name="AddAProfilePhotoMegaphone__not_now">अभी नहीं</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">तस्वीर लगाएं</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">नहीं धन्यवाद </string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">इमोजी</string>
   <string name="KeyboardPagerFragment_open_emoji_search">इमोजी सर्च खोलें</string>
@@ -3290,7 +3293,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ImageView__badge">बैज</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आप जैसे लोगों से ही चल रहा है।</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">समर्थन तकनीक जो आपके लिए बनाई गई है - आपके डेटा के लिए नहीं - इसे बनाए रखने वाले लोगों के समुदाय में शामिल होकर.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">दान राशि</string> -->
   <string name="SubscribeFragment__more_payment_options">और अधिक पेमेंट विकल्प</string>
   <string name="SubscribeFragment__cancel_subscription">सब्सक्रिप्शन रद्द करें</string>
   <string name="SubscribeFragment__confirm_cancellation">रद्द करने की पुष्टि करें?</string>
@@ -3307,11 +3309,8 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/महीने · समाप्त %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal एक गैर-लाभकारी संस्था है जिसमें कोई विज्ञापनदाता या निवेशक नहीं है, जो केवल उन लोगों द्वारा बनाए रखा जाता है जो इसका उपयोग करते हैं और इसे महत्व देते हैं. एक आवर्ती मासिक योगदान करें और अपना समर्थन साझा करने के लिए एक प्रोफ़ाइल बैज प्राप्त करें.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">योगदान क्यों करें?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">सिग्नल की टीम ओपन सोर्स गोपनीयता तकनीक विकसित करने के मिशन के लिए प्रतिबद्ध है जो मुक्त अभिव्यक्ति की रक्षा करती है और सुरक्षित वैश्विक संचार को एनेबल करती है. आपका योगदान इस वजह को बढ़ावा देता है. कोई विज्ञापन नहीं. कोई ट्रैकर नहीं. कोई मज़ाक नहीं.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">आपका योगदान निजी और झटपट संचार के लिए दुनिया भर में लाखों लोगों द्वारा इस्तेमाल किए जाने वाले ऐप के विकास, सर्वर और बैंडविथ के लिए भुगतान करने में मदद करता है.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपके समर्थन के लिए शुक्रिया!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट के लिए धन्यवाद!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">आपने %s एक बैज कमाया है! अपना बैज डिस्प्ले करने से वे लोग दिखाई देंगे जिनसे आप चैट करते हैं और आप Signal का समर्थन करते हैं.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफ़ाइल पर डिस्प्ले करें</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">चुनिंदा बैज बनाएं</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">पूर्ण</string>
@@ -3329,9 +3328,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="MySupportPreference__s_per_month">%1$s/महीने</string>
   <string name="MySupportPreference__renews_s">%1$s को नवीनीकृत करता है</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपका बैज समाप्त हो गया है</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">आपका %1$s बैज समाप्त हो गया है, और अब आपकी प्रोफ़ाइल पर अन्य लोगों के लिए दिखता नहीं है.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">आपके लिए बनाई गई तकनीक का समर्थन जारी रखने के लिए—आपके डेटा के लिए नहीं—कृपया मासिक सब्सक्राइबर बनने पर विचार करें.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">सब्सक्राइबर बनें</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">एक सस्टेनर बनें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
   <string name="Subscription__verification_failed">सब्सक्रिप्शन जांच असफ़ल</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक जानकारी के लिए कृपया समर्थन से संपर्क करें.</string>
@@ -3340,11 +3337,10 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="SubscribeFragment__processing_payment">भुगतान प्रोसेस किया जा रहा है…</string>
   <string name="DonationsErrors__payment_failed">भुगतान विफल रहा</string>
   <string name="DonationsErrors__your_payment">आपकी पेमेंट प्रोसेस नहीं की जा सकी और आपसे शुल्क नहीं लिया गया है. कृपया फिर से कोशिश करें.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">रिडेम्पशन अभी भी पेंडिंग है</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">हो सकता है कि आपको अपना बैज तुरंत दिखाई न दे, लेकिन हम इस पर काम कर रहे हैं!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">इन-ऐप पर दान करने के लिए आपको Google Pay सेट अप करना होगा.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">सब्सक्रिप्शन रद्द करने में असफ़ल</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">सब्सक्रिप्शन को रद्द करने के लिए इंटरनेट कनेक्शन की ज़रुरत है.</string>
+  <string name="NetworkFailure__retry">दोबारा कोशिश करें</string>
   <!--EOF-->
 </resources>

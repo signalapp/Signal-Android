@@ -804,6 +804,7 @@
   <string name="InviteActivity_no_app_to_share_to">असे दिसते की आपल्याकडे सामायिक करण्यासाठी कुठलेही अॅप नाहीत.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">अधिक जाणा</string>
+  <string name="SpanUtil__read_more">आणखी वाचा</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">संदेश शोधण्यात अक्षम</string>
   <string name="LongMessageActivity_message_from_s">%1$s कडून संदेश</string>
@@ -1938,7 +1939,6 @@
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2"/> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">हा संदेश</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">अलीकडील वापरलेले</string>
@@ -3126,6 +3126,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">रूप आणि रंग निवडा किंवा आपली आद्याक्षरे सानुकूलित करा.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">आता नाही</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">फोटो जोडा</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">नाही धन्यवाद</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ईमोजी</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ईमोजी शोध उघडा</string>
@@ -3295,7 +3297,6 @@
   <string name="ImageView__badge">बॅज</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal आपल्यासारख्या लोकांद्वारा समर्थित आहे.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">देणगी रक्कम</string> -->
   <string name="SubscribeFragment__more_payment_options">अधिक पेमेंट पर्याय</string>
   <string name="SubscribeFragment__cancel_subscription">सब्स्क्रिप्शन रद्द करा</string>
   <string name="SubscribeFragment__confirm_cancellation">रद्द करण्याची पुष्टी करायची ?</string>
@@ -3312,11 +3313,8 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/महिना . कालबाह्य %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ही एक विना - नफा संस्था आहे ज्यामध्ये कोणतेही जाहिरातदार किंवा गुंतवणूकदार नसतात, केवळ ते वापरणाऱ्या आणि मूल्यवान लोकांद्वारे टिकून राहते.  आवर्ती मासिक योगदान द्या आणि तुमचे समर्थन सामायिक करण्यासाठी प्रोफाइल बॅज मिळवा.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">योगदान का द्यावे ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal मधील टीम, मुक्त अभिव्यक्तीचे संरक्षण करणारे आणि सुरक्षित जागतिक संभाषण सक्षम करणारे मुक्त स्त्रोत गोपनीयता तंत्रज्ञान विकसित करण्याच्या उद्दिष्टाशी वचनबध्द आहे. तुमच्या योगदानाने या उद्दिष्टास मदत होते. जाहिराती नाहीत, ट्रॅकर्स नाहीत. पोरखेळ नाही.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">तुमचे योगदान जगभरातील लाखो लोक खाजगी आणि तात्काळ संप्रेषणासाठी वापरत असलेल्या अॅपच्या विकास, सर्व्हर आणि बँडविड्थसाठी पैसे देण्यास मदत करते.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट साठी धन्यवाद !</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">तुम्ही %s बॅज मिळवला आहे! तुमचा बॅज प्रदर्शित केल्याने तुम्ही Signal ला समर्थन करता असे तुम्ही ज्यांच्याशी चॅट करता त्यांना दर्शवेल.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफाइलवर दाखवा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">वैशिष्ट्यीकृत बॅज बनवा</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ठीक</string>
@@ -3334,9 +3332,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/महिना</string>
   <string name="MySupportPreference__renews_s">नूतनीकरण %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपला बॅज कालबाह्य झाला आहे</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">आपला %1$s बॅज कालबाह्य झाला आहे, आणि यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">तुमच्या डेटासाठी नव्हे—तर तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाला समर्थन देत राहण्यासाठी, कृपया मासिक सदस्य बनण्याचा विचार करा.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">सब्स्क्राइबर व्हा</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
   <string name="Subscription__verification_failed">सब्स्क्रिप्शन सत्यापन अयशस्वी</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक माहितीकरिता सपोर्टशी संपर्क करा.</string>
@@ -3345,11 +3341,10 @@
   <string name="SubscribeFragment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
   <string name="DonationsErrors__payment_failed">पेमेंट अयशस्वी झाले</string>
   <string name="DonationsErrors__your_payment">तुमची पेमेंट प्रक्रिया पुर्ण नाही केली जाऊ शकली आणि तुमच्याकडून शुल्क आकारले गेले नाही. कृपया पुन्हा प्रयत्न करा.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">विमोचन अद्यापही प्रलंबित</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">तुम्हाला तुमचा बॅज लगेच दिसणार नाही, पण आम्ही त्यावर काम करत आहोत!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अॅपमधील देणगी देण्यासाठी तुम्हाला Google Pay सेटअप करावे लागेल.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">सब्स्क्रिप्शन रद्द करण्यात अयशस्वी</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection"> सब्स्क्रिप्शन रद्द करण्यासाठी इंटरनेट कनेक्शन आवश्यक आहे.</string>
+  <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--EOF-->
 </resources>

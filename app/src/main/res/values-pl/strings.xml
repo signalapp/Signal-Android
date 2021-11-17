@@ -790,6 +790,7 @@
   <string name="ManageProfileFragment_your_username">Twoja nazwa użytkownika</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nie udało się ustawić awatara</string>
   <string name="ManageProfileFragment_badges">Odznaki</string>
+  <string name="ManageProfileFragment__edit_photo">Edytuj  zdjęcie</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Brak wspólnych grup</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -900,6 +901,7 @@
   <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dowiedz się więcej</string>
+  <string name="SpanUtil__read_more">Czytaj dalej</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nie można znaleźć wiadomości</string>
   <string name="LongMessageActivity_message_from_s">Wiadomość od %1$s</string>
@@ -1490,6 +1492,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
   <string name="RegistrationActivity_rate_limited_to_service">Zbyt dużo nieudanych prób rejestracji tego numeru. Spróbuj ponownie później.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nie można połączyć się z serwisem. Proszę sprawdzić połączenie internetowe i spróbować ponownie.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Niestandardowy format numeru</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Podany przez Ciebie numer (%1$s) wydaje się mieć niestandardowy format.\n\nCzy chodziło Ci o %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Format numeru telefonu</string>
   <string name="RegistrationActivity_call_requested">Poproszono o połączenie</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Jesteś o %d krok od wysłania dziennika debugowania.</item>
@@ -2105,6 +2110,16 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__debug_log">Logi debugowania:</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Wybierz opcję \-\-</item>
+    <item>Coś nie działa</item>
+    <item>Prośba o dodanie funkcji</item>
+    <item>Pytanie</item>
+    <item>Opinia</item>
+    <item>Inne</item>
+    <item>Płatności (MobileCoin)</item>
+    <item>Wspierający i Wsparcie Signal</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ta wiadomość</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Ostatnio używane</string>
@@ -2204,6 +2219,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__advanced">Zaawansowane</string>
   <string name="preferences__donate_to_signal">Datek na Signal</string>
   <string name="preferences__subscription">Subskrypcja</string>
+  <string name="preferences__become_a_signal_sustainer">Zostań wspierającym Signal</string>
   <string name="preferences__signal_boost">Wsparcie Signal</string>
   <string name="preferences__privacy">Prywatność</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3318,6 +3334,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Wybierz wygląd i kolor lub dopasuj inicjały.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nie teraz</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Dodaj zdjęcie</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Zostań wspierającym</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal funkcjonuje dzięki ludziom takim, jak Ty. Wesprzyj nas i otrzymaj odznakę.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nie, dzięki</string>
+  <string name="BecomeASustainerMegaphone__contribute">Wesprzyj</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emotikony</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otwórz wyszukiwarkę emotikon</string>
@@ -3366,6 +3387,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Rozmowa wyciszona na zawsze</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Skopiowano numer telefonu do schowka.</string>
   <string name="ConversationSettingsFragment__phone_number">Numer telefonu</string>
+  <string name="ConversationSettingsFragment__get_badges">Zdobywaj odznaki dla swojego profilu, wspierając Signal. Stuknij odznakę, aby dowiedzieć się więcej.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Dodaj członków</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edytuj informacje o grupie</string>
@@ -3495,7 +3517,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ImageView__badge">Odznaka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal funkcjonuje dzięki ludziom takim jak Ty.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Wspieraj technologię stworzoną dla Ciebie — nie dla zdobycia Twoich danych — dołączając do społeczności osób, które pomagają jej funkcjonować.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Wysokość datku</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Wspieraj technologię stworzoną dla Ciebie, nie dla zdobycia Twoich danych, dołączając do społeczności osób, które wspierają Signal.</string>
+  <string name="SubscribeFragment__currency">Waluta</string>
   <string name="SubscribeFragment__more_payment_options">Więcej opcji płatności</string>
   <string name="SubscribeFragment__cancel_subscription">Anuluj subskrypcję</string>
   <string name="SubscribeFragment__confirm_cancellation">Potwierdzić anulowanie?</string>
@@ -3507,16 +3530,20 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubscribeFragment__update_subscription_question">Uaktualnić subskrypcję?</string>
   <string name="SubscribeFragment__update">Uaktualnij</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dziś z Twojego konta zostanie pobrana pełna kwota za nową subskrypcję. Twoja subskrypcja odnowi %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dziś z Twojego konta zostanie pobrana pełna kwota (%1$s) za nową subskrypcję. Twoja subskrypcja będzie odnawiać się co miesiąc.</string>
   <string name="Subscription__s_per_month">%s/miesiąc</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/miesiąc · Przedłużane %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/miesiąc · Wygasa %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi, którzy używają i cenią naszą aplikację. Rozpocznij subskrypcję z comiesięczną opłatą, aby otrzymać odznakę profilową, dzięki której pochwalisz się swoim wsparciem.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Po co składać datek?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Zespół Signal jest oddany misji rozwoju otwartoźródłowej, zapewniającej prywatność technologii, która chroni wolność słowa i umożliwia bezpieczną, globalną komunikację. Twój datek pomaga tej sprawie. Bez reklam. Bez śledzenia. Bez ściemy.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Twoja dotacja pomoże opłacić serwery, łącze internetowe i dalszy rozwój aplikacji, której miliony osób na całym świecie używają do prywatnej i natychmiastowej komunikacji.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal jest oddany misji rozwoju otwartoźródłowej, zapewniającej prywatność technologii, która chroni wolność słowa i umożliwia bezpieczną, globalną komunikację.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Twoja dotacja pomoże tej sprawie i pozwoli opłacić dalszy rozwój i funkcjonowanie aplikacji, której miliony osób na całym świecie używają do prywatnej komunikacji. Bez reklam. Bez śledzenia. Bez ściemy.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dziękujemy za datek!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Otrzymałeś(aś) odznakę %s! Wyświetlenie odznaki pokaże ludziom, z którymi rozmawiasz, że wspierasz Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Otrzymałeś(aś) odznakę %s! Pomóż Signal zbudować świadomość, wyświetlając ją na swoim profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Otrzymałeś(aś) odznakę Wsparcie! Pomóż Signal zbudować świadomość, wyświetlając ją na swoim profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Możesz również</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">zostać comiesięcznym wspierającym.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pokaż w profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ustaw wyświetlaną odznakę</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotowe</string>
@@ -3533,24 +3560,38 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MySupportPreference__add_a_signal_boost">Wesprzyj Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/miesiąc</string>
   <string name="MySupportPreference__renews_s">Przedłużane %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Przetwarzanie transakcji…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Nie udało się dodać odznaki.</string>
+  <string name="MySupportPreference__please_contact_support">Skontaktuj się z pomocą techniczną.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Twoja odznaka wygasła</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Twoja odznaka %1$swygasła i nie jest już widoczna dla innych, w Twoim profilu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Aby nadal wspierać technologię stworzoną dla Ciebie — nie dla zdobycia Twoich
-danych — rozważ miesięczną subskrypcję.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Zostań subskrybentem</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Odznaka wygasła</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subskrypcja anulowana</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Twoja odznaka Wsparcie wygasła i inni nie będą jej już widzieć w Twoim profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich 
+danych, rozważ miesięczną subskrypcję.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Zostań wspierającym</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Twoja subskrypcja Wspierającego została automatycznie anulowana, gdyż zbyt długo pozostajesz nieaktywny(a). Twoja odznaka %1$s nie jest już widoczna w Twoim profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, złóż datek.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Odnów subskrypcję</string>
   <string name="Subscription__verification_failed">Weryfikacja subskrypcji nie powiodła się</string>
+  <string name="Subscription__redemption_failed">Nie udało się odebrać odznaki</string>
   <string name="Subscription__please_contact_support_for_more_information">Skontaktuj się z pomocą techniczną, aby uzyskać więcej informacji.</string>
   <string name="Subscription__contact_support">Kontakt z pomocą techniczną</string>
   <string name="Subscription__earn_a_s_badge">Zdobądź odznakę %1$s</string>
   <string name="SubscribeFragment__processing_payment">Przetwarzanie płatności…</string>
   <string name="DonationsErrors__payment_failed">Płatność nie powiodła się</string>
   <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Wpłata wciąż oczekuje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Możesz nie zobaczyć swojej odznaki natychmiast, ale pracujemy nad tym!</string> -->
+  <string name="DonationsErrors__still_processing">Trwa przetwarzanie</string>
+  <string name="DonationsErrors__redemption_failed">Odbieranie nieudane</string>
+  <string name="DonationsErrors__please_contact_support">Skontaktuj się z pomocą techniczną</string>
+  <string name="DonationsErrors__your_payment_is_still">Twoja płatność wciąż jest przetwarzana. W zależności od Twojego połączenia z siecią, to może potrwać kilka minut.</string>
   <string name="DonationsErrors__google_pay_unavailable">Aplikacja Google Pay nie jest dostępna</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musisz skonfigurować Google Pay, aby móc płacić w aplikacji.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Nie udało się anulować subskrypcji</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anulowanie subskrypcji wymaga połączenia z internetem.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Twoje urządzenie nie obsługuje Google Pay, więc nie możesz użyć subskrypcji, aby otrzymać odznakę. Wciąż możesz wesprzeć Signal datkiem, korzystając z naszej strony internetowej.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
+  <string name="NetworkFailure__retry">Ponów</string>
   <!--EOF-->
 </resources>

@@ -704,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">Dit brugernavn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avataren kunne ikke opsættes</string>
   <string name="ManageProfileFragment_badges">Emblemer</string>
+  <string name="ManageProfileFragment__edit_photo">Rediger billede</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ingen grupper tilfælles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -804,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Det lader til at du ikke har nogle apps at dele til</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Læs mere</string>
+  <string name="SpanUtil__read_more">Læs mere</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kunne ikke finde beskeden</string>
   <string name="LongMessageActivity_message_from_s">Besked fra %1$s</string>
@@ -1346,6 +1348,9 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal har brug for adgang til dine kontakter for at kunne forbinde med dine venner, udveksle beskeder og foretage sikre opkald</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Ikke-standardiseret nummerformat</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Det nummer du har indtastet (%1$s) ser ud til at være et ikke-standardiseret format.\n\nMente du %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummerformat</string>
   <string name="RegistrationActivity_call_requested">Anmodet om opkald</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du er nu kun %d trin fra at indsende en fejllog</item>
@@ -1940,16 +1945,16 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Vælg en mulighed</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Vælg en mulighed \-\-</item>
     <item>Noget fungerer ikke</item>
     <item>Anmodning om funktion</item>
     <item>Spørgsmål</item>
     <item>Feedback</item>
     <item>Andet</item>
     <item>Betalinger (MobileCoin)</item>
-    <item>Donationer (Bidragsydere &amp; Signal Boost)</item>
-  </string-array> -->
+    <item>Bidragsydere &amp; Signal Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -2047,6 +2052,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__donate_to_signal">Donér til Signal</string>
   <string name="preferences__subscription">Abonnement</string>
+  <string name="preferences__become_a_signal_sustainer">Bliv en Signal-bidragsyder</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Privatliv</string>
   <string name="preferences__mms_user_agent">MMS-brugeragent</string>
@@ -3137,6 +3143,11 @@ nummer (%s) er ugyldigt</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vælg et look og en farve, eller tilpas dine initialer.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ikke nu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tilføj billede</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Bliv bidragsyder</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal er drevet af personer som dig. Bidrag og modtag et emblem.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nej tak</string>
+  <string name="BecomeASustainerMegaphone__contribute">Bidrag</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Åbn emoji-søgning</string>
@@ -3185,6 +3196,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtale ignoreres for evigt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierede telefonnummer til udklipsholder.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
+  <string name="ConversationSettingsFragment__get_badges">Få emblemer til din profil ved at støtte Signal. Tryk på et emblem for at få mere at vide.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Tilføj medlemmer</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Rediger gruppeinformation</string>
@@ -3306,7 +3318,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ImageView__badge">Emblem</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drevet af personer som dig.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - og ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der understøtte den.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donationsbeløb</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Støt teknologi, der er udviklet til dig, ikke for at høste dine data, ved at blive en del af det fællesskab, der understøtte Signal.</string>
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Flere betalingsmuligheder</string>
   <string name="SubscribeFragment__cancel_subscription">Opsig abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Bekræft opsigelse?</string>
@@ -3318,16 +3331,20 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeFragment__update_subscription_question">Opdater abonnement?</string>
   <string name="SubscribeFragment__update">Opdatér</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du vil blive opkrævet det fulde beløb for det nye abonnement i dag. Dit abonnement fornyes %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Du vil blive opkrævet det fulde beløb (%1$s) af den nye abonnementspris i dag. Dit abonnement vil fornyes hver måned.</string>
   <string name="Subscription__s_per_month">%s/måned</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/måned · Fornyes %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/måned · Udløber %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Hvorfor bidrage?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Teamet hos Signal er dedikeret til missionen om at udvikle open source privatlivsteknologi, der beskytter ytringsfriheden og gør sikker global kommunikation mulig. Dit bidrag støtter denne sag. Ingen annoncer. Ingen trackere. Ikke for sjov.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dit bidrag er med til at betale for udvikling, servere og båndbredde for en app, der bruges af millioner af mennesker rundt om i verden til privat og hurtig kommunikation.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er dedikeret til udviklingen af open source-privatlivsteknologi, der beskytter ytringsfrihed og muliggør sikker global kommunikation.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Dit bidrag støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Ingen spøg.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tak for din støtte!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for saltvandsindsprøjtningen!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har gjort dig fortjent til et %s-emblem! Når du viser dit emblem, viser du de personer du taler med, at du støtter Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har gjort dig fortjent til et %s-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du har gjort dig fortjent til et Boost-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">blive en månedlig bidragsyder.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gør til fremhævet emblem</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Udført</string>
@@ -3344,23 +3361,37 @@ nummer (%s) er ugyldigt</string>
   <string name="MySupportPreference__add_a_signal_boost">Tilføj et Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/måned</string>
   <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Behandler transaktion…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Kunne ikke tilføje emblem.</string>
+  <string name="MySupportPreference__please_contact_support">Kontakt venligst support.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dit %1$s-emblem er udløbet og er ikke længere synligt for andre på din profil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Overvej at tegne et månedsabonnement for forsat at støtte op om teknologi, der er udviklet til dig - ikke for at høste dine data.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bliv abonnent</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Emblem udløbet</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulleret</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dit Boost-emblem er udløbet og er ikke længere synligt for andre på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overvej at blive månedlig bidragsyder for fortsat at støtte teknologi, der er bygget til dig.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
   <string name="Subscription__verification_failed">Bekræftelse af abonnement mislykkedes</string>
+  <string name="Subscription__redemption_failed">Indløsning af emblem mislykkedes</string>
   <string name="Subscription__please_contact_support_for_more_information">Kontakt venligst support for at få mere information.</string>
   <string name="Subscription__contact_support">Kontakt Support</string>
   <string name="Subscription__earn_a_s_badge">Opnå ret til et %1$s-emblem </string>
   <string name="SubscribeFragment__processing_payment">Bearbejder betaling…</string>
   <string name="DonationsErrors__payment_failed">Betaling fejlede</string>
   <string name="DonationsErrors__your_payment">Din betaling kunne ikke gennemføres, og du er ikke blevet opkrævet. Prøv venligst igen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Indløsning afventer stadig</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kan måske ikke se dit emblem med det samme, men vi arbejder på det!</string> -->
+  <string name="DonationsErrors__still_processing">Behandler stadig</string>
+  <string name="DonationsErrors__redemption_failed">Indløsning mislykkedes</string>
+  <string name="DonationsErrors__please_contact_support">Kontakt venligst support.</string>
+  <string name="DonationsErrors__your_payment_is_still">Din betaling er stadig under behandling. Det kan tage et par minutter afhængigt af din forbindelse.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ikke tilgængelig</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du skal konfigurere Google Pay for at kunne donere i appen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Opsigelse af abonnementet mislykkedes</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Opsigelse af abonnement kræver en internetforbindelse.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Din enhed understøtter ikke Google Pay, så du kan ikke abonnere for at optjene et emblem. Du kan stadig støtte Signal ved at give et bidrag på vores hjemmeside.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netværksfejl. Kontroller din forbindelse, og prøv igen.</string>
+  <string name="NetworkFailure__retry">Prøv igen</string>
   <!--EOF-->
 </resources>

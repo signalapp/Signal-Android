@@ -756,6 +756,7 @@
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Pelajari lebih lanjut</string>
+  <string name="SpanUtil__read_more">Baca lebih lanjut</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Tidak dapat menemukan pesan</string>
   <string name="LongMessageActivity_message_from_s">Pesan dari %1$s</string>
@@ -1855,16 +1856,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__debug_log">Catatan debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Pilih opsi</item>
-    <item>Sesuatu Tidak Bekerja</item>
-    <item>Permintaan Fitur</item>
-    <item>Pertanyaan</item>
-    <item>Masukan</item>
-    <item>Lainnya</item>
-    <item>Pembayaran (MobileCoin)</item>
-    <item>Donasi (Penopang &amp; Penguat Signal)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Terakhir Digunakan</string>
@@ -3039,6 +3030,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Pilih tampilan dan warna atau kustomisasi inisial Anda.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nanti saja</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tambahkan foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Menjadi Penyokong</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Tidak, terima kasih</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Buka pencarian emoji</string>
@@ -3204,7 +3198,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ImageView__badge">Lencana</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Jumlah donasi</string> -->
   <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
   <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
   <string name="SubscribeFragment__confirm_cancellation">Konfirmasi Pembatalan?</string>
@@ -3221,11 +3214,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Berakhir %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal bersifat nirlaba tanpa pengiklan atau investor, disokong hanya oleh mereka yang menggunakan dan menghargainya. Beri kontribusi bulanan rutin dan dapatkan lencana profil untuk membagikan dukungan Anda.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Mengapa Berkontribusi?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim di Signal berkomitmen pada misi mengembangkan teknologi privasi bersumber terbuka yang melindungi kebebasan berekspresi dan memungkinkan komunikasi global yang aman. Kontribusi Anda mendukung gerakan ini. Tanpa iklan. Tanpa pelacak. Beneran.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Kontribusii Anda membantu pembayaran pengembangan, peladen, dan bandwith dari aplikasi yang digunakan oleh jutaan orang di seluruh dunia untuk komunikasi yang privat dan instan.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih untuk Dukungan Anda!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Penguatnya!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Anda memperoleh lencana %s! Memasang lencana akan menunjukkan pada orang yang chat dengan Anda bahwa Anda mendukung Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Tampilkan di Profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Buat lencana istimewa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
@@ -3243,9 +3233,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
   <string name="MySupportPreference__renews_s">Perpanjang %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana Anda sudah Hangus</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Lencana %1$s Anda sudah hangus, dan tak lagi dapat dilihat oleh orang lain di profil Anda.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Untuk terus mendukung teknologi yang dirancang untuk Anda—bukan hanya data Anda—harap pertimbangkan menjadi pelanggan bulanan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Jadi pelanggan</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi penyokong</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
   <string name="Subscription__verification_failed">Verifikasi Langganan Gagal</string>
   <string name="Subscription__please_contact_support_for_more_information">Harap hubungi bantuan untuk informasi lebih lanjut.</string>
@@ -3254,11 +3242,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
   <string name="DonationsErrors__payment_failed">Pembayaran gagal</string>
   <string name="DonationsErrors__your_payment">Pembayaran tidak dapat diproses dan Anda belum ditagih. Silakan coba kembali.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Penukaran masih tertunda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Anda mungkin tidak dapat langsung melihat lencana, tetapi kami mengupayakannya!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda harus menata Google Pay untuk berdonasi dari dalam aplikasi.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan sambungan internet.</string>
+  <string name="NetworkFailure__retry">Coba lagi</string>
   <!--EOF-->
 </resources>

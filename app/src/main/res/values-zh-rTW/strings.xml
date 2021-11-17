@@ -756,6 +756,7 @@
   <string name="InviteActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
+  <string name="SpanUtil__read_more">閱讀更多</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">無法找到該訊息</string>
   <string name="LongMessageActivity_message_from_s">從 %1$s 傳送的訊息</string>
@@ -1851,16 +1852,6 @@
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>請選擇一個選項</item>
-    <item>有某處發生了問題</item>
-    <item>功能要求</item>
-    <item>問題</item>
-    <item>回報</item>
-    <item>其他</item>
-    <item>付款 (行動貨幣)</item>
-    <item>贊助 (維護者 &amp; Signal 推廣)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用的</string>
@@ -3035,6 +3026,9 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">選擇外觀與色彩，或自訂您的縮寫。</string>
   <string name="AddAProfilePhotoMegaphone__not_now">稍後</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">新增照片</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">成為贊助人</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">不用了，謝謝</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情</string>
   <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
@@ -3200,7 +3194,6 @@
   <string name="ImageView__badge">徽章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由像你這樣的人提供動力。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">加入支援技術的眾人共同維持的社群，是為了支援你打造的技術—而不是為你的資訊—打造。</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">捐款金額</string> -->
   <string name="SubscribeFragment__more_payment_options">更多付款方式</string>
   <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
   <string name="SubscribeFragment__confirm_cancellation">確認取消?</string>
@@ -3217,11 +3210,8 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · 過期了 %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是一個沒有廣告商或投資者的非營利組織，只有使用和珍惜它的人才能維持。 每月定期捐款可獲得個人資料徽章，以與他人分享你的支持。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。你的貢獻推動了這一事業。 無廣告。 沒有追踪。這不是開玩笑的。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">你的捐款協助於支付全球數百萬人用於私密和即時通訊程式的開發、伺服器維護和網路頻寬。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的推廣!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">你贏得了一枚 %s 徽章！ 展示你的徽章將讓與你聊天的人知道你支援了 Signal。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資訊中展示</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為特色徽章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
@@ -3239,9 +3229,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">續約 %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">你的 %1$s 徽章已過期，在你的個人資料中徽章無法再被看見。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">要繼續支援專為你打造的技術—而非為你的資料—請考慮成為月訂閱者。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <string name="Subscription__verification_failed">訂閱驗證失敗</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援部門以了解更多資訊。</string>
@@ -3250,11 +3238,10 @@
   <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
   <string name="DonationsErrors__your_payment">你的付款無法處理，所以也未向你收費。 請再試一次。</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">加值仍在待定中</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">你可能不會立即看到你的徽章，但我們正在解決這個問題！</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必須設定 Google Pay 才能在程式中贊助。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">取消訂閱需要連接網路。</string>
+  <string name="NetworkFailure__retry">重試</string>
   <!--EOF-->
 </resources>

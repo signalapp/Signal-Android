@@ -2915,6 +2915,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">เลือกหน้าตาและสีหรือปรับแต่งหน้าตาเริ่มต้นของคุณ</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">เพิ่มรูปภาพ</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">ไม่ ขอบคุณ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">อีโมจิ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">หาอีโมจิ</string>
@@ -3032,7 +3034,6 @@
   <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
   <string name="SelectFeaturedBadgeFragment__preview">ภาพตัวอย่าง</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ขับเคลื่อนโดยผู้คนเช่นคุณ</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">จำนวนการบริจาค</string> -->
   <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="SubscribeFragment__confirm">ยืนยัน</string>
   <string name="SubscribeFragment__update">ปรับรุ่น</string>
@@ -3042,5 +3043,6 @@
   <string name="Subscription__contact_support">ติดต่อการสนับสนุน</string>
   <string name="SubscribeFragment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
   <string name="DonationsErrors__payment_failed">การชำระเงินล้มเหลว</string>
+  <string name="NetworkFailure__retry">ลองใหม่</string>
   <!--EOF-->
 </resources>

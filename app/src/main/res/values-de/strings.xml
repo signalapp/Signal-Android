@@ -704,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">Dein Nutzername</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar konnte nicht festgelegt werden</string>
   <string name="ManageProfileFragment_badges">Abzeichen</string>
+  <string name="ManageProfileFragment__edit_photo">Foto bearbeiten</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Keine gemeinsamen Gruppen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -804,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mehr erfahren</string>
+  <string name="SpanUtil__read_more">Weiterlesen</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nachricht nicht gefunden</string>
   <string name="LongMessageActivity_message_from_s">Nachricht von %1$s</string>
@@ -1339,6 +1341,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte, damit du Freunde kontaktieren und sichere Anrufe tätigen kannst.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du hast zu oft versucht, diese Rufnummer zu registrieren. Bitte versuche es später erneut.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Nicht-Standard Nummerformat</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Die Rufnummer (%1$s), die du eingegeben hast, scheint ein Nicht-Standardformat zu sein.\n\nHast du %2$s gemeint?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Rufnummerformat</string>
   <string name="RegistrationActivity_call_requested">Anruf angefragt</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Nur noch %d Schritt, und du kannst ein Diagnoseprotokoll übermitteln.</item>
@@ -1930,6 +1935,16 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>-- Bitte wähle eine Option --</item>
+    <item>Etwas funktioniert nicht</item>
+    <item>Erweiterungswunsch</item>
+    <item>Frage</item>
+    <item>Rückmeldung</item>
+    <item>Sonstiges</item>
+    <item>Zahlungen (MobileCoin)</item>
+    <item>Unterstützer &amp; Signal-Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -2027,6 +2042,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
   <string name="preferences__subscription">Regelmäßige Spende</string>
+  <string name="preferences__become_a_signal_sustainer">Werde Signal-Unterstützer</string>
   <string name="preferences__signal_boost">Signal-Boost</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
@@ -3117,6 +3133,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Wähle Aussehen und Farbe oder passe deine Initialen an.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Jetzt nicht</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Foto hinzufügen</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Werde Unterstützer</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal existiert dank Menschen wie dir. Leiste einen Beitrag und erhalte ein Abzeichen für dein Profil.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nein danke</string>
+  <string name="BecomeASustainerMegaphone__contribute">Beitrag leisten</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-Suche öffnen</string>
@@ -3165,6 +3186,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationSettingsFragment__conversation_muted_forever">Unterhaltung dauerhaft stummgeschaltet</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Rufnummer in Zwischenablage kopiert.</string>
   <string name="ConversationSettingsFragment__phone_number">Rufnummer</string>
+  <string name="ConversationSettingsFragment__get_badges">Erhalte Abzeichen für dein Profil durch Unterstützung von Signal. Tippe auf ein Abzeichen, um mehr zu erfahren.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Mitglieder hinzufügen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Gruppendetails bearbeiten</string>
@@ -3286,7 +3308,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ImageView__badge">Abzeichen</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze eine Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, indem du dich der Gemeinschaft von Menschen anschließt, die sie aufrechterhalten.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Spendenbetrag</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Unterstütze eine Technologie, die für dich, nicht für deine Daten, entwickelt wurde, indem du dich der Gemeinschaft von Menschen anschließt, die sie aufrechterhalten.</string>
+  <string name="SubscribeFragment__currency">Währung</string>
   <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
   <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
   <string name="SubscribeFragment__confirm_cancellation">Kündigung bestätigen?</string>
@@ -3298,16 +3321,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__update_subscription_question">Regelmäßige Spende aktualisieren</string>
   <string name="SubscribeFragment__update">Aktualisieren</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Heute wird die volle Summe des neuen Spendenbeitrags abgebucht. Deine regelmäßige Spende verlängert sich am %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Heute wird die volle Summe (%1$s) des neuen Spendenbeitrags abgebucht. Deine regelmäßige Spende erneuert sich monatlich.</string>
   <string name="Subscription__s_per_month">%s/Monat</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/Monat · Verlängert sich am %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/Monat · Läuft ab am %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ist eine gemeinnützige Organisation ohne Werbekunden oder Investoren, die nur von Menschen getragen wird, die es nutzen und schätzen. Leiste eine wiederkehrenden monatlichen Beitrag und erhalte ein Profil-Abzeichen, das deine Unterstützung zeigt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Warum einen Beitrag leisten?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Das Team von Signal hat es sich zur Aufgabe gemacht, eine Open-Source-Datenschutztechnologie zu entwickeln, die die freie Meinungsäußerung schützt und eine sichere globale Kommunikation ermöglicht. Dein Beitrag trägt zu dieser Aufgabe bei. Keine Werbung. Keine Tracker. Kein Scherz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Dein Beitrag hilft, die Entwicklung, Server und Bandbreite einer App zu finanzieren, die von Millionen Menschen auf der ganzen Welt für private und sofortige Kommunikation verwendet wird.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Danke für deine Unterstützung!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Danke für deine Spende!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du hast ein %s-Abzeichen erhalten! Durch die Anzeige deines Abzeichens zeigst du Personen, mit denen du chattest, dass du Signal unterstützt.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du hast das %s Abzeichen erhalten! Helfe Signal, seine Bekanntheit zu steigern, indem du dieses Abzeichen in deinem Profil anzeigst.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du hast das Boost Abzeichen erhalten! Helfe Signal, seine Bekanntheit zu steigern, indem du dieses Abzeichen in deinem Profil anzeigst.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kannst auch</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ein monatlicher Unterstützer werden.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Im Profil anzeigen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Zum ausgewählten Abzeichen machen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fertig</string>
@@ -3324,11 +3349,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MySupportPreference__add_a_signal_boost">Signal-Boost hinzufügen</string>
   <string name="MySupportPreference__s_per_month">%1$s/Monat</string>
   <string name="MySupportPreference__renews_s">Verlängert sich am %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Transaktion wird verarbeitet…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Abzeichen konnte nicht hinzugefügt werden.</string>
+  <string name="MySupportPreference__please_contact_support">Bitte kontaktiere den Support.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Dein %1$s-Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Um auch weiterhin eine Technologie zu unterstützen, die für dich — und nicht für deine Daten — entwickelt wird, zieh bitte eine regelmäßige Spende in Betracht.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Spende regelmäßig</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Abzeichen abgelaufen</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Regelmäßige Spende gekündigt</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dein Boost Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Deine regelmäßige Unterstützerspende wurde automatisch gekündigt, da du für längere Zeit inaktiv warst. Dein %1$s Abzeichen ist nicht länger bei deinem Profil sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Regelmäßige Spende erneuern</string>
   <string name="Subscription__verification_failed">Regelmäßige Spende konnte nicht verifiziert werden</string>
   <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere für weitere Informationen den Support.</string>
   <string name="Subscription__contact_support">Support kontaktieren</string>
@@ -3336,11 +3367,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubscribeFragment__processing_payment">Zahlung wird verarbeitet …</string>
   <string name="DonationsErrors__payment_failed">Zahlung gescheitert</string>
   <string name="DonationsErrors__your_payment">Deine Zahlung konnte nicht verarbeitet werden und wurde nicht abgebucht. Bitte versuche es erneut.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Einlösung noch ausstehend</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Eventuell ist das Abzeichen nicht direkt sichtbar, aber wir arbeiten daran!</string> -->
+  <string name="DonationsErrors__please_contact_support">Bitte kontaktiere den Support</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nicht verfügbar</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du musst Google Pay einrichten, um in der App zu spenden.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht gekündigt werden</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netzwerkfehler. Überprüfe deine Internetverbindung und versuche es erneut.</string>
+  <string name="NetworkFailure__retry">Erneut versuchen</string>
   <!--EOF-->
 </resources>

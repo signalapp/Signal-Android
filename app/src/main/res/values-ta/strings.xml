@@ -3003,6 +3003,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">தோற்றத்தையும் வண்ணத்தையும் தேர்வு செய்யவும் அல்லது உங்கள் முதலெழுத்துக்களைத் தனிப்பயனாக்கவும்.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">இப்போது இல்லை</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">கூட்டு புகைப்படம்</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">தேவையில்லை,நன்றி</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">உணர்வு படங்கள்</string>
   <string name="KeyboardPagerFragment_open_emoji_search">திற ஈமோஜி தேடல்</string>
@@ -3133,7 +3135,6 @@
   <string name="MediaReviewImagePageFragment__discard">புறந்தள்ளு</string>
   <string name="SelectFeaturedBadgeFragment__preview">முன்னோட்டம்</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal இயக்கப்படுகிறது மக்கள் உன்னைப்போல.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">நன்கொடை தொகை</string> -->
   <string name="SubscribeFragment__not_now">இப்போது இல்லை</string>
   <string name="SubscribeFragment__confirm">உறுதிப்படுத்தவும்</string>
   <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
@@ -3143,5 +3144,6 @@
   <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
   <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
   <string name="DonationsErrors__payment_failed">கட்டணம் தோல்வியடைந்தது</string>
+  <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
   <!--EOF-->
 </resources>

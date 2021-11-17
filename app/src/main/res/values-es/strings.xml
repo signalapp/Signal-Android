@@ -804,6 +804,7 @@
   <string name="InviteActivity_no_app_to_share_to">Parece que no hay ninguna aplicación con la que compartir.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber más</string>
+  <string name="SpanUtil__read_more">Leer más</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Imposible encontrar el mensaje</string>
   <string name="LongMessageActivity_message_from_s">Mensaje de %1$s</string>
@@ -1941,16 +1942,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__debug_log">Registro de depuración:</string>
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Por favor, selecciona una opción</item>
-    <item>Algo no está funcionando</item>
-    <item>Solicitud de características</item>
-    <item>Consulta</item>
-    <item>Comentarios</item>
-    <item>Otros</item>
-    <item>Pagos (MobileCoin)</item>
-    <item>Donaciones (Sostenedores, ras e impulso a Signal)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usados recientemente</string>
@@ -3138,6 +3129,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Selecciona un color y personaliza tus iniciales.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ahora no</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Añade una foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">No gracias</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emojis y personas</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Abrir búsqueda de emojis</string>
@@ -3307,7 +3300,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ImageView__badge">Distintivo</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal depende de gente como tú.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Incentiva la tecnología que desarrollamos para ti (no para tus datos) y únete a la comunidad que la sostiene.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Cantidad de donación</string> -->
   <string name="SubscribeFragment__more_payment_options">Más opciones de pago</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar suscripción</string>
   <string name="SubscribeFragment__confirm_cancellation">¿Confirmar cancelación?</string>
@@ -3324,11 +3316,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="Subscription__s_per_month_dot_expires_s">%1$s al mes · Caduca el %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal es una organización sin ánimo de lucro, sin anunciantes ni inversores, sólo sostenida por la gente que usa y valora la aplicación. Haz una contribución mensual y recibe un distintivo para tu perfil con el que mostrar tu apoyo</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">¿Por qué contribuir?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">El equipo de Signal está comprometido con la misión de desarrollar tecnología de código abierto que protege la libre expresión y permite comunicaciones globales seguras y privadas. Tu apoyo alimenta la causa. Sin anuncios. Sin seguimiento. Sin bromas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Tu apoyo contribuye a pagar el desarrollo, uso de servidores y ancho de banda de una aplicación usada por millones de personas a lo largo de todo el mundo para comunicarse de forma privada e instantánea.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">¡Gracias por tu apoyo!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">¡Gracias por el impulso!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">¡Has conseguido el distintivo %s! Si decides mostrar el distintivo en tu perfil la gente con la que chateas verá que apoyas Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Hacer distintivo especial</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hecho</string>
@@ -3346,9 +3335,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MySupportPreference__s_per_month">%1$s al mes</string>
   <string name="MySupportPreference__renews_s">Se renueva el %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Tu distintivo %1$s ha caducado y ya no es visible para otr@s en tu perfil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar apoyando la tecnología construída para ti (y no para tus datos) considera una suscripción mensual.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Suscribirme</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
   <string name="Subscription__verification_failed">Fallo al verificar la suscripción</string>
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacta con el soporte técnico para más información.</string>
@@ -3357,11 +3344,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeFragment__processing_payment">Procesando pago …</string>
   <string name="DonationsErrors__payment_failed">Fallo en el pago</string>
   <string name="DonationsErrors__your_payment">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Reembolso pendiente</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Tal vez no veas tu distintivo inmediatamente ¡estamos trabajando en ello!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Debes activar Google Pay para poder hacer una donación en la aplicación.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Fallo al cancelar la suscripción</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas una conexión a internet para cancelar la suscripción.</string>
+  <string name="NetworkFailure__retry">Reintentar</string>
   <!--EOF-->
 </resources>

@@ -3083,6 +3083,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Izvēlieties izskatu un krāsu vai pielāgojiet savus iniciāļus.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne tagad</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Pievienot fotoattēlu</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Nē, paldies</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emocijzīme</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Atvērt emocijzīmju meklēšanu</string>
@@ -3204,7 +3206,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MediaReviewImagePageFragment__discard">Atmest</string>
   <string name="SelectFeaturedBadgeFragment__preview">Priekšskatīt</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal attīsta un uzlabo tādi cilvēki kā jūs.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Ziedojuma summa</string> -->
   <string name="SubscribeFragment__not_now">Ne tagad</string>
   <string name="SubscribeFragment__confirm">Apstiprināt</string>
   <string name="SubscribeFragment__update">Aktualizēt</string>
@@ -3214,5 +3215,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
   <string name="SubscribeFragment__processing_payment">Maksājums tiek apstrādāts…</string>
   <string name="DonationsErrors__payment_failed">Maksājums neizdevās</string>
+  <string name="NetworkFailure__retry">Mēģināt vēlreiz</string>
   <!--EOF-->
 </resources>

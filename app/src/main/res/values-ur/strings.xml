@@ -2984,6 +2984,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ایک شکل اور رنگ منتخب کریں یا اپنے initials کو اپنی مرضی کے مطابق بنائیں۔</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ابھی نہیں</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">تصویر لگاو</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">نہیں شکریہ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ایموجی</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ایموجی تلاش کھولیں</string>
@@ -3093,7 +3095,6 @@
   <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
   <string name="SelectFeaturedBadgeFragment__preview">پیش نظارہ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal آپ جیسے لوگوں کے ذریعہ تقویت یافتہ ہے۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">عطیہ کی رقم۔</string> -->
   <string name="SubscribeFragment__not_now">ابھی نہیں</string>
   <string name="SubscribeFragment__confirm">تصدیق</string>
   <string name="SubscribeFragment__update">اَپ ڈیٹ</string>
@@ -3103,5 +3104,6 @@
   <string name="Subscription__contact_support">سپورٹ سے رابطہ کریں</string>
   <string name="SubscribeFragment__processing_payment">ادائیگی پر کارروائی ہو رہی ہے…</string>
   <string name="DonationsErrors__payment_failed">ادائیگی ناکام ہوگئی</string>
+  <string name="NetworkFailure__retry">دوبارہ کوشش کریں</string>
   <!--EOF-->
 </resources>

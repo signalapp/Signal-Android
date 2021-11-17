@@ -852,6 +852,7 @@
   <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Сазнај више</string>
+  <string name="SpanUtil__read_more">Прочитајте више</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Нисам успео да пронађем поруку</string>
   <string name="LongMessageActivity_message_from_s">Порука од %1$s</string>
@@ -3227,6 +3228,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Изаберите изглед и боју или прилагодите своје иницијале.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сада</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Додајте слику</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Не, хвала</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отворите претрагу емоџија</string>
@@ -3400,7 +3403,6 @@
   <string name="ImageView__badge">Значка</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal покрећу особе попут Вас.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Подржите технологију која је изграђена за вас -не за ваше податке- придруживањем заједници људи који је издржавају.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Износ донације</string> -->
   <string name="SubscribeFragment__more_payment_options">Више опција плаћања</string>
   <string name="SubscribeFragment__cancel_subscription">Отказати претплату</string>
   <string name="SubscribeFragment__confirm_cancellation">Потврдити отказивање?</string>
@@ -3416,10 +3418,8 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/месечно · Обнова %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Крај %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зашто доприносити?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ваш допринос помаже у плаћању развоја, сервера и опсега апликације коју користе милиони широм света за приватну и тренутну комуникацију.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Хвала вам на подршци!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Хвала вам на Boost!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Заслужили сте %s значку! Приказивање ваше значке показаће људима са којима разговарате да подржавате Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показати на профил</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Направити истакнуту значку</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
@@ -3437,9 +3437,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/месечно</string>
   <string name="MySupportPreference__renews_s">Обнова %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваша значка је истекла</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ваша значка %1$s је истекла, и не може више де се види на вашем профилу.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">За наставак пратеће технологије која је изграђена за вас -а не за ваше податке- размислите да постанете месечни претплатник.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Постаните претплатник</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>
   <string name="Subscription__verification_failed">Верификација претплате није успела</string>
   <string name="Subscription__please_contact_support_for_more_information">Молимо контактирајте подршку за више информација.</string>
@@ -3448,11 +3446,10 @@
   <string name="SubscribeFragment__processing_payment">Обрађујем уплату…</string>
   <string name="DonationsErrors__payment_failed">Неуспешна уплата</string>
   <string name="DonationsErrors__your_payment">Ваша уплата се не може обрадити и нисте наплаћени. Молим вас, покушајте поново.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Откуп још увек у току</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Можда не видите своју значку одмах, али радимо на томе!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступан</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Морате да подесите Google Pay да би донилари преко апликације.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Није успело отказивање претплате</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Потребна је интернет веза да би отказали претплату</string>
+  <string name="NetworkFailure__retry">Покушај поново</string>
   <!--EOF-->
 </resources>

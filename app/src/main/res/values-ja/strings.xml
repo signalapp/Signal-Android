@@ -661,6 +661,7 @@
   <string name="ManageProfileFragment_your_username">あなたのユーザー名</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
   <string name="ManageProfileFragment_badges">バッジ</string>
+  <string name="ManageProfileFragment__edit_photo">画像を編集</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">共通のグループ なし</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -756,6 +757,7 @@
   <string name="InviteActivity_no_app_to_share_to">共有先として使えるアプリがないようです。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">詳しく見る</string>
+  <string name="SpanUtil__read_more">続きを読む</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">メッセージが見つかりません</string>
   <string name="LongMessageActivity_message_from_s">%1$s からのメッセージ</string>
@@ -1266,6 +1268,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先へのアクセス許可が必要です。</string>
   <string name="RegistrationActivity_rate_limited_to_service">この番号の登録試行回数が多すぎます。あとで再度試してください。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
+  <string name="RegistrationActivity_non_standard_number_format">非標準の数字フォーマット</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">あなたが入力した数字 (%1$s) は、非標準のフォーマットのようです。\n\n%2$s を意図していすか？</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 電話番号フォーマット</string>
   <string name="RegistrationActivity_call_requested">通話を要求されました</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">デバッグログの提出まで、あと%dステップです。</item>
@@ -1845,16 +1850,16 @@
   <string name="HelpFragment__debug_log">デバッグログ:</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>選択してください</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- 選択してください \-\-</item>
     <item>機能の不具合</item>
     <item>機能のリクエスト</item>
     <item>質問</item>
     <item>フィードバック</item>
     <item>その他</item>
     <item>支払い機能 (MobileCoin)</item>
-    <item>寄付 (サポーター &amp; Signalブースト)</item>
-  </string-array> -->
+    <item>サポーター &amp; Signalブースト</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
@@ -1951,6 +1956,7 @@
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__donate_to_signal">Signalへの寄付</string>
   <string name="preferences__subscription">サブスクリプション</string>
+  <string name="preferences__become_a_signal_sustainer">Signalサポーターになる</string>
   <string name="preferences__signal_boost">Signalブースト</string>
   <string name="preferences__privacy">プライバシー</string>
   <string name="preferences__mms_user_agent">MMSユーザーエージェント</string>
@@ -3029,6 +3035,11 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">見た目や色を選んだり、イニシャルをカスタマイズできます。</string>
   <string name="AddAProfilePhotoMegaphone__not_now">あとで</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">画像を追加</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">サポーターになりましょう</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signalはユーザーの皆様によって支えられています。ご支援いただきバッジを獲得してください。</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">今はしない</string>
+  <string name="BecomeASustainerMegaphone__contribute">支援する</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">絵文字</string>
   <string name="KeyboardPagerFragment_open_emoji_search">絵文字検索を開く</string>
@@ -3077,6 +3088,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">チャットは常にミュートされます</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">電話番号をクリップボードにコピーしました。</string>
   <string name="ConversationSettingsFragment__phone_number">電話番号</string>
+  <string name="ConversationSettingsFragment__get_badges">Signalをサポートすると、あなたのプロフィールにバッジが表示されます。バッジをタップすると詳細が表示されます。</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">メンバーの追加</string>
   <string name="PermissionsSettingsFragment__edit_group_info">グループ情報を編集</string>
@@ -3194,7 +3206,8 @@
   <string name="ImageView__badge">バッジ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalはユーザーの皆様によって支えられています。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">データのためではなく、あなたのために作られた技術を支える人々のコミュニティに参加して、ご支援をお願いします。</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">寄付額</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signalを支えるコミュニティに参加して、データのためではなく、あなたのために作られた技術をサポートしてください。</string>
+  <string name="SubscribeFragment__currency">通貨</string>
   <string name="SubscribeFragment__more_payment_options">その他の支払い方法</string>
   <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除</string>
   <string name="SubscribeFragment__confirm_cancellation">解除しますか？</string>
@@ -3206,16 +3219,18 @@
   <string name="SubscribeFragment__update_subscription_question">サブスクリプションを更新しますか？</string>
   <string name="SubscribeFragment__update">更新する</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">本日、新しいサブスクリプション料金の全額が請求されます。サブスクリプションは、%1$sに更新されます。</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">本日、新しいサブスクリプション価格の全額 (%1$s) が請求されます。あなたのサブスクリプションは毎月更新されます。</string>
   <string name="Subscription__s_per_month">%s/月</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · 更新 %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · 期限 %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、Signalを利用し、評価くださる方々によって支えられています。毎月の定期的なご寄付をいただき、あなたのご支援を示すプロフィールバッジを受け取ってください。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">寄付をお願いする理由</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signalのチームは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー技術を開発するというミッションに取り組んでいます。あなたの寄付がこの目的を後押しします。広告はありません。トラッカーもいません。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">あなたの寄付は、世界中の何百万人もの人々がプライベートでリアルタイムなコミュニケーションをとるために使用している、アプリの開発、サーバー、通信の費用に充てられます。</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signalは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー保護技術の開発に取り組んでいます。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">あなたの寄付はこの活動を後押しし、何百万人もの人々がプライベートなコミュニケーションのために使用している、アプリの開発と運営に充てられます。広告はありません。トラッカーもいません。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援をありがとうございます！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%sバッジを獲得しました！バッジを表示すると、あなたのSignalへのご支援がチャット相手に伝わります。</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">%sバッジを獲得しました！このバッジをプロフィールに表示して、Signalの認知度向上に貢献してください。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">ブーストバッジを獲得しました！このバッジをプロフィールに表示して、Signalの認知度向上に貢献してください。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">注目のバッジにする</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
@@ -3232,11 +3247,15 @@
   <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">更新 %1$s</string>
+  <string name="MySupportPreference__couldnt_add_badge">バッジを追加できませんでした。</string>
+  <string name="MySupportPreference__please_contact_support">サポートにお問い合わせください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">バッジの有効期限が切れました</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$sバッジは有効期限が切れたため、プロフィールには表示されません。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">データのためではなく、あなたのために作られた技術を継続的に支援するため、毎月のサブスクリプションをご検討ください。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">サブスクリプションを行う</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">バッジが失効しました</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">あなたのブーストバッジは有効期限が切れたため、プロフィールには表示されません。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">あなたのために作られた技術を継続的にサポートするため、月次サポーターへの登録をご検討ください。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">サブスクリプションを更新</string>
   <string name="Subscription__verification_failed">サブスクリプションを確認できませんでした</string>
   <string name="Subscription__please_contact_support_for_more_information">詳しくはサポートにお問い合わせください。</string>
   <string name="Subscription__contact_support">サポートに問い合わせる</string>
@@ -3244,11 +3263,14 @@
   <string name="SubscribeFragment__processing_payment">支払いを処理しています…</string>
   <string name="DonationsErrors__payment_failed">支払いできませんでした</string>
   <string name="DonationsErrors__your_payment">支払処理ができず、課金しませんでした。あとで再度試してください。</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">償還保留中</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">すぐにはバッジが表示されないかもしれませんが、対応作業中です！</string> -->
+  <string name="DonationsErrors__still_processing">処理を継続しています</string>
+  <string name="DonationsErrors__please_contact_support">サポートにお問い合わせください</string>
+  <string name="DonationsErrors__your_payment_is_still">あなたの支払いはまだ処理が続いています。接続状況によっては数分かかる場合があります。</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Payを利用できません</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">アプリ内でご寄付いただくには、Google Payを設定してください。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">サブスクリプションを解除できませんでした</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">サブスクリプションを解除するには、インターネット接続が必要です。</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">お使いの端末がGoogle Payに対応していないため、バッジを獲得できるサブスクリプションができません。Signalのウェブサイトで寄付ただくことも可能です。</string>
+  <string name="NetworkFailure__retry">再試行</string>
   <!--EOF-->
 </resources>

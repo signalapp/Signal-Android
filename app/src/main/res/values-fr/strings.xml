@@ -704,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">Votre nom d’utilisateur</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Échec de définition de l’avatar</string>
   <string name="ManageProfileFragment_badges">Badges</string>
+  <string name="ManageProfileFragment__edit_photo">Modifier la photo</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Aucun groupe en commun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -804,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Vous semblez n’avoir aucune appli vers laquelle partager.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">En apprendre davantage</string>
+  <string name="SpanUtil__read_more">Lire la suite</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Impossible de trouver le message.</string>
   <string name="LongMessageActivity_message_from_s">Message de %1$s</string>
@@ -3123,6 +3125,9 @@ Nouvelle tentative…</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Choisissez une apparence et une couleur ou personnalisez vos initiales.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Pas maintenant</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ajouter une photo</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Non merci</string>
+  <string name="BecomeASustainerMegaphone__contribute">Contribuer</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Émoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Ouvrir la recherche d’émojis</string>
@@ -3292,7 +3297,6 @@ Nouvelle tentative…</string>
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes telles que vous.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Soutenez une technologie conçue pour vous – pas pour vos données – en rejoignant la communauté qui la porte.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Montant du don</string> -->
   <string name="SubscribeFragment__more_payment_options">Plus d’options de paiement</string>
   <string name="SubscribeFragment__cancel_subscription">Annuler l’abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirmer l’annulation ?</string>
@@ -3309,11 +3313,8 @@ Nouvelle tentative…</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mois · Expire %2$s </string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal est une fondation à but non lucratif sans annonceurs ni investisseurs, soutenue uniquement par les gens qui l\'utilisent et l\'apprécient. Faites un don mensuel récurrent et recevez un badge de profil pour afficher votre soutien.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pourquoi contribuer ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">L\'équipe de Signal est dévouée à la mission de développement de technologies de protection des renseignements personnels à code source ouvert, qui protègent la liberté d\'expression et rendent possible une communication sécurisée au niveau mondial. Votre don soutien cette cause. Sans pubs. Sans traçage. Sans déconner.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Votre don aide à financer le développement, les serveurs, et la bande passante d\'une appli utilisée par des millions de personnes de part le monde pour communiquer de manière confidentielle et instantannée.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le coup de pouce !</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Vous avez gagné un badge %s ! Afficher ce badge montrera à vos interlocuteurs que vous soutenez Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur le profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Mettre en avant ce badge</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Terminé</string>
@@ -3331,9 +3332,7 @@ Nouvelle tentative…</string>
   <string name="MySupportPreference__s_per_month">%1$s/mois</string>
   <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre badge a expiré</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Votre badge %1$s a expiré et n’est plus visible par les autres sur votre profil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Pour soutenir une technologie conçue pour vous — pas pour vos données — envisagez de prendre un abonnement mensuel.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">S’abonner</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un pourvoyeur</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
   <string name="Subscription__verification_failed">Échec de la vérification de l’abonnement</string>
   <string name="Subscription__please_contact_support_for_more_information">Veuillez contacter l’assistance pour plus de renseignements.</string>
@@ -3342,11 +3341,10 @@ Nouvelle tentative…</string>
   <string name="SubscribeFragment__processing_payment">Traitement du paiement…</string>
   <string name="DonationsErrors__payment_failed">Échec de paiement</string>
   <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Récupération encore en cours</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Vous ne verrez peut-être pas votre badge tout de suite, mais nous y travaillons !</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vous devez configurer Google Pay pour faire un don dans l’application.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Échec de l’annulation de l’abonnement</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L’annulation de l’abonnement nécessite une connexion Internet.</string>
+  <string name="NetworkFailure__retry">Réessayer</string>
   <!--EOF-->
 </resources>

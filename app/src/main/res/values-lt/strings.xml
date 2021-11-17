@@ -790,6 +790,7 @@
   <string name="ManageProfileFragment_your_username">Jūsų naudotojo vardas</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepavyko nustatyti avataro</string>
   <string name="ManageProfileFragment_badges">Ženkliukai</string>
+  <string name="ManageProfileFragment__edit_photo">Taisyti nuotrauką</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nėra bendrų grupių</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -900,6 +901,7 @@
   <string name="InviteActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis bendrinti.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sužinoti daugiau</string>
+  <string name="SpanUtil__read_more">Skaityti daugiau</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nepavyko rasti žinutės</string>
   <string name="LongMessageActivity_message_from_s">Žinutė nuo %1$s</string>
@@ -3319,6 +3321,9 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Pasirinkite išvaizdą ir spalvą arba tinkinkite savo inicialus.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne dabar</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Pridėti nuotrauką</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal veikia dėka tokių žmonių kaip jūs. Prisidėkite ir gaukite profilio ženkliuką.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Ne, ačiū</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Šypsenėlės</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Atverti šypsenėlių paiešką</string>
@@ -3491,7 +3496,6 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nepavyko atnaujinti profilio</string>
   <string name="ImageView__badge">Ženkliukas</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal veikia dėka tokių žmonių kaip jūs.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Paaukojimo suma</string> -->
   <string name="SubscribeFragment__more_payment_options">Daugiau mokėjimo parinkčių</string>
   <string name="SubscribeFragment__not_now">Ne dabar</string>
   <string name="SubscribeFragment__confirm">Patvirtinkite</string>
@@ -3506,10 +3510,14 @@
   <string name="MySupportPreference__s_per_month">%1$s/mėnesį</string>
   <string name="MySupportPreference__renews_s">Atsinaujina %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Jūsų %1$s ženkliukas nebegalioja ir daugiau nebematomas jūsų profilyje kitiems asmenims.</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <string name="Subscription__contact_support">Susisiekti su palaikymu</string>
   <string name="SubscribeFragment__processing_payment">Apdorojamas mokėjimas…</string>
   <string name="DonationsErrors__payment_failed">Mokėjimas patyrė nesėkmę</string>
+  <string name="DonationsErrors__still_processing">Vis dar apdorojama</string>
+  <string name="DonationsErrors__your_payment_is_still">Jūsų mokėjimas yra vis dar apdorojamas. Tai gali užimti kelias minutes, priklausomai nuo jūsų interneto ryšio.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
+  <string name="NetworkFailure__retry">Bandyti dar kartą</string>
   <!--EOF-->
 </resources>

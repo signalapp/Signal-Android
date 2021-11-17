@@ -2959,6 +2959,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">모양과 색상을 선택하거나 이니셜을 사용자 정의하세요.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">나중에</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">사진 추가</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">괜찮습니다</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">이모지</string>
   <string name="KeyboardPagerFragment_open_emoji_search">이모티콘 검색 열기</string>
@@ -3071,7 +3073,6 @@
   <string name="MediaReviewImagePageFragment__discard">파기</string>
   <string name="SelectFeaturedBadgeFragment__preview">미리보기</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal은 귀하와 같은 분들이 만들어나갑니다.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">기부 금액</string> -->
   <string name="SubscribeFragment__not_now">나중에</string>
   <string name="SubscribeFragment__confirm">확인</string>
   <string name="SubscribeFragment__update">업데이트</string>
@@ -3082,5 +3083,6 @@
   <string name="Subscription__contact_support">지원에 문의</string>
   <string name="SubscribeFragment__processing_payment">결제 처리 중…</string>
   <string name="DonationsErrors__payment_failed">결제 실패</string>
+  <string name="NetworkFailure__retry">재시도</string>
   <!--EOF-->
 </resources>

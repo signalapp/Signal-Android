@@ -709,6 +709,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageProfileFragment_your_username">Brukarnamnet ditt</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Klarte ikkje endra profilbilde</string>
   <string name="ManageProfileFragment_badges">Merke</string>
+  <string name="ManageProfileFragment__edit_photo">Rediger bilde</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga grupper felles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -809,6 +810,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikkje har nokon program å dela denne informasjonen med.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær meir</string>
+  <string name="SpanUtil__read_more">Les meir</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Klarte ikkje finna meldinga</string>
   <string name="LongMessageActivity_message_from_s">Melding frå %1$s</string>
@@ -1352,6 +1354,11 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har prøvd for mange gongar å registrera dette nummeret. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Ikkje-standard nummerformat</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Talet du skreiv inn (%1$s) ser ut til å vera uvanleg formatert.
+
+Meinte du %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – telefonnummerformat</string>
   <string name="RegistrationActivity_call_requested">Spørsmål om anrop</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
@@ -1945,6 +1952,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Klarte ikkje lasta opp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>-- Vel eit alternativ --</item>
+    <item>Noko fungerer ikkje</item>
+    <item>Forslag til funksjonalitet</item>
+    <item>Spørsmål</item>
+    <item>Tilbakemelding</item>
+    <item>Anna</item>
+    <item>Betalingar (MobileCoin)</item>
+    <item>Bidragsytarar &amp; Signal-auke</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldinga</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyleg brukt</string>
@@ -2042,6 +2059,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__donate_to_signal">Doner til Signal</string>
   <string name="preferences__subscription">Abonnement</string>
+  <string name="preferences__become_a_signal_sustainer">Bli ein bidragsytar til Signal</string>
   <string name="preferences__signal_boost">Signal-auke</string>
   <string name="preferences__privacy">Personvern</string>
   <string name="preferences__mms_user_agent">MMS-brukaragent</string>
@@ -3142,6 +3160,10 @@ Sjekkar igjen no …</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vel ein utsjånad og farge eller endra initialane dine.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ikkje no</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Legg til bilde</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli ein bidragsytar</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nei takk</string>
+  <string name="BecomeASustainerMegaphone__contribute">Bidra</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Opna emoji-søk</string>
@@ -3311,7 +3333,7 @@ Sjekkar igjen no …</string>
   <string name="ImageView__badge">Merke</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er bygd av folk som deg.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støtt teknologi som er bygd for deg – ikkje for dine data – ved å bli med og støtta det.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donasjonsbeløp</string> -->
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Fleire betalingsmoglegheiter</string>
   <string name="SubscribeFragment__cancel_subscription">Avslutt abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Stadfest avslutning?</string>
@@ -3328,11 +3350,9 @@ Sjekkar igjen no …</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Går ut %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er ein ideell organisasjon utan reklame eller investorar, berre finansiert av dei som bruker og verdset det. Gje eit månadleg bidrag og få eit profilmerke som viser at du støtter Signal.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kvifor bidra?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Utviklarane av Signal er dedikerte til å laga personvernteknologi med open kjelde som vernar om ytringsfridom og støttar trygg, global kommunikasjon. Ditt bidrag går mot dette formålet. Ingen reklame. Ingen sporing. Ikkje noko tull.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ditt bidrag hjelper å finansiera utviklinga, serverane og bandbreidda til ein app som blir brukt av millionar av menneske rundt om i verda for privat og omgåande kommunikasjon.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Takk for støtta!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Takk for auken!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har fortent %s-merket! Ber merket ditt for å visa dei du pratar med at du støttar Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profilen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Lag eit merke å visa fram</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
@@ -3350,9 +3370,7 @@ Sjekkar igjen no …</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Fornyar %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merket ditt er utgått</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s-merket ditt er utgått, og er ikkje lenger synleg for andre på profilen din.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Vurder eit månadleg bidrag for å fortsetja å støtta teknologi som er bygd for deg – og ikkje berre for dine data.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli abonnent</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli ein bidragsytar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
   <string name="Subscription__verification_failed">Klarte ikkje stadfesta abonnementet</string>
   <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med brukarstøtte for meir informasjon.</string>
@@ -3361,11 +3379,10 @@ Sjekkar igjen no …</string>
   <string name="SubscribeFragment__processing_payment">Behandlar betaling …</string>
   <string name="DonationsErrors__payment_failed">Feil ved betaling</string>
   <string name="DonationsErrors__your_payment">Klarte ikkje prosessera betalinga di og beløpet har ikkje blitt trekt. Prøv igjen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Innløysing undervegs</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du ser kanskje ikkje merket umiddelbart, men me jobbar med det!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay er utilgjengeleg</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du må setja opp Google Pay for å donera frå appen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Klarte ikkje avslutta abonnementet</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Du må vera på nett for å avslutta abonnementet.</string>
+  <string name="NetworkFailure__retry">Prøv igjen</string>
   <!--EOF-->
 </resources>

@@ -692,7 +692,7 @@
   <string name="ManageGroupActivity_add_group_description">Aldoni priskribon pri la grupo…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Sciigi al mi pri mencioj</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Ĉu ricevi sciigoj, kiam oni mencias vin en silentigitaj interparoloj?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Ĉu ricevi sciigojn, kiam oni mencias vin en silentigitaj interparoloj?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Ĉiam sciigi al mi</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Ne sciigi al mi</string>
   <!--ManageProfileFragment-->
@@ -804,6 +804,7 @@
   <string name="InviteActivity_no_app_to_share_to">Ŝajnas, ke vi ne havas aplikaĵojn, al kiu kunhavigi.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scii pli</string>
+  <string name="SpanUtil__read_more">Legi pli</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Ne eblas trovi mesaĝon</string>
   <string name="LongMessageActivity_message_from_s">Mesaĝo el %1$s</string>
@@ -1159,7 +1160,7 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Nevalida rapidresponda (QR) kodo.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Bedaŭrinde, vi havas tro da ligitaj aparatoj, provu malligi kelkajn</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Bedaŭrinde, tio ne estas valida rapidresponda (QR) kodo por ligi aparaton.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Ĉu ligi Signal-an aparaton?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Ĉu ligi Signal-aparaton?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Ŝajnas, ke vi provas ligi al Signal-a aparato uzante skanilon el ekstera liveranto. Pro protekta kialo, bv. re-skani la kodon per SIgnal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ne eblas skani rapidrespondan (QR) kodon sen Fotilo-permeso</string>
@@ -1502,7 +1503,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_this_username_is_taken">Tiu uzantnomo estas uzata de aliulo.</string>
   <string name="UsernameEditFragment_this_username_is_available">La uzantnomo disponeblas.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Uzantnomoj povas enteni nur literojn a-z A-Z, ciferojn 0-9 kaj substrekojn.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uzantnomoj ĉe Signal malnepras. Se vi kreas uzantnomon, aliaj Signal-uzantoj povos trovi vin per tiu uzantnomo kaj kontakti vin sen kono de via telefonnumero.</string>
@@ -2541,7 +2542,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_incorrect_backup_passphrase">Neĝusta savkopia pasfrazo</string>
   <string name="RegistrationActivity_checking">Kontrolo…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mesaĝoj ĝis nun</string>
-  <string name="RegistrationActivity_restore_from_backup">Restaŭri el savkopio?</string>
+  <string name="RegistrationActivity_restore_from_backup">Ĉu restaŭri el savkopio?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaŭri viajn mesaĝojn kaj aŭdvidaĵojn el loka savkopio. Se vi ne restaŭras nun, vi ne povos restaŭri poste.</string>
   <string name="RegistrationActivity_backup_size_s">Savkopigrando: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Savkopia tempindiko: %s</string>
@@ -2740,7 +2741,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_voice_call_description">Voĉ-alvoko</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Nesekura voĉ-alvoko</string>
   <string name="RecipientBottomSheet_video_call_description">Vid-alvoko</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">Forigi %1$s kiel grupadministranton?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Ĉu forigi %1$s kiel grupadministranton?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ povos modifi tiun grupon kaj ties anojn.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Ĉu forigi %1$s el tiu grupo?</string>
   <string name="RecipientBottomSheet_remove">Forviŝi</string>
@@ -2777,8 +2778,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Kontroli anojn</string>
   <string name="ReviewCardDialogFragment__review_request">Kontroli petojn</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupanoj havas la saman nomon. Vidu la anojn ĉi-sube, kaj elekti tion, kion fari.</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Se vi ne certas pri tiu, kiu faris la peton, vidu la kontaktojn ĉi-sube, kaj elekti tion, kion fari.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupanoj havas la saman nomon. Vidu la anojn ĉi-sube, kaj elektu tion, kion fari.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Se vi ne certas pri tiu, kiu faris la peton, vidu la kontaktojn ĉi-sube, kaj elektu tion, kion fari.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Neniu alia komuna grupo.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Neniu komuna grupo.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2893,7 +2894,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="payment_info_card_you_can_add_funds_for_use_in">Vi povas aldoni monon por uzi ĝin en Signal per sendado de MobileCoin al via monuj-adreso.</string>
   <string name="payment_info_card_cashing_out">Enspezo</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Vi povas enkasigi MobileCoin iam ajn per monŝanĝejo, kiu subtenas valuton „MobileCoin“. Sufiĉas transigi al via konto ĉe tiu  monŝanĝejo.</string>
-  <string name="payment_info_card_hide_this_card">Kaŝi tiun karton?</string>
+  <string name="payment_info_card_hide_this_card">Ĉu kaŝi tiun karton?</string>
   <string name="payment_info_card_hide">Kaŝi</string>
   <string name="payment_info_card_record_recovery_phrase">Registri restarigan frazon</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Via restariga frazo donas al vi plian manieron restaŭri vian pagokonton.</string>
@@ -3128,6 +3129,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Elekti stilon kaj koloron aŭ agordu viajn komencajn literojn.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne nun</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Aldoni foton</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Iĝi donacanto</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Ne, dankon</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Malfermi la serĉon de emoĝioj</string>
@@ -3150,8 +3154,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationSettingsFragment__start_video_call">Ek-vidalvoki</string>
   <string name="ConversationSettingsFragment__start_audio_call">Eki voĉ-alvokon</string>
   <string name="ConversationSettingsFragment__message">Mesaĝo</string>
-  <string name="ConversationSettingsFragment__video">Videaĵo</string>
-  <string name="ConversationSettingsFragment__audio">Sonaĵoj</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Voĉa</string>
   <string name="ConversationSettingsFragment__call">Alvoko</string>
   <string name="ConversationSettingsFragment__mute">Silentigi</string>
   <string name="ConversationSettingsFragment__muted">Silentigita</string>
@@ -3297,7 +3301,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ImageView__badge">Insigno</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ekzistas pro la subteno de homoj kiel vi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Subtenu teĥnologiojn, kiujn oni konstruas por vi — ne por akiri viajn datumojn —, enirante la komunumon de homoj, kiuj donacas pro tio.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donaco-monsumo</string> -->
   <string name="SubscribeFragment__more_payment_options">Pli da pagomanieroj</string>
   <string name="SubscribeFragment__cancel_subscription">Nuligi la abonon</string>
   <string name="SubscribeFragment__confirm_cancellation">Ĉu konfirmi la nuligon?</string>
@@ -3314,11 +3317,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="Subscription__s_per_month_dot_expires_s">Po %1$s monate · Finiĝos %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, ĝi nur estas subtenata de homoj, kiuj uzas kaj taksaj ĝin. Faru ĉiumonatan donacon, kaj ricevu profilan insignon por montri vian subtenon.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kial donaci?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">La Signal-skipo sin dediĉas al la miso disvolvi priprivatecan malfermitkodan teĥnologion, kiuj protektas liberan esprimon, kaj ebligas mondan sekuran komunikadon. Via donaco vivtenas tiun aferon. Neniu reklamo. Neniu spurilo. Neniu ŝerco.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Via donaco helpas pagi pro la programado, la serviloj kaj la trafiko de la aplikaĵo, kiu estas uzata de milionoj de homoj tutmonde por tuj interkomunikiĝi privatece.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dankon pro via subtenado!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dankon pro via subteno!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Vi gajnis insignon %s! Montri vian insignon vidigas al la kunparolantoj vian subtenon al Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Montri ĉe profilo</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Uzi kiel elstarigitan insignon</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Farita</string>
@@ -3336,9 +3336,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MySupportPreference__s_per_month">Po %1$s monate</string>
   <string name="MySupportPreference__renews_s">Rekomenciĝos %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Via insigno finiĝis</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Via insigno %1$s senvalidiĝis kaj ne plu videblas al aliuloj ĉe via profilo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Por plu subteni teĥnologion, kiu estas por vi — ne por havi viajn datumojn —, konsideru donaci monate.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Iĝi abonanto</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
   <string name="Subscription__verification_failed">Kontrolo de abono malsukcesis</string>
   <string name="Subscription__please_contact_support_for_more_information">Kontaktu Signa-helpon por plia informo. </string>
@@ -3347,11 +3345,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubscribeFragment__processing_payment">Traktado de pago…</string>
   <string name="DonationsErrors__payment_failed">Pago malsukcesa</string>
   <string name="DonationsErrors__your_payment">Via pago ne sukcesis, kaj vi ne estis debetita. Provu ree.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Kolekto ankoraŭ okazanta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Vi ne vidas vian insignon nun, sed ni faras ĉion pro ĝia alveno!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">„Google Pay“ ne disponebla</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vi devas agordi „Google Pay“ por povi donaci enaplikaĵe.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Nuligo de abono malsukcesis</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Nuligo de abono bezonas retaliron.</string>
+  <string name="NetworkFailure__retry">Reprovi</string>
   <!--EOF-->
 </resources>

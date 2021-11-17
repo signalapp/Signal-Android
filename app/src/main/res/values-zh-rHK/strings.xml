@@ -661,6 +661,7 @@
   <string name="ManageProfileFragment_your_username">您的使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
   <string name="ManageProfileFragment_badges">徽章</string>
+  <string name="ManageProfileFragment__edit_photo">編輯相片</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">無共同群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -756,6 +757,7 @@
   <string name="InviteActivity_no_app_to_share_to">您似乎未有任何應用程式可作分享。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
+  <string name="SpanUtil__read_more">閱讀更多</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">找不到訊息</string>
   <string name="LongMessageActivity_message_from_s">%1$s 傳來的訊息</string>
@@ -1273,6 +1275,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">為使你能與朋友連繫、交換訊息及作安全通話，Signal 須要存取你的聯絡人資料。</string>
   <string name="RegistrationActivity_rate_limited_to_service">你已多次嘗試登記此電話號碼。請稍後再試。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連上服務。請檢查網絡連線，並稍後再試。</string>
+  <string name="RegistrationActivity_non_standard_number_format">非標準號碼格式</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">您所輸入的號碼 (%1$s) 似乎並非標準格式。\n\n您是指 %2$s 嗎？</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 電話號碼格式</string>
   <string name="RegistrationActivity_call_requested">已請求撥號</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">距離提交調試日誌，尚餘%d 個步驟。</item>
@@ -1854,16 +1859,16 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">無法上載記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請儘可能具體描述，以協助我們瞭解箇中問題。</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>請選下列其中一項</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- 請選下列其中一項 \-\-</item>
     <item>運作異常</item>
     <item>功能請求</item>
     <item>發問</item>
     <item>意見回饋</item>
     <item>其他</item>
     <item>付款 (MobileCoin)</item>
-    <item>捐款 (力撐派及 Signal 集氣)</item>
-  </string-array> -->
+    <item>力撐派及 Signal 集氣</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -1960,6 +1965,7 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">捐款給 Signal</string>
   <string name="preferences__subscription">訂閱</string>
+  <string name="preferences__become_a_signal_sustainer">成為 Signal 力撐派</string>
   <string name="preferences__signal_boost">Signal 有團伙</string>
   <string name="preferences__privacy">私隱</string>
   <string name="preferences__mms_user_agent">MMS 使用者代理</string>
@@ -3038,6 +3044,10 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">選擇外觀與色彩，又或自訂您的縮寫。</string>
   <string name="AddAProfilePhotoMegaphone__not_now">現在不要</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">新增照片</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">成為力撐派</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">不用了，謝謝</string>
+  <string name="BecomeASustainerMegaphone__contribute">我捐款</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符號</string>
   <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
@@ -3203,7 +3213,7 @@
   <string name="ImageView__badge">徽章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由您這樣的人提供動力。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">支持為您而設—而非為您的資料而造—的科技，擔起力撐派，成為延續爐火的一分子。</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">捐贈金額</string> -->
+  <string name="SubscribeFragment__currency">貨幣</string>
   <string name="SubscribeFragment__more_payment_options">更多付款選項</string>
   <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
   <string name="SubscribeFragment__confirm_cancellation">確認取消訂閱嗎？</string>
@@ -3215,16 +3225,16 @@
   <string name="SubscribeFragment__update_subscription_question">要更新訂閱嗎？</string>
   <string name="SubscribeFragment__update">更新</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">是日將向您收取新的訂閱價格全額。您的訂閱將於 %1$s 續期。</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">是日將向您收取新的訂閱價格全額 (%1$s)。您的訂閱將會每月續期。</string>
   <string name="Subscription__s_per_month">%s/月</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · %2$s 續期</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · %2$s 屆滿</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴使用並珍重 Signal 的人維持。祈盼樂善好施，力所能及作月供捐款，奉贈一枚個人資料徽章，與人分享您的支持。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款？</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊肩負使命，致力開發開放原始碼的私隱技術，保護自由表達並讓全球通訊變得安全。您的捐款，驅動這因由。無廣告、無追蹤、無戲言。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">您的捐款有助補貼開發、伺服器和頻寬，讓世界各地數以百萬計「惜爐」使用者，在同一星空下以此應用程式作私密的即時通訊。</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">感謝您力撐支持！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">感謝您加油集氣！</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">您已獲贈一枚「%s」徽章！不妨展現您的徽章，讓與您聊天的人都知道您落力撐起 Signal。</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">您亦可考慮</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為月供力撐派。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資料中展現</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為別注徽章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
@@ -3241,23 +3251,35 @@
   <string name="MySupportPreference__add_a_signal_boost">新增 Signal 集氣</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">%1$s 續期</string>
+  <string name="MySupportPreference__processing_transaction">正在處理交易…</string>
+  <string name="MySupportPreference__couldnt_add_badge">無法新增徽章。</string>
+  <string name="MySupportPreference__please_contact_support">請聯絡支援。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您的徽章已到時限</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">您的「%1$s」徽章已到時限，不再在您的個人資料中讓別人看見。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">如欲繼續支持為您而設—而非為您的資料而造—的科技，請考慮成為月供訂閱者。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">成為訂閱者</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">徽章已到時限</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">訂閱已取消</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">您的集氣徽章已到時限，不再在您的個人資料中讓別人看見。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如欲繼續支持為您而設的科技，請考慮成為月供力撐派。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為力撐派</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">現在不要</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">有見您已有好一段日子未曾使用，您的力撐派訂閱已自動取消。您的「%1$s」不再在您的個人資料中讓別人看見。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為訂閱續期</string>
   <string name="Subscription__verification_failed">訂閱驗證失敗</string>
+  <string name="Subscription__redemption_failed">換領徽章失敗</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援團隊以取得更多資訊。</string>
   <string name="Subscription__contact_support">聯絡支援</string>
   <string name="Subscription__earn_a_s_badge">獲取一枚 %1$s 徽章</string>
   <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
   <string name="DonationsErrors__your_payment">您的付款未能處理，沒有向您扣帳。請再試一次。</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">換領進行中</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">您的徽章仍在處理，未必即時看到，但我們很快會補上！</string> -->
+  <string name="DonationsErrors__still_processing">仍在處理中</string>
+  <string name="DonationsErrors__redemption_failed">換領失敗</string>
+  <string name="DonationsErrors__please_contact_support">請聯絡支援</string>
+  <string name="DonationsErrors__your_payment_is_still">您的付款仍在處理中。可能需時幾分鐘，視乎您的連線而定。</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">您必需先設置 Google Pay 才可在應用程式中捐款。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">需要互聯網連線才可取消訂閱。</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡錯誤。請檢查您的連線，然後再試一次。</string>
+  <string name="NetworkFailure__retry">重試</string>
   <!--EOF-->
 </resources>

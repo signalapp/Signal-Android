@@ -804,6 +804,7 @@
   <string name="InviteActivity_no_app_to_share_to">Bunu paylaşmaq üçün heç bir tətbiqiniz yoxdur kimi görünür.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Daha ətraflı</string>
+  <string name="SpanUtil__read_more">Daha çox oxu</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mesajı tapa bilmədik</string>
   <string name="LongMessageActivity_message_from_s">%1$s göndərən mesaj</string>
@@ -3128,6 +3129,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Bir görünüş və rəng seçin və ya baş hərflərinizi özəlləşdirin.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">İndi yox</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Foto əlavə et</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Xeyr, təşəkkürlər</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">İfadə</string>
   <string name="KeyboardPagerFragment_open_emoji_search">İfadə axtarışını aç</string>
@@ -3297,7 +3300,6 @@
   <string name="ImageView__badge">Nişan</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal, sizin kimi insanların sayəsində güclüdür.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya, onu davam etdirən insan cəmiyyətinə qoşularaq dəstək verin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">İanə məbləği</string> -->
   <string name="SubscribeFragment__more_payment_options">Daha çox ödəniş seçimləri</string>
   <string name="SubscribeFragment__cancel_subscription">Abunəlikdən imtina</string>
   <string name="SubscribeFragment__confirm_cancellation">İmtinanı təsdiqləyirsiniz?</string>
@@ -3314,11 +3316,8 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · %2$s bitir</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklam verəni və ya investoru olmayan, yalnız onu istifadə edən və ona dəyər verən insanlar tərəfindən dəstəklənən qeyri-kommersiya təşkilatıdır. Hər ay müntəzəm olaraq töhfə verin və dəstəyinizi paylaşmaq üçün bir profil nişanı alın.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Niyə töhfə verməliyəm?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal-dakı komanda, azad ifadəni qoruyan və güvənli qlobal ünsiyyəti təmin edən açıq mənbəli gizlilik texnologiyasını təkmilləşdirmə missiyasına sadiqdir. Sizin töhfəniz də, bu məqsədə xidmət edir. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Töhfəniz, özəl və ani ünsiyyət üçün dünyada milyonlarla insan tərəfindən istifadə edilən bir tətbiqin inkişafı və serverləri üçün ödənişlərin edilməsinə kömək edir.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gücləndirmə üçün təşəkkürlər!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">%s nişanını qazandınız! Nişanın görüntülənməsi, söhbət etdiyiniz şəxslərə Signal-ı dəstəklədiyinizi göstərəcəkdir.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profildə görüntülə</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Xüsusi nişan hazırla</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Bitdi</string>
@@ -3336,9 +3335,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/ay</string>
   <string name="MySupportPreference__renews_s">Yenilənir %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Nişanınızın müddəti bitdi</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq abunəçi olmağı düşünün.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abunəçi olun</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi ol</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
   <string name="Subscription__verification_failed">Abunəlik Təsdiqlənmədi</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha çox məlumat üçün zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
@@ -3347,11 +3344,10 @@
   <string name="SubscribeFragment__processing_payment">Ödəniş emal olunur…</string>
   <string name="DonationsErrors__payment_failed">Ödəniş edilmədi</string>
   <string name="DonationsErrors__your_payment">Ödənişiniz emal edilə bilmədi və sizdən ödəniş alınmadı. Zəhmət olmasa yenidən sınayın.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Geri ödəmə hələ də gözləmədədir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Nişanınızı dərhal görməyə bilərsiniz, ancaq üzərində işləyirik!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay əlçatmazdır</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Tətbiq daxilində ianə etmək üçün \"Google Pay\"i quraşdırmalısınız.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abunəlik ləğv edilmədi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abunəlik ləğvi üçün internet bağlantısı tələb olunur.</string>
+  <string name="NetworkFailure__retry">Yenidən sına</string>
   <!--EOF-->
 </resources>

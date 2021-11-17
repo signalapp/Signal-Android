@@ -747,6 +747,7 @@
   <string name="ManageProfileFragment_your_username">Vaše korisničko ime</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Neuspjelo postavljanje slike profila</string>
   <string name="ManageProfileFragment_badges">Značke</string>
+  <string name="ManageProfileFragment__edit_photo">Obradi fotografiju</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nema zajedničkih grupa</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -852,6 +853,7 @@
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju s kojom je moguće dijeljenje.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saznajte više</string>
+  <string name="SpanUtil__read_more">Saznaj više</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Neuspjelo pronalaženje poruke</string>
   <string name="LongMessageActivity_message_from_s">Poruka od %1$s</string>
@@ -1421,6 +1423,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signalu je potrebno dopuštenje da pristupi Vašim kontaktima kako biste uspostavili vezu sa prijateljima i razmjenjivali poruke i zaštićene pozive</string>
   <string name="RegistrationActivity_rate_limited_to_service">Pokušali ste previše puta registrovati ovaj broj. Molimo pokušajte ponovo kasnije.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje nije uspjelo. Molimo provjerite internet-konekciju i pokušajte ponovo.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Nestandardni oblik broja</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Broj koji ste unijeli (%1$s) izgleda nije standardnog oblika.\n\nJeste li mislili na %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – oblik telefonskog broja</string>
   <string name="RegistrationActivity_call_requested">Zahtijevan poziv</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Preostao je %d korak da pošaljete izvještaj o greškama.</item>
@@ -2027,16 +2032,16 @@
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Izaberite stavku</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Izaberite stavku \-\-</item>
     <item>Nešto ne funkcioniše</item>
     <item>Zahtjev za novim funkcijama</item>
     <item>Pitanje</item>
     <item>Povratna informacija</item>
     <item>Drugo</item>
     <item>Plaćanja (MobileCoin)</item>
-    <item>Donacije (pokrovitelji i pojačivači Signala)</item>
-  </string-array> -->
+    <item>Pokrovitelji i pojačivači Signala</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
@@ -2135,6 +2140,7 @@
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Donirajte za Signal</string>
   <string name="preferences__subscription">Pretplata</string>
+  <string name="preferences__become_a_signal_sustainer">Postanite pokrovitelj Signala</string>
   <string name="preferences__signal_boost">Snaga Signala</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3242,6 +3248,11 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Izaberite izgled i boju ili izmijenite svoje inicijale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne sada</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Dodaj fotografiju</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Postanite pokrovitelj</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal postoji zahvaljujući osobama poput Vas. Pretplatite se i primite značku za profil.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Ne, hvala</string>
+  <string name="BecomeASustainerMegaphone__contribute">Pretplatite se</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji-sličice</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otvori pretragu emoji-sličica</string>
@@ -3290,6 +3301,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzacije zastalno stišane</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonski broj kopiran je u međuspremnik.</string>
   <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
+  <string name="ConversationSettingsFragment__get_badges">Nabavite značke za svoj profil podržavši Signal. Pritisnite značku kako biste saznali više.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Uvrštavanje članova</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Izmjene informacija o grupi</string>
@@ -3415,7 +3427,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ImageView__badge">Značka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal postoji zbog osoba poput Vas.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podržite tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – pridruživši se zajednici koja je održava.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Iznos donacije</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podržite tehnologiju koja je kreirana radi Vas, ne radi Vaših podataka, pridruživši se zajednici koja održava Signal.</string>
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Više opcija za plaćanje</string>
   <string name="SubscribeFragment__cancel_subscription">Otkaži pretplatu</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrditi otkazivanje?</string>
@@ -3427,16 +3440,20 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SubscribeFragment__update_subscription_question">Ažurirati pretplatu?</string>
   <string name="SubscribeFragment__update">Ažuriraj</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Puni iznos cijene Vaše nove pretplate bit će naplaćen danas. Vaša pretplata obnavlja se %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Puni iznos cijene Vaše nove pretplate (%1$s) bit će naplaćen danas. Vaša pretplata obnavlja se mjesečno.</string>
   <string name="Subscription__s_per_month">%s/mjesecu</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mjesecu · obnavlja se %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mjesecu · Ističe %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija koja se ne finansira reklamama i investicijama, već je održavaju osobe koje koriste aplikaciju i cijene je. Dajte mjesečni doprinos i primite značku za svoj profil koja pokazuje Vašu podršku.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zašto se pretplatiti?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim koji stoji iza Signala predan je misiji razvoja tehnologije otvorenog kōda koja štiti privatnost i slobodu izražavanja i koja omogućava sigurnu globalnu komunikaciju. Vaš doprinos održava tu misiju. Bez reklama. Bez uhođenja. Bez zezanja.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Vaš doprinos pomaže finansiranje razvoja, servera i protoka za aplikaciju koju koriste milioni ljudi širom svijeta za privatnu i trenutačnu komunikaciju.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal je posvećen razvoju tehnologije za zaštitu privatnosti slijedeći model otvorenog kōda a koja štiti slobodu izražavanja i omogućava sigurnu globalnu komunikaciju.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Vaš doprinos održava taj razvoj i finansira razvoj i funkcionisanje aplikacije za privatnu komunikaciju koju koriste milioni ljudi. Bez reklama. Bez praćenja. Bez zezanja.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala Vam za Vašu podršku!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za podsticaj!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Zaslužili ste %s značku! Prikazivanjem značke pokazat ćete osobama s kojima razgovarate da podržavate Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Zaslužili ste %s značku! Pomozite u širenju svijesti o Signalu prikazavši ovu značku na svom profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Zaslužili ste značku \"Pojačivač\"! Pomozite u širenju svijesti o Signalu prikazavši ovu značku na svom profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Također možete</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">postati redovni mjesečni pokrovitelj.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži na profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Odredi za odabranu značku</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Uredu</string>
@@ -3453,23 +3470,37 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MySupportPreference__add_a_signal_boost">Pojačajte Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/mjesecu</string>
   <string name="MySupportPreference__renews_s">Obnavlja se %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Obrađujem transakciju…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Nije bilo moguće dodati značku.</string>
+  <string name="MySupportPreference__please_contact_support">Molimo kontaktirajte podršku.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaša je značka istekla</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Vaša %1$s značka istekla je i više nije prikazana na Vašem profilu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Da nastavite podržavati tehnologiju koja je kreirana radi Vas – ne radi Vaših podataka – razmislite o tome da postanete mjesečni pretplatnik.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Postanite pretplatnik</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Značka je istekla</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Pretplata je otkazana</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Vaša značka pojačivača Signala istekla je i više nije prikazana na Vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Da nastavite podržavati tehnologiju koja je kreirana radi Vas, razmislite o tome da postanete mjesečni pokrovitelj.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pokrovitelj</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaša pretplata automatski je otkazana jer ste predugo bili neaktivni. Vaša  \"%1$s\" značka više nije prikazana na Vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Možete nastaviti s korištenjem Signala, ali ako želite pružiti podršku aplikaciji i ponovo aktivirati svoju značku, obnovite pretplatu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovi pretplatu</string>
   <string name="Subscription__verification_failed">Ovjera pretplate nije uspjela</string>
+  <string name="Subscription__redemption_failed">Povrat značke nije uspio</string>
   <string name="Subscription__please_contact_support_for_more_information">Molimo kontaktirajte podršku za više informacija.</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
   <string name="Subscription__earn_a_s_badge">Zaslužite %1$s značku</string>
   <string name="SubscribeFragment__processing_payment">Obrađujem…</string>
   <string name="DonationsErrors__payment_failed">Plaćanje nije uspjelo</string>
   <string name="DonationsErrors__your_payment">Vašu uplatu nije bilo moguće obraditi i iznos nije naplaćen. Molimo, pokušajte ponovo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Uplata još u obradi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možda nećete odmah vidjeti svoju značku, ali radimo na tome!</string> -->
+  <string name="DonationsErrors__still_processing">Još uvijek obrađujem</string>
+  <string name="DonationsErrors__redemption_failed">Uplata nije prošla</string>
+  <string name="DonationsErrors__please_contact_support">Molimo kontaktirajte podršku</string>
+  <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još obrađuje. To može potrajati nekoliko minuta, zavisno od kvaliteta Vaše konekcije.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nedostupan</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Morate podesiti Google Pay da biste donirali kroz aplikaciju.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Neuspjelo otkazivanje pretplate</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Otkazivanje pretplate traži internet-konekciju.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaš uređaj ne podržava Google Pay i zato se ne možete pretplatiti i zaslužiti značku. I dalje možete podržati Signal kroz donaciju na našoj internet-stranici.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Mrežna greška. Provjerite svoju internet-konekciju i pokušajte ponovo.</string>
+  <string name="NetworkFailure__retry">Pokušaj</string>
   <!--EOF-->
 </resources>

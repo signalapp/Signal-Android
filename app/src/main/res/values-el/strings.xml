@@ -701,6 +701,7 @@
   <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
   <string name="ManageProfileFragment_badges">Εμβλήματα</string>
+  <string name="ManageProfileFragment__edit_photo">Επεξεργασία φωτογραφίας</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Καμία κοινή ομάδα</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -801,6 +802,7 @@
   <string name="InviteActivity_no_app_to_share_to">Φαίνεται πως δεν έχεις κάποια εφαρμογή στην οποία μπορείς να μοιραστείς.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Μάθε περισσότερα</string>
+  <string name="SpanUtil__read_more">Δες περισσότερα</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Δεν βρέθηκε μήνυμα</string>
   <string name="LongMessageActivity_message_from_s">Μήνυμα από τον/την %1$s</string>
@@ -1340,6 +1342,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να ανταλλάξεις μηνύματα και να κάνεις ασφαλείς κλήσεις</string>
   <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Μη-τυπική μορφή αριθμού</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Ο αριθμός που έγραψες (%1$s) φαίνεται να μην έχει μια τυπική μορφή.n\nΜήπως εννοούσες %2$s;</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Μορφή αριθμού τηλεφώνου</string>
   <string name="RegistrationActivity_call_requested">Ζητήθηκε κλήση</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Είσαι %d βήμα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
@@ -1930,6 +1935,16 @@
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Παρακαλώ επιλέξτε μια επιλογή \-\-</item>
+    <item>Κάτι δεν δουλεύει</item>
+    <item>Αίτημα νέου χαρακτηριστικού</item>
+    <item>Ερώτηση</item>
+    <item>Σχόλια</item>
+    <item>Άλλα</item>
+    <item>Payments (MobileCoin)</item>
+    <item>Υποστηρικτές &amp; Signal Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -2027,6 +2042,7 @@
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__donate_to_signal">Κάνε μια δωρεά στο Signal</string>
   <string name="preferences__subscription">Συνδρομή</string>
+  <string name="preferences__become_a_signal_sustainer">Γίνε Υποστηρικτής Signal</string>
   <string name="preferences__signal_boost">Ενίσχυση Signal</string>
   <string name="preferences__privacy">Ιδιωτικότητα</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3008,6 +3024,11 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Επέλεξε ένα στυλ και χρώμα, ή επεξεργάσου τα αρχικά σου.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Όχι τώρα</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Προσθήκη φωτογραφίας</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Γίνε υποστηρικτής</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Το Signal βασίζεται σε άτομα σαν κι εσένα. Με τη συνεισφορά σου λαμβάνεις ένα έμβλημα για το προφίλ σου.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Όχι, ευχαριστώ</string>
+  <string name="BecomeASustainerMegaphone__contribute">Συνεισφορά</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Άνοιγμα αναζήτησης emoji</string>
@@ -3056,6 +3077,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία είνα σε σίγαση για πάντα</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Ο αριθμός τηλεφώνου αντιγράφτηκε στο πρόχειρο.</string>
   <string name="ConversationSettingsFragment__phone_number">Αριθμός τηλεφώνου</string>
+  <string name="ConversationSettingsFragment__get_badges">Πάρε εμβλήματα για το προφίλ σου στηρίζοντας το Signal. Πάτα σε ένα έμβλημα για να μάθεις περισσότερα.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
@@ -3176,7 +3198,8 @@
   <string name="ImageView__badge">Έμβλημα</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Το Signal στηρίζεται σε άτομα σαν κι εσένα.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Ποσό δωρεάς</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα, όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν το Signal.</string>
+  <string name="SubscribeFragment__currency">Νόμισμα</string>
   <string name="SubscribeFragment__cancel_subscription">Ακύρωση συνδρομής</string>
   <string name="SubscribeFragment__confirm_cancellation">Επιβεβαίωση ακύρωσης;</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Δεν θα χρεωθείς ξανά. Το έμβλημά σου θα αφαιρεθεί από το προφίλ σου στο τέλος της περιόδου για την οποία έχεις χρεωθεί.</string>
@@ -3187,16 +3210,20 @@
   <string name="SubscribeFragment__update_subscription_question">Ανανέωση συνδρομής;</string>
   <string name="SubscribeFragment__update">Ενημέρωση</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Θα χρεωθείς ολόκληρο το ποσό της νέας συνδρομής σήμερα. Η συνδρομή σου θα ανανεωθεί %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Θα χρεωθείς το πλήρες ποσό (%1$s) της τιμής νέας συνδρομής σήμερα. Η συνδρομή σου θα ανανεώνεται μηνιαία.</string>
   <string name="Subscription__s_per_month">%s/μήνα</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/μήνα · Ανανεώνεται %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/μήνα · Λήγει %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Το Signal είναι μια ΜΚΟ χωρις διαφημίσεις και επενδυτές, που συντηρείται μόνο από τα άτομα που το χρησιμοποιούν και το θεωρούν σημαντικό. Με μια επαναλαμβανόμενη μηνιαία συνεισφορά παίρνεις ένα έμβλημα για το προφίλ σου, για να δείξεις την υποστήριξή σου.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Γιατι να συνεισφέρω;</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Η ομάδα του Signal είναι προσηλωμένη στην αποστολή της ανάπτυξης τεχνολογίας ιδιωτικότητας ανοιχτού κώδικα, που προστατεύει την ελευθερία της έκφρασης και δίνει τη δυνατότητα για ασφαλείς παγκόσμιες επικοινωνίες. Η συνεισφορά σου μας βοηθά σε αυτή την αποστολή. Χωρίς διαφημίσεις. Χωρίς παρακολούθηση. Σοβαρά.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Η συνεισφορά σου βοηθά με τα έξοδα ανάπτυξης, server, και συνδεσιμότητας μιας εφαρμογής που χρησιμοποιείται από εκατομμύρια άνθρώπους σε όλο το κόσμο για ασφαλή και άμεση επικοινωνία.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Το Signal δεσμεύεται να αναπτύσσει τεχνολογία ιδιωτικότητας ανοικτού κώδικα, που προστατεύει την ελεύθερη έκφραση και επιτρέπει την ασφαλή επικοινωνία παγκοσμίως.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Η συνεισφορά σου ενισχύει αυτό το στόχο και πληρώνει για την ανάπτυξη και τη λειτουργία μιας εφαρμογής που χρησιμοποιείται από εκατομμύρια άτομα για ιδιωτικές επικοινωνίες. Χωρίς διαφημίσεις, χωρίς παρακολούθηση.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Ευχαριστούμε για την ενίσχυση!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Κέρδισες ένα έμβλημα %s! Δείξε στα άτομα που συνομιλείς πως υποστηρίζεις το Signal, βάζοντας το έμβλημά σου στο προφίλ σου.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Κέρδισες το έμβλημα %s! Βοήθησε με την ευαισθητοποίηση για το Signal, επιδεικνύοντας το έμβλημα στο προφίλ σου.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Κέρδισες το έμβλημα Boost! Βοήθησε με την ευαισθητοποίηση για το Signal, επιδεικνύοντας το έμβλημα στο προφίλ σου.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Μπορείς επίσης</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Να γίνεις μηνιαίος υποστηρικτής.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Να γίνει το βασικό έμβλημα</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
@@ -3213,23 +3240,37 @@
   <string name="MySupportPreference__add_a_signal_boost">Προσθήκη Ενίσχυσης Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/μήνα</string>
   <string name="MySupportPreference__renews_s">Ανανεώνεται %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Επεξεργασία πληρωμής…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Αδυναμία προσθήκης εμβλήματος.</string>
+  <string name="MySupportPreference__please_contact_support">Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Το έμβλημά σου έληξε</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Το έμβλημα %1$s έληξε, και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα και όχι για τα δεδομένα σου, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Γίνε υποστηρικτής</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Το έμβλημα έληξε</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Η συνδρομή ακυρώθηκε</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Το έμβλημα Boost έληξε, και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε υποστηρικτής</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Η συνδρομή υποστηρικτή σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το έμβλημά σου, ανανέωσε τώρα.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Ανανέωση συνδρομής</string>
   <string name="Subscription__verification_failed">Αποτυχία επιβεβαίωσης συνδρομής</string>
+  <string name="Subscription__redemption_failed">Αποτυχία εξαργύρωσης εμβλήματος</string>
   <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>
   <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
   <string name="Subscription__earn_a_s_badge">Κέρδισε ένα έμβλημα %1$s</string>
   <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
   <string name="DonationsErrors__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Εκκρεμεί η εξαργύρωση</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Μπορεί να μην δεις το έμβλημά σου κατ\' ευθείαν, αλλά το ετοιμάζουμε!</string> -->
+  <string name="DonationsErrors__still_processing">Ακόμα επεξεργάζεται</string>
+  <string name="DonationsErrors__redemption_failed">Η εξαργύρωση απέτυχε</string>
+  <string name="DonationsErrors__please_contact_support">Παρακαλώ επικοινώνησε με την υποστήριξη</string>
+  <string name="DonationsErrors__your_payment_is_still">Η πληρωμή σου βρίσκεται ακόμα σε επεξεργασία. Μπορεί να πάρει ακόμα μερικά λεπτά, ανάλογα με τη σύνδεσή σου.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay μη διαθέσιμο</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Πρέπει να ενεργοποιήσεις το Google Pay για να κάνεις δωρεά μέσω της εφαρμογής.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Αποτυχία ακύρωσης συνδρομής</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Πρέπει να υπάρχει σύνδεση στο διαδίκτυο για την ακύρωση της συνδρομής.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Η συσκευή σου δεν υποστηρίζει το Google Pay, οπότε δεν μπορείς να γίνεις συνδρομητής για να λάβεις έμβλημα. Μπορείς όμως να υποστηρίξεις το Signal κάνοντας μια δωρεά στην ιστοσελίδα μας.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
+  <string name="NetworkFailure__retry">Επανάληψη</string>
   <!--EOF-->
 </resources>

@@ -708,6 +708,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageProfileFragment_your_username">Emri juaj i përdoruesit</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">S’u arrit të caktohej avatar</string>
   <string name="ManageProfileFragment_badges">Stema</string>
+  <string name="ManageProfileFragment__edit_photo">Përpunoni foto</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">S’ka grupe të përbashkët</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -808,6 +809,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="InviteActivity_no_app_to_share_to">Duket sikur s\’keni aplikacione me të cilat të ndani.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mësoni më tepër</string>
+  <string name="SpanUtil__read_more">Lexoni më tepër</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">S\’arrihet të gjendet mesazh</string>
   <string name="LongMessageActivity_message_from_s">Mesazh prej %1$s</string>
@@ -1349,6 +1351,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirrje të siguruara, Signal-i lyp hyrje te kontaktet tuaja</string>
   <string name="RegistrationActivity_rate_limited_to_service">Keni bërë shumë përpjekje për të regjistruar këtë numër. Ju lutemi, riprovoni më vonë.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">S\’arrihet të bëhet lidhja te shërbimi. Ju lutemi, kontrolloni lidhjen me rrjetin dhe riprovoni.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Format jostandard numrash</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Numri që dhatë (%1$s) duket të jetë në një format jo standard.\n\nKishit ndërmend %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal për Android - Format Numrash Telefoni</string>
   <string name="RegistrationActivity_call_requested">U kërkua thirrje</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ju ndan %d hap nga parashtrimi i një regjistri diagnostikimesh.</item>
@@ -1941,6 +1946,16 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Ju lutemi, përzgjidhni një mundësi \-\-</item>
+    <item>Diçka S’Funksionon</item>
+    <item>Kërkesë Për Veçori të Re</item>
+    <item>Pyetje</item>
+    <item>Përshtypje</item>
+    <item>Tjetër</item>
+    <item>Pagesa (MobileCoin)</item>
+    <item>Mbështetës &amp; Përforcim Signal-i</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
@@ -2038,6 +2053,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__advanced">Të mëtejshme</string>
   <string name="preferences__donate_to_signal">Dhuroni për Signal-in</string>
   <string name="preferences__subscription">Pajtim</string>
+  <string name="preferences__become_a_signal_sustainer">Bëhuni një Mbështetës Signal-i</string>
   <string name="preferences__signal_boost">Fuqizim Signal-i</string>
   <string name="preferences__privacy">Privatësi</string>
   <string name="preferences__mms_user_agent">Agjent Përdoruesi MMS</string>
@@ -3132,6 +3148,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Zgjidhni një pamje dhe ngjyrë, ose përshtatni inicialet tuaja.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Jo tani</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Shtoni foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Bëhuni një Mbështetës</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal-i bazohet nga njerëz si ju. Kontribuoni dhe merrni një stemë profili.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Jo, faleminderit</string>
+  <string name="BecomeASustainerMegaphone__contribute">Kontribuoni</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Hap kërkim emoji-sh</string>
@@ -3180,6 +3201,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Bisedë e heshtuar përgjithmonë</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numri i telefonit u kopjua në të papastër.</string>
   <string name="ConversationSettingsFragment__phone_number">Numër telefoni</string>
+  <string name="ConversationSettingsFragment__get_badges">Merrni stema për profilin tuaj duke përkrahur Signal-in. Për të mësuar më shumë, prekni mbi një stemë.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Përpunoni të dhëna grupi</string>
@@ -3278,6 +3300,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ImageEditorHud__done_editing">U mbarua së përpunuari</string>
   <string name="ImageEditorHud__clear_all">Spastroji krejt</string>
   <string name="ImageEditorHud__undo">Zhbëje</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Këmbe shënuesin me theksuesin, ose anasjelltas</string>
   <string name="ImageEditorHud__delete">Fshije</string>
   <string name="ImageEditorHud__toggle_between_text_styles">Kaloni nga një stil teksti në tjetër</string>
   <string name="MediaCountIndicatorButton__send">Dërgoje</string>
@@ -3300,7 +3323,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ImageView__badge">Stemë</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal bazohet në njerëz si ju.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Përkrahni teknologjinë e ngritur për ju—jo për të dhënat tuaja—duke u bërë pjesë e bashkësisë së njerëzve që e mbajnë atë gjallë.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Sasi dhurimi</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Përkrahni teknologjinë që është ngritur për ju, jo për të dhënat tuaja, duke u bërë pjesë e bashkësisë që mbështet Signal-in.</string>
+  <string name="SubscribeFragment__currency">Monedhë</string>
   <string name="SubscribeFragment__more_payment_options">Më Tepër Mundësi Pagesash</string>
   <string name="SubscribeFragment__cancel_subscription">Anuloje Pajtimin</string>
   <string name="SubscribeFragment__confirm_cancellation">E ripohoni Anulimin?</string>
@@ -3312,16 +3336,20 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SubscribeFragment__update_subscription_question">Të përditësohet pajtimi?</string>
   <string name="SubscribeFragment__update">Përditësoje</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Do t’ju faturohet sasia e plotë e çmimit të sotëm të pajtimit të ri. Pajtimi juaj do të rinovohet më %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Do t’ju faturohet sot vlera e plotë (%1$s) e çmimit të pajtimit të ri. Pajtimi juaj do të rinovohet çdo muaj.</string>
   <string name="Subscription__s_per_month">%s/muaj</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/muaj · Rinovohet më %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/muaj · Skadon më %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal-i është një ent jofitimprurës, pa reklamues për të apo investues, i bazuar vetëm te njerëzit që e përdorin dhe vlerësojnë. Bëni një dhurim mujor ripërsëritës dhe merrni një stemë profili për t’u treguar të tjerëve përkrahjen tuaj.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pse të Jepet Ndihmesë?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Ekipi i Signal-it i është përkushtuar misioni të zhvillimit me burim të hapët të teknologjive të privatësisë, që mbrojnë fjalën e lirë dhe bëjnë të mundur komunikim global të sigurt. Kontributi juaj i jep frymë kësaj kauze. Pa reklama. Pa ndjekës. Pa tallje.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Kontributi juaj ndihmon të paguhet zhvillimi, shërbyesit dhe trafiku në ta, për një aplikacion të përdorur nga miliona vetë anembanë botës, për komunikim privat dhe të menjëhershëm.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal-i është i përkushtuar zhvillimit të teknologjive të privatësisë me burim të hapët që mbrojnë shprehjen e lirë dhe bëjnë të mundur komunikim të sigurt global.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Kontributi juaj i shërben kësaj kauze dhe paguan për zhvillimin dhe operacioneve të lidhura me një aplikacion të përdorur nga miliona vetë për komunikim privat. Pa reklama. Pa gjurmues. Pa shaka.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Faleminderit për Përkrahjen tuaj!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Faleminderit për Fuqizimin!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Fituat një stemë %s! Shpalosja e stemës tuaj do t’u shfaqë personave me të cilët bisedoni se e përkrahni Signal-in.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Fituat stemën %s badge! Ndihmojeni Signal-in të shtojë ndërgjegjësimin, duke shfaqur në profilin tuaj këtë stemë.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Fituat një stemë Boos! Ndihmojeni Signal-in të shtojë ndërgjegjësimin, duke shfaqur në profilin tuaj këtë stemë.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Mundeni edhe të</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bëheni një Mbështetës mujor.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Shfaqe në Profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Bëje stemë të zgjedhur</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">U bë</string>
@@ -3338,22 +3366,37 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MySupportPreference__add_a_signal_boost">Shtoni një fuqizim Signal-i</string>
   <string name="MySupportPreference__s_per_month">%1$s/muaj</string>
   <string name="MySupportPreference__renews_s">Rinovohet më %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Po përpunohet transaksioni…</string>
+  <string name="MySupportPreference__couldnt_add_badge">S’u shtua dot stemë.</string>
+  <string name="MySupportPreference__please_contact_support">Ju lutemi, lidhuni me ata të asistencës.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Stema juaj ka Skaduar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Stema juaj %1$s ka skaduar dhe te profili juaj s’është më e dukshme për të tjerët.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Që të vazhdon përkrahjen e teknologjisë që është ngritur për ju—jo për të dhënat tuaja—ju lutemi, shihni mundësinë e bërjes së një pajtimtari të përmuajshëm.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bëhuni një pajtimtar</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Stema ka skaduar</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Pajtimi u anulua</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Stema juaj Boost ka skaduar dhe s’është më e dukshme për të tjerët në profilin tuaj.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Që të vazhdoni të përkrahni teknologji që është krijuar për ju, ju lutemi, shihni mundësinë e bërjes një Mbështetës mujor.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bëhuni një mbështetës</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Pajtimi juaj si Mbështetës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s’është më e dukshme te profili juaj.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Mund të vazhdoni ta përdorni Signal-in, por që të përkrahni aplikacionin dhe të riaktivizoni stemën, rinovojeni tani.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinovoni pajtimin</string>
   <string name="Subscription__verification_failed">Verifikimi i Pajtimit Dështoi</string>
+  <string name="Subscription__redemption_failed">Ringjallja e Stemës Dështoi</string>
   <string name="Subscription__please_contact_support_for_more_information">Ju lutemi, për më tepër hollësi, lidhuni më asistencën.</string>
   <string name="Subscription__contact_support">Lidhuni Me Asistencën</string>
   <string name="Subscription__earn_a_s_badge">Fitoni një stemë %1$s</string>
   <string name="SubscribeFragment__processing_payment">Po kryhet pagesa…</string>
   <string name="DonationsErrors__payment_failed">Pagesa dështoi</string>
   <string name="DonationsErrors__your_payment">Pagesa juaj s’u përpunuar do dhe nuk ju është faturuar. Ju lutemi, riprovoni.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Stemën tuaj mund të mos e shihni menjëherë, por po merremi me të!</string> -->
+  <string name="DonationsErrors__still_processing">Ende në përpunim</string>
+  <string name="DonationsErrors__redemption_failed">Ringjallja dështoi</string>
+  <string name="DonationsErrors__please_contact_support">Ju lutemi, lidhuni me ata të asistencës</string>
+  <string name="DonationsErrors__your_payment_is_still">Pagesa juaj ende po përpunohet. Kjo mund të zërë ca minuta, varet nga lidhja juaj.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay i Pakapshëm</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Duhet të ujdisni Google Pay, që të dhuroni që nga brenda aplikacionit.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">S’u arrit të anulohej pajtimi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anulimi i pajtimit lyp lidhje në Internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Pajisja juaj nuk mbulon Google Pay, ndaj s’mund të kontribuoni për të fituar një stemë. Mundeni ende të përkrahni Signal-in duke bërë një dhurim te sajti ynë.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gabim rrjeti. Ju lutemi, kontrolloni lidhjen tuaj me rrjetin dhe riprovoni.</string>
+  <string name="NetworkFailure__retry">Riprovo</string>
   <!--EOF-->
 </resources>

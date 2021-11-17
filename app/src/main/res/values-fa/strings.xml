@@ -1939,16 +1939,6 @@
   <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توصیف هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>لطفاً یک گزینه انتخاب کنید</item>
-    <item>چیزی خراب شده است</item>
-    <item>درخواست قابلیت جدید</item>
-    <item>سؤال</item>
-    <item>بازخورد</item>
-    <item>سایر</item>
-    <item>پرداخت‌ها (MobileCoin)</item>
-    <item>کمک‌های اهدایی (نگهدارندگان و تقویت سیگنال)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
@@ -3136,6 +3126,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">برای حروف اول خود یک ظاهر و رنگ جدید انتخاب کنید.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">حالا نه</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">افزودن عکس</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">نه ممنون</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ایموجی</string>
   <string name="KeyboardPagerFragment_open_emoji_search">جستجوی ایموجی را باز کنید</string>
@@ -3303,7 +3295,6 @@
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
   <string name="ImageView__badge">نشان</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">سیگنال با کمک افرادی همانند شما پشتیبانی می‌شود.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">مبلغ کمک اهدایی</string> -->
   <string name="SubscribeFragment__more_payment_options">گزینه‌ها‌ی پرداخت بیشتر</string>
   <string name="SubscribeFragment__cancel_subscription">لغو اشتراک</string>
   <string name="SubscribeFragment__confirm_cancellation">تأیید لغو اشتراک؟</string>
@@ -3313,7 +3304,6 @@
   <string name="SubscribeFragment__update">به‌روزرسانی</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ممنون بابت تقویت!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">شما یک نشان %s بدست آوردید! نمایش نشان شما به کسانی که با آن‌ها گفتگو می‌کنید نشان می‌دهد که شما از سیگنال حمایت می‌کنید.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">نمایش روی پروفایل</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمام</string>
   <string name="ManageDonationsFragment__my_support">پشتیبانی من</string>
@@ -3326,12 +3316,10 @@
   <string name="MySupportPreference__s_per_month">%1$s/ماه</string>
   <string name="MySupportPreference__renews_s">در %1$s تمدید می‌شود</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">نشان شما منقضی شده است</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">نشان %1$s شما منقضی شده است، و دیگر روی پروفایل شما برای دیگران قابل رؤیت نیست.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">برای ادامهٔ حمایت از فناوری که برای شما ساخته شده است—نه برای داده‌های شما—لطفاً در نظر بگیرید که یک مشترک ماهانهٔ ما شوید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">مشترک شوید</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
   <string name="Subscription__contact_support">تماس با پشتیبانی</string>
   <string name="SubscribeFragment__processing_payment">در حال پردازش پرداخت…</string>
   <string name="DonationsErrors__payment_failed">پرداخت ناموفق بود</string>
+  <string name="NetworkFailure__retry">تلاش مجدد</string>
   <!--EOF-->
 </resources>

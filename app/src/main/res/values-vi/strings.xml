@@ -2955,6 +2955,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Để sau</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Thêm ảnh</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Không, cảm ơn</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Mở tìm kiếm emoji</string>
@@ -3057,7 +3059,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
   <string name="SelectFeaturedBadgeFragment__preview">Xem trước</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal được hỗ trợ bởi những cá nhân như bạn.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Số tiền đóng góp</string> -->
   <string name="SubscribeFragment__not_now">Để sau</string>
   <string name="SubscribeFragment__confirm">Xác nhận</string>
   <string name="SubscribeFragment__update">Cập nhật</string>
@@ -3067,5 +3068,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="Subscription__contact_support">Liên lạc Hỗ trợ</string>
   <string name="SubscribeFragment__processing_payment">Đang xử lý thanh toán…</string>
   <string name="DonationsErrors__payment_failed">Thanh toán không thành công</string>
+  <string name="NetworkFailure__retry">Thử lại</string>
   <!--EOF-->
 </resources>

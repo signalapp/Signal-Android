@@ -2882,6 +2882,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatColorsMegaphone__not_now">Ikke nå</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Ikke nå</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Nei takk</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Klistremerker</string>
@@ -2948,7 +2950,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaReviewImagePageFragment__discard">Kast</string>
   <string name="SelectFeaturedBadgeFragment__preview">Forhåndsvisning</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drives av folk som deg.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donasjonsbeløp</string> -->
   <string name="SubscribeFragment__not_now">Ikke nå</string>
   <string name="SubscribeFragment__confirm">Bekreft</string>
   <string name="SubscribeFragment__update">Oppdater</string>
@@ -2958,5 +2959,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Subscription__contact_support">Kontakt brukerstøtte</string>
   <string name="SubscribeFragment__processing_payment">Behandler betaling …</string>
   <string name="DonationsErrors__payment_failed">Betaling mislyktes</string>
+  <string name="NetworkFailure__retry">Prøv på nytt</string>
   <!--EOF-->
 </resources>

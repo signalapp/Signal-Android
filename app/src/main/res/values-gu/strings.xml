@@ -2990,6 +2990,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">દેખાવ અને કલર પસંદ કરો અથવા તમારા ઇનિશયલ્સ કસ્ટમાઇઝ કરો.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">અત્યારે નહીં </string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ફોટો ઉમેરો</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">ના આભાર</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ઇમોજી</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ઈમોજી સર્ચ ઓપન કરો</string>
@@ -3103,7 +3105,6 @@
   <string name="MediaReviewImagePageFragment__discard">કાઢી નાખો</string>
   <string name="SelectFeaturedBadgeFragment__preview">પ્રિવ્યૂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal તમારા જેવા લોકો દ્વારા સંચાલિત છે.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">ફાળાની રકમ</string> -->
   <string name="SubscribeFragment__not_now">અત્યારે નહીં </string>
   <string name="SubscribeFragment__confirm">ખાતરી કરો</string>
   <string name="SubscribeFragment__update">અપડેટ</string>
@@ -3113,5 +3114,6 @@
   <string name="Subscription__contact_support">સપોર્ટનો સંપર્ક કરો</string>
   <string name="SubscribeFragment__processing_payment">પેમેન્ટ પ્રક્રિયા થઈ રહી છે…</string>
   <string name="DonationsErrors__payment_failed">પેમેન્ટ નિષ્ફળ</string>
+  <string name="NetworkFailure__retry">ફરી પ્રયાસ કરો</string>
   <!--EOF-->
 </resources>

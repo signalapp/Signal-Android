@@ -2904,6 +2904,8 @@
   <string name="ChatColorsMegaphone__not_now">稍后再说</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">稍后再说</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">不，谢谢。</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符号</string>
   <string name="KeyboardPagerFragment_open_emoji_search">打开表情符号搜索</string>
@@ -3008,7 +3010,6 @@
   <string name="MediaReviewImagePageFragment__discard">放弃</string>
   <string name="SelectFeaturedBadgeFragment__preview">预览</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由如您一样的用户提供动力。</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">捐赠金额</string> -->
   <string name="SubscribeFragment__not_now">稍后再说</string>
   <string name="SubscribeFragment__confirm">确认</string>
   <string name="SubscribeFragment__update">更新</string>
@@ -3018,5 +3019,6 @@
   <string name="Subscription__contact_support">联系支持</string>
   <string name="SubscribeFragment__processing_payment">正在处理付款…</string>
   <string name="DonationsErrors__payment_failed">付款失败</string>
+  <string name="NetworkFailure__retry">重试</string>
   <!--EOF-->
 </resources>

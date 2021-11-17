@@ -804,6 +804,7 @@
   <string name="InviteActivity_no_app_to_share_to">Það lítur út eins og þú sért ekki með nein forrit sem hægt sé að deila til.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Kanna nánar</string>
+  <string name="SpanUtil__read_more">Lesa meira</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mistókst að finna skilaboð</string>
   <string name="LongMessageActivity_message_from_s">Skilaboð frá %1$s</string>
@@ -3127,6 +3128,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Veldu útlit og lit eða sérsníddu upphafsstafina þína.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ekki núna</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Bæta við ljósmynd</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Nei, takk</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Tjáningartákn</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Opna leit að emoji-táknum</string>
@@ -3295,7 +3298,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ImageView__badge">Merki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drifið áfram af fólki eins og þér.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Upphæð styrks</string> -->
   <string name="SubscribeFragment__more_payment_options">Fleiri greiðslumátar</string>
   <string name="SubscribeFragment__cancel_subscription">Segja upp áskrift</string>
   <string name="SubscribeFragment__confirm_cancellation">Staðfesta uppsögn?</string>
@@ -3312,7 +3314,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Af hverju styrkja?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Þakka þér fyrir stuðninginn!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Þakka þér fyrir hvatninguna!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Þú varðst þér út um %s merki! Birting merkisins mun sýna fólki sem þú spjallar við að þú ert að styðja Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Birta á persónusniði</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gera merki áberandi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Lokið</string>
@@ -3329,8 +3330,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MySupportPreference__s_per_month">%1$s/mánuði</string>
   <string name="MySupportPreference__renews_s">Endurnýjast %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkið þitt er útrunnið</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s merkið þitt er útrunnið og er því ekki lengur sýnilegt öðrum á sniðinu þínu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Gerstu áskrifandi</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
   <string name="Subscription__verification_failed">Staðfesting áskriftar mistókst</string>
   <string name="Subscription__please_contact_support_for_more_information">Hafðu samband við aðstoðarteymið til að fá nánari upplýsingar.</string>
@@ -3338,10 +3338,10 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="Subscription__earn_a_s_badge">Fáðu %1$s merki</string>
   <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>
   <string name="DonationsErrors__payment_failed">Greiðsla mistókst</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Það er ekki víst að þú sjáir merkið þitt alveg strax, en við erum að vinna í málinu!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ekki aðgengilegt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Þú þarft að setja upp Google Pay til að styrkja inni í forritinu.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Mistókst að hætta áskrift</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Til að hætta áskrift þarf tengingu við internetið.</string>
+  <string name="NetworkFailure__retry">Reyna aftur</string>
   <!--EOF-->
 </resources>

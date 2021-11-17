@@ -704,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">O seu nome de utilizador</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao tentar definir o avatar</string>
   <string name="ManageProfileFragment_badges">Crachás</string>
+  <string name="ManageProfileFragment__edit_photo">Editar fotografia</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Sem grupos em comum</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -804,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Parece que não tem aplicações para partilhar.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber mais</string>
+  <string name="SpanUtil__read_more">Ler mais</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Não foi possível encontrar a mensagem</string>
   <string name="LongMessageActivity_message_from_s">Mensagem de %1$s</string>
@@ -1346,6 +1348,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal necessita de aceder aos seus contactos de forma a poder ligar-se a amigos, trocar mensagens e fazer chamadas seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Fez demasiadas tentativas para registar este número. Por favor, tente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível ligar ao serviço. Por favor, verifique a sua ligação à rede e tente novamente.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Formato de número não padronizado</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">O número que introduziu (%1$s) não parece estar num formato padronizado.\n\nSerá que queria dizer %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formato de número de telefone</string>
   <string name="RegistrationActivity_call_requested">Chamada pedida</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Está a %d passo de submeter um registo de depuração.</item>
@@ -1940,16 +1945,6 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Por favor, selecione uma opção </item>
-    <item>Alguma coisa não está a funcionar</item>
-    <item>Pedido de nova funcionalidade</item>
-    <item>Pergunta</item>
-    <item>Feedback</item>
-    <item>Outro</item>
-    <item>Pagamentos (Mobile Coin)</item>
-    <item>Doações (Sustentadores e Melhoria do Signal)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -3137,6 +3132,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Escolha uma aparência e uma cor para personalizar as suas iniciais.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Agora não</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Adicionar fotografia</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Não, obrigado</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Abrir a pesquisa de emoji</string>
@@ -3306,7 +3303,7 @@
   <string name="ImageView__badge">Crachá</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é feito por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Montante doado</string> -->
+  <string name="SubscribeFragment__currency">Moeda</string>
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirma o concelamento?</string>
@@ -3323,11 +3320,9 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mês · Expira %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma contribuição mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Porque contribuir?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipa do Signal está comprometida com a missão de desenvolver uma tecnologia de privacidade de código aberto que proteja a liberdade de expressão e permita a comunicação global segura. A sua contribuição alimenta essa causa. Sem anúncios. Sem rastreadores. Sem brincadeiras. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">A sua contribuição ajuda a pagar pelo desenvolvimento, servidores e largura de banda de uma aplicação utilizada por milhões em todo o mundo para uma comunicação privada e instantânea.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Obrigado pelo seu Apoio!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Obrigado pelo seu Apoio!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Você ganhou um crachá %s! Exibir o seu crachá mostrará às pessoas com quem conversa que você apoia o Signal. </string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Também pode</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Fazer crachá de funcionalidade</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Concluído</string>
@@ -3344,10 +3339,9 @@
   <string name="MySupportPreference__add_a_signal_boost">Adicione uma melhoria</string>
   <string name="MySupportPreference__s_per_month">%1$s/mês</string>
   <string name="MySupportPreference__renews_s">Renovações %1$s</string>
+  <string name="MySupportPreference__processing_transaction">A processar a transação…</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">O seu crachá %1$s expirou, e deixou de estar visível para outras pessoas no seu perfil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Para continuar a suportar a tecnologia que foi construída para si (não para os seus dados), considere fazer uma assinatura mensal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Torne-se um assinante</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num apoiante</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="Subscription__verification_failed">Falha na verificação da assinatura</string>
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacte o \'Suporte\' para mais informações.</string>
@@ -3356,11 +3350,10 @@
   <string name="SubscribeFragment__processing_payment">A processar pagamento…</string>
   <string name="DonationsErrors__payment_failed">Falha de pagamento</string>
   <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Por favor, tente novamente. </string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Resgate ainda pendente</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Poderá ainda não ver o seu crachá, mas estamos a trabalhar nisso!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Definiu o Google Pay para as doações in-app.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Ocorreu um erro ao tentar cancelar a assinatura</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">O cancelamento da sua assinatura exige que esteja disponível uma ligação à internet.</string>
+  <string name="NetworkFailure__retry">Tentar novamente</string>
   <!--EOF-->
 </resources>

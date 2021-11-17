@@ -440,7 +440,7 @@
   <string name="DocumentView_unnamed_file">Arquivo sem nome</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Doar para o Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é mantido por pessoas como você. Mostre o seu apoio hoje!</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal é mantido por pessoas como você. Mostre o seu apoio hoje!</string>
   <string name="DonateMegaphone_donate">Doar</string>
   <string name="DonateMegaphone_no_thanks">Não. Agradeço.</string>
   <!--GroupCallingMegaphone-->
@@ -704,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">Seu nome de usuário</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao salvar foto de perfil</string>
   <string name="ManageProfileFragment_badges">Selos</string>
+  <string name="ManageProfileFragment__edit_photo">Editar foto</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nenhum grupo em comum</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -804,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saiba mais</string>
+  <string name="SpanUtil__read_more">Leia mais</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mensagem não encontrada</string>
   <string name="LongMessageActivity_message_from_s">Mensagem de %1$s</string>
@@ -3128,6 +3130,10 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Escolha uma imagem e uma cor ou escreva suas iniciais.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Agora não</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Adicionar foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Torne-se um apoiador</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal é mantido por pessoas como você. Contribua e receba um selo no perfil.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Não, obrigado</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emojis</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Fazer pesquisa de emoji</string>
@@ -3297,7 +3303,7 @@
   <string name="ImageView__badge">Selo</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é mantido por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Em vez de apoiar tecnologias desenvolvidas para terceiros lucrarem com seus dados privados, apoie tecnologias desenvolvidas para você, juntando-se à comunidade de pessoas que as sustentam financeiramente.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Valor da doação</string> -->
+  <string name="SubscribeFragment__currency">Moeda</string>
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar doação</string>
   <string name="SubscribeFragment__confirm_cancellation">Cancelar a doação mensal?</string>
@@ -3308,10 +3314,10 @@
   <string name="SubscribeFragment__update">Atualizar</string>
   <string name="Subscription__s_per_month">%s/mês</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Por que contribuir?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">A equipe do Signal está comprometida com a missão de desenvolver tecnologias de código aberto focadas em privacidade que protegem a liberdade de expressão e permitem haver segurança na comunicação global. Sua contribuição alimenta essa causa. Nosso app é divulgado sem anúncios. Sem rastreadores. Sem brincadeiras.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Sua contribuição ajudará a pagar pelo desenvolvimento, servidores e transmissão de dados. Signal é um aplicativo usado por milhões de pessoas em todo o mundo para se comunicarem de modo privado e instantâneo.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Agradecemos por seu apoio!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Agradecemos por sua doação única!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Você também pode</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">se tornar um Apoiador mensal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Definir como selo em destaque</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Pronto</string>
@@ -3320,13 +3326,25 @@
   <string name="ManageDonationsFragment__badges">Selos</string>
   <string name="Boost__enter_custom_amount">Insira o valor</string>
   <string name="MySupportPreference__s_per_month">%1$s/mês</string>
+  <string name="MySupportPreference__renews_s">Renova em %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Efetuando a transação…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Não foi possível adicionar o selo.</string>
+  <string name="MySupportPreference__please_contact_support">Por favor, entre em contato com o suporte.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu selo tornou-se inválido</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Selo inválido</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="Subscription__please_contact_support_for_more_information">Entre em contato com o suporte para obter mais informações, por favor.</string>
   <string name="Subscription__contact_support">Entre em contato com o suporte</string>
+  <string name="Subscription__earn_a_s_badge">Ganhe um selo %1$s</string>
   <string name="SubscribeFragment__processing_payment">Processando o pagamento…</string>
   <string name="DonationsErrors__payment_failed">Falha ao pagar</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Talvez você não veja o seu selo imediatamente. Estamos trabalhando para melhorar esse detalhe!</string> -->
+  <string name="DonationsErrors__your_payment">Não foi possível efetuar o seu pagamento e você não foi cobrado. Por favor, tente novamente.</string>
+  <string name="DonationsErrors__please_contact_support">Por favor, entre em contato com o suporte</string>
+  <string name="DonationsErrors__your_payment_is_still">Seu pagamento ainda está sendo efetuado. Isso pode demorar alguns minutos, dependendo da sua conexão.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Você precisa configurar o Google Pay para doar dentro do aplicativo.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
+  <string name="NetworkFailure__retry">Tentar novamente</string>
   <!--EOF-->
 </resources>

@@ -900,6 +900,7 @@
   <string name="InviteActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Zjistit více</string>
+  <string name="SpanUtil__read_more">Číst dále</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nepodařilo se nalézt zprávu</string>
   <string name="LongMessageActivity_message_from_s">Zpráva od %1$s</string>
@@ -2112,16 +2113,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Vyberte jednu z možností prosím</item>
-    <item>Něco nefunguje</item>
-    <item>Požadavek na zlepšení</item>
-    <item>Dotaz</item>
-    <item>Zpětná vazba</item>
-    <item>Jiné</item>
-    <item>Platby (MobileCoin)</item>
-    <item>Dary (Sustainers &amp; Signal Boost)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -3335,6 +3326,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vyberte si vzhled a barvu nebo si přizpůsobte iniciály.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Teď ne</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Přidat fotku</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Staňte se podporovatelem</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Ne, díky</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Smajlíky</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otevřít vyhledávání smajlíků</string>
@@ -3512,7 +3506,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ImageView__badge">Odznak</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal pohání lidé, jako jste vy.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podpořte technologii, která je vytvořena pro vás - ne pro vaše data - a připojte se ke komunitě lidí, kteří ji podporují.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Výše příspěvku</string> -->
   <string name="SubscribeFragment__more_payment_options">Více možností plateb</string>
   <string name="SubscribeFragment__cancel_subscription">Zrušit předplatné</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrdit zrušení?</string>
@@ -3529,11 +3522,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/měsíčně · Exspiruje %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Proč podpořit?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tým společnosti Signal se zavázal k vývoji open source technologie ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci. Váš příspěvek je pro tento cíl přínosem. Žádné reklamy. Žádné trackery. Bez legrace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Váš příspěvek pomáhá platit vývoj, servery a datové přenosy aplikace, kterou používají miliony lidí na celém světě k soukromé a okamžité komunikaci.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Díky za vaši podporu!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Díky za Boost!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Získali jste odznak %s! Zobrazení odznaku ukáže lidem, se kterými chatujete, že podporujete Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvořit doporučený odznak</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
@@ -3551,9 +3541,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MySupportPreference__s_per_month">%1$s/měsíc</string>
   <string name="MySupportPreference__renews_s">Obnova %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Váš odznak %1$s vypršel a již se nezobrazuje ostatním ve vašem profilu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás - ne pro vaše data - zvažte možnost stát se měsíčním předplatitelem.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Stát se předplatitelem</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
   <string name="Subscription__verification_failed">Ověření předplatného selhalo</string>
   <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>
@@ -3562,11 +3550,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
   <string name="DonationsErrors__payment_failed">Platba selhala</string>
   <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Na vykoupení se stále čeká</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Možná svůj odznak neuvidíte hned, ale pracujeme na tom!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musíte si nastavit Google Pay, abyste mohli přispět v rámci aplikace.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného selhalo</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušení předplatného vyžaduje aktivní připojení k internetu.</string>
+  <string name="NetworkFailure__retry">Zkusit znovu</string>
   <!--EOF-->
 </resources>

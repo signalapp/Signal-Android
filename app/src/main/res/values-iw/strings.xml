@@ -900,6 +900,7 @@
   <string name="InviteActivity_no_app_to_share_to">נראה שאין לך יישומים כלשהם לשתף בהם.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">למד עוד</string>
+  <string name="SpanUtil__read_more">קרא עוד</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">לא היה ניתן למצוא הודעה</string>
   <string name="LongMessageActivity_message_from_s">הודעה מאת %1$s</string>
@@ -3326,6 +3327,9 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">בחר מראה וצבע או התאם אישית את ראשי התיבות שלך.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">לא עכשיו</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">הוסף תמונה</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">הייה מחזיק</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">לא תודה</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">אמוג\'י</string>
   <string name="KeyboardPagerFragment_open_emoji_search">פתח חיפוש אימוג\'י</string>
@@ -3503,7 +3507,6 @@
   <string name="ImageView__badge">תג</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ממונע על ידי אנשים כמוך.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">תמוך בטכנולוגיה שנבנתה עבורך—לא עבור הנתונים שלך—ע״י הצטרפות אל קהילת האנשים שמחזיקים אותה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">סכום תרומה</string> -->
   <string name="SubscribeFragment__more_payment_options">עוד אפשרויות תשלום</string>
   <string name="SubscribeFragment__cancel_subscription">בטל מינוי</string>
   <string name="SubscribeFragment__confirm_cancellation">לאשר ביטול?</string>
@@ -3520,11 +3523,8 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/חודש · יפוג %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal הוא ללא מטרות רווח בלי מפרסמים או משקיעים, מוחזק רק ע״י האנשים שמשתמשים בו ומעריכים אותו. בצע תרומה חודשית חוזרת וקבל תג פרופיל כדי לשתף את התמיכה שלך.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">למה לתרום?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">הצוות ב־Signal מחוייב אל המשימה של פיתוח טכנולוגית פרטיות בקוד פתוח אשר מגינה על חופש ביטוי ומאפשרת תקשורת עולמית מאובטחת. התרומה שלך מתדלקת את המטרה הזאת. ללא פרסומות. ללא עוקבנים. ללא שטויות.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">התרומה שלך עוזרת לשלם עבור הפיתוח, השרתים, והתעבורה של יישום שנמצא בשימוש ע״י מיליוני אנשים ברחבי העולם למען תקשורת פרטית ומיידית.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">תודה על התמיכה שלך!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">תודה על התמריץ!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">הרווחת תג %s! הצגת התג שלך תראה לאנשים שאיתם אתה מתכתב שאתה תומך ב־Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">הצג בפרופיל</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">עשה תג בולט</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">סיים</string>
@@ -3542,9 +3542,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/חודש</string>
   <string name="MySupportPreference__renews_s">מתחדש %1$s</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">התג שלך פג</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">תג %1$s שלך פג, ואינו גלוי יותר אל אחרים בפרופיל שלך.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">כדי להמשיך לתמוך בטכנולוגיה שנבנתה עבורך—לא עבור הנתונים שלך—אנא שקול להפוך למנוי חודשי.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">הייה מנוי</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">הייה מחזיק</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
   <string name="Subscription__verification_failed">וידוא מינוי נכשל</string>
   <string name="Subscription__please_contact_support_for_more_information">אנא צור קשר עם התמיכה לעוד מידע.</string>
@@ -3553,11 +3551,10 @@
   <string name="SubscribeFragment__processing_payment">מעבד תשלום…</string>
   <string name="DonationsErrors__payment_failed">תשלום נכשל</string>
   <string name="DonationsErrors__your_payment">התשלום שלך לא היה יכול להיות מעובד ולא חויבת. אנא נסה שוב.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">מימוש עדין ממתין</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">ייתכן שלא תראה את התג שלך מיד, אבל אנחנו עובדים על זה!</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay לא זמין</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">אתה חייב להגדיר את Google Pay כדי לתרום בתוך יישום.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">נכשל בביטול מינוי</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ביטול מינוי דורש חיבור אינטרנט.</string>
+  <string name="NetworkFailure__retry">נסה שוב</string>
   <!--EOF-->
 </resources>

@@ -704,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">Käyttäjätunnuksesi</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar-kuvan asettaminen epäonnistui</string>
   <string name="ManageProfileFragment_badges">Merkit</string>
+  <string name="ManageProfileFragment__edit_photo">Muokkaa kuvaa</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ei yhteisiä ryhmiä</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -804,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lue lisää</string>
+  <string name="SpanUtil__read_more">Lue lisää</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Viestiä ei löydy</string>
   <string name="LongMessageActivity_message_from_s">Viesti lähettäjältä: %1$s</string>
@@ -1935,16 +1937,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Valitse vaihtoehdoista</item>
-    <item>Jokin ei toimi</item>
-    <item>Ominaisuustoive</item>
-    <item>Kysymys</item>
-    <item>Palaute</item>
-    <item>Muu</item>
-    <item>Maksu (MobileCoin)</item>
-    <item>Lahjoitus (Ylläpitäjät &amp; Signalin tehostaminen)</item>
-  </string-array> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -2684,7 +2676,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Siirretään tietoja</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Pidä laitteet lähekkäin. Älä sammuta niitä ja pidä Signal päällä. Siirto on päästä päähän salattu.</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$dviestiä tähän asti…</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d viestiä tähän mennessä…</string>
   <string name="DeviceTransfer__cancel">Peruuta</string>
   <string name="DeviceTransfer__try_again">Yritä uudelleen</string>
   <string name="DeviceTransfer__stop_transfer_question">Pysäytä siirto?</string>
@@ -3132,6 +3124,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Valitse ulkoasu ja väri tai mukauta nimikirjaimiasi.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ei nyt</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Lisää kuva</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Ei kiitos</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emojit</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Avaa emojihaku</string>
@@ -3301,7 +3295,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ImageView__badge">Merkki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Kaltaisesti ihmiset pitävät Signalin tehokkaana.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Tue teknologiaa joka on rakennettu sinulle—ei datallesi—liittymällä yhteisöön joka pitää sitä yllä.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Lahjoitussumma</string> -->
   <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
   <string name="SubscribeFragment__cancel_subscription">Peruuta tilaus</string>
   <string name="SubscribeFragment__confirm_cancellation">Vahvista peruutus?</string>
@@ -3318,11 +3311,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/kk· Loppuu %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal on voittoa tavoittelematon yhtiö, jolla ei ole mainostajia tai sijoittajia, ja sitä ylläpitävät vain ihmiset, jotka käyttävät ja arvostavat sitä. Tee toistuva kuukausittainen lahjoitus ja vastaanota profiilimerkki, jotta voit jakaa tukesi.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Miksi avustaa?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signalin tiimi on sitoutunut kehittämään avoimen lähdekoodin tietosuojateknologiaa, joka suojaa sananvapautta ja mahdollistaa turvallisen maailmanlaajuisen viestinnän. Sinun panoksesi ruokkii tätä asiaa. Ei mainoksia. Ei seurantalaitteita. Ihan totta.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Panoksesi auttaa maksamaan miljoonien ihmisten ympäri maailmaa yksityiseen ja välittömään viestintään käyttämän sovelluksen kehittämisen, palvelimien ja kaistanleveyden.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Kiitämme tuestasi!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Kiitos boostista!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Olet ansainnut %s merkin! Merkkisi näkyy ihmisille, joiden kanssa keskustelet. Ja, että tuet Signalia.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Näytä profiilissa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Tee esitelty merkki</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
@@ -3339,10 +3329,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MySupportPreference__add_a_signal_boost">Lisää Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/kk</string>
   <string name="MySupportPreference__renews_s">Uudistuu%1$s</string>
+  <string name="MySupportPreference__processing_transaction">Käsitellään transaktiota…</string>
+  <string name="MySupportPreference__please_contact_support">Ota yhteys tukeen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkkisi on vanhentunut</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Sinun %1$s merkki on vanhentunut ja ei ole enää näkyvissä muille profiilissasi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Harkitse kuukausitilaajaksi ryhtymistä, jos haluat jatkaa teknologian tukemista, joka on rakennettu sinulle – ei tietoihisi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Ryhdy tilaajaksi</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy tukijaksi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
   <string name="Subscription__verification_failed">Tilauksen vahvistus epäonnistui</string>
   <string name="Subscription__please_contact_support_for_more_information">Ota yhteyttä tukeen saadaksesi lisätietoja.</string>
@@ -3351,11 +3341,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
   <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string>
   <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään joten sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Lunastus odottaa vielä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Et ehkä näe merkkiäsi heti, mutta työskentelemme sen eteen!</string> -->
+  <string name="DonationsErrors__still_processing">Käsitellään edelleen</string>
+  <string name="DonationsErrors__please_contact_support">Ota yhteys tukeen</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruuttaminen epäonnistui</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruuttaminen vaatii internet-yhteyden.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Verkkovirhe. Tarkista yhteys ja yritä uudelleen.</string>
+  <string name="NetworkFailure__retry">Yritä uudelleen</string>
   <!--EOF-->
 </resources>

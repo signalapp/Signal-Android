@@ -704,6 +704,7 @@
   <string name="ManageProfileFragment_your_username">Il tuo nome utente</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Impossibile impostare avatar</string>
   <string name="ManageProfileFragment_badges">Badge</string>
+  <string name="ManageProfileFragment__edit_photo">Modifica foto</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nessun gruppo in comune</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -804,6 +805,7 @@
   <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia applicazioni per condividere.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scopri di più</string>
+  <string name="SpanUtil__read_more">Leggi tutto</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Messaggio non trovato</string>
   <string name="LongMessageActivity_message_from_s">Messaggio da %1$s</string>
@@ -1347,6 +1349,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
   <string name="RegistrationActivity_rate_limited_to_service">Hai fatto troppi tentativi per registrare questo numero. Per favore riprova più tardi.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossibile connettersi al servizio. Per favore controlla la connessione a internet e riprova</string>
+  <string name="RegistrationActivity_non_standard_number_format">Formato del numero non standard</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Il numero che hai inserito (%1$s) sembra essere in un formato non standard.\n\nIntendevi %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formato Numero di Telefono</string>
   <string name="RegistrationActivity_call_requested">Chiamata richiesta</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ti manca solo %d passo per inviare un log di debug.</item>
@@ -1941,16 +1946,16 @@
   <string name="HelpFragment__debug_log">Log di debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Impossibile inviare i log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Sii il più descrittivo possibile per aiutarci a capire il problema.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Per favore seleziona un\'opzione</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Per favore seleziona un\'opzione \-\-</item>
     <item>Qualcosa non funziona</item>
-    <item>Richiesta di funzionalità</item>
+    <item>Qualcosa non funzionaRichiesta di funzionalità</item>
     <item>Domanda</item>
     <item>Opinione</item>
     <item>Altro</item>
     <item>Pagamenti (MobileCoin)</item>
-    <item>Donazioni (Sostenitori &amp; Boost di Signal)</item>
-  </string-array> -->
+    <item>Sostenitori &amp; Boost di Signal</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Questo messaggio</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usate di recente</string>
@@ -2048,6 +2053,7 @@
   <string name="preferences__advanced">Avanzate</string>
   <string name="preferences__donate_to_signal">Dona a Signal</string>
   <string name="preferences__subscription">Contributo</string>
+  <string name="preferences__become_a_signal_sustainer">Diventa un sostenitore di Signal</string>
   <string name="preferences__signal_boost">Boost di Signal</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">User agent MMS</string>
@@ -3138,6 +3144,11 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Scegli un look e un colore o personalizza le tue iniziali.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Non ora</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Aggiungi foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Diventa un sostenitore</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal è sostenuto da persone come te. Contribuisci e ricevi un badge del profilo.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">No grazie</string>
+  <string name="BecomeASustainerMegaphone__contribute">Contribuisci</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Apri ricerca emoji</string>
@@ -3186,6 +3197,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversazione silenziata per sempre</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numero di telefono copiato negli appunti.</string>
   <string name="ConversationSettingsFragment__phone_number">Numero di telefono</string>
+  <string name="ConversationSettingsFragment__get_badges">Ottieni i badge per il tuo profilo supportando Signal. Tocca un badge per saperne di più.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Aggiungi membri</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifica informazioni gruppo</string>
@@ -3307,7 +3319,8 @@
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal è sostenuto da persone come te.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Sostieni la tecnologia che è costruita per te—non per i tuoi dati—unendoti alla comunità di persone che la sostengono.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Importo donazione</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sostieni la tecnologia che è costruita per te, non per i tuoi dati, unendoti alla comunità che sostiene Signal.</string>
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Altre opzioni di pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Annulla contributo</string>
   <string name="SubscribeFragment__confirm_cancellation">Confermare cancellazione?</string>
@@ -3319,16 +3332,20 @@
   <string name="SubscribeFragment__update_subscription_question">Aggiornare contributo?</string>
   <string name="SubscribeFragment__update">Aggiorna</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Oggi ti verrà addebitato l\'intero importo del nuovo prezzo del contributo. Il tuo contributo si rinnoverà %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ti verrà addebitato l\'intero importo (%1$s) del nuovo prezzo del contributo oggi. Il tuo contributo si rinnoverà mensilmente.</string>
   <string name="Subscription__s_per_month">%s/mese</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mese · Rinnovo %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mese · Scade %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal è una non-profit senza inserzionisti o investitori, sostenuta solo dalle persone che la usano e la apprezzano. Fai un contributo mensile ricorrente e ricevi un badge del profilo per condividere il tuo sostegno.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Perché contribuire?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Il team di Signal è impegnato nella missione di sviluppare una tecnologia open source per la privacy che protegge la libera espressione e consente una comunicazione globale sicura. Il tuo contributo alimenta questa causa. Nessuna pubblicità. Nessun tracker. Nessuno scherzo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Il tuo contributo aiuta a pagare lo sviluppo, i server e la banda di un\'applicazione usata da milioni di persone nel mondo per la comunicazione privata e istantanea.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Il team di Signal è impegnato nella sua missione di sviluppare tecnologia open source per la privacy che protegga la libera espressione e consenta comunicazioni sicure in tutto il mondo.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Il tuo contributo alimenta questa causa e paga lo sviluppo e le operazioni di un\'applicazione usata da milioni di persone per la comunicazione privata. Nessuna pubblicità. Nessun tracciamento. Nessuno scherzo.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Grazie per il tuo supporto!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Grazie per il Boost!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Hai guadagnato un badge %s ! Mostrando il tuo badge mostrerai alle persone con cui chatti che sostieni Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Hai guadagnato un badge %s ! Aiuta Signal a creare consapevolezza mostrando questo badge sul tuo profilo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Hai guadagnato un badge Boost! Aiuta Signal a creare consapevolezza mostrando questo badge sul tuo profilo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Puoi anche</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">diventare un sostenitore mensile.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra sul profilo</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Rendi badge in evidenza</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fatto</string>
@@ -3345,23 +3362,37 @@
   <string name="MySupportPreference__add_a_signal_boost">Aggiungi un Boost di Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/mese</string>
   <string name="MySupportPreference__renews_s">Rinnovo %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Elaborazione della transazione…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Non è stato possibile aggiungere il badge.</string>
+  <string name="MySupportPreference__please_contact_support">Contatta l\'assistenza.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Il tuo badge %1$s è scaduto, e non è più visibile agli altri sul tuo profilo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Per continuare a sostenere la tecnologia che è costruita per te—non per i tuoi dati—considera di diventare un contributore mensile.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Diventa un contributore</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge scaduto</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Contributo annullato</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Il tuo badge Boost è scaduto, e non è più visibile agli altri sul tuo profilo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuare a sostenere la tecnologia che è costruita per te, considera di diventare un contributore mensile.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Diventa un sostenitore</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Non ora</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Il tuo contributo da sostenitore è stato automaticamente cancellato perché sei stato inattivo per troppo tempo. Il tuo badge %1$s non è più visibile sul tuo profilo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma per sostenere l\'app e riattivare il tuo badge, rinnova ora.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinnova contributo</string>
   <string name="Subscription__verification_failed">Verifica del contributo non riuscita</string>
+  <string name="Subscription__redemption_failed">Riscatto del badge fallito</string>
   <string name="Subscription__please_contact_support_for_more_information">Si prega di contattare l\'assistenza per ulteriori informazioni.</string>
   <string name="Subscription__contact_support">Contatta l\'assistenza</string>
   <string name="Subscription__earn_a_s_badge">Guadagna un badge %1$s</string>
   <string name="SubscribeFragment__processing_payment">Pagamento in elaborazione…</string>
   <string name="DonationsErrors__payment_failed">Pagamento fallito</string>
   <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Riscatto ancora in corso</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Forse non vedrai subito il tuo badge, ma ci stiamo lavorando!</string> -->
+  <string name="DonationsErrors__still_processing">Ancora in fase di elaborazione</string>
+  <string name="DonationsErrors__redemption_failed">Riscatto fallito</string>
+  <string name="DonationsErrors__please_contact_support">Contatta l\'assistenza</string>
+  <string name="DonationsErrors__your_payment_is_still">Il tuo pagamento è ancora in fase di elaborazione. Questo può richiedere alcuni minuti a seconda della tua connessione.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay non disponibile</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Devi impostare Google Pay per donare all\'interno dell\'app.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Impossibile annullare il contributo</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L\'annullamento del contributo richiede una connessione a Internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Il tuo dispositivo non supporta Google Pay, quindi non puoi contribuire per guadagnare un badge. Puoi comunque sostenere Signal facendo una donazione sul nostro sito web.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Errore di rete. Controlla la tua connessione e riprova.</string>
+  <string name="NetworkFailure__retry">Riprova</string>
   <!--EOF-->
 </resources>

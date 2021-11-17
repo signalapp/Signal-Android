@@ -705,6 +705,7 @@
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
   <string name="ManageProfileFragment_badges">Badges</string>
+  <string name="ManageProfileFragment__edit_photo">Foto aanpassen</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -805,6 +806,7 @@
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je een uitnodiging kan verzenden.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
+  <string name="SpanUtil__read_more">Meer lezen</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kan bericht niet vinden</string>
   <string name="LongMessageActivity_message_from_s">Volledige bericht van %1$s</string>
@@ -1351,6 +1353,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal heeft toegang nodig tot de contactenlijst van je telefoon om je contactpersonen te kunnen weergeven als opties om beveiligde gesprekken mee te beginnen en om beveiligd mee te bellen</string>
   <string name="RegistrationActivity_rate_limited_to_service">Je hebt te veel pogingen ondernomen om Signal voor dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signals servers. Ga na dat je apparaat internetverbinding heeft en probeer het opnieuw.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Afwijkend telefoonnummerformaat</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Het door jou ingevulde telefoonnummer (%1$s) heeft een afwijkend formaat.\n\nBedoelde je %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefoonnummerformaat</string>
   <string name="RegistrationActivity_call_requested">Belverzoek ingediend</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Je bent nu %d stap verwijderd van het indienen van een foutopsporingslog.</item>
@@ -1945,8 +1950,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
-  <!-- Removed by excludeNonTranslatables <string-array name="HelpFragment__categories_2">
-    <item>Maak een keuze</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Maak een keuze \-\-</item>
     <item>Er werkt iets niet zoals het hoort</item>
     <item>Verzoek voor nieuwe functionaliteit</item>
     <item>Vraag</item>
@@ -1954,7 +1959,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item>Iets anders</item>
     <item>Overschrijvingen (MobileCoin)</item>
     <item>Donaties (maandelijks of eenmalig)</item>
-  </string-array> -->
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -2052,6 +2057,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__donate_to_signal">Aan Signal doneren</string>
   <string name="preferences__subscription">Maandelijkse donatie</string>
+  <string name="preferences__become_a_signal_sustainer">Wordt een Signal-ondersteuner</string>
   <string name="preferences__signal_boost">Eenmalige donatie</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
@@ -3142,6 +3148,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Maak jezelf herkenbaar door een profielfoto in te stellen of pas de kleur of tekst aan.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Niet nu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Voeg een foto toe</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Wordt een ondersteuner</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Als je ons steunt krijg je een profiel-badge.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nee bedankt</string>
+  <string name="BecomeASustainerMegaphone__contribute">Bijdragen</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-zoeken</string>
@@ -3311,7 +3322,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Bedrag</string> -->
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties</string>
   <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie annuleren</string>
   <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie annuleren?</string>
@@ -3328,11 +3339,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakts door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge om—als je dat wilt—te laten zien dat je Signal ondersteunt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Het Signal team heeft zich toegewijd tot het ontwikkelen van technologieën met open broncode waarmee de vrijheid van meningsuiting en wereldwijde beveiligde communicatie mogelijk worden gemaakt. Jou bijdrage helpt dat mogelijk te maken. We doen dit zonder advertenties en zonder volgers die je gegevens verzamelen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Met jou bijdrage betalen we de ontwikkeling, servers en bandbreedte voor een app die wereldwijd door miljoenen mensen over de hele wereld wordt gebruikt voor privé-communicatie.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Je hebt een %s badge verdient! Als je er voor kiest deze badge op je profiel weer te geven dan kunnen de mensen met wie je gesprekken voert zien dat jij Signal steunt.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Je kunt ook</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maandelijks doneren.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op je profiel weergeven</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klaar</string>
@@ -3349,10 +3359,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MySupportPreference__add_a_signal_boost">Geef Signal een oppepper</string>
   <string name="MySupportPreference__s_per_month">%1$s/maand</string>
   <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
+  <string name="MySupportPreference__couldnt_add_badge">Het toevoegen van de badge is mislukt.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Je badge is verlopen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Je %1$s badge is verlopen en is daarom niet langer voor anderen zichtbaar op je profiel.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Als je door wilt gaan met het ondersteunen van technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—overweeg dan om maandelijks te doneren.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Wordt een maandelijkse ondersteuner</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge verlopen</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Wordt een ondersteuner</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
   <string name="Subscription__verification_failed">Bevestiging van maandelijkse donatie is mislukt</string>
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
@@ -3361,11 +3371,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
   <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string>
   <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_still_pending">Terugbetaling nog in afwachting</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Het kan zijn dat je de badge niet gelijk ziet maar we werken er aan.</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal app donaties te kunnen doen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donatie is mislukt</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie te annuleren moet je toegang hebben tot internet.</string>
+  <string name="NetworkFailure__retry">Opnieuw proberen</string>
   <!--EOF-->
 </resources>
