@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -67,7 +68,7 @@ public class NewConversationActivity extends ContactSelectionActivity
     } else {
       Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
 
-      if (TextSecurePreferences.isPushRegistered(this) && NetworkConstraint.isMet(this)) {
+      if (SignalStore.account().isRegistered() && NetworkConstraint.isMet(this)) {
         Log.i(TAG, "[onContactSelected] Doing contact refresh.");
 
         AlertDialog progress = SimpleProgressDialog.show(this);

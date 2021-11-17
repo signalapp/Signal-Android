@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -235,7 +236,7 @@ public final class MmsSendJob extends SendJob {
     if (!TextUtils.isEmpty(lineNumber)) {
       req.setFrom(new EncodedStringValue(lineNumber));
     } else {
-      req.setFrom(new EncodedStringValue(TextSecurePreferences.getLocalNumber(context)));
+      req.setFrom(new EncodedStringValue(SignalStore.account().getE164()));
     }
 
     if (message.getRecipient().isMmsGroup()) {

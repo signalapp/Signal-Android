@@ -159,7 +159,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(this::cleanAvatarStorage)
                             .addNonBlocking(this::initializeRevealableMessageManager)
                             .addNonBlocking(this::initializePendingRetryReceiptManager)
-                            .addNonBlocking(this::initializeGcmCheck)
+                            .addNonBlocking(this::initializeFcmCheck)
                             .addNonBlocking(this::initializeSignedPreKeyCheck)
                             .addNonBlocking(this::initializePeriodicTasks)
                             .addNonBlocking(this::initializeCircumvention)
@@ -300,11 +300,11 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     }
   }
 
-  private void initializeGcmCheck() {
-    if (TextSecurePreferences.isPushRegistered(this)) {
-      long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
+  private void initializeFcmCheck() {
+    if (SignalStore.account().isRegistered()) {
+      long nextSetTime = SignalStore.account().getFcmTokenLastSetTime() + TimeUnit.HOURS.toMillis(6);
 
-      if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
+      if (SignalStore.account().getFcmToken() == null || nextSetTime <= System.currentTimeMillis()) {
         ApplicationDependencies.getJobManager().add(new FcmRefreshJob());
       }
     }
@@ -350,7 +350,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @WorkerThread
   private void initializeCircumvention() {
-    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(ApplicationContext.this)) {
+    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()) {
       try {
         ProviderInstaller.installIfNeeded(ApplicationContext.this);
       } catch (Throwable t) {

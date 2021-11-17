@@ -1853,7 +1853,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     } else if (ServiceOutageReminder.isEligible(this)) {
       ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
       reminderView.get().showReminder(new ServiceOutageReminder(this));
-    } else if (TextSecurePreferences.isPushRegistered(this)      &&
+    } else if (SignalStore.account().isRegistered()              &&
                TextSecurePreferences.isShowInviteReminders(this) &&
                !isSecureText                                     &&
                inviteReminder.isPresent()                        &&
@@ -2734,14 +2734,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getId());
     return record.isPresent() && record.get().isActive();
-  }
-
-  @SuppressWarnings("SimplifiableIfStatement")
-  private boolean isSelfConversation() {
-    if (!TextSecurePreferences.isPushRegistered(this)) return false;
-    if (recipient.get().isGroup())                     return false;
-
-    return recipient.get().isSelf();
   }
 
   private boolean isGroupConversation() {

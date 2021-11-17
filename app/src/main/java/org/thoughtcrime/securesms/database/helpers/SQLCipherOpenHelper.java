@@ -559,7 +559,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       }
 
       if (oldVersion < SELF_ATTACHMENT_CLEANUP) {
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
 
         if (!TextUtils.isEmpty(localNumber)) {
           try (Cursor threadCursor = db.rawQuery("SELECT _id FROM thread WHERE recipient_ids = ?", new String[]{ localNumber })) {
@@ -651,7 +651,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < RECIPIENT_SEARCH) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN system_phone_type INTEGER DEFAULT -1");
 
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
         if (!TextUtils.isEmpty(localNumber)) {
           try (Cursor cursor = db.query("recipient", null, "phone = ?", new String[] { localNumber }, null, null, null)) {
             if (cursor == null || !cursor.moveToFirst()) {
@@ -834,7 +834,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       }
 
       if (oldVersion < PROFILE_KEY_TO_DB) {
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
         if (!TextUtils.isEmpty(localNumber)) {
           String        encodedProfileKey = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_key", null);
           byte[]        profileKey        = encodedProfileKey != null ? Base64.decodeOrThrow(encodedProfileKey) : Util.getSecretBytes(32);
@@ -903,7 +903,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       }
 
       if (oldVersion < PROFILE_DATA_MIGRATION) {
-        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        String localNumber = SignalStore.account().getE164();
         if (localNumber != null) {
           String      encodedProfileName = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_name", null);
           ProfileName profileName        = ProfileName.fromSerialized(encodedProfileName);

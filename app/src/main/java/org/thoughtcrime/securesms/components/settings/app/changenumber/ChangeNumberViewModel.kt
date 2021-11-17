@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.registration.VerifyProcessor
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.util.Objects
@@ -167,8 +166,8 @@ class ChangeNumberViewModel(
 
     override fun <T : ViewModel?> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
       val context: Application = ApplicationDependencies.getApplication()
-      val localNumber: String = TextSecurePreferences.getLocalNumber(context)
-      val password: String = TextSecurePreferences.getPushServerPassword(context)
+      val localNumber: String = SignalStore.account().e164!!
+      val password: String = SignalStore.account().servicePassword!!
 
       val viewModel = ChangeNumberViewModel(
         localNumber = localNumber,

@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -46,7 +47,7 @@ public class RemoteConfigRefreshJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Not registered. Skipping.");
       return;
     }

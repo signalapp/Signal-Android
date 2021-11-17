@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -500,7 +501,7 @@ public class RecipientDatabase extends Database {
       } else if (!byE164.isPresent() && byAci.isPresent()) {
         if (e164 != null) {
           if (highTrust) {
-            if (Objects.equals(aci, TextSecurePreferences.getLocalAci(context)) && !changeSelf) {
+            if (Objects.equals(aci, SignalStore.account().getAci()) && !changeSelf) {
               Log.w(TAG, String.format(Locale.US, "Found out about an E164 (%s) for our own ACI user (%s). High-trust but not change self, doing nothing.", e164, byAci.get()), true);
               finalId = byAci.get();
             } else {

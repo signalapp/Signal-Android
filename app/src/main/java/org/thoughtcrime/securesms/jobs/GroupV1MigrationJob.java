@@ -69,8 +69,8 @@ public class GroupV1MigrationJob extends BaseJob {
 
   public static void enqueueRoutineMigrationsIfNecessary(@NonNull Application application) {
     if (!SignalStore.registrationValues().isRegistrationComplete() ||
-        !TextSecurePreferences.isPushRegistered(application)       ||
-        TextSecurePreferences.getLocalAci(application) == null)
+        !SignalStore.account().isRegistered()                      ||
+        SignalStore.account().getAci() == null)
     {
       Log.i(TAG, "Registration not complete. Skipping.");
       return;

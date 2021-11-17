@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.push;
 
+import org.whispersystems.signalservice.api.util.UuidUtil;
+
 import java.util.UUID;
 
 /**
@@ -10,6 +12,11 @@ public final class PNI extends AccountIdentifier {
 
   public static PNI from(UUID uuid) {
     return new PNI(uuid);
+  }
+
+  public static PNI parseOrNull(String raw) {
+    UUID uuid = UuidUtil.parseOrNull(raw);
+    return uuid != null ? from(uuid) : null;
   }
 
   private PNI(UUID uuid) {

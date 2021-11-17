@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -42,7 +43,7 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    if (TextSecurePreferences.getLocalAci(context) == null) {
+    if (SignalStore.account().getAci() == null) {
       Log.w(TAG, "Self not yet available.");
       return;
     }

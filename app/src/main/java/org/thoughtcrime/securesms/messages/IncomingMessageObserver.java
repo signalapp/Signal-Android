@@ -40,6 +40,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * The application-level manager of our websocket connection.
+ *
+ * This class is responsible for opening/closing the websocket based on the app's state and observing new inbound messages received on the websocket.
+ */
 public class IncomingMessageObserver {
 
   private static final String TAG = Log.tag(IncomingMessageObserver.class);
@@ -71,7 +76,7 @@ public class IncomingMessageObserver {
 
     new MessageRetrievalThread().start();
 
-    if (TextSecurePreferences.isFcmDisabled(context)) {
+    if (!SignalStore.account().isFcmEnabled()) {
       ContextCompat.startForegroundService(context, new Intent(context, ForegroundService.class));
     }
 
@@ -117,7 +122,7 @@ public class IncomingMessageObserver {
   }
 
   public boolean isDecryptionDrained() {
-    return decryptionDrained || networkAccess.isCensored(context);
+    return decryptionDrained || networkAccess.isCensored();
   }
 
   public void notifyDecryptionsDrained() {
@@ -147,20 +152,18 @@ public class IncomingMessageObserver {
   }
 
   private synchronized boolean isConnectionNecessary() {
-    boolean registered          = TextSecurePreferences.isPushRegistered(context);
-    boolean websocketRegistered = TextSecurePreferences.isWebsocketRegistered(context);
-    boolean isGcmDisabled       = TextSecurePreferences.isFcmDisabled(context);
-    boolean hasNetwork          = NetworkConstraint.isMet(context);
-    boolean hasProxy            = SignalStore.proxy().isProxyEnabled();
+    boolean registered = SignalStore.account().isRegistered();
+    boolean fcmEnabled = SignalStore.account().isFcmEnabled();
+    boolean hasNetwork = NetworkConstraint.isMet(context);
+    boolean hasProxy   = SignalStore.proxy().isProxyEnabled();
 
-    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Censored: %s, Registered: %s, Websocket Registered: %s, Proxy: %s",
-                             hasNetwork, appVisible, !isGcmDisabled, networkAccess.isCensored(context), registered, websocketRegistered, hasProxy));
+    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Censored: %s, Registered: %s, Proxy: %s",
+                             hasNetwork, appVisible, fcmEnabled, networkAccess.isCensored(), registered, hasProxy));
 
-    return registered                    &&
-           websocketRegistered           &&
-           (appVisible || isGcmDisabled) &&
-           hasNetwork                    &&
-           !networkAccess.isCensored(context);
+    return registered                  &&
+           (appVisible || !fcmEnabled) &&
+           hasNetwork                  &&
+           !networkAccess.isCensored();
   }
 
   private synchronized void waitForConnectionNecessary() {

@@ -20,7 +20,7 @@ final class SignalPinReminderSchedule implements MegaphoneSchedule {
       return false;
     }
 
-    if (!TextSecurePreferences.isPushRegistered(ApplicationDependencies.getApplication())) {
+    if (!SignalStore.account().isRegistered()) {
       return false;
     }
 

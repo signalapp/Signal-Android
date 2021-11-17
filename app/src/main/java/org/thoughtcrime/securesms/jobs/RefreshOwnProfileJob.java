@@ -76,7 +76,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    if (!TextSecurePreferences.isPushRegistered(context) || TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+    if (!SignalStore.account().isRegistered() || TextUtils.isEmpty(SignalStore.account().getE164())) {
       Log.w(TAG, "Not yet registered!");
       return;
     }

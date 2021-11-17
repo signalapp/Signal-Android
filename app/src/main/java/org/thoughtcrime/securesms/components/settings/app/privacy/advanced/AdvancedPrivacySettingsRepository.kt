@@ -30,7 +30,7 @@ class AdvancedPrivacySettingsRepository(private val context: Context) {
         } catch (e: AuthorizationFailedException) {
           Log.w(TAG, e)
         }
-        if (!TextSecurePreferences.isFcmDisabled(context)) {
+        if (SignalStore.account().fcmEnabled) {
           Tasks.await(FirebaseInstallations.getInstance().delete())
         }
         DisablePushMessagesResult.SUCCESS

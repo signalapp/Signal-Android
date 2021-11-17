@@ -459,7 +459,7 @@ public class MessageSender {
   }
 
   private static boolean isPushTextSend(Context context, Recipient recipient, boolean keyExchange) {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       return false;
     }
 
@@ -471,7 +471,7 @@ public class MessageSender {
   }
 
   private static boolean isPushMediaSend(Context context, Recipient recipient) {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       return false;
     }
 
@@ -503,10 +503,10 @@ public class MessageSender {
   }
 
   public static boolean isLocalSelfSend(@NonNull Context context, @Nullable Recipient recipient, boolean forceSms) {
-    return recipient != null                               &&
-           recipient.isSelf()                              &&
-           !forceSms                                       &&
-           TextSecurePreferences.isPushRegistered(context) &&
+    return recipient != null                    &&
+           recipient.isSelf()                   &&
+           !forceSms                            &&
+           SignalStore.account().isRegistered() &&
            !TextSecurePreferences.isMultiDevice(context);
   }
 

@@ -191,7 +191,6 @@ public class DeviceActivity extends PassphraseRequiredActivity
           Optional<byte[]> profileKey        = Optional.of(ProfileKeyUtil.getProfileKey(getContext()));
 
           TextSecurePreferences.setMultiDevice(DeviceActivity.this, true);
-          TextSecurePreferences.setIsUnidentifiedDeliveryEnabled(context, false);
           accountManager.addDevice(ephemeralId, publicKey, identityKeyPair, profileKey, verificationCode);
 
           return SUCCESS;

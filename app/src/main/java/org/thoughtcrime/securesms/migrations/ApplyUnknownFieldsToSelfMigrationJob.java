@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -45,7 +46,7 @@ public class ApplyUnknownFieldsToSelfMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    if (!TextSecurePreferences.isPushRegistered(context) || TextSecurePreferences.getLocalAci(context) == null) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getAci() == null) {
       Log.w(TAG, "Not registered!");
       return;
     }

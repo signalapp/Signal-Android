@@ -153,8 +153,8 @@ public final class LiveRecipientCache {
     }
 
     if (selfId == null) {
-      ACI    localAci  = TextSecurePreferences.getLocalAci(context);
-      String localE164 = TextSecurePreferences.getLocalNumber(context);
+      ACI    localAci  = SignalStore.account().getAci();
+      String localE164 = SignalStore.account().getE164();
 
       if (localAci != null) {
         selfId = recipientDatabase.getByAci(localAci).or(recipientDatabase.getByE164(localE164)).orNull();

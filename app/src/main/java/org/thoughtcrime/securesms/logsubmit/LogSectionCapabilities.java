@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.AppCapabilities;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
@@ -18,11 +19,11 @@ public final class LogSectionCapabilities implements LogSection {
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       return "Unregistered";
     }
 
-    if (TextSecurePreferences.getLocalNumber(context) == null || TextSecurePreferences.getLocalAci(context) == null) {
+    if (SignalStore.account().getE164() == null || SignalStore.account().getAci() == null) {
       return "Self not yet available!";
     }
 

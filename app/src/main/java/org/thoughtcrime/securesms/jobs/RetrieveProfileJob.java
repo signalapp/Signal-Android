@@ -170,8 +170,8 @@ public class RetrieveProfileJob extends BaseJob {
    */
   public static void enqueueRoutineFetchIfNecessary(Application application) {
     if (!SignalStore.registrationValues().isRegistrationComplete() ||
-        !TextSecurePreferences.isPushRegistered(application) ||
-        TextSecurePreferences.getLocalAci(application) == null)
+        !SignalStore.account().isRegistered()                      ||
+        SignalStore.account().getAci() == null)
     {
       Log.i(TAG, "Registration not complete. Skipping.");
       return;
@@ -236,7 +236,7 @@ public class RetrieveProfileJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, RetryLaterException {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Unregistered. Skipping.");
       return;
     }
