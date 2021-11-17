@@ -791,8 +791,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   public void scrollToBottom() {
     if (getListLayoutManager().findFirstVisibleItemPosition() < SCROLL_ANIMATION_THRESHOLD) {
+      Log.d(TAG, "scrollToBottom: Smooth scrolling to bottom of screen.");
       list.smoothScrollToPosition(0);
     } else {
+      Log.d(TAG, "scrollToBottom: Scrolling to bottom of screen.");
       list.scrollToPosition(0);
     }
   }
