@@ -102,7 +102,7 @@ class GooglePayApi(
       Activity.RESULT_CANCELED -> paymentRequestCallback.onCancelled()
       AutoResolveHelper.RESULT_ERROR -> {
         AutoResolveHelper.getStatusFromIntent(data)?.let {
-          Log.w(TAG, "loadPaymentData failed with error code ${it.statusCode}")
+          Log.w(TAG, "loadPaymentData failed with error code ${it.statusCode}: ${it.statusMessage}")
           paymentRequestCallback.onError()
         }
       }
