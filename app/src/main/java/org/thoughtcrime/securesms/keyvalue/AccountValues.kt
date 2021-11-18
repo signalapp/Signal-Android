@@ -52,7 +52,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
   /** The local user's [PNI]. */
   val pni: PNI?
-    get() = PNI.parseOrNull(getString(KEY_ACI, null))
+    get() = PNI.parseOrNull(getString(KEY_PNI, null))
 
   fun setPni(pni: PNI) {
     putString(KEY_PNI, pni.toString())
