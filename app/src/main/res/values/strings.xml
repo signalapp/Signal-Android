@@ -505,13 +505,6 @@
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Unnamed file</string>
 
-
-    <!-- DonateMegaphone -->
-    <string name="DonateMegaphone_donate_to_signal">Donate to Signal</string>
-    <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal is powered by people like you. Show your support today!</string>
-    <string name="DonateMegaphone_donate">Donate</string>
-    <string name="DonateMegaphone_no_thanks">No Thanks</string>
-
     <!-- GroupCallingMegaphone -->
     <string name="GroupCallingMegaphone__introducing_group_calls">Introducing Group Calls</string>
     <string name="GroupCallingMegaphone__open_a_new_group_to_start">Open a New Group to start a free encrypted group call</string>
