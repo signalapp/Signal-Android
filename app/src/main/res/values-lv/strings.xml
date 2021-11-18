@@ -410,10 +410,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezvārda fails</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Ziedot/dāvināt Signālam</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signālu veido un darbina tādi paši cilvēki kā jūs. Atbalstiet jau šodien!</string>
-  <string name="DonateMegaphone_donate">Ziedojiet</string>
-  <string name="DonateMegaphone_no_thanks">Nē, paldies</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Ziedot/dāvināt Signālam</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signālu veido un darbina tādi paši cilvēki kā jūs. Atbalstiet jau šodien!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Ziedojiet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nē, paldies</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Iepazīstināšana ar grupu zvaniem</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Atveriet/izveidojiet jaunu grupu, lai sāktu bezmaksas šifrētu grupas zvanu</string>

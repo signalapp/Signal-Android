@@ -481,10 +481,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bevardis failas</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Paaukokite Signal programėlei</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal veikia dėka tokių žmonių kaip jūs. Išreikškite savo palaikymą šiandien!</string>
-  <string name="DonateMegaphone_donate">Paaukokite</string>
-  <string name="DonateMegaphone_no_thanks">Ne, ačiū</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Paaukokite Signal programėlei</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal veikia dėka tokių žmonių kaip jūs. Išreikškite savo palaikymą šiandien!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Paaukokite</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne, ačiū</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Pristatome grupės skambučius</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Atverkite naująją grupę norėdami pradėti nemokamą šifruotą grupės skambutį</string>

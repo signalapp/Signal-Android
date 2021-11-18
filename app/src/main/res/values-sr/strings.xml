@@ -460,10 +460,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Датотека без имена</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Донирајте услузи Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal покрећу особе попут Вас. Покажите своју подршку већ данас!</string>
-  <string name="DonateMegaphone_donate">Донирај</string>
-  <string name="DonateMegaphone_no_thanks">Не, хвала</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Донирајте услузи Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal покрећу особе попут Вас. Покажите своју подршку већ данас!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Донирај</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Не, хвала</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Представљамо групне позиве</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворите нову групу да бисте започели бесплатан шифровани групни позив</string>

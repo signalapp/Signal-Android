@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ficheiro sem nome</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Doar ao Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é feito por pessoas como você. Mostre mesmo hoje o seu apoio!</string>
-  <string name="DonateMegaphone_donate">Doar</string>
-  <string name="DonateMegaphone_no_thanks">Não, obrigado</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Doar ao Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é feito por pessoas como você. Mostre mesmo hoje o seu apoio!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Doar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Não, obrigado</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Introdução às \'Chamadas de grupo\'</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Abra um \'Novo grupo\' para iniciar uma chamada de grupo encriptada e gratuita</string>
@@ -1350,7 +1350,7 @@
   <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível ligar ao serviço. Por favor, verifique a sua ligação à rede e tente novamente.</string>
   <string name="RegistrationActivity_non_standard_number_format">Formato de número não padronizado</string>
   <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">O número que introduziu (%1$s) não parece estar num formato padronizado.\n\nSerá que queria dizer %2$s?</string>
-  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formato de número de telefone</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formato de números de telefone</string>
   <string name="RegistrationActivity_call_requested">Chamada pedida</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Está a %d passo de submeter um registo de depuração.</item>
@@ -1945,6 +1945,16 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Por favor, selecione uma opção \-\-</item>
+    <item>Alguma coisa não está a funcionar</item>
+    <item>Pedido de nova funcionalidade</item>
+    <item>Pergunta</item>
+    <item>Feedback</item>
+    <item>Outro</item>
+    <item>Pagamentos (Mobile Coin)</item>
+    <item>Apoiantes e Melhoria do Signal</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -2042,6 +2052,7 @@
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__donate_to_signal">Doar ao Signal</string>
   <string name="preferences__subscription">Assinatura</string>
+  <string name="preferences__become_a_signal_sustainer">Torne-se num apoiante do Signal</string>
   <string name="preferences__signal_boost">Melhoria Signal</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente do utilizador de MMS</string>
@@ -3133,7 +3144,10 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Agora não</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Adicionar fotografia</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Torne-se num apoiante</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal é assegurado por pessoas como você. Contribua e receba um selo no perfil.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Não, obrigado</string>
+  <string name="BecomeASustainerMegaphone__contribute">Contribuir</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Abrir a pesquisa de emoji</string>
@@ -3182,6 +3196,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversa silenciada para sempre</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copiado número de telefone para a área de transferência.</string>
   <string name="ConversationSettingsFragment__phone_number">Número de telefone</string>
+  <string name="ConversationSettingsFragment__get_badges">Obtenha emblemas para o seu perfil apoiando o Signal. Toque num emblema para saber mais. </string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Adicionar membros</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editar informação do grupo</string>
@@ -3303,6 +3318,7 @@
   <string name="ImageView__badge">Crachá</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é feito por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que sustentam o Signal.</string>
   <string name="SubscribeFragment__currency">Moeda</string>
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
@@ -3315,14 +3331,20 @@
   <string name="SubscribeFragment__update_subscription_question">Atualizar assinatura?</string>
   <string name="SubscribeFragment__update">Atualizar</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ser-lhe-á cobrado o valor total do novo preço da assinatura aos dias de hoje. A sua assinatura será renovada %1$s. </string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ser-lhe-á cobrado o valor total (%1$s) do novo preço da assinatura aos dias de hoje. A sua assinatura será renovada mensalmente. </string>
   <string name="Subscription__s_per_month">%s/mês</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mês · Renovações %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mês · Expira %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma contribuição mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Porque contribuir?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">O Signal está empenhado em desenvolver tecnologia de privacidade de código aberto que protege a liberdade de expressão e permite uma comunicação global segura.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">A sua contribuição alimenta essa causa e paga pelo desenvolvimento e operação de uma aplicação utilizada por milhões para comunicação privada. Sem anúncios. Sem rastreadores. Sem brincadeiras.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Obrigado pelo seu Apoio!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Obrigado pelo seu Apoio!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Você ganhou o emblema %s! Ajude o Signal a aumentar a conscientização exibindo este emblema no seu perfil. </string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Você ganhou um emblema de Melhoria! Ajude o Signal a aumentar a conscientização exibindo este emblema no seu perfil. </string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Também pode</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">torne-se num apoiante do Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Fazer crachá de funcionalidade</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Concluído</string>
@@ -3340,9 +3362,12 @@
   <string name="MySupportPreference__s_per_month">%1$s/mês</string>
   <string name="MySupportPreference__renews_s">Renovações %1$s</string>
   <string name="MySupportPreference__processing_transaction">A processar a transação…</string>
+  <string name="MySupportPreference__please_contact_support">Por favor, entre em contacto com o suporte.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar a suportar a tecnologia que foi construída para si, considere ser um apoiante mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num apoiante</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">A sua assinatura de Apoiante foi cancelada automaticamente porque se encontra inativo à muito tempo. O seu emblema %1$s deixou de estar visível no seu perfil.</string>
   <string name="Subscription__verification_failed">Falha na verificação da assinatura</string>
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacte o \'Suporte\' para mais informações.</string>
   <string name="Subscription__contact_support">Contactar o Suporte</string>
@@ -3350,6 +3375,7 @@
   <string name="SubscribeFragment__processing_payment">A processar pagamento…</string>
   <string name="DonationsErrors__payment_failed">Falha de pagamento</string>
   <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Por favor, tente novamente. </string>
+  <string name="DonationsErrors__still_processing">Ainda a processar</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Definiu o Google Pay para as doações in-app.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Ocorreu um erro ao tentar cancelar a assinatura</string>

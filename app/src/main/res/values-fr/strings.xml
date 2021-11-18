@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est propulsé par des personnes telles que vous. Montrez votre soutien dès aujourd’hui.</string>
-  <string name="DonateMegaphone_donate">Faire un don</string>
-  <string name="DonateMegaphone_no_thanks">Non merci</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est propulsé par des personnes telles que vous. Montrez votre soutien dès aujourd’hui.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Faire un don</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Non merci</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Nous présentons les appels de groupe</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ouvrez un Nouveau groupe pour lancer un appel de groupe chiffré gratuit</string>
@@ -2886,8 +2886,8 @@
   <string name="payment_info_card_you_can_add_funds_for_use_in">Vous pouvez ajouter des fonds à utiliser dans Signal en envoyant des MobileCoin à l’adresse de votre portefeuille.</string>
   <string name="payment_info_card_cashing_out">Encaisser</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Vous pouvez encaisser des MobileCoins n’importe quand sur une plateforme de change qui accepte les MobileCoins. Il vous suffit d’effectuer un transfert vers votre compte sur cette plateforme de change.</string>
-  <string name="payment_info_card_hide_this_card">Masquer cette carte ?</string>
-  <string name="payment_info_card_hide">Masquer</string>
+  <string name="payment_info_card_hide_this_card">Cacher cette carte ?</string>
+  <string name="payment_info_card_hide">Cacher</string>
   <string name="payment_info_card_record_recovery_phrase">Enregistrer une phrase de récupération</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Votre phrase de récupération vous offre une autre façon de restaurer votre compte de paiements.</string>
   <string name="payment_info_card_record_your_phrase">Enregistrez votre phrase</string>
@@ -3331,7 +3331,12 @@ Nouvelle tentative…</string>
   <string name="MySupportPreference__add_a_signal_boost">Ajouter un Boost Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/mois</string>
   <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Traitement de la transaction…</string>
+  <string name="MySupportPreference__couldnt_add_badge">Impossible d’ajouter le badge.</string>
+  <string name="MySupportPreference__please_contact_support">Veuillez contacter l’assistance.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre badge a expiré</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expiré</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulé</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un pourvoyeur</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
   <string name="Subscription__verification_failed">Échec de la vérification de l’abonnement</string>

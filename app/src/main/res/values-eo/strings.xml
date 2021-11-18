@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donaci al Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiel vi. Montru vian subtenon hodiaŭ!</string>
-  <string name="DonateMegaphone_donate">Donaci</string>
-  <string name="DonateMegaphone_no_thanks">Ne, dankon</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Donaci al Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiel vi. Montru vian subtenon hodiaŭ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Donaci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne, dankon</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Jen la grupalvokoj</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Kreu novtipan grupon por komenci senpagan ĉifritan grupalvokon</string>

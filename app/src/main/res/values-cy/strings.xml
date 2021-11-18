@@ -483,10 +483,10 @@ Send neges heb ei ddiogelu?</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ffeil dienw</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Cyfrannu at Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Mae grym Signal mewn pobl fel chi. Dangoswch eich cefnogaeth heddiw!</string>
-  <string name="DonateMegaphone_donate">Cyfraniad</string>
-  <string name="DonateMegaphone_no_thanks">Dim Diolch</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Cyfrannu at Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Mae grym Signal mewn pobl fel chi. Dangoswch eich cefnogaeth heddiw!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Cyfraniad</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Dim Diolch</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Yn Cyflwyno Galwadau Grŵp</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Agorwch Grŵp Newydd i gychwyn galwad grŵp amgrypiedig am ddim</string>
@@ -2215,6 +2215,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__advanced">Uwch</string>
   <string name="preferences__donate_to_signal">Cyfrannu at Signal</string>
   <string name="preferences__subscription">Tanysgrifiad</string>
+  <string name="preferences__become_a_signal_sustainer">Bod yn Gynhaliwr Signal</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Preifatrwydd</string>
   <string name="preferences__mms_user_agent">Asiant Defnyddiwr MMS</string>
@@ -3330,6 +3331,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nid nawr</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ychwanegu llun</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Dod yn Gynhaliwr</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Dim diolch</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -3542,6 +3544,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MySupportPreference__add_a_signal_boost">Ychwanegu Hwb Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/month</string>
   <string name="MySupportPreference__renews_s">Yn adnewyddu ar %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Cysylltwch â chymorth</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn gynhaliwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
@@ -3552,6 +3555,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubscribeFragment__processing_payment">Yn prosesu taliad</string>
   <string name="DonationsErrors__payment_failed">Methodd y taliad</string>
   <string name="DonationsErrors__your_payment">Nid oedd modd prosesu\'ch taliad ac nid ydym wedi codi tâl arnoch. Ceisiwch eto.</string>
+  <string name="DonationsErrors__your_payment_is_still">Mae\'ch taliad yn dal yn prosesu. Gall hyn gymryd rhai munudau yn dibynnu ar eich cysylltiad.</string>
   <string name="DonationsErrors__google_pay_unavailable">Nid yw Google Pay ar gael</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Mae\'n rhaid i chi osod Google Pay i roi o fewn yr ap.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Wedi methu diddymu\'r tanysgrifiad</string>

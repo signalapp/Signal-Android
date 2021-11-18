@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Unavngivet fil</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drevet af personer som dig. Vis din støtte i dag!</string>
-  <string name="DonateMegaphone_donate">Doner</string>
-  <string name="DonateMegaphone_no_thanks">Nej tak</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drevet af personer som dig. Vis din støtte i dag!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Doner</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nej tak</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Introducerer gruppeopkald</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åbn en ny gruppe for at starte et krypteret gruppeopkald</string>
@@ -736,7 +736,7 @@
   <string name="ShareableGroupLinkDialogFragment__member_requests">Medlemsanmodninger</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Godkend nye medlemmer</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Det kræves at en administrator godkender nye gruppemedlemmer via gruppelinket</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på, at du vil nulstille gruppelinket? Man vil ikke længere kunne deltage i gruppen ved hjælp af det aktuelle link</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på, at du vil nulstille gruppelinket? Man vil ikke længere kunne deltage i gruppen ved hjælp af det nuværende link.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-kode</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personer der scanner denne kode, kan deltage i din gruppe. Administratorer skal stadig godkende nye medlemmer, hvis denne indstilling er slået til</string>
@@ -3317,8 +3317,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
   <string name="ImageView__badge">Emblem</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drevet af personer som dig.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - og ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der understøtte den.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Støt teknologi, der er udviklet til dig, ikke for at høste dine data, ved at blive en del af det fællesskab, der understøtte Signal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der støtter op om den.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Støt teknologi, der er udviklet til dig, ikke for at høste dine data, ved at blive en del af det fællesskab, der støtter op om Signal.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Flere betalingsmuligheder</string>
   <string name="SubscribeFragment__cancel_subscription">Opsig abonnement</string>

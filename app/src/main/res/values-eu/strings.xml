@@ -386,10 +386,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Izenik gabeko fitxategia</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal-i dohaintza eman</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalen indarra zu moduko jendearengandik dator. Erakutsi zure laguntza gaur bertan!</string>
-  <string name="DonateMegaphone_donate">Dohaintza egin</string>
-  <string name="DonateMegaphone_no_thanks">Ez eskerrik asko</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal-i dohaintza eman</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalen indarra zu moduko jendearengandik dator. Erakutsi zure laguntza gaur bertan!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Dohaintza egin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ez eskerrik asko</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Talde-deiei buruz</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ireki Talde Berria zifratutako talde-dei bat egiteko</string>

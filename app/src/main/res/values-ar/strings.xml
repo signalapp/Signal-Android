@@ -524,10 +524,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ملف بدون اسم</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">تبرع لـ Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">يشتغل Signal بفضل أفراد مثلك. أظهر دعمك لنا اليوم !</string>
-  <string name="DonateMegaphone_donate">تبرع</string>
-  <string name="DonateMegaphone_no_thanks">لا شكرا</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">تبرع لـ Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">يشتغل Signal بفضل أفراد مثلك. أظهر دعمك لنا اليوم !</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">تبرع</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">لا شكرا</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">تقديم مكالمات المجموعة</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">يُرجى فتح مجموعة جديدة لبدء مكالمة جماعية مجانية ومُعمَّاة</string>

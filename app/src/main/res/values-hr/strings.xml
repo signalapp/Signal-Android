@@ -410,10 +410,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezimena datoteka</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donirajte Signalu</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal napajaju ljudi poput vas. Pokažite svoju podršku već danas!</string>
-  <string name="DonateMegaphone_donate">Doniraj</string>
-  <string name="DonateMegaphone_no_thanks">Ne, hvala</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Donirajte Signalu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal napajaju ljudi poput vas. Pokažite svoju podršku već danas!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Doniraj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne, hvala</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo grupne pozive</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otvorite Novu grupu da biste započeli besplatni šifrirani grupni poziv</string>

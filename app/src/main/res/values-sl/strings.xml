@@ -478,10 +478,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Datoteka brez imena</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Podprite Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Podprite ga tudi vi!</string>
-  <string name="DonateMegaphone_donate">Podpri Signal!</string>
-  <string name="DonateMegaphone_no_thanks">Ne hvala</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Podprite Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Podprite ga tudi vi!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Podpri Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne hvala</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo vam skupinske klice</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Za šifriran skupinski klic odprite Novo skupino</string>
@@ -2345,7 +2345,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PaymentsAllActivityFragment__sent">Poslano:</string>
   <string name="PaymentsAllActivityFragment__received">Prejeto</string>
   <string name="PaymentsHomeFragment__introducing_payments">Predstavljamo vam Plačila (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Uporabljajte Signal za pošiljanje in prejemanje nove digitalne valute MobileCoin, specializirane za zasebnost. Vklopite in začnite.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Uporabljajte Signal za pošiljanje in prejemanje nove digitalne valute MobileCoin, s poudarkom na zasebnosti. Vklopite in začnite.</string>
   <string name="PaymentsHomeFragment__activate_payments">Vklopi Plačila</string>
   <string name="PaymentsHomeFragment__activating_payments">Vklapljanje Plačil …</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Obnovitev računa za plačila</string>

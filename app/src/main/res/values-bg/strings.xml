@@ -396,10 +396,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Неназован файл</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Дари на Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal се подържа от хора като теб. Подкрепи ни сега!</string>
-  <string name="DonateMegaphone_donate">Дари</string>
-  <string name="DonateMegaphone_no_thanks">Не Благодаря</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Дари на Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal се подържа от хора като теб. Подкрепи ни сега!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Дари</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Не Благодаря</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Нова функционалност: групови разговори</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворете Нова Група, за да започнете безплатно криптирано групово обаждане</string>

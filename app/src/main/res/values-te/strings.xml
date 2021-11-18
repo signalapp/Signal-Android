@@ -403,10 +403,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">పేరులేని పంక్తి</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal కు దానం చేయండి</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal మీ లాంటి వారిచే నడుపబడుతోంది. ఈ రోజే మీ మద్దతు చూపించండి!.</string>
-  <string name="DonateMegaphone_donate">విరాళమిచ్చు</string>
-  <string name="DonateMegaphone_no_thanks">అవసరం లేదు</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal కు దానం చేయండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal మీ లాంటి వారిచే నడుపబడుతోంది. ఈ రోజే మీ మద్దతు చూపించండి!.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">విరాళమిచ్చు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">అవసరం లేదు</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">పరిచయం చేస్తున్నాం సమూహపు వీడియో కాల్స్</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ఉచిత గుప్తీకరించిన సమూహ కాల్‌ను ప్రారంభించడానికి క్రొత్త సమూహాన్ని తెరవండి</string>

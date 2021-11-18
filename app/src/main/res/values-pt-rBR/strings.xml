@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Arquivo sem nome</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Doar para o Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal é mantido por pessoas como você. Mostre o seu apoio hoje!</string>
-  <string name="DonateMegaphone_donate">Doar</string>
-  <string name="DonateMegaphone_no_thanks">Não. Agradeço.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Doar para o Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal é mantido por pessoas como você. Mostre o seu apoio hoje!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Doar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Não. Agradeço.</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Apresentamos as chamadas em grupo</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Abra um Novo Grupo para começar uma chamada em grupo criptografada e gratuita</string>

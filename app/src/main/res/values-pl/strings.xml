@@ -481,10 +481,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Plik bez nazwy</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Datek na Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal funkcjonuje dzięki ludziom takim jak Ty. Wesprzyj nas już dziś!</string>
-  <string name="DonateMegaphone_donate">Podaruj</string>
-  <string name="DonateMegaphone_no_thanks">Nie, dzięki</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Datek na Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal funkcjonuje dzięki ludziom takim jak Ty. Wesprzyj nas już dziś!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Podaruj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nie, dzięki</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Przedstawiamy rozmowy grupowe</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otwórz Nową grupę, aby rozpocząć darmowe, zaszyfrowane połączenie grupowe</string>

@@ -384,10 +384,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">未命名文件</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">捐赠 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 的进步离不开用户的支持，如果您觉得获益良多可以考虑捐助我们。</string>
-  <string name="DonateMegaphone_donate">捐</string>
-  <string name="DonateMegaphone_no_thanks">不用，谢谢</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">捐赠 Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 的进步离不开用户的支持，如果您觉得获益良多可以考虑捐助我们。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">捐</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">不用，谢谢</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">隆重推出“群语音通话”功能</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">打开一个新版群组来开始一次免费的加密群语音通话</string>

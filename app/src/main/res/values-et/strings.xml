@@ -396,10 +396,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nimetu fail</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Anneta Signalile</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalit hoiavad käimas sinusarnased inimesed. Näita oma toetust täna!</string>
-  <string name="DonateMegaphone_donate">Anneta</string>
-  <string name="DonateMegaphone_no_thanks">Tänan, ei</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Anneta Signalile</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalit hoiavad käimas sinusarnased inimesed. Näita oma toetust täna!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Anneta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Tänan, ei</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Tutvustame grupikõnesid</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Uue krüptitud grupikõne alustamiseks vajuta \\"Uus grupp\\"</string>

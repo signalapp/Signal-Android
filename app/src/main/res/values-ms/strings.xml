@@ -418,10 +418,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fail tidak dinamakan</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Sumbang kepada Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal dihebatkan oleh pengguna seperti anda. Tunjukkan sokongan anda hari ini!</string>
-  <string name="DonateMegaphone_donate">Derma</string>
-  <string name="DonateMegaphone_no_thanks">Tidak Terima Kasih</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Sumbang kepada Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal dihebatkan oleh pengguna seperti anda. Tunjukkan sokongan anda hari ini!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Derma</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Tidak Terima Kasih</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Memperkenalkan Panggilan Berkumpulan</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Buka Kumpulan Baharu untuk memulakan panggilan kumpulan disulitkan percuma</string>

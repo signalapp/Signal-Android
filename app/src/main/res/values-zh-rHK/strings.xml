@@ -418,10 +418,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">未命名檔案</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">捐款給 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全賴有每一個您才走到今天。顯示您的支持吧！</string>
-  <string name="DonateMegaphone_donate">捐款</string>
-  <string name="DonateMegaphone_no_thanks">不用了，謝謝</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">捐款給 Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全賴有每一個您才走到今天。顯示您的支持吧！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">捐款</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">不用了，謝謝</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">群組通話登場</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">開啟一個新版群組以開展免費的加密群組通話</string>

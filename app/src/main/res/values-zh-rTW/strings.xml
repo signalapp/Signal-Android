@@ -418,10 +418,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名稱的檔案</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">贊助 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 由像你這樣的人提供動力。這顯示了你的支持！</string>
-  <string name="DonateMegaphone_donate">贊助</string>
-  <string name="DonateMegaphone_no_thanks">在心中</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">贊助 Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 由像你這樣的人提供動力。這顯示了你的支持！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">贊助</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">在心中</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">群組通話簡介</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">開啟新版群組以發起免費的加密的群組通話</string>
@@ -1948,6 +1948,7 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">贊助 Signal</string>
   <string name="preferences__subscription">訂閱</string>
+  <string name="preferences__become_a_signal_sustainer">成為Signal 支持者</string>
   <string name="preferences__signal_boost">Signal 推廣</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3228,6 +3229,7 @@
   <string name="MySupportPreference__add_a_signal_boost">加強 Signal 的推廣</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">續約 %1$s</string>
+  <string name="MySupportPreference__please_contact_support">請聯絡支援部門。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
@@ -3238,6 +3240,7 @@
   <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
   <string name="DonationsErrors__your_payment">你的付款無法處理，所以也未向你收費。 請再試一次。</string>
+  <string name="DonationsErrors__your_payment_is_still">你的付款仍在處理中。 這可能需要幾分鐘時間，這將取決於你的網路連接。</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必須設定 Google Pay 才能在程式中贊助。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>

@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">নামহীন ফাইল</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal -এ দান করুন</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal আপনার মত লোক দ্বারা পরিচালিত। আজকেই আপনার সমর্থন জানান!</string>
-  <string name="DonateMegaphone_donate">অনুদান</string>
-  <string name="DonateMegaphone_no_thanks">না ধন্যবাদ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal -এ দান করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal আপনার মত লোক দ্বারা পরিচালিত। আজকেই আপনার সমর্থন জানান!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">অনুদান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">না ধন্যবাদ</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">গ্রুপ কল এর সাথে পরিচিত হন</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">বিনামূল্যে এনক্রিপ্ট করা গ্রুপ কল শুরু করতে একটি নতুন গ্রুপ খুলুন</string>

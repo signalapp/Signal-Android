@@ -401,10 +401,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ಹೆಸರಿಸದ ಫೈಲ್</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ನಿಮ್ಮಂತಹ ಜನರಿಂದ ನಡೆಯುತ್ತದೆ . ಇಂದು ನಿಮ್ಮ ಬೆಂಬಲವನ್ನು ತೋರಿಸಿ!</string>
-  <string name="DonateMegaphone_donate">ದಾನ</string>
-  <string name="DonateMegaphone_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ನಿಮ್ಮಂತಹ ಜನರಿಂದ ನಡೆಯುತ್ತದೆ . ಇಂದು ನಿಮ್ಮ ಬೆಂಬಲವನ್ನು ತೋರಿಸಿ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">ದಾನ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ಗುಂಪು  ಕರೆಗಳನ್ನು  ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ  </string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ಉಚಿತ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಗ್ರೂಪ್‌ ಕಾಲ್‌ ಆರಂಭಿಸಲು ಹೊಸ ಗ್ರೂಪ್ ಆರಂಭಿಸಿ</string>

@@ -481,10 +481,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Безымянный файл</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста, поддержите нас!</string>
-  <string name="DonateMegaphone_donate">Пожертвовать</string>
-  <string name="DonateMegaphone_no_thanks">Нет, спасибо</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста, поддержите нас!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Пожертвовать</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Нет, спасибо</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Представляем групповые звонки</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Откройте любую Новую группу, чтобы начать бесплатный зашифрованный групповой звонок</string>
@@ -3388,7 +3388,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Звуки разговора отключены навсегда</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефона был скопирован в буфер обмена.</string>
   <string name="ConversationSettingsFragment__phone_number">Номер телефона</string>
-  <string name="ConversationSettingsFragment__get_badges">Получите значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
+  <string name="ConversationSettingsFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>
@@ -3533,7 +3533,7 @@
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Полная сумма новой подписки будет взята с вас сегодня. Ваша подписка продлится %1$s.</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Полная сумма новой подписки (%1$s) будет взята с вас сегодня. Ваша подписка будет продлеваться ежемесячно.</string>
   <string name="Subscription__s_per_month">%s/месяц</string>
-  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Возобновится %2$s</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Продлится %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месяц · Истекает %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят её. Делая пожертвование ежемесячно, вы получите значок для профиля, чтобы поделиться с другими тем, что вы поддерживаете Signal.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string>
@@ -3560,7 +3560,7 @@
   <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
   <string name="MySupportPreference__add_a_signal_boost">Добавить Ускорение Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
-  <string name="MySupportPreference__renews_s">Возобновится %1$s</string>
+  <string name="MySupportPreference__renews_s">Продлится %1$s</string>
   <string name="MySupportPreference__processing_transaction">Обрабатываем транзакцию…</string>
   <string name="MySupportPreference__couldnt_add_badge">Не удалось добавить значок.</string>
   <string name="MySupportPreference__please_contact_support">Пожалуйста, свяжитесь с поддержкой.</string>

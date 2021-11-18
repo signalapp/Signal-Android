@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Kartelë e paemërtuar</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Dhuroni për Signal-in</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-i bazohet në njerëz si ju. Shpaloseni përkrahjen tuaj sot!</string>
-  <string name="DonateMegaphone_donate">Dhuroni</string>
-  <string name="DonateMegaphone_no_thanks">Jo Falemnderit</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Dhuroni për Signal-in</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-i bazohet në njerëz si ju. Shpaloseni përkrahjen tuaj sot!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Dhuroni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Jo Falemnderit</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ju paraqesim Thirrje Grupi</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Që të nisni një thirrje të lirë, të fshehtëzuar, në grup, hapni një Grup të Ri</string>

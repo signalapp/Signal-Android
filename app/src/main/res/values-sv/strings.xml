@@ -439,10 +439,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Namnlös fil</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donera till Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drivs av människor som du. Visa ditt stöd idag!</string>
-  <string name="DonateMegaphone_donate">Donera</string>
-  <string name="DonateMegaphone_no_thanks">Nej tack</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Donera till Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drivs av människor som du. Visa ditt stöd idag!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Donera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nej tack</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vi presenterar gruppsamtal</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett fritt krypterat gruppsamtal</string>

@@ -481,10 +481,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">קובץ ללא שם</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">תרום אל Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ממונע על ידי אנשים כמוך. הראה לנו את תמיכתך היום!</string>
-  <string name="DonateMegaphone_donate">תרום</string>
-  <string name="DonateMegaphone_no_thanks">לא תודה</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">תרום אל Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ממונע על ידי אנשים כמוך. הראה לנו את תמיכתך היום!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">תרום</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">לא תודה</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">היכרות עם שיחה קבוצתית</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">פתח קבוצה חדשה כדי להתחיל שיחה קבוצתית חינמית מוצפנת</string>

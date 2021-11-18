@@ -388,10 +388,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Afaylu war isem</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Mudd i Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal yella-d s lmendad n yimdanen am kečč·kemm. Sken tallalt-inek·inem ass-a!</string>
-  <string name="DonateMegaphone_donate">Mudd tawsa</string>
-  <string name="DonateMegaphone_no_thanks">Ala tanemmirt</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Mudd i Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal yella-d s lmendad n yimdanen am kečč·kemm. Sken tallalt-inek·inem ass-a!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Mudd tawsa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ala tanemmirt</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Asidef n yisawalen n ugraw</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ldi Agraw Amaynut i beddu n usiwel n ugraw yettwawgelhen aṭel</string>

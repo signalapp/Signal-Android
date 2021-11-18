@@ -399,10 +399,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ئىسىمسىز ھۆججەت</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal غا ئىئانە قىلىڭ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal سىزگە ئوخشاش كىشىلەر تەرىپىدىن ماڭدۇرۇلغان. بۈگۈن بىزنى قوللىشىڭىزنى كۆرسىتىڭ!</string>
-  <string name="DonateMegaphone_donate">ئىئانە قىلىڭ</string>
-  <string name="DonateMegaphone_no_thanks">ياق، رەھمەت</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal غا ئىئانە قىلىڭ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal سىزگە ئوخشاش كىشىلەر تەرىپىدىن ماڭدۇرۇلغان. بۈگۈن بىزنى قوللىشىڭىزنى كۆرسىتىڭ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">ئىئانە قىلىڭ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ياق، رەھمەت</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">«گۇرۇپپا چاقىرىشلىرى»نى تونۇشتۇرۇش</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ھەقسىز شىفىرلانغان گۇرۇپپا چاقىرىشنى باشلاش ئۈچۈن «يېڭى گۇرۇپپا»نى ئېچىڭ</string>

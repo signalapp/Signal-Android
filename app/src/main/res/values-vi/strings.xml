@@ -417,10 +417,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Tệp không tên</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Ủng hộ Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal được hỗ trợ bởi những cá nhân như bạn. Hãy thể hiện sự hỗ trợ của bạn ngay hôm nay!</string>
-  <string name="DonateMegaphone_donate">Ủng hộ</string>
-  <string name="DonateMegaphone_no_thanks">Không, Cảm ơn</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Ủng hộ Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal được hỗ trợ bởi những cá nhân như bạn. Hãy thể hiện sự hỗ trợ của bạn ngay hôm nay!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Ủng hộ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Không, Cảm ơn</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Giới thiệu Cuộc gọi Nhóm</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Mở một Nhóm Mới để bắt đầu một cuộc gọi nhóm bảo mật</string>
@@ -658,6 +658,7 @@
   <string name="ManageProfileFragment_your_name">Tên của bạn</string>
   <string name="ManageProfileFragment_your_username">Tên người dùng của bạn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Không thể đặt ảnh đại diện</string>
+  <string name="ManageProfileFragment_badges">Huy hiệu</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Không có nhóm chung</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1911,6 +1912,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__help">Hỗ trợ</string>
   <string name="preferences__advanced">Nâng cao</string>
   <string name="preferences__donate_to_signal">Ủng hộ Signal</string>
+  <string name="preferences__subscription">Số tiền đống góp</string>
+  <string name="preferences__become_a_signal_sustainer">Trở thành người quyên góp cho Signal</string>
+  <string name="preferences__signal_boost">Tăng trưởng Signal</string>
   <string name="preferences__privacy">Riêng tư</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Thiết đặt MMS bằng tay</string>
@@ -2911,6 +2915,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpFragment__copyright_signal_messenger">Bản quyền Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Cấp phép dưới GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Việc gửi tập tin đa phương tiện chất lượng cao sẽ tốn nhiều lưu lượng hơn.</string>
   <string name="DataAndStorageSettingsFragment__high">Cao</string>
   <string name="DataAndStorageSettingsFragment__standard">Tiêu chuẩn</string>
   <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
@@ -2953,9 +2958,12 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ChatColorsMegaphone__appearance">Diện mạo</string>
   <string name="ChatColorsMegaphone__not_now">Để sau</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Thêm ảnh đại diện</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Chọn định dạng và màu sắc hoặc tùy chỉnh chữ ký của bạn.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Để sau</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Thêm ảnh</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Không, cảm ơn</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -3050,24 +3058,41 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="MultiselectForwardFragment__add_a_message">Thêm vào một tin nhắn</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Tin nhắn được chuyển tiếp sẽ được gửi ngay bây giờ.</string>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Thêm vào một tin nhắn</string>
   <string name="ImageEditorHud__cancel">Hủy</string>
   <string name="ImageEditorHud__undo">Hoàn tác</string>
   <string name="ImageEditorHud__delete">Xóa</string>
   <string name="MediaCountIndicatorButton__send">Gửi</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Nhấn để chọn</string>
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Hiển thị huy hiệu trên hồ sơ cá nhân</string>
   <string name="SelectFeaturedBadgeFragment__preview">Xem trước</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal được hỗ trợ bởi những cá nhân như bạn.</string>
+  <string name="SubscribeFragment__more_payment_options">Thêm lựa chọn thanh toán</string>
+  <string name="SubscribeFragment__cancel_subscription">Hũy bỏ Quyên góp</string>
+  <string name="SubscribeFragment__confirm_cancellation">Xác nhận hủy bỏ?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Bạn sẽ không thể thay đổi quyết định này. Huy hiệu của bạn sẽ được gỡ bỏ khỏi hồ sơ cá nhân khi hết thời hạn.</string>
   <string name="SubscribeFragment__not_now">Để sau</string>
   <string name="SubscribeFragment__confirm">Xác nhận</string>
   <string name="SubscribeFragment__update">Cập nhật</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã quyên góp</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Hiển thị trên thông tin cá nhân</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Xong</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Khi bạn có nhiều hơn một huy hiệu. bạn có thể chọn huy hiệu mặc định mà mọi người sẽ nhìn thấy trên hồ sơ của bạn.</string>
+  <string name="ManageDonationsFragment__badges">Huy hiệu</string>
+  <string name="ManageDonationsFragment__subscription_faq">FAQ Quyên góp</string>
+  <string name="BoostFragment__give_signal_a_boost">Quyên góp cho Signal</string>
   <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
+  <string name="MySupportPreference__add_a_signal_boost">Thêm vào một phần quyên góp cho Signal</string>
+  <string name="MySupportPreference__please_contact_support">Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
   <string name="Subscription__contact_support">Liên lạc Hỗ trợ</string>
   <string name="SubscribeFragment__processing_payment">Đang xử lý thanh toán…</string>
   <string name="DonationsErrors__payment_failed">Thanh toán không thành công</string>
+  <string name="DonationsErrors__your_payment_is_still">Thanh toán của bán đang được xử lý. Việc này có thể mất vài phút tùy vào kết nối của bạn.</string>
   <string name="NetworkFailure__retry">Thử lại</string>
   <!--EOF-->
 </resources>

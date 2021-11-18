@@ -416,10 +416,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Névtelen fájl</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Adomány a Signal számára</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">A Signalt olyan emberek működtetik, mint Te. Támogasd te is még ma!</string>
-  <string name="DonateMegaphone_donate">Támogatás</string>
-  <string name="DonateMegaphone_no_thanks">Köszönöm, nem!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Adomány a Signal számára</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">A Signalt olyan emberek működtetik, mint Te. Támogasd te is még ma!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Támogatás</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Köszönöm, nem!</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Újdonság: Csoporthívások</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ingyenes, titkosított csoporthívás az újonnan nyitott csoportokban</string>
@@ -1317,7 +1317,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_call_requested">Hívás kérve</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Még %d lépésre vagy a fejlesztői napló elküldésétől.</item>
-    <item quantity="other">Még %d lépésre vagy a fejlesztői napló elküldésétől.</item>
+    <item quantity="other">Még %d lépésre vagy a hibakeresési napló elküldésétől.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Meg kell bizonyosodnunk róla, hogy valódi személy vagy.</string>
   <string name="RegistrationActivity_next">Tovább</string>
@@ -2615,7 +2615,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi bekapcsolása</string>
   <string name="DeviceTransferSetup__error_connecting">Hiba a csatlakozás során</string>
   <string name="DeviceTransferSetup__retry">Újra</string>
-  <string name="DeviceTransferSetup__submit_debug_logs">Hibakeresési napló elküldése</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Hibakeresési naplók elküldése</string>
   <string name="DeviceTransferSetup__verify_code">Kód ellenőrzése</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Ellenőrizd, hogy a lenti kód megegyezik-e mindkét eszközödön, majd koppints a folytatáshoz!</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">A számok nem egyeznek</string>
@@ -2979,7 +2979,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__retry">Újra</string>
   <string name="ChangeNumberLockActivity__leave">Csoport elhagyása</string>
-  <string name="ChangeNumberLockActivity__submit_debug_log">Fejlesztői naplófájl elküldése</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Hibakeresési napló elküldése</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Billentyűzet</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Küldés az Enter lenyomásával</string>
@@ -3025,7 +3025,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpSettingsFragment__support_center">Támogatási központ</string>
   <string name="HelpSettingsFragment__contact_us">Kapcsolat</string>
   <string name="HelpSettingsFragment__version">Verzió</string>
-  <string name="HelpSettingsFragment__debug_log">Fejlesztői naplófájl</string>
+  <string name="HelpSettingsFragment__debug_log">Hibakeresési napló</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Feltételek &amp; Adatvédelmi irányelvek</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3 </string>

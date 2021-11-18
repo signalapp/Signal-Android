@@ -388,10 +388,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ବେନାମୀ ଫାଇଲ୍</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal କୁ ଦାନ କରନ୍ତୁ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ଆପଣଙ୍କ ପରି ଲୋକମାନଙ୍କ ଦ୍ୱାରା ଚାଳିତ | ଆଜି ଆପଣଙ୍କର ସମର୍ଥନ ଦେଖାନ୍ତୁ!</string>
-  <string name="DonateMegaphone_donate">ଦାନ କରନ୍ତୁ</string>
-  <string name="DonateMegaphone_no_thanks">ନା ଧନ୍ୟବାଦ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal କୁ ଦାନ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ଆପଣଙ୍କ ପରି ଲୋକମାନଙ୍କ ଦ୍ୱାରା ଚାଳିତ | ଆଜି ଆପଣଙ୍କର ସମର୍ଥନ ଦେଖାନ୍ତୁ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">ଦାନ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ନା ଧନ୍ୟବାଦ</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ସାମୁହିକ କଲ୍ ର ପରିଚୟ</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ଏକ ମାଗଣା ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ସାମୁହିକ କଲ୍ ଆରମ୍ଭ କରିବାକୁ ଏକ ନୂତନ ଗୋଷ୍ଠୀ ଖୋଲନ୍ତୁ</string>

@@ -384,10 +384,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">အမည်မဖော်သောဖိုင်</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal ကိုလှူဒါန်းပါ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">သင့်လိုမျိုး သုံးသူများက Signal ကို ပံ့ပိုးပါသည်။ ဒီနေ့သင်၏ ထောက်ခံမှုကိုပြလိုက်ပါ!</string>
-  <string name="DonateMegaphone_donate">လှူဒါန်းပါ</string>
-  <string name="DonateMegaphone_no_thanks">ရပါတယ်ကျေးဇူးပါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal ကိုလှူဒါန်းပါ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">သင့်လိုမျိုး သုံးသူများက Signal ကို ပံ့ပိုးပါသည်။ ဒီနေ့သင်၏ ထောက်ခံမှုကိုပြလိုက်ပါ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">လှူဒါန်းပါ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ရပါတယ်ကျေးဇူးပါ</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">အုပ်စုလိုက် ခေါ်ဆိုမှုများကို မိတ်ဆက်ပေးခြင်း</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">အခမဲ့ စာဝှက်ထားသော အုပ်စုခေါ်ဆိုမှုကို စတင်ရန် အုပ်စုအသစ်တစ်ခုကိုဖွင့်ပါ</string>

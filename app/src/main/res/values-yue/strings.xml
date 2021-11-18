@@ -418,10 +418,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名嘅檔案</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">課金 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全靠每一位有心人先有今日。請您大力「懲罰」，多多益善，少少無拘！</string>
-  <string name="DonateMegaphone_donate">課金</string>
-  <string name="DonateMegaphone_no_thanks">有心</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">課金 Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全靠每一位有心人先有今日。請您大力「懲罰」，多多益善，少少無拘！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">課金</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">有心</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">同您介紹成谷通話</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">開一個新版嘅谷，開始免費嘅加密成谷通話</string>

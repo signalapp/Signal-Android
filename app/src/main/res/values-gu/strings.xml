@@ -399,10 +399,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">અનામી ફાઇલ</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal માટે ફાળો આપો</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal તમારા જેવા લોકો દ્વારા સંચાલિત છે. આજે તમારો સપોર્ટ બતાવો!</string>
-  <string name="DonateMegaphone_donate">દાન કરો</string>
-  <string name="DonateMegaphone_no_thanks">ના આભાર</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal માટે ફાળો આપો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal તમારા જેવા લોકો દ્વારા સંચાલિત છે. આજે તમારો સપોર્ટ બતાવો!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">દાન કરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ના આભાર</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">પ્રસ્તુત કરી રહ્યા છીએ ગ્રુપ કોલ્સ</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ફ્રી એન્ક્રિપ્ટેડ ગ્રુપ કૉલ ચાલુ કરવા માટે એક નવું ગ્રુપ ચાલુ કરો</string>

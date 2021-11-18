@@ -399,10 +399,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Faili isiyo na jina</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Changia Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal inaendeshwa na watu kama wewe. Simama uhesabike leo!</string>
-  <string name="DonateMegaphone_donate">Toa</string>
-  <string name="DonateMegaphone_no_thanks">Hapana, Asante</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Changia Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal inaendeshwa na watu kama wewe. Simama uhesabike leo!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Toa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Hapana, Asante</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Tunakuletea Mikutano ya Vikundi</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Fungua Kikundi Kipya ili uanzishe mkutano wa kikundi uliosimbwa na usiolipishwa</string>

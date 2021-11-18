@@ -388,10 +388,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Uten navn</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drives av folk som deg. Vis din støtte i dag!</string>
-  <string name="DonateMegaphone_donate">Donér</string>
-  <string name="DonateMegaphone_no_thanks">Nei takk</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drives av folk som deg. Vis din støtte i dag!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Donér</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nei takk</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vi introduserer gruppesamtaler</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åpne en ny gruppe for å gjøre et gratis gruppeanrop</string>

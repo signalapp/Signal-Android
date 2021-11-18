@@ -399,10 +399,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">بې نومه فایل</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal سره مرسته کول</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ستاسې په څیر خلکو له خوا ځواکمن شوی دی. همدا نن مو خپل ملاتړ وښیئ!</string>
-  <string name="DonateMegaphone_donate">مرسته کول</string>
-  <string name="DonateMegaphone_no_thanks">نه مننه</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal سره مرسته کول</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ستاسې په څیر خلکو له خوا ځواکمن شوی دی. همدا نن مو خپل ملاتړ وښیئ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">مرسته کول</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">نه مننه</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">د ګروپي زنګ وهلو پیژندنه</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">یو نوی ګروپ پرانیزئ تر څو وړیا انکریپټ شوی ګروپی زنګ پیل کړئ</string>
