@@ -157,11 +157,11 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
             icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
             isActive = state.hasActiveSubscription,
             onClick = { isActive ->
-              findNavController()
-                .navigate(
-                  AppSettingsFragmentDirections.actionAppSettingsFragmentToSubscriptions()
-                    .setSkipToSubscribe(!isActive)
-                )
+              if (isActive) {
+                findNavController().navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToManageDonationsFragment())
+              } else {
+                findNavController().navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToSubscribeFragment())
+              }
             }
           )
         )

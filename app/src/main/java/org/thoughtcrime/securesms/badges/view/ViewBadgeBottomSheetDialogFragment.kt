@@ -120,7 +120,7 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       recipientId: RecipientId,
       startBadge: Badge? = null
     ) {
-      if (!FeatureFlags.displayDonorBadges()) {
+      if (!FeatureFlags.displayDonorBadges() && recipientId != Recipient.self().id) {
         return
       }
 

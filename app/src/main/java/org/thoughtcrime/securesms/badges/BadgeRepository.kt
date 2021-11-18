@@ -20,14 +20,12 @@ class BadgeRepository(context: Context) {
     selfBadges: List<Badge> = Recipient.self().badges
   ): Completable = Completable.fromAction {
     val recipientDatabase: RecipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+    val badges = selfBadges.map { it.copy(visible = displayBadgesOnProfile) }
 
+    ProfileUtil.uploadProfileWithBadges(context, badges)
     SignalStore.donationsValues().setDisplayBadgesOnProfile(displayBadgesOnProfile)
-
     recipientDatabase.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
-
-    val badges = selfBadges.map { it.copy(visible = displayBadgesOnProfile) }
-    ProfileUtil.uploadProfileWithBadges(context, badges)
 
     recipientDatabase.setBadges(Recipient.self().id, badges)
   }.subscribeOn(Schedulers.io())

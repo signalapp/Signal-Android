@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -49,8 +50,8 @@ class SubscribeViewModel(
   private val activeSubscriptionSubject = PublishSubject.create<ActiveSubscription>()
 
   init {
-    networkDisposable = donationPaymentRepository
-      .internetConnectionObserver()
+    networkDisposable = InternetConnectionObserver
+      .observe()
       .distinctUntilChanged()
       .subscribe { isConnected ->
         if (isConnected) {
@@ -218,9 +219,9 @@ class SubscribeViewModel(
           }
         }
 
-        override fun onError() {
+        override fun onError(googlePayException: GooglePayApi.GooglePayException) {
           store.update { it.copy(stage = SubscribeState.Stage.READY) }
-          eventPublisher.onNext(DonationEvent.RequestTokenError)
+          eventPublisher.onNext(DonationEvent.RequestTokenError(googlePayException))
         }
 
         override fun onCancelled() {

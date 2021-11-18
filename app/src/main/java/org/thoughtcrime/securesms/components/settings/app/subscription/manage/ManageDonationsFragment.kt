@@ -1,9 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
-import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
@@ -37,29 +35,12 @@ class ManageDonationsFragment : DSLSettingsFragment() {
 
   private val lifecycleDisposable = LifecycleDisposable()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    val args = ManageDonationsFragmentArgs.fromBundle(requireArguments())
-    if (args.skipToSubscribe) {
-      findNavController().navigate(
-        ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment(),
-        NavOptions.Builder().setPopUpTo(R.id.manageDonationsFragment, true).build()
-      )
-    }
-  }
-
   override fun onResume() {
     super.onResume()
     viewModel.refresh()
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    val args = ManageDonationsFragmentArgs.fromBundle(requireArguments())
-    if (args.skipToSubscribe) {
-      return
-    }
-
     ActiveSubscriptionPreference.register(adapter)
     IndeterminateLoadingCircle.register(adapter)
     BadgePreview.register(adapter)
@@ -149,7 +130,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__badges),
         icon = DSLSettingsIcon.from(R.drawable.ic_badge_24),
         onClick = {
-          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscriptionBadgeManageFragment())
+          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment())
         }
       )
 

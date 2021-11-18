@@ -34,6 +34,7 @@ abstract class DSLSettingsBottomSheetFragment(
 
     recyclerView.layoutManager = layoutManagerProducer(requireContext())
     recyclerView.adapter = adapter
+    recyclerView.overScrollMode = RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS
 
     bindAdapter(adapter)
   }

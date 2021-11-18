@@ -63,7 +63,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
       CurrencyUtil.getCurrencyByCurrencyCode(currencyCode)
     }
 
-    return if (currency != null && StripeApi.Validation.supportedCurrencyCodes.contains(currency.currencyCode)) {
+    return if (currency != null && StripeApi.Validation.supportedCurrencyCodes.contains(currency.currencyCode.toUpperCase(Locale.ROOT))) {
       currency
     } else {
       Currency.getInstance("USD")

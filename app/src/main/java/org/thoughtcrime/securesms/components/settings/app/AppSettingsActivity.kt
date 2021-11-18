@@ -47,8 +47,8 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
         StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
-        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions().setSkipToSubscribe(true)
-        StartLocation.MANAGE_SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions()
+        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions()
+        StartLocation.MANAGE_SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToManageDonations()
       }
     }
 
@@ -73,6 +73,12 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
         startService(intent)
       }
     }
+  }
+
+  override fun onNewIntent(intent: Intent?) {
+    super.onNewIntent(intent)
+    finish()
+    startActivity(intent)
   }
 
   override fun onSaveInstanceState(outState: Bundle) {

@@ -84,9 +84,9 @@ public final class FeatureFlags {
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
-  private static final String DONOR_BADGES                      = "android.donorBadges.5";
+  private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_MEGAPHONE            = "android.donorBadges.megaphone.3";
-  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.3";
+  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
 
   /**
@@ -427,7 +427,7 @@ public final class FeatureFlags {
    * Whether or not donor badges should be displayed throughout the app.
    */
   public static boolean displayDonorBadges() {
-    return getBoolean(DONOR_BADGES_DISPLAY, Environment.IS_STAGING);
+    return getBoolean(DONOR_BADGES_DISPLAY, false);
   }
 
   public static boolean cdsh() {

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.math.BigDecimal
@@ -42,8 +43,8 @@ class BoostViewModel(
   private var boostToPurchase: Boost? = null
 
   init {
-    networkDisposable = donationPaymentRepository
-      .internetConnectionObserver()
+    networkDisposable = InternetConnectionObserver
+      .observe()
       .distinctUntilChanged()
       .subscribe { isConnected ->
         if (isConnected) {
@@ -152,9 +153,9 @@ class BoostViewModel(
           }
         }
 
-        override fun onError() {
+        override fun onError(googlePayException: GooglePayApi.GooglePayException) {
           store.update { it.copy(stage = BoostState.Stage.READY) }
-          eventPublisher.onNext(DonationEvent.RequestTokenError)
+          eventPublisher.onNext(DonationEvent.RequestTokenError(googlePayException))
         }
 
         override fun onCancelled() {
