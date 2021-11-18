@@ -83,7 +83,6 @@ def selectableVariants = [
         'nightlyProdFlipper',
         'nightlyProdPerf',
         'nightlyProdRelease',
-        'nightlyStagingPerf',
         'playProdDebug',
         'playProdFlipper',
         'playProdPerf',
@@ -599,7 +598,8 @@ def getCurrentGitTag() {
     def output = stdout.toString().trim()
 
     if (output != null && output.size() > 0) {
-        return output.split('\n')[0];
+        def tags = output.split('\n').toList()
+        return tags.stream().filter(t -> t.contains('nightly')).findFirst().orElse(tags.get(0))
     } else {
         return null
     }
