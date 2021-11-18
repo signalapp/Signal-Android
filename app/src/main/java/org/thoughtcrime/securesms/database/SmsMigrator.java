@@ -163,7 +163,7 @@ public class SmsMigrator {
                                           ProgressDescription progress,
                                           long theirThreadId, long ourThreadId)
   {
-    MessageDatabase ourSmsDatabase = DatabaseFactory.getSmsDatabase(context);
+    MessageDatabase ourSmsDatabase = SignalDatabase.sms();
     Cursor          cursor         = null;
     SQLiteStatement statement      = null;
 
@@ -194,9 +194,9 @@ public class SmsMigrator {
       }
 
       ourSmsDatabase.endTransaction(transaction);
-      DatabaseFactory.getThreadDatabase(context).update(ourThreadId, true);
-      DatabaseFactory.getThreadDatabase(context).setLastScrolled(ourThreadId, 0);
-      DatabaseFactory.getThreadDatabase(context).notifyConversationListeners(ourThreadId);
+      SignalDatabase.threads().update(ourThreadId, true);
+      SignalDatabase.threads().setLastScrolled(ourThreadId, 0);
+      SignalDatabase.threads().notifyConversationListeners(ourThreadId);
 
     } finally {
       if (statement != null)
@@ -211,7 +211,7 @@ public class SmsMigrator {
 //    if (context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).getBoolean("migrated", false))
 //      return;
 
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    ThreadDatabase threadDatabase = SignalDatabase.threads();
     Cursor cursor                 = null;
 
     try {
@@ -233,8 +233,8 @@ public class SmsMigrator {
 
             List<RecipientId> recipientIds = Stream.of(ourRecipients).map(Recipient::getId).toList();
 
-            GroupId.Mms ourGroupId          = DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipientIds);
-            RecipientId ourGroupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(ourGroupId);
+            GroupId.Mms ourGroupId          = SignalDatabase.groups().getOrCreateMmsGroupForMembers(recipientIds);
+            RecipientId ourGroupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(ourGroupId);
             Recipient   ourGroupRecipient   = Recipient.resolved(ourGroupRecipientId);
             long        ourThreadId         = threadDatabase.getOrCreateThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 

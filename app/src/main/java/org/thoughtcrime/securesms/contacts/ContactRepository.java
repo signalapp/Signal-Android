@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CursorUtil;
@@ -102,7 +102,7 @@ public class ContactRepository {
   }};
 
   public ContactRepository(@NonNull Context context) {
-    this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    this.recipientDatabase = SignalDatabase.recipients();
     this.noteToSelfTitle   = context.getString(R.string.note_to_self);
     this.context           = context.getApplicationContext();
   }

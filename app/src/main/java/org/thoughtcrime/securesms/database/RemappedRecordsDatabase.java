@@ -6,7 +6,6 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 
@@ -43,7 +42,7 @@ public class RemappedRecordsDatabase extends Database {
                                                                                      NEW_ID + " INTEGER)";
   }
 
-  RemappedRecordsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  RemappedRecordsDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

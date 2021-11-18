@@ -42,7 +42,7 @@ public final class MentionUtil {
   @WorkerThread
   public static @NonNull CharSequence updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body) {
     if (messageRecord.isMms()) {
-      List<Mention> mentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessage(messageRecord.getId());
+      List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId());
       CharSequence  updated  = updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();
       if (updated != null) {
         return updated;

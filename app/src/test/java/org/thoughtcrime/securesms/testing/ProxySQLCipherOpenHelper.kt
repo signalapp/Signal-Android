@@ -1,23 +1,23 @@
 package org.thoughtcrime.securesms.testing
 
-import android.content.Context
+import android.app.Application
+import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.database.SignalDatabase
 import java.security.SecureRandom
 import android.database.sqlite.SQLiteDatabase as AndroidSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabase as SQLCipherSQLiteDatabase
-import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSQLiteDatabase
 
 /**
- * Proxy [SQLCipherOpenHelper] to the [TestSQLiteOpenHelper] interface.
+ * Proxy [SignalDatabase] to the [TestSQLiteOpenHelper] interface.
  */
 class ProxySQLCipherOpenHelper(
-  context: Context,
+  context: Application,
   val readableDatabase: AndroidSQLiteDatabase,
   val writableDatabase: AndroidSQLiteDatabase,
-) : SQLCipherOpenHelper(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) })) {
+) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret()) {
 
-  constructor(context: Context, testOpenHelper: TestSQLiteOpenHelper) : this(context, testOpenHelper.readableDatabase, testOpenHelper.writableDatabase)
+  constructor(context: Application, testOpenHelper: TestSQLiteOpenHelper) : this(context, testOpenHelper.readableDatabase, testOpenHelper.writableDatabase)
 
   override fun close() {
     throw UnsupportedOperationException()
@@ -43,15 +43,15 @@ class ProxySQLCipherOpenHelper(
     throw UnsupportedOperationException()
   }
 
-  override fun onOpen(db: SQLCipherSQLiteDatabase?) {
+  override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     throw UnsupportedOperationException()
   }
 
-  override fun onCreate(db: SQLCipherSQLiteDatabase?) {
+  override fun onCreate(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     throw UnsupportedOperationException()
   }
 
-  override fun onUpgrade(db: SQLCipherSQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+  override fun onUpgrade(db: net.zetetic.database.sqlcipher.SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     throw UnsupportedOperationException()
   }
 
@@ -63,27 +63,23 @@ class ProxySQLCipherOpenHelper(
     throw UnsupportedOperationException()
   }
 
-  override fun getRawReadableDatabase(): SQLCipherSQLiteDatabase {
-    throw UnsupportedOperationException()
-  }
+  override val rawReadableDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
+    get() = throw UnsupportedOperationException()
 
-  override fun getRawWritableDatabase(): SQLCipherSQLiteDatabase {
-    throw UnsupportedOperationException()
-  }
+  override val rawWritableDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
+    get() = throw UnsupportedOperationException()
 
-  override fun getSignalReadableDatabase(): SignalSQLiteDatabase {
-    return ProxySignalSQLiteDatabase(readableDatabase)
-  }
+  override val signalReadableDatabase: org.thoughtcrime.securesms.database.SQLiteDatabase
+    get() = ProxySignalSQLiteDatabase(readableDatabase)
 
-  override fun getSignalWritableDatabase(): SignalSQLiteDatabase {
-    return ProxySignalSQLiteDatabase(writableDatabase)
-  }
+  override val signalWritableDatabase: org.thoughtcrime.securesms.database.SQLiteDatabase
+    get() = ProxySignalSQLiteDatabase(writableDatabase)
 
   override fun getSqlCipherDatabase(): SQLCipherSQLiteDatabase {
     throw UnsupportedOperationException()
   }
 
-  override fun markCurrent(db: SQLCipherSQLiteDatabase?) {
+  override fun markCurrent(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     throw UnsupportedOperationException()
   }
 }

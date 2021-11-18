@@ -12,9 +12,9 @@ import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -57,7 +57,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
   @Override
   public int size() {
     long startTime = System.currentTimeMillis();
-    int  size      = DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId) +
+    int  size      = SignalDatabase.mmsSms().getConversationCount(threadId) +
                      (messageRequestData.includeWarningUpdateMessage() ? 1 : 0) +
                      (showUniversalExpireTimerUpdate ? 1 : 0);
 
@@ -69,7 +69,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
   @Override
   public @NonNull List<ConversationMessage> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
     Stopwatch           stopwatch        = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
-    MmsSmsDatabase      db               = DatabaseFactory.getMmsSmsDatabase(context);
+    MmsSmsDatabase      db               = SignalDatabase.mmsSms();
     List<MessageRecord> records          = new ArrayList<>(length);
     MentionHelper       mentionHelper    = new MentionHelper();
     AttachmentHelper    attachmentHelper = new AttachmentHelper();
@@ -123,7 +123,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
   @Override
   public @Nullable ConversationMessage load(@NonNull MessageId messageId) {
     Stopwatch       stopwatch = new Stopwatch("load(" + messageId + "), thread " + threadId);
-    MessageDatabase database  = messageId.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+    MessageDatabase database  = messageId.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
     MessageRecord   record    = database.getMessageRecordOrNull(messageId.getId());
 
     stopwatch.split("message");
@@ -132,20 +132,20 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
       if (record != null) {
         List<Mention> mentions;
         if (messageId.isMms()) {
-          mentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessage(messageId.getId());
+          mentions = SignalDatabase.mentions().getMentionsForMessage(messageId.getId());
         } else {
           mentions = Collections.emptyList();
         }
 
         stopwatch.split("mentions");
 
-        List<ReactionRecord> reactions = DatabaseFactory.getReactionDatabase(context).getReactions(messageId);
+        List<ReactionRecord> reactions = SignalDatabase.reactions().getReactions(messageId);
         record = ReactionHelper.recordWithReactions(record, reactions);
 
         stopwatch.split("reactions");
 
         if (messageId.isMms()) {
-          List<DatabaseAttachment> attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId.getId());
+          List<DatabaseAttachment> attachments = SignalDatabase.attachments().getAttachmentsForMessage(messageId.getId());
           if (attachments.size() > 0) {
             record = ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
           }
@@ -179,7 +179,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     }
 
     void fetchMentions(Context context) {
-      messageIdToMentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessages(messageIds);
+      messageIdToMentions = SignalDatabase.mentions().getMentionsForMessages(messageIds);
     }
 
     @Nullable List<Mention> getMentions(long id) {
@@ -199,7 +199,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     }
 
     void fetchAttachments(Context context) {
-      messageIdToAttachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessages(messageIds);
+      messageIdToAttachments = SignalDatabase.attachments().getAttachmentsForMessages(messageIds);
     }
 
     @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
@@ -229,7 +229,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     }
 
     void fetchReactions(Context context) {
-      messageIdToReactions = DatabaseFactory.getReactionDatabase(context).getReactionsForMessages(messageIds);
+      messageIdToReactions = SignalDatabase.reactions().getReactionsForMessages(messageIds);
     }
 
     @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {

@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -129,11 +129,10 @@ public final class PushProcessMessageJob extends BaseJob {
           queueName = getQueueName(Recipient.externalPossiblyMigratedGroup(context, groupId).getId());
 
           if (groupId.isV2()) {
-            int localRevision = DatabaseFactory.getGroupDatabase(context)
-                                               .getGroupV2Revision(groupId.requireV2());
+            int localRevision = SignalDatabase.groups().getGroupV2Revision(groupId.requireV2());
 
             if (signalServiceGroupContext.getGroupV2().get().getRevision() > localRevision ||
-                DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2()).isPresent())
+                SignalDatabase.groups().getGroupV1ByExpectedV2(groupId.requireV2()).isPresent())
             {
               Log.i(TAG, "Adding network constraint to group-related job.");
               builder.addConstraint(NetworkConstraint.KEY)

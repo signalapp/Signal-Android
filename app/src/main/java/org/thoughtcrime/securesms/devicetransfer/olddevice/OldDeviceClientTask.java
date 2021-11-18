@@ -12,7 +12,7 @@ import org.signal.devicetransfer.ClientTask;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
 
@@ -41,7 +41,7 @@ final class OldDeviceClientTask implements ClientTask {
     try {
       FullBackupExporter.transfer(context,
                                   AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                  DatabaseFactory.getBackupDatabase(context),
+                                  SignalDatabase.getBackupDatabase(),
                                   outputStream,
                                   "deadbeef");
     } catch (Exception e) {

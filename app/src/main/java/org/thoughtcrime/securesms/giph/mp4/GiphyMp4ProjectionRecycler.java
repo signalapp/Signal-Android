@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
 import android.util.SparseArray;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;

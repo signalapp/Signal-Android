@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.invites;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 public final class InviteReminderRepository implements InviteReminderModel.Repository {
@@ -17,19 +17,19 @@ public final class InviteReminderRepository implements InviteReminderModel.Repos
 
   @Override
   public void setHasSeenFirstInviteReminder(Recipient recipient) {
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     recipientDatabase.setSeenFirstInviteReminder(recipient.getId());
   }
 
   @Override
   public void setHasSeenSecondInviteReminder(Recipient recipient) {
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     recipientDatabase.setSeenSecondInviteReminder(recipient.getId());
   }
 
   @Override
   public int getPercentOfInsecureMessages(int insecureCount) {
-    MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
+    MmsSmsDatabase mmsSmsDatabase = SignalDatabase.mmsSms();
     int            insecure       = mmsSmsDatabase.getInsecureMessageCountForInsights();
     int            secure         = mmsSmsDatabase.getSecureMessageCountForInsights();
 

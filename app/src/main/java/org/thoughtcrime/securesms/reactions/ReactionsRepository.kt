@@ -5,8 +5,8 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DatabaseObserver
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -34,7 +34,7 @@ class ReactionsRepository {
 
   private fun fetchReactionDetails(messageId: MessageId): List<ReactionDetails> {
     val context: Context = ApplicationDependencies.getApplication()
-    val reactions: List<ReactionRecord> = DatabaseFactory.getReactionDatabase(context).getReactions(messageId)
+    val reactions: List<ReactionRecord> = SignalDatabase.reactions.getReactions(messageId)
 
     return reactions.map { reaction ->
       ReactionDetails(

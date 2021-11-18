@@ -17,12 +17,7 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
-import android.database.ContentObserver;
-import android.database.Cursor;
 
-import androidx.annotation.NonNull;
-
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 import java.util.Set;
@@ -32,10 +27,10 @@ public abstract class Database {
   protected static final String   ID_WHERE = "_id = ?";
   protected static final String[] COUNT    = new String[] { "COUNT(*)" };
 
-  protected       SQLCipherOpenHelper databaseHelper;
-  protected final Context             context;
+  protected       SignalDatabase databaseHelper;
+  protected final Context        context;
 
-  public Database(Context context, SQLCipherOpenHelper databaseHelper) {
+  public Database(Context context, SignalDatabase databaseHelper) {
     this.context        = context;
     this.databaseHelper = databaseHelper;
   }
@@ -76,7 +71,7 @@ public abstract class Database {
     ApplicationDependencies.getDatabaseObserver().notifyAttachmentObservers();
   }
 
-  public void reset(SQLCipherOpenHelper databaseHelper) {
+  public void reset(SignalDatabase databaseHelper) {
     this.databaseHelper = databaseHelper;
   }
 }

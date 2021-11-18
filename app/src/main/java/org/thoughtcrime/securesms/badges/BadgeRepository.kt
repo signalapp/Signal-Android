@@ -4,8 +4,8 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -19,7 +19,7 @@ class BadgeRepository(context: Context) {
     displayBadgesOnProfile: Boolean,
     selfBadges: List<Badge> = Recipient.self().badges
   ): Completable = Completable.fromAction {
-    val recipientDatabase: RecipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+    val recipientDatabase: RecipientDatabase = SignalDatabase.recipients
     val badges = selfBadges.map { it.copy(visible = displayBadgesOnProfile) }
 
     ProfileUtil.uploadProfileWithBadges(context, badges)
@@ -35,7 +35,7 @@ class BadgeRepository(context: Context) {
     val reOrderedBadges = listOf(featuredBadge.copy(visible = true)) + (badges.filterNot { it.id == featuredBadge.id })
     ProfileUtil.uploadProfileWithBadges(context, reOrderedBadges)
 
-    val recipientDatabase: RecipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+    val recipientDatabase: RecipientDatabase = SignalDatabase.recipients
     recipientDatabase.setBadges(Recipient.self().id, reOrderedBadges)
   }.subscribeOn(Schedulers.io())
 }

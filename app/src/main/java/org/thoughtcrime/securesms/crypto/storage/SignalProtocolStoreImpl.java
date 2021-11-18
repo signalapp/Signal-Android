@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
@@ -191,10 +191,10 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
 
   @Override
   public Transaction beginTransaction() {
-    DatabaseFactory.getInstance(context).getRawDatabase().beginTransaction();
+    SignalDatabase.getRawDatabase().beginTransaction();
     return () -> {
-      DatabaseFactory.getInstance(context).getRawDatabase().setTransactionSuccessful();
-      DatabaseFactory.getInstance(context).getRawDatabase().endTransaction();
+      SignalDatabase.getRawDatabase().setTransactionSuccessful();
+      SignalDatabase.getRawDatabase().endTransaction();
     };
   }
 }

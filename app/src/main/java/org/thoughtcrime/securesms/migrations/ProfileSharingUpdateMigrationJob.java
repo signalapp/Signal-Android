@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -35,7 +35,7 @@ public class ProfileSharingUpdateMigrationJob extends MigrationJob {
   @Override
   public void performMigration() {
     long messageRequestEnableTime = SignalStore.misc().getMessageRequestEnableTime();
-    DatabaseFactory.getRecipientDatabase(context).markPreMessageRequestRecipientsAsProfileSharingEnabled(messageRequestEnableTime);
+    SignalDatabase.recipients().markPreMessageRequestRecipientsAsProfileSharingEnabled(messageRequestEnableTime);
   }
 
   @Override

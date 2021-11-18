@@ -19,7 +19,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import androidx.core.app.NotificationChannelCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -27,9 +26,9 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -108,7 +107,7 @@ public class NotificationChannels {
       return;
     }
 
-    RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase db = SignalDatabase.recipients();
 
     try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
       Recipient recipient;
@@ -328,7 +327,7 @@ public class NotificationChannels {
                                                  generateChannelIdFor(recipient),
                                                  channel -> channel.setSound(uri == null ? Settings.System.DEFAULT_NOTIFICATION_URI : uri, getRingtoneAudioAttributes()));
 
-    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient.getId(), success ? newChannelId : null);
+    SignalDatabase.recipients().setNotificationChannel(recipient.getId(), success ? newChannelId : null);
     ensureCustomChannelConsistency(context);
   }
 
@@ -396,7 +395,7 @@ public class NotificationChannels {
                                             newChannelId,
                                             channel -> setVibrationEnabled(channel, enabled));
 
-    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient.getId(), success ? newChannelId : null);
+    SignalDatabase.recipients().setNotificationChannel(recipient.getId(), success ? newChannelId : null);
     ensureCustomChannelConsistency(context);
   }
 
@@ -496,7 +495,7 @@ public class NotificationChannels {
 
       if (channel.isPresent()) {
         Log.i(TAG, "Conversation channel created outside of app, while running. Update " + recipient.getId() + " to use '" + channel.get().getId() + "'");
-        DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient.getId(), channel.get().getId());
+        SignalDatabase.recipients().setNotificationChannel(recipient.getId(), channel.get().getId());
         return true;
       }
     }
@@ -536,7 +535,7 @@ public class NotificationChannels {
     Log.d(TAG, "ensureCustomChannelConsistency()");
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    RecipientDatabase   db                  = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase   db                  = SignalDatabase.recipients();
     List<Recipient>     customRecipients    = new ArrayList<>();
     Set<String>         customChannelIds    = new HashSet<>();
 
@@ -685,7 +684,7 @@ public class NotificationChannels {
   @WorkerThread
   @TargetApi(26)
   private static void updateAllRecipientChannelLedColors(@NonNull Context context, @NonNull NotificationManager notificationManager, @NonNull String color) {
-    RecipientDatabase database = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase database = SignalDatabase.recipients();
 
     try (RecipientDatabase.RecipientReader recipients = database.getRecipientsWithNotificationChannels()) {
       Recipient recipient;

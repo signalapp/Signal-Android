@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -19,7 +19,6 @@ import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.Id
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.UUID;
 
 public class ContactRecordProcessor extends DefaultStorageRecordProcessor<SignalContactRecord> {
 
@@ -29,7 +28,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   private final RecipientDatabase recipientDatabase;
 
   public ContactRecordProcessor(@NonNull Context context, @NonNull Recipient self) {
-    this(self, DatabaseFactory.getRecipientDatabase(context));
+    this(self, SignalDatabase.recipients());
   }
 
   ContactRecordProcessor(@NonNull Recipient self, @NonNull RecipientDatabase recipientDatabase) {

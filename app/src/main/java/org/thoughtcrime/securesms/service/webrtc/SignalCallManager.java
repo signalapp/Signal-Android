@@ -27,8 +27,8 @@ import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupIdentifier;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -311,14 +311,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                         .toList();
 
         callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(), credential.getTokenBytes().toByteArray(), members, peekInfo -> {
-          Long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(group.getId());
+          Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
           if (threadId != null) {
-            DatabaseFactory.getSmsDatabase(context)
-                           .updatePreviousGroupCall(threadId,
-                                                    peekInfo.getEraId(),
-                                                    peekInfo.getJoinedMembers(),
-                                                    WebRtcUtil.isCallFull(peekInfo));
+            SignalDatabase.sms()
+                          .updatePreviousGroupCall(threadId,
+                                                   peekInfo.getEraId(),
+                                                   peekInfo.getJoinedMembers(),
+                                                   WebRtcUtil.isCallFull(peekInfo));
 
             ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId, true, 0, BubbleUtil.BubbleState.HIDDEN);
 
@@ -626,7 +626,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     networkExecutor.execute(() -> {
       try {
         GroupId         groupId    = GroupId.v2(new GroupIdentifier(groupIdBytes));
-        List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+        List<Recipient> recipients = SignalDatabase.groups().getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
         recipients = RecipientUtil.getEligibleForSending((recipients.stream()
                                                                     .map(Recipient::resolve)
@@ -695,7 +695,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID uuid, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
       GroupId.V2                          groupId = GroupId.v2(new GroupIdentifier(groupIdBytes));
-      Optional<GroupDatabase.GroupRecord> group   = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);
+      Optional<GroupDatabase.GroupRecord> group   = SignalDatabase.groups().getGroup(groupId);
 
       if (group.isPresent()) {
         process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.get().getRecipientId()), groupId, ringId, uuid, ringUpdate));
@@ -788,16 +788,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp, boolean isVideoOffer) {
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(context)
-                                                         .insertMissedCall(remotePeer.getId(), timestamp, isVideoOffer);
+    Pair<Long, Long> messageAndThreadId = SignalDatabase.sms().insertMissedCall(remotePeer.getId(), timestamp, isVideoOffer);
 
     ApplicationDependencies.getMessageNotifier()
                            .updateNotification(context, messageAndThreadId.second(), signal);
   }
 
   public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean signal, boolean isVideoOffer) {
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(context)
-                                                         .insertReceivedCall(remotePeer.getId(), isVideoOffer);
+    Pair<Long, Long> messageAndThreadId = SignalDatabase.sms().insertReceivedCall(remotePeer.getId(), isVideoOffer);
 
     ApplicationDependencies.getMessageNotifier()
                            .updateNotification(context, messageAndThreadId.second(), signal);
@@ -843,7 +841,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
-    SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getSmsDatabase(context).insertOrUpdateGroupCall(groupId,
+    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.sms().insertOrUpdateGroupCall(groupId,
                                                                                                           Recipient.self().getId(),
                                                                                                           System.currentTimeMillis(),
                                                                                                           groupCallEraId,

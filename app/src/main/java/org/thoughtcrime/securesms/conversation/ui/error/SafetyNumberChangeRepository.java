@@ -15,8 +15,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -82,9 +82,9 @@ final class SafetyNumberChangeRepository {
     try {
       switch (messageType) {
         case MmsSmsDatabase.SMS_TRANSPORT:
-          return DatabaseFactory.getSmsDatabase(context).getMessageRecord(messageId);
+          return SignalDatabase.sms().getMessageRecord(messageId);
         case MmsSmsDatabase.MMS_TRANSPORT:
-          return DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
+          return SignalDatabase.mms().getMessageRecord(messageId);
         default:
           throw new AssertionError("no valid message type specified");
       }
@@ -136,7 +136,7 @@ final class SafetyNumberChangeRepository {
           Log.i(TAG, "Archiving sessions explicitly as they appear to be out of sync.");
           SessionUtil.archiveSession(changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
           SessionUtil.archiveSiblingSessions(mismatchAddress);
-          DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(changedRecipient.getRecipient().getId());
+          SignalDatabase.senderKeyShared().deleteAllFor(changedRecipient.getRecipient().getId());
         }
       }
     }
@@ -151,8 +151,8 @@ final class SafetyNumberChangeRepository {
   @WorkerThread
   private void processOutgoingMessageRecord(@NonNull List<ChangedRecipient> changedRecipients, @NonNull MessageRecord messageRecord) {
     Log.d(TAG, "processOutgoingMessageRecord");
-    MessageDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase smsDatabase = SignalDatabase.sms();
+    MessageDatabase mmsDatabase = SignalDatabase.mms();
 
     for (ChangedRecipient changedRecipient : changedRecipients) {
       RecipientId id          = changedRecipient.getRecipient().getId();

@@ -10,9 +10,9 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
@@ -105,9 +105,9 @@ public final class StorageSyncHelper {
   }
 
   public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @NonNull Recipient self) {
-    RecipientDatabase       recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase       recipientDatabase = SignalDatabase.recipients();
     RecipientSettings       settings          = recipientDatabase.getRecipientSettingsForSync(self.getId());
-    List<RecipientSettings> pinned            = Stream.of(DatabaseFactory.getThreadDatabase(context).getPinnedRecipientIds())
+    List<RecipientSettings> pinned            = Stream.of(SignalDatabase.threads().getPinnedRecipientIds())
                                                       .map(recipientDatabase::getRecipientSettingsForSync)
                                                       .toList();
 
@@ -145,7 +145,7 @@ public final class StorageSyncHelper {
   }
 
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull Recipient self, @NonNull StorageRecordUpdate<SignalAccountRecord> update, boolean fetchProfile) {
-    DatabaseFactory.getRecipientDatabase(context).applyStorageSyncAccountUpdate(update);
+    SignalDatabase.recipients().applyStorageSyncAccountUpdate(update);
 
     TextSecurePreferences.setReadReceiptsEnabled(context, update.getNew().isReadReceiptsEnabled());
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.getNew().isTypingIndicatorsEnabled());

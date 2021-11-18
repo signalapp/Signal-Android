@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.contacts.SelectedContact;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -28,6 +28,6 @@ final class AddMembersRepository {
 
   @WorkerThread
   String getGroupTitle() {
-    return DatabaseFactory.getGroupDatabase(context).requireGroup(groupId).getTitle();
+    return SignalDatabase.groups().requireGroup(groupId).getTitle();
   }
 }

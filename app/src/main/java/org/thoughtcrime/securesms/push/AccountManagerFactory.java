@@ -14,8 +14,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
 
-import java.util.UUID;
-
 public class AccountManagerFactory {
 
   private static final String TAG = Log.tag(AccountManagerFactory.class);

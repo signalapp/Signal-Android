@@ -44,14 +44,12 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -233,7 +231,7 @@ public class MmsDatabase extends MessageDatabase {
 
   private final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache("MmsDelivery");
 
-  public MmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public MmsDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -637,7 +635,7 @@ public class MmsDatabase extends MessageDatabase {
                              ID + " = ?",
                              SqlUtil.buildArgs(updatedTimestamp, id));
 
-            DatabaseFactory.getGroupReceiptDatabase(context).update(ourRecipientId, id, status, timestamp);
+            SignalDatabase.groupReceipts().update(ourRecipientId, id, status, timestamp);
 
             threadUpdates.add(new ThreadUpdate(threadId, !isFirstIncrement));
           }
@@ -674,12 +672,12 @@ public class MmsDatabase extends MessageDatabase {
 
   private long getThreadIdFor(@NonNull IncomingMediaMessage retrieved) {
     if (retrieved.getGroupId() != null) {
-      RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(retrieved.getGroupId());
+      RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(retrieved.getGroupId());
       Recipient   groupRecipients  = Recipient.resolved(groupRecipientId);
-      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipients);
+      return SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipients);
     } else {
       Recipient sender = Recipient.resolved(retrieved.getFrom());
-      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(sender);
+      return SignalDatabase.threads().getOrCreateThreadIdFor(sender);
     }
   }
 
@@ -688,7 +686,7 @@ public class MmsDatabase extends MessageDatabase {
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
     Recipient recipient = Recipient.external(context, fromString);
-    return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    return SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
   }
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments) {
@@ -753,7 +751,7 @@ public class MmsDatabase extends MessageDatabase {
                  " WHERE " + ID + " = ?", new String[] { id + "" });
 
       if (threadId.isPresent()) {
-        DatabaseFactory.getThreadDatabase(context).updateSnippetTypeSilently(threadId.get());
+        SignalDatabase.threads().updateSnippetTypeSilently(threadId.get());
       }
       db.setTransactionSuccessful();
     } finally {
@@ -849,12 +847,12 @@ public class MmsDatabase extends MessageDatabase {
       values.putNull(SHARED_CONTACTS);
       db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(messageId) });
 
-      deletedAttachments = DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentsForMessage(messageId);
-      DatabaseFactory.getMentionDatabase(context).deleteMentionsForMessage(messageId);
-      DatabaseFactory.getMessageLogDatabase(context).deleteAllRelatedToMessage(messageId, true);
+      deletedAttachments = SignalDatabase.attachments().deleteAttachmentsForMessage(messageId);
+      SignalDatabase.mentions().deleteMentionsForMessage(messageId);
+      SignalDatabase.messageLog().deleteAllRelatedToMessage(messageId, true);
 
       threadId = getThreadIdForMessage(messageId);
-      DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+      SignalDatabase.threads().update(threadId, false);
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -927,7 +925,7 @@ public class MmsDatabase extends MessageDatabase {
       db.endTransaction();
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    SignalDatabase.threads().update(threadId, false);
     notifyConversationListeners(threadId);
   }
 
@@ -1034,8 +1032,8 @@ public class MmsDatabase extends MessageDatabase {
 
           database.update(TABLE_NAME, values, ID_WHERE, new String[]{String.valueOf(id)});
 
-          DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
-          DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
+          SignalDatabase.threads().updateReadState(threadId);
+          SignalDatabase.threads().setLastSeen(threadId);
           notifyConversationListeners(threadId);
 
           Long latest = threadToLatestRead.get(threadId);
@@ -1096,16 +1094,16 @@ public class MmsDatabase extends MessageDatabase {
 
     try (Cursor cursor = database.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(new AttachmentId(cursor.getLong(0), cursor.getLong(1)));
+        SignalDatabase.attachments().deleteAttachment(new AttachmentId(cursor.getLong(0), cursor.getLong(1)));
       }
     }
 
-    DatabaseFactory.getMentionDatabase(context).deleteAbandonedMentions();
+    SignalDatabase.mentions().deleteAbandonedMentions();
 
     try (Cursor cursor = database.query(ThreadDatabase.TABLE_NAME, new String[] { ThreadDatabase.ID }, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        DatabaseFactory.getThreadDatabase(context).setLastScrolled(cursor.getLong(0), 0);
-        DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
+        SignalDatabase.threads().setLastScrolled(cursor.getLong(0), 0);
+        SignalDatabase.threads().update(cursor.getLong(0), false);
       }
     }
   }
@@ -1135,8 +1133,8 @@ public class MmsDatabase extends MessageDatabase {
   public OutgoingMediaMessage getOutgoingMessage(long messageId)
       throws MmsException, NoSuchMessageException
   {
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-    MentionDatabase    mentionDatabase    = DatabaseFactory.getMentionDatabase(context);
+    AttachmentDatabase attachmentDatabase = SignalDatabase.attachments();
+    MentionDatabase    mentionDatabase    = SignalDatabase.mentions();
     Cursor             cursor             = null;
 
     try {
@@ -1154,7 +1152,7 @@ public class MmsDatabase extends MessageDatabase {
         boolean          viewOnce           = cursor.getLong(cursor.getColumnIndexOrThrow(VIEW_ONCE)) == 1;
         long             recipientId        = cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID));
         long             threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
-        int              distributionType   = DatabaseFactory.getThreadDatabase(context).getDistributionType(threadId);
+        int              distributionType   = SignalDatabase.threads().getDistributionType(threadId);
         String           mismatchDocument   = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
         String           networkDocument    = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
 
@@ -1358,8 +1356,8 @@ public class MmsDatabase extends MessageDatabase {
     long messageId = insertMediaMessage(threadId, retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), retrieved.getMentions(), contentValues, null, true);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
-      DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      SignalDatabase.threads().incrementUnread(threadId, 1);
+      SignalDatabase.threads().update(threadId, true);
     }
 
     notifyConversationListeners(threadId);
@@ -1454,10 +1452,10 @@ public class MmsDatabase extends MessageDatabase {
     notifyConversationListeners(threadId);
 
     if (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context)) {
-      DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+      SignalDatabase.threads().incrementUnread(threadId, 1);
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    SignalDatabase.threads().update(threadId, true);
 
     TrimThreadJob.enqueueAsync(threadId);
   }
@@ -1549,7 +1547,7 @@ public class MmsDatabase extends MessageDatabase {
     if (message.getRecipient().isGroup()) {
       OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
 
-      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+      GroupReceiptDatabase receiptDatabase = SignalDatabase.groupReceipts();
       Set<RecipientId>     members         = new HashSet<>();
 
       if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
@@ -1560,7 +1558,7 @@ public class MmsDatabase extends MessageDatabase {
                              .toList());
         members.remove(Recipient.self().getId());
       } else {
-        members.addAll(Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());
+        members.addAll(Stream.of(SignalDatabase.groups().getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());
       }
 
       receiptDatabase.insert(members, messageId, defaultReceiptStatus, message.getSentTimeMillis());
@@ -1570,7 +1568,7 @@ public class MmsDatabase extends MessageDatabase {
       }
     }
 
-    DatabaseFactory.getThreadDatabase(context).updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId);
+    SignalDatabase.threads().updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId);
 
     ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, true));
     notifyConversationListListeners();
@@ -1603,8 +1601,8 @@ public class MmsDatabase extends MessageDatabase {
       throws MmsException
   {
     SQLiteDatabase     db              = databaseHelper.getSignalWritableDatabase();
-    AttachmentDatabase partsDatabase   = DatabaseFactory.getAttachmentDatabase(context);
-    MentionDatabase    mentionDatabase = DatabaseFactory.getMentionDatabase(context);
+    AttachmentDatabase partsDatabase   = SignalDatabase.attachments();
+    MentionDatabase    mentionDatabase = SignalDatabase.mentions();
 
     boolean mentionsSelf = Stream.of(mentions).filter(m -> Recipient.resolved(m.getRecipientId()).isSelf()).findFirst().isPresent();
 
@@ -1666,8 +1664,8 @@ public class MmsDatabase extends MessageDatabase {
       long contentValuesThreadId = contentValues.getAsLong(THREAD_ID);
 
       if (updateThread) {
-        DatabaseFactory.getThreadDatabase(context).setLastScrolled(contentValuesThreadId, 0);
-        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+        SignalDatabase.threads().setLastScrolled(contentValuesThreadId, 0);
+        SignalDatabase.threads().update(threadId, true);
       }
     }
   }
@@ -1677,20 +1675,20 @@ public class MmsDatabase extends MessageDatabase {
     Log.d(TAG, "deleteMessage(" + messageId + ")");
 
     long               threadId           = getThreadIdForMessage(messageId);
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase attachmentDatabase = SignalDatabase.attachments();
     attachmentDatabase.deleteAttachmentsForMessage(messageId);
 
-    GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+    GroupReceiptDatabase groupReceiptDatabase = SignalDatabase.groupReceipts();
     groupReceiptDatabase.deleteRowsForMessage(messageId);
 
-    MentionDatabase mentionDatabase = DatabaseFactory.getMentionDatabase(context);
+    MentionDatabase mentionDatabase = SignalDatabase.mentions();
     mentionDatabase.deleteMentionsForMessage(messageId);
 
     SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
 
-    DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
-    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    SignalDatabase.threads().setLastScrolled(threadId, 0);
+    boolean threadDeleted = SignalDatabase.threads().update(threadId, false);
     notifyConversationListeners(threadId);
     notifyStickerListeners();
     notifyStickerPackListeners();
@@ -1855,9 +1853,9 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public void deleteAllThreads() {
     Log.d(TAG, "deleteAllThreads()");
-    DatabaseFactory.getAttachmentDatabase(context).deleteAllAttachments();
-    DatabaseFactory.getGroupReceiptDatabase(context).deleteAllRows();
-    DatabaseFactory.getMentionDatabase(context).deleteAllMentions();
+    SignalDatabase.attachments().deleteAllAttachments();
+    SignalDatabase.groupReceipts().deleteAllRows();
+    SignalDatabase.mentions().deleteAllMentions();
 
     SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, null, null);
@@ -2111,7 +2109,7 @@ public class MmsDatabase extends MessageDatabase {
       Recipient                recipient          = Recipient.live(RecipientId.from(recipientId)).get();
       Set<IdentityKeyMismatch> mismatches         = getMismatchedIdentities(mismatchDocument);
       Set<NetworkFailure>      networkFailures    = getFailures(networkDocument);
-      List<DatabaseAttachment> attachments        = DatabaseFactory.getAttachmentDatabase(context).getAttachments(cursor);
+      List<DatabaseAttachment> attachments        = SignalDatabase.attachments().getAttachments(cursor);
       List<Contact>            contacts           = getSharedContacts(cursor, attachments);
       Set<Attachment>          contactAttachments = Stream.of(contacts).map(Contact::getAvatarAttachment).withoutNulls().collect(Collectors.toSet());
       List<LinkPreview>        previews           = getLinkPreviews(cursor, attachments);
@@ -2165,7 +2163,7 @@ public class MmsDatabase extends MessageDatabase {
       CharSequence               quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_BODY));
       boolean                    quoteMissing     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_MISSING)) == 1;
       List<Mention>              quoteMentions    = parseQuoteMentions(context, cursor);
-      List<DatabaseAttachment>   attachments      = DatabaseFactory.getAttachmentDatabase(context).getAttachments(cursor);
+      List<DatabaseAttachment>   attachments      = SignalDatabase.attachments().getAttachments(cursor);
       List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 

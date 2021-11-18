@@ -26,7 +26,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class PreKeyMigrationHelper {
+public final class PreKeyMigrationHelper {
 
   private static final String PREKEY_DIRECTORY        = "prekeys";
   private static final String SIGNED_PREKEY_DIRECTORY = "signed_prekeys";
@@ -36,7 +36,7 @@ class PreKeyMigrationHelper {
 
   private static final String TAG = Log.tag(PreKeyMigrationHelper.class);
 
-  static boolean migratePreKeys(Context context, SQLiteDatabase database) {
+  public static boolean migratePreKeys(Context context, SQLiteDatabase database) {
     File[]  preKeyFiles = getPreKeyDirectory(context).listFiles();
     boolean clean       = true;
 
@@ -118,7 +118,7 @@ class PreKeyMigrationHelper {
     return clean;
   }
 
-  static void cleanUpPreKeys(@NonNull Context context) {
+  public static void cleanUpPreKeys(@NonNull Context context) {
     File   preKeyDirectory = getPreKeyDirectory(context);
     File[] preKeyFiles     = preKeyDirectory.listFiles();
 

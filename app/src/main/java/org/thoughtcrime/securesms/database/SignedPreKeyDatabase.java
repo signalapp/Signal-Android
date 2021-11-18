@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
@@ -43,7 +42,7 @@ public class SignedPreKeyDatabase extends Database {
       SIGNATURE + " TEXT NOT NULL, " +
       TIMESTAMP + " INTEGER DEFAULT 0);";
 
-  SignedPreKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  SignedPreKeyDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

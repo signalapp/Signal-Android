@@ -6,18 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ReactionDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -65,10 +64,10 @@ public class ReactionSendJob extends BaseJob {
                                                 boolean remove)
       throws NoSuchMessageException
   {
-    MessageRecord message = messageId.isMms() ? DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId.getId())
-                                              : DatabaseFactory.getSmsDatabase(context).getSmsMessage(messageId.getId());
+    MessageRecord message = messageId.isMms() ? SignalDatabase.mms().getMessageRecord(messageId.getId())
+                                              : SignalDatabase.sms().getSmsMessage(messageId.getId());
 
-    Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message.getThreadId());
+    Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());
 
     if (conversationRecipient == null) {
       throw new AssertionError("We have a message, but couldn't find the thread!");
@@ -135,14 +134,14 @@ public class ReactionSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    ReactionDatabase reactionDatabase = DatabaseFactory.getReactionDatabase(context);
+    ReactionDatabase reactionDatabase = SignalDatabase.reactions();
 
     MessageRecord  message;
 
     if (messageId.isMms()) {
-      message = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId.getId());
+      message = SignalDatabase.mms().getMessageRecord(messageId.getId());
     } else {
-      message = DatabaseFactory.getSmsDatabase(context).getSmsMessage(messageId.getId());
+      message = SignalDatabase.sms().getSmsMessage(messageId.getId());
     }
 
     Recipient targetAuthor        = message.isOutgoing() ? Recipient.self() : message.getIndividualRecipient();
@@ -158,7 +157,7 @@ public class ReactionSendJob extends BaseJob {
       return;
     }
 
-    Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message.getThreadId());
+    Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());
 
     if (conversationRecipient == null) {
       throw new AssertionError("We have a message, but couldn't find the thread!");
@@ -202,7 +201,7 @@ public class ReactionSendJob extends BaseJob {
 
     Log.w(TAG, "Failed to send the reaction to all recipients!");
 
-    ReactionDatabase reactionDatabase = DatabaseFactory.getReactionDatabase(context);
+    ReactionDatabase reactionDatabase = SignalDatabase.reactions();
 
     if (remove && !reactionDatabase.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Reaction removal failed, so adding the reaction back.");

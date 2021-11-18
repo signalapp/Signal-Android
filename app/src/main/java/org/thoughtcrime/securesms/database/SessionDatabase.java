@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -42,7 +40,7 @@ public class SessionDatabase extends Database {
                                                                                  RECORD  + " BLOB NOT NULL, " +
                                                                                  "UNIQUE(" + ADDRESS + "," + DEVICE + "));";
 
-  SessionDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  SessionDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

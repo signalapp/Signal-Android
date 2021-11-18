@@ -8,16 +8,14 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
@@ -61,7 +59,7 @@ class ChatWallpaperRepository {
     if (recipientId != null) {
       //noinspection CodeBlock2Expr
       EXECUTOR.execute(() -> {
-        DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).setWallpaper(recipientId, chatWallpaper);
+        SignalDatabase.recipients().setWallpaper(recipientId, chatWallpaper);
         onWallpaperSaved.run();
       });
     } else {
@@ -73,7 +71,7 @@ class ChatWallpaperRepository {
   void resetAllWallpaper(@NonNull Runnable onWallpaperReset) {
     SignalStore.wallpaper().setWallpaper(ApplicationDependencies.getApplication(), null);
     EXECUTOR.execute(() -> {
-      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).resetAllWallpaper();
+      SignalDatabase.recipients().resetAllWallpaper();
       onWallpaperReset.run();
     });
   }
@@ -81,7 +79,7 @@ class ChatWallpaperRepository {
   void resetAllChatColors(@NonNull Runnable onColorsReset) {
     SignalStore.chatColorsValues().setChatColors(null);
     EXECUTOR.execute(() -> {
-      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).clearAllColors();
+      SignalDatabase.recipients().clearAllColors();
       onColorsReset.run();
     });
   }
@@ -91,13 +89,13 @@ class ChatWallpaperRepository {
       EXECUTOR.execute(() -> {
         Recipient recipient = Recipient.resolved(recipientId);
         if (recipient.hasOwnWallpaper()) {
-          DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).setDimWallpaperInDarkTheme(recipientId, dimInDarkTheme);
+          SignalDatabase.recipients().setDimWallpaperInDarkTheme(recipientId, dimInDarkTheme);
         } else if (recipient.hasWallpaper()) {
-          DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication())
-                         .setWallpaper(recipientId,
-                                       ChatWallpaperFactory.updateWithDimming(recipient.getWallpaper(),
-                                                                              dimInDarkTheme ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME
-                                                                                             : 0f));
+          SignalDatabase.recipients()
+                       .setWallpaper(recipientId,
+                                     ChatWallpaperFactory.updateWithDimming(recipient.getWallpaper(),
+                                                                            dimInDarkTheme ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME
+                                                                                           : 0f));
         } else {
           throw new IllegalStateException("Unexpected call to setDimInDarkTheme, no wallpaper has been set on the given recipient or globally.");
         }
@@ -113,7 +111,7 @@ class ChatWallpaperRepository {
       onChatColorCleared.run();
     } else {
       EXECUTOR.execute(() -> {
-        DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).clearColor(recipientId);
+        SignalDatabase.recipients().clearColor(recipientId);
         onChatColorCleared.run();
       });
     }

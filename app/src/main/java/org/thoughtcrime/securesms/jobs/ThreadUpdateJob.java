@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.ThreadUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -45,7 +45,7 @@ public final class ThreadUpdateJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    SignalDatabase.threads().update(threadId, true);
     ThreadUtil.sleep(1000);
   }
 

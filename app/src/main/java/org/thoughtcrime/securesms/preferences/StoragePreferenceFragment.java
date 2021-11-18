@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.components.settings.BaseSettingsFragment;
 import org.thoughtcrime.securesms.components.settings.CustomizableSingleSelectSetting;
 import org.thoughtcrime.securesms.components.settings.SingleSelectSetting;
 import org.thoughtcrime.securesms.components.settings.app.wrapped.SettingsWrapperFragment;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
@@ -132,7 +132,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
       new MaterialAlertDialogBuilder(requireActivity())
           .setTitle(R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history)
           .setMessage(R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)
-          .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).deleteAllConversations()))
+          .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> SignalExecutors.BOUNDED.execute(() -> SignalDatabase.threads().deleteAllConversations()))
           .setNegativeButton(android.R.string.cancel, null)
           .show();
     }
@@ -300,7 +300,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
         long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
                                                                                    : ThreadDatabase.NO_TRIM_BEFORE_DATE_SET;
 
-        SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).trimAllThreads(length, trimBeforeDate));
+        SignalExecutors.BOUNDED.execute(() -> SignalDatabase.threads().trimAllThreads(length, trimBeforeDate));
       }
     }
   }

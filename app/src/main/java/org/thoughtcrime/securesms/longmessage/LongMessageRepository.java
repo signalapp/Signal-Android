@@ -11,9 +11,9 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -32,8 +32,8 @@ class LongMessageRepository {
   private final MessageDatabase smsDatabase;
 
   LongMessageRepository(@NonNull Context context) {
-    this.mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-    this.smsDatabase = DatabaseFactory.getSmsDatabase(context);
+    this.mmsDatabase = SignalDatabase.mms();
+    this.smsDatabase = SignalDatabase.sms();
   }
 
   void getMessage(@NonNull Context context, long messageId, boolean isMms, @NonNull Callback<Optional<LongMessage>> callback) {

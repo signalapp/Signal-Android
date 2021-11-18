@@ -10,7 +10,7 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -74,13 +74,13 @@ class EditGroupProfileRepository implements EditProfileRepository {
       RecipientId recipientId = getRecipientId();
       Recipient   recipient   = Recipient.resolved(recipientId);
 
-      return DatabaseFactory.getGroupDatabase(context)
-                            .getGroup(recipientId)
-                            .transform(groupRecord -> {
+      return SignalDatabase.groups()
+                           .getGroup(recipientId)
+                           .transform(groupRecord -> {
                               String title = groupRecord.getTitle();
                               return title == null ? "" : title;
                             })
-                            .or(() -> recipient.getGroupName(context));
+                           .or(() -> recipient.getGroupName(context));
     }, nameConsumer::accept);
   }
 
@@ -89,13 +89,13 @@ class EditGroupProfileRepository implements EditProfileRepository {
     SimpleTask.run(() -> {
       RecipientId recipientId = getRecipientId();
 
-      return DatabaseFactory.getGroupDatabase(context)
-                            .getGroup(recipientId)
-                            .transform(groupRecord -> {
-                              String description = groupRecord.getDescription();
-                              return description == null ? "" : description;
-                            })
-                            .or("");
+      return SignalDatabase.groups()
+                           .getGroup(recipientId)
+                           .transform(groupRecord -> {
+                             String description = groupRecord.getDescription();
+                             return description == null ? "" : description;
+                           })
+                           .or("");
     }, descriptionConsumer::accept);
   }
 
@@ -128,9 +128,9 @@ class EditGroupProfileRepository implements EditProfileRepository {
 
   @WorkerThread
   private RecipientId getRecipientId() {
-    return DatabaseFactory.getRecipientDatabase(context).getByGroupId(groupId)
-                          .or(() -> {
-                            throw new AssertionError("Recipient ID for Group ID does not exist.");
-                          });
+    return SignalDatabase.recipients().getByGroupId(groupId)
+                         .or(() -> {
+                           throw new AssertionError("Recipient ID for Group ID does not exist.");
+                         });
   }
 }

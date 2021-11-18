@@ -67,7 +67,7 @@ import java.util.regex.Pattern;
 
 public class ClassicOpenHelper extends SQLiteOpenHelper {
 
-  static final String NAME = "messages.db";
+  public static final String NAME = "messages.db";
 
   private static final int INTRODUCED_IDENTITIES_VERSION                   = 2;
   private static final int INTRODUCED_INDEXES_VERSION                      = 3;

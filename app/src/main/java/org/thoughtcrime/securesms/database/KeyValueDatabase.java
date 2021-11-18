@@ -26,7 +26,7 @@ import java.util.Map;
  * This is it's own separate physical database, so it cannot do joins or queries with any other
  * tables.
  */
-public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase, KeyValuePersistentStorage {
+public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabaseOpenHelper, KeyValuePersistentStorage {
 
   private static final String TAG = Log.tag(KeyValueDatabase.class);
 
@@ -72,9 +72,9 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
 
     db.execSQL(CREATE_TABLE);
 
-    if (DatabaseFactory.getInstance(application).hasTable("key_value")) {
+    if (SignalDatabase.hasTable("key_value")) {
       Log.i(TAG, "Found old key_value table. Migrating data.");
-      migrateDataFromPreviousDatabase(DatabaseFactory.getInstance(application).getRawDatabase(), db);
+      migrateDataFromPreviousDatabase(SignalDatabase.getRawDatabase(), db);
     }
   }
 
@@ -91,9 +91,9 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     db.setForeignKeyConstraintsEnabled(true);
 
     SignalExecutors.BOUNDED.execute(() -> {
-      if (DatabaseFactory.getInstance(application).hasTable("key_value")) {
+      if (SignalDatabase.hasTable("key_value")) {
         Log.i(TAG, "Dropping original key_value table from the main database.");
-        DatabaseFactory.getInstance(application).getRawDatabase().execSQL("DROP TABLE key_value");
+        SignalDatabase.getRawDatabase().execSQL("DROP TABLE key_value");
       }
     });
   }

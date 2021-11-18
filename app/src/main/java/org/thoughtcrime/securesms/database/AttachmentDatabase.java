@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -196,7 +195,7 @@ public class AttachmentDatabase extends Database {
 
   private final AttachmentSecret attachmentSecret;
 
-  public AttachmentDatabase(Context context, SQLCipherOpenHelper databaseHelper, AttachmentSecret attachmentSecret) {
+  public AttachmentDatabase(Context context, SignalDatabase databaseHelper, AttachmentSecret attachmentSecret) {
     super(context, databaseHelper);
     this.attachmentSecret = attachmentSecret;
   }
@@ -227,7 +226,7 @@ public class AttachmentDatabase extends Database {
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_FAILED);
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
-    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
+    notifyConversationListeners(SignalDatabase.mms().getThreadIdForMessage(mmsId));
   }
 
   public @Nullable DatabaseAttachment getAttachment(@NonNull AttachmentId attachmentId)
@@ -425,7 +424,7 @@ public class AttachmentDatabase extends Database {
     database.update(TABLE_NAME, values, MMS_ID + " = ?", new String[] {mmsId + ""});
     notifyAttachmentListeners();
 
-    long threadId = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId);
+    long threadId = SignalDatabase.mms().getThreadIdForMessage(mmsId);
     if (threadId > 0) {
       notifyConversationListeners(threadId);
     }
@@ -487,7 +486,7 @@ public class AttachmentDatabase extends Database {
       }
     }
 
-    filesInDb.addAll(DatabaseFactory.getStickerDatabase(context).getAllStickerFiles());
+    filesInDb.addAll(SignalDatabase.stickers().getAllStickerFiles());
 
     Set<String> onDiskButNotInDatabase = SetUtil.difference(filesOnDisk, filesInDb);
 
@@ -618,8 +617,8 @@ public class AttachmentDatabase extends Database {
       //noinspection ResultOfMethodCallIgnored
       dataInfo.file.delete();
     } else {
-      long threadId = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId);
-      DatabaseFactory.getThreadDatabase(context).updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId));
+      long threadId = SignalDatabase.mms().getThreadIdForMessage(mmsId);
+      SignalDatabase.threads().updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId));
 
       notifyConversationListeners(threadId);
       notifyConversationListListeners();
@@ -938,7 +937,7 @@ public class AttachmentDatabase extends Database {
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
     database.update(TABLE_NAME, values, PART_ID_WHERE, ((DatabaseAttachment)attachment).getAttachmentId().toStrings());
 
-    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    notifyConversationListeners(SignalDatabase.mms().getThreadIdForMessage(messageId));
   }
 
   public void setTransferState(long messageId, @NonNull Attachment attachment, int transferState) {
@@ -955,7 +954,7 @@ public class AttachmentDatabase extends Database {
 
     values.put(TRANSFER_STATE, transferState);
     database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
-    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    notifyConversationListeners(SignalDatabase.mms().getThreadIdForMessage(messageId));
   }
 
   /**

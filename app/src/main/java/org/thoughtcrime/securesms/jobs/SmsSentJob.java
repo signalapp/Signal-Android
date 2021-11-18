@@ -6,9 +6,9 @@ import android.telephony.SmsManager;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -91,12 +91,12 @@ public class SmsSentJob extends BaseJob {
   }
 
   private void handleDeliveredResult(long messageId, int result) {
-    DatabaseFactory.getSmsDatabase(context).markSmsStatus(messageId, result);
+    SignalDatabase.sms().markSmsStatus(messageId, result);
   }
 
   private void handleSentResult(long messageId, int result) {
     try {
-      MessageDatabase  database = DatabaseFactory.getSmsDatabase(context);
+      MessageDatabase  database = SignalDatabase.sms();
       SmsMessageRecord record   = database.getSmsMessage(messageId);
 
       switch (result) {

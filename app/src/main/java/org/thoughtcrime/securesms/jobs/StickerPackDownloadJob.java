@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.core.util.Preconditions;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -102,19 +102,19 @@ public class StickerPackDownloadJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, InvalidMessageException {
-    if (isReferencePack && !DatabaseFactory.getAttachmentDatabase(context).containsStickerPackId(packId) && !BlessedPacks.contains(packId)) {
+    if (isReferencePack && !SignalDatabase.attachments().containsStickerPackId(packId) && !BlessedPacks.contains(packId)) {
       Log.w(TAG, "There are no attachments with the requested packId present for this reference pack. Skipping.");
       return;
     }
 
-    if (isReferencePack && DatabaseFactory.getStickerDatabase(context).isPackAvailableAsReference(packId)) {
+    if (isReferencePack && SignalDatabase.stickers().isPackAvailableAsReference(packId)) {
       Log.i(TAG, "Sticker pack already available for reference. Skipping.");
       return;
     }
 
     SignalServiceMessageReceiver receiver        = ApplicationDependencies.getSignalServiceMessageReceiver();
     JobManager                   jobManager      = ApplicationDependencies.getJobManager();
-    StickerDatabase              stickerDatabase = DatabaseFactory.getStickerDatabase(context);
+    StickerDatabase              stickerDatabase = SignalDatabase.stickers();
     byte[]                       packIdBytes     = Hex.fromStringCondensed(packId);
     byte[]                       packKeyBytes    = Hex.fromStringCondensed(packKey);
     SignalServiceStickerManifest manifest        = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
@@ -172,8 +172,8 @@ public class StickerPackDownloadJob extends BaseJob {
   @Override
   public void onFailure() {
     Log.w(TAG, "Failed to download manifest! Uninstalling pack.");
-    DatabaseFactory.getStickerDatabase(context).uninstallPack(packId);
-    DatabaseFactory.getStickerDatabase(context).deleteOrphanedPacks();
+    SignalDatabase.stickers().uninstallPack(packId);
+    SignalDatabase.stickers().deleteOrphanedPacks();
   }
 
   public static final class Factory implements Job.Factory<StickerPackDownloadJob> {

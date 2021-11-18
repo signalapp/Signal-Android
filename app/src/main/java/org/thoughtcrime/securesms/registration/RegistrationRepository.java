@@ -14,9 +14,9 @@ import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
@@ -143,7 +143,7 @@ public final class RegistrationRepository {
       accountManager.setGcmId(Optional.fromNullable(registrationData.getFcmToken()));
     }
 
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     RecipientId       selfId            = Recipient.externalPush(context, aci, registrationData.getE164(), true).getId();
 
     recipientDatabase.setProfileSharing(selfId, true);
@@ -176,7 +176,7 @@ public final class RegistrationRepository {
 
   @WorkerThread
   private static @Nullable ProfileKey findExistingProfileKey(@NonNull Context context, @NonNull String e164number) {
-    RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase     recipientDatabase = SignalDatabase.recipients();
     Optional<RecipientId> recipient         = recipientDatabase.getByE164(e164number);
 
     if (recipient.isPresent()) {

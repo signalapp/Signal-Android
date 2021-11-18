@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -44,7 +43,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos
  * - We *don't* really need to optimize for retrieval, since that happens very infrequently. In particular, we don't want to slow down inserts in order to
  *   improve retrieval time. That means we shouldn't be adding indexes that optimize for retrieval.
  */
-class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLCipherOpenHelper?) : Database(context, databaseHelper) {
+class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SignalDatabase?) : Database(context, databaseHelper) {
 
   companion object {
     @JvmField
