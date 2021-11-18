@@ -56,7 +56,10 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       action.setOnClickListener {
         CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
       }
-    } else if (FeatureFlags.donorBadges()) {
+    } else if (
+      FeatureFlags.donorBadges() &&
+      Recipient.self().badges.none { it.category == Badge.Category.Donor && !it.isBoost() && !it.isExpired() }
+    ) {
       action.setOnClickListener {
         startActivity(AppSettingsActivity.subscriptions(requireContext()))
       }
