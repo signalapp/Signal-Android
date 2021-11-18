@@ -548,14 +548,29 @@ public class RecipientDatabase extends Database {
               finalId = byAci.get();
             }
           } else {
-            if (highTrust) {
-              Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. High-trust, so merging the two rows together.", true);
-              finalId                 = merge(byAci.get(), byE164.get());
-              recipientNeedingRefresh = byAci.get();
-              remapped                = new Pair<>(byE164.get(), byAci.get());
+            RecipientSettings aciSettings = getRecipientSettings(byAci.get());
+
+            if (aciSettings.getE164() != null) {
+              if (highTrust) {
+                Log.w(TAG, "We have one contact with just an E164, and another with both an ACI and a different E164. High-trust, so merging the two rows together. The E164 has also effectively changed for the ACI contact.", true);
+                finalId                 = merge(byAci.get(), byE164.get());
+                recipientNeedingRefresh = byAci.get();
+                remapped                = new Pair<>(byE164.get(), byAci.get());
+                recipientChangedNumber  = finalId;
+              } else {
+                Log.w(TAG, "We have one contact with just an E164, and another with both an ACI and a different E164. Low-trust, so doing nothing.", true);
+                finalId  = byAci.get();
+              }
             } else {
-              Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. Low-trust, so doing nothing.", true);
-              finalId  = byAci.get();
+              if (highTrust) {
+                Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. High-trust, so merging the two rows together.", true);
+                finalId                 = merge(byAci.get(), byE164.get());
+                recipientNeedingRefresh = byAci.get();
+                remapped                = new Pair<>(byE164.get(), byAci.get());
+              } else {
+                Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. Low-trust, so doing nothing.", true);
+                finalId  = byAci.get();
+              }
             }
           }
         }

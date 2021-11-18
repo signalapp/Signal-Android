@@ -302,6 +302,28 @@ class RecipientDatabaseTest {
     assertEquals(E164_A, existingRecipient2.requireE164())
   }
 
+  /**
+   * Another high trust case that results in a merge. Nothing strictly new here, but this case is called out because it’s a merge but *also* an E164 change,
+   * which clients may need to know for UX purposes.
+   */
+  @Test
+  fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_mergeAndPhoneNumberChange_highTrust() {
+    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, true)
+    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+    assertEquals(existingId1, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(E164_A, retrievedRecipient.requireE164())
+
+    assertFalse(recipientDatabase.getByE164(E164_B).isPresent)
+
+    val recipientWithId2 = Recipient.resolved(existingId2)
+    assertEquals(retrievedId, recipientWithId2.id)
+  }
+
   // ==============================================================
   // Misc
   // ==============================================================
