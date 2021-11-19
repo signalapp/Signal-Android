@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
+import org.thoughtcrime.securesms.subscription.DonorBadgeNotifications;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -55,7 +55,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("ReceiptRedemption")
             .setMaxInstancesForQueue(1)
-            .setLifespan(TimeUnit.DAYS.toMillis(7))
+            .setLifespan(TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
@@ -102,7 +102,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    SubscriptionNotification.VerificationFailed.INSTANCE.show(context);
+    DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
     SignalStore.donationsValues().markSubscriptionRedemptionFailed();
   }
 

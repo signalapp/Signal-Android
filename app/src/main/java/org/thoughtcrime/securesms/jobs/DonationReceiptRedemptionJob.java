@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
+import org.thoughtcrime.securesms.subscription.DonorBadgeNotifications;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -27,6 +27,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static final String SUBSCRIPTION_QUEUE                    = "ReceiptRedemption";
   public static final String KEY                                   = "DonationReceiptRedemptionJob";
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
+  public static final String INPUT_PAYMENT_FAILURE                 = "data.payment.failure";
 
   public static DonationReceiptRedemptionJob createJobForSubscription() {
     return new DonationReceiptRedemptionJob(
@@ -36,7 +37,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .setQueue(SUBSCRIPTION_QUEUE)
             .setMaxAttempts(Parameters.UNLIMITED)
             .setMaxInstancesForQueue(1)
-            .setLifespan(TimeUnit.DAYS.toMillis(7))
+            .setLifespan(TimeUnit.DAYS.toMillis(1))
             .build());
   }
 
@@ -47,7 +48,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("BoostReceiptRedemption")
             .setMaxAttempts(Parameters.UNLIMITED)
-            .setLifespan(TimeUnit.DAYS.toMillis(30))
+            .setLifespan(TimeUnit.DAYS.toMillis(1))
             .build());
   }
 
@@ -67,7 +68,14 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    SubscriptionNotification.RedemptionFailed.INSTANCE.show(context);
+    Data inputData = getInputData();
+
+    if (inputData != null && inputData.getBooleanOrDefault(INPUT_PAYMENT_FAILURE, false)) {
+      DonorBadgeNotifications.PaymentFailed.INSTANCE.show(context);
+    } else {
+      DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
+    }
+
     if (isForSubscription()) {
       SignalStore.donationsValues().markSubscriptionRedemptionFailed();
     }
@@ -80,6 +88,10 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     if (inputData == null) {
       Log.w(TAG, "No input data. Exiting.", null, true);
       return;
+    }
+
+    if (inputData.getBooleanOrDefault(INPUT_PAYMENT_FAILURE, false)) {
+      throw new Exception("Payment failed.");
     }
 
     byte[] presentationBytes = inputData.getStringAsBlob(INPUT_RECEIPT_CREDENTIAL_PRESENTATION);

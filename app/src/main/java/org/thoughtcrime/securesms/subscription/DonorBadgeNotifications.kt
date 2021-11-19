@@ -11,12 +11,12 @@ import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 
-sealed class SubscriptionNotification {
-  object VerificationFailed : SubscriptionNotification() {
+sealed class DonorBadgeNotifications {
+  object RedemptionFailed : DonorBadgeNotifications() {
     override fun show(context: Context) {
       val notification = NotificationCompat.Builder(context, NotificationChannels.FAILURES)
         .setSmallIcon(R.drawable.ic_notification)
-        .setContentTitle(context.getString(R.string.Subscription__verification_failed))
+        .setContentTitle(context.getString(R.string.Subscription__redemption_failed))
         .setContentText(context.getString(R.string.Subscription__please_contact_support_for_more_information))
         .addAction(
           NotificationCompat.Action.Builder(
@@ -38,11 +38,11 @@ sealed class SubscriptionNotification {
     }
   }
 
-  object RedemptionFailed : SubscriptionNotification() {
+  object PaymentFailed : DonorBadgeNotifications() {
     override fun show(context: Context) {
       val notification = NotificationCompat.Builder(context, NotificationChannels.FAILURES)
         .setSmallIcon(R.drawable.ic_notification)
-        .setContentTitle(context.getString(R.string.Subscription__redemption_failed))
+        .setContentTitle(context.getString(R.string.DonationsErrors__payment_failed))
         .setContentText(context.getString(R.string.Subscription__please_contact_support_for_more_information))
         .addAction(
           NotificationCompat.Action.Builder(

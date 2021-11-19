@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
@@ -19,7 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
+import org.thoughtcrime.securesms.subscription.DonorBadgeNotifications;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
@@ -43,13 +45,15 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   private final String paymentIntentId;
 
+  private boolean isPaymentFailure;
+
   static BoostReceiptRequestResponseJob createJob(StripeApi.PaymentIntent paymentIntent) {
     return new BoostReceiptRequestResponseJob(
         new Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("BoostReceiptRedemption")
-            .setLifespan(TimeUnit.DAYS.toMillis(30))
+            .setLifespan(TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
@@ -95,7 +99,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    SubscriptionNotification.VerificationFailed.INSTANCE.show(context);
+    DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
   }
 
   @Override
@@ -118,6 +122,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(response);
+      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_PAYMENT_FAILURE, true).build());
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 
@@ -139,11 +144,14 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     Throwable applicationException = response.getApplicationError().get();
     switch (response.getStatus()) {
       case 204:
-        Log.w(TAG, "User does not have receipts available to exchange. Exiting.", applicationException, true);
-        break;
+        Log.w(TAG, "User payment not be completed yet.", applicationException, true);
+        throw new RetryableException();
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", applicationException, true);
         throw new Exception(applicationException);
+      case 402:
+        Log.w(TAG, "User payment failed.", applicationException, true);
+        break;
       case 409:
         Log.w(TAG, "Receipt already redeemed with a different request credential.", response.getApplicationError().get(), true);
         throw new Exception(applicationException);
