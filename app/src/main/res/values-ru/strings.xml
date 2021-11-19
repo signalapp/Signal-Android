@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Сегодня</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Безымянный файл</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста, поддержите нас!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Пожертвовать</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Нет, спасибо</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Представляем групповые звонки</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Откройте любую Новую группу, чтобы начать бесплатный зашифрованный групповой звонок</string>
@@ -3549,6 +3544,8 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Сделать главным значком</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Когда у вас больше одного значка, вы можете выбрать главный значок, который другие люди будут видеть в вашем профиле.</string>
+  <string name="BecomeASustainerFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal — это некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только такими людьми, как вы.</string>
   <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
   <string name="ManageDonationsFragment__badges">Значки</string>
@@ -3562,7 +3559,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
   <string name="MySupportPreference__renews_s">Продлится %1$s</string>
   <string name="MySupportPreference__processing_transaction">Обрабатываем транзакцию…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Не удалось добавить значок.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Не удалось добавить значок.</string> -->
   <string name="MySupportPreference__please_contact_support">Пожалуйста, свяжитесь с поддержкой.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Значок истёк</string>
@@ -3574,17 +3571,17 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Ваша подписка Поддерживающего была автоматически отменена, потому что вы были неактивны слишком долго. Ваш значок «%1$s» больше не виден в вашем профиле.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Вы можете продолжать использовать Signal, но чтобы поддержать приложение и заново активировать значок, продлите подписку сейчас.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Продлить подписку</string>
-  <string name="Subscription__verification_failed">Не удалось проверить подписку</string>
-  <string name="Subscription__redemption_failed">Не удалось получить значок</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Не удалось проверить подписку</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Не удалось получить значок</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Пожалуйста, свяжитесь с поддержкой, чтобы получить больше информации.</string>
   <string name="Subscription__contact_support">Связаться с поддержкой</string>
   <string name="Subscription__earn_a_s_badge">Заработайте значок «%1$s»</string>
   <string name="SubscribeFragment__processing_payment">Обрабатываем платёж…</string>
-  <string name="DonationsErrors__payment_failed">Платёж не удался</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Платёж не удался</string> -->
   <string name="DonationsErrors__your_payment">Не удалось обработать ваш платёж; с вас не была взята плата. Пожалуйста, попробуйте ещё раз.</string>
   <string name="DonationsErrors__still_processing">Всё ещё обрабатывается</string>
-  <string name="DonationsErrors__redemption_failed">Не удалось получить значок</string>
-  <string name="DonationsErrors__please_contact_support">Пожалуйста, свяжитесь с поддержкой</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Не удалось получить значок</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Пожалуйста, свяжитесь с поддержкой</string> -->
   <string name="DonationsErrors__your_payment_is_still">Ваш платёж всё ещё обрабатывается. Это может занять несколько минут, в зависимости от вашего соединения.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступен</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Вам необходимо настроить Google Pay, чтобы пожертвовать в приложении.</string>

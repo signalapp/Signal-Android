@@ -417,11 +417,6 @@
   <string name="DeviceListItem_today">오늘</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">이름 없는 파일</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal에 후원</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal은 귀하와 같은 분들이 만들어나갑니다. 지금 귀하의 응원을 보여주세요!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">기부</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">됐어요</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">그룹 통화 소개</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">새 그룹을 열어 무료 암호화 그룹 통화를 시작하세요.</string>
@@ -3082,7 +3077,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
   <string name="Subscription__contact_support">지원에 문의</string>
   <string name="SubscribeFragment__processing_payment">결제 처리 중…</string>
-  <string name="DonationsErrors__payment_failed">결제 실패</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">결제 실패</string> -->
   <string name="NetworkFailure__retry">재시도</string>
   <!--EOF-->
 </resources>

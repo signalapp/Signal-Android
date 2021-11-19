@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">امروز</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">فایل بدون نام</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">حمایت از سیگنال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">سیگنال با کمک افرادی همانند شما پشتیبانی می‌شود. امروز حمایت خود را نشان دهید!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">حمایت کردن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">نه،‌ ممنون</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">معرفی تماس‌های گروهی</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">برای شروع تماس گروهی رایگان و رمزگذاری شده یک گروه جدید باز کنید</string>
@@ -3324,7 +3319,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
   <string name="Subscription__contact_support">تماس با پشتیبانی</string>
   <string name="SubscribeFragment__processing_payment">در حال پردازش پرداخت…</string>
-  <string name="DonationsErrors__payment_failed">پرداخت ناموفق بود</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">پرداخت ناموفق بود</string> -->
   <string name="NetworkFailure__retry">تلاش مجدد</string>
   <!--EOF-->
 </resources>

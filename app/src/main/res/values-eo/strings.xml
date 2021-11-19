@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Hodiaŭ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Donaci al Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiel vi. Montru vian subtenon hodiaŭ!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Donaci</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne, dankon</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Jen la grupalvokoj</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Kreu novtipan grupon por komenci senpagan ĉifritan grupalvokon</string>
@@ -3338,12 +3333,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Via insigno finiĝis</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
-  <string name="Subscription__verification_failed">Kontrolo de abono malsukcesis</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Kontrolo de abono malsukcesis</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Kontaktu Signa-helpon por plia informo. </string>
   <string name="Subscription__contact_support">Kontakti subtenon</string>
   <string name="Subscription__earn_a_s_badge">Gajni insignon %1$s</string>
   <string name="SubscribeFragment__processing_payment">Traktado de pago…</string>
-  <string name="DonationsErrors__payment_failed">Pago malsukcesa</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Pago malsukcesa</string> -->
   <string name="DonationsErrors__your_payment">Via pago ne sukcesis, kaj vi ne estis debetita. Provu ree.</string>
   <string name="DonationsErrors__google_pay_unavailable">„Google Pay“ ne disponebla</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vi devas agordi „Google Pay“ por povi donaci enaplikaĵe.</string>

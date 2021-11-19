@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Oggi</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">File senza nome</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Dona a Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal è sostenuto da persone come te. Mostra il tuo sostegno oggi!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Dona</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">No grazie</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ti presentiamo le chiamate di gruppo</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Apri un Nuovo Gruppo per avviare una chiamata di gruppo criptata gratuita</string>
@@ -3363,7 +3358,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/mese</string>
   <string name="MySupportPreference__renews_s">Rinnovo %1$s</string>
   <string name="MySupportPreference__processing_transaction">Elaborazione della transazione…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Non è stato possibile aggiungere il badge.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Non è stato possibile aggiungere il badge.</string> -->
   <string name="MySupportPreference__please_contact_support">Contatta l\'assistenza.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge scaduto</string>
@@ -3375,17 +3370,17 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Il tuo contributo da sostenitore è stato automaticamente cancellato perché sei stato inattivo per troppo tempo. Il tuo badge %1$s non è più visibile sul tuo profilo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma per sostenere l\'app e riattivare il tuo badge, rinnova ora.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinnova contributo</string>
-  <string name="Subscription__verification_failed">Verifica del contributo non riuscita</string>
-  <string name="Subscription__redemption_failed">Riscatto del badge fallito</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Verifica del contributo non riuscita</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Riscatto del badge fallito</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Si prega di contattare l\'assistenza per ulteriori informazioni.</string>
   <string name="Subscription__contact_support">Contatta l\'assistenza</string>
   <string name="Subscription__earn_a_s_badge">Guadagna un badge %1$s</string>
   <string name="SubscribeFragment__processing_payment">Pagamento in elaborazione…</string>
-  <string name="DonationsErrors__payment_failed">Pagamento fallito</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Pagamento fallito</string> -->
   <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
   <string name="DonationsErrors__still_processing">Ancora in fase di elaborazione</string>
-  <string name="DonationsErrors__redemption_failed">Riscatto fallito</string>
-  <string name="DonationsErrors__please_contact_support">Contatta l\'assistenza</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Riscatto fallito</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Contatta l\'assistenza</string> -->
   <string name="DonationsErrors__your_payment_is_still">Il tuo pagamento è ancora in fase di elaborazione. Questo può richiedere alcuni minuti a seconda della tua connessione.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay non disponibile</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Devi impostare Google Pay per donare all\'interno dell\'app.</string>

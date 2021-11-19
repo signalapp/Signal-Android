@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Í dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nafnlaus skrá</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Gefa til Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er keyrt áfram af fólki eins og þér. Sýndu stuðning þinn í verki!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Styrkja</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nei, takk</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Kynning á hópsímtölum</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Opnaðu nýjan hóp til að byrja ókeypis dulritað hópsímtal</string>
@@ -3332,12 +3327,12 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkið þitt er útrunnið</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
-  <string name="Subscription__verification_failed">Staðfesting áskriftar mistókst</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Staðfesting áskriftar mistókst</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Hafðu samband við aðstoðarteymið til að fá nánari upplýsingar.</string>
   <string name="Subscription__contact_support">Hafa samband við hjálparteymi</string>
   <string name="Subscription__earn_a_s_badge">Fáðu %1$s merki</string>
   <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>
-  <string name="DonationsErrors__payment_failed">Greiðsla mistókst</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Greiðsla mistókst</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ekki aðgengilegt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Þú þarft að setja upp Google Pay til að styrkja inni í forritinu.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Mistókst að hætta áskrift</string>

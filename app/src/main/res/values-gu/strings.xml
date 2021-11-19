@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">આજે</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">અનામી ફાઇલ</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal માટે ફાળો આપો</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal તમારા જેવા લોકો દ્વારા સંચાલિત છે. આજે તમારો સપોર્ટ બતાવો!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">દાન કરો</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ના આભાર</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">પ્રસ્તુત કરી રહ્યા છીએ ગ્રુપ કોલ્સ</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ફ્રી એન્ક્રિપ્ટેડ ગ્રુપ કૉલ ચાલુ કરવા માટે એક નવું ગ્રુપ ચાલુ કરો</string>
@@ -3113,7 +3108,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">અત્યારે નહીં </string>
   <string name="Subscription__contact_support">સપોર્ટનો સંપર્ક કરો</string>
   <string name="SubscribeFragment__processing_payment">પેમેન્ટ પ્રક્રિયા થઈ રહી છે…</string>
-  <string name="DonationsErrors__payment_failed">પેમેન્ટ નિષ્ફળ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">પેમેન્ટ નિષ્ફળ</string> -->
   <string name="NetworkFailure__retry">ફરી પ્રયાસ કરો</string>
   <!--EOF-->
 </resources>

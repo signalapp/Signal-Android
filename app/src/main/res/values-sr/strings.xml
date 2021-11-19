@@ -459,11 +459,6 @@
   <string name="DeviceListItem_today">Данас</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Датотека без имена</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Донирајте услузи Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal покрећу особе попут Вас. Покажите своју подршку већ данас!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Донирај</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Не, хвала</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Представљамо групне позиве</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворите нову групу да бисте започели бесплатан шифровани групни позив</string>
@@ -3439,12 +3434,12 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваша значка је истекла</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>
-  <string name="Subscription__verification_failed">Верификација претплате није успела</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Верификација претплате није успела</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Молимо контактирајте подршку за више информација.</string>
   <string name="Subscription__contact_support">Контактирајте подршку</string>
   <string name="Subscription__earn_a_s_badge">Добијте %1$s значку</string>
   <string name="SubscribeFragment__processing_payment">Обрађујем уплату…</string>
-  <string name="DonationsErrors__payment_failed">Неуспешна уплата</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Неуспешна уплата</string> -->
   <string name="DonationsErrors__your_payment">Ваша уплата се не може обрадити и нисте наплаћени. Молим вас, покушајте поново.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступан</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Морате да подесите Google Pay да би донилари преко апликације.</string>

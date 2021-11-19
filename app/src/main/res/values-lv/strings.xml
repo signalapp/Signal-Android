@@ -409,11 +409,6 @@
   <string name="DeviceListItem_today">Šodien</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezvārda fails</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Ziedot/dāvināt Signālam</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signālu veido un darbina tādi paši cilvēki kā jūs. Atbalstiet jau šodien!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Ziedojiet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nē, paldies</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Iepazīstināšana ar grupu zvaniem</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Atveriet/izveidojiet jaunu grupu, lai sāktu bezmaksas šifrētu grupas zvanu</string>
@@ -3214,7 +3209,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne tagad</string>
   <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
   <string name="SubscribeFragment__processing_payment">Maksājums tiek apstrādāts…</string>
-  <string name="DonationsErrors__payment_failed">Maksājums neizdevās</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Maksājums neizdevās</string> -->
   <string name="NetworkFailure__retry">Mēģināt vēlreiz</string>
   <!--EOF-->
 </resources>

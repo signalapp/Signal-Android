@@ -482,11 +482,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeviceListItem_today">Heddiw</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ffeil dienw</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Cyfrannu at Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Mae grym Signal mewn pobl fel chi. Dangoswch eich cefnogaeth heddiw!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Cyfraniad</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Dim Diolch</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Yn Cyflwyno Galwadau Grŵp</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Agorwch Grŵp Newydd i gychwyn galwad grŵp amgrypiedig am ddim</string>
@@ -3548,12 +3543,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn gynhaliwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
-  <string name="Subscription__verification_failed">Methodd Gwirio Tanysgrifiad</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Methodd Gwirio Tanysgrifiad</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>
   <string name="Subscription__contact_support">Cysylltu â Chymorth Signal</string>
   <string name="Subscription__earn_a_s_badge">Enillwch fathodyn %1$s</string>
   <string name="SubscribeFragment__processing_payment">Yn prosesu taliad</string>
-  <string name="DonationsErrors__payment_failed">Methodd y taliad</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Methodd y taliad</string> -->
   <string name="DonationsErrors__your_payment">Nid oedd modd prosesu\'ch taliad ac nid ydym wedi codi tâl arnoch. Ceisiwch eto.</string>
   <string name="DonationsErrors__your_payment_is_still">Mae\'ch taliad yn dal yn prosesu. Gall hyn gymryd rhai munudau yn dibynnu ar eich cysylltiad.</string>
   <string name="DonationsErrors__google_pay_unavailable">Nid yw Google Pay ar gael</string>

@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Šiandien</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bevardis failas</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Paaukokite Signal programėlei</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal veikia dėka tokių žmonių kaip jūs. Išreikškite savo palaikymą šiandien!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Paaukokite</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne, ačiū</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Pristatome grupės skambučius</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Atverkite naująją grupę norėdami pradėti nemokamą šifruotą grupės skambutį</string>
@@ -3514,7 +3509,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <string name="Subscription__contact_support">Susisiekti su palaikymu</string>
   <string name="SubscribeFragment__processing_payment">Apdorojamas mokėjimas…</string>
-  <string name="DonationsErrors__payment_failed">Mokėjimas patyrė nesėkmę</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Mokėjimas patyrė nesėkmę</string> -->
   <string name="DonationsErrors__still_processing">Vis dar apdorojama</string>
   <string name="DonationsErrors__your_payment_is_still">Jūsų mokėjimas yra vis dar apdorojamas. Tai gali užimti kelias minutes, priklausomai nuo jūsų interneto ryšio.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>

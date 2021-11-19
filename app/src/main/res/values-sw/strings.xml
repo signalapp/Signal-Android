@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">Leo</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Faili isiyo na jina</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Changia Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal inaendeshwa na watu kama wewe. Simama uhesabike leo!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Toa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Hapana, Asante</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Tunakuletea Mikutano ya Vikundi</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Fungua Kikundi Kipya ili uanzishe mkutano wa kikundi uliosimbwa na usiolipishwa</string>
@@ -3121,7 +3116,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Sio sasa</string>
   <string name="Subscription__contact_support">Wasiliana na Msaada</string>
   <string name="SubscribeFragment__processing_payment">Tunachakata malipo…</string>
-  <string name="DonationsErrors__payment_failed">Malipo hayajatumwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Malipo hayajatumwa</string> -->
   <string name="NetworkFailure__retry">Jaribu Upya</string>
   <!--EOF-->
 </resources>

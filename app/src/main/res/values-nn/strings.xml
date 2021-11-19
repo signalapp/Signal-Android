@@ -439,11 +439,6 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fil utan namn</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drive av folk som deg. Vis di støtte i dag!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Doner</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nei takk</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Her kjem gruppesamtalar</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Opna ei Ny gruppe for å starta ein kryptert gruppesamtale</string>
@@ -3366,6 +3361,8 @@ Sjekkar igjen no …</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Lag eit merke å visa fram</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har meir enn eitt merke, kan du velja kva for eitt som skal visast på profilen.</string>
+  <string name="BecomeASustainerFragment__get_badges">Få merke på profilen din ved å støtta Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er ein ideell organisasjon utan reklamefinansiering eller investorar, berre støtta av slike som deg.</string>
   <string name="ManageDonationsFragment__my_support">Mi støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Handter abonnement</string>
   <string name="ManageDonationsFragment__badges">Merke</string>
@@ -3379,7 +3376,7 @@ Sjekkar igjen no …</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Fornyar %1$s</string>
   <string name="MySupportPreference__processing_transaction">Behandlar transaksjon …</string>
-  <string name="MySupportPreference__couldnt_add_badge">Klarte ikkje legga til merke.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Klarte ikkje legga til merke.</string> -->
   <string name="MySupportPreference__please_contact_support">Ta kontakt med brukarstøtte.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merket ditt er utgått</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merke utløpt</string>
@@ -3391,17 +3388,17 @@ Sjekkar igjen no …</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Bidragsytar-abonnementet ditt blei automatisk avslutta sidan du var inaktiv for lenge. %1$s-merket ditt er ikkje lenger synleg på profilen din.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan halda fram med å bruka Signal, men du må fornya for å fortsetja å støtta appen og gjenaktivera merket.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
-  <string name="Subscription__verification_failed">Klarte ikkje stadfesta abonnementet</string>
-  <string name="Subscription__redemption_failed">Klarte ikkje å løysa inn merket</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Klarte ikkje stadfesta abonnementet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Klarte ikkje å løysa inn merket</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med brukarstøtte for meir informasjon.</string>
   <string name="Subscription__contact_support">Kontakt brukarstøtte</string>
   <string name="Subscription__earn_a_s_badge">Få eit %1$s-merke</string>
   <string name="SubscribeFragment__processing_payment">Behandlar betaling …</string>
-  <string name="DonationsErrors__payment_failed">Feil ved betaling</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Feil ved betaling</string> -->
   <string name="DonationsErrors__your_payment">Klarte ikkje prosessera betalinga di og beløpet har ikkje blitt trekt. Prøv igjen.</string>
   <string name="DonationsErrors__still_processing">Behandlar enno</string>
-  <string name="DonationsErrors__redemption_failed">Klarte ikkje å løysa inn</string>
-  <string name="DonationsErrors__please_contact_support">Ta kontakt med brukarstøtte</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Klarte ikkje å løysa inn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Ta kontakt med brukarstøtte</string> -->
   <string name="DonationsErrors__your_payment_is_still">Me behandlar betalinga di. Dette kan ta nokre minutt avhengig av tilkoplinga di.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay er utilgjengeleg</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du må setja opp Google Pay for å donera frå appen.</string>

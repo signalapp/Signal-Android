@@ -417,11 +417,6 @@
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名のファイル</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signalへの寄付</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalはユーザーの皆様によって支えられています。Signalを支援してください！</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">寄付する</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">しない</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">グループ通話のご紹介</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">新しいグループで暗号化されたグループ通話を始めましょう</string>
@@ -2085,8 +2080,8 @@
   <string name="PaymentsAllActivityFragment__all">すべて</string>
   <string name="PaymentsAllActivityFragment__sent">送金</string>
   <string name="PaymentsAllActivityFragment__received">着金</string>
-  <string name="PaymentsHomeFragment__introducing_payments">支払い機能のご紹介 (ベータ)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalで、プライバシーを考慮した仮想通貨MobileCoinを利用できます。利用するには機能を有効化してください。</string>
+  <string name="PaymentsHomeFragment__introducing_payments">支払い機能 (ベータ) のご紹介</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalを使って、プライバシーを重視した新しいデジタル通貨、MobileCoinを送受信できます。利用するには機能を有効化してください。</string>
   <string name="PaymentsHomeFragment__activate_payments">支払い機能を有効化</string>
   <string name="PaymentsHomeFragment__activating_payments">支払い機能を有効化しています…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">支払い口座を復元</string>
@@ -2155,12 +2150,12 @@
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">振替</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QRコードをスキャンする</string>
-  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">支払先: スキャンするかウォレットアドレスを入力してください</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoinの振替は、取引所が提供するウォレットアドレスへの送金することで可能です。ウォレットアドレスは、一般的にQRコードの下にある文字列です。</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">振替先: スキャンするかウォレットアドレスを入力してください</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoinの振替は、取引所が提供するウォレットアドレスへの送金により行います。ウォレットアドレスは、一般的にQRコードの下にある文字列です。</string>
   <string name="PaymentsTransferFragment__next">次へ</string>
   <string name="PaymentsTransferFragment__invalid_address">無効なアドレスです</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">振替先のウォレットアドレスを確認して、再度試してください。</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">あなた自身のSignalのウォレットアドレスには振替できません。サポートされている取引所にある、あなたの口座のウォレットアドレスを入力してください。</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">あなた自身のSignalのウォレットアドレスには振替できません。取引所のあなたの口座のウォレットアドレスを入力してください。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要です。</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要です。設定メニューの「アプリの権限」で「カメラ」を有効にしてください。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要です。</string>
@@ -2204,12 +2199,12 @@
   <string name="ConfirmPayment__payment_failed">支払いに失敗しました</string>
   <string name="ConfirmPayment__payment_will_continue_processing">支払い処理を続けます</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">無効な宛先です</string>
-  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">この人は支払い機能を有効にしていません</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">この方は支払い機能を有効にしていません。</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ネットワーク手数料を取得できません。この支払いを続けるには、OKをタップして再度試してください。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s (%2$s現在)</string>
   <!--SetCurrencyFragment-->
-  <string name="SetCurrencyFragment__set_currency">通貨の設定</string>
+  <string name="SetCurrencyFragment__set_currency">通貨を設定</string>
   <string name="SetCurrencyFragment__all_currencies">すべての通貨</string>
   <!--****************************************-->
   <!--menus-->
@@ -2852,12 +2847,12 @@
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">リカバリーフレーズの確認</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">あなたのリカバリーフレーズから以下の単語を入力してください。</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">単語 %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">単語%1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">フレーズを再表示</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">完了</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">リカバリーフレーズを確認しました</string>
   <!--PaymentsRecoveryEntryFragment-->
-  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">リカバリーパスフレーズを入力してください</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">リカバリーフレーズの入力</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d">単語%1$dを入力してください</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">単語%1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">次へ</string>
@@ -2874,7 +2869,7 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">このユーザーに送金するには、相手があなたからのメッセージ申請を受け入れる必要があります。メッセージ申請を行うため、メッセージを送信してください。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">メッセージを送信</string>
   <!--GroupsInCommonMessageRequest-->
-  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">この人と共通のグループがありません。望まないメッセージを避けるため、申請は慎重に確認してください。</string>
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">この方と共通のグループがありません。望まないメッセージを避けるため、申請は慎重に確認してください。</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">あなたの連絡先やチャット相手は、このグループにはいません。望まないメッセージを避けるために、申請は慎重に確認してください。</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">メッセージ申請について</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
@@ -3231,6 +3226,8 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">%sバッジを獲得しました！このバッジをプロフィールに表示して、Signalの認知度向上に貢献してください。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">ブーストバッジを獲得しました！このバッジをプロフィールに表示して、Signalの認知度向上に貢献してください。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">また、</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">月次サポーターになることもできます。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">注目のバッジにする</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
@@ -3247,25 +3244,30 @@
   <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">更新 %1$s</string>
-  <string name="MySupportPreference__couldnt_add_badge">バッジを追加できませんでした。</string>
+  <string name="MySupportPreference__processing_transaction">処理しています…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">バッジを追加できませんでした。</string> -->
   <string name="MySupportPreference__please_contact_support">サポートにお問い合わせください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">バッジの有効期限が切れました</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">バッジが失効しました</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">サブスクリプションが解除されました</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">あなたのブーストバッジは有効期限が切れたため、プロフィールには表示されません。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">あなたのために作られた技術を継続的にサポートするため、月次サポーターへの登録をご検討ください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">長い間ご利用がなかったため、あなたのサポーターサブスクリプションは自動で解除されました。あなたの%1$sバッジは、プロフィールに表示されなくなっています。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは使い続けられますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">サブスクリプションを更新</string>
-  <string name="Subscription__verification_failed">サブスクリプションを確認できませんでした</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">サブスクリプションを確認できませんでした</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">バッジの引き換えに失敗しました</string> -->
   <string name="Subscription__please_contact_support_for_more_information">詳しくはサポートにお問い合わせください。</string>
   <string name="Subscription__contact_support">サポートに問い合わせる</string>
   <string name="Subscription__earn_a_s_badge">%1$sバッジを獲得しましょう</string>
   <string name="SubscribeFragment__processing_payment">支払いを処理しています…</string>
-  <string name="DonationsErrors__payment_failed">支払いできませんでした</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">支払いできませんでした</string> -->
   <string name="DonationsErrors__your_payment">支払処理ができず、課金しませんでした。あとで再度試してください。</string>
   <string name="DonationsErrors__still_processing">処理を継続しています</string>
-  <string name="DonationsErrors__please_contact_support">サポートにお問い合わせください</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">引き換え失敗</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">サポートにお問い合わせください</string> -->
   <string name="DonationsErrors__your_payment_is_still">あなたの支払いはまだ処理が続いています。接続状況によっては数分かかる場合があります。</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Payを利用できません</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">アプリ内でご寄付いただくには、Google Payを設定してください。</string>

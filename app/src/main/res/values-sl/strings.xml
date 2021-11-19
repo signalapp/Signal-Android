@@ -477,11 +477,6 @@
   <string name="DeviceListItem_today">Danes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Datoteka brez imena</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Podprite Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Podprite ga tudi vi!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Podpri Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne hvala</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo vam skupinske klice</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Za šifriran skupinski klic odprite Novo skupino</string>
@@ -3441,12 +3436,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaš bedž je potekel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postani podpornik</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
-  <string name="Subscription__verification_failed">Preverjanje naročnine ni bilo uspešno</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Preverjanje naročnine ni bilo uspešno</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Za več informacij se obrnite na podporo uporabnikom.</string>
   <string name="Subscription__contact_support">Kontaktiraj center za podporo</string>
   <string name="Subscription__earn_a_s_badge">Prisluži si bedž %1$s</string>
   <string name="SubscribeFragment__processing_payment">Obdelava plačila …</string>
-  <string name="DonationsErrors__payment_failed">Plačilo ni uspelo</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Plačilo ni uspelo</string> -->
   <string name="DonationsErrors__your_payment">Vaše plačilo ni moglo biti obdelano, zato vam znesek ni bil zaračunan. Prosimo poskusite znova.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ni na voljo</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Če želite donirati znotraj aplikacije, si morate najprej nastaviti Google Pay.</string>

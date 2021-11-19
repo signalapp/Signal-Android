@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Vandaag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Onbenoemd bestand</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Aan Signal doneren</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Zou je ons willen steunen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Doneren</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nee</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Signal ondersteunt vanaf nu groepsoproepen</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Je vindt de knop om een eind-tot-eind-versleutelde groepsoproep te starten rechts bovenin in een groepsgesprek</string>
@@ -2057,7 +2052,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__donate_to_signal">Aan Signal doneren</string>
   <string name="preferences__subscription">Maandelijkse donatie</string>
-  <string name="preferences__become_a_signal_sustainer">Wordt een Signal-ondersteuner</string>
+  <string name="preferences__become_a_signal_sustainer">Word een Signal-ondersteuner</string>
   <string name="preferences__signal_boost">Eenmalige donatie</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
@@ -3149,7 +3144,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AddAProfilePhotoMegaphone__not_now">Niet nu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Voeg een foto toe</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">Wordt een ondersteuner</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Word een ondersteuner</string>
   <string name="BecomeASustainerMegaphone__signal_is_powered">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Als je ons steunt krijg je een profiel-badge.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Nee bedankt</string>
   <string name="BecomeASustainerMegaphone__contribute">Bijdragen</string>
@@ -3323,7 +3318,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door mee te doen met de gemeenschap die het mogelijk maakt.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door één van de donateurs te worden die Signal mogelijk maken.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties</string>
   <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie annuleren</string>
@@ -3340,7 +3335,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="Subscription__s_per_month">%s/maand</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakts door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge om—als je dat wilt—te laten zien dat je Signal ondersteunt.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakt door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge die je—als je dat wilt—kunt weergeven op je profiel om te laten zien dat je Signal ondersteunt.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">We ontwikkelen open-broncode privacy-technologieën waarmee vrijheid van meningsuiting wordt beschermd en waarmee op een beveiligde manier over de hele wereld kan worden gecommuniceerd.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mede met jou bijdrage wordt deze missie mogelijk gemaakt en wordt betaald voor de ontwikkeling en het in werking houden van apps waardoor miljoenen mensen wereldwijd in vrijheid gesprekken kunnen voeren. Geen advertenties, geen volgers, geen grapje.</string>
@@ -3354,6 +3349,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op je profiel weergeven</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klaar</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Als je meerdere badges hebt dan kun je er één kiezen om voor anderen op je profiel weer te geven.</string>
+  <string name="BecomeASustainerFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is een organisatie zonder winstoogmerk, zonder advertenties en zonder investeerders. Signal wordt uitsluitend mogelijk gemaakt door donaties van mensen zoals jij.</string>
   <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string>
   <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donatie beheren</string>
   <string name="ManageDonationsFragment__badges">Badges</string>
@@ -3367,29 +3364,29 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MySupportPreference__s_per_month">%1$s/maand</string>
   <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
   <string name="MySupportPreference__processing_transaction">Overschrijving aan het verwerken …</string>
-  <string name="MySupportPreference__couldnt_add_badge">Het toevoegen van de badge is mislukt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Het toevoegen van de badge is mislukt.</string> -->
   <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Je badge is verlopen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge verlopen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Maandelijkse donaties geannuleerd</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Je eenmalige-donatie-badge is verlopen en is daarom niet langer voor anderen te zien op je profiel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overweeg maandelijkse donaties in te stellen om technologie die is gemaakt voor jou in plaats van voor het verzamelen van gegevens te blijven ondersteunen.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Wordt een ondersteuner</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Word een ondersteuner</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je %1$s-badge is niet langer voor anderen te zien op je profiel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
-  <string name="Subscription__verification_failed">Bevestiging van maandelijkse donatie is mislukt</string>
-  <string name="Subscription__redemption_failed">Het terughalen van de badge is mislukt</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Bevestiging van maandelijkse donatie is mislukt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Het terughalen van de badge is mislukt</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
-  <string name="Subscription__contact_support">Neem contact op met ondersteuning</string>
-  <string name="Subscription__earn_a_s_badge">Verdien een %1$s badge</string>
+  <string name="Subscription__contact_support">Neem contact op</string>
+  <string name="Subscription__earn_a_s_badge">Verdien een %1$s-badge</string>
   <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
-  <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string> -->
   <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
   <string name="DonationsErrors__still_processing">Wordt nog verwerkt</string>
-  <string name="DonationsErrors__redemption_failed">Terughalen mislukt</string>
-  <string name="DonationsErrors__please_contact_support">Neem contact op met de ondersteuning</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Terughalen mislukt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Neem contact op met de ondersteuning</string> -->
   <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal app donaties te kunnen doen.</string>

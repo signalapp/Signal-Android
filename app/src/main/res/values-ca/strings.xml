@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Avui</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fitxer sense nom</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Feu una donació a Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">El Signal funciona gràcies a persones com vosaltres. Demostreu-hi el vostre suport avui!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Feu una donació</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">No, gràcies</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">S\'introdueixen les trucades de grup</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Obriu un grup nou per iniciar una trucada de grup encriptada</string>
@@ -3331,12 +3326,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
-  <string name="Subscription__verification_failed">La verificació de la subscripció ha fallat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">La verificació de la subscripció ha fallat.</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Poseu-vos en contacte amb el servei d\'assistència per obtenir-ne més informació.</string>
   <string name="Subscription__contact_support">Contacteu amb l\'Assistència</string>
   <string name="Subscription__earn_a_s_badge">Guanyeu una insígnia %1$s</string>
   <string name="SubscribeFragment__processing_payment">Es processa el pagament…</string>
-  <string name="DonationsErrors__payment_failed">Ha fallat el pagament.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Ha fallat el pagament.</string> -->
   <string name="DonationsErrors__your_payment">El pagament no s\'ha pogut processar i no se us ha cobrat. Si us plau, torneu-ho a provar.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Heu de configurar Google Pay per fer donacions des de l\'aplicació.</string>

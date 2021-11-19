@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Dzisiaj</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Plik bez nazwy</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Datek na Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal funkcjonuje dzięki ludziom takim jak Ty. Wesprzyj nas już dziś!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Podaruj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nie, dzięki</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Przedstawiamy rozmowy grupowe</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otwórz Nową grupę, aby rozpocząć darmowe, zaszyfrowane połączenie grupowe</string>
@@ -3548,6 +3543,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ustaw wyświetlaną odznakę</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotowe</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiedy masz więcej, niż jedną odznakę, możesz zdecydować, którą z nich pokazać na swoim profilu.</string>
+  <string name="BecomeASustainerFragment__get_badges">Zdobywaj odznaki dla swojego profilu, wspierając Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi takich, jak Ty.</string>
   <string name="ManageDonationsFragment__my_support">Moje wsparcie</string>
   <string name="ManageDonationsFragment__manage_subscription">Zarządzaj subskrypcją</string>
   <string name="ManageDonationsFragment__badges">Odznaki</string>
@@ -3561,7 +3558,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MySupportPreference__s_per_month">%1$s/miesiąc</string>
   <string name="MySupportPreference__renews_s">Przedłużane %1$s</string>
   <string name="MySupportPreference__processing_transaction">Przetwarzanie transakcji…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Nie udało się dodać odznaki.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Nie udało się dodać odznaki.</string> -->
   <string name="MySupportPreference__please_contact_support">Skontaktuj się z pomocą techniczną.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Twoja odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Odznaka wygasła</string>
@@ -3574,17 +3571,17 @@ danych, rozważ miesięczną subskrypcję.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Twoja subskrypcja Wspierającego została automatycznie anulowana, gdyż zbyt długo pozostajesz nieaktywny(a). Twoja odznaka %1$s nie jest już widoczna w Twoim profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, złóż datek.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Odnów subskrypcję</string>
-  <string name="Subscription__verification_failed">Weryfikacja subskrypcji nie powiodła się</string>
-  <string name="Subscription__redemption_failed">Nie udało się odebrać odznaki</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Weryfikacja subskrypcji nie powiodła się</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Nie udało się odebrać odznaki</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Skontaktuj się z pomocą techniczną, aby uzyskać więcej informacji.</string>
   <string name="Subscription__contact_support">Kontakt z pomocą techniczną</string>
   <string name="Subscription__earn_a_s_badge">Zdobądź odznakę %1$s</string>
   <string name="SubscribeFragment__processing_payment">Przetwarzanie płatności…</string>
-  <string name="DonationsErrors__payment_failed">Płatność nie powiodła się</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Płatność nie powiodła się</string> -->
   <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
   <string name="DonationsErrors__still_processing">Trwa przetwarzanie</string>
-  <string name="DonationsErrors__redemption_failed">Odbieranie nieudane</string>
-  <string name="DonationsErrors__please_contact_support">Skontaktuj się z pomocą techniczną</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Odbieranie nieudane</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Skontaktuj się z pomocą techniczną</string> -->
   <string name="DonationsErrors__your_payment_is_still">Twoja płatność wciąż jest przetwarzana. W zależności od Twojego połączenia z siecią, to może potrwać kilka minut.</string>
   <string name="DonationsErrors__google_pay_unavailable">Aplikacja Google Pay nie jest dostępna</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musisz skonfigurować Google Pay, aby móc płacić w aplikacji.</string>

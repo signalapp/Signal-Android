@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">ഇന്ന്</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-ന്റെ പിന്നണിയിൽ നിങ്ങളെപോലുള്ളവരാണ്. നിങ്ങളുടെ പിന്തുണ അറിയിക്കൂ! </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">സംഭാവനചെയ്യുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">വേണ്ട, നന്ദി</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ഗ്രൂപ്പ് കോളുകൾ അവതരിപ്പിക്കുന്നു</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ, ഒരു പുതിയ ഗ്രൂപ്പ് ചാറ്റ് തുറക്കുക</string>
@@ -3149,7 +3144,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="Subscription__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
   <string name="SubscribeFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
-  <string name="DonationsErrors__payment_failed">പേയ്മെന്റ് പരാജയപ്പെട്ടു</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">പേയ്മെന്റ് പരാജയപ്പെട്ടു</string> -->
   <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കുക</string>
   <!--EOF-->
 </resources>

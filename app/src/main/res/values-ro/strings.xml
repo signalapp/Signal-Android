@@ -459,11 +459,6 @@
   <string name="DeviceListItem_today">Azi</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fișier fără nume</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Donați pentru Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal este susținut de oameni ca tine. Arată-ți sprijinul astăzi!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Donați</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nu, mulțumesc</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vă prezentăm apeluri de grup</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Deschideți un grup nou pentru a începe un apel gratuit de grup criptat</string>
@@ -747,6 +742,7 @@
   <string name="ManageProfileFragment_your_username">Numele dvs. de utilizator</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Eroare la setarea avatarului</string>
   <string name="ManageProfileFragment_badges">Insigne</string>
+  <string name="ManageProfileFragment__edit_photo">Editează fotografia</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nu există grupuri în comun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -2027,6 +2023,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Te rugăm alege o opțiune \-\-</item>
+    <item>Ceva nu funcționează</item>
+    <item>Solicitare funcționalitate nouă</item>
+    <item>Întrebare</item>
+    <item>Opinie</item>
+    <item>Altceva</item>
+    <item>Plăți (MobileCoin)</item>
+    <item>Susținători &amp; Signal Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -2125,6 +2131,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__advanced">Avansat</string>
   <string name="preferences__donate_to_signal">Donați pentru Signal</string>
   <string name="preferences__subscription">Abonament</string>
+  <string name="preferences__become_a_signal_sustainer">Fii un Susținător Signal</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Confidențialitate</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3229,6 +3236,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AddAProfilePhotoMegaphone__not_now">Nu acum</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Adăugare poză</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Fii un Susținător</string>
   <string name="BecomeASustainerMegaphone__signal_is_powered">Signal este susținut de oameni ca tine. Contribuie și primești o insignă de profil.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Nu, mulțumesc</string>
   <string name="BecomeASustainerMegaphone__contribute">Contribuie</string>
@@ -3394,6 +3402,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veți pierde toate modificările făcute acestei fotografii.</string>
   <string name="CameraFragment__failed_to_open_camera">Camera nu a putut fi deschisă</string>
   <string name="BadgesOverviewFragment__my_badges">Insignele mele</string>
+  <string name="BadgesOverviewFragment__featured_badge">Insignă evidențiată</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Afișați insignele pe profil</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Actualizarea profilului a eșuat</string>
   <string name="BadgeSelectionFragment__select_badges">Selectați insigne</string>
@@ -3448,25 +3457,36 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MySupportPreference__s_per_month">%1$s/lună</string>
   <string name="MySupportPreference__renews_s">Se reînnoiește %1$s</string>
   <string name="MySupportPreference__processing_transaction">Se procesează tranzacția…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Nu s-a putut adăuga insigna.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Nu s-a putut adăuga insigna.</string> -->
   <string name="MySupportPreference__please_contact_support">Te rugăm contactează asistența.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Insigna dvs. a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Insigna a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonament anulat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Insigna ta Boost a expirat și nu mai este vizibilă pe profilul tău pentru ceilalți.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pentru a continua să sprijini tehnologie construită pentru tine, te rugăm să iei în considerare posibilitatea de a devenii un Susținător lunar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Deveniți un susținător</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
-  <string name="Subscription__verification_failed">Verificarea abonamentului a eșuat</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă prea lungă de timp. Insigna ta %1$s nu mai este vizibilă pe profilul tău.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru ați reactiva insigna, reînnoiește acum.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reînnoiește abonamentul</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Verificarea abonamentului a eșuat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Atribuirea insignei a eșuat</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Vă rugăm contactați suportul pentru mai multe informații.</string>
   <string name="Subscription__contact_support">Contactează suportul</string>
   <string name="Subscription__earn_a_s_badge">Obțineți o insignă %1$s</string>
   <string name="SubscribeFragment__processing_payment">Se procesează plata…</string>
-  <string name="DonationsErrors__payment_failed">Plata a eșuat</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Plata a eșuat</string> -->
   <string name="DonationsErrors__your_payment">Plata dvs. nu a putut fi procesată iar dvs. nu ați fost taxat. Vă rugăm încercați din nou.</string>
+  <string name="DonationsErrors__still_processing">În curs de procesare</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Atribuirea a eșuat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Te rugăm contactează asistența.</string> -->
+  <string name="DonationsErrors__your_payment_is_still">Plata ta este încă în procesare. Ceea ce poate dura câteva minute în funcție de conexiunea ta.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nu este disponibil</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Trebuie să configurați Google Pay pentru a face donații în aplicație.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Nu s-a reușit anularea abonamentul</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anularea abonamentului necesită o conexiune la internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dispozitivul tău nu acceptă Google Pay, așa că nu te poți abona pentru a obține o insignă. Poți totuși să sprijini Signal făcând o donație pe site-ul nostru.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eroare de rețea. Verifică-ți conexiunea și încearcă din nou.</string>
   <string name="NetworkFailure__retry">Încearcă din nou</string>
   <!--EOF-->
 </resources>

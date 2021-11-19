@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">tänään</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nimeämätön tiedosto</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Lahjoita Signalille</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalia kehittävät kaltaisesi ihmiset. Näytä taitosi tänään!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Lahjoita</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ei kiitos</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Esittelyssä ryhmäpuhelut</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Avaa uuden tyylin ryhmä aloittaaksesi ilmaisen ja salatun ryhmäpuhelun</string>
@@ -3357,7 +3352,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MySupportPreference__s_per_month">%1$s/kk</string>
   <string name="MySupportPreference__renews_s">Uudistuu%1$s</string>
   <string name="MySupportPreference__processing_transaction">Käsitellään transaktiota…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Merkkiä ei voitu lisätä</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Merkkiä ei voitu lisätä</string> -->
   <string name="MySupportPreference__please_contact_support">Ota yhteys tukeen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkkisi on vanhentunut</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merkki on erääntynyt</string>
@@ -3369,17 +3364,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Tukija-tilauksesi on lopetettu automaattisesti, koska olit liian pitkään toimettomana. %1$s -merkkisi ei ole enää nähtävillä profiilissasi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkkisi uudelleen, uudista nyt.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uudista tilaus</string>
-  <string name="Subscription__verification_failed">Tilauksen vahvistus epäonnistui</string>
-  <string name="Subscription__redemption_failed">Merkin lunastus epäonnistui</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Tilauksen vahvistus epäonnistui</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Merkin lunastus epäonnistui</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Ota yhteyttä tukeen saadaksesi lisätietoja.</string>
   <string name="Subscription__contact_support">Ota yhteyttä tukeen</string>
   <string name="Subscription__earn_a_s_badge">Ansaitse %1$s merkki</string>
   <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
-  <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Maksu epäonnistui</string> -->
   <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään joten sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
   <string name="DonationsErrors__still_processing">Käsitellään edelleen</string>
-  <string name="DonationsErrors__redemption_failed">Lunastus epäonnistui</string>
-  <string name="DonationsErrors__please_contact_support">Ota yhteys tukeen</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Lunastus epäonnistui</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Ota yhteys tukeen</string> -->
   <string name="DonationsErrors__your_payment_is_still">Maksuasi käsitellään vielä. Tämä voi kestää muutamia minuutteja yhteydestäsi riippuen.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>

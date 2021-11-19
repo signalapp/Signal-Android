@@ -395,11 +395,6 @@
   <string name="DeviceListItem_today">Täna</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nimetu fail</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Anneta Signalile</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalit hoiavad käimas sinusarnased inimesed. Näita oma toetust täna!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Anneta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Tänan, ei</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Tutvustame grupikõnesid</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Uue krüptitud grupikõne alustamiseks vajuta \\"Uus grupp\\"</string>
@@ -3079,7 +3074,7 @@
   <string name="Boost__enter_custom_amount">Sisesta kohandatud summa</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <string name="Subscription__contact_support">Võta ühendust kasutajatoega</string>
-  <string name="DonationsErrors__payment_failed">Makse ei õnnestunud</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Makse ei õnnestunud</string> -->
   <string name="NetworkFailure__retry">Proovi uuesti</string>
   <!--EOF-->
 </resources>

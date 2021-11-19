@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Aujourd’hui</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est propulsé par des personnes telles que vous. Montrez votre soutien dès aujourd’hui.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Faire un don</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Non merci</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Nous présentons les appels de groupe</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ouvrez un Nouveau groupe pour lancer un appel de groupe chiffré gratuit</string>
@@ -1343,6 +1338,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts pour se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Format de numéro non standard</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Le numéro que vous avez saisi (%1$s) semble avoir un format non standard.\n\nVouliez-vous dire %2$s ?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal pour Android – format de numéro de téléphone</string>
   <string name="RegistrationActivity_call_requested">Appel demandé</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Vous êtes maintenant à %d étape d’envoyer un journal de débogage.</item>
@@ -2031,6 +2029,7 @@
   <string name="preferences__advanced">Avancés</string>
   <string name="preferences__donate_to_signal">Faire un don à Signal</string>
   <string name="preferences__subscription">Abonnement</string>
+  <string name="preferences__become_a_signal_sustainer">Devenir un soutien de Signal</string>
   <string name="preferences__signal_boost">Encourager Signal</string>
   <string name="preferences__privacy">Confidentialité</string>
   <string name="preferences__mms_user_agent">Agent utilisateur MMS</string>
@@ -3126,6 +3125,8 @@ Nouvelle tentative…</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Pas maintenant</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ajouter une photo</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Devenir un soutien</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal est propulsé par des personnes comme vous. Contribuez et recevez un badge de profil. </string>
   <string name="BecomeASustainerMegaphone__no_thanks">Non merci</string>
   <string name="BecomeASustainerMegaphone__contribute">Contribuer</string>
   <!--KeyboardPagerFragment-->
@@ -3176,6 +3177,7 @@ Nouvelle tentative…</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation en sourdine pour toujours</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papier.</string>
   <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
+  <string name="ConversationSettingsFragment__get_badges">Obtenez des badges pour votre profil en soutenant Signal. Touchez un badge pour en savoir plus.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifier les renseignements</string>
@@ -3297,6 +3299,8 @@ Nouvelle tentative…</string>
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes telles que vous.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Soutenez une technologie conçue pour vous – pas pour vos données – en rejoignant la communauté qui la porte.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Soutenez une technologie conçue pour vous, pas pour vos données, en rejoignant la communauté qui porte Signal.</string>
+  <string name="SubscribeFragment__currency">Devise</string>
   <string name="SubscribeFragment__more_payment_options">Plus d’options de paiement</string>
   <string name="SubscribeFragment__cancel_subscription">Annuler l’abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirmer l’annulation ?</string>
@@ -3315,10 +3319,16 @@ Nouvelle tentative…</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pourquoi contribuer ?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le coup de pouce !</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vous avez obtenu le badge %s ! Aidez Signal à se faire connaître en affichant ce badge sur votre profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vous avez obtenu le badge Boost ! Aidez Signal à se faire connaître en affichant ce badge sur votre profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vous pouvez aussi</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">devenir un donateur mensuel.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur le profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Mettre en avant ce badge</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Terminé</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si vous avez plus d’un badge, vous pouvez en choisir un que les autres pourront voir sur votre profil.</string>
+  <string name="BecomeASustainerFragment__get_badges">Obtenez des badges pour votre profil en soutenant Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par des personnes comme vous.</string>
   <string name="ManageDonationsFragment__my_support">Mon soutien</string>
   <string name="ManageDonationsFragment__manage_subscription">Gérer l\'abonnement</string>
   <string name="ManageDonationsFragment__badges">Badges</string>
@@ -3332,20 +3342,23 @@ Nouvelle tentative…</string>
   <string name="MySupportPreference__s_per_month">%1$s/mois</string>
   <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
   <string name="MySupportPreference__processing_transaction">Traitement de la transaction…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Impossible d’ajouter le badge.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Impossible d’ajouter le badge.</string> -->
   <string name="MySupportPreference__please_contact_support">Veuillez contacter l’assistance.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre badge a expiré</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expiré</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulé</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Votre badge Boost a expiré et n’est plus visible par les autres sur votre profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un pourvoyeur</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
-  <string name="Subscription__verification_failed">Échec de la vérification de l’abonnement</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler l’abonnement</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Échec de la vérification de l’abonnement</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Veuillez contacter l’assistance pour plus de renseignements.</string>
   <string name="Subscription__contact_support">Contacter l’assistance</string>
   <string name="Subscription__earn_a_s_badge">Obtenez un badge %1$s</string>
   <string name="SubscribeFragment__processing_payment">Traitement du paiement…</string>
-  <string name="DonationsErrors__payment_failed">Échec de paiement</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Échec de paiement</string> -->
   <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Veuillez contacter l’assistance</string> -->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vous devez configurer Google Pay pour faire un don dans l’application.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Échec de l’annulation de l’abonnement</string>

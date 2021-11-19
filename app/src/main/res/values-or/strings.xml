@@ -2760,6 +2760,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ଏବେ ନୁହେଁ</string>
   <string name="Subscription__contact_support">ସମର୍ଥନ କୁ ଯୋଗାଯୋଗ କରନ୍ତୁ</string>
   <string name="SubscribeFragment__processing_payment">ପଇସା ଦେୟ ପ୍ରକ୍ରିୟାକରଣ ଚାଲୁଛି</string>
-  <string name="DonationsErrors__payment_failed">ପଇସା ଦେୟ ବିଫଳ ହେଲା</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">ପଇସା ଦେୟ ବିଫଳ ହେଲା</string> -->
   <!--EOF-->
 </resources>

@@ -387,11 +387,6 @@
   <string name="DeviceListItem_today">วันนี้</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">แฟ้มที่ไม่มีชื่อ</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">บริจาคให้ Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ได้รับการสนับสนุนจากผู้คนอย่างคุณ แสดงการสนับสนุนของคุณวันนี้!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">บริจาค</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ไม่ ขอบคุณ</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">แนะนำการโทรแบบกลุ่ม</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">เปิดกลุ่มแบบใหม่เพื่อเริ่มการโทรแบบกลุ่มที่เข้ารหัสลับ</string>
@@ -3042,7 +3037,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="Subscription__contact_support">ติดต่อการสนับสนุน</string>
   <string name="SubscribeFragment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
-  <string name="DonationsErrors__payment_failed">การชำระเงินล้มเหลว</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">การชำระเงินล้มเหลว</string> -->
   <string name="NetworkFailure__retry">ลองใหม่</string>
   <!--EOF-->
 </resources>

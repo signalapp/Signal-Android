@@ -2760,6 +2760,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Yemmed</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mačči tura</string>
   <string name="Subscription__contact_support">Tallalt n unermis</string>
-  <string name="DonationsErrors__payment_failed">Axelles yecceḍ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Axelles yecceḍ</string> -->
   <!--EOF-->
 </resources>

@@ -417,11 +417,6 @@
   <string name="DeviceListItem_today">Hari ini</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fail tidak dinamakan</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Sumbang kepada Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal dihebatkan oleh pengguna seperti anda. Tunjukkan sokongan anda hari ini!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Derma</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Tidak Terima Kasih</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Memperkenalkan Panggilan Berkumpulan</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Buka Kumpulan Baharu untuk memulakan panggilan kumpulan disulitkan percuma</string>
@@ -3224,12 +3219,12 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana anda telah luput</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Jadilah pemelihara</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
-  <string name="Subscription__verification_failed">Pengesahan Langganan Gagal</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Pengesahan Langganan Gagal</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Sila hubungi bantuan untuk maklumat lebih lanjut</string>
   <string name="Subscription__contact_support">Hubungi Sokongan</string>
   <string name="Subscription__earn_a_s_badge">Dapatkan lencana %1$s</string>
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
-  <string name="DonationsErrors__payment_failed">Pembayaran telah gagal</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Pembayaran telah gagal</string> -->
   <string name="DonationsErrors__your_payment">Pembayaran anda tidak dapat diproses dan anda belum dicaj. Sila cuba lagi.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda perlu memasang Google Pay untuk menderma dalam aplikasi.</string>

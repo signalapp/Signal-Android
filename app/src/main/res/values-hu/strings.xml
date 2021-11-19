@@ -415,11 +415,6 @@
   <string name="DeviceListItem_today">Ma</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Névtelen fájl</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Adomány a Signal számára</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">A Signalt olyan emberek működtetik, mint Te. Támogasd te is még ma!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Támogatás</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Köszönöm, nem!</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Újdonság: Csoporthívások</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ingyenes, titkosított csoporthívás az újonnan nyitott csoportokban</string>
@@ -3248,7 +3243,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
   <string name="Subscription__contact_support">Kapcsolatfelvétel a támogatással</string>
   <string name="SubscribeFragment__processing_payment">Fizetés feldolgozása…</string>
-  <string name="DonationsErrors__payment_failed">Fizetés sikertelen</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Fizetés sikertelen</string> -->
   <string name="NetworkFailure__retry">Újra</string>
   <!--EOF-->
 </resources>

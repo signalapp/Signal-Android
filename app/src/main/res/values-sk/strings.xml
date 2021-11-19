@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Dnes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nepomenovaný súbor</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Prispieť na Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal poháňajú ľudia ako ste vy. Podporte nás ešte dnes!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Prispieť</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Nie, ďakujem</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Predstavujeme skupinové hovory</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Založte Novú skupinu pre zahájenie bezplatného šifrovaného skupinového hovoru</string>
@@ -3568,7 +3563,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MySupportPreference__s_per_month">%1$s/mesiac</string>
   <string name="MySupportPreference__renews_s">Obnovuje %1$s</string>
   <string name="MySupportPreference__processing_transaction">Prebieha spracovanie transakcie…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Odznak sa nepodarilo pridať.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Odznak sa nepodarilo pridať.</string> -->
   <string name="MySupportPreference__please_contact_support">Prosím, kontaktujte podporu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Platnosť odznaku vypršala</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnosť odznaku vypršala</string>
@@ -3580,17 +3575,17 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše predplatné podporovateľa bolo automaticky zrušené, pretože ste boli príliš dlho neaktívni. Váš odznak %1$s sa už vo vašom profile nezobrazuje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal môžete naďalej používať, ale ak chcete podporiť aplikáciu a znova aktivovať svoj odznak, obnovte ho teraz.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnoviť predplatné</string>
-  <string name="Subscription__verification_failed">Overenie odberu zlyhalo</string>
-  <string name="Subscription__redemption_failed">Uplatnenie odznaku zlyhalo</string>
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Overenie odberu zlyhalo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Uplatnenie odznaku zlyhalo</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Pre viac informácií kontaktujte podporu.</string>
   <string name="Subscription__contact_support">Kontaktovať zákaznícku podporu</string>
   <string name="Subscription__earn_a_s_badge">Získajte odznak %1$s</string>
   <string name="SubscribeFragment__processing_payment">Spracovanie platby…</string>
-  <string name="DonationsErrors__payment_failed">Platba zlyhala</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Platba zlyhala</string> -->
   <string name="DonationsErrors__your_payment">Vašu platbu sa nepodarilo spracovať a nebola vám naúčtovaná. Skúste to prosím znova.</string>
   <string name="DonationsErrors__still_processing">Stále sa spracováva</string>
-  <string name="DonationsErrors__redemption_failed">Uplatnenie zlyhalo</string>
-  <string name="DonationsErrors__please_contact_support">Kontaktujte podporu</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Uplatnenie zlyhalo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Kontaktujte podporu</string> -->
   <string name="DonationsErrors__your_payment_is_still">Vaša platba sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay je nedostupný</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Ak chcete prispieť v aplikácii, musíte si nastaviť službu Google Pay.</string>

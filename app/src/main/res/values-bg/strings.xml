@@ -395,11 +395,6 @@
   <string name="DeviceListItem_today">Днес</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Неназован файл</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Дари на Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal се подържа от хора като теб. Подкрепи ни сега!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Дари</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Не Благодаря</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Нова функционалност: групови разговори</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворете Нова Група, за да започнете безплатно криптирано групово обаждане</string>
@@ -2989,7 +2984,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <string name="Subscription__contact_support">Връзка с отдела за поддръжка</string>
-  <string name="DonationsErrors__payment_failed">Грешка при плащане</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Грешка при плащане</string> -->
   <string name="NetworkFailure__retry">Опитай Отново</string>
   <!--EOF-->
 </resources>
