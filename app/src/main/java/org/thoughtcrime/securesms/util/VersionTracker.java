@@ -33,6 +33,11 @@ public class VersionTracker {
         ApplicationDependencies.getJobManager().add(new RemoteConfigRefreshJob());
         LocalMetrics.getInstance().clear();
       }
+
+      if (!TextSecurePreferences.hasLastVersionCode(context)) {
+        Log.i(TAG, "Last version code is missing. Inserting " + currentVersionCode + " as the initial value.");
+        TextSecurePreferences.setLastVersionCode(context, currentVersionCode);
+      }
     } catch (IOException ioe) {
       throw new AssertionError(ioe);
     }

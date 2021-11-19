@@ -785,6 +785,10 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false);
   }
 
+  public static boolean hasLastVersionCode(Context context) {
+    return containsPreference(context, LAST_VERSION_CODE_PREF);
+  }
+
   public static int getLastVersionCode(Context context) {
     return getIntegerPreference(context, LAST_VERSION_CODE_PREF, Util.getCanonicalVersionCode());
   }
@@ -1121,6 +1125,10 @@ public class TextSecurePreferences {
 
   public static void setArgon2Tested(Context context, boolean tested) {
     setBooleanPreference(context, ARGON2_TESTED, tested);
+  }
+
+  public static boolean containsPreference(Context context, String key) {
+    return PreferenceManager.getDefaultSharedPreferences(context).contains(key);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {
