@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyboard.findListener
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -181,7 +182,7 @@ class SubscribeFragment : DSLSettingsFragment(
 
           customPref(
             Subscription.Model(
-              activePrice = if (isActive) { activePrice } else null,
+              activePrice = if (isActive) activePrice else null,
               subscription = it,
               isSelected = state.selectedSubscription == it,
               isEnabled = areFieldsEnabled,
@@ -289,10 +290,21 @@ class SubscribeFragment : DSLSettingsFragment(
     } else if (throwable is DonationExceptions.SetupFailed) {
       Log.w(TAG, "Error occurred while processing payment", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__payment_failed)
+        .setTitle(R.string.DonationsErrors__error_processing_payment)
         .setMessage(R.string.DonationsErrors__your_payment)
         .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
+        }
+        .show()
+    } else if (SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt) {
+      Log.w(TAG, "Stripe failed to process payment", throwable, true)
+      MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.DonationsErrors__error_processing_payment)
+        .setMessage(R.string.DonationsErrors__your_badge_could_not_be_added)
+        .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
+          dialog.dismiss()
+          requireActivity().finish()
+          requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
         }
         .show()
     } else {

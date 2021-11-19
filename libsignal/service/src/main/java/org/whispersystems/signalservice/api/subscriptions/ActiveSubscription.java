@@ -178,5 +178,17 @@ public final class ActiveSubscription {
     public boolean isFailedPayment() {
       return Status.isPaymentFailed(getStatus());
     }
+
+    @Override public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final Subscription that = (Subscription) o;
+      return level == that.level && endOfCurrentPeriod == that.endOfCurrentPeriod && isActive == that.isActive && billingCycleAnchor == that.billingCycleAnchor && willCancelAtPeriodEnd == that.willCancelAtPeriodEnd && currency
+          .equals(that.currency) && amount.equals(that.amount) && status.equals(that.status);
+    }
+
+    @Override public int hashCode() {
+      return Objects.hash(level, currency, amount, endOfCurrentPeriod, isActive, billingCycleAnchor, willCancelAtPeriodEnd, status);
+    }
   }
 }

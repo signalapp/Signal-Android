@@ -3983,7 +3983,8 @@
     <string name="MySupportPreference__s_per_month">%1$s/month</string>
     <string name="MySupportPreference__renews_s">Renews %1$s</string>
     <string name="MySupportPreference__processing_transaction">Processing transaction…</string>
-    <string name="MySupportPreference__couldnt_add_badge">Couldn\'t add badge.</string>
+    <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
+    <string name="MySupportPreference__couldnt_add_badge_s">Couldn\'t add badge. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Please contact support.</string>
 
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Your Badge has Expired</string>
@@ -4002,7 +4003,11 @@
     <string name="Subscription__earn_a_s_badge">Earn a %1$s badge</string>
 
     <string name="SubscribeFragment__processing_payment">Processing payment…</string>
-    <string name="DonationsErrors__payment_failed">Payment failed</string>
+    <!-- Displayed in notification when user payment fails to process on Stripe -->
+    <string name="DonationsErrors__error_processing_payment">Error processing payment</string>
+    <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
+    <string name="DonationsErrors__error_processing_payment_s">Error processing payment. $1$s</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Your badge could not be added to your account, but you may have been charged. Please contact support.</string>
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">Still processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Couldn\'t add badge</string>

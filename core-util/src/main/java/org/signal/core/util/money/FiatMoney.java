@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.Objects;
 
 public class FiatMoney {
   private final BigDecimal amount;
@@ -63,5 +64,11 @@ public class FiatMoney {
 
 
     return formatter.format(amount.multiply(multiplicand));
+  }
+
+  public static boolean equals(FiatMoney left, FiatMoney right) {
+    return Objects.equals(left.amount, right.amount) &&
+           Objects.equals(left.currency, right.currency) &&
+           Objects.equals(left.timestamp, right.timestamp);
   }
 }

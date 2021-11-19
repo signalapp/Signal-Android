@@ -108,7 +108,8 @@ class ManageDonationsFragment : DSLSettingsFragment() {
                 onContactSupport = {
                   requireActivity().finish()
                   requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
-                }
+                },
+                activeSubscription = activeSubscription
               )
             )
 
