@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Currency;
+import java.util.Locale;
 
 public class FiatMoney {
   private final BigDecimal amount;
@@ -37,7 +38,14 @@ public class FiatMoney {
    * @return amount, rounded to the default fractional amount.
    */
   public @NonNull String getDefaultPrecisionString() {
-    NumberFormat formatter = NumberFormat.getInstance();
+    return getDefaultPrecisionString(Locale.getDefault());
+  }
+
+  /**
+   * @return amount, rounded to the default fractional amount.
+   */
+  public @NonNull String getDefaultPrecisionString(@NonNull Locale locale) {
+    NumberFormat formatter = NumberFormat.getInstance(locale);
     formatter.setMinimumFractionDigits(currency.getDefaultFractionDigits());
     formatter.setGroupingUsed(false);
 

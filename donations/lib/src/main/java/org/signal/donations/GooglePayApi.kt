@@ -17,6 +17,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import java.util.Locale
 
 /**
  * Entrypoint for Google Pay APIs
@@ -124,7 +125,7 @@ class GooglePayApi(
       put("currencyCode", price.currency.currencyCode)
       put("countryCode", "US")
       put("totalPriceStatus", "FINAL")
-      put("totalPrice", price.defaultPrecisionString)
+      put("totalPrice", price.getDefaultPrecisionString(Locale.US))
       put("totalPriceLabel", label)
       put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE")
     }
