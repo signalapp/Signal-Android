@@ -45,7 +45,6 @@ public final class LiveRecipientCache {
   private final Map<RecipientId, LiveRecipient> recipients;
   private final LiveRecipient                   unknown;
   private final Executor                        resolveExecutor;
-  private final SQLiteDatabase                  db;
 
   private final AtomicReference<RecipientId> localRecipientId;
   private final AtomicBoolean                warmedUp;
@@ -58,8 +57,7 @@ public final class LiveRecipientCache {
     this.warmedUp          = new AtomicBoolean(false);
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
-    this.db                = SignalDatabase.getRawDatabase();
-    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction()));
+    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.BOUNDED, () -> !SignalDatabase.inTransaction()));
   }
 
   @AnyThread

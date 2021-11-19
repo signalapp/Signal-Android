@@ -237,6 +237,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
         instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")
         instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS constraint_spec")
         instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS dependency_spec")
+
+        instance!!.rawWritableDatabase.close()
+        triggerDatabaseAccess()
       }
     }
 
