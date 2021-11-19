@@ -39,7 +39,7 @@ class AppSettingsViewModel(private val subscriptionsRepository: SubscriptionsRep
     }
 
     subscriptionsRepository.getActiveSubscription().subscribeBy(
-      onSuccess = { subscription -> store.update { it.copy(hasActiveSubscription = subscription.isActive) } },
+      onSuccess = { subscription -> store.update { it.copy(hasActiveSubscription = subscription.activeSubscription != null) } },
       onError = { throwable ->
         if (throwable.isNotFoundException()) {
           Log.w(TAG, "Could not load active subscription due to unset SubscriberId (404).")

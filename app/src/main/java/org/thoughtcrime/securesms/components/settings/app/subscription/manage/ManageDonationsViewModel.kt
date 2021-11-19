@@ -73,7 +73,7 @@ class ManageDonationsViewModel(
           it.copy(transactionState = transactionState)
         }
 
-        if (transactionState is ManageDonationsState.TransactionState.NotInTransaction && !transactionState.activeSubscription.isActive) {
+        if (transactionState is ManageDonationsState.TransactionState.NotInTransaction && transactionState.activeSubscription.activeSubscription == null) {
           eventPublisher.onNext(ManageDonationsEvent.NOT_SUBSCRIBED)
         }
       },

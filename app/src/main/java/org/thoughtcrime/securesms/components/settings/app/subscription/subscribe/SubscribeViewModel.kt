@@ -162,6 +162,20 @@ class SubscribeViewModel(
     }
   }
 
+  private fun cancelActiveSubscriptionIfNecessary(): Completable {
+    return Single.just(SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt).flatMapCompletable {
+      if (it) {
+        donationPaymentRepository.cancelActiveSubscription().doOnComplete {
+          SignalStore.donationsValues().setLastEndOfPeriod(0L)
+          SignalStore.donationsValues().clearLevelOperations()
+          SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
+        }
+      } else {
+        Completable.complete()
+      }
+    }
+  }
+
   fun cancel() {
     store.update { it.copy(stage = SubscribeState.Stage.CANCELLING) }
     disposables += donationPaymentRepository.cancelActiveSubscription().subscribeBy(
@@ -201,7 +215,10 @@ class SubscribeViewModel(
 
             store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
 
-            val setup = ensureSubscriberId.andThen(continueSetup).onErrorResumeNext { Completable.error(DonationExceptions.SetupFailed(it)) }
+            val setup = ensureSubscriberId
+              .andThen(cancelActiveSubscriptionIfNecessary())
+              .andThen(continueSetup)
+              .onErrorResumeNext { Completable.error(DonationExceptions.SetupFailed(it)) }
 
             setup.andThen(setLevel).subscribeBy(
               onError = { throwable ->
@@ -233,7 +250,7 @@ class SubscribeViewModel(
 
   fun updateSubscription() {
     store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
-    donationPaymentRepository.setSubscriptionLevel(store.state.selectedSubscription!!.level.toString())
+    cancelActiveSubscriptionIfNecessary().andThen(donationPaymentRepository.setSubscriptionLevel(store.state.selectedSubscription!!.level.toString()))
       .subscribeBy(
         onComplete = {
           store.update { it.copy(stage = SubscribeState.Stage.READY) }

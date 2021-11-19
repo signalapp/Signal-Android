@@ -118,6 +118,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     if (subscription == null || !subscription.isActive()) {
       Log.w(TAG, "User does not have an active subscription yet.", true);
       throw new RetryableException();
+    } else if (subscription.isFailedPayment()) {
+      Log.w(TAG, "Subscription payment failure. Passing through to redemption job.", true);
+      SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
+      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_PAYMENT_FAILURE, true).build());
+      return;
     } else {
       Log.i(TAG, "Recording end of period from active subscription.", true);
       SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
@@ -206,7 +211,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     }
   }
 
-  private static void handleApplicationError(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
+  private void handleApplicationError(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
     switch (response.getStatus()) {
       case 204:
         Log.w(TAG, "User does not have receipts available to exchange. Exiting.", response.getApplicationError().get(), true);
@@ -214,6 +219,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", response.getApplicationError().get(), true);
         throw new Exception(response.getApplicationError().get());
+      case 402:
+        Log.w(TAG, "Subscription payment failure. Passing through to redemption job.", true);
+        SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
+        setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_PAYMENT_FAILURE, true).build());
+        break;
       case 403:
         Log.w(TAG, "SubscriberId password mismatch or account auth was present.", response.getApplicationError().get(), true);
         throw new Exception(response.getApplicationError().get());

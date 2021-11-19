@@ -200,6 +200,11 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       Log.d(TAG, "Marking subscription badge as expired, should notifiy next time the conversation list is open.");
       SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
+
+      if (!SignalStore.donationsValues().isUserManuallyCancelled()) {
+        Log.d(TAG, "Detected an unexpected subscription expiry.");
+        SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
+      }
     } else if (!remoteHasBoostBadges && localHasBoostBadges) {
       Badge mostRecentExpiration = Recipient.self()
                                             .getBadges()

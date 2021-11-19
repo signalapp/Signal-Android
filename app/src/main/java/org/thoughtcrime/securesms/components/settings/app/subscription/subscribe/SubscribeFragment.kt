@@ -10,6 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgePreview
@@ -35,6 +36,7 @@ import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import java.util.Calendar
+import java.util.Currency
 import java.util.concurrent.TimeUnit
 
 /**
@@ -167,9 +169,19 @@ class SubscribeFragment : DSLSettingsFragment(
         space(DimensionUnit.DP.toPixels(75f).toInt())
       } else {
         state.subscriptions.forEach {
+
           val isActive = state.activeSubscription?.activeSubscription?.level == it.level && state.activeSubscription.isActive
+
+          val activePrice = state.activeSubscription?.activeSubscription?.let { sub ->
+            val activeCurrency = Currency.getInstance(sub.currency)
+            val activeAmount = sub.amount.movePointLeft(activeCurrency.defaultFractionDigits)
+
+            FiatMoney(activeAmount, activeCurrency)
+          }
+
           customPref(
             Subscription.Model(
+              activePrice = if (isActive) { activePrice } else null,
               subscription = it,
               isSelected = state.selectedSubscription == it,
               isEnabled = areFieldsEnabled,

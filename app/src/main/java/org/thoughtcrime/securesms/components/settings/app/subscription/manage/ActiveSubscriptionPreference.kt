@@ -7,10 +7,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.DateUtils
@@ -27,6 +27,7 @@ import java.util.Locale
 object ActiveSubscriptionPreference {
 
   class Model(
+    val price: FiatMoney,
     val subscription: Subscription,
     val onAddBoostClick: () -> Unit,
     val renewalTimestamp: Long = -1L,
@@ -62,7 +63,7 @@ object ActiveSubscriptionPreference {
         R.string.MySupportPreference__s_per_month,
         FiatMoneyUtil.format(
           context.resources,
-          model.subscription.prices.first { it.currency == SignalStore.donationsValues().getSubscriptionCurrency() },
+          model.price,
           FiatMoneyUtil.formatOptions()
         )
       )

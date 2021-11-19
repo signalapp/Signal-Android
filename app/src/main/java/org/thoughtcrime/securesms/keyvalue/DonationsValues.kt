@@ -29,6 +29,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val KEY_LEVEL_HISTORY = "donation.level.history"
     private const val DISPLAY_BADGES_ON_PROFILE = "donation.display.badges.on.profile"
     private const val SUBSCRIPTION_REDEMPTION_FAILED = "donation.subscription.redemption.failed"
+    private const val SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT = "donation.should.cancel.subscription.before.next.subscribe.attempt"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -36,7 +37,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
     KEY_CURRENCY_CODE_BOOST,
     KEY_LAST_KEEP_ALIVE_LAUNCH,
-    KEY_LAST_END_OF_PERIOD
+    KEY_LAST_END_OF_PERIOD,
+    SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT
   )
 
   private val subscriptionCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency()) }
@@ -208,4 +210,17 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   fun clearSubscriptionRedemptionFailed() {
     putBoolean(SUBSCRIPTION_REDEMPTION_FAILED, false)
   }
+
+  /**
+   * Denotes that the previous attempt to subscribe failed in some way. Either an
+   * automatic renewal failed resulting in an unexpected expiration, or payment failed
+   * on Stripe's end.
+   *
+   * Before trying to resubscribe, we should first ensure there are no subscriptions set
+   * on the server. Otherwise, we could get into a situation where the user is unable to
+   * resubscribe.
+   */
+  var shouldCancelSubscriptionBeforeNextSubscribeAttempt: Boolean
+    get() = getBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, false)
+    set(value) = putBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, value)
 }
