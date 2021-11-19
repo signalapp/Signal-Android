@@ -121,7 +121,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         is DonationEvent.GooglePayUnavailableError -> Unit
         is DonationEvent.PaymentConfirmationError -> onPaymentError(event.throwable)
         is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed(event.badge)
-        is DonationEvent.RequestTokenError -> onPaymentError(event.throwable)
+        is DonationEvent.RequestTokenError -> onPaymentError(DonationExceptions.SetupFailed(event.throwable))
         DonationEvent.RequestTokenSuccess -> Log.i(TAG, "Successfully got request token from Google Pay")
         DonationEvent.SubscriptionCancelled -> Unit
         is DonationEvent.SubscriptionCancellationFailed -> Unit
