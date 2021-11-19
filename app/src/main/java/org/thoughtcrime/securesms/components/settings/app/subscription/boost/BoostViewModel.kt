@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.math.BigDecimal
+import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Currency
 
@@ -192,10 +193,12 @@ class BoostViewModel(
   }
 
   fun setCustomAmount(amount: String) {
-    val bigDecimalAmount = if (amount.isEmpty() || amount == DecimalFormatSymbols.getInstance().decimalSeparator.toString()) {
+    val bigDecimalAmount: BigDecimal = if (amount.isEmpty() || amount == DecimalFormatSymbols.getInstance().decimalSeparator.toString()) {
       BigDecimal.ZERO
     } else {
-      BigDecimal(amount)
+      val decimalFormat = DecimalFormat.getInstance() as DecimalFormat
+      decimalFormat.isParseBigDecimal = true
+      decimalFormat.parse(amount) as BigDecimal
     }
 
     store.update { it.copy(customAmount = FiatMoney(bigDecimalAmount, it.customAmount.currency)) }
