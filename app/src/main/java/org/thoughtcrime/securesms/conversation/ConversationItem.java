@@ -184,7 +184,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             private   AvatarImageView            contactPhoto;
             private   AlertView                  alertView;
             protected ReactionsConversationView  reactionsView;
-            private   BadgeImageView             badgeImageView;
+            protected BadgeImageView             badgeImageView;
 
   private @NonNull  Set<MultiselectPart>                    batchSelected = new HashSet<>();
   private @NonNull  Outliner                                outliner      = new Outliner();
