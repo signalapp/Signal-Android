@@ -16,7 +16,7 @@ sealed class DonorBadgeNotifications {
     override fun show(context: Context) {
       val notification = NotificationCompat.Builder(context, NotificationChannels.FAILURES)
         .setSmallIcon(R.drawable.ic_notification)
-        .setContentTitle(context.getString(R.string.Subscription__redemption_failed))
+        .setContentTitle(context.getString(R.string.DonationsErrors__couldnt_add_badge))
         .setContentText(context.getString(R.string.Subscription__please_contact_support_for_more_information))
         .addAction(
           NotificationCompat.Action.Builder(

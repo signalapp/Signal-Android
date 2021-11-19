@@ -187,7 +187,7 @@ data class Boost(
     val separator = DecimalFormatSymbols.getInstance().decimalSeparator
     val separatorCount = min(1, currency.defaultFractionDigits)
     val prefix: String = currency.getSymbol(Locale.getDefault())
-    val pattern: Pattern = "[0-9]*([${separator}]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
+    val pattern: Pattern = "[0-9]*([$separator]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
 
     override fun filter(
       source: CharSequence,

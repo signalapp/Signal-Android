@@ -286,8 +286,8 @@ class SubscribeFragment : DSLSettingsFragment(
     } else {
       Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__redemption_failed)
-        .setMessage(R.string.DonationsErrors__please_contact_support)
+        .setTitle(R.string.DonationsErrors__couldnt_add_badge)
+        .setMessage(R.string.DonationsErrors__your_badge_could_not)
         .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
           dialog.dismiss()
           requireActivity().finish()

@@ -3997,8 +3997,6 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">You can keep using Signal but to support the app and reactivate your badge, renew now.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
 
-    <string name="Subscription__verification_failed">Subscription Verification Failed</string>
-    <string name="Subscription__redemption_failed">Badge Redemption Failed</string>
     <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
     <string name="Subscription__contact_support">Contact Support</string>
     <string name="Subscription__earn_a_s_badge">Earn a %1$s badge</string>
@@ -4007,8 +4005,8 @@
     <string name="DonationsErrors__payment_failed">Payment failed</string>
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">Still processing</string>
-    <string name="DonationsErrors__redemption_failed">Redemption failed</string>
-    <string name="DonationsErrors__please_contact_support">Please contact support</string>
+    <string name="DonationsErrors__couldnt_add_badge">Couldn\'t add badge</string>
+    <string name="DonationsErrors__your_badge_could_not">Your badge could not be added to your account, but you may have been charged. Please contact support.</string>
     <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>
