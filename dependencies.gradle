@@ -73,7 +73,7 @@ dependencyResolutionManagement {
             alias('signal-client-android').to('org.whispersystems', 'signal-client-android').versionRef('signal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.14.2')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.14.3')
             alias('signal-android-database-sqlcipher').to('org.signal:android-database-sqlcipher:4.4.3-S8')
 
             // Third Party
