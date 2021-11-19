@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
@@ -44,8 +42,6 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private ReceiptCredentialRequestContext requestContext;
 
   private final String paymentIntentId;
-
-  private boolean isPaymentFailure;
 
   static BoostReceiptRequestResponseJob createJob(StripeApi.PaymentIntent paymentIntent) {
     return new BoostReceiptRequestResponseJob(
@@ -105,6 +101,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     if (requestContext == null) {
+      Log.d(TAG, "Creating request context..");
+
       SecureRandom secureRandom = new SecureRandom();
       byte[]       randomBytes  = new byte[ReceiptSerial.SIZE];
 
@@ -114,8 +112,11 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       ClientZkReceiptOperations operations    = ApplicationDependencies.getClientZkReceiptOperations();
 
       requestContext = operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial);
+    } else {
+      Log.d(TAG, "Reusing request context from previous run", true);
     }
 
+    Log.d(TAG, "Submitting credential to server", true);
     ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
                                                                                  .submitBoostReceiptCredentialRequest(paymentIntentId, requestContext.getRequest())
                                                                                  .blockingGet();
@@ -130,6 +131,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         throw new IOException("Could not validate receipt credential");
       }
 
+      Log.d(TAG, "Validated credential. Handing off to redemption job.", true);
       ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
       setOutputData(new Data.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
                                                        receiptCredentialPresentation.serialize())

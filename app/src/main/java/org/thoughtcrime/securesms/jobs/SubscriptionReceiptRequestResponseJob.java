@@ -124,6 +124,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     }
 
     if (requestContext == null) {
+      Log.d(TAG, "Generating request credentials context for token redemption...", true);
       SecureRandom secureRandom = new SecureRandom();
       byte[]       randomBytes  = new byte[ReceiptSerial.SIZE];
 
@@ -133,8 +134,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       ClientZkReceiptOperations operations    = ApplicationDependencies.getClientZkReceiptOperations();
 
       requestContext = operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial);
+    } else {
+      Log.d(TAG, "Already have credentials generated for this request. Retrying web service call...", true);
     }
 
+    Log.d(TAG, "Submitting receipt credential request.");
     ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
                                                                                  .submitReceiptCredentialRequest(subscriberId, requestContext.getRequest())
                                                                                  .blockingGet();
@@ -152,6 +156,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         throw new IOException("Could not validate receipt credential");
       }
 
+      Log.d(TAG, "Validated credential. Handing off to redemption job.", true);
       ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
       setOutputData(new Data.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
                                                        receiptCredentialPresentation.serialize())

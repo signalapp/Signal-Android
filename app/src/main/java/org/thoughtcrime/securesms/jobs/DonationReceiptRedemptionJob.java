@@ -77,6 +77,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     }
 
     if (isForSubscription()) {
+      Log.d(TAG, "Marking subscription failure", true);
       SignalStore.donationsValues().markSubscriptionRedemptionFailed();
     }
   }
@@ -102,6 +103,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
     ReceiptCredentialPresentation presentation = new ReceiptCredentialPresentation(presentationBytes);
 
+    Log.d(TAG, "Attempting to redeem token... isForSubscription: " + isForSubscription(), true);
     ServiceResponse<EmptyResponse> response = ApplicationDependencies.getDonationsService()
                                                                      .redeemReceipt(presentation,
                                                                                     SignalStore.donationsValues().getDisplayBadgesOnProfile(),
@@ -122,6 +124,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     }
 
     if (isForSubscription()) {
+      Log.d(TAG, "Clearing subscription failure", true);
       SignalStore.donationsValues().clearSubscriptionRedemptionFailed();
     }
   }

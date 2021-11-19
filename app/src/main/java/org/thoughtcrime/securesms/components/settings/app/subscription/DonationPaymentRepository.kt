@@ -160,9 +160,11 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
             }
           }
         } else {
+          Log.d(TAG, "Boost redemption timed out waiting for job completion.", true)
           it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
         }
       } catch (e: InterruptedException) {
+        Log.d(TAG, "Boost redemption job interrupted", e, true)
         it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
       }
     }
