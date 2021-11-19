@@ -138,7 +138,6 @@ data class Boost(
           boost.price,
           FiatMoneyUtil
             .formatOptions()
-            .numberOnly()
             .trimZerosAfterDecimal()
         )
         button.setOnClickListener {
