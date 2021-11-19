@@ -167,7 +167,7 @@ class SubscribeFragment : DSLSettingsFragment(
         space(DimensionUnit.DP.toPixels(75f).toInt())
       } else {
         state.subscriptions.forEach {
-          val isActive = state.activeSubscription?.activeSubscription?.level == it.level
+          val isActive = state.activeSubscription?.activeSubscription?.level == it.level && state.activeSubscription.isActive
           customPref(
             Subscription.Model(
               subscription = it,
