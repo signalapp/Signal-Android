@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -18,6 +19,8 @@ import java.util.Locale
 internal class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
+    private val TAG = Log.tag(DonationsValues::class.java)
+
     private const val KEY_SUBSCRIPTION_CURRENCY_CODE = "donation.currency.code"
     private const val KEY_CURRENCY_CODE_BOOST = "donation.currency.code.boost"
     private const val KEY_SUBSCRIBER_ID_PREFIX = "donation.subscriber.id."
@@ -204,6 +207,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   }
 
   fun markSubscriptionRedemptionFailed() {
+    Log.w(TAG, "markSubscriptionRedemptionFailed()", Throwable(), true)
     putBoolean(SUBSCRIPTION_REDEMPTION_FAILED, true)
   }
 
