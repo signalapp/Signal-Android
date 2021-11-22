@@ -128,6 +128,7 @@ data class Subscription(
 
       if (payload.isEmpty()) {
         badge.setBadge(model.subscription.badge)
+        badge.isClickable = false
       }
 
       title.text = model.subscription.name
