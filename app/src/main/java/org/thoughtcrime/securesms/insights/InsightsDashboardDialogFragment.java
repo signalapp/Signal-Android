@@ -190,7 +190,7 @@ public final class InsightsDashboardDialogFragment extends DialogFragment {
       description.setVisibility(View.GONE);
     } else {
       lottieAnimationView.setVisibility(View.GONE);
-      title.setText(R.string.InsightsDashboardFragment__boost_your_signal);
+      title.setText(R.string.InsightsDashboardFragment__spread_the_word);
       description.setText(R.string.InsightsDashboardFragment__invite_your_contacts);
       title.setVisibility(View.VISIBLE);
       description.setVisibility(View.VISIBLE);
