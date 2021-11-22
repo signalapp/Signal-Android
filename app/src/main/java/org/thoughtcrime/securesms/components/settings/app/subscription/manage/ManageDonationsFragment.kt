@@ -137,7 +137,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__badges),
         icon = DSLSettingsIcon.from(R.drawable.ic_badge_24),
         onClick = {
-          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment())
+          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
         }
       )
 
