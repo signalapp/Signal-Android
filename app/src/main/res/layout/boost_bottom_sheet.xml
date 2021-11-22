@@ -22,9 +22,12 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/handle" />
+        app:layout_constraintTop_toBottomOf="@id/handle"
+        app:layout_constraintVertical_bias="0" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/boost1_animation"
