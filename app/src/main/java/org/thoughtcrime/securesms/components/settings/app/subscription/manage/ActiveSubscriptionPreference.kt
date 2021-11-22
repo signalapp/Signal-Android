@@ -124,9 +124,11 @@ object ActiveSubscriptionPreference {
     }
 
     private fun presentRedemptionFailureState(model: Model) {
+      val contactString = context.getString(R.string.MySupportPreference__please_contact_support)
+
       expiry.text = SpanUtil.clickSubstring(
-        context.getString(R.string.MySupportPreference__couldnt_add_badge_s),
-        context.getString(R.string.MySupportPreference__please_contact_support),
+        context.getString(R.string.MySupportPreference__couldnt_add_badge_s, contactString),
+        contactString,
         {
           model.onContactSupport()
         },
