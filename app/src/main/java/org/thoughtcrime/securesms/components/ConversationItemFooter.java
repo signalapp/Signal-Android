@@ -363,7 +363,7 @@ public class ConversationItemFooter extends ConstraintLayout {
           if (mms) {
             SignalDatabase.mms().markExpireStarted(id);
           } else {
-            SignalDatabase.mms().markExpireStarted(id);
+            SignalDatabase.sms().markExpireStarted(id);
           }
 
           expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
