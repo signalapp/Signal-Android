@@ -60,7 +60,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   public static JobManager.Chain createJobChain(StripeApi.PaymentIntent paymentIntent) {
     BoostReceiptRequestResponseJob requestReceiptJob    = createJob(paymentIntent);
     DonationReceiptRedemptionJob   redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForBoost();
-    RefreshOwnProfileJob           refreshOwnProfileJob = new RefreshOwnProfileJob();
+    RefreshOwnProfileJob           refreshOwnProfileJob = RefreshOwnProfileJob.forBoost();
 
     return ApplicationDependencies.getJobManager()
                                   .startChain(requestReceiptJob)
@@ -195,19 +195,19 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
    * - expiration_time is between now and 60 days from now
    */
   private boolean isCredentialValid(@NonNull ReceiptCredential receiptCredential) {
-    long    now                      = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
-    long    monthFromNow             = now + TimeUnit.DAYS.toSeconds(60);
-    boolean isCorrectLevel           = receiptCredential.getReceiptLevel() == 1;
-    boolean isExpiration86400        = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
-    boolean isExpirationInTheFuture  = receiptCredential.getReceiptExpirationTime() > now;
-    boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() <= monthFromNow;
+    long    now                     = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+    long    maxExpirationTime       = now + TimeUnit.DAYS.toSeconds(60);
+    boolean isCorrectLevel          = receiptCredential.getReceiptLevel() == 1;
+    boolean isExpiration86400       = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
+    boolean isExpirationInTheFuture = receiptCredential.getReceiptExpirationTime() > now;
+    boolean isExpirationWithinMax   = receiptCredential.getReceiptExpirationTime() <= maxExpirationTime;
 
     Log.d(TAG, "Credential validation: isCorrectLevel(" + isCorrectLevel +
                ") isExpiration86400(" + isExpiration86400 +
                ") isExpirationInTheFuture(" + isExpirationInTheFuture +
-               ") isExpirationWithinAMonth(" + isExpirationWithinAMonth + ")", true);
+               ") isExpirationWithinMax(" + isExpirationWithinMax + ")", true);
 
-    return isCorrectLevel && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinAMonth;
+    return isCorrectLevel && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinMax;
   }
 
   @Override

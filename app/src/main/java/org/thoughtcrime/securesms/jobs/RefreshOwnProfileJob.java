@@ -48,13 +48,28 @@ public class RefreshOwnProfileJob extends BaseJob {
 
   private static final String TAG = Log.tag(RefreshOwnProfileJob.class);
 
+  private static final String SUBSCRIPTION_QUEUE = ProfileUploadJob.QUEUE + "_Subscription";
+  private static final String BOOST_QUEUE        = ProfileUploadJob.QUEUE + "_Boost";
+
   public RefreshOwnProfileJob() {
+    this(ProfileUploadJob.QUEUE);
+  }
+
+  private RefreshOwnProfileJob(@NonNull String queue) {
     this(new Parameters.Builder()
-                       .addConstraint(NetworkConstraint.KEY)
-                       .setQueue(ProfileUploadJob.QUEUE)
-                       .setMaxInstancesForFactory(1)
-                       .setMaxAttempts(10)
-                       .build());
+             .addConstraint(NetworkConstraint.KEY)
+             .setQueue(queue)
+             .setMaxInstancesForFactory(1)
+             .setMaxAttempts(10)
+             .build());
+  }
+
+  public static @NonNull RefreshOwnProfileJob forSubscription() {
+    return new RefreshOwnProfileJob(SUBSCRIPTION_QUEUE);
+  }
+
+  public static @NonNull RefreshOwnProfileJob forBoost() {
+    return new RefreshOwnProfileJob(BOOST_QUEUE);
   }
 
 
@@ -198,11 +213,11 @@ public class RefreshOwnProfileJob extends BaseJob {
                                             .max(Comparator.comparingLong(Badge::getExpirationTimestamp))
                                             .get();
 
-      Log.d(TAG, "Marking subscription badge as expired, should notifiy next time the conversation list is open.");
+      Log.d(TAG, "Marking subscription badge as expired, should notify next time the conversation list is open.", true);
       SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
 
       if (!SignalStore.donationsValues().isUserManuallyCancelled()) {
-        Log.d(TAG, "Detected an unexpected subscription expiry.");
+        Log.d(TAG, "Detected an unexpected subscription expiry.", true);
         SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
       }
     } else if (!remoteHasBoostBadges && localHasBoostBadges) {
@@ -214,7 +229,7 @@ public class RefreshOwnProfileJob extends BaseJob {
                                             .max(Comparator.comparingLong(Badge::getExpirationTimestamp))
                                             .get();
 
-      Log.d(TAG, "Marking boost badge as expired, should notifiy next time the conversation list is open.");
+      Log.d(TAG, "Marking boost badge as expired, should notify next time the conversation list is open.", true);
       SignalStore.donationsValues().setExpiredBadge(mostRecentExpiration);
     }
 

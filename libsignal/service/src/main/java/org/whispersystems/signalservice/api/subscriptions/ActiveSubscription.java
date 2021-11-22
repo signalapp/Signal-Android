@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public final class ActiveSubscription {
 
@@ -49,6 +52,13 @@ public final class ActiveSubscription {
 
     private final String status;
 
+    private static final Set<Status> FAILURE_STATUSES = new HashSet<>(Arrays.asList(
+        INCOMPLETE_EXPIRED,
+        PAST_DUE,
+        CANCELED,
+        UNPAID
+    ));
+
     Status(String status) {
       this.status = status;
     }
@@ -64,8 +74,7 @@ public final class ActiveSubscription {
     }
 
     static boolean isPaymentFailed(String status) {
-      Status s = getStatus(status);
-      return s == INCOMPLETE || s == INCOMPLETE_EXPIRED;
+      return FAILURE_STATUSES.contains(getStatus(status));
     }
   }
 
@@ -85,11 +94,11 @@ public final class ActiveSubscription {
   }
 
   public boolean isInProgress() {
-    return activeSubscription != null && !isActive() && !isFailedPayment();
+    return activeSubscription != null && !isActive() && !activeSubscription.isFailedPayment();
   }
 
   public boolean isFailedPayment() {
-    return activeSubscription != null && !isActive() && isFailedPayment();
+    return activeSubscription != null && !isActive() && activeSubscription.isFailedPayment();
   }
 
   public static final class Subscription {
@@ -171,8 +180,7 @@ public final class ActiveSubscription {
     }
 
     public boolean isInProgress() {
-      return !isActive() &&
-             !Status.isPaymentFailed(getStatus());
+      return !isActive() && !Status.isPaymentFailed(getStatus());
     }
 
     public boolean isFailedPayment() {
