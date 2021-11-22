@@ -214,7 +214,7 @@ object OpenGroupAPIV2 {
         val parameters = mapOf( "file" to base64EncodedFile )
         val request = Request(verb = POST, room = room, server = server, endpoint = "files", parameters = parameters)
         return send(request).map { json ->
-            json["result"] as? Long ?: throw Error.ParsingFailed
+            (json["result"] as? Number)?.toLong() ?: throw Error.ParsingFailed
         }
     }
 
