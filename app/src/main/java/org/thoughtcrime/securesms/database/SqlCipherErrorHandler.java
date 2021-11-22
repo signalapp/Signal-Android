@@ -48,6 +48,7 @@ public final class SqlCipherErrorHandler implements DatabaseErrorHandler {
         }
       }
     } catch (Throwable t) {
+      pragma1Passes = false;
       output.append("Failed to do integrity_check!").append("\n")
             .append(ExceptionUtil.convertThrowableToString(t));
     }
@@ -59,6 +60,7 @@ public final class SqlCipherErrorHandler implements DatabaseErrorHandler {
         pragma2Passes = false;
       }
     } catch (Throwable t) {
+      pragma2Passes = false;
       output.append("Failed to do cipher_integrity_check!").append("\n")
             .append(ExceptionUtil.convertThrowableToString(t));
     }
