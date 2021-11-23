@@ -82,6 +82,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     GooglePayButton.register(adapter)
     Progress.register(adapter)
     NetworkFailure.register(adapter)
+    BoostAnimation.register(adapter)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -143,7 +144,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     }
 
     return configure {
-      customPref(BadgePreview.SubscriptionModel(state.boostBadge))
+      customPref(BoostAnimation.Model())
 
       sectionHeaderPref(
         title = DSLSettingsText.from(

@@ -3974,7 +3974,7 @@
     <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
 
     <string name="BoostFragment__give_signal_a_boost">Give Signal a Boost</string>
-    <string name="BoostFragment__say_thanks_and_earn">Say "Thanks!" and earn the Boost badge for %1$d days.</string>
+    <string name="BoostFragment__say_thanks_and_earn">Say \"Thanks!\" and earn the Boost badge for %1$d days.</string>
 
     <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
     <string name="Boost__one_time_contribution">One-time contribution</string>
