@@ -57,4 +57,27 @@ public class FiatMoneyTest {
     assertEquals("100", result);
   }
 
+  @Test
+  public void given100UGX_whenIGetDefaultPrecisionString_thenIExpect100() {
+    // GIVEN
+    FiatMoney fiatMoney = new FiatMoney(BigDecimal.valueOf(100), Currency.getInstance("UGX"));
+
+    // WHEN
+    String result = fiatMoney.getDefaultPrecisionString();
+
+    // THEN
+    assertEquals("100", result);
+  }
+
+  @Test
+  public void given100UGX_whenIGetMinimumUnitPrecisionString_thenIExpect10000() {
+    // GIVEN
+    FiatMoney fiatMoney = new FiatMoney(BigDecimal.valueOf(100), Currency.getInstance("UGX"));
+
+    // WHEN
+    String result = fiatMoney.getMinimumUnitPrecisionString();
+
+    // THEN
+    assertEquals("10000", result);
+  }
 }

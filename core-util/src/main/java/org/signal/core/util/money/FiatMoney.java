@@ -54,14 +54,16 @@ public class FiatMoney {
   }
 
   /**
+   * Note: This special cases UGX to act as two decimal.
+   *
    * @return amount, in smallest possible units (cents, yen, etc.)
    */
   public @NonNull String getMinimumUnitPrecisionString() {
     NumberFormat formatter = NumberFormat.getInstance();
     formatter.setMaximumFractionDigits(0);
     formatter.setGroupingUsed(false);
-    BigDecimal multiplicand = BigDecimal.TEN.pow(currency.getDefaultFractionDigits());
-
+    
+    BigDecimal multiplicand = BigDecimal.TEN.pow(currency.getCurrencyCode().equals("UGX") ? 2 : currency.getDefaultFractionDigits());
 
     return formatter.format(amount.multiply(multiplicand));
   }
