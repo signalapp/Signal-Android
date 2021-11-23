@@ -44,7 +44,7 @@ public final class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> 
 
   @Override
   public @Nullable Pair<Cursor, Integer> loadInBackground() {
-    ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, observer);
+    ApplicationDependencies.getDatabaseObserver().registerAttachmentObserver(observer);
 
     Cursor cursor = SignalDatabase.media().getGalleryMediaForThread(threadId, sorting, threadId == MediaDatabase.ALL_THREADS);
 
