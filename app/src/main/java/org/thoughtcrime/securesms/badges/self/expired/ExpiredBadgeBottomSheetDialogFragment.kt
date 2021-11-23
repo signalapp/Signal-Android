@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.badges.self.expired
 
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.fragment.findNavController
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -10,6 +9,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 
@@ -26,7 +26,7 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
   }
 
   private fun getConfiguration(): DSLConfiguration {
-    val badge = ExpiredBadgeBottomSheetDialogFragmentArgs.fromBundle(requireArguments()).badge
+    val badge: Badge = ExpiredBadgeBottomSheetDialogFragmentArgs.fromBundle(requireArguments()).badge
 
     return configure {
       customPref(ExpiredBadge.Model(badge))
@@ -80,7 +80,7 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
         ),
         onClick = {
           dismiss()
-          findNavController().navigate(R.id.action_direct_to_subscriptions)
+          requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
         }
       )
 
