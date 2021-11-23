@@ -2399,7 +2399,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollet skyddade automatiskt %1$d%% av dina utgående meddelanden under de senaste %2$d dagarna. Konversationer mellan Signal-användare är alltid ände-till-ände-krypterade.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal-boost</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal-boost</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Inte tillräckligt med data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Din statistikprocentsats beräknas utifrån utgående meddelanden inom det förflutna %1$d dagarna som inte har försvunnit eller tagits bort.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Starta en konversation</string>
@@ -3353,7 +3353,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
   <string name="MySupportPreference__processing_transaction">Bearbetar transaktionen…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Det gick inte att lägga till märket.</string> -->
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__please_contact_support">Vänligen kontakta supporten.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har löpt ut</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märket har upphört att gälla</string>
@@ -3365,17 +3365,17 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Din upprätthållarprenumeration avslutades automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke är inte längre synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya prenumeration</string>
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Prenumerationsverifiering misslyckades</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Inlösning av märket misslyckades</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
   <string name="Subscription__contact_support">Kontakta support</string>
   <string name="Subscription__earn_a_s_badge">Tjäna ett %1$s-märke</string>
   <string name="SubscribeFragment__processing_payment">Bearbetar betalningen…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Betalningen misslyckades</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__your_badge_could_not_be_added">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Vänligen kontakta supporten.</string>
   <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Vänligen försök igen.</string>
   <string name="DonationsErrors__still_processing">Bearbetar fortfarande</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Inlösningen misslyckades</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Vänligen kontakta supporten</string> -->
+  <string name="DonationsErrors__couldnt_add_badge">Det gick inte att lägga till märket</string>
+  <string name="DonationsErrors__your_badge_could_not">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Vänligen kontakta supporten.</string>
   <string name="DonationsErrors__your_payment_is_still">Din betalning behandlas fortfarande. Detta kan ta några minuter beroende på din anslutning.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay är inte tillgängligt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du måste konfigurera Google Pay för att donera i appen.</string>

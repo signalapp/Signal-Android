@@ -2406,7 +2406,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="Insights__title">Estadísticas</string>
   <string name="InsightsDashboardFragment__title">Estadísticas</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El protocolo de Signal ha cifrado automáticamente %1$d%% de tus mensajes enviados en los últimos %2$d días. Los chats en Signal siempre están cifrados de extremo a extremo.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Impulsa Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Impulsa Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">No hay datos suficientes</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Este porcentaje se calcula con los mensajes enviados durante los últimos %1$d días que no han desaparecido o se han eliminado.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comienza un chat</string>
@@ -3360,7 +3360,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MySupportPreference__s_per_month">%1$s al mes</string>
   <string name="MySupportPreference__renews_s">Se renueva el %1$s</string>
   <string name="MySupportPreference__processing_transaction">Procesando transacción …</string>
-  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Fallo al añadir distintivo.</string> -->
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Fallo al añadir distintivo. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Por favor, contacta con nuestro soporte.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Distintivo caducado</string>
@@ -3372,17 +3373,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Tu suscripción mensual se ha cancelado automáticamente por cuenta inactiva. Tu distintivo %1$s ya no es visible en tu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puedes continuar usando la aplicación, pero para apoyar a Signal, reactiva tu distintivo. Renuévalo ahora.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar suscripción</string>
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Fallo al verificar la suscripción</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Fallo al rescatar el distintivo</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacta con el soporte técnico para más información.</string>
   <string name="Subscription__contact_support">Contactar con el soporte técnico</string>
   <string name="Subscription__earn_a_s_badge">%1$s ha conseguido un distintivo</string>
   <string name="SubscribeFragment__processing_payment">Procesando pago …</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Fallo en el pago</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Fallo al procesar el pago</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Fallo al procesar el pago. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">No se ha podido añadir el distintivo a tu perfil, pero puede haberte sido cobrado. Por favor, contacta con el soporte.</string>
   <string name="DonationsErrors__your_payment">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
   <string name="DonationsErrors__still_processing">En proceso …</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Fallo al rescatar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Por favor, contacta con el soporte</string> -->
+  <string name="DonationsErrors__couldnt_add_badge">Fallo al añadir distintivo.</string>
+  <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir el distintivo a tu perfil, pero puede haberte sido cobrado. Por favor, contacta con el soporte.</string>
   <string name="DonationsErrors__your_payment_is_still">Todavía se está procesando tu pago. Puede tomar unos minutos dependiendo de tu conexión.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Debes activar Google Pay para poder hacer una donación en la aplicación.</string>

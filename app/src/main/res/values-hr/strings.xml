@@ -2361,7 +2361,7 @@ broj telefona</string>
   <string name="Insights__title">Uvidi</string>
   <string name="InsightsDashboardFragment__title">Uvidi</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol je automatski zaštitio %1$d %% vaših odlaznih poruka tijekom zadnjih %2$d dana. Razgovori između korisnika Signala uvijek su end-to-end šifrirani.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal pojačanje</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal pojačanje</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Nema dovoljno podataka</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Vaš postotak uvida izračunava se na temelju odlaznih poruka u proteklih %1$d dana koje nisu nestale ili bile izbrisane.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Započnite novi razgovor</string>
@@ -3214,11 +3214,13 @@ broj telefona</string>
   <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja</string>
   <string name="BoostFragment__give_signal_a_boost">Donirajte jednokratnom uplatom</string>
   <string name="Boost__enter_custom_amount">Unesi prilagođeni iznos</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__please_contact_support">Molimo Vas da kontaktirate podršku</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
   <string name="SubscribeFragment__processing_payment">Obrada uplate…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Neuspješno plaćanje</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">Pokušajte ponovno</string>
   <!--EOF-->
 </resources>

@@ -2124,7 +2124,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="Insights__title">Estatistikak</string>
   <string name="InsightsDashboardFragment__title">Estatistikak</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokoloak azkenengo %2$d egunetan bidali duzun mezuen %1$d%% babestu du. Signalen erabiltzaileen arteko solasaldiak muturretik-muturrera daude enkriptatuta beti.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal bizkortu</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal bizkortu</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ez dago datu nahikorik</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Zure estatistiken ehunekoaren kalkulua azkenengo %1$d egunetan bidali diren mezuetan oinarritzen da; desagertu ez diren edo ezabatu ez diren mezuak bakarrik hartzen dira kontuan.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Solasaldi bat hasieratu</string>

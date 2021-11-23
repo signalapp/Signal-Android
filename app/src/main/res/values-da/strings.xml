@@ -2405,7 +2405,7 @@ nummer (%s) er ugyldigt</string>
   <string name="Insights__title">Indblik</string>
   <string name="InsightsDashboardFragment__title">Indblik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol beskyttede automatisk %1$d%% af dine sendte beskeder de seneste %2$d dage. Samtaler mellem Signal-brugere er altid end-to-end krypterede.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Sæt skub i Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Sæt skub i Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkeligt data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
@@ -3359,7 +3359,8 @@ nummer (%s) er ugyldigt</string>
   <string name="MySupportPreference__s_per_month">%1$s/måned</string>
   <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
   <string name="MySupportPreference__processing_transaction">Behandler transaktion…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Kunne ikke tilføje emblem.</string> -->
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Kunne ikke tilføje emblem. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kontakt venligst support.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Emblem udløbet</string>
@@ -3371,17 +3372,19 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Bekræftelse af abonnement mislykkedes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Indløsning af emblem mislykkedes</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Kontakt venligst support for at få mere information.</string>
   <string name="Subscription__contact_support">Kontakt Support</string>
   <string name="Subscription__earn_a_s_badge">Opnå ret til et %1$s-emblem </string>
   <string name="SubscribeFragment__processing_payment">Bearbejder betaling…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Betaling fejlede</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Fejl ved behandling af betaling</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Fejl ved behandling af betaling. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Dit emblem kunne ikke tilføjes til din konto, men du kan være blevet opkrævet. Kontakt venligst support.</string>
   <string name="DonationsErrors__your_payment">Din betaling kunne ikke gennemføres, og du er ikke blevet opkrævet. Prøv venligst igen.</string>
   <string name="DonationsErrors__still_processing">Behandler stadig</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Indløsning mislykkedes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Kontakt venligst support.</string> -->
+  <string name="DonationsErrors__couldnt_add_badge">Kunne ikke tilføje emblem</string>
+  <string name="DonationsErrors__your_badge_could_not">Dit emblem kunne ikke tilføjes til din konto, men du kan være blevet opkrævet. Kontakt venligst support.</string>
   <string name="DonationsErrors__your_payment_is_still">Din betaling er stadig under behandling. Det kan tage et par minutter afhængigt af din forbindelse.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ikke tilgængelig</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du skal konfigurere Google Pay for at kunne donere i appen.</string>

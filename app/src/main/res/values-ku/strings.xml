@@ -2023,7 +2023,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Kûrbîn</string>
   <string name="InsightsDashboardFragment__title">Kûrbîn</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signalê bihêz bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signalê bihêz bike</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Dane têrê nake</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Dest bi axiftinekê bike</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Peyamên şîfrekirî</string>

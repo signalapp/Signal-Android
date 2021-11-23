@@ -1642,7 +1642,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Audio-uitvoer</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefoonoortje</string>
-  <string name="WebRtcAudioOutputToggle__speaker">Luidspreker</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Luid­spreker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <string name="WebRtcCallControls_answer_call_description">Oproep beantwoorden</string>
   <string name="WebRtcCallControls_reject_call_description">Oproep afwijzen</string>
@@ -2410,7 +2410,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="Insights__title">Inzichten</string>
   <string name="InsightsDashboardFragment__title">Inzichten</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">%1$d%% van je verzonden berichten over de afgelopen %2$d dagen waren beveiligde Signal-berichten in plaats van onbeveiligde sms- of mms-berichten. Signal-berichten worden altijd eind-tot-eind-versleuteld uitgewisseld, in tegenstelling tot sms- en mms-berichten.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Je kunt meer gesprekken beveiligd voeren</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Je kunt meer gesprekken beveiligd voeren</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Niet genoeg gegevens om een inzicht te geven</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Je inzichten-percentage wordt berekend op basis van berichten die niet zijn verlopen en niet handmatig zijn gewist en die je in de afgelopen %1$d dagen hebt verzonden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Begin een gesprek</string>
@@ -3342,7 +3342,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Je hebt de %s-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Je hebt de eenmalige-donatie-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Je hebt de eenmalige-donateur-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Je kunt ook</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maandelijks doneren.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
@@ -3357,36 +3357,39 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ManageDonationsFragment__subscription_faq">Informatie over maandelijkse donaties</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fout bij het ophalen van informatie over maandelijkse donaties.</string>
   <string name="BoostFragment__give_signal_a_boost">Help Signal met een eenmalige bijdrage</string>
-  <string name="BoostFragment__say_thanks_and_earn">Bedank Signal en verdien de eenmalige-donatie-badge voor %1$d dagen.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Bedank Signal en verdien de eenmalige-donateur-badge voor %1$d dagen.</string>
   <string name="Boost__enter_custom_amount">Vul een zelfgekozen bedrag in</string>
   <string name="Boost__one_time_contribution">Eenmalige bijdrage</string>
   <string name="MySupportPreference__add_a_signal_boost">Geef Signal een oppepper</string>
   <string name="MySupportPreference__s_per_month">%1$s/maand</string>
   <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
   <string name="MySupportPreference__processing_transaction">Overschrijving aan het verwerken …</string>
-  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Het toevoegen van de badge is mislukt.</string> -->
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Je badge is verlopen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge verlopen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Maandelijkse donaties geannuleerd</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Je eenmalige-donatie-badge is verlopen en is daarom niet langer voor anderen te zien op je profiel.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Je eenmalige-donateur-badge is verlopen en is daarom niet langer voor anderen te zien op je profiel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overweeg maandelijkse donaties in te stellen om technologie die is gemaakt voor jou in plaats van voor het verzamelen van gegevens te blijven ondersteunen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Word een ondersteuner</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je %1$s-badge is niet langer voor anderen te zien op je profiel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Bevestiging van maandelijkse donatie is mislukt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__redemption_failed">Het terughalen van de badge is mislukt</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
   <string name="Subscription__contact_support">Neem contact op</string>
   <string name="Subscription__earn_a_s_badge">Verdien een %1$s-badge</string>
   <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Overschrijving is mislukt</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van een overschrijving</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van een overschrijving. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
   <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
   <string name="DonationsErrors__still_processing">Wordt nog verwerkt</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__redemption_failed">Terughalen mislukt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Neem contact op met de ondersteuning</string> -->
+  <string name="DonationsErrors__couldnt_add_badge">Kan badge niet toevoegen</string>
+  <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
   <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal app donaties te kunnen doen.</string>

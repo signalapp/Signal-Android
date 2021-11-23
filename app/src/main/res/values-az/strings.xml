@@ -2406,7 +2406,7 @@
   <string name="Insights__title">Təhlillər</string>
   <string name="InsightsDashboardFragment__title">Təhlillər</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolu, son %2$d gündə gedən mesajlarınızın %1$d%%-ni avtomatik olaraq qorudu. Signal istifadəçiləri arasındakı danışıqlar hər zaman bir ucdan digər uca kimi şifrələnir.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal gücləndirməsi</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal gücləndirməsi</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Yetərli məlumat yoxdur</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Təhlil faiziniz, son %1$d gündə yox olmayan və ya silinmədən gedən mesajlar əsasında hesablanır.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bir danışıq başlat</string>
@@ -3337,10 +3337,16 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Töhfəniz, bu niyyətə xidmət edir və özəl ünsiyyət üçün milyonlarla insan tərəfindən istifadə olunan tətbiqin inkişafı və əməliyyat xərclərini qarşılayır. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gücləndirmə üçün təşəkkürlər!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">%s nişanını qazandınız. Bu nişanı profilinizdə görüntüləyərək Signal-ın fərqindəlik yaratmasına kömək edin.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bir gücləndirmə nişanı qazandınız. Bu nişanı profilinizdə görüntüləyərək Signal-ın fərqindəlik yaratmasına kömək edin.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Həmçinin</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylıq bir Dəstəkçi ola bilərsiniz.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profildə görüntülə</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Xüsusi nişan hazırla</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Bitdi</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bir neçə nişana sahib olanda, profilinizdə başqalarının görməsi üçün birini seçə bilərsiniz.</string>
+  <string name="BecomeASustainerFragment__get_badges">Signal dəstəkləyərək profiliniz üçün nişanlar qazanın.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal, reklamları və ya investoru olmayan və yalnız sizin kimi insanlardan dəstək alan qeyri-kommersiya təşkilatıdır.</string>
   <string name="ManageDonationsFragment__my_support">Dəstəyim</string>
   <string name="ManageDonationsFragment__manage_subscription">Abunəliyi idarə et</string>
   <string name="ManageDonationsFragment__badges">Nişanlar</string>
@@ -3353,20 +3359,40 @@
   <string name="MySupportPreference__add_a_signal_boost">Signal gücləndirməsi əlavə et</string>
   <string name="MySupportPreference__s_per_month">%1$s/ay</string>
   <string name="MySupportPreference__renews_s">Yenilənir %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Əməliyyat emal edilir…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Nişan əlavə edilə bilmir. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Nişanınızın müddəti bitdi</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Nişan müddəti bitdi</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abunəlik ləğv edildi</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Gücləndirmə nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq Dəstəkçi olmağı düşünün.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi ol</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Abunəlik Təsdiqlənmədi</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Uzun müddət aktiv olmadığınız üçün Dəstəkçi abunəliyiniz avtomatik olaraq ləğv edildi. %1$s nişanınız artıq profilinizdə görünmür.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-ı istifadə etməyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktiv etmək üçün abunəliyi indi yeniləyin.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Abunəliyi yenilə</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha çox məlumat üçün zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
   <string name="Subscription__contact_support">Dəstək ilə əlaqə</string>
-  <string name="Subscription__earn_a_s_badge">%1$s nişan qazanın.</string>
+  <string name="Subscription__earn_a_s_badge">%1$s nişanını qazanın.</string>
   <string name="SubscribeFragment__processing_payment">Ödəniş emal olunur…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Ödəniş edilmədi</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Ödəniş emal xətası</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Ödəniş emal xətası. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Nişanınız hesabınıza əlavə edilə bilmədi, ancaq sizdən ödəniş alınmış ola bilər. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
   <string name="DonationsErrors__your_payment">Ödənişiniz emal edilə bilmədi və sizdən ödəniş alınmadı. Zəhmət olmasa yenidən sınayın.</string>
+  <string name="DonationsErrors__still_processing">Hələ də emal olunur</string>
+  <string name="DonationsErrors__couldnt_add_badge">Nişan əlavə edilə bilmir</string>
+  <string name="DonationsErrors__your_badge_could_not">Nişanınız hesabınıza əlavə edilə bilmədi, ancaq sizdən ödəniş alınmış ola bilər. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
+  <string name="DonationsErrors__your_payment_is_still">Ödənişiniz emal olunur. Bu, bağlantınızdan asılı olaraq bir neçə dəqiqə çəkə bilər.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay əlçatmazdır</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Tətbiq daxilində ianə etmək üçün \"Google Pay\"i quraşdırmalısınız.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abunəlik ləğv edilmədi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abunəlik ləğvi üçün internet bağlantısı tələb olunur.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Cihazınız, \"Google Pay\"i dəstəkləmir, ona görə də, nişan qazanmaq üçün abunə ola bilməzsiniz. Veb saytımızdan ianə edərək Signal-a dəstək ola bilərsiniz.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Şəbəkə xətası. Bağlantınızı yoxlayıb yenidən sınayın.</string>
   <string name="NetworkFailure__retry">Yenidən sına</string>
   <!--EOF-->
 </resources>

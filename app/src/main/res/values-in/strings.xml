@@ -2304,7 +2304,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="Insights__title">Insight</string>
   <string name="InsightsDashboardFragment__title">Insight</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol Signal melindungi %1$d%% pesan keluar Anda secara otomatis selama %2$dhari terakhir. Percakapan antara pengguna Signal selalu dienkripsi ujung-ke-ujung.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Amankan lebih banyak percakapan</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Amankan lebih banyak percakapan</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Data tidak cukup</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Insight Anda dihitung dari pesan terkirim dalam %1$d hari terakhir yang masih dapat dilihat dan belum terhapus.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Mulai percakapan</string>
@@ -3227,15 +3227,16 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MySupportPreference__add_a_signal_boost">Tambahkan Penguat Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
   <string name="MySupportPreference__renews_s">Perpanjang %1$s</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana Anda sudah Hangus</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi penyokong</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">Verifikasi Langganan Gagal</string> -->
   <string name="Subscription__please_contact_support_for_more_information">Harap hubungi bantuan untuk informasi lebih lanjut.</string>
   <string name="Subscription__contact_support">Hubungi Bantuan</string>
   <string name="Subscription__earn_a_s_badge">Dapatkan lencana %1$s</string>
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Pembayaran gagal</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">Pembayaran tidak dapat diproses dan Anda belum ditagih. Silakan coba kembali.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda harus menata Google Pay untuk berdonasi dari dalam aplikasi.</string>

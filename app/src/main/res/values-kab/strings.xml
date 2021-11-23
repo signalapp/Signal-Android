@@ -2178,7 +2178,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="Insights__title">Talqayt</string>
   <string name="InsightsDashboardFragment__title">Talqayt</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Aneggaf n Signal yettummesten s wudem awurman %% %1$d seg yiznan-ik·im yeffɣen n wussan-a %2$d ineggura. Ameslay gar yiseqdacen n Signal zgan ttwawgelhen seg yixef ɣer yixef.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Anerni n Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Anerni n Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">ulac ddeqs n ysefka</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Afmiḍi-inek·inem Insights yettusiḍen almend n yiznan yeffɣen deg %1$d wussan ineggura ur nṛuḥ ara neɣ ur ttwakksen ara.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bdu adiwenni</string>

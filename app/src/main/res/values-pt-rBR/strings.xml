@@ -1344,6 +1344,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal precisa acessar sua lista de contatos para você se conectar com outras pessoas, trocar mensagens e fazer chamadas seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Você fez muitas tentativas de registrar este número. Por favor, tente novamente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não é possível conectar ao serviço. Favor verificar a conexão à rede e tentar novamente.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Formato de número de telefone não reconhecido</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">O número que você inseriu (%1$s) não parece estar no formato padrão de números de telefone.\n\nSerá que você quis dizer %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formato de números de telefone</string>
   <string name="RegistrationActivity_call_requested">Ligação solicitada</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Agora você está a %d passo de enviar um registro de depuração.</item>
@@ -2403,7 +2406,7 @@
   <string name="Insights__title">Insights</string>
   <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Signal Protocol protegeu automaticamente %1$d %% de suas mensagens enviadas nos últimos %2$d dias. As conversas entre usuários do Signal são sempre criptografadas de ponta a ponta.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal turbinado</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal turbinado</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Não há dados suficientes</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O seu percentual do Insights é calculado com base nas mensagens enviadas nos últimos %1$d dias que não desapareceram ou foram excluídas.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar uma conversa</string>
@@ -3311,7 +3314,7 @@
   <string name="ImageView__badge">Selo</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">O Signal é mantido por pessoas como você.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Em vez de apoiar tecnologias desenvolvidas para terceiros lucrarem com seus dados privados, apoie tecnologias desenvolvidas para você, juntando-se à comunidade de pessoas que as sustentam financeiramente.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Em vez de apoiar tecnologias desenvolvidas para terceiros lucrarem com seus dados privados, apoie tecnologias desenvolvidas para você, juntando-se à comunidade de pessoas que sustentam o Signal financeiramente.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Em vez de apoiar tecnologias desenvolvidas para terceiros lucrarem com seus dados privados, apoie uma tecnologia desenvolvida para você, juntando-se à comunidade que sustenta o Signal financeiramente.</string>
   <string name="SubscribeFragment__currency">Moeda</string>
   <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar doação</string>
@@ -3342,6 +3345,8 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Definir como selo em destaque</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Pronto</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando você tiver mais de um selo, você poderá escolher qual deles será apresentado em seu perfil para as outras pessoas verem.</string>
+  <string name="BecomeASustainerFragment__get_badges">Obtenha selos para o seu perfil ao apoiar o Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas por pessoas como você.</string>
   <string name="ManageDonationsFragment__my_support">Meu apoio</string>
   <string name="ManageDonationsFragment__manage_subscription">Ajustar doação</string>
   <string name="ManageDonationsFragment__badges">Selos</string>
@@ -3355,22 +3360,32 @@
   <string name="MySupportPreference__s_per_month">%1$s/mês</string>
   <string name="MySupportPreference__renews_s">Renova em %1$s</string>
   <string name="MySupportPreference__processing_transaction">Efetuando a transação…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">Não foi possível adicionar o selo.</string> -->
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Não foi possível adicionar o selo. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Por favor, entre em contato com o suporte.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu selo tornou-se inválido</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Selo inválido</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Doação mensal cancelada</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">O seu selo Boost expirou e não é mais visualizado por outras pessoas no seu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar a apoiar uma tecnologia desenvolvida para você, considere se tornar um Apoiador mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Sua doação como Apoiador mensal foi cancelada automaticamente porque você ficou sem usar o Signal por muito tempo. Seu selo %1$s não é mais visualizado por outras pessoas no seu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas para apoiar o aplicativo e ter esse selo novamente, faça uma doação mensal.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Fazer doação mensal</string>
   <string name="Subscription__please_contact_support_for_more_information">Entre em contato com o suporte para obter mais informações, por favor.</string>
   <string name="Subscription__contact_support">Entre em contato com o suporte</string>
   <string name="Subscription__earn_a_s_badge">Ganhe um selo %1$s</string>
   <string name="SubscribeFragment__processing_payment">Efetuando o pagamento…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Falha ao pagar</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Erro ao efetuar o pagamento</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Erro ao efetuar o pagamento. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Não foi possível adicionar seu selo à sua conta, mas você pode ter sido cobrado. Entre em contato com o suporte, por favor.</string>
   <string name="DonationsErrors__your_payment">Não foi possível efetuar o seu pagamento e você não foi cobrado. Por favor, tente novamente.</string>
   <string name="DonationsErrors__still_processing">Ainda em processamento</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">Por favor, entre em contato com o suporte</string> -->
+  <string name="DonationsErrors__couldnt_add_badge">Não foi possível adicionar o selo</string>
+  <string name="DonationsErrors__your_badge_could_not">Não foi possível adicionar seu selo à sua conta, mas você pode ter sido cobrado. Entre em contato com o suporte, por favor.</string>
   <string name="DonationsErrors__your_payment_is_still">Seu pagamento ainda está sendo efetuado. Isso pode demorar alguns minutos, dependendo da sua conexão.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Você precisa configurar o Google Pay para doar dentro do aplicativo.</string>

@@ -1483,7 +1483,7 @@
   <string name="Insights__title">بصیرتاں</string>
   <string name="InsightsDashboardFragment__title">بصیرتاں</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal پروٹوکول نے پچھلے %2$d دناں اچ تہاڈے جان والے %1$d%% سنیہاں نوں آپوں آپ محفوظ کیتا اے۔ Signal صارفین دے وچ گل بات ہمیشاں پوری طراں خفیہ ہندی اے۔</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal بوسٹ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal بوسٹ</string> -->
   <string name="InsightsDashboardFragment__not_enough_data"> اعداد و شمارکافی نئیں</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">تہاڈی بصیرت دی فیصد دا حساب پچھلے %1$d دناں اچ جان آلے سنیہیاں دی بنیاد تے کیتا جاندا اے جیہڑے غائب نئیں ہوئے یاں مٹائے نئیں گئۓ۔</string>
   <string name="InsightsDashboardFragment__start_a_conversation">گل بات شروع کرو</string>

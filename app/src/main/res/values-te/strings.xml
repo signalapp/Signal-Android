@@ -2170,7 +2170,7 @@
   <string name="Insights__title">అంతర్దృష్టి</string>
   <string name="InsightsDashboardFragment__title">అంతర్దృష్టి</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">గత %2$d రోజులలో మీ అవుట్గోయింగ్ సందేశాలలో %1$d%% ను Signal ప్రోటోకాల్ స్వయంచాలకంగా రక్షించింది. Signal వినియోగదారుల మధ్య సంభాషణలు ఎల్లప్పుడూ ఎండ్-టు-ఎండ్ గుప్తీకరించబడతాయి.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal బూస్ట్</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal బూస్ట్</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">తగినంత డేటా లేదు</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">మీ అంతర్దృష్టుల శాతం గత %1$d రోజులలో కనిపించని లేదా తొలగించబడని సందేశాల ఆధారంగా లెక్కించబడుతుంది.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">సంభాషణను ప్రారంభించండి</string>

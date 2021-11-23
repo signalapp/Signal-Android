@@ -1801,7 +1801,7 @@
   <string name="Insights__title">ព័ត៌មានលំអិត</string>
   <string name="InsightsDashboardFragment__title">ព័ត៌មានលំអិត</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">ប្រូតូកូល Signal បានការពារ %1$d%% នៃសារផ្ញើចេញក្នុងរយៈពេល %2$d ថ្ងៃដោយស្វ័យប្រវត្តិ។ ការសន្ទនារវាងអ្នកប្រើប្រាស់ Signal  តែងតែត្រូវបានអ៊ីនគ្រីបតែងសងខាង។</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">ជំរុញ Signal </string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">ជំរុញ Signal </string> -->
   <string name="InsightsDashboardFragment__not_enough_data">មិនមានទិន្នន័យគ្រប់គ្រាន់</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ភាគរយព័ត៌មានលំអិតរបស់អ្នកត្រូវបានគណនា ផ្អែកលើសារផ្ញើចេញក្នុងរយៈពេល  %1$d ថ្ងៃ ដែលមិនបានបាត់ទៅវិញ ឬលុបចោល។</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ចាប់ផ្តើមការសន្ទនា</string>

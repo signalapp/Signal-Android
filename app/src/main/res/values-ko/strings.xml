@@ -2264,7 +2264,7 @@
   <string name="Insights__title">인사이트</string>
   <string name="InsightsDashboardFragment__title">인사이트</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal 프로토콜이 지난 %2$d일 동안 발신된 메시지 중 %1$d%%를 발견했습니다. Signal 사용자 간의 대화는 항상 단대단 암호화됩니다.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal 부스트</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal 부스트</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">데이터가 충분하지 않음</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">인사이트 백분율은 최근 %1$d일 동안 사라졌거나 삭제되지 않은 발신 메시지에 대해 산정됩니다.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">대화 시작</string>
@@ -3074,10 +3074,12 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">확인</string>
   <string name="ManageDonationsFragment__badges">배지</string>
   <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
   <string name="Subscription__contact_support">지원에 문의</string>
   <string name="SubscribeFragment__processing_payment">결제 처리 중…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">결제 실패</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">재시도</string>
   <!--EOF-->
 </resources>

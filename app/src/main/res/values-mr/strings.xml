@@ -467,7 +467,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">सदस्य जोडायचा?</string>
-  <string name="AddToGroupActivity_add_s_to_s">\"%2$s\" ला \"%1$s\" मध्ये जोडायचे?</string>
+  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ला \"%2$s\" मध्ये जोडायचे?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ने \"%2$s\" ला जोडले.</string>
   <string name="AddToGroupActivity_add_to_group">गटात जोडा</string>
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
@@ -2278,7 +2278,7 @@
   <string name="CreatePaymentFragment__add_note">टीप जोडा</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">रूपांतरण हा एक अंदाज असतो आणि तो कदाचित अचूक नसू शकतो.</string>
   <!--EditNoteFragment-->
-  <string name="EditNoteFragment_note">टीप घ्या</string>
+  <string name="EditNoteFragment_note">टीप लिहा</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">पेमेंटची पुष्टी करा</string>
   <string name="ConfirmPayment__network_fee">नेटवर्क फी</string>
@@ -2403,7 +2403,7 @@
   <string name="Insights__title">अंतर्दृष्टी</string>
   <string name="InsightsDashboardFragment__title">अंतर्दृष्टी</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल याने स्वयंचलितपणे%2$d दिवसांमध्ये %1$d%% आपले जाणारे संदेश संरक्षित केलेत. Signal वापरकर्त्यांमधील संभाषण हे नेहमी एंड-टू-एंड एन्क्रिप्टेड असते.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal बूस्ट</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal बूस्ट</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">पुरेसा डेटा नाही</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">मागील %1$d दिवसांच्या जाणारे संदेश जे अदृश्य झाले नाहीत किंवा हटविले गेले नाहीत त्यांच्या आधारावर आपली ईन्साईट टक्केवारी याची गणना केली जाते.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">संभाषण चालू करा</string>
@@ -3029,7 +3029,7 @@
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">तुम्ही तुमचा नंबर बदलण्याचा प्रयत्न केला आहे असे दिसते पण तो यशस्वी झाला की नाही हे आम्हाला कळू शकले नाही.\n\nपुन्हा तपासत आहे….</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">स्थिती बदलाची पुष्टी करण्यात आली</string>
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">तुमचा नंबर म्हणून %1$s ची पुष्टी केली गेली आहे. हा तुमचा नवीन क्रमांक नसल्यास, कृपया क्रमांक बदलण्याची प्रक्रिया पुन्हा सुरू करा.</string>
-  <string name="ChangeNumberLockActivity__change_status_unconfirmed">बदल स्थितीची पुष्टी झालेली नाही</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">स्थिती बदलाची पुष्टी झालेली नाही</string>
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">आम्ही तुमच्या नंबर बदलण्याच्या विनंतीची स्थिती निर्धारित करू शकलो नाही.\n\n(त्रुटी: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">पुन्हा प्रयत्न करा</string>
   <string name="ChangeNumberLockActivity__leave">सोडा</string>
@@ -3230,7 +3230,7 @@
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">अवतार पुनरावलोकन</string>
   <string name="AvatarPickerFragment__camera">कॅमेरा</string>
-  <string name="AvatarPickerFragment__take_a_picture">चित्र घ्या</string>
+  <string name="AvatarPickerFragment__take_a_picture">फोटो घ्या</string>
   <string name="AvatarPickerFragment__choose_a_photo">फोटो निवडा</string>
   <string name="AvatarPickerFragment__photo">फोटो</string>
   <string name="AvatarPickerFragment__text">मजकूर</string>
@@ -3357,7 +3357,8 @@
   <string name="MySupportPreference__s_per_month">%1$s/महिना</string>
   <string name="MySupportPreference__renews_s">नूतनीकरण %1$s</string>
   <string name="MySupportPreference__processing_transaction">ट्रांझ्याक्शन प्रक्रिया करत आहे…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MySupportPreference__couldnt_add_badge">बॅज जोडता आला नाही.</string> -->
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">बॅज जोडता आला नाही. %1$s</string>
   <string name="MySupportPreference__please_contact_support">कृपया सपोर्टला संपर्क साधा</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपला बॅज कालबाह्य झाला आहे</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">बॅज कालबाह्य झाला</string>
@@ -3369,15 +3370,19 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">आपले सस्टेनर सब्स्क्रिप्शन आपोआप रद्द झाले कारण आपन खूप काळ निष्क्रिय होता. आपला %1$s बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपन Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription"> सब्स्क्रिप्शन नूतनीकरण करा</string>
-  <!-- Removed by excludeNonTranslatables <string name="Subscription__verification_failed">सब्स्क्रिप्शन सत्यापन अयशस्वी</string> -->
   <string name="Subscription__please_contact_support_for_more_information">अधिक माहितीकरिता सपोर्टशी संपर्क करा.</string>
   <string name="Subscription__contact_support">समर्थन सोबत संपर्क साधा</string>
   <string name="Subscription__earn_a_s_badge">%1$s बॅज मिळवा</string>
   <string name="SubscribeFragment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">पेमेंट अयशस्वी झाले</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">पेमेंट प्रक्रिया करताना त्रुटी आली</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">पेमेंट प्रक्रिया करताना त्रुटी आली. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">तुमचा बॅज तुमच्या खात्यात जोडला जाऊ शकला नाही, परंतु तुमच्याकडून शुल्क आकारले गेले असेल. कृपया सपोर्टशी संपर्क साधा.</string>
   <string name="DonationsErrors__your_payment">तुमची पेमेंट प्रक्रिया पुर्ण नाही केली जाऊ शकली आणि तुमच्याकडून शुल्क आकारले गेले नाही. कृपया पुन्हा प्रयत्न करा.</string>
   <string name="DonationsErrors__still_processing">अजूनही प्रक्रिया करत आहे</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__please_contact_support">कृपया सपोर्टला संपर्क साधा</string> -->
+  <string name="DonationsErrors__couldnt_add_badge">बॅज जोडता आला नाही</string>
+  <string name="DonationsErrors__your_badge_could_not">तुमचा बॅज तुमच्या खात्यात जोडला जाऊ शकला नाही, परंतु तुमच्याकडून शुल्क आकारले गेले असेल. कृपया सपोर्टशी संपर्क साधा.</string>
   <string name="DonationsErrors__your_payment_is_still">आपली पेमेंट प्रक्रिया अजूनही चालू आहे. आपल्या कनेक्शन नुसार यास काही मिनिटे लागू शकतात.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अॅपमधील देणगी देण्यासाठी तुम्हाला Google Pay सेटअप करावे लागेल.</string>
