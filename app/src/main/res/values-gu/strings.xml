@@ -2283,7 +2283,6 @@
   <string name="Insights__title">ઈનસાઈટ</string>
   <string name="InsightsDashboardFragment__title">ઈનસાઈટ</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">પાછલા %2$d દિવસોમાં Signal પ્રોટોકોલ આપમેળે સુરક્ષિત %1$d%% તમારા આઉટગોઇંગ મેસેજ ને સુરક્ષિત કરે છે. Signal વપરાશકર્તાઓ વચ્ચેની વાતચીત હંમેશાં એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટેડ હોય છે.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal બુસ્ટ</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">પૂરતો ડેટા નથી</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">તમારી ઈનસાઈટની ટકાવારી છેલ્લાં %1$d દિવસોમાં બહાર જતા મેસેજ ના આધારે ગણવામાં આવે છે જે અદૃશ્ય થઈ નથી અથવા કાઢી નથી.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">સંવાદ શરૂ કરો</string>

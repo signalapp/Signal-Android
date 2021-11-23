@@ -2389,7 +2389,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="Insights__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolü son %2$d gündeki iletilerinizin %%%1$d kadarını otomatik olarak korudu. Signal kullanıcıları arasındaki konuşmalar her zaman uçtan uca şifrelidir.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal\'i güçlendir</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Yetersiz veri</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">İçgörü yüzdeniz son %1$d gün içerisinde gönderdiğiniz kaybolmamış veya silinmemiş iletilere göre hesaplanır.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Konuşma başlat</string>

@@ -2568,7 +2568,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="Insights__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Mae Protocol Signal wedi amddiffyn %1$d%% o\'ch negeseuon â anfonwyd yn awtomatig dros y %2$d diwrnod diwethaf. Mae sgyrsiau rhwng defnyddwyr Signal bob amser yn cael eu hamgryptio o\'r dechrau i\'r diwedd.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Hwb Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Dim digon o ddata</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Mae eich canran Mewnwelediadau yn cael ei gyfrifo ar sail negeseuon sy\'n mynd allan yn ystod y %1$d diwrnod diwethaf nad ydyn\'t wedi diflannu na\'u dileu.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Cychwyn sgwrs</string>

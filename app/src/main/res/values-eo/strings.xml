@@ -2391,7 +2391,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="Insights__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">La protokolo de Signal aŭtomate protektis %1$d %% el viaj elirintaj mesaĝoj dum la lastaj %2$d tagoj. Interparoloj inter Signal-uzantoj estas ĉiam tutvoje ĉifritaj.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Pligrandigu vian Signal-uzon</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ne sufiĉe da datumoj</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Via elcento en „Superrigardo“ kalkuliĝas per la elirintaj mesaĝoj, dum la lastaj %1$d tagoj, kiuj ne malaperis aŭ forviŝiĝis.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Krei novan interparolon</string>

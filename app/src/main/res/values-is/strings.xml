@@ -1345,6 +1345,7 @@
   <string name="RegistrationActivity_rate_limited_to_service">Þú hefur gert of margar tilraunir til að skrá þetta númer. Prófaðu aftur síðar.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Mistókst að tengjast þjónustu. Athugaðu netsambandið þitt og prófaðu aftur.</string>
   <string name="RegistrationActivity_non_standard_number_format">Óstaðlað tölusnið</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Númerið sem þú settir inn (%1$s) lítur ekki út fyrir að vera á stöðluðu sniði.\n\nVarstu að meina %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Snið símanúmers</string>
   <string name="RegistrationActivity_call_requested">Beðið um símtal</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2404,7 +2405,7 @@
   <string name="Insights__title">Yfirlitstölfræði</string>
   <string name="InsightsDashboardFragment__title">Yfirlitstölfræði</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal samskiptamátinn verndaði sjálfvirkt %1$d%% af útsendum skilaboðum þínum á síðustu %2$d dögum. Samræður milli Signal-notenda eru alltaf dulritaðar enda-í-enda.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal-hvatning</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Láttu orð út ganga</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ekki næg gögn</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prósentuhlutfall þitt í yfirlitstölfræðinni er reiknað út frá sendum skilaboðum síðustu %1$d daga sem ekki hafa horfið eða verið eytt.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Hefja samtal</string>
@@ -3030,8 +3031,11 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChangeNumberPinDiffersFragment__update_pin">Uppfæra PIN-númer</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Halda gamla PIN-númerinu?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Það lítur út eins og þú hafir reynt að skipta um símanúmer en við náðum ekki að ganga úr skugga um að það hafi tekist.\n\nAthugum aftur núna…</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Breytt staða staðfest</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Símanúmerið þitt hefur verið staðfest sem %1$s. Ef þetta er ekki nýja símanúmerið þitt, skaltu fara aftur í gegnum ferlið til að skipta um símanúmer.</string>
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Breytt staða ekki staðfest</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Við gátum ekki ákvarðað stöðu á beiðni þinni um símnúmeraskipti.\n\n(Villa: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Reyna aftur</string>
   <string name="ChangeNumberLockActivity__leave">Fara</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Senda inn villumeldingaskrá</string>
@@ -3139,6 +3143,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="AddAProfilePhotoMegaphone__add_photo">Bæta við ljósmynd</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Gerstu stuðningsaðili</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal er drifið áfram af fólki eins og þér. Sýndu stuðning og fáðu merki á auðkennið þitt.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Nei, takk</string>
   <string name="BecomeASustainerMegaphone__contribute">Framlag</string>
   <!--KeyboardPagerFragment-->
@@ -3189,6 +3194,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtal þaggað að eilífu</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Afritaði símanúmer á klippispjald.</string>
   <string name="ConversationSettingsFragment__phone_number">Símanúmer</string>
+  <string name="ConversationSettingsFragment__get_badges">Fáðu merki á notandaauðkennið þitt með því að styrkja Signal. Ýttu á merki til að kanna nánar.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Bæta við meðlimum</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Breyta upplýsingum hóps</string>
@@ -3331,6 +3337,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Birta á persónusniði</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gera merki áberandi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Lokið</string>
+  <string name="BecomeASustainerFragment__get_badges">Fáðu merki á notandaauðkennið þitt með því að styrkja Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er samtök án hagnaðarsjónarmiða, auglýsenda eða fjárfesta og er drifið áfram af fólki eins og þér.</string>
   <string name="ManageDonationsFragment__my_support">Stuðningur minn</string>
   <string name="ManageDonationsFragment__manage_subscription">Sýsla með áskrift</string>
   <string name="ManageDonationsFragment__badges">Merki</string>
@@ -3343,20 +3351,39 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MySupportPreference__add_a_signal_boost">Bæta við Signal-hvatningu</string>
   <string name="MySupportPreference__s_per_month">%1$s/mánuði</string>
   <string name="MySupportPreference__renews_s">Endurnýjast %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Meðhöndla færslu…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Gat ekki bætt við merki. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Hafðu samband við aðstoðarteymið.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkið þitt er útrunnið</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merki útrunnið</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Áskrift sagt upp</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Hvatningarmerkið þitt er útrunnið og því ekki lengur sýnilegt öðrum á auðkenninu þínu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Til að halda áfram að styðja við tækni sem er hönnuð fyrir þig, skaltu íhuga að gerast mánaðarlegur stuðningsaðili.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Þú getur haldið áfram að nota Signal, en til að styðja við hugbúnaðinn og endurvirkja merkið þitt ættirðu að endurnýja núna.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Endurnýja áskrift</string>
   <string name="Subscription__please_contact_support_for_more_information">Hafðu samband við aðstoðarteymið til að fá nánari upplýsingar.</string>
   <string name="Subscription__contact_support">Hafa samband við hjálparteymi</string>
   <string name="Subscription__earn_a_s_badge">Fáðu %1$s merki</string>
   <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Villa við meðhöndlun greiðslu</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Villa við meðhöndlun greiðslu. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Ekki var hægt að bæta merkinu við aðganginn þinn, en mögulega hefur þú samt fengið rukkun. Hafðu samband við aðstoðarteymið.</string>
+  <string name="DonationsErrors__your_payment">Ekki var hægt að meðhöndla greiðsluna þína og þú hefur því ekki greitt kröfuna. Endilega reyndu aftur.</string>
+  <string name="DonationsErrors__still_processing">Enn í vinnslu</string>
+  <string name="DonationsErrors__couldnt_add_badge">Gat ekki bætt við merki</string>
+  <string name="DonationsErrors__your_badge_could_not">Ekki var hægt að bæta merkinu við aðganginn þinn, en mögulega hefur þú samt fengið rukkun. Hafðu samband við aðstoðarteymið.</string>
+  <string name="DonationsErrors__your_payment_is_still">Greiðslan þín er ennþá í vinnslu. Þetta getur tekið nokkrar mínútur, eftir ástandi tengingarinnar þinnar.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ekki aðgengilegt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Þú þarft að setja upp Google Pay til að styrkja inni í forritinu.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Mistókst að hætta áskrift</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Til að hætta áskrift þarf tengingu við internetið.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tækið þitt styður ekki Google Pay, þannig að þú getur ekki orðið áskrifandi og unnið þér inn merki. Þú getur samt stutt Signal með styrk í gegnum vefsvæðið okkar.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Villa í netkerfi. Athugaðu nettenginguna þína og prófaðu svo aftur.</string>
   <string name="NetworkFailure__retry">Reyna aftur</string>
   <!--EOF-->
 </resources>

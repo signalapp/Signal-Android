@@ -2397,7 +2397,7 @@
   <string name="Insights__title">Aperçu</string>
   <string name="InsightsDashboardFragment__title">Aperçu</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Le protocole Signal a protégé automatiquement %1$d %% de vos messages sortants au cours des %2$d derniers jours. Les conversations entre les utilisateurs de Signal sont toujours chiffrées de bout en bout.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Amélioration par Signal</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Faites passer le mot</string>
   <string name="InsightsDashboardFragment__not_enough_data">Pas assez de données</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Votre pourcentage d’Aperçu est calculé d’après le nombre de messages sortants qui n’ont ni disparu ni été supprimés au cours des %1$d derniers jours.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Lancer une conversation</string>

@@ -2385,7 +2385,6 @@
   <string name="Insights__title">অন্তর্দৃষ্টি</string>
   <string name="InsightsDashboardFragment__title">অন্তর্দৃষ্টি</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal প্রোটোকল গত %2$d দিনগুলিতে স্বয়ংক্রিয়ভাবে আপনার বহির্গামী বার্তাগুলির %1$d%% সুরক্ষিত করেছে। Signal ব্যবহারকারীদের মধ্যে কথোপকথন সর্বদা এক প্রান্ত থেকে অপর প্রান্ত এনক্রিপ্ট থাকে।</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal প্রচার করা</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">পর্যাপ্ত তথ্য নেই</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">আপনার অন্তর্দৃষ্টি শতাংশ বিগত %1$d দিনের মধ্যে বহির্গামী বার্তাগুলির উপর ভিত্তি করে গণনা করা হয় যা নিখোঁজ হয়নি বা মোছা হয়নি।</string>
   <string name="InsightsDashboardFragment__start_a_conversation">একটি কথোপকথন শুরু করুন</string>

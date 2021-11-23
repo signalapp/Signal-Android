@@ -2315,7 +2315,7 @@
   <string name="Insights__title">統計</string>
   <string name="InsightsDashboardFragment__title">統計</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal 協定自動保護%1$d%%你的過去%2$d天傳出的訊息。 Signal使用者之間的對話始終是點對點加密的。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal 單次贊助</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">把這些訊息散播出去</string>
   <string name="InsightsDashboardFragment__not_enough_data">沒有足夠的資料</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">你的統計百分比是根據過去%1$d天內尚未銷毀或刪除的出訊息計算得出的。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">開啟一個對話</string>
@@ -3273,7 +3273,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">付款處理錯誤</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">府款處理錯誤。%1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">處理付款失敗。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">你的徽章無法新增到你的帳號，但你可能已被收費。 請聯絡支援部門。</string>
   <string name="DonationsErrors__your_payment">你的付款無法處理，所以也未向你收費。 請再試一次。</string>
   <string name="DonationsErrors__still_processing">仍在處理中</string>

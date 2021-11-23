@@ -2579,7 +2579,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="Insights__title">Prehľady</string>
   <string name="InsightsDashboardFragment__title">Prehľady</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol za posledných %2$d dní automaticky ochránil %1$d%% vašich odchádzajúcich správ. Konverzácie medzi používateľmi Signalu sú vždy koncovo šifrované.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Vylepšenie Signalu</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Šíriť slovo</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatok údajov</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Percentuálna hodnota vašich Prehľadov sa vypočítava na základe odchádzajúcich správ za posledných %1$d dní, ktoré nezmizli, ani neboli odstránené.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Začať konverzáciu</string>

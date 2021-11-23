@@ -2319,7 +2319,6 @@
   <string name="Insights__title">覺察</string>
   <string name="InsightsDashboardFragment__title">覺察</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 喺過去 %2$d 日，已經自動保護咗 %1$d%% 由您發送出去嘅訊息。Signal 使用者之間嘅對話，就幾時都係端對端加密嘅。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal 也升呢</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">資料唔夠</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您嘅「覺察」巴仙，係用過去 %1$d 日未有消失或刪除嘅送出訊息數量計算出嚟嘅。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">發起一個對話</string>
@@ -3277,7 +3276,6 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">處理付款嘅時候發生錯誤</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">處理付款嘅時候發生錯誤。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">您個襟章加唔到落去您個帳戶度，但有可能已經扣咗您數。請聯絡支援。</string>
   <string name="DonationsErrors__your_payment">處理唔到您嘅付款，您未有被扣數。請再試一次。</string>
   <string name="DonationsErrors__still_processing">仲處理緊</string>

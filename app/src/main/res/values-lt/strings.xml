@@ -2580,7 +2580,7 @@
   <string name="Insights__title">Įžvalgos</string>
   <string name="InsightsDashboardFragment__title">Įžvalgos</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Per pastarąsias %2$d d. Signal protokolas automatiškai apsaugojo %1$d%% jūsų išsiunčiamų žinučių. Pokalbiai tarp Signal naudotojų yra visada šifruoti ištisiniu būdu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Apsaugokite daugiau pokalbių</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Skleiskite žinią</string>
   <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsų įžvalgų procentinė dalis yra apskaičiuojama remiantis per pastarąsias %1$d d. išsiunčiamų žinučių, kurios neišnyko ir nebuvo ištrintos, skaičiumi.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>

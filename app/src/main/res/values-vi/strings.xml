@@ -1216,6 +1216,7 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, và %3$d người khác đang trong cuộc gọi này</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Ghim</string>
   <string name="WebRtcCallView__speaker">Loa</string>
   <string name="WebRtcCallView__camera">Máy ảnh</string>
   <string name="WebRtcCallView__mute">Im lặng</string>
@@ -2312,7 +2313,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="Insights__title">Phân tích</string>
   <string name="InsightsDashboardFragment__title">Phân tích</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Giao thức Signal đã tự động bảo vệ %1$d%% số tin nhắn bạn gửi đi trong %2$d ngày trước. Cuộc trò chuyện giữa những người dùng Signal luôn được mã hóa hai chiều.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Tăng tỉ lệ Signal</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Dàng trải từ</string>
   <string name="InsightsDashboardFragment__not_enough_data">Không đủ dữ liệu</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Số phần trăm Dữ liệu Phân tích của bạn được tính dựa vào số tin nhắn gửi đi trong %1$d ngày trước mà không bị xóa hay tự hủy.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bắt đầu cuộc trò chuyện</string>
@@ -3109,6 +3110,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Thanh toán mới</string>
@@ -3222,24 +3224,66 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/tháng . Hết hạn %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal là một chương trình phi lợi nhuận, không thu tiền quảng cáo và không có nhà đầu tư, Signal chỉ được duy trì và phát triển bởi những người sử dụng và yêu thích nó. Đóng góp định kỳ hàng tháng và nhận huy hiệu trên hồ sơ cá nhận để chia sẻ sự ủng hộ của bạn đến mọi người.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Vì sao phải Quyên góp?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal cam kết phát triển công nghệ bảo mật mã nguồn mở, đề cao tính tự do ngôn luận và hướng đến một môi trường giao tiếp toàn cầu an toàn.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sự quyên góp của bạn đang góp phần không nhỏ vào sự phát triển và duy trì hoạt động của ứng dùng liên lạc bảo mật và riêng tư được cả triệu người sử dụng trên toàn thế giới. Không quảng cáo, không lấy thông tin riêng tư, và luôn đáng tin cậy.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Cảm ơn bạn đã đống góp!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã quyên góp</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Bạn đã nhận được huy hiệu %s! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bạn đã nhận được huy hiệu quyên góp! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Bạn cũng có thể</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Hiển thị trên thông tin cá nhân</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Chọn huy hiệu mặc định</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Xong</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Khi bạn có nhiều hơn một huy hiệu. bạn có thể chọn huy hiệu mặc định mà mọi người sẽ nhìn thấy trên hồ sơ của bạn.</string>
+  <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cao cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bỡi hàng triệu người dùng như bạn mà thôi.</string>
+  <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string>
+  <string name="ManageDonationsFragment__manage_subscription">Quản lý Quyên góp</string>
   <string name="ManageDonationsFragment__badges">Huy hiệu</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Quyên góp</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Lỗi nhận quyên góp.</string>
   <string name="BoostFragment__give_signal_a_boost">Quyên góp cho Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Hãy cảm ơn và nhận huy hiệu đống góp trong %1$d ngày.</string>
   <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
+  <string name="Boost__one_time_contribution">Quyên góp một lần</string>
   <string name="MySupportPreference__add_a_signal_boost">Thêm vào một phần quyên góp cho Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/tháng</string>
+  <string name="MySupportPreference__renews_s">Làm mới %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Đang xử lý Giao dịch…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Không thể thêm huy hiệu. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Huy hiệu của bạn đã hết hạn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Huy hiệu hết hạn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Quyên góp đã bị hủy bỏ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Huy hiệu quyên góp của bạn đã hết hạn, mọi người sẽ không còn nhìn thấy nó trên hồ sơ cá nhân của bạn được nữa.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục quyên góp ủng hộ cho ứng dụng và nhận lại huy hiệu của mình thì bạn cần đăng ký lại.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Đăng ký lại quyên góp</string>
+  <string name="Subscription__please_contact_support_for_more_information">Vui lòng liên hệ với bộ phận hỗ trợ để biết thêm thông tin.</string>
   <string name="Subscription__contact_support">Liên lạc Hỗ trợ</string>
+  <string name="Subscription__earn_a_s_badge">Nhận được một huy hiệu %1$s</string>
   <string name="SubscribeFragment__processing_payment">Đang xử lý thanh toán…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Lỗi xữ lý thanh toán</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Lỗi xữ lý thanh toán. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
+  <string name="DonationsErrors__your_payment">Thanh toán của bạn đã không thành công và bạn vẫn chưa bị tính phí. Vui lòng thử lại.</string>
+  <string name="DonationsErrors__still_processing">Vẫn đang xữ lý</string>
+  <string name="DonationsErrors__couldnt_add_badge">Không thể thêm huy hiệu</string>
+  <string name="DonationsErrors__your_badge_could_not">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
   <string name="DonationsErrors__your_payment_is_still">Thanh toán của bán đang được xử lý. Việc này có thể mất vài phút tùy vào kết nối của bạn.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay không dùng được</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Bạn phải cài đặt Google Pay để quyên góp trong ứng dụng.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Không thể hủy đăng ký quyên góp</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Để hủy đăng ký quyên góp, thiết bị cần kết nối internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hổ trợ Google Pay, vì vậy bạn không thể đăng ký quyên góp và nhận huy hiệu trên thiết bị này. Bạn vẫn có thể đống góp cho Signal trên trang Web của chúng tôi.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
   <string name="NetworkFailure__retry">Thử lại</string>
   <!--EOF-->
 </resources>

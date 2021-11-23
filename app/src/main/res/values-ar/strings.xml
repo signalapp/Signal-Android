@@ -2751,7 +2751,6 @@
   <string name="Insights__title">رؤى</string>
   <string name="InsightsDashboardFragment__title">رؤى</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol أو بروتوكول سيجنال قام بحماية  %1$d%% من رسائلك الصادرة خلال %2$d يوما الماضية. المحادثات بين مستخدمي Signal مُعمَّاة دائما من طرف إلى طرف.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">تقوية Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">لا يوجد بيانات كافية</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يوما الماضية والتي لم تختفي أو يتم حذفها.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ابدأ محادثة</string>

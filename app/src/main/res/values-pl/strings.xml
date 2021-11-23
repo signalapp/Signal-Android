@@ -2572,7 +2572,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="Insights__title">Statystyki</string>
   <string name="InsightsDashboardFragment__title">Statystyki</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokół Signal automatycznie ochronił %1$d%% Twoich wysłanych wiadomości, w ciągu ostatnich %2$d dni. Konwersacje pomiędzy użytkownikami aplikacji Signal są zawsze szyfrowane metodą end-to-end.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Zabezpiecz więcej konwersacji</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Buduj świadomość</string>
   <string name="InsightsDashboardFragment__not_enough_data">Za mało danych</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Twoja statystyka procentowa jest obliczana na podstawie ilości wiadomości, które nie zniknęły, ani nie zostały usunięte, wysłanych w ciągu ostatnich %1$ddni.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Rozpocznij rozmowę</string>

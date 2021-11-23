@@ -2489,7 +2489,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Insights__title">Statistici</string>
   <string name="InsightsDashboardFragment__title">Statistici</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele tale expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Creșterea Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Statisticile sunt calculate pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Începe o conversație</string>
@@ -3479,7 +3478,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Procesarea plății a eșuat</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Procesarea plății a eșuat. %1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Eroare la procesarea plății %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Insigna nu a putut fi adăugată în cont, dar este posibil să fi fost taxat. Te rugăm să contactezi asistența.</string>
   <string name="DonationsErrors__your_payment">Plata ta nu a putut fi procesată și nu ai fost taxat. Te rugăm să încerci din nou.</string>
   <string name="DonationsErrors__still_processing">În curs de procesare</string>

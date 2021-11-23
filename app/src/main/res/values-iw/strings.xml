@@ -2569,7 +2569,6 @@
   <string name="Insights__title">תובנות</string>
   <string name="InsightsDashboardFragment__title">תובנות</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">פרוטוקול Signal הגן באופן אוטומטי על %1$d%% מההודעות היוצאות שלך במהלך %2$d הימים האחרונים. שיחות בין משתמשי Signal תמיד מוצפנות מקצה־אל־קצה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">תמריץ Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">אין מספיק נתונים</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">אחוז התובנות שלך מחושב על סמך הודעות יוצאות בטווח %1$d הימים האחרונים שלא נעלמו או לא נמחקו.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">התחל שיחה</string>

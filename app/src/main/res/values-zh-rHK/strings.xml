@@ -2318,7 +2318,6 @@
   <string name="Insights__title">省覧</string>
   <string name="InsightsDashboardFragment__title">省覧</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 在過去 %2$d 天內，已自動保護您外寄訊息數目中的 %1$d%%。Signal 使用者之間的對話一律經端對端加密。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal 提升</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">資料不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的「省覧」百分比，乃是基於過去 %1$d 天內未有消失或刪除的外寄訊息而計算。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">開展一個對話</string>

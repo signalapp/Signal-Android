@@ -2150,7 +2150,6 @@
   <string name="Insights__title">Estatísticas</string>
   <string name="InsightsDashboardFragment__title">Estatísticas</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Protocolo Signal protexeu de xeito automático o %1$d%% das túas mensaxes enviadas nos últimos %2$d días. As conversas entre usuarios Signal están sempre cifradas de extremo-a-extremo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Pular polo Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O teu porcentaxe Insights calcúlase en función das mensaxes enviadas nos últimos %1$d días e que non desapareceron ou foron eliminados.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar unha conversa</string>
