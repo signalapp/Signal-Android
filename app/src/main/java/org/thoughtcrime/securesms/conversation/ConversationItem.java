@@ -1258,6 +1258,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     contactPhoto.setAvatar(glideRequests, recipient, false);
     badgeImageView.setBadgeFromRecipient(recipient, glideRequests);
+    badgeImageView.setClickable(false);
   }
 
   private void linkifyMessageBody(@NonNull Spannable messageBody,

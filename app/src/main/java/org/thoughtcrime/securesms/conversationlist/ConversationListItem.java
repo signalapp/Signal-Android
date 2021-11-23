@@ -226,6 +226,7 @@ public final class ConversationListItem extends ConstraintLayout
   private void setBadgeFromRecipient(Recipient recipient) {
     if (!recipient.isSelf()) {
       badge.setBadgeFromRecipient(recipient);
+      badge.setClickable(false);
     } else {
       badge.setBadge(null);
     }
