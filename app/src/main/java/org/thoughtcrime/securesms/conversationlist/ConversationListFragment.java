@@ -680,9 +680,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     int                 firstVisibleItem = layoutManager != null ? layoutManager.findFirstCompletelyVisibleItemPosition() : -1;
 
     defaultAdapter.submitList(conversations, () -> {
-     if (firstVisibleItem == 0) {
-       list.scrollToPosition(0);
-     }
+      if (firstVisibleItem == 0) {
+        list.scrollToPosition(0);
+      }
+      onPostSubmitList(conversations.size());
     });
   }
 
@@ -1020,11 +1021,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (megaphoneContainer.resolved()) {
       ViewUtil.fadeIn(megaphoneContainer.get(), 250);
     }
-  }
-
-  private void onSubmitList(@NonNull List<Conversation> conversationList) {
-    defaultAdapter.submitList(conversationList);
-    onPostSubmitList(conversationList.size());
   }
 
   void updateEmptyState(boolean isConversationEmpty) {
