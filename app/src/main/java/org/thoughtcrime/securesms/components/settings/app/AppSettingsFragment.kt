@@ -169,7 +169,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
           title = DSLSettingsText.from(R.string.preferences__signal_boost),
           icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
           onClick = {
-            findNavController().navigate(R.id.action_appSettingsFragment_to_boostsFragment)
+            findNavController().navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToBoostsFragment())
           }
         )
       } else {
