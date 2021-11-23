@@ -16,6 +16,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.badges.Badges;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -343,14 +344,18 @@ public class RetrieveProfileJob extends BaseJob {
     }
   }
 
-  private void setProfileBadges(@NonNull Recipient recipient, @Nullable List<SignalServiceProfile.Badge> badges) {
-    if (badges == null) {
+  private void setProfileBadges(@NonNull Recipient recipient, @Nullable List<SignalServiceProfile.Badge> serviceBadges) {
+    if (serviceBadges == null) {
       return;
     }
 
-    SignalDatabase.recipients()
-                   .setBadges(recipient.getId(),
-                              badges.stream().map(Badges::fromServiceBadge).collect(java.util.stream.Collectors.toList()));
+    List<Badge> badges = serviceBadges.stream().map(Badges::fromServiceBadge).collect(java.util.stream.Collectors.toList());
+
+    if (badges.size() != recipient.getBadges().size()) {
+      Log.i(TAG, "Likely change in badges for " + recipient.getId() + ". Going from " + recipient.getBadges().size() + " badge(s) to " + badges.size() + ".");
+    }
+
+    SignalDatabase.recipients().setBadges(recipient.getId(), badges);
   }
 
   private void setProfileKeyCredential(@NonNull Recipient recipient,
