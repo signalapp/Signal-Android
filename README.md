@@ -1,4 +1,4 @@
-# Signal-
+# Signal-BA
 
 Signal-BA is an unofficial version of Signal with some extra features.
 
