@@ -6,8 +6,6 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -47,7 +45,7 @@ public class PushDatabase extends Database {
                                                                                   SERVER_DELIVERED_TIMESTAMP + " INTEGER DEFAULT 0, " +
                                                                                   SERVER_GUID                + " TEXT DEFAULT NULL);";
 
-  public PushDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public PushDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

@@ -1557,7 +1557,7 @@
   <string name="Insights__title">Insights</string>
   <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Awtomatikong pinrotektahan ng Signal Protocol ang %1$d%% sa iyong mga ipinapadalang mensahe sa nakalipas na %2$d araw. Ang mga pag-uusap sa pagitan ng mga gumagamit ng Signal ay palaging end-to-end encrypted.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Palakasin ang Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Palakasin ang Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Hindi sapat ang data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ang porsyento ng iyong Insights ay kalkulado batay sa mga ipinapadalang mensahe sa loob ng nakaraang %1$d araw na hindi naglaho o hindi binura.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Magsimula ng pag-uusap</string>

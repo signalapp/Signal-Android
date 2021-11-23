@@ -15,9 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
@@ -81,7 +81,7 @@ final class ConversationGroupViewModel extends ViewModel {
   void onSuggestedMembersBannerDismissed(@NonNull GroupId groupId, @NonNull List<RecipientId> suggestions) {
     SignalExecutors.BOUNDED.execute(() -> {
       if (groupId.isV2()) {
-        DatabaseFactory.getGroupDatabase(ApplicationDependencies.getApplication()).removeUnmigratedV1Members(groupId.requireV2(), suggestions);
+        SignalDatabase.groups().removeUnmigratedV1Members(groupId.requireV2(), suggestions);
         liveRecipient.postValue(liveRecipient.getValue());
       }
     });
@@ -118,7 +118,7 @@ final class ConversationGroupViewModel extends ViewModel {
   private static @Nullable GroupRecord getGroupRecordForRecipient(@Nullable Recipient recipient) {
     if (recipient != null && recipient.isGroup()) {
       Application context         = ApplicationDependencies.getApplication();
-      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+      GroupDatabase groupDatabase = SignalDatabase.groups();
       return groupDatabase.getGroup(recipient.getId()).orNull();
     } else {
       return null;
@@ -198,9 +198,9 @@ final class ConversationGroupViewModel extends ViewModel {
 
     firstTimeInviteFriendsTriggered = true;
 
-    SimpleTask.run(() -> DatabaseFactory.getGroupDatabase(ApplicationDependencies.getApplication())
-                                        .requireGroup(groupId)
-                                        .getMembers().equals(Collections.singletonList(Recipient.self().getId())),
+    SimpleTask.run(() -> SignalDatabase.groups()
+                                       .requireGroup(groupId)
+                                       .getMembers().equals(Collections.singletonList(Recipient.self().getId())),
                    justSelf -> {
                      if (justSelf) {
                        inviteFriends(supportFragmentManager, groupId);

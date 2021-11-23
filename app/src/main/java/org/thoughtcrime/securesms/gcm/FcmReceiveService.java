@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
 

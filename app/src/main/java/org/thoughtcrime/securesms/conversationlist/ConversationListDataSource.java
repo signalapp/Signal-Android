@@ -13,7 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -31,7 +31,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
   protected final ThreadDatabase threadDatabase;
 
   protected ConversationListDataSource(@NonNull Context context) {
-    this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    this.threadDatabase = SignalDatabase.threads();
   }
 
   public static ConversationListDataSource create(@NonNull Context context, boolean isArchived) {

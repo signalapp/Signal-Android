@@ -18,7 +18,6 @@ import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.schedulers.Schedulers;
 

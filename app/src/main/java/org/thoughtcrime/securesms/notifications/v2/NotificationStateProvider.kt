@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.notifications.v2
 import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.MmsSmsDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
@@ -25,7 +25,7 @@ object NotificationStateProvider {
   fun constructNotificationState(context: Context, stickyThreads: Map<Long, MessageNotifierV2.StickyThread>): NotificationStateV2 {
     val messages: MutableList<NotificationMessage> = mutableListOf()
 
-    DatabaseFactory.getMmsSmsDatabase(context).getMessagesForNotificationState(stickyThreads.values).use { unreadMessages ->
+    SignalDatabase.mmsSms.getMessagesForNotificationState(stickyThreads.values).use { unreadMessages ->
       if (unreadMessages.count == 0) {
         return NotificationStateV2.EMPTY
       }
@@ -33,13 +33,13 @@ object NotificationStateProvider {
       MmsSmsDatabase.readerFor(unreadMessages).use { reader ->
         var record: MessageRecord? = reader.next
         while (record != null) {
-          val threadRecipient: Recipient? = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(record.threadId)
+          val threadRecipient: Recipient? = SignalDatabase.threads.getRecipientForThreadId(record.threadId)
           if (threadRecipient != null) {
             val hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1
 
             messages += NotificationMessage(
               messageRecord = record,
-              reactions = if (hasUnreadReactions) DatabaseFactory.getReactionDatabase(context).getReactions(MessageId(record.id, record.isMms)) else emptyList(),
+              reactions = if (hasUnreadReactions) SignalDatabase.reactions.getReactions(MessageId(record.id, record.isMms)) else emptyList(),
               threadRecipient = threadRecipient,
               threadId = record.threadId,
               stickyThread = stickyThreads.containsKey(record.threadId),

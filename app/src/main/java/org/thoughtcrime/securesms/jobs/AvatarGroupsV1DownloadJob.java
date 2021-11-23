@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -60,7 +60,7 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    GroupDatabase         database   = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase         database   = SignalDatabase.groups();
     Optional<GroupRecord> record     = database.getGroup(groupId);
     File                  attachment = null;
 
@@ -89,7 +89,7 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE);
 
         AvatarHelper.setAvatar(context, record.get().getRecipientId(), inputStream);
-        DatabaseFactory.getGroupDatabase(context).onAvatarUpdated(groupId, true);
+        SignalDatabase.groups().onAvatarUpdated(groupId, true);
 
         inputStream.close();
       }

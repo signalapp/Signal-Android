@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">आज</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">बेनाम फ़ाइल</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal  को दान करें</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal आप जैसे लोगों के द्वारा चलता है। आप ही अपना समर्थन दिखाएँ!</string>
-  <string name="DonateMegaphone_donate">दान करें</string>
-  <string name="DonateMegaphone_no_thanks">जी नहीं, धन्यवाद</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">पेश है समूह कॉल</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">एक मुफ़्त एनक्रिप्टेड ग्रुप कॉल शुरू करने के लिए एक नया ग्रुप खोलें</string>
@@ -2389,7 +2384,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="Insights__title">इनसाइट्स</string>
   <string name="InsightsDashboardFragment__title">इनसाइट्स</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल ने पिछले %2$d दिनों में आपके %1$d%% आउटगोइंग मेसेज की स्वचालित रूप से रक्षा की। Signal उपयोगकर्ताओं के बीच वार्तालाप हमेशा अंत-से-अंत एन्क्रिप्टेड होते हैं।</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal बढ़ाएँ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal बढ़ाएँ</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">पर्याप्त डाटा नहीं</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">आपके इनसाइट्स प्रतिशत की गणना पिछले %1$d दिनों के आउटगोइंग मेसेज के आधार पर की जाती है जो गायब नहीं हुए हैं या मिटाए नहीं गए हैं।</string>
   <string name="InsightsDashboardFragment__start_a_conversation">एक वार्तालाप शुरु करें</string>
@@ -3327,15 +3322,16 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="MySupportPreference__add_a_signal_boost">एक सिग्नल बूस्ट शामिल करें</string>
   <string name="MySupportPreference__s_per_month">%1$s/महीने</string>
   <string name="MySupportPreference__renews_s">%1$s को नवीनीकृत करता है</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपका बैज समाप्त हो गया है</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">एक सस्टेनर बनें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
-  <string name="Subscription__verification_failed">सब्सक्रिप्शन जांच असफ़ल</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक जानकारी के लिए कृपया समर्थन से संपर्क करें.</string>
   <string name="Subscription__contact_support">समर्थन से संपर्क करें</string>
   <string name="Subscription__earn_a_s_badge">एक %1$s बैज कमाएं</string>
   <string name="SubscribeFragment__processing_payment">भुगतान प्रोसेस किया जा रहा है…</string>
-  <string name="DonationsErrors__payment_failed">भुगतान विफल रहा</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">आपकी पेमेंट प्रोसेस नहीं की जा सकी और आपसे शुल्क नहीं लिया गया है. कृपया फिर से कोशिश करें.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">इन-ऐप पर दान करने के लिए आपको Google Pay सेट अप करना होगा.</string>

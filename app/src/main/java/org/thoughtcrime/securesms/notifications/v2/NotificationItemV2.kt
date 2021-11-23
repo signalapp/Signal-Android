@@ -10,8 +10,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.MentionUtil
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadBodyUtil
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -304,7 +304,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
   }
 
   override fun getStartingPosition(context: Context): Int {
-    return DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionInConversation(threadId, record.dateReceived)
+    return SignalDatabase.mmsSms.getMessagePositionInConversation(threadId, record.dateReceived)
   }
 
   override fun getLargeIconUri(): Uri? = null

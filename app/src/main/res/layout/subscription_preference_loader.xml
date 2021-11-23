@@ -6,7 +6,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="100dp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
@@ -14,7 +14,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="100dp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
@@ -22,7 +22,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="100dp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"

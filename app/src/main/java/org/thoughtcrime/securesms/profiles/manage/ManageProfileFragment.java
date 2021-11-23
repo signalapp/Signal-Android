@@ -209,20 +209,16 @@ public class ManageProfileFragment extends LoggingFragment {
   private void presentUsername(@Nullable String username) {
     if (username == null || username.isEmpty()) {
       usernameView.setText(R.string.ManageProfileFragment_username);
-      usernameView.setTextColor(requireContext().getResources().getColor(R.color.signal_text_secondary));
     } else {
       usernameView.setText(username);
-      usernameView.setTextColor(requireContext().getResources().getColor(R.color.signal_text_primary));
     }
   }
 
   private void presentAbout(@Nullable String about) {
     if (about == null || about.isEmpty()) {
       aboutView.setText(R.string.ManageProfileFragment_about);
-      aboutView.setTextColor(requireContext().getResources().getColor(R.color.signal_text_secondary));
     } else {
       aboutView.setText(about);
-      aboutView.setTextColor(requireContext().getResources().getColor(R.color.signal_text_primary));
     }
   }
 

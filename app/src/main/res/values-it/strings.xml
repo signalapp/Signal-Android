@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Oggi</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">File senza nome</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Dona a Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal è sostenuto da persone come te. Mostra il tuo sostegno oggi!</string>
-  <string name="DonateMegaphone_donate">Dona</string>
-  <string name="DonateMegaphone_no_thanks">No grazie</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ti presentiamo le chiamate di gruppo</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Apri un Nuovo Gruppo per avviare una chiamata di gruppo criptata gratuita</string>
@@ -2411,7 +2406,7 @@
   <string name="Insights__title">Statistiche</string>
   <string name="InsightsDashboardFragment__title">Statistiche</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Il Protocollo Signal ha automaticamente protetto il %1$d%% dei tuoi messaggi in uscita negli ultimi %2$d giorni. Le conversazioni tra utenti Signal sono sempre crittografate end-to-end.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Potenzia Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Potenzia Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Dati non sufficienti</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">La tua percentuale nelle statistiche viene calcolata basandosi sui messaggi in uscita negli ultimi %1$d giorni che non sono scomparsi o stati eliminati.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Inizia una conversazione</string>
@@ -3336,13 +3331,13 @@
   <string name="Subscription__s_per_month">%s/mese</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mese · Rinnovo %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mese · Scade %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal è una non-profit senza inserzionisti o investitori, sostenuta solo dalle persone che la usano e la apprezzano. Fai un contributo mensile ricorrente e ricevi un badge del profilo per condividere il tuo sostegno.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal è una non-profit senza inserzionisti o investitori, sostenuta solo dalle persone che la usano e la apprezzano. Dai un contributo mensile ricorrente e ricevi un badge del profilo per condividere il tuo sostegno.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Perché contribuire?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Il team di Signal è impegnato nella sua missione di sviluppare tecnologia open source per la privacy che protegga la libera espressione e consenta comunicazioni sicure in tutto il mondo.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Il tuo contributo alimenta questa causa e paga lo sviluppo e le operazioni di un\'applicazione usata da milioni di persone per la comunicazione privata. Nessuna pubblicità. Nessun tracciamento. Nessuno scherzo.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Grazie per il tuo supporto!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Grazie per il Boost!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Hai guadagnato un badge %s ! Aiuta Signal a creare consapevolezza mostrando questo badge sul tuo profilo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Hai guadagnato il badge %s! Aiuta Signal a creare consapevolezza mostrando questo badge sul tuo profilo.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Hai guadagnato un badge Boost! Aiuta Signal a creare consapevolezza mostrando questo badge sul tuo profilo.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Puoi anche</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">diventare un sostenitore mensile.</string>
@@ -3350,6 +3345,8 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Rendi badge in evidenza</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fatto</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando hai più di un badge, puoi sceglierne uno da mostrare agli altri sul tuo profilo.</string>
+  <string name="BecomeASustainerFragment__get_badges">Ottieni i badge per il tuo profilo supportando Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal è una non-profit senza inserzionisti o investitori, sostenuta solo da persone come te.</string>
   <string name="ManageDonationsFragment__my_support">Il mio supporto</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestisci contributo</string>
   <string name="ManageDonationsFragment__badges">Badge</string>
@@ -3363,7 +3360,8 @@
   <string name="MySupportPreference__s_per_month">%1$s/mese</string>
   <string name="MySupportPreference__renews_s">Rinnovo %1$s</string>
   <string name="MySupportPreference__processing_transaction">Elaborazione della transazione…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Non è stato possibile aggiungere il badge.</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Non è stato possibile aggiungere il badge. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Contatta l\'assistenza.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge scaduto</string>
@@ -3375,17 +3373,19 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Il tuo contributo da sostenitore è stato automaticamente cancellato perché sei stato inattivo per troppo tempo. Il tuo badge %1$s non è più visibile sul tuo profilo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma per sostenere l\'app e riattivare il tuo badge, rinnova ora.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinnova contributo</string>
-  <string name="Subscription__verification_failed">Verifica del contributo non riuscita</string>
-  <string name="Subscription__redemption_failed">Riscatto del badge fallito</string>
   <string name="Subscription__please_contact_support_for_more_information">Si prega di contattare l\'assistenza per ulteriori informazioni.</string>
   <string name="Subscription__contact_support">Contatta l\'assistenza</string>
   <string name="Subscription__earn_a_s_badge">Guadagna un badge %1$s</string>
   <string name="SubscribeFragment__processing_payment">Pagamento in elaborazione…</string>
-  <string name="DonationsErrors__payment_failed">Pagamento fallito</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Errore nell\'elaborazione del pagamento</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Errore nell\'elaborazione del pagamento. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Il tuo badge non può essere aggiunto al tuo account, ma potrebbe esserti stato addebitato. Contatta l\'assistenza.</string>
   <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
   <string name="DonationsErrors__still_processing">Ancora in fase di elaborazione</string>
-  <string name="DonationsErrors__redemption_failed">Riscatto fallito</string>
-  <string name="DonationsErrors__please_contact_support">Contatta l\'assistenza</string>
+  <string name="DonationsErrors__couldnt_add_badge">Non è stato possibile aggiungere il badge</string>
+  <string name="DonationsErrors__your_badge_could_not">Il tuo badge non può essere aggiunto al tuo account, ma potrebbe esserti stato addebitato. Contatta l\'assistenza.</string>
   <string name="DonationsErrors__your_payment_is_still">Il tuo pagamento è ancora in fase di elaborazione. Questo può richiedere alcuni minuti a seconda della tua connessione.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay non disponibile</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Devi impostare Google Pay per donare all\'interno dell\'app.</string>

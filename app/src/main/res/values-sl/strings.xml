@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN je bil izklopljen.</string>
   <string name="ApplicationPreferencesActivity_hide">Skrij</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Želite skriti opomnik?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Shrani obnovitveno frazo za plačila</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Shrani frazo</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Preden onemogočite svoj PIN, morate shraniti obnovitveno frazo za plačila, da jih boste lahko kasneje obnovili.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -477,11 +480,6 @@
   <string name="DeviceListItem_today">Danes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Datoteka brez imena</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Podprite Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Podprite ga tudi vi!</string>
-  <string name="DonateMegaphone_donate">Podpri Signal!</string>
-  <string name="DonateMegaphone_no_thanks">Ne hvala</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo vam skupinske klice</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Za šifriran skupinski klic odprite Novo skupino</string>
@@ -2345,7 +2343,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PaymentsAllActivityFragment__sent">Poslano:</string>
   <string name="PaymentsAllActivityFragment__received">Prejeto</string>
   <string name="PaymentsHomeFragment__introducing_payments">Predstavljamo vam Plačila (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Uporabljajte Signal za pošiljanje in prejemanje nove digitalne valute MobileCoin, specializirane za zasebnost. Vklopite in začnite.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Uporabljajte Signal za pošiljanje in prejemanje nove digitalne valute MobileCoin, s poudarkom na zasebnosti. Vklopite in začnite.</string>
   <string name="PaymentsHomeFragment__activate_payments">Vklopi Plačila</string>
   <string name="PaymentsHomeFragment__activating_payments">Vklapljanje Plačil …</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Obnovitev računa za plačila</string>
@@ -2362,36 +2360,76 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PaymentsHomeFragment__deactivate_payments">Izklop Plačil</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Obnovitvena fraza</string>
   <string name="PaymentsHomeFragment__help">Pomoč</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Stroški čiščenja</string>
   <string name="PaymentsHomeFragment__sent_payment">Poslano plačilo</string>
   <string name="PaymentsHomeFragment__received_payment">Prejeto plačilo</string>
   <string name="PaymentsHomeFragment__processing_payment">Obdelovanje plačila</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Preračun valut ni na voljo</string>
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">Preračuna valut ni mogoče pokazati. Preverite svojo internetno povezavo in poskusite znova.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Plačila v vaši regiji niso na voljo.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Plačil ni bilo mogoče vključiti. Poskusite znova kasneje.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Ali res želite deaktivirati plačila?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Če boste deaktivirali plačila, ne boste več mogli pošiljati ali prejemati MobileCoinov preko Signala.</string>
+  <string name="PaymentsHomeFragment__deactivate">Deaktiviraj</string>
   <string name="PaymentsHomeFragment__continue">Nadaljuj</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Stanje trenutno ni na voljo.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Plačila so deaktivirana.</string>
   <string name="PaymentsHomeFragment__payment_failed">Plačilo ni uspelo</string>
   <string name="PaymentsHomeFragment__details">Podrobnosti</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signal lahko uporabljate za pošiljanje in prejem MobileCoinov. Vsa plačila so izvedena v skladu s Pogoji uporabe za MobileCoin in MobileCoin Wallet. Storitev v okviru Signala je trenutno v fazi \'beta\', zato lahko občasno prihaja do težav, izgubljena plačila in stanja na računu pa ne bodo mogla biti obnovljena.</string>
+  <string name="PaymentsHomeFragment__activate">Aktiviraj</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Pogoji MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Plačila v Signalu niso več na voljo. Še vedno lahko prenesete sredstva v menjalnico, ne morete pa več pošiljati in prejemati plačil ali dodajati sredstev.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Dodaj sredstva</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Naslov vaše denarnice</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiraj</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopirano v odložišče</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Za dodajanje sredstev pošljite svoje MobileCoine na naslov svoje denarnice. S transakcijo začnete v svojem računu v menjalnici, ki podpira MobileCoin, nato skenirate kodo QR ali prekopirate naslov denarnice.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Plačevanje …</string>
   <string name="PaymentsDetailsFragment__processing_payment">Obdelava plačila …</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Plačilo je zaključeno</string>
   <string name="PaymentsDetailsFragment__payment_failed">Plačilo ni uspelo</string>
+  <string name="PaymentsDetailsFragment__network_fee">Omrežni stroški</string>
+  <string name="PaymentsDetailsFragment__sent_by">Poslano od</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Poslano %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Vi na %1$s za %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s na %2$s za %3$s</string>
   <string name="PaymentsDetailsFragment__to">Naslovnik</string>
   <string name="PaymentsDetailsFragment__from">Pošiljatelj</string>
+  <string name="PaymentsDetailsFragment__information">Detajli transakcij, vključno s količino plačil in časom transakcij so del MobileCoin Ledger (MobileCoinove knjige transakcij).</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Stroški čiščenja</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">\'Stroški čiščenja\' se zaračunajo, kadar se novcev v vaši lasti ne da uporabiti za dokončanje transakcije. Čiščenje bo zagotovilo, da boste lahko še naprej pošiljali plačila.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Več podatkov o transakciji ni na voljo</string>
   <string name="PaymentsDetailsFragment__sent_payment">Poslano plačilo</string>
   <string name="PaymentsDetailsFragment__received_payment">Prejeto plačilo</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Plačilo je zaključeno %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Blokiraj številko</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Prenos</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skeniraj kodo QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Za: skenirajte ali vpišite naslov denarnice</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Svoje MobileCoine lahko prenesete z nakazilom v denarnico izbrane MobileCoin menjalnice. Naslov denarnice je zaporedje številk in črk, ki se večinoma nahaja pod kodo QR.</string>
   <string name="PaymentsTransferFragment__next">Naprej</string>
+  <string name="PaymentsTransferFragment__invalid_address">Neveljaven naslov</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Preverite naslov denarnice, v katero želite nakazati sredstva, in poskusite znova.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Ne morete nakazovati sredstev na naslov svoje lastne denarnice Signal. Vnesite naslov denarnice svojega računa v podprti menjalnici.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Za skeniranje kode QR potrebuje Signal dostop do kamere.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal potrebuje dovoljenje za zajem kode QR. Prosimo, pojdite v meni Nastavitve, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Za skeniranje kode QR potrebuje Signal dostop do kamere.</string>
   <string name="PaymentsTransferFragment__settings">Nastavitve</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skeniraj kodo QR naslova</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skeniraj kodo QR naslova prejemnika</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Prošnja</string>
+  <string name="CreatePaymentFragment__pay">Plačaj</string>
+  <string name="CreatePaymentFragment__available_balance_s">Stanje: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Vklop</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2401,15 +2439,35 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Nazaj</string>
+  <string name="CreatePaymentFragment__add_note">Dodaj zaznamek</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Pretvorbe so zgolj informativne narave in niso nujno točne.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Zaznamek</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Potrditev plačila</string>
+  <string name="ConfirmPayment__network_fee">Omrežna pristojbina</string>
+  <string name="ConfirmPayment__error_getting_fee">Napaka pri pridobivanju pristojbine</string>
+  <string name="ConfirmPayment__estimated_s">Predviden znesek %1$s</string>
   <string name="ConfirmPayment__to">Naslovnik</string>
+  <string name="ConfirmPayment__total_amount">Skupni znesek</string>
+  <string name="ConfirmPayment__balance_s">Stanje: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Plačevanje …</string>
   <string name="ConfirmPayment__processing_payment">Obdelava plačila …</string>
+  <string name="ConfirmPayment__payment_complete">Plačilo je zaključeno</string>
   <string name="ConfirmPayment__payment_failed">Plačilo ni uspelo</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Plačilo bo še naprej v obdelavi</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Neveljaven prejemnik</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Uporabnik nima aktiviranih plačil</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Neuspela zahteva za pridobitev omrežne pristojbine. Za nadaljevanje plačila tapnite okej in poskusite znova.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s ob %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Določi valuto</string>
+  <string name="SetCurrencyFragment__all_currencies">Vse valute</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2513,7 +2571,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="Insights__title">Pregled</string>
   <string name="InsightsDashboardFragment__title">Pregled</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">S protokolom Signal ste avtomatično zaščitili %1$d%% vaših odhodnih sporočil v preteklih %2$d dneh. Pogovori med uporabniki/cami Signala so zmerom zaščiteni \"od-konca-do-konca\".</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Razširite svoj Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Razširite svoj Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ni dovolj podatkov</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Pregled je narejen na podlagi vaših odhodnih sporočil v zadnjih %1$d dneh, z izjemo izginjajočih in izbrisanih.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Začni s pogovorom</string>
@@ -2854,6 +2912,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="OldDeviceTransferLockedDialog__done">OK</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Prekini in aktiviraj to napravo</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Želite prenesti sredstva MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Vaše stanje je %1$s. Če ne boste prenesli svojih sredstev v drugo denarnico pred brisanjem računa, bodo ta za vedno izgubljena.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Ne prenesi</string>
+  <string name="AdvancedPreferenceFragment__transfer">Prenesi</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Odblokiraj</string>
@@ -2951,6 +3013,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="DeleteAccountFragment__delete_account">Izbriši račun Signal</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">izbrisali podatke in profilno fotografijo računa</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">izbrisali vsa svoja sporočila</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Izbriši %1$s v računu plačil</string>
   <string name="DeleteAccountFragment__no_country_code">Ni vnesene kode države</string>
   <string name="DeleteAccountFragment__no_number">Ni vnesene telefonske številke</string>
   <string name="DeleteAccountFragment__the_phone_number">Vnesena številka se ne ujema s telefonsko številko vašega računa.</string>
@@ -3020,13 +3083,36 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WallpaperCropActivity__error_setting_wallpaper">Napaka pri nastavitvi ozadja.</string>
   <string name="WallpaperCropActivity__blur_photo">Zabriši fotografijo</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Več o MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin je nova digitalna valuta, s poudarkom na zasebnosti.</string>
+  <string name="payment_info_card_adding_funds">Dodaj sredstva</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Sredstva za uporabo v Signalu lahko dodate z nakazilom MobileCoinov na naslov vaše denarnice.</string>
+  <string name="payment_info_card_cashing_out">Izplačilo</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Vaše MobileCoine si lahko kadarkoli izplačate v menjalnici, ki podpira MobileCoin, tako da naredite prenos sredstev na vaš račun v menjalnici.</string>
+  <string name="payment_info_card_hide_this_card">Želite skriti to kartico?</string>
   <string name="payment_info_card_hide">Skrij</string>
+  <string name="payment_info_card_record_recovery_phrase">Shrani obnovitveno frazo</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Obnovitvena fraza je še ena možnost za obnovitev vašega plačilnega računa.</string>
+  <string name="payment_info_card_record_your_phrase">Shranite svojo frazo</string>
+  <string name="payment_info_card_update_your_pin">Posodobite svoj PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Zaradi višine zneskov bi morda želeli spremeniti svoj PIN v alfanumeričnega in tako zagotoviti večjo varnost računa.</string>
   <string name="payment_info_card_update_pin">Posodobite PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Deaktiviraj denarnico</string>
+  <string name="DeactivateWalletFragment__your_balance">Vaše stanje</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Pred deaktivacijo plačilnega računa je zaželeno, da prenesete svoja sredstva v drugo denarnico. Če jih ne boste prenesli zdaj, bodo ostala v vaši denarnici, ki je povezana s Signalom, za primer, da boste kdaj ponovno aktivirali plačila.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Prenesi preostala sredstva</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiviraj brez prenosa</string>
+  <string name="DeactivateWalletFragment__deactivate">Deaktiviraj</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ali res želite deaktivacijo brez prenosa sredstev?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Vaše stanje bo ostalo zabeleženo v vaši denarnici, povezani s Signalom, če bi se odločili ponovno aktivirati plačila.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Napaka pri deaktivaciji denarnice.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Obnovitvena fraza</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Prikaži obnovitveno frazo</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vnesi obnovitveno frazo</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Če boste ponovno namestili SIgnal in potrdili svoj PIN, bo vaše stanje na računu avtomatsko obnovljeno. Lahko pa ga obnovite tudi z vnosom obnovitvene fraze, %1$d-besedne fraze, ki je zgolj vaša. Zapišite si jo in jo hranite na varnem mestu.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Vaša obnovitvena fraza je %1$d-besedna fraza, ki je zgolj vaša. Uporabite jo za obnovitev stanja na računu.</string>
   <string name="PaymentsRecoveryStartFragment__start">Začni</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Ročen vnos</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Prilepi iz odložišča</string>
@@ -3035,22 +3121,44 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Obnovitvena fraza</string>
   <string name="PaymentsRecoveryPasteFragment__next">Naprej</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Neveljavna obnovitvena fraza</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Prepričajte se, da ste vnesli %1$d besed in poskusite znova.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Naprej</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Uredi</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Nazaj</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Vaša obnovitvena fraza</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Zapišite si naslednjih %1$d besed po vrstnem redu. Zapis shranite na varnem mestu.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Prepričajte se, če ste vnesli pravo obnovitveno frazo</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ne ustvarite zajema zaslona ali pošiljajte po e-pošti!</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Račun plačil je bil obnovljen.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Neveljavna obnovitvena fraza</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Prepričajte se, da ste vnesli pravilno obnovitveno frazo in poskusite znova.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopiraj v odložišče?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Če ste se odločili za digitalno hranjenje obnovitvene fraze, poskrbite da bo ta varno shranjena  v sistemu, ki mu zaupate.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopiraj</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Potrdi obnovitveno frazo</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Vnesite naslednje besede iz svoje obnovitvene fraze.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Beseda %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Ponovno prikaži frazo</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">OK</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Obnovitvena fraza je bila potrjena.</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Vnesi obnovitveno frazo</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Vnesite besedo %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Beseda %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Naprej</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Neveljavna beseda</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Odložišče je bilo pobrisano.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Preglej</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">Uporabnik/ca %1$s vam je poslal/a %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d novih obvestil o plačilih</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Plačilo ne more biti izvedeno</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Da bi poslali plačilo tej uporabnici/ku, mora ta najprej sprejeti vašo prošnjo. Za kreacijo prošnje jim pošljite sporočilo.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Pošlji sporočilo</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">S to osebo nimate nobene skupne skupine. Preverite zahtevke, da se izognete nezaželjenim spoločilom.</string>
@@ -3399,10 +3507,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Izberi značko</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Morate izbrati značko</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Posodobitev profila ni uspela</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postani podpornik</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postani podpornik/ca</string>
   <string name="ImageView__badge">Značka</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal podpirajo ljudje kot ste vi.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podprite tehnologijo, ki je bila izdelana za vas -- ne za vaše osebne podatke -- in se pridružite skupnosti podpornikov.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podprite tehnologijo, ki je bila izdelana za vas -- ne za vaše osebne podatke -- in se pridružite skupnosti podpornikov/ic.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podprite tehnologijo, ki je bila izdelana za vas, ne za vaše osebne podatke, in se pridružite skupnosti podpornikov/ic Signala.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Več opcij za plačilo</string>
   <string name="SubscribeFragment__cancel_subscription">Prekini naročnino</string>
@@ -3415,43 +3524,72 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubscribeFragment__update_subscription_question">Želite posodobiti naročnino?</string>
   <string name="SubscribeFragment__update">Posodobitev</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Zaračunan vam bo celoten znesek nove naročnine. Vaša naročnina bo obnovoljena %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Zaračunan vam bo celoten znesek  (%1$s) nove naročnine. Naročnina se bo obnavljala mesečno.</string>
   <string name="Subscription__s_per_month">%s/mesečno</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesečno · Obnovitev: %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mesec · Poteče %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija, brez podpore oglaševalcev ali vlagateljev, financirajo jo zgolj običajni ljudje, ki jo cenijo. Odločite se za mesečno podporo Signalu in prejmite bedž podpornika, ki bo viden na vašem profilu.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je neprofitna organizacija, brez podpore oglaševalcev ali vlagateljev, financirajo jo zgolj običajni ljudje, ki jo cenijo. Odločite se za mesečno podporo Signalu in prejmite bedž podpornika/ice, ki bo viden na vašem profilu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zakaj prispevati?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal je zavezan razvoju odprtokodnih zasebnostnih tehnologij, ki ščitijo svobodo izražanja in omogočajo varne globalne komunikacije.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Vaš prispevek podpira te cilje, omogoča razvoj in vzdrževanje sistema, ki ga milijoni uporabljajo za varno komunikacijo. Brez reklam. Brez sledenja. Brez heca.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala za vašo podporo!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Prislužili ste si %s bedž! Pomagajte Signalu graditi ozaveščenost in prikazujte bedž na svojem profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">You\'ve earned a bedž podpornika/ce! Pomagajte Signalu graditi ozaveščenost in prikazujte bedž na svojem profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Lahko tudi</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">postanete mesečni podpornik/ca.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikazuj na profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Izpostavi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">OK</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Če imate več kot en bedž, lahko enega izberete za prikaz na vašem profilu.</string>
+  <string name="BecomeASustainerFragment__get_badges">S podporo Signalu si pridobite bedž za profil.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je neprofitna organizacija brez oglaševalcev in investitorjev, podpirajo pa jo ljudje, kot ste vi.</string>
   <string name="ManageDonationsFragment__my_support">Moja podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Upravljanje naročnine</string>
   <string name="ManageDonationsFragment__badges">Značke</string>
   <string name="ManageDonationsFragment__subscription_faq">Pogosta vprašanja o naročnini</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Napaka pri uveljavitvi naročnine.</string>
   <string name="BoostFragment__give_signal_a_boost">Daj Signalu spodbudo</string>
-  <string name="BoostFragment__say_thanks_and_earn">Recite \"Hvala!\" in si za %1$d dni prislužite bedž podpornika.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Recite \"Hvala!\" in si za %1$d dni prislužite bedž podpornika/ce.</string>
   <string name="Boost__enter_custom_amount">Vnesite znesek po vašem izboru</string>
   <string name="Boost__one_time_contribution">Enkratna podpora</string>
   <string name="MySupportPreference__add_a_signal_boost">Dodaj Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/mesečno</string>
   <string name="MySupportPreference__renews_s">Obnovitev naročnine: %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Obdelava transakcije …</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Nismo mogli dodati bedža. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Prosimo obrnite se na podporo uporabnikom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaš bedž je potekel</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postani podpornik</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Bedž je potekel</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Naročnina je prekinjena</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Vaš bedž podpornika/ce je potekel in zato ni več viden drugim na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Razmislite, če želite postati naš mesečni podpornik/ca in tako še naprej prispevati k tehnologiji, ki je bila narejena za vas.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite podpornik/ca</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
-  <string name="Subscription__verification_failed">Preverjanje naročnine ni bilo uspešno</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaša naročnina je bila avtomatsko prekinjena, ker ste bili predolgo neaktivni. Vaš %1$s bedž ni več viden na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Še naprej lahko uporabljate Signal, za nadaljevanje podpore in reaktivacijo vašega bedža pa lahko obnovite naročnino.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovitev naročnine</string>
   <string name="Subscription__please_contact_support_for_more_information">Za več informacij se obrnite na podporo uporabnikom.</string>
   <string name="Subscription__contact_support">Kontaktiraj center za podporo</string>
   <string name="Subscription__earn_a_s_badge">Prisluži si bedž %1$s</string>
   <string name="SubscribeFragment__processing_payment">Obdelava plačila …</string>
-  <string name="DonationsErrors__payment_failed">Plačilo ni uspelo</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Napaka pri obdelavi plačila.</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Napaka pri obdelavi plačila. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Bedž ni mogel biti dodan k vašemu računu, vendar je mogoče, da je bilo plačilo uspešno. Prosimo obrnite se na podporo.</string>
   <string name="DonationsErrors__your_payment">Vaše plačilo ni moglo biti obdelano, zato vam znesek ni bil zaračunan. Prosimo poskusite znova.</string>
+  <string name="DonationsErrors__still_processing">Obdelava še vedno poteka</string>
+  <string name="DonationsErrors__couldnt_add_badge">Nismo mogli dodati bedža.</string>
+  <string name="DonationsErrors__your_badge_could_not">Bedž ni mogel biti dodan k vašemu računu, vendar je mogoče, da je bilo plačilo uspešno. Prosimo obrnite se na podporo.</string>
+  <string name="DonationsErrors__your_payment_is_still">Plačilo je še vedno v obdelavi. To lahko traja nekaj minut, odvisno od vaše povezave.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ni na voljo</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Če želite donirati znotraj aplikacije, si morate najprej nastaviti Google Pay.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Prekinitev naročnine ni bila uspešna</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Prekinitev naročnine zahteva povezavo z internetom.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaša naprava ne podpira sistema Google Pay, zato se ne morete naročiti in si pridobiti bedža. Lahko pa podprete Signal na naši spletni strani.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Napaka omrežja. Preverite svojo internetno povezavo in poskusite znova.</string>
   <string name="NetworkFailure__retry">Ponovno</string>
   <!--EOF-->
 </resources>

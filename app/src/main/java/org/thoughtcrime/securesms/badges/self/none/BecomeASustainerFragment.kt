@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.badges.self.none
 
+import android.content.Intent
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import org.signal.core.util.DimensionUnit
@@ -60,7 +61,7 @@ class BecomeASustainerFragment : DSLSettingsBottomSheetFragment() {
         ),
         onClick = {
           requireActivity().finish()
-          requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
+          requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
         }
       )
 

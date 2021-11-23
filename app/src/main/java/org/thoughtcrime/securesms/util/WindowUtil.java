@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowInsetsController;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;

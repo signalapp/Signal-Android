@@ -122,6 +122,15 @@ data class Boost(
     private val boost6: MaterialButton = itemView.findViewById(R.id.boost_6)
     private val custom: AppCompatEditText = itemView.findViewById(R.id.boost_custom)
 
+    private val boostButtons: List<MaterialButton>
+      get() {
+        return if (ViewUtil.isLtr(context)) {
+          listOf(boost1, boost2, boost3, boost4, boost5, boost6)
+        } else {
+          listOf(boost3, boost2, boost1, boost6, boost5, boost4)
+        }
+      }
+
     private var filter: MoneyFilter? = null
 
     init {
@@ -131,14 +140,13 @@ data class Boost(
     override fun bind(model: SelectionModel) {
       itemView.isEnabled = model.isEnabled
 
-      model.boosts.zip(listOf(boost1, boost2, boost3, boost4, boost5, boost6)).forEach { (boost, button) ->
+      model.boosts.zip(boostButtons).forEach { (boost, button) ->
         button.isSelected = boost == model.selectedBoost && !model.isCustomAmountFocused
         button.text = FiatMoneyUtil.format(
           context.resources,
           boost.price,
           FiatMoneyUtil
             .formatOptions()
-            .numberOnly()
             .trimZerosAfterDecimal()
         )
         button.setOnClickListener {
@@ -188,7 +196,7 @@ data class Boost(
     val separator = DecimalFormatSymbols.getInstance().decimalSeparator
     val separatorCount = min(1, currency.defaultFractionDigits)
     val prefix: String = currency.getSymbol(Locale.getDefault())
-    val pattern: Pattern = "[0-9]*($separator){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
+    val pattern: Pattern = "[0-9]*([$separator]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
 
     override fun filter(
       source: CharSequence,
@@ -202,7 +210,7 @@ data class Boost(
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
       val resultWithoutCurrencyPrefix = result.removePrefix(prefix)
 
-      if (result.length == 1 && !result.isDigitsOnly() && result != separator.toString()) {
+      if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
         return dest.subSequence(dstart, dend)
       }
 

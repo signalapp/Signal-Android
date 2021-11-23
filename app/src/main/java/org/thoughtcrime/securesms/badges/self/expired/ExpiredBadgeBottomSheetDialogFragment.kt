@@ -80,7 +80,7 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
         ),
         onClick = {
           dismiss()
-          findNavController().navigate(R.id.action_directly_to_subscribe)
+          findNavController().navigate(R.id.action_direct_to_subscriptions)
         }
       )
 

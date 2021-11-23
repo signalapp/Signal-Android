@@ -523,11 +523,6 @@
   <string name="DeviceListItem_today">اليوم</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ملف بدون اسم</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">تبرع لـ Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">يشتغل Signal بفضل أفراد مثلك. أظهر دعمك لنا اليوم !</string>
-  <string name="DonateMegaphone_donate">تبرع</string>
-  <string name="DonateMegaphone_no_thanks">لا شكرا</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">تقديم مكالمات المجموعة</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">يُرجى فتح مجموعة جديدة لبدء مكالمة جماعية مجانية ومُعمَّاة</string>
@@ -2756,7 +2751,7 @@
   <string name="Insights__title">رؤى</string>
   <string name="InsightsDashboardFragment__title">رؤى</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol أو بروتوكول سيجنال قام بحماية  %1$d%% من رسائلك الصادرة خلال %2$d يوما الماضية. المحادثات بين مستخدمي Signal مُعمَّاة دائما من طرف إلى طرف.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">تقوية Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">تقوية Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">لا يوجد بيانات كافية</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يوما الماضية والتي لم تختفي أو يتم حذفها.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ابدأ محادثة</string>
@@ -3767,7 +3762,7 @@
   <string name="MySupportPreference__s_per_month">%1$s/شهر</string>
   <string name="MySupportPreference__renews_s">يجدد %1$s</string>
   <string name="MySupportPreference__processing_transaction">تجري معالجة المعاملة…</string>
-  <string name="MySupportPreference__couldnt_add_badge">تعذرت إضافة الشارة.</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">انتهت صلاحية شارتك</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">لقد نفذت الشارة</string>
@@ -3775,14 +3770,13 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن داعماً</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
-  <string name="Subscription__verification_failed">فشل التحقق من الاشتراك</string>
   <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>
   <string name="Subscription__contact_support">الاتصال بالدعم</string>
   <string name="Subscription__earn_a_s_badge">احصل على شارة %1$s</string>
   <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
-  <string name="DonationsErrors__payment_failed">فشلت الدفوعات</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">تعذرت معالجة دفعتك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
-  <string name="DonationsErrors__please_contact_support">يُرجى الاتصال بفريق الدعم</string>
   <string name="DonationsErrors__google_pay_unavailable">خدمة Google Pay غير متوفرة</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">يجب عليك إعداد Google Pay للتبرع داخل التطبيق.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>

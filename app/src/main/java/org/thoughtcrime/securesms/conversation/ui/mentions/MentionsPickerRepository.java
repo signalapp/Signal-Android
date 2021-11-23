@@ -8,9 +8,9 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -23,8 +23,8 @@ final class MentionsPickerRepository {
   private final GroupDatabase     groupDatabase;
 
   MentionsPickerRepository(@NonNull Context context) {
-    recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-    groupDatabase     = DatabaseFactory.getGroupDatabase(context);
+    recipientDatabase = SignalDatabase.recipients();
+    groupDatabase     = SignalDatabase.groups();
   }
 
   @WorkerThread

@@ -8,7 +8,6 @@ import android.database.Cursor;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
@@ -35,7 +34,7 @@ public class OneTimePreKeyDatabase extends Database {
       PUBLIC_KEY + " TEXT NOT NULL, " +
       PRIVATE_KEY + " TEXT NOT NULL);";
 
-  OneTimePreKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  OneTimePreKeyDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

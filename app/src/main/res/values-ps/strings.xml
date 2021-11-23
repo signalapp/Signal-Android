@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">نن ورځ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">بې نومه فایل</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal سره مرسته کول</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ستاسې په څیر خلکو له خوا ځواکمن شوی دی. همدا نن مو خپل ملاتړ وښیئ!</string>
-  <string name="DonateMegaphone_donate">مرسته کول</string>
-  <string name="DonateMegaphone_no_thanks">نه مننه</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">د ګروپي زنګ وهلو پیژندنه</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">یو نوی ګروپ پرانیزئ تر څو وړیا انکریپټ شوی ګروپی زنګ پیل کړئ</string>
@@ -2343,7 +2338,7 @@
   <string name="Insights__title">لیدلوري</string>
   <string name="InsightsDashboardFragment__title">لیدلوري</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">د Signal پروتوکول په اتومات ډول په تیرو %2$d ورځو کې ستاسې %1$d%% تلونکي پیغامونه خوندي کړي دي. د Signal د کاروونکو تر منځ محاورې تل په سرتاسري بڼه سره انکریپټ شوي دي.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">د Signal پیاوړی کول</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">د Signal پیاوړی کول</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">کافي ډیټا نشته</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ستاسې د لیدلوري فیصدي په تیرو %1$d ورځو کې د تلونکو نه ورک کېدونکو یا نه پاک شویو تلونکو پیغامونو له مخې محاسبه کېږی.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">محاوره پیل کړئ</string>
@@ -3277,12 +3272,14 @@
   <string name="MySupportPreference__add_a_signal_boost">د Signal پیاوړی کوونکی اضافه کړئ</string>
   <string name="MySupportPreference__s_per_month">%1$s په میاشت کې</string>
   <string name="MySupportPreference__renews_s">%1$s کې نوی کېږي</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ستاسې بج منقضي شوی دی</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">یو ساتونکی شئ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">اوس نه</string>
   <string name="Subscription__contact_support">مرستې سره اړیکه ونیسئ</string>
   <string name="SubscribeFragment__processing_payment">پرداخت د پروسیس په حال کې دی…</string>
-  <string name="DonationsErrors__payment_failed">پرداخت تر سره نشو</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">بیا هڅه وکړئ</string>
   <!--EOF-->
 </resources>

@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.libsignal.util.guava.Optional
 
@@ -41,6 +42,12 @@ class BadgesOverviewViewModel(
         featuredBadge = recipient.featuredBadge
       )
     }
+
+    disposables += InternetConnectionObserver.observe()
+      .distinctUntilChanged()
+      .subscribeBy { isConnected ->
+        store.update { it.copy(hasInternet = isConnected) }
+      }
 
     disposables += Single.zip(
       subscriptionsRepository.getActiveSubscription(),

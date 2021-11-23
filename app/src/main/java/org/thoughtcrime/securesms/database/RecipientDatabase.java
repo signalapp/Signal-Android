@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
@@ -66,7 +65,6 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory;
@@ -98,7 +96,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -393,7 +390,7 @@ public class RecipientDatabase extends Database {
       ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " > ?" +
       " ORDER BY " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC LIMIT 50";
 
-  public RecipientDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public RecipientDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -551,14 +548,29 @@ public class RecipientDatabase extends Database {
               finalId = byAci.get();
             }
           } else {
-            if (highTrust) {
-              Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. High-trust, so merging the two rows together.", true);
-              finalId                 = merge(byAci.get(), byE164.get());
-              recipientNeedingRefresh = byAci.get();
-              remapped                = new Pair<>(byE164.get(), byAci.get());
+            RecipientSettings aciSettings = getRecipientSettings(byAci.get());
+
+            if (aciSettings.getE164() != null) {
+              if (highTrust) {
+                Log.w(TAG, "We have one contact with just an E164, and another with both an ACI and a different E164. High-trust, so merging the two rows together. The E164 has also effectively changed for the ACI contact.", true);
+                finalId                 = merge(byAci.get(), byE164.get());
+                recipientNeedingRefresh = byAci.get();
+                remapped                = new Pair<>(byE164.get(), byAci.get());
+                recipientChangedNumber  = finalId;
+              } else {
+                Log.w(TAG, "We have one contact with just an E164, and another with both an ACI and a different E164. Low-trust, so doing nothing.", true);
+                finalId  = byAci.get();
+              }
             } else {
-              Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. Low-trust, so doing nothing.", true);
-              finalId  = byAci.get();
+              if (highTrust) {
+                Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. High-trust, so merging the two rows together.", true);
+                finalId                 = merge(byAci.get(), byE164.get());
+                recipientNeedingRefresh = byAci.get();
+                remapped                = new Pair<>(byE164.get(), byAci.get());
+              } else {
+                Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. Low-trust, so doing nothing.", true);
+                finalId  = byAci.get();
+              }
             }
           }
         }
@@ -626,9 +638,9 @@ public class RecipientDatabase extends Database {
 
     if (existing.isPresent()) {
       return existing.get();
-    } else if (groupId.isV1() && DatabaseFactory.getGroupDatabase(context).groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
+    } else if (groupId.isV1() && SignalDatabase.groups().groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
       throw new GroupDatabase.LegacyGroupInsertException(groupId);
-    } else if (groupId.isV2() && DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2()).isPresent()) {
+    } else if (groupId.isV2() && SignalDatabase.groups().getGroupV1ByExpectedV2(groupId.requireV2()).isPresent()) {
       throw new GroupDatabase.MissedGroupMigrationInsertException(groupId);
     } else {
       ContentValues values = new ContentValues();
@@ -642,9 +654,9 @@ public class RecipientDatabase extends Database {
 
         if (existing.isPresent()) {
           return existing.get();
-        } else if (groupId.isV1() && DatabaseFactory.getGroupDatabase(context).groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
+        } else if (groupId.isV1() && SignalDatabase.groups().groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
           throw new GroupDatabase.LegacyGroupInsertException(groupId);
-        } else if (groupId.isV2() && DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2()).isPresent()) {
+        } else if (groupId.isV2() && SignalDatabase.groups().getGroupV1ByExpectedV2(groupId.requireV2()).isPresent()) {
           throw new GroupDatabase.MissedGroupMigrationInsertException(groupId);
         } else {
           throw new AssertionError("Failed to insert recipient!");
@@ -696,7 +708,7 @@ public class RecipientDatabase extends Database {
       }
 
       if (groupId.isV2()) {
-        Optional<GroupDatabase.GroupRecord> v1 = DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2());
+        Optional<GroupDatabase.GroupRecord> v1 = SignalDatabase.groups().getGroupV1ByExpectedV2(groupId.requireV2());
         if (v1.isPresent()) {
           db.setTransactionSuccessful();
           return v1.get().getRecipientId();
@@ -740,7 +752,7 @@ public class RecipientDatabase extends Database {
       if (cursor != null && cursor.moveToNext()) {
         return getRecipientSettings(context, cursor);
       } else {
-        Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(context, id);
+        Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(id);
         if (remapped.isPresent()) {
           Log.w(TAG, "Missing recipient for " + id + ", but found it in the remapped records as " + remapped.get());
           return getRecipientSettings(remapped.get());
@@ -822,7 +834,7 @@ public class RecipientDatabase extends Database {
 
   public void applyStorageSyncContactInsert(@NonNull SignalContactRecord insert) {
     SQLiteDatabase   db               = databaseHelper.getSignalWritableDatabase();
-    ThreadDatabase   threadDatabase   = DatabaseFactory.getThreadDatabase(context);
+    ThreadDatabase   threadDatabase   = SignalDatabase.threads();
 
     ContentValues values      = getValuesForStorageContact(insert, true);
     long          id          = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
@@ -840,7 +852,7 @@ public class RecipientDatabase extends Database {
       try {
         IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
 
-        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(insert.getAddress().getIdentifier(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
+        SignalDatabase.identities().updateIdentityAfterSync(insert.getAddress().getIdentifier(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
       } catch (InvalidKeyException e) {
         Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
       }
@@ -884,7 +896,7 @@ public class RecipientDatabase extends Database {
 
       if (update.getNew().getIdentityKey().isPresent() && update.getNew().getAddress().hasValidAci()) {
         IdentityKey identityKey = new IdentityKey(update.getNew().getIdentityKey().get(), 0);
-        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(update.getNew().getAddress().getIdentifier(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
+        SignalDatabase.identities().updateIdentityAfterSync(update.getNew().getAddress().getIdentifier(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
       }
 
       Optional<IdentityRecord> newIdentityRecord = identityStore.getIdentityRecord(recipientId);
@@ -902,7 +914,7 @@ public class RecipientDatabase extends Database {
       Log.w(TAG, "Failed to process identity key during update! Skipping.", e);
     }
 
-    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipientId, update.getNew());
+    SignalDatabase.threads().applyStorageSyncUpdate(recipientId, update.getNew());
 
     Recipient.live(recipientId).refresh();
   }
@@ -913,7 +925,7 @@ public class RecipientDatabase extends Database {
     long        id          = db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert, true));
     RecipientId recipientId = RecipientId.from(id);
 
-    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipientId, insert);
+    SignalDatabase.threads().applyStorageSyncUpdate(recipientId, insert);
 
     Recipient.live(recipientId).refresh();
   }
@@ -930,7 +942,7 @@ public class RecipientDatabase extends Database {
 
     Recipient recipient = Recipient.externalGroupExact(context, GroupId.v1orThrow(update.getOld().getGroupId()));
 
-    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipient.getId(), update.getNew());
+    SignalDatabase.threads().applyStorageSyncUpdate(recipient.getId(), update.getNew());
 
     recipient.live().refresh();
   }
@@ -945,17 +957,17 @@ public class RecipientDatabase extends Database {
     Recipient      recipient = Recipient.externalGroupExact(context, groupId);
 
     Log.i(TAG, "Creating restore placeholder for " + groupId);
-    DatabaseFactory.getGroupDatabase(context)
-                   .create(masterKey,
-                           DecryptedGroup.newBuilder()
-                                         .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
-                                         .build());
+    SignalDatabase.groups()
+                  .create(masterKey,
+                          DecryptedGroup.newBuilder()
+                                        .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
+                                        .build());
 
     Log.i(TAG, "Scheduling request for latest group info for " + groupId);
 
     ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(groupId));
 
-    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipient.getId(), insert);
+    SignalDatabase.threads().applyStorageSyncUpdate(recipient.getId(), insert);
 
     recipient.live().refresh();
   }
@@ -973,7 +985,7 @@ public class RecipientDatabase extends Database {
     GroupMasterKey masterKey = update.getOld().getMasterKeyOrThrow();
     Recipient      recipient = Recipient.externalGroupExact(context, GroupId.v2(masterKey));
 
-    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipient.getId(), update.getNew());
+    SignalDatabase.threads().applyStorageSyncUpdate(recipient.getId(), update.getNew());
 
     recipient.live().refresh();
   }
@@ -1012,7 +1024,7 @@ public class RecipientDatabase extends Database {
       ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }
 
-    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(Recipient.self().getId(), update.getNew());
+    SignalDatabase.threads().applyStorageSyncUpdate(Recipient.self().getId(), update.getNew());
 
     Recipient.self().live().refresh();
   }
@@ -1189,7 +1201,7 @@ public class RecipientDatabase extends Database {
       }
     }
 
-    for (GroupId.V2 id : DatabaseFactory.getGroupDatabase(context).getAllGroupV2Ids()) {
+    for (GroupId.V2 id : SignalDatabase.groups().getAllGroupV2Ids()) {
       Recipient         recipient                = Recipient.externalGroupExact(context, id);
       RecipientId       recipientId              = recipient.getId();
       RecipientSettings recipientSettingsForSync = getRecipientSettingsForSync(recipientId);
@@ -1947,7 +1959,7 @@ public class RecipientDatabase extends Database {
     boolean profiledUpdated = update(id, contentValues);
 
     if (profiledUpdated && enabled) {
-      Optional<GroupDatabase.GroupRecord> group = DatabaseFactory.getGroupDatabase(context).getGroup(id);
+      Optional<GroupDatabase.GroupRecord> group = SignalDatabase.groups().getGroup(id);
 
       if (group.isPresent()) {
         setHasGroupsInCommon(group.get().getMembers());
@@ -2687,7 +2699,7 @@ public class RecipientDatabase extends Database {
    * @param limit Only return at most this many contact.
    */
   public List<RecipientId> getRecipientsForRoutineProfileFetch(long lastInteractionThreshold, long lastProfileFetchThreshold, int limit) {
-    ThreadDatabase threadDatabase                       = DatabaseFactory.getThreadDatabase(context);
+    ThreadDatabase threadDatabase                       = SignalDatabase.threads();
     Set<Recipient> recipientsWithinInteractionThreshold = new LinkedHashSet<>();
 
     try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(-1, false))) {
@@ -3029,7 +3041,7 @@ public class RecipientDatabase extends Database {
     db.update(GroupReceiptDatabase.TABLE_NAME, groupReceiptValues, GroupReceiptDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
 
     // Groups
-    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase groupDatabase = SignalDatabase.groups();
     for (GroupDatabase.GroupRecord group : groupDatabase.getGroupsContainingMember(byE164, false, true)) {
       LinkedHashSet<RecipientId> newMembers = new LinkedHashSet<>(group.getMembers());
       newMembers.remove(byE164);
@@ -3045,7 +3057,7 @@ public class RecipientDatabase extends Database {
     }
 
     // Threads
-    ThreadDatabase.MergeResult threadMerge = DatabaseFactory.getThreadDatabase(context).merge(byUuid, byE164);
+    ThreadDatabase.MergeResult threadMerge = SignalDatabase.threads().merge(byUuid, byE164);
 
     // SMS Messages
     ContentValues smsValues = new ContentValues();
@@ -3070,7 +3082,7 @@ public class RecipientDatabase extends Database {
     }
 
     // Sessions
-    SessionDatabase sessionDatabase = DatabaseFactory.getSessionDatabase(context);
+    SessionDatabase sessionDatabase = SignalDatabase.sessions();
 
     boolean hasE164Session = sessionDatabase.getAllFor(e164Settings.e164).size() > 0;
     boolean hasUuidSession = sessionDatabase.getAllFor(uuidSettings.aci.toString()).size() > 0;
@@ -3090,7 +3102,7 @@ public class RecipientDatabase extends Database {
     }
 
     // MSL
-    DatabaseFactory.getMessageLogDatabase(context).remapRecipient(byE164, byUuid);
+    SignalDatabase.messageLog().remapRecipient(byE164, byUuid);
 
     // Mentions
     ContentValues mentionRecipientValues = new ContentValues();
@@ -3102,16 +3114,16 @@ public class RecipientDatabase extends Database {
       db.update(MentionDatabase.TABLE_NAME, mentionThreadValues, MentionDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
     }
 
-    DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadMerge.threadId, 0);
-    DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false);
+    SignalDatabase.threads().setLastScrolled(threadMerge.threadId, 0);
+    SignalDatabase.threads().update(threadMerge.threadId, false, false);
 
     // Reactions
-    DatabaseFactory.getReactionDatabase(context).remapRecipient(byE164, byUuid);
+    SignalDatabase.reactions().remapRecipient(byE164, byUuid);
 
     // Recipient
     Log.w(TAG, "Deleting recipient " + byE164, true);
     db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(byE164));
-    RemappedRecords.getInstance().addRecipient(context, byE164, byUuid);
+    RemappedRecords.getInstance().addRecipient(byE164, byUuid);
 
     ContentValues uuidValues = new ContentValues();
     uuidValues.put(PHONE, e164Settings.getE164());

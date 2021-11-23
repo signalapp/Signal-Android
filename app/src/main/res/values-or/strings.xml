@@ -388,10 +388,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ବେନାମୀ ଫାଇଲ୍</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal କୁ ଦାନ କରନ୍ତୁ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ଆପଣଙ୍କ ପରି ଲୋକମାନଙ୍କ ଦ୍ୱାରା ଚାଳିତ | ଆଜି ଆପଣଙ୍କର ସମର୍ଥନ ଦେଖାନ୍ତୁ!</string>
-  <string name="DonateMegaphone_donate">ଦାନ କରନ୍ତୁ</string>
-  <string name="DonateMegaphone_no_thanks">ନା ଧନ୍ୟବାଦ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal କୁ ଦାନ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ଆପଣଙ୍କ ପରି ଲୋକମାନଙ୍କ ଦ୍ୱାରା ଚାଳିତ | ଆଜି ଆପଣଙ୍କର ସମର୍ଥନ ଦେଖାନ୍ତୁ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">ଦାନ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ନା ଧନ୍ୟବାଦ</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ସାମୁହିକ କଲ୍ ର ପରିଚୟ</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ଏକ ମାଗଣା ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ସାମୁହିକ କଲ୍ ଆରମ୍ଭ କରିବାକୁ ଏକ ନୂତନ ଗୋଷ୍ଠୀ ଖୋଲନ୍ତୁ</string>
@@ -2159,7 +2159,7 @@
   <string name="Insights__title">ଅନ୍ତର୍ଦୃଷ୍ଟି</string>
   <string name="InsightsDashboardFragment__title">ଅନ୍ତର୍ଦୃଷ୍ଟି</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">ବିଗତ %2$d ଦିନ ମଧ୍ୟରେ Signal ପ୍ରୋଟୋକଲ୍ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଆପଣଙ୍କର ଯାଉଥିବା ବାର୍ତ୍ତାଗୁଡ଼ିକର %1$d%% ସୁରକ୍ଷିତ କରିଛି | Signal ବ୍ୟବହାରକାରୀଙ୍କ ମଧ୍ୟରେ ବାର୍ତ୍ତାଳାପ ସବୁବେଳେ ଏଣ୍ଡ-ଟୁ-ଏଣ୍ଡ ଏନକ୍ରିପ୍ଟ ହୋଇଥାଏ |</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal ବୃଦ୍ଧି</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal ବୃଦ୍ଧି</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">ପର୍ଯ୍ୟାପ୍ତ ଡାଟା ନାହିଁ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ବିଗତ%1$d ଦିନ ମଧ୍ୟରେ ବାହାରୁଥିବା ବାର୍ତ୍ତା ଉପରେ ଆଧାର କରି ଆପଣଙ୍କର ଅନ୍ତର୍ନିହିତ ଶତକଡା ହିସାବ କରାଯାଏ ଯାହା ଅଦୃଶ୍ୟ ହୋଇନାହିଁ କିମ୍ବା ବିଲୋପ ହୋଇନାହିଁ</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ଏକ ବାର୍ତ୍ତାଳାପ ଆରମ୍ଭ କରନ୍ତୁ</string>
@@ -2760,6 +2760,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ଏବେ ନୁହେଁ</string>
   <string name="Subscription__contact_support">ସମର୍ଥନ କୁ ଯୋଗାଯୋଗ କରନ୍ତୁ</string>
   <string name="SubscribeFragment__processing_payment">ପଇସା ଦେୟ ପ୍ରକ୍ରିୟାକରଣ ଚାଲୁଛି</string>
-  <string name="DonationsErrors__payment_failed">ପଇସା ଦେୟ ବିଫଳ ହେଲା</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">ପଇସା ଦେୟ ବିଫଳ ହେଲା</string> -->
   <!--EOF-->
 </resources>

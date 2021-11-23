@@ -6,8 +6,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
-import java.util.concurrent.TimeUnit;
-
 import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
 
 public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {

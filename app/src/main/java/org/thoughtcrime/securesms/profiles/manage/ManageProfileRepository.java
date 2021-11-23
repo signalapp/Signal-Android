@@ -3,12 +3,11 @@ package org.thoughtcrime.securesms.profiles.manage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -29,7 +28,7 @@ final class ManageProfileRepository {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         ProfileUtil.uploadProfileWithName(context, profileName);
-        DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
+        SignalDatabase.recipients().setProfileName(Recipient.self().getId(), profileName);
         ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);
@@ -44,7 +43,7 @@ final class ManageProfileRepository {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         ProfileUtil.uploadProfileWithAbout(context, about, emoji);
-        DatabaseFactory.getRecipientDatabase(context).setAbout(Recipient.self().getId(), about, emoji);
+        SignalDatabase.recipients().setAbout(Recipient.self().getId(), about, emoji);
         ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);

@@ -11,7 +11,7 @@ import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -74,8 +74,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     webRtcInteractor.initializeAudioForCall();
     webRtcInteractor.startOutgoingRinger();
 
-    RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(remotePeer.getId()));
-    DatabaseFactory.getSmsDatabase(context).insertOutgoingCall(remotePeer.getId(), isVideoCall);
+    RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), SignalDatabase.threads().getThreadIdIfExistsFor(remotePeer.getId()));
+    SignalDatabase.sms().insertOutgoingCall(remotePeer.getId(), isVideoCall);
 
     EglBaseWrapper.replaceHolder(EglBaseWrapper.OUTGOING_PLACEHOLDER, remotePeer.getCallId().longValue());
 

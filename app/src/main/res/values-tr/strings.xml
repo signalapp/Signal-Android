@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Bugün</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">İsimsiz dosya</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal\'e Bağış Yap</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal, sizin gibi insanlar tarafından desteklenmektedir. Desteğinizi bugün gösterin!</string>
-  <string name="DonateMegaphone_donate">Bağış yapın</string>
-  <string name="DonateMegaphone_no_thanks">Hayır teşekkürler</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Karşınızda Grup Aramaları</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ücretsiz ve şifreli grup araması başlatmak için yeni bir Grup açın.</string>
@@ -2394,7 +2389,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="Insights__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolü son %2$d gündeki iletilerinizin %%%1$d kadarını otomatik olarak korudu. Signal kullanıcıları arasındaki konuşmalar her zaman uçtan uca şifrelidir.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal\'i güçlendir</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal\'i güçlendir</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Yetersiz veri</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">İçgörü yüzdeniz son %1$d gün içerisinde gönderdiğiniz kaybolmamış veya silinmemiş iletilere göre hesaplanır.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Konuşma başlat</string>
@@ -3332,15 +3327,16 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal Arttırıcı ekleyin</string>
   <string name="MySupportPreference__s_per_month">%1$s/ay</string>
   <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Destekleyin</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
-  <string name="Subscription__verification_failed">Abonelik Onaylanamadı</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha fazla bilgi için lütfen bizimle iletişime geçin.</string>
   <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
   <string name="Subscription__earn_a_s_badge">Bir %1$s rozeti kazanın</string>
   <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
-  <string name="DonationsErrors__payment_failed">Ödeme başarısız oldu</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Kullanılamıyor</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurmanız gerekir.</string>

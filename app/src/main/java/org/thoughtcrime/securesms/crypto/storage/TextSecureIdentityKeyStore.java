@@ -8,9 +8,9 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
@@ -43,7 +43,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   private final Cache   cache;
 
   public TextSecureIdentityKeyStore(Context context) {
-    this(context, DatabaseFactory.getIdentityDatabase(context));
+    this(context, SignalDatabase.identities());
   }
 
   TextSecureIdentityKeyStore(@NonNull Context context, @NonNull IdentityDatabase identityDatabase) {
@@ -92,7 +92,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
         cache.save(address.getName(), recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipientId);
         SessionUtil.archiveSiblingSessions(address);
-        DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
+        SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
         return SaveResult.UPDATE;
       }
 

@@ -8,8 +8,7 @@ import com.google.protobuf.InvalidProtocolBufferException
 import com.mobilecoin.lib.Mnemonics
 import com.mobilecoin.lib.exceptions.BadMnemonicException
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues.WalletRestoreResult
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.payments.Balance
@@ -135,7 +134,7 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
         .putBoolean(USER_CONFIRMED_MNEMONIC, false)
         .commit()
     }
-    DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).markNeedsSync(Recipient.self().id)
+    SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
   }
 

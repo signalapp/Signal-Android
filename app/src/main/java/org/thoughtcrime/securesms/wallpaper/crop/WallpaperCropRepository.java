@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -37,7 +37,7 @@ final class WallpaperCropRepository {
 
       if (recipientId != null) {
         Log.i(TAG, "Setting image wallpaper for " + recipientId);
-        DatabaseFactory.getRecipientDatabase(context).setWallpaper(recipientId, wallpaper);
+        SignalDatabase.recipients().setWallpaper(recipientId, wallpaper);
       } else {
         Log.i(TAG, "Setting image wallpaper for default");
         SignalStore.wallpaper().setWallpaper(context, wallpaper);

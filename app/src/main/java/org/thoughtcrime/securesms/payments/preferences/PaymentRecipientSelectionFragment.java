@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ContactFilterView;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
 import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -116,7 +116,7 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
 
   private void openConversation(@NonNull RecipientId recipientId) {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
-                   () -> DatabaseFactory.getThreadDatabase(requireContext()).getThreadIdIfExistsFor(recipientId),
+                   () -> SignalDatabase.threads().getThreadIdIfExistsFor(recipientId),
                    threadId -> startActivity(ConversationIntents.createBuilder(requireContext(), recipientId, threadId).build()));
   }
 }

@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
@@ -26,8 +26,8 @@ public class TrimThreadsByDateManager extends TimedEventManager<TrimThreadsByDat
   public TrimThreadsByDateManager(@NonNull Application application) {
     super(application, "TrimThreadsByDateManager");
 
-    threadDatabase = DatabaseFactory.getThreadDatabase(application);
-    mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(application);
+    threadDatabase = SignalDatabase.threads();
+    mmsSmsDatabase = SignalDatabase.mmsSms();
 
     scheduleIfNecessary();
   }

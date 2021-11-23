@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Денес</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Неименувана датотека</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Донирајте на Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal е овозможен од луѓе како тебе. Покажи ја твојата поддршка денес!</string>
-  <string name="DonateMegaphone_donate">Донирај</string>
-  <string name="DonateMegaphone_no_thanks">Не, благодарам</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ви претставуваме групни повици</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворете нова група за да започнете бесплатен шифриран групен повик</string>
@@ -2193,6 +2188,7 @@
   <string name="PaymentsHomeFragment__payments_deactivated">Плаќањата се деактивирани.</string>
   <string name="PaymentsHomeFragment__payment_failed">Плаќањето не успеа</string>
   <string name="PaymentsHomeFragment__details">Детали</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да го користите Signal за испраќање и примање MobileCoin. Сите плаќања се предмет на Условите за користење на MobileCoins и MobileCoin паричник. Ова е beta функција, така што може да наидете на некои проблеми и плаќањата или достапните средства што може да ги изгубите не може да се вратат.</string>
   <string name="PaymentsHomeFragment__activate">Активирај</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледни ги условите за употреба на MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2370,7 +2366,7 @@
   <string name="Insights__title">Согледувања</string>
   <string name="InsightsDashboardFragment__title">Согледувања</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal протоколот автоматски заштити %1$d%% од Вашите пораки во изминатите %2$d дена. Разговорите помеѓу корисниците на Signal секогаш се шифрирани од-крај-до-крај.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Повеќе безбедна комуникација со Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Повеќе безбедна комуникација со Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Нема доволно податоци</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Вашиот процент на увид е искалкулиран базирано на испратените пораки во минатите %1$d дена кои што не се исчезнати или избришани.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Започни разговор</string>
@@ -2862,6 +2858,7 @@
   <string name="payment_info_card_about_mobilecoin">За MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin е нова дигитална валута фокусирана на приватност.</string>
   <string name="payment_info_card_adding_funds">Додавање на средства</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Можете да додадете средства за користење во Signal со испраќање MobileCoin на адресата на Вашиот паричник.</string>
   <string name="payment_info_card_hide_this_card">Да ја сокријам оваа картичка?</string>
   <string name="payment_info_card_hide">Сокриј</string>
   <string name="payment_info_card_record_your_phrase">Снимете ја Вашата фраза</string>
@@ -3121,6 +3118,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Разговорот исклучен засекогаш</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонски број копиран на таблата со исечоци.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
+  <string name="ConversationSettingsFragment__get_badges">Добијте беџ за Вашиот профил со поддршка на Signal. Допрете на беџот за да дознаете повеќе.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај членови</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Уреди инфо за група</string>
@@ -3256,6 +3254,8 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставете како главен беџ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Кога имате повеќе од еден беџ, можете да изберете еден главен беџ за другите да го видат на Вашиот профил.</string>
+  <string name="BecomeASustainerFragment__get_badges">Добијте беџ за Вашиот профил со поддршка на Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal е непрофитна организација без реклами и инвеститори, поддржана само од луѓе како вас.</string>
   <string name="ManageDonationsFragment__my_support">Моја поддршка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управување со претплата</string>
   <string name="ManageDonationsFragment__badges">Беџови</string>
@@ -3264,14 +3264,16 @@
   <string name="Boost__enter_custom_amount">Внесете износ</string>
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
   <string name="MySupportPreference__s_per_month">%1$s/месец</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">Ве молиме контактирајте со поддршката.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашиот беџ е истечен</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
-  <string name="Subscription__verification_failed">Проверка на претплата не успеа</string>
   <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со поддршка за повеќе информации.</string>
   <string name="Subscription__contact_support">Контакт за поддршка</string>
   <string name="Subscription__earn_a_s_badge">Заработете %1$s беџ</string>
   <string name="SubscribeFragment__processing_payment">Плаќањето се обработува…</string>
-  <string name="DonationsErrors__payment_failed">Плаќањето не успеа</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не успеа да се откажете претплатата</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>

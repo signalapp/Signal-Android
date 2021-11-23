@@ -14,7 +14,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MentionDatabase;
 import org.thoughtcrime.securesms.database.MentionUtil;
@@ -22,6 +21,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -68,11 +68,11 @@ public class SearchRepository {
 
   public SearchRepository() {
     this.context           = ApplicationDependencies.getApplication().getApplicationContext();
-    this.searchDatabase    = DatabaseFactory.getSearchDatabase(context);
-    this.threadDatabase    = DatabaseFactory.getThreadDatabase(context);
-    this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-    this.mentionDatabase   = DatabaseFactory.getMentionDatabase(context);
-    this.mmsDatabase       = DatabaseFactory.getMmsDatabase(context);
+    this.searchDatabase    = SignalDatabase.messageSearch();
+    this.threadDatabase    = SignalDatabase.threads();
+    this.recipientDatabase = SignalDatabase.recipients();
+    this.mentionDatabase   = SignalDatabase.mentions();
+    this.mmsDatabase       = SignalDatabase.mms();
     this.contactRepository = new ContactRepository(context);
     this.searchExecutor    = new LatestPrioritizedSerialExecutor(SignalExecutors.BOUNDED);
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
@@ -160,14 +160,14 @@ public class SearchRepository {
 
     Set<RecipientId> recipientIds = new LinkedHashSet<>();
 
-    try (Cursor cursor = DatabaseFactory.getRecipientDatabase(context).queryAllContacts(query)) {
+    try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(query)) {
       while (cursor != null && cursor.moveToNext()) {
         recipientIds.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientDatabase.ID)));
       }
     }
 
     GroupDatabase.GroupRecord record;
-    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(query, true, false, false)) {
+    try (GroupDatabase.Reader reader = SignalDatabase.groups().getGroupsFilteredByTitle(query, true, false, false)) {
       while ((record = reader.getNext()) != null) {
         recipientIds.add(record.getRecipientId());
       }
@@ -203,7 +203,7 @@ public class SearchRepository {
       return results;
     }
 
-    Map<Long, List<Mention>> mentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessages(messageIds);
+    Map<Long, List<Mention>> mentions = SignalDatabase.mentions().getMentionsForMessages(messageIds);
     if (mentions.isEmpty()) {
       return results;
     }

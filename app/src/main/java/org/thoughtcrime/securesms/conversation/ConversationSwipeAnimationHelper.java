@@ -36,6 +36,7 @@ final class ConversationSwipeAnimationHelper {
     updateReactionsTransition(conversationItem.reactionsView, dx, sign);
     updateReplyIconTransition(conversationItem.reply, dx, progress, sign);
     updateContactPhotoHolderTransition(conversationItem.contactPhotoHolder, progress, sign);
+    updateContactPhotoHolderTransition(conversationItem.badgeImageView, progress, sign);
   }
 
   public static void trigger(@NonNull ConversationItem conversationItem) {

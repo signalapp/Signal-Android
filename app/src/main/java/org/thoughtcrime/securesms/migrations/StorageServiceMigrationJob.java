@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -48,7 +48,7 @@ public class StorageServiceMigrationJob extends MigrationJob {
       return;
     }
 
-    DatabaseFactory.getRecipientDatabase(context).markNeedsSync(Recipient.self().getId());
+    SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
 
     JobManager jobManager = ApplicationDependencies.getJobManager();
 

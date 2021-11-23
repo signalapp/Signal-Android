@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -14,7 +13,7 @@ import org.thoughtcrime.securesms.util.SqlUtil
 /**
  * Store reactions on messages.
  */
-class ReactionDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Database(context, databaseHelper) {
+class ReactionDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
 
   companion object {
     private const val TABLE_NAME = "reaction"
@@ -132,9 +131,9 @@ class ReactionDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : 
       db.insert(TABLE_NAME, null, values)
 
       if (messageId.mms) {
-        DatabaseFactory.getMmsDatabase(context).updateReactionsUnread(db, messageId.id, hasReactions(messageId), false)
+        SignalDatabase.mms.updateReactionsUnread(db, messageId.id, hasReactions(messageId), false)
       } else {
-        DatabaseFactory.getSmsDatabase(context).updateReactionsUnread(db, messageId.id, hasReactions(messageId), false)
+        SignalDatabase.sms.updateReactionsUnread(db, messageId.id, hasReactions(messageId), false)
       }
 
       db.setTransactionSuccessful()
@@ -156,9 +155,9 @@ class ReactionDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : 
       db.delete(TABLE_NAME, query, args)
 
       if (messageId.mms) {
-        DatabaseFactory.getMmsDatabase(context).updateReactionsUnread(db, messageId.id, hasReactions(messageId), true)
+        SignalDatabase.mms.updateReactionsUnread(db, messageId.id, hasReactions(messageId), true)
       } else {
-        DatabaseFactory.getSmsDatabase(context).updateReactionsUnread(db, messageId.id, hasReactions(messageId), true)
+        SignalDatabase.sms.updateReactionsUnread(db, messageId.id, hasReactions(messageId), true)
       }
 
       db.setTransactionSuccessful()

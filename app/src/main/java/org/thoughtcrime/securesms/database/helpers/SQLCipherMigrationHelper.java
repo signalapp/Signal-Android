@@ -38,9 +38,9 @@ public class SQLCipherMigrationHelper {
   private static final long ENCRYPTION_SYMMETRIC_BIT  = 0x80000000;
   private static final long ENCRYPTION_ASYMMETRIC_BIT = 0x40000000;
 
-  static void migratePlaintext(@NonNull Context context,
-                               @NonNull android.database.sqlite.SQLiteDatabase legacyDb,
-                               @NonNull SQLiteDatabase modernDb)
+  public static void migratePlaintext(@NonNull Context context,
+                                      @NonNull android.database.sqlite.SQLiteDatabase legacyDb,
+                                      @NonNull SQLiteDatabase modernDb)
   {
     modernDb.beginTransaction();
     int foregroundId = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database)).getId();

@@ -29,8 +29,8 @@ import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
@@ -241,7 +241,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
         }
         long            messageId       = extras.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID);
         RecipientId     recipientId     = RecipientId.from(extras.getString(VoiceNoteMediaItemFactory.EXTRA_INDIVIDUAL_RECIPIENT_ID));
-        MessageDatabase messageDatabase = DatabaseFactory.getMmsDatabase(this);
+        MessageDatabase messageDatabase = SignalDatabase.mms();
 
         MessageDatabase.MarkedMessageInfo markedMessageInfo = messageDatabase.setIncomingMessageViewed(messageId);
 

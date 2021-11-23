@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
@@ -36,7 +36,7 @@ public class AttachmentCleanupMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    int deletes = DatabaseFactory.getAttachmentDatabase(context).deleteAbandonedAttachmentFiles();
+    int deletes = SignalDatabase.attachments().deleteAbandonedAttachmentFiles();
     Log.i(TAG, "Deleted " + deletes + " abandoned attachments.");
   }
 

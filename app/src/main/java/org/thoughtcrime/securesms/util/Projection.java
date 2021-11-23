@@ -10,10 +10,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pools;
-import androidx.recyclerview.widget.RecyclerView;
-
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.components.CornerMask;
 
 import java.util.Arrays;
 import java.util.Collections;

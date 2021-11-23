@@ -23,8 +23,8 @@ import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -240,8 +240,8 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
 
   private @NonNull List<MediaItem> loadMediaItemsForSinglePlayback(long messageId) {
     try {
-      MessageRecord messageRecord = DatabaseFactory.getMmsDatabase(context)
-                                                   .getMessageRecord(messageId);
+      MessageRecord messageRecord = SignalDatabase.mms()
+                                                  .getMessageRecord(messageId);
 
       if (!MessageRecordUtil.hasAudio(messageRecord)) {
         Log.w(TAG, "Message does not contain audio.");
@@ -268,7 +268,7 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   @WorkerThread
   private @NonNull List<MediaItem> loadMediaItemsForConsecutivePlayback(long messageId) {
     try {
-      List<MessageRecord> recordsAfter = DatabaseFactory.getMmsSmsDatabase(context)
+      List<MessageRecord> recordsAfter = SignalDatabase.mmsSms()
                                                         .getMessagesAfterVoiceNoteInclusive(messageId, LIMIT);
 
       return buildFilteredMessageRecordList(recordsAfter).stream()

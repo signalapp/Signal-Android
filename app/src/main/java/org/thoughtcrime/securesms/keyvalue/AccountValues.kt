@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -52,7 +52,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
   /** The local user's [PNI]. */
   val pni: PNI?
-    get() = PNI.parseOrNull(getString(KEY_ACI, null))
+    get() = PNI.parseOrNull(getString(KEY_PNI, null))
 
   fun setPni(pni: PNI) {
     putString(KEY_PNI, pni.toString())
@@ -135,7 +135,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     val newProfileKey = ProfileKeyUtil.createNew()
     val self = Recipient.self()
 
-    DatabaseFactory.getRecipientDatabase(context).setProfileKey(self.id, newProfileKey)
+    SignalDatabase.recipients.setProfileKey(self.id, newProfileKey)
     ApplicationDependencies.getGroupsV2Authorization().clear()
   }
 

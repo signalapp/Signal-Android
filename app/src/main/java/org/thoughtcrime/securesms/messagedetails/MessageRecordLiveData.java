@@ -8,11 +8,11 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -82,7 +82,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
   @WorkerThread
   private synchronized void handleSms() {
-    final MessageDatabase db     = DatabaseFactory.getSmsDatabase(context);
+    final MessageDatabase db     = SignalDatabase.sms();
     final Cursor          cursor = db.getMessageCursor(messageId);
     final MessageRecord   record = SmsDatabase.readerFor(cursor).getNext();
 
@@ -93,7 +93,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
   @WorkerThread
   private synchronized void handleMms() {
-    final MessageDatabase db     = DatabaseFactory.getMmsDatabase(context);
+    final MessageDatabase db     = SignalDatabase.mms();
     final Cursor          cursor = db.getMessageCursor(messageId);
     final MessageRecord   record = MmsDatabase.readerFor(cursor).getNext();
 

@@ -38,7 +38,7 @@ class LogDatabase private constructor(
     SqlCipherDeletingErrorHandler(DATABASE_NAME),
     SqlCipherDatabaseHook()
   ),
-  SignalDatabase {
+  SignalDatabaseOpenHelper {
 
   companion object {
     private val TAG = Log.tag(LogDatabase::class.java)

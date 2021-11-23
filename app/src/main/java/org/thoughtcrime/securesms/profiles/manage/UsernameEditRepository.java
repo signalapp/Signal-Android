@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -43,7 +43,7 @@ class UsernameEditRepository {
   private @NonNull UsernameSetResult setUsernameInternal(@NonNull String username) {
     try {
       accountManager.setUsername(username);
-      DatabaseFactory.getRecipientDatabase(application).setUsername(Recipient.self().getId(), username);
+      SignalDatabase.recipients().setUsername(Recipient.self().getId(), username);
       Log.i(TAG, "[setUsername] Successfully set username.");
       return UsernameSetResult.SUCCESS;
     } catch (UsernameTakenException e) {
@@ -62,7 +62,7 @@ class UsernameEditRepository {
   private @NonNull UsernameDeleteResult deleteUsernameInternal() {
     try {
       accountManager.deleteUsername();
-      DatabaseFactory.getRecipientDatabase(application).setUsername(Recipient.self().getId(), null);
+      SignalDatabase.recipients().setUsername(Recipient.self().getId(), null);
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.");
       return UsernameDeleteResult.SUCCESS;
     } catch (IOException e) {

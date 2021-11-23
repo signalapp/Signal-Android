@@ -417,11 +417,6 @@
   <string name="DeviceListItem_today">Hari ini</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fail tidak dinamakan</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Sumbang kepada Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal dihebatkan oleh pengguna seperti anda. Tunjukkan sokongan anda hari ini!</string>
-  <string name="DonateMegaphone_donate">Derma</string>
-  <string name="DonateMegaphone_no_thanks">Tidak Terima Kasih</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Memperkenalkan Panggilan Berkumpulan</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Buka Kumpulan Baharu untuk memulakan panggilan kumpulan disulitkan percuma</string>
@@ -2300,7 +2295,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="Insights__title">Wawasan</string>
   <string name="InsightsDashboardFragment__title">Wawasan</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol telah melindungi %1$d%% daripada mesej keluar anda secara automatik selama %2$d hari yang lepas. Perbualan antara pengguna Signal selalu disulitkan dari hujung ke hujung.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Tingkatkan Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Tingkatkan Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Data tidak mencukupi</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Peratusan Insights anda dikira berdasarkan mesej keluar selama %1$d hari yang lalu yang belum hilang atau dipadamkan.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Mulakan perbualan</string>
@@ -3221,15 +3216,16 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MySupportPreference__add_a_signal_boost">Tambah Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
   <string name="MySupportPreference__renews_s">Memperbaharui %1$s</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana anda telah luput</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Jadilah pemelihara</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
-  <string name="Subscription__verification_failed">Pengesahan Langganan Gagal</string>
   <string name="Subscription__please_contact_support_for_more_information">Sila hubungi bantuan untuk maklumat lebih lanjut</string>
   <string name="Subscription__contact_support">Hubungi Sokongan</string>
   <string name="Subscription__earn_a_s_badge">Dapatkan lencana %1$s</string>
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
-  <string name="DonationsErrors__payment_failed">Pembayaran telah gagal</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">Pembayaran anda tidak dapat diproses dan anda belum dicaj. Sila cuba lagi.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda perlu memasang Google Pay untuk menderma dalam aplikasi.</string>

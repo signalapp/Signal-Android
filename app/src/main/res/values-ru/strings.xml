@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Сегодня</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Безымянный файл</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста, поддержите нас!</string>
-  <string name="DonateMegaphone_donate">Пожертвовать</string>
-  <string name="DonateMegaphone_no_thanks">Нет, спасибо</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Представляем групповые звонки</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Откройте любую Новую группу, чтобы начать бесплатный зашифрованный групповой звонок</string>
@@ -1401,7 +1396,7 @@
     <item quantity="one">Signal будет звонить у %1$s, %2$s и ещё %3$d человека</item>
     <item quantity="few">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
     <item quantity="many">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
-    <item quantity="other">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+    <item quantity="other">Signal будет звонить у %1$s, %2$s и еще у %3$d пользователей</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s будет уведомлен(-а)</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s будут уведомлены</string>
@@ -1409,7 +1404,7 @@
     <item quantity="one">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
     <item quantity="few">%1$s, %2$s и ещё %3$d человека будут уведомлены</item>
     <item quantity="many">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
-    <item quantity="other">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
+    <item quantity="other">%1$s, %2$s и еще %3$d пользователей будут уведомлены</item>
   </plurals>
   <string name="WebRtcCallView__ringing_s">Звоним %1$s</string>
   <string name="WebRtcCallView__ringing_s_and_s">Звоним %1$s и %2$s</string>
@@ -1417,7 +1412,7 @@
     <item quantity="one">Звоним %1$s, %2$s и ещё %3$d человеку</item>
     <item quantity="few">Звоним %1$s, %2$s и ещё %3$d людям</item>
     <item quantity="many">Звоним %1$s, %2$s и ещё %3$d людям</item>
-    <item quantity="other">Звоним %1$s, %2$s и ещё %3$d людям</item>
+    <item quantity="other">Вызываем %1$s, %2$s и еще %3$d пользователей</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s звонит вам</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s звонит вам и %2$s</string>
@@ -1426,7 +1421,7 @@
     <item quantity="one">%1$s звонит вам, %2$s, %3$s и ещё %4$d человеку</item>
     <item quantity="few">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
     <item quantity="many">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
-    <item quantity="other">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
+    <item quantity="other">%1$s вызывает вас, %2$s, %3$s и еще %4$d пользователей</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s в этом звонке</string>
@@ -2055,7 +2050,7 @@
   <string name="verify_display_fragment__successful_match">Успешное совпадение</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Не удалось подтвердить код безопасности</string>
   <string name="verify_display_fragment__loading">Загружаем…</string>
-  <string name="verify_display_fragment__mark_as_verified">Отметить как подтверждённый</string>
+  <string name="verify_display_fragment__mark_as_verified">Отметить как подтвержденный</string>
   <string name="verify_display_fragment__clear_verification">Сбросить подтверждение</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
@@ -2265,7 +2260,7 @@
   <string name="preferences__typing_indicators">Индикаторы набора текста</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Если индикаторы набора текста отключены, вы не сможете видеть индикаторы набора текста других пользователей.</string>
   <string name="preferences__request_keyboard_to_disable">Запросить отключение персонализированного обучения клавиатуры.</string>
-  <string name="preferences__this_setting_is_not_a_guarantee">Эта настройка не является гарантией, и ваша клавиатура может её игнорировать.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Эта настройка не является гарантией, и ваша клавиатура может ее игнорировать.</string>
   <string name="preferences_app_protection__blocked_users">Заблокированные пользователи</string>
   <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>
   <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
@@ -2578,7 +2573,7 @@
   <string name="Insights__title">Выводы</string>
   <string name="InsightsDashboardFragment__title">Выводы</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматически защитил %1$d%% от ваших исходящих сообщений за последние %2$d дней. Разговоры между пользователями Signal всегда защищены сквозным шифрованием.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Улучшение Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Улучшение Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Недостаточно данных</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш процент в «Выводах» считается на основе исходящих сообщений, которые не исчезли и не были удалены за последние %1$d дней.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Начните разговор</string>
@@ -2820,7 +2815,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Нажмите на своё фото профиля в левом верхнем углу, чтобы открыть настройки</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_account">Нажмите на «Учётная запись»</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Нажмите на \"Учетная запись\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Нажмите «Перенести учётную запись», а затем «Продолжить» на обоих устройствах</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3057,7 +3052,7 @@
   <string name="ChatWallpaperFragment__reset_chat_color">Сбросить цвет чата</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Сбросить цвет чата?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Установить обои</string>
-  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Затемнение обоев при тёмной теме</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Темный режим затемняет обои</string>
   <string name="ChatWallpaperFragment__contact_name">Имя контакта</string>
   <string name="ChatWallpaperFragment__reset">Сбросить</string>
   <string name="ChatWallpaperFragment__clear">Удалить</string>
@@ -3185,21 +3180,21 @@
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Пригласить друзей</string>
   <!--AccountSettingsFragment-->
-  <string name="AccountSettingsFragment__account">Учётная запись</string>
+  <string name="AccountSettingsFragment__account">Учетная запись</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Напоминания будут появляться реже со временем</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Требовать вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal</string>
   <string name="AccountSettingsFragment__change_phone_number">Изменить номер телефона</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Используйте эту функцию, чтобы изменить свой текущий номер телефона на новый. Это изменение нельзя отменить.\n\nПеред тем как продолжить, убедитесь, что ваш новый номер может принимать SMS или звонки.</string>
   <string name="ChangeNumberFragment__continue">Продолжить</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш номер телефона был изменён.</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш номер телефона был изменен.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Изменить номер</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ваш старый номер</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Старый номер телефона</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ваш новый номер</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Новый номер телефона</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Введенный вами номер телефона не соответствует номеру вашей учетной записи.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Вы должны указать код страны вашего старого номера</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Вы должны указать свой старый номер телефона</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Вы должны указать код страны вашего нового номера</string>
@@ -3222,9 +3217,9 @@
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Оставить старый PIN-код?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Похоже, что вы пытались изменить свой номер, но нам не удалось проверить, было ли успешным это изменение.\n\nПроверяем заново сейчас…</string>
-  <string name="ChangeNumberLockActivity__change_status_confirmed">Статус изменения подтверждён</string>
-  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ваш номер был подтверждён: %1$s. Если это не ваш новый номер, пожалуйста, заново пройдите процесс изменения номера.</string>
-  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Статус изменения неподтверждён</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Статус изменения подтвержден</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ваш номер %1$s был подтвержден. Если это не ваш новый номер, пожалуйста, пройдите процесс изменения номера заново.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Статус изменения не подтвержден</string>
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Нам не удалось проверить статус вашего запроса на изменение номера.\n\n(Ошибка: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Повторить попытку</string>
   <string name="ChangeNumberLockActivity__leave">Покинуть</string>
@@ -3388,7 +3383,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">Звуки разговора отключены навсегда</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефона был скопирован в буфер обмена.</string>
   <string name="ConversationSettingsFragment__phone_number">Номер телефона</string>
-  <string name="ConversationSettingsFragment__get_badges">Получите значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
+  <string name="ConversationSettingsFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>
@@ -3414,7 +3409,7 @@
   <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
-  <string name="PaymentRecipientSelectionFragment__new_payment">Новый платёж</string>
+  <string name="PaymentRecipientSelectionFragment__new_payment">Новый платеж</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Новое сообщение</string>
   <!--ContactFilterView-->
@@ -3493,7 +3488,7 @@
   <string name="ImageEditorHud__add_a_sticker">Добавить стикер</string>
   <string name="ImageEditorHud__blur">Размыть</string>
   <string name="ImageEditorHud__done_editing">Готово</string>
-  <string name="ImageEditorHud__clear_all">Очистить всё</string>
+  <string name="ImageEditorHud__clear_all">Очистить все</string>
   <string name="ImageEditorHud__undo">Отменить</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Переключиться между маркером и выделителем</string>
   <string name="ImageEditorHud__delete">Удалить</string>
@@ -3517,13 +3512,13 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Стать поддерживающим</string>
   <string name="ImageView__badge">Значок</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу людей, поддерживающих её.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, которая создана для вас, а не ради ваших данных, присоединившись к сообществу людей, которые ее поддерживают.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу, которое поддерживает Signal.</string>
   <string name="SubscribeFragment__currency">Валюта</string>
   <string name="SubscribeFragment__more_payment_options">Больше способов оплаты</string>
   <string name="SubscribeFragment__cancel_subscription">Отменить подписку</string>
   <string name="SubscribeFragment__confirm_cancellation">Подтверждаете отмену?</string>
-  <string name="SubscribeFragment__you_wont_be_charged_again">С вас больше не будет взиматься плата. Ваш значок будет удалён из профиля в конце вашего расчётного периода.</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">С вас больше не будет взиматься плата. Ваш значок будет удален из вашего профиля в конце расчетного периода.</string>
   <string name="SubscribeFragment__not_now">Не сейчас</string>
   <string name="SubscribeFragment__confirm">Подтвердить</string>
   <string name="SubscribeFragment__update_subscription">Обновить подписку</string>
@@ -3533,22 +3528,24 @@
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Полная сумма новой подписки будет взята с вас сегодня. Ваша подписка продлится %1$s.</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Полная сумма новой подписки (%1$s) будет взята с вас сегодня. Ваша подписка будет продлеваться ежемесячно.</string>
   <string name="Subscription__s_per_month">%s/месяц</string>
-  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Возобновится %2$s</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Продлится %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/месяц · Истекает %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят её. Делая пожертвование ежемесячно, вы получите значок для профиля, чтобы поделиться с другими тем, что вы поддерживаете Signal.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal - некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят его. Вносите регулярные ежемесячные взносы и получите значок профиля, чтобы продемонстрировать свою поддержку.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal предан миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Ваш вклад поддерживает эту миссию и оплачивает разработку и работу приложения, которое используется миллионами людей для конфиденциального общения. Без рекламы. Без трекеров. Без шуток.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Спасибо за вашу поддержку!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Спасибо за Ускорение!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Вы заработали значок «%s»! Помогите Signal увеличить осведомлённость, показав этот значок в своём профиле.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Вы заработали значок «Ускорение»! Помогите Signal увеличить осведомлённость, показав этот значок в своём профиле.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Вы заработали значок %s! Помогите Signal повысить осведомленность, отобразив этот значок в вашем профиле.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Вы заработали значок Boost! Помогите Signal повысить осведомленность, отобразив этот значок в вашем профиле.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Вы также можете</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">стать ежемесячным Поддерживающим.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показывать в профиле</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Сделать главным значком</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Когда у вас больше одного значка, вы можете выбрать главный значок, который другие люди будут видеть в вашем профиле.</string>
+  <string name="BecomeASustainerFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal — это некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только такими людьми, как вы.</string>
   <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
   <string name="ManageDonationsFragment__badges">Значки</string>
@@ -3560,38 +3557,41 @@
   <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
   <string name="MySupportPreference__add_a_signal_boost">Добавить Ускорение Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
-  <string name="MySupportPreference__renews_s">Возобновится %1$s</string>
+  <string name="MySupportPreference__renews_s">Продлится %1$s</string>
   <string name="MySupportPreference__processing_transaction">Обрабатываем транзакцию…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Не удалось добавить значок.</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Не удалось добавить значок. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Пожалуйста, свяжитесь с поддержкой.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Значок истёк</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истек</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Значок истек</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Подписка отменена</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ваш значок «Ускорение» истёк и больше не виден другим людям в вашем профиле.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ваш значок Boost истек и больше не виден другим пользователям в вашем профиле.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным Поддерживающим.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Стать поддерживающим</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Ваша подписка Поддерживающего была автоматически отменена, потому что вы были неактивны слишком долго. Ваш значок «%1$s» больше не виден в вашем профиле.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Вы можете продолжать использовать Signal, но чтобы поддержать приложение и заново активировать значок, продлите подписку сейчас.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Продлить подписку</string>
-  <string name="Subscription__verification_failed">Не удалось проверить подписку</string>
-  <string name="Subscription__redemption_failed">Не удалось получить значок</string>
   <string name="Subscription__please_contact_support_for_more_information">Пожалуйста, свяжитесь с поддержкой, чтобы получить больше информации.</string>
   <string name="Subscription__contact_support">Связаться с поддержкой</string>
   <string name="Subscription__earn_a_s_badge">Заработайте значок «%1$s»</string>
-  <string name="SubscribeFragment__processing_payment">Обрабатываем платёж…</string>
-  <string name="DonationsErrors__payment_failed">Платёж не удался</string>
-  <string name="DonationsErrors__your_payment">Не удалось обработать ваш платёж; с вас не была взята плата. Пожалуйста, попробуйте ещё раз.</string>
-  <string name="DonationsErrors__still_processing">Всё ещё обрабатывается</string>
-  <string name="DonationsErrors__redemption_failed">Не удалось получить значок</string>
-  <string name="DonationsErrors__please_contact_support">Пожалуйста, свяжитесь с поддержкой</string>
-  <string name="DonationsErrors__your_payment_is_still">Ваш платёж всё ещё обрабатывается. Это может занять несколько минут, в зависимости от вашего соединения.</string>
+  <string name="SubscribeFragment__processing_payment">Обработка платежа…</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Ошибка обработки платежа</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Ошибка обработки платежа. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Ваш значок не может быть добавлен в вашу учетную запись, но, возможно, с вас была снята оплата. Обратитесь в службу поддержки.</string>
+  <string name="DonationsErrors__your_payment">Не удалось обработать ваш платеж, и с вас не была снята оплата. Пожалуйста, попробуйте еще раз.</string>
+  <string name="DonationsErrors__still_processing">Продолжается обработка</string>
+  <string name="DonationsErrors__couldnt_add_badge">Не удалось добавить значок</string>
+  <string name="DonationsErrors__your_badge_could_not">Ваш значок не может быть добавлен в вашу учетную запись, но, возможно, с вас была снята оплата. Обратитесь в службу поддержки</string>
+  <string name="DonationsErrors__your_payment_is_still">Ваш платеж все еще обрабатывается. Это может занять несколько минут в зависимости от вашего соединения.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступен</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Вам необходимо настроить Google Pay, чтобы пожертвовать в приложении.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не удалось отменить подписку</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для отмены подписки требуется соединение с интернетом.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваше устройство не поддерживает Google Pay, поэтому вы не можете подписаться, чтобы получить значок. Вы всё равно можете поддержать Signal, сделав пожертвование на нашем сайте.</string>
-  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ошибка сети. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваше устройство не поддерживает Google Pay, поэтому вы не можете подписаться, чтобы получить значок. Вы все еще можете поддержать Signal, сделав пожертвование на нашем сайте.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ошибка сети. Проверьте подключение и повторите попытку</string>
   <string name="NetworkFailure__retry">Повторить попытку</string>
   <!--EOF-->
 </resources>

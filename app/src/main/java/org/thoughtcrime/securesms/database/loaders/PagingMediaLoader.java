@@ -12,10 +12,10 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.AsyncLoader;
@@ -44,9 +44,9 @@ public final class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> 
 
   @Override
   public @Nullable Pair<Cursor, Integer> loadInBackground() {
-    ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, observer);
+    ApplicationDependencies.getDatabaseObserver().registerAttachmentObserver(observer);
 
-    Cursor cursor = DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId, sorting, threadId == MediaDatabase.ALL_THREADS);
+    Cursor cursor = SignalDatabase.media().getGalleryMediaForThread(threadId, sorting, threadId == MediaDatabase.ALL_THREADS);
 
     while (cursor.moveToNext()) {
       AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));

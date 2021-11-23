@@ -409,11 +409,6 @@
   <string name="DeviceListItem_today">Šodien</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezvārda fails</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Ziedot/dāvināt Signālam</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signālu veido un darbina tādi paši cilvēki kā jūs. Atbalstiet jau šodien!</string>
-  <string name="DonateMegaphone_donate">Ziedojiet</string>
-  <string name="DonateMegaphone_no_thanks">Nē, paldies</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Iepazīstināšana ar grupu zvaniem</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Atveriet/izveidojiet jaunu grupu, lai sāktu bezmaksas šifrētu grupas zvanu</string>
@@ -2365,7 +2360,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="Insights__title">Ieskati</string>
   <string name="InsightsDashboardFragment__title">Ieskati</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signāla protokols automātiski pasargājis %1$dno %% no tavām izejošajām ziņām pēdējo %2$d dienu laikā. Sarunas starp Signāla lietotājiem vienmēr tiek šifrētas no viena gala līdz otram (end-to-end).</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Uzlabot (boost) Signālu</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Uzlabot (boost) Signālu</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Nav pietiekami datu</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsu Ieskatu procenti tiek aprēķināti balstoties uz izejošo ziņu skaita pēdējās %1$d dienās, kuras nav pagaisušas vai izdzēstas.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Sākt sarunu</string>
@@ -3211,10 +3206,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="SubscribeFragment__update">Aktualizēt</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Darīts</string>
   <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne tagad</string>
   <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
   <string name="SubscribeFragment__processing_payment">Maksājums tiek apstrādāts…</string>
-  <string name="DonationsErrors__payment_failed">Maksājums neizdevās</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">Mēģināt vēlreiz</string>
   <!--EOF-->
 </resources>

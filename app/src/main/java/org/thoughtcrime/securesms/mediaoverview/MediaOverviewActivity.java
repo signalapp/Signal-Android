@@ -40,9 +40,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.BoldSelectionTabItem;
 import org.thoughtcrime.securesms.components.ControllableTabLayout;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -51,7 +51,6 @@ import org.whispersystems.libsignal.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Activity for displaying media attachments in-app
@@ -200,7 +199,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
     if (threadId == MediaDatabase.ALL_THREADS) {
       getSupportActionBar().setTitle(R.string.MediaOverviewActivity_All_storage_use);
     } else {
-      SimpleTask.run(() -> DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId),
+      SimpleTask.run(() -> SignalDatabase.threads().getRecipientForThreadId(threadId),
         (recipient) -> {
           if (recipient != null) {
             getSupportActionBar().setTitle(recipient.getDisplayName(this));

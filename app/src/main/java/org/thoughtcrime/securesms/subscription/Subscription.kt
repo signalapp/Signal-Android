@@ -79,6 +79,7 @@ data class Subscription(
   }
 
   class Model(
+    val activePrice: FiatMoney?,
     val subscription: Subscription,
     val isSelected: Boolean,
     val isActive: Boolean,
@@ -127,6 +128,7 @@ data class Subscription(
 
       if (payload.isEmpty()) {
         badge.setBadge(model.subscription.badge)
+        badge.isClickable = false
       }
 
       title.text = model.subscription.name
@@ -134,7 +136,7 @@ data class Subscription(
 
       val formattedPrice = FiatMoneyUtil.format(
         context.resources,
-        model.subscription.prices.first { it.currency == model.selectedCurrency },
+        model.activePrice ?: model.subscription.prices.first { it.currency == model.selectedCurrency },
         FiatMoneyUtil.formatOptions()
       )
 

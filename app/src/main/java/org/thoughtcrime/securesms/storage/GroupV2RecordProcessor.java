@@ -7,9 +7,9 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -30,7 +30,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
   private final Map<GroupId.V2, GroupId.V1> gv1GroupsByExpectedGv2Id;
 
   public GroupV2RecordProcessor(@NonNull Context context) {
-    this(context, DatabaseFactory.getRecipientDatabase(context), DatabaseFactory.getGroupDatabase(context));
+    this(context, SignalDatabase.recipients(), SignalDatabase.groups());
   }
 
   GroupV2RecordProcessor(@NonNull Context context, @NonNull RecipientDatabase recipientDatabase, @NonNull GroupDatabase groupDatabase) {

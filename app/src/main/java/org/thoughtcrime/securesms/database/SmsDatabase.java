@@ -35,11 +35,9 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
@@ -156,7 +154,7 @@ public class SmsDatabase extends MessageDatabase {
 
   private static final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache("SmsDelivery");
 
-  public SmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public SmsDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -193,7 +191,7 @@ public class SmsDatabase extends MessageDatabase {
 
       threadId = getThreadIdForMessage(id);
 
-      DatabaseFactory.getThreadDatabase(context).updateSnippetTypeSilently(threadId);
+      SignalDatabase.threads().updateSnippetTypeSilently(threadId);
 
       db.setTransactionSuccessful();
     } finally {
@@ -394,8 +392,8 @@ public class SmsDatabase extends MessageDatabase {
 
       threadId = getThreadIdForMessage(id);
 
-      DatabaseFactory.getThreadDatabase(context).update(threadId, false);
-      DatabaseFactory.getMessageLogDatabase(context).deleteAllRelatedToMessage(id, false);
+      SignalDatabase.threads().update(threadId, false);
+      SignalDatabase.messageLog().deleteAllRelatedToMessage(id, false);
 
       db.setTransactionSuccessful();
     } finally {
@@ -448,7 +446,7 @@ public class SmsDatabase extends MessageDatabase {
       db.endTransaction();
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    SignalDatabase.threads().update(threadId, false);
     notifyConversationListeners(threadId);
   }
 
@@ -462,7 +460,7 @@ public class SmsDatabase extends MessageDatabase {
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {id+""});
 
     long threadId = getThreadIdForMessage(id);
-    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    SignalDatabase.threads().update(threadId, false);
     notifyConversationListeners(threadId);
   }
 
@@ -562,8 +560,8 @@ public class SmsDatabase extends MessageDatabase {
 
           database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
 
-          DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
-          DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
+          SignalDatabase.threads().updateReadState(threadId);
+          SignalDatabase.threads().setLastSeen(threadId);
           notifyConversationListeners(threadId);
 
           Long latest = threadToLatestRead.get(threadId);
@@ -665,7 +663,7 @@ public class SmsDatabase extends MessageDatabase {
 
     long threadId = getThreadIdForMessage(messageId);
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    SignalDatabase.threads().update(threadId, true);
     notifyConversationListeners(threadId);
 
     return new InsertResult(messageId, threadId);
@@ -713,7 +711,7 @@ public class SmsDatabase extends MessageDatabase {
   {
     SQLiteDatabase db                      = databaseHelper.getSignalWritableDatabase();
     Recipient      recipient               = Recipient.resolved(groupRecipientId);
-    long           threadId                = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    long           threadId                = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
     boolean        peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull);
 
     try {
@@ -746,10 +744,10 @@ public class SmsDatabase extends MessageDatabase {
 
         db.insert(TABLE_NAME, null, values);
 
-        DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+        SignalDatabase.threads().incrementUnread(threadId, 1);
       }
 
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      SignalDatabase.threads().update(threadId, true);
 
       db.setTransactionSuccessful();
     } finally {
@@ -775,7 +773,7 @@ public class SmsDatabase extends MessageDatabase {
 
       Recipient recipient = Recipient.resolved(groupRecipientId);
 
-      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+      threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
       String   where     = TYPE + " = ? AND " + THREAD_ID + " = ?";
       String[] args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
@@ -823,10 +821,10 @@ public class SmsDatabase extends MessageDatabase {
 
         db.insert(TABLE_NAME, null, values);
 
-        DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+        SignalDatabase.threads().incrementUnread(threadId, 1);
       }
 
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      SignalDatabase.threads().update(threadId, true);
 
       db.setTransactionSuccessful();
     } finally {
@@ -880,7 +878,7 @@ public class SmsDatabase extends MessageDatabase {
 
   private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread, long timestamp) {
     Recipient recipient = Recipient.resolved(recipientId);
-    long      threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    long      threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
     ContentValues values = new ContentValues(6);
     values.put(RECIPIENT_ID, recipientId.serialize());
@@ -895,10 +893,10 @@ public class SmsDatabase extends MessageDatabase {
     long           messageId = db.insert(TABLE_NAME, null, values);
 
     if (unread) {
-      DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+      SignalDatabase.threads().incrementUnread(threadId, 1);
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    SignalDatabase.threads().update(threadId, true);
 
     notifyConversationListeners(threadId);
     TrimThreadJob.enqueueAsync(threadId);
@@ -939,8 +937,8 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName) {
-    ThreadDatabase                  threadDatabase    = DatabaseFactory.getThreadDatabase(context);
-    List<GroupDatabase.GroupRecord> groupRecords      = DatabaseFactory.getGroupDatabase(context).getGroupsContainingMember(recipient.getId(), false);
+    ThreadDatabase                  threadDatabase    = SignalDatabase.threads();
+    List<GroupDatabase.GroupRecord> groupRecords      = SignalDatabase.groups().getGroupsContainingMember(recipient.getId(), false);
     List<Long>                      threadIdsToUpdate = new LinkedList<>();
 
     byte[] profileChangeDetails = ProfileChangeDetails.newBuilder()
@@ -1032,8 +1030,8 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public void insertNumberChangeMessages(@NonNull Recipient recipient) {
-    ThreadDatabase                  threadDatabase    = DatabaseFactory.getThreadDatabase(context);
-    List<GroupDatabase.GroupRecord> groupRecords      = DatabaseFactory.getGroupDatabase(context).getGroupsContainingMember(recipient.getId(), false);
+    ThreadDatabase                  threadDatabase    = SignalDatabase.threads();
+    List<GroupDatabase.GroupRecord> groupRecords      = SignalDatabase.groups().getGroupsContainingMember(recipient.getId(), false);
     List<Long>                      threadIdsToUpdate = new LinkedList<>();
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
@@ -1072,7 +1070,7 @@ public class SmsDatabase extends MessageDatabase {
                      .filter(Objects::nonNull)
                      .forEach(threadId -> {
                        TrimThreadJob.enqueueAsync(threadId);
-                       DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+                       SignalDatabase.threads().update(threadId, true);
                        notifyConversationListeners(threadId);
                      });
   }
@@ -1120,7 +1118,7 @@ public class SmsDatabase extends MessageDatabase {
     if (message.getGroupId() == null) {
       groupRecipient = null;
     } else {
-      RecipientId id = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(message.getGroupId());
+      RecipientId id = SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(message.getGroupId());
       groupRecipient = Recipient.resolved(id);
     }
 
@@ -1135,8 +1133,8 @@ public class SmsDatabase extends MessageDatabase {
 
     long       threadId;
 
-    if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-    else                        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
+    if (groupRecipient == null) threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+    else                        threadId = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
 
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
@@ -1168,15 +1166,15 @@ public class SmsDatabase extends MessageDatabase {
       long           messageId = db.insert(TABLE_NAME, null, values);
 
       if (unread) {
-        DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+        SignalDatabase.threads().incrementUnread(threadId, 1);
       }
 
       if (!silent) {
-        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+        SignalDatabase.threads().update(threadId, true);
       }
 
       if (message.getSubscriptionId() != -1) {
-        DatabaseFactory.getRecipientDatabase(context).setDefaultSubscriptionId(recipient.getId(), message.getSubscriptionId());
+        SignalDatabase.recipients().setDefaultSubscriptionId(recipient.getId(), message.getSubscriptionId());
       }
 
       notifyConversationListeners(threadId);
@@ -1197,7 +1195,7 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public @NonNull InsertResult insertChatSessionRefreshedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
     SQLiteDatabase db       = databaseHelper.getSignalWritableDatabase();
-    long           threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.resolved(recipientId));
+    long           threadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
     long           type     = Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
 
     type = type & (Types.TOTAL_MASK - Types.ENCRYPTION_MASK) | Types.ENCRYPTION_REMOTE_FAILED_BIT;
@@ -1214,8 +1212,8 @@ public class SmsDatabase extends MessageDatabase {
 
     long messageId = db.insert(TABLE_NAME, null, values);
 
-    DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    SignalDatabase.threads().incrementUnread(threadId, 1);
+    SignalDatabase.threads().update(threadId, true);
 
     notifyConversationListeners(threadId);
 
@@ -1238,8 +1236,8 @@ public class SmsDatabase extends MessageDatabase {
 
     databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, values);
 
-    DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    SignalDatabase.threads().incrementUnread(threadId, 1);
+    SignalDatabase.threads().update(threadId, true);
 
     notifyConversationListeners(threadId);
 
@@ -1285,11 +1283,11 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-      DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
-      DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
+      SignalDatabase.threads().setLastScrolled(threadId, 0);
+      SignalDatabase.threads().setLastSeenSilently(threadId);
     }
 
-    DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
+    SignalDatabase.threads().setHasSentSilently(threadId, true);
 
     ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, false));
 
@@ -1341,8 +1339,8 @@ public class SmsDatabase extends MessageDatabase {
 
       db.delete(TABLE_NAME, ID_WHERE, new String[] { messageId + "" });
 
-      DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
-      threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false, true);
+      SignalDatabase.threads().setLastScrolled(threadId, 0);
+      threadDeleted = SignalDatabase.threads().update(threadId, false, true);
 
       db.setTransactionSuccessful();
     } finally {

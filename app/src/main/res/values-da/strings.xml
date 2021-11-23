@@ -438,13 +438,8 @@
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Unavngivet fil</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drevet af personer som dig. Vis din støtte i dag!</string>
-  <string name="DonateMegaphone_donate">Doner</string>
-  <string name="DonateMegaphone_no_thanks">Nej tak</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Introducerer gruppeopkald</string>
+  <string name="GroupCallingMegaphone__introducing_group_calls">Nu introduceres gruppeopkald</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åbn en ny gruppe for at starte et krypteret gruppeopkald</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
@@ -736,7 +731,7 @@
   <string name="ShareableGroupLinkDialogFragment__member_requests">Medlemsanmodninger</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Godkend nye medlemmer</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Det kræves at en administrator godkender nye gruppemedlemmer via gruppelinket</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på, at du vil nulstille gruppelinket? Man vil ikke længere kunne deltage i gruppen ved hjælp af det aktuelle link</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på, at du vil nulstille gruppelinket? Man vil ikke længere kunne deltage i gruppen ved hjælp af det nuværende link.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-kode</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personer der scanner denne kode, kan deltage i din gruppe. Administratorer skal stadig godkende nye medlemmer, hvis denne indstilling er slået til</string>
@@ -863,7 +858,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendt af %1$s til %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sendt fra dig til %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Introducerer Reaktioner </string>
+  <string name="Megaphones_introducing_reactions">Nu introduceres reaktioner </string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tryk og hold på enhver besked for hurtigt at vise hvad du føler.</string>
   <string name="Megaphones_remind_me_later">Påmind mig senere</string>
   <string name="Megaphones_verify_your_signal_pin">Verificer din Signal-pinkode</string>
@@ -2181,7 +2176,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
   <string name="PaymentsAllActivityFragment__sent">Sendt</string>
   <string name="PaymentsAllActivityFragment__received">Modtaget</string>
-  <string name="PaymentsHomeFragment__introducing_payments">Introducerer betalinger (Beta)</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Nu introduceres betalinger (Beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny privatlivsfokuseret digital valuta. Aktivér for at komme i gang.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktiver Betalinger</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktiverer betalinger…</string>
@@ -2410,7 +2405,7 @@ nummer (%s) er ugyldigt</string>
   <string name="Insights__title">Indblik</string>
   <string name="InsightsDashboardFragment__title">Indblik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol beskyttede automatisk %1$d%% af dine sendte beskeder de seneste %2$d dage. Samtaler mellem Signal-brugere er altid end-to-end krypterede.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Sæt skub i Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Sæt skub i Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkeligt data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
@@ -2419,7 +2414,7 @@ nummer (%s) er ugyldigt</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
   <string name="InsightsDashboardFragment__send">Send</string>
-  <string name="InsightsModalFragment__title">Vi introducerer Indblik</string>
+  <string name="InsightsModalFragment__title">Nu introduceres indblik</string>
   <string name="InsightsModalFragment__description">Find ud af hvor mange af dine sendte beskeder der blev sendt sikkert, og inviter derefter hurtigt nye kontakter, så du kan forøge dit andel i Signal.</string>
   <string name="InsightsModalFragment__view_insights">Vis Indblik</string>
   <string name="FirstInviteReminder__title">Inviter til Signal</string>
@@ -2456,7 +2451,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Indtast din pinkode igen</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Opretter pinkode…</string>
   <!--KbsSplashFragment-->
-  <string name="KbsSplashFragment__introducing_pins">Introducerer pinkoder</string>
+  <string name="KbsSplashFragment__introducing_pins">Nu introduceres pinkoder</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Pinkoder sørger for at information opbevaret hos Signal er krypteret, så kun du har adgang til den. Din profil, indstillinger og kontakter vil blive gendannet når du geninstallerer. Du behøver ikke din pinkode for at åbne appen.</string>
   <string name="KbsSplashFragment__learn_more">Lær mere</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = pinkode</string>
@@ -2904,9 +2899,9 @@ nummer (%s) er ugyldigt</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny privatlivsfokuseret digital valuta.</string>
-  <string name="payment_info_card_adding_funds">Tilføjer midler</string>
+  <string name="payment_info_card_adding_funds">Tilføjelse af midler</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan tilføje midler til brug i Signal ved at sende MobileCoin til din wallet-adresse.</string>
-  <string name="payment_info_card_cashing_out">Udbetaler</string>
+  <string name="payment_info_card_cashing_out">Udbetaling</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kan når som helst få udbetalt MobileCoin på en børs, der understøtter MobileCoin. Foretag blot en overførsel til din konto ved denne børs.</string>
   <string name="payment_info_card_hide_this_card">Skjul dette kort?</string>
   <string name="payment_info_card_hide">Skjul</string>
@@ -3317,8 +3312,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
   <string name="ImageView__badge">Emblem</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drevet af personer som dig.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - og ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der understøtte den.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Støt teknologi, der er udviklet til dig, ikke for at høste dine data, ved at blive en del af det fællesskab, der understøtte Signal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støt teknologi, der er udviklet til dig - ikke for at høste dine data - ved at blive en del af det fællesskab af mennesker, der støtter op om den.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Støt teknologi, der er udviklet til dig, ikke for at høste dine data, ved at blive en del af det fællesskab, der støtter op om Signal.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Flere betalingsmuligheder</string>
   <string name="SubscribeFragment__cancel_subscription">Opsig abonnement</string>
@@ -3349,6 +3344,8 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gør til fremhævet emblem</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Udført</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mere end ét emblem, kan du udvælge ét af dem til at blive vist på din profil.</string>
+  <string name="BecomeASustainerFragment__get_badges">Få emblemer til din profil ved at støtte Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er en nonprofitorganisation uden annoncører eller investorer, der kun støttes af folk som dig.</string>
   <string name="ManageDonationsFragment__my_support">Min støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Administrer abonnement</string>
   <string name="ManageDonationsFragment__badges">Emblemer</string>
@@ -3362,7 +3359,8 @@ nummer (%s) er ugyldigt</string>
   <string name="MySupportPreference__s_per_month">%1$s/måned</string>
   <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
   <string name="MySupportPreference__processing_transaction">Behandler transaktion…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Kunne ikke tilføje emblem.</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Kunne ikke tilføje emblem. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kontakt venligst support.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Emblem udløbet</string>
@@ -3374,17 +3372,19 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
-  <string name="Subscription__verification_failed">Bekræftelse af abonnement mislykkedes</string>
-  <string name="Subscription__redemption_failed">Indløsning af emblem mislykkedes</string>
   <string name="Subscription__please_contact_support_for_more_information">Kontakt venligst support for at få mere information.</string>
   <string name="Subscription__contact_support">Kontakt Support</string>
   <string name="Subscription__earn_a_s_badge">Opnå ret til et %1$s-emblem </string>
   <string name="SubscribeFragment__processing_payment">Bearbejder betaling…</string>
-  <string name="DonationsErrors__payment_failed">Betaling fejlede</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Fejl ved behandling af betaling</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Fejl ved behandling af betaling. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Dit emblem kunne ikke tilføjes til din konto, men du kan være blevet opkrævet. Kontakt venligst support.</string>
   <string name="DonationsErrors__your_payment">Din betaling kunne ikke gennemføres, og du er ikke blevet opkrævet. Prøv venligst igen.</string>
   <string name="DonationsErrors__still_processing">Behandler stadig</string>
-  <string name="DonationsErrors__redemption_failed">Indløsning mislykkedes</string>
-  <string name="DonationsErrors__please_contact_support">Kontakt venligst support.</string>
+  <string name="DonationsErrors__couldnt_add_badge">Kunne ikke tilføje emblem</string>
+  <string name="DonationsErrors__your_badge_could_not">Dit emblem kunne ikke tilføjes til din konto, men du kan være blevet opkrævet. Kontakt venligst support.</string>
   <string name="DonationsErrors__your_payment_is_still">Din betaling er stadig under behandling. Det kan tage et par minutter afhængigt af din forbindelse.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ikke tilgængelig</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du skal konfigurere Google Pay for at kunne donere i appen.</string>

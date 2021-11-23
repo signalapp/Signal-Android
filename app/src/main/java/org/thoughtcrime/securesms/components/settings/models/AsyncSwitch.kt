@@ -39,7 +39,7 @@ object AsyncSwitch {
       super.bind(model)
       switchWidget.isEnabled = model.isEnabled
       switchWidget.isChecked = model.isChecked
-      itemView.isEnabled = !model.isProcessing
+      itemView.isEnabled = !model.isProcessing && model.isEnabled
       switcher.displayedChild = if (model.isProcessing) 1 else 0
 
       itemView.setOnClickListener {

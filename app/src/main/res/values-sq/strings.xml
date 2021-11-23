@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Sot</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Kartelë e paemërtuar</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Dhuroni për Signal-in</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-i bazohet në njerëz si ju. Shpaloseni përkrahjen tuaj sot!</string>
-  <string name="DonateMegaphone_donate">Dhuroni</string>
-  <string name="DonateMegaphone_no_thanks">Jo Falemnderit</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ju paraqesim Thirrje Grupi</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Që të nisni një thirrje të lirë, të fshehtëzuar, në grup, hapni një Grup të Ri</string>
@@ -2413,7 +2408,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="Insights__title">Prirje</string>
   <string name="InsightsDashboardFragment__title">Prirje</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolli Signal mbrojti automatikisht %1$d%% të mesazheve tuaj ikës gjatë %2$d ditëve të kaluara. Bisedat mes përdoruesve të Signal-it fshehtëzohen përherë skaj-më-skaj.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Fuqizim Signal-i</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Fuqizim Signal-i</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Pa të dhëna të mjaftueshme</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Përqindja juaj për Prirjet llogaritet bazuar në mesazhet ikës brenda %1$d ditëve të kaluara që nuk janë zhdukur apo fshirë.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Nisni një bisedë</string>
@@ -3354,6 +3349,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Bëje stemë të zgjedhur</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">U bë</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kur keni më shumë se një stemë, mund të zgjidhni cila t’u shfaqet të tjerëve te profili juaj për ta parë.</string>
+  <string name="BecomeASustainerFragment__get_badges">Merrni stema për profilin tuaj, duke përkrahur Signal-in.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal-i është një ent jofitimprurës pa rrjete reklamash dhe investues, i përkrahur vetëm nga njerëz si ju.</string>
   <string name="ManageDonationsFragment__my_support">Përkrahja ime</string>
   <string name="ManageDonationsFragment__manage_subscription">Administroni pajtim</string>
   <string name="ManageDonationsFragment__badges">Stema</string>
@@ -3367,7 +3364,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="MySupportPreference__s_per_month">%1$s/muaj</string>
   <string name="MySupportPreference__renews_s">Rinovohet më %1$s</string>
   <string name="MySupportPreference__processing_transaction">Po përpunohet transaksioni…</string>
-  <string name="MySupportPreference__couldnt_add_badge">S’u shtua dot stemë.</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">S’u shtua dot stemë. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Ju lutemi, lidhuni me ata të asistencës.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Stema juaj ka Skaduar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Stema ka skaduar</string>
@@ -3379,17 +3377,19 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Pajtimi juaj si Mbështetës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s’është më e dukshme te profili juaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Mund të vazhdoni ta përdorni Signal-in, por që të përkrahni aplikacionin dhe të riaktivizoni stemën, rinovojeni tani.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinovoni pajtimin</string>
-  <string name="Subscription__verification_failed">Verifikimi i Pajtimit Dështoi</string>
-  <string name="Subscription__redemption_failed">Ringjallja e Stemës Dështoi</string>
   <string name="Subscription__please_contact_support_for_more_information">Ju lutemi, për më tepër hollësi, lidhuni më asistencën.</string>
   <string name="Subscription__contact_support">Lidhuni Me Asistencën</string>
   <string name="Subscription__earn_a_s_badge">Fitoni një stemë %1$s</string>
   <string name="SubscribeFragment__processing_payment">Po kryhet pagesa…</string>
-  <string name="DonationsErrors__payment_failed">Pagesa dështoi</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Gabim në përpunim pagese</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Gabim në përpunim pagese. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Stema juaj s’u shtua dot te llogaria juaj, por mund t’ju jetë faturuar vlera e dhurimit. Ju lutemi, lidhuni me asistencën.</string>
   <string name="DonationsErrors__your_payment">Pagesa juaj s’u përpunuar do dhe nuk ju është faturuar. Ju lutemi, riprovoni.</string>
   <string name="DonationsErrors__still_processing">Ende në përpunim</string>
-  <string name="DonationsErrors__redemption_failed">Ringjallja dështoi</string>
-  <string name="DonationsErrors__please_contact_support">Ju lutemi, lidhuni me ata të asistencës</string>
+  <string name="DonationsErrors__couldnt_add_badge">S’u shtua dot stemë</string>
+  <string name="DonationsErrors__your_badge_could_not">Stema juaj s’u shtua dot te llogaria juaj, por mund t’ju jetë faturuar vlera e dhurimit. Ju lutemi, lidhuni me asistencën.</string>
   <string name="DonationsErrors__your_payment_is_still">Pagesa juaj ende po përpunohet. Kjo mund të zërë ca minuta, varet nga lidhja juaj.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay i Pakapshëm</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Duhet të ujdisni Google Pay, që të dhuroni që nga brenda aplikacionit.</string>

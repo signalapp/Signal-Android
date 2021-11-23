@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Í dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nafnlaus skrá</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Gefa til Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er keyrt áfram af fólki eins og þér. Sýndu stuðning þinn í verki!</string>
-  <string name="DonateMegaphone_donate">Styrkja</string>
-  <string name="DonateMegaphone_no_thanks">Nei, takk</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Kynning á hópsímtölum</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Opnaðu nýjan hóp til að byrja ókeypis dulritað hópsímtal</string>
@@ -704,6 +699,7 @@
   <string name="ManageProfileFragment_your_username">Notandanafnið þitt</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Mistókst að stilla auðkennismynd</string>
   <string name="ManageProfileFragment_badges">Merki</string>
+  <string name="ManageProfileFragment__edit_photo">Breyta ljósmynd</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Engir sameiginlegir hópar</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1348,6 +1344,8 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal þarf aðgang að tengiliðunum þinum svo hægt sé að tengjast vinum, skiptast á skilaboðum og hringja örugg símtöl.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Þú hefur gert of margar tilraunir til að skrá þetta númer. Prófaðu aftur síðar.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Mistókst að tengjast þjónustu. Athugaðu netsambandið þitt og prófaðu aftur.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Óstaðlað tölusnið</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Snið símanúmers</string>
   <string name="RegistrationActivity_call_requested">Beðið um símtal</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Þú ert núna %d skref frá því að senda inn villumeldingaskrá.</item>
@@ -1941,6 +1939,16 @@
   <string name="HelpFragment__debug_log">Villumeldingaskrá:</string>
   <string name="HelpFragment__could_not_upload_logs">Gat ekki sent inn atvikaskrár</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lýstu þessu eins nákvæmlega og þú getur til að auðvelda okkur að skilja vandamálið.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Veldu eitthvað atriði \-\-</item>
+    <item>Eitthvað er ekki að virka</item>
+    <item>Beiðni um endurbætur</item>
+    <item>Spurning</item>
+    <item>Umsögn</item>
+    <item>Annað</item>
+    <item>Greiðslur(MobileCoin)</item>
+    <item>Stuðningsaðilar og Signal-hvatning</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Þessi skilaboð</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nýlega notað</string>
@@ -2038,6 +2046,7 @@
   <string name="preferences__advanced">Meira</string>
   <string name="preferences__donate_to_signal">Gefa til Signal</string>
   <string name="preferences__subscription">Áskrift</string>
+  <string name="preferences__become_a_signal_sustainer">Gerstu stuðningsaðili Signal</string>
   <string name="preferences__signal_boost">Signal-hvatning</string>
   <string name="preferences__privacy">Gagnaleynd</string>
   <string name="preferences__mms_user_agent">MMS-kennistrengur</string>
@@ -2395,7 +2404,7 @@
   <string name="Insights__title">Yfirlitstölfræði</string>
   <string name="InsightsDashboardFragment__title">Yfirlitstölfræði</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal samskiptamátinn verndaði sjálfvirkt %1$d%% af útsendum skilaboðum þínum á síðustu %2$d dögum. Samræður milli Signal-notenda eru alltaf dulritaðar enda-í-enda.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal-hvatning</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal-hvatning</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ekki næg gögn</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prósentuhlutfall þitt í yfirlitstölfræðinni er reiknað út frá sendum skilaboðum síðustu %1$d daga sem ekki hafa horfið eða verið eytt.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Hefja samtal</string>
@@ -3129,7 +3138,9 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="AddAProfilePhotoMegaphone__not_now">Ekki núna</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Bæta við ljósmynd</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Nei, takk</string>
+  <string name="BecomeASustainerMegaphone__contribute">Framlag</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Tjáningartákn</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Opna leit að emoji-táknum</string>
@@ -3298,6 +3309,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ImageView__badge">Merki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er drifið áfram af fólki eins og þér.</string>
+  <string name="SubscribeFragment__currency">Gjaldmiðill</string>
   <string name="SubscribeFragment__more_payment_options">Fleiri greiðslumátar</string>
   <string name="SubscribeFragment__cancel_subscription">Segja upp áskrift</string>
   <string name="SubscribeFragment__confirm_cancellation">Staðfesta uppsögn?</string>
@@ -3314,6 +3326,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Af hverju styrkja?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Þakka þér fyrir stuðninginn!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Þakka þér fyrir hvatninguna!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Þú getur líka</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">orðið stuðningsaðili Signal mánaðarlega</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Birta á persónusniði</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gera merki áberandi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Lokið</string>
@@ -3329,15 +3343,16 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MySupportPreference__add_a_signal_boost">Bæta við Signal-hvatningu</string>
   <string name="MySupportPreference__s_per_month">%1$s/mánuði</string>
   <string name="MySupportPreference__renews_s">Endurnýjast %1$s</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkið þitt er útrunnið</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>
-  <string name="Subscription__verification_failed">Staðfesting áskriftar mistókst</string>
   <string name="Subscription__please_contact_support_for_more_information">Hafðu samband við aðstoðarteymið til að fá nánari upplýsingar.</string>
   <string name="Subscription__contact_support">Hafa samband við hjálparteymi</string>
   <string name="Subscription__earn_a_s_badge">Fáðu %1$s merki</string>
   <string name="SubscribeFragment__processing_payment">Meðhöndla greiðslu…</string>
-  <string name="DonationsErrors__payment_failed">Greiðsla mistókst</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ekki aðgengilegt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Þú þarft að setja upp Google Pay til að styrkja inni í forritinu.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Mistókst að hætta áskrift</string>

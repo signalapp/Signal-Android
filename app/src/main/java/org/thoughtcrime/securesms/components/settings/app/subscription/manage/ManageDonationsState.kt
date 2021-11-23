@@ -8,8 +8,25 @@ data class ManageDonationsState(
   val featuredBadge: Badge? = null,
   val transactionState: TransactionState = TransactionState.Init,
   val availableSubscriptions: List<Subscription> = emptyList(),
-  val subscriptionRedemptionState: SubscriptionRedemptionState = SubscriptionRedemptionState.NONE
+  private val subscriptionRedemptionState: SubscriptionRedemptionState = SubscriptionRedemptionState.NONE
 ) {
+
+  fun getRedemptionState(): SubscriptionRedemptionState {
+    return when (transactionState) {
+      TransactionState.Init -> subscriptionRedemptionState
+      TransactionState.InTransaction -> SubscriptionRedemptionState.IN_PROGRESS
+      is TransactionState.NotInTransaction -> getStateFromActiveSubscription(transactionState.activeSubscription) ?: subscriptionRedemptionState
+    }
+  }
+
+  fun getStateFromActiveSubscription(activeSubscription: ActiveSubscription): SubscriptionRedemptionState? {
+    return when {
+      activeSubscription.isFailedPayment -> SubscriptionRedemptionState.FAILED
+      activeSubscription.isInProgress -> SubscriptionRedemptionState.IN_PROGRESS
+      else -> null
+    }
+  }
+
   sealed class TransactionState {
     object Init : TransactionState()
     object InTransaction : TransactionState()

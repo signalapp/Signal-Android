@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;

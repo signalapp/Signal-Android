@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.guava.Preconditions;
@@ -40,7 +39,7 @@ public class UnknownStorageIdDatabase extends Database {
       "CREATE INDEX IF NOT EXISTS storage_key_type_index ON " + TABLE_NAME + " (" + TYPE + ");"
   };
 
-  public UnknownStorageIdDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public UnknownStorageIdDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

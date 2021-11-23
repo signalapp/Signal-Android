@@ -389,11 +389,6 @@
   <string name="DeviceListItem_today">Hoxe</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ficheiro sen nome</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Doar a Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal funciona grazas a persoas coma ti. Demostra o teu apoio!</string>
-  <string name="DonateMegaphone_donate">Doar</string>
-  <string name="DonateMegaphone_no_thanks">Non, grazas</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Presentando as Chamadas en Grupo</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Abre un Novo Grupo para iniciar unha chamada en grupo cifrada</string>
@@ -2155,7 +2150,7 @@
   <string name="Insights__title">Estatísticas</string>
   <string name="InsightsDashboardFragment__title">Estatísticas</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Protocolo Signal protexeu de xeito automático o %1$d%% das túas mensaxes enviadas nos últimos %2$d días. As conversas entre usuarios Signal están sempre cifradas de extremo-a-extremo.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Pular polo Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Pular polo Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O teu porcentaxe Insights calcúlase en función das mensaxes enviadas nos últimos %1$d días e que non desapareceron ou foron eliminados.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar unha conversa</string>
@@ -2821,8 +2816,11 @@
   <string name="SubscribeFragment__confirm">Confirmar</string>
   <string name="SubscribeFragment__update">Actualizar</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Feito</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora non</string>
   <string name="Subscription__contact_support">Contactar coa Axuda</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">Tentar de novo</string>
   <!--EOF-->
 </resources>

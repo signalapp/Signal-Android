@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;

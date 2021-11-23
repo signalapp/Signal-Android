@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -183,7 +183,7 @@ public final class NotificationCancellationHelper {
       return true;
     }
 
-    Long threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
+    Long threadId        = SignalDatabase.threads().getThreadIdFor(recipientId);
     long focusedThreadId = ApplicationDependencies.getMessageNotifier().getVisibleThread();
 
     if (Objects.equals(threadId, focusedThreadId)) {

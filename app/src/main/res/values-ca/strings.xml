@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Avui</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fitxer sense nom</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Feu una donació a Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">El Signal funciona gràcies a persones com vosaltres. Demostreu-hi el vostre suport avui!</string>
-  <string name="DonateMegaphone_donate">Feu una donació</string>
-  <string name="DonateMegaphone_no_thanks">No, gràcies</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">S\'introdueixen les trucades de grup</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Obriu un grup nou per iniciar una trucada de grup encriptada</string>
@@ -704,6 +699,7 @@
   <string name="ManageProfileFragment_your_username">El nom d\'usuari</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
   <string name="ManageProfileFragment_badges">Insígnies</string>
+  <string name="ManageProfileFragment__edit_photo">Edita la fotografia</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">No hi ha grups en comú.</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1344,6 +1340,9 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">El Signal necessita accés als contactes per tal de connectar amb amistats, intercanviar-hi missatges i fer trucades amb seguretat.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Heu fet massa intents per registrar aquest número. Si us plau, torneu-ho a provar més tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Format de número no estàndard</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">El número que heu introduït (%1$s) sembla d\'un format no estàndard.\n\nVoleu dir %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal d\'Android. Format del número de telèfon</string>
   <string name="RegistrationActivity_call_requested">Trucada sol·licitada</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ara us queda %d pas per enviar un informe de depuració.</item>
@@ -1936,6 +1935,16 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>-- Seleccioneu una opció. --</item>
+    <item>Alguna cosa no funciona.</item>
+    <item>Petició de funció</item>
+    <item>Pregunta</item>
+    <item>Retroacció</item>
+    <item>Altres</item>
+    <item>Pagaments  (MobileCoin) </item>
+    <item>Donacions (Sostenidors i Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
@@ -2033,6 +2042,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__advanced">Avançat</string>
   <string name="preferences__donate_to_signal">Feu una donació a Signal</string>
   <string name="preferences__subscription">Subscripció</string>
+  <string name="preferences__become_a_signal_sustainer">Convertiu-vos en sostenidor del Signal</string>
   <string name="preferences__signal_boost">Empenta del Signal</string>
   <string name="preferences__privacy">Privadesa</string>
   <string name="preferences__mms_user_agent">Agent usuari dels MMS</string>
@@ -2390,7 +2400,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="Insights__title">Interior</string>
   <string name="InsightsDashboardFragment__title">Interior</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de cap a cap.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Empenta del Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Empenta del Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comenceu una conversa</string>
@@ -3124,7 +3134,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AddAProfilePhotoMegaphone__not_now">Ara no</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Afegiu-hi una fotografia</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Sigueu-ne un sostenidor</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">El Signal és sostingut per persones com vós. Contribuïu-hi i rebeu una insígnia per al perfil.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">No, gràcies.</string>
+  <string name="BecomeASustainerMegaphone__contribute">Contribuïu-hi</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoticones</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Obre la cerca d\'emoticones</string>
@@ -3173,6 +3186,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversa silenciada per sempre</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">S\'ha copiat el número de telèfon al porta-retalls.</string>
   <string name="ConversationSettingsFragment__phone_number">Número de telèfon</string>
+  <string name="ConversationSettingsFragment__get_badges">Aconseguiu insígnies per al perfil donant suport al Signal. Toqueu una insígnia per obtenir-ne més informació.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Afegeix-hi membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edita la informació del grup</string>
@@ -3294,6 +3308,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ImageView__badge">Insígnia</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">El Signal és alimentat per persones com vosaltres.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ajudeu la tecnologia creada per a vosaltres —no per a les vostres dades— afegint-vos a la comunitat de persones que la sustenten.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Doneu suport a la tecnologia creada per a vós, no per a les vostres dades. Uniu-vos a la comunitat que manté el Signal.</string>
+  <string name="SubscribeFragment__currency">Moneda</string>
   <string name="SubscribeFragment__more_payment_options">Més opcions de pagament</string>
   <string name="SubscribeFragment__cancel_subscription">Cancel·la la subscripció</string>
   <string name="SubscribeFragment__confirm_cancellation">En confirmeu la cancel·lació?</string>
@@ -3305,43 +3321,72 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubscribeFragment__update_subscription_question">Voleu actualitzar la subscripció?</string>
   <string name="SubscribeFragment__update">Actualitza-la</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Se us cobrarà l\'import total del preu de la subscripció nova avui. La vostra subscripció es renovarà %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Se us cobrarà l\'import total (%1$s) del preu de la subscripció nova avui. La subscripció es renovarà mensualment.</string>
   <string name="Subscription__s_per_month">%s/ mes</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ mes · Renovacions %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ mes · Venciment: %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, sostinguda només per les persones que l’usen i valoren. Feu-hi una contribució mensual periòdica i rebeu una insígnia de perfil per compartir el vostre suport.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Per què contribuir-hi?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal es compromet a desenvolupar una tecnologia de privadesa de codi obert que protegeixi la llibertat d\'expressió i permeti una comunicació global segura.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">La vostra contribució alimenta aquesta causa i paga el desenvolupament i les operacions d\'una aplicació usada per milions per a la comunicació privada. Sense anuncis. Sense rastrejadors. No és broma.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Gràcies pel vostre suport!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gràcies per l\'empenta!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Heu guanyat una insígnia: %s! Ajudeu el Signal a crear consciència mostrant aquesta insígnia al perfil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Heu guanyat una insígnia d\'empenta! Ajudeu el Signal a crear consciència mostrant aquesta insígnia al perfil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">També podeu</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">esdevenir un sostenidor mensual.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra-ho al perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Feu una insígnia inclosa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fet</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quan tingueu més d\'una insígnia, podeu triar-ne una per mostrar-la perquè altres la vegin al perfil.</string>
+  <string name="BecomeASustainerFragment__get_badges">Aconseguiu insígnies per al perfil donant suport al Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">El Signal és una organització sense ànim de lucre sense anunciants ni inversors, amb el suport només de persones com vós.</string>
   <string name="ManageDonationsFragment__my_support">Suport</string>
   <string name="ManageDonationsFragment__manage_subscription">Gestioneu la subscripció</string>
   <string name="ManageDonationsFragment__badges">Insígnies</string>
   <string name="ManageDonationsFragment__subscription_faq">PMF de la subscripció</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Error en obtenir una subscripció</string>
   <string name="BoostFragment__give_signal_a_boost">Doneu una empenta al Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Digueu \"Gràcies!\" i obtingueu la insígnia Boost durant %1$d dies.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Digueu \"Gràcies!\" i obtingueu la insígnia Empenta durant %1$d dies.</string>
   <string name="Boost__enter_custom_amount">Introduïu la quantitat personalitzada</string>
   <string name="Boost__one_time_contribution">Contribució d\'un cop</string>
   <string name="MySupportPreference__add_a_signal_boost">Afegiu una empenta al Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/ mes</string>
   <string name="MySupportPreference__renews_s">Renovacions %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Es processa la transacció…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">No s\'ha pogut afegir la insígnia. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Poseu-vos en contacte amb l\'assistència.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insígnia ha vençut.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscripció cancel·lada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">La vostra insígnia d\'empenta ha vençut i ja no és visible per als altres al vostre perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuar donant suport a la tecnologia creada per a vós, considereu convertir-vos en un sostenidor mensual.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
-  <string name="Subscription__verification_failed">La verificació de la subscripció ha fallat.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">La vostra subscripció de sostenidor s\'ha cancel·lat automàticament perquè heu estat massa temps inactiu. La insígnia %1$s ja no és visible al perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Podeu continuar usant el Signal, però per donar suport a l\'aplicació i reactivar la insígnia, renoveu-la ara.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renova la subscripció</string>
   <string name="Subscription__please_contact_support_for_more_information">Poseu-vos en contacte amb el servei d\'assistència per obtenir-ne més informació.</string>
   <string name="Subscription__contact_support">Contacteu amb l\'Assistència</string>
   <string name="Subscription__earn_a_s_badge">Guanyeu una insígnia %1$s</string>
   <string name="SubscribeFragment__processing_payment">Es processa el pagament…</string>
-  <string name="DonationsErrors__payment_failed">Ha fallat el pagament.</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">S\'ha produït un error en processar el pagament.</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">S\'ha produït un error en processar el pagament. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">La insígnia no s\'ha pogut afegir al compte, però és possible que se us hagi cobrat. Poseu-vos en contacte amb l\'assistència.</string>
   <string name="DonationsErrors__your_payment">El pagament no s\'ha pogut processar i no se us ha cobrat. Si us plau, torneu-ho a provar.</string>
+  <string name="DonationsErrors__still_processing">Encara en procés</string>
+  <string name="DonationsErrors__couldnt_add_badge">No s\'ha pogut afegir la insígnia.</string>
+  <string name="DonationsErrors__your_badge_could_not">La insígnia no s\'ha pogut afegir al compte, però és possible que se us hagi cobrat. Poseu-vos en contacte amb l\'assistència.</string>
+  <string name="DonationsErrors__your_payment_is_still">El pagament encara s\'està processant. Això pot trigar uns quants minuts segons la connexió.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay no disponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Heu de configurar Google Pay per fer donacions des de l\'aplicació.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">No s\'ha pogut cancel·lar la subscripció.</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">La cancel·lació de la subscripció requereix una connexió a Internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">El vostre dispositiu no és compatible amb Google Pay, de manera que no us hi podeu subscriure per guanyar una insígnia. Podeu donar suport al Signal fent una donació al nostre lloc web.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de connexió. Comproveu la connexió i torneu-ho a provar.</string>
   <string name="NetworkFailure__retry">Torneu a provar-ho</string>
   <!--EOF-->
 </resources>

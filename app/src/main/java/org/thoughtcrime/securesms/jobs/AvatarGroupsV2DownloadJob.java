@@ -9,9 +9,9 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -74,7 +74,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    GroupDatabase         database   = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase         database   = SignalDatabase.groups();
     Optional<GroupRecord> record     = database.getGroup(groupId);
     File                  attachment = null;
 

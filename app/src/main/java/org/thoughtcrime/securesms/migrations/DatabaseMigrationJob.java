@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
@@ -34,7 +34,7 @@ public class DatabaseMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    DatabaseFactory.getInstance(context).triggerDatabaseAccess();
+    SignalDatabase.triggerDatabaseAccess();
   }
 
   @Override

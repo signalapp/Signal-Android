@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import org.signal.ringrtc.CallManager
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.SqlUtil
 import java.util.concurrent.TimeUnit
@@ -11,7 +10,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Track state of Group Call ring cancellations.
  */
-class GroupCallRingDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Database(context, databaseHelper) {
+class GroupCallRingDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
 
   companion object {
     private val VALID_RING_DURATION = TimeUnit.MINUTES.toMillis(30)

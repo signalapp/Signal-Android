@@ -26,38 +26,17 @@ import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-
-import com.annimon.stream.Stream;
-
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-
-import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
  * This class was originally a layer of indirection between

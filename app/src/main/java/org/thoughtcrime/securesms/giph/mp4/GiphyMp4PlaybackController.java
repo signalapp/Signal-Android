@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
-import android.graphics.Canvas;
 import android.view.View;
 
 import androidx.annotation.NonNull;

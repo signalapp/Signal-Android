@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.mms.GifSlide;
@@ -136,7 +136,7 @@ public class MediaUploadRepository {
 
   public void deleteAbandonedAttachments() {
     executor.execute(() -> {
-      int deleted = DatabaseFactory.getAttachmentDatabase(context).deleteAbandonedPreuploadedAttachments();
+      int deleted = SignalDatabase.attachments().deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
     });
   }
@@ -165,7 +165,7 @@ public class MediaUploadRepository {
 
   @WorkerThread
   private void updateCaptionsInternal(@NonNull List<Media> updatedMedia) {
-    AttachmentDatabase db = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase db = SignalDatabase.attachments();
 
     for (Media updated : updatedMedia) {
       PreUploadResult result = uploadResults.get(updated);
@@ -195,7 +195,7 @@ public class MediaUploadRepository {
       }
     }
 
-    DatabaseFactory.getAttachmentDatabase(context).updateDisplayOrder(orderMap);
+    SignalDatabase.attachments().updateDisplayOrder(orderMap);
 
     if (orderedUploadResults.size() == uploadResults.size()) {
       uploadResults.clear();

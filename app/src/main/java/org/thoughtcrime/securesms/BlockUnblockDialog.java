@@ -11,7 +11,7 @@ import androidx.lifecycle.Lifecycle;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
@@ -65,7 +65,7 @@ public final class BlockUnblockDialog {
     Resources           resources = context.getResources();
 
     if (recipient.isGroup()) {
-      if (DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireGroupId())) {
+      if (SignalDatabase.groups().isActive(recipient.requireGroupId())) {
         builder.setTitle(resources.getString(R.string.BlockUnblockDialog_block_and_leave_s, recipient.getDisplayName(context)));
         builder.setMessage(R.string.BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates);
         builder.setPositiveButton(R.string.BlockUnblockDialog_block_and_leave, ((dialog, which) -> onBlock.run()));
@@ -104,7 +104,7 @@ public final class BlockUnblockDialog {
     Resources           resources = context.getResources();
 
     if (recipient.isGroup()) {
-      if (DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireGroupId())) {
+      if (SignalDatabase.groups().isActive(recipient.requireGroupId())) {
         builder.setTitle(resources.getString(R.string.BlockUnblockDialog_unblock_s, recipient.getDisplayName(context)));
         builder.setMessage(R.string.BlockUnblockDialog_group_members_will_be_able_to_add_you);
         builder.setPositiveButton(R.string.RecipientPreferenceActivity_unblock, ((dialog, which) -> onUnblock.run()));

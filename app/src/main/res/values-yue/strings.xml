@@ -417,11 +417,6 @@
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名嘅檔案</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">課金 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全靠每一位有心人先有今日。請您大力「懲罰」，多多益善，少少無拘！</string>
-  <string name="DonateMegaphone_donate">課金</string>
-  <string name="DonateMegaphone_no_thanks">有心</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">同您介紹成谷通話</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">開一個新版嘅谷，開始免費嘅加密成谷通話</string>
@@ -661,6 +656,7 @@
   <string name="ManageProfileFragment_your_username">您嘅使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">頭像設定唔到</string>
   <string name="ManageProfileFragment_badges">襟章</string>
+  <string name="ManageProfileFragment__edit_photo">改過幅相</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">無有緣相遇嘅谷</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -756,6 +752,7 @@
   <string name="InviteActivity_no_app_to_share_to">似乎您無 app 用嚟去分享噃。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">講多啲畀我聽</string>
+  <string name="SpanUtil__read_more">睇晒全文</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">搵唔到訊息</string>
   <string name="LongMessageActivity_message_from_s">%1$s 傳嚟嘅訊息</string>
@@ -1273,6 +1270,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal 需要存取您嘅聯絡人，先可以同好友聯繫、互傳訊息同埋進行安全通話</string>
   <string name="RegistrationActivity_rate_limited_to_service">呢個冧把試過註冊太多次喇。請您晏啲再試下啦。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連線到服務。請檢查下網絡連線，然後再試下啦。</string>
+  <string name="RegistrationActivity_non_standard_number_format">非標準冧把格式</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">您打嗰個冧把 (%1$s) 似乎唔係標準格式。\n\n您係咪話 %2$s？</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 電話冧把格式</string>
   <string name="RegistrationActivity_call_requested">請求咗打畀您</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">仲差 %d 步，就可以提交除錯記錄檔喇。</item>
@@ -1855,6 +1855,16 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">上載唔到記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請您儘可能具體說明，幫我哋了解個問題。</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- 請揀選一項 \-\-</item>
+    <item>有嘢軭咗</item>
+    <item>有某個功能就好嘞</item>
+    <item>有問題想問</item>
+    <item>想反映一下淺見</item>
+    <item>其他</item>
+    <item>付款 (MobileCoin)</item>
+    <item>擔當後援同埋 Signal 集氣</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">呢個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近用過</string>
@@ -1951,6 +1961,7 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">課金 Signal</string>
   <string name="preferences__subscription">課金計劃</string>
+  <string name="preferences__become_a_signal_sustainer">擔當 Signal 後援</string>
   <string name="preferences__signal_boost">幫 Signal 買支旗</string>
   <string name="preferences__privacy">私隱</string>
   <string name="preferences__mms_user_agent">MMS 使用者代理</string>
@@ -2308,7 +2319,7 @@
   <string name="Insights__title">覺察</string>
   <string name="InsightsDashboardFragment__title">覺察</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 喺過去 %2$d 日，已經自動保護咗 %1$d%% 由您發送出去嘅訊息。Signal 使用者之間嘅對話，就幾時都係端對端加密嘅。</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal 也升呢</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal 也升呢</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">資料唔夠</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您嘅「覺察」巴仙，係用過去 %1$d 日未有消失或刪除嘅送出訊息數量計算出嚟嘅。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">發起一個對話</string>
@@ -3030,7 +3041,10 @@
   <string name="AddAProfilePhotoMegaphone__not_now">遲啲先啦</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">加張相</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__no_thanks">唔使喇，唔該晒</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">擔當後援</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal 應援靠團伙。誠意召集課金師隨心捐獻，並贈送一枚襟章，可以掛喺個人資料度展覽，等相知好友一呼百應。</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">有心</string>
+  <string name="BecomeASustainerMegaphone__contribute">課金</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符號</string>
   <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
@@ -3079,6 +3093,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">對話避靜至永遠</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">複製咗個電話冧把去剪貼簿。</string>
   <string name="ConversationSettingsFragment__phone_number">電話冧把</string>
+  <string name="ConversationSettingsFragment__get_badges">擔當 Signal 後援，為您嘅個人資料添一枚襟章。撳一下啲襟章知多啲。</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">加成員</string>
   <string name="PermissionsSettingsFragment__edit_group_info">編輯個谷嘅資訊</string>
@@ -3196,6 +3211,8 @@
   <string name="ImageView__badge">襟章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 應援靠團伙。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">力撐為您而設、而非為求您嘅資料而打造嘅科技；「惜爐」有團伙，Signal 不懼風吹日曬。</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">力撐為您而設、而非為求您嘅資料而打造嘅科技；「惜爐」有團伙，Signal 無懼風吹日曬。</string>
+  <string name="SubscribeFragment__currency">貨幣</string>
   <string name="SubscribeFragment__more_payment_options">其他付款方式</string>
   <string name="SubscribeFragment__cancel_subscription">取消課金計劃</string>
   <string name="SubscribeFragment__confirm_cancellation">係咪確認取消？</string>
@@ -3207,17 +3224,26 @@
   <string name="SubscribeFragment__update_subscription_question">係咪要更新課金計劃？</string>
   <string name="SubscribeFragment__update">更新</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">新嘅課金計劃金額會喺今日扣您全數。之後您嘅課金計劃將會喺 %1$s 續期。</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">新嘅課金計劃金額 (%1$s) 會喺今日扣您全數。之後您嘅課金計劃將會每個月續期。</string>
   <string name="Subscription__s_per_month">每月 %s</string>
   <string name="Subscription__s_per_month_dot_renews_s">每月 %1$s · 到 %2$s 續期</string>
   <string name="Subscription__s_per_month_dot_expires_s">每月 %1$s · %2$s 到期</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉硬碰加軟撼，全靠位位用呢個爐、錫呢個爐嘅「惜爐」團伙，燃亮最光的星斗，至能夠廢鉄到足金。希望您做我哋月供計劃嘅金主，同時可換取一枚襟章掛喺個人資料度，同好友分享您做力撐派嘅喜悅。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">何解要課金？</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 秉持初心，開發開放原始碼嘅私隱技術，去守護表達自由，同時令通訊變得安全、無遠弗屆。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">擔當呢份使命，全靠您嘅捐款做後援，幫手補貼程式開發同營運嘅燈油火蠟，等世界上數以百萬計嘅人，都用到同一個 app 做私密通訊，開住個「爐」為對方焗一份蘋果派。無廣告、無追蹤、堅過石堅。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">多謝您嘅鼎力支持！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">多謝您為我哋集氣！</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">您已獲取一枚「%s」襟章！不妨將襟章掛上去個人資料度號召，等 Signal 團伙遍地開花。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">您已獲取一枚集氣襟章！不妨將襟章掛上去個人資料度號召，等 Signal 團伙遍地開花。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">不妨考慮埋</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">擔當月供課金計劃嘅後援。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">掛上去個人資料度展示</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">揀選為賣飛佛襟章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">搞掂</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若您有唔止一枚襟章，您可揀一枚做賣飛佛襟章，掛上去個人資料度畀其他人睇到。</string>
+  <string name="BecomeASustainerFragment__get_badges">擔當 Signal 後援，為您嘅個人資料添一枚襟章。</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉照住，卻有位位「您」做團伙照耀，「燃亮最光的星斗」，至能夠廢鉄到足金。</string>
   <string name="ManageDonationsFragment__my_support">我擔當後援</string>
   <string name="ManageDonationsFragment__manage_subscription">管理課金計劃</string>
   <string name="ManageDonationsFragment__badges">襟章</string>
@@ -3230,20 +3256,40 @@
   <string name="MySupportPreference__add_a_signal_boost">幫 Signal 買多支旗</string>
   <string name="MySupportPreference__s_per_month">每月 %1$s</string>
   <string name="MySupportPreference__renews_s">到 %1$s 續期</string>
+  <string name="MySupportPreference__processing_transaction">處理緊交易…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">加唔到個襟章。%1$s</string>
+  <string name="MySupportPreference__please_contact_support">請聯絡支援。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您個襟章已經褪色夠鐘換喇</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">襟章已經褪色夠鐘換喇</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">課金計劃已經取消</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">您個集氣襟章已經褪色夠鐘換喇，因此已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如果您想繼續力撐為您而設嘅科技，請考慮做我哋月供課金計劃嘅後援金主。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
-  <string name="Subscription__verification_failed">課金計劃驗證失敗</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">見您冇用好一排，您嘅後援課金計劃已經自動取消。您嘅「%1$s」襟章已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal 一切如常運作，並讓您自由使用。若要繼續支持呢個 app 並掛返起您個襟章，請立即續期。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為課金計劃續期</string>
   <string name="Subscription__please_contact_support_for_more_information">詳情請聯絡支援。</string>
   <string name="Subscription__contact_support">聯絡支援</string>
   <string name="Subscription__earn_a_s_badge">獲得一枚「%1$s」襟章</string>
   <string name="SubscribeFragment__processing_payment">處理緊付款…</string>
-  <string name="DonationsErrors__payment_failed">付款失敗</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">處理付款嘅時候發生錯誤</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">處理付款嘅時候發生錯誤。$1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">您個襟章加唔到落去您個帳戶度，但有可能已經扣咗您數。請聯絡支援。</string>
   <string name="DonationsErrors__your_payment">處理唔到您嘅付款，您未有被扣數。請再試一次。</string>
+  <string name="DonationsErrors__still_processing">仲處理緊</string>
+  <string name="DonationsErrors__couldnt_add_badge">加唔到個襟章</string>
+  <string name="DonationsErrors__your_badge_could_not">您個襟章加唔到落去您個帳戶度，但有可能已經扣咗您數。請聯絡支援。</string>
+  <string name="DonationsErrors__your_payment_is_still">仲處理緊您嘅付款。視乎您嘅上網速度，可能需時幾分鐘。</string>
   <string name="DonationsErrors__google_pay_unavailable">用唔到 Google Pay</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">您要設定好 Google Pay 先可以喺 App 內捐款。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消唔到課金計劃</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">取消課金計劃需要連線上網。</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">您部機唔支援 Google Pay，故抱歉未能提供課金計劃並送贈襟章畀您。話雖如此，仍歡迎您喺我哋網站上面捐款支持 Signal。</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡有問題。請檢查您嘅連線，然後再試下啦。</string>
   <string name="NetworkFailure__retry">再試一次</string>
   <!--EOF-->
 </resources>

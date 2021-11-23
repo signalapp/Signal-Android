@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Dzisiaj</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Plik bez nazwy</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Datek na Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal funkcjonuje dzięki ludziom takim jak Ty. Wesprzyj nas już dziś!</string>
-  <string name="DonateMegaphone_donate">Podaruj</string>
-  <string name="DonateMegaphone_no_thanks">Nie, dzięki</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Przedstawiamy rozmowy grupowe</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otwórz Nową grupę, aby rozpocząć darmowe, zaszyfrowane połączenie grupowe</string>
@@ -508,7 +503,7 @@
   <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nie masz uprawnień, aby wysyłać wiadomości do tej grupy</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się w Google Play Services. Wiadomości i połączenia Signal zostały wyłączone. Spróbuj zarejestrować się ponownie w Ustawienia &gt; Zaawansowane.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się w Usługach Google Play. Wiadomości i połączenia Signal zostały wyłączone. Spróbuj zarejestrować się ponownie w Ustawienia &gt; Zaawansowane.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Błąd podczas pobierania pliku GIF w pełnej rozdzielczości</string>
   <!--GiphyFragmentPageAdapter-->
@@ -1316,7 +1311,7 @@
   <string name="PlacePickerActivity_drop_pin">Umieść znacznik</string>
   <string name="PlacePickerActivity_accept_address">Zaakceptuj adres</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Google Play Services którą masz zainstalowaną nie funkcjonuje poprawnie. Proszę przeinstaluj tę aplikację ponownie i spróbuj ponownie.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Usług Google Play, którą masz zainstalowaną, nie funkcjonuje poprawnie. Przeinstaluj tę aplikację i spróbuj ponownie.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Nieprawidłowy PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pominąć wpisywanie PIN-u?</string>
@@ -1486,7 +1481,7 @@
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play na tym urządzeniu. Nadal możesz używać Signal, lecz ta konfiguracja może powodować mniejszą niezawodność i wydajność\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego systemu Android lub sądzisz, że to błąd, wyślij e-mail na adres support@signal.org, aby otrzymać pomoc.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
   <string name="RegistrationActivity_play_services_error">Błąd Usług Play</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Sklepu Google Play lub są one niedostępne. Spróbuj ponownie.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Google Play lub są one niedostępne. Spróbuj ponownie.</string>
   <string name="RegistrationActivity_terms_and_privacy">Regulamin &amp; Polityka prywatności</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów i plików multimedialnych w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
@@ -2577,7 +2572,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="Insights__title">Statystyki</string>
   <string name="InsightsDashboardFragment__title">Statystyki</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokół Signal automatycznie ochronił %1$d%% Twoich wysłanych wiadomości, w ciągu ostatnich %2$d dni. Konwersacje pomiędzy użytkownikami aplikacji Signal są zawsze szyfrowane metodą end-to-end.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Zabezpiecz więcej konwersacji</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Zabezpiecz więcej konwersacji</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Za mało danych</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Twoja statystyka procentowa jest obliczana na podstawie ilości wiadomości, które nie zniknęły, ani nie zostały usunięte, wysłanych w ciągu ostatnich %1$ddni.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Rozpocznij rozmowę</string>
@@ -3548,6 +3543,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ustaw wyświetlaną odznakę</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotowe</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiedy masz więcej, niż jedną odznakę, możesz zdecydować, którą z nich pokazać na swoim profilu.</string>
+  <string name="BecomeASustainerFragment__get_badges">Zdobywaj odznaki dla swojego profilu, wspierając Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi takich, jak Ty.</string>
   <string name="ManageDonationsFragment__my_support">Moje wsparcie</string>
   <string name="ManageDonationsFragment__manage_subscription">Zarządzaj subskrypcją</string>
   <string name="ManageDonationsFragment__badges">Odznaki</string>
@@ -3561,7 +3558,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MySupportPreference__s_per_month">%1$s/miesiąc</string>
   <string name="MySupportPreference__renews_s">Przedłużane %1$s</string>
   <string name="MySupportPreference__processing_transaction">Przetwarzanie transakcji…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Nie udało się dodać odznaki.</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Nie udało się dodać odznaki. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Skontaktuj się z pomocą techniczną.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Twoja odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Odznaka wygasła</string>
@@ -3574,17 +3572,19 @@ danych, rozważ miesięczną subskrypcję.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Twoja subskrypcja Wspierającego została automatycznie anulowana, gdyż zbyt długo pozostajesz nieaktywny(a). Twoja odznaka %1$s nie jest już widoczna w Twoim profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, złóż datek.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Odnów subskrypcję</string>
-  <string name="Subscription__verification_failed">Weryfikacja subskrypcji nie powiodła się</string>
-  <string name="Subscription__redemption_failed">Nie udało się odebrać odznaki</string>
   <string name="Subscription__please_contact_support_for_more_information">Skontaktuj się z pomocą techniczną, aby uzyskać więcej informacji.</string>
   <string name="Subscription__contact_support">Kontakt z pomocą techniczną</string>
   <string name="Subscription__earn_a_s_badge">Zdobądź odznakę %1$s</string>
   <string name="SubscribeFragment__processing_payment">Przetwarzanie płatności…</string>
-  <string name="DonationsErrors__payment_failed">Płatność nie powiodła się</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Błąd przetwarzania płatności</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Błąd przetwarzania płatności. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Nie udało się dodać odznaki do Twojego profilu, ale Twoje konto mogło zostać obciążone. Skontaktuj się z pomocą techniczną.</string>
   <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
   <string name="DonationsErrors__still_processing">Trwa przetwarzanie</string>
-  <string name="DonationsErrors__redemption_failed">Odbieranie nieudane</string>
-  <string name="DonationsErrors__please_contact_support">Skontaktuj się z pomocą techniczną</string>
+  <string name="DonationsErrors__couldnt_add_badge">Nie udało się dodać odznaki</string>
+  <string name="DonationsErrors__your_badge_could_not">Nie udało się dodać odznaki do Twojego profilu, ale Twoje konto mogło zostać obciążone. Skontaktuj się z pomocą techniczną.</string>
   <string name="DonationsErrors__your_payment_is_still">Twoja płatność wciąż jest przetwarzana. W zależności od Twojego połączenia z siecią, to może potrwać kilka minut.</string>
   <string name="DonationsErrors__google_pay_unavailable">Aplikacja Google Pay nie jest dostępna</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musisz skonfigurować Google Pay, aby móc płacić w aplikacji.</string>

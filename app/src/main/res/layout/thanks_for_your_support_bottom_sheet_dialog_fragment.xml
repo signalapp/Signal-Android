@@ -1,150 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/thanks_bottom_sheet_handle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:importantForAccessibility="no"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bottom_sheet_handle" />
 
-    <TextView
-        android:id="@+id/thanks_bottom_sheet_heading"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:gravity="center"
-        android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support"
-        android:textAppearance="@style/TextAppearance.Signal.Title2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_handle" />
-
-    <TextView
-        android:id="@+id/thanks_bottom_sheet_subhead"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:gravity="center"
-        android:textAppearance="@style/Signal.Text.Body"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_heading"
-        tools:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge_help_signal" />
-
-    <org.thoughtcrime.securesms.badges.BadgeImageView
-        android:id="@+id/thanks_bottom_sheet_badge"
-        android:layout_width="112dp"
-        android:layout_height="112dp"
-        android:layout_marginTop="26dp"
-        app:badge_size="xlarge"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_subhead"
-        tools:src="@drawable/test_gradient" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/thanks_bottom_sheet_lottie"
-        android:layout_width="112dp"
-        android:layout_height="112dp"
-        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_badge"
-        app:layout_constraintEnd_toEndOf="@id/thanks_bottom_sheet_badge"
-        app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_badge"
-        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_badge"
-        app:lottie_rawRes="@raw/lottie_rocket" />
-
-    <TextView
-        android:id="@+id/thanks_bottom_sheet_badge_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.Signal.Title2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_badge"
-        tools:text="Signal Meteor" />
-
-    <View
-        android:id="@+id/thanks_bottom_sheet_control_outline"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/rounded_outline"
-        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_control_text"
-        app:layout_constraintEnd_toEndOf="@id/thanks_bottom_sheet_switch"
-        app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_control_text"
-        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_control_text" />
-
-    <TextView
-        android:id="@+id/thanks_bottom_sheet_control_text"
-        android:layout_width="0dp"
-        android:layout_height="48sp"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:gravity="center_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile"
-        android:textAppearance="@style/TextAppearance.Signal.Body1"
-        app:layout_constraintEnd_toStartOf="@id/thanks_bottom_sheet_switch"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_badge_name" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/thanks_bottom_sheet_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="48sp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_control_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/thanks_bottom_sheet_control_text"
-        app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_control_text" />
-
-    <TextView
-        android:id="@+id/thanks_bottom_sheet_featured_note"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="40dp"
-        android:text="@string/ThanksForYourSupportBottomSheetFragment__when_you_have_more"
-        android:textAppearance="@style/Signal.Text.Caption"
-        android:textColor="@color/signal_text_secondary"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_control_outline"
-        tools:visibility="visible" />
+        android:fillViewport="true">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/thanks_bottom_sheet_done"
-        style="@style/Signal.Widget.Button.Large.Primary"
-        android:layout_width="0dp"
-        android:layout_height="48sp"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:layout_marginBottom="16dp"
-        android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__done"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_featured_note"
-        app:layout_goneMarginTop="36dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/thanks_bottom_sheet_heading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:gravity="center"
+                android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support"
+                android:textAppearance="@style/TextAppearance.Signal.Title2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/thanks_bottom_sheet_subhead"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:gravity="center"
+                android:textAppearance="@style/Signal.Text.Body"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_heading"
+                tools:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support" />
+
+            <org.thoughtcrime.securesms.badges.BadgeImageView
+                android:id="@+id/thanks_bottom_sheet_badge"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_marginTop="26dp"
+                app:badge_size="xlarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_subhead"
+                tools:src="@drawable/test_gradient" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/thanks_bottom_sheet_lottie"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_badge"
+                app:layout_constraintEnd_toEndOf="@id/thanks_bottom_sheet_badge"
+                app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_badge"
+                app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_badge"
+                app:lottie_rawRes="@raw/lottie_rocket" />
+
+            <TextView
+                android:id="@+id/thanks_bottom_sheet_badge_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.Signal.Title2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_badge"
+                tools:text="Signal Meteor" />
+
+            <View
+                android:id="@+id/thanks_bottom_sheet_control_outline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/rounded_outline"
+                app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_control_text"
+                app:layout_constraintEnd_toEndOf="@id/thanks_bottom_sheet_switch"
+                app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_control_text"
+                app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_control_text" />
+
+            <TextView
+                android:id="@+id/thanks_bottom_sheet_control_text"
+                android:layout_width="0dp"
+                android:layout_height="48sp"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                app:layout_constraintEnd_toStartOf="@id/thanks_bottom_sheet_switch"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_badge_name" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/thanks_bottom_sheet_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="48sp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_control_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/thanks_bottom_sheet_control_text"
+                app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_control_text" />
+
+            <TextView
+                android:id="@+id/thanks_bottom_sheet_featured_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:text="@string/ThanksForYourSupportBottomSheetFragment__when_you_have_more"
+                android:textAppearance="@style/Signal.Text.Caption"
+                android:textColor="@color/signal_text_secondary"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_control_outline"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/thanks_bottom_sheet_done"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="0dp"
+                android:layout_height="48sp"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:layout_marginBottom="16dp"
+                android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__done"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_featured_note"
+                app:layout_goneMarginTop="36dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

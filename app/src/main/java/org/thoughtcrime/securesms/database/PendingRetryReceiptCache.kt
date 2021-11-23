@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 class PendingRetryReceiptCache @VisibleForTesting constructor(
   private val database: PendingRetryReceiptDatabase
 ) {
-  constructor(context: Context) : this(DatabaseFactory.getPendingRetryReceiptDatabase(context))
+  constructor(context: Context) : this(SignalDatabase.pendingRetryReceipts)
 
   private val pendingRetries: MutableMap<RemoteMessageId, PendingRetryReceiptModel> = HashMap()
   private var populated: Boolean = false

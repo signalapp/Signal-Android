@@ -279,7 +279,7 @@
     <item quantity="other">Pohranjujem %1$d priloga u memoriju…</item>
   </plurals>
   <string name="ConversationFragment_pending">U obradi…</string>
-  <string name="ConversationFragment_push">Mobilna mreža (Signal)</string>
+  <string name="ConversationFragment_push">Internet (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brisanje</string>
@@ -459,11 +459,6 @@
   <string name="DeviceListItem_today">Danas</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Datoteka bez naziva</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donirajte za Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal postoji zahvaljujući osobama poput Vas. Pokažite svoju podršku već danas!</string>
-  <string name="DonateMegaphone_donate">Doniraj</string>
-  <string name="DonateMegaphone_no_thanks">Ne, hvala</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Novo: grupni pozivi</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otvorite novu grupu da započnete besplatni zaštićeni grupni poziv</string>
@@ -2273,7 +2268,7 @@
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Koristite Signal za slanje i primanje MobileCoina, nove digitalne valute s fokusom na privatnost. Aktivirajte da započnete.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktiviraj plaćanja</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktiviram plaćanja…</string>
-  <string name="PaymentsHomeFragment__restore_payments_account">Vrati račun s uplatama i isplatama</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Obnovi račun s uplatama i isplatama</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Nema aktivnosti</string>
   <string name="PaymentsHomeFragment__pending_requests">Zahtjevi na čekanju</string>
   <string name="PaymentsHomeFragment__recent_activity">Zadnja aktivnost</string>
@@ -2498,7 +2493,7 @@
   <string name="Insights__title">Statistika</string>
   <string name="InsightsDashboardFragment__title">Statistika</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokol automatski je zaštitio %1$d%% poruka koje ste poslali u zadnjih %2$d dana. Komunikacija između korisnika Signala uvijek je šifrirana od uređaja pošiljaoca do uređaja primaoca.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Snaga Signala</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Snaga Signala</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Nedovoljno podataka</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procenat prikazan ovdje izračunava se na temelju poslatih poruka u zadnjih %1$d dana, a koje nisu istekle ili izbrisane.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Započnite komunikaciju</string>
@@ -3007,9 +3002,9 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">O MobileCoinu</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin je nova digitalna valuta s fokusom na privatnost.</string>
-  <string name="payment_info_card_adding_funds">Dodajem sredstva</string>
+  <string name="payment_info_card_adding_funds">Uplata sredstava</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Možete dodati sredstva za korištenje putem Signala tako što ćete poslati MobileCoin na adresu svoga novčanika.</string>
-  <string name="payment_info_card_cashing_out">Unovčavam</string>
+  <string name="payment_info_card_cashing_out">Unovčavanje</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">U svakom trenutku možete unovčiti MobileCoin na nekoj od berzi koje ga podržavaju. Jednostavno izvršite prenos na svoj račun koji imate otvoren na toj berzi.</string>
   <string name="payment_info_card_hide_this_card">Sakriti ovu karticu?</string>
   <string name="payment_info_card_hide">Sakrij</string>
@@ -3458,6 +3453,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Odredi za odabranu značku</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Uredu</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kad posjedujete više od jedne značke, možete birati koju od njih želite prezentovati drugima na svom profilu.</string>
+  <string name="BecomeASustainerFragment__get_badges">Nabavite značke za svoj profil podržavši Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je neprofitna organizacija iza koje ne stoje oglašivači i investitori već je održavaju ljudi poput Vas.</string>
   <string name="ManageDonationsFragment__my_support">Moja podrška</string>
   <string name="ManageDonationsFragment__manage_subscription">Upravljaj pretplatom</string>
   <string name="ManageDonationsFragment__badges">Značke</string>
@@ -3471,7 +3468,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MySupportPreference__s_per_month">%1$s/mjesecu</string>
   <string name="MySupportPreference__renews_s">Obnavlja se %1$s</string>
   <string name="MySupportPreference__processing_transaction">Obrađujem transakciju…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Nije bilo moguće dodati značku.</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Nije bilo moguće dodati značku. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Molimo kontaktirajte podršku.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaša je značka istekla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Značka je istekla</string>
@@ -3483,17 +3481,19 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaša pretplata automatski je otkazana jer ste predugo bili neaktivni. Vaša  \"%1$s\" značka više nije prikazana na Vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Možete nastaviti s korištenjem Signala, ali ako želite pružiti podršku aplikaciji i ponovo aktivirati svoju značku, obnovite pretplatu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovi pretplatu</string>
-  <string name="Subscription__verification_failed">Ovjera pretplate nije uspjela</string>
-  <string name="Subscription__redemption_failed">Povrat značke nije uspio</string>
   <string name="Subscription__please_contact_support_for_more_information">Molimo kontaktirajte podršku za više informacija.</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
   <string name="Subscription__earn_a_s_badge">Zaslužite %1$s značku</string>
   <string name="SubscribeFragment__processing_payment">Obrađujem…</string>
-  <string name="DonationsErrors__payment_failed">Plaćanje nije uspjelo</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Greška prilikom obrađivanja uplate</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Greška prilikom obrađivanja uplate. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Vašu značku nije bilo moguće dodati na Vaš račun, ali je moguće da je uplata prošla. Molimo, kontaktirajte podršku.</string>
   <string name="DonationsErrors__your_payment">Vašu uplatu nije bilo moguće obraditi i iznos nije naplaćen. Molimo, pokušajte ponovo.</string>
   <string name="DonationsErrors__still_processing">Još uvijek obrađujem</string>
-  <string name="DonationsErrors__redemption_failed">Uplata nije prošla</string>
-  <string name="DonationsErrors__please_contact_support">Molimo kontaktirajte podršku</string>
+  <string name="DonationsErrors__couldnt_add_badge">Nije bilo moguće dodati značku</string>
+  <string name="DonationsErrors__your_badge_could_not">Vašu značku nije bilo moguće dodati na Vaš račun, ali je moguće da je uplata prošla. Molimo, kontaktirajte podršku.</string>
   <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još obrađuje. To može potrajati nekoliko minuta, zavisno od kvaliteta Vaše konekcije.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nedostupan</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Morate podesiti Google Pay da biste donirali kroz aplikaciju.</string>

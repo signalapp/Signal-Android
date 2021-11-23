@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-class SessionStoreMigrationHelper {
+public final class SessionStoreMigrationHelper {
 
   private static final String TAG = Log.tag(SessionStoreMigrationHelper.class);
 
@@ -28,7 +28,7 @@ class SessionStoreMigrationHelper {
   private static final int PLAINTEXT_VERSION      = 3;
   private static final int CURRENT_VERSION        = 3;
 
-  static void migrateSessions(Context context, SQLiteDatabase database) {
+  public static void migrateSessions(Context context, SQLiteDatabase database) {
     File directory = new File(context.getFilesDir(), SESSIONS_DIRECTORY_V2);
 
     if (directory.exists()) {

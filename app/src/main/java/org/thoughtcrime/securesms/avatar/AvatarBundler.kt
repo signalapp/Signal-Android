@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.avatar
 
 import android.os.Bundle
-import java.lang.IllegalStateException
 
 /**
  * Utility class which encapsulates reading and writing Avatar objects to and from Bundles.

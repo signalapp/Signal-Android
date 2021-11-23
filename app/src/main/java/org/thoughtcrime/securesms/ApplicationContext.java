@@ -37,10 +37,11 @@ import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
+import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
@@ -123,7 +124,12 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     super.onCreate();
 
     AppStartup.getInstance().addBlocking("security-provider", this::initializeSecurityProvider)
-                            .addBlocking("sqlcipher-init", () -> SqlCipherLibraryLoader.load())
+                            .addBlocking("sqlcipher-init", () -> {
+                              SqlCipherLibraryLoader.load();
+                              SignalDatabase.init(this,
+                                                  DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
+                                                  AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
+                            })
                             .addBlocking("logging", () -> {
                               initializeLogging();
                               Log.i(TAG, "onCreate()");
@@ -176,7 +182,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(() -> SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(this)))
                             .addPostRender(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
                             .addPostRender(EmojiSearchIndexDownloadJob::scheduleIfNecessary)
-                            .addPostRender(() -> DatabaseFactory.getMessageLogDatabase(this).trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge()))
+                            .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge()))
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
@@ -284,7 +290,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   private void initializeFirstEverAppLaunch() {
     if (TextSecurePreferences.getFirstInstallVersion(this) == -1) {
-      if (!SQLCipherOpenHelper.databaseFileExists(this) || VersionTracker.getDaysSinceFirstInstalled(this) < 365) {
+      if (!SignalDatabase.databaseFileExists(this) || VersionTracker.getDaysSinceFirstInstalled(this) < 365) {
         Log.i(TAG, "First ever app launch!");
         AppInitialization.onFirstEverAppLaunch(this);
       }
@@ -389,7 +395,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @WorkerThread
   private void initializeCleanup() {
-    int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
+    int deleted = SignalDatabase.attachments().deleteAbandonedPreuploadedAttachments();
     Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
   }
 

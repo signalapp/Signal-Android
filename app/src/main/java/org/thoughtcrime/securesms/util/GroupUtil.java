@@ -12,8 +12,8 @@ import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
@@ -120,7 +120,7 @@ public final class GroupUtil {
                                                 @NonNull GroupId.Push groupId)
   {
     if (groupId.isV2()) {
-        GroupDatabase                   groupDatabase     = DatabaseFactory.getGroupDatabase(context);
+        GroupDatabase                   groupDatabase     = SignalDatabase.groups();
         GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
         GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
         SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())

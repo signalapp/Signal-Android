@@ -11,6 +11,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.util.concurrent.TimeUnit
 
 class AppSettingsViewModel(private val subscriptionsRepository: SubscriptionsRepository) : ViewModel() {
@@ -37,8 +39,12 @@ class AppSettingsViewModel(private val subscriptionsRepository: SubscriptionsRep
     }
 
     subscriptionsRepository.getActiveSubscription().subscribeBy(
-      onSuccess = { subscription -> store.update { it.copy(hasActiveSubscription = subscription.isActive) } },
+      onSuccess = { subscription -> store.update { it.copy(hasActiveSubscription = subscription.activeSubscription != null) } },
       onError = { throwable ->
+        if (throwable.isNotFoundException()) {
+          Log.w(TAG, "Could not load active subscription due to unset SubscriberId (404).")
+        }
+
         Log.w(TAG, "Could not load active subscription", throwable)
       }
     )
@@ -52,5 +58,9 @@ class AppSettingsViewModel(private val subscriptionsRepository: SubscriptionsRep
 
   companion object {
     private val TAG = Log.tag(AppSettingsViewModel::class.java)
+  }
+
+  private fun Throwable.isNotFoundException(): Boolean {
+    return this is PushNetworkException && this.cause is NotFoundException || this is NotFoundException
   }
 }

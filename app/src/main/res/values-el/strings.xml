@@ -435,11 +435,6 @@
   <string name="DeviceListItem_today">Σήμερα</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ανώνυμο αρχείο</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Κάνε μια δωρεά στο Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Το Signal στηρίζεται σε άτομα σαν και σένα. Δείξε την υποστήριξή σου!</string>
-  <string name="DonateMegaphone_donate">Δωρεά</string>
-  <string name="DonateMegaphone_no_thanks">Όχι ευχαριστώ</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ήρθαν οι Ομαδικές κλήσεις</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Δημιούργησε μια Ομάδα νέου τύπου για να κάνεις μια ελεύθερη, κρυπτογραφημένη ομαδική κλήση.</string>
@@ -746,7 +741,7 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Είσαι ήδη μέλος</string>
-  <string name="GroupJoinBottomSheetDialogFragment_join">Γίνε μέλος</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Μπες</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Αίτηση εισόδου</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Αποτυχία εισόδου στην ομάδα. Παρακαλώ ξαναπροσπάθησε αργότερα</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
@@ -2343,7 +2338,7 @@
   <string name="Insights__title">Στατιστικά</string>
   <string name="InsightsDashboardFragment__title">Στατιστικά</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Το Signal Protocol προστάτευσε αυτόματα το %1$d%% των εξερχόμενων μηνυμάτων σου, τις τελευταίες %2$d ημέρες. Οι συνομιλίες μεταξύ χρηστών του Signal είναι πάντα κρυπτογραφημένες από άκρο σε άκρο.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Ενίσχυση Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Ενίσχυση Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Δεν υπάρχουν αρκετά δεδομένα</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Το ποσοστό στα στατιστικά σου υπολογίζεται με βάση τα εξερχόμενα μηνυμάτων τις τελευταίες %1$d ημέρες, που δεν έχουν εξαφανιστεί ή διαγραφτεί.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Ξεκίνα μια συνομιλία</string>
@@ -3200,6 +3195,7 @@
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα, όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν το Signal.</string>
   <string name="SubscribeFragment__currency">Νόμισμα</string>
+  <string name="SubscribeFragment__more_payment_options">Περισσότεροι τρόποι πληρωμής</string>
   <string name="SubscribeFragment__cancel_subscription">Ακύρωση συνδρομής</string>
   <string name="SubscribeFragment__confirm_cancellation">Επιβεβαίωση ακύρωσης;</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Δεν θα χρεωθείς ξανά. Το έμβλημά σου θα αφαιρεθεί από το προφίλ σου στο τέλος της περιόδου για την οποία έχεις χρεωθεί.</string>
@@ -3228,6 +3224,8 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Να γίνει το βασικό έμβλημα</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου.</string>
+  <string name="BecomeASustainerFragment__get_badges">Στηρίζοντας το Signal παίρνεις εμβλήματα για το προφίλ σου. </string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Το Signal είναι μια μη κερδοσκοπική οργάνωση, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα σαν κι εσένα.</string>
   <string name="ManageDonationsFragment__my_support">Η υποστήριξή μου</string>
   <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
   <string name="ManageDonationsFragment__badges">Εμβλήματα</string>
@@ -3240,8 +3238,9 @@
   <string name="MySupportPreference__add_a_signal_boost">Προσθήκη Ενίσχυσης Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/μήνα</string>
   <string name="MySupportPreference__renews_s">Ανανεώνεται %1$s</string>
-  <string name="MySupportPreference__processing_transaction">Επεξεργασία πληρωμής…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Αδυναμία προσθήκης εμβλήματος.</string>
+  <string name="MySupportPreference__processing_transaction">Επεξεργασία συναλλαγής…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Αδυναμία προσθήκης εμβλήματος. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Το έμβλημά σου έληξε</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Το έμβλημα έληξε</string>
@@ -3253,17 +3252,19 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Η συνδρομή υποστηρικτή σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το έμβλημά σου, ανανέωσε τώρα.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Ανανέωση συνδρομής</string>
-  <string name="Subscription__verification_failed">Αποτυχία επιβεβαίωσης συνδρομής</string>
-  <string name="Subscription__redemption_failed">Αποτυχία εξαργύρωσης εμβλήματος</string>
   <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>
   <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
   <string name="Subscription__earn_a_s_badge">Κέρδισε ένα έμβλημα %1$s</string>
   <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
-  <string name="DonationsErrors__payment_failed">Η πληρωμή απέτυχε</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Σφάλμα κατά την επεξεργασία της πληρωμής</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Σφάλμα κατά την επεξεργασία της πληρωμής. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Το έμβλημά σου δεν μπόρεσε να προστεθεί στο λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
   <string name="DonationsErrors__still_processing">Ακόμα επεξεργάζεται</string>
-  <string name="DonationsErrors__redemption_failed">Η εξαργύρωση απέτυχε</string>
-  <string name="DonationsErrors__please_contact_support">Παρακαλώ επικοινώνησε με την υποστήριξη</string>
+  <string name="DonationsErrors__couldnt_add_badge">Αδυναμία προσθήκης εμβλήματος</string>
+  <string name="DonationsErrors__your_badge_could_not">Το έμβλημά σου δεν μπόρεσε να προστεθεί στο λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="DonationsErrors__your_payment_is_still">Η πληρωμή σου βρίσκεται ακόμα σε επεξεργασία. Μπορεί να πάρει ακόμα μερικά λεπτά, ανάλογα με τη σύνδεσή σου.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay μη διαθέσιμο</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Πρέπει να ενεργοποιήσεις το Google Pay για να κάνεις δωρεά μέσω της εφαρμογής.</string>

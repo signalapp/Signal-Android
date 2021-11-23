@@ -30,7 +30,6 @@ import net.zetetic.database.sqlcipher.SQLiteQueryBuilder;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MessageDatabase.ThreadUpdate;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -116,7 +115,7 @@ public class MmsSmsDatabase extends Database {
                                               "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
                                               "LIMIT 1";
 
-  public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public MmsSmsDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -141,8 +140,8 @@ public class MmsSmsDatabase extends Database {
   }
 
   private @NonNull Pair<RecipientId, Long> getGroupAddedBy(long threadId, long lastQuitChecked) {
-    MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-    MessageDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
+    MessageDatabase mmsDatabase = SignalDatabase.mms();
+    MessageDatabase smsDatabase = SignalDatabase.sms();
     long            latestQuit  = mmsDatabase.getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
     RecipientId     id          = smsDatabase.getOldestGroupUpdateSender(threadId, latestQuit);
 
@@ -182,9 +181,9 @@ public class MmsSmsDatabase extends Database {
   }
 
   public @NonNull List<MessageRecord> getMessagesAfterVoiceNoteInclusive(long messageId, long limit) throws NoSuchMessageException {
-    MessageRecord       origin = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
-    List<MessageRecord> mms    = DatabaseFactory.getMmsDatabase(context).getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
-    List<MessageRecord> sms    = DatabaseFactory.getSmsDatabase(context).getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
+    MessageRecord       origin = SignalDatabase.mms().getMessageRecord(messageId);
+    List<MessageRecord> mms    = SignalDatabase.mms().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
+    List<MessageRecord> sms    = SignalDatabase.sms().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
 
     mms.addAll(sms);
     Collections.sort(mms, (a, b) -> Long.compare(a.getDateReceived(), b.getDateReceived()));
@@ -214,9 +213,9 @@ public class MmsSmsDatabase extends Database {
         long    id    = CursorUtil.requireLong(cursor, MmsSmsColumns.ID);
 
         if (isMms) {
-          return DatabaseFactory.getMmsDatabase(context).getMessageRecord(id);
+          return SignalDatabase.mms().getMessageRecord(id);
         } else {
-          return DatabaseFactory.getSmsDatabase(context).getMessageRecord(id);
+          return SignalDatabase.sms().getMessageRecord(id);
         }
       } else {
         throw new NoSuchMessageException("no message");
@@ -275,8 +274,8 @@ public class MmsSmsDatabase extends Database {
   }
 
   public boolean checkMessageExists(@NonNull MessageRecord messageRecord) {
-    MessageDatabase db = messageRecord.isMms() ? DatabaseFactory.getMmsDatabase(context)
-                                               : DatabaseFactory.getSmsDatabase(context);
+    MessageDatabase db = messageRecord.isMms() ? SignalDatabase.mms()
+                                               : SignalDatabase.sms();
 
     try (Cursor cursor = db.getMessageCursor(messageRecord.getId())) {
       return cursor != null && cursor.getCount() > 0;
@@ -288,8 +287,8 @@ public class MmsSmsDatabase extends Database {
       return 0;
     }
 
-    int count = DatabaseFactory.getSmsDatabase(context).getSecureMessageCount(threadId);
-    count    += DatabaseFactory.getMmsDatabase(context).getSecureMessageCount(threadId);
+    int count = SignalDatabase.sms().getSecureMessageCount(threadId);
+    count    += SignalDatabase.mms().getSecureMessageCount(threadId);
 
     return count;
   }
@@ -299,34 +298,34 @@ public class MmsSmsDatabase extends Database {
       return 0;
     }
 
-    int count = DatabaseFactory.getSmsDatabase(context).getOutgoingSecureMessageCount(threadId);
-    count    += DatabaseFactory.getMmsDatabase(context).getOutgoingSecureMessageCount(threadId);
+    int count = SignalDatabase.sms().getOutgoingSecureMessageCount(threadId);
+    count    += SignalDatabase.mms().getOutgoingSecureMessageCount(threadId);
 
     return count;
   }
 
   public int getConversationCount(long threadId) {
-    int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThread(threadId);
-    count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
+    int count = SignalDatabase.sms().getMessageCountForThread(threadId);
+    count    += SignalDatabase.mms().getMessageCountForThread(threadId);
 
     return count;
   }
 
   public int getConversationCount(long threadId, long beforeTime) {
-    return DatabaseFactory.getSmsDatabase(context).getMessageCountForThread(threadId, beforeTime) +
-           DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId, beforeTime);
+    return SignalDatabase.sms().getMessageCountForThread(threadId, beforeTime) +
+           SignalDatabase.mms().getMessageCountForThread(threadId, beforeTime);
   }
 
   public int getInsecureSentCount(long threadId) {
-    int count  = DatabaseFactory.getSmsDatabase(context).getInsecureMessagesSentForThread(threadId);
-    count     += DatabaseFactory.getMmsDatabase(context).getInsecureMessagesSentForThread(threadId);
+    int count  = SignalDatabase.sms().getInsecureMessagesSentForThread(threadId);
+    count     += SignalDatabase.mms().getInsecureMessagesSentForThread(threadId);
 
     return count;
   }
 
   public int getInsecureMessageCountForInsights() {
-    int count = DatabaseFactory.getSmsDatabase(context).getInsecureMessageCountForInsights();
-    count    += DatabaseFactory.getMmsDatabase(context).getInsecureMessageCountForInsights();
+    int count = SignalDatabase.sms().getInsecureMessageCountForInsights();
+    count    += SignalDatabase.mms().getInsecureMessageCountForInsights();
 
     return count;
   }
@@ -344,8 +343,8 @@ public class MmsSmsDatabase extends Database {
   }
 
   public int getSecureMessageCountForInsights() {
-    int count = DatabaseFactory.getSmsDatabase(context).getSecureMessageCountForInsights();
-    count    += DatabaseFactory.getMmsDatabase(context).getSecureMessageCountForInsights();
+    int count = SignalDatabase.sms().getSecureMessageCountForInsights();
+    count    += SignalDatabase.mms().getSecureMessageCountForInsights();
 
     return count;
   }
@@ -355,14 +354,14 @@ public class MmsSmsDatabase extends Database {
       return false;
     }
 
-    return DatabaseFactory.getSmsDatabase(context).hasMeaningfulMessage(threadId) ||
-           DatabaseFactory.getMmsDatabase(context).hasMeaningfulMessage(threadId);
+    return SignalDatabase.sms().hasMeaningfulMessage(threadId) ||
+           SignalDatabase.mms().hasMeaningfulMessage(threadId);
   }
 
   public long getThreadForMessageId(long messageId) {
-    long id = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
+    long id = SignalDatabase.sms().getThreadIdForMessage(messageId);
 
-    if (id == -1) return DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
+    if (id == -1) return SignalDatabase.mms().getThreadIdForMessage(messageId);
     else          return id;
   }
 
@@ -403,7 +402,7 @@ public class MmsSmsDatabase extends Database {
    */
   private boolean incrementReceiptCount(SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
     SQLiteDatabase    db             = databaseHelper.getSignalWritableDatabase();
-    ThreadDatabase    threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    ThreadDatabase    threadDatabase = SignalDatabase.threads();
     Set<ThreadUpdate> threadUpdates  = new HashSet<>();
 
     db.beginTransaction();
@@ -437,7 +436,7 @@ public class MmsSmsDatabase extends Database {
    */
   private @NonNull Collection<SyncMessageId> incrementReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
     SQLiteDatabase            db             = databaseHelper.getSignalWritableDatabase();
-    ThreadDatabase            threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    ThreadDatabase            threadDatabase = SignalDatabase.threads();
     Set<ThreadUpdate>         threadUpdates  = new HashSet<>();
     Collection<SyncMessageId> unhandled      = new HashSet<>();
 
@@ -484,8 +483,8 @@ public class MmsSmsDatabase extends Database {
   private @NonNull Set<ThreadUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageDatabase.ReceiptType receiptType) {
     Set<ThreadUpdate> threadUpdates = new HashSet<>();
 
-    threadUpdates.addAll(DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, receiptType));
-    threadUpdates.addAll(DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, receiptType));
+    threadUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
+    threadUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
 
     return threadUpdates;
   }
@@ -538,7 +537,7 @@ public class MmsSmsDatabase extends Database {
   }
 
   boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
-    return DatabaseFactory.getSmsDatabase(context).hasReceivedAnyCallsSince(threadId, timestamp);
+    return SignalDatabase.sms().hasReceivedAnyCallsSince(threadId, timestamp);
   }
 
   /**
@@ -576,27 +575,27 @@ public class MmsSmsDatabase extends Database {
   }
 
   public void setNotifiedTimestamp(long timestamp, @NonNull List<Long> smsIds, @NonNull List<Long> mmsIds) {
-    DatabaseFactory.getSmsDatabase(context).setNotifiedTimestamp(timestamp, smsIds);
-    DatabaseFactory.getMmsDatabase(context).setNotifiedTimestamp(timestamp, mmsIds);
+    SignalDatabase.sms().setNotifiedTimestamp(timestamp, smsIds);
+    SignalDatabase.mms().setNotifiedTimestamp(timestamp, mmsIds);
   }
 
   public int deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
     Log.d(TAG, "deleteMessagesInThreadBeforeData(" + threadId + ", " + trimBeforeDate + ")");
-    int deletes = DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
-    deletes += DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    int deletes = SignalDatabase.sms().deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    deletes += SignalDatabase.mms().deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
     return deletes;
   }
 
   public void deleteAbandonedMessages() {
     Log.d(TAG, "deleteAbandonedMessages()");
-    DatabaseFactory.getSmsDatabase(context).deleteAbandonedMessages();
-    DatabaseFactory.getMmsDatabase(context).deleteAbandonedMessages();
+    SignalDatabase.sms().deleteAbandonedMessages();
+    SignalDatabase.mms().deleteAbandonedMessages();
   }
 
   public @NonNull List<MessageDatabase.ReportSpamData> getReportSpamMessageServerData(long threadId, long timestamp, int limit) {
     List<MessageDatabase.ReportSpamData> data = new ArrayList<>();
-    data.addAll(DatabaseFactory.getSmsDatabase(context).getReportSpamMessageServerGuids(threadId, timestamp));
-    data.addAll(DatabaseFactory.getMmsDatabase(context).getReportSpamMessageServerGuids(threadId, timestamp));
+    data.addAll(SignalDatabase.sms().getReportSpamMessageServerGuids(threadId, timestamp));
+    data.addAll(SignalDatabase.mms().getReportSpamMessageServerGuids(threadId, timestamp));
     return data.stream()
                .sorted((l, r) -> -Long.compare(l.getDateReceived(), r.getDateReceived()))
                .limit(limit)

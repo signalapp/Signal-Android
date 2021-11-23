@@ -1461,7 +1461,7 @@
   <string name="Insights__title">Wawasan</string>
   <string name="InsightsDashboardFragment__title">Wawasan</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol Signal sacara otomatis nglindhungi %1$d%% pesen medal sampeyan ngantos %2$d dinten lajeng. Obrolan antawis panggina Signal bakal tansah dienkripsi sacara end-to-end.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Paningkat Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Paningkat Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Data mboten cekap</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Persentasi wawasan sampeyan dipunetang berdhasar pesen ingkang medal ngantos %1$d dinten lajeng ingkang mboten ngical utawi dipunbrusak.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Awiti obrolan</string>

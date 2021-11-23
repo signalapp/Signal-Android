@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Dnes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nepojmenovaný soubor</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Podpořte Signal finančně</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim dnes svoji podporu!</string>
-  <string name="DonateMegaphone_donate">Sponzorujte</string>
-  <string name="DonateMegaphone_no_thanks">Ne, děkuji</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Představujeme skupinové hovory</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Zahájit bezplatné skupinové hovory lze po otevření nové skupiny.</string>
@@ -790,6 +785,7 @@
   <string name="ManageProfileFragment_your_username">Vaše uživatelské jméno</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepodařilo se nastavit avatar</string>
   <string name="ManageProfileFragment_badges">Odznaky</string>
+  <string name="ManageProfileFragment__edit_photo">Upravit fotku</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Žádné společné skupiny</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1495,6 +1491,9 @@ telefonní číslo
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potřebuje přístup k vašim kontaktům, aby bylo možné propojení s přáteli, vyměňování zpráv a uskutečňování zabezpečených hovorů. </string>
   <string name="RegistrationActivity_rate_limited_to_service">Učinili jste příliš mnoho pokusů zaregistrovat toto číslo. Zkuste to prosím znovu později.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nelze se připojit k službě. Prosím zkontrolujte připojení k internetu a poté to zkuste znovu.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Nestandardní formát čísla</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Zadané číslo (%1$s) má zřejmě nestandardní formát.\n\nMysleli jste %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal pro Android - Formát telefonního čísla</string>
   <string name="RegistrationActivity_call_requested">Vyžádané volání</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Zbývá vám %d krok k odeslání ladícího logu.</item>
@@ -2113,6 +2112,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Vyberte jednu z možností prosím \-\-</item>
+    <item>Něco nefunguje</item>
+    <item>Požadavek na zlepšení</item>
+    <item>Dotaz</item>
+    <item>Zpětná vazba</item>
+    <item>Jiné</item>
+    <item>Platby (MobileCoin)</item>
+    <item>Dary &amp; Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -2212,6 +2221,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__advanced">Rozšířené možnosti</string>
   <string name="preferences__donate_to_signal">Podpořte Signal finančně</string>
   <string name="preferences__subscription">Předplatné</string>
+  <string name="preferences__become_a_signal_sustainer">Staňte se podporovatelem</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Soukromí</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -2569,7 +2579,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Insights__title">Postřehy</string>
   <string name="InsightsDashboardFragment__title">Postřehy</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky ochráněno %1$d%% vašich odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signal jsou vždy koncově šifrovány.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Podpořte Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Podpořte Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Zahájit konverzaci</string>
@@ -3328,7 +3338,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="AddAProfilePhotoMegaphone__add_photo">Přidat fotku</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Staňte se podporovatelem</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal je aplikace, za kterou stojí lidé jako vy. Přispějte a získejte profilový odznak.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Ne, díky</string>
+  <string name="BecomeASustainerMegaphone__contribute">Podpořit</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Smajlíky</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otevřít vyhledávání smajlíků</string>
@@ -3377,6 +3389,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzace ztlumena navždy</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonní číslo zkopírováno do schránky.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonní číslo</string>
+  <string name="ConversationSettingsFragment__get_badges">Získejte odznaky pro svůj profil, když podpoříte Signal. Klepnutím na odznak se dozvíte více.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Přidávat členy</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Upravovat informace o skupině</string>
@@ -3506,6 +3519,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ImageView__badge">Odznak</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal pohání lidé, jako jste vy.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podpořte technologii, která je vytvořena pro vás - ne pro vaše data - a připojte se ke komunitě lidí, kteří ji podporují.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podpořte technologii, která je vytvořena pro vás, ne kvůli vašim datům, a připojte se ke komunitě lidí, kteří ji podporují.</string>
+  <string name="SubscribeFragment__currency">Měna</string>
   <string name="SubscribeFragment__more_payment_options">Více možností plateb</string>
   <string name="SubscribeFragment__cancel_subscription">Zrušit předplatné</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrdit zrušení?</string>
@@ -3517,17 +3532,26 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubscribeFragment__update_subscription_question">Aktualizovat předplatné?</string>
   <string name="SubscribeFragment__update">Aktualizovat</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dnes vám bude účtována plná částka nového předplatného. Vaše předplatné bude obnoveno %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dnes vám bude účtována plná částka (%1$s) nového předplatného. Vaše předplatné bude obnoveno každý měsíc.</string>
   <string name="Subscription__s_per_month">%s/měsíc</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/měsíc · Obnovení %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/měsíčně · Exspiruje %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Proč podpořit?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Společnost Signal se zavázala vyvíjet open source technologii ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Svým příspěvkem podpoříte tento účel a zaplatíte vývoj a provoz aplikace, kterou používají miliony lidí pro soukromou komunikaci. Bez reklamy. Bez sledování. Beze srandy.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Díky za vaši podporu!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Díky za Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Získali jste %s odznak! Pomozte společnosti Signal budovat povědomí tím, že si tento odznak zobrazíte na svém profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Získali jste Boost odznak! Pomozte společnosti Signal budovat povědomí tím, že si tento odznak zobrazíte na svém profilu.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Můžete také</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">stát se měsíčním podporovatelem.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvořit doporučený odznak</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pokud máte více odznaků, můžete si jeden z nich vybrat, aby ho ostatní viděli na vašem profilu.</string>
+  <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil za podporu Signalu.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizace fungující bez reklam a investorů, kterou podporují pouze lidé jako vy.</string>
   <string name="ManageDonationsFragment__my_support">Má podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
@@ -3540,20 +3564,40 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MySupportPreference__add_a_signal_boost">Přidat Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/měsíc</string>
   <string name="MySupportPreference__renews_s">Obnova %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Zpracovávání transakce…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Nezdařilo se přidat odznak.%1$s</string>
+  <string name="MySupportPreference__please_contact_support">Prosím kontaktujte podporu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnost odznaku vypršela</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Předplatné zrušeno</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnost vašeho Boost odznaku vypršela a na vašem profilu již není pro ostatní viditelný.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás, zvažte možnost stát se měsíčním podporovatelem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
-  <string name="Subscription__verification_failed">Ověření předplatného selhalo</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše předplatné Sustainer bylo automaticky zrušeno, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není na vašem profilu viditelný.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovit předplatné</string>
   <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>
   <string name="Subscription__contact_support">Kontaktovat podporu</string>
   <string name="Subscription__earn_a_s_badge">Získat odznak %1$s</string>
   <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
-  <string name="DonationsErrors__payment_failed">Platba selhala</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Chyba při zpracování platby</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Chyba při zpracování platby. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
   <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
+  <string name="DonationsErrors__still_processing">Stále zpracovávám</string>
+  <string name="DonationsErrors__couldnt_add_badge">Nezdařilo se přidat odznak</string>
+  <string name="DonationsErrors__your_badge_could_not">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
+  <string name="DonationsErrors__your_payment_is_still">Vaše platba se stále zpracovává. To může trvat několik minut v závislosti na vašem připojení.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musíte si nastavit Google Pay, abyste mohli přispět v rámci aplikace.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného selhalo</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušení předplatného vyžaduje aktivní připojení k internetu.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zařízení nepodporuje službu Google Pay, takže se nemůžete přihlásit k odběru a získat odznak. Přesto můžete Signal podpořit příspěvkem na našich webových stránkách.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba sítě. Zkontrolujte připojení a zkuste to znovu.</string>
   <string name="NetworkFailure__retry">Zkusit znovu</string>
   <!--EOF-->
 </resources>

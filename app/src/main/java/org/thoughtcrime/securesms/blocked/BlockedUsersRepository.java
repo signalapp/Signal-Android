@@ -7,8 +7,8 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -32,7 +32,7 @@ class BlockedUsersRepository {
 
   void getBlocked(@NonNull Consumer<List<Recipient>> blockedUsers) {
     SignalExecutors.BOUNDED.execute(() -> {
-      RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+      RecipientDatabase db = SignalDatabase.recipients();
       try (RecipientDatabase.RecipientReader reader = db.readerForBlocked(db.getBlocked())) {
         int count = reader.getCount();
         if (count == 0) {

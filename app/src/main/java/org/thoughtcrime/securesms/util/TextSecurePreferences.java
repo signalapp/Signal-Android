@@ -19,7 +19,7 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.Medium;
-import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -39,7 +38,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public class TextSecurePreferences {
 
@@ -1178,7 +1176,7 @@ public class TextSecurePreferences {
 
     ProfileKey newProfileKey = ProfileKeyUtil.createNew();
     Recipient  self          = Recipient.self();
-    DatabaseFactory.getRecipientDatabase(context).setProfileKey(self.getId(), newProfileKey);
+    SignalDatabase.recipients().setProfileKey(self.getId(), newProfileKey);
 
     ApplicationDependencies.getGroupsV2Authorization().clear();
   }

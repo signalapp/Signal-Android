@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
@@ -48,7 +48,7 @@ public class SmsSendtoActivity extends Activity {
       Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
     } else {
       Recipient recipient = Recipient.external(this, destination.getDestination());
-      long      threadId  = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient.getId());
+      long      threadId  = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
 
       nextIntent = ConversationIntents.createBuilder(this, recipient.getId(), threadId)
                                       .withDraftText(destination.getBody())

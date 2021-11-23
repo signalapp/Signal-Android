@@ -6,8 +6,8 @@ import com.google.protobuf.ByteString;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -78,7 +78,7 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
       return;
     }
 
-    PaymentDatabase.PaymentTransaction payment = DatabaseFactory.getPaymentDatabase(context).getPayment(uuid);
+    PaymentDatabase.PaymentTransaction payment = SignalDatabase.payments().getPayment(uuid);
 
     if (payment == null) {
       Log.w(TAG, "Payment not found " + uuid);

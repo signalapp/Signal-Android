@@ -387,11 +387,6 @@
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Uten navn</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drives av folk som deg. Vis din støtte i dag!</string>
-  <string name="DonateMegaphone_donate">Donér</string>
-  <string name="DonateMegaphone_no_thanks">Nei takk</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vi introduserer gruppesamtaler</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åpne en ny gruppe for å gjøre et gratis gruppeanrop</string>
@@ -2217,7 +2212,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Insights__title">Innsikt</string>
   <string name="InsightsDashboardFragment__title">Innsikt</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokoll automatisk beskyttet %1$d%% av utgående meldinger over de siste %2$d dagene. Samtaler mellom Signal-brukere er alltid kryptert fra ende til ende.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal økning</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal økning</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ikke nok data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentene i oversikten er regnet ut fra utgående meldinger de siste %1$d dagene som ikke har forsvunnet eller blitt slettet.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
@@ -2955,10 +2950,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubscribeFragment__update">Oppdater</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
   <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
   <string name="Subscription__contact_support">Kontakt brukerstøtte</string>
   <string name="SubscribeFragment__processing_payment">Behandler betaling …</string>
-  <string name="DonationsErrors__payment_failed">Betaling mislyktes</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">Prøv på nytt</string>
   <!--EOF-->
 </resources>

@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -82,7 +82,7 @@ public final class PaymentNotificationSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    PaymentDatabase paymentDatabase = DatabaseFactory.getPaymentDatabase(context);
+    PaymentDatabase paymentDatabase = SignalDatabase.payments();
     Recipient       recipient       = Recipient.resolved(recipientId);
 
     if (recipient.isUnregistered()) {

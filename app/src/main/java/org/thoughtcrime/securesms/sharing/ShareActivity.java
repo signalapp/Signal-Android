@@ -48,7 +48,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
@@ -324,7 +324,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     int         distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
 
     if (recipientId != null) {
-      threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId);
+      threadId = SignalDatabase.threads().getThreadIdFor(recipientId);
       extras.putString(EXTRA_RECIPIENT_ID, recipientId.serialize());
       extras.putLong(EXTRA_THREAD_ID, threadId != null ? threadId : -1);
       extras.putInt(EXTRA_DISTRIBUTION_TYPE, distributionType);
@@ -517,10 +517,10 @@ public class ShareActivity extends PassphraseRequiredActivity
                                                              .or(() -> Recipient.external(this, contact.getNumber())))
                                       .collect(Collectors.toSet());
 
-    Map<RecipientId, Long> existingThreads = DatabaseFactory.getThreadDatabase(this)
-                                                            .getThreadIdsIfExistsFor(Stream.of(recipients)
-                                                                                           .map(Recipient::getId)
-                                                                                           .toArray(RecipientId[]::new));
+    Map<RecipientId, Long> existingThreads = SignalDatabase.threads()
+                                                           .getThreadIdsIfExistsFor(Stream.of(recipients)
+                                                                                          .map(Recipient::getId)
+                                                                                          .toArray(RecipientId[]::new));
 
     return Stream.of(recipients)
                  .map(recipient -> new ShareContactAndThread(recipient.getId(), Util.getOrDefault(existingThreads, recipient.getId(), -1L), recipient.isForceSmsSelection() || !recipient.isRegistered()))
@@ -537,7 +537,7 @@ public class ShareActivity extends PassphraseRequiredActivity
       recipient = Recipient.external(this, shareContact.getNumber());
     }
 
-    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient.getId());
+    long existingThread = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
     return new ShareContactAndThread(recipient.getId(), existingThread, recipient.isForceSmsSelection() || !recipient.isRegistered());
   }
 
