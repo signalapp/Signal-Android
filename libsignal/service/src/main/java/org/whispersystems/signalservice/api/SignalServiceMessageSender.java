@@ -1719,8 +1719,8 @@ public class SignalServiceMessageSender {
                                                       .map(SendMessageResult::getAddress)
                                                       .collect(Collectors.toList());
 
-        Set<String>                successUuids     = successes.stream().map(a -> a.getAci().toString()).collect(Collectors.toSet());
-        Set<SignalProtocolAddress> successAddresses = targetInfo.destinations.stream().filter(a -> successUuids.contains(a.getName())).collect(Collectors.toSet());
+        Set<String>                successAcis      = successes.stream().map(a -> a.getAci().toString()).collect(Collectors.toSet());
+        Set<SignalProtocolAddress> successAddresses = targetInfo.destinations.stream().filter(a -> successAcis.contains(a.getName())).collect(Collectors.toSet());
 
         store.markSenderKeySharedWith(distributionId, successAddresses);
 
@@ -1731,12 +1731,12 @@ public class SignalServiceMessageSender {
           Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Failed to send sender keys to " + failureCount + " recipients. Sending back failed results now.");
 
           List<SendMessageResult> trueFailures = results.stream()
-                                                    .filter(r -> !r.isSuccess())
-                                                    .collect(Collectors.toList());
+                                                        .filter(r -> !r.isSuccess())
+                                                        .collect(Collectors.toList());
 
           Set<SignalServiceAddress> failedAddresses = trueFailures.stream()
-                                                              .map(SendMessageResult::getAddress)
-                                                              .collect(Collectors.toSet());
+                                                                  .map(SendMessageResult::getAddress)
+                                                                  .collect(Collectors.toSet());
 
           List<SendMessageResult> fakeNetworkFailures = recipients.stream()
                                                                   .filter(r -> !failedAddresses.contains(r))

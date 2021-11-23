@@ -60,6 +60,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -199,11 +200,16 @@ public final class PushGroupSendJob extends PushSendJob {
       Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
       List<NetworkFailure>             resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
       List<IdentityKeyMismatch>        resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
-      List<Recipient>                  unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> Recipient.externalPush(context, result.getAddress())).toList();
+      List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();
+
+      if (networkFailures.size() > 0 || identityMismatches.size() > 0 || proofRequired != null || unregisteredRecipients.size() > 0) {
+        Log.w(TAG,  String.format(Locale.US, "Failed to send to some recipients. Network: %d, Identity: %d, ProofRequired: %s, Unregistered: %d",
+                                  networkFailures.size(), identityMismatches.size(), proofRequired != null, unregisteredRecipients.size()));
+      }
 
       RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-      for (Recipient unregistered : unregisteredRecipients) {
-        recipientDatabase.markUnregistered(unregistered.getId());
+      for (RecipientId unregistered : unregisteredRecipients) {
+        recipientDatabase.markUnregistered(unregistered);
       }
 
       existingNetworkFailures.removeAll(resolvedNetworkFailures);

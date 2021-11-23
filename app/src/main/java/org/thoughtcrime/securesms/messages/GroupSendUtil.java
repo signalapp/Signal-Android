@@ -41,6 +41,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
@@ -248,6 +250,9 @@ public final class GroupSendUtil {
         legacyTargets.addAll(senderKeyTargets);
       } catch (InvalidRegistrationIdException e) {
         Log.w(TAG, "Invalid registrationId. Falling back to legacy sends.", e);
+        legacyTargets.addAll(senderKeyTargets);
+      } catch (NotFoundException e) {
+        Log.w(TAG, "Someone was unregistered. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
       }
     } else if (relatedMessageId != null) {
