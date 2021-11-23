@@ -3384,7 +3384,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van een overschrijving</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van een overschrijving. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van een overschrijving. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
   <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
   <string name="DonationsErrors__still_processing">Wordt nog verwerkt</string>

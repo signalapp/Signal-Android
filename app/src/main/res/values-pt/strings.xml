@@ -3379,7 +3379,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Erro ao processar o pagamento</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Erro ao processar o pagamento. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Erro ao processar o pagamento. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Não foi possível adicionar o seu crachá à sua conta, mas poderá ter sido debitado dinheiro. Entre em contacto com a equipa de suporte.</string>
   <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Por favor, tente novamente. </string>
   <string name="DonationsErrors__still_processing">Ainda a processar</string>

@@ -3396,7 +3396,7 @@ Sjekkar igjen no …</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Klarte ikkje handsama betaling</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Klarte ikkje handsama betaling. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Klarte ikkje handsama betaling. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Klarte ikkje legga til merket på kontoen din, men beløpet kan ha bli trukke. Ta kontakt med brukarstøtte.</string>
   <string name="DonationsErrors__your_payment">Klarte ikkje prosessera betalinga di og beløpet har ikkje blitt trekt. Prøv igjen.</string>
   <string name="DonationsErrors__still_processing">Behandlar enno</string>

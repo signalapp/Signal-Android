@@ -3375,7 +3375,7 @@ Nouvelle tentative…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Erreur de traitement du paiement</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Erreur de traitement du paiement. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Erreur de traitement du paiement. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Votre badge n\'a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d\'assistance.</string>
   <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
   <string name="DonationsErrors__still_processing">En cours de traitement</string>

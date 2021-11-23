@@ -3380,7 +3380,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Errore nell\'elaborazione del pagamento</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Errore nell\'elaborazione del pagamento. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Errore nell\'elaborazione del pagamento. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Il tuo badge non può essere aggiunto al tuo account, ma potrebbe esserti stato addebitato. Contatta l\'assistenza.</string>
   <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
   <string name="DonationsErrors__still_processing">Ancora in fase di elaborazione</string>

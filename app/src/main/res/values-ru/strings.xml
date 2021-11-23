@@ -3579,7 +3579,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Ошибка обработки платежа</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Ошибка обработки платежа. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Ошибка обработки платежа. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Ваш значок не может быть добавлен в вашу учетную запись, но, возможно, с вас была снята оплата. Обратитесь в службу поддержки.</string>
   <string name="DonationsErrors__your_payment">Не удалось обработать ваш платеж, и с вас не была снята оплата. Пожалуйста, попробуйте еще раз.</string>
   <string name="DonationsErrors__still_processing">Продолжается обработка</string>

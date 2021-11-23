@@ -3374,7 +3374,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">S\'ha produït un error en processar el pagament.</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">S\'ha produït un error en processar el pagament. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">S\'ha produït un error en processar el pagament. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">La insígnia no s\'ha pogut afegir al compte, però és possible que se us hagi cobrat. Poseu-vos en contacte amb l\'assistència.</string>
   <string name="DonationsErrors__your_payment">El pagament no s\'ha pogut processar i no se us ha cobrat. Si us plau, torneu-ho a provar.</string>
   <string name="DonationsErrors__still_processing">Encara en procés</string>

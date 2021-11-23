@@ -3585,7 +3585,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Chyba pri spracovaní platby</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Chyba pri spracovaní platby. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Chyba pri spracovaní platby. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Váš odznak nebolo možné pridať do vášho účtu, ale možno vám boli účtované poplatky. Kontaktujte podporu.</string>
   <string name="DonationsErrors__your_payment">Vašu platbu sa nepodarilo spracovať a nebola vám naúčtovaná. Skúste to prosím znova.</string>
   <string name="DonationsErrors__still_processing">Stále sa spracováva</string>

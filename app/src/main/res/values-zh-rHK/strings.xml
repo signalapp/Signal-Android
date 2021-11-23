@@ -3276,7 +3276,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">處理付款時發生錯誤</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">處理付款時發生錯誤。$1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">處理付款時發生錯誤。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">您的徽章未能新增至您的帳戶，惟款項或已向您收取。請聯絡支援。</string>
   <string name="DonationsErrors__your_payment">您的付款未能處理，沒有向您扣帳。請再試一次。</string>
   <string name="DonationsErrors__still_processing">仍在處理中</string>

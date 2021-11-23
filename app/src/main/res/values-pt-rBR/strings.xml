@@ -3380,7 +3380,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Erro ao efetuar o pagamento</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Erro ao efetuar o pagamento. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Erro ao efetuar o pagamento. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Não foi possível adicionar seu selo à sua conta, mas você pode ter sido cobrado. Entre em contato com o suporte, por favor.</string>
   <string name="DonationsErrors__your_payment">Não foi possível efetuar o seu pagamento e você não foi cobrado. Por favor, tente novamente.</string>
   <string name="DonationsErrors__still_processing">Ainda em processamento</string>

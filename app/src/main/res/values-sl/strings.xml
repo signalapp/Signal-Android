@@ -3577,7 +3577,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Napaka pri obdelavi plačila.</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Napaka pri obdelavi plačila. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Napaka pri obdelavi plačila. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Bedž ni mogel biti dodan k vašemu računu, vendar je mogoče, da je bilo plačilo uspešno. Prosimo obrnite se na podporo.</string>
   <string name="DonationsErrors__your_payment">Vaše plačilo ni moglo biti obdelano, zato vam znesek ni bil zaračunan. Prosimo poskusite znova.</string>
   <string name="DonationsErrors__still_processing">Obdelava še vedno poteka</string>

@@ -3567,7 +3567,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">שגיאה בעיבוד תשלום</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">שגיאה בעיבוד תשלום. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">שגיאה בעיבוד תשלום. %1$s</string>
   <string name="DonationsErrors__your_payment">התשלום שלך לא היה יכול להיות מעובד ולא חויבת. אנא נסה שוב.</string>
   <string name="DonationsErrors__still_processing">עדין מעבד</string>
   <string name="DonationsErrors__couldnt_add_badge">לא היה ניתן להוסיף תג</string>

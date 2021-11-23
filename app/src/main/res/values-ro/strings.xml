@@ -3479,7 +3479,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Procesarea plății a eșuat</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Procesarea plății a eșuat. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Procesarea plății a eșuat. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Insigna nu a putut fi adăugată în cont, dar este posibil să fi fost taxat. Te rugăm să contactezi asistența.</string>
   <string name="DonationsErrors__your_payment">Plata ta nu a putut fi procesată și nu ai fost taxat. Te rugăm să încerci din nou.</string>
   <string name="DonationsErrors__still_processing">În curs de procesare</string>

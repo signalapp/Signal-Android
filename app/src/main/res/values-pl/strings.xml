@@ -3579,7 +3579,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Błąd przetwarzania płatności</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Błąd przetwarzania płatności. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Błąd przetwarzania płatności. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Nie udało się dodać odznaki do Twojego profilu, ale Twoje konto mogło zostać obciążone. Skontaktuj się z pomocą techniczną.</string>
   <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
   <string name="DonationsErrors__still_processing">Trwa przetwarzanie</string>

@@ -3259,7 +3259,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Σφάλμα κατά την επεξεργασία της πληρωμής</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Σφάλμα κατά την επεξεργασία της πληρωμής. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Σφάλμα κατά την επεξεργασία της πληρωμής. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Το έμβλημά σου δεν μπόρεσε να προστεθεί στο λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
   <string name="DonationsErrors__still_processing">Ακόμα επεξεργάζεται</string>

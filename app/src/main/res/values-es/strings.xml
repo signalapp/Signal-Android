@@ -3380,7 +3380,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fallo al procesar el pago</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Fallo al procesar el pago. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Fallo al procesar el pago. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">No se ha podido añadir el distintivo a tu perfil, pero puede haberte sido cobrado. Por favor, contacta con el soporte.</string>
   <string name="DonationsErrors__your_payment">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
   <string name="DonationsErrors__still_processing">En proceso …</string>

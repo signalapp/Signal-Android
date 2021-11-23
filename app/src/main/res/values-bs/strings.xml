@@ -3488,7 +3488,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Greška prilikom obrađivanja uplate</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Greška prilikom obrađivanja uplate. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Greška prilikom obrađivanja uplate. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Vašu značku nije bilo moguće dodati na Vaš račun, ali je moguće da je uplata prošla. Molimo, kontaktirajte podršku.</string>
   <string name="DonationsErrors__your_payment">Vašu uplatu nije bilo moguće obraditi i iznos nije naplaćen. Molimo, pokušajte ponovo.</string>
   <string name="DonationsErrors__still_processing">Još uvijek obrađujem</string>

@@ -3483,7 +3483,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Грешка при обради претплате</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Грешка при обради претплате. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Грешка при обради претплате. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Ваша значка није могла да се дода на ваш рачун, али можда су паре узете. Молимо контактирајте подршку.</string>
   <string name="DonationsErrors__your_payment">Ваша уплата се не може обрадити и нисте наплаћени. Молим вас, покушајте поново.</string>
   <string name="DonationsErrors__still_processing">У обраду</string>

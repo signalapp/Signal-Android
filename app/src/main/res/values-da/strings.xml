@@ -3379,7 +3379,7 @@ nummer (%s) er ugyldigt</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fejl ved behandling af betaling</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Fejl ved behandling af betaling. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Fejl ved behandling af betaling. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Dit emblem kunne ikke tilføjes til din konto, men du kan være blevet opkrævet. Kontakt venligst support.</string>
   <string name="DonationsErrors__your_payment">Din betaling kunne ikke gennemføres, og du er ikke blevet opkrævet. Prøv venligst igen.</string>
   <string name="DonationsErrors__still_processing">Behandler stadig</string>

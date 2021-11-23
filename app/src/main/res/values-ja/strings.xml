@@ -3267,7 +3267,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">決済の処理中にエラーが発生しました</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">決済の処理中にエラーが発生しました。$1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">決済の処理中にエラーが発生しました。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。お手数ですが、サポートまでお問い合わせください。</string>
   <string name="DonationsErrors__your_payment">決済処理ができず、課金しませんでした。あとで再度試してください。</string>
   <string name="DonationsErrors__still_processing">処理を継続しています</string>

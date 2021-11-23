@@ -3384,7 +3384,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Gabim në përpunim pagese</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Gabim në përpunim pagese. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Gabim në përpunim pagese. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Stema juaj s’u shtua dot te llogaria juaj, por mund t’ju jetë faturuar vlera e dhurimit. Ju lutemi, lidhuni me asistencën.</string>
   <string name="DonationsErrors__your_payment">Pagesa juaj s’u përpunuar do dhe nuk ju është faturuar. Ju lutemi, riprovoni.</string>
   <string name="DonationsErrors__still_processing">Ende në përpunim</string>
