@@ -122,6 +122,15 @@ data class Boost(
     private val boost6: MaterialButton = itemView.findViewById(R.id.boost_6)
     private val custom: AppCompatEditText = itemView.findViewById(R.id.boost_custom)
 
+    private val boostButtons: List<MaterialButton>
+      get() {
+        return if (ViewUtil.isLtr(context)) {
+          listOf(boost1, boost2, boost3, boost4, boost5, boost6)
+        } else {
+          listOf(boost3, boost2, boost1, boost6, boost5, boost4)
+        }
+      }
+
     private var filter: MoneyFilter? = null
 
     init {
@@ -131,7 +140,7 @@ data class Boost(
     override fun bind(model: SelectionModel) {
       itemView.isEnabled = model.isEnabled
 
-      model.boosts.zip(listOf(boost1, boost2, boost3, boost4, boost5, boost6)).forEach { (boost, button) ->
+      model.boosts.zip(boostButtons).forEach { (boost, button) ->
         button.isSelected = boost == model.selectedBoost && !model.isCustomAmountFocused
         button.text = FiatMoneyUtil.format(
           context.resources,
