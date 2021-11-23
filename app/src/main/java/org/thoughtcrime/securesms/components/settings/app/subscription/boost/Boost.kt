@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.ViewUtil
 import java.lang.Integer.min
 import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.util.Currency
 import java.util.Locale
 import java.util.regex.Pattern
@@ -158,7 +159,7 @@ data class Boost(
       if (filter == null || filter?.currency != model.currency) {
         custom.removeTextChangedListener(filter)
 
-        filter = MoneyFilter(model.currency) {
+        filter = MoneyFilter(model.currency, custom) {
           model.onCustomAmountChanged(it)
         }
 
@@ -191,12 +192,14 @@ data class Boost(
   }
 
   @VisibleForTesting
-  class MoneyFilter(val currency: Currency, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(false, true), TextWatcher {
+  class MoneyFilter(val currency: Currency, private val text: AppCompatEditText? = null, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(false, true), TextWatcher {
 
     val separator = DecimalFormatSymbols.getInstance().decimalSeparator
     val separatorCount = min(1, currency.defaultFractionDigits)
-    val prefix: String = currency.getSymbol(Locale.getDefault())
+    val symbol: String = currency.getSymbol(Locale.getDefault())
     val pattern: Pattern = "[0-9]*([$separator]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
+    val symbolPattern: Regex = """\s*${Regex.escape(symbol)}\s*""".toRegex()
+    val leadingZeroesPattern: Regex = """^0*""".toRegex()
 
     override fun filter(
       source: CharSequence,
@@ -208,7 +211,7 @@ data class Boost(
     ): CharSequence? {
 
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
-      val resultWithoutCurrencyPrefix = result.removePrefix(prefix)
+      val resultWithoutCurrencyPrefix = result.removePrefix(symbol).removeSuffix(symbol).trim()
 
       if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
         return dest.subSequence(dstart, dend)
@@ -230,14 +233,45 @@ data class Boost(
     override fun afterTextChanged(s: Editable?) {
       if (s.isNullOrEmpty()) return
 
-      val hasPrefix = s.startsWith(prefix)
-      if (hasPrefix && s.length == prefix.length) {
+      val hasSymbol = s.startsWith(symbol) || s.endsWith(symbol)
+      if (hasSymbol && symbolPattern.matchEntire(s.toString()) != null) {
         s.clear()
-      } else if (!hasPrefix) {
-        s.insert(0, prefix)
+      } else if (!hasSymbol) {
+        val formatter = NumberFormat.getCurrencyInstance()
+        formatter.currency = currency
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = currency.defaultFractionDigits
+
+        val value = s.toString().toDoubleOrNull()
+
+        if (value != null) {
+          val formatted = formatter.format(value)
+
+          text?.removeTextChangedListener(this)
+
+          s.replace(0, s.length, formatted)
+          if (formatted.endsWith(symbol)) {
+            val result: MatchResult? = symbolPattern.find(formatted)
+            if (result != null && result.range.first < s.length) {
+              text?.setSelection(result.range.first)
+            }
+          }
+
+          text?.addTextChangedListener(this)
+        }
       }
 
-      onCustomAmountChanged(s.removePrefix(prefix).toString())
+      val withoutSymbol = s.removePrefix(symbol).removeSuffix(symbol).trim().toString()
+      val withoutLeadingZeroes = withoutSymbol.replace(leadingZeroesPattern, "")
+      if (withoutSymbol != withoutLeadingZeroes) {
+        text?.removeTextChangedListener(this)
+
+        s.replace(s.indexOf(withoutSymbol), withoutSymbol.length, withoutLeadingZeroes)
+
+        text?.addTextChangedListener(this)
+      }
+
+      onCustomAmountChanged(s.removePrefix(symbol).removeSuffix(symbol).trim().toString())
     }
   }
 

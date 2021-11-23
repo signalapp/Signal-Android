@@ -176,13 +176,14 @@ class BoostViewModel(
 
     store.update { it.copy(stage = BoostState.Stage.TOKEN_REQUEST) }
 
-    boostToPurchase = if (snapshot.isCustomAmountFocused) {
+    val boost = if (snapshot.isCustomAmountFocused) {
       Boost(snapshot.customAmount)
     } else {
       snapshot.selectedBoost
     }
 
-    donationPaymentRepository.requestTokenFromGooglePay(snapshot.selectedBoost.price, label, fetchTokenRequestCode)
+    boostToPurchase = boost
+    donationPaymentRepository.requestTokenFromGooglePay(boost.price, label, fetchTokenRequestCode)
   }
 
   fun setSelectedBoost(boost: Boost) {
