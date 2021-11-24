@@ -2384,7 +2384,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="Insights__title">इनसाइट्स</string>
   <string name="InsightsDashboardFragment__title">इनसाइट्स</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल ने पिछले %2$d दिनों में आपके %1$d%% आउटगोइंग मेसेज की स्वचालित रूप से रक्षा की। Signal उपयोगकर्ताओं के बीच वार्तालाप हमेशा अंत-से-अंत एन्क्रिप्टेड होते हैं।</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal बढ़ाएँ</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">पर्याप्त डाटा नहीं</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">आपके इनसाइट्स प्रतिशत की गणना पिछले %1$d दिनों के आउटगोइंग मेसेज के आधार पर की जाती है जो गायब नहीं हुए हैं या मिटाए नहीं गए हैं।</string>
   <string name="InsightsDashboardFragment__start_a_conversation">एक वार्तालाप शुरु करें</string>
@@ -3324,7 +3323,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="MySupportPreference__renews_s">%1$s को नवीनीकृत करता है</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपका बैज समाप्त हो गया है</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">एक सस्टेनर बनें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक जानकारी के लिए कृपया समर्थन से संपर्क करें.</string>
   <string name="Subscription__contact_support">समर्थन से संपर्क करें</string>

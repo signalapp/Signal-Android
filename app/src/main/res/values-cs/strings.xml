@@ -2579,7 +2579,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Insights__title">Postřehy</string>
   <string name="InsightsDashboardFragment__title">Postřehy</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky ochráněno %1$d%% vašich odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signal jsou vždy koncově šifrovány.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Podpořte Signal</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Šiřte informace</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Zahájit konverzaci</string>
@@ -3571,7 +3571,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnost odznaku vypršela</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Předplatné zrušeno</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnost vašeho Boost odznaku vypršela a na vašem profilu již není pro ostatní viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás, zvažte možnost stát se měsíčním podporovatelem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
@@ -3585,7 +3584,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Chyba při zpracování platby</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Chyba při zpracování platby. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Chyba při zpracovávání platby. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
   <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
   <string name="DonationsErrors__still_processing">Stále zpracovávám</string>

@@ -2294,7 +2294,6 @@
   <string name="Insights__title">நுண்ணறிவு</string>
   <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">கடந்த %2$d நாட்களில் Signal நெறிமுறை தானாகவே உங்களின் %1$d%% வெளிச்செல்லும் செய்திகளை பாதுகாத்தது. Signal பயனர்களிடையேயான உரையாடல்கள் எப்போதும் முடிவிலிருந்து-முடிவுவரை மறையாக்கம் செய்யப்படுகின்றன.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal பூஸ்ட்</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">கடந்த %1$d நாட்களில் காணாமல் போகாத அல்லது நீக்கப்படாத வெளிச்செல்லும் செய்திகளின் அடிப்படையில் உங்கள் நுண்ணறிவு சதவீதம் கணக்கிடப்படுகிறது.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">புதிய உரையாடலை தொடங்கு</string>

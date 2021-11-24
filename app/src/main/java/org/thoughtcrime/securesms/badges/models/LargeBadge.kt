@@ -12,13 +12,13 @@ data class LargeBadge(
   val badge: Badge
 ) {
 
-  class Model(val largeBadge: LargeBadge, val shortName: String) : MappingModel<Model> {
+  class Model(val largeBadge: LargeBadge, val shortName: String, val maxLines: Int) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return newItem.largeBadge.badge.id == largeBadge.badge.id
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return newItem.largeBadge == largeBadge && newItem.shortName == shortName
+      return newItem.largeBadge == largeBadge && newItem.shortName == shortName && newItem.maxLines == maxLines
     }
   }
 
@@ -43,6 +43,9 @@ data class LargeBadge(
 
       name.text = model.largeBadge.badge.name
       description.text = model.largeBadge.badge.resolveDescription(model.shortName)
+      description.setLines(model.maxLines)
+      description.maxLines = model.maxLines
+      description.minLines = model.maxLines
     }
   }
 

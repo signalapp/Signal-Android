@@ -413,7 +413,7 @@ public final class FeatureFlags {
     if (Environment.IS_STAGING) {
       return true;
     } else {
-      return getBoolean(DONOR_BADGES, false ) || SignalStore.donationsValues().getSubscriber() != null;
+      return getBoolean(DONOR_BADGES, true) || SignalStore.donationsValues().getSubscriber() != null;
     }
   }
 
@@ -421,7 +421,7 @@ public final class FeatureFlags {
    * Whether or not donor badges should be displayed throughout the app.
    */
   public static boolean displayDonorBadges() {
-    return getBoolean(DONOR_BADGES_DISPLAY, false);
+    return getBoolean(DONOR_BADGES_DISPLAY, true);
   }
 
   public static boolean cdsh() {

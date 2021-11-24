@@ -2112,7 +2112,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item>Odziv</item>
     <item>Drugo</item>
     <item>Plačila (MobileCoin)</item>
-    <item>Podporniki/ce &amp; Signal Boost</item>
+    <item>Podporniki/ce &amp; Pospešek Signalu</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
@@ -2214,7 +2214,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__donate_to_signal">Podprite Signal</string>
   <string name="preferences__subscription">Naročnina</string>
   <string name="preferences__become_a_signal_sustainer">Postanite podpornik/ca Signala</string>
-  <string name="preferences__signal_boost">Signal Boost</string>
+  <string name="preferences__signal_boost">Pospešek Signalu</string>
   <string name="preferences__privacy">Zasebnost</string>
   <string name="preferences__mms_user_agent">Uporabniški posrednik MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Ročne nastavitve MMS</string>
@@ -2571,7 +2571,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="Insights__title">Pregled</string>
   <string name="InsightsDashboardFragment__title">Pregled</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">S protokolom Signal ste avtomatično zaščitili %1$d%% vaših odhodnih sporočil v preteklih %2$d dneh. Pogovori med uporabniki/cami Signala so zmerom zaščiteni \"od-konca-do-konca\".</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Razširite svoj Signal</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Povej naprej!</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ni dovolj podatkov</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Pregled je narejen na podlagi vaših odhodnih sporočil v zadnjih %1$d dneh, z izjemo izginjajočih in izbrisanih.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Začni s pogovorom</string>
@@ -3549,11 +3549,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ManageDonationsFragment__badges">Značke</string>
   <string name="ManageDonationsFragment__subscription_faq">Pogosta vprašanja o naročnini</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Napaka pri uveljavitvi naročnine.</string>
-  <string name="BoostFragment__give_signal_a_boost">Daj Signalu spodbudo</string>
+  <string name="BoostFragment__give_signal_a_boost">Dajte Signalu pospešek</string>
   <string name="BoostFragment__say_thanks_and_earn">Recite \"Hvala!\" in si za %1$d dni prislužite bedž podpornika/ce.</string>
   <string name="Boost__enter_custom_amount">Vnesite znesek po vašem izboru</string>
   <string name="Boost__one_time_contribution">Enkratna podpora</string>
-  <string name="MySupportPreference__add_a_signal_boost">Dodaj Signal Boost</string>
+  <string name="MySupportPreference__add_a_signal_boost">Dodaj pospešek Signalu</string>
   <string name="MySupportPreference__s_per_month">%1$s/mesečno</string>
   <string name="MySupportPreference__renews_s">Obnovitev naročnine: %1$s</string>
   <string name="MySupportPreference__processing_transaction">Obdelava transakcije …</string>
@@ -3563,7 +3563,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaš bedž je potekel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Bedž je potekel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Naročnina je prekinjena</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Vaš bedž podpornika/ce je potekel in zato ni več viden drugim na vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Razmislite, če želite postati naš mesečni podpornik/ca in tako še naprej prispevati k tehnologiji, ki je bila narejena za vas.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite podpornik/ca</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
@@ -3577,7 +3576,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Napaka pri obdelavi plačila.</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Napaka pri obdelavi plačila. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Napaka pri obdelavi plačila. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Bedž ni mogel biti dodan k vašemu računu, vendar je mogoče, da je bilo plačilo uspešno. Prosimo obrnite se na podporo.</string>
   <string name="DonationsErrors__your_payment">Vaše plačilo ni moglo biti obdelano, zato vam znesek ni bil zaračunan. Prosimo poskusite znova.</string>
   <string name="DonationsErrors__still_processing">Obdelava še vedno poteka</string>

@@ -2580,7 +2580,7 @@
   <string name="Insights__title">Įžvalgos</string>
   <string name="InsightsDashboardFragment__title">Įžvalgos</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Per pastarąsias %2$d d. Signal protokolas automatiškai apsaugojo %1$d%% jūsų išsiunčiamų žinučių. Pokalbiai tarp Signal naudotojų yra visada šifruoti ištisiniu būdu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Apsaugokite daugiau pokalbių</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Skleiskite žinią</string>
   <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsų įžvalgų procentinė dalis yra apskaičiuojama remiantis per pastarąsias %1$d d. išsiunčiamų žinučių, kurios neišnyko ir nebuvo ištrintos, skaičiumi.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
@@ -3572,7 +3572,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerata nutraukta</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje kitiems žmonėms.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti remėju ir remti kas mėnesį.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti remėju</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
@@ -3586,7 +3585,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Klaida apdorojant mokėjimą</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Klaida apdorojant mokėjimą. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Klaida apdorojant mokėjimą. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Nepavyko pridėti ženkliuko prie jūsų paskyros, bet gali būti, kad buvote apmokestinti. Susisiekite su palaikymu.</string>
   <string name="DonationsErrors__your_payment">Nepavyko apdoroti jūsų mokėjimo ir nebuvote apmokestinti. Bandykite dar kartą.</string>
   <string name="DonationsErrors__still_processing">Vis dar apdorojama</string>

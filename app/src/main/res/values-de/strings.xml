@@ -2395,7 +2395,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Nutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal-Boost</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Verbreite die Nachricht</string>
   <string name="InsightsDashboardFragment__not_enough_data">Zu wenige Daten</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Deine Statistik berücksichtigt alle ausgehenden Nachrichten der letzten %1$d Tage, die nicht verschwunden sind oder gelöscht wurden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
@@ -3355,9 +3355,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Abzeichen abgelaufen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Regelmäßige Spende gekündigt</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dein Boost-Abzeichen ist abgelaufen. Es ist für andere nicht mehr in deinem Profil sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dein Boost-Abzeichen ist abgelaufen und ist daher nicht mehr in deinem Profil für andere sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kannst dein Boost-Abzeichen für weitere 30 Tage mit einer Einmalspende reaktivieren.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Um auch weiterhin eine Technologie zu unterstützen, die für dich entwickelt wird, zieh bitte eine monatliche Spende in Betracht.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost hinzufügen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Deine regelmäßige Unterstützerspende wurde automatisch gekündigt, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nicht mehr in deinem Profil sichtbar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kannst Signal weiterhin nutzen, aber um die App zu unterstützen und dein Abzeichen zu reaktivieren, solltest du deine Spende verlängern.</string>
@@ -3369,7 +3371,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fehler beim Verarbeiten der Zahlung</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Fehler beim Verarbeiten der Zahlung. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Fehler beim Verarbeiten der Zahlung. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Dein Abzeichen konnte deinem Konto nicht hinzugefügt werden, eventuell wurde jedoch die Zahlung abgebucht. Bitte kontaktiere den Support.</string>
   <string name="DonationsErrors__your_payment">Deine Zahlung konnte nicht verarbeitet werden und wurde nicht abgebucht. Bitte versuche es erneut.</string>
   <string name="DonationsErrors__still_processing">Wird noch verarbeitet</string>

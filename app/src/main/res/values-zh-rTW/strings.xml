@@ -2315,7 +2315,7 @@
   <string name="Insights__title">統計</string>
   <string name="InsightsDashboardFragment__title">統計</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal 協定自動保護%1$d%%你的過去%2$d天傳出的訊息。 Signal使用者之間的對話始終是點對點加密的。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal 單次贊助</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">把這些訊息散播出去</string>
   <string name="InsightsDashboardFragment__not_enough_data">沒有足夠的資料</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">你的統計百分比是根據過去%1$d天內尚未銷毀或刪除的出訊息計算得出的。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">開啟一個對話</string>
@@ -3259,9 +3259,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">訂閱已取消</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的單次贊助徽章已過期，你的個人資料中的其他人將無法再看到你的贊助徽章。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的單次贊助徽章已過期，你的個人資料中的其他人將看不到了。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可以透過一次性捐款將你的單次贊助徽章再啟用 30 天。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">要繼續支援專為你打造的技術，請考慮成為每月贊助人。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為定期贊助人</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">新增一次單次贊助</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">你的贊助訂閱已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>
@@ -3273,7 +3275,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">付款處理錯誤</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">府款處理錯誤。$1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">處理付款失敗。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">你的徽章無法新增到你的帳號，但你可能已被收費。 請聯絡支援部門。</string>
   <string name="DonationsErrors__your_payment">你的付款無法處理，所以也未向你收費。 請再試一次。</string>
   <string name="DonationsErrors__still_processing">仍在處理中</string>

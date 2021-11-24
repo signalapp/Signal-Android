@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -64,6 +65,7 @@ import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.ringrtc.RingRtcLogger;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
@@ -77,6 +79,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -177,6 +180,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(() -> ApplicationDependencies.getJobManager().beginJobLoop())
                             .addNonBlocking(EmojiSource::refresh)
                             .addNonBlocking(() -> ApplicationDependencies.getGiphyMp4Cache().onAppStart(this))
+                            .addNonBlocking(this::ensureProfileUploaded)
                             .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
                             .addPostRender(this::initializeExpiringMessageManager)
                             .addPostRender(() -> SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(this)))
@@ -362,6 +366,13 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       } catch (Throwable t) {
         Log.w(TAG, t);
       }
+    }
+  }
+
+  private void ensureProfileUploaded() {
+    if (SignalStore.account().isRegistered() && !SignalStore.registrationValues().hasUploadedProfile() && !Recipient.self().getProfileName().isEmpty()) {
+      Log.w(TAG, "User has a profile, but has not uploaded one. Uploading now.");
+      ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
     }
   }
 

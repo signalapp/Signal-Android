@@ -2579,7 +2579,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="Insights__title">Prehľady</string>
   <string name="InsightsDashboardFragment__title">Prehľady</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol za posledných %2$d dní automaticky ochránil %1$d%% vašich odchádzajúcich správ. Konverzácie medzi používateľmi Signalu sú vždy koncovo šifrované.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Vylepšenie Signalu</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Šíriť slovo</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatok údajov</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Percentuálna hodnota vašich Prehľadov sa vypočítava na základe odchádzajúcich správ za posledných %1$d dní, ktoré nezmizli, ani neboli odstránené.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Začať konverzáciu</string>
@@ -3571,9 +3571,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Platnosť odznaku vypršala</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnosť odznaku vypršala</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Predplatné bolo zrušené</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnosť vášho odznaku podporovateľa vypršala a ostatní ho už vo vašom profile neuvidia.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás, zvážte, či sa nestanete mesačným podporovateľom.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte sa udržovateľom</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte sa Sustainerom</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše predplatné podporovateľa bolo automaticky zrušené, pretože ste boli príliš dlho neaktívni. Váš odznak %1$s sa už vo vašom profile nezobrazuje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal môžete naďalej používať, ale ak chcete podporiť aplikáciu a znova aktivovať svoj odznak, obnovte ho teraz.</string>
@@ -3585,7 +3584,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Chyba pri spracovaní platby</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Chyba pri spracovaní platby. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Chyba pri spracovaní platby. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Váš odznak nebolo možné pridať do vášho účtu, ale možno vám boli účtované poplatky. Kontaktujte podporu.</string>
   <string name="DonationsErrors__your_payment">Vašu platbu sa nepodarilo spracovať a nebola vám naúčtovaná. Skúste to prosím znova.</string>
   <string name="DonationsErrors__still_processing">Stále sa spracováva</string>

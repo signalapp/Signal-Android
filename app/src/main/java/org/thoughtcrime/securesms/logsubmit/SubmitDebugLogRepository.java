@@ -83,6 +83,7 @@ public class SubmitDebugLogRepository {
     }
     add(new LogSectionNotifications());
     add(new LogSectionKeyPreferences());
+    add(new LogSectionBadges());
     add(new LogSectionPermissions());
     add(new LogSectionTrace());
     add(new LogSectionThreads());

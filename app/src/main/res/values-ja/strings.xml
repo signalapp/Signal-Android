@@ -2309,7 +2309,6 @@
   <string name="Insights__title">統計</string>
   <string name="InsightsDashboardFragment__title">統計</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signalプロトコルは過去%2$d日間の送信メッセージの%1$d%%を自動的に保護しました。Signalユーザー間のチャットは常にエンドツーエンドで暗号化されます。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signalブースト</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">データ不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは、過去%1$d日間に消えたり削除されていない送信メッセージに基づいて算出されます。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">チャットを始める</string>
@@ -3031,7 +3030,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">あとで</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">画像を追加</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">サポーターになりましょう</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">サポーターになりませんか</string>
   <string name="BecomeASustainerMegaphone__signal_is_powered">Signalはユーザーの皆様によって支えられています。ご寄付いただきバッジを獲得してください。</string>
   <string name="BecomeASustainerMegaphone__no_thanks">今はしない</string>
   <string name="BecomeASustainerMegaphone__contribute">寄付する</string>
@@ -3254,8 +3253,10 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">バッジが失効しました</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">サブスクリプションが解除されました</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">あなたのブーストバッジは有効期限が切れたため、プロフィールには表示されません。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジをさらに30日間有効にすることができます。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">あなたのために作られた技術を継続的にサポートするため、月次サポーターへの登録をご検討ください。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになりませんか</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">長い間ご利用がなかったため、あなたのサポーターサブスクリプションは自動で解除されました。あなたの%1$sバッジは、プロフィールに表示されなくなっています。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは使い続けられますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
@@ -3267,7 +3268,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">決済の処理中にエラーが発生しました</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">決済の処理中にエラーが発生しました。$1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">決済の処理中にエラーが発生しました。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。お手数ですが、サポートまでお問い合わせください。</string>
   <string name="DonationsErrors__your_payment">決済処理ができず、課金しませんでした。あとで再度試してください。</string>
   <string name="DonationsErrors__still_processing">処理を継続しています</string>

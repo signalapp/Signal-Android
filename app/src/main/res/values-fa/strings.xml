@@ -2404,7 +2404,6 @@
   <string name="Insights__title">بینش‌ها</string>
   <string name="InsightsDashboardFragment__title">بینش‌ها</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پروتکل سیگنال به صورت خودکار، از %1$d%% از پیام‌های خروجی شما در %2$d روز گذشته محافظت کرده است. مکالمه‌های بین کاربران سیگنال همیشه سرتاسر رمزگذاری می‌شوند.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">تقویت سیگنال</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">داده‌ٔ کافی وجود ندارد</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که حذف نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">شروع یک مکالمه</string>

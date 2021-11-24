@@ -2285,7 +2285,6 @@
   <string name="Insights__title">ഉള്‍ക്കാഴ്‌ച</string>
   <string name="InsightsDashboardFragment__title">ഉള്‍ക്കാഴ്‌ച</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">കഴിഞ്ഞ %2$d ദിവസങ്ങളിൽ നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ നിന്ന് സിഗ്നൽ പ്രോട്ടോക്കോൾ യാന്ത്രികമായി %1$d%%പരിരക്ഷിച്ചു. സിഗ്നൽ ഉപയോക്താക്കൾ തമ്മിലുള്ള സംഭാഷണങ്ങൾ എല്ലായ്പ്പോഴും എൻഡ് ടു എൻഡ് എൻ‌ക്രിപ്റ്റ് ആണ്.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">സിഗ്നൽ ബൂസ്റ്റ്</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">മതിയായ ഡാറ്റയില്ല</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">അപ്രത്യക്ഷമായതോ ഇല്ലാതാക്കാത്തതോ ആയ കഴിഞ്ഞ %1$d ദിവസങ്ങളിൽ ഔറ്റ്ഗോിങ് സന്ദേശങ്ങളെ അടിസ്ഥാനമാക്കിയാണ് നിങ്ങളുടെ ഉള്‍ക്കാഴ്‌ച ശതമാനം കണക്കാക്കുന്നത്.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ഒരു സംഭാഷണം ആരംഭിക്കുക</string>

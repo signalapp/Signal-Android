@@ -374,7 +374,7 @@
   <string name="CreateProfileActivity__profile">Profiili</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Virhe profiilikuvan asettamisessa</string>
   <string name="CreateProfileActivity_problem_setting_profile">Virhe profiilin asettamisessa</string>
-  <string name="CreateProfileActivity_set_up_your_profile">Aseta profiilisi</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Määritä profiilisi</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiilisi on päästä päähän salattu. Profiilisi ja tekemäsi muutokset näkyvät kontakteillesi, kun aloitat tai hyväksyt uusia keskusteluja ja kun liityt uusiin ryhmiin.</string>
   <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
   <!--ChooseBackupFragment-->
@@ -2400,7 +2400,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="Insights__title">Tilastot</string>
   <string name="InsightsDashboardFragment__title">Tilastot</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokolla suojasi automaattisesti %1$d/%% lähtevistä viesteistäsi viimeisen %2$d päivän aikana. Signalin käyttäjien väliset keskustelut ovat aina salattuja päästä päähän.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal Boost</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Levitä tietoa</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ei tarpeeksi tietoa</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tilastoprosentti lasketaan niiden lähetettyjen viestien perusteella, joita ei ole kadonnut tai poistettu viimeisen %1$d päivän aikana.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Aloita keskustelu</string>
@@ -2822,7 +2822,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="DeleteAccountFragment__deleting_your_account_will">Tilin poistaminen tulee:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Syötä puhelinnumerosi</string>
   <string name="DeleteAccountFragment__delete_account">Poista tili</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Poistamaan tilin tiedot ja profiilikuvan</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Poista tilisi tiedot ja profiilikuva</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Poistamaan kaikki viestit</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Poista %1$s maksutililtäsi</string>
   <string name="DeleteAccountFragment__no_country_code">Maatunnusta ei ole määritetty</string>
@@ -3296,7 +3296,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Kaikki tähän kuvaan tekemäsi muutokset katoavat.</string>
   <string name="CameraFragment__failed_to_open_camera">Kameran avaaminen epäonnistui</string>
   <string name="BadgesOverviewFragment__my_badges">Omat merkkini</string>
-  <string name="BadgesOverviewFragment__featured_badge">Suositeltu merkki</string>
+  <string name="BadgesOverviewFragment__featured_badge">Esitelty merkki</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Näytä merkit profiilissa</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
   <string name="BadgeSelectionFragment__select_badges">Valitse merkki</string>
@@ -3311,9 +3311,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Tue sinulle, eikä tiedollesi kehitettyä teknologiaa liittymällä Signalia ylläpitävään yhteisöön.</string>
   <string name="SubscribeFragment__currency">Valuutta</string>
   <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
-  <string name="SubscribeFragment__cancel_subscription">Peruuta tilaus</string>
-  <string name="SubscribeFragment__confirm_cancellation">Vahvista peruutus?</string>
-  <string name="SubscribeFragment__you_wont_be_charged_again">Sinua ei veloiteta uudelleen. Merkkisi poistetaan profiilistasi laskutusjaksosi lopussa.</string>
+  <string name="SubscribeFragment__cancel_subscription">Peru tilaus</string>
+  <string name="SubscribeFragment__confirm_cancellation">Vahvistatko peruutuksen?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Sinua ei veloiteta uudelleen. Merkki poistetaan profiilistasi laskutusjaksosi lopussa.</string>
   <string name="SubscribeFragment__not_now">Ei nyt</string>
   <string name="SubscribeFragment__confirm">Vahvista</string>
   <string name="SubscribeFragment__update_subscription">Päivitä tilaus</string>
@@ -3336,11 +3336,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Voit myös</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ryhdy kuukausittaiseksi Tukijaksi.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Näytä profiilissa</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Tee esitelty merkki</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Aseta esiteltäväksi merkiksi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kun sinulla on useampi kuin yksi merkki, voit valita yhden esille muiden nähtäväksi profiilissasi.</string>
+  <string name="BecomeASustainerFragment__get_badges">Hanki profiiliisi merkkejä tukemalla Signalia.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal on voittoa tavoittelematon järjestö, joka toimii ilman mainostajia tai sijoittajia pelkästään kaltaistesi käyttäjien tuella.</string>
   <string name="ManageDonationsFragment__my_support">Antamani tuki</string>
-  <string name="ManageDonationsFragment__manage_subscription">Muokkaa tilausta</string>
+  <string name="ManageDonationsFragment__manage_subscription">Hallinnoi tilausta</string>
   <string name="ManageDonationsFragment__badges">Merkit</string>
   <string name="ManageDonationsFragment__subscription_faq">Tilausten UKK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
@@ -3353,11 +3355,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MySupportPreference__renews_s">Uudistuu%1$s</string>
   <string name="MySupportPreference__processing_transaction">Käsitellään transaktiota…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Merkkiä ei voitu lisätä. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Ota yhteys tukeen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkkisi on vanhentunut</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merkki on erääntynyt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Tilaus on peruttu</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Boost-merkkisi on erääntynyt, eikä se näy enää muille profiilissasi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Harkitse kuukausittaiseksi Tukijaksi ryhtymistä, jos haluat jatkaa sinua, eikä tietojasi varten kehitetyn teknologian tukemista.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy Tukijaksi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
@@ -3369,14 +3371,19 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="Subscription__earn_a_s_badge">Ansaitse %1$s merkki</string>
   <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Virhe käsiteltäessä maksua</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Virhe käsiteltäessä maksua. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Merkkiäsi ei voitu lisätä tilillesi, mutta sinua on veloitettu. Ota yhteyttä tukeen.</string>
   <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään joten sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
   <string name="DonationsErrors__still_processing">Käsitellään edelleen</string>
+  <string name="DonationsErrors__couldnt_add_badge">Merkkiä ei voitu lisätä</string>
+  <string name="DonationsErrors__your_badge_could_not">Merkkiäsi ei voitu lisätä tilillesi, mutta sivua on veloitettu. Ota yhteyttä tukeen.</string>
   <string name="DonationsErrors__your_payment_is_still">Maksuasi käsitellään vielä. Tämä voi kestää muutamia minuutteja yhteydestäsi riippuen.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>
-  <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruuttaminen epäonnistui</string>
-  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruuttaminen vaatii internet-yhteyden.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruutus epäonnistui</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruutus vaatii Internet-yhteyden.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Laitteesi ei tue Google Payta, joten et voi tehdä tilausta ansaitaksesi merkin. Voit silti tukea Signalia tekemällä lahjoituksen verkkosivustomme kautta.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Verkkovirhe. Tarkista yhteys ja yritä uudelleen.</string>
   <string name="NetworkFailure__retry">Yritä uudelleen</string>

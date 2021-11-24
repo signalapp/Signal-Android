@@ -2366,7 +2366,6 @@
   <string name="Insights__title">Согледувања</string>
   <string name="InsightsDashboardFragment__title">Согледувања</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal протоколот автоматски заштити %1$d%% од Вашите пораки во изминатите %2$d дена. Разговорите помеѓу корисниците на Signal секогаш се шифрирани од-крај-до-крај.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Повеќе безбедна комуникација со Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Нема доволно податоци</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Вашиот процент на увид е искалкулиран базирано на испратените пораки во минатите %1$d дена кои што не се исчезнати или избришани.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Започни разговор</string>

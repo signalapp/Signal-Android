@@ -115,7 +115,8 @@ class GooglePayApi(
       put("merchantInfo", merchantInfo)
       put("allowedPaymentMethods", JSONArray().put(cardPaymentMethod()))
       put("transactionInfo", getTransactionInfo(price, label))
-      put("emailRequired", true)
+      // TODO Donation receipts
+      put("emailRequired", false)
       put("shippingAddressRequired", false)
     }
   }

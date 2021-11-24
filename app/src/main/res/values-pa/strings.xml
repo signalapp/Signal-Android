@@ -2305,7 +2305,6 @@
   <string name="Insights__title">ਇਨਸਾਈਟਸ</string>
   <string name="InsightsDashboardFragment__title">ਇਨਸਾਈਟਸ</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ਪ੍ਰੋਟੋਕੋਲ ਨੇ ਬੀਤੇ %2$d ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਦੇ %1$d%%ਨੂੰ ਆਪਣੇ-ਆਪ ਸੁਰੱਖਿਅਤ ਕੀਤਾ। Signal ਵਰਤੋਂਕਾਰਾਂ ਵਿਚਕਾਰ ਗੱਲਬਾਤ ਹਮੇਸ਼ਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal ਬੂਸਟ</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">ਲੋੜੀਂਦਾ ਡੇਟਾ ਨਹੀਂ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ਤੁਹਾਡੀ ਅੰਤਰਦ੍ਰਿਸ਼ਟੀ ਦੇ ਪ੍ਰਤੀਸ਼ਤ ਦਾ ਹਿਸਾਬ ਬੀਤੇ %1$d ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਭੇਜੇ ਜਾਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦੇ ਅਧਾਰ ’ਤੇ ਲਾਇਆ ਜਾਂਦਾ ਹੈ ਜੋ ਅਲੋਪ ਨਹੀਂ ਹੋਏ ਜਾਂ ਹਟਾਏ ਨਹੀਂ ਗਏ ਹਨ।</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ਗੱਲਬਾਤ ਸ਼ੁਰੂ ਕਰੋ</string>

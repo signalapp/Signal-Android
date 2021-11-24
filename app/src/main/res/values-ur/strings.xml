@@ -2277,7 +2277,6 @@
   <string name="Insights__title">Insights</string>
   <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پچھلے دنوں Signal پروٹوکول آپ کے جانے والے پیغامات کا خود بخود محفوظ%1$d%% ہے۔ Signal استعمال کرنے والوں کے درمیان بات چیت ہمیشہ اختتام%2$d سے آخر میں خفیہ ہوتی ہے۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal boost</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">کافی اعداد و شمار نہیں ہیں</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">آپ کی insight کی فیصد کا حساب گزشتہ%1$d دنوں میں جانے والے پیغامات کی بنیاد پر کیا جاتا ہے جو غائب نہیں ہوئے ہیں یا حذف نہیں ہوئے ہیں۔</string>
   <string name="InsightsDashboardFragment__start_a_conversation">گفتگو شروع کریں</string>

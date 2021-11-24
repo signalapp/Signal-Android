@@ -15,6 +15,7 @@ import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 internal class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -25,7 +26,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val KEY_CURRENCY_CODE_BOOST = "donation.currency.code.boost"
     private const val KEY_SUBSCRIBER_ID_PREFIX = "donation.subscriber.id."
     private const val KEY_LAST_KEEP_ALIVE_LAUNCH = "donation.last.successful.ping"
-    private const val KEY_LAST_END_OF_PERIOD = "donation.last.end.of.period"
+    private const val KEY_LAST_END_OF_PERIOD_SECONDS = "donation.last.end.of.period"
     private const val EXPIRED_BADGE = "donation.expired.badge"
     private const val USER_MANUALLY_CANCELLED = "donation.user.manually.cancelled"
     private const val KEY_LEVEL_OPERATION_PREFIX = "donation.level.operation."
@@ -40,7 +41,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
     KEY_CURRENCY_CODE_BOOST,
     KEY_LAST_KEEP_ALIVE_LAUNCH,
-    KEY_LAST_END_OF_PERIOD,
+    KEY_LAST_END_OF_PERIOD_SECONDS,
     SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT
   )
 
@@ -175,11 +176,19 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   }
 
   fun getLastEndOfPeriod(): Long {
-    return getLong(KEY_LAST_END_OF_PERIOD, 0L)
+    return getLong(KEY_LAST_END_OF_PERIOD_SECONDS, 0L)
   }
 
   fun setLastEndOfPeriod(timestamp: Long) {
-    putLong(KEY_LAST_END_OF_PERIOD, timestamp)
+    putLong(KEY_LAST_END_OF_PERIOD_SECONDS, timestamp)
+  }
+
+  /**
+   * True if the local user is likely a sustainer, otherwise false. Note the term 'likely', because this is based on cached data. Any serious decisions that
+   * rely on this should make a network request to determine subscription status.
+   */
+  fun isLikelyASustainer(): Boolean {
+    return TimeUnit.SECONDS.toMillis(getLastEndOfPeriod()) > System.currentTimeMillis()
   }
 
   fun isUserManuallyCancelled(): Boolean {

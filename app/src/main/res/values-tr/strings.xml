@@ -2389,7 +2389,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="Insights__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolü son %2$d gündeki iletilerinizin %%%1$d kadarını otomatik olarak korudu. Signal kullanıcıları arasındaki konuşmalar her zaman uçtan uca şifrelidir.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal\'i güçlendir</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Yetersiz veri</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">İçgörü yüzdeniz son %1$d gün içerisinde gönderdiğiniz kaybolmamış veya silinmemiş iletilere göre hesaplanır.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Konuşma başlat</string>
@@ -3329,7 +3328,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Destekleyin</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha fazla bilgi için lütfen bizimle iletişime geçin.</string>
   <string name="Subscription__contact_support">Destekle İletişime Geçin</string>

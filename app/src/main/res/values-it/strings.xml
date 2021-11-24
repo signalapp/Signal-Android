@@ -2406,7 +2406,7 @@
   <string name="Insights__title">Statistiche</string>
   <string name="InsightsDashboardFragment__title">Statistiche</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Il Protocollo Signal ha automaticamente protetto il %1$d%% dei tuoi messaggi in uscita negli ultimi %2$d giorni. Le conversazioni tra utenti Signal sono sempre crittografate end-to-end.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Potenzia Signal</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Spargi la voce</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dati non sufficienti</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">La tua percentuale nelle statistiche viene calcolata basandosi sui messaggi in uscita negli ultimi %1$d giorni che non sono scomparsi o stati eliminati.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Inizia una conversazione</string>
@@ -3366,7 +3366,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Contributo annullato</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Il tuo badge Boost è scaduto, e non è più visibile agli altri sul tuo profilo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuare a sostenere la tecnologia che è costruita per te, considera di diventare un contributore mensile.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Diventa un sostenitore</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Non ora</string>
@@ -3380,7 +3379,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Errore nell\'elaborazione del pagamento</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Errore nell\'elaborazione del pagamento. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Errore nell\'elaborazione del pagamento. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Il tuo badge non può essere aggiunto al tuo account, ma potrebbe esserti stato addebitato. Contatta l\'assistenza.</string>
   <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
   <string name="DonationsErrors__still_processing">Ancora in fase di elaborazione</string>

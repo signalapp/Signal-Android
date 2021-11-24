@@ -2572,7 +2572,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="Insights__title">Statystyki</string>
   <string name="InsightsDashboardFragment__title">Statystyki</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokół Signal automatycznie ochronił %1$d%% Twoich wysłanych wiadomości, w ciągu ostatnich %2$d dni. Konwersacje pomiędzy użytkownikami aplikacji Signal są zawsze szyfrowane metodą end-to-end.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Zabezpiecz więcej konwersacji</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Buduj świadomość</string>
   <string name="InsightsDashboardFragment__not_enough_data">Za mało danych</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Twoja statystyka procentowa jest obliczana na podstawie ilości wiadomości, które nie zniknęły, ani nie zostały usunięte, wysłanych w ciągu ostatnich %1$ddni.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Rozpocznij rozmowę</string>
@@ -3564,7 +3564,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Twoja odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subskrypcja anulowana</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Twoja odznaka Wsparcie wygasła i inni nie będą jej już widzieć w Twoim profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich 
 danych, rozważ miesięczną subskrypcję.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Zostań wspierającym</string>
@@ -3579,7 +3578,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Błąd przetwarzania płatności</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Błąd przetwarzania płatności. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Błąd przetwarzania płatności. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Nie udało się dodać odznaki do Twojego profilu, ale Twoje konto mogło zostać obciążone. Skontaktuj się z pomocą techniczną.</string>
   <string name="DonationsErrors__your_payment">Twoja płatność nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
   <string name="DonationsErrors__still_processing">Trwa przetwarzanie</string>

@@ -2413,7 +2413,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="Insights__title">Oversikt</string>
   <string name="InsightsDashboardFragment__title">Oversikt</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollen beskytta automatisk %1$d%% av dei utgåande meldingane dine dei siste %2$d dagane. Samtalar mellom Signal-brukarar er alltid kryptert ende-til-ende.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal-auke</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Sprei ordet</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ikkje nok data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentane i oversikta er rekna ut frå utgåande meldingar dei siste %1$d dagane som ikkje har forsvunne eller blitt sletta.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start ein samtale</string>
@@ -3382,7 +3382,6 @@ Sjekkar igjen no …</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merket ditt er utgått</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merke utløpt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement avslutta</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Auke-merket ditt er utløpt, og er ikkje lenger synleg for andre på profilen din.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Vurder å bli ein månadleg bidragsytar for å fortsetja å støtta teknologi som er bygd for deg.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli ein bidragsytar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
@@ -3396,7 +3395,7 @@ Sjekkar igjen no …</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Klarte ikkje handsama betaling</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Klarte ikkje handsama betaling. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Klarte ikkje behandla betaling. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Klarte ikkje legga til merket på kontoen din, men beløpet kan ha bli trukke. Ta kontakt med brukarstøtte.</string>
   <string name="DonationsErrors__your_payment">Klarte ikkje prosessera betalinga di og beløpet har ikkje blitt trekt. Prøv igjen.</string>
   <string name="DonationsErrors__still_processing">Behandlar enno</string>

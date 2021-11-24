@@ -2569,7 +2569,6 @@
   <string name="Insights__title">תובנות</string>
   <string name="InsightsDashboardFragment__title">תובנות</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">פרוטוקול Signal הגן באופן אוטומטי על %1$d%% מההודעות היוצאות שלך במהלך %2$d הימים האחרונים. שיחות בין משתמשי Signal תמיד מוצפנות מקצה־אל־קצה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">תמריץ Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">אין מספיק נתונים</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">אחוז התובנות שלך מחושב על סמך הודעות יוצאות בטווח %1$d הימים האחרונים שלא נעלמו או לא נמחקו.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">התחל שיחה</string>
@@ -3567,7 +3566,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">שגיאה בעיבוד תשלום</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">שגיאה בעיבוד תשלום. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">שגיאה בעיבוד תשלום. %1$s</string>
   <string name="DonationsErrors__your_payment">התשלום שלך לא היה יכול להיות מעובד ולא חויבת. אנא נסה שוב.</string>
   <string name="DonationsErrors__still_processing">עדין מעבד</string>
   <string name="DonationsErrors__couldnt_add_badge">לא היה ניתן להוסיף תג</string>

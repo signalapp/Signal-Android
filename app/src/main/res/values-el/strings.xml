@@ -2338,7 +2338,7 @@
   <string name="Insights__title">Στατιστικά</string>
   <string name="InsightsDashboardFragment__title">Στατιστικά</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Το Signal Protocol προστάτευσε αυτόματα το %1$d%% των εξερχόμενων μηνυμάτων σου, τις τελευταίες %2$d ημέρες. Οι συνομιλίες μεταξύ χρηστών του Signal είναι πάντα κρυπτογραφημένες από άκρο σε άκρο.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Ενίσχυση Signal</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Διαδώστε το</string>
   <string name="InsightsDashboardFragment__not_enough_data">Δεν υπάρχουν αρκετά δεδομένα</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Το ποσοστό στα στατιστικά σου υπολογίζεται με βάση τα εξερχόμενα μηνυμάτων τις τελευταίες %1$d ημέρες, που δεν έχουν εξαφανιστεί ή διαγραφτεί.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Ξεκίνα μια συνομιλία</string>
@@ -3245,7 +3245,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Το έμβλημά σου έληξε</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Το έμβλημα έληξε</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Η συνδρομή ακυρώθηκε</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Το έμβλημα Boost έληξε, και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε υποστηρικτής</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
@@ -3259,7 +3258,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Σφάλμα κατά την επεξεργασία της πληρωμής</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Σφάλμα κατά την επεξεργασία της πληρωμής. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Σφάλμα κατά την επεξεργασία της πληρωμής. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Το έμβλημά σου δεν μπόρεσε να προστεθεί στο λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
   <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
   <string name="DonationsErrors__still_processing">Ακόμα επεξεργάζεται</string>

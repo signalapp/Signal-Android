@@ -2489,7 +2489,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Insights__title">Statistici</string>
   <string name="InsightsDashboardFragment__title">Statistici</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele tale expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Creșterea Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Statisticile sunt calculate pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Începe o conversație</string>
@@ -3465,9 +3464,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Insigna ta a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Insigna a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonament anulat</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Insigna ta Boost a expirat și nu mai este vizibilă pe profilul tău pentru ceilalți.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pentru a continua să sprijini tehnologie construită pentru tine, te rugăm să iei în considerare posibilitatea de a devenii un Susținător lunar.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Deveniți un susținător</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Fii un Susținător</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă prea lungă de timp. Insigna ta %1$s nu mai este vizibilă pe profilul tău.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru ați reactiva insigna, reînnoiește acum.</string>
@@ -3479,7 +3477,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Procesarea plății a eșuat</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">Procesarea plății a eșuat. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">Eroare la procesarea plății %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Insigna nu a putut fi adăugată în cont, dar este posibil să fi fost taxat. Te rugăm să contactezi asistența.</string>
   <string name="DonationsErrors__your_payment">Plata ta nu a putut fi procesată și nu ai fost taxat. Te rugăm să încerci din nou.</string>
   <string name="DonationsErrors__still_processing">În curs de procesare</string>

@@ -2254,7 +2254,6 @@
   <string name="Insights__title">Pilguheit</string>
   <string name="InsightsDashboardFragment__title">Pilguheit</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signali protokoll kaitses automaatselt %1$d%% väljuvat sõnumit %2$d päeva jooksul. Vestlused Signali kasutajate vahel on alati otspunktkrüpteeritud.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signali võimendamine</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Pole piisavalt andmeid</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Sinu Pilguheidu protsent on arvutatud %1$d päeva väljuvate sõnumite põhjal, mis ei ole haihtunud ega kustutatud.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Alusta vestlust</string>

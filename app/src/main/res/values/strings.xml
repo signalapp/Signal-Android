@@ -3990,9 +3990,11 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Your Badge has Expired</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expired</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscription cancelled</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Your Boost badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Your Boost badge has expired and is no longer visible to others on your profile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">You can reactivate your Boost badge for another 30 days with a one-time contribution.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">To continue supporting technology that is built for you, please consider becoming a monthly Sustainer.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a sustainer</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Add a Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Not now</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Your Sustainer subscription was automatically cancelled because you were inactive for too long. Your %1$s badge is no longer visible on your profile.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">You can keep using Signal but to support the app and reactivate your badge, renew now.</string>

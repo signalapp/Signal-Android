@@ -2400,7 +2400,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="Insights__title">Interior</string>
   <string name="InsightsDashboardFragment__title">Interior</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de cap a cap.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Empenta del Signal</string> -->
+  <string name="InsightsDashboardFragment__spread_the_word">Escampeu-ho</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comenceu una conversa</string>
@@ -3360,9 +3360,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insígnia ha vençut.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscripció cancel·lada</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">La vostra insígnia d\'empenta ha vençut i ja no és visible per als altres al vostre perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuar donant suport a la tecnologia creada per a vós, considereu convertir-vos en un sostenidor mensual.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sigueu-ne un sostenidor</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">La vostra subscripció de sostenidor s\'ha cancel·lat automàticament perquè heu estat massa temps inactiu. La insígnia %1$s ja no és visible al perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Podeu continuar usant el Signal, però per donar suport a l\'aplicació i reactivar la insígnia, renoveu-la ara.</string>
@@ -3374,7 +3373,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">S\'ha produït un error en processar el pagament.</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__error_processing_payment_s">S\'ha produït un error en processar el pagament. $1$s</string>
+  <string name="DonationsErrors__error_processing_payment_s">S\'ha produït un error en processar el pagament. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">La insígnia no s\'ha pogut afegir al compte, però és possible que se us hagi cobrat. Poseu-vos en contacte amb l\'assistència.</string>
   <string name="DonationsErrors__your_payment">El pagament no s\'ha pogut processar i no se us ha cobrat. Si us plau, torneu-ho a provar.</string>
   <string name="DonationsErrors__still_processing">Encara en procés</string>

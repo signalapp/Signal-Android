@@ -74,10 +74,11 @@ class StripeApi(
       "payment_method" to paymentMethodId
     )
 
-    val email = paymentSource.email()
-    if (email != null) {
-      parameters["receipt_email"] = email
-    }
+    // TODO Donation receipts
+//    val email = paymentSource.email()
+//    if (email != null) {
+//      parameters["receipt_email"] = email
+//    }
 
     postForm("payment_intents/${paymentIntent.id}/confirm", parameters)
   }.subscribeOn(Schedulers.io())
@@ -101,10 +102,11 @@ class StripeApi(
       "type" to "card",
     )
 
-    val email = paymentSource.email()
-    if (email != null) {
-      parameters["billing_details[email]"] = email
-    }
+    // TODO Donation receipts
+//    val email = paymentSource.email()
+//    if (email != null) {
+//      parameters["billing_details[email]"] = email
+//    }
 
     return postForm("payment_methods", parameters)
   }

@@ -2568,7 +2568,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="Insights__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Mae Protocol Signal wedi amddiffyn %1$d%% o\'ch negeseuon â anfonwyd yn awtomatig dros y %2$d diwrnod diwethaf. Mae sgyrsiau rhwng defnyddwyr Signal bob amser yn cael eu hamgryptio o\'r dechrau i\'r diwedd.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Hwb Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Dim digon o ddata</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Mae eich canran Mewnwelediadau yn cael ei gyfrifo ar sail negeseuon sy\'n mynd allan yn ystod y %1$d diwrnod diwethaf nad ydyn\'t wedi diflannu na\'u dileu.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Cychwyn sgwrs</string>
@@ -3543,7 +3542,7 @@ Send neges heb ei ddiogelu?</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__please_contact_support">Cysylltwch â chymorth</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn gynhaliwr</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gynhaliwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>
   <string name="Subscription__contact_support">Cysylltu â Chymorth Signal</string>

@@ -49,7 +49,7 @@ class BoostTest__MoneyFilter {
   }
 
   @Test
-  fun `Given USD, when I enter 5dot00, then I expect 5dot00 from text change`() {
+  fun `Given USD, when I enter 5dot00, then I expect 5 from text change`() {
     var result = ""
     val testSubject = Boost.MoneyFilter(usd) {
       result = it
@@ -58,11 +58,11 @@ class BoostTest__MoneyFilter {
     val editable = SpannableStringBuilder("5.00")
     testSubject.afterTextChanged(editable)
 
-    assertEquals("5.00", result)
+    assertEquals("5", result)
   }
 
   @Test
-  fun `Given USD, when I enter 5dot000, then I expect unsuccessful filter`() {
+  fun `Given USD, when I enter 5dot000, then I expect successful filter`() {
     val testSubject = Boost.MoneyFilter(yen)
     val editable = SpannableStringBuilder("5.000")
     val dest = SpannableStringBuilder()
@@ -70,7 +70,7 @@ class BoostTest__MoneyFilter {
     testSubject.afterTextChanged(editable)
     val filterResult = testSubject.filter(editable, 0, editable.length, dest, 0, 0)
 
-    assertNotNull(filterResult)
+    assertNull(filterResult)
   }
 
   @Test
@@ -124,7 +124,7 @@ class BoostTest__MoneyFilter {
   @Test
   fun `Given JPY, when I enter 5dot, then I expect unsuccessful filter`() {
     val testSubject = Boost.MoneyFilter(yen)
-    val editable = SpannableStringBuilder("5.")
+    val editable = SpannableStringBuilder("¥5.")
     val dest = SpannableStringBuilder()
 
     testSubject.afterTextChanged(editable)
