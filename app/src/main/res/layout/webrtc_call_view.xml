@@ -238,6 +238,7 @@
             android:textAppearance="@style/TextAppearance.Signal.Subtitle"
             android:textColor="@color/core_white"
             android:visibility="gone"
+            android:hyphenationFrequency="normal"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
             app:layout_constraintEnd_toEndOf="@id/call_screen_speaker_toggle"

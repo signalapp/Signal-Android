@@ -1497,6 +1497,7 @@
     </plurals>
 
     <string name="WebRtcCallView__flip">Flip</string>
+    <!-- Hyphenation enabled for this string. You can use the special character "Soft Hyphen" (SHY) -->
     <string name="WebRtcCallView__speaker">Speaker</string>
     <string name="WebRtcCallView__camera">Camera</string>
     <string name="WebRtcCallView__mute">Mute</string>
