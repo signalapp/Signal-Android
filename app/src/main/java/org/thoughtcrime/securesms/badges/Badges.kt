@@ -69,7 +69,7 @@ object Badges {
       "hdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[2]), "hdpi")
       "xxhdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[4]), "xxhdpi")
       "xxxhdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[5]), "xxxhdpi")
-      else -> Pair(getBadgeImageUri(serviceBadge.sprites6[3]), "xdpi")
+      else -> Pair(getBadgeImageUri(serviceBadge.sprites6[3]), "xhdpi")
     }
   }
 
