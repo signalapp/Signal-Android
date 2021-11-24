@@ -3357,7 +3357,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har löpt ut</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märket har upphört att gälla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerationen uppsagd</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ditt Boost-märke har upphört att gälla och är inte längre synligt för andra på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">För att fortsätta stöda teknik som är byggd för dig, överväg att bli en månatlig upprätthållare.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>

@@ -3325,7 +3325,6 @@
   <string name="MySupportPreference__renews_s">%1$s রিনিউ</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">আপনার ব্যাজের মেয়াদ শেষ হয়ে গেছে</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">দীর্ঘমেয়াদী হয়ে উঠুন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
   <string name="Subscription__please_contact_support_for_more_information">আরও তথ্যের জন্য সাপোর্টে যোগাযোগ করুন।</string>
   <string name="Subscription__contact_support">সহায়তায় যোগাযোগ করুন</string>

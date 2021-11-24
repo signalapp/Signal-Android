@@ -2406,6 +2406,7 @@
   <string name="Insights__title">Insights</string>
   <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Signal Protocol protegeu automaticamente %1$d %% de suas mensagens enviadas nos últimos %2$d dias. As conversas entre usuários do Signal são sempre criptografadas de ponta a ponta.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Espalhe a notícia</string>
   <string name="InsightsDashboardFragment__not_enough_data">Não há dados suficientes</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O seu percentual do Insights é calculado com base nas mensagens enviadas nos últimos %1$d dias que não desapareceram ou foram excluídas.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar uma conversa</string>
@@ -3365,7 +3366,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu selo tornou-se inválido</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Selo inválido</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Doação mensal cancelada</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">O seu selo Boost expirou e não é mais visualizado por outras pessoas no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar a apoiar uma tecnologia desenvolvida para você, considere se tornar um Apoiador mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>

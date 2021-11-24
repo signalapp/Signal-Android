@@ -3371,8 +3371,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge verlopen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Maandelijkse donaties geannuleerd</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Je eenmalige-donateur-badge is verlopen en is daarom niet langer voor anderen te zien op je profiel.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je eenmalige-donateur-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overweeg maandelijkse donaties in te stellen om technologie die is gemaakt voor jou in plaats van voor het verzamelen van gegevens te blijven ondersteunen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nogmaals eenmalig doneren</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je %1$s-badge is niet langer voor anderen te zien op je profiel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>

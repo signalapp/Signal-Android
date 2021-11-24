@@ -3366,7 +3366,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Contributo annullato</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Il tuo badge Boost è scaduto, e non è più visibile agli altri sul tuo profilo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuare a sostenere la tecnologia che è costruita per te, considera di diventare un contributore mensile.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Diventa un sostenitore</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Non ora</string>

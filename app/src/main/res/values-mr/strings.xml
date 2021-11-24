@@ -3362,7 +3362,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपला बॅज कालबाह्य झाला आहे</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">बॅज कालबाह्य झाला</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">सब्स्क्रिप्शन रद्द केले</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">आपला बूस्ट बॅज कालबाह्य झाला आहे, आणि तो यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करणे सुरू ठेवण्यासाठी, कृपया मासिक सस्टेनर बनण्याचा विचार करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>

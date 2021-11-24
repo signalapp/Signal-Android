@@ -3365,9 +3365,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Nişanınızın müddəti bitdi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Nişan müddəti bitdi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abunəlik ləğv edildi</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Gücləndirmə nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq Dəstəkçi olmağı düşünün.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi ol</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi olun</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Uzun müddət aktiv olmadığınız üçün Dəstəkçi abunəliyiniz avtomatik olaraq ləğv edildi. %1$s nişanınız artıq profilinizdə görünmür.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-ı istifadə etməyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktiv etmək üçün abunəliyi indi yeniləyin.</string>

@@ -3473,7 +3473,6 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaša je značka istekla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Značka je istekla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Pretplata je otkazana</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Vaša značka pojačivača Signala istekla je i više nije prikazana na Vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Da nastavite podržavati tehnologiju koja je kreirana radi Vas, razmislite o tome da postanete mjesečni pokrovitelj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pokrovitelj</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>

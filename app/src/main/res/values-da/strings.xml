@@ -3366,8 +3366,10 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Emblem udløbet</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulleret</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dit Boost-emblem er udløbet og er ikke længere synligt for andre på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan genaktivere dit Boost-emblem i yderligere 30 dage med et engangsbidrag.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overvej at blive månedlig bidragsyder for fortsat at støtte teknologi, der er bygget til dig.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tilføj et Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>

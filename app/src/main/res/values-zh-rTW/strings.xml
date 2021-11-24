@@ -3259,9 +3259,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">訂閱已取消</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的單次贊助徽章已過期，你的個人資料中的其他人將無法再看到你的贊助徽章。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的單次贊助徽章已過期，你的個人資料中的其他人將看不到了。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可以透過一次性捐款將你的單次贊助徽章再啟用 30 天。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">要繼續支援專為你打造的技術，請考慮成為每月贊助人。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為支持者</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為定期贊助人</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">新增一次單次贊助</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">你的贊助訂閱已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>

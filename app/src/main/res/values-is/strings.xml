@@ -3358,7 +3358,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkið þitt er útrunnið</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merki útrunnið</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Áskrift sagt upp</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Hvatningarmerkið þitt er útrunnið og því ekki lengur sýnilegt öðrum á auðkenninu þínu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Til að halda áfram að styðja við tækni sem er hönnuð fyrir þig, skaltu íhuga að gerast mánaðarlegur stuðningsaðili.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Gerstu stuðningsaðili</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ekki núna</string>

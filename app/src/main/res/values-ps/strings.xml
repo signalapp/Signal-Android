@@ -3273,7 +3273,6 @@
   <string name="MySupportPreference__renews_s">%1$s کې نوی کېږي</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ستاسې بج منقضي شوی دی</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">یو ساتونکی شئ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">اوس نه</string>
   <string name="Subscription__contact_support">مرستې سره اړیکه ونیسئ</string>
   <string name="SubscribeFragment__processing_payment">پرداخت د پروسیس په حال کې دی…</string>

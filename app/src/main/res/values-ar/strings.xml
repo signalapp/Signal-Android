@@ -3766,7 +3766,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">انتهت صلاحية شارتك</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">لقد نفذت الشارة</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">لقد أُلغي الاشتراك</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن داعماً</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن من الداعمين</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
   <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>

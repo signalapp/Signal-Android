@@ -3361,9 +3361,8 @@ Nouvelle tentative…</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre badge a expiré</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expiré</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulé</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Votre badge Boost a expiré et n’est plus visible par les autres sur votre profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pour continuer à soutenir la technologie conçue pour vous, veuillez envisager de devenir un donateur mensuel.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un pourvoyeur</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un soutien</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Votre abonnement de soutien a été automatiquement annulé car vous êtes resté inactif pendant trop longtemps. Le badge %1$s n\'est plus visible sur votre profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal mais pour soutenir l\'application et réactiver votre badge, renouvelez maintenant.</string>

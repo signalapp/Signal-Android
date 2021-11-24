@@ -3257,7 +3257,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Huy hiệu của bạn đã hết hạn</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Huy hiệu hết hạn</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Quyên góp đã bị hủy bỏ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Huy hiệu quyên góp của bạn đã hết hạn, mọi người sẽ không còn nhìn thấy nó trên hồ sơ cá nhân của bạn được nữa.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>

@@ -3572,7 +3572,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerata nutraukta</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje kitiems žmonėms.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti remėju ir remti kas mėnesį.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti remėju</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>

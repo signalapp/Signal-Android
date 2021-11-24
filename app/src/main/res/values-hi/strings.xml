@@ -3323,7 +3323,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="MySupportPreference__renews_s">%1$s को नवीनीकृत करता है</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपका बैज समाप्त हो गया है</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">एक सस्टेनर बनें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक जानकारी के लिए कृपया समर्थन से संपर्क करें.</string>
   <string name="Subscription__contact_support">समर्थन से संपर्क करें</string>

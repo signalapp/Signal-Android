@@ -3228,7 +3228,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MySupportPreference__renews_s">Perpanjang %1$s</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana Anda sudah Hangus</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi penyokong</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Penyokong</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
   <string name="Subscription__please_contact_support_for_more_information">Harap hubungi bantuan untuk informasi lebih lanjut.</string>
   <string name="Subscription__contact_support">Hubungi Bantuan</string>

@@ -3571,7 +3571,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnost odznaku vypršela</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Předplatné zrušeno</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnost vašeho Boost odznaku vypršela a na vašem profilu již není pro ostatní viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás, zvažte možnost stát se měsíčním podporovatelem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>

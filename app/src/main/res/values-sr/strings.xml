@@ -3468,7 +3468,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваша значка је истекла</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Значка је истекла</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Претплата поништена</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ваша Boost значка је истекла, и не може више де се види на вашем профилу.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">За наставак пратеће технологије која је изграђена за вас, размислите да постанете месечни претплатник.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>

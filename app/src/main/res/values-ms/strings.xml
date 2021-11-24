@@ -3217,7 +3217,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MySupportPreference__renews_s">Memperbaharui %1$s</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana anda telah luput</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Jadilah pemelihara</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
   <string name="Subscription__please_contact_support_for_more_information">Sila hubungi bantuan untuk maklumat lebih lanjut</string>
   <string name="Subscription__contact_support">Hubungi Sokongan</string>

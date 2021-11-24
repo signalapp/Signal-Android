@@ -3360,9 +3360,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insígnia ha vençut.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscripció cancel·lada</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">La vostra insígnia d\'empenta ha vençut i ja no és visible per als altres al vostre perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuar donant suport a la tecnologia creada per a vós, considereu convertir-vos en un sostenidor mensual.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sigueu-ne un sostenidor</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">La vostra subscripció de sostenidor s\'ha cancel·lat automàticament perquè heu estat massa temps inactiu. La insígnia %1$s ja no és visible al perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Podeu continuar usant el Signal, però per donar suport a l\'aplicació i reactivar la insígnia, renoveu-la ara.</string>

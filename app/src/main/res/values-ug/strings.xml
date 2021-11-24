@@ -3239,7 +3239,6 @@
   <string name="ManageDonationsFragment__badges">ئىزناكلار</string>
   <string name="Boost__enter_custom_amount">ئىختىيارىچە سومما كىرگۈزۈڭ</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">قۇۋۋەتلىگۈچى بولۇڭ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ھازىر ئەمەس</string>
   <string name="Subscription__contact_support">قوللىغۇچىلار  بىلەن ئالاقىلىشىڭ</string>
   <string name="SubscribeFragment__processing_payment">چىقىمنى بېجىرىۋاتىدۇ…</string>

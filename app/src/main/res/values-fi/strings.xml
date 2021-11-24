@@ -3360,7 +3360,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkkisi on vanhentunut</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merkki on erääntynyt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Tilaus on peruttu</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Boost-merkkisi on erääntynyt, eikä se näy enää muille profiilissasi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Harkitse kuukausittaiseksi Tukijaksi ryhtymistä, jos haluat jatkaa sinua, eikä tietojasi varten kehitetyn teknologian tukemista.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy Tukijaksi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>

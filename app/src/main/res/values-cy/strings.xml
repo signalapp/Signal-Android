@@ -3542,7 +3542,7 @@ Send neges heb ei ddiogelu?</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__please_contact_support">Cysylltwch â chymorth</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn gynhaliwr</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gynhaliwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>
   <string name="Subscription__contact_support">Cysylltu â Chymorth Signal</string>

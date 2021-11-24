@@ -3253,8 +3253,10 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">バッジが失効しました</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">サブスクリプションが解除されました</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">あなたのブーストバッジは有効期限が切れたため、プロフィールには表示されません。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジをさらに30日間有効にすることができます。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">あなたのために作られた技術を継続的にサポートするため、月次サポーターへの登録をご検討ください。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになりませんか</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">長い間ご利用がなかったため、あなたのサポーターサブスクリプションは自動で解除されました。あなたの%1$sバッジは、プロフィールに表示されなくなっています。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは使い続けられますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
@@ -3266,6 +3268,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">決済の処理中にエラーが発生しました</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">決済の処理中にエラーが発生しました。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。お手数ですが、サポートまでお問い合わせください。</string>
   <string name="DonationsErrors__your_payment">決済処理ができず、課金しませんでした。あとで再度試してください。</string>
   <string name="DonationsErrors__still_processing">処理を継続しています</string>
