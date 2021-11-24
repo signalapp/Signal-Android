@@ -699,6 +699,7 @@
   <string name="ManageProfileFragment_your_username">Via uzantnomo</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">La difino de avataro malsukcesis</string>
   <string name="ManageProfileFragment_badges">Insignoj</string>
+  <string name="ManageProfileFragment__edit_photo">Modifi foton</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Neniu komuna grupo</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1344,6 +1345,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj sekure alvoki.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vi tro faris neĝustajn provojn por registri tiun numeron. Reprovu poste.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Konekto al servo ne eblas. Bv. kontroli retkonekton, kaj provi denove.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Nenorma numeroformo</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">La entajpita numero (%1$s) ŝajnas esti en nenorma formo.\n\nĈu estas pliĝuste %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Android-Signal — Telefonnumero-normo</string>
   <string name="RegistrationActivity_call_requested">Alvoko petita</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Restas al vi %d paŝo antaŭ ol sendi protokolan dosieron pri sencimigo.</item>
@@ -1937,6 +1941,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__debug_log">Sencimiga protokolo:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>— Elekti opcion —</item>
+    <item>Io ne funkcias</item>
+    <item>Peto por nova funkcio</item>
+    <item>Demando</item>
+    <item>Prikomento</item>
+    <item>Alia</item>
+    <item>Pagoj (MobileCoin)</item>
+    <item>Donacoj (subtenantoj kaj Signal-plikonatigo)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
@@ -2034,6 +2048,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__advanced">Speciala</string>
   <string name="preferences__donate_to_signal">Donaci al Signal</string>
   <string name="preferences__subscription">Monata donaco</string>
+  <string name="preferences__become_a_signal_sustainer">Iĝi Signal-donacanto</string>
   <string name="preferences__signal_boost">Signal-plikonatigo</string>
   <string name="preferences__privacy">Privateco</string>
   <string name="preferences__mms_user_agent">MMS-a uzant-ilo („user agent“)</string>
@@ -2391,6 +2406,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="Insights__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">La protokolo de Signal aŭtomate protektis %1$d %% el viaj elirintaj mesaĝoj dum la lastaj %2$d tagoj. Interparoloj inter Signal-uzantoj estas ĉiam tutvoje ĉifritaj.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Diskonigu la informon</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ne sufiĉe da datumoj</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Via elcento en „Superrigardo“ kalkuliĝas per la elirintaj mesaĝoj, dum la lastaj %1$d tagoj, kiuj ne malaperis aŭ forviŝiĝis.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Krei novan interparolon</string>
@@ -3125,7 +3141,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AddAProfilePhotoMegaphone__add_photo">Aldoni foton</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Iĝi donacanto</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ekzistas pro la subteno de homoj kiel vi. Ekdonacu kaj ricevu profil-insignon.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Ne, dankon</string>
+  <string name="BecomeASustainerMegaphone__contribute">Donaci</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Malfermi la serĉon de emoĝioj</string>
@@ -3174,6 +3192,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationSettingsFragment__conversation_muted_forever">Interparolo silentigita por ĉiam</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonnumero kopiita al tondujo.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnumero</string>
+  <string name="ConversationSettingsFragment__get_badges">Havu insignojn en via profilo, kiam vi subtenas Signal-on. Tuŝetu insignon por scii pli.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Aldoni anojn</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifi grupinformon</string>
@@ -3295,6 +3314,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ImageView__badge">Insigno</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ekzistas pro la subteno de homoj kiel vi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Subtenu teĥnologiojn, kiujn oni konstruas por vi — ne por akiri viajn datumojn —, enirante la komunumon de homoj, kiuj donacas pro tio.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Subtenu teĥnologiojn, kiujn oni konstruas por vi, ne por akiri viajn datumojn, enirante la komunumon de homoj, kiuj subtenas al Signal.</string>
+  <string name="SubscribeFragment__currency">Valuto</string>
   <string name="SubscribeFragment__more_payment_options">Pli da pagomanieroj</string>
   <string name="SubscribeFragment__cancel_subscription">Nuligi la abonon</string>
   <string name="SubscribeFragment__confirm_cancellation">Ĉu konfirmi la nuligon?</string>
@@ -3306,17 +3327,26 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubscribeFragment__update_subscription_question">Ĉu ĝisdatigi la abonon?</string>
   <string name="SubscribeFragment__update">Ĝisdatigi</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">La plena monsumo de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">La plena monsumo (%1$s) de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos ĉiumonate.</string>
   <string name="Subscription__s_per_month">Po %s monate</string>
   <string name="Subscription__s_per_month_dot_renews_s">Po %1$s monate · Rekomenciĝos %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">Po %1$s monate · Finiĝos %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, ĝi nur estas subtenata de homoj, kiuj uzas kaj taksaj ĝin. Faru ĉiumonatan donacon, kaj ricevu profilan insignon por montri vian subtenon.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kial donaci?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal sin dediĉas al la disvolvado de priprivateca malfermitkoda teĥnologio, kiuj protektas liberan esprimon, kaj ebligas mondan sekuran komunikadon.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Via donaco vivtenas tiun aferon, kaj pagas por la programado kaj la funkciigo de aplikâjo uzita de milionoj por komunikiĝi privatece. Neniu reklamo. Neniu spurilo. Neniu ŝerco.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dankon pro via subtenado!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dankon pro via subteno!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vi gajnis insignon %s! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vi gajnis la insignon pri plikonatigo! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vi povas ankaŭ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">iĝi monata donacanto.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Montri ĉe profilo</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Uzi kiel elstarigitan insignon</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Farita</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiam vi havas pli ol unu insignon, vi povas elekti tiun, kiun vi elstarigos por vidigi ĉe via profilo.</string>
+  <string name="BecomeASustainerFragment__get_badges">Havu insignojn en via profilo per subteno de Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, nur subtenata de homoj kiel vi.</string>
   <string name="ManageDonationsFragment__my_support">Mia subteno</string>
   <string name="ManageDonationsFragment__manage_subscription">Administri la abonon</string>
   <string name="ManageDonationsFragment__badges">Insignoj</string>
@@ -3329,21 +3359,42 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MySupportPreference__add_a_signal_boost">Aldoni Signal-plikonatigo</string>
   <string name="MySupportPreference__s_per_month">Po %1$s monate</string>
   <string name="MySupportPreference__renews_s">Rekomenciĝos %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Traktado de la transakcio…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">La insigno ne aldoniĝis. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Kontaktu la helpservon.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Via insigno finiĝis</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insigno eksvalidiĝis</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abono nuligita</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Via insigno pri plikonatigo senvalidiĝis kaj ne plu videblas al aliuloj ĉe via profilo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vi povas rehavi vian insignon pri plikonatigo dum 30 tagoj per unufoja donaco.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Por plu subteni teĥnologion, kiu estas farita por vi, konsideru donaci monate.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aldoni plikonatigon</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vi povas daŭrigi uzi Signal-on, sed por subtenu la aplikaĵon kaj rehavi vian insignon, reaboniĝu nun.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reabono</string>
   <string name="Subscription__please_contact_support_for_more_information">Kontaktu Signa-helpon por plia informo. </string>
   <string name="Subscription__contact_support">Kontakti subtenon</string>
   <string name="Subscription__earn_a_s_badge">Gajni insignon %1$s</string>
   <string name="SubscribeFragment__processing_payment">Traktado de pago…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Eraro dum traktado de la pago</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Eraro dum traktado de la pago. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Via insigno ne aldoniĝis en via profilo, sed vi eble estis debetita. Kontaktu la helpservon.</string>
   <string name="DonationsErrors__your_payment">Via pago ne sukcesis, kaj vi ne estis debetita. Provu ree.</string>
+  <string name="DonationsErrors__still_processing">Traktado ankoraŭ faranta</string>
+  <string name="DonationsErrors__couldnt_add_badge">La insigno ne aldoniĝis.</string>
+  <string name="DonationsErrors__your_badge_could_not">Via insigno ne aldoniĝis en via profilo, sed vi eble estis debetita. Kontaktu la helpservon.</string>
+  <string name="DonationsErrors__your_payment_is_still">Via pago estas ankoraŭ faranta. Tio povas daŭri kelkajn minutojn depende de via retkonekto.</string>
   <string name="DonationsErrors__google_pay_unavailable">„Google Pay“ ne disponebla</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vi devas agordi „Google Pay“ por povi donaci enaplikaĵe.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Nuligo de abono malsukcesis</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Nuligo de abono bezonas retaliron.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Via aparato ne povas uzi „Google Pay“: vi do ne povas aboniĝi por gajni insignon. Vi tamen povas subteni Signal-on per donaco niareteje.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eraro de retkonekto. Kontrolu vian konekton kaj reprovu.</string>
   <string name="NetworkFailure__retry">Reprovi</string>
   <!--EOF-->
 </resources>

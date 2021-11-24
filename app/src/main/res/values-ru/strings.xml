@@ -3565,8 +3565,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Значок истёк</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Подписка отменена</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ваш значок «Ускорение» истёк и больше не виден другим людям в вашем профиле.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Вы можете заново активировать свой значок «Ускорение» ещё на 30 дней, сделав одноразовое пожертвование.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным Поддерживающим.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Стать Поддерживающим</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Добавить Ускорение</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Ваша подписка Поддерживающего была автоматически отменена, потому что вы были неактивны слишком долго. Ваш значок «%1$s» больше не виден в вашем профиле.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Вы можете продолжать использовать Signal, но чтобы поддержать приложение и заново активировать значок, продлите подписку сейчас.</string>

@@ -3382,8 +3382,11 @@ Sjekkar igjen no …</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merket ditt er utgått</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merke utløpt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement avslutta</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Auke-merket ditt er utløpt, og er ikkje lenger synleg for andre på profilen din.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan gjenaktivera Auke-merket ditt i 30 dagar til med eit eingongsbeløp.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Vurder å bli ein månadleg bidragsytar for å fortsetja å støtta teknologi som er bygd for deg.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli ein bidragsytar</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Få ein Signal-auke</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Bidragsytar-abonnementet ditt blei automatisk avslutta sidan du var inaktiv for lenge. %1$s-merket ditt er ikkje lenger synleg på profilen din.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan halda fram med å bruka Signal, men du må fornya for å fortsetja å støtta appen og gjenaktivera merket.</string>

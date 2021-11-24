@@ -2493,6 +2493,7 @@
   <string name="Insights__title">Statistika</string>
   <string name="InsightsDashboardFragment__title">Statistika</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokol automatski je zaštitio %1$d%% poruka koje ste poslali u zadnjih %2$d dana. Komunikacija između korisnika Signala uvijek je šifrirana od uređaja pošiljaoca do uređaja primaoca.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Razglasi</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedovoljno podataka</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procenat prikazan ovdje izračunava se na temelju poslatih poruka u zadnjih %1$d dana, a koje nisu istekle ili izbrisane.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Započnite komunikaciju</string>
@@ -3473,8 +3474,11 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaša je značka istekla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Značka je istekla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Pretplata je otkazana</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Vaša značka pojačivača Signala istekla je i više nije prikazana na Vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Možete ponovo aktivirati svoju značku pojačivača Signala na period od 30 dana tako što ćete izvršiti jednokratnu uplatu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Da nastavite podržavati tehnologiju koja je kreirana radi Vas, razmislite o tome da postanete mjesečni pokrovitelj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pokrovitelj</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pojačajte</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaša pretplata automatski je otkazana jer ste predugo bili neaktivni. Vaša  \"%1$s\" značka više nije prikazana na Vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Možete nastaviti s korištenjem Signala, ali ako želite pružiti podršku aplikaciji i ponovo aktivirati svoju značku, obnovite pretplatu.</string>
@@ -3486,6 +3490,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Greška prilikom obrađivanja uplate</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Greška prilikom obrađivanja uplate. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Vašu značku nije bilo moguće dodati na Vaš račun, ali je moguće da je uplata prošla. Molimo, kontaktirajte podršku.</string>
   <string name="DonationsErrors__your_payment">Vašu uplatu nije bilo moguće obraditi i iznos nije naplaćen. Molimo, pokušajte ponovo.</string>
   <string name="DonationsErrors__still_processing">Još uvijek obrađujem</string>

@@ -3365,8 +3365,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Crachá expirado</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscrição cancelada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">O seu crachá de Apoio expirou e deixou de ser visível para os outras pessoas através do seu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pode reativar o seu crachá de Apoio por mais 30 dias com uma contribuição única.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar a suportar a tecnologia que foi construída para si, considere ser um apoiante mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num Apoiante</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Apoiar o Signal</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">A sua assinatura de Apoiante foi cancelada automaticamente porque se encontra inativo à muito tempo. O seu crachá %1$s deixou de estar visível no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pode continuar a utilizar o Signal mas, para apoiar a aplicação e reativar o seu crachá, renove agora.</string>

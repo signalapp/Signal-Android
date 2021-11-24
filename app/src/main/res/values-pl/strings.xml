@@ -3564,9 +3564,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Twoja odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subskrypcja anulowana</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Twoja odznaka Wsparcie wygasła i inni nie będą jej już widzieć w Twoim profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Możesz reaktywować swoją odznakę Wsparcie na kolejne 30 dni, dzięki jednorazowemu datkowi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich 
 danych, rozważ miesięczną subskrypcję.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Zostań wspierającym</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Wesprzyj</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Twoja subskrypcja Wspierającego została automatycznie anulowana, gdyż zbyt długo pozostajesz nieaktywny(a). Twoja odznaka %1$s nie jest już widoczna w Twoim profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, złóż datek.</string>

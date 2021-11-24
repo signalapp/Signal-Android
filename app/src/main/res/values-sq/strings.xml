@@ -3370,8 +3370,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Stema juaj ka Skaduar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Stema ka skaduar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Pajtimi u anulua</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Stema juaj Përforcim ka skaduar dhe s’është më e dukshme për të tjerët në profilin tuaj.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Stemën tua Përforcim mund ta riaktivizoni për 30 ditë të tjera përmes një kontributi një herësh.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Që të vazhdoni të përkrahni teknologji që është krijuar për ju, ju lutemi, shihni mundësinë e bërjes një Mbështetës mujor.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bëhuni një Mbështetës</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Shtoni një Përforcim</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Pajtimi juaj si Mbështetës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s’është më e dukshme te profili juaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Mund të vazhdoni ta përdorni Signal-in, por që të përkrahni aplikacionin dhe të riaktivizoni stemën, rinovojeni tani.</string>

@@ -3464,8 +3464,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Insigna ta a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Insigna a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonament anulat</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Insigna ta Boost a expirat și nu mai este vizibilă pentru alții, pe profilul tău.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Iți poți reactiva insigna Boost pentru încă 30 de zile cu o contribuție unică.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pentru a continua să sprijini tehnologie construită pentru tine, te rugăm să iei în considerare posibilitatea de a devenii un Susținător lunar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Fii un Susținător</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Adaugă un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă prea lungă de timp. Insigna ta %1$s nu mai este vizibilă pe profilul tău.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru ați reactiva insigna, reînnoiește acum.</string>

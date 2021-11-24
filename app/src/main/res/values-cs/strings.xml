@@ -3571,8 +3571,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnost odznaku vypršela</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Předplatné zrušeno</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnost vašeho odznaku Boost vypršela a již není pro ostatní na vašem profilu viditelný.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jednorázovým příspěvkem si můžete odznak Boost znovu aktivovat na dalších 30 dní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás, zvažte možnost stát se měsíčním podporovatelem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Přidat Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše předplatné Sustainer bylo automaticky zrušeno, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není na vašem profilu viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>

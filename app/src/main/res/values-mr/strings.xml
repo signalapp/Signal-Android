@@ -467,7 +467,6 @@
   <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">सदस्य जोडायचा?</string>
-  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ला \"%2$s\" मध्ये जोडायचे?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ने \"%2$s\" ला जोडले.</string>
   <string name="AddToGroupActivity_add_to_group">गटात जोडा</string>
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
@@ -601,7 +600,7 @@
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">हा व्यक्ती घोषणा गटांत जोडला जाऊ शकत नाही.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="one">\"%2$s\" ला \"%1$s\" मध्ये जोडायचे?</item>
+    <item quantity="one">\"%1$s\" ला \"%2$s\" मध्ये जोडायचे?</item>
     <item quantity="other">%3$d सदस्य \"%2$s\" मध्ये जोडायचे?</item>
   </plurals>
   <string name="AddMembersActivity__add">जोडा</string>
@@ -853,10 +852,10 @@
   <string name="MediaOverviewActivity_video">व्हिडिओ</string>
   <string name="MediaOverviewActivity_image">चित्र</string>
   <string name="MediaOverviewActivity_voice_message">व्हॉईस संदेश</string>
-  <string name="MediaOverviewActivity_sent_by_s">%1$s द्वारे पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_s">%1$s ने पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you">आपल्या द्वारे पाठवले</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s यास पाठवले</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s यास आपल्याद्वारे पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s ला पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s ला आपल्याद्वारे पाठवले</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">सादर करत आहे प्रतिक्रिया</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">आपल्याला कसे वाटते त्यासोबत जलद शेअर करण्यासाठी कुठल्याही संदेशावर टॅप करा आणि धरून ठेवा.</string>
@@ -3362,8 +3361,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">आपला बॅज कालबाह्य झाला आहे</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">बॅज कालबाह्य झाला</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">सब्स्क्रिप्शन रद्द केले</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">आपला बूस्ट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपन आपला बूस्ट बॅज आणखी ३० दिवसांसाठी एक-वेळच्या योगदानासह पुन्हा सक्रिय करू शकता.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करणे सुरू ठेवण्यासाठी, कृपया मासिक सस्टेनर बनण्याचा विचार करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">बूस्ट जोडा</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">आपले सस्टेनर सब्स्क्रिप्शन आपोआप रद्द झाले कारण आपन खूप काळ निष्क्रिय होता. आपला %1$s बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपन Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
@@ -3375,6 +3377,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">पेमेंट प्रक्रिया करताना त्रुटी आली</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">पेमेंट प्रक्रिया करताना त्रुटी आली. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">तुमचा बॅज तुमच्या खात्यात जोडला जाऊ शकला नाही, परंतु तुमच्याकडून शुल्क आकारले गेले असेल. कृपया सपोर्टशी संपर्क साधा.</string>
   <string name="DonationsErrors__your_payment">तुमची पेमेंट प्रक्रिया पुर्ण नाही केली जाऊ शकली आणि तुमच्याकडून शुल्क आकारले गेले नाही. कृपया पुन्हा प्रयत्न करा.</string>
   <string name="DonationsErrors__still_processing">अजूनही प्रक्रिया करत आहे</string>

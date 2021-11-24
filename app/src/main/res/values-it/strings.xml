@@ -3366,8 +3366,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Il tuo badge è scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge scaduto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Contributo annullato</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Il tuo badge Boost è scaduto e non è più visibile agli altri sul tuo profilo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puoi riattivare il tuo badge Boost per altri 30 giorni con un contributo una tantum.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuare a sostenere la tecnologia che è costruita per te, considera di diventare un contributore mensile.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Diventa un sostenitore</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aggiungi un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Non ora</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Il tuo contributo da sostenitore è stato automaticamente cancellato perché sei stato inattivo per troppo tempo. Il tuo badge %1$s non è più visibile sul tuo profilo.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma per sostenere l\'app e riattivare il tuo badge, rinnova ora.</string>

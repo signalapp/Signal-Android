@@ -3262,8 +3262,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您個襟章已經褪色夠鐘換喇</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">襟章已經褪色夠鐘換喇</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">課金計劃已經取消</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">您個集氣襟章已經褪色夠鐘換喇，因此已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">您可以單次捐款，將您嘅「集氣」襟章重新掛上 30 日。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如果您想繼續力撐為您而設嘅科技，請考慮做我哋月供課金計劃嘅後援金主。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">買多支旗</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">見您冇用好一排，您嘅後援課金計劃已經自動取消。您嘅「%1$s」襟章已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal 一切如常運作，並讓您自由使用。若要繼續支持呢個 app 並掛返起您個襟章，請立即續期。</string>
@@ -3275,6 +3278,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">處理付款嘅時候發生錯誤</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">處理付款嘅時候發生錯誤。%1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">您個襟章加唔到落去您個帳戶度，但有可能已經扣咗您數。請聯絡支援。</string>
   <string name="DonationsErrors__your_payment">處理唔到您嘅付款，您未有被扣數。請再試一次。</string>
   <string name="DonationsErrors__still_processing">仲處理緊</string>

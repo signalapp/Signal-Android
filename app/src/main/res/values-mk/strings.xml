@@ -1934,6 +1934,16 @@
   <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Изберете опција \-\-</item>
+    <item>Нешто не функционира</item>
+    <item>Барање за функција</item>
+    <item>Прашање</item>
+    <item>Повратни информации</item>
+    <item>Друго</item>
+    <item>Плаќања (MobileCoin)</item>
+    <item>Поддржувачи &amp; Signal Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Оваа порака</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Скорешни</string>
@@ -2031,6 +2041,7 @@
   <string name="preferences__advanced">Напредно</string>
   <string name="preferences__donate_to_signal">Донирајте на Signal</string>
   <string name="preferences__subscription">Претплатa</string>
+  <string name="preferences__become_a_signal_sustainer">Станете поддржувач на Signal</string>
   <string name="preferences__privacy">Приватност</string>
   <string name="preferences__mms_user_agent">MMS кориснички агент</string>
   <string name="preferences__advanced_mms_access_point_names">Рачни MMS поставувања</string>
@@ -2366,6 +2377,7 @@
   <string name="Insights__title">Согледувања</string>
   <string name="InsightsDashboardFragment__title">Согледувања</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal протоколот автоматски заштити %1$d%% од Вашите пораки во изминатите %2$d дена. Разговорите помеѓу корисниците на Signal секогаш се шифрирани од-крај-до-крај.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Разгласи</string>
   <string name="InsightsDashboardFragment__not_enough_data">Нема доволно податоци</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Вашиот процент на увид е искалкулиран базирано на испратените пораки во минатите %1$d дена кои што не се исчезнати или избришани.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Започни разговор</string>
@@ -3068,6 +3080,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Додај слика</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Станете поддржувач</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Не, благодарам</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
@@ -3233,6 +3246,7 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Изберете беџ</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Морате да изберете беџ</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не успеав да го ажурирам профилот</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ImageView__badge">Беџ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal е овозможен од луѓе како тебе.</string>
   <string name="SubscribeFragment__more_payment_options">Повеќе опции за плаќање</string>
@@ -3249,6 +3263,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, одржуван само од луѓето кои го користат и ценат. Направете месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесеш?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставете како главен беџ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
@@ -3264,15 +3279,22 @@
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
   <string name="MySupportPreference__s_per_month">%1$s/месец</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Не може да се додаде значка. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Ве молиме контактирајте со поддршката.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашиот беџ е истечен</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">За да продолжите да ја поддржувате технологијата што е создадена за Вас, размислете да станете месечен поддржувач.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Вашата претплата за поддршка беше автоматски откажана затоа што бевте неактивни премногу долго. Вашиот беџ %1$s повеќе не е видлив на Вашиот профил.</string>
   <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со поддршка за повеќе информации.</string>
   <string name="Subscription__contact_support">Контакт за поддршка</string>
   <string name="Subscription__earn_a_s_badge">Заработете %1$s беџ</string>
   <string name="SubscribeFragment__processing_payment">Плаќањето се обработува…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__your_badge_could_not_be_added">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со поддршката.</string>
+  <string name="DonationsErrors__couldnt_add_badge">Не може да се додаде беџ</string>
+  <string name="DonationsErrors__your_badge_could_not">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со поддршката.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не успеа да се откажете претплатата</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>

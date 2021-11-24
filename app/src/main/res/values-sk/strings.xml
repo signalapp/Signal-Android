@@ -3571,8 +3571,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Platnosť odznaku vypršala</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnosť odznaku vypršala</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Predplatné bolo zrušené</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnosť vášho odznaku podporovateľa vypršala a ostatní ho už vo vašom profile nevidia.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Svoj odznak podporovateľa môžete znova aktivovať na ďalších 30 dní jednorazovým príspevkom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás, zvážte, či sa nestanete mesačným podporovateľom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte sa Sustainerom</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridajte podporu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše predplatné podporovateľa bolo automaticky zrušené, pretože ste boli príliš dlho neaktívni. Váš odznak %1$s sa už vo vašom profile nezobrazuje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal môžete naďalej používať, ale ak chcete podporiť aplikáciu a znova aktivovať svoj odznak, obnovte ho teraz.</string>

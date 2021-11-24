@@ -3355,10 +3355,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Abzeichen abgelaufen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Regelmäßige Spende gekündigt</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dein Boost-Abzeichen ist abgelaufen und ist daher nicht mehr in deinem Profil für andere sichtbar.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kannst dein Boost-Abzeichen für weitere 30 Tage mit einer Einmalspende reaktivieren.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dein Boost-Abzeichen ist abgelaufen und ist daher für andere nicht mehr in deinem Profil sichtbar.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kannst dein Boost-Abzeichen für weitere 30 Tage mit einer Einmalspende reaktivieren.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Um auch weiterhin eine Technologie zu unterstützen, die für dich entwickelt wird, zieh bitte eine monatliche Spende in Betracht.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Unterstützer werden</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost hinzufügen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Deine regelmäßige Unterstützerspende wurde automatisch gekündigt, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nicht mehr in deinem Profil sichtbar.</string>
@@ -3382,7 +3382,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du musst Google Pay einrichten, um in der App zu spenden.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht gekündigt werden</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dein Gerät unterstützt nicht Google Pay, daher kannst du nicht spenden, um ein Abzeichen zu erhalten. Durch eine Spende auf unserer Website kannst du jedoch Signal trotzdem unterstützen.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dein Gerät unterstützt Google Pay nicht, daher kannst du nicht spenden, um ein Abzeichen zu erhalten. Durch eine Spende auf unserer Website kannst du jedoch Signal trotzdem unterstützen.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netzfehler. Überprüfe deine Internetverbindung und versuche es erneut.</string>
   <string name="NetworkFailure__retry">Erneut versuchen</string>
   <!--EOF-->
