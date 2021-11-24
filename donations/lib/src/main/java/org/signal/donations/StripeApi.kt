@@ -128,7 +128,19 @@ class StripeApi(
     if (response.isSuccessful) {
       return response
     } else {
-      throw IOException("postForm failure: ${response.code()}")
+      throw IOException("postForm failed with code: ${response.code()}. errorCode: ${parseErrorCode(response.body()?.string())}")
+    }
+  }
+
+  private fun parseErrorCode(body: String?): String? {
+    if (body == null) {
+      return "No body."
+    }
+
+    return try {
+      JSONObject(body).getJSONObject("error").getString("code")
+    } catch (e: Exception) {
+      "Unable to parse error code."
     }
   }
 
