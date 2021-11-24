@@ -571,13 +571,13 @@ public final class ConversationListItem extends ConstraintLayout
     final String bodyWithoutMediaPrefix;
 
     if (body.startsWith(EmojiStrings.GIF)) {
-      bodyWithoutMediaPrefix = body.replace(EmojiStrings.GIF, "");
+      bodyWithoutMediaPrefix = body.replaceFirst(EmojiStrings.GIF, "");
     } else if (body.startsWith(EmojiStrings.VIDEO)) {
-      bodyWithoutMediaPrefix = body.replace(EmojiStrings.VIDEO, "");
+      bodyWithoutMediaPrefix = body.replaceFirst(EmojiStrings.VIDEO, "");
     } else if (body.startsWith(EmojiStrings.PHOTO)) {
-      bodyWithoutMediaPrefix = body.replace(EmojiStrings.PHOTO, "");
+      bodyWithoutMediaPrefix = body.replaceFirst(EmojiStrings.PHOTO, "");
     } else if (thread.getExtra() != null && thread.getExtra().getStickerEmoji() != null && body.startsWith(thread.getExtra().getStickerEmoji())) {
-      bodyWithoutMediaPrefix = body.replace(thread.getExtra().getStickerEmoji(), "");
+      bodyWithoutMediaPrefix = body.replaceFirst(thread.getExtra().getStickerEmoji(), "");
     } else {
       return LiveDataUtil.just(body);
     }
