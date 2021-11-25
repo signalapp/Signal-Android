@@ -39,7 +39,7 @@ public class ChatExportTimePickerFragment extends Fragment {
     private Button                          selectTimePeriodButton;
     private DatePickerDialog                datePickerDialog;
 
-    private Date fromDate = new Date(0L);
+    private Date fromDate;
     private Date untilDate = new Date();
 
     int startYear, startMonth, startDay, endYear, endMonth, endDay;
@@ -50,14 +50,15 @@ public class ChatExportTimePickerFragment extends Fragment {
     @SuppressLint("SimpleDateFormat")
     private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.chat_export_time_picker_fragment, container, false);
 
         viewModel = ViewModelProviders.of(getActivity ()).get(ChatExportViewModel.class);
+        fromDate = viewModel.getInitialDateFrom();
         chipGroup = view.findViewById (R.id.chat_export_chip_group);
 
         all = view.findViewById (R.id.chip_all);

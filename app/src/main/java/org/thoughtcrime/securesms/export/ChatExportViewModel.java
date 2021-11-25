@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,7 +21,7 @@ public class ChatExportViewModel extends ViewModel {
 
     private static final Boolean    INITIAL_HTML_VIEWER_STATE = false;
     private static final Boolean    INITIAL_MEDIA_STATE = false;
-    private static final String     INITIAL_TIME_PERIOD     = "Default (whole chat)";
+    private static final String     INITIAL_TIME_PERIOD = "Default (whole chat)";
 
     private final  MutableLiveData<Optional<Date>>      startDateControls          = new MutableLiveData<>();
     private final MutableLiveData<Optional<Date>>       endDateControls            = new MutableLiveData<>();
@@ -33,12 +34,19 @@ public class ChatExportViewModel extends ViewModel {
 
 
     public ChatExportViewModel () {
-        this.startDateControls.setValue(Optional.fromNullable (new Date(0L)));
+        this.startDateControls.setValue(Optional.fromNullable (getDateFromOneYearAgo()));
         this.endDateControls.setValue(Optional.fromNullable (new Date()));
         this.enableIncludeMediaControls.setValue(INITIAL_MEDIA_STATE);
         this.enableHTMLViewerControls.setValue(INITIAL_HTML_VIEWER_STATE);
         this.selectedTimePeriod.setValue(INITIAL_TIME_PERIOD);
 
+    }
+
+    private Date getDateFromOneYearAgo() {
+        Calendar cal = Calendar.getInstance();
+        Date today = cal.getTime();
+        cal.add(Calendar.YEAR, -1);
+        return cal.getTime();
     }
 
     public void setDateFrom(Date fromDate) {
@@ -50,7 +58,7 @@ public class ChatExportViewModel extends ViewModel {
     }
 
     public Date getInitialDateFrom() {
-        return new Date(0);
+        return getDateFromOneYearAgo();
     }
 
     private Date getInitialDateUntil() {
@@ -131,7 +139,5 @@ public class ChatExportViewModel extends ViewModel {
             return Objects.requireNonNull(modelClass.cast(new ChatExportViewModel()));
         }
     }
-
-
 
 }

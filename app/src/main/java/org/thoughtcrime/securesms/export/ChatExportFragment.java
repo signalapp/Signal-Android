@@ -218,13 +218,13 @@ public class ChatExportFragment extends Fragment {
             }
             Navigation.findNavController(requireView()).popBackStack();
             if(treeUri != null)
-                onCreateClicked(viewModel);
+                getFormattedChat(viewModel);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    private void onCreateClicked (ChatExportViewModel viewModel)  {
+    private void getFormattedChat (ChatExportViewModel viewModel)  {
         Toast.makeText (getContext (), "Start processing chat data", Toast.LENGTH_SHORT).show ();
         Date from = null, until = null;
         if(viewModel.getDateFrom().getValue()!=null)
@@ -241,7 +241,7 @@ public class ChatExportFragment extends Fragment {
                 .ifNecessary()
                 .onAllGranted(() -> {
                     try {
-                        createZip (formatter, viewModel, treeUri);
+                        getMediaIfNecessary (formatter, viewModel, treeUri);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -251,7 +251,7 @@ public class ChatExportFragment extends Fragment {
     }
 
 
-    void createZip (@NonNull ChatFormatter exp, ChatExportViewModel viewModel, @NonNull Uri uri) {
+    void getMediaIfNecessary (@NonNull ChatFormatter exp, ChatExportViewModel viewModel, @NonNull Uri uri) {
         String result = exp.parseConversationToXML ();
         if (result.length () > 0) {
             Map<String, ChatFormatter.MediaRecord> selectedMedia = new HashMap<> ();
