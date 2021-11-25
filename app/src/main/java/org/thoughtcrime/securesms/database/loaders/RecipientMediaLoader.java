@@ -6,8 +6,8 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -35,8 +35,7 @@ public final class RecipientMediaLoader extends MediaLoader {
   public Cursor getCursor() {
     if (recipientId == null || recipientId.isUnknown()) return null;
 
-    long threadId = DatabaseFactory.getThreadDatabase(getContext())
-                                   .getOrCreateThreadIdFor(Recipient.resolved(recipientId));
+    long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
 
     return ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting);
   }

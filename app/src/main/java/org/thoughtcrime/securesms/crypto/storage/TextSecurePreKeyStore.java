@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.PreKeyStore;
@@ -31,7 +31,7 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
   @Override
   public PreKeyRecord loadPreKey(int preKeyId) throws InvalidKeyIdException {
     synchronized (LOCK) {
-      PreKeyRecord preKeyRecord = DatabaseFactory.getPreKeyDatabase(context).getPreKey(preKeyId);
+      PreKeyRecord preKeyRecord = SignalDatabase.preKeys().getPreKey(preKeyId);
 
       if (preKeyRecord == null) throw new InvalidKeyIdException("No such key: " + preKeyId);
       else                      return preKeyRecord;
@@ -41,7 +41,7 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
   @Override
   public SignedPreKeyRecord loadSignedPreKey(int signedPreKeyId) throws InvalidKeyIdException {
     synchronized (LOCK) {
-      SignedPreKeyRecord signedPreKeyRecord = DatabaseFactory.getSignedPreKeyDatabase(context).getSignedPreKey(signedPreKeyId);
+      SignedPreKeyRecord signedPreKeyRecord = SignalDatabase.signedPreKeys().getSignedPreKey(signedPreKeyId);
 
       if (signedPreKeyRecord == null) throw new InvalidKeyIdException("No such signed prekey: " + signedPreKeyId);
       else                            return signedPreKeyRecord;
@@ -51,41 +51,41 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
   @Override
   public List<SignedPreKeyRecord> loadSignedPreKeys() {
     synchronized (LOCK) {
-      return DatabaseFactory.getSignedPreKeyDatabase(context).getAllSignedPreKeys();
+      return SignalDatabase.signedPreKeys().getAllSignedPreKeys();
     }
   }
 
   @Override
   public void storePreKey(int preKeyId, PreKeyRecord record) {
     synchronized (LOCK) {
-      DatabaseFactory.getPreKeyDatabase(context).insertPreKey(preKeyId, record);
+      SignalDatabase.preKeys().insertPreKey(preKeyId, record);
     }
   }
 
   @Override
   public void storeSignedPreKey(int signedPreKeyId, SignedPreKeyRecord record) {
     synchronized (LOCK) {
-      DatabaseFactory.getSignedPreKeyDatabase(context).insertSignedPreKey(signedPreKeyId, record);
+      SignalDatabase.signedPreKeys().insertSignedPreKey(signedPreKeyId, record);
     }
   }
 
   @Override
   public boolean containsPreKey(int preKeyId) {
-    return DatabaseFactory.getPreKeyDatabase(context).getPreKey(preKeyId) != null;
+    return SignalDatabase.preKeys().getPreKey(preKeyId) != null;
   }
 
   @Override
   public boolean containsSignedPreKey(int signedPreKeyId) {
-    return DatabaseFactory.getSignedPreKeyDatabase(context).getSignedPreKey(signedPreKeyId) != null;
+    return SignalDatabase.signedPreKeys().getSignedPreKey(signedPreKeyId) != null;
   }
 
   @Override
   public void removePreKey(int preKeyId) {
-    DatabaseFactory.getPreKeyDatabase(context).removePreKey(preKeyId);
+    SignalDatabase.preKeys().removePreKey(preKeyId);
   }
 
   @Override
   public void removeSignedPreKey(int signedPreKeyId) {
-    DatabaseFactory.getSignedPreKeyDatabase(context).removeSignedPreKey(signedPreKeyId);
+    SignalDatabase.signedPreKeys().removeSignedPreKey(signedPreKeyId);
   }
 }

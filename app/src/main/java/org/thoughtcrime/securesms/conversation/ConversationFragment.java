@@ -94,9 +94,9 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -439,7 +439,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     } else {
       lastVisibleMessageTimestamp = 0;
     }
-    SignalExecutors.BOUNDED.submit(() -> DatabaseFactory.getThreadDatabase(requireContext()).setLastScrolled(threadId, lastVisibleMessageTimestamp));
+    SignalExecutors.BOUNDED.submit(() -> SignalDatabase.threads().setLastScrolled(threadId, lastVisibleMessageTimestamp));
   }
 
   @Override
@@ -791,8 +791,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   public void scrollToBottom() {
     if (getListLayoutManager().findFirstVisibleItemPosition() < SCROLL_ANIMATION_THRESHOLD) {
+      Log.d(TAG, "scrollToBottom: Smooth scrolling to bottom of screen.");
       list.smoothScrollToPosition(0);
     } else {
+      Log.d(TAG, "scrollToBottom: Scrolling to bottom of screen.");
       list.scrollToPosition(0);
     }
   }
@@ -858,9 +860,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
             boolean threadDeleted;
 
             if (messageRecord.isMms()) {
-              threadDeleted = DatabaseFactory.getMmsDatabase(context).deleteMessage(messageRecord.getId());
+              threadDeleted = SignalDatabase.mms().deleteMessage(messageRecord.getId());
             } else {
-              threadDeleted = DatabaseFactory.getSmsDatabase(context).deleteMessage(messageRecord.getId());
+              threadDeleted = SignalDatabase.sms().deleteMessage(messageRecord.getId());
             }
 
             if (threadDeleted) {
@@ -1074,8 +1076,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   @SuppressWarnings("CodeBlock2Expr")
   public void jumpToMessage(@NonNull RecipientId author, long timestamp, @Nullable Runnable onMessageNotFound) {
     SimpleTask.run(getLifecycle(), () -> {
-      return DatabaseFactory.getMmsSmsDatabase(getContext())
-                            .getMessagePositionInConversation(threadId, timestamp, author);
+      return SignalDatabase.mmsSms().getMessagePositionInConversation(threadId, timestamp, author);
     }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), onMessageNotFound));
   }
 
@@ -1140,8 +1141,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private void scrollToNextMention() {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(ApplicationDependencies.getApplication());
-      return mmsDatabase.getOldestUnreadMentionDetails(threadId);
+      return SignalDatabase.mms().getOldestUnreadMentionDetails(threadId);
     }, (pair) -> {
       if (pair != null) {
         jumpToMessage(pair.first(), pair.second(), () -> {});
@@ -1364,10 +1364,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }
 
       SimpleTask.run(getLifecycle(), () -> {
-        return DatabaseFactory.getMmsSmsDatabase(getContext())
-                              .getQuotedMessagePosition(threadId,
-                                                        messageRecord.getQuote().getId(),
-                                                        messageRecord.getQuote().getAuthor());
+        return SignalDatabase.mmsSms().getQuotedMessagePosition(threadId,
+                                                                messageRecord.getQuote().getId(),
+                                                                messageRecord.getQuote().getAuthor());
       }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), () -> {
         Toast.makeText(getContext(), R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT).show();
       }));
@@ -1417,7 +1416,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                                                  .withMimeType(thumbnailSlide.getContentType())
                                                                  .createForSingleSessionOnDisk(requireContext());
 
-          DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForViewOnceMessage(messageRecord.getId());
+          SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(messageRecord.getId());
 
           ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
 
@@ -1433,7 +1432,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         } else {
           Log.w(TAG, "Failed to open view-once photo. Showing a toast and deleting the attachments for the message just in case.");
           Toast.makeText(requireContext(), R.string.ConversationFragment_failed_to_open_message, Toast.LENGTH_SHORT).show();
-          SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForViewOnceMessage(messageRecord.getId()));
+          SignalExecutors.BOUNDED.execute(() -> SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(messageRecord.getId()));
         }
       });
     }

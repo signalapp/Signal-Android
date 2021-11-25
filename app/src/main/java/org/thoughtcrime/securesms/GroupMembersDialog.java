@@ -35,6 +35,7 @@ public final class GroupMembersDialog {
                                         .show();
 
     GroupMemberListView memberListView = dialog.findViewById(R.id.list_members);
+    memberListView.initializeAdapter(fragmentActivity);
 
     LiveGroup                                   liveGroup   = new LiveGroup(groupRecipient.requireGroupId());
     LiveData<List<GroupMemberEntry.FullMember>> fullMembers = liveGroup.getFullMembers();

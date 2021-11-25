@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database
 import android.app.Application
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
@@ -16,7 +15,9 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -43,18 +44,20 @@ class RecipientDatabaseTest_merges {
   private lateinit var mmsDatabase: MessageDatabase
   private lateinit var sessionDatabase: SessionDatabase
   private lateinit var mentionDatabase: MentionDatabase
+  private lateinit var reactionDatabase: ReactionDatabase
 
   @Before
   fun setup() {
-    recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
-    identityDatabase = DatabaseFactory.getIdentityDatabase(context)
-    groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context)
-    groupDatabase = DatabaseFactory.getGroupDatabase(context)
-    threadDatabase = DatabaseFactory.getThreadDatabase(context)
-    smsDatabase = DatabaseFactory.getSmsDatabase(context)
-    mmsDatabase = DatabaseFactory.getMmsDatabase(context)
-    sessionDatabase = DatabaseFactory.getSessionDatabase(context)
-    mentionDatabase = DatabaseFactory.getMentionDatabase(context)
+    recipientDatabase = SignalDatabase.recipients
+    identityDatabase = SignalDatabase.identities
+    groupReceiptDatabase = SignalDatabase.groupReceipts
+    groupDatabase = SignalDatabase.groups
+    threadDatabase = SignalDatabase.threads
+    smsDatabase = SignalDatabase.sms
+    mmsDatabase = SignalDatabase.mms
+    sessionDatabase = SignalDatabase.sessions
+    mentionDatabase = SignalDatabase.mentions
+    reactionDatabase = SignalDatabase.reactions
 
     ensureDbEmpty()
   }
@@ -90,6 +93,9 @@ class RecipientDatabaseTest_merges {
     identityDatabase.saveIdentity(E164_A, recipientIdE164, identityKeyE164, IdentityDatabase.VerifiedStatus.VERIFIED, false, 0, false)
 
     sessionDatabase.store(SignalProtocolAddress(ACI_A.toString(), 1), SessionRecord())
+
+    reactionDatabase.addReaction(MessageId(smsId1, false), ReactionRecord("a", recipientIdAci, 1, 1))
+    reactionDatabase.addReaction(MessageId(mmsId1, true), ReactionRecord("b", recipientIdE164, 1, 1))
 
     // Merge
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
@@ -155,13 +161,23 @@ class RecipientDatabaseTest_merges {
 
     // Session validation
     assertNotNull(sessionDatabase.load(SignalProtocolAddress(ACI_A.toString(), 1)))
+
+    // Reaction validation
+    val reactionsSms: List<ReactionRecord> = reactionDatabase.getReactions(MessageId(smsId1, false))
+    val reactionsMms: List<ReactionRecord> = reactionDatabase.getReactions(MessageId(mmsId1, true))
+
+    assertEquals(1, reactionsSms.size)
+    assertEquals(ReactionRecord("a", recipientIdAci, 1, 1), reactionsSms[0])
+
+    assertEquals(1, reactionsMms.size)
+    assertEquals(ReactionRecord("b", recipientIdAci, 1, 1), reactionsMms[0])
   }
 
   private val context: Application
     get() = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as Application
 
   private fun ensureDbEmpty() {
-    DatabaseFactory.getInstance(context).rawDatabase.rawQuery("SELECT COUNT(*) FROM ${RecipientDatabase.TABLE_NAME}", null).use { cursor ->
+    SignalDatabase.rawDatabase.rawQuery("SELECT COUNT(*) FROM ${RecipientDatabase.TABLE_NAME}", null).use { cursor ->
       assertTrue(cursor.moveToFirst())
       assertEquals(0, cursor.getLong(0))
     }
@@ -195,8 +211,7 @@ class RecipientDatabaseTest_merges {
   }
 
   private fun getMention(messageId: Long): MentionModel {
-    val db: SQLiteDatabase = DatabaseFactory.getInstance(context).rawDatabase
-    db.rawQuery("SELECT * FROM ${MentionDatabase.TABLE_NAME}").use { cursor ->
+    SignalDatabase.rawDatabase.rawQuery("SELECT * FROM ${MentionDatabase.TABLE_NAME} WHERE ${MentionDatabase.MESSAGE_ID} = $messageId").use { cursor ->
       cursor.moveToFirst()
       return MentionModel(
         recipientId = RecipientId.from(CursorUtil.requireLong(cursor, MentionDatabase.RECIPIENT_ID)),

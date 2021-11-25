@@ -8,7 +8,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -69,8 +68,8 @@ public class GroupV1MigrationJob extends BaseJob {
 
   public static void enqueueRoutineMigrationsIfNecessary(@NonNull Application application) {
     if (!SignalStore.registrationValues().isRegistrationComplete() ||
-        !TextSecurePreferences.isPushRegistered(application)       ||
-        TextSecurePreferences.getLocalAci(application) == null)
+        !SignalStore.account().isRegistered()                      ||
+        SignalStore.account().getAci() == null)
     {
       Log.i(TAG, "Registration not complete. Skipping.");
       return;
@@ -87,7 +86,7 @@ public class GroupV1MigrationJob extends BaseJob {
 
     SignalExecutors.BOUNDED.execute(() -> {
       JobManager         jobManager   = ApplicationDependencies.getJobManager();
-      List<ThreadRecord> threads      = DatabaseFactory.getThreadDatabase(application).getRecentV1Groups(ROUTINE_LIMIT);
+      List<ThreadRecord> threads      = SignalDatabase.threads().getRecentV1Groups(ROUTINE_LIMIT);
       Set<RecipientId>   needsRefresh = new HashSet<>();
 
       if (threads.size() > 0) {

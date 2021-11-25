@@ -25,7 +25,6 @@ import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -86,7 +85,7 @@ public class IdentityDatabase extends Database {
     }
   }
 
-  IdentityDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  IdentityDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -110,7 +109,7 @@ public class IdentityDatabase extends Database {
                                        timestamp,
                                        nonblockingApproval);
       } else if (UuidUtil.isUuid(addressName)) {
-        if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(addressName)) {
+        if (SignalDatabase.recipients().containsPhoneOrUuid(addressName)) {
           Recipient recipient = Recipient.external(context, addressName);
 
           if (recipient.hasE164() && !UuidUtil.isUuid(recipient.requireE164())) {
@@ -141,7 +140,7 @@ public class IdentityDatabase extends Database {
                            boolean nonBlockingApproval)
   {
     saveIdentityInternal(addressName, recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
-    DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipientId);
+    SignalDatabase.recipients().markNeedsSync(recipientId);
   }
 
   public void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, boolean nonBlockingApproval) {
@@ -152,7 +151,7 @@ public class IdentityDatabase extends Database {
 
     database.update(TABLE_NAME, contentValues, ADDRESS + " = ?", SqlUtil.buildArgs(addressName));
 
-    DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipientId);
+    SignalDatabase.recipients().markNeedsSync(recipientId);
   }
 
   public void setVerified(@NonNull String addressName, @NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
@@ -169,7 +168,7 @@ public class IdentityDatabase extends Database {
     if (updated > 0) {
       Optional<IdentityRecord> record = getIdentityRecord(addressName);
       if (record.isPresent()) EventBus.getDefault().post(record.get());
-      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipientId);
+      SignalDatabase.recipients().markNeedsSync(recipientId);
     }
   }
 

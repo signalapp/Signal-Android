@@ -67,7 +67,7 @@ import java.util.regex.Pattern;
 
 public class ClassicOpenHelper extends SQLiteOpenHelper {
 
-  static final String NAME = "messages.db";
+  public static final String NAME = "messages.db";
 
   private static final int INTRODUCED_IDENTITIES_VERSION                   = 2;
   private static final int INTRODUCED_INDEXES_VERSION                      = 3;
@@ -791,7 +791,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       db.execSQL("UPDATE part SET pending_push = '2' WHERE pending_push = '1'");
     }
 
-    if (oldVersion < NO_MORE_CANONICAL_ADDRESS_DATABASE && isValidNumber(TextSecurePreferences.getLocalNumber(context))) {
+    if (oldVersion < NO_MORE_CANONICAL_ADDRESS_DATABASE && isValidNumber(TextSecurePreferences.getStringPreference(context, "pref_local_number", null))) {
       SQLiteOpenHelper canonicalAddressDatabaseHelper = new SQLiteOpenHelper(context, "canonical_address.db", null, 1) {
         @Override
         public void onCreate(SQLiteDatabase db) {
@@ -803,7 +803,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       };
       
       SQLiteDatabase    canonicalAddressDatabase       = canonicalAddressDatabaseHelper.getReadableDatabase();
-      NumberMigrator    numberMigrator                 = new NumberMigrator(TextSecurePreferences.getLocalNumber(context));
+      NumberMigrator    numberMigrator                 = new NumberMigrator(TextSecurePreferences.getStringPreference(context, "pref_local_number", null));
 
       // Migrate Thread Database
       Cursor cursor = db.query("thread", new String[] {"_id", "recipient_ids"}, null, null, null, null, null);
@@ -1131,7 +1131,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
             members.add(DelimiterUtil.escape(DelimiterUtil.unescape(address, ' '), ','));
           }
 
-          members.add(DelimiterUtil.escape(TextSecurePreferences.getLocalNumber(context), ','));
+          members.add(DelimiterUtil.escape(TextSecurePreferences.getStringPreference(context, "pref_local_number", null), ','));
 
           Collections.sort(members);
 
@@ -1188,14 +1188,14 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
     if (oldVersion < INTERNAL_DIRECTORY) {
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN registered INTEGER DEFAULT 0");
 
-      if (isValidNumber(TextSecurePreferences.getLocalNumber(context))) {
+      if (isValidNumber(TextSecurePreferences.getStringPreference(context, "pref_local_number", null))) {
         OldDirectoryDatabaseHelper directoryDatabaseHelper = new OldDirectoryDatabaseHelper(context);
         SQLiteDatabase             directoryDatabase       = directoryDatabaseHelper.getWritableDatabase();
 
         Cursor cursor = directoryDatabase.query("directory", new String[] {"number", "registered"}, null, null, null, null, null);
 
         while (cursor != null && cursor.moveToNext()) {
-          String        address       = new NumberMigrator(TextSecurePreferences.getLocalNumber(context)).migrate(cursor.getString(0));
+          String        address       = new NumberMigrator(TextSecurePreferences.getStringPreference(context, "pref_local_number", null)).migrate(cursor.getString(0));
           ContentValues contentValues = new ContentValues(1);
 
           contentValues.put("registered", cursor.getInt(1) == 1 ? 1 : 2);

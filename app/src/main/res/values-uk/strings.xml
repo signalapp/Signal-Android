@@ -416,10 +416,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Безіменний файл</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Підтримати Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal працює завдяки таким людям як ви. Підтримайте нас сьогодні!</string>
-  <string name="DonateMegaphone_donate">дарувати</string>
-  <string name="DonateMegaphone_no_thanks">Ні, дякую</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Підтримати Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal працює завдяки таким людям як ви. Підтримайте нас сьогодні!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">дарувати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ні, дякую</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Представляємо Групові дзвінки</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Створіть Нову групу, щоб розпочати безкоштовний і захищений груповий дзвінок</string>

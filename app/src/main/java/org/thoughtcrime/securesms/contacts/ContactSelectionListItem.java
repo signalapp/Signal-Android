@@ -138,19 +138,7 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
   }
 
   public void setChecked(boolean selected, boolean animate) {
-    boolean wasSelected = checkBox.isChecked();
-
-    if (wasSelected != selected) {
-      checkBox.setChecked(selected);
-
-      float alpha = selected ? 1f : 0f;
-      if (animate) {
-        checkBox.animate().setDuration(250L).alpha(alpha);
-      } else {
-        checkBox.animate().cancel();
-        checkBox.setAlpha(alpha);
-      }
-    }
+    checkBox.setChecked(selected);
   }
 
   @Override

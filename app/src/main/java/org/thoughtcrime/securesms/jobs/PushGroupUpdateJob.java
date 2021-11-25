@@ -5,9 +5,9 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -90,7 +90,7 @@ public class PushGroupUpdateJob extends BaseJob {
       return;
     }
 
-    GroupDatabase           groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase           groupDatabase = SignalDatabase.groups();
     Optional<GroupRecord>   record        = groupDatabase.getGroup(groupId);
     SignalServiceAttachment avatar        = null;
 
@@ -124,7 +124,7 @@ public class PushGroupUpdateJob extends BaseJob {
                                                         .withName(record.get().getTitle())
                                                         .build();
 
-    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()

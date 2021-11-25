@@ -142,10 +142,20 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
         return;
       }
 
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just before individual change was loaded for position " + position);
+        return;
+      }
+
       Data item = dataSource.load(key);
 
       if (item == null) {
         Log.w(TAG, "Notified of key " + key + " but the loaded item was null!");
+        return;
+      }
+
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just after individual change was loaded for position " + position);
         return;
       }
 
@@ -165,10 +175,20 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
         return;
       }
 
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just before individual insert was loaded for position " + position);
+        return;
+      }
+
       Data item = dataSource.load(key);
 
       if (item == null) {
         Log.w(TAG, "Notified of key " + key + " being inserted at " + position + ", but the loaded item was null!");
+        return;
+      }
+
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just after individual insert was loaded for position " + position);
         return;
       }
 

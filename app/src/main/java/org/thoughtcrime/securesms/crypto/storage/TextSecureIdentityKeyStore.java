@@ -8,12 +8,13 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -42,7 +43,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   private final Cache   cache;
 
   public TextSecureIdentityKeyStore(Context context) {
-    this(context, DatabaseFactory.getIdentityDatabase(context));
+    this(context, SignalDatabase.identities());
   }
 
   TextSecureIdentityKeyStore(@NonNull Context context, @NonNull IdentityDatabase identityDatabase) {
@@ -57,7 +58,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   @Override
   public int getLocalRegistrationId() {
-    return TextSecurePreferences.getLocalRegistrationId(context);
+    return SignalStore.account().getRegistrationId();
   }
 
   @Override
@@ -91,7 +92,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
         cache.save(address.getName(), recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipientId);
         SessionUtil.archiveSiblingSessions(address);
-        DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
+        SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
         return SaveResult.UPDATE;
       }
 
@@ -122,8 +123,10 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   @Override
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
-    boolean isSelf = address.getName().equals(TextSecurePreferences.getLocalAci(context).toString()) ||
-                     address.getName().equals(TextSecurePreferences.getLocalNumber(context));
+    Recipient self = Recipient.self();
+
+    boolean isSelf = address.getName().equals(self.requireAci().toString()) ||
+                     address.getName().equals(self.requireE164());
 
     if (isSelf) {
       return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));

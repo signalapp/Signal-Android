@@ -24,11 +24,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.BulkOperationsHandle;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
@@ -82,7 +82,7 @@ public class DirectoryHelper {
 
   @WorkerThread
   public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
-    if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+    if (TextUtils.isEmpty(SignalStore.account().getE164())) {
       Log.w(TAG, "Have not yet set our own local number. Skipping.");
       return;
     }
@@ -98,7 +98,7 @@ public class DirectoryHelper {
       return;
     }
 
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     Set<String>       databaseNumbers   = sanitizeNumbers(recipientDatabase.getAllPhoneNumbers());
     Set<String>       systemNumbers     = sanitizeNumbers(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
 
@@ -109,7 +109,7 @@ public class DirectoryHelper {
 
   @WorkerThread
   public static void refreshDirectoryFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean notifyOfNewUsers) throws IOException {
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
 
     for (Recipient recipient : recipients) {
       if (recipient.hasAci() && !recipient.hasE164()) {
@@ -132,7 +132,7 @@ public class DirectoryHelper {
   @WorkerThread
   public static RegisteredState refreshDirectoryFor(@NonNull Context context, @NonNull Recipient recipient, boolean notifyOfNewUsers) throws IOException {
     Stopwatch         stopwatch               = new Stopwatch("single");
-    RecipientDatabase recipientDatabase       = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase       = SignalDatabase.recipients();
     RegisteredState   originalRegisteredState = recipient.resolve().getRegistered();
     RegisteredState   newRegisteredState;
 
@@ -221,7 +221,7 @@ public class DirectoryHelper {
 
   @WorkerThread
   private static void refreshNumbers(@NonNull Context context, @NonNull Set<String> databaseNumbers, @NonNull Set<String> systemNumbers, boolean notifyOfNewUsers, boolean removeSystemContactEntryForMissing) throws IOException {
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     Set<String>       allNumbers        = SetUtil.union(databaseNumbers, systemNumbers);
 
     if (allNumbers.isEmpty()) {
@@ -325,7 +325,7 @@ public class DirectoryHelper {
     }
 
     try {
-      ContactsDatabase  contactsDatabase = DatabaseFactory.getContactsDatabase(context);
+      ContactsDatabase  contactsDatabase = SignalDatabase.contacts();
       List<String>      activeAddresses  = Stream.of(activeIds)
                                                  .map(Recipient::resolved)
                                                  .filter(Recipient::hasE164)
@@ -342,7 +342,7 @@ public class DirectoryHelper {
   }
 
   private static void syncRecipientInfoWithSystemContacts(@NonNull Context context, @NonNull Map<String, String> rewrites) {
-    RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase     recipientDatabase = SignalDatabase.recipients();
     BulkOperationsHandle  handle            = recipientDatabase.beginBulkSystemContactUpdate();
 
     try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
@@ -406,7 +406,7 @@ public class DirectoryHelper {
     }
 
     if (NotificationChannels.supported()) {
-      try (RecipientDatabase.RecipientReader recipients = DatabaseFactory.getRecipientDatabase(context).getRecipientsWithNotificationChannels()) {
+      try (RecipientDatabase.RecipientReader recipients = SignalDatabase.recipients().getRecipientsWithNotificationChannels()) {
         Recipient recipient;
         while ((recipient = recipients.getNext()) != null) {
           NotificationChannels.updateContactChannelName(context, recipient);
@@ -480,7 +480,7 @@ public class DirectoryHelper {
           recipient.hasAUserSetDisplayName(context))
       {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(recipient.getId());
-        Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
+        Optional<InsertResult> insertResult = SignalDatabase.sms().insertMessageInbox(message);
 
         if (insertResult.isPresent()) {
           int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -549,9 +549,9 @@ public class DirectoryHelper {
   }
 
   private static boolean hasCommunicatedWith(@NonNull Context context, @NonNull Recipient recipient) {
-    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId()) ||
-           (recipient.hasAci() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireAci().toString())) ||
-           (recipient.hasE164() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireE164()));
+    return SignalDatabase.threads().hasThread(recipient.getId()) ||
+           (recipient.hasAci() && SignalDatabase.sessions().hasSessionFor(recipient.requireAci().toString())) ||
+           (recipient.hasE164() && SignalDatabase.sessions().hasSessionFor(recipient.requireE164()));
   }
 
   static class DirectoryResult {

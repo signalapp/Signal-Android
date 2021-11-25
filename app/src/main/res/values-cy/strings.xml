@@ -482,11 +482,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeviceListItem_today">Heddiw</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ffeil dienw</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Cyfrannu at Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Mae grym Signal mewn pobl fel chi. Dangoswch eich cefnogaeth heddiw!</string>
-  <string name="DonateMegaphone_donate">Cyfraniad</string>
-  <string name="DonateMegaphone_no_thanks">Dim Diolch</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Yn Cyflwyno Galwadau Grŵp</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Agorwch Grŵp Newydd i gychwyn galwad grŵp amgrypiedig am ddim</string>
@@ -902,6 +897,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="InviteActivity_no_app_to_share_to">Mae\'n edrych fel nad oes gennych unrhyw apiau i\'w rhannu.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dysgu rhagor</string>
+  <string name="SpanUtil__read_more">Dysgu rhagor</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Methu canfod neges</string>
   <string name="LongMessageActivity_message_from_s">Neges gan %1$s</string>
@@ -2214,6 +2210,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__advanced">Uwch</string>
   <string name="preferences__donate_to_signal">Cyfrannu at Signal</string>
   <string name="preferences__subscription">Tanysgrifiad</string>
+  <string name="preferences__become_a_signal_sustainer">Bod yn Gynhaliwr Signal</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Preifatrwydd</string>
   <string name="preferences__mms_user_agent">Asiant Defnyddiwr MMS</string>
@@ -2571,7 +2568,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="Insights__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Mae Protocol Signal wedi amddiffyn %1$d%% o\'ch negeseuon â anfonwyd yn awtomatig dros y %2$d diwrnod diwethaf. Mae sgyrsiau rhwng defnyddwyr Signal bob amser yn cael eu hamgryptio o\'r dechrau i\'r diwedd.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Hwb Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dim digon o ddata</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Mae eich canran Mewnwelediadau yn cael ei gyfrifo ar sail negeseuon sy\'n mynd allan yn ystod y %1$d diwrnod diwethaf nad ydyn\'t wedi diflannu na\'u dileu.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Cychwyn sgwrs</string>
@@ -3328,6 +3324,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Dewiswch olwg a lliw neu gyfaddaswch eich llythrennau cyntaf.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nid nawr</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ychwanegu llun</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Dod yn Gynhaliwr</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Dim diolch</string>
+  <string name="BecomeASustainerMegaphone__contribute">Cyfrannu</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Agor chwilio emoji</string>
@@ -3505,7 +3505,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ImageView__badge">Bathodyn</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Mae nerth Signal mewn pobl fel chi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Cefnogwch dechnoleg sydd wedi\'i hadeiladu ar eich cyfer chi—nid ar gyfer eich data—trwy ymuno â\'r gymuned o bobl sy\'n ei chynnal.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Swm Cyfraniad</string> -->
   <string name="SubscribeFragment__more_payment_options">Rhagor o Ddewisiadau Talu</string>
   <string name="SubscribeFragment__cancel_subscription">Diddymu\'r Tanysgrifiad</string>
   <string name="SubscribeFragment__confirm_cancellation">Cadarnhau\'r Dileu?</string>
@@ -3522,11 +3521,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mis · Yn dod i ben %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Mae Signal yn gorff ddim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gynnal dim ond gan y bobl sy\'n ei ddefnyddio a\'i werthfawrogi. Gwnewch gyfraniad misol cylchol a derbyn bathodyn proffil i rannu\'ch cefnogaeth.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pam Cyfrannu?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Mae\'r tîm yn Signal wedi ymrwymo i\'r genhadaeth o ddatblygu technoleg preifatrwydd cod agored sy\'n diogelu rhyddid i siarad yn rhydd ac yn galluogi cyfathrebu byd-eang diogel. Mae eich cyfraniad yn cynnal yr achos hwn. Dim hysbysebion. Dim tracio. Dim lol.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Mae eich cyfraniad yn helpu i dalu am y datblygiad, y gweinyddwyr a\'r lled band ap sy\'n cael ei ddefnyddio gan filiynau ledled y byd ar gyfer cyfathrebu preifat ac uniongyrchol.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Diolch am eich Cefnogaeth!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Diolch am yr Hwb!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Rydych wedi ennill bathodyn %s! Bydd dangos eich bathodyn yn dangos i bobl rydych chi\'n sgwrsio â nhw eich bod chi\'n cefnogi Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Dangos ar eich Proffil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gwneud y bathodyn yn amlwg</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Wedi Gorffen</string>
@@ -3543,23 +3539,23 @@ Send neges heb ei ddiogelu?</string>
   <string name="MySupportPreference__add_a_signal_boost">Ychwanegu Hwb Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/month</string>
   <string name="MySupportPreference__renews_s">Yn adnewyddu ar %1$s</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">Cysylltwch â chymorth</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Mae\'ch bathodyn %1$s wedi dod i ben, ac nid yw bellach yn weladwy i eraill ar eich proffil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Er mwyn parhau i gefnogi technoleg sydd wedi\'i hadeiladu ar eich cyfer chi - nid ar gyfer eich data - ystyriwch ddod yn danysgrifiwr misol.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Dewch yn danysgrifiwr</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gynhaliwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
-  <string name="Subscription__verification_failed">Methodd Gwirio Tanysgrifiad</string>
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>
   <string name="Subscription__contact_support">Cysylltu â Chymorth Signal</string>
   <string name="Subscription__earn_a_s_badge">Enillwch fathodyn %1$s</string>
   <string name="SubscribeFragment__processing_payment">Yn prosesu taliad</string>
-  <string name="DonationsErrors__payment_failed">Methodd y taliad</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">Nid oedd modd prosesu\'ch taliad ac nid ydym wedi codi tâl arnoch. Ceisiwch eto.</string>
-  <string name="DonationsErrors__redemption_still_pending">Yn disgwyl adbryniant</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Efallai na welwch eich bathodyn ar unwaith, ond mae ar ei ffordd!</string>
+  <string name="DonationsErrors__your_payment_is_still">Mae\'ch taliad yn dal yn prosesu. Gall hyn gymryd rhai munudau yn dibynnu ar eich cysylltiad.</string>
   <string name="DonationsErrors__google_pay_unavailable">Nid yw Google Pay ar gael</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Mae\'n rhaid i chi osod Google Pay i roi o fewn yr ap.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Wedi methu diddymu\'r tanysgrifiad</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Rhaid cael cysylltiad rhyngrwyd i ddiddymu tanysgrifiad.</string>
+  <string name="NetworkFailure__retry">Ailgynnig</string>
   <!--EOF-->
 </resources>

@@ -9,8 +9,8 @@ import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import java.util.UUID;
 
 public final class GroupCandidateHelper {
   private final SignalServiceAccountManager signalServiceAccountManager;
@@ -32,7 +31,7 @@ public final class GroupCandidateHelper {
 
   public GroupCandidateHelper(@NonNull Context context) {
     signalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    recipientDatabase           = DatabaseFactory.getRecipientDatabase(context);
+    recipientDatabase           = SignalDatabase.recipients();
   }
 
   private static final String TAG = Log.tag(GroupCandidateHelper.class);

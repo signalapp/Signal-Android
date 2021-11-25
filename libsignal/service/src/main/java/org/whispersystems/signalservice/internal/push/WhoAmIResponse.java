@@ -7,10 +7,17 @@ public class WhoAmIResponse {
   private String uuid;
 
   @JsonProperty
+  private String pni;
+
+  @JsonProperty
   private String number;
 
-  public String getUuid() {
+  public String getAci() {
     return uuid;
+  }
+
+  public String getPni() {
+    return pni;
   }
 
   public String getNumber() {

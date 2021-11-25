@@ -74,6 +74,7 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
 
     initializeViewModel();
 
+    groupList.initializeAdapter(this);
     groupList.setRecipientSelectionChangeListener(selection -> viewModel.setSelection(Stream.of(selection)
                                                                                             .select(GroupMemberEntry.FullMember.class)
                                                                                             .collect(Collectors.toSet())));

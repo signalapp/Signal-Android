@@ -12,10 +12,10 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
@@ -55,7 +55,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
         for (long threadId : threadIds) {
           Log.i(TAG, "Marking as read: " + threadId);
-          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+          List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId, true);
           messageIdsCollection.addAll(messageIds);
         }
 
@@ -111,11 +111,11 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                        @NonNull List<ExpirationInfo> mmsExpirationInfo)
   {
     if (smsExpirationInfo.size() > 0) {
-      DatabaseFactory.getSmsDatabase(context).markExpireStarted(Stream.of(smsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
+      SignalDatabase.sms().markExpireStarted(Stream.of(smsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
     }
 
     if (mmsExpirationInfo.size() > 0) {
-      DatabaseFactory.getMmsDatabase(context).markExpireStarted(Stream.of(mmsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
+      SignalDatabase.mms().markExpireStarted(Stream.of(mmsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
     }
 
     if (smsExpirationInfo.size() + mmsExpirationInfo.size() > 0) {

@@ -17,8 +17,9 @@ import org.signal.zkgroup.receipts.ReceiptSerial;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.subscription.SubscriptionNotification;
+import org.thoughtcrime.securesms.subscription.DonorBadgeNotifications;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("BoostReceiptRedemption")
-            .setLifespan(TimeUnit.DAYS.toMillis(30))
+            .setLifespan(TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
@@ -56,18 +57,15 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     );
   }
 
-  public static String enqueueChain(StripeApi.PaymentIntent paymentIntent) {
+  public static JobManager.Chain createJobChain(StripeApi.PaymentIntent paymentIntent) {
     BoostReceiptRequestResponseJob requestReceiptJob    = createJob(paymentIntent);
     DonationReceiptRedemptionJob   redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForBoost();
-    RefreshOwnProfileJob           refreshOwnProfileJob = new RefreshOwnProfileJob();
+    RefreshOwnProfileJob           refreshOwnProfileJob = RefreshOwnProfileJob.forBoost();
 
-    ApplicationDependencies.getJobManager()
-                           .startChain(requestReceiptJob)
-                           .then(redeemReceiptJob)
-                           .then(refreshOwnProfileJob)
-                           .enqueue();
-
-    return refreshOwnProfileJob.getId();
+    return ApplicationDependencies.getJobManager()
+                                  .startChain(requestReceiptJob)
+                                  .then(redeemReceiptJob)
+                                  .then(refreshOwnProfileJob);
   }
 
   private BoostReceiptRequestResponseJob(@NonNull Parameters parameters,
@@ -97,12 +95,14 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    SubscriptionNotification.VerificationFailed.INSTANCE.show(context);
+    DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
   }
 
   @Override
   protected void onRun() throws Exception {
     if (requestContext == null) {
+      Log.d(TAG, "Creating request context..");
+
       SecureRandom secureRandom = new SecureRandom();
       byte[]       randomBytes  = new byte[ReceiptSerial.SIZE];
 
@@ -112,14 +112,18 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       ClientZkReceiptOperations operations    = ApplicationDependencies.getClientZkReceiptOperations();
 
       requestContext = operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial);
+    } else {
+      Log.d(TAG, "Reusing request context from previous run", true);
     }
 
+    Log.d(TAG, "Submitting credential to server", true);
     ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
                                                                                  .submitBoostReceiptCredentialRequest(paymentIntentId, requestContext.getRequest())
                                                                                  .blockingGet();
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(response);
+      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_PAYMENT_FAILURE, true).build());
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 
@@ -127,6 +131,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         throw new IOException("Could not validate receipt credential");
       }
 
+      Log.d(TAG, "Validated credential. Handing off to redemption job.", true);
       ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
       setOutputData(new Data.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
                                                        receiptCredentialPresentation.serialize())
@@ -141,11 +146,14 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     Throwable applicationException = response.getApplicationError().get();
     switch (response.getStatus()) {
       case 204:
-        Log.w(TAG, "User does not have receipts available to exchange. Exiting.", applicationException, true);
-        break;
+        Log.w(TAG, "User payment not be completed yet.", applicationException, true);
+        throw new RetryableException();
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", applicationException, true);
         throw new Exception(applicationException);
+      case 402:
+        Log.w(TAG, "User payment failed.", applicationException, true);
+        break;
       case 409:
         Log.w(TAG, "Receipt already redeemed with a different request credential.", response.getApplicationError().get(), true);
         throw new Exception(applicationException);
@@ -187,19 +195,19 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
    * - expiration_time is between now and 60 days from now
    */
   private boolean isCredentialValid(@NonNull ReceiptCredential receiptCredential) {
-    long    now                      = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
-    long    monthFromNow             = now + TimeUnit.DAYS.toSeconds(60);
-    boolean isCorrectLevel           = receiptCredential.getReceiptLevel() == 1;
-    boolean isExpiration86400        = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
-    boolean isExpirationInTheFuture  = receiptCredential.getReceiptExpirationTime() > now;
-    boolean isExpirationWithinAMonth = receiptCredential.getReceiptExpirationTime() <= monthFromNow;
+    long    now                     = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+    long    maxExpirationTime       = now + TimeUnit.DAYS.toSeconds(60);
+    boolean isCorrectLevel          = receiptCredential.getReceiptLevel() == 1;
+    boolean isExpiration86400       = receiptCredential.getReceiptExpirationTime() % 86400 == 0;
+    boolean isExpirationInTheFuture = receiptCredential.getReceiptExpirationTime() > now;
+    boolean isExpirationWithinMax   = receiptCredential.getReceiptExpirationTime() <= maxExpirationTime;
 
     Log.d(TAG, "Credential validation: isCorrectLevel(" + isCorrectLevel +
                ") isExpiration86400(" + isExpiration86400 +
                ") isExpirationInTheFuture(" + isExpirationInTheFuture +
-               ") isExpirationWithinAMonth(" + isExpirationWithinAMonth + ")", true);
+               ") isExpirationWithinMax(" + isExpirationWithinMax + ")", true);
 
-    return isCorrectLevel && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinAMonth;
+    return isCorrectLevel && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinMax;
   }
 
   @Override

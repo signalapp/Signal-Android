@@ -6,6 +6,7 @@ import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.TrustStore;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
@@ -17,6 +18,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
@@ -81,7 +83,7 @@ public final class CdshService {
     }
   }
 
-  public Single<ServiceResponse<Map<String, ACI>>> getRegisteredUsers(Set<String> e164Numbers) {
+  public Single<ServiceResponse<Map<String, ACI>>> getRegisteredUsers(String username, String password, Set<String> e164Numbers) {
     return Single.create(emitter -> {
       AtomicReference<Stage> stage       = new AtomicReference<>(Stage.WAITING_TO_INITIALIZE);
       List<String>           addressBook = e164Numbers.stream().map(e -> e.substring(1)).collect(Collectors.toList());
@@ -95,7 +97,7 @@ public final class CdshService {
             case WAITING_TO_INITIALIZE:
               enclave.completeHandshake(bytes.toByteArray());
 
-              byte[] request = enclave.establishedSend(buildPlaintextRequest(addressBook));
+              byte[] request = enclave.establishedSend(buildPlaintextRequest(username, password, addressBook));
 
               stage.set(Stage.WAITING_FOR_RESPONSE);
               webSocket.send(ByteString.of(request));
@@ -122,6 +124,16 @@ public final class CdshService {
         }
 
         @Override
+        public void onClosing(WebSocket webSocket, int code, String reason) {
+          if (code != 1000) {
+            Log.w(TAG, "Remote side is closing with non-normal code " + code);
+            webSocket.close(1000, "Remote closed with code " + code);
+            stage.set(Stage.FAILURE);
+            emitter.onSuccess(ServiceResponse.forApplicationError(new NonSuccessfulResponseCodeException(code), code, null));
+          }
+        }
+
+        @Override
         public void onFailure(WebSocket webSocket, Throwable t, Response response) {
           emitter.onSuccess(ServiceResponse.forApplicationError(t, response != null ? response.code() : 0, null));
           stage.set(Stage.FAILURE);
@@ -130,12 +142,15 @@ public final class CdshService {
       });
 
       webSocket.send(ByteString.of(enclave.initialRequest()));
+      emitter.setCancellable(() -> webSocket.close(1000, "OK"));
     });
   }
 
-  private static byte[] buildPlaintextRequest(List<String> addressBook) {
+  private static byte[] buildPlaintextRequest(String username, String password, List<String> addressBook) {
     try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
       outputStream.write(VERSION);
+      outputStream.write(username.getBytes(StandardCharsets.UTF_8));
+      outputStream.write(password.getBytes(StandardCharsets.UTF_8));
 
       for (String e164 : addressBook) {
         outputStream.write(ByteUtil.longToByteArray(Long.parseLong(e164)));

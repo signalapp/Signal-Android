@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -55,9 +56,11 @@ public class CallParticipantView extends ConstraintLayout {
 
   private AppCompatImageView  backgroundAvatar;
   private AvatarImageView     avatar;
+  private BadgeImageView      badge;
   private View                rendererFrame;
   private TextureViewRenderer renderer;
   private ImageView           pipAvatar;
+  private BadgeImageView      pipBadge;
   private ContactPhoto        contactPhoto;
   private View                audioMuted;
   private View                infoOverlay;
@@ -92,6 +95,8 @@ public class CallParticipantView extends ConstraintLayout {
     infoIcon         = findViewById(R.id.call_participant_info_icon);
     infoMessage      = findViewById(R.id.call_participant_info_message);
     infoMoreInfo     = findViewById(R.id.call_participant_info_more_info);
+    badge            = findViewById(R.id.call_participant_item_badge);
+    pipBadge         = findViewById(R.id.call_participant_item_pip_badge);
 
     avatar.setFallbackPhotoProvider(FALLBACK_PHOTO_PROVIDER);
     useLargeAvatar();
@@ -120,7 +125,9 @@ public class CallParticipantView extends ConstraintLayout {
       renderer.attachBroadcastVideoSink(null);
       audioMuted.setVisibility(View.GONE);
       avatar.setVisibility(View.GONE);
+      badge.setVisibility(View.GONE);
       pipAvatar.setVisibility(View.GONE);
+      pipBadge.setVisibility(View.GONE);
 
       infoOverlay.setVisibility(View.VISIBLE);
 
@@ -157,8 +164,10 @@ public class CallParticipantView extends ConstraintLayout {
 
     if (participantChanged || !Objects.equals(contactPhoto, participant.getRecipient().getContactPhoto())) {
       avatar.setAvatarUsingProfile(participant.getRecipient());
+      badge.setBadgeFromRecipient(participant.getRecipient());
       AvatarUtil.loadBlurredIconIntoImageView(participant.getRecipient(), backgroundAvatar);
       setPipAvatar(participant.getRecipient());
+      pipBadge.setBadgeFromRecipient(participant.getRecipient());
       contactPhoto = participant.getRecipient().getContactPhoto();
     }
   }
@@ -193,15 +202,19 @@ public class CallParticipantView extends ConstraintLayout {
     }
 
     avatar.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
+    badge.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
     pipAvatar.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
+    pipBadge.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
   }
 
   void hideAvatar() {
     avatar.setAlpha(0f);
+    badge.setAlpha(0f);
   }
 
   void showAvatar() {
     avatar.setAlpha(1f);
+    badge.setAlpha(1f);
   }
 
   void useLargeAvatar() {

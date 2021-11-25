@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Marks the AccountRecord as dirty and runs a storage sync. Can be enqueued when we've added a new
@@ -41,12 +41,12 @@ public class AccountRecordMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
-    if (!TextSecurePreferences.isPushRegistered(context) || TextSecurePreferences.getLocalAci(context) == null) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getAci() == null) {
       Log.w(TAG, "Not registered!");
       return;
     }
 
-    DatabaseFactory.getRecipientDatabase(context).markNeedsSync(Recipient.self().getId());
+    SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
     ApplicationDependencies.getJobManager().add(new StorageSyncJob());
   }
 

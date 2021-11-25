@@ -84,15 +84,15 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val state: State = state.callInfoState.callState
   val groupState: GroupCallState = state.callInfoState.groupCallState
   val recipient: Recipient = state.callInfoState.callRecipient
-  val isRemoteVideoOffer: Boolean = state.callSetupState.isRemoteVideoOffer
+  val isRemoteVideoOffer: Boolean = state.getCallSetupState(state.callInfoState.activePeer?.callId).isRemoteVideoOffer
   val callConnectedTime: Long = state.callInfoState.callConnectedTime
   val remoteParticipants: List<CallParticipant> = state.callInfoState.remoteCallParticipants
   val identityChangedParticipants: Set<RecipientId> = state.callInfoState.identityChangedRecipients
   val remoteDevicesCount: OptionalLong = state.callInfoState.remoteDevicesCount
   val participantLimit: Long? = state.callInfoState.participantLimit
   @get:JvmName("shouldRingGroup")
-  val ringGroup: Boolean = state.callSetupState.ringGroup
-  val ringerRecipient: Recipient = state.callSetupState.ringerRecipient
+  val ringGroup: Boolean = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringGroup
+  val ringerRecipient: Recipient = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringerRecipient
   val activeDevice: SignalAudioManager.AudioDevice = state.localDeviceState.activeDevice
   val availableDevices: Set<SignalAudioManager.AudioDevice> = state.localDeviceState.availableDevices
 
@@ -123,6 +123,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
        participantLimit=$participantLimit,
        activeDevice=$activeDevice,
        availableDevices=$availableDevices,
+       ringGroup=$ringGroup
       }
     """.trimIndent()
   }

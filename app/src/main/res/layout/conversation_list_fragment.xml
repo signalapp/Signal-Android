@@ -55,6 +55,15 @@
                 app:layout_constraintTop_toTopOf="@id/toolbar_icon" />
 
             <View
+                android:id="@+id/toolbar_settings_touch_area"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/toolbar_icon"
+                app:layout_constraintStart_toStartOf="@id/toolbar_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
                 android:id="@+id/unread_payments_indicator"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
@@ -140,6 +149,7 @@
         android:layout_height="5dp"
         android:background="@drawable/toolbar_shadow"
         android:visibility="gone"
+        android:elevation="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"

@@ -78,8 +78,8 @@ public class DonationsService {
    * @param currencyCode  The currency code for the amount
    * @return              A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
-  public Single<ServiceResponse<SubscriptionClientSecret>> createDonationIntentWithAmount(String amount, String currencyCode) {
-    return createServiceResponse(() -> new Pair<>(pushServiceSocket.createBoostPaymentMethod(currencyCode, Long.parseLong(amount)), 200));
+  public Single<ServiceResponse<SubscriptionClientSecret>> createDonationIntentWithAmount(String amount, String currencyCode, String description) {
+    return createServiceResponse(() -> new Pair<>(pushServiceSocket.createBoostPaymentMethod(currencyCode, Long.parseLong(amount), description), 200));
   }
 
   /**

@@ -18,8 +18,6 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;

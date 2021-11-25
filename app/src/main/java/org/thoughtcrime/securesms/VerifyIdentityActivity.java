@@ -166,7 +166,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     extras.putParcelable(VerifyDisplayFragment.RECIPIENT_ID, getIntent().getParcelableExtra(RECIPIENT_EXTRA));
     extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(IDENTITY_EXTRA));
     extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
-    extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
+    extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, Recipient.self().requireE164());
     extras.putBoolean(VerifyDisplayFragment.VERIFIED_STATE, getIntent().getBooleanExtra(VERIFIED_EXTRA, false));
 
     scanFragment.setScanListener(this);
@@ -326,12 +326,12 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       if (FeatureFlags.verifyV2() && resolved.getAci().isPresent()) {
         Log.i(TAG, "Using UUID (version 2).");
         version  = 2;
-        localId  = TextSecurePreferences.getLocalAci(requireContext()).toByteArray();
+        localId  = Recipient.self().requireAci().toByteArray();
         remoteId = resolved.requireAci().toByteArray();
       } else if (!FeatureFlags.verifyV2() && resolved.getE164().isPresent()) {
         Log.i(TAG, "Using E164 (version 1).");
         version  = 1;
-        localId  = TextSecurePreferences.getLocalNumber(requireContext()).getBytes();
+        localId  = Recipient.self().requireE164().getBytes();
         remoteId = resolved.requireE164().getBytes();
       } else {
         Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", FeatureFlags.verifyV2(), resolved.getAci().isPresent(), resolved.getE164().isPresent()));

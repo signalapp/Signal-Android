@@ -8,7 +8,6 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.push.DistributionId;
@@ -43,7 +42,7 @@ public class SenderKeySharedDatabase extends Database {
                                                                                  TIMESTAMP       + " INTEGER DEFAULT 0, " +
                                                                                  "UNIQUE(" + DISTRIBUTION_ID + "," + ADDRESS + ", " + DEVICE + ") ON CONFLICT REPLACE);";
 
-  SenderKeySharedDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  SenderKeySharedDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

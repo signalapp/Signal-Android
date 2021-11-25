@@ -97,10 +97,6 @@ class SignalBluetoothManager(
 
     stopScoAudio()
 
-    if (state == State.UNINITIALIZED) {
-      return
-    }
-
     context.safeUnregisterReceiver(bluetoothReceiver)
     bluetoothReceiver = null
 

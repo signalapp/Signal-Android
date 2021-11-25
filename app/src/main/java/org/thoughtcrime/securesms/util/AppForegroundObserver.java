@@ -16,7 +16,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * A wrapper around {@link ProcessLifecycleOwner} that allows for safely adding/removing observers
  * on multiple threads.
  */
-public final class AppForegroundObserver {
+public class AppForegroundObserver {
 
   private final Set<Listener> listeners = new CopyOnWriteArraySet<>();
 

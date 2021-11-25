@@ -35,7 +35,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN dibutuhkan untuk kunci pendaftaran. Untuk menonaktifkan PIN, nonaktifkan kunci pendaftaran dahulu.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN sudah dibuat.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN di-non-aktifkan.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN dinonaktifkan.</string>
   <string name="ApplicationPreferencesActivity_hide">Sembunyikan</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Sembunyikan pengingat?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekam frasa pemulihan pembayaran</string>
@@ -78,18 +78,18 @@
   <string name="BlockedUsersActivity__block_user">Blokir pengguna?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" tidak akan dapat memanggil Anda atau mengirimkan Anda pesan.</string>
   <string name="BlockedUsersActivity__block">Blokir</string>
-  <string name="BlockedUsersActivity__unblock_user">Berhenti blok?</string>
+  <string name="BlockedUsersActivity__unblock_user">Buka blokir?</string>
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Apakah Anda ingin membuka blokir \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Buka blokir</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">Blok dan tinggalkan %1$s?</string>
-  <string name="BlockUnblockDialog_block_s">Blok %1$s?</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">Blokir dan tinggalkan %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">Blokir %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Anda tidak lagi dapat menerima pesan atau info terbaru dari grup ini, dan anggota grup tidak dapat menambahkan Anda ke grup ini lagi.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anggota grup tidak dapat lagi menambahkan Anda ke grup ini.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anggota grup dapat mengundang Anda kembali ke dalam grup.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan bisa memberi pesan dan saling menelepon dan Anda akan membagikan nama dan foto dengan mereka.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang yang Anda blokir tidak akan dapat menelepon atau mengirim pesan pada Anda</string>
-  <string name="BlockUnblockDialog_unblock_s">Berhenti blok %1$s?</string>
+  <string name="BlockUnblockDialog_unblock_s">Buka blokir %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokir</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokir dan Tinggalkan</string>
   <string name="BlockUnblockDialog_report_spam_and_block">Laporkan spam dan blokir</string>
@@ -163,8 +163,8 @@
   <string name="ContactShareEditActivity_type_missing">Kontak lain</string>
   <string name="ContactShareEditActivity_invalid_contact">Kontak yang dipilih salah</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">Tidak terkirim, sentuh untuk detail.</string>
-  <string name="ConversationItem_error_partially_not_delivered">Terkirim sebagian, sentuh untuk detail.</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">Tidak terkirim, ketuk untuk detail.</string>
+  <string name="ConversationItem_error_partially_not_delivered">Terkirim sebagian, ketuk untuk detail.</string>
   <string name="ConversationItem_error_network_not_delivered">Pengiriman gagal</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
   <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
@@ -233,7 +233,7 @@
   <string name="ConversationActivity_delete_conversation">Hapus percakapan?</string>
   <string name="ConversationActivity_delete_and_leave_group">Hapus dan tinggalkan grup?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Percakapan ini akan dihapus dari semua perangkat Anda.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan meninggalkan grup ini. Catatan mengenai grup akan dihapus dari semua perangkat Anda.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan meninggalkan grup ini dan akan dihapus dari semua perangkat Anda.</string>
   <string name="ConversationActivity_delete">Hapus</string>
   <string name="ConversationActivity_delete_and_leave">Hapus dan tinggalkan</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Untuk menelepon %1$s, Signal memerlukan akses mikrofon Anda</string>
@@ -288,7 +288,7 @@
   <string name="ConversationFragment_contact_us">Hubungi kami</string>
   <string name="ConversationFragment_verify">Verifikasi</string>
   <string name="ConversationFragment_not_now">Nanti saja</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed">Angka keamanan Anda dengan %s berubah</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Nomor keamanan Anda dengan %s berubah</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Nomor keamanan Anda dengan %s berubah, mungkin karena mereka memasang ulang Signal atau mengganti perangkat. Ketuk Verifikasi untuk mengonfirmasi nomor keamanan barunya. Ini bersifat opsional.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">Hapus percakapan terpilih?</item>
@@ -391,8 +391,8 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Pilih foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ambil foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Pilh dari Galeri</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Buang foto</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Mengambil foto memerlukan izin mengakses kamera.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Hapus foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Mengambil foto memerlukan izin akses kamera.</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Melihat galeri Anda memerlukan izin akses ke penyimpanan.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sekarang</string>
@@ -401,7 +401,7 @@
   <string name="DateUtils_yesterday">Kemarin</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Sesi percakapan diperbarui</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal menggunakan enkripsi end-to-end dan mungkin harus memperbarui sesi percakapan berkala. Ini tidak berdampak pada keamanan percakapan Anda, namun bisa jadi ada pesan yang gagal diterima, Anda bisa meminta mereka mengirim ulang.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal menggunakan enkripsi ujung-ke-ujung dan mungkin harus memperbarui sesi percakapan berkala. Ini tidak berdampak pada keamanan percakapan Anda, namun bisa jadi ada pesan yang gagal diterima, Anda bisa meminta mereka mengirim ulang.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Batalkan tautan \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Dengan membuang kaitan perangkat ini, perangkat tidak akan bisa lagi mengirim atau menerima pesan.</string>
@@ -417,11 +417,6 @@
   <string name="DeviceListItem_today">Hari ini</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Berkas tanpa nama</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Berdonasi ke Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal didukung oleh orang seperti Anda. Tunjukkan dukungan Anda hari ini!</string>
-  <string name="DonateMegaphone_donate">Donasi</string>
-  <string name="DonateMegaphone_no_thanks">Tidak Terima Kasih</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Memperkenalkan Panggilan Grup</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Buka sebuah Grup Baru untuk memulai panggilan grup gratis yang terenkripsi.</string>
@@ -472,12 +467,12 @@
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="other">%d undangan dikirimkan</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">\"%1$s\" tidak dapat secara otomatis ditambahkan ke grup oleh Anda. Mereka telah diundang untuk bergabung, dan tidak akan melihat pesan grup sampai mereka menerimanya.</string>
-  <string name="GroupManagement_invite_multiple_users">Pengguna ini tidak dapat secara otomatis Anda tambahkan ke dalam grup. Mereka telah mendapatkan undangan, dan tidak dapat melihat pesan di dalam grup sampai mereka menerimanya.</string>
+  <string name="GroupManagement_invite_single_user">\"%1$s\" tidak dapat secara otomatis ditambahkan ke grup oleh Anda.\n\nMereka telah diundang untuk bergabung, dan tidak akan melihat pesan grup sampai mereka menerimanya.</string>
+  <string name="GroupManagement_invite_multiple_users">Pengguna ini tidak dapat secara otomatis Anda tambahkan ke dalam grup.\n\nMereka telah mendapatkan undangan, dan tidak dapat melihat pesan di dalam grup sampai mereka menerimanya.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Apakah Grup Baru?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Grup yang baru akan memiliki fitur seperti @penyebutan dan ketua grup, juga akan mendapat dukungan lebih di masa mendatang.</string>
-  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Setiap riwayat pesan dan media disimpang sebelum pembaruan.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Setiap riwayat pesan dan media disimpan sebelum pembaruan.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Anda perlu menerima undangan untuk bergabung ke grup ini lagi, dan tidak akan menerima pesan grup sampai Anda menerimanya.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">Anggota ini harus menerima undangan bergabung ke grup ini lagi dan tidak akan menerima pesan grup sampai mereka menerimanya:</item>
@@ -489,7 +484,7 @@
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Perbarui ke Grup Baru</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Perbarui grup ini</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Grup yang baru akan memiliki fitur seperti @penyebutan dan ketua grup, juga akan mendapat dukungan lebih di masa mendatang.</string>
-  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Setiap riwayat pesan dan media disimpan sebelum pembaruan.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Setiap riwayat pesan dan media akan disimpan sebelum pembaruan.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Terjadi galat jaringan. Coba lagi nanti.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Gagal memperbarui.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -511,7 +506,7 @@
     <item quantity="other">Tambahkan anggota?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="other">Anggota ini tidak dapat secara otomatis ditambahkan ke dalam Grup Baru ketika telah diperbarui:</item>
+    <item quantity="other">Anggota ini tidak dapat secara otomatis ditambahkan ke dalam Grup Baru saat grup diperbarui:</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="other">Tambahkan anggota</item>
@@ -528,13 +523,13 @@
   <string name="LeaveGroupDialog_leave">Tinggalkan</string>
   <string name="LeaveGroupDialog_choose_new_admin">Pilih admin baru</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Sebelum Anda keluar, pilih admin baru untuk grup ini.</string>
-  <string name="LeaveGroupDialog_choose_admin">Pilih admin.</string>
+  <string name="LeaveGroupDialog_choose_admin">Pilih admin</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Nonaktifkan</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Pratinjau tautan apapun</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Anda sekarang dapat menerima pratinjau tautan secara langsung dari situs apapun untuk pesan yang Anda kirim.</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">Tidak tersedia pratinjau tautan</string>
+  <string name="LinkPreviewView_no_link_preview_available">Pratinjau tautan tidak tersedia</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Tautan grup ini tidak aktif</string>
   <string name="LinkPreviewView_domain_date">%1$s . %2$s</string>
   <!--LinkPreviewRepository-->
@@ -546,10 +541,10 @@
   <string name="PendingMembersActivity_requests">Permintaan</string>
   <string name="PendingMembersActivity_invites">Undangan</string>
   <string name="PendingMembersActivity_people_you_invited">Orang yang Anda undang</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">Anda tidak memiliki undangan tertunda</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Anda tidak memiliki undangan tertunda.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Undangan dari anggota grup yang lain</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Tidak ada undangan tertunda dari anggota grup lain</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Detil dari orang yang diundang oleh anggota grup lain tidak terlihat. Jika mereka memilih bergabung, informasi mereka akan dibagikan ke dalam grup pada saat itu. Mereka tidak akan melihat pesan apapun di dalam grup sampai mereka bergabung.</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Tidak ada undangan tertunda dari anggota grup lain.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Detail dari orang yang diundang oleh anggota grup lain tidak terlihat. Jika mereka memilih bergabung, informasi mereka akan dibagikan ke dalam grup pada saat itu. Mereka tidak akan melihat pesan apapun di dalam grup sampai mereka bergabung.</string>
   <string name="PendingMembersActivity_revoke_invite">Batalkan undangan</string>
   <string name="PendingMembersActivity_revoke_invites">Batalkan undangan</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -578,16 +573,16 @@
   <string name="AddGroupDetailsFragment__create_group">Buat grup</string>
   <string name="AddGroupDetailsFragment__create">Buat</string>
   <string name="AddGroupDetailsFragment__members">Anggota-anggota</string>
-  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Anda dapat menambahkan atau mengundang teman setelah membuat grup ini</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Anda dapat menambahkan atau mengundang teman setelah membuat grup ini.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nama grup (diperlukan)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nama grup (opsional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Kolom ini diperlukan</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Pembuatan grup gagal</string>
-  <string name="AddGroupDetailsFragment__try_again_later">Coba lagi lain waktu</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Coba lagi lain waktu.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nama grup MMS khusus dan foto-foto hanya bisa dilihat oleh Anda.</string>
   <string name="AddGroupDetailsFragment__remove">Hapus</string>
-  <string name="AddGroupDetailsFragment__sms_contact">Kontak pesan singkat</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Kontak SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Keluarkan %1$s dari grup ini?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d anggota tidak mendukung Grup Baru, sehingga grup ini akan menjadi Grup Lama.</item>
@@ -661,6 +656,7 @@
   <string name="ManageProfileFragment_your_username">Nama pengguna Anda</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Gagal mengatur avatar</string>
   <string name="ManageProfileFragment_badges">Lencana</string>
+  <string name="ManageProfileFragment__edit_photo">Sunting foto</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Tidak ada grup yang sama</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -756,6 +752,7 @@
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Pelajari lebih lanjut</string>
+  <string name="SpanUtil__read_more">Baca lebih lanjut</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Tidak dapat menemukan pesan</string>
   <string name="LongMessageActivity_message_from_s">Pesan dari %1$s</string>
@@ -1273,6 +1270,9 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan akses ke kontak Anda untuk terhubung dengan teman, pertukaran pesan, dan membuat panggilan yang aman</string>
   <string name="RegistrationActivity_rate_limited_to_service">Anda membuat terlalu banyak percobaan untuk mendaftarkan nomor ini. Mohon coba lagi nanti.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Tidak bisa terhubung ke layanan. Mohon cek koneksi jaringan dan coba lagi.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Format nomor tidak umum</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Nomor yang Anda masukkan (%1$s) terlihat bukan format nomor yang umum.\n\nApakah maksud Anda %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Format Nomor Telepon</string>
   <string name="RegistrationActivity_call_requested">Panggilan dimintakan</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirimkan catatan awakutu.</item>
@@ -1855,6 +1855,16 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__debug_log">Catatan debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Mohon pilih sebuah opsi \-\-</item>
+    <item>Sesuatu Tidak Berfungsi</item>
+    <item>Permintaan Fitur</item>
+    <item>Pertanyaan</item>
+    <item>Umpan balik</item>
+    <item>Lainnya</item>
+    <item>Pembayaran (MobileCoin)</item>
+    <item>Penyokong &amp; Penguat Signal</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Terakhir Digunakan</string>
@@ -1951,6 +1961,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__donate_to_signal">Berdonasi ke Signal</string>
   <string name="preferences__subscription">Berlangganan</string>
+  <string name="preferences__become_a_signal_sustainer">Menjadi Penyokong Signal</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>
@@ -2308,7 +2319,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="Insights__title">Insight</string>
   <string name="InsightsDashboardFragment__title">Insight</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol Signal melindungi %1$d%% pesan keluar Anda secara otomatis selama %2$dhari terakhir. Percakapan antara pengguna Signal selalu dienkripsi ujung-ke-ujung.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Amankan lebih banyak percakapan</string>
   <string name="InsightsDashboardFragment__not_enough_data">Data tidak cukup</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Insight Anda dihitung dari pesan terkirim dalam %1$d hari terakhir yang masih dapat dilihat dan belum terhapus.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Mulai percakapan</string>
@@ -3029,6 +3039,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Pilih tampilan dan warna atau kustomisasi inisial Anda.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nanti saja</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tambahkan foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Menjadi Penyokong</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal didukung oleh orang seperti Anda. Berkontribusi dan dapatkan sebuah lencana profil.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Tidak, terima kasih</string>
+  <string name="BecomeASustainerMegaphone__contribute">Kontribusi</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Buka pencarian emoji</string>
@@ -3077,6 +3092,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationSettingsFragment__conversation_muted_forever">Percakapan disenyapkan selamanya</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Nomor telepon disalin ke papan klip.</string>
   <string name="ConversationSettingsFragment__phone_number">Nomor telepon</string>
+  <string name="ConversationSettingsFragment__get_badges">Dapatkan lencana pada profil Anda dengan mendukung Signal. Ketuk pada lencana untuk meplejari lebih lanjut.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Tambahkan anggota</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Sunting informasi grup</string>
@@ -3194,7 +3210,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ImageView__badge">Lencana</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Jumlah donasi</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Dukung teknologi yang dibangun untuk Anda, bukan data Anda, dengan bergabung dengan komunitas yang menyokong Signal.</string>
+  <string name="SubscribeFragment__currency">Kurensi</string>
   <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
   <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
   <string name="SubscribeFragment__confirm_cancellation">Konfirmasi Pembatalan?</string>
@@ -3206,19 +3223,54 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubscribeFragment__update_subscription_question">Perbarui langganan?</string>
   <string name="SubscribeFragment__update">Perbarui</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Anda akan dikenakan biaya penuh dari harga berlangganan hari ini. Langganan Anda akan diperbarui %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Anda akan dikenakan biaya penuh (%1$s) dari harga baru berlangganan hari ini. Langganan Anda akan diperbarui setiap bulan.</string>
   <string name="Subscription__s_per_month">%s/bulan</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/bulan. Perbarui %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Berakhir %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal bersifat nirlaba tanpa pengiklan atau investor, disokong hanya oleh mereka yang menggunakan dan menghargainya. Beri kontribusi bulanan rutin dan dapatkan lencana profil untuk membagikan dukungan Anda.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Mengapa Berkontribusi?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Tim di Signal berkomitmen pada misi mengembangkan teknologi privasi bersumber terbuka yang melindungi kebebasan berekspresi dan memungkinkan komunikasi global yang aman. Kontribusi Anda mendukung gerakan ini. Tanpa iklan. Tanpa pelacak. Beneran.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Kontribusii Anda membantu pembayaran pengembangan, peladen, dan bandwith dari aplikasi yang digunakan oleh jutaan orang di seluruh dunia untuk komunikasi yang privat dan instan.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal berkomitmen untuk mengembangkan teknologi privasi bersumber terbuka yang melindungi kebebasan berekspresi dan memungkinkan komunikasi global yang aman.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Kontribusi Anda mendukung gerakan ini dan membiayai pengembangan dan operasional dari aplikasi yang digunakan jutaan orang untuk komunikasi yang privat. Tanpa iklan. Tanpa pelacak. Beneran.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih untuk Dukungan Anda!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Penguatnya!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Anda mendapatkan %s lencana! Bantu Signal membangun kesadaran dengan menampilkan lencana ini di profil Anda.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Anda mendapatkan sebuah lencana Penguat! Bantu Signal membangun kesadaran dengan menampilkan lencana ini pada profil Anda.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Anda juga dapat</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">menjadi Penyokong bulanan.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Tampilkan di Profil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Buat lencana istimewa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Jika punya lebih dari satu lencana, Anda dapat memilih salah satunya untuk ditampilkan pada profil Anda.</string>
+  <string name="BecomeASustainerFragment__get_badges">Dapatkan lencana pada profil Anda dengan mendukung Signal.</string>
+  <string name="ManageDonationsFragment__my_support">Dukungan saya</string>
+  <string name="ManageDonationsFragment__manage_subscription">Kelola langganan</string>
   <string name="ManageDonationsFragment__badges">Lencana</string>
+  <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Populer Langganan</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Eror mengambil langganan.</string>
+  <string name="BoostFragment__give_signal_a_boost">Beri Penguat untuk Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Ucapkan Terima kasih!\\" dan dapatkan lencana Penguat untuk %1$d hari.</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
+  <string name="Boost__one_time_contribution">Kontribusi sekali saja</string>
+  <string name="MySupportPreference__add_a_signal_boost">Tambahkan Penguat Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
+  <string name="MySupportPreference__renews_s">Perpanjang %1$s</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">Mohon hubungi bantuan.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana Anda sudah Hangus</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Penyokong</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
+  <string name="Subscription__please_contact_support_for_more_information">Harap hubungi bantuan untuk informasi lebih lanjut.</string>
   <string name="Subscription__contact_support">Hubungi Bantuan</string>
+  <string name="Subscription__earn_a_s_badge">Dapatkan lencana %1$s</string>
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
-  <string name="DonationsErrors__payment_failed">Pembayaran gagal</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__your_payment">Pembayaran tidak dapat diproses dan Anda belum ditagih. Silakan coba kembali.</string>
+  <string name="DonationsErrors__your_payment_is_still">Pembayaran Anda sedang diproses. Ini dapat memakan waktu beberapa menit tergantung koneksi Anda.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda harus menata Google Pay untuk berdonasi dari dalam aplikasi.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan sambungan internet.</string>
+  <string name="NetworkFailure__retry">Coba lagi</string>
   <!--EOF-->
 </resources>

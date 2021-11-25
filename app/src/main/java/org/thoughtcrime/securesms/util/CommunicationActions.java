@@ -26,8 +26,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinBottomSheetDialogFragment;
@@ -105,7 +105,7 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient.getId());
+        return SignalDatabase.threads().getThreadIdFor(recipient.getId());
       }
 
       @Override
@@ -197,9 +197,7 @@ public class CommunicationActions {
     GroupId.V2 groupId = GroupId.v2(groupInviteLinkUrl.getGroupMasterKey());
 
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
-      GroupDatabase.GroupRecord group = DatabaseFactory.getGroupDatabase(activity)
-                                                       .getGroup(groupId)
-                                                       .orNull();
+      GroupDatabase.GroupRecord group = SignalDatabase.groups().getGroup(groupId).orNull();
 
       return group != null && group.isActive() ? Recipient.resolved(group.getRecipientId())
                                                : null;

@@ -17,9 +17,9 @@ import androidx.core.content.LocusIdCompat
 import androidx.core.graphics.drawable.IconCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.ReplyMethod
@@ -116,7 +116,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   fun addReplyActions(conversation: NotificationConversation) {
     if (privacy.isDisplayMessage && isNotLocked && !conversation.recipient.isPushV1Group && RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)) {
       if (conversation.recipient.isPushV2Group) {
-        val group: Optional<GroupDatabase.GroupRecord> = DatabaseFactory.getGroupDatabase(context).getGroup(conversation.recipient.requireGroupId())
+        val group: Optional<GroupDatabase.GroupRecord> = SignalDatabase.groups.getGroup(conversation.recipient.requireGroupId())
         if (group.isPresent && group.get().isAnnouncementGroup && !group.get().isAdmin(Recipient.self())) {
           return
         }

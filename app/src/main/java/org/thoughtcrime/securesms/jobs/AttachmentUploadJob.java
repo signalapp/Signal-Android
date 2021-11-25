@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.blurhash.BlurHashEncoder;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -32,7 +32,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
@@ -125,7 +124,7 @@ public final class AttachmentUploadJob extends BaseJob {
     }
 
     SignalServiceMessageSender messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    AttachmentDatabase         database           = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase         database           = SignalDatabase.attachments();
     DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
@@ -167,7 +166,7 @@ public final class AttachmentUploadJob extends BaseJob {
   @Override
   public void onFailure() {
     if (isCanceled()) {
-      DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(attachmentId);
+      SignalDatabase.attachments().deleteAttachment(attachmentId);
     }
   }
 

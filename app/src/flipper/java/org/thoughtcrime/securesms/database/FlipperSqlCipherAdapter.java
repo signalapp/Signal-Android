@@ -16,7 +16,6 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Hex;
 
 import java.lang.reflect.Field;
@@ -43,14 +42,11 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
   @Override
   public List<Descriptor> getDatabases() {
     try {
-      Field databaseHelperField = DatabaseFactory.class.getDeclaredField("databaseHelper");
-      databaseHelperField.setAccessible(true);
-
-      SignalDatabase mainOpenHelper       = Objects.requireNonNull((SQLCipherOpenHelper) databaseHelperField.get(DatabaseFactory.getInstance(getContext())));
-      SignalDatabase keyValueOpenHelper   = KeyValueDatabase.getInstance((Application) getContext());
-      SignalDatabase megaphoneOpenHelper  = MegaphoneDatabase.getInstance((Application) getContext());
-      SignalDatabase jobManagerOpenHelper = JobDatabase.getInstance((Application) getContext());
-      SignalDatabase metricsOpenHelper    = LocalMetricsDatabase.getInstance((Application) getContext());
+      SignalDatabaseOpenHelper mainOpenHelper       = Objects.requireNonNull(SignalDatabase.getInstance());
+      SignalDatabaseOpenHelper keyValueOpenHelper   = KeyValueDatabase.getInstance((Application) getContext());
+      SignalDatabaseOpenHelper megaphoneOpenHelper  = MegaphoneDatabase.getInstance((Application) getContext());
+      SignalDatabaseOpenHelper jobManagerOpenHelper = JobDatabase.getInstance((Application) getContext());
+      SignalDatabaseOpenHelper metricsOpenHelper    = LocalMetricsDatabase.getInstance((Application) getContext());
 
       return Arrays.asList(new Descriptor(mainOpenHelper),
                            new Descriptor(keyValueOpenHelper),
@@ -253,9 +249,9 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
   }
 
   static class Descriptor implements DatabaseDescriptor {
-    private final SignalDatabase sqlCipherOpenHelper;
+    private final SignalDatabaseOpenHelper sqlCipherOpenHelper;
 
-    Descriptor(@NonNull SignalDatabase sqlCipherOpenHelper) {
+    Descriptor(@NonNull SignalDatabaseOpenHelper sqlCipherOpenHelper) {
       this.sqlCipherOpenHelper = sqlCipherOpenHelper;
     }
 

@@ -16,11 +16,9 @@ import io.reactivex.rxjava3.annotations.NonNull;
  * An ACI is an "Account Identity". They're just UUIDs, but given multiple different things could be UUIDs, this wrapper exists to give us type safety around
  * this *specific type* of UUID.
  */
-public final class ACI {
+public final class ACI extends AccountIdentifier {
 
   public static final ACI UNKNOWN = ACI.from(UuidUtil.UNKNOWN_UUID);
-
-  private final UUID uuid;
 
   public static ACI from(UUID uuid) {
     return new ACI(uuid);
@@ -72,11 +70,7 @@ public final class ACI {
   }
 
   private ACI(UUID uuid) {
-    this.uuid = uuid;
-  }
-
-  public UUID uuid() {
-    return uuid;
+    super(uuid);
   }
 
   public ByteString toByteString() {

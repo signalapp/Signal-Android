@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -76,7 +76,7 @@ public class TrimThreadJob extends BaseJob {
     long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
                                                                                : ThreadDatabase.NO_TRIM_BEFORE_DATE_SET;
 
-    DatabaseFactory.getThreadDatabase(context).trimThread(threadId, trimLength, trimBeforeDate);
+    SignalDatabase.threads().trimThread(threadId, trimLength, trimBeforeDate);
   }
 
   @Override

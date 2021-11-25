@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -129,7 +129,7 @@ public final class AttachmentCompressionJob extends BaseJob {
   public void onRun() throws Exception {
     Log.d(TAG, "Running for: " + attachmentId);
 
-    AttachmentDatabase database           = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase database           = SignalDatabase.attachments();
     DatabaseAttachment databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
@@ -226,8 +226,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             Log.i(TAG, "Compressing with streaming muxer");
             AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
-            File file = DatabaseFactory.getAttachmentDatabase(context)
-                                       .newFile();
+            File file = SignalDatabase.attachments().newFile();
             file.deleteOnExit();
 
             try {

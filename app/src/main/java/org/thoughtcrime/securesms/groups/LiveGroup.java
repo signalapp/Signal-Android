@@ -17,8 +17,8 @@ import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
@@ -56,7 +56,7 @@ public final class LiveGroup {
     Context                        context       = ApplicationDependencies.getApplication();
     MutableLiveData<LiveRecipient> liveRecipient = new MutableLiveData<>();
 
-    this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
+    this.groupDatabase     = SignalDatabase.groups();
     this.recipient         = Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData);
     this.groupRecord       = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orNull()));
     this.fullMembers       = mapToFullMembers(this.groupRecord);

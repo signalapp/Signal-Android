@@ -13,11 +13,11 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -46,8 +46,8 @@ public final class LiveRecipient {
     this.context           = context.getApplicationContext();
     this.liveData          = new MutableLiveData<>(defaultRecipient);
     this.recipient         = new AtomicReference<>(defaultRecipient);
-    this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-    this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
+    this.recipientDatabase = SignalDatabase.recipients();
+    this.groupDatabase     = SignalDatabase.groups();
     this.observers         = new CopyOnWriteArraySet<>();
     this.foreverObserver   = recipient -> {
       ThreadUtil.postToMain(() -> {

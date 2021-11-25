@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -104,12 +103,12 @@ public class StorageAccountRestoreJob extends BaseJob {
 
 
     Log.i(TAG, "Applying changes locally...");
-    DatabaseFactory.getInstance(context).getRawDatabase().beginTransaction();
+    SignalDatabase.getRawDatabase().beginTransaction();
     try {
       StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self(), accountRecord, false);
-      DatabaseFactory.getInstance(context).getRawDatabase().setTransactionSuccessful();
+      SignalDatabase.getRawDatabase().setTransactionSuccessful();
     } finally {
-      DatabaseFactory.getInstance(context).getRawDatabase().endTransaction();
+      SignalDatabase.getRawDatabase().endTransaction();
     }
 
     JobManager jobManager = ApplicationDependencies.getJobManager();

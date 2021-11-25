@@ -31,8 +31,8 @@ import org.signal.zkgroup.groups.UuidCiphertext;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -98,7 +98,7 @@ final class GroupManagerV2 {
 
   GroupManagerV2(@NonNull Context context) {
     this.context                = context;
-    this.groupDatabase          = DatabaseFactory.getGroupDatabase(context);
+    this.groupDatabase          = SignalDatabase.groups();
     this.groupsV2Api            = ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api();
     this.groupsV2Operations     = ApplicationDependencies.getGroupsV2Operations();
     this.authorization          = ApplicationDependencies.getGroupsV2Authorization();
@@ -121,7 +121,7 @@ final class GroupManagerV2 {
   @NonNull GroupExternalCredential getGroupExternalCredential(@NonNull GroupId.V2 groupId)
       throws IOException, VerificationFailedException
   {
-    GroupMasterKey groupMasterKey = DatabaseFactory.getGroupDatabase(context)
+    GroupMasterKey groupMasterKey = SignalDatabase.groups()
                                                    .requireGroup(groupId)
                                                    .requireV2GroupProperties()
                                                    .getGroupMasterKey();
@@ -133,7 +133,7 @@ final class GroupManagerV2 {
 
   @WorkerThread
   @NonNull Map<UUID, UuidCiphertext> getUuidCipherTexts(@NonNull GroupId.V2 groupId) {
-    GroupDatabase.GroupRecord       groupRecord         = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
+    GroupDatabase.GroupRecord       groupRecord         = SignalDatabase.groups().requireGroup(groupId);
     GroupDatabase.V2GroupProperties v2GroupProperties   = groupRecord.requireV2GroupProperties();
     GroupMasterKey                  groupMasterKey      = v2GroupProperties.getGroupMasterKey();
     ClientZkGroupCipher             clientZkGroupCipher = new ClientZkGroupCipher(GroupSecretParams.deriveFromMasterKey(groupMasterKey));
@@ -164,10 +164,10 @@ final class GroupManagerV2 {
 
   @WorkerThread
   GroupJoiner cancelRequest(@NonNull GroupId.V2 groupId) throws GroupChangeBusyException {
-    GroupMasterKey groupMasterKey = DatabaseFactory.getGroupDatabase(context)
-                                                   .requireGroup(groupId)
-                                                   .requireV2GroupProperties()
-                                                   .getGroupMasterKey();
+    GroupMasterKey groupMasterKey = SignalDatabase.groups()
+                                                  .requireGroup(groupId)
+                                                  .requireV2GroupProperties()
+                                                  .getGroupMasterKey();
 
     return new GroupJoiner(groupMasterKey, null, GroupsV2ProcessingLock.acquireGroupProcessingLock());
   }
@@ -260,12 +260,12 @@ final class GroupManagerV2 {
 
       GroupMasterKey masterKey        = groupSecretParams.getMasterKey();
       GroupId.V2     groupId          = groupDatabase.create(masterKey, decryptedGroup);
-      RecipientId    groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+      RecipientId    groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
       Recipient      groupRecipient   = Recipient.resolved(groupRecipientId);
 
       AvatarHelper.setAvatar(context, groupRecipientId, avatar != null ? new ByteArrayInputStream(avatar) : null);
       groupDatabase.onAvatarUpdated(groupId, avatar != null);
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
+      SignalDatabase.recipients().setProfileSharing(groupRecipient.getId(), true);
 
       DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder(GroupChangeReconstruct.reconstructGroupChange(DecryptedGroup.newBuilder().build(), decryptedGroup))
                                                              .setEditor(selfAci.toByteString())
@@ -569,7 +569,7 @@ final class GroupManagerV2 {
           if (GroupChangeUtil.changeIsEmpty(change.build())) {
             Log.i(TAG, "Change is empty after conflict resolution");
             Recipient groupRecipient = Recipient.externalGroupExact(context, groupId);
-            long      threadId       = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
+            long      threadId       = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
 
             return new GroupManager.GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
           }
@@ -830,17 +830,17 @@ final class GroupManagerV2 {
         Log.i(TAG, "Created local group with placeholder");
       }
 
-      RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+      RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
 
       AvatarHelper.setAvatar(context, groupRecipientId, avatar != null ? new ByteArrayInputStream(avatar) : null);
       groupDatabase.onAvatarUpdated(groupId, avatar != null);
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipientId, true);
+      SignalDatabase.recipients().setProfileSharing(groupRecipientId, true);
 
       if (alreadyAMember) {
         Log.i(TAG, "Already a member of the group");
 
-        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        ThreadDatabase threadDatabase = SignalDatabase.threads();
         long           threadId       = threadDatabase.getOrCreateValidThreadId(groupRecipient, -1);
 
         return new GroupManager.GroupActionResult(groupRecipient,

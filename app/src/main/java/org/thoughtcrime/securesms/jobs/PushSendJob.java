@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -289,8 +289,8 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected static void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
-    long      threadId  = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
-    Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
+    long      threadId  = SignalDatabase.mms().getThreadIdForMessage(messageId);
+    Recipient recipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
     if (threadId != -1 && recipient != null) {
       ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, threadId);
@@ -369,7 +369,7 @@ public abstract class PushSendJob extends SendJob {
       byte[]                  packId     = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackId());
       byte[]                  packKey    = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackKey());
       int                     stickerId  = stickerAttachment.getSticker().getStickerId();
-      StickerRecord           record     = DatabaseFactory.getStickerDatabase(context).getSticker(stickerAttachment.getSticker().getPackId(), stickerId, false);
+      StickerRecord           record     = SignalDatabase.stickers().getSticker(stickerAttachment.getSticker().getPackId(), stickerId, false);
       String                  emoji      = record != null ? record.getEmoji() : null;
       SignalServiceAttachment attachment = getAttachmentPointerFor(stickerAttachment);
 
@@ -447,7 +447,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    SignalServiceAddress  localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalAci(context), TextSecurePreferences.getLocalNumber(context));
+    SignalServiceAddress  localAddress = new SignalServiceAddress(Recipient.self().requireAci(), Recipient.self().requireE164());
     SentTranscriptMessage transcript   = new SentTranscriptMessage(Optional.of(localAddress),
                                                                    message.getTimestamp(),
                                                                    message,
@@ -485,9 +485,9 @@ public abstract class PushSendJob extends SendJob {
 
     warn(TAG, "[Proof Required] Marking message as rate-limited. (id: " + messageId + ", mms: " + isMms + ", thread: " + threadId + ")");
     if (isMms) {
-      DatabaseFactory.getMmsDatabase(context).markAsRateLimited(messageId);
+      SignalDatabase.mms().markAsRateLimited(messageId);
     } else {
-      DatabaseFactory.getSmsDatabase(context).markAsRateLimited(messageId);
+      SignalDatabase.sms().markAsRateLimited(messageId);
     }
 
     if (proofRequired.getOptions().contains(ProofRequiredException.Option.RECAPTCHA)) {

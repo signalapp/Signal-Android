@@ -1,8 +1,7 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version('signal-client', '0.9.7')
-            version('zkgroup', '0.8.2')
+            version('signal-client', '0.10.0')
             version('exoplayer', '2.15.0')
             version('androidx-camera', '1.0.0-beta11')
             version('androidx-lifecycle', '2.3.1')
@@ -72,11 +71,9 @@ dependencyResolutionManagement {
             // 1st Party
             alias('signal-client-java').to('org.whispersystems', 'signal-client-java').versionRef('signal-client')
             alias('signal-client-android').to('org.whispersystems', 'signal-client-android').versionRef('signal-client')
-            alias('signal-zkgroup-java').to('org.signal', 'zkgroup-java').versionRef('zkgroup')
-            alias('signal-zkgroup-android').to('org.signal', 'zkgroup-android').versionRef('zkgroup')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.13.6')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.14.3')
             alias('signal-android-database-sqlcipher').to('org.signal:android-database-sqlcipher:4.4.3-S8')
 
             // Third Party

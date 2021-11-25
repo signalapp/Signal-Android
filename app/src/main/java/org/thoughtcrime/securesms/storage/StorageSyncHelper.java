@@ -10,9 +10,9 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
@@ -105,9 +105,9 @@ public final class StorageSyncHelper {
   }
 
   public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @NonNull Recipient self) {
-    RecipientDatabase       recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase       recipientDatabase = SignalDatabase.recipients();
     RecipientSettings       settings          = recipientDatabase.getRecipientSettingsForSync(self.getId());
-    List<RecipientSettings> pinned            = Stream.of(DatabaseFactory.getThreadDatabase(context).getPinnedRecipientIds())
+    List<RecipientSettings> pinned            = Stream.of(SignalDatabase.threads().getPinnedRecipientIds())
                                                       .map(recipientDatabase::getRecipientSettingsForSync)
                                                       .toList();
 
@@ -130,9 +130,10 @@ public final class StorageSyncHelper {
                                                          .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.fromNullable(SignalStore.paymentsValues().getPaymentsEntropy()).transform(Entropy::getBytes).orNull())
                                                          .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
                                                          .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
-                                                         .setE164(TextSecurePreferences.getLocalNumber(context))
+                                                         .setE164(self.requireE164())
                                                          .setDefaultReactions(SignalStore.emojiValues().getReactions())
                                                          .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))
+                                                         .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -144,7 +145,7 @@ public final class StorageSyncHelper {
   }
 
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull Recipient self, @NonNull StorageRecordUpdate<SignalAccountRecord> update, boolean fetchProfile) {
-    DatabaseFactory.getRecipientDatabase(context).applyStorageSyncAccountUpdate(update);
+    SignalDatabase.recipients().applyStorageSyncAccountUpdate(update);
 
     TextSecurePreferences.setReadReceiptsEnabled(context, update.getNew().isReadReceiptsEnabled());
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.getNew().isTypingIndicatorsEnabled());
@@ -156,6 +157,7 @@ public final class StorageSyncHelper {
     SignalStore.paymentsValues().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orNull()));
     SignalStore.settings().setUniversalExpireTimer(update.getNew().getUniversalExpireTimer());
     SignalStore.emojiValues().setReactions(update.getNew().getDefaultReactions());
+    SignalStore.donationsValues().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
 
     Subscriber subscriber = StorageSyncModels.remoteToLocalSubscriber(update.getNew().getSubscriber());
     if (subscriber != null) {

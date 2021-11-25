@@ -14,6 +14,7 @@ import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.Camera;
+import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 
 import java.util.ArrayList;
@@ -114,7 +115,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
       return currentState;
     }
 
-    if (currentState.getCallSetupState().hasSentJoinedMessage()) {
+    if (currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).hasSentJoinedMessage()) {
       return currentState;
     }
 
@@ -128,7 +129,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, WebRtcUtil.isCallFull(peekInfo));
 
     return currentState.builder()
-                       .changeCallSetupState()
+                       .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                        .sentJoinedMessage(true)
                        .build();
   }

@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -52,7 +52,7 @@ public final class PaymentTransactionCheckJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    PaymentDatabase paymentDatabase = DatabaseFactory.getPaymentDatabase(context);
+    PaymentDatabase paymentDatabase = SignalDatabase.payments();
 
     PaymentDatabase.PaymentTransaction payment = paymentDatabase.getPayment(uuid);
 

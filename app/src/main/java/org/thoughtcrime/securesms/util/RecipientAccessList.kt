@@ -4,7 +4,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import java.lang.IllegalArgumentException
 
 /**
  * A list of Recipients, but with some helpful methods for retrieving them by various properties. Uses lazy properties to ensure that it will be as performant

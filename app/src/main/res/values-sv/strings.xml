@@ -63,9 +63,9 @@
   <string name="AttachmentKeyboard_payment">Betalning</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan inte hitta app för att välja media.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men den har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men den har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men den har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Laddar upp media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerar video…</string>
@@ -214,13 +214,13 @@
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din förfrågan om att gå med har skickats till gruppadministratören. Du får ett meddelande när administratören vidtar åtgärder.</string>
   <string name="ConversationActivity_cancel_request">Avbryt förfrågan</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal åtkomst till din mikrofon.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörigheterna Mikrofon och Kamera för att ringa%s men de har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och Kamera\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörigheterna Mikrofon och Kamera för att ringa%s men de har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">För att fånga fotografier och video, tillåt Signal att tillgå kameran.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma men den har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktivera behörigheten Mikrofon för att spela in videor med ljud.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal behöver mikrofonbehörigheter för att spela in videor men de har nekats. Vänligen fortsätt till appinställningar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal behöver mikrofonbehörigheter för att spela in videor men de har avfärdats. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal behöver behörigheten Mikrofon för att filma.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan inte skicka SMS/MMS-meddelanden eftersom det inte är din standardapp för SMS. Vill du ändra detta i dina Android-inställningar?</string>
@@ -329,8 +329,8 @@
     <item quantity="other">Fäst</item>
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
-    <item quantity="one">Lossa</item>
-    <item quantity="other">Lossa</item>
+    <item quantity="one">Lösgör</item>
+    <item quantity="other">Lösgör</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">Tysta</item>
@@ -403,7 +403,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Läs mer</string>
   <string name="BackupsPreferenceFragment__in_progress">Pågående…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hittills…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal behöver behörigheten Lagring för att skapa säkerhetskopior men den har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal behöver behörigheten Lagring för att skapa säkerhetskopior men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Idag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Namnlös fil</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donera till Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drivs av människor som du. Visa ditt stöd idag!</string>
-  <string name="DonateMegaphone_donate">Donera</string>
-  <string name="DonateMegaphone_no_thanks">Nej tack</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vi presenterar gruppsamtal</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett fritt krypterat gruppsamtal</string>
@@ -600,7 +595,7 @@
   <string name="RequestingMembersFragment_no_member_requests_to_show">Inga medlemsförfrågningar att visa.</string>
   <string name="RequestingMembersFragment_explanation">Personer på denna lista försöker gå med i denna grupp via grupplänken.</string>
   <string name="RequestingMembersFragment_added_s">Lade till \"%1$s\"</string>
-  <string name="RequestingMembersFragment_denied_s">Nekade \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">Avfärdade \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denna person kan inte läggas till i äldre grupper.</string>
@@ -680,7 +675,7 @@
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du är inte medlem i gruppen</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Det gick inte att uppdatera gruppen. Vänligen försök igen senare</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, vänligen försök igen senare</string>
-  <string name="ManageGroupActivity_edit_name_and_picture">Redigera namn och bild</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Ändra namn och bild</string>
   <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en Äldre grupp. Funktioner som gruppadministratörer är endast tillgängliga för Nya grupper.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Detta är en Äldre grupp. För att komma åt nya funktioner som @omnämnanden och administratörer,</string>
@@ -704,6 +699,7 @@
   <string name="ManageProfileFragment_your_username">Ditt användarnamn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Det gick inte att ställa in avataren</string>
   <string name="ManageProfileFragment_badges">Märken</string>
+  <string name="ManageProfileFragment__edit_photo">Ändra foto</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga gemensamma grupper</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -777,9 +773,9 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du är för närvarande inte medlem i gruppen.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lägg till \"%1$s\" till gruppen?</string>
-  <string name="RequestConfirmationDialog_deny_request_from_s">Neka förfrågan från \"%1$s\"?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Avfärda förfrågan från \"%1$s\"?</string>
   <string name="RequestConfirmationDialog_add">Lägg till</string>
-  <string name="RequestConfirmationDialog_deny">Neka</string>
+  <string name="RequestConfirmationDialog_deny">Avfärda</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Oskärpa ansikten</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nytt: Oskärpa ansikten eller dra var som helst för att oskärpa</string>
@@ -804,6 +800,7 @@
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Läs mer</string>
+  <string name="SpanUtil__read_more">Läs mer</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Det gick inte att hitta meddelandet</string>
   <string name="LongMessageActivity_message_from_s">Meddelande från %1$s</string>
@@ -879,7 +876,7 @@
   <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Inkommande Signal-gruppsamtal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
-  <string name="NotificationBarManager__decline_call">Neka samtal</string>
+  <string name="NotificationBarManager__decline_call">Avfärda samtal</string>
   <string name="NotificationBarManager__answer_call">Svara på samtal</string>
   <string name="NotificationBarManager__end_call">Avsluta samtal</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtal</string>
@@ -906,7 +903,7 @@
   <string name="MediaSendActivity_message">Meddelande</string>
   <string name="MediaSendActivity_select_recipients">Välj mottagare</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal behöver åtkomst till dina kontakter för att visa dem.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal behöver behörigheten Kontakter för att visa dina kontakter men den har nekats permanent. Vänligen fortsätt till Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal behöver behörigheten Kontakter för att visa dina kontakter men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan inte dela mer än %d objekt.</item>
     <item quantity="other">Du kan inte dela mer än %d objekt.</item>
@@ -1074,9 +1071,9 @@
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Din förfrågan om att gå med i gruppen har godkänts.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En förfrågan om att gå med i gruppen från %1$s har godkänts.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Din förfrågan om att gå med i gruppen har nekats av en administratör.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s nekade en förfrågan om att gå med i gruppen från %2$s.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En förfrågan om att gå med i gruppen från %1$s har blivit nekad.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Din förfrågan om att gå med i gruppen har avfärdats av en administratör.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s avfärdade en förfrågan om att gå med i gruppen från %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En förfrågan om att gå med i gruppen från %1$s har blivit avfärdad.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du avbröt din förfrågan om att gå med i gruppen.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s avbröt sin förfrågan om att gå med i gruppen.</string>
   <!--End of GV2 specific update messages-->
@@ -1159,7 +1156,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, detta är ingen giltig QR-kod för enhetslänkning.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Länka en Signal-enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen inifrån Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal behöver behörigheten Kamera för att skanna QR-koder men det har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal behöver behörigheten Kamera för att skanna QR-koder men det har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
@@ -1342,6 +1339,9 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter för att kunna ansluta till vänner, utbyta meddelanden och ringa säkra samtal</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Vänligen försök igen senare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Vänligen kontrollera nätverksanslutning och försök igen.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Icke-standardiserat sifferformat</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Siffran du angav (%1$s) verkar vara ett icke-standardformat.\n\nMenade du %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummerformat</string>
   <string name="RegistrationActivity_call_requested">Samtal begärt</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du är nu %d steg bort från att skicka in en felsökningslogg.</item>
@@ -1511,7 +1511,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vårt säkerhetsnummer för Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Inga säkerhetsnummer att jämföra med hittades i urklipp</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att skanna QR-koder men den har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att skanna QR-koder men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du måste först utbyta meddelanden för att kunna se %1$ss säkerhetsnummer.</string>
   <!--ViewOnceMessageActivity-->
@@ -1536,7 +1536,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds inte</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att spara i extern lagring men det har nekats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att spara i extern lagring men det har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara i extern lagring utan behörighet</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ta bort meddelande?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Detta tar bort detta meddelande permanent.</string>
@@ -1617,7 +1617,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Detta är troligen på grund av att du registrerade ditt mobilnummer hos Signal på en annan enhet. Tryck för att återregistrera dig.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal åtkomst till din mikrofon.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Avböjde på en länkad enhet.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Upptagen på en länkad enhet.</string>
@@ -1625,7 +1625,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_swipe_up_to_change_views">Svep uppåt för att ändra vyer</string>
   <!--WebRtcCallScreen V2-->
-  <string name="WebRtcCallScreen__decline">Neka</string>
+  <string name="WebRtcCallScreen__decline">Avfärda</string>
   <string name="WebRtcCallScreen__answer">Svara</string>
   <string name="WebRtcCallScreen__answer_without_video">Svara utan video</string>
   <!--WebRtcAudioOutputToggle-->
@@ -1634,7 +1634,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcAudioOutputToggle__speaker">Högtalare</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <string name="WebRtcCallControls_answer_call_description">Svara på samtal</string>
-  <string name="WebRtcCallControls_reject_call_description">Neka samtal</string>
+  <string name="WebRtcCallControls_reject_call_description">Avfärda samtal</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammalt lösenord</string>
   <string name="change_passphrase_activity__new_passphrase">Nytt lösenord</string>
@@ -1653,7 +1653,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men det har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men det har avfärdats permanent. Vänligen fortsätt till menyn för appinställningar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ett fel inträffade med att hämta kontakter, kontrollera din nätverksanslutning</string>
   <string name="ContactSelectionListFragment_username_not_found">Användarnamn hittades inte</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" är inte en Signal-användare. Vänligen kontrollera användarnamnet och försök igen.</string>
@@ -1886,7 +1886,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skanna QR-koden på din kontakts enhet.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Dra upp för att svara</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Dra ner för att neka</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Dra ner för att avfärda</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Vissa frågor behöver din uppmärksamhet.</string>
   <string name="message_details_header__sent">Skickat:</string>
@@ -1934,6 +1934,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Vänligen välj ett alternativ \-\-</item>
+    <item>Något fungerar inte</item>
+    <item>Funktionsbegäran</item>
+    <item>Fråga</item>
+    <item>Återkoppling</item>
+    <item>Annat</item>
+    <item>Betalningar (MobileCoin)</item>
+    <item>Underhållare &amp; Signal Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyligen använda</string>
@@ -2031,6 +2041,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__donate_to_signal">Donera till Signal</string>
   <string name="preferences__subscription">Prenumeration</string>
+  <string name="preferences__become_a_signal_sustainer">Bli en Signal-upprätthållare</string>
   <string name="preferences__signal_boost">Signal-boost</string>
   <string name="preferences__privacy">Integritet</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -2316,7 +2327,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ta bort valda</string>
   <string name="conversation_list_batch__menu_pin_selected">Fästade valda</string>
-  <string name="conversation_list_batch__menu_unpin_selected">Lossa valda</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Lösgör valda</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiv valt</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Avarkivera markerade</string>
@@ -2388,7 +2399,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollet skyddade automatiskt %1$d%% av dina utgående meddelanden under de senaste %2$d dagarna. Konversationer mellan Signal-användare är alltid ände-till-ände-krypterade.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal-boost</string>
   <string name="InsightsDashboardFragment__not_enough_data">Inte tillräckligt med data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Din statistikprocentsats beräknas utifrån utgående meddelanden inom det förflutna %1$d dagarna som inte har försvunnit eller tagits bort.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Starta en konversation</string>
@@ -2508,7 +2518,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>
   <string name="CallNotificationBuilder_connecting">Ansluter…</string>
   <string name="Permissions_permission_required">Behörighet krävs</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal behöver behörigheten SMS för att skicka SMS men det har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal behöver behörigheten SMS för att skicka SMS men det har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"SMS\".</string>
   <string name="Permissions_continue">Fortsätt</string>
   <string name="Permissions_not_now">Inte nu</string>
   <string name="conversation_activity__enable_signal_messages">AKTIVERA SIGNAL-MEDDELANDEN</string>
@@ -2740,7 +2750,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupRecipientListItem_admin">Administratör</string>
   <string name="GroupRecipientListItem_approve_description">Godkänn</string>
-  <string name="GroupRecipientListItem_deny_description">Neka</string>
+  <string name="GroupRecipientListItem_deny_description">Avfärda</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Äldre vs. Nya grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Vad är Äldre grupper?</string>
@@ -3043,7 +3053,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Visa statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Visa en ikon i meddelandedetaljer när de levererades med dold avsändare.</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">När det är aktiverat försvinner nya meddelanden som skickas och tas emot i nya chattat som du startat efter att de har setts.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">När det är aktiverat försvinner nya meddelanden som skickas och tas emot i nya chattar som du startat efter att de har setts.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">När det är aktiverat försvinner nya meddelanden som skickas och tas emot i denna chatt när de har setts.</string>
   <string name="ExpireTimerSettingsFragment__off">Av</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 veckor</string>
@@ -3096,7 +3106,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CustomChatColorCreatorFragment__saturation">Mättnad</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Spara</string>
-  <string name="CustomChatColorCreatorFragmentPage__edit_color">Redigera färg</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Ändra färg</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
     <item quantity="one">Denna färg används i %1$d chatt. Vill du spara ändringar för alla chattar?</item>
     <item quantity="other">Denna färg används i %1$d chattar. Vill du spara ändringar för alla chattar?</item>
@@ -3121,6 +3131,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Välj ett utseende och en färg eller anpassa dina initialer.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Inte nu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Lägg till foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli en upprätthållare</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal drivs av människor som du. Bidra och få ett profilmärke.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nej tack</string>
+  <string name="BecomeASustainerMegaphone__contribute">Bidra</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Öppna emoji-sökning</string>
@@ -3169,6 +3184,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konversation tystad för alltid</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierat telefonnummer till urklipp.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
+  <string name="ConversationSettingsFragment__get_badges">Få märken för din profil genom att stöda Signal. Tryck på ett märke för att lära dig mer.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Redigera gruppinformation</string>
@@ -3191,6 +3207,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Ny betalning</string>
@@ -3215,7 +3232,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AvatarPickerFragment__save">Spara</string>
   <string name="AvatarPickerFragment__select_an_avatar">Välj en avatar</string>
   <string name="AvatarPickerFragment__clear_avatar">Ta bort avatar</string>
-  <string name="AvatarPickerFragment__edit">Redigera</string>
+  <string name="AvatarPickerFragment__edit">Ändra</string>
   <string name="AvatarPickerRepository__failed_to_save_avatar">Det gick inte att spara avataren</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Förhandsgranskning</string>
@@ -3263,7 +3280,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ImageEditorHud__write_text">Skriv text</string>
   <string name="ImageEditorHud__add_a_sticker">Lägg till ett klistermärke</string>
   <string name="ImageEditorHud__blur">Oskärpa</string>
-  <string name="ImageEditorHud__done_editing">Klar med redigeringen</string>
+  <string name="ImageEditorHud__done_editing">Klar med ändringen</string>
   <string name="ImageEditorHud__clear_all">Rensa alla</string>
   <string name="ImageEditorHud__undo">Ångra</string>
   <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Växla mellan markör och markering</string>
@@ -3288,8 +3305,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
   <string name="ImageView__badge">Märke</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drivs av personer som du.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Stöda teknik som är byggd för dig—inte för dina data—genom att gå med i gruppen av personer som upprätthåller den.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donationsbelopp</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Stöd teknik som är byggd för dig—inte för dina data—genom att gå med gemenskapen som upprätthåller den.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Stöd teknik som är byggd för dig, inte för din data, genom att gå med i gemenskapen som upprätthåller Signal.</string>
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Fler betalningsalternativ</string>
   <string name="SubscribeFragment__cancel_subscription">Avbryt prenumeration</string>
   <string name="SubscribeFragment__confirm_cancellation">Bekräfta annullering?</string>
@@ -3301,20 +3319,26 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubscribeFragment__update_subscription_question">Uppdatera prenumeration?</string>
   <string name="SubscribeFragment__update">Uppdatera</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du kommer att debiteras hela beloppet för det nya prenumerationspriset idag. Din prenumeration förnyas %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Du kommer att debiteras hela beloppet (%1$s) för det nya prenumerationspriset idag. Din prenumeration förnyas varje månad.</string>
   <string name="Subscription__s_per_month">%s/månad</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Förnyar %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Upphör %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal är en ideell organisation utan annonsörer eller investerare, som endast upprätthålls av de personer som använder och värdesätter den. Ge ett återkommande månadsbidrag och få ett profilmärke för att dela ditt stöd.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Varför bidra?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Teamet på Signal är engagerade i uppdraget att utveckla teknik för öppen källkod som skyddar det fria uttrycket och möjliggör säker global kommunikation. Ditt bidrag ger näring åt denna orsak. Inga annonser. Inga spårare. Inget påhitt.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ditt bidrag hjälper till att betala för utvecklingen, servrarna och bandbredden för en app som används av miljoner runt om i världen för privat och omedelbar kommunikation.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal är engagerad i att utveckla integritetsteknologi med öppen källkod som skyddar yttrandefriheten och möjliggör säker global kommunikation.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Ditt bidrag driver denna sak och betalar för utvecklingen och driften av en app som används av miljoner för privat kommunikation. Inga annonser. Inga spårare. Inget påhitt.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tack för ditt stöd!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tack för boosten!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har förtjänat ett %s-märke! Om du visar ditt märke visas personer du chattar med att du stöder Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har tjänat %s-märket! Hjälp Signal att skapa medvetenhet genom att visa detta märke på din profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du har tjänat ett Boost-märke! Hjälp Signal att skapa medvetenhet genom att visa detta märke på din profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan också</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bli en månatlig upprätthållare.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Visa på profilen</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gör ett märke</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Presentera märket</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klar</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">När du har mer än ett märke kan du välja ett för att visa andra i din profil.</string>
+  <string name="BecomeASustainerFragment__get_badges">Få märken för din profil genom att stöda Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal är en ideell organisation utan annonsörer eller investerare, som endast stöds av personer som du.</string>
   <string name="ManageDonationsFragment__my_support">Mitt stöd</string>
   <string name="ManageDonationsFragment__manage_subscription">Hantera prenumeration</string>
   <string name="ManageDonationsFragment__badges">Märken</string>
@@ -3327,23 +3351,36 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal-boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Bearbetar transaktionen…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">Vänligen kontakta supporten.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har löpt ut</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">Ditt %1$s-märke har löpt ut och är inte längre synligt för andra i din profil.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Om du vill fortsätta stöda teknik som är byggd för dig—inte för dina data—vänligen överväg att bli en månadsabonnent.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli prenumerant</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märket har upphört att gälla</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerationen uppsagd</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">För att fortsätta stöda teknik som är byggd för dig, överväg att bli en månatlig upprätthållare.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
-  <string name="Subscription__verification_failed">Prenumerationsverifiering misslyckades</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Din upprätthållarprenumeration avslutades automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke är inte längre synligt på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya prenumeration</string>
   <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
   <string name="Subscription__contact_support">Kontakta support</string>
   <string name="Subscription__earn_a_s_badge">Tjäna ett %1$s-märke</string>
   <string name="SubscribeFragment__processing_payment">Bearbetar betalningen…</string>
-  <string name="DonationsErrors__payment_failed">Betalningen misslyckades</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__your_badge_could_not_be_added">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Vänligen kontakta supporten.</string>
   <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Vänligen försök igen.</string>
-  <string name="DonationsErrors__redemption_still_pending">Inlösen väntar fortfarande</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du kanske inte ser ditt märke direkt, men vi jobbar på det!</string>
+  <string name="DonationsErrors__still_processing">Bearbetar fortfarande</string>
+  <string name="DonationsErrors__couldnt_add_badge">Det gick inte att lägga till märket</string>
+  <string name="DonationsErrors__your_badge_could_not">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Vänligen kontakta supporten.</string>
+  <string name="DonationsErrors__your_payment_is_still">Din betalning behandlas fortfarande. Detta kan ta några minuter beroende på din anslutning.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay är inte tillgängligt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du måste konfigurera Google Pay för att donera i appen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Det gick inte att säga upp prenumerationen</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Avbokning av prenumeration kräver en internetanslutning.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Din enhet stöder inte Google Pay, så du kan inte prenumerera för att få ett märke. Du kan fortfarande stöda Signal genom att göra en donation på vår webbplats.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nätverksfel. Kontrollera din anslutning och försök igen.</string>
+  <string name="NetworkFailure__retry">Försök igen</string>
   <!--EOF-->
 </resources>

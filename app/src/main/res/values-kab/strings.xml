@@ -388,10 +388,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Afaylu war isem</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Mudd i Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal yella-d s lmendad n yimdanen am kečč·kemm. Sken tallalt-inek·inem ass-a!</string>
-  <string name="DonateMegaphone_donate">Mudd tawsa</string>
-  <string name="DonateMegaphone_no_thanks">Ala tanemmirt</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Mudd i Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal yella-d s lmendad n yimdanen am kečč·kemm. Sken tallalt-inek·inem ass-a!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Mudd tawsa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ala tanemmirt</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Asidef n yisawalen n ugraw</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ldi Agraw Amaynut i beddu n usiwel n ugraw yettwawgelhen aṭel</string>
@@ -2178,7 +2178,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="Insights__title">Talqayt</string>
   <string name="InsightsDashboardFragment__title">Talqayt</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Aneggaf n Signal yettummesten s wudem awurman %% %1$d seg yiznan-ik·im yeffɣen n wussan-a %2$d ineggura. Ameslay gar yiseqdacen n Signal zgan ttwawgelhen seg yixef ɣer yixef.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Anerni n Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Anerni n Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">ulac ddeqs n ysefka</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Afmiḍi-inek·inem Insights yettusiḍen almend n yiznan yeffɣen deg %1$d wussan ineggura ur nṛuḥ ara neɣ ur ttwakksen ara.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bdu adiwenni</string>
@@ -2760,6 +2760,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Yemmed</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mačči tura</string>
   <string name="Subscription__contact_support">Tallalt n unermis</string>
-  <string name="DonationsErrors__payment_failed">Axelles yecceḍ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Axelles yecceḍ</string> -->
   <!--EOF-->
 </resources>

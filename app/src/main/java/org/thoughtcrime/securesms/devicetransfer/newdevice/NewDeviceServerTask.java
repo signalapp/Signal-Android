@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 
 import java.io.IOException;
@@ -38,7 +38,7 @@ final class NewDeviceServerTask implements ServerTask {
 
     EventBus.getDefault().register(this);
     try {
-      SQLiteDatabase database = DatabaseFactory.getBackupDatabase(context);
+      SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
       String passphrase = "deadbeef";
 
@@ -49,7 +49,7 @@ final class NewDeviceServerTask implements ServerTask {
                                     inputStream,
                                     passphrase);
 
-      DatabaseFactory.upgradeRestored(context, database);
+      SignalDatabase.upgradeRestored(database);
       NotificationChannels.restoreContactNotificationChannels(context);
 
       AppInitialization.onPostBackupRestore(context);

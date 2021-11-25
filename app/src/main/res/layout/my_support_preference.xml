@@ -25,6 +25,16 @@
             app:layout_constraintTop_toTopOf="@id/my_support_title"
             tools:src="@drawable/test_gradient" />
 
+        <ProgressBar
+            android:id="@+id/my_support_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/my_support_badge"
+            app:layout_constraintEnd_toEndOf="@id/my_support_badge"
+            app:layout_constraintStart_toStartOf="@id/my_support_badge"
+            app:layout_constraintTop_toTopOf="@id/my_support_badge" />
+
         <TextView
             android:id="@+id/my_support_title"
             android:layout_width="0dp"
@@ -75,10 +85,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/my_support_boost"
-            android:background="@drawable/my_boost_gradient"
             style="@style/Signal.Widget.Button.Large.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/my_boost_gradient"
             android:text="@string/MySupportPreference__add_a_signal_boost"
             app:cornerRadius="0dp"
             app:layout_constraintTop_toBottomOf="@id/my_support_heading_barrier" />

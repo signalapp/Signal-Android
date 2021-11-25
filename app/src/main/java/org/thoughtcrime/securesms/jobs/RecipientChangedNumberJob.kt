@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -32,7 +32,7 @@ class RecipientChangedNumberJob(parameters: Parameters, private val recipientId:
 
     if (!recipient.isBlocked && !recipient.isGroup && !recipient.isSelf) {
       Log.i(TAG, "Writing a number change event.")
-      DatabaseFactory.getSmsDatabase(context).insertNumberChangeMessages(recipient)
+      SignalDatabase.sms.insertNumberChangeMessages(recipient)
     } else {
       Log.i(TAG, "Number changed but not relevant. blocked: ${recipient.isBlocked} isGroup: ${recipient.isGroup} isSelf: ${recipient.isSelf}")
     }

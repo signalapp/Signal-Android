@@ -4,7 +4,7 @@ import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -21,19 +21,19 @@ sealed class ChatColorSelectionRepository(context: Context) {
   fun duplicate(chatColors: ChatColors) {
     SignalExecutors.BOUNDED.execute {
       val duplicate = chatColors.withId(ChatColors.Id.NotSet)
-      DatabaseFactory.getChatColorsDatabase(context).saveChatColors(duplicate)
+      SignalDatabase.chatColors.saveChatColors(duplicate)
     }
   }
 
   fun getUsageCount(chatColorsId: ChatColors.Id, consumer: (Int) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      consumer(DatabaseFactory.getRecipientDatabase(context).getColorUsageCount(chatColorsId))
+      consumer(SignalDatabase.recipients.getColorUsageCount(chatColorsId))
     }
   }
 
   fun delete(chatColors: ChatColors, onDeleted: () -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      DatabaseFactory.getChatColorsDatabase(context).deleteChatColors(chatColors)
+      SignalDatabase.chatColors.deleteChatColors(chatColors)
       onDeleted()
     }
   }
@@ -84,7 +84,7 @@ sealed class ChatColorSelectionRepository(context: Context) {
 
     override fun save(chatColors: ChatColors, onSaved: () -> Unit) {
       SignalExecutors.BOUNDED.execute {
-        val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+        val recipientDatabase = SignalDatabase.recipients
         recipientDatabase.setColor(recipientId, chatColors)
         onSaved()
       }

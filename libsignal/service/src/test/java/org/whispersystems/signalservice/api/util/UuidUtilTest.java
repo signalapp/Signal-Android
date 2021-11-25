@@ -3,7 +3,6 @@ package org.whispersystems.signalservice.api.util;
 import com.google.protobuf.ByteString;
 
 import org.junit.Test;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.whispersystems.libsignal.util.Hex;
 
 import java.io.IOException;
@@ -48,24 +47,6 @@ public final class UuidUtilTest {
     UUID uuid = UuidUtil.parseOrThrow(bytes);
 
     assertEquals("b83dfb0b-67f1-41aa-992e-030c167cd011", uuid.toString());
-  }
-
-  @Test
-  public void byte_array_compatibility_with_zk_group_uuid_util() {
-    UUID uuid = UUID.fromString("67dfd496-ea02-4720-b13d-83a462168b1d");
-
-    UUID result = UUIDUtil.deserialize(UuidUtil.toByteArray(uuid));
-
-    assertEquals(uuid, result);
-  }
-
-  @Test
-  public void byte_string_compatibility_with_zk_group_uuid_util() {
-    UUID uuid = UUID.fromString("67dfd496-ea02-4720-b13d-83a462168b1d");
-
-    UUID result = UuidUtil.fromByteString(ByteString.copyFrom(UUIDUtil.serialize(uuid)));
-
-    assertEquals(uuid, result);
   }
 
   @Test

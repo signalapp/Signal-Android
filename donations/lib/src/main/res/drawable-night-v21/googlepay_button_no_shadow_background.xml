@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#1f000000">
+    <item>
+        <selector xmlns:android="http://schemas.android.com/apk/res/android" >
+            <item
+                android:state_enabled="false"
+                android:state_focused="true"
+                android:drawable="@drawable/googlepay_button_no_shadow_background_image_focused" />
+            <item
+                android:state_enabled="false"
+                android:drawable="@drawable/googlepay_button_no_shadow_background_image" />
+            <!-- Skipping state_pressed="true" because the ripple effect is sufficient feedback -->
+            <item
+                android:state_focused="true"
+                android:drawable="@drawable/googlepay_button_no_shadow_background_image_focused" />
+            <item
+                android:drawable="@drawable/googlepay_button_no_shadow_background_image" />
+        </selector>
+    </item>
+</ripple>

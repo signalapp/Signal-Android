@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
-import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -13,12 +12,15 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import java.util.Currency
 import java.util.concurrent.TimeUnit
 
 /**
@@ -35,29 +37,12 @@ class ManageDonationsFragment : DSLSettingsFragment() {
 
   private val lifecycleDisposable = LifecycleDisposable()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    val args = ManageDonationsFragmentArgs.fromBundle(requireArguments())
-    if (args.skipToSubscribe) {
-      findNavController().navigate(
-        ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment(),
-        NavOptions.Builder().setPopUpTo(R.id.manageDonationsFragment, true).build()
-      )
-    }
-  }
-
   override fun onResume() {
     super.onResume()
     viewModel.refresh()
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    val args = ManageDonationsFragmentArgs.fromBundle(requireArguments())
-    if (args.skipToSubscribe) {
-      return
-    }
-
     ActiveSubscriptionPreference.register(adapter)
     IndeterminateLoadingCircle.register(adapter)
     BadgePreview.register(adapter)
@@ -102,19 +87,29 @@ class ManageDonationsFragment : DSLSettingsFragment() {
       )
 
       if (state.transactionState is ManageDonationsState.TransactionState.NotInTransaction) {
-        val activeSubscription = state.transactionState.activeSubscription
-        if (activeSubscription.isActive) {
-          val subscription: Subscription? = state.availableSubscriptions.firstOrNull { activeSubscription.activeSubscription.level == it.level }
+        val activeSubscription = state.transactionState.activeSubscription.activeSubscription
+        if (activeSubscription != null) {
+          val subscription: Subscription? = state.availableSubscriptions.firstOrNull { activeSubscription.level == it.level }
           if (subscription != null) {
             space(DimensionUnit.DP.toPixels(12f).toInt())
 
+            val activeCurrency = Currency.getInstance(activeSubscription.currency)
+            val activeAmount = activeSubscription.amount.movePointLeft(activeCurrency.defaultFractionDigits)
+
             customPref(
               ActiveSubscriptionPreference.Model(
+                price = FiatMoney(activeAmount, activeCurrency),
                 subscription = subscription,
                 onAddBoostClick = {
                   findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToBoosts())
                 },
-                renewalTimestamp = TimeUnit.SECONDS.toMillis(activeSubscription.activeSubscription.endOfCurrentPeriod)
+                renewalTimestamp = TimeUnit.SECONDS.toMillis(activeSubscription.endOfCurrentPeriod),
+                redemptionState = state.getRedemptionState(),
+                onContactSupport = {
+                  requireActivity().finish()
+                  requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
+                },
+                activeSubscription = activeSubscription
               )
             )
 
@@ -132,6 +127,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
       clickPref(
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__manage_subscription),
         icon = DSLSettingsIcon.from(R.drawable.ic_person_white_24dp),
+        isEnabled = state.getRedemptionState() != ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS,
         onClick = {
           findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment())
         }
@@ -141,7 +137,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__badges),
         icon = DSLSettingsIcon.from(R.drawable.ic_badge_24),
         onClick = {
-          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscriptionBadgeManageFragment())
+          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
         }
       )
 

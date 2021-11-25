@@ -3,17 +3,11 @@ package org.thoughtcrime.securesms.help;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import org.thoughtcrime.securesms.logsubmit.LogLine;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
-import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
-
-import java.util.List;
 
 public class HelpViewModel extends ViewModel {
 

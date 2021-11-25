@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.core.util.Consumer
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -44,7 +44,7 @@ class MultiselectForwardRepository(context: Context) {
     return Single.fromCallable {
       val recipient = Recipient.resolved(recipientId.get())
       if (recipient.isPushV2Group) {
-        val record = DatabaseFactory.getGroupDatabase(context).getGroup(recipient.requireGroupId())
+        val record = SignalDatabase.groups.getGroup(recipient.requireGroupId())
         !(record.isPresent && record.get().isAnnouncementGroup && !record.get().isAdmin(Recipient.self()))
       } else {
         true
@@ -59,7 +59,7 @@ class MultiselectForwardRepository(context: Context) {
     resultHandlers: MultiselectForwardResultHandlers
   ) {
     SignalExecutors.BOUNDED.execute {
-      val threadDatabase: ThreadDatabase = DatabaseFactory.getThreadDatabase(context)
+      val threadDatabase: ThreadDatabase = SignalDatabase.threads
 
       val sharedContactsAndThreads: Set<ShareContactAndThread> = shareContacts
         .asSequence()

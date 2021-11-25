@@ -13,9 +13,9 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -37,7 +37,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getInsightsData(@NonNull Consumer<InsightsData> insightsDataConsumer) {
     SimpleTask.run(() -> {
-      MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
+      MmsSmsDatabase mmsSmsDatabase = SignalDatabase.mmsSms();
       int            insecure       = mmsSmsDatabase.getInsecureMessageCountForInsights();
       int            secure         = mmsSmsDatabase.getSecureMessageCountForInsights();
 
@@ -52,7 +52,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getInsecureRecipients(@NonNull Consumer<List<Recipient>> insecureRecipientsConsumer) {
     SimpleTask.run(() -> {
-      RecipientDatabase recipientDatabase      = DatabaseFactory.getRecipientDatabase(context);
+      RecipientDatabase recipientDatabase      = SignalDatabase.recipients();
       List<RecipientId> unregisteredRecipients = recipientDatabase.getUninvitedRecipientsForInsights();
 
       return Stream.of(unregisteredRecipients)
@@ -83,7 +83,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
 
       MessageSender.send(context, new OutgoingTextMessage(resolved, message, subscriptionId), -1L, true, null, null);
 
-      RecipientDatabase database = DatabaseFactory.getRecipientDatabase(context);
+      RecipientDatabase database = SignalDatabase.recipients();
       database.setHasSentInvite(recipient.getId());
 
       return null;

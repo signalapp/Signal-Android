@@ -9,9 +9,8 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
@@ -107,7 +106,7 @@ final class RecipientDialogRepository {
   void getGroupMembership(@NonNull Consumer<List<RecipientId>> onComplete) {
     SimpleTask.run(SignalExecutors.UNBOUNDED,
                    () -> {
-                     GroupDatabase                   groupDatabase   = DatabaseFactory.getGroupDatabase(context);
+                     GroupDatabase                   groupDatabase   = SignalDatabase.groups();
                      List<GroupDatabase.GroupRecord> groupRecords    = groupDatabase.getPushGroupsContainingMember(recipientId);
                      ArrayList<RecipientId>          groupRecipients = new ArrayList<>(groupRecords.size());
 
@@ -121,7 +120,7 @@ final class RecipientDialogRepository {
   }
 
   public void getActiveGroupCount(@NonNull Consumer<Integer> onComplete) {
-    SignalExecutors.BOUNDED.execute(() -> onComplete.accept(DatabaseFactory.getGroupDatabase(context).getActiveGroupCount()));
+    SignalExecutors.BOUNDED.execute(() -> onComplete.accept(SignalDatabase.groups().getActiveGroupCount()));
   }
 
   interface RecipientCallback {

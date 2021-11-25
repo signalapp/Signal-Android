@@ -5,14 +5,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.CharacterStyle;
-import android.text.style.MetricAffectingSpan;
-import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
@@ -20,7 +16,6 @@ import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -31,9 +26,6 @@ import java.util.Objects;
 public class FromTextView extends SimpleEmojiTextView {
 
   private static final String TAG = Log.tag(FromTextView.class);
-
-  private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif-medium", Typeface.NORMAL);
-  private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif", Typeface.NORMAL);
 
   public FromTextView(Context context) {
     super(context);
@@ -52,8 +44,10 @@ public class FromTextView extends SimpleEmojiTextView {
   }
 
   public void setText(Recipient recipient, boolean read, @Nullable String suffix) {
-    String fromString = recipient.getDisplayName(getContext());
+    setText(recipient, recipient.getDisplayName(getContext()), read, suffix);
+  }
 
+  public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix) {
     SpannableStringBuilder builder  = new SpannableStringBuilder();
     SpannableString        fromSpan = new SpannableString(fromString);
     fromSpan.setSpan(getFontSpan(!read), 0, fromSpan.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);

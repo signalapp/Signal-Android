@@ -36,7 +36,6 @@ import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialPresentation;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -649,7 +648,7 @@ public final class GroupsV2Operations {
       return DecryptedPendingMember.newBuilder()
                                    .setUuid(UuidUtil.toByteString(uuid))
                                    .setUuidCipherText(userIdCipherText)
-                                   .setAddedByUuid(ByteString.copyFrom(UUIDUtil.serialize(addedBy)))
+                                   .setAddedByUuid(UuidUtil.toByteString(addedBy))
                                    .setRole(role)
                                    .setTimestamp(member.getTimestamp())
                                    .build();
@@ -698,7 +697,7 @@ public final class GroupsV2Operations {
     }
 
     private ByteString decryptUuidToByteString(ByteString userId) throws InvalidGroupStateException, VerificationFailedException {
-      return ByteString.copyFrom(UUIDUtil.serialize(decryptUuid(userId)));
+      return UuidUtil.toByteString(decryptUuid(userId));
     }
 
     ByteString encryptUuid(UUID uuid) {

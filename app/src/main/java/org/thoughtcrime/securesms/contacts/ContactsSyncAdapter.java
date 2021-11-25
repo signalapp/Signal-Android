@@ -7,22 +7,20 @@ import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SetUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
@@ -43,14 +41,14 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
     Context context = getContext();
 
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.i(TAG, "Not push registered. Just syncing contact info.");
       DirectoryHelper.syncRecipientInfoWithSystemContacts(context);
       return;
     }
 
     Set<String> allSystemNumbers     = ContactAccessor.getInstance().getAllContactsWithNumbers(context);
-    Set<String> knownSystemNumbers   = DatabaseFactory.getRecipientDatabase(context).getAllPhoneNumbers();
+    Set<String> knownSystemNumbers   = SignalDatabase.recipients().getAllPhoneNumbers();
     Set<String> unknownSystemNumbers = SetUtil.difference(allSystemNumbers, knownSystemNumbers);
 
     if (unknownSystemNumbers.size() > FULL_SYNC_THRESHOLD) {

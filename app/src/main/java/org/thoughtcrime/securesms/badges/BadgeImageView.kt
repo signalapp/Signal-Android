@@ -25,26 +25,41 @@ class BadgeImageView @JvmOverloads constructor(
     context.obtainStyledAttributes(attrs, R.styleable.BadgeImageView).use {
       badgeSize = it.getInt(R.styleable.BadgeImageView_badge_size, 0)
     }
+
+    isClickable = false
+  }
+
+  override fun setOnClickListener(l: OnClickListener?) {
+    val wasClickable = isClickable
+    super.setOnClickListener(l)
+    this.isClickable = wasClickable
   }
 
   fun setBadgeFromRecipient(recipient: Recipient?) {
     getGlideRequests()?.let {
       setBadgeFromRecipient(recipient, it)
-    } ?: setImageDrawable(null)
+    } ?: clearDrawable()
   }
 
   fun setBadgeFromRecipient(recipient: Recipient?, glideRequests: GlideRequests) {
     if (recipient == null || recipient.badges.isEmpty()) {
       setBadge(null, glideRequests)
+    } else if (recipient.isSelf) {
+      val badge = recipient.featuredBadge
+      if (badge == null || !badge.visible || badge.isExpired()) {
+        setBadge(null, glideRequests)
+      } else {
+        setBadge(badge, glideRequests)
+      }
     } else {
-      setBadge(recipient.badges[0], glideRequests)
+      setBadge(recipient.featuredBadge, glideRequests)
     }
   }
 
   fun setBadge(badge: Badge?) {
     getGlideRequests()?.let {
       setBadge(badge, it)
-    } ?: setImageDrawable(null)
+    } ?: clearDrawable()
   }
 
   fun setBadge(badge: Badge?, glideRequests: GlideRequests) {
@@ -54,11 +69,18 @@ class BadgeImageView @JvmOverloads constructor(
         .downsample(DownsampleStrategy.NONE)
         .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
         .into(this)
+
+      isClickable = true
     } else {
       glideRequests
         .clear(this)
-      setImageDrawable(null)
+      clearDrawable()
     }
+  }
+
+  private fun clearDrawable() {
+    setImageDrawable(null)
+    isClickable = false
   }
 
   private fun getGlideRequests(): GlideRequests? {

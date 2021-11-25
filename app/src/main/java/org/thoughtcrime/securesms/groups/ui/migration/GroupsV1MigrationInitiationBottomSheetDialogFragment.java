@@ -77,6 +77,9 @@ public final class GroupsV1MigrationInitiationBottomSheetDialogFragment extends 
     this.upgradeButton       = view.findViewById(R.id.gv1_migrate_upgrade_button);
     this.spinner             = view.findViewById(R.id.gv1_migrate_spinner);
 
+    inviteList.initializeAdapter(getViewLifecycleOwner());
+    ineligibleList.initializeAdapter(getViewLifecycleOwner());
+
     inviteList.setNestedScrollingEnabled(false);
     ineligibleList.setNestedScrollingEnabled(false);
 

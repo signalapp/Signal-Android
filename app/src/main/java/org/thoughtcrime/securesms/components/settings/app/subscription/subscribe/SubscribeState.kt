@@ -13,6 +13,11 @@ data class SubscribeState(
   val stage: Stage = Stage.INIT,
   val hasInProgressSubscriptionTransaction: Boolean = false,
 ) {
+
+  fun isSubscriptionExpiring(): Boolean {
+    return activeSubscription?.isActive == true && activeSubscription.activeSubscription.willCancelAtPeriodEnd()
+  }
+
   enum class Stage {
     INIT,
     READY,

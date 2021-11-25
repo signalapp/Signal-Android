@@ -66,7 +66,7 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
                              long threadId,
                              @NonNull List<Recipient> invitedMembers)
   {
-    Dialog dialog = GroupInviteSentDialog.showInvitesSent(this, invitedMembers);
+    Dialog dialog = GroupInviteSentDialog.showInvitesSent(this, this, invitedMembers);
     if (dialog != null) {
       dialog.setOnDismissListener((d) -> goToConversation(recipientId, threadId));
     } else {

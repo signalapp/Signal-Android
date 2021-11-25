@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.LifecycleOwner;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
@@ -20,7 +21,7 @@ public final class NonGv2MemberDialog {
   private NonGv2MemberDialog() {
   }
 
-  public static @Nullable Dialog showNonGv2Members(@NonNull Context context, @NonNull List<Recipient> recipients) {
+  public static @Nullable Dialog showNonGv2Members(@NonNull Context context, @NonNull LifecycleOwner lifecycleOwner, @NonNull List<Recipient> recipients) {
     int size = recipients.size();
     if (size == 0) {
       return null;
@@ -41,6 +42,8 @@ public final class NonGv2MemberDialog {
     Dialog dialog = builder.show();
     if (size > 1) {
       GroupMemberListView nonGv2CapableMembers = dialog.findViewById(R.id.list_non_gv2_members);
+
+      nonGv2CapableMembers.initializeAdapter(lifecycleOwner);
 
       List<GroupMemberEntry.NewGroupCandidate> pendingMembers = new ArrayList<>(recipients.size());
       for (Recipient r : recipients) {

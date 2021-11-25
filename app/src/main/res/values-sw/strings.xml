@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">Leo</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Faili isiyo na jina</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Changia Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal inaendeshwa na watu kama wewe. Simama uhesabike leo!</string>
-  <string name="DonateMegaphone_donate">Toa</string>
-  <string name="DonateMegaphone_no_thanks">Hapana, Asante</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Tunakuletea Mikutano ya Vikundi</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Fungua Kikundi Kipya ili uanzishe mkutano wa kikundi uliosimbwa na usiolipishwa</string>
@@ -2290,7 +2285,6 @@ nambari yako ya simu</string>
   <string name="Insights__title">Ufahamu</string>
   <string name="InsightsDashboardFragment__title">Ufahamu</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Itifaki za Signal moja kwa moja zimelinda %1$d%% ya jumbe zako zilizotumwa kwenye siku %2$d zilizopita. Gumzo kati ya watumizi wa Signal zimesimbwa mwisho hadi mwisho.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Ongezo-hadhi la Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Data haitoshi</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Asilimia ya Ufahamu wako inahesabiwa kulingana na jumbe zilizotumwa kwa siku %1$dzilizopita  ambazo hazijatoweka wala kufutwa. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Anza gumzo</string>
@@ -2994,6 +2988,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Chagua mwonekano na rangi au ubadilishe herufi zako za kwanza.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Sio sasa</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ongeza picha</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Hapana nashukuru</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Fungua utaftaji wa emoji</string>
@@ -3111,15 +3107,17 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="MediaReviewImagePageFragment__discard">Ghairi</string>
   <string name="SelectFeaturedBadgeFragment__preview">Hakiki</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal inaendeshwa na watu kama wewe.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Kiasi cha mchango</string> -->
   <string name="SubscribeFragment__not_now">Sio sasa</string>
   <string name="SubscribeFragment__confirm">Thibitisha</string>
   <string name="SubscribeFragment__update">Sasisha</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Imekamilika</string>
   <string name="Boost__enter_custom_amount">Weka Kiasi Maalum</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Sio sasa</string>
   <string name="Subscription__contact_support">Wasiliana na Msaada</string>
   <string name="SubscribeFragment__processing_payment">Tunachakata malipo…</string>
-  <string name="DonationsErrors__payment_failed">Malipo hayajatumwa</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">Jaribu Upya</string>
   <!--EOF-->
 </resources>

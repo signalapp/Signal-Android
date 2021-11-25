@@ -4,14 +4,13 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.SqlUtil
 
-class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Database(context, databaseHelper) {
+class ChatColorsDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
 
   companion object {
     private const val TABLE_NAME = "chat_colors"
@@ -103,8 +102,7 @@ class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) 
       SignalStore.chatColorsValues().chatColors = chatColors
     }
 
-    val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
-    recipientDatabase.onUpdatedChatColors(chatColors)
+    SignalDatabase.recipients.onUpdatedChatColors(chatColors)
     notifyListeners()
 
     return chatColors
@@ -122,8 +120,7 @@ class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) 
       SignalStore.chatColorsValues().chatColors = null
     }
 
-    val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
-    recipientDatabase.onDeletedChatColors(chatColors)
+    SignalDatabase.recipients.onDeletedChatColors(chatColors)
     notifyListeners()
   }
 

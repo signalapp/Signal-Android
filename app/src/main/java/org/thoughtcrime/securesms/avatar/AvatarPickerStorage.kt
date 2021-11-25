@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.avatar
 import android.content.Context
 import android.net.Uri
 import android.webkit.MimeTypeMap
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -33,7 +33,7 @@ object AvatarPickerStorage {
   @JvmStatic
   fun cleanOrphans(context: Context) {
     val avatarFiles = FileStorage.getAllFiles(context, DIRECTORY, FILENAME_BASE)
-    val database = DatabaseFactory.getAvatarPickerDatabase(context)
+    val database = SignalDatabase.avatarPicker
     val photoAvatars = database
       .getAllAvatars()
       .filterIsInstance<Avatar.Photo>()

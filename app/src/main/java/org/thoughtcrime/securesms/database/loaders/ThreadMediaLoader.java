@@ -5,8 +5,8 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 
 public final class ThreadMediaLoader extends MediaLoader {
 
@@ -34,7 +34,7 @@ public final class ThreadMediaLoader extends MediaLoader {
                                         long threadId,
                                         @NonNull MediaType mediaType,
                                         @NonNull MediaDatabase.Sorting sorting) {
-    MediaDatabase mediaDatabase = DatabaseFactory.getMediaDatabase(context);
+    MediaDatabase mediaDatabase = SignalDatabase.media();
 
     switch (mediaType) {
       case GALLERY : return mediaDatabase.getGalleryMediaForThread(threadId, sorting);

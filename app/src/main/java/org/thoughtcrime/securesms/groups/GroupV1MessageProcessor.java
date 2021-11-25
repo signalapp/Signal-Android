@@ -10,10 +10,10 @@ import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV1DownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
@@ -65,7 +65,7 @@ public final class GroupV1MessageProcessor {
       return null;
     }
 
-    GroupDatabase         database = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase         database = SignalDatabase.groups();
     SignalServiceGroup    group    = groupV1.get();
     GroupId               id       = GroupId.v1(group.getGroupId());
     Optional<GroupRecord> record   = database.getGroup(id);
@@ -89,7 +89,7 @@ public final class GroupV1MessageProcessor {
                                                   @NonNull SignalServiceGroup group,
                                                   boolean outgoing)
   {
-    GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase        database = SignalDatabase.groups();
     GroupId.V1           id       = GroupId.v1orThrow(group.getGroupId());
     GroupContext.Builder builder  = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
@@ -110,7 +110,7 @@ public final class GroupV1MessageProcessor {
 
     if (sender.isSystemContact() || sender.isProfileSharing()) {
       Log.i(TAG, "Auto-enabling profile sharing because 'adder' is trusted. contact: " + sender.isSystemContact() + ", profileSharing: " + sender.isProfileSharing());
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.externalGroupExact(context, id).getId(), true);
+      SignalDatabase.recipients().setProfileSharing(Recipient.externalGroupExact(context, id).getId(), true);
     }
 
     return storeMessage(context, content, group, builder.build(), outgoing);
@@ -123,7 +123,7 @@ public final class GroupV1MessageProcessor {
                                                   boolean outgoing)
   {
 
-    GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase database = SignalDatabase.groups();
     GroupId.V1    id       = GroupId.v1orThrow(group.getGroupId());
 
     Set<RecipientId> recordMembers  = new HashSet<>(groupRecord.getMembers());
@@ -202,7 +202,7 @@ public final class GroupV1MessageProcessor {
                                        @NonNull GroupRecord           record,
                                        boolean  outgoing)
   {
-    GroupDatabase     database = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase     database = SignalDatabase.groups();
     GroupId           id       = GroupId.v1orThrow(group.getGroupId());
     List<RecipientId> members  = record.getMembers();
 
@@ -235,18 +235,18 @@ public final class GroupV1MessageProcessor {
 
     try {
       if (outgoing) {
-        MessageDatabase            mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        RecipientId                recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
+        MessageDatabase            mmsDatabase     = SignalDatabase.mms();
+        RecipientId                recipientId     = SignalDatabase.recipients().getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
         Recipient                  recipient       = Recipient.resolved(recipientId);
         OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+        long                       threadId        = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
         long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);
 
         return threadId;
       } else {
-        MessageDatabase            smsDatabase  = DatabaseFactory.getSmsDatabase(context);
+        MessageDatabase            smsDatabase  = SignalDatabase.sms();
         String                     body         = Base64.encodeBytes(storage.toByteArray());
         IncomingTextMessage        incoming     = new IncomingTextMessage(Recipient.externalHighTrustPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerReceivedTimestamp(), System.currentTimeMillis(), body, Optional.of(GroupId.v1orThrow(group.getGroupId())), 0, content.isNeedsReceipt(), content.getServerUuid());
         IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, storage, body);

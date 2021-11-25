@@ -36,10 +36,6 @@ data class Badge(
   val visible: Boolean,
 ) : Parcelable, Key {
 
-  fun setVisible(): Badge {
-    return copy(visible = true)
-  }
-
   fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis() && expirationTimestamp > 0
   fun isBoost(): Boolean = id == BOOST_BADGE_ID
 
@@ -133,7 +129,7 @@ data class Badge(
         .downsample(DownsampleStrategy.NONE)
         .diskCacheStrategy(DiskCacheStrategy.NONE)
         .transform(
-          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.XLARGE, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
+          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.BADGE_64, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
         )
         .into(badge)
 

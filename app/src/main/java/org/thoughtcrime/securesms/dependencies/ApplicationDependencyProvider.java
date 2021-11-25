@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
@@ -94,7 +95,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   private @NonNull ClientZkOperations provideClientZkOperations() {
-    return ClientZkOperations.create(provideSignalServiceNetworkAccess().getConfiguration(context));
+    return ClientZkOperations.create(provideSignalServiceNetworkAccess().getConfiguration());
   }
 
   @Override
@@ -104,8 +105,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager() {
-    return new SignalServiceAccountManager(provideSignalServiceNetworkAccess().getConfiguration(context),
-                                           new DynamicCredentialsProvider(context),
+    return new SignalServiceAccountManager(provideSignalServiceNetworkAccess().getConfiguration(),
+                                           new DynamicCredentialsProvider(),
                                            BuildConfig.SIGNAL_AGENT,
                                            provideGroupsV2Operations(),
                                            FeatureFlags.okHttpAutomaticRetry());
@@ -113,8 +114,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket) {
-      return new SignalServiceMessageSender(provideSignalServiceNetworkAccess().getConfiguration(context),
-                                            new DynamicCredentialsProvider(context),
+      return new SignalServiceMessageSender(provideSignalServiceNetworkAccess().getConfiguration(),
+                                            new DynamicCredentialsProvider(),
                                             new SignalProtocolStoreImpl(context),
                                             ReentrantSessionLock.INSTANCE,
                                             BuildConfig.SIGNAL_AGENT,
@@ -128,8 +129,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
-    return new SignalServiceMessageReceiver(provideSignalServiceNetworkAccess().getConfiguration(context),
-                                            new DynamicCredentialsProvider(context),
+    return new SignalServiceMessageReceiver(provideSignalServiceNetworkAccess().getConfiguration(),
+                                            new DynamicCredentialsProvider(),
                                             BuildConfig.SIGNAL_AGENT,
                                             provideClientZkOperations().getProfileOperations(),
                                             FeatureFlags.okHttpAutomaticRetry());
@@ -263,7 +264,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalWebSocket provideSignalWebSocket() {
-    SleepTimer                   sleepTimer      = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
+    SleepTimer                   sleepTimer      = SignalStore.account().isFcmEnabled() ? new UptimeSleepTimer() : new AlarmSleepTimer(context);
     SignalWebSocketHealthMonitor healthMonitor   = new SignalWebSocketHealthMonitor(context, sleepTimer);
     SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(healthMonitor));
 
@@ -309,8 +310,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull DonationsService provideDonationsService() {
-    return new DonationsService(provideSignalServiceNetworkAccess().getConfiguration(context),
-                                new DynamicCredentialsProvider(context),
+    return new DonationsService(provideSignalServiceNetworkAccess().getConfiguration(),
+                                new DynamicCredentialsProvider(),
                                 BuildConfig.SIGNAL_AGENT,
                                 provideGroupsV2Operations(),
                                 FeatureFlags.okHttpAutomaticRetry());
@@ -333,8 +334,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
       @Override
       public WebSocketConnection createWebSocket() {
         return new WebSocketConnection("normal",
-                                       provideSignalServiceNetworkAccess().getConfiguration(context),
-                                       Optional.of(new DynamicCredentialsProvider(context)),
+                                       provideSignalServiceNetworkAccess().getConfiguration(),
+                                       Optional.of(new DynamicCredentialsProvider()),
                                        BuildConfig.SIGNAL_AGENT,
                                        healthMonitor);
       }
@@ -342,7 +343,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
       @Override
       public WebSocketConnection createUnidentifiedWebSocket() {
         return new WebSocketConnection("unidentified",
-                                       provideSignalServiceNetworkAccess().getConfiguration(context),
+                                       provideSignalServiceNetworkAccess().getConfiguration(),
                                        Optional.absent(),
                                        BuildConfig.SIGNAL_AGENT,
                                        healthMonitor);
@@ -352,25 +353,19 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {
 
-    private final Context context;
-
-    private DynamicCredentialsProvider(Context context) {
-      this.context = context.getApplicationContext();
-    }
-
     @Override
     public ACI getAci() {
-      return TextSecurePreferences.getLocalAci(context);
+      return SignalStore.account().getAci();
     }
 
     @Override
     public String getE164() {
-      return TextSecurePreferences.getLocalNumber(context);
+      return SignalStore.account().getE164();
     }
 
     @Override
     public String getPassword() {
-      return TextSecurePreferences.getPushServerPassword(context);
+      return SignalStore.account().getServicePassword();
     }
   }
 }

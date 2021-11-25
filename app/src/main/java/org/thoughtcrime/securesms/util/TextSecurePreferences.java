@@ -19,7 +19,7 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.Medium;
-import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -39,13 +38,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public class TextSecurePreferences {
 
   private static final String TAG = Log.tag(TextSecurePreferences.class);
 
-  public  static final String IDENTITY_PREF                    = "pref_choose_identity";
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
   public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
   public  static final String THEME_PREF                       = "pref_theme";
@@ -64,7 +61,6 @@ public class TextSecurePreferences {
 
   private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
   private static final String LAST_EXPERIENCE_VERSION_PREF     = "last_experience_version_code";
-  private static final String EXPERIENCE_DISMISSED_PREF        = "experience_dismissed";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public  static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -81,11 +77,6 @@ public class TextSecurePreferences {
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
   public  static final String MMS_USER_AGENT                   = "pref_mms_user_agent";
   private static final String MMS_CUSTOM_USER_AGENT            = "pref_custom_mms_user_agent";
-  private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
-  private static final String LOCAL_ACI_PREF                   = "pref_local_uuid";
-  private static final String LOCAL_USERNAME_PREF              = "pref_local_username";
-  public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
-  private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
@@ -99,15 +90,9 @@ public class TextSecurePreferences {
   private static final String SHOW_INVITE_REMINDER_PREF        = "pref_show_invite_reminder";
   public  static final String MESSAGE_BODY_TEXT_SIZE_PREF      = "pref_message_body_text_size";
 
-  private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
   private static final String WIFI_SMS_PREF                    = "pref_wifi_sms";
 
-  private static final String GCM_DISABLED_PREF                = "pref_gcm_disabled";
-  private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
-  private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
-  private static final String GCM_REGISTRATION_ID_TIME_PREF    = "pref_gcm_registration_id_last_set_time";
-  private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
   private static final String RATING_LATER_PREF                = "pref_rating_later";
   private static final String RATING_ENABLED_PREF              = "pref_rating_enabled";
   private static final String SIGNED_PREKEY_FAILURE_COUNT_PREF = "pref_signed_prekey_failure_count";
@@ -128,8 +113,6 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   public  static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
-  private static final String PROFILE_NAME_PREF                = "pref_profile_name";
-  private static final String PROFILE_AVATAR_ID_PREF           = "pref_profile_avatar_id";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
   public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
   private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
@@ -194,8 +177,6 @@ public class TextSecurePreferences {
   public static final String TYPING_INDICATORS = "pref_typing_indicators";
 
   public static final String LINK_PREVIEWS = "pref_link_previews";
-
-  private static final String GIF_GRID_LAYOUT = "pref_gif_grid_layout";
 
   private static final String SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip";
 
@@ -533,14 +514,6 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
   }
 
-  public static boolean isFcmDisabled(Context context) {
-    return getBooleanPreference(context, GCM_DISABLED_PREF, false);
-  }
-
-  public static void setFcmDisabled(Context context, boolean disabled) {
-    setBooleanPreference(context, GCM_DISABLED_PREF, disabled);
-  }
-
   public static boolean isWebrtcCallingEnabled(Context context) {
     return getBooleanPreference(context, WEBRTC_CALLING_PREF, false);
   }
@@ -599,14 +572,6 @@ public class TextSecurePreferences {
     setBooleanPreference(context, RATING_ENABLED_PREF, enabled);
   }
 
-  public static boolean isWebsocketRegistered(Context context) {
-    return getBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, false);
-  }
-
-  public static void setWebsocketRegistered(Context context, boolean registered) {
-    setBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, registered);
-  }
-
   @Deprecated
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
@@ -628,37 +593,6 @@ public class TextSecurePreferences {
 
   public static void setSignedPreKeyRegistered(Context context, boolean value) {
     setBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, value);
-  }
-
-  public static void setFcmToken(Context context, String registrationId) {
-    setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
-    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCanonicalVersionCode());
-  }
-
-  public static String getFcmToken(Context context) {
-    int storedRegistrationIdVersion = getIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, 0);
-
-    if (storedRegistrationIdVersion != Util.getCanonicalVersionCode()) {
-      return null;
-    } else {
-      return getStringPreference(context, GCM_REGISTRATION_ID_PREF, null);
-    }
-  }
-
-  public static long getFcmTokenLastSetTime(Context context) {
-    return getLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, 0);
-  }
-
-  public static void setFcmTokenLastSetTime(Context context, long timestamp) {
-    setLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, timestamp);
-  }
-
-  public static int getLocalRegistrationId(Context context) {
-    return getIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, 0);
-  }
-
-  public static void setLocalRegistrationId(Context context, int registrationId) {
-    setIntegerPrefrence(context, LOCAL_REGISTRATION_ID_PREF, registrationId);
   }
 
   @Deprecated
@@ -688,10 +622,6 @@ public class TextSecurePreferences {
 
   public static void setIsUnidentifiedDeliveryEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, enabled);
-  }
-
-  public static boolean isUnidentifiedDeliveryEnabled(Context context) {
-    return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
   }
 
   public static long getSignedPreKeyRotationTime(Context context) {
@@ -732,30 +662,6 @@ public class TextSecurePreferences {
 
   public static String getUpdateApkDigest(Context context) {
     return getStringPreference(context, UPDATE_APK_DIGEST, null);
-  }
-
-  public static String getLocalNumber(Context context) {
-    return getStringPreference(context, LOCAL_NUMBER_PREF, null);
-  }
-
-  public static void setLocalNumber(Context context, String localNumber) {
-    setStringPreference(context, LOCAL_NUMBER_PREF, localNumber);
-  }
-
-  public static ACI getLocalAci(Context context) {
-    return ACI.parseOrNull(getStringPreference(context, LOCAL_ACI_PREF, null));
-  }
-
-  public static void setLocalAci(Context context, ACI aci) {
-    setStringPreference(context, LOCAL_ACI_PREF, aci.toString());
-  }
-
-  public static String getPushServerPassword(Context context) {
-    return getStringPreference(context, GCM_PASSWORD_PREF, null);
-  }
-
-  public static void setPushServerPassword(Context context, String password) {
-    setStringPreference(context, GCM_PASSWORD_PREF, password);
   }
 
   public static boolean isEnterImeKeyEnabled(Context context) {
@@ -867,14 +773,6 @@ public class TextSecurePreferences {
     else           return defaultUserAgent;
   }
 
-  public static String getIdentityContactUri(Context context) {
-    return getStringPreference(context, IDENTITY_PREF, null);
-  }
-
-  public static void setIdentityContactUri(Context context, String identityUri) {
-    setStringPreference(context, IDENTITY_PREF, identityUri);
-  }
-
   public static void setScreenSecurityEnabled(Context context, boolean value) {
     setBooleanPreference(context, SCREEN_SECURITY_PREF, value);
   }
@@ -905,39 +803,11 @@ public class TextSecurePreferences {
     setIntegerPrefrence(context, LAST_EXPERIENCE_VERSION_PREF, versionCode);
   }
 
-  public static int getExperienceDismissedVersionCode(Context context) {
-    return getIntegerPreference(context, EXPERIENCE_DISMISSED_PREF, 0);
-  }
-
-  public static void setExperienceDismissedVersionCode(Context context, int versionCode) {
-    setIntegerPrefrence(context, EXPERIENCE_DISMISSED_PREF, versionCode);
-  }
-
   /**
    * @deprecated Use {@link SettingsValues#getTheme()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
    */
   public static String getTheme(Context context) {
     return getStringPreference(context, THEME_PREF, DynamicTheme.systemThemeAvailable() ? DynamicTheme.SYSTEM : DynamicTheme.LIGHT);
-  }
-
-  public static boolean isPushRegistered(Context context) {
-    return getBooleanPreference(context, REGISTERED_GCM_PREF, false);
-  }
-
-  public static void setPushRegistered(Context context, boolean registered) {
-    Log.i(TAG, "Setting push registered: " + registered);
-    boolean previous = isPushRegistered(context);
-
-    setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
-    ApplicationDependencies.getIncomingMessageObserver().notifyRegistrationChanged();
-
-    if (previous != registered) {
-      Recipient.self().live().refresh();
-    }
-
-    if (previous && !registered) {
-      clearLocalCredentials(context);
-    }
   }
 
   public static boolean isShowInviteReminders(Context context) {
@@ -1269,7 +1139,7 @@ public class TextSecurePreferences {
     return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
   }
 
-  private static int getIntegerPreference(Context context, String key, int defaultValue) {
+  public static int getIntegerPreference(Context context, String key, int defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
   }
 
@@ -1281,7 +1151,7 @@ public class TextSecurePreferences {
     return PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
   }
 
-  private static long getLongPreference(Context context, String key, long defaultValue) {
+  public static long getLongPreference(Context context, String key, long defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getLong(key, defaultValue);
   }
 
@@ -1303,11 +1173,10 @@ public class TextSecurePreferences {
   }
 
   private static void clearLocalCredentials(Context context) {
-    TextSecurePreferences.setPushServerPassword(context, Util.getSecret(18));
 
     ProfileKey newProfileKey = ProfileKeyUtil.createNew();
     Recipient  self          = Recipient.self();
-    DatabaseFactory.getRecipientDatabase(context).setProfileKey(self.getId(), newProfileKey);
+    SignalDatabase.recipients().setProfileKey(self.getId(), newProfileKey);
 
     ApplicationDependencies.getGroupsV2Authorization().clear();
   }

@@ -387,11 +387,6 @@
   <string name="DeviceListItem_today">วันนี้</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">แฟ้มที่ไม่มีชื่อ</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">บริจาคให้ Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ได้รับการสนับสนุนจากผู้คนอย่างคุณ แสดงการสนับสนุนของคุณวันนี้!</string>
-  <string name="DonateMegaphone_donate">บริจาค</string>
-  <string name="DonateMegaphone_no_thanks">ไม่ ขอบคุณ</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">แนะนำการโทรแบบกลุ่ม</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">เปิดกลุ่มแบบใหม่เพื่อเริ่มการโทรแบบกลุ่มที่เข้ารหัสลับ</string>
@@ -2224,7 +2219,6 @@
   <string name="Insights__title">Insights</string>
   <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">โปรโตคอลของ Signal ปกป้อง %1$d%% ข้อความส่งออกอัตโนมัติเป็นเวลา %2$d วัน บทสนทนาระหว่างผู้ใช้ Signal จะเป็นการเข้ารหัสตั้งแต่ต้นทางถึงปลายทางเสมอ</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">เพิ่มความปลอดภัยของการพูดคุยใน Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">ข้อมูลไม่พอ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">เปอร์เซ็นต์ข้อมูล insights ของคุณถูกคำนวณจากข้อความส่งออกที่ไม่ได้ลบตัวเองหรือถูกลบภายใน %1$d วันที่ผ่านมา </string>
   <string name="InsightsDashboardFragment__start_a_conversation">เริ่มการสนทนา</string>
@@ -2915,6 +2909,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">เลือกหน้าตาและสีหรือปรับแต่งหน้าตาเริ่มต้นของคุณ</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">เพิ่มรูปภาพ</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">ไม่ ขอบคุณ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">อีโมจิ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">หาอีโมจิ</string>
@@ -3032,15 +3028,17 @@
   <string name="MediaReviewImagePageFragment__discard">ยกเลิก</string>
   <string name="SelectFeaturedBadgeFragment__preview">ภาพตัวอย่าง</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ขับเคลื่อนโดยผู้คนเช่นคุณ</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">จำนวนการบริจาค</string> -->
   <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="SubscribeFragment__confirm">ยืนยัน</string>
   <string name="SubscribeFragment__update">ปรับรุ่น</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">เสร็จสิ้น</string>
   <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ไม่ใช่ตอนนี้</string>
   <string name="Subscription__contact_support">ติดต่อการสนับสนุน</string>
   <string name="SubscribeFragment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
-  <string name="DonationsErrors__payment_failed">การชำระเงินล้มเหลว</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">ลองใหม่</string>
   <!--EOF-->
 </resources>

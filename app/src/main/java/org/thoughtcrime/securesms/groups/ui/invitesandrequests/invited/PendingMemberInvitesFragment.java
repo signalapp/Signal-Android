@@ -49,6 +49,9 @@ public class PendingMemberInvitesFragment extends Fragment {
     youInvitedEmptyState    = view.findViewById(R.id.no_pending_from_you);
     othersInvitedEmptyState = view.findViewById(R.id.no_pending_from_others);
 
+    youInvited.initializeAdapter(getViewLifecycleOwner());
+    othersInvited.initializeAdapter(getViewLifecycleOwner());
+
     youInvited.setRecipientClickListener(recipient ->
       RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
                                         .show(requireActivity().getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG));

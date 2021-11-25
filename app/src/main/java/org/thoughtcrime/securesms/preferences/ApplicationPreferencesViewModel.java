@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView;
 
 import java.util.Arrays;
@@ -32,8 +32,7 @@ public class ApplicationPreferencesViewModel extends ViewModel {
 
   void refreshStorageBreakdown(@NonNull Context context) {
     SignalExecutors.BOUNDED.execute(() -> {
-      MediaDatabase.StorageBreakdown breakdown = DatabaseFactory.getMediaDatabase(context)
-                                                                .getStorageBreakdown();
+      MediaDatabase.StorageBreakdown breakdown = SignalDatabase.media().getStorageBreakdown();
 
       StorageGraphView.StorageBreakdown latestStorageBreakdown = new StorageGraphView.StorageBreakdown(Arrays.asList(
         new StorageGraphView.Entry(ContextCompat.getColor(context, R.color.storage_color_photos), breakdown.getPhotoSize()),

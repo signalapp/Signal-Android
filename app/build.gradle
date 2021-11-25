@@ -67,8 +67,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 950
-def canonicalVersionName = "5.26.3"
+def canonicalVersionCode = 965
+def canonicalVersionName = "5.27.6"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -80,16 +80,9 @@ def abiPostFix = ['universal'   : 0,
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
 def selectableVariants = [
-        'internalProdFlipper',
-        'internalProdPerf',
-        'internalProdRelease',
-        'internalStagingFlipper',
-        'internalStagingPerf',
-        'internalStagingRelease',
         'nightlyProdFlipper',
         'nightlyProdPerf',
         'nightlyProdRelease',
-        'nightlyStagingPerf',
         'playProdDebug',
         'playProdFlipper',
         'playProdPerf',
@@ -160,7 +153,7 @@ android {
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "CDSH_PUBLIC_KEY", "\"2fe57da347cd62431528daac5fbb290730fff684afc4cfc2ed90995f58cb3b74\""
-        buildConfigField "String", "CDSH_CODE_HASH", "\"ec31a51880d19a5e9e0fed404740c1a3ff53a553125564b745acce475f0fded8\""
+        buildConfigField "String", "CDSH_CODE_HASH", "\"ec58c0d7561de8d5657f3a4b22a635eaa305204e9359dcc80a99dfd0c5f1cbf2\""
         buildConfigField "String", "CDS_MRENCLAVE", "\"c98e00a4e3ff977a56afefe7362a27e4961e4f19e211febfbb19b897e6b80b15\""
         buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\"," +
                                                                                                 "\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\", " +
@@ -171,7 +164,7 @@ android {
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
         buildConfigField "String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\""
-        buildConfigField "int[]", "MOBILE_COIN_REGIONS", "new int[]{44,49,33,41}"
+        buildConfigField "int[]", "MOBILE_COIN_BLACKLIST", "new int[]{98,963,53,850,7}"
         buildConfigField "String", "GIPHY_API_KEY", "\"3o6ZsYH6U6Eri53TXy\""
         buildConfigField "String", "RECAPTCHA_PROOF_URL", "\"https://signalcaptchas.org/challenge/generate.html\""
 
@@ -297,14 +290,6 @@ android {
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"website\""
-        }
-
-        internal {
-            dimension 'distribution'
-            ext.websiteUpdateUrl = "null"
-            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
-            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
-            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"internal\""
         }
 
         nightly {
@@ -465,7 +450,6 @@ dependencies {
     implementation project(':image-editor')
     implementation project(':donations')
 
-    implementation libs.signal.zkgroup.android
     implementation libs.signal.client.android
     implementation libs.google.protobuf.javalite
 
@@ -614,7 +598,8 @@ def getCurrentGitTag() {
     def output = stdout.toString().trim()
 
     if (output != null && output.size() > 0) {
-        return output.split('\n')[0];
+        def tags = output.split('\n').toList()
+        return tags.stream().filter(t -> t.contains('nightly')).findFirst().orElse(tags.get(0))
     } else {
         return null
     }

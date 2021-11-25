@@ -22,8 +22,8 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.ByteArrayMediaDataSource;
@@ -244,7 +244,7 @@ public class BlobProvider {
       return;
     }
 
-    DraftDatabase        draftDatabase   = DatabaseFactory.getDraftDatabase(context);
+    DraftDatabase        draftDatabase   = SignalDatabase.drafts();
     DraftDatabase.Drafts voiceNoteDrafts = draftDatabase.getAllVoiceNoteDrafts();
 
     @SuppressWarnings("ConstantConditions")

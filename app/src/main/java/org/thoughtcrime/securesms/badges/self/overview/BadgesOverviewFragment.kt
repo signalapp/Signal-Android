@@ -68,10 +68,11 @@ class BadgesOverviewFragment : DSLSettingsFragment(
         fadedBadgeId = state.fadedBadgeId
       )
 
-      switchPref(
+      asyncSwitchPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__display_badges_on_profile),
         isChecked = state.displayBadgesOnProfile,
-        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges,
+        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges && state.hasInternet,
+        isProcessing = state.stage == BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE,
         onClick = {
           viewModel.setDisplayBadgesOnProfile(!state.displayBadgesOnProfile)
         }
@@ -80,7 +81,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
       clickPref(
         title = DSLSettingsText.from(R.string.BadgesOverviewFragment__featured_badge),
         summary = state.featuredBadge?.name?.let { DSLSettingsText.from(it) },
-        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges,
+        isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges && state.hasInternet,
         onClick = {
           findNavController().navigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToFeaturedBadgeFragment())
         }

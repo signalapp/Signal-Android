@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">بۈگۈن</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ئىسىمسىز ھۆججەت</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal غا ئىئانە قىلىڭ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal سىزگە ئوخشاش كىشىلەر تەرىپىدىن ماڭدۇرۇلغان. بۈگۈن بىزنى قوللىشىڭىزنى كۆرسىتىڭ!</string>
-  <string name="DonateMegaphone_donate">ئىئانە قىلىڭ</string>
-  <string name="DonateMegaphone_no_thanks">ياق، رەھمەت</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">«گۇرۇپپا چاقىرىشلىرى»نى تونۇشتۇرۇش</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ھەقسىز شىفىرلانغان گۇرۇپپا چاقىرىشنى باشلاش ئۈچۈن «يېڭى گۇرۇپپا»نى ئېچىڭ</string>
@@ -2340,7 +2335,6 @@
   <string name="Insights__title">چۈشىنىش</string>
   <string name="InsightsDashboardFragment__title">چۈشىنىش</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">ئۆتكەن %2$d كۈندە Signal كېلىشىمى %1$d%% نىڭ يوللىغان ئۇچۇرلىرىنى ئۆزلۈكىدىن قوغدىدى. Signal ئىشلەتكۈچىلىرى ئارىسىدىكى ئالاقە ئىزچىل نۇقتىدىن نۇقتىغا شىفىرلاپ يوللىنىدۇ.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal ياخشىلاش</string>
   <string name="InsightsDashboardFragment__not_enough_data">سانلىق مەلۇمات يېتەرسىز</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">پەرقلەندۈرۈش قابىلىيىتىڭىز ئۆتكەن %1$d كۈندە يوللانغان غايىب بولمىغان ۋە ئۆچۈرۈلگەن ئۇچۇرلارغا ئاساسەن ھېسابلىنىدۇ.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">سۆھبەت باشلا</string>
@@ -3071,6 +3065,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">كۆرۈنۈش ۋە رەڭنى تاللاڭ ياكى قىسقارتىلمىسىنى ئىختىيارىلاشتۇرۇڭ</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ھازىر ئەمەس</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">رەسىم قوش</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">ياق، رەھمەت</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">چىراي بەلگە</string>
   <string name="KeyboardPagerFragment_open_emoji_search">چىراي بەلگە ئىزدەشنى ئاچ</string>
@@ -3236,16 +3232,18 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">قۇۋۋەتلىگۈچى بولۇڭ</string>
   <string name="ImageView__badge">ئىزناك</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal نى سىزگە ئوخشاش كىشىلەر قوللايدۇ.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">ئىئانە سوممىسى</string> -->
   <string name="SubscribeFragment__not_now">ھازىر ئەمەس</string>
   <string name="SubscribeFragment__confirm">جەزملە</string>
   <string name="SubscribeFragment__update">يېڭىلا</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">بولدى</string>
   <string name="ManageDonationsFragment__badges">ئىزناكلار</string>
   <string name="Boost__enter_custom_amount">ئىختىيارىچە سومما كىرگۈزۈڭ</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ھازىر ئەمەس</string>
   <string name="Subscription__contact_support">قوللىغۇچىلار  بىلەن ئالاقىلىشىڭ</string>
   <string name="SubscribeFragment__processing_payment">چىقىمنى بېجىرىۋاتىدۇ…</string>
-  <string name="DonationsErrors__payment_failed">چىقىم قىلالمىدى</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">قايتا سىنا</string>
   <!--EOF-->
 </resources>

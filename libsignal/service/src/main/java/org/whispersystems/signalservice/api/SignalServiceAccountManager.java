@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.AccountIdentifier;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
@@ -60,6 +61,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequ
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
+import org.whispersystems.signalservice.internal.push.CdshAuthResponse;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
@@ -408,6 +410,13 @@ public class SignalServiceAccountManager {
   }
 
   /**
+   * @return True if the identifier corresponds to a registered user, otherwise false.
+   */
+  public boolean isIdentifierRegistered(AccountIdentifier identifier) throws IOException {
+    return pushServiceSocket.isIdentifierRegistered(identifier);
+  }
+
+  /**
    * Checks whether a contact is currently registered with the server.
    *
    * @param e164number The contact to check.
@@ -493,8 +502,9 @@ public class SignalServiceAccountManager {
   public Map<String, ACI> getRegisteredUsersWithCdsh(Set<String> e164numbers, String hexPublicKey, String hexCodeHash)
       throws IOException
   {
+    CdshAuthResponse                          auth    = pushServiceSocket.getCdshAuth();
     CdshService                               service = new CdshService(configuration, hexPublicKey, hexCodeHash);
-    Single<ServiceResponse<Map<String, ACI>>> result  = service.getRegisteredUsers(e164numbers);
+    Single<ServiceResponse<Map<String, ACI>>> result  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), e164numbers);
 
     ServiceResponse<Map<String, ACI>> response;
     try {

@@ -49,7 +49,7 @@ public class BackgroundMessageRetriever {
    */
   @WorkerThread
   public boolean retrieveMessages(@NonNull Context context, long showNotificationAfterMs, MessageRetrievalStrategy... strategies) {
-    if (shouldIgnoreFetch(context)) {
+    if (shouldIgnoreFetch()) {
       Log.i(TAG, "Skipping retrieval -- app is in the foreground.");
       return true;
     }
@@ -91,7 +91,7 @@ public class BackgroundMessageRetriever {
     boolean success = false;
 
     for (MessageRetrievalStrategy strategy : strategies) {
-      if (shouldIgnoreFetch(context)) {
+      if (shouldIgnoreFetch()) {
         Log.i(TAG, "Stopping further strategy attempts -- app is in the foreground." + logSuffix(startTime));
         success = true;
         break;
@@ -121,9 +121,9 @@ public class BackgroundMessageRetriever {
    * @return True if there is no need to execute a message fetch, because the websocket will take
    *         care of it.
    */
-  public static boolean shouldIgnoreFetch(@NonNull Context context) {
+  public static boolean shouldIgnoreFetch() {
     return ApplicationDependencies.getAppForegroundObserver().isForegrounded() &&
-           !ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(context);
+           !ApplicationDependencies.getSignalServiceNetworkAccess().isCensored();
   }
 
   private static String logSuffix(long startTime) {

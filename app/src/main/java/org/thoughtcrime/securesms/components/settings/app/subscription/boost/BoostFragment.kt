@@ -21,16 +21,15 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationExceptions
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
+import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -82,6 +81,8 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     Boost.register(adapter)
     GooglePayButton.register(adapter)
     Progress.register(adapter)
+    NetworkFailure.register(adapter)
+    BoostAnimation.register(adapter)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -119,12 +120,20 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         is DonationEvent.GooglePayUnavailableError -> Unit
         is DonationEvent.PaymentConfirmationError -> onPaymentError(event.throwable)
         is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed(event.badge)
-        DonationEvent.RequestTokenError -> onPaymentError(null)
+        is DonationEvent.RequestTokenError -> onPaymentError(DonationExceptions.SetupFailed(event.throwable))
         DonationEvent.RequestTokenSuccess -> Log.i(TAG, "Successfully got request token from Google Pay")
         DonationEvent.SubscriptionCancelled -> Unit
         is DonationEvent.SubscriptionCancellationFailed -> Unit
       }
     }
+    lifecycleDisposable += donationPaymentComponent.googlePayResultPublisher.subscribe {
+      viewModel.onActivityResult(it.requestCode, it.resultCode, it.data)
+    }
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    processingDonationPaymentDialog.hide()
   }
 
   private fun getConfiguration(state: BoostState): DSLConfiguration {
@@ -135,7 +144,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     }
 
     return configure {
-      customPref(BadgePreview.SubscriptionModel(state.boostBadge))
+      customPref(BoostAnimation.Model())
 
       sectionHeaderPref(
         title = DSLSettingsText.from(
@@ -163,11 +172,17 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
         )
       )
 
+      @Suppress("CascadeIf")
       if (state.stage == BoostState.Stage.INIT) {
         customPref(
-          Progress.Model(
-            title = DSLSettingsText.from(R.string.load_more_header__loading)
-          )
+          Boost.LoadingModel()
+        )
+      } else if (state.stage == BoostState.Stage.FAILURE) {
+        space(DimensionUnit.DP.toPixels(20f).toInt())
+        customPref(
+          NetworkFailure.Model {
+            viewModel.retry()
+          }
         )
       } else {
         customPref(
@@ -225,30 +240,29 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
     if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
       Log.w(TAG, "Timed out while redeeming token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__redemption_still_pending)
-        .setMessage(R.string.DonationsErrors__you_might_not_see_your_badge_right_away)
+        .setTitle(R.string.DonationsErrors__still_processing)
+        .setMessage(R.string.DonationsErrors__your_payment_is_still)
         .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
           findNavController().popBackStack()
         }
         .show()
-    } else if (throwable is DonationExceptions.RedemptionFailed) {
-      Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
+    } else if (throwable is DonationExceptions.SetupFailed) {
+      Log.w(TAG, "Error occurred while processing payment", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__redemption_failed)
-        .setMessage(R.string.DonationsErrors__please_contact_support)
-        .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
+        .setTitle(R.string.DonationsErrors__error_processing_payment)
+        .setMessage(R.string.DonationsErrors__your_payment)
+        .setPositiveButton(android.R.string.ok) { dialog, _ ->
           dialog.dismiss()
-          requireActivity().finish()
-          requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
+          findNavController().popBackStack()
         }
         .show()
     } else {
-      Log.w(TAG, "Error occurred while processing payment", throwable, true)
+      Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__payment_failed)
-        .setMessage(R.string.DonationsErrors__your_payment)
-        .setPositiveButton(android.R.string.ok) { dialog, _ ->
+        .setTitle(R.string.DonationsErrors__couldnt_add_badge)
+        .setMessage(R.string.DonationsErrors__your_badge_could_not)
+        .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
           dialog.dismiss()
           findNavController().popBackStack()
         }

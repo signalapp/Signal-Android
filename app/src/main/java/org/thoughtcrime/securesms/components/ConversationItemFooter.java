@@ -28,7 +28,7 @@ import com.airbnb.lottie.model.KeyPath;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -360,8 +360,11 @@ public class ConversationItemFooter extends ConstraintLayout {
           long                   id                = messageRecord.getId();
           boolean                mms               = messageRecord.isMms();
 
-          if (mms) DatabaseFactory.getMmsDatabase(getContext()).markExpireStarted(id);
-          else DatabaseFactory.getSmsDatabase(getContext()).markExpireStarted(id);
+          if (mms) {
+            SignalDatabase.mms().markExpireStarted(id);
+          } else {
+            SignalDatabase.sms().markExpireStarted(id);
+          }
 
           expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
         });

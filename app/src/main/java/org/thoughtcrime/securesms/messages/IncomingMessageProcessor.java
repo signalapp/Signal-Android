@@ -9,10 +9,10 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -73,7 +73,7 @@ public class IncomingMessageProcessor {
 
     private Processor(@NonNull Context context) {
       this.context           = context;
-      this.mmsSmsDatabase    = DatabaseFactory.getMmsSmsDatabase(context);
+      this.mmsSmsDatabase    = SignalDatabase.mmsSms();
       this.jobManager        = ApplicationDependencies.getJobManager();
     }
 
@@ -163,7 +163,7 @@ public class IncomingMessageProcessor {
       Log.i(TAG, "Received server receipt. Sender: " + sender.getId() + ", Device: " + envelope.getSourceDevice() + ", Timestamp: " + envelope.getTimestamp());
 
       mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(sender.getId(), envelope.getTimestamp()), System.currentTimeMillis());
-      DatabaseFactory.getMessageLogDatabase(context).deleteEntryForRecipient(envelope.getTimestamp(), sender.getId(), envelope.getSourceDevice());
+      SignalDatabase.messageLog().deleteEntryForRecipient(envelope.getTimestamp(), sender.getId(), envelope.getSourceDevice());
     }
 
     private boolean needsToEnqueueDecryption() {
@@ -181,7 +181,7 @@ public class IncomingMessageProcessor {
 
           if (groupId.isV2()) {
             String        queueName     = PushProcessMessageJob.getQueueName(Recipient.externalPossiblyMigratedGroup(context, groupId).getId());
-            GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+            GroupDatabase groupDatabase = SignalDatabase.groups();
 
             return !jobManager.isQueueEmpty(queueName)                                                                   ||
                    groupContext.getGroupV2().get().getRevision() > groupDatabase.getGroupV2Revision(groupId.requireV2()) ||

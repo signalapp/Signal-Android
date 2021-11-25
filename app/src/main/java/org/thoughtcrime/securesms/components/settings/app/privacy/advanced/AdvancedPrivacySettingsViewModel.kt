@@ -28,7 +28,7 @@ class AdvancedPrivacySettingsViewModel(
     repository.disablePushMessages {
       when (it) {
         AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
-          TextSecurePreferences.setPushRegistered(ApplicationDependencies.getApplication(), false)
+          SignalStore.account().setRegistered(false)
           SignalStore.registrationValues().clearRegistrationComplete()
           SignalStore.registrationValues().clearHasUploadedProfile()
         }
@@ -63,7 +63,7 @@ class AdvancedPrivacySettingsViewModel(
   }
 
   private fun getState() = AdvancedPrivacySettingsState(
-    isPushEnabled = TextSecurePreferences.isPushRegistered(ApplicationDependencies.getApplication()),
+    isPushEnabled = SignalStore.account().isRegistered,
     alwaysRelayCalls = TextSecurePreferences.isTurnOnly(ApplicationDependencies.getApplication()),
     showSealedSenderStatusIcon = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(
       ApplicationDependencies.getApplication()

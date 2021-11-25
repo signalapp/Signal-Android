@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -28,7 +28,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   private final RecipientDatabase recipientDatabase;
 
   public GroupV1RecordProcessor(@NonNull Context context) {
-    this(DatabaseFactory.getGroupDatabase(context), DatabaseFactory.getRecipientDatabase(context));
+    this(SignalDatabase.groups(), SignalDatabase.recipients());
   }
 
   GroupV1RecordProcessor(@NonNull GroupDatabase groupDatabase, @NonNull RecipientDatabase recipientDatabase) {

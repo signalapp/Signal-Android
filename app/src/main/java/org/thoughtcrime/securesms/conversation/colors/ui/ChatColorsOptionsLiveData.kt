@@ -5,14 +5,14 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.database.ChatColorsDatabase
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DatabaseObserver
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 import java.util.concurrent.Executor
 
 class ChatColorsOptionsLiveData : LiveData<List<ChatColors>>() {
-  private val chatColorsDatabase: ChatColorsDatabase = DatabaseFactory.getChatColorsDatabase(ApplicationDependencies.getApplication())
+  private val chatColorsDatabase: ChatColorsDatabase = SignalDatabase.chatColors
   private val observer: DatabaseObserver.Observer = DatabaseObserver.Observer { refreshChatColors() }
   private val executor: Executor = SerialMonoLifoExecutor(SignalExecutors.BOUNDED)
 

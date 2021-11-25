@@ -18,6 +18,7 @@ public final class RegistrationValues extends SignalStoreValues {
 
   public synchronized void onFirstEverAppLaunch() {
     getStore().beginWrite()
+              .putBoolean(HAS_UPLOADED_PROFILE, false)
               .putBoolean(REGISTRATION_COMPLETE, false)
               .putBoolean(PIN_REQUIRED, true)
               .commit();
@@ -49,7 +50,7 @@ public final class RegistrationValues extends SignalStoreValues {
   }
 
   public boolean hasUploadedProfile() {
-    return getBoolean(HAS_UPLOADED_PROFILE, false);
+    return getBoolean(HAS_UPLOADED_PROFILE, true);
   }
 
   public void markHasUploadedProfile() {

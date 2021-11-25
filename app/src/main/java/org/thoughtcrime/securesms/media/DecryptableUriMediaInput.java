@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -41,8 +41,7 @@ public final class DecryptableUriMediaInput {
       throw new AssertionError();
     }
 
-    MediaDataSource mediaDataSource = DatabaseFactory.getAttachmentDatabase(context)
-                                                     .mediaDataSourceFor(partId);
+    MediaDataSource mediaDataSource = SignalDatabase.attachments().mediaDataSourceFor(partId);
 
     if (mediaDataSource == null) {
       throw new AssertionError();

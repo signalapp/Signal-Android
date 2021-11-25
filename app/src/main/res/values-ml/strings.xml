@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">ഇന്ന്</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-ന്റെ പിന്നണിയിൽ നിങ്ങളെപോലുള്ളവരാണ്. നിങ്ങളുടെ പിന്തുണ അറിയിക്കൂ! </string>
-  <string name="DonateMegaphone_donate">സംഭാവനചെയ്യുക</string>
-  <string name="DonateMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ഗ്രൂപ്പ് കോളുകൾ അവതരിപ്പിക്കുന്നു</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ, ഒരു പുതിയ ഗ്രൂപ്പ് ചാറ്റ് തുറക്കുക</string>
@@ -2290,7 +2285,6 @@
   <string name="Insights__title">ഉള്‍ക്കാഴ്‌ച</string>
   <string name="InsightsDashboardFragment__title">ഉള്‍ക്കാഴ്‌ച</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">കഴിഞ്ഞ %2$d ദിവസങ്ങളിൽ നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ നിന്ന് സിഗ്നൽ പ്രോട്ടോക്കോൾ യാന്ത്രികമായി %1$d%%പരിരക്ഷിച്ചു. സിഗ്നൽ ഉപയോക്താക്കൾ തമ്മിലുള്ള സംഭാഷണങ്ങൾ എല്ലായ്പ്പോഴും എൻഡ് ടു എൻഡ് എൻ‌ക്രിപ്റ്റ് ആണ്.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">സിഗ്നൽ ബൂസ്റ്റ്</string>
   <string name="InsightsDashboardFragment__not_enough_data">മതിയായ ഡാറ്റയില്ല</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">അപ്രത്യക്ഷമായതോ ഇല്ലാതാക്കാത്തതോ ആയ കഴിഞ്ഞ %1$d ദിവസങ്ങളിൽ ഔറ്റ്ഗോിങ് സന്ദേശങ്ങളെ അടിസ്ഥാനമാക്കിയാണ് നിങ്ങളുടെ ഉള്‍ക്കാഴ്‌ച ശതമാനം കണക്കാക്കുന്നത്.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ഒരു സംഭാഷണം ആരംഭിക്കുക</string>
@@ -3005,6 +2999,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ഒരു രൂപം തിരഞ്ഞെടുക്കുക കൂടാതെ നിങ്ങളുടെ ഇനീഷ്യലുകൾ വർണ്ണിക്കുക അല്ലെങ്കിൽ ഇഷ്ടാനുസൃതമാക്കുക.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ഫോട്ടോ ചേർക്കുക</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">വേണ്ട, നന്ദി</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ഇമോജി</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ഇമോജി തിരയൽ തുറക്കുക</string>
@@ -3138,16 +3134,18 @@
   <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">സംഭാവന തുക</string> -->
   <string name="SubscribeFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="SubscribeFragment__confirm">സ്ഥിരീകരിക്കുക</string>
   <string name="SubscribeFragment__update">അപ്‌ഡേറ്റ്</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ചെയ്‌തു</string>
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="Subscription__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
   <string name="SubscribeFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
-  <string name="DonationsErrors__payment_failed">പേയ്മെന്റ് പരാജയപ്പെട്ടു</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കുക</string>
   <!--EOF-->
 </resources>

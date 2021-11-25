@@ -316,7 +316,48 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Legita</item>
+    <item quantity="other">Legitaj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Nelegita</item>
+    <item quantity="other">Nelegitaj</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Alpingli</item>
+    <item quantity="other">Alpingli</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Depingli</item>
+    <item quantity="other">Depingli</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Silentigi</item>
+    <item quantity="other">Silentigi</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Malsilentigi</item>
+    <item quantity="other">Malsilentigi</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Elekti</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Enarĥivigi</item>
+    <item quantity="other">Enarĥivigi</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Elarĥivigi</item>
+    <item quantity="other">Elarĥivigi</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Forigi</item>
+    <item quantity="other">Forigi</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Elekti ĉiujn</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d elektita</item>
+    <item quantity="other">%d elektitaj</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -397,11 +438,6 @@
   <string name="DeviceListItem_today">Hodiaŭ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donaci al Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiel vi. Montru vian subtenon hodiaŭ!</string>
-  <string name="DonateMegaphone_donate">Donaci</string>
-  <string name="DonateMegaphone_no_thanks">Ne, dankon</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Jen la grupalvokoj</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Kreu novtipan grupon por komenci senpagan ĉifritan grupalvokon</string>
@@ -651,7 +687,7 @@
   <string name="ManageGroupActivity_add_group_description">Aldoni priskribon pri la grupo…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Sciigi al mi pri mencioj</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Ĉu ricevi sciigoj, kiam oni mencias vin en silentigitaj interparoloj?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Ĉu ricevi sciigojn, kiam oni mencias vin en silentigitaj interparoloj?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Ĉiam sciigi al mi</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Ne sciigi al mi</string>
   <!--ManageProfileFragment-->
@@ -662,6 +698,8 @@
   <string name="ManageProfileFragment_your_name">Via nomo</string>
   <string name="ManageProfileFragment_your_username">Via uzantnomo</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">La difino de avataro malsukcesis</string>
+  <string name="ManageProfileFragment_badges">Insignoj</string>
+  <string name="ManageProfileFragment__edit_photo">Modifi foton</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Neniu komuna grupo</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -748,10 +786,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Kunhavigi</string>
   <string name="InviteActivity_share_with_contacts">Kunhavigi kun kontaktoj</string>
+  <string name="InviteActivity_share_via">Kunhavigi per…</string>
   <string name="InviteActivity_cancel">Nuligi</string>
   <string name="InviteActivity_sending">Sendo…</string>
   <string name="InviteActivity_invitations_sent">Invitoj senditaj!</string>
   <string name="InviteActivity_invite_to_signal">Inviti al Signal</string>
+  <string name="InviteActivity_send_sms">Sendi SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Ĉu sendi %d SMS-inviton?</item>
     <item quantity="other">Ĉu sendi %d SMS-invitojn?</item>
@@ -760,6 +800,7 @@
   <string name="InviteActivity_no_app_to_share_to">Ŝajnas, ke vi ne havas aplikaĵojn, al kiu kunhavigi.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scii pli</string>
+  <string name="SpanUtil__read_more">Legi pli</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Ne eblas trovi mesaĝon</string>
   <string name="LongMessageActivity_message_from_s">Mesaĝo el %1$s</string>
@@ -795,6 +836,18 @@
   <string name="MediaOverviewActivity_List_view_description">Lista vido</string>
   <string name="MediaOverviewActivity_Selected_description">Elektita</string>
   <string name="MediaOverviewActivity_select_all">Elekti ĉiujn</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Konservi</item>
+    <item quantity="other">Konservi</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Forigi</item>
+    <item quantity="other">Forigi</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d elektita (%2$s)</item>
+    <item quantity="other">%1$d elektitaj (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Dosiero</string>
   <string name="MediaOverviewActivity_audio">Sonaĵo</string>
   <string name="MediaOverviewActivity_video">Videaĵo</string>
@@ -821,7 +874,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
   <string name="NotificationBarManager__incoming_signal_call">Envena Signal-alvoko</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Envena Signal-grup-alvoko</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Haltigo de la alvokoservo de Signal</string>
+  <string name="NotificationBarManager__decline_call">Rifuzi alvokon</string>
   <string name="NotificationBarManager__answer_call">Respondi alvokon</string>
   <string name="NotificationBarManager__end_call">Fini alvokon</string>
   <string name="NotificationBarManager__cancel_call">Nuligi alvokon</string>
@@ -1029,6 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vi markis vian sekurigan numeron kun %s kiel nekonfirmitan.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel nekonfirmitan.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Mesaĝo el %s ne estis liverata.</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ŝanĝis sian numeron.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ekigis grupalvokon · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s estas en la grupalvoko · %2$s</string>
@@ -1100,7 +1156,7 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Nevalida rapidresponda (QR) kodo.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Bedaŭrinde, vi havas tro da ligitaj aparatoj, provu malligi kelkajn</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Bedaŭrinde, tio ne estas valida rapidresponda (QR) kodo por ligi aparaton.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Ĉu ligi Signal-an aparaton?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Ĉu ligi Signal-aparaton?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Ŝajnas, ke vi provas ligi al Signal-a aparato uzante skanilon el ekstera liveranto. Pro protekta kialo, bv. re-skani la kodon per SIgnal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ne eblas skani rapidrespondan (QR) kodon sen Fotilo-permeso</string>
@@ -1187,6 +1243,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Por telefoni %1$s, Signal bezonas aliron al via fotilo</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Konektado…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">La grupo tro grandas por sonorigi la partoprenantojn.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-alvoko</string>
   <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko</string>
@@ -1199,8 +1256,34 @@
   <string name="WebRtcCallView__reconnecting">Rekonektado…</string>
   <string name="WebRtcCallView__joining">Enirado…</string>
   <string name="WebRtcCallView__disconnected">Nekonektite</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal sonorigos %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal sonorigos %1$s kaj %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal sonorigos %1$s, %2$s kaj %3$d alian</item>
+    <item quantity="other">Signal sonorigos %1$s, %2$s kaj %3$d aliajn</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s estos sciigita</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s kaj %2$s estos sciigitaj</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s kaj %3$d alia estos sciigitaj</item>
+    <item quantity="other">%1$s, %2$s kaj %3$d aliaj estos sciigitaj</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Sonorigo de %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Sonorigo de %1$s kaj %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Sonorigo de %1$s, %2$s kaj %3$d alia</item>
+    <item quantity="other">Sonorigo de %1$s, %2$s kaj %3$d aliaj</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s alvokas vin</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s alvokas al vi kaj al %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s alvokas al vi, al %2$s kaj al %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s alvokas al vi, al %2$s, al %3$s kaj al %4$d alia</item>
+    <item quantity="other">%1$s alvokas al vi, al %2$s, al %3$s kaj al %4$d aliaj</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Neniu alia ĉeestas</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s estas en tiu alvoko</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s estas en tiu alvoko</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s kaj %2$s estas en tiu alvoko</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s montras sian ekranon</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1211,6 +1294,7 @@
   <string name="WebRtcCallView__speaker">Laŭtparolilo</string>
   <string name="WebRtcCallView__camera">Fotilo</string>
   <string name="WebRtcCallView__mute">Silentigi</string>
+  <string name="WebRtcCallView__ring">Sonoro</string>
   <string name="WebRtcCallView__end_call">Fini alvokon</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1261,6 +1345,10 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj sekure alvoki.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vi tro faris neĝustajn provojn por registri tiun numeron. Reprovu poste.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Konekto al servo ne eblas. Bv. kontroli retkonekton, kaj provi denove.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Nenorma numeroformo</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">La entajpita numero (%1$s) ŝajnas esti en nenorma formo.\n\nĈu estas pliĝuste %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Android-Signal — Telefonnumero-normo</string>
+  <string name="RegistrationActivity_call_requested">Alvoko petita</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Restas al vi %d paŝo antaŭ ol sendi protokolan dosieron pri sencimigo.</item>
     <item quantity="other">Restas al vi %dpaŝoj antaŭ ol sendi protokolan dosieron pri sencimigo.</item>
@@ -1355,6 +1443,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubmitDebugLogActivity_success">Sukceso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiu tiun ĉi retadreson kaj aldonu ĝin al via problemraporto aŭ subtena retpoŝtmesaĝo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Kunhavigi</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Tiu protokolo estos afiŝita publike en la reto, por ke kontribuantoj vidu ĝin. Vi povas revizii ĝin antaŭ ĝia sendo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtrilo:</string>
   <string name="SupportEmailUtil_device_info">Aparatinformo:</string>
@@ -1413,7 +1502,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_this_username_is_taken">Tiu uzantnomo estas uzata de aliulo.</string>
   <string name="UsernameEditFragment_this_username_is_available">La uzantnomo disponeblas.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Uzantnomoj povas enteni nur literojn a-z A-Z, ciferojn 0-9 kaj substrekojn.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uzantnomoj ĉe Signal malnepras. Se vi kreas uzantnomon, aliaj Signal-uzantoj povos trovi vin per tiu uzantnomo kaj kontakti vin sen kono de via telefonnumero.</string>
@@ -1485,6 +1574,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_reacted_s_to_s">Reagis per %1$s al „%2$s“.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagis per %1$s al via videaĵo.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagis per %1$s al via bildo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagis per %1$s al via GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagis per %1$s al via dosiero.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagis per %1$s al via aŭdaĵo.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagis per %1$s al via nurunufoje videbla videaĵo.</string>
@@ -1790,17 +1880,26 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Bonvolu enigi nomon aŭ numeron</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se vi volas kontroli la tutvojan ĉifradon kun %s, komparu la supran numeron kun lia aŭ ŝia aparato. Aŭ skanu la kodon el lia aŭ ŝia poŝtelefono. <a href="https://signal.org/redirect/safety-numbers">Lernu pli.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tuŝetu por skani</string>
+  <string name="verify_display_fragment__successful_match">Sukcesa kongruo</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Kontrolo de sekuriga numero ne sukcesis</string>
   <string name="verify_display_fragment__loading">Ŝargado…</string>
   <string name="verify_display_fragment__mark_as_verified">Marki kiel konfirmitan</string>
+  <string name="verify_display_fragment__clear_verification">Viŝi kontrolon</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Kunhavigi sekurigan numeron</string>
   <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skanu la QR-kodon ĉe la aparato de via kontakto.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Ŝovumi supren por respondi</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Ŝovumi malsupren por rifuzi</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemoj bezonas vian atenton.</string>
+  <string name="message_details_header__sent">Sendita:</string>
+  <string name="message_details_header__received">Ricevita:</string>
+  <string name="message_details_header__disappears">Malaperos:</string>
+  <string name="message_details_header__via">Per:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pritraktota</string>
   <string name="message_details_recipient_header__sent_to">Sendita al</string>
@@ -1842,6 +1941,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__debug_log">Sencimiga protokolo:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>— Elekti opcion —</item>
+    <item>Io ne funkcias</item>
+    <item>Peto por nova funkcio</item>
+    <item>Demando</item>
+    <item>Prikomento</item>
+    <item>Alia</item>
+    <item>Pagoj (MobileCoin)</item>
+    <item>Donacoj (subtenantoj kaj Signal-plikonatigo)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
@@ -1938,6 +2047,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__help">Helpo</string>
   <string name="preferences__advanced">Speciala</string>
   <string name="preferences__donate_to_signal">Donaci al Signal</string>
+  <string name="preferences__subscription">Monata donaco</string>
+  <string name="preferences__become_a_signal_sustainer">Iĝi Signal-donacanto</string>
+  <string name="preferences__signal_boost">Signal-plikonatigo</string>
   <string name="preferences__privacy">Privateco</string>
   <string name="preferences__mms_user_agent">MMS-a uzant-ilo („user agent“)</string>
   <string name="preferences__advanced_mms_access_point_names">Permanaj agordoj de MMS</string>
@@ -2109,6 +2221,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Via monujo-adreso</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopii</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiita al tondujo</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Por aldoni monon, sendu „MobileCoin“ al via monujo. Komencu transakcion el via konto pere de monŝanĝejo, kiu subtenas MobileCoin, poste skanu la QR-kodon aŭ kopiu vian monuj-adreson.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaloj</string>
   <string name="PaymentsDetailsFragment__status">Stato</string>
@@ -2139,14 +2252,18 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="PaymentsTransferFragment__next">Sekva</string>
   <string name="PaymentsTransferFragment__invalid_address">Nevalida adreso</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Kontrolu la monujo-adreson, al kie vi provas transigi monon, kaj reprovu.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Vi ne povas ĝiri rekte al via adreso de Signal-monujo. Uzu la monuj-adreson de via konto ĉe subtenata monŝanĝejo.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Por skani QR-kodo, Signal bezonas uzi la fotilon.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon. Iru al la aplikaĵaj agordoj, elektu „Permesoj“, kaj ŝaltu „Fotilo“.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Por skani QR-kodo, Signal bezonas uzi la fotilon.</string>
   <string name="PaymentsTransferFragment__settings">Agordoj</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skani adreso-QR-kodon</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skanu la QR-kodon de la adreso de la pagato</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Peto</string>
+  <string name="CreatePaymentFragment__pay">Pagi</string>
+  <string name="CreatePaymentFragment__available_balance_s">Disponebla saldo: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">Baskuli</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
@@ -2162,17 +2279,30 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Retropaŝo</string>
   <string name="CreatePaymentFragment__add_note">Aldoni noton</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Konvertado estas nur taksado, kaj ĝi eble ne estas ĝusta.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Noto</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Konfirmi la pagon</string>
   <string name="ConfirmPayment__network_fee">Ret-kosto</string>
+  <string name="ConfirmPayment__error_getting_fee">Eraro dum ricevo de peradkosto</string>
+  <string name="ConfirmPayment__estimated_s">%1$s taksataj</string>
   <string name="ConfirmPayment__to">Al</string>
+  <string name="ConfirmPayment__total_amount">Totala kvanto</string>
+  <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Sendado de pago…</string>
   <string name="ConfirmPayment__processing_payment">Traktado de pago…</string>
   <string name="ConfirmPayment__payment_complete">Pago farita</string>
   <string name="ConfirmPayment__payment_failed">La pago ne sukcesis</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Pagado pluas</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Nevalida ricevanto</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Tiu homo ne aktivigis pagojn</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Peto de peradkosto malsukcesis. Por daŭrigi tiun pagon, tuŝetu „Bone“ por reprovi.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s por %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Eletki valuton</string>
+  <string name="SetCurrencyFragment__all_currencies">Ĉiuj valutoj</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2276,7 +2406,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="Insights__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">La protokolo de Signal aŭtomate protektis %1$d %% el viaj elirintaj mesaĝoj dum la lastaj %2$d tagoj. Interparoloj inter Signal-uzantoj estas ĉiam tutvoje ĉifritaj.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Pligrandigu vian Signal-uzon</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Diskonigu la informon</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ne sufiĉe da datumoj</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Via elcento en „Superrigardo“ kalkuliĝas per la elirintaj mesaĝoj, dum la lastaj %1$d tagoj, kiuj ne malaperis aŭ forviŝiĝis.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Krei novan interparolon</string>
@@ -2422,7 +2552,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_incorrect_backup_passphrase">Neĝusta savkopia pasfrazo</string>
   <string name="RegistrationActivity_checking">Kontrolo…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mesaĝoj ĝis nun</string>
-  <string name="RegistrationActivity_restore_from_backup">Restaŭri el savkopio?</string>
+  <string name="RegistrationActivity_restore_from_backup">Ĉu restaŭri el savkopio?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaŭri viajn mesaĝojn kaj aŭdvidaĵojn el loka savkopio. Se vi ne restaŭras nun, vi ne povos restaŭri poste.</string>
   <string name="RegistrationActivity_backup_size_s">Savkopigrando: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Savkopia tempindiko: %s</string>
@@ -2451,6 +2581,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_call_me_instead_available_in">Alvoki min anstataŭe \n (Disponebla post %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontakti Signal-helpon</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registriĝo — Konfirman kodo por Android</string>
+  <string name="RegistrationActivity_incorrect_code">Malĝusta kodo</string>
   <string name="BackupUtil_never">Neniam</string>
   <string name="BackupUtil_unknown">Nekonata</string>
   <string name="preferences_app_protection__see_my_phone_number">Vidi mian telefonnumeron</string>
@@ -2503,6 +2634,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tuŝetu vian profilfoton en la supra maldekstra angulo por malfermi la agordaĵojn</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Tuŝetu „Konto“</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tuŝetu „Transigi la konton“ kaj poste „Sekva“ ĉe ambaŭ aparatoj</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2601,6 +2733,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="OldDeviceTransferLockedDialog__done">Farita</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Nuligi kaj aktivigi tiun aparaton</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Ĉu transigi MOB-saldon?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Vi havas saldon je %1$s. Se vi ne transigas vian monon al alia monuj-adreso antaŭ ol forigi vian konton, vi perdos ĝin porĉiame.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Ne transigi</string>
   <string name="AdvancedPreferenceFragment__transfer">Transigo</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloki</string>
@@ -2616,7 +2751,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_voice_call_description">Voĉ-alvoko</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Nesekura voĉ-alvoko</string>
   <string name="RecipientBottomSheet_video_call_description">Vid-alvoko</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">Forigi %1$s kiel grupadministranton?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Ĉu forigi %1$s kiel grupadministranton?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ povos modifi tiun grupon kaj ties anojn.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Ĉu forigi %1$s el tiu grupo?</string>
   <string name="RecipientBottomSheet_remove">Forviŝi</string>
@@ -2641,6 +2776,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiita al tondujo</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">La ligilo nun ne estas aktiva</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Malsukceso ludi la voĉmesaĝon</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaItemFactory__voice_message">Voĉa mesaĝo · %1$s</string>
   <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s al %2$s</string>
@@ -2652,8 +2788,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Kontroli anojn</string>
   <string name="ReviewCardDialogFragment__review_request">Kontroli petojn</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupanoj havas la saman nomon. Vidu la anojn ĉi-sube, kaj elekti tion, kion fari.</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Se vi ne certas pri tiu, kiu faris la peton, vidu la kontaktojn ĉi-sube, kaj elekti tion, kion fari.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupanoj havas la saman nomon. Vidu la anojn ĉi-sube, kaj elektu tion, kion fari.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Se vi ne certas pri tiu, kiu faris la peton, vidu la kontaktojn ĉi-sube, kaj elektu tion, kion fari.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Neniu alia komuna grupo.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Neniu komuna grupo.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2694,6 +2830,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeleteAccountFragment__delete_account">Forviŝi konton</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Forviŝi vian konton kaj profilfoton</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Forviŝado de ĉiuj viajn mesaĝojn</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Forigi %1$s en via pagokonto</string>
   <string name="DeleteAccountFragment__no_country_code">Neniu landkodo specifita</string>
   <string name="DeleteAccountFragment__no_number">Neniu numero specifita</string>
   <string name="DeleteAccountFragment__the_phone_number">La telefonnumero, kiu vi entajpis ne kongruas kun tiu de via konto.</string>
@@ -2706,6 +2843,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeleteAccountCountryPickerFragment__search_countries">Serĉi landojn</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Preterpasi</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d ano</item>
+    <item quantity="other">%1$d anoj</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Kunhavigi</string>
   <string name="ShareActivity__send">Sendi</string>
@@ -2757,28 +2898,82 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WallpaperCropActivity__error_setting_wallpaper">Eraro dum agordo de la ekranfono.</string>
   <string name="WallpaperCropActivity__blur_photo">Malklarigi foton</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Pro MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin estas nova cifereca valuto kun celo de privateco.</string>
+  <string name="payment_info_card_adding_funds">Aldonado de mono</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Vi povas aldoni monon por uzi ĝin en Signal per sendado de MobileCoin al via monuj-adreso.</string>
+  <string name="payment_info_card_cashing_out">Enspezo</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Vi povas enkasigi MobileCoin iam ajn per monŝanĝejo, kiu subtenas valuton „MobileCoin“. Sufiĉas transigi al via konto ĉe tiu  monŝanĝejo.</string>
+  <string name="payment_info_card_hide_this_card">Ĉu kaŝi tiun karton?</string>
   <string name="payment_info_card_hide">Kaŝi</string>
+  <string name="payment_info_card_record_recovery_phrase">Registri restarigan frazon</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Via restariga frazo donas al vi plian manieron restaŭri vian pagokonton.</string>
+  <string name="payment_info_card_record_your_phrase">Registri vian frazon</string>
+  <string name="payment_info_card_update_your_pin">Ĝisdatigi vian PIN-on</string>
+  <string name="payment_info_card_with_a_high_balance">Se vi havas altan saldon, vi eble devus modifi vian PIN-on, por ke ĝi estu litercifera, por pliprotekti vian konton.</string>
   <string name="payment_info_card_update_pin">Ĝisdatigi PIN-on</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Malŝalti monujon</string>
+  <string name="DeactivateWalletFragment__your_balance">Via saldo</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Oni rekomendas transigi vian monon al alia monuj-adreso, antaŭ ol malŝalti pagojn. Se vi preferas ne transigi vian monon nun, vi retrovos vian monon en via monujo ligita al Signal, kiam vi reŝaltos pagojn.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Transigi restantan saldon</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Malŝalti sen transigo</string>
   <string name="DeactivateWalletFragment__deactivate">Malŝalti</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ĉu malŝalti sen transigo?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Via saldo restos en via monujo ligita al Signal, se vi elektas reŝalti pagojn.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Eraro dum malŝaltado de la monujo.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Restarigan frazon</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Vidi restarigan frazon</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Entajpi restarigan frazon</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Via saldo aŭtomate restaŭriĝos, kiam vi reinstalos Signal, se vi konfirmas vian Signal-PIN. Vi povas ankaŭ restaŭri vian saldon uzante restarigan frazon, kiu estas %1$d-vorta frazo nur via. Skribu ĝin, kaj metu ĝin en sekuran lokon.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Via restariga frazo estas %1$d-vorta frazo nur via. Uzu ĝin por restaŭri vian saldon.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Komenci</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Entajpi mane</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Alglui el tondujo</string>
   <!--PaymentsRecoveryPasteFragment-->
-  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Restarigan frazon</string>
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Alglui restarigan frazon</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Restariga frazo</string>
   <string name="PaymentsRecoveryPasteFragment__next">Sekva</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Nevalida restariga frazo</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Certigu, ke vi entajpis %1$d vortojn, kaj reprovu.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Sekva</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Modifi</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Antaŭen</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Via restariga frazo</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Skribu la jenajn %1$d vortojn en la sama ordo. Konservu vian liston sekurloke.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Certigu, ke vi entajpis ĝuste vian frazon.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ne faru ekronkopion aŭ ne sendu retpôste.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Pagokonto restaŭrita.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Nevalida restariga frazo</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Certigu, ke vi entajpis ĝuste vian frazon, kaj reprovu.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Ĉu kopii al tondujo?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Se vi elektas ciferecan konservadon de via restariga frazo, certigu, ke ĝi estas sekure konservita en de vi fidata loko.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopii</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Konfirmi restarigan frazon</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Entajpi la jenajn vortojn el via restariga frazo.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Vorto %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Vidi frazon denove</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Farita</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Restariga frazo</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Entajpi restarigan frazon</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Entajpi vorton %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Vorto %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Sekva</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Nevalida vorto</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Tondujo forigita.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Montri pli</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s sendis al vi %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d sciigoj pri nova pago</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Sendado de pago malsukcesis</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Por sendi pagon al tiu uzanto, tiu ĉi devas akcepti mesagôpeton el vi. Por krei mesaĝopeton, sendu al li aŭ ŝi mesaĝon.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Sendi mesaĝon</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Vi havas neniun komunan grupon kun tiu homo. Kontroli la petojn zorgeme antaŭ via akcepto por ne sendi nedeziratajn mesaĝojn.</string>
@@ -2801,17 +2996,44 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Oni demandos al vi malpli ofte iom post iom.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Via Signal-PIN estu deviga por reregistri vian telefonnumeron al Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Ŝanĝi telefonnumeron</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Tio eblas al vi ŝanĝi vian nunan telefonnumeron al nova. Vi ne povas malfari tion.\n\nAntaŭ ol daŭrigi, certigu, ke via nova numero povas ricevi SMS-ojn aŭ alvokojn.</string>
   <string name="ChangeNumberFragment__continue">Daŭrigi</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Via telefonnumero ŝanĝiĝis.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ŝanĝi telefonnumeron</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Via antaŭa numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Antaŭa telefonnumero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Via nova numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nova telefonnumero</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">La telefonnumero, kiu vi entajpis ne kongruas kun tiu de via konto.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Vi devas specifi la landan kodon de via antaŭa numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Vi devas specifi vian antaŭan telefonnumeron</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Vi devas specifi la landan kodon de via nova numero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Vi devas specifi vian novan numeron</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Ŝanĝi telefonnumeron</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Kontrolo de %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Defio-responda testo bezonata</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Ŝanĝi numeron</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vi estas ŝanĝonta vian telefonnumeron de %1$s al %2$s.\n\nAntaŭ ol daŭrigi, kontrolu, ke la ĉi-suba numero estas ĝusta.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Modifi numeron</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Change Number — Helpbezono pri PIN ĉe Android (PIN-v2)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-oj ne kongruas</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">La PIN de via nova numero malsamas ol la PIN de via antaŭa. Ĉu uzi la antaŭan aŭ ĝisdatigi ĝin?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Uzi la antaŭan PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ĝisdatigi PIN-on</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Ĉu uzi la antaŭan PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Ŝajnas, ke vi provis ŝanĝi vian numeron, sed ni ne povis scii, ĉu tio sukcesis.\n\nRekontrolado nun…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Ŝanĝo konfirmita</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Via numero konfirme estas %1$s. Se ĝi ne estas via nova numero, rekomencu la procezon pri ŝanĝo de numero.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Ŝanĝo nekonfirmita</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Ni ne povis scii la staton de via peto pri ŝanĝo de numero.\n\n(Eraro: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Reprovi</string>
   <string name="ChangeNumberLockActivity__leave">Forlasi</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Sendi sencimigan protokolon</string>
@@ -2866,6 +3088,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__copyright_signal_messenger">Kopirajto Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Laŭ la permisilo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Kvalito de aŭdvidaĵoj</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalito de senditaj aŭdvidaĵoj</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sendado de altkvalitaj aŭdvidaĵoj uzos pli da datumoj</string>
   <string name="DataAndStorageSettingsFragment__high">Alta</string>
   <string name="DataAndStorageSettingsFragment__standard">Defaŭlta</string>
   <string name="DataAndStorageSettingsFragment__calls">Alvokoj</string>
@@ -2881,6 +3106,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="one">Tiu propra koloro uziĝas en %1$d interparolo. Ĉu vi volas forigi ĝin?</item>
     <item quantity="other">Tiu propra koloro uziĝas en %1$d interparoloj. Ĉu vi volas forigi ĝin en ĉiuj interparoloj?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Ĉu forigi interparolan koloron?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Unukolora</string>
   <string name="CustomChatColorCreatorFragment__gradient">Kolortransiro</string>
@@ -2909,8 +3135,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ChatColorsMegaphone__appearance">Aspekto</string>
   <string name="ChatColorsMegaphone__not_now">Ne nun</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Aldoni profilfoton</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Elekti stilon kaj koloron aŭ agordu viajn komencajn literojn.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne nun</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Aldoni foton</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Iĝi donacanto</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal ekzistas pro la subteno de homoj kiel vi. Ekdonacu kaj ricevu profil-insignon.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Ne, dankon</string>
+  <string name="BecomeASustainerMegaphone__contribute">Donaci</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Malfermi la serĉon de emoĝioj</string>
@@ -2933,8 +3166,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationSettingsFragment__start_video_call">Ek-vidalvoki</string>
   <string name="ConversationSettingsFragment__start_audio_call">Eki voĉ-alvokon</string>
   <string name="ConversationSettingsFragment__message">Mesaĝo</string>
-  <string name="ConversationSettingsFragment__video">Videaĵo</string>
-  <string name="ConversationSettingsFragment__audio">Sonaĵoj</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Voĉa</string>
   <string name="ConversationSettingsFragment__call">Alvoko</string>
   <string name="ConversationSettingsFragment__mute">Silentigi</string>
   <string name="ConversationSettingsFragment__muted">Silentigita</string>
@@ -2959,13 +3192,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationSettingsFragment__conversation_muted_forever">Interparolo silentigita por ĉiam</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonnumero kopiita al tondujo.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnumero</string>
+  <string name="ConversationSettingsFragment__get_badges">Havu insignojn en via profilo, kiam vi subtenas Signal-on. Tuŝetu insignon por scii pli.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Aldoni anojn</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifi grupinformon</string>
+  <string name="PermissionsSettingsFragment__send_messages">Sendi mesaĝojn</string>
   <string name="PermissionsSettingsFragment__all_members">Ĉiuj grupanoj</string>
   <string name="PermissionsSettingsFragment__only_admins">Nur administrantoj</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Kiu povas aldoni novajn anojn?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kiu povas modifi tiun grupinformon?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kiu povas sendi mesaĝojn?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silentigi sciigojn</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ne silentigita</string>
@@ -2982,38 +3218,183 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nova pago</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nova mesaĝo</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Serĉi nomon aŭ numeron</string>
   <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Haltigi voĉmesaĝon</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Ŝanĝi la voĉmesaĝan rapidon</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Paŭzigi voĉmesaĝon</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Ludi voĉmesaĝon</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Iri al voĉmesaĝo</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Antaŭrigardo de la avataro</string>
   <string name="AvatarPickerFragment__camera">Fotilo</string>
+  <string name="AvatarPickerFragment__take_a_picture">Foti</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Elekti foton</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Teksto</string>
   <string name="AvatarPickerFragment__save">Konservi</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Elekti avataron</string>
+  <string name="AvatarPickerFragment__clear_avatar">Forigi avataron</string>
   <string name="AvatarPickerFragment__edit">Modifi</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Konservado de avataro malsukcesis</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Antaŭrigardo</string>
   <string name="TextAvatarCreationFragment__done">Farita</string>
+  <string name="TextAvatarCreationFragment__text">Teksto</string>
   <string name="TextAvatarCreationFragment__color">Koloro</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Elekti koloron</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Iri supren</string>
+  <string name="MultiselectForwardFragment__forward_to">Plusendi al</string>
+  <string name="MultiselectForwardFragment__add_a_message">Aldoni mesaĝon</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Plusendadoj pli rapidaj</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Plusenditaj mesaĝoj nun tuj sendiĝas. </string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Sendi %1$d mesaĝon</item>
+    <item quantity="other">Sendi %1$d mesaĝojn</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mesaĝo sendita</item>
+    <item quantity="other">Mesaĝoj senditaj</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mesaĝo malsukcese sendiĝis</item>
+    <item quantity="other">Mesaĝoj malsukcese sendiĝis</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Mesaĝo ne estis sukcese plusendita, ĉar ĝi ne plu estas disponebla.</item>
+    <item quantity="other">Mesaĝoj ne estis sukcese plusenditaj, ĉar ili ne plu estas disponeblaj.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Limo-atingo</string>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Aldoni mesaĝon</string>
+  <string name="MediaReviewFragment__add_a_reply">Aldoni respondon</string>
+  <string name="MediaReviewFragment__send_to">Sendi al</string>
+  <string name="MediaReviewFragment__view_once_message">Nurunufoje videbla mesaĝo</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Unu aŭ pli eroj tro grandis</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Unu aŭ pli eroj tro estis nevalidaj</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Tro da eroj elektitaj</string>
   <string name="ImageEditorHud__cancel">Nuligi</string>
+  <string name="ImageEditorHud__draw">Desegni</string>
+  <string name="ImageEditorHud__write_text">Skribi tekston</string>
+  <string name="ImageEditorHud__add_a_sticker">Aldoni glumarkon</string>
   <string name="ImageEditorHud__blur">Malklarigi</string>
+  <string name="ImageEditorHud__done_editing">Modifoj finitaj</string>
+  <string name="ImageEditorHud__clear_all">Forviŝi ĉiujn</string>
   <string name="ImageEditorHud__undo">Malfari</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Baskuligi inter feltkrojono kaj emfazilo</string>
   <string name="ImageEditorHud__delete">Forigi</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Baskuligi inter tekstaj stiloj</string>
   <string name="MediaCountIndicatorButton__send">Sendi</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Tuŝeti por demeti</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Tuŝeto por elekti</string>
   <string name="MediaReviewImagePageFragment__discard">Ne konservi</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Ĉu ne konservi la ŝanĝojn?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vi perdos ĉiujn modifojn, kiujn vi faris en tiu foto.</string>
+  <string name="CameraFragment__failed_to_open_camera">Malsukceso malfermi la fotilon</string>
+  <string name="BadgesOverviewFragment__my_badges">Miaj insignoj</string>
+  <string name="BadgesOverviewFragment__featured_badge">Elstarigita insigno</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Montri insignojn ĉe profilo</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Malsukceso ĝisdatigi la profilon</string>
+  <string name="BadgeSelectionFragment__select_badges">Elekti insignojn</string>
   <string name="SelectFeaturedBadgeFragment__preview">Antaŭrigardo</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Elekti insignon</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vi devas elekti insignon</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Malsukceso ĝisdatigi la profilon</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
+  <string name="ImageView__badge">Insigno</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ekzistas pro la subteno de homoj kiel vi.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Subtenu teĥnologiojn, kiujn oni konstruas por vi — ne por akiri viajn datumojn —, enirante la komunumon de homoj, kiuj donacas pro tio.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Subtenu teĥnologiojn, kiujn oni konstruas por vi, ne por akiri viajn datumojn, enirante la komunumon de homoj, kiuj subtenas al Signal.</string>
+  <string name="SubscribeFragment__currency">Valuto</string>
+  <string name="SubscribeFragment__more_payment_options">Pli da pagomanieroj</string>
+  <string name="SubscribeFragment__cancel_subscription">Nuligi la abonon</string>
+  <string name="SubscribeFragment__confirm_cancellation">Ĉu konfirmi la nuligon?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Vi ne plu estos debetita. Via insigno estos demetita el via profilo fine de via abono.</string>
   <string name="SubscribeFragment__not_now">Ne nun</string>
+  <string name="SubscribeFragment__confirm">Konfirmi</string>
+  <string name="SubscribeFragment__update_subscription">Ĝisdatigi la abonon</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Via abono nuliĝis.</string>
+  <string name="SubscribeFragment__update_subscription_question">Ĉu ĝisdatigi la abonon?</string>
   <string name="SubscribeFragment__update">Ĝisdatigi</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">La plena monsumo de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">La plena monsumo (%1$s) de via nova abono pagigôs hodiaŭ. Via abono rekomenciĝos ĉiumonate.</string>
+  <string name="Subscription__s_per_month">Po %s monate</string>
+  <string name="Subscription__s_per_month_dot_renews_s">Po %1$s monate · Rekomenciĝos %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">Po %1$s monate · Finiĝos %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, ĝi nur estas subtenata de homoj, kiuj uzas kaj taksaj ĝin. Faru ĉiumonatan donacon, kaj ricevu profilan insignon por montri vian subtenon.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kial donaci?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal sin dediĉas al la disvolvado de priprivateca malfermitkoda teĥnologio, kiuj protektas liberan esprimon, kaj ebligas mondan sekuran komunikadon.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Via donaco vivtenas tiun aferon, kaj pagas por la programado kaj la funkciigo de aplikâjo uzita de milionoj por komunikiĝi privatece. Neniu reklamo. Neniu spurilo. Neniu ŝerco.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dankon pro via subtenado!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dankon pro via subteno!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vi gajnis insignon %s! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vi gajnis la insignon pri plikonatigo! Helpu al Signal konatiĝi per la montro de via insigno en via profilo.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vi povas ankaŭ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">iĝi monata donacanto.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Montri ĉe profilo</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Uzi kiel elstarigitan insignon</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Farita</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiam vi havas pli ol unu insignon, vi povas elekti tiun, kiun vi elstarigos por vidigi ĉe via profilo.</string>
+  <string name="BecomeASustainerFragment__get_badges">Havu insignojn en via profilo per subteno de Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal estas neprofitocela organizaĵo sen reklamistoj, sen investistoj, nur subtenata de homoj kiel vi.</string>
+  <string name="ManageDonationsFragment__my_support">Mia subteno</string>
+  <string name="ManageDonationsFragment__manage_subscription">Administri la abonon</string>
+  <string name="ManageDonationsFragment__badges">Insignoj</string>
+  <string name="ManageDonationsFragment__subscription_faq">Respondaro pri abono</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Eraro dum ricevo de abono.</string>
+  <string name="BoostFragment__give_signal_a_boost">Signal-plikonatigo</string>
+  <string name="BoostFragment__say_thanks_and_earn">Diru „Dankon!“ kaj gajnu la insignon „Plikonatigo“ dum %1$d tagoj.</string>
+  <string name="Boost__enter_custom_amount">Entajpi propran monsumon</string>
+  <string name="Boost__one_time_contribution">Unufoja donaco</string>
+  <string name="MySupportPreference__add_a_signal_boost">Aldoni Signal-plikonatigo</string>
+  <string name="MySupportPreference__s_per_month">Po %1$s monate</string>
+  <string name="MySupportPreference__renews_s">Rekomenciĝos %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Traktado de la transakcio…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">La insigno ne aldoniĝis. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Kontaktu la helpservon.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Via insigno finiĝis</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insigno eksvalidiĝis</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abono nuligita</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Via insigno pri plikonatigo senvalidiĝis kaj ne plu videblas al aliuloj ĉe via profilo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vi povas rehavi vian insignon pri plikonatigo dum 30 tagoj per unufoja donaco.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Por plu subteni teĥnologion, kiu estas farita por vi, konsideru donaci monate.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aldoni plikonatigon</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vi povas daŭrigi uzi Signal-on, sed por subtenu la aplikaĵon kaj rehavi vian insignon, reaboniĝu nun.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reabono</string>
+  <string name="Subscription__please_contact_support_for_more_information">Kontaktu Signa-helpon por plia informo. </string>
   <string name="Subscription__contact_support">Kontakti subtenon</string>
+  <string name="Subscription__earn_a_s_badge">Gajni insignon %1$s</string>
   <string name="SubscribeFragment__processing_payment">Traktado de pago…</string>
-  <string name="DonationsErrors__payment_failed">Pago malsukcesa</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Eraro dum traktado de la pago</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Eraro dum traktado de la pago. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Via insigno ne aldoniĝis en via profilo, sed vi eble estis debetita. Kontaktu la helpservon.</string>
+  <string name="DonationsErrors__your_payment">Via pago ne sukcesis, kaj vi ne estis debetita. Provu ree.</string>
+  <string name="DonationsErrors__still_processing">Traktado ankoraŭ faranta</string>
+  <string name="DonationsErrors__couldnt_add_badge">La insigno ne aldoniĝis.</string>
+  <string name="DonationsErrors__your_badge_could_not">Via insigno ne aldoniĝis en via profilo, sed vi eble estis debetita. Kontaktu la helpservon.</string>
+  <string name="DonationsErrors__your_payment_is_still">Via pago estas ankoraŭ faranta. Tio povas daŭri kelkajn minutojn depende de via retkonekto.</string>
+  <string name="DonationsErrors__google_pay_unavailable">„Google Pay“ ne disponebla</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vi devas agordi „Google Pay“ por povi donaci enaplikaĵe.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Nuligo de abono malsukcesis</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Nuligo de abono bezonas retaliron.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Via aparato ne povas uzi „Google Pay“: vi do ne povas aboniĝi por gajni insignon. Vi tamen povas subteni Signal-on per donaco niareteje.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eraro de retkonekto. Kontrolu vian konekton kaj reprovu.</string>
+  <string name="NetworkFailure__retry">Reprovi</string>
   <!--EOF-->
 </resources>

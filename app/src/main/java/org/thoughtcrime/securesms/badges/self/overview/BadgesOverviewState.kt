@@ -7,7 +7,8 @@ data class BadgesOverviewState(
   val allUnlockedBadges: List<Badge> = listOf(),
   val featuredBadge: Badge? = null,
   val displayBadgesOnProfile: Boolean = false,
-  val fadedBadgeId: String? = null
+  val fadedBadgeId: String? = null,
+  val hasInternet: Boolean = false
 ) {
 
   val hasUnexpiredBadges = allUnlockedBadges.any { it.expirationTimestamp > System.currentTimeMillis() }
@@ -15,6 +16,6 @@ data class BadgesOverviewState(
   enum class Stage {
     INIT,
     READY,
-    UPDATING
+    UPDATING_BADGE_DISPLAY_STATE
   }
 }

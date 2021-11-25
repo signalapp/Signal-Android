@@ -399,11 +399,6 @@
   <string name="DeviceListItem_today">آج</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">بینام فائل</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal کے لئے عطیہ کریں</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal آپ جیسے لوگوں کے ذریعہ تقویت یافتہ ہے۔ آج آپ کی حمایت دکھائیں!</string>
-  <string name="DonateMegaphone_donate">عطیہ کریں</string>
-  <string name="DonateMegaphone_no_thanks">نہیں شکریہ</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">گروپ کال متعارف کروانا</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">مفت خفیہ کردہ گروپ کال شروع کرنے کے لئے نیا گروپ کھولیں</string>
@@ -2282,7 +2277,6 @@
   <string name="Insights__title">Insights</string>
   <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پچھلے دنوں Signal پروٹوکول آپ کے جانے والے پیغامات کا خود بخود محفوظ%1$d%% ہے۔ Signal استعمال کرنے والوں کے درمیان بات چیت ہمیشہ اختتام%2$d سے آخر میں خفیہ ہوتی ہے۔</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal boost</string>
   <string name="InsightsDashboardFragment__not_enough_data">کافی اعداد و شمار نہیں ہیں</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">آپ کی insight کی فیصد کا حساب گزشتہ%1$d دنوں میں جانے والے پیغامات کی بنیاد پر کیا جاتا ہے جو غائب نہیں ہوئے ہیں یا حذف نہیں ہوئے ہیں۔</string>
   <string name="InsightsDashboardFragment__start_a_conversation">گفتگو شروع کریں</string>
@@ -2984,6 +2978,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ایک شکل اور رنگ منتخب کریں یا اپنے initials کو اپنی مرضی کے مطابق بنائیں۔</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ابھی نہیں</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">تصویر لگاو</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">نہیں شکریہ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ایموجی</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ایموجی تلاش کھولیں</string>
@@ -3093,15 +3089,17 @@
   <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
   <string name="SelectFeaturedBadgeFragment__preview">پیش نظارہ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal آپ جیسے لوگوں کے ذریعہ تقویت یافتہ ہے۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">عطیہ کی رقم۔</string> -->
   <string name="SubscribeFragment__not_now">ابھی نہیں</string>
   <string name="SubscribeFragment__confirm">تصدیق</string>
   <string name="SubscribeFragment__update">اَپ ڈیٹ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ہو گیا</string>
   <string name="Boost__enter_custom_amount">اپنی مرضی کی رقم درج کریں۔</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ابھی نہیں</string>
   <string name="Subscription__contact_support">سپورٹ سے رابطہ کریں</string>
   <string name="SubscribeFragment__processing_payment">ادائیگی پر کارروائی ہو رہی ہے…</string>
-  <string name="DonationsErrors__payment_failed">ادائیگی ناکام ہوگئی</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">دوبارہ کوشش کریں</string>
   <!--EOF-->
 </resources>
