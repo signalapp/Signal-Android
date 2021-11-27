@@ -203,10 +203,7 @@ public class PushServiceSocket {
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
   private static final String DEVICE_PATH               = "/v1/devices/%s";
 
-  private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
-  private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
   private static final String DIRECTORY_AUTH_PATH       = "/v1/directory/auth";
-  private static final String DIRECTORY_FEEDBACK_PATH   = "/v1/directory/feedback-v3/%s";
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s";
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
@@ -976,30 +973,6 @@ public class PushServiceSocket {
       return responseJson.getReceiptCredentialResponse();
     } else {
       throw new MalformedResponseException("Unable to parse response");
-    }
-  }
-
-  public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    try {
-      ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList<>(contactTokens));
-      String                  response         = makeServiceRequest(DIRECTORY_TOKENS_PATH, "PUT", JsonUtil.toJson(contactTokenList));
-      ContactTokenDetailsList activeTokens     = JsonUtil.fromJson(response, ContactTokenDetailsList.class);
-
-      return activeTokens.getContacts();
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new MalformedResponseException("Unable to parse entity", e);
-    }
-  }
-
-  public ContactTokenDetails getContactTokenDetails(String contactToken) throws IOException {
-    try {
-      String response = makeServiceRequest(String.format(DIRECTORY_VERIFY_PATH, contactToken), "GET", null);
-      return JsonUtil.fromJson(response, ContactTokenDetails.class);
-    } catch (NotFoundException nfe) {
-      return null;
     }
   }
 
