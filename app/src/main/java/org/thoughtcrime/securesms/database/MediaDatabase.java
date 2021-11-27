@@ -1,14 +1,12 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
-import android.database.ContentObserver;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -84,7 +82,7 @@ public class MediaDatabase extends Database {
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'audio/%' AND " +
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'text/x-signal-plain'");
 
-  MediaDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  MediaDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -96,52 +94,36 @@ public class MediaDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    if (listenToAllThreads) {
-      setNotifyConversationListeners(cursor);
-    } else {
-      setNotifyConversationListeners(cursor, threadId);
-    }
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   public @NonNull Cursor getDocumentMediaForThread(long threadId, @NonNull Sorting sorting) {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, DOCUMENT_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    setNotifyConversationListeners(cursor, threadId);
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   public @NonNull Cursor getAudioMediaForThread(long threadId, @NonNull Sorting sorting) {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    setNotifyConversationListeners(cursor, threadId);
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   public @NonNull Cursor getAllMediaForThread(long threadId, @NonNull Sorting sorting) {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, ALL_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    setNotifyConversationListeners(cursor, threadId);
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   private static String applyEqualityOperator(long threadId, String query) {
     return query.replace("__EQUALITY__", threadId == ALL_THREADS ? "!=" : "=");
-  }
-
-  public void subscribeToMediaChanges(@NonNull ContentObserver observer) {
-    registerAttachmentListeners(observer);
-  }
-
-  public void unsubscribeToMediaChanges(@NonNull ContentObserver observer) {
-    context.getContentResolver().unregisterContentObserver(observer);
   }
 
   public StorageBreakdown getStorageBreakdown() {
@@ -206,7 +188,7 @@ public class MediaDatabase extends Database {
     }
 
     public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
-      AttachmentDatabase       attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+      AttachmentDatabase       attachmentDatabase = SignalDatabase.attachments();
       List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachments(cursor);
       RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID)));
       long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.badges.self.expired
 
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.fragment.findNavController
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -10,7 +9,9 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 
 /**
@@ -26,7 +27,8 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
   }
 
   private fun getConfiguration(): DSLConfiguration {
-    val badge = ExpiredBadgeBottomSheetDialogFragmentArgs.fromBundle(requireArguments()).badge
+    val badge: Badge = ExpiredBadgeBottomSheetDialogFragmentArgs.fromBundle(requireArguments()).badge
+    val isLikelyASustainer = SignalStore.donationsValues().isLikelyASustainer()
 
     return configure {
       customPref(ExpiredBadge.Model(badge))
@@ -60,7 +62,11 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       noPadTextPref(
         DSLSettingsText.from(
           if (badge.isBoost()) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology
+            if (isLikelyASustainer) {
+              R.string.ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate
+            } else {
+              R.string.ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology
+            }
           } else {
             R.string.ExpiredBadgeBottomSheetDialogFragment__you_can
           },
@@ -73,14 +79,22 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
       primaryButton(
         text = DSLSettingsText.from(
           if (badge.isBoost()) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer
+            if (isLikelyASustainer) {
+              R.string.ExpiredBadgeBottomSheetDialogFragment__add_a_boost
+            } else {
+              R.string.ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer
+            }
           } else {
             R.string.ExpiredBadgeBottomSheetDialogFragment__renew_subscription
           }
         ),
         onClick = {
           dismiss()
-          findNavController().navigate(R.id.action_directly_to_subscribe)
+          if (isLikelyASustainer) {
+            requireActivity().startActivity(AppSettingsActivity.boost(requireContext()))
+          } else {
+            requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
+          }
         }
       )
 

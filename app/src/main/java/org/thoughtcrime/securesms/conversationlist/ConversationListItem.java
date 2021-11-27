@@ -192,7 +192,7 @@ public final class ConversationListItem extends ConstraintLayout
     if (highlightSubstring != null) {
       String name = recipient.get().isSelf() ? getContext().getString(R.string.note_to_self) : recipient.get().getDisplayName(getContext());
 
-      this.fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getMediumBoldSpan, name, highlightSubstring, SearchUtil.MATCH_ALL));
+      this.fromView.setText(recipient.get(), SearchUtil.getHighlightedSpan(locale, SpanUtil::getMediumBoldSpan, name, highlightSubstring, SearchUtil.MATCH_ALL), false, null);
     } else {
       this.fromView.setText(recipient.get(), false);
     }
@@ -226,6 +226,9 @@ public final class ConversationListItem extends ConstraintLayout
   private void setBadgeFromRecipient(Recipient recipient) {
     if (!recipient.isSelf()) {
       badge.setBadgeFromRecipient(recipient);
+      badge.setClickable(false);
+    } else {
+      badge.setBadge(null);
     }
   }
 

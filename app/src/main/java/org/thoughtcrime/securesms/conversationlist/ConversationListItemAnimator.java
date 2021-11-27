@@ -17,6 +17,8 @@ public class ConversationListItemAnimator extends DefaultItemAnimator {
 
   public ConversationListItemAnimator() {
     setSupportsChangeAnimations(false);
+    setMoveDuration(0);
+    setAddDuration(0);
   }
 
   @MainThread
@@ -25,8 +27,14 @@ public class ConversationListItemAnimator extends DefaultItemAnimator {
     shouldDisable = false;
   }
 
+  @MainThread
+  public void disable() {
+    setMoveDuration(0);
+  }
+
+
   /**
-   * We need to reasonable ensure that the animation has started before we disable things here, so we add a slight delay.
+   * We need to reasonably ensure that the animation has started before we disable things here, so we add a slight delay.
    */
   @MainThread
   public void postDisable(Handler handler) {

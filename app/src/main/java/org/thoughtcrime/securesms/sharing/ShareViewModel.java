@@ -14,8 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -71,7 +71,7 @@ public class ShareViewModel extends ViewModel {
         Recipient recipient = Recipient.resolved(selectedContact.getRecipientId().get());
 
         if (recipient.isPushV2Group()) {
-          Optional<GroupDatabase.GroupRecord> record = DatabaseFactory.getGroupDatabase(context).getGroup(recipient.requireGroupId());
+          Optional<GroupDatabase.GroupRecord> record = SignalDatabase.groups().getGroup(recipient.requireGroupId());
 
           if (record.isPresent() && record.get().isAnnouncementGroup() && !record.get().isAdmin(Recipient.self())) {
             return ContactSelectResult.FALSE_AND_SHOW_PERMISSION_TOAST;

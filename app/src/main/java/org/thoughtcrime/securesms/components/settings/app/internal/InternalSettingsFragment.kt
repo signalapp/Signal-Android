@@ -15,8 +15,8 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
@@ -399,13 +399,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   }
 
   private fun clearAllSenderKeyState() {
-    DatabaseFactory.getSenderKeyDatabase(requireContext()).deleteAll()
-    DatabaseFactory.getSenderKeySharedDatabase(requireContext()).deleteAll()
+    SignalDatabase.senderKeys.deleteAll()
+    SignalDatabase.senderKeyShared.deleteAll()
     Toast.makeText(context, "Deleted all sender key state.", Toast.LENGTH_SHORT).show()
   }
 
   private fun clearAllSenderKeySharedState() {
-    DatabaseFactory.getSenderKeySharedDatabase(requireContext()).deleteAll()
+    SignalDatabase.senderKeyShared.deleteAll()
     Toast.makeText(context, "Deleted all sender key shared state.", Toast.LENGTH_SHORT).show()
   }
 
@@ -415,6 +415,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   }
 
   private fun enqueueSubscriptionRedemption() {
-    SubscriptionReceiptRequestResponseJob.enqueueSubscriptionContinuation()
+    SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue()
   }
 }

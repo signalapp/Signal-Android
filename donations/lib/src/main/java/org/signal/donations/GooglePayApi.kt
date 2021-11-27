@@ -17,6 +17,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import java.util.Locale
 
 /**
  * Entrypoint for Google Pay APIs
@@ -97,13 +98,13 @@ class GooglePayApi(
       Activity.RESULT_OK -> {
         data?.let { intent ->
           PaymentData.getFromIntent(intent)?.let { paymentRequestCallback.onSuccess(it) }
-        } ?: paymentRequestCallback.onError()
+        } ?: paymentRequestCallback.onError(GooglePayException(-1, "No data returned from Google Pay"))
       }
       Activity.RESULT_CANCELED -> paymentRequestCallback.onCancelled()
       AutoResolveHelper.RESULT_ERROR -> {
         AutoResolveHelper.getStatusFromIntent(data)?.let {
-          Log.w(TAG, "loadPaymentData failed with error code ${it.statusCode}")
-          paymentRequestCallback.onError()
+          Log.w(TAG, "loadPaymentData failed with error code ${it.statusCode}: ${it.statusMessage}")
+          paymentRequestCallback.onError(GooglePayException(it.statusCode, it.statusMessage))
         }
       }
     }
@@ -114,6 +115,7 @@ class GooglePayApi(
       put("merchantInfo", merchantInfo)
       put("allowedPaymentMethods", JSONArray().put(cardPaymentMethod()))
       put("transactionInfo", getTransactionInfo(price, label))
+      // TODO Donation receipts
       put("emailRequired", false)
       put("shippingAddressRequired", false)
     }
@@ -124,7 +126,7 @@ class GooglePayApi(
       put("currencyCode", price.currency.currencyCode)
       put("countryCode", "US")
       put("totalPriceStatus", "FINAL")
-      put("totalPrice", price.defaultPrecisionString)
+      put("totalPrice", price.getDefaultPrecisionString(Locale.US))
       put("totalPriceLabel", label)
       put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE")
     }
@@ -195,7 +197,9 @@ class GooglePayApi(
 
   interface PaymentRequestCallback {
     fun onSuccess(paymentData: PaymentData)
-    fun onError()
+    fun onError(googlePayException: GooglePayException)
     fun onCancelled()
   }
+
+  class GooglePayException(code: Int, message: String?) : Exception(message)
 }

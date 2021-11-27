@@ -5,7 +5,7 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.installations.FirebaseInstallations
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -30,7 +30,7 @@ class AdvancedPrivacySettingsRepository(private val context: Context) {
         } catch (e: AuthorizationFailedException) {
           Log.w(TAG, e)
         }
-        if (!TextSecurePreferences.isFcmDisabled(context)) {
+        if (SignalStore.account().fcmEnabled) {
           Tasks.await(FirebaseInstallations.getInstance().delete())
         }
         DisablePushMessagesResult.SUCCESS
@@ -51,7 +51,7 @@ class AdvancedPrivacySettingsRepository(private val context: Context) {
 
   fun syncShowSealedSenderIconState() {
     SignalExecutors.BOUNDED.execute {
-      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(Recipient.self().id)
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()
       ApplicationDependencies.getJobManager().add(
         MultiDeviceConfigurationUpdateJob(

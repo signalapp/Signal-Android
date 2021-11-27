@@ -24,6 +24,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/typing_badge_1"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:badge_size="small"
+        app:layout_constraintStart_toStartOf="@id/typing_avatar_1"
+        app:layout_constraintTop_toTopOf="@id/typing_avatar_1"
+        tools:visibility="visible" />
+
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/typing_avatar_2"
         android:layout_width="@dimen/conversation_item_avatar_size"
@@ -39,6 +51,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/typing_badge_2"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:badge_size="small"
+        app:layout_constraintStart_toStartOf="@id/typing_avatar_2"
+        app:layout_constraintTop_toTopOf="@id/typing_avatar_2"
+        tools:visibility="visible" />
+
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/typing_avatar_3"
         android:layout_width="@dimen/conversation_item_avatar_size"
@@ -52,6 +76,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/typing_avatar_2"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/typing_badge_3"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:badge_size="small"
+        app:layout_constraintStart_toStartOf="@id/typing_avatar_3"
+        app:layout_constraintTop_toTopOf="@id/typing_avatar_3" />
 
     <TextView
         android:id="@+id/typing_count"

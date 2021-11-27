@@ -10,9 +10,9 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -39,8 +39,8 @@ public final class GroupsV1MigrationUtil {
       throws IOException, RetryLaterException, GroupChangeBusyException, InvalidMigrationStateException
   {
     Recipient     groupRecipient = Recipient.resolved(recipientId);
-    Long          threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
-    GroupDatabase groupDatabase  = DatabaseFactory.getGroupDatabase(context);
+    Long          threadId       = SignalDatabase.threads().getThreadIdFor(recipientId);
+    GroupDatabase groupDatabase  = SignalDatabase.groups();
 
     if (threadId == null) {
       Log.w(TAG, "No thread found!");
@@ -146,13 +146,13 @@ public final class GroupsV1MigrationUtil {
   {
     Log.i(TAG, "Beginning local migration! V1 ID: " + gv1Id, new Throwable());
     try (Closeable ignored = GroupsV2ProcessingLock.acquireGroupProcessingLock()) {
-      if (DatabaseFactory.getGroupDatabase(context).groupExists(gv1Id.deriveV2MigrationGroupId())) {
+      if (SignalDatabase.groups().groupExists(gv1Id.deriveV2MigrationGroupId())) {
         Log.w(TAG, "Group was already migrated! Could have been waiting for the lock.", new Throwable());
         return;
       }
 
       Recipient recipient = Recipient.externalGroupExact(context, gv1Id);
-      long      threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+      long      threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
       performLocalMigration(context, gv1Id, threadId, recipient);
       Log.i(TAG, "Migration complete! (" + gv1Id + ", " + threadId + ", " + recipient.getId() + ")", new Throwable());
@@ -182,7 +182,7 @@ public final class GroupsV1MigrationUtil {
       }
 
       Log.i(TAG, "[Local] Migrating group over to the version we were added to: V" + decryptedGroup.getRevision());
-      DatabaseFactory.getGroupDatabase(context).migrateToV2(threadId, gv1Id, decryptedGroup);
+      SignalDatabase.groups().migrateToV2(threadId, gv1Id, decryptedGroup);
 
       Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.getRevision());
       try {
@@ -198,14 +198,14 @@ public final class GroupsV1MigrationUtil {
   private static void handleLeftBehind(@NonNull Context context, @NonNull GroupId.V1 gv1Id, @NonNull Recipient groupRecipient, long threadId) {
     OutgoingMediaMessage leaveMessage = GroupUtil.createGroupV1LeaveMessage(gv1Id, groupRecipient);
     try {
-      long id = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(leaveMessage, threadId, false, null);
-      DatabaseFactory.getMmsDatabase(context).markAsSent(id, true);
+      long id = SignalDatabase.mms().insertMessageOutbox(leaveMessage, threadId, false, null);
+      SignalDatabase.mms().markAsSent(id, true);
     } catch (MmsException e) {
       Log.w(TAG, "Failed to insert group leave message!", e);
     }
 
-    DatabaseFactory.getGroupDatabase(context).setActive(gv1Id, false);
-    DatabaseFactory.getGroupDatabase(context).remove(gv1Id, Recipient.self().getId());
+    SignalDatabase.groups().setActive(gv1Id, false);
+    SignalDatabase.groups().remove(gv1Id, Recipient.self().getId());
   }
 
   /**

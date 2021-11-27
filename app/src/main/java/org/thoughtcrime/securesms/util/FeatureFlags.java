@@ -61,7 +61,7 @@ public final class FeatureFlags {
   private static final String VERIFY_V2                         = "android.verifyV2";
   private static final String PHONE_NUMBER_PRIVACY_VERSION      = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
-  public  static final String DONATE_MEGAPHONE                  = "android.donate";
+  public  static final String DONATE_MEGAPHONE                  = "android.donate.2";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
@@ -84,9 +84,8 @@ public final class FeatureFlags {
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
   private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
-  private static final String DONOR_BADGES                      = "android.donorBadges.3";
-  private static final String DONOR_BADGES_MEGAPHONE            = "android.donorBadges.megaphone";
-  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display";
+  private static final String DONOR_BADGES                      = "android.donorBadges.6";
+  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
 
   /**
@@ -127,7 +126,6 @@ public final class FeatureFlags {
       CDSH,
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
-      DONOR_BADGES_MEGAPHONE,
       DONOR_BADGES_DISPLAY
   );
 
@@ -413,21 +411,17 @@ public final class FeatureFlags {
    */
   public static boolean donorBadges() {
     if (Environment.IS_STAGING) {
-      return  true;
+      return true;
     } else {
-      return getBoolean(DONOR_BADGES, false ) || SignalStore.donationsValues().getSubscriber() != null;
+      return getBoolean(DONOR_BADGES, true) || SignalStore.donationsValues().getSubscriber() != null;
     }
-  }
-
-  public static boolean donorBadgesMegaphone() {
-    return getBoolean(DONOR_BADGES_MEGAPHONE, false);
   }
 
   /**
    * Whether or not donor badges should be displayed throughout the app.
    */
   public static boolean displayDonorBadges() {
-    return getBoolean(DONOR_BADGES_DISPLAY, Environment.IS_STAGING);
+    return getBoolean(DONOR_BADGES_DISPLAY, true);
   }
 
   public static boolean cdsh() {

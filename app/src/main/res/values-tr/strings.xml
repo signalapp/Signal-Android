@@ -438,11 +438,6 @@
   <string name="DeviceListItem_today">Bugün</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">İsimsiz dosya</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal\'e Bağış Yap</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal, sizin gibi insanlar tarafından desteklenmektedir. Desteğinizi bugün gösterin!</string>
-  <string name="DonateMegaphone_donate">Bağış yapın</string>
-  <string name="DonateMegaphone_no_thanks">Hayır teşekkürler</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Karşınızda Grup Aramaları</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ücretsiz ve şifreli grup araması başlatmak için yeni bir Grup açın.</string>
@@ -804,6 +799,7 @@
   <string name="InviteActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dahasını öğrenin</string>
+  <string name="SpanUtil__read_more">Devamını oku</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">İleti bulunamadı </string>
   <string name="LongMessageActivity_message_from_s">%1$s kişisinden ileti</string>
@@ -2393,7 +2389,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="Insights__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolü son %2$d gündeki iletilerinizin %%%1$d kadarını otomatik olarak korudu. Signal kullanıcıları arasındaki konuşmalar her zaman uçtan uca şifrelidir.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal\'i güçlendir</string>
   <string name="InsightsDashboardFragment__not_enough_data">Yetersiz veri</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">İçgörü yüzdeniz son %1$d gün içerisinde gönderdiğiniz kaybolmamış veya silinmemiş iletilere göre hesaplanır.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Konuşma başlat</string>
@@ -3126,6 +3121,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Görünüm ve renk seçimi yapın veya baş harflerinizi düzenleyin.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Şimdi değil</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Fotoğraf ekleyin</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Hayır teşekkürler</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji arayıcıyı aç</string>
@@ -3295,7 +3292,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ImageView__badge">Rozet</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal sizin gibi bireyler sayesinde var.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Bunu sürdüren insanlar topluluğuna katılarak verileriniz için değil, sizin için oluşturulan teknolojiyi destekleyin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Bağış miktarı</string> -->
   <string name="SubscribeFragment__more_payment_options">Diğer Ödeme Seçenekleri</string>
   <string name="SubscribeFragment__cancel_subscription">Aboneliği iptal et</string>
   <string name="SubscribeFragment__confirm_cancellation">İptal edilsin mi?</string>
@@ -3312,11 +3308,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · Bitiş %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Neden Katkıda Bulunulmalı?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal ekibi, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi sağlayan açık kaynaklı gizlilik teknolojisi geliştirme misyonuna kendini adamıştır. Katkınız bu davayı körüklüyor. Reklam yok. İzlenme yok. Şaka yok.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Katkınız, gizli ve anlık iletişim için dünya çapında milyonlarca kişi tarafından kullanılan bir uygulamanın geliştirilmesi, sunucuları ve bant genişliği için giderlerin karşılanmasında yardımcı olur.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Arttırıcı için teşekkürler!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Bir %s rozeti kazandınız! Rozetinizi göstermek, sohbet ettiğiniz kişilere Signal\'i desteklediğinizi gösterir.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Öne çıkarılan rozet seçin</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tamam</string>
@@ -3333,23 +3326,20 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal Arttırıcı ekleyin</string>
   <string name="MySupportPreference__s_per_month">%1$s/ay</string>
   <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s rozetinizin süresi doldu ve artık başkalarına gözükmeyecek.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Sizin için -verileriniz için değil- oluşturulmuş teknolojiyi desteklemeye devam etmek için lütfen aylık abone olmayı düşünün.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Abone ol</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
-  <string name="Subscription__verification_failed">Abonelik Onaylanamadı</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha fazla bilgi için lütfen bizimle iletişime geçin.</string>
   <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
   <string name="Subscription__earn_a_s_badge">Bir %1$s rozeti kazanın</string>
   <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
-  <string name="DonationsErrors__payment_failed">Ödeme başarısız oldu</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
-  <string name="DonationsErrors__redemption_still_pending">Ödeme beklemede</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Rozetinizi hemen göremeyebilirsiniz ama üzerinde çalışıyoruz!</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Kullanılamıyor</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurmanız gerekir.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonelik iptali için internet bağlantısı gerekir.</string>
+  <string name="NetworkFailure__retry">Tekrar dene</string>
   <!--EOF-->
 </resources>

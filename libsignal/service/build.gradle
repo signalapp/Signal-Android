@@ -43,8 +43,6 @@ dependencies {
 
     api libs.rxjava3.rxjava
 
-    api libs.signal.zkgroup.java
-
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core
     testImplementation testLibs.conscrypt.openjdk.uber

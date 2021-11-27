@@ -39,7 +39,7 @@ import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.testutil.ZkGroupLibraryUtil;
+import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.util.Collections;
 import java.util.UUID;
@@ -56,7 +56,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
   @Before
   public void setup() throws InvalidInputException {
-    ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS();
+    LibSignalLibraryUtil.assumeLibSignalSupportedOnOS();
 
     TestZkGroupServer  server             = new TestZkGroupServer();
     ClientZkOperations clientZkOperations = new ClientZkOperations(server.getServerPublicParams());

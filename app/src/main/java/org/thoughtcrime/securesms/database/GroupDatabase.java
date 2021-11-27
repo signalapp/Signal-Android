@@ -22,7 +22,6 @@ import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
@@ -124,7 +123,7 @@ private static final String[] GROUP_PROJECTION = {
 
   static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
 
-  public GroupDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public GroupDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -145,11 +144,11 @@ private static final String[] GROUP_PROJECTION = {
       if (cursor != null && cursor.moveToNext()) {
         Optional<GroupRecord> groupRecord = getGroup(cursor);
 
-        if (groupRecord.isPresent() && RemappedRecords.getInstance().areAnyRemapped(context, groupRecord.get().getMembers())) {
-          String remaps = RemappedRecords.getInstance().buildRemapDescription(context, groupRecord.get().getMembers());
+        if (groupRecord.isPresent() && RemappedRecords.getInstance().areAnyRemapped(groupRecord.get().getMembers())) {
+          String remaps = RemappedRecords.getInstance().buildRemapDescription(groupRecord.get().getMembers());
           Log.w(TAG, "Found a group with remapped recipients in it's membership list! Updating the list. GroupId: " + groupId + ", Remaps: " + remaps, true);
 
-          Collection<RecipientId> remapped = RemappedRecords.getInstance().remap(context, groupRecord.get().getMembers());
+          Collection<RecipientId> remapped = RemappedRecords.getInstance().remap(groupRecord.get().getMembers());
 
           ContentValues values = new ContentValues();
           values.put(MEMBERS, RecipientId.toSerializedList(remapped));
@@ -540,7 +539,7 @@ private static final String[] GROUP_PROJECTION = {
                       @Nullable GroupMasterKey groupMasterKey,
                       @Nullable DecryptedGroup groupState)
   {
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     RecipientId       groupRecipientId  = recipientDatabase.getOrInsertFromGroupId(groupId);
     List<RecipientId> members           = new ArrayList<>(new HashSet<>(memberCollection));
 
@@ -628,7 +627,7 @@ private static final String[] GROUP_PROJECTION = {
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId.toString()});
 
-    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    RecipientId groupRecipient = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient.live(groupRecipient).refresh();
 
     notifyConversationListListeners();
@@ -674,13 +673,13 @@ private static final String[] GROUP_PROJECTION = {
         throw new AssertionError();
       }
 
-      DatabaseFactory.getRecipientDatabase(context).updateGroupId(groupIdV1, groupIdV2);
+      SignalDatabase.recipients().updateGroupId(groupIdV1, groupIdV2);
 
       update(groupMasterKey, decryptedGroup);
 
-      DatabaseFactory.getSmsDatabase(context).insertGroupV1MigrationEvents(record.getRecipientId(),
-                                                                           threadId,
-                                                                           new GroupMigrationMembershipChange(pendingMembers, droppedMembers));
+      SignalDatabase.sms().insertGroupV1MigrationEvents(record.getRecipientId(),
+                                                        threadId,
+                                                        new GroupMigrationMembershipChange(pendingMembers, droppedMembers));
 
       db.setTransactionSuccessful();
     } finally {
@@ -695,7 +694,7 @@ private static final String[] GROUP_PROJECTION = {
   }
 
   public void update(@NonNull GroupId.V2 groupId, @NonNull DecryptedGroup decryptedGroup) {
-    RecipientDatabase     recipientDatabase   = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase     recipientDatabase   = SignalDatabase.recipients();
     RecipientId           groupRecipientId    = recipientDatabase.getOrInsertFromGroupId(groupId);
     Optional<GroupRecord> existingGroup       = getGroup(groupId);
     String                title               = decryptedGroup.getTitle();
@@ -775,7 +774,7 @@ private static final String[] GROUP_PROJECTION = {
     databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId.toString()});
 
-    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    RecipientId groupRecipient = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient.live(groupRecipient).refresh();
   }
 
@@ -789,7 +788,7 @@ private static final String[] GROUP_PROJECTION = {
     databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId.toString()});
 
-    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    RecipientId groupRecipient = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient.live(groupRecipient).refresh();
   }
 
@@ -803,7 +802,7 @@ private static final String[] GROUP_PROJECTION = {
     databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId.toString()});
 
-    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    RecipientId groupRecipient = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient.live(groupRecipient).refresh();
   }
 
@@ -817,7 +816,7 @@ private static final String[] GROUP_PROJECTION = {
     databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId.toString()});
 
-    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    RecipientId groupRecipient = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient.live(groupRecipient).refresh();
   }
 
@@ -899,7 +898,7 @@ private static final String[] GROUP_PROJECTION = {
     List<UUID>        uuids = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
     List<RecipientId> ids   = uuidsToRecipientIds(uuids);
 
-    if (RemappedRecords.getInstance().areAnyRemapped(context, ids)) {
+    if (RemappedRecords.getInstance().areAnyRemapped(ids)) {
       throw new IllegalStateException("Remapped records in group membership!");
     } else {
       return ids;

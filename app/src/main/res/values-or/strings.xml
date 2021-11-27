@@ -190,7 +190,7 @@
   <string name="ConversationActivity_group_members">ଗୋଷ୍ଠୀ ସଦସ୍ୟଗଣ</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">ଏକ ଗୋଷ୍ଠୀ କଲ୍ ଆରମ୍ଭ କରିବାକୁ ଏଠାରେ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
   <string name="ConversationActivity_invalid_recipient">ଅବୈଧ ପ୍ରାପ୍ତକର୍ତ୍ତା</string>
-  <string name="ConversationActivity_added_to_home_screen">ଘରୋଇ ଚିତ୍ରପଟ୍ଟରେ ଯୋଡ଼ିହେଲା</string>
+  <string name="ConversationActivity_added_to_home_screen">ଗୃହ-ଚିତ୍ରପଟ୍ଟରେ ଯୋଡ଼ାଗଲା</string>
   <string name="ConversationActivity_calls_not_supported">କଲ୍ ସମର୍ଥିତ ନୁହେଁ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ଏହି ଯନ୍ତ୍ର ଡାଏଲ୍ କ୍ରିୟାକୁ ସମର୍ଥନ କରୁଥିବା ପରି ଦେଖାଯାଏ ନାହିଁ</string>
   <string name="ConversationActivity_transport_insecure_sms">ଅସୁରକ୍ଷିତ SMS</string>
@@ -388,10 +388,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ବେନାମୀ ଫାଇଲ୍</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal କୁ ଦାନ କରନ୍ତୁ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ଆପଣଙ୍କ ପରି ଲୋକମାନଙ୍କ ଦ୍ୱାରା ଚାଳିତ | ଆଜି ଆପଣଙ୍କର ସମର୍ଥନ ଦେଖାନ୍ତୁ!</string>
-  <string name="DonateMegaphone_donate">ଦାନ କରନ୍ତୁ</string>
-  <string name="DonateMegaphone_no_thanks">ନା ଧନ୍ୟବାଦ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal କୁ ଦାନ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ଆପଣଙ୍କ ପରି ଲୋକମାନଙ୍କ ଦ୍ୱାରା ଚାଳିତ | ଆଜି ଆପଣଙ୍କର ସମର୍ଥନ ଦେଖାନ୍ତୁ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">ଦାନ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">ନା ଧନ୍ୟବାଦ</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ସାମୁହିକ କଲ୍ ର ପରିଚୟ</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ଏକ ମାଗଣା ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ସାମୁହିକ କଲ୍ ଆରମ୍ଭ କରିବାକୁ ଏକ ନୂତନ ଗୋଷ୍ଠୀ ଖୋଲନ୍ତୁ</string>
@@ -801,7 +801,7 @@
   <string name="Megaphones_new_group">ନୂତନ ଗୋଷ୍ଠୀ</string>
   <string name="Megaphones_invite_friends">ବନ୍ଧୁମାନଙ୍କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
   <string name="Megaphones_use_sms">ଏସ୍ଏମ୍ଏସ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
-  <string name="Megaphones_appearance">ଦୃଶ୍ୟ</string>
+  <string name="Megaphones_appearance">ରୂପ</string>
   <string name="Megaphones_add_photo">ଫଟୋ ଯୋଡ଼ନ୍ତୁ</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal କଲ୍ ଚାଲୁଅଛି</string>
@@ -1370,10 +1370,10 @@
   <string name="UsernameEditFragment_this_username_is_taken">ଉପଭୋକ୍ତା ନାମଟି ଆଗରୁ ନିଆଯାଇଛି।</string>
   <string name="UsernameEditFragment_this_username_is_available">ଉପଭୋକ୍ତା ନାମଟି ଉପଲବ୍ଧ ଅଛି।</string>
   <string name="UsernameEditFragment_usernames_can_only_include">ଉପଭୋକ୍ତା ନାମରେ କେବଳ a-Z, 0-9, ଏବଂ _ ରହିପାରିବ।</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ବ୍ୟବହାରିକ ନାମ ସଂଖ୍ୟାରେ ଆରମ୍ଭ ହେଇପାରିବନାହିଁ</string>
-  <string name="UsernameEditFragment_username_is_invalid">ବ୍ୟବହାରିକ ନାମ ଅବୈଧ ଅଟେ</string>
-  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ବ୍ୟବହାରିକ ନାମ %1$dରୁ %2$d ଲମ୍ଭା ହେଇଥିବା ଆବଶ୍ୟକ </string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ରେ ବ୍ୟବହାରିକ ନାମ ବୈକଲ୍ପିକ ଅଟେ | ଯଦି ଆପଣ ଏକ ବ୍ୟବହାରିକ ନାମ ବନାନ୍ତି, ଅନ୍ୟ Signal ବ୍ୟବହାରକାରୀମାନେ ଆପଣଙ୍କୁ ଏହା ଦ୍ୱାରା ଖୋଜିବାରେ ସକ୍ଷମ ହେବେ ଏବଂ ଆପଣଙ୍କ ନମ୍ବର ନ\'ଜାଣି ଆପଣଙ୍କ ସହ ଯୋଗାଯୋଗ କରିପାରିବେ  </string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ଉପଭୋକ୍ତା ନାମ ସଂଖ୍ୟାରେ ଆରମ୍ଭ ହେଇପାରିବନାହିଁ</string>
+  <string name="UsernameEditFragment_username_is_invalid">ଉପଭୋକ୍ତା ନାମ ଅବୈଧ ଅଟେ</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ଉପଭୋକ୍ତା ନାମ %1$dରୁ %2$d ଲମ୍ଭା ହେଇଥିବା ଆବଶ୍ୟକ।</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ରେ ଉପଭୋକ୍ତା ନାମ ବୈକଲ୍ପିକ ଅଟେ। ଯଦି ଆପଣ ଏକ ଉପଭୋକ୍ତା ନାମ ବନାନ୍ତି, ଅନ୍ୟ Signal ଉପଭୋକ୍ତାମାନେ ଆପଣଙ୍କୁ ଏହା ଦ୍ୱାରା ଖୋଜିବାରେ ସକ୍ଷମ ହେବେ ଏବଂ ଆପଣଙ୍କ ନମ୍ବର ନ\'ଜାଣି ଆପଣଙ୍କ ସହ ଯୋଗାଯୋଗ କରିପାରିବେ।</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dଜଣେ ସମ୍ପର୍କ Signal ରେ ଅଛନ୍ତି!</item>
     <item quantity="other">%d ଜଣ ସମ୍ପର୍କ Signal ରେ ଅଛନ୍ତି!</item>
@@ -1525,8 +1525,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">ଆପଣଙ୍କ ସମ୍ପର୍କ ପ୍ରଦର୍ଶନ କରିବାକୁ Signal ଯୋଗାଯୋଗ ଅନୁମତି ଆବଶ୍ୟକ କରେ, କିନ୍ତୁ ଏହାକୁ ସ୍ଥାୟୀ ଭାବରେ ପ୍ରତ୍ୟାଖ୍ୟାନ କରାଯାଇଛି | ଦୟାକରି ଆପ୍ ସେଟିଂସମୂହ ମେନୁକୁ ଯାଇଁ, \"ଅନୁମତି\" ଚୟନ କରନ୍ତୁ ଏବଂ \"ସମ୍ପର୍କଗୁଡିକ\" ସକ୍ଷମ କରନ୍ତୁ</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ସମ୍ପର୍କଗୁଡିକ ପୁନରୁଦ୍ଧାର କରିବାରେ ତ୍ରୁଟି, ଆପଣଙ୍କର ନେଟୱର୍କ ସଂଯୋଗକୁ ଯାଞ୍ଚ କରନ୍ତୁ</string>
-  <string name="ContactSelectionListFragment_username_not_found">ବ୍ୟବହାରିକ ନାମ ମିଳିଲାନାହିଁ</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ଏକ Signal ବ୍ୟବହାରକାରୀ ନୁହେଁ | ଦୟାକରି ବ୍ୟବହାରକାରୀ-ନାମ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ</string>
+  <string name="ContactSelectionListFragment_username_not_found">ଉପଭୋକ୍ତା ନାମ ମିଳିଲାନାହିଁ</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ଜଣେ Signal ଉପଭୋକ୍ତା ନୁହଁନ୍ତି। ଦୟାକରି ଉପଭୋକ୍ତା-ନାମ ଯାଞ୍ଚ କରି ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ତୁମେ ନିଜକୁ ଗୋଷ୍ଠୀରେ ଯୋଡିବା ଆବଶ୍ୟକ ନୁହେଁ</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">ସର୍ବାଧିକ ଗୋଷ୍ଠୀ ଆକାର ପହଞ୍ଚିଛି</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal ଗୋଷ୍ଠୀଗୁଡ଼ିକରେ ସର୍ବାଧିକ %1$dଜଣ ସଦସ୍ୟ ରହିପାରିବେ</string>
@@ -1701,7 +1701,7 @@
   <string name="CreateProfileActivity_last_name_optional">ଶେଷ ନାମ (ବୈକଳ୍ପିକ)</string>
   <string name="CreateProfileActivity_next">ପରବର୍ତ୍ତୀ</string>
   <string name="CreateProfileActivity__username">ଉପଭୋକ୍ତା ନାମ</string>
-  <string name="CreateProfileActivity__create_a_username">ବ୍ୟବହାରିକ-ନାମ ସୃଷ୍ଟି କରନ୍ତୁ</string>
+  <string name="CreateProfileActivity__create_a_username">ଉପଭୋକ୍ତା-ନାମ ସୃଷ୍ଟି କରନ୍ତୁ</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">କଷ୍ଟମ୍ MMS ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି କେବଳ ଆପଣଙ୍କୁ ଦୃଶ୍ୟମାନ ହେବ</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">ବିଷୟରେ</string>
@@ -1875,13 +1875,13 @@
   <string name="preferences__advanced">ଉନ୍ନତ</string>
   <string name="preferences__donate_to_signal">Signal କୁ ଦାନ କରନ୍ତୁ</string>
   <string name="preferences__privacy">ଗୋପନୀୟତା</string>
-  <string name="preferences__mms_user_agent">MMS ବ୍ୟବହାରକାରୀ ଏଜେଣ୍ଟ</string>
+  <string name="preferences__mms_user_agent">MMS ଉପଭୋକ୍ତା ଏଜେଣ୍ଟ</string>
   <string name="preferences__advanced_mms_access_point_names">ମାନୁଆଲ୍ MMS ସେଟିଂସମୂହ</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS ପ୍ରକ୍ସି ହୋଷ୍ଟ</string>
   <string name="preferences__mms_proxy_port">MMS ପ୍ରକ୍ସି ପୋର୍ଟ</string>
-  <string name="preferences__mmsc_username">MMSC ବ୍ୟବହାରିକ-ନାମ</string>
-  <string name="preferences__mmsc_password">MMSC ପାସୱାର୍ଡ</string>
+  <string name="preferences__mmsc_username">MMSC ଉପଭୋକ୍ତା-ନାମ</string>
+  <string name="preferences__mmsc_password">MMSC ପାସ୍‍ୱାର୍ଡ଼</string>
   <string name="preferences__sms_delivery_reports">SMS ବିତରଣ ରିପୋର୍ଟ</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ଆପଣ ପଠାଉଥିବା ପ୍ରତ୍ୟେକ SMS ବାର୍ତ୍ତା ପାଇଁ ଏକ ବିତରଣ ରିପୋର୍ଟ ଅନୁରୋଧ</string>
   <string name="preferences__data_and_storage">ଡାଟା ଏବଂ ଷ୍ଟୋରେଜ୍</string>
@@ -1892,9 +1892,9 @@
   <string name="preferences__keep_messages">ବାର୍ତ୍ତା ରଖନ୍ତୁ</string>
   <string name="preferences__clear_message_history">ବାର୍ତ୍ତା ଇତିହାସ ସଫା କରନ୍ତୁ</string>
   <string name="preferences__linked_devices">ସଂଯୋଜିତ ଉପକରଣ</string>
-  <string name="preferences__light_theme">ଆଲୋକପୂର୍ଣ</string>
-  <string name="preferences__dark_theme">ଅନ୍ଧାର</string>
-  <string name="preferences__appearance">ଦୃଶ୍ୟ</string>
+  <string name="preferences__light_theme">ହାଲୁକା</string>
+  <string name="preferences__dark_theme">ଗାଢ଼</string>
+  <string name="preferences__appearance">ରୂପ</string>
   <string name="preferences__theme">ଥିମ୍</string>
   <string name="preferences__chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <string name="preferences__chat_color_and_wallpaper">ଚାଟ୍ ରଙ୍ଗ ଓ ୱାଲପେପର୍</string>
@@ -1906,7 +1906,7 @@
   <string name="preferences__language">ଭାଷା</string>
   <string name="preferences__signal_messages_and_calls">Signal ବାର୍ତ୍ତା ଏବଂ କଲ୍</string>
   <string name="preferences__advanced_pin_settings">ଉନ୍ନତ ପିନ୍ ସେଟିଙ୍ଗ୍</string>
-  <string name="preferences__free_private_messages_and_calls">Signal ବ୍ୟବହାରକାରୀଙ୍କୁ ମାଗଣା ବ୍ୟକ୍ତିଗତ ବାର୍ତ୍ତା ଏବଂ କଲ୍</string>
+  <string name="preferences__free_private_messages_and_calls">Signal ଉପଭୋକ୍ତାଗଣଙ୍କୁ ମାଗଣା ବ୍ୟକ୍ତିଗତ ବାର୍ତ୍ତା ଏବଂ କଲ୍</string>
   <string name="preferences__submit_debug_log">ଡିବଗ୍ ଲଗ୍ ଦାଖଲ କରନ୍ତୁ</string>
   <string name="preferences__delete_account">ଖାତା ବିଲୋପ କରନ୍ତୁ</string>
   <string name="preferences__support_wifi_calling">\'ୱାଇଫାଇ କଲିଂ\' ସୁସଙ୍ଗତ ମୋଡ୍</string>
@@ -1973,7 +1973,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ଯେକୌଣସୀଙ୍କ ଠାରୁ ଅନୁମତି ଦିଅନ୍ତୁ</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ସଂପର୍କ ରେ ନଥିବା ଏବଂ ଯାହାଙ୍କ ସହିତ ଆପଣ ଆପଣଙ୍କର ପ୍ରୋଫାଇଲ୍ ଅଂଶୀଦାର କରିନାହାଁନ୍ତି, ସେମାନଙ୍କ ଠାରୁ ଆସୁଥିବା ବାର୍ତ୍ତାଗୁଡିକ ପାଇଁ ସିଲ୍ ହେଇଥିବା ପ୍ରେରକ ସକ୍ଷମ କରନ୍ତୁ </string>
   <string name="preferences_communication__sealed_sender_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
-  <string name="preferences_setup_a_username">ବ୍ୟବହାରିକ-ନାମ ସୃଷ୍ଟି କରନ୍ତୁ</string>
+  <string name="preferences_setup_a_username">ଉପଭୋକ୍ତା-ନାମ ସୃଷ୍ଟି କରନ୍ତୁ</string>
   <string name="preferences_proxy">ପ୍ରକ୍ସି</string>
   <string name="preferences_use_proxy">ପ୍ରକ୍ସି ବ୍ୟବହାର କରନ୍ତୁ </string>
   <string name="preferences_off">ବନ୍ଦ</string>
@@ -2117,7 +2117,7 @@
   <string name="conversation__menu_leave_group">ଗୋଷ୍ଠୀ ଛାଡ଼ନ୍ତୁ</string>
   <string name="conversation__menu_view_all_media">ସମସ୍ତ ମିଡ଼ିଆ</string>
   <string name="conversation__menu_conversation_settings">ବାର୍ତ୍ତାଳାପ ସେଟିଂସମୂହ</string>
-  <string name="conversation__menu_add_shortcut">ଘରୋଇ-ଚିତ୍ରପଟ୍ଟରେ ଯୋଡ଼ନ୍ତୁ</string>
+  <string name="conversation__menu_add_shortcut">ଗୃହ-ଚିତ୍ରପଟ୍ଟରେ ଯୋଡ଼ନ୍ତୁ</string>
   <string name="conversation__menu_create_bubble">ଫୋଟକା ସୃଷ୍ଟି କରନ୍ତୁ</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ପପ୍ଅପ୍ ବିସ୍ତାର କରନ୍ତୁ</string>
@@ -2159,7 +2159,7 @@
   <string name="Insights__title">ଅନ୍ତର୍ଦୃଷ୍ଟି</string>
   <string name="InsightsDashboardFragment__title">ଅନ୍ତର୍ଦୃଷ୍ଟି</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">ବିଗତ %2$d ଦିନ ମଧ୍ୟରେ Signal ପ୍ରୋଟୋକଲ୍ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଆପଣଙ୍କର ଯାଉଥିବା ବାର୍ତ୍ତାଗୁଡ଼ିକର %1$d%% ସୁରକ୍ଷିତ କରିଛି | Signal ବ୍ୟବହାରକାରୀଙ୍କ ମଧ୍ୟରେ ବାର୍ତ୍ତାଳାପ ସବୁବେଳେ ଏଣ୍ଡ-ଟୁ-ଏଣ୍ଡ ଏନକ୍ରିପ୍ଟ ହୋଇଥାଏ |</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal ବୃଦ୍ଧି</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal ବୃଦ୍ଧି</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">ପର୍ଯ୍ୟାପ୍ତ ଡାଟା ନାହିଁ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ବିଗତ%1$d ଦିନ ମଧ୍ୟରେ ବାହାରୁଥିବା ବାର୍ତ୍ତା ଉପରେ ଆଧାର କରି ଆପଣଙ୍କର ଅନ୍ତର୍ନିହିତ ଶତକଡା ହିସାବ କରାଯାଏ ଯାହା ଅଦୃଶ୍ୟ ହୋଇନାହିଁ କିମ୍ବା ବିଲୋପ ହୋଇନାହିଁ</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ଏକ ବାର୍ତ୍ତାଳାପ ଆରମ୍ଭ କରନ୍ତୁ</string>
@@ -2523,6 +2523,7 @@
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">ଚାଟ୍ ରଙ୍ଗ</string>
   <string name="ChatWallpaperFragment__set_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ଗାଢ଼ ମୋଡ୍ ୱାଲପେପର୍ ଡିମ୍ କରେ</string>
   <string name="ChatWallpaperFragment__contact_name">ସମ୍ପର୍କର ନାମ</string>
   <string name="ChatWallpaperFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="ChatWallpaperFragment__clear">ସଫା କରନ୍ତୁ</string>
@@ -2640,6 +2641,7 @@
   <string name="ExpireTimerSettingsFragment__1_hour">୧ ଘଣ୍ଟା</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">୫ ମିନିଟ୍‌</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">୩୦ ସେକେଣ୍ଡ</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">କଷ୍ଟମ୍ ସମୟ</string>
   <string name="ExpireTimerSettingsFragment__save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <string name="CustomExpireTimerSelectorView__seconds">ସେକେଣ୍ଡ</string>
   <string name="CustomExpireTimerSelectorView__minutes">ମିନିଟ୍‌</string>
@@ -2657,6 +2659,7 @@
   <string name="DataAndStorageSettingsFragment__calls">କଲ୍</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">ସ୍ଵତଃ</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">କଷ୍ଟମ୍ ରଙ୍ଗ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="ChatColorSelectionFragment__chat_color">ଚାଟ୍ ରଙ୍ଗ</string>
   <string name="ChatColorSelectionFragment__edit">ସମ୍ପାଦନ</string>
   <string name="ChatColorSelectionFragment__delete">ବିଲୋପ କରନ୍ତୁ</string>
@@ -2670,7 +2673,7 @@
   <string name="EditReactionsFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="EditReactionsFragment_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__appearance">ଦୃଶ୍ୟ</string>
+  <string name="ChatColorsMegaphone__appearance">ରୂପ</string>
   <string name="ChatColorsMegaphone__not_now">ଏବେ ନୁହେଁ</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ଏବେ ନୁହେଁ</string>
@@ -2757,6 +2760,6 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ଏବେ ନୁହେଁ</string>
   <string name="Subscription__contact_support">ସମର୍ଥନ କୁ ଯୋଗାଯୋଗ କରନ୍ତୁ</string>
   <string name="SubscribeFragment__processing_payment">ପଇସା ଦେୟ ପ୍ରକ୍ରିୟାକରଣ ଚାଲୁଛି</string>
-  <string name="DonationsErrors__payment_failed">ପଇସା ଦେୟ ବିଫଳ ହେଲା</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">ପଇସା ଦେୟ ବିଫଳ ହେଲା</string> -->
   <!--EOF-->
 </resources>

@@ -13,7 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -56,9 +56,9 @@ public class UserNotificationMigrationJob extends MigrationJob {
 
   @Override
   void performMigration() {
-    if (!TextSecurePreferences.isPushRegistered(context)      ||
-        TextSecurePreferences.getLocalNumber(context) == null ||
-        TextSecurePreferences.getLocalAci(context) == null)
+    if (!SignalStore.account().isRegistered()   ||
+        SignalStore.account().getE164() == null ||
+        SignalStore.account().getAci() == null)
     {
       Log.w(TAG, "Not registered! Skipping.");
       return;
@@ -74,7 +74,7 @@ public class UserNotificationMigrationJob extends MigrationJob {
       return;
     }
 
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    ThreadDatabase threadDatabase = SignalDatabase.threads();
 
     int threadCount = threadDatabase.getUnarchivedConversationListCount() +
                       threadDatabase.getArchivedConversationListCount();
@@ -84,8 +84,8 @@ public class UserNotificationMigrationJob extends MigrationJob {
       return;
     }
 
-    List<RecipientId> registered               = DatabaseFactory.getRecipientDatabase(context).getRegistered();
-    List<RecipientId> systemContacts           = DatabaseFactory.getRecipientDatabase(context).getSystemContacts();
+    List<RecipientId> registered               = SignalDatabase.recipients().getRegistered();
+    List<RecipientId> systemContacts           = SignalDatabase.recipients().getSystemContacts();
     Set<RecipientId>  registeredSystemContacts = SetUtil.intersection(registered, systemContacts);
     Set<RecipientId>  threadRecipients         = threadDatabase.getAllThreadRecipients();
 

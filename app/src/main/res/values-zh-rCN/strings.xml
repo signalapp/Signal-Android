@@ -383,11 +383,6 @@
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">未命名文件</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">捐赠 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 的进步离不开用户的支持，如果您觉得获益良多可以考虑捐助我们。</string>
-  <string name="DonateMegaphone_donate">捐</string>
-  <string name="DonateMegaphone_no_thanks">不用，谢谢</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">隆重推出“群语音通话”功能</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">打开一个新版群组来开始一次免费的加密群语音通话</string>
@@ -2214,7 +2209,6 @@
   <string name="Insights__title">见解</string>
   <string name="InsightsDashboardFragment__title">见解</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">在过去 %2$d 天，Signal Protocol 自动保护 %1$d%% 的传出消息。Signal 用户之间的对话一直为端对端加密。</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">提升 Signal 得分</string>
   <string name="InsightsDashboardFragment__not_enough_data">数据不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的“见解”中计算得到的百分比，来自过去 %1$d 天内未消失或删除的传出消息。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">开始聊天</string>
@@ -2904,6 +2898,8 @@
   <string name="ChatColorsMegaphone__not_now">稍后再说</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">稍后再说</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">不，谢谢。</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符号</string>
   <string name="KeyboardPagerFragment_open_emoji_search">打开表情符号搜索</string>
@@ -3008,15 +3004,17 @@
   <string name="MediaReviewImagePageFragment__discard">放弃</string>
   <string name="SelectFeaturedBadgeFragment__preview">预览</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由如您一样的用户提供动力。</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">捐赠金额</string> -->
   <string name="SubscribeFragment__not_now">稍后再说</string>
   <string name="SubscribeFragment__confirm">确认</string>
   <string name="SubscribeFragment__update">更新</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
   <string name="Boost__enter_custom_amount">输入自定义金额</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍后再说</string>
   <string name="Subscription__contact_support">联系支持</string>
   <string name="SubscribeFragment__processing_payment">正在处理付款…</string>
-  <string name="DonationsErrors__payment_failed">付款失败</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">重试</string>
   <!--EOF-->
 </resources>

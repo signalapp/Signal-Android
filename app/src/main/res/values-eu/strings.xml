@@ -386,10 +386,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Izenik gabeko fitxategia</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal-i dohaintza eman</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalen indarra zu moduko jendearengandik dator. Erakutsi zure laguntza gaur bertan!</string>
-  <string name="DonateMegaphone_donate">Dohaintza egin</string>
-  <string name="DonateMegaphone_no_thanks">Ez eskerrik asko</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal-i dohaintza eman</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalen indarra zu moduko jendearengandik dator. Erakutsi zure laguntza gaur bertan!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Dohaintza egin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ez eskerrik asko</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Talde-deiei buruz</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ireki Talde Berria zifratutako talde-dei bat egiteko</string>
@@ -2124,7 +2124,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="Insights__title">Estatistikak</string>
   <string name="InsightsDashboardFragment__title">Estatistikak</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokoloak azkenengo %2$d egunetan bidali duzun mezuen %1$d%% babestu du. Signalen erabiltzaileen arteko solasaldiak muturretik-muturrera daude enkriptatuta beti.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal bizkortu</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signal bizkortu</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Ez dago datu nahikorik</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Zure estatistiken ehunekoaren kalkulua azkenengo %1$d egunetan bidali diren mezuetan oinarritzen da; desagertu ez diren edo ezabatu ez diren mezuak bakarrik hartzen dira kontuan.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Solasaldi bat hasieratu</string>

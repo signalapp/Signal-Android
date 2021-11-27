@@ -204,6 +204,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Tệp đính kèm vượt quá giới hạn kích cỡ cho loại tin nhắn mà bạn đang gửi.</string>
   <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Bạn không thể nhắn tin cho nhóm này vì bạn không còn là thành viên.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Chỉ có %1$smới có thể gửi được tin nhắn.</string>
   <string name="ConversationActivity_admins">người quản trị</string>
   <string name="ConversationActivity_message_an_admin">Nhắn tin cho quản trị viên</string>
   <string name="ConversationActivity_cant_start_group_call">Không thể bắt đầu cuộc gọi nhóm</string>
@@ -416,11 +417,6 @@
   <string name="DeviceListItem_today">Hôm nay</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Tệp không tên</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Ủng hộ Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal được hỗ trợ bởi những cá nhân như bạn. Hãy thể hiện sự hỗ trợ của bạn ngay hôm nay!</string>
-  <string name="DonateMegaphone_donate">Ủng hộ</string>
-  <string name="DonateMegaphone_no_thanks">Không, Cảm ơn</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Giới thiệu Cuộc gọi Nhóm</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Mở một Nhóm Mới để bắt đầu một cuộc gọi nhóm bảo mật</string>
@@ -631,6 +627,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Chỉ quản trị viên mới có thể thiết lập lại đường dẫn nhóm chia sẻ được.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Bạn không có quyền thực hiện điều này</string>
   <string name="ManageGroupActivity_not_capable">Bạn đã thêm một thành viên không hỗ trợ Nhóm Signal và cần cập nhật ứng dụng Signal.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Bạn đã thêm một thành viên không hổ trợ nhóm quảng cáo và cần phải cấp nhật Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Không thể cập nhật nhóm</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Bạn không phải thành viên nhóm này</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Không thể cập nhật nhóm, vui lòng thử lại sau</string>
@@ -658,6 +655,8 @@
   <string name="ManageProfileFragment_your_name">Tên của bạn</string>
   <string name="ManageProfileFragment_your_username">Tên người dùng của bạn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Không thể đặt ảnh đại diện</string>
+  <string name="ManageProfileFragment_badges">Huy hiệu</string>
+  <string name="ManageProfileFragment__edit_photo">Tùy chỉnh ảnh</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Không có nhóm chung</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -745,6 +744,7 @@
   <string name="InviteActivity_sending">Đang gửi…</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
   <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
+  <string name="InviteActivity_send_sms">Gửi SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">GỬI %d LỜI MỜI QUA SMS?</item>
   </plurals>
@@ -752,6 +752,7 @@
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng nào để chia sẻ.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Tìm hiểu thêm</string>
+  <string name="SpanUtil__read_more">Đọc thêm</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Không thể tìm tin nhắn</string>
   <string name="LongMessageActivity_message_from_s">Tin nhắn từ %1$s</string>
@@ -790,6 +791,9 @@
   </plurals>
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="other">Xóa</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="other">%1$dđã chọn (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Tệp</string>
   <string name="MediaOverviewActivity_audio">Âm thanh</string>
@@ -911,6 +915,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s đã chọn %2$s làm quản trị viên.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s đã chọn bạn làm quản trị viên.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Bạn đã thu hồi quyền quản trị của %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$sđã thu hồi quyền quản trị viên của bạn.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s đã thu hồi quyền quản trị của %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s đã trở thành quản trị viên.</string>
   <string name="MessageRecord_you_are_now_an_admin">Bạn đang là quản trị viên.</string>
@@ -968,6 +973,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Bạn đã thay đổi cài đặt nhóm để cho phép tất cả thành viên gửi tin nhắn.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Bạn đã thay đổi cài đặt nhóm để chỉ cho phép người quản trị gửi tin nhắn.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$sđã thay đổi cài đặt nhóm để cho phép tất cả thành viên được gửi tin nhắn.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$sđã thay đổi cài đặt nhóm để cho phép quản trị viên được gửi tin nhắn.</string>
   <string name="MessageRecord_allow_all_members_to_send">Cài đặt nhóm được thay đổi để cho phép tất cả thành viên được gửi tin nhắn.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Cài đặt nhóm đã được thay đổi để chỉ cho phép người quản trị gửi tin nhắn.</string>
   <!--GV2 group link invite access level change-->
@@ -1015,6 +1022,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bạn đã hủy xác minh mã số an toàn với %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bạn đã hủy xác minh mã số an toàn với %s từ thiết bị khác</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Một tin nhắn từ %s không thể được gửi</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$sđã thay đổi số điện thoại của họ sang một số mới.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s đã bắt đầu cuộc gọi nhóm · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s đang trong cuộc gọi nhóm · %2$s</string>
@@ -1180,6 +1188,10 @@
   <string name="WebRtcCallView__joining">Đang tham gia…</string>
   <string name="WebRtcCallView__disconnected">Đã ngắt kết nối</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal sẽ rung chuông %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal sẽ đổ chuông %1$svà %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signal sẽ đổ chuông %1$s, %2$s, và %3$d người khác</item>
+  </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s sẽ được thông báo</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s và %2$s sẽ được thông báo</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
@@ -1187,15 +1199,24 @@
   </plurals>
   <string name="WebRtcCallView__ringing_s">Đang rung chuông %1$s</string>
   <string name="WebRtcCallView__ringing_s_and_s">Đang rung chuông %1$s và %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">Đang đổ chuông %1$s, %2$s, và %3$dngười khác</item>
+  </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s đang gọi bạn </string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s đang gọi bạn và %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s đang gọi bạn, %2$s, và %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s đang gọi bạn, %2$s, %3$s, và %4$dngười khác</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Không có ai khác đang ở đây</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s đang trong cuộc gọi này</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s đang trong cuộc gọi này</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s và %2$s đang trong cuộc gọi này</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s đang chia sẻ màn hình</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, và %3$d người khác đang trong cuộc gọi này</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Ghim</string>
   <string name="WebRtcCallView__speaker">Loa</string>
   <string name="WebRtcCallView__camera">Máy ảnh</string>
   <string name="WebRtcCallView__mute">Im lặng</string>
@@ -1245,6 +1266,10 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal cần truy cập danh bạ của bạn để kết nối với bạn bè của bạn, trao đổi tin nhắn, và thực hiện cuộc gọi bảo mật</string>
   <string name="RegistrationActivity_rate_limited_to_service">Bạn đã thử đăng kí số điện thoại này quá nhiều lần. Vui lòng thử lại sau.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Không thể kết nối với dịch vụ. Vui lòng kiểm tra đuờng truyền mạng và thử lại.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Định dạng số không chuẩn</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Số mà bạn nhập vào (%1$s) không đúng. /n/n có phải ý bạn là %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Định dạng số điện thoại</string>
+  <string name="RegistrationActivity_call_requested">Cuộc gọi được yêu cầu</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Còn %d bước nữa để bạn hoàn thành gửi báo cáo lỗi.</item>
   </plurals>
@@ -1337,6 +1362,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SubmitDebugLogActivity_success">Thành công!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Sao chép URL này và thêm nó vào báo cáo lỗi hoặc email hỗ trợ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Chia sẻ</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Nhật kí này sẽ được đăng trực tuyến công khai cho những người đóng góp theo dõi. Bạn có thể kiểm tra nó trước khi gửi đi.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Bộ lọc:</string>
   <string name="SupportEmailUtil_device_info">Thông tin thiết bị:</string>
@@ -1466,6 +1492,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_reacted_s_to_s">Đã bày tỏ cảm xúc %1$s cho \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Đã bày tỏ cảm xúc %1$s cho video của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Đã bày tỏ cảm xúc %1$s cho hình ảnh của bạn.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Đã bày tỏ cảm xúc %1$scho hình GIF của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Đã bày tỏ cảm xúc %1$s cho tệp tin của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Đã bày tỏ cảm xúc %1$s cho tệp âm thanh của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Đã bày tỏ cảm xúc %1$s về tệp đa phương tiện xem một lần của bạn.</string>
@@ -1761,7 +1788,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Điền vào tên hoặc số</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Để xác mình bảo mật thiết bị đầu cuối của bạn với %s, hãy so sánh dảy số này với số hiện trên thiết bị của họ. Hoặc bạn có thể quét mã QR trên thiết bị của họ. <a href="https://signal.org/redirect/safety-numbers"> Tìm hiểu thêm.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Nhấn để quét</string>
+  <string name="verify_display_fragment__successful_match">Kết nối thành công</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Xác thực số an toàn thất bại</string>
   <string name="verify_display_fragment__loading">Đang tải…</string>
   <string name="verify_display_fragment__mark_as_verified">Đánh dấu đã xác minh</string>
@@ -1775,6 +1804,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Vuốt xuống để từ chối</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Một số vấn đề cần bạn chú ý.</string>
+  <string name="message_details_header__sent">Đã gửi:</string>
+  <string name="message_details_header__received">Đã nhận:</string>
+  <string name="message_details_header__disappears">Hủy bỏ:</string>
+  <string name="message_details_header__via">Chuyển tiếp:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Đang chờ</string>
   <string name="message_details_recipient_header__sent_to">Gửi từ</string>
@@ -1816,6 +1849,16 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpFragment__debug_log">Nhật kí lỗi:</string>
   <string name="HelpFragment__could_not_upload_logs">Không thể tải lên nhật kí lỗi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vui lòng miêu tả càng chi tiết càng tốt để giúp chúng tôi hiểu về vấn đề.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>/-/- Hãy chọn một tùy chọn /-/-</item>
+    <item>Có một số phần đang không hoạt động</item>
+    <item>Lệnh chức năng</item>
+    <item>Câu hỏi</item>
+    <item>Góp ý</item>
+    <item>Mục khác</item>
+    <item>Thanh toán (Mobilecoin)</item>
+    <item>Đóng góp và ủng hộ Signal</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tin nhắn này</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Sử dụng gần đây</string>
@@ -1911,6 +1954,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__help">Hỗ trợ</string>
   <string name="preferences__advanced">Nâng cao</string>
   <string name="preferences__donate_to_signal">Ủng hộ Signal</string>
+  <string name="preferences__subscription">Số tiền đống góp</string>
+  <string name="preferences__become_a_signal_sustainer">Trở thành người quyên góp cho Signal</string>
+  <string name="preferences__signal_boost">Tăng trưởng Signal</string>
   <string name="preferences__privacy">Riêng tư</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Thiết đặt MMS bằng tay</string>
@@ -2267,7 +2313,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="Insights__title">Phân tích</string>
   <string name="InsightsDashboardFragment__title">Phân tích</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Giao thức Signal đã tự động bảo vệ %1$d%% số tin nhắn bạn gửi đi trong %2$d ngày trước. Cuộc trò chuyện giữa những người dùng Signal luôn được mã hóa hai chiều.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Tăng tỉ lệ Signal</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Dàng trải từ</string>
   <string name="InsightsDashboardFragment__not_enough_data">Không đủ dữ liệu</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Số phần trăm Dữ liệu Phân tích của bạn được tính dựa vào số tin nhắn gửi đi trong %1$d ngày trước mà không bị xóa hay tự hủy.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bắt đầu cuộc trò chuyện</string>
@@ -2435,6 +2481,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RegistrationActivity_call_me_instead_available_in">Hãy gọi tôi \n  (Khả dụng sau %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ Signal</string>
   <string name="RegistrationActivity_code_support_subject">Đăng ký Signal - Mã Xác minh cho Android</string>
+  <string name="RegistrationActivity_incorrect_code">Mã không đúng</string>
   <string name="BackupUtil_never">Không bao giờ</string>
   <string name="BackupUtil_unknown">Không rõ</string>
   <string name="preferences_app_protection__see_my_phone_number">Thấy số điện thoại của tôi</string>
@@ -2846,17 +2893,44 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="AccountSettingsFragment__account">Tài khoản</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bạn sẽ dần được hỏi ít thường xuyên hơn qua thời gian</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Yêu cầu mã PIN Signal của bạn để đăng ký lại số điện thoại của bạn với Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Thay đổi số điện thoại</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Dùng để thay đổi số điện thoại hiện tại của bạn sang một số khác. Bạn không thể khôi phục thay đổi này. /n/n trước khi tiếp tục, hãy chắc chắn rằng số điện thoại mới của bạn đang hoạt động bình thường.</string>
   <string name="ChangeNumberFragment__continue">Tiếp tục</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Số điện thoại của bạn đã thay đổi.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Thay đổi số</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Số cũ của bạn</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Số điện thoại cũ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Số mới của bạn</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Số điện thoại mới</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Số điện thoại bạn nhập vào không khớp với số của tài khoản của bạn.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Bạn phải khai báo mã quốc già của số điện thoại cũ của bạn</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Bạn phải khai báo số điện thoại cũ của bạn</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Bạn phải khai báo mã quốc già của số điện thoại mới của bạn</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Bạn phải khai báo số điện thoại mới của bạn</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Thay đổi số</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Đang xác thực %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Yêu cầu Captcha</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Thay đổi số</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Số điện thoại của bạn sẽ thay đổi từ số %1$ssang số %2$s. /n/n Trước khi bắt đầu thay đổi, vui lòng xác nhấn số của bạn bên dưới là chính xác.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Sửa số</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Đổi số điện thoại trong Signal - Cần xác nhận mã PIN cho điện thoại Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Mã PIN không đúng</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Mã PIN của số điện thoại mới của bạn không giống với mã PIN của số điện thoại cũ. Bạn có muốn giữ nguyên mã PIN cũ hay thay thế bằng mã PIN mới?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Giữ nguyên mã PIN cũ</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Cập nhật mã PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">bạn có chắc muôn giữ mã PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Có vẻ như bạn đã thay đổi số điện thoại nhưng chúng tôi chưa thể xác nhận thao tác của bạn đã thành công hay chưa.n/n/ kiểm tra lại ngay…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Xác nhận thay đổi trạng thái</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Số điện thoại đã được xác nhận của bạn là %1$s. Nếu đây không phải là số mới của bạn, xin hãy làm lại quy trình đổi số.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Thay đổi trạng thái vẫn chưa được xác nhận</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Chúng tôi không xác định được trạng thái yêu cầu đổi số của bạn./n/n (Lỗi:: %1$s)</string>
   <string name="ChangeNumberLockActivity__retry">Thử lại</string>
   <string name="ChangeNumberLockActivity__leave">Rời</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Gửi nhật ký gỡ lỗi</string>
@@ -2911,6 +2985,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpFragment__copyright_signal_messenger">Bản quyền Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Cấp phép dưới GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Chất lượng tập tin đa phương tiện</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Chất lượng tập tin đa phương tiện đã gửi</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Việc gửi tập tin đa phương tiện chất lượng cao sẽ tốn nhiều lưu lượng hơn.</string>
   <string name="DataAndStorageSettingsFragment__high">Cao</string>
   <string name="DataAndStorageSettingsFragment__standard">Tiêu chuẩn</string>
   <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
@@ -2953,8 +3030,15 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ChatColorsMegaphone__appearance">Diện mạo</string>
   <string name="ChatColorsMegaphone__not_now">Để sau</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Thêm ảnh đại diện</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Chọn định dạng và màu sắc hoặc tùy chỉnh chữ ký của bạn.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Để sau</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Thêm ảnh</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Trở thành người quyên góp</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal đang ngày càng phát triển nhờ những đống góp của bạn. Hãy cùng nhau đống góp cho sự phát triển của Signal và nhận về những huy hiệu từ chúng tôi.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Không, cảm ơn</string>
+  <string name="BecomeASustainerMegaphone__contribute">Đống góp</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Mở tìm kiếm emoji</string>
@@ -3003,13 +3087,16 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConversationSettingsFragment__conversation_muted_forever">Cuộc trò chuyện tắt tiếng vĩnh viễn</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Đã sao chép số điện thoại vào bảng kẹp.</string>
   <string name="ConversationSettingsFragment__phone_number">Số điện thoại</string>
+  <string name="ConversationSettingsFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal. Bấm vào \"huy hiệu\" để biết thêm chi tiết.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Thêm thành viên</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Sửa thông tin nhóm</string>
+  <string name="PermissionsSettingsFragment__send_messages">Gửi tin nhắn</string>
   <string name="PermissionsSettingsFragment__all_members">Tất cả thành viên</string>
   <string name="PermissionsSettingsFragment__only_admins">Chỉ quản trị viên</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Ai có thể thêm thành viên mới?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ai có thể chỉnh sửa thông tin nhóm này?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Ai có thể gửi tin nhắn trong hộp chat này?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tạm im thông báo</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Không tắt thông báo</string>
@@ -3023,6 +3110,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Thanh toán mới</string>
@@ -3032,40 +3120,169 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ContactFilterView__search_name_or_number">Tìm kiếm tên hoặc số điện thoại</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Dừng tin nhắn thoại</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Thay đổi tốc độ của tin nhắn thoại</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Tạm dừng tin nhắn thoại</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Phát tin nhắn thoại</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Điều hướng tin nhắn thoại</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Xem trước ảnh đại diện</string>
   <string name="AvatarPickerFragment__camera">Máy ảnh</string>
+  <string name="AvatarPickerFragment__take_a_picture">Chụp hình</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Chọn hình</string>
   <string name="AvatarPickerFragment__photo">Ảnh</string>
   <string name="AvatarPickerFragment__text">Tin nhắn</string>
   <string name="AvatarPickerFragment__save">Lưu</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Chọn ảnh đại diện</string>
+  <string name="AvatarPickerFragment__clear_avatar">Xóa ảnh đại diện</string>
   <string name="AvatarPickerFragment__edit">Sửa</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Không lưu được ảnh đại diện</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Xem trước</string>
   <string name="TextAvatarCreationFragment__done">Xong</string>
   <string name="TextAvatarCreationFragment__text">Tin nhắn</string>
   <string name="TextAvatarCreationFragment__color">Màu</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Chọn màu</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Hướng lên trên</string>
+  <string name="MultiselectForwardFragment__forward_to">Chuyển tiếp đến</string>
+  <string name="MultiselectForwardFragment__add_a_message">Thêm vào một tin nhắn</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Chuyển tiếp nhanh</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Tin nhắn được chuyển tiếp sẽ được gửi ngay bây giờ.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">Gửi %1$d tin nhắn</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">Tin nhắn đã gửi</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">Tin nhắn không gửi được</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">Không thể chuyển tiếp tin nhắn vì chúng đã bị xóa.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Giới hạn</string>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Thêm vào một tin nhắn</string>
+  <string name="MediaReviewFragment__add_a_reply">Thêm trả lời</string>
+  <string name="MediaReviewFragment__send_to">Gửi đến</string>
+  <string name="MediaReviewFragment__view_once_message">Hiển thị tin nhắn xem một lần</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Có một hoặc nhiều tập tin quá nặng</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Có một hoặc nhiều tập tin bị lỗi</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Bạn chọn quá nhiều tập tin</string>
   <string name="ImageEditorHud__cancel">Hủy</string>
+  <string name="ImageEditorHud__draw">Kéo</string>
+  <string name="ImageEditorHud__write_text">Viết tin nhắn</string>
+  <string name="ImageEditorHud__add_a_sticker">Thêm một Sticker</string>
+  <string name="ImageEditorHud__blur">Làm mờ</string>
+  <string name="ImageEditorHud__done_editing">Hoàn tất chỉnh sửa</string>
+  <string name="ImageEditorHud__clear_all">Xóa hết</string>
   <string name="ImageEditorHud__undo">Hoàn tác</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Chuyển đổi giửa đánh dấu và gạch chân</string>
   <string name="ImageEditorHud__delete">Xóa</string>
+  <string name="ImageEditorHud__toggle_between_text_styles"> Chuyển đổi các kiểu chữ</string>
   <string name="MediaCountIndicatorButton__send">Gửi</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Nhấn để xóa</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Nhấn để chọn</string>
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">bạn có muốn hũy bỏ các thay đổi không?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bạn sẽ mất tất cả những thay đổi bạn đã làm trên bức ảnh này.</string>
+  <string name="CameraFragment__failed_to_open_camera">Không mở được camera</string>
+  <string name="BadgesOverviewFragment__my_badges">Huy hiểu của tôi</string>
+  <string name="BadgesOverviewFragment__featured_badge">Huy hiệu mặc định</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Hiển thị huy hiệu trên hồ sơ cá nhân</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Không thể cập nhật hồ sơ cá nhân</string>
+  <string name="BadgeSelectionFragment__select_badges">Chọn huy hiệu</string>
   <string name="SelectFeaturedBadgeFragment__preview">Xem trước</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Chọn một huy hiệu</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bạn phải chọn một huy hiệu</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Không thể cập nhật hồ sơ cá nhân</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
+  <string name="ImageView__badge">Huy hiệu</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal được hỗ trợ bởi những cá nhân như bạn.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Số tiền đóng góp</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Hỗ trợ technology được xây dựng cho bạn - không phải để lấy dữ liệu của bạn - bằng cách tham gia cộng đồng những người duy trì nó.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Hỗ trợ technology được xây dựng cho bạn - không phải để lấy dữ liệu của bạn - bằng cách tham gia cộng đồng duy trì Signal</string>
+  <string name="SubscribeFragment__currency">Khoản quyên góp</string>
+  <string name="SubscribeFragment__more_payment_options">Thêm lựa chọn thanh toán</string>
+  <string name="SubscribeFragment__cancel_subscription">Hũy bỏ Quyên góp</string>
+  <string name="SubscribeFragment__confirm_cancellation">Xác nhận hủy bỏ?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Bạn sẽ không thể thay đổi quyết định này. Huy hiệu của bạn sẽ được gỡ bỏ khỏi hồ sơ cá nhân khi hết thời hạn.</string>
   <string name="SubscribeFragment__not_now">Để sau</string>
   <string name="SubscribeFragment__confirm">Xác nhận</string>
+  <string name="SubscribeFragment__update_subscription">Cập nhật quyên góp</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Việc quyên góp của bạn đã được hủy bỏ.</string>
+  <string name="SubscribeFragment__update_subscription_question">Cập nhật quyên góp?</string>
   <string name="SubscribeFragment__update">Cập nhật</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bạn sẽ bị mất tất cả số tiền trong lần quyên góp hôm nay. Việc quyên góp của bạn sẽ được gia hạn vào mỗi tháng%1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bạn sẽ bị mất tất cả số tiền (%1$s) trong lần quyên góp hôm nay. Việc quyên góp của bạn sẽ được gia hạn vào mỗi tháng.</string>
+  <string name="Subscription__s_per_month">%s/tháng</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/tháng. Gia hạn %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/tháng . Hết hạn %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal là một chương trình phi lợi nhuận, không thu tiền quảng cáo và không có nhà đầu tư, Signal chỉ được duy trì và phát triển bởi những người sử dụng và yêu thích nó. Đóng góp định kỳ hàng tháng và nhận huy hiệu trên hồ sơ cá nhận để chia sẻ sự ủng hộ của bạn đến mọi người.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Vì sao phải Quyên góp?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal cam kết phát triển công nghệ bảo mật mã nguồn mở, đề cao tính tự do ngôn luận và hướng đến một môi trường giao tiếp toàn cầu an toàn.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sự quyên góp của bạn đang góp phần không nhỏ vào sự phát triển và duy trì hoạt động của ứng dùng liên lạc bảo mật và riêng tư được cả triệu người sử dụng trên toàn thế giới. Không quảng cáo, không lấy thông tin riêng tư, và luôn đáng tin cậy.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Cảm ơn bạn đã đống góp!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã quyên góp</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Bạn đã nhận được huy hiệu %s! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bạn đã nhận được huy hiệu quyên góp! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Bạn cũng có thể</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Hiển thị trên thông tin cá nhân</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Chọn huy hiệu mặc định</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Xong</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Khi bạn có nhiều hơn một huy hiệu. bạn có thể chọn huy hiệu mặc định mà mọi người sẽ nhìn thấy trên hồ sơ của bạn.</string>
+  <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cao cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bỡi hàng triệu người dùng như bạn mà thôi.</string>
+  <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string>
+  <string name="ManageDonationsFragment__manage_subscription">Quản lý Quyên góp</string>
+  <string name="ManageDonationsFragment__badges">Huy hiệu</string>
+  <string name="ManageDonationsFragment__subscription_faq">FAQ Quyên góp</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Lỗi nhận quyên góp.</string>
+  <string name="BoostFragment__give_signal_a_boost">Quyên góp cho Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Hãy cảm ơn và nhận huy hiệu đống góp trong %1$d ngày.</string>
   <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
+  <string name="Boost__one_time_contribution">Quyên góp một lần</string>
+  <string name="MySupportPreference__add_a_signal_boost">Thêm vào một phần quyên góp cho Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/tháng</string>
+  <string name="MySupportPreference__renews_s">Làm mới %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Đang xử lý Giao dịch…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Không thể thêm huy hiệu. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Huy hiệu của bạn đã hết hạn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Huy hiệu hết hạn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Quyên góp đã bị hủy bỏ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục quyên góp ủng hộ cho ứng dụng và nhận lại huy hiệu của mình thì bạn cần đăng ký lại.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Đăng ký lại quyên góp</string>
+  <string name="Subscription__please_contact_support_for_more_information">Vui lòng liên hệ với bộ phận hỗ trợ để biết thêm thông tin.</string>
   <string name="Subscription__contact_support">Liên lạc Hỗ trợ</string>
+  <string name="Subscription__earn_a_s_badge">Nhận được một huy hiệu %1$s</string>
   <string name="SubscribeFragment__processing_payment">Đang xử lý thanh toán…</string>
-  <string name="DonationsErrors__payment_failed">Thanh toán không thành công</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Lỗi xữ lý thanh toán</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Lỗi xữ lý thanh toán. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
+  <string name="DonationsErrors__your_payment">Thanh toán của bạn đã không thành công và bạn vẫn chưa bị tính phí. Vui lòng thử lại.</string>
+  <string name="DonationsErrors__still_processing">Vẫn đang xữ lý</string>
+  <string name="DonationsErrors__couldnt_add_badge">Không thể thêm huy hiệu</string>
+  <string name="DonationsErrors__your_badge_could_not">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
+  <string name="DonationsErrors__your_payment_is_still">Thanh toán của bán đang được xử lý. Việc này có thể mất vài phút tùy vào kết nối của bạn.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay không dùng được</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Bạn phải cài đặt Google Pay để quyên góp trong ứng dụng.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Không thể hủy đăng ký quyên góp</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Để hủy đăng ký quyên góp, thiết bị cần kết nối internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hổ trợ Google Pay, vì vậy bạn không thể đăng ký quyên góp và nhận huy hiệu trên thiết bị này. Bạn vẫn có thể đống góp cho Signal trên trang Web của chúng tôi.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
+  <string name="NetworkFailure__retry">Thử lại</string>
   <!--EOF-->
 </resources>

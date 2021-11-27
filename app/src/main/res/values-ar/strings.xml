@@ -523,11 +523,6 @@
   <string name="DeviceListItem_today">اليوم</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ملف بدون اسم</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">تبرع لـ Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">يشتغل Signal بفضل أفراد مثلك. أظهر دعمك لنا اليوم !</string>
-  <string name="DonateMegaphone_donate">تبرع</string>
-  <string name="DonateMegaphone_no_thanks">لا شكرا</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">تقديم مكالمات المجموعة</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">يُرجى فتح مجموعة جديدة لبدء مكالمة جماعية مجانية ومُعمَّاة</string>
@@ -877,6 +872,7 @@
   <string name="ManageProfileFragment_your_username">اسم المستخدم الخاص بك</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
   <string name="ManageProfileFragment_badges">الشارات </string>
+  <string name="ManageProfileFragment__edit_photo">تحرير الصورة</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">لا توجد مجموعات مشتركة</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -997,6 +993,7 @@
   <string name="InviteActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">لمعرفة المزيد</string>
+  <string name="SpanUtil__read_more">قراءة المزيد</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">تعذر العثور على الرسالة</string>
   <string name="LongMessageActivity_message_from_s">رسالة من %1$s</string>
@@ -1641,6 +1638,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات اتصالك والوسائط من أجل التواصل مع الأصدقاء، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
+  <string name="RegistrationActivity_non_standard_number_format">نسق العدد غير المعياري</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمت بإدخاله (%1$s) ليس بالنسق المعياري.\n\nأ قصدك هو %2$s ؟</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - نسق رقم الهاتف</string>
   <string name="RegistrationActivity_call_requested">طُلبَت مكالمة</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="zero">أنت الآن على بعد %d خطوة من إرسال سجل التصحيح.</item>
@@ -2282,6 +2282,16 @@
   <string name="HelpFragment__debug_log">سِجل التصحيح :</string>
   <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>/-/- يُرجى تحديد أحد الخيارات /-/-</item>
+    <item>هناك شيء لا يعمل</item>
+    <item>طلب ميزات جديدة</item>
+    <item>أسئلة</item>
+    <item>ملاحظات</item>
+    <item>أشياء أخرى</item>
+    <item>الدفوعات</item>
+    <item>الداعمون ومُعززو Signal</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
@@ -2383,6 +2393,7 @@
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__donate_to_signal">التبرع لـ Signal</string>
   <string name="preferences__subscription">الاشتراك</string>
+  <string name="preferences__become_a_signal_sustainer">كن من داعمي Signal</string>
   <string name="preferences__signal_boost">تعزيز سيجنال</string>
   <string name="preferences__privacy">الخصوصية</string>
   <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>
@@ -2740,7 +2751,6 @@
   <string name="Insights__title">رؤى</string>
   <string name="InsightsDashboardFragment__title">رؤى</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol أو بروتوكول سيجنال قام بحماية  %1$d%% من رسائلك الصادرة خلال %2$d يوما الماضية. المحادثات بين مستخدمي Signal مُعمَّاة دائما من طرف إلى طرف.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">تقوية Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">لا يوجد بيانات كافية</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يوما الماضية والتي لم تختفي أو يتم حذفها.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ابدأ محادثة</string>
@@ -3521,6 +3531,11 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">يُرجى اختيار النسق واللون أو تخصيص اختصاراتك.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ليس الآن</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">إضافة صورة</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">كن من الداعمين</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">إن Signal يستمد قوته من أفراد مثلك. يمكنك المساهمة والحصول على شارة في حسابك الشخصي.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">لا شكراً</string>
+  <string name="BecomeASustainerMegaphone__contribute">المساهمة</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">وجه مُعبِّر</string>
   <string name="KeyboardPagerFragment_open_emoji_search">فتح البحث عن الوجوه المُعبِّرة</string>
@@ -3569,6 +3584,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">كُتمَت المحادثة للأبد</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">لقد نُسخ رقم الهاتف إلى الحافظة.</string>
   <string name="ConversationSettingsFragment__phone_number">رقم الهاتف</string>
+  <string name="ConversationSettingsFragment__get_badges">يمكنك الحصول على شارات لملفك الشخص عبر دعم Signal. يكفي لمس الشارة للتعرف على المزيد.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">إضافة أعضاء</string>
   <string name="PermissionsSettingsFragment__edit_group_info">تعديل معلومات المجموعة</string>
@@ -3706,7 +3722,8 @@
   <string name="ImageView__badge">شارة</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">يُشغَّل Signal بِواسِطَة أشخاص مِثلَك.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">دعم التكنولوجيا المصممة لك - وليس لبياناتك - من خلال الانضمام إلى مجتمع الأشخاص الذين يدعمونها.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">مَبلَغ التَّبَرُّع</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">يُرجى دعم التكنولوجيا المبنية لأجلك، لا لأجل بياناتك، وذلك عبر الانضمام إلى المجتمع الداعم لـ Signal.</string>
+  <string name="SubscribeFragment__currency">العملة</string>
   <string name="SubscribeFragment__more_payment_options">المزيد من خيارات الدفع</string>
   <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
   <string name="SubscribeFragment__confirm_cancellation">تأكيد الإلغاء؟</string>
@@ -3723,11 +3740,10 @@
   <string name="Subscription__s_per_month_dot_expires_s">%1$s شهرياً . ينتهي في  %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal هو تطبيق غير ربحي بدون معلنين أو مستثمرين، يدعمه فقط الأشخاص الذين يستخدمونه ويقدرونه. قدم مساهمة شهرية متكررة واحصل على شارة الملف الشخصي لمشاركة دعمك.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">لماذا المساهمة؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">يلتزم فريق سيجنال بمهمة تطوير تقنية خصوصية مفتوحة المصدر تحمي حرية التعبير وتتيح اتصالاً عالمياً آمناً. مساهمتك تدعم هذه القضية. بلا إعلانات. بلا تعقب. جدية في الالتزام.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">تساعد مساهمتك في دفع تكاليف التطوير والخوادم وعرض النطاق الترددي لتطبيق يستخدمه الملايين حول العالم للتواصل الخاص والفوري.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">إن Signal ملتزم بتطوير تكنولوجيا الخصوصية مفتوحة المصدر، والتي تحمي حرية التعبير وتُمكِّن التواصل العالمي الآمن.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">إن مساهماتك تُقوِّي هذه القضية وتُموِّل تطوير التطبيق وسير عمله للملايين من الناس لحماية خصوصية اتصالاتهم. إذ ليست فيه الإعلانات، ولا أي متعقبات. نحن حقا لا نمزح في ذلك.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">شكرا لدعمك!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">شكراً على الدعم!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">لقد حصلت على شارة %s! سيؤدي عرض شارتك إلى إظهار الأشخاص الذين تدردش معهم أنك تدعم تطبيق Signal.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الملف الشخصي</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">اصنع شارة مميزة</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمّ</string>
@@ -3744,23 +3760,27 @@
   <string name="MySupportPreference__add_a_signal_boost">دعم Signal </string>
   <string name="MySupportPreference__s_per_month">%1$s/شهر</string>
   <string name="MySupportPreference__renews_s">يجدد %1$s</string>
+  <string name="MySupportPreference__processing_transaction">تجري معالجة المعاملة…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">انتهت صلاحية شارتك</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">انتهت صلاحية شارة %1$s الخاصة بك، ولم تعد مرئية للآخرين في ملفك الشخصي.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">لمواصلة دعم التكنولوجيا المصممة لك - وليس لبياناتك - يرجى التفكير في أن تصبح مشتركًا شهريًا.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">الاشتراك</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">لقد نفذت الشارة</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">لقد أُلغي الاشتراك</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن من الداعمين</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
-  <string name="Subscription__verification_failed">فشل التحقق من الاشتراك</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
   <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>
   <string name="Subscription__contact_support">الاتصال بالدعم</string>
   <string name="Subscription__earn_a_s_badge">احصل على شارة %1$s</string>
   <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
-  <string name="DonationsErrors__payment_failed">فشلت الدفوعات</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment">تعذرت معالجة دفعتك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
-  <string name="DonationsErrors__redemption_still_pending">لا يزال التسديد معلقًا</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">قد لا ترى شارتك على الفور، ولكننا نعمل على ذلك!</string>
   <string name="DonationsErrors__google_pay_unavailable">خدمة Google Pay غير متوفرة</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">يجب عليك إعداد Google Pay للتبرع داخل التطبيق.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالاً بالإنترنت.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
+  <string name="NetworkFailure__retry">إعادة المُحاولة</string>
   <!--EOF-->
 </resources>

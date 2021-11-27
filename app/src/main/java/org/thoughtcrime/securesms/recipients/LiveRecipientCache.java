@@ -11,18 +11,16 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.core.util.concurrent.TracingExecutorService;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MissingRecipientException;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.Stopwatch;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
 import org.whispersystems.signalservice.api.push.ACI;
 
@@ -47,7 +45,6 @@ public final class LiveRecipientCache {
   private final Map<RecipientId, LiveRecipient> recipients;
   private final LiveRecipient                   unknown;
   private final Executor                        resolveExecutor;
-  private final SQLiteDatabase                  db;
 
   private final AtomicReference<RecipientId> localRecipientId;
   private final AtomicBoolean                warmedUp;
@@ -55,13 +52,12 @@ public final class LiveRecipientCache {
   @SuppressLint("UseSparseArrays")
   public LiveRecipientCache(@NonNull Context context) {
     this.context           = context.getApplicationContext();
-    this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    this.recipientDatabase = SignalDatabase.recipients();
     this.recipients        = new LRUCache<>(CACHE_MAX);
     this.warmedUp          = new AtomicBoolean(false);
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
-    this.db                = DatabaseFactory.getInstance(context).getRawDatabase();
-    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction()));
+    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.BOUNDED, () -> !SignalDatabase.inTransaction()));
   }
 
   @AnyThread
@@ -153,8 +149,8 @@ public final class LiveRecipientCache {
     }
 
     if (selfId == null) {
-      ACI    localAci  = TextSecurePreferences.getLocalAci(context);
-      String localE164 = TextSecurePreferences.getLocalNumber(context);
+      ACI    localAci  = SignalStore.account().getAci();
+      String localE164 = SignalStore.account().getE164();
 
       if (localAci != null) {
         selfId = recipientDatabase.getByAci(localAci).or(recipientDatabase.getByE164(localE164)).orNull();
@@ -187,7 +183,7 @@ public final class LiveRecipientCache {
     Stopwatch stopwatch = new Stopwatch("recipient-warm-up");
 
     SignalExecutors.BOUNDED.execute(() -> {
-      ThreadDatabase  threadDatabase = DatabaseFactory.getThreadDatabase(context);
+      ThreadDatabase  threadDatabase = SignalDatabase.threads();
       List<Recipient> recipients     = new ArrayList<>();
 
       try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getRecentConversationList(THREAD_CACHE_WARM_MAX, false, false))) {
@@ -206,7 +202,7 @@ public final class LiveRecipientCache {
       stopwatch.split("thread");
 
       if (SignalStore.registrationValues().isRegistrationComplete()) {
-        try (Cursor cursor = DatabaseFactory.getRecipientDatabase(context).getNonGroupContacts(false)) {
+        try (Cursor cursor = SignalDatabase.recipients().getNonGroupContacts(false)) {
           int count = 0;
           while (cursor != null && cursor.moveToNext() && count < CONTACT_CACHE_WARM_MAX) {
             RecipientId id = RecipientId.from(CursorUtil.requireLong(cursor, RecipientDatabase.ID));

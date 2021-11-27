@@ -38,6 +38,7 @@
         android:button="@null"
         android:clickable="false"
         android:focusable="false"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
         app:layout_constraintEnd_toEndOf="@+id/recipient_avatar"
         tools:checked="true" />
@@ -89,12 +90,12 @@
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
         android:visibility="gone"
-        app:layout_goneMarginEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_name"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginEnd="0dp"
         tools:visibility="visible" />
 
     <FrameLayout

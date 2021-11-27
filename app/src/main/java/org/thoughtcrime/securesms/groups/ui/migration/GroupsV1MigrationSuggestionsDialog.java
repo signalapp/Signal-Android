@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -65,6 +65,7 @@ public final class GroupsV1MigrationSuggestionsDialog {
                                         .show();
 
     GroupMemberListView memberListView = dialog.findViewById(R.id.list_members);
+    memberListView.initializeAdapter(fragmentActivity);
 
     SimpleTask.run(() -> Recipient.resolvedList(suggestions),
                    memberListView::setDisplayOnlyMembers);
@@ -76,14 +77,14 @@ public final class GroupsV1MigrationSuggestionsDialog {
       try {
         GroupManager.addMembers(fragmentActivity, groupId.requirePush(), suggestions);
         Log.i(TAG, "Successfully added members! Removing these dropped members from the list.");
-        DatabaseFactory.getGroupDatabase(fragmentActivity).removeUnmigratedV1Members(groupId, suggestions);
+        SignalDatabase.groups().removeUnmigratedV1Members(groupId, suggestions);
         return Result.SUCCESS;
       } catch (IOException | GroupChangeBusyException e) {
         Log.w(TAG, "Temporary failure.", e);
         return Result.NETWORK_ERROR;
       } catch (GroupNotAMemberException | GroupInsufficientRightsException | MembershipNotSuitableForV2Exception | GroupChangeFailedException e) {
         Log.w(TAG, "Permanent failure! Removing these dropped members from the list.", e);
-        DatabaseFactory.getGroupDatabase(fragmentActivity).removeUnmigratedV1Members(groupId, suggestions);
+        SignalDatabase.groups().removeUnmigratedV1Members(groupId, suggestions);
         return Result.IMPOSSIBLE;
       }
     }, result -> {

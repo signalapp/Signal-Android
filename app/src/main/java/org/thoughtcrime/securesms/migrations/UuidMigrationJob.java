@@ -6,18 +6,18 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
-import java.util.UUID;
+import java.util.Objects;
 
 /**
  * Couple migrations steps need to happen after we move to UUIDS.
@@ -51,7 +51,7 @@ public class UuidMigrationJob extends MigrationJob {
 
   @Override
   void performMigration() throws Exception {
-    if (!TextSecurePreferences.isPushRegistered(context) || TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+    if (!SignalStore.account().isRegistered() || TextUtils.isEmpty(SignalStore.account().getE164())) {
       Log.w(TAG, "Not registered! Skipping migration, as it wouldn't do anything.");
       return;
     }
@@ -66,15 +66,15 @@ public class UuidMigrationJob extends MigrationJob {
   }
 
   private static void ensureSelfRecipientExists(@NonNull Context context) {
-    DatabaseFactory.getRecipientDatabase(context).getOrInsertFromE164(TextSecurePreferences.getLocalNumber(context));
+    SignalDatabase.recipients().getOrInsertFromE164(Objects.requireNonNull(SignalStore.account().getE164()));
   }
 
   private static void fetchOwnUuid(@NonNull Context context) throws IOException {
     RecipientId self      = Recipient.self().getId();
     ACI         localUuid = ApplicationDependencies.getSignalServiceAccountManager().getOwnAci();
 
-    DatabaseFactory.getRecipientDatabase(context).markRegisteredOrThrow(self, localUuid);
-    TextSecurePreferences.setLocalAci(context, localUuid);
+    SignalDatabase.recipients().markRegisteredOrThrow(self, localUuid);
+    SignalStore.account().setAci(localUuid);
   }
 
   public static class Factory implements Job.Factory<UuidMigrationJob> {

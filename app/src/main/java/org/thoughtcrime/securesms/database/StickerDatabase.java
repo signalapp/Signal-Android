@@ -15,7 +15,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
@@ -81,7 +80,7 @@ public class StickerDatabase extends Database {
 
   private final AttachmentSecret attachmentSecret;
 
-  public StickerDatabase(Context context, SQLCipherOpenHelper databaseHelper, AttachmentSecret attachmentSecret) {
+  public StickerDatabase(Context context, SignalDatabase databaseHelper, AttachmentSecret attachmentSecret) {
     super(context, databaseHelper);
     this.attachmentSecret = attachmentSecret;
   }
@@ -145,20 +144,15 @@ public class StickerDatabase extends Database {
   public @Nullable Cursor getInstalledStickerPacks() {
     String   selection = COVER + " = ? AND " + INSTALLED + " = ?";
     String[] args      = new String[] { "1", "1" };
-    Cursor   cursor    = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, PACK_ORDER + " ASC");
 
-    setNotifyStickerPackListeners(cursor);
-    return cursor;
+    return databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, PACK_ORDER + " ASC");
   }
 
   public @Nullable Cursor getStickersByEmoji(@NonNull String emoji) {
     String   selection = EMOJI + " LIKE ? AND " + COVER + " = ?";
     String[] args      = new String[] { "%"+emoji+"%", "0" };
 
-    Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null);
-    setNotifyStickerListeners(cursor);
-
-    return cursor;
+    return databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null);
   }
 
   public @Nullable Cursor getAllStickerPacks() {
@@ -168,10 +162,8 @@ public class StickerDatabase extends Database {
   public @Nullable Cursor getAllStickerPacks(@Nullable String limit) {
     String   query  = COVER + " = ?";
     String[] args   = new String[] { "1" };
-    Cursor   cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC", limit);
-    setNotifyStickerPackListeners(cursor);
 
-    return cursor;
+    return databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC", limit);
   }
 
   public @Nullable Cursor getStickersForPack(@NonNull String packId) {
@@ -179,10 +171,7 @@ public class StickerDatabase extends Database {
     String         selection = PACK_ID + " = ? AND " + COVER + " = ?";
     String[]       args      = new String[] { packId, "0" };
 
-    Cursor cursor = db.query(TABLE_NAME, null, selection, args, null, null, null);
-    setNotifyStickerListeners(cursor);
-
-    return cursor;
+    return db.query(TABLE_NAME, null, selection, args, null, null, null);
   }
 
   public @Nullable Cursor getRecentlyUsedStickers(int limit) {
@@ -190,10 +179,7 @@ public class StickerDatabase extends Database {
     String         selection = LAST_USED + " > ? AND " + COVER + " = ?";
     String[]       args      = new String[] { "0", "0" };
 
-    Cursor cursor = db.query(TABLE_NAME, null, selection, args, null, null, LAST_USED + " DESC", String.valueOf(limit));
-    setNotifyStickerListeners(cursor);
-
-    return cursor;
+    return db.query(TABLE_NAME, null, selection, args, null, null, LAST_USED + " DESC", String.valueOf(limit));
   }
 
   public @NonNull Set<String> getAllStickerFiles() {

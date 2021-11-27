@@ -380,10 +380,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Dosyeya bênav</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Bexşê bide Sîgnalê</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ji aliyê kesên wekî te ve tê piştgirîkirin. Îro, piştgiriya xwe nîşan bide!</string>
-  <string name="DonateMegaphone_donate">Bexş bike</string>
-  <string name="DonateMegaphone_no_thanks">Na, spas</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Bexşê bide Sîgnalê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ji aliyê kesên wekî te ve tê piştgirîkirin. Îro, piştgiriya xwe nîşan bide!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Bexş bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Na, spas</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Danasîna Gerînên Komî</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ji bo tu dest bi gerîna komî ya şîfrekirî û belaş bikî, Komeke Nû vekî.</string>
@@ -2023,7 +2023,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Kûrbîn</string>
   <string name="InsightsDashboardFragment__title">Kûrbîn</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signalê bihêz bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Signalê bihêz bike</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Dane têrê nake</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Dest bi axiftinekê bike</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Peyamên şîfrekirî</string>

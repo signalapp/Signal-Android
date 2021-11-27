@@ -36,7 +36,7 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.StringFa
     this.joinedMembers          = new ArrayList<>(joinedMembers);
     this.withTime               = withTime;
     this.groupCallUpdateDetails = groupCallUpdateDetails;
-    this.selfAci                = TextSecurePreferences.getLocalAci(context);
+    this.selfAci                = Recipient.self().requireAci();
 
     boolean removed = this.joinedMembers.remove(selfAci);
     if (removed) {

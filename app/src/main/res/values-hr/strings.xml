@@ -409,11 +409,6 @@
   <string name="DeviceListItem_today">Danas</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezimena datoteka</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Donirajte Signalu</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal napajaju ljudi poput vas. Pokažite svoju podršku već danas!</string>
-  <string name="DonateMegaphone_donate">Doniraj</string>
-  <string name="DonateMegaphone_no_thanks">Ne, hvala</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo grupne pozive</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otvorite Novu grupu da biste započeli besplatni šifrirani grupni poziv</string>
@@ -696,6 +691,7 @@
   <string name="ManageProfileFragment_your_name">Vaše ime</string>
   <string name="ManageProfileFragment_your_username">Vaše korisničko ime</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Neuspješno postavljanje slike profila</string>
+  <string name="ManageProfileFragment_badges">Bedževi</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nema zajedničkih grupa</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -2008,6 +2004,8 @@ broj telefona</string>
   <string name="preferences__help">Pomoć</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__donate_to_signal">Donirajte Signalu</string>
+  <string name="preferences__subscription">Pretplata</string>
+  <string name="preferences__become_a_signal_sustainer">Postanite Signalov pretplatnik</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS korisnički agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručne MMS postavke</string>
@@ -2364,7 +2362,6 @@ broj telefona</string>
   <string name="Insights__title">Uvidi</string>
   <string name="InsightsDashboardFragment__title">Uvidi</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol je automatski zaštitio %1$d %% vaših odlaznih poruka tijekom zadnjih %2$d dana. Razgovori između korisnika Signala uvijek su end-to-end šifrirani.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal pojačanje</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nema dovoljno podataka</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Vaš postotak uvida izračunava se na temelju odlaznih poruka u proteklih %1$d dana koje nisu nestale ili bile izbrisane.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Započnite novi razgovor</string>
@@ -3076,6 +3073,10 @@ broj telefona</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Odaberite izgled i boju ili prilagodite svoje inicijale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne sada</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Dodaj fotografiju</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Postanite pretplatnik</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Ne, hvala</string>
+  <string name="BecomeASustainerMegaphone__contribute">Doprinesite</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Smajlić</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otvori pretragu emotikona</string>
@@ -3197,17 +3198,34 @@ broj telefona</string>
   <string name="MediaCountIndicatorButton__send">Pošalji</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pritisni za odabir slike profila</string>
   <string name="MediaReviewImagePageFragment__discard">Poništi</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Prikažite bedževe na svom profilu</string>
   <string name="SelectFeaturedBadgeFragment__preview">Pregled</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal napajaju ljudi poput vas.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Iznos donacije</string> -->
+  <string name="SubscribeFragment__more_payment_options">Više opcija plaćanja</string>
+  <string name="SubscribeFragment__cancel_subscription">Otkažite pretplatu</string>
+  <string name="SubscribeFragment__confirm_cancellation">Potvrditi otkazivanje?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Više vam neće biti naplaćeno. Vaša će značka biti uklonjena s vašeg profila na kraju razdoblja naplate.</string>
   <string name="SubscribeFragment__not_now">Ne sada</string>
   <string name="SubscribeFragment__confirm">Potvrdi</string>
   <string name="SubscribeFragment__update">Ažuriraj</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Zašto donirati?</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala vam na uplati!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži bedž na svom profilu</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Gotovo</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kada imate više od jedne značke, možete odabrati koju želite istaknuti kako bi ju drugi mogli vidjeti na vašem profilu.</string>
+  <string name="ManageDonationsFragment__badges">Bedževi</string>
+  <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja</string>
+  <string name="BoostFragment__give_signal_a_boost">Donirajte jednokratnom uplatom</string>
   <string name="Boost__enter_custom_amount">Unesi prilagođeni iznos</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__please_contact_support">Molimo Vas da kontaktirate podršku</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pretplatnik</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
   <string name="SubscribeFragment__processing_payment">Obrada uplate…</string>
-  <string name="DonationsErrors__payment_failed">Neuspješno plaćanje</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još uvijek obrađuje. To može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
+  <string name="NetworkFailure__retry">Pokušajte ponovno</string>
   <!--EOF-->
 </resources>

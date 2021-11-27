@@ -11,14 +11,12 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.lang.reflect.Array;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,7 +56,7 @@ public abstract class SendJob extends BaseJob {
       attachments.addAll(message.getOutgoingQuote().getAttachments());
     }
 
-    AttachmentDatabase database = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase database = SignalDatabase.attachments();
 
     for (Attachment attachment : attachments) {
       database.markAttachmentUploaded(messageId, attachment);

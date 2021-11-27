@@ -14,7 +14,7 @@ import com.google.android.exoplayer2.MediaMetadata;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -52,7 +52,7 @@ class VoiceNoteMediaItemFactory {
                                   @NonNull Uri draftUri)
   {
 
-    Recipient threadRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
+    Recipient threadRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
     if (threadRecipient == null) {
       threadRecipient = Recipient.UNKNOWN;
     }
@@ -80,11 +80,11 @@ class VoiceNoteMediaItemFactory {
   @Nullable static MediaItem buildMediaItem(@NonNull Context context,
                                             @NonNull MessageRecord messageRecord)
   {
-    int startingPosition = DatabaseFactory.getMmsSmsDatabase(context)
+    int startingPosition = SignalDatabase.mmsSms()
                                           .getMessagePositionInConversation(messageRecord.getThreadId(),
                                                                             messageRecord.getDateReceived());
 
-    Recipient threadRecipient = Objects.requireNonNull(DatabaseFactory.getThreadDatabase(context)
+    Recipient threadRecipient = Objects.requireNonNull(SignalDatabase.threads()
                                                                       .getRecipientForThreadId(messageRecord.getThreadId()));
     Recipient  sender          = messageRecord.isOutgoing() ? Recipient.self() : messageRecord.getIndividualRecipient();
     Recipient  avatarRecipient = threadRecipient.isGroup() ? threadRecipient : sender;

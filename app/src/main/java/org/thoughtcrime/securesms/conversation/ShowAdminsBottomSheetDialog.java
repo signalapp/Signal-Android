@@ -15,8 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
@@ -68,6 +68,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
 
     GroupMemberListView list = view.findViewById(R.id.show_admin_list);
+    list.initializeAdapter(getViewLifecycleOwner());
     list.setDisplayOnlyMembers(Collections.emptyList());
 
     list.setRecipientClickListener(recipient -> {
@@ -92,9 +93,9 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
 
   @WorkerThread
   private static @NonNull List<Recipient> getAdmins(@NonNull Context context, @NonNull GroupId groupId) {
-    return DatabaseFactory.getGroupDatabase(context)
-                          .getGroup(groupId)
-                          .transform(GroupDatabase.GroupRecord::getAdmins)
-                          .or(Collections.emptyList());
+    return SignalDatabase.groups()
+                         .getGroup(groupId)
+                         .transform(GroupDatabase.GroupRecord::getAdmins)
+                         .or(Collections.emptyList());
   }
 }

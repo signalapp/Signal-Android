@@ -21,12 +21,10 @@ public class WebRtcData {
    */
   public static class CallMetadata {
     private final @NonNull RemotePeer remotePeer;
-    private final @NonNull CallId     callId;
     private final          int        remoteDevice;
 
-    public CallMetadata(@NonNull RemotePeer remotePeer, @NonNull CallId callId, int remoteDevice) {
+    public CallMetadata(@NonNull RemotePeer remotePeer, int remoteDevice) {
       this.remotePeer   = remotePeer;
-      this.callId       = callId;
       this.remoteDevice = remoteDevice;
     }
 
@@ -35,7 +33,7 @@ public class WebRtcData {
     }
 
     @NonNull CallId getCallId() {
-      return callId;
+      return remotePeer.getCallId();
     }
 
     int getRemoteDevice() {

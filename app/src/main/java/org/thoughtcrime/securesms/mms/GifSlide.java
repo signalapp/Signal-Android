@@ -6,7 +6,6 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class GifSlide extends ImageSlide {

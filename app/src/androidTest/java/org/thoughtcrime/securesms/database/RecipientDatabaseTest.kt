@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.database
 
-import android.app.Application
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
@@ -24,7 +22,7 @@ class RecipientDatabaseTest {
 
   @Before
   fun setup() {
-    recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+    recipientDatabase = SignalDatabase.recipients
     ensureDbEmpty()
   }
 
@@ -304,6 +302,28 @@ class RecipientDatabaseTest {
     assertEquals(E164_A, existingRecipient2.requireE164())
   }
 
+  /**
+   * Another high trust case that results in a merge. Nothing strictly new here, but this case is called out because it’s a merge but *also* an E164 change,
+   * which clients may need to know for UX purposes.
+   */
+  @Test
+  fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_mergeAndPhoneNumberChange_highTrust() {
+    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, true)
+    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+    assertEquals(existingId1, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(E164_A, retrievedRecipient.requireE164())
+
+    assertFalse(recipientDatabase.getByE164(E164_B).isPresent)
+
+    val recipientWithId2 = Recipient.resolved(existingId2)
+    assertEquals(retrievedId, recipientWithId2.id)
+  }
+
   // ==============================================================
   // Misc
   // ==============================================================
@@ -347,11 +367,8 @@ class RecipientDatabaseTest {
     recipientDatabase.getAndPossiblyMerge(null, null, true)
   }
 
-  private val context: Application
-    get() = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as Application
-
   private fun ensureDbEmpty() {
-    DatabaseFactory.getInstance(context).rawDatabase.rawQuery("SELECT COUNT(*) FROM ${RecipientDatabase.TABLE_NAME}", null).use { cursor ->
+    SignalDatabase.rawDatabase.rawQuery("SELECT COUNT(*) FROM ${RecipientDatabase.TABLE_NAME}", null).use { cursor ->
       assertTrue(cursor.moveToFirst())
       assertEquals(0, cursor.getLong(0))
     }

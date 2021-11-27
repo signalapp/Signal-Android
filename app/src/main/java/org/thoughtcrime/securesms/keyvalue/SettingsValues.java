@@ -10,13 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.logging.Log;
@@ -369,7 +368,7 @@ public final class SettingsValues extends SignalStoreValues {
       putBoolean(DEFAULT_SMS, value);
 
       SignalExecutors.BOUNDED.execute(() -> {
-        DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).markNeedsSync(Recipient.self().getId());
+        SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
         StorageSyncHelper.scheduleSyncForDataChange();
       });
     }
@@ -378,7 +377,7 @@ public final class SettingsValues extends SignalStoreValues {
   public void setUniversalExpireTimer(int seconds) {
     putInteger(UNIVERSAL_EXPIRE_TIMER, seconds);
     SignalExecutors.BOUNDED.execute(() -> {
-      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).markNeedsSync(Recipient.self().getId());
+      SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
       StorageSyncHelper.scheduleSyncForDataChange();
     });
   }

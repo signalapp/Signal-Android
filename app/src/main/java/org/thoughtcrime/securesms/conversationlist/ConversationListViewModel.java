@@ -17,8 +17,8 @@ import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
@@ -88,12 +88,12 @@ class ConversationListViewModel extends ViewModel {
     };
 
     this.hasNoConversations = LiveDataUtil.mapAsync(pagedData.getData(), conversations -> {
-      pinnedCount = DatabaseFactory.getThreadDatabase(application).getPinnedConversationListCount();
+      pinnedCount = SignalDatabase.threads().getPinnedConversationListCount();
 
       if (conversations.size() > 0) {
         return false;
       } else {
-        return DatabaseFactory.getThreadDatabase(application).getArchivedConversationListCount() == 0;
+        return SignalDatabase.threads().getArchivedConversationListCount() == 0;
       }
     });
 

@@ -9,7 +9,7 @@ import org.signal.zkgroup.profiles.ProfileKeyCredentialPresentation;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.signal.zkgroup.profiles.ServerZkProfileOperations;
-import org.whispersystems.signalservice.testutil.ZkGroupLibraryUtil;
+import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.util.UUID;
 
@@ -22,7 +22,7 @@ final class TestZkGroupServer {
   private final ServerZkProfileOperations serverZkProfileOperations;
 
   TestZkGroupServer() {
-    ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS();
+    LibSignalLibraryUtil.assumeLibSignalSupportedOnOS();
 
     ServerSecretParams serverSecretParams = ServerSecretParams.generate();
 

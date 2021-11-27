@@ -9,14 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.groups.state.SenderKeyRecord;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
 
@@ -47,7 +45,7 @@ public class SenderKeyDatabase extends Database {
                                                                                  CREATED_AT      + " INTEGER NOT NULL, " +
                                                                                  "UNIQUE(" + ADDRESS + "," + DEVICE + ", " + DISTRIBUTION_ID + ") ON CONFLICT REPLACE);";
 
-  SenderKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  SenderKeyDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 

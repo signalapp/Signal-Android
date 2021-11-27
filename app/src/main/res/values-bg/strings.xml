@@ -395,11 +395,6 @@
   <string name="DeviceListItem_today">Днес</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Неназован файл</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Дари на Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal се подържа от хора като теб. Подкрепи ни сега!</string>
-  <string name="DonateMegaphone_donate">Дари</string>
-  <string name="DonateMegaphone_no_thanks">Не Благодаря</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Нова функционалност: групови разговори</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворете Нова Група, за да започнете безплатно криптирано групово обаждане</string>
@@ -2235,7 +2230,6 @@
   <string name="Insights__title">Статистика</string>
   <string name="InsightsDashboardFragment__title">Статистика</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматично защитава %1$d%% от вашите изходящи съобщения през последните %2$d дни. Разговорите между потребителите на Signal винаги са криптирани от край до край.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Усилване на Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Няма достатъчно данни</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Процентът ви за статистика се изчислява въз основа на изходящи съобщения през последните %1$d дни, които не са изчезнали или изтрити.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Започнете разговор</string>
@@ -2877,6 +2871,8 @@
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Добави профилна снимка</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Добави снимка</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Не, благодаря</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоджи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори търсачката на емоджита</string>
@@ -2985,8 +2981,11 @@
   <string name="SubscribeFragment__confirm">Потвърждение</string>
   <string name="SubscribeFragment__update">Обновяване</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <string name="Subscription__contact_support">Връзка с отдела за поддръжка</string>
-  <string name="DonationsErrors__payment_failed">Грешка при плащане</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">Опитай Отново</string>
   <!--EOF-->
 </resources>

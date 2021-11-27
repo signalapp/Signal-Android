@@ -36,10 +36,10 @@ import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
@@ -78,7 +78,7 @@ public class FcmRefreshJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
-    if (TextSecurePreferences.isFcmDisabled(context)) return;
+    if (!SignalStore.account().isFcmEnabled()) return;
 
     Log.i(TAG, "Reregistering FCM...");
 
@@ -90,7 +90,7 @@ public class FcmRefreshJob extends BaseJob {
       Optional<String> token = FcmUtil.getToken();
 
       if (token.isPresent()) {
-        String oldToken = TextSecurePreferences.getFcmToken(context);
+        String oldToken = SignalStore.account().getFcmToken();
 
         if (!token.get().equals(oldToken)) {
           int oldLength = oldToken != null ? oldToken.length() : -1;
@@ -100,9 +100,7 @@ public class FcmRefreshJob extends BaseJob {
         }
 
         ApplicationDependencies.getSignalServiceAccountManager().setGcmId(token);
-        TextSecurePreferences.setFcmToken(context, token.get());
-        TextSecurePreferences.setFcmTokenLastSetTime(context, System.currentTimeMillis());
-        TextSecurePreferences.setWebsocketRegistered(context, true);
+        SignalStore.account().setFcmToken(token.get());
       } else {
         throw new RetryLaterException(new IOException("Failed to retrieve a token."));
       }

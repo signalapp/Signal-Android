@@ -15,7 +15,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.mobilecoin.lib.exceptions.SerializationException;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.payments.CryptoValueUtil;
@@ -31,7 +30,6 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.util.Arrays;
@@ -93,7 +91,7 @@ public final class PaymentDatabase extends Database {
 
   private final MutableLiveData<Object> changeSignal;
 
-  PaymentDatabase(@NonNull Context context, @NonNull SQLCipherOpenHelper databaseHelper) {
+  PaymentDatabase(@NonNull Context context, @NonNull SignalDatabase databaseHelper) {
     super(context, databaseHelper);
 
     this.changeSignal = new MutableLiveData<>(new Object());

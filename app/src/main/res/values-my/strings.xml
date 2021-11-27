@@ -383,11 +383,6 @@
   <string name="DeviceListItem_today">ယနေ့ </string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">အမည်မဖော်သောဖိုင်</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal ကိုလှူဒါန်းပါ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">သင့်လိုမျိုး သုံးသူများက Signal ကို ပံ့ပိုးပါသည်။ ဒီနေ့သင်၏ ထောက်ခံမှုကိုပြလိုက်ပါ!</string>
-  <string name="DonateMegaphone_donate">လှူဒါန်းပါ</string>
-  <string name="DonateMegaphone_no_thanks">ရပါတယ်ကျေးဇူးပါ</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">အုပ်စုလိုက် ခေါ်ဆိုမှုများကို မိတ်ဆက်ပေးခြင်း</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">အခမဲ့ စာဝှက်ထားသော အုပ်စုခေါ်ဆိုမှုကို စတင်ရန် အုပ်စုအသစ်တစ်ခုကိုဖွင့်ပါ</string>
@@ -2169,7 +2164,6 @@
   <string name="Insights__title">ထင်မြင်ချက်များ</string>
   <string name="InsightsDashboardFragment__title">ထင်မြင်ချက်များ</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol သည် အလိုအလျောက် လွန်ခဲ့သော %2$d ရက်တွင်းရှိ သင်၏ %1$d%% အထွက်စာများကို ကာကွယ်ထားပေးပါသည်။ Signal အသုံးပြုသူများအကြား စကားပြောဆိုမှုများကို အစမှအဆုံးထိ အမြဲ ကုဒ်ဖြင့်စာဝှက်ထားပါသည်။</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal မြှင့်တင်ခြင်း</string>
   <string name="InsightsDashboardFragment__not_enough_data">ဒေတာ မလုံလောက်ပါ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">သင်၏ ထင်မြင်ချက် ရာခိုင်နှုန်းသည် လွန်ခဲ့သည့် %1$d ရက်အတွင်း မဖျောက်ကွယ်ထားသော သို့မဟုတ် မဖျက်သိမ်းထားသော မက်ဆေ့ချ်များပေါ်မူ၍ တွက်ထားပါသည်။</string>
   <string name="InsightsDashboardFragment__start_a_conversation">စကားစပြောပါ</string>
@@ -2789,6 +2783,8 @@
   <string name="ChatColorsMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">မလုပ်လိုပါ။</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_stickers">စတစ်ကာများ </string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
@@ -2860,9 +2856,12 @@
   <string name="SubscribeFragment__confirm">အတည်ပြုသည် </string>
   <string name="SubscribeFragment__update">အပ်ဒိတ်မယ်</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ပြီးပါပြီ</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <string name="Subscription__contact_support">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
   <string name="SubscribeFragment__processing_payment">ငွေပေးချေမှု လုပ်ဆောင်နေသည်…</string>
-  <string name="DonationsErrors__payment_failed">ငွေပေးချေမှု မအောင်မြင်ပါ</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">ထပ်ကြိုးစားပါ</string>
   <!--EOF-->
 </resources>

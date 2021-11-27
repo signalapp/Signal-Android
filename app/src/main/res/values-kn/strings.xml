@@ -400,11 +400,6 @@
   <string name="DeviceListItem_today">ಇಂದು</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ಹೆಸರಿಸದ ಫೈಲ್</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ನಿಮ್ಮಂತಹ ಜನರಿಂದ ನಡೆಯುತ್ತದೆ . ಇಂದು ನಿಮ್ಮ ಬೆಂಬಲವನ್ನು ತೋರಿಸಿ!</string>
-  <string name="DonateMegaphone_donate">ದಾನ</string>
-  <string name="DonateMegaphone_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ಗುಂಪು  ಕರೆಗಳನ್ನು  ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ  </string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ಉಚಿತ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಗ್ರೂಪ್‌ ಕಾಲ್‌ ಆರಂಭಿಸಲು ಹೊಸ ಗ್ರೂಪ್ ಆರಂಭಿಸಿ</string>
@@ -2293,7 +2288,6 @@
   <string name="Insights__title">ಒಳನೋಟಗಳು</string>
   <string name="InsightsDashboardFragment__title">ಒಳನೋಟಗಳು</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">ಕಳೆದ %2$d ದಿನಗಳಲ್ಲಿ Signal ಪ್ರೊಟೊಕಾಲ್ ನಿಮ್ಮ ಹೊರಹೋಗುವ ಸಂದೇಶಗಳಲ್ಲಿ %1$d%% ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಕ್ಷಿಸಿದೆ. Signal ಬಳಕೆದಾರರ ನಡುವಿನ ಸಂಭಾಷಣೆಗಳು ಯಾವಾಗಲೂ ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗುತ್ತವೆ. </string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal ವರ್ಧಕ</string>
   <string name="InsightsDashboardFragment__not_enough_data">ಸಾಕಷ್ಟು ಡೇಟಾ ಇಲ್ಲ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ನಿಮ್ಮ ಒಳನೋಟಗಳ ಪ್ರತಿಶತ ಪ್ರಮಾಣವನ್ನು ಕಳೆದ %1$d ದಿನಗಳಲ್ಲಿ ಕಾಣದಂತಾಗಿಲ್ಲದ ಅಥವಾ ಅಳಿಸದ ಸಂದೇಶಗಳ ಆಧಾರದ ಮೇಲೆ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ಸಂಭಾಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ</string>
@@ -2995,6 +2989,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ನೀವು ಹೇಗೆ ಕಾಣುವಿರಿ ಎಂದು ನೋಡಲು ರೂಪ ಮತ್ತು ಬಣ್ಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ </string>
   <string name="AddAProfilePhotoMegaphone__not_now">ಈಗಲ್ಲ</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ಫೋಟೋ ಸೇರಿಸಿ</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ಎಮೋಜಿ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ಎಮೋಜಿ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ</string>
@@ -3112,15 +3108,17 @@
   <string name="MediaReviewImagePageFragment__discard">ತ್ಯಜಿಸಿ</string>
   <string name="SelectFeaturedBadgeFragment__preview">ಪ್ರಿವ್ಯೂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ಅನ್ನು ನಿಮ್ಮಂಥ ಜನರೇ ನಡೆಸುತ್ತಿದ್ದಾರೆ.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">ಕೊಡುಗೆಯ ಮೊತ್ತ</string> -->
   <string name="SubscribeFragment__not_now">ಈಗಲ್ಲ</string>
   <string name="SubscribeFragment__confirm">ದೃಢೀಕರಿಸಿ</string>
   <string name="SubscribeFragment__update">ನವೀಕರಿಸಿ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ಮುಗಿದಿದೆ</string>
   <string name="Boost__enter_custom_amount">ಕಸ್ಟಮ್‌ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ಈಗಲ್ಲ</string>
   <string name="Subscription__contact_support">ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
   <string name="SubscribeFragment__processing_payment">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
-  <string name="DonationsErrors__payment_failed">ಪೇಮೆಂಟ್ ವಿಫಲವಾಗಿದೆ</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
   <!--EOF-->
 </resources>

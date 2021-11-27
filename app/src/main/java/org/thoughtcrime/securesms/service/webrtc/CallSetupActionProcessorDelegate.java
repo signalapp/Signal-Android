@@ -71,11 +71,11 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
       return callFailure(currentState, "Enabling audio/video failed: ", e);
     }
 
-    if (currentState.getCallSetupState().isAcceptWithVideo()) {
+    if (currentState.getCallSetupState(activePeer).isAcceptWithVideo()) {
       currentState = currentState.getActionProcessor().handleSetEnableVideo(currentState, true);
     }
 
-    if (currentState.getCallSetupState().isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled()) {
+    if (currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled()) {
       webRtcInteractor.setDefaultAudioDevice(SignalAudioManager.AudioDevice.SPEAKER_PHONE, false);
     } else {
       webRtcInteractor.setDefaultAudioDevice(SignalAudioManager.AudioDevice.EARPIECE, false);
@@ -95,9 +95,6 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
     }
 
     currentState = currentState.builder()
-                               .changeCallSetupState()
-                               .enableVideoOnCreate(enable)
-                               .commit()
                                .changeLocalDeviceState()
                                .cameraState(camera.getCameraState())
                                .build();

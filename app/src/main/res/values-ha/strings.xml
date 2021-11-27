@@ -1475,7 +1475,7 @@
   <string name="Insights__title">Bayanai</string>
   <string name="InsightsDashboardFragment__title">Bayanai</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Jakar tsare-tsaren manhajar Signal ya kare kansa %1$d%% daga cikin sakonninka/ki masu fita cikin kwanaki %2$d da suka wuce. Hira tsakannin masu amfani da Signal na da tsari.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Ingantan Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Ingantan Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Babu isasshen data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ana lissafin sashin bayanainka/ki da sakonni da suke futa waddanda basu bace ba kuma ba\'a goge ba cikin kwanaki %1$d da suka wuce.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Fara hira</string>

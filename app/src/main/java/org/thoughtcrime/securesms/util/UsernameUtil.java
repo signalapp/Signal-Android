@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -52,7 +52,7 @@ public class UsernameUtil {
 
   @WorkerThread
   public static @NonNull Optional<ACI> fetchAciForUsername(@NonNull Context context, @NonNull String username) {
-    Optional<RecipientId> localId = DatabaseFactory.getRecipientDatabase(context).getByUsername(username);
+    Optional<RecipientId> localId = SignalDatabase.recipients().getByUsername(username);
 
     if (localId.isPresent()) {
       Recipient recipient = Recipient.resolved(localId.get());
@@ -62,7 +62,7 @@ public class UsernameUtil {
         return recipient.getAci();
       } else {
         Log.w(TAG, "Found username locally, but it had no associated UUID! Clearing it.");
-        DatabaseFactory.getRecipientDatabase(context).clearUsernameIfExists(username);
+        SignalDatabase.recipients().clearUsernameIfExists(username);
       }
     }
 

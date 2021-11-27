@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SessionDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.NoSessionException;
@@ -36,7 +36,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   @Override
   public SessionRecord loadSession(@NonNull SignalProtocolAddress address) {
     synchronized (LOCK) {
-      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(address);
+      SessionRecord sessionRecord = SignalDatabase.sessions().load(address);
 
       if (sessionRecord == null) {
         Log.w(TAG, "No existing session information found for " + address);
@@ -50,7 +50,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   @Override
   public List<SessionRecord> loadExistingSessions(List<SignalProtocolAddress> addresses) throws NoSessionException {
     synchronized (LOCK) {
-      List<SessionRecord> sessionRecords = DatabaseFactory.getSessionDatabase(context).load(addresses);
+      List<SessionRecord> sessionRecords = SignalDatabase.sessions().load(addresses);
 
       if (sessionRecords.size() != addresses.size()) {
         String message = "Mismatch! Asked for " + addresses.size() + " sessions, but only found " + sessionRecords.size() + "!";
@@ -69,14 +69,14 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   @Override
   public void storeSession(@NonNull SignalProtocolAddress address, @NonNull SessionRecord record) {
     synchronized (LOCK) {
-      DatabaseFactory.getSessionDatabase(context).store(address, record);
+      SignalDatabase.sessions().store(address, record);
     }
   }
 
   @Override
   public boolean containsSession(SignalProtocolAddress address) {
     synchronized (LOCK) {
-      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(address);
+      SessionRecord sessionRecord = SignalDatabase.sessions().load(address);
 
       return sessionRecord != null &&
              sessionRecord.hasSenderChain() &&
@@ -88,7 +88,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   public void deleteSession(SignalProtocolAddress address) {
     synchronized (LOCK) {
       Log.w(TAG, "Deleting session for " + address);
-      DatabaseFactory.getSessionDatabase(context).delete(address);
+      SignalDatabase.sessions().delete(address);
     }
   }
 
@@ -96,36 +96,36 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   public void deleteAllSessions(String name) {
     synchronized (LOCK) {
       Log.w(TAG, "Deleting all sessions for " + name);
-      DatabaseFactory.getSessionDatabase(context).deleteAllFor(name);
+      SignalDatabase.sessions().deleteAllFor(name);
     }
   }
 
   @Override
   public List<Integer> getSubDeviceSessions(String name) {
     synchronized (LOCK) {
-      return DatabaseFactory.getSessionDatabase(context).getSubDevices(name);
+      return SignalDatabase.sessions().getSubDevices(name);
     }
   }
 
   @Override
   public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
     synchronized (LOCK) {
-      return DatabaseFactory.getSessionDatabase(context)
-                            .getAllFor(addressNames)
-                            .stream()
-                            .filter(row -> isActive(row.getRecord()))
-                            .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
-                            .collect(Collectors.toSet());
+      return SignalDatabase.sessions()
+                           .getAllFor(addressNames)
+                           .stream()
+                           .filter(row -> isActive(row.getRecord()))
+                           .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
+                           .collect(Collectors.toSet());
     }
   }
 
   @Override
   public void archiveSession(SignalProtocolAddress address) {
     synchronized (LOCK) {
-      SessionRecord session = DatabaseFactory.getSessionDatabase(context).load(address);
+      SessionRecord session = SignalDatabase.sessions().load(address);
       if (session != null) {
         session.archiveCurrentState();
-        DatabaseFactory.getSessionDatabase(context).store(address, session);
+        SignalDatabase.sessions().store(address, session);
       }
     }
   }
@@ -146,7 +146,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
 
   public void archiveSiblingSessions(@NonNull SignalProtocolAddress address) {
     synchronized (LOCK) {
-      List<SessionDatabase.SessionRow> sessions = DatabaseFactory.getSessionDatabase(context).getAllFor(address.getName());
+      List<SessionDatabase.SessionRow> sessions = SignalDatabase.sessions().getAllFor(address.getName());
 
       for (SessionDatabase.SessionRow row : sessions) {
         if (row.getDeviceId() != address.getDeviceId()) {
@@ -159,7 +159,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
 
   public void archiveAllSessions() {
     synchronized (LOCK) {
-      List<SessionDatabase.SessionRow> sessions = DatabaseFactory.getSessionDatabase(context).getAll();
+      List<SessionDatabase.SessionRow> sessions = SignalDatabase.sessions().getAll();
 
       for (SessionDatabase.SessionRow row : sessions) {
         row.getRecord().archiveCurrentState();

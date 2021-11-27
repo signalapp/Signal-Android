@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:enterFadeDuration="250" android:exitFadeDuration="250">
     <item android:state_checked="true" android:state_enabled="false">
         <layer-list>
             <item>
@@ -23,6 +23,8 @@
         </layer-list>
     </item>
     <item android:state_checked="false">
-        <color android:color="@null" />
+        <shape android:shape="oval">
+            <stroke android:width="2dp" android:color="@color/core_grey_75" />
+        </shape>
     </item>
 </selector>

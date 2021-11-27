@@ -12,15 +12,16 @@ import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MentionDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
@@ -56,7 +57,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
   @Override
   public int size() {
     long startTime = System.currentTimeMillis();
-    int  size      = DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId) +
+    int  size      = SignalDatabase.mmsSms().getConversationCount(threadId) +
                      (messageRequestData.includeWarningUpdateMessage() ? 1 : 0) +
                      (showUniversalExpireTimerUpdate ? 1 : 0);
 
@@ -68,16 +69,18 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
   @Override
   public @NonNull List<ConversationMessage> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
     Stopwatch           stopwatch        = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
-    MmsSmsDatabase      db               = DatabaseFactory.getMmsSmsDatabase(context);
+    MmsSmsDatabase      db               = SignalDatabase.mmsSms();
     List<MessageRecord> records          = new ArrayList<>(length);
     MentionHelper       mentionHelper    = new MentionHelper();
     AttachmentHelper    attachmentHelper = new AttachmentHelper();
+    ReactionHelper      reactionHelper   = new ReactionHelper();
 
     try (MmsSmsDatabase.Reader reader = MmsSmsDatabase.readerFor(db.getConversation(threadId, start, length))) {
       MessageRecord record;
       while ((record = reader.getNext()) != null && !cancellationSignal.isCanceled()) {
         records.add(record);
         mentionHelper.add(record);
+        reactionHelper.add(record);
         attachmentHelper.add(record);
       }
     }
@@ -93,15 +96,18 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     stopwatch.split("messages");
 
     mentionHelper.fetchMentions(context);
-
     stopwatch.split("mentions");
 
-    attachmentHelper.fetchAttachments(context);
+    reactionHelper.fetchReactions(context);
+    stopwatch.split("reactions");
 
+    records = reactionHelper.buildUpdatedModels(context, records);
+    stopwatch.split("reaction-models");
+
+    attachmentHelper.fetchAttachments(context);
     stopwatch.split("attachments");
 
     records = attachmentHelper.buildUpdatedModels(context, records);
-
     stopwatch.split("attachment-models");
 
     List<ConversationMessage> messages = Stream.of(records)
@@ -117,7 +123,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
   @Override
   public @Nullable ConversationMessage load(@NonNull MessageId messageId) {
     Stopwatch       stopwatch = new Stopwatch("load(" + messageId + "), thread " + threadId);
-    MessageDatabase database  = messageId.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+    MessageDatabase database  = messageId.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
     MessageRecord   record    = database.getMessageRecordOrNull(messageId.getId());
 
     stopwatch.split("message");
@@ -126,15 +132,20 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
       if (record != null) {
         List<Mention> mentions;
         if (messageId.isMms()) {
-          mentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessage(messageId.getId());
+          mentions = SignalDatabase.mentions().getMentionsForMessage(messageId.getId());
         } else {
           mentions = Collections.emptyList();
         }
 
         stopwatch.split("mentions");
 
+        List<ReactionRecord> reactions = SignalDatabase.reactions().getReactions(messageId);
+        record = ReactionHelper.recordWithReactions(record, reactions);
+
+        stopwatch.split("reactions");
+
         if (messageId.isMms()) {
-          List<DatabaseAttachment> attachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId.getId());
+          List<DatabaseAttachment> attachments = SignalDatabase.attachments().getAttachmentsForMessage(messageId.getId());
           if (attachments.size() > 0) {
             record = ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
           }
@@ -168,7 +179,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     }
 
     void fetchMentions(Context context) {
-      messageIdToMentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessages(messageIds);
+      messageIdToMentions = SignalDatabase.mentions().getMentionsForMessages(messageIds);
     }
 
     @Nullable List<Mention> getMentions(long id) {
@@ -188,7 +199,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     }
 
     void fetchAttachments(Context context) {
-      messageIdToAttachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessages(messageIds);
+      messageIdToAttachments = SignalDatabase.attachments().getAttachmentsForMessages(messageIds);
     }
 
     @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
@@ -205,6 +216,45 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
                       return record;
                     })
                     .collect(Collectors.toList());
+    }
+  }
+
+  private static class ReactionHelper {
+
+    private Collection<MessageId>                messageIds           = new LinkedList<>();
+    private Map<MessageId, List<ReactionRecord>> messageIdToReactions = new HashMap<>();
+
+    void add(MessageRecord record) {
+      messageIds.add(new MessageId(record.getId(), record.isMms()));
+    }
+
+    void fetchReactions(Context context) {
+      messageIdToReactions = SignalDatabase.reactions().getReactionsForMessages(messageIds);
+    }
+
+    @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
+      return records.stream()
+                    .map(record -> {
+                      MessageId            messageId = new MessageId(record.getId(), record.isMms());
+                      List<ReactionRecord> reactions = messageIdToReactions.get(messageId);
+
+                      return recordWithReactions(record, reactions);
+                    })
+                    .collect(Collectors.toList());
+    }
+
+    static MessageRecord recordWithReactions(@NonNull MessageRecord record, List<ReactionRecord> reactions) {
+      if (Util.hasItems(reactions)) {
+        if (record instanceof MediaMmsMessageRecord) {
+          return ((MediaMmsMessageRecord) record).withReactions(reactions);
+        } else if (record instanceof SmsMessageRecord) {
+          return ((SmsMessageRecord) record).withReactions(reactions);
+        } else {
+          throw new IllegalStateException("We have reactions for an unsupported record type: " + record.getClass().getName());
+        }
+      } else {
+        return record;
+      }
     }
   }
 

@@ -185,14 +185,14 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetRingGroup(@NonNull WebRtcServiceState currentState, boolean ringGroup) {
-    Log.i(tag, "handleReceivedOpaqueMessage(): ring: " + ringGroup);
+    Log.i(tag, "handleSetRingGroup(): ring: " + ringGroup);
 
-    if (currentState.getCallSetupState().shouldRingGroup() == ringGroup) {
+    if (currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).shouldRingGroup() == ringGroup) {
       return currentState;
     }
 
     return currentState.builder()
-                       .changeCallSetupState()
+                       .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                        .setRingGroup(ringGroup)
                        .build();
   }

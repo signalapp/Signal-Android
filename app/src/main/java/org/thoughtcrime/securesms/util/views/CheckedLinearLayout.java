@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util.views;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;

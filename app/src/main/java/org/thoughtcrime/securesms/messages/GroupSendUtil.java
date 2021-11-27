@@ -9,9 +9,9 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageSendLogDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -41,6 +41,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
@@ -164,7 +166,7 @@ public final class GroupSendUtil {
     List<Recipient> registeredTargets   = allTargets.stream().filter(r -> !unregisteredTargets.contains(r)).collect(Collectors.toList());
 
     RecipientData         recipients  = new RecipientData(context, registeredTargets);
-    Optional<GroupRecord> groupRecord = groupId != null ? DatabaseFactory.getGroupDatabase(context).getGroup(groupId) : Optional.absent();
+    Optional<GroupRecord> groupRecord = groupId != null ? SignalDatabase.groups().getGroup(groupId) : Optional.absent();
 
     List<Recipient> senderKeyTargets = new LinkedList<>();
     List<Recipient> legacyTargets    = new LinkedList<>();
@@ -211,7 +213,7 @@ public final class GroupSendUtil {
     SignalServiceMessageSender messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
 
     if (senderKeyTargets.size() > 0 && groupId != null) {
-      DistributionId distributionId = DatabaseFactory.getGroupDatabase(context).getOrCreateDistributionId(groupId);
+      DistributionId distributionId = SignalDatabase.groups().getOrCreateDistributionId(groupId);
       long           keyCreateTime  = SenderKeyUtil.getCreateTimeForOurKey(context, distributionId);
       long           keyAge         = System.currentTimeMillis() - keyCreateTime;
 
@@ -231,7 +233,7 @@ public final class GroupSendUtil {
         Log.d(TAG, "Successfully sent using sender key to " + successCount + "/" + targets.size() + " sender key targets.");
 
         if (sendOperation.shouldIncludeInMessageLog()) {
-          DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId());
+          SignalDatabase.messageLog().insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId());
         }
 
         if (relatedMessageId != null) {
@@ -248,6 +250,9 @@ public final class GroupSendUtil {
         legacyTargets.addAll(senderKeyTargets);
       } catch (InvalidRegistrationIdException e) {
         Log.w(TAG, "Invalid registrationId. Falling back to legacy sends.", e);
+        legacyTargets.addAll(senderKeyTargets);
+      } catch (NotFoundException e) {
+        Log.w(TAG, "Someone was unregistered. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
       }
     } else if (relatedMessageId != null) {
@@ -275,7 +280,7 @@ public final class GroupSendUtil {
       List<Optional<UnidentifiedAccessPair>> access          = legacyTargets.stream().map(r -> recipients.getAccessPair(r.getId())).collect(Collectors.toList());
       boolean                                recipientUpdate = isRecipientUpdate || allResults.size() > 0;
 
-      final MessageSendLogDatabase messageLogDatabase  = DatabaseFactory.getMessageLogDatabase(context);
+      final MessageSendLogDatabase messageLogDatabase  = SignalDatabase.messageLog();
       final AtomicLong             entryId             = new AtomicLong(-1);
       final boolean                includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
 

@@ -395,11 +395,6 @@
   <string name="DeviceListItem_today">Täna</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nimetu fail</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Anneta Signalile</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalit hoiavad käimas sinusarnased inimesed. Näita oma toetust täna!</string>
-  <string name="DonateMegaphone_donate">Anneta</string>
-  <string name="DonateMegaphone_no_thanks">Tänan, ei</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Tutvustame grupikõnesid</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Uue krüptitud grupikõne alustamiseks vajuta \\"Uus grupp\\"</string>
@@ -2259,7 +2254,6 @@
   <string name="Insights__title">Pilguheit</string>
   <string name="InsightsDashboardFragment__title">Pilguheit</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signali protokoll kaitses automaatselt %1$d%% väljuvat sõnumit %2$d päeva jooksul. Vestlused Signali kasutajate vahel on alati otspunktkrüpteeritud.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signali võimendamine</string>
   <string name="InsightsDashboardFragment__not_enough_data">Pole piisavalt andmeid</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Sinu Pilguheidu protsent on arvutatud %1$d päeva väljuvate sõnumite põhjal, mis ei ole haihtunud ega kustutatud.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Alusta vestlust</string>
@@ -2915,6 +2909,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vali välimus ja tunnetus või kohanda enda initsiaale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Mitte praegu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Lisa foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Tänan, ei</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Ava emotikonide otsing</string>
@@ -3070,14 +3066,16 @@
   <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
   <string name="SelectFeaturedBadgeFragment__preview">Eelvaade</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalit loovad sinusugused inimesed.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Annetuse summa</string> -->
   <string name="SubscribeFragment__not_now">Mitte praegu</string>
   <string name="SubscribeFragment__confirm">Kinnita</string>
   <string name="SubscribeFragment__update">Uuenda</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
   <string name="Boost__enter_custom_amount">Sisesta kohandatud summa</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <string name="Subscription__contact_support">Võta ühendust kasutajatoega</string>
-  <string name="DonationsErrors__payment_failed">Makse ei õnnestunud</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">Proovi uuesti</string>
   <!--EOF-->
 </resources>

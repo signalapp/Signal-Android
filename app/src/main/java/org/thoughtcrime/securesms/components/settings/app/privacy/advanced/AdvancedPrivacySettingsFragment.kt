@@ -18,11 +18,11 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 
 class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__advanced) {
@@ -168,7 +168,7 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
 
   private fun getPushToggleSummary(isPushEnabled: Boolean): String {
     return if (isPushEnabled) {
-      PhoneNumberFormatter.prettyPrint(TextSecurePreferences.getLocalNumber(requireContext()))
+      PhoneNumberFormatter.prettyPrint(SignalStore.account().e164!!)
     } else {
       getString(R.string.preferences__free_private_messages_and_calls)
     }

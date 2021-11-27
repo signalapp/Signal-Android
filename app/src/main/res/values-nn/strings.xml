@@ -439,11 +439,6 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fil utan namn</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drive av folk som deg. Vis di støtte i dag!</string>
-  <string name="DonateMegaphone_donate">Doner</string>
-  <string name="DonateMegaphone_no_thanks">Nei takk</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Her kjem gruppesamtalar</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Opna ei Ny gruppe for å starta ein kryptert gruppesamtale</string>
@@ -709,6 +704,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageProfileFragment_your_username">Brukarnamnet ditt</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Klarte ikkje endra profilbilde</string>
   <string name="ManageProfileFragment_badges">Merke</string>
+  <string name="ManageProfileFragment__edit_photo">Rediger bilde</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga grupper felles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -809,6 +805,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikkje har nokon program å dela denne informasjonen med.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær meir</string>
+  <string name="SpanUtil__read_more">Les meir</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Klarte ikkje finna meldinga</string>
   <string name="LongMessageActivity_message_from_s">Melding frå %1$s</string>
@@ -1352,6 +1349,11 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har prøvd for mange gongar å registrera dette nummeret. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Ikkje-standard nummerformat</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Talet du skreiv inn (%1$s) ser ut til å vera uvanleg formatert.
+
+Meinte du %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – telefonnummerformat</string>
   <string name="RegistrationActivity_call_requested">Spørsmål om anrop</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
@@ -1945,6 +1947,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Klarte ikkje lasta opp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>-- Vel eit alternativ --</item>
+    <item>Noko fungerer ikkje</item>
+    <item>Forslag til funksjonalitet</item>
+    <item>Spørsmål</item>
+    <item>Tilbakemelding</item>
+    <item>Anna</item>
+    <item>Betalingar (MobileCoin)</item>
+    <item>Bidragsytarar &amp; Signal-auke</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldinga</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyleg brukt</string>
@@ -2042,6 +2054,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__donate_to_signal">Doner til Signal</string>
   <string name="preferences__subscription">Abonnement</string>
+  <string name="preferences__become_a_signal_sustainer">Bli ein bidragsytar til Signal</string>
   <string name="preferences__signal_boost">Signal-auke</string>
   <string name="preferences__privacy">Personvern</string>
   <string name="preferences__mms_user_agent">MMS-brukaragent</string>
@@ -2400,7 +2413,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="Insights__title">Oversikt</string>
   <string name="InsightsDashboardFragment__title">Oversikt</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollen beskytta automatisk %1$d%% av dei utgåande meldingane dine dei siste %2$d dagane. Samtalar mellom Signal-brukarar er alltid kryptert ende-til-ende.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal-auke</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Sprei ordet</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ikkje nok data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentane i oversikta er rekna ut frå utgåande meldingar dei siste %1$d dagane som ikkje har forsvunne eller blitt sletta.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start ein samtale</string>
@@ -3142,6 +3155,11 @@ Sjekkar igjen no …</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vel ein utsjånad og farge eller endra initialane dine.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ikkje no</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Legg til bilde</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli ein bidragsytar</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal er driven av folk som deg. Gje eit bidrag og få eit profilmerke.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nei takk</string>
+  <string name="BecomeASustainerMegaphone__contribute">Bidra</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Opna emoji-søk</string>
@@ -3190,6 +3208,7 @@ Sjekkar igjen no …</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen dempa for all framtid</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierte telefonnummeret til utklippstavla.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
+  <string name="ConversationSettingsFragment__get_badges">Få merke på profilen din ved å støtta Signal. Trykk på eit merke for å læra meir.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Legg til medlemmar</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Endra gruppeinfo</string>
@@ -3311,7 +3330,8 @@ Sjekkar igjen no …</string>
   <string name="ImageView__badge">Merke</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal er bygd av folk som deg.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Støtt teknologi som er bygd for deg – ikkje for dine data – ved å bli med og støtta det.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">Donasjonsbeløp</string> -->
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Støtt teknologi som er bygd for deg – ikkje for dine data – ved å bli med i fellesskapet som held Signal i gang.</string>
+  <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Fleire betalingsmoglegheiter</string>
   <string name="SubscribeFragment__cancel_subscription">Avslutt abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Stadfest avslutning?</string>
@@ -3323,20 +3343,26 @@ Sjekkar igjen no …</string>
   <string name="SubscribeFragment__update_subscription_question">Oppdater abonnement?</string>
   <string name="SubscribeFragment__update">Oppdater</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Heile beløpet for det nye abonnementet blir trekt i dag. Abonnementet blir fornya %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Heile beløpet (%1$s) for det nye abonnementet blir trekt i dag. Abonnementet blir fornya månadleg.</string>
   <string name="Subscription__s_per_month">%s/månad</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Fornyar %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Går ut %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er ein ideell organisasjon utan reklame eller investorar, berre finansiert av dei som bruker og verdset det. Gje eit månadleg bidrag og få eit profilmerke som viser at du støtter Signal.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Kvifor bidra?</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Utviklarane av Signal er dedikerte til å laga personvernteknologi med open kjelde som vernar om ytringsfridom og støttar trygg, global kommunikasjon. Ditt bidrag går mot dette formålet. Ingen reklame. Ingen sporing. Ikkje noko tull.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">Ditt bidrag hjelper å finansiera utviklinga, serverane og bandbreidda til ein app som blir brukt av millionar av menneske rundt om i verda for privat og omgåande kommunikasjon.</string> -->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er forplikta til å utvikle personvernteknologi med open kjeldekode som vernar om ytringsfridom og gjer sikker global kommunikasjon mogleg.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Bidraget ditt driv denne saka og betaler for utvikling og drift av ein app som blir brukt av millionar av menneske til privat kommunikasjon. Ingen reklame. Ingen sporing. Ikkje noko tull.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Takk for støtta!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Takk for auken!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">Du har fortent %s-merket! Ber merket ditt for å visa dei du pratar med at du støttar Signal.</string> -->
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har fortent %s-merket! Hjelp Signal med å spreia merksemd om det ved å visa merket på profilen din.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du har fortent eit Auke-merke! Hjelp Signal med å spreia merksemd om det ved å visa merket på profilen din.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bli ein månadleg bidragsytar.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profilen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Lag eit merke å visa fram</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har meir enn eitt merke, kan du velja kva for eitt som skal visast på profilen.</string>
+  <string name="BecomeASustainerFragment__get_badges">Få merke på profilen din ved å støtta Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er ein ideell organisasjon utan reklamefinansiering eller investorar, berre støtta av slike som deg.</string>
   <string name="ManageDonationsFragment__my_support">Mi støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Handter abonnement</string>
   <string name="ManageDonationsFragment__badges">Merke</string>
@@ -3349,23 +3375,42 @@ Sjekkar igjen no …</string>
   <string name="MySupportPreference__add_a_signal_boost">Få ein Signal-auke</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Fornyar %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Behandlar transaksjon …</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Klarte ikkje legga til merke. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Ta kontakt med brukarstøtte.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merket ditt er utgått</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">%1$s-merket ditt er utgått, og er ikkje lenger synleg for andre på profilen din.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">Vurder eit månadleg bidrag for å fortsetja å støtta teknologi som er bygd for deg – og ikkje berre for dine data.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Bli abonnent</string> -->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merke utløpt</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement avslutta</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Auke-merket ditt er utløpt, og er ikkje lenger synleg for andre på profilen din.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan gjenaktivera Auke-merket ditt i 30 dagar til med eit eingongsbeløp.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Vurder å bli ein månadleg bidragsytar for å fortsetja å støtta teknologi som er bygd for deg.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli ein bidragsytar</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Få ein Signal-auke</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
-  <string name="Subscription__verification_failed">Klarte ikkje stadfesta abonnementet</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Bidragsytar-abonnementet ditt blei automatisk avslutta sidan du var inaktiv for lenge. %1$s-merket ditt er ikkje lenger synleg på profilen din.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan halda fram med å bruka Signal, men du må fornya for å fortsetja å støtta appen og gjenaktivera merket.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
   <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med brukarstøtte for meir informasjon.</string>
   <string name="Subscription__contact_support">Kontakt brukarstøtte</string>
   <string name="Subscription__earn_a_s_badge">Få eit %1$s-merke</string>
   <string name="SubscribeFragment__processing_payment">Behandlar betaling …</string>
-  <string name="DonationsErrors__payment_failed">Feil ved betaling</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Klarte ikkje handsama betaling</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Klarte ikkje behandla betaling. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Klarte ikkje legga til merket på kontoen din, men beløpet kan ha bli trukke. Ta kontakt med brukarstøtte.</string>
   <string name="DonationsErrors__your_payment">Klarte ikkje prosessera betalinga di og beløpet har ikkje blitt trekt. Prøv igjen.</string>
-  <string name="DonationsErrors__redemption_still_pending">Innløysing undervegs</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">Du ser kanskje ikkje merket umiddelbart, men me jobbar med det!</string>
+  <string name="DonationsErrors__still_processing">Behandlar enno</string>
+  <string name="DonationsErrors__couldnt_add_badge">Klarte ikkje legga til merke</string>
+  <string name="DonationsErrors__your_badge_could_not">Klarte ikkje legga til merket på kontoen din, men beløpet kan ha bli trukke. Ta kontakt med brukarstøtte.</string>
+  <string name="DonationsErrors__your_payment_is_still">Me behandlar betalinga di. Dette kan ta nokre minutt avhengig av tilkoplinga di.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay er utilgjengeleg</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du må setja opp Google Pay for å donera frå appen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Klarte ikkje avslutta abonnementet</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Du må vera på nett for å avslutta abonnementet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Eininga di støttar ikkje Google Pay, så du kan ikkje abonnera for å få eit merke. Du kan likevel støtta Signal ved å donera via nettsidene våre.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk tilkoplinga di og prøv igjen.</string>
+  <string name="NetworkFailure__retry">Prøv igjen</string>
   <!--EOF-->
 </resources>

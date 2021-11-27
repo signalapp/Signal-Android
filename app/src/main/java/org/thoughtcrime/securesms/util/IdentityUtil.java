@@ -11,15 +11,13 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingIdentityDefaultMessage;
@@ -62,8 +60,8 @@ public final class IdentityUtil {
   public static void markIdentityVerified(Context context, Recipient recipient, boolean verified, boolean remote)
   {
     long            time          = System.currentTimeMillis();
-    MessageDatabase smsDatabase   = DatabaseFactory.getSmsDatabase(context);
-    GroupDatabase   groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    MessageDatabase smsDatabase   = SignalDatabase.sms();
+    GroupDatabase   groupDatabase = SignalDatabase.groups();
 
     try (GroupDatabase.Reader reader = groupDatabase.getGroups()) {
 
@@ -80,16 +78,16 @@ public final class IdentityUtil {
 
             smsDatabase.insertMessageInbox(incoming);
           } else {
-            RecipientId         recipientId    = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupRecord.getId());
+            RecipientId         recipientId    = SignalDatabase.recipients().getOrInsertFromGroupId(groupRecord.getId());
             Recipient           groupRecipient = Recipient.resolved(recipientId);
-            long                threadId       = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
+            long                threadId       = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
             OutgoingTextMessage outgoing ;
 
             if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
             else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
 
-            DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);
-            DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+            SignalDatabase.sms().insertMessageOutbox(threadId, outgoing, false, time, null);
+            SignalDatabase.threads().update(threadId, true);
           }
         }
       }
@@ -108,18 +106,18 @@ public final class IdentityUtil {
       if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
       else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
 
-      long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+      long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
       Log.i(TAG, "Inserting verified outbox...");
-      DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      SignalDatabase.sms().insertMessageOutbox(threadId, outgoing, false, time, null);
+      SignalDatabase.threads().update(threadId, true);
     }
   }
 
   public static void markIdentityUpdate(@NonNull Context context, @NonNull RecipientId recipientId) {
     long            time          = System.currentTimeMillis();
-    MessageDatabase smsDatabase   = DatabaseFactory.getSmsDatabase(context);
-    GroupDatabase   groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    MessageDatabase smsDatabase   = SignalDatabase.sms();
+    GroupDatabase   groupDatabase = SignalDatabase.groups();
 
     try (GroupDatabase.Reader reader = groupDatabase.getGroups()) {
       GroupDatabase.GroupRecord groupRecord;

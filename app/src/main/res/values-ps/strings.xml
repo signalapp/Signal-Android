@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">نن ورځ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">بې نومه فایل</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signal سره مرسته کول</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ستاسې په څیر خلکو له خوا ځواکمن شوی دی. همدا نن مو خپل ملاتړ وښیئ!</string>
-  <string name="DonateMegaphone_donate">مرسته کول</string>
-  <string name="DonateMegaphone_no_thanks">نه مننه</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">د ګروپي زنګ وهلو پیژندنه</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">یو نوی ګروپ پرانیزئ تر څو وړیا انکریپټ شوی ګروپی زنګ پیل کړئ</string>
@@ -2343,7 +2338,6 @@
   <string name="Insights__title">لیدلوري</string>
   <string name="InsightsDashboardFragment__title">لیدلوري</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">د Signal پروتوکول په اتومات ډول په تیرو %2$d ورځو کې ستاسې %1$d%% تلونکي پیغامونه خوندي کړي دي. د Signal د کاروونکو تر منځ محاورې تل په سرتاسري بڼه سره انکریپټ شوي دي.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">د Signal پیاوړی کول</string>
   <string name="InsightsDashboardFragment__not_enough_data">کافي ډیټا نشته</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ستاسې د لیدلوري فیصدي په تیرو %1$d ورځو کې د تلونکو نه ورک کېدونکو یا نه پاک شویو تلونکو پیغامونو له مخې محاسبه کېږی.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">محاوره پیل کړئ</string>
@@ -3076,6 +3070,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">خپل ظاهر او رنګ وټاکه یا هم د خپل نوم لومړني توري سفارشي کړه.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">اوس نه</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">د انځور اضافه کول</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">نه مننه</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">د emoji د پلټنې پرانیستل</string>
@@ -3245,7 +3241,6 @@
   <string name="ImageView__badge">بج</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ستاسې په څیر خلکو له خوا ځواکمن شوی دی.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">هغې تکنالوژي څخه ملاتړ کوي کوم چې ستاسې لپاره جوړه شوې ده - نه ستاسې د ډیټا لپاره - د هغو خلکو له ټولنې سره په یو ځای کېدو کوم چې ساتنه او پالنه یې کوي.</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__donation_amount">د مرستې مقدار</string> -->
   <string name="SubscribeFragment__more_payment_options">د زیاتو پرداختونو غوراوي</string>
   <string name="SubscribeFragment__cancel_subscription">ګډون لغوه کړئ</string>
   <string name="SubscribeFragment__confirm_cancellation">غواړئ لغوه کول تایید کړئ؟</string>
@@ -3259,11 +3254,8 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s په میاشت کې. %2$s کې نوی کېږي</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal یو غیرانتفاعي پروګرام دی چې هېڅ اعلان ورکوونکی یا پانګه وال نه لري او یوازې د هغو کسانو له خوا چې کاروي یې او ورته ارزښت ورکوي، ساتل کېږي. هره میاشت خپله مرسته وکړئ او د خپل ملاتړ د ښودلو په خاطر د پروفایل بج تر لاسه کړئ.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ولې مرسته وکړئ؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">د Signal ټیم د ازادي سرچینې د محرمیت تکنالوژۍ د جوړولو ماموریت ته ژمن دی کوم چې ازاده څرګندونه خوندي کوي او په نړیواله کچه مکالمې خوندي ساتي. ستاسې مرسته له دې ماموریت سره مرسته کولای شي. د اعلانونو نشتوالی. د تعقیب کوونکو نشتوالی. د ساعتیري نشتوالی.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">ستاسې مالي مرسته موږ سره مرسته کوي تر څو د هغه اپلیکیشن د پراختیا، سرورونو او بانډویټ لپاره چې په میلیونونو کسان یې په نړۍ کې د شخصي او همزمان محاورو لپاره کاروي، پرداخت وکړو.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ستاسې له مرستې څخه مننه!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">له پیاوړتیا څخه مننه!</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">تاسې %s بج تر لاسه کړل! ستاسې د بج ښودل به هغو خلکو ته چې تاسې چټ ورسره کوئ دا وښیې چې تاسې له Signal سره مرسته کوئ.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">پر پروفایل ښودل</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ځانګړی بج جوړول</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تر سره شو</string>
@@ -3279,13 +3271,13 @@
   <string name="MySupportPreference__add_a_signal_boost">د Signal پیاوړی کوونکی اضافه کړئ</string>
   <string name="MySupportPreference__s_per_month">%1$s په میاشت کې</string>
   <string name="MySupportPreference__renews_s">%1$s کې نوی کېږي</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">ستاسې بج منقضي شوی دی</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">ستاسې %1$s بج منقضي شوی دی او نور به ستاسې پر پروفایل باندې نورو ته د لیدو وړ نه وي. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">که غواړئ چې له هغې تکنالوژۍ سره خپلې مرستې ته ادامه ورکړئ کوم چې ستاسې لپاره جوړه شوې ده - نه ستاسې د ډیټا لپاره - نو بیا د میاشتني ګډون وال کېدو په اړه غور وکړئ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">یو ګډون وال واوسئ</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">اوس نه</string>
   <string name="Subscription__contact_support">مرستې سره اړیکه ونیسئ</string>
   <string name="SubscribeFragment__processing_payment">پرداخت د پروسیس په حال کې دی…</string>
-  <string name="DonationsErrors__payment_failed">پرداخت تر سره نشو</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">بیا هڅه وکړئ</string>
   <!--EOF-->
 </resources>

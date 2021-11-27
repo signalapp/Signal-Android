@@ -1,8 +1,13 @@
 package org.thoughtcrime.securesms.subscription
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.animation.doOnEnd
+import androidx.lifecycle.DefaultLifecycleObserver
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
@@ -30,10 +35,51 @@ data class Subscription(
   companion object {
     fun register(adapter: MappingAdapter) {
       adapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.subscription_preference))
+      adapter.registerFactory(LoaderModel::class.java, MappingAdapter.LayoutFactory({ LoaderViewHolder(it) }, R.layout.subscription_preference_loader))
+    }
+  }
+
+  class LoaderModel : PreferenceModel<LoaderModel>() {
+    override fun areItemsTheSame(newItem: LoaderModel): Boolean = true
+  }
+
+  class LoaderViewHolder(itemView: View) : MappingViewHolder<LoaderModel>(itemView), DefaultLifecycleObserver {
+
+    private val animator: Animator = AnimatorSet().apply {
+      val fadeTo25Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.8f, 0.25f).apply {
+        duration = 1000L
+      }
+
+      val fadeTo80Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.25f, 0.8f).apply {
+        duration = 300L
+      }
+
+      playSequentially(fadeTo25Animator, fadeTo80Animator)
+      doOnEnd {
+        if (itemView.isAttachedToWindow) {
+          start()
+        }
+      }
+    }
+
+    override fun bind(model: LoaderModel) {
+    }
+
+    override fun onAttachedToWindow() {
+      if (animator.isStarted) {
+        animator.resume()
+      } else {
+        animator.start()
+      }
+    }
+
+    override fun onDetachedFromWindow() {
+      animator.pause()
     }
   }
 
   class Model(
+    val activePrice: FiatMoney?,
     val subscription: Subscription,
     val isSelected: Boolean,
     val isActive: Boolean,
@@ -82,6 +128,7 @@ data class Subscription(
 
       if (payload.isEmpty()) {
         badge.setBadge(model.subscription.badge)
+        badge.isClickable = false
       }
 
       title.text = model.subscription.name
@@ -89,7 +136,7 @@ data class Subscription(
 
       val formattedPrice = FiatMoneyUtil.format(
         context.resources,
-        model.subscription.prices.first { it.currency == model.selectedCurrency },
+        model.activePrice ?: model.subscription.prices.first { it.currency == model.selectedCurrency },
         FiatMoneyUtil.formatOptions()
       )
 

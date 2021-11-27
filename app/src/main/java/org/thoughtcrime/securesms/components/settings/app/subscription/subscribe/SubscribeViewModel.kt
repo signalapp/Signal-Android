@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.wallet.PaymentData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -17,13 +18,14 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationExceptions
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -48,13 +50,12 @@ class SubscribeViewModel(
   private val activeSubscriptionSubject = PublishSubject.create<ActiveSubscription>()
 
   init {
-    networkDisposable = donationPaymentRepository
-      .internetConnectionObserver()
+    networkDisposable = InternetConnectionObserver
+      .observe()
       .distinctUntilChanged()
       .subscribe { isConnected ->
-        if (!disposables.isDisposed && isConnected && store.state.stage == SubscribeState.Stage.FAILURE) {
-          store.update { it.copy(stage = SubscribeState.Stage.INIT) }
-          refresh()
+        if (isConnected) {
+          retry()
         }
       }
   }
@@ -70,6 +71,13 @@ class SubscribeViewModel(
 
   fun getSelectableCurrencyCodes(): List<String>? {
     return store.state.subscriptions.firstOrNull()?.prices?.map { it.currency.currencyCode }
+  }
+
+  fun retry() {
+    if (!disposables.isDisposed && store.state.stage == SubscribeState.Stage.FAILURE) {
+      store.update { it.copy(stage = SubscribeState.Stage.INIT) }
+      refresh()
+    }
   }
 
   fun refresh() {
@@ -99,7 +107,7 @@ class SubscribeViewModel(
             val usd = PlatformCurrencyUtil.USD
             val newSubscriber = SignalStore.donationsValues().getSubscriber(usd) ?: Subscriber(SubscriberId.generate(), usd.currencyCode)
             SignalStore.donationsValues().setSubscriber(newSubscriber)
-            StorageSyncHelper.scheduleSyncForDataChange()
+            donationPaymentRepository.scheduleSyncForAccountRecordChange()
           }
         }
       },
@@ -154,6 +162,20 @@ class SubscribeViewModel(
     }
   }
 
+  private fun cancelActiveSubscriptionIfNecessary(): Completable {
+    return Single.just(SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt).flatMapCompletable {
+      if (it) {
+        donationPaymentRepository.cancelActiveSubscription().doOnComplete {
+          SignalStore.donationsValues().setLastEndOfPeriod(0L)
+          SignalStore.donationsValues().clearLevelOperations()
+          SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
+        }
+      } else {
+        Completable.complete()
+      }
+    }
+  }
+
   fun cancel() {
     store.update { it.copy(stage = SubscribeState.Stage.CANCELLING) }
     disposables += donationPaymentRepository.cancelActiveSubscription().subscribeBy(
@@ -193,7 +215,12 @@ class SubscribeViewModel(
 
             store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
 
-            ensureSubscriberId.andThen(continueSetup).andThen(setLevel).subscribeBy(
+            val setup = ensureSubscriberId
+              .andThen(cancelActiveSubscriptionIfNecessary())
+              .andThen(continueSetup)
+              .onErrorResumeNext { Completable.error(DonationExceptions.SetupFailed(it)) }
+
+            setup.andThen(setLevel).subscribeBy(
               onError = { throwable ->
                 refreshActiveSubscription()
                 store.update { it.copy(stage = SubscribeState.Stage.READY) }
@@ -209,9 +236,9 @@ class SubscribeViewModel(
           }
         }
 
-        override fun onError() {
+        override fun onError(googlePayException: GooglePayApi.GooglePayException) {
           store.update { it.copy(stage = SubscribeState.Stage.READY) }
-          eventPublisher.onNext(DonationEvent.RequestTokenError)
+          eventPublisher.onNext(DonationEvent.RequestTokenError(googlePayException))
         }
 
         override fun onCancelled() {
@@ -223,7 +250,7 @@ class SubscribeViewModel(
 
   fun updateSubscription() {
     store.update { it.copy(stage = SubscribeState.Stage.PAYMENT_PIPELINE) }
-    donationPaymentRepository.setSubscriptionLevel(store.state.selectedSubscription!!.level.toString())
+    cancelActiveSubscriptionIfNecessary().andThen(donationPaymentRepository.setSubscriptionLevel(store.state.selectedSubscription!!.level.toString()))
       .subscribeBy(
         onComplete = {
           store.update { it.copy(stage = SubscribeState.Stage.READY) }

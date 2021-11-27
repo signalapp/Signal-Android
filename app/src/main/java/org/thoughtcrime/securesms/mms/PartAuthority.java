@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
@@ -70,8 +70,8 @@ public class PartAuthority {
     int match = uriMatcher.match(uri);
     try {
       switch (match) {
-      case PART_ROW:          return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
-      case STICKER_ROW:       return DatabaseFactory.getStickerDatabase(context).getStickerStream(ContentUris.parseId(uri));
+      case PART_ROW:          return SignalDatabase.attachments().getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
+      case STICKER_ROW:       return SignalDatabase.stickers().getStickerStream(ContentUris.parseId(uri));
       case PERSISTENT_ROW:    return DeprecatedPersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
       case BLOB_ROW:          return BlobProvider.getInstance().getStream(context, uri);
       case WALLPAPER_ROW:     return WallpaperStorage.read(context, getWallpaperFilename(uri));
@@ -89,7 +89,7 @@ public class PartAuthority {
 
     switch (match) {
     case PART_ROW:
-      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+      Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
       if (attachment != null) return attachment.getFileName();
       else                    return null;
@@ -107,7 +107,7 @@ public class PartAuthority {
 
     switch (match) {
       case PART_ROW:
-        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+        Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
         if (attachment != null) return attachment.getSize();
         else                    return null;
@@ -125,7 +125,7 @@ public class PartAuthority {
 
     switch (match) {
       case PART_ROW:
-        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+        Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
         if (attachment != null) return attachment.getContentType();
         else                    return null;
@@ -143,7 +143,7 @@ public class PartAuthority {
 
     switch (match) {
       case PART_ROW:
-        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+        Attachment attachment = SignalDatabase.attachments().getAttachment(new PartUriParser(uri).getPartId());
 
         if (attachment != null) return attachment.isVideoGif();
         else                    return false;

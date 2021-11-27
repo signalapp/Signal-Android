@@ -6,7 +6,7 @@ import android.net.Uri
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.database.Database
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.CustomAvatar
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.util.CursorUtil
@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.util.SqlUtil
 /**
  * Database which manages the record keeping for custom created avatars.
  */
-class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Database(context, databaseHelper) {
+class AvatarPickerDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
 
   companion object {
     const val TABLE_NAME = "avatar_picker"

@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.boost
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.text.Editable
 import android.text.Spanned
 import android.text.TextWatcher
@@ -7,7 +10,8 @@ import android.text.method.DigitsKeyListener
 import android.view.View
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.widget.addTextChangedListener
+import androidx.core.animation.doOnEnd
+import androidx.core.text.isDigitsOnly
 import com.google.android.material.button.MaterialButton
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
@@ -19,6 +23,8 @@ import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.ViewUtil
 import java.lang.Integer.min
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.util.Currency
 import java.util.Locale
 import java.util.regex.Pattern
@@ -41,6 +47,45 @@ data class Boost(
 
     override fun areContentsTheSame(newItem: HeadingModel): Boolean {
       return super.areContentsTheSame(newItem) && newItem.boostBadge == boostBadge
+    }
+  }
+
+  class LoadingModel : PreferenceModel<LoadingModel>() {
+    override fun areItemsTheSame(newItem: LoadingModel): Boolean = true
+  }
+
+  class LoadingViewHolder(itemView: View) : MappingViewHolder<LoadingModel>(itemView) {
+
+    private val animator: Animator = AnimatorSet().apply {
+      val fadeTo25Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.8f, 0.25f).apply {
+        duration = 1000L
+      }
+
+      val fadeTo80Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.25f, 0.8f).apply {
+        duration = 300L
+      }
+
+      playSequentially(fadeTo25Animator, fadeTo80Animator)
+      doOnEnd {
+        if (itemView.isAttachedToWindow) {
+          start()
+        }
+      }
+    }
+
+    override fun bind(model: LoadingModel) {
+    }
+
+    override fun onAttachedToWindow() {
+      if (animator.isStarted) {
+        animator.resume()
+      } else {
+        animator.start()
+      }
+    }
+
+    override fun onDetachedFromWindow() {
+      animator.pause()
     }
   }
 
@@ -78,6 +123,15 @@ data class Boost(
     private val boost6: MaterialButton = itemView.findViewById(R.id.boost_6)
     private val custom: AppCompatEditText = itemView.findViewById(R.id.boost_custom)
 
+    private val boostButtons: List<MaterialButton>
+      get() {
+        return if (ViewUtil.isLtr(context)) {
+          listOf(boost1, boost2, boost3, boost4, boost5, boost6)
+        } else {
+          listOf(boost3, boost2, boost1, boost6, boost5, boost4)
+        }
+      }
+
     private var filter: MoneyFilter? = null
 
     init {
@@ -87,12 +141,14 @@ data class Boost(
     override fun bind(model: SelectionModel) {
       itemView.isEnabled = model.isEnabled
 
-      model.boosts.zip(listOf(boost1, boost2, boost3, boost4, boost5, boost6)).forEach { (boost, button) ->
+      model.boosts.zip(boostButtons).forEach { (boost, button) ->
         button.isSelected = boost == model.selectedBoost && !model.isCustomAmountFocused
         button.text = FiatMoneyUtil.format(
           context.resources,
           boost.price,
-          FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
+          FiatMoneyUtil
+            .formatOptions()
+            .trimZerosAfterDecimal()
         )
         button.setOnClickListener {
           model.onBoostClick(it, boost)
@@ -103,7 +159,7 @@ data class Boost(
       if (filter == null || filter?.currency != model.currency) {
         custom.removeTextChangedListener(filter)
 
-        filter = MoneyFilter(model.currency) {
+        filter = MoneyFilter(model.currency, custom) {
           model.onCustomAmountChanged(it)
         }
 
@@ -136,11 +192,14 @@ data class Boost(
   }
 
   @VisibleForTesting
-  class MoneyFilter(val currency: Currency, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(), TextWatcher {
+  class MoneyFilter(val currency: Currency, private val text: AppCompatEditText? = null, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(false, true), TextWatcher {
 
+    val separator = DecimalFormatSymbols.getInstance().decimalSeparator
     val separatorCount = min(1, currency.defaultFractionDigits)
-    val prefix: String = currency.getSymbol(Locale.getDefault())
-    val pattern: Pattern = "[0-9]*([.,]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
+    val symbol: String = currency.getSymbol(Locale.getDefault())
+    val pattern: Pattern = "[0-9]*([$separator]){0,$separatorCount}[0-9]{0,${currency.defaultFractionDigits}}".toPattern()
+    val symbolPattern: Regex = """\s*${Regex.escape(symbol)}\s*""".toRegex()
+    val leadingZeroesPattern: Regex = """^0*""".toRegex()
 
     override fun filter(
       source: CharSequence,
@@ -152,7 +211,12 @@ data class Boost(
     ): CharSequence? {
 
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
-      val resultWithoutCurrencyPrefix = result.removePrefix(prefix)
+      val resultWithoutCurrencyPrefix = result.removePrefix(symbol).removeSuffix(symbol).trim()
+
+      if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
+        return dest.subSequence(dstart, dend)
+      }
+
       val matcher = pattern.matcher(resultWithoutCurrencyPrefix)
 
       if (!matcher.matches()) {
@@ -169,14 +233,46 @@ data class Boost(
     override fun afterTextChanged(s: Editable?) {
       if (s.isNullOrEmpty()) return
 
-      val hasPrefix = s.startsWith(prefix)
-      if (hasPrefix && s.length == prefix.length) {
+      val hasSymbol = s.startsWith(symbol) || s.endsWith(symbol)
+      if (hasSymbol && symbolPattern.matchEntire(s.toString()) != null) {
         s.clear()
-      } else if (!hasPrefix) {
-        s.insert(0, prefix)
+      } else if (!hasSymbol) {
+        val formatter = NumberFormat.getCurrencyInstance()
+        formatter.currency = currency
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = currency.defaultFractionDigits
+
+        val value = s.toString().toDoubleOrNull()
+
+        if (value != null) {
+          val formatted = formatter.format(value)
+
+          text?.removeTextChangedListener(this)
+
+          s.replace(0, s.length, formatted)
+          if (formatted.endsWith(symbol)) {
+            val result: MatchResult? = symbolPattern.find(formatted)
+            if (result != null && result.range.first < s.length) {
+              text?.setSelection(result.range.first)
+            }
+          }
+
+          text?.addTextChangedListener(this)
+        }
       }
 
-      onCustomAmountChanged(s.removePrefix(prefix).toString())
+      val withoutSymbol = s.removePrefix(symbol).removeSuffix(symbol).trim().toString()
+      val withoutLeadingZeroes = withoutSymbol.replace(leadingZeroesPattern, "")
+      if (withoutSymbol != withoutLeadingZeroes) {
+        text?.removeTextChangedListener(this)
+
+        val start = s.indexOf(withoutSymbol)
+        s.replace(start, start + withoutSymbol.length, withoutLeadingZeroes)
+
+        text?.addTextChangedListener(this)
+      }
+
+      onCustomAmountChanged(s.removePrefix(symbol).removeSuffix(symbol).trim().toString())
     }
   }
 
@@ -184,6 +280,7 @@ data class Boost(
     fun register(adapter: MappingAdapter) {
       adapter.registerFactory(SelectionModel::class.java, MappingAdapter.LayoutFactory({ SelectionViewHolder(it) }, R.layout.boost_preference))
       adapter.registerFactory(HeadingModel::class.java, MappingAdapter.LayoutFactory({ HeadingViewHolder(it) }, R.layout.boost_preview_preference))
+      adapter.registerFactory(LoadingModel::class.java, MappingAdapter.LayoutFactory({ LoadingViewHolder(it) }, R.layout.boost_loading_preference))
     }
   }
 }

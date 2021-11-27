@@ -77,7 +77,7 @@ public final class SignalProxyUtil {
   public static boolean testWebsocketConnection(long timeout) {
     startListeningToWebsocket();
 
-    if (TextSecurePreferences.getLocalNumber(ApplicationDependencies.getApplication()) == null) {
+    if (SignalStore.account().getE164() == null) {
       Log.i(TAG, "User is unregistered! Doing simple check.");
       return testWebsocketConnectionUnregistered(timeout);
     }

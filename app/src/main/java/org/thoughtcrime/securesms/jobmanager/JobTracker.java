@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +51,19 @@ public class JobTracker {
         iter.remove();
       }
     }
+  }
+
+  /**
+   * Returns the state of the first Job that matches the provided filter. Note that there will always be races here, and the result you get back may not be
+   * valid anymore by the time you get it. Use with caution.
+   */
+  synchronized @Nullable JobState getFirstMatchingJobState(@NonNull JobFilter filter) {
+    for (JobInfo info : jobInfos.values()) {
+      if (filter.matches(info.getJob())) {
+        return info.getJobState();
+      }
+    }
+    return null;
   }
 
   /**
